@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-16 17:49+0000\n"
-"PO-Revision-Date: 2021-11-18 11:09+0000\n"
+"PO-Revision-Date: 2021-11-18 11:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -273,9 +273,9 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>It spyt ús, mar wy kinne net fine wêr't jo nei sykje.</h1> <p>De troch jo oanfrege side of bestân is net op ús website oantroffen. Mooglik hawwe jo op in ferâldere keppeling klikt, of it adres "
+"<h1>It spyt ús, mar wy kinne net fine wêr’t jo nei sykje.</h1> <p>De troch jo oanfrege side of bestân is net op ús website oantroffen. Mooglik hawwe jo op in ferâldere keppeling klikt, of it adres "
 "ferkeard yntypt.</p> <ul> <li>As jo it adres yntypt hawwe, kontrolearje dan de stavering nochris.</li> <li>As jo in keppeling earne fan folge hawwe, %(open_bug_link)smeld dan it "
-"probleem%(close_bug_link)s. Fertel ús wêr't jo fan kamen en wat jo sochten, en wy sille probearje it probleem op te lossen.</li> </ul> <p>Jo kinne ek gewoanwei nei inkelde populêre siden op ús "
+"probleem%(close_bug_link)s. Fertel ús wêr’t jo fan kamen en wat jo sochten, en wy sille probearje it probleem op te lossen.</li> </ul> <p>Jo kinne ek gewoanwei nei inkelde populêre siden op ús "
 "website springe.</p> <ul> <li>Binne jo ynteressearre yn in <a href=\"%(rec)s\">list mei oanrekommandearre add-ons</a>?</li> <li>Wolle jo nei <a href=\"%(search)s\">add-ons sykje</a>? Jo kinne nei de"
 " <a href=\"%(search)s\">sykside</a> gean of gewoanwei boppesteand sykfjild brûke.</li> <li>As jo leaver opnij begjinne, gean dan nei de <a href=\"%(home)s\">startside foar add-ons</a>.</li> </ul>"
 
@@ -525,7 +525,7 @@ msgid "Add %(name)s"
 msgstr "%(name)s tafoegje"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr "Add-on-GUID's (ien per rigel)"
+msgstr "Add-on-GUID’s (ien per rigel)"
 
 msgid "Submit"
 msgstr "Yntsjinje"
@@ -1035,7 +1035,7 @@ msgid "Deprecated LWTs"
 msgstr "Ferâldere LWT’s"
 
 msgid "Themes (Static)"
-msgstr "Tema's (statysk)"
+msgstr "Tema’s (statysk)"
 
 msgid "Alerts & Updates"
 msgstr "Warskôgingen en fernijingen"
@@ -1152,7 +1152,7 @@ msgid "Photos & Media"
 msgstr "Foto’s en media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Download Firefox-útwreidingen om foto's en media te ferbetterjen. Dizze kategory omfettet útwreidingen foar omkeard sykjen fan ôfbyldingen, it meitsjen fan folsleine skermôfdrukken, en mear."
+msgstr "Download Firefox-útwreidingen om foto’s en media te ferbetterjen. Dizze kategory omfettet útwreidingen foar omkeard sykjen fan ôfbyldingen, it meitsjen fan folsleine skermôfdrukken, en mear."
 
 msgid "Security & Privacy"
 msgstr "Befeiliging en privacy"
@@ -1209,79 +1209,79 @@ msgid "Abstract"
 msgstr "Abstrakt"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr "Download Firefox artistike en konseptuele tema's. Dizze kategory omfettet kleurige paletten en foarmen, fantasy-lânskippen, boartlike katten, psychedelyske blommen."
+msgstr "Download Firefox artistike en konseptuele tema’s. Dizze kategory omfettet kleurige paletten en foarmen, fantasy-lânskippen, boartlike katten, psychedelyske blommen."
 
 msgid "Causes"
 msgstr "Goede doelen"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr "Download Firefox-tema's foar bysûndere ynteressen en ûnderwerpen. Dizze kategory omfettet sporttema's, fakânsjes, filantropyske oarsaken, nasjonaliteiten, en noch folle mear."
+msgstr "Download Firefox-tema’s foar bysûndere ynteressen en ûnderwerpen. Dizze kategory omfettet sporttema’s, fakânsjes, filantropyske oarsaken, nasjonaliteiten, en noch folle mear."
 
 msgid "Fashion"
 msgstr "Moade"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr "Download Firefox-tema's dy’t fan alle stylfoarmen fiere – patroanen, blomfoarmen, tekstueren, modellen en mear."
+msgstr "Download Firefox-tema’s dy’t fan alle stylfoarmen fiere – patroanen, blomfoarmen, tekstueren, modellen en mear."
 
 msgid "Film and TV"
 msgstr "Film en telefyzje"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Download Firefox-tema's mei films en telefyzje. Dizze kategory omfettet anime lykas Uchiha Madara, films lykas The Matrix, searjes (Game of Thrones), en mear."
+msgstr "Download Firefox-tema’s mei films en telefyzje. Dizze kategory omfettet anime lykas Uchiha Madara, films lykas The Matrix, searjes (Game of Thrones), en mear."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr "Download Firefox-tema's mei it Firefox-browsertema. Dizze kategory omfettet kleurige, ferskate ôfbyldingen fan it Firefox-logo, ynklusyf mear algemiene foks-tema's."
+msgstr "Download Firefox-tema’s mei it Firefox-browsertema. Dizze kategory omfettet kleurige, ferskate ôfbyldingen fan it Firefox-logo, ynklusyf mear algemiene foks-tema’s."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr "Download Firefox-tema's mei de Japanske Firefox. Dizze kategory omfettet tema's dy’t de aardige Foxkeh-maskotte yn ferskate poazen op ferskate lânskippen werjaan."
+msgstr "Download Firefox-tema’s mei de Japanske Firefox. Dizze kategory omfettet tema’s dy’t de aardige Foxkeh-maskotte yn ferskate poazen op ferskate lânskippen werjaan."
 
 msgid "Holiday"
 msgstr "Fakânsje"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr "Download Firefox-tema's mei fakânsjes. Dizze kategory omfettet Kryst, Halloween, Thanksgiving, Sint Patricks Dei, Peaske, 4 july, en mear."
+msgstr "Download Firefox-tema’s mei fakânsjes. Dizze kategory omfettet Kryst, Halloween, Thanksgiving, Sint Patricks Dei, Peaske, 4 july, en mear."
 
 msgid "Music"
 msgstr "Muzyk"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr "Download Firefox-tema's foar muzikale ynteressen en artysten. Dizze kategory omfettet populêre bands lykas Nirvana en BTS, ynstruminten, muzykfideo's, en folle mear."
+msgstr "Download Firefox-tema’s foar muzikale ynteressen en artysten. Dizze kategory omfettet populêre bands lykas Nirvana en BTS, ynstruminten, muzykfideo’s, en folle mear."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Download Firefox-tema's mei bisten en natuerlike lânskippen. Dizze kategory omfettet blommen, sinneûndergongen, foksen, seizoenen, planeten, katten, fûgels, en mear."
+msgstr "Download Firefox-tema’s mei bisten en natuerlike lânskippen. Dizze kategory omfettet blommen, sinneûndergongen, foksen, seizoenen, planeten, katten, fûgels, en mear."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr "Download ynteressante, kreative en unike Firefox-tema's."
+msgstr "Download ynteressante, kreative en unike Firefox-tema’s."
 
 msgid "Scenery"
 msgstr "Lânskip"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "Download Firefox-tema's mei de omjouwing en de natuer. Dizze kategory omfettet sinneûndergongen, strannen, yllustraasjes, stêdsgesichten, en mear."
+msgstr "Download Firefox-tema’s mei de omjouwing en de natuer. Dizze kategory omfettet sinneûndergongen, strannen, yllustraasjes, stêdsgesichten, en mear."
 
 msgid "Seasonal"
 msgstr "Seizoensbûn"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr "Download Firefox-tema's foar alle fjouwer seizoenen — hjerst, winter, maitiid en simmer. Hjerstblêden, sniewite berchtoppen, sinnige simmerdagen, en maitiidsblommen."
+msgstr "Download Firefox-tema’s foar alle fjouwer seizoenen — hjerst, winter, maitiid en simmer. Hjerstblêden, sniewite berchtoppen, sinnige simmerdagen, en maitiidsblommen."
 
 msgid "Solid"
 msgstr "Fêst"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr "Download Firefox-tema's mei solide en skakearde kleuren om jo browser te personalisearjen. Dizze kategory omfettet fet read, pastelkleuren, sêft griis, en noch folle mear."
+msgstr "Download Firefox-tema’s mei solide en skakearde kleuren om jo browser te personalisearjen. Dizze kategory omfettet fet read, pastelkleuren, sêft griis, en noch folle mear."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr "Download Firefox-tema's mei in ferskaat oan sporten. Dizze kategory omfettet lânflaggen, sportteams, fuotbal, hockey, en mear."
+msgstr "Download Firefox-tema’s mei in ferskaat oan sporten. Dizze kategory omfettet lânflaggen, sportteams, fuotbal, hockey, en mear."
 
 msgid "Websites"
 msgstr "Websites"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr "Download Firefox-tema's dy’t de essinsje fan it web fêstlizze — boeiend, ûngewoan en bysûnder."
+msgstr "Download Firefox-tema’s dy’t de essinsje fan it web fêstlizze — boeiend, ûngewoan en bysûnder."
 
 msgid "General"
 msgstr "Algemien"
@@ -1734,7 +1734,7 @@ msgid ""
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 "Sels. <span class=\"helptext\">Neidat jo ynstjoering ûndertekene is troch Mozilla, kinne jo it .xpi-bestân downloade yn de Untwikkelershub en dizze foar jo publyk beskikber stelle. Soargje derfoar "
-"dat yn it add-onmanifest de <a {a_attrs}>update_url</a> fermeld wurdt, omdat dit de URL is wêr't Firefox fernijingen fynt foar automatyske ymplemintaasje by jo brûkers.</span>"
+"dat yn it add-onmanifest de <a {a_attrs}>update_url</a> fermeld wurdt, omdat dit de URL is wêr’t Firefox fernijingen fynt foar automatyske ymplemintaasje by jo brûkers.</span>"
 
 msgid "Display Name"
 msgstr "Werjeftenamme"
@@ -2201,7 +2201,7 @@ msgid "Default Locale"
 msgstr "Standertlocale"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Ynformaasje oer jo add-on wurdt yn dizze taal werjûn, útsein dêr't jo dit bystelle mei in locale-spesifike oersetting. Allinnich relevant foar fermelde add-ons."
+msgstr "Ynformaasje oer jo add-on wurdt yn dizze taal werjûn, útsein dêr’t jo dit bystelle mei in locale-spesifike oersetting. Allinnich relevant foar fermelde add-ons."
 
 msgid "Homepage"
 msgstr "Startside"
@@ -2317,7 +2317,7 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Alle ynformaasje dêr't brûkers mooglik yn ynteressearre binne dy’t net needsaaklikerwize fan tapassing is op de gearfetting of beskriuwing fan de add-on. Wurdt faaks brûkt foar in list mei bekende "
+"Alle ynformaasje dêr’t brûkers mooglik yn ynteressearre binne dy’t net needsaaklikerwize fan tapassing is op de gearfetting of beskriuwing fan de add-on. Wurdt faaks brûkt foar in list mei bekende "
 "bugs, ynformaasje oer hoe't bugs meld wurde kinne, de ferwachte publikaasjedatum fan in nije ferzje, ensfh. Allinnich relevant foar fermelde add-ons."
 
 msgid "Universally unique identifier"
@@ -2336,7 +2336,7 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist oare"
+"It notysjeboerd is in plak wêr’t jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist oare"
 " behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
 
 msgid "Add-on Media for {0}"
@@ -2770,7 +2770,7 @@ msgid "Upload Add-on"
 msgstr "Add-on oplade"
 
 msgid "Where to Host Version"
-msgstr "Wêr't de ferzje host wurdt"
+msgstr "Wêr’t de ferzje host wurdt"
 
 msgid "Change"
 msgstr "Wizigje"
@@ -3571,7 +3571,7 @@ msgstr "Stopje it gebrûk fan jo kompjûter foar mining fan kryptofaluta troch k
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Krij help mei grammatika, oeral wêr't jo op it web skriuwe – sosjale media, e-mail, dokuminten en mear."
+msgstr "Krij help mei grammatika, oeral wêr’t jo op it web skriuwe – sosjale media, e-mail, dokuminten en mear."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3774,7 +3774,7 @@ msgstr "Bewarje wachtwurden feilich en benaderje se op mear apparaten."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr "Witte wêr't jo nei ta gean op it web. Untdek de lânlokaasje foar websites dy’t jo besykje. Wês in ynformearre ynternetreizger."
+msgstr "Witte wêr’t jo nei ta gean op it web. Untdek de lânlokaasje foar websites dy’t jo besykje. Wês in ynformearre ynternetreizger."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
@@ -3985,7 +3985,7 @@ msgstr "Sykje privee mei mar ien klik."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr "Meitsje in ein oan kapen fan ljepblêden. Lit oanklikke keppelingen gjin behear oer jo aktuele ljepblêd krije en ynhâld lade wêr't jo net om frege hawwe."
+msgstr "Meitsje in ein oan kapen fan ljepblêden. Lit oanklikke keppelingen gjin behear oer jo aktuele ljepblêd krije en ynhâld lade wêr’t jo net om frege hawwe."
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -4042,7 +4042,7 @@ msgstr "Foeget in mooglikheid ta toanen/ferstopjen ta oan alle wachtwurdfjilden.
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr "Rjocht jo op wêr't jo nei sjogge troch alles útsein de fideospiler donker te meitsjen."
+msgstr "Rjocht jo op wêr’t jo nei sjogge troch alles útsein de fideospiler donker te meitsjen."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -4116,7 +4116,7 @@ msgstr "Brûk de mooglikheid om fideo en/of audio yn mear yndielingen te downloa
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr "Untdek wêr't de server fan in website har geografysk leit. Wês in ynformearre webreizger."
+msgstr "Untdek wêr’t de server fan in website har geografysk leit. Wês in ynformearre webreizger."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
@@ -4428,11 +4428,11 @@ msgstr "Mear oanrekommandearre útwreidingen besjen"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr "Populêre tema's"
+msgstr "Populêre tema’s"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
-msgstr "Mear populêre tema's besjen"
+msgstr "Mear populêre tema’s besjen"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
@@ -4453,7 +4453,7 @@ msgstr "Mear populêre útwreidingen besjen"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
-msgstr "Oanrekommandearre tema's"
+msgstr "Oanrekommandearre tema’s"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
@@ -5309,7 +5309,7 @@ msgstr "<strong>Warskôging!</strong> In oare brûker hat dizze side earder as j
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
-"It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist oare"
+"It notysjeboerd is in plak wêr’t jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist oare"
 " behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
