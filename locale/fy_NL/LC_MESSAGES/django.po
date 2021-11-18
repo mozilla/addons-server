@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-16 17:49+0000\n"
-"PO-Revision-Date: 2021-11-18 11:22+0000\n"
+"PO-Revision-Date: 2021-11-18 11:28+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1915,7 +1915,7 @@ msgid "Tab highlight"
 msgstr "Ljepblêdmarkearing"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr "De hichtepuntkleur fan it aktive ljepper. Ymplementeare as in râne om it ljepper op Firefox 89+ en in line boppe it ljepblêd op âldere Firefox's. Manifestfjild:  tab_line."
+msgstr "De markearingskleur fan it aktive ljepblêd. Ymplemintearre as in râne om it ljepblêd yn Firefox 89+ en in line boppe it ljepblêd yn âldere ferzjes fan Firefox. Manifestfjild:  tab_line."
 
 msgid "Review requested."
 msgstr "Beoardieling oanfrege."
@@ -3524,7 +3524,7 @@ msgstr "Download ienfâldich fideo’s. Wurket mei YouTube, Facebook, Vimeo, Twi
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr "Noch mear emoji's. Tsientallen geweldige emoji's foar elke gelegenheid – altyd beskikber yn ien klik."
+msgstr "Noch mear emoji’s. Tsientallen geweldige emoji’s foar elke gelegenheid – altyd beskikber yn ien klik."
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
@@ -4241,7 +4241,7 @@ msgstr "Krij in avansearre sykside op Firefox foar Android."
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo's op Firefox foar Android. Dizze útwreiding biedt in oplossing."
+msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo’s op Firefox foar Android. Dizze útwreiding biedt in oplossing."
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
@@ -4350,7 +4350,7 @@ msgstr "Al jo emoji-behoeften – altyd mar ien klik fuort."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo's op Android. Dizze útwreiding biedt in oplossing."
+msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo’s op Android. Dizze útwreiding biedt in oplossing."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
