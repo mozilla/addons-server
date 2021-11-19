@@ -750,18 +750,28 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_logging(self, log_mock):
         response = self.post(has_source=True, source=self.generate_source_zip())
         self.assert3xx(response, self.next_url)
-        assert log_mock.info.call_count == 3
+        assert log_mock.info.call_count == 5
         assert log_mock.info.call_args_list[0][0] == (
             'Starting _submit_source, addon.slug: %s, version.pk: %s',
             self.addon.slug,
             self.get_version().pk,
         )
         assert log_mock.info.call_args_list[1][0] == (
-            '_submit_source, form saved, addon.slug: %s, version.pk: %s',
+            '_submit_source, form populated, addon.slug: %s, version.pk: %s',
             self.addon.slug,
             self.get_version().pk,
         )
         assert log_mock.info.call_args_list[2][0] == (
+            '_submit_source, form validated, addon.slug: %s, version.pk: %s',
+            self.addon.slug,
+            self.get_version().pk,
+        )
+        assert log_mock.info.call_args_list[3][0] == (
+            '_submit_source, form saved, addon.slug: %s, version.pk: %s',
+            self.addon.slug,
+            self.get_version().pk,
+        )
+        assert log_mock.info.call_args_list[4][0] == (
             '_submit_source, redirecting to next view, addon.slug: %s, version.pk: %s',
             self.addon.slug,
             self.get_version().pk,

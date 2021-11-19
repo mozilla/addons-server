@@ -1571,9 +1571,20 @@ def _submit_source(request, addon, version, submit_page, next_view):
         instance=version,
         request=request,
     )
+    log.info(
+        '_submit_source, form populated, addon.slug: %s, version.pk: %s',
+        addon.slug,
+        version.pk,
+    )
     timer.log_interval('1.form populated')
 
     if request.method == 'POST' and form.is_valid():
+        log.info(
+            '_submit_source, form validated, addon.slug: %s, version.pk: %s',
+            addon.slug,
+            version.pk,
+        )
+        timer.log_interval('2.form validated')
         if form.cleaned_data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True}
@@ -1597,7 +1608,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
                 addon.slug,
                 version.pk,
             )
-            timer.log_interval('2.form saved')
+            timer.log_interval('3.form saved')
 
         result = redirect(next_view, *redirect_args)
         log.info(
@@ -1605,7 +1616,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
             addon.slug,
             version.pk,
         )
-        timer.log_interval('3.redirecting to next view')
+        timer.log_interval('4.redirecting to next view')
         return result
     context = {
         'form': form,
