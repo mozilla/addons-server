@@ -777,6 +777,31 @@ class TestAddonSubmitSource(TestSubmitBase):
             self.get_version().pk,
         )
 
+    @mock.patch('olympia.devhub.views.log')
+    def test_logging_failed_validation(self, log_mock):
+        # Not including a source file when expected to fail validation.
+        response = self.post(has_source=True, source=None, expect_errors=True)
+        assert response.context['form'].errors == {
+            'source': ['You have not uploaded a source file.']
+        }
+        assert log_mock.info.call_count == 3
+        assert log_mock.info.call_args_list[0][0] == (
+            'Starting _submit_source, addon.slug: %s, version.pk: %s',
+            self.addon.slug,
+            self.get_version().pk,
+        )
+        assert log_mock.info.call_args_list[1][0] == (
+            '_submit_source, form populated, addon.slug: %s, version.pk: %s',
+            self.addon.slug,
+            self.get_version().pk,
+        )
+        assert log_mock.info.call_args_list[2][0] == (
+            '_submit_source, validation failed, re-displaying the template, '
+            + 'addon.slug: %s, version.pk: %s',
+            self.addon.slug,
+            self.get_version().pk,
+        )
+
     def test_submit_source_targz(self):
         response = self.post(has_source=True, source=self.generate_source_tar())
         self.assert3xx(response, self.next_url)

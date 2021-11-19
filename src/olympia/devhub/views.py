@@ -1624,6 +1624,13 @@ def _submit_source(request, addon, version, submit_page, next_view):
         'version': version,
         'submit_page': submit_page,
     }
+    log.info(
+        '_submit_source, validation failed, re-displaying the template, '
+        + 'addon.slug: %s, version.pk: %s',
+        addon.slug,
+        version.pk,
+    )
+    timer.log_interval('5.validation failed, re-displaying the template')
     return render(request, 'devhub/addons/submit/source.html', context)
 
 
