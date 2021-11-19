@@ -64,8 +64,6 @@ class CollectionSerializer(serializers.ModelSerializer):
                 locale: self.validate_name(sub_value)
                 for locale, sub_value in value.items()
             }
-        if value.strip() == '':
-            raise serializers.ValidationError(gettext('Name cannot be empty.'))
         if DeniedName.blocked(value):
             raise serializers.ValidationError(gettext('This name cannot be used.'))
         return value

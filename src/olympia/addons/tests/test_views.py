@@ -1020,6 +1020,40 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
 
+    def test_fields_max_length(self):
+        data = {
+            **self.minimal_data,
+            'name': {'fr': 'é' * 51},
+            'summary': {'en-US': 'a' * 251},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'name': ['Ensure this field has no more than 50 characters.'],
+            'summary': ['Ensure this field has no more than 250 characters.'],
+        }
+
+    def test_empty_strings_disallowed(self):
+        # if a string is required-ish (at least in some circumstances) we'll prevent
+        # empty strings
+        data = {
+            **self.minimal_data,
+            'summary': {'en-US': ''},
+            'name': {'en-US': ''},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'summary': ['This field may not be blank.'],
+            'name': ['This field may not be blank.'],
+        }
+
     def test_set_disabled(self):
         data = {
             **self.minimal_data,

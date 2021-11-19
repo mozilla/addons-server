@@ -698,7 +698,7 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
-    name = TranslationSerializerField(required=False)
+    name = TranslationSerializerField(required=False, max_length=50)
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
     promoted = PromotedAddonSerializer(read_only=True)
     ratings = serializers.SerializerMethodField()
@@ -707,7 +707,7 @@ class AddonSerializer(serializers.ModelSerializer):
     status = ReverseChoiceField(
         choices=list(amo.STATUS_CHOICES_API.items()), read_only=True
     )
-    summary = TranslationSerializerField(required=False)
+    summary = TranslationSerializerField(required=False, max_length=250)
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)
     tags = serializers.SerializerMethodField()

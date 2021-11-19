@@ -1,9 +1,9 @@
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.encoding import smart_str
 from django.utils.translation import get_language, gettext, gettext_lazy as _, override
 
-from rest_framework import fields, serializers
+from rest_framework import exceptions, fields, serializers
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url
@@ -86,7 +86,7 @@ class TranslationSerializerField(fields.CharField):
     }
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **{'allow_blank': True, 'allow_null': True, **kwargs})
+        super().__init__(*args, **{'allow_null': True, **kwargs})
 
     @property
     def flat(self):
@@ -151,12 +151,12 @@ class TranslationSerializerField(fields.CharField):
 
     def run_validation(self, data=fields.empty):
         if data != fields.empty and not self.flat and not isinstance(data, dict):
-            raise ValidationError(self.error_messages['no_dict'])
+            raise exceptions.ValidationError(self.error_messages['no_dict'])
 
         if isinstance(data, dict):
             for locale, value in data.items():
                 if locale.lower() not in settings.LANGUAGE_URL_MAP:
-                    raise ValidationError(
+                    raise exceptions.ValidationError(
                         self.error_messages['unknown_locale'].format(
                             lang_code=repr(locale)
                         )
@@ -322,7 +322,7 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
                 msg = _('Invalid pk or slug "%s" - object does not exist.') % smart_str(
                     data
                 )
-                raise ValidationError(msg)
+                raise exceptions.ValidationError(msg)
 
 
 class OutgoingSerializerMixin:
