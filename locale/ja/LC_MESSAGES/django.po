@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-16 17:49+0000\n"
-"PO-Revision-Date: 2021-11-20 10:31+0000\n"
+"PO-Revision-Date: 2021-11-20 10:34+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -3196,9 +3196,8 @@ msgstr "任意ですが、このアドオンの審査担当者に役立つ情報
 msgid "Source code"
 msgstr "ソースコード"
 
-#, fuzzy
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "アドオンにバイナリコードや不明瞭なコードが含まれる場合は、審査担当者が確認するためのソースコードをここにアップロードしてください。"
+msgstr "アドオンに最小化または難読化、その他機械的に生成されたコードが含まれる場合は、ここで審査担当者が確認できるようにしてください。"
 
 msgid "File {file_id}"
 msgstr "ファイル {file_id}"
@@ -3313,11 +3312,11 @@ msgstr "バージョンを削除"
 msgid "Disable Version"
 msgstr "バージョンを無効化"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
-msgstr "おすすめの拡張機能の最新の承認済みバージョンを削除または無効化することはできません。助けが必要な場合は AMO の管理者に問い合わせてください。"
+msgstr "この %(promoted_group_name)s アドオンは、以前のバージョンが %(promoted_group_name)s プロモーションで承認されなかったため、最新の承認済みバージョンを削除または無効化することはできません。助けが必要な場合は AMO の管理者に問い合わせてください。"
 
 msgid "Hide Add-on"
 msgstr "アドオンを非公開にする"
