@@ -1040,10 +1040,6 @@ class License(ModelBase):
     on_form = models.BooleanField(
         default=False, help_text='Is this a license choice in the devhub?'
     )
-    some_rights = models.BooleanField(
-        default=False,
-        help_text='Show "Some Rights Reserved" instead of the license name?',
-    )
     icons = models.CharField(
         max_length=255, null=True, help_text='Space-separated list of icon identifiers.'
     )
