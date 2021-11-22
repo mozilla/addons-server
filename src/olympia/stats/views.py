@@ -11,6 +11,7 @@ from django.core.files.storage import get_storage_class
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse
 from django.template import loader
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.encoding import force_str
@@ -20,7 +21,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.decorators import allow_cross_site_request
-from olympia.amo.utils import AMOJSONEncoder, render
+from olympia.amo.utils import AMOJSONEncoder
 from olympia.core.languages import ALL_LANGUAGES
 from olympia.stats.decorators import addon_view_stats, bigquery_api_view
 from olympia.stats.forms import DateForm
@@ -340,10 +341,10 @@ def stats_report(request, addon, report):
     stats_base_url = reverse('stats.overview', args=[slug_or_id])
     view = get_report_view(request)
 
-    return render(
+    return TemplateResponse(
         request,
         'stats/reports/%s.html' % report,
-        {
+        context={
             'addon': addon,
             'report': report,
             'stats_base_url': stats_base_url,

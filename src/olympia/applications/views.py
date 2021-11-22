@@ -1,5 +1,6 @@
 from django.core.cache import cache
 from django.db.transaction import non_atomic_requests
+from django.template.response import TemplateResponse
 from django.utils.translation import gettext
 
 from rest_framework.exceptions import ParseError
@@ -11,7 +12,6 @@ from olympia import amo
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.feeds import BaseFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, url
-from olympia.amo.utils import render
 from olympia.api.permissions import GroupPermission
 from olympia.versions.compare import version_dict, version_re
 
@@ -37,8 +37,8 @@ def get_versions(order=('application', 'version_int')):
 @non_atomic_requests
 def appversions(request):
     apps, versions = get_versions()
-    return render(
-        request, 'applications/appversions.html', {'apps': apps, 'versions': versions}
+    return TemplateResponse(
+        request, 'applications/appversions.html', context={'apps': apps, 'versions': versions}
     )
 
 

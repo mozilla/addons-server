@@ -16,6 +16,7 @@ from django.http import (
     JsonResponse,
 )
 from django.middleware import common
+from django.template.response import TemplateResponse
 from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
 from django.utils.crypto import constant_time_compare
 from django.utils.deprecation import MiddlewareMixin
@@ -28,7 +29,6 @@ from rest_framework import permissions
 import MySQLdb as mysql
 
 from olympia import amo
-from olympia.amo.utils import render
 
 from . import urlresolvers
 from .reverse import set_url_prefix
@@ -230,6 +230,17 @@ class ReadOnlyMiddleware(MiddlewareMixin):
         'full capacity shortly.'
     )
 
+    def render_html_error(self, request):
+        response = TemplateResponse(request, 'amo/read-only.html', status=503)
+        # render() is normally called behind the scenes by django's base
+        # handler inside get_response(), but here we might be bypassing that,
+        # so we need to force the rendering ourselves.
+        response.render()
+        return response
+
+    def render_readonly_api_error(self, request):
+        return JsonResponse({'error': self.ERROR_MSG}, status=503)
+
     def process_request(self, request):
         if not settings.READ_ONLY:
             return
@@ -237,11 +248,9 @@ class ReadOnlyMiddleware(MiddlewareMixin):
         if request.is_api:
             writable_method = request.method not in permissions.SAFE_METHODS
             if writable_method:
-                return JsonResponse({'error': self.ERROR_MSG}, status=503)
+                return self.render_readonly_api_error(request)
         elif request.method == 'POST':
-            response = render(request, 'amo/read-only.html', status=503)
-            response.render()  # Force render to return an HttpResponse
-            return response
+            return self.render_html_error(request)
 
     def process_exception(self, request, exception):
         if not settings.READ_ONLY:
@@ -249,10 +258,8 @@ class ReadOnlyMiddleware(MiddlewareMixin):
 
         if isinstance(exception, mysql.OperationalError):
             if request.is_api:
-                return self._render_api_error()
-            response = render(request, 'amo/read-only.html', status=503)
-            response.render()  # Force render to return an HttpResponse
-            return response
+                return self.render_readonly_api_error(request)
+            return self.render_html_error(request)
 
 
 class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
