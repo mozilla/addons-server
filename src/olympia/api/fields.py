@@ -378,7 +378,9 @@ class OutgoingURLTranslationField(OutgoingSerializerMixin, URLTranslationField):
     pass
 
 
-class OutgoingESTranslationField(OutgoingSerializerMixin, ESTranslationSerializerField):
+class OutgoingURLESTranslationField(
+    OutgoingSerializerMixin, ESTranslationSerializerField
+):
     pass
 
 
