@@ -6,7 +6,6 @@ class _LicenseBase:
     """Base class for built-in licenses."""
 
     icons = ''  # CSS classes. See zamboni.css for a list.
-    some_rights = True
     on_form = True
     creative_commons = True
 
@@ -15,7 +14,6 @@ class LICENSE_COPYRIGHT(_LicenseBase):
     id = 1
     name = _('All Rights Reserved')
     icons = 'copyr'
-    some_rights = False
     url = None
     builtin = 11
 
@@ -72,7 +70,6 @@ class LICENSE_COPYRIGHT_AR(_LicenseBase):
     id = 8
     name = _('All Rights Reserved')
     icons = 'copyr'
-    some_rights = False
     creative_commons = False
     url = None
     builtin = 18
