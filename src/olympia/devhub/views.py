@@ -160,14 +160,18 @@ def dashboard(request, theme=False):
 def ajax_compat_status(request, addon_id, addon):
     if not (addon.accepts_compatible_apps() and addon.current_version):
         raise http.Http404()
-    return TemplateResponse(request, 'devhub/addons/ajax_compat_status.html', context={'addon': addon})
+    return TemplateResponse(
+        request, 'devhub/addons/ajax_compat_status.html', context={'addon': addon}
+    )
 
 
 @dev_required
 def ajax_compat_error(request, addon_id, addon):
     if not (addon.accepts_compatible_apps() and addon.current_version):
         raise http.Http404()
-    return TemplateResponse(request, 'devhub/addons/ajax_compat_error.html', context={'addon': addon})
+    return TemplateResponse(
+        request, 'devhub/addons/ajax_compat_error.html', context={'addon': addon}
+    )
 
 
 @dev_required
@@ -194,7 +198,7 @@ def ajax_compat_update(request, addon_id, addon, version_id):
     return TemplateResponse(
         request,
         'devhub/addons/ajax_compat_update.html',
-        context={'addon': addon, 'version': version, 'compat_form': compat_form}
+        context={'addon': addon, 'version': version, 'compat_form': compat_form},
     )
 
 
@@ -332,7 +336,11 @@ def feed(request, addon_id=None):
 
     pager = amo_utils.paginate(request, items, 20)
     data = {
-        'addons': addon_items, 'pager': pager, 'activities': activities, 'rss': rssurl, 'addon': addon
+        'addons': addon_items,
+        'pager': pager,
+        'activities': activities,
+        'rss': rssurl,
+        'addon': addon,
     }
     return TemplateResponse(request, 'devhub/addons/activity.html', context=data)
 
@@ -976,7 +984,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
 
-    return TemplateResponse(request, 'devhub/addons/edit/%s.html' % section, context=data)
+    return TemplateResponse(
+        request, 'devhub/addons/edit/%s.html' % section, context=data
+    )
 
 
 @never_cache
@@ -1585,7 +1595,9 @@ def _submit_source(request, addon, version, submit_page, next_view):
         'version': version,
         'submit_page': submit_page,
     }
-    return TemplateResponse(request, 'devhub/addons/submit/source.html', context=context)
+    return TemplateResponse(
+        request, 'devhub/addons/submit/source.html', context=context
+    )
 
 
 @dev_required(submitting=True)

@@ -181,7 +181,9 @@ def ratings_moderation_log_detail(request, id):
         return redirect('reviewers.ratings_moderation_log.detail', id)
 
     data = context(log=log, can_undelete=can_undelete)
-    return TemplateResponse(request, 'reviewers/moderationlog_detail.html', context=data)
+    return TemplateResponse(
+        request, 'reviewers/moderationlog_detail.html', context=data
+    )
 
 
 @any_reviewer_or_moderator_required

@@ -84,7 +84,9 @@ def robots(request):
             'mozilla_user_id': settings.TASK_USER_ID,
             'mozilla_user_username': 'mozilla',
         }
-        response = TemplateResponse(request, 'amo/robots.html', context=ctx, content_type='text/plain')
+        response = TemplateResponse(
+            request, 'amo/robots.html', context=ctx, content_type='text/plain'
+        )
 
     return response
 

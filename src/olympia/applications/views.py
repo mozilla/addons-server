@@ -38,7 +38,9 @@ def get_versions(order=('application', 'version_int')):
 def appversions(request):
     apps, versions = get_versions()
     return TemplateResponse(
-        request, 'applications/appversions.html', context={'apps': apps, 'versions': versions}
+        request,
+        'applications/appversions.html',
+        context={'apps': apps, 'versions': versions},
     )
 
 
