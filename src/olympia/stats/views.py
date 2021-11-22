@@ -9,6 +9,8 @@ from django import http
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
 from django.db.transaction import non_atomic_requests
+from django.http import HttpResponse
+from django.template import loader
 from django.urls import reverse
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.encoding import force_str
@@ -405,13 +407,14 @@ def render_csv(request, addon, stats, fields, title=None, show_disclaimer=None):
         'title': title,
         'show_disclaimer': show_disclaimer,
     }
-    response = render(request, 'stats/csv_header.txt', context)
+    content = loader.render_to_string('stats/csv_header.txt', context, request=request)
+    response = HttpResponse(content, content_type='text/csv; charset=utf-8')
+    # Add CSV content by writing directly to the response.
     writer = csv.DictWriter(response, fields, restval=0, extrasaction='ignore')
     writer.writeheader()
     writer.writerows(stats)
 
     fudge_headers(response, stats)
-    response['Content-Type'] = 'text/csv; charset=utf-8'
     return response
 
 

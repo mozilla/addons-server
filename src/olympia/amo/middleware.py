@@ -239,7 +239,9 @@ class ReadOnlyMiddleware(MiddlewareMixin):
             if writable_method:
                 return JsonResponse({'error': self.ERROR_MSG}, status=503)
         elif request.method == 'POST':
-            return render(request, 'amo/read-only.html', status=503)
+            response = render(request, 'amo/read-only.html', status=503)
+            response.render()  # Force render to return an HttpResponse
+            return response
 
     def process_exception(self, request, exception):
         if not settings.READ_ONLY:
@@ -248,7 +250,9 @@ class ReadOnlyMiddleware(MiddlewareMixin):
         if isinstance(exception, mysql.OperationalError):
             if request.is_api:
                 return self._render_api_error()
-            return render(request, 'amo/read-only.html', status=503)
+            response = render(request, 'amo/read-only.html', status=503)
+            response.render()  # Force render to return an HttpResponse
+            return response
 
 
 class SetRemoteAddrFromForwardedFor(MiddlewareMixin):

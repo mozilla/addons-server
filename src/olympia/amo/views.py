@@ -76,16 +76,16 @@ def robots(request):
     """Generate a robots.txt"""
     _service = request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN
     if _service or not settings.ENGAGE_ROBOTS:
-        template = 'User-agent: *\nDisallow: /'
+        response = HttpResponse('User-agent: *\nDisallow: /', content_type='text/plain')
     else:
         ctx = {
             'apps': amo.APP_USAGE,
             'mozilla_user_id': settings.TASK_USER_ID,
             'mozilla_user_username': 'mozilla',
         }
-        template = render(request, 'amo/robots.html', ctx)
+        response = render(request, 'amo/robots.html', ctx, content_type='text/plain')
 
-    return HttpResponse(template, content_type='text/plain')
+    return response
 
 
 @non_atomic_requests

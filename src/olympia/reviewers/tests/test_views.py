@@ -1431,6 +1431,7 @@ class TestQueueBasics(QueueTest):
 
         reset_queries()
         response = _queue(request, 'content_review')
+        response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200
@@ -1441,6 +1442,7 @@ class TestQueueBasics(QueueTest):
         request.user = self.user
         reset_queries()
         response = _queue(request, 'content_review')
+        response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200
@@ -1451,6 +1453,7 @@ class TestQueueBasics(QueueTest):
         request.user = self.user
         reset_queries()
         response = _queue(request, 'content_review')
+        response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
         assert response.status_code == 200
