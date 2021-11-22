@@ -122,16 +122,16 @@ class TestTranslationSerializerField(TestCase):
         data = {'fr': 'Non mais Allô quoi !', 'en-US': 'No But Hello what!'}
         field = self.field_class()
         # Multiple translations
-        result = field.to_internal_value(data)
+        result = field.run_validation(data)
         assert result == data
         # Single translation
         data.pop('en-US')
         assert len(data) == 1
-        result = field.to_internal_value(data)
+        result = field.run_validation(data)
         assert result == data
         # A flat string value is forbidden now
         with self.assertRaises(ValidationError) as exc:
-            field.to_internal_value(data['fr'])
+            field.run_validation(data['fr'])
         assert exc.exception.message == (
             'You must provide an object of {lang-code:value}.'
         )
@@ -139,7 +139,7 @@ class TestTranslationSerializerField(TestCase):
     def test_to_internal_value_strip(self):
         data = {'fr': '  Non mais Allô quoi ! ', 'en-US': ''}
         field = self.field_class()
-        result = field.to_internal_value(data)
+        result = field.run_validation(data)
         assert result == {'fr': 'Non mais Allô quoi !', 'en-US': ''}
 
     def test_wrong_locale_code(self):
@@ -148,7 +148,7 @@ class TestTranslationSerializerField(TestCase):
         }
         field = self.field_class()
         with self.assertRaises(ValidationError) as exc:
-            field.to_internal_value(data)
+            field.run_validation(data)
         assert exc.exception.message == (
             "The language code 'unknown-locale' is invalid."
         )
@@ -160,8 +160,8 @@ class TestTranslationSerializerField(TestCase):
             'en-US': None,
         }
         field = self.field_class()
-        result = field.to_internal_value(data)
-        field.validate(result)
+        result = field.run_validation(data)
+        field.run_validation(result)
         assert result == data
 
     def test_get_attribute(self):
@@ -271,10 +271,10 @@ class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
         data = {'fr': 'Non mais Allô quoi !', 'en-US': 'No But Hello what!'}
         field = self.field_class()
         # Multiple translations
-        result = field.to_internal_value(data)
+        result = field.run_validation(data)
         assert result == data
         # Single translation
-        result = field.to_internal_value(data['fr'])
+        result = field.run_validation(data['fr'])
         assert result == data['fr']
 
 

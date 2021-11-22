@@ -15,10 +15,11 @@ from olympia.accounts.serializers import (
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import slug_validator, sorted_groupby
 from olympia.api.fields import (
+    EmailTranslationField,
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
-    OutgoingTranslationField,
     OutgoingURLField,
+    OutgoingURLTranslationField,
     ReverseChoiceField,
     SplitField,
     TranslationSerializerField,
@@ -688,7 +689,7 @@ class AddonSerializer(serializers.ModelSerializer):
     edit_url = serializers.SerializerMethodField()
     has_eula = serializers.SerializerMethodField()
     has_privacy_policy = serializers.SerializerMethodField()
-    homepage = OutgoingTranslationField(required=False)
+    homepage = OutgoingURLTranslationField(required=False)
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
     is_disabled = SplitField(
@@ -707,8 +708,8 @@ class AddonSerializer(serializers.ModelSerializer):
         choices=list(amo.STATUS_CHOICES_API.items()), read_only=True
     )
     summary = TranslationSerializerField(required=False)
-    support_email = TranslationSerializerField(required=False)
-    support_url = OutgoingTranslationField(required=False)
+    support_email = EmailTranslationField(required=False)
+    support_url = OutgoingURLTranslationField(required=False)
     tags = serializers.SerializerMethodField()
     type = ReverseChoiceField(
         choices=list(amo.ADDON_TYPE_CHOICES_API.items()), read_only=True

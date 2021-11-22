@@ -984,7 +984,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             # 'name'  # don't update - should retain name from the manifest
             'slug': 'addon-slug',
             'summary': {'en-US': 'new summary'},
-            'support_email': {'en-US': 'email@me'},
+            'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
             'version': {'upload': self.upload.uuid, 'license': self.license.id},
         }
@@ -1015,8 +1015,8 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert data['slug'] == 'addon-slug' == addon.slug
         assert data['summary'] == {'en-US': 'new summary'}
         assert addon.summary == 'new summary'
-        assert data['support_email'] == {'en-US': 'email@me'}
-        assert addon.support_email == 'email@me'
+        assert data['support_email'] == {'en-US': 'email@me.me'}
+        assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
 
@@ -1035,6 +1035,25 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert response.data['is_disabled'] is True
         assert addon.is_disabled is True
         assert addon.disabled_by_user is True  # sets the user property
+
+    def test_set_homepage_support_url_email(self):
+        data = {
+            **self.minimal_data,
+            'homepage': {'ro': '#%^%&&%^&^&^*'},
+            'support_email': {'en-US': '#%^%&&%^&^&^*'},
+            'support_url': {'fr': '#%^%&&%^&^&^*'},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': ['Enter a valid URL.'],
+            'support_email': ['Enter a valid email address.'],
+            'support_url': ['Enter a valid URL.'],
+        }
 
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
@@ -1238,7 +1257,7 @@ class TestAddonViewSetUpdate(TestCase):
             'requires_payment': True,
             'slug': 'addon-slug',
             'summary': {'en-US': 'new summary'},
-            'support_email': {'en-US': 'email@me'},
+            'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
         }
         response = self.client.patch(
@@ -1264,8 +1283,8 @@ class TestAddonViewSetUpdate(TestCase):
         assert data['slug'] == 'addon-slug' == addon.slug
         assert data['summary'] == {'en-US': 'new summary'}
         assert addon.summary == 'new summary'
-        assert data['support_email'] == {'en-US': 'email@me'}
-        assert addon.support_email == 'email@me'
+        assert data['support_email'] == {'en-US': 'email@me.me'}
+        assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
 
@@ -1294,6 +1313,24 @@ class TestAddonViewSetUpdate(TestCase):
         assert data['is_disabled'] is True  # still True
         assert addon.is_disabled is True  # still True
         assert addon.disabled_by_user is False  # user property is False,
+
+    def test_set_homepage_support_url_email(self):
+        data = {
+            'homepage': {'ro': '#%^%&&%^&^&^*'},
+            'support_email': {'en-US': '#%^%&&%^&^&^*'},
+            'support_url': {'fr': '#%^%&&%^&^&^*'},
+        }
+        response = self.client.patch(
+            self.url,
+            data=data,
+        )
+
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': ['Enter a valid URL.'],
+            'support_email': ['Enter a valid email address.'],
+            'support_url': ['Enter a valid URL.'],
+        }
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):
