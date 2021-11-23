@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"POT-Creation-Date: 2021-11-23 18:05+0000\n"
 "PO-Revision-Date: 2021-11-04 02:01+0000\n"
 "Last-Translator: ebparktrans <ebparktrans@gmail.com>\n"
 "Language-Team: none\n"
@@ -382,9 +382,6 @@ msgstr "이메일 주소를 찾을 수 없습니다."
 
 msgid "Unavailable for legal reasons."
 msgstr "법적 이유로 사용할 수 없습니다."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "적어도 {num} 자 이상 되어야 합니다."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "언어 코드 {lang_code}가 유효하지 않습니다."
@@ -4379,6 +4376,18 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

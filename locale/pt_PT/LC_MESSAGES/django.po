@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"POT-Creation-Date: 2021-11-23 18:05+0000\n"
 "PO-Revision-Date: 2021-11-15 23:13+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -386,9 +386,6 @@ msgstr "Endereço de email não encontrado."
 
 msgid "Unavailable for legal reasons."
 msgstr "Indisponível por motivos legais."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "O campo necessita de um tamanho de pelo menos {num} carateres."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "O código do idioma {lang_code} é inválido."
@@ -4411,6 +4408,18 @@ msgstr "Volte a um tempo mais simples - quando os seus principais resultados de 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr "Deixe de facultar o seu endereço de e-mail a sites. O Firefox Relay protege a sua identidade e evita lixo eletrónico."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

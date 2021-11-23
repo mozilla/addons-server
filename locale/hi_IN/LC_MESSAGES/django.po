@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"POT-Creation-Date: 2021-11-23 18:05+0000\n"
 "PO-Revision-Date: 2021-11-12 14:22+0000\n"
 "Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -376,9 +376,6 @@ msgstr "ईमेल पता नहीं मिला।"
 
 msgid "Unavailable for legal reasons."
 msgstr ""
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "इस क्षेत्र में कम से कम एक {num} वर्णों की लंबाई होना चाहिए।"
 
 msgid "The language code {lang_code} is invalid."
 msgstr "{lang_code} भाषा कोड अमान्य है।"
@@ -4309,6 +4306,18 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

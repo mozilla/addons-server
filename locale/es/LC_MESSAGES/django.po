@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"POT-Creation-Date: 2021-11-23 18:05+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -392,9 +392,6 @@ msgstr "No se encontró la dirección de correo."
 
 msgid "Unavailable for legal reasons."
 msgstr "No disponible por razones legales."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "El campo debe incluir al menos {num} caracteres."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "El código del lenguaje {lang_code} no es válido."
@@ -4485,6 +4482,18 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
