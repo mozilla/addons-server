@@ -722,7 +722,7 @@ def review(request, addon, channel=None):
             actions_comments.append(key)
         if action.get('delayable', False):
             actions_delayable.append(key)
-        if action.get('requires_reasons', False):
+        if action.get('allows_reasons', False):
             actions_reasons.append(key)
 
     addons_sharing_same_guid = (
