@@ -212,7 +212,10 @@ class ReviewForm(forms.Form):
                 self.fields['comments'].required = False
             if action.get('versions', False):
                 self.fields['versions'].required = True
-            if not action.get('requires_reasons', False):
+            if (
+                not action.get('requires_reasons', False)
+                or self.helper.addon.type == amo.ADDON_STATICTHEME
+            ):
                 self.fields['reasons'].required = False
         result = super().is_valid()
         if result:
