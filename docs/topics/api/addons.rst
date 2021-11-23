@@ -472,6 +472,9 @@ This endpoint allows a submission of an upload to an existing add-on to create a
         production environments. See :ref:`the older signing API <upload-version>` for
         how to submit new add-ons/versions on AMO today.
 
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
 .. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
 
     .. _version-create-request:
@@ -482,7 +485,7 @@ This endpoint allows a submission of an upload to an existing add-on to create a
         where min/max versions from the manifest, or defaults, will be used.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
-    :<json int license: The id of a non-custom license. The license must match the add-on type. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
+    :<json int license: The id of a non-custom license. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
@@ -554,6 +557,9 @@ This endpoint allows the metadata for an existing version to be edited.
         production environments. The only supported method of editing metadata today is
         via developer hub.
 
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
 .. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
 
     .. _version-edit-request:
@@ -579,6 +585,9 @@ This endpoint is for uploading an addon file, to then be submitted to create a n
         This is an in-progress API that is not yet available on addons.mozilla.org
         production environments. See :ref:`the older signing API <upload-version>` for
         how to submit new add-ons/versions on AMO today.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
 
 .. http:post:: /api/v5/addons/upload/
 

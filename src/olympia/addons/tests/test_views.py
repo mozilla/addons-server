@@ -1784,6 +1784,26 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             'url': 'http://testserver' + version.license_url(),
         }
 
+    def test_cannot_supply_both_custom_and_license_id(self):
+        license_data = {
+            'name': {'en-US': 'custom license name'},
+            'text': {'en-US': 'custom license text'},
+        }
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'license': self.license.id,
+                'custom_license': license_data,
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Both `license` and `custom_license` cannot be provided together.'
+            ]
+        }
+
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
     client_class = JWTAPITestClient
@@ -2113,6 +2133,22 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         )
         assert response.status_code == 400, response.content
         assert response.data == {'license': ['Wrong addon type for this license.']}
+
+    def test_cannot_supply_both_custom_and_license_id(self):
+        license_data = {
+            'name': {'en-US': 'custom license name'},
+            'text': {'en-US': 'custom license text'},
+        }
+        response = self.client.patch(
+            self.url,
+            data={'license': self.version.license.id, 'custom_license': license_data},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Both `license` and `custom_license` cannot be provided together.'
+            ]
+        }
 
 
 class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):

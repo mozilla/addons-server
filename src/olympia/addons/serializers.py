@@ -498,6 +498,16 @@ class VersionSerializer(SimpleVersionSerializer):
             data.pop('upload', None)  # upload can only be set during create
             addon_type = self.addon.type
 
+        # We have to check the raw request data because data from both fields will be
+        # under `license` at this point.
+        if (
+            (request := self.context.get('request'))
+            and 'license' in request.data
+            and 'custom_license' in request.data
+        ):
+            raise exceptions.ValidationError(
+                'Both `license` and `custom_license` cannot be provided together.'
+            )
         if (
             'license' in data
             and isinstance(data['license'], License)
