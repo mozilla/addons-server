@@ -603,7 +603,8 @@ class ReviewHelper:
                 and is_appropriate_reviewer
                 and not version_is_blocked
             ),
-            'requires_reasons': True,
+            'allows_reasons': True,
+            'requires_reasons': False,
         }
         actions['reject'] = {
             'method': self.handler.reject_latest_version,
@@ -623,6 +624,7 @@ class ReviewHelper:
                 and version_is_unreviewed
                 and is_appropriate_reviewer
             ),
+            'allows_reasons': True,
             'requires_reasons': True,
         }
         actions['approve_content'] = {
@@ -670,6 +672,7 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': (can_reject_multiple),
+            'allows_reasons': True,
             'requires_reasons': True,
         }
         actions['block_multiple_versions'] = {
@@ -718,6 +721,7 @@ class ReviewHelper:
                 and is_reviewer
                 and (not promoted_group.admin_review or is_appropriate_reviewer)
             ),
+            'allows_reasons': True,
             'requires_reasons': True,
         }
         actions['super'] = {

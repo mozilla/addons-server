@@ -4502,6 +4502,18 @@ class TestReview(ReviewBase):
         assert mock_sign_file.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_reasons_optional_for_approve(self, mock_sign_file):
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
+        response = self.client.post(
+            self.url,
+            {'action': 'public', 'comments': 'all good'},
+        )
+        assert response.status_code == 302
+        assert mock_sign_file.called
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)

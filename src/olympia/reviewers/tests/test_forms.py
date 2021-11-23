@@ -194,6 +194,22 @@ class TestReviewForm(TestCase):
         assert form.is_valid()
         assert not form.errors
 
+    def test_reasons_optional_for_public(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        form = self.get_form()
+        assert not form.is_bound
+        form = self.get_form(
+            data={
+                'action': 'public',
+                'comments': 'lol',
+            }
+        )
+        assert form.is_bound
+        assert form.is_valid()
+        assert not form.errors
+
     def test_comments_and_action_required_by_default(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
