@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-02 19:14+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-16 19:45+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4346,10 +4346,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Знайшли цікаве зображення в інтернеті? Скористайтеся TinEye, щоб дізнатися його джерело."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Для випадків, коли вам треба спалити щось лазером з очей кота."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Озвучування вмісту вебсторінок. Підтримується понад 40 мов."
 
@@ -4394,12 +4390,12 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Найпопулярніші розширення проти відстеження"
+msgid "Productivity boosters"
+msgstr "Підвищення продуктивності"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Розширення пошуку зображень"
+msgid "Top anti-tracking extensions"
+msgstr "Найпопулярніші розширення проти відстеження"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4808,6 +4804,9 @@ msgstr "Відхилити негайно. Застосовується лише
 
 msgid "days"
 msgstr "днів"
+
+msgid "Choose one or more reasons:"
+msgstr "Оберіть одну або кілька причин:"
 
 msgid "Choose a canned response..."
 msgstr "Оберіть стандартну відповідь..."

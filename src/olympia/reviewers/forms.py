@@ -16,7 +16,7 @@ from olympia.access import acl
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.models import CannedResponse, Whiteboard
+from olympia.reviewers.models import CannedResponse, ReviewActionReason, Whiteboard
 from olympia.versions.models import Version
 
 
@@ -198,15 +198,22 @@ class ReviewForm(forms.Form):
         min_value=1,
         max_value=99,
     )
+    reasons = forms.ModelMultipleChoiceField(
+        label=_('Choose one or more reasons:'),
+        queryset=ReviewActionReason.objects.filter(is_active__exact=True),
+        required=True,
+    )
 
     def is_valid(self):
-        # Some actions do not require comments.
+        # Some actions do not require comments and reasons.
         action = self.helper.actions.get(self.data.get('action'))
         if action:
             if not action.get('comments', True):
                 self.fields['comments'].required = False
             if action.get('versions', False):
                 self.fields['versions'].required = True
+            if not action.get('requires_reasons', False):
+                self.fields['reasons'].required = False
         result = super().is_valid()
         if result:
             self.helper.set_data(self.cleaned_data)

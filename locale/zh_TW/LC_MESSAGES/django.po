@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-03 04:12+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-17 03:37+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4282,10 +4282,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "在網路上看到有趣的圖片？使用 TinEye 來尋找圖片來源。"
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "讓網頁自動朗讀，支援超過 40 種語言。"
 
@@ -4330,13 +4326,13 @@ msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "生產力大補包"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "熱門反追蹤擴充套件"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "圖片搜尋擴充套件"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4733,6 +4729,9 @@ msgstr "立即拒絕。僅在發現嚴重安全性問題時使用。"
 
 msgid "days"
 msgstr "天"
+
+msgid "Choose one or more reasons:"
+msgstr "選擇一個或多個原因:"
 
 msgid "Choose a canned response..."
 msgstr "選擇一個制式回覆…"

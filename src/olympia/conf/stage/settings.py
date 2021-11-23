@@ -79,11 +79,6 @@ ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
 ALLOW_SELF_REVIEWS = True
 
-NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
-
-if NEWRELIC_ENABLE:
-    NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
-
 FXA_CONFIG = {
     'default': {
         'client_id': env('FXA_CLIENT_ID'),

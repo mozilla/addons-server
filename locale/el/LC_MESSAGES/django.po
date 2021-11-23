@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-02 21:47+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-22 15:00+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -70,7 +70,7 @@ msgid "No links are allowed."
 msgstr "Δεν επιτρέπονται σύνδεσμοι."
 
 msgid "This display name cannot be used."
-msgstr "Αυτό το όνομα προβολής δεν μπορεί να χρησιμοποιηθεί."
+msgstr "Αυτό το εμφανιζόμενο όνομα δεν μπορεί να χρησιμοποιηθεί."
 
 msgid "This reviewer name cannot be used."
 msgstr "Αυτό το όνομα ελεγκτή δεν μπορεί να χρησιμοποιηθεί."
@@ -1771,7 +1771,7 @@ msgstr ""
 "αυτόματη διανομή τους στους χρήστες σας.</span>"
 
 msgid "Display Name"
-msgstr "Προβαλλόμενο όνομα"
+msgstr "Εμφανιζόμενο όνομα"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Άκυρο ή κατεστραμμένο αρχείο προσθέτου."
@@ -4402,10 +4402,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Βρήκατε μια ενδιαφέρουσα εικόνα στο web; Εξερευνήστε την προέλευσή της με το TinEye."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Για εκείνες τις στιγμές που χρειάζεστε μια γάτα με μάτια που βγάζουν λέιζερ."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Εκφώνηση ιστοσελίδων. Υποστήριξη για 40+ γλώσσες."
 
@@ -4450,13 +4446,13 @@ msgid "See all extensions"
 msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "Εργαλεία αυξημένης παραγωγικότητας"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "Κορυφαίες επεκτάσεις προστασίας από καταγραφή"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Επεκτάσεις αναζήτησης εικόνων"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4864,6 +4860,9 @@ msgstr "Άμεση απόρριψη. Χρήση μόνο σε περίπτωση
 
 msgid "days"
 msgstr "ημέρες"
+
+msgid "Choose one or more reasons:"
+msgstr "Επιλέξτε έναν ή περισσότερους λόγους:"
 
 msgid "Choose a canned response..."
 msgstr "Επιλέξτε τυποποιημένη απάντηση..."

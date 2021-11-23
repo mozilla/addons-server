@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-10-25 06:54+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-10 07:51+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4338,10 +4338,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Narazili jste na webu na zajímavý obrázek? S TinEye zjistíte, odkud pochází."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Někdy prostě potřebujete kočky, co z očí střílejí lasery."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Webové stránky se sami předčítají. Podporováno více než 40 jazyků."
 
@@ -4385,21 +4381,19 @@ msgstr "Přidávají do Firefoxu funkce, se kterými je brouzdání rychlejší,
 msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 msgid "Top anti-tracking extensions"
 msgstr "Oblíbená rozšíření chránící proti sledování"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Zobrazit všechna rozšíření"
-
-#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Doporučení správci hesel"
+msgstr "Správci hesel"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4447,9 +4441,8 @@ msgid "See more recommended themes"
 msgstr "Další doporučené vzhledy"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Další vybraná rozšíření pro správu panelů"
+msgstr "Další vybraná rozšíření pro správu hesel"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4488,28 +4481,24 @@ msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Další vybraná rozšíření pro správu panelů"
+msgstr "Další vybraná rozšíření pro blokování reklam"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Další vybrané jazykové překladače"
+msgstr "Další vybraná rozšíření pro YouTube"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Doporučené motivy vzhledu"
+msgstr "Právě populární motivy vzhledu"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Další doporučené vzhledy"
+msgstr "Další populární vzhledy"
 
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
@@ -4807,6 +4796,9 @@ msgstr ""
 
 msgid "days"
 msgstr "dnů"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Volba předpřipravené odpovědi..."

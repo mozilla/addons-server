@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-05 14:03+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-16 23:44+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4328,10 +4328,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Trova tu sur le web un imagine interessante? Usa TinEye pro explorar su origines."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Pro ille momentos que tu necessita un catto que tira radios laser ex oculos."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Paginas web legite in alte voce. Plus de 40 linguas supportate."
 
@@ -4376,12 +4372,12 @@ msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Le melior extensiones anti-traciamento"
+msgid "Productivity boosters"
+msgstr "Auxilios de productivitate"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Extensiones de recerca imagine"
+msgid "Top anti-tracking extensions"
+msgstr "Le melior extensiones anti-traciamento"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4788,6 +4784,9 @@ msgstr "Rejectar immediatemente. Usa solo in caso de serie problemas de securita
 
 msgid "days"
 msgstr "dies"
+
+msgid "Choose one or more reasons:"
+msgstr "Seliger un o plus rationes:"
 
 msgid "Choose a canned response..."
 msgstr "Eliger un responsa predefinite..."

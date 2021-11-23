@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-04 07:44+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-18 18:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1151,7 +1151,7 @@ msgid "Photos & Media"
 msgstr "Foto’s en media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Download Firefox-extensies om foto's en media te verbeteren. Deze categorie omvat extensies voor het omgekeerd zoeken van afbeeldingen, het maken van volledige schermafbeeldingen en meer."
+msgstr "Download Firefox-extensies om foto’s en media te verbeteren. Deze categorie omvat extensies voor het omgekeerd zoeken van afbeeldingen, het maken van volledige schermafbeeldingen en meer."
 
 msgid "Security & Privacy"
 msgstr "Beveiliging en privacy"
@@ -4357,10 +4357,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Een interessante afbeelding op het web gevonden? Gebruik TinEye om de herkomst ervan te achterhalen."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Voor die momenten waarop u lasers vanuit de ogen van een kat moet schieten."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Webpagina’s hardop voorgelezen. Meer dan 40 ondersteunde talen."
 
@@ -4405,13 +4401,13 @@ msgid "See all extensions"
 msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "Productiviteitsboosters"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "Beste anti-trackingextensies"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Zoekextensies voor afbeeldingen"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4819,6 +4815,9 @@ msgstr "Direct weigeren. Gebruik dit alleen in geval van ernstige beveiligingspr
 
 msgid "days"
 msgstr "dagen"
+
+msgid "Choose one or more reasons:"
+msgstr "Kies een of meerdere redenen:"
 
 msgid "Choose a canned response..."
 msgstr "Kies een voorgedefinieerd antwoord…"

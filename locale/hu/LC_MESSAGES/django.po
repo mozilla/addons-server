@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-03 15:20+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-16 19:38+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4371,10 +4371,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Talált egy érdekes képet a weben? Használja a TinEye-t az eredete felfedezéséhez."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Azokra a pillanatokra, amikor lézereket kell kilőnie egy macska szeméből."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Weboldalak hangos felolvasása. 40+ támogatott nyelven."
 
@@ -4419,13 +4415,13 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "Hatékonyságnövelők"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "Legjobbra értékelt követés elleni kiegészítők"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Képkereső kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4833,6 +4829,9 @@ msgstr "Azonnali elutasítás. Csak komoly biztonsági problémák esetén haszn
 
 msgid "days"
 msgstr "nap"
+
+msgid "Choose one or more reasons:"
+msgstr "Válasszon egy vagy több okot:"
 
 msgid "Choose a canned response..."
 msgstr "Válasszon egy konzervválaszt…"

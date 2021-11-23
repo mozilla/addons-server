@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-03 16:48+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-17 11:16+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4406,10 +4406,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Encontrou uma imagem interessante na web? Use o TinEye para explorar sua origem."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Para aqueles momentos em que você precisa disparar lasers com olhos de gato."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Páginas web lidas em voz alta. Mais de 40 idiomas suportados."
 
@@ -4454,13 +4450,13 @@ msgid "See all extensions"
 msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "Ferramentas para aumentar a produtividade"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "Extensões anti-rastreamento populares"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Extensões de pesquisa de imagens"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4870,6 +4866,9 @@ msgstr "Rejeite imediatamente. Use apenas em caso de problemas sérios de segura
 
 msgid "days"
 msgstr "dias"
+
+msgid "Choose one or more reasons:"
+msgstr "Escolha um ou mais motivos:"
 
 msgid "Choose a canned response..."
 msgstr "Escolha um modelo de resposta..."

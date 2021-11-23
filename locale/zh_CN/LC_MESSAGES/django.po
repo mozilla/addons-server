@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-03 11:09+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-17 03:34+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1325,7 +1325,7 @@ msgid "Verified"
 msgstr "已验证"
 
 msgid "By Firefox"
-msgstr "由 Firefox 推出"
+msgstr "Firefox 出品"
 
 msgid "Spotlight"
 msgstr "新鲜快报"
@@ -4264,10 +4264,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "在网上发现了一个有趣的图片？用 TinEye 探索它的出处。"
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "请问您今天要来只会发射激光的喵星人吗？"
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "朗读网页给您听，支持 40 多种语言。"
 
@@ -4301,7 +4297,7 @@ msgstr "不必再向网站提供真实邮箱。Firefox Relay 可保护您的身�
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
-msgstr "给 Firefox 加点机能。"
+msgstr "Firefox 上的“小程序”。"
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
@@ -4312,13 +4308,13 @@ msgid "See all extensions"
 msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "生产力工具"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "热门反跟踪扩展"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "图片搜索扩展"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4715,6 +4711,9 @@ msgstr "立即驳回。仅在发现严重安全性问题时使用。"
 
 msgid "days"
 msgstr "天"
+
+msgid "Choose one or more reasons:"
+msgstr "选择一个或多个原因："
 
 msgid "Choose a canned response..."
 msgstr "选择一项预置的回复..."

@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-04 07:45+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-16 18:26+0000\n"
+"Last-Translator: Yaya.Cout <yaya.cout@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4416,10 +4416,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Vous avez déniché une photo sympa sur le Web ? Utilisez TinEye pour déterminer son origine, son auteur, sa date de publication en ligne, etc."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Quand vous êtes excédé et que vous avez envie de tirer au laser avec les yeux d’un chat…"
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Lecture de pages web à haute voix. Plus de 40 langues prises en charge."
 
@@ -4464,13 +4460,13 @@ msgid "See all extensions"
 msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "Boosters de productivité"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "Extensions populaires contre le pistage"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Extensions de recherche d’images"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4880,6 +4876,9 @@ msgstr "Rejeter immédiatement. À n’utiliser qu’en cas de graves problèmes
 
 msgid "days"
 msgstr "jours"
+
+msgid "Choose one or more reasons:"
+msgstr "Choisissez une ou plusieurs raisons :"
 
 msgid "Choose a canned response..."
 msgstr "Choisissez une réponse enregistrée…"

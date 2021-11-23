@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4317,10 +4317,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4366,16 +4362,14 @@ msgstr ""
 msgid "See all extensions"
 msgstr "Estyniadau"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Estyniadau"
+msgid "Productivity boosters"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Image search extensions"
+msgid "Top anti-tracking extensions"
 msgstr "Estyniadau"
 
 #. editorial content for the secondary hero shelves.
@@ -4804,6 +4798,9 @@ msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
 
 msgid "days"
+msgstr ""
+
+msgid "Choose one or more reasons:"
 msgstr ""
 
 msgid "Choose a canned response..."

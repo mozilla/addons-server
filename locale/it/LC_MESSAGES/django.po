@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-03 08:46+0000\n"
-"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-16 19:17+0000\n"
+"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4423,10 +4423,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Hai trovato un’immagine interessante sul Web? Utilizza TinEye per scoprire da dove arriva."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Per quei momenti nei quali hai bisogno di un gatto che spara raggi laser dagli occhi."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Le pagine web, lette ad alta voce. Più di 40 lingue supportate."
 
@@ -4471,13 +4467,13 @@ msgid "See all extensions"
 msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "Strumenti per aumentare la produttività"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "Le migliori estensioni antitracciamento"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Estensioni per la ricerca di immagini"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4888,6 +4884,9 @@ msgstr "Rifiuto immediato, solo in caso di gravi problemi di sicurezza."
 
 msgid "days"
 msgstr "giorni"
+
+msgid "Choose one or more reasons:"
+msgstr "Scegli uno o più motivi:"
 
 msgid "Choose a canned response..."
 msgstr "Scegli una risposta predefinita…"

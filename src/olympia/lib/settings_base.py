@@ -1234,11 +1234,6 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False,
         },
-        'newrelic': {
-            'handlers': ['mozlog'],
-            'level': logging.WARNING,
-            'propagate': False,
-        },
         'parso': {'handlers': ['null'], 'level': logging.INFO, 'propagate': False},
         'post_request_task': {
             'handlers': ['mozlog'],

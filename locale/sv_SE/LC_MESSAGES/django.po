@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-03 17:49+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-17 20:40+0000\n"
+"Last-Translator: Peter Kihlstedt <peter.kihlstedt@gmail.com>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -4338,10 +4338,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Hitta en intressant bild på webben? Använd TinEye för att utforska dess ursprung."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "För de ögonblick när du behöver skjuta lasrar ur kattögon."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Få webbsidor upplästa för dig. Över 40 språk stöds."
 
@@ -4386,12 +4382,12 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Högt rankade tillägg mot spårning "
+msgid "Productivity boosters"
+msgstr "Produktivitetsförstärkare"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Bildsökningstillägg"
+msgid "Top anti-tracking extensions"
+msgstr "Högt rankade tillägg mot spårning "
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4800,6 +4796,9 @@ msgstr "Avvisa omedelbart. Använd endast vid allvarliga säkerhetsproblem."
 
 msgid "days"
 msgstr "dagar"
+
+msgid "Choose one or more reasons:"
+msgstr "Välj en eller flera anledningar:"
 
 msgid "Choose a canned response..."
 msgstr "Välj ett standardsvar..."

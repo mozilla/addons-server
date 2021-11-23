@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-10-28 05:03+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-04 02:01+0000\n"
+"Last-Translator: ebparktrans <ebparktrans@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -973,7 +973,7 @@ msgid "Unlisted"
 msgstr "목록에서 제거됨"
 
 msgid "Signing API"
-msgstr ""
+msgstr "서명 API"
 
 #, fuzzy
 msgid "Addon API"
@@ -4350,10 +4350,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4397,16 +4393,15 @@ msgstr "Firefox에 다양한 기능을 추가하여 더 빠르고, 안전하고,
 msgid "See all extensions"
 msgstr "모든 확장기능 보기"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Top anti-tracking extensions"
 msgstr "인기 확장 기능"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "모든 확장기능 보기"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4822,6 +4817,9 @@ msgstr ""
 # 100%
 msgid "days"
 msgstr "일"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "자동 응답 메시지를 선택해 주세요..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4722,11 +4722,6 @@ msgstr "Find an interesting image on the web? Use TinEye to explore its origins.
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "For those moments when you need to fire lasers out of a cat."
-
-#. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Have web pages read aloud to you. 40+ languages supported."
 
@@ -4775,16 +4770,15 @@ msgstr "They add features to Firefox to make browsing faster, safer, or just pla
 msgid "See all extensions"
 msgstr "Browse all add-ons"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "Productivity boosters"
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Top anti-tracking extensions"
 msgstr "Extensions"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5230,6 +5224,9 @@ msgstr "Reject immediately. Only use in case of serious security issues."
 #, fuzzy
 msgid "days"
 msgstr "7 days"
+
+msgid "Choose one or more reasons:"
+msgstr "Choose one or more reasons:"
 
 msgid "Choose a canned response..."
 msgstr "Choose a canned response..."

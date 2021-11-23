@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
 "PO-Revision-Date: 2021-08-26 13:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4401,11 +4401,6 @@ msgstr "Ai găsit o imagine interesantă pe web? Folosește TinEye ca să descop
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Pentru acele momente când simți nevoia să tragi cu laserul dintr-o pisică."
-
-#. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Ascultă conținutul paginilor web. Suport pentru peste 40 de limbi."
 
@@ -4450,16 +4445,15 @@ msgstr "Acestea adaugă funcționalități în Firefox pentru a face navigarea m
 msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Top anti-tracking extensions"
 msgstr "Extensii populare"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4886,6 +4880,9 @@ msgstr "Respinge imediat. De folosit numai în caz de probleme grave de securita
 
 msgid "days"
 msgstr "zile"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Alege un răspuns predefinit..."

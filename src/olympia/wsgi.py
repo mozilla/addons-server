@@ -1,5 +1,4 @@
 import logging
-import os
 
 from datetime import datetime
 
@@ -35,18 +34,3 @@ def application(env, start_response):
     env['hostname'] = django.conf.settings.HOSTNAME
     env['datetime'] = str(datetime.now())
     return django_app(env, start_response)
-
-
-# Initialize Newrelic if we configured it
-newrelic_ini = getattr(django.conf.settings, 'NEWRELIC_INI', None)
-newrelic_uses_environment = os.environ.get('NEW_RELIC_LICENSE_KEY', None)
-
-if newrelic_ini or newrelic_uses_environment:
-    import newrelic.agent
-
-    try:
-        newrelic.agent.initialize(newrelic_ini)
-    except Exception:
-        log.exception('Failed to load new relic config.')
-
-    application = newrelic.agent.wsgi_application()(application)

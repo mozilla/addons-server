@@ -79,7 +79,6 @@ class CollectionSerializer(serializers.ModelSerializer):
     def validate_slug(self, value):
         slug_validator(
             value,
-            lower=False,
             message=gettext(
                 'The custom URL must consist of letters, '
                 'numbers, underscores or hyphens.'

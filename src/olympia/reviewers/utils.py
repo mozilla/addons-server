@@ -15,7 +15,7 @@ from django.utils.translation import gettext_lazy as _
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.activity.utils import log_and_notify, send_activity_mail
+from olympia.activity.utils import notify_about_activity_log, send_activity_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import to_language
@@ -603,6 +603,7 @@ class ReviewHelper:
                 and is_appropriate_reviewer
                 and not version_is_blocked
             ),
+            'requires_reasons': True,
         }
         actions['reject'] = {
             'method': self.handler.reject_latest_version,
@@ -622,6 +623,7 @@ class ReviewHelper:
                 and version_is_unreviewed
                 and is_appropriate_reviewer
             ),
+            'requires_reasons': True,
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
@@ -668,6 +670,7 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': (can_reject_multiple),
+            'requires_reasons': True,
         }
         actions['block_multiple_versions'] = {
             'method': self.handler.block_multiple_versions,
@@ -715,6 +718,7 @@ class ReviewHelper:
                 and is_reviewer
                 and (not promoted_group.admin_review or is_appropriate_reviewer)
             ),
+            'requires_reasons': True,
         }
         actions['super'] = {
             'method': self.handler.process_super_review,
@@ -847,6 +851,8 @@ class ReviewBase:
         if timestamp is None:
             timestamp = datetime.now()
 
+        args = (*args, *self.data.get('reasons', []))
+
         kwargs = {'user': self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.create(action, *args, **kwargs)
 
@@ -931,13 +937,9 @@ class ReviewBase:
             'Sending reviewer reply for %s to authors and other'
             'recipients' % self.addon
         )
-        log_and_notify(
-            action,
-            self.data['comments'],
-            self.user,
-            self.version,
-            perm_setting='individual_contact',
-            detail_kwargs={'reviewtype': self.review_type.split('_')[1]},
+        self.log_action(action)
+        notify_about_activity_log(
+            self.addon, self.version, self.log_entry, perm_setting='individual_contact'
         )
 
     def sign_file(self):

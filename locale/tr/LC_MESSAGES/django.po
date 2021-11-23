@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-02 18:39+0000\n"
-"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-18 21:25+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -238,7 +238,7 @@ msgid "Not allowed"
 msgstr "İzin verilmiyor"
 
 msgid "Oops! Not allowed."
-msgstr "İzin verilmiyor"
+msgstr "İzin verilmiyor."
 
 msgid "You tried to do something that you weren't allowed to."
 msgstr "İzniniz olmayan bir şey yapmaya çalıştınız."
@@ -247,6 +247,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Bu HTTPS sitesi bir \"Referer üst bilgisi\" gerektirmesine rağmen tarayıcınız onu göndermediği için bu mesajı görüyorsunuz. Bu üst bilgi, tarayıcınızın üçüncü taraflarca ele geçirilmediğinden emin "
+"olmak olmayı sağlayan bir güvenlik önlemidir."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
@@ -4312,10 +4314,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Olur da kedi gözlerinden lazer ateşlemeniz gerekirse."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4362,15 +4360,13 @@ msgid "See all extensions"
 msgstr "Tüm uzantılara bak"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "En iyi takip önleme uzantıları"
-
-#. editorial content for the secondary hero shelves.
-# 95%
-# 100%
-msgid "Image search extensions"
-msgstr "Görsel arama uzantıları"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4427,18 +4423,16 @@ msgid "See more recommended themes"
 msgstr "Önerdiğimiz diğer temalara bakın"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Diğer sekme yönetimi uzantılarına bakın"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr "Çeviri araçları"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Diğer çeviri araçlarına bakın"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
@@ -4447,18 +4441,16 @@ msgstr "Sosyal akış"
 #. editorial content for the homepage shelves.
 # 95%
 # 100%
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Diğer sosyal akış uzantılarına bakın"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Sekme yöneticileri"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Diğer sekme yönetimi uzantılarına bakın"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
@@ -4471,23 +4463,20 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" etiketli diğer uzantılara bakın"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Eklenti engelini güncelle"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Diğer sekme yönetimi uzantılarına bakın"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
 msgstr "YouTube iyileştiricileri"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Diğer çeviri araçlarına bakın"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
@@ -4790,6 +4779,9 @@ msgstr ""
 
 msgid "days"
 msgstr "gün"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Hazır yanıtı seçin..."

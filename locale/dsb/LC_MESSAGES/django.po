@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-06 22:46+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-16 19:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4348,10 +4348,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Sćo namakał zajmny wobraz w interneśe? Wužywajśo TinEye, aby wuslěźił, wótkul póchada."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Za wokognuśa, gaž musyśo lasery z kóccynych wokow wustśěliś."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Dajśo se webboki pśedcytaś. Pśez 40 rěcow se pódpěra."
 
@@ -4396,12 +4392,12 @@ msgid "See all extensions"
 msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Woblubowane rozšyrjenja pśeśiwo slědowanju"
+msgid "Productivity boosters"
+msgstr "Zmócnjaki produktiwnosći"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Rozšyrjenja za pytanje wobrazow"
+msgid "Top anti-tracking extensions"
+msgstr "Woblubowane rozšyrjenja pśeśiwo slědowanju"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4811,6 +4807,9 @@ msgstr "Ned wótpokazaś. Wužywajśo to jano w paźe śěžkich wěstotnych pro
 
 msgid "days"
 msgstr "dnjow"
+
+msgid "Choose one or more reasons:"
+msgstr "Wubjeŕśo jadnu pśicynu abo někotare pśicyny:"
 
 msgid "Choose a canned response..."
 msgstr "Wubjeŕśo pśigótowane wótegrono..."

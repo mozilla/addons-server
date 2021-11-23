@@ -75,6 +75,7 @@ class UploadMixin(amo.tests.AMOPaths):
         version=None,
         with_validation=True,
         source=amo.UPLOAD_SOURCE_DEVHUB,
+        channel=amo.RELEASE_CHANNEL_LISTED,
     ):
         if user is None:
             user = user_factory()
@@ -86,6 +87,7 @@ class UploadMixin(amo.tests.AMOPaths):
         upload.version = version
         upload.ip_address = '127.0.0.42'
         upload.source = source
+        upload.automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
         if with_validation:
             # Simulate what fetch_manifest() does after uploading an app.
             upload.validation = validation or json.dumps(

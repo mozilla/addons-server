@@ -18,7 +18,7 @@ from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.models import AddonCategory
+from olympia.addons.models import AddonCategory, DeniedSlug
 from olympia.amo.tests import (
     APITestClient,
     ESTestCase,
@@ -42,6 +42,7 @@ from olympia.constants.promoted import (
     SPONSORED,
     VERIFIED,
 )
+from olympia.files.utils import parse_addon
 from olympia.files.tests.test_models import UploadMixin
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
@@ -705,20 +706,45 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.upload = self.get_upload(
-            'webextension.xpi', user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API
+            'webextension.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
         self.url = reverse_ns('addon-list', api_version='v5')
         self.client.login_api(self.user)
         self.license = License.objects.create(builtin=1)
-        self.minimal_data = {
-            'version': {'upload': self.upload.uuid, 'license': self.license.id},
-            'categories': {'firefox': ['bookmarks']},
-        }
+        self.minimal_data = {'version': {'upload': self.upload.uuid}}
 
-    def test_basic(self):
+    def test_basic_unlisted(self):
         response = self.client.post(
             self.url,
             data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['name'] == {'en-US': 'My WebExtension Addon'}
+        assert data['status'] == 'incomplete'
+        addon = Addon.objects.get()
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == AddonSerializer(context={'request': request}).to_representation(
+            addon
+        )
+        assert (
+            addon.find_latest_version(channel=None).channel
+            == amo.RELEASE_CHANNEL_UNLISTED
+        )
+
+    def test_basic_listed(self):
+        self.upload.update(automated_signing=False)
+        response = self.client.post(
+            self.url,
+            data={
+                'categories': {'firefox': ['bookmarks']},
+                'version': {'upload': self.upload.uuid, 'license': self.license.id},
+            },
         )
         assert response.status_code == 201, response.content
         data = response.data
@@ -731,6 +757,43 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert data == AddonSerializer(context={'request': request}).to_representation(
             addon
         )
+        assert addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
+
+    def test_listed_metadata_missing(self):
+        self.upload.update(automated_signing=False)
+        response = self.client.post(
+            self.url,
+            data={
+                'version': {'upload': self.upload.uuid},
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': {'license': ['This field is required for listed versions.']},
+        }
+
+        # If the license is set we'll get further validation errors from addon
+        # Mocking parse_addon so we can test the fallback to POST data when there are
+        # missing manifest fields.
+        with mock.patch('olympia.addons.serializers.parse_addon') as parse_addon_mock:
+            parse_addon_mock.side_effect = lambda *arg, **kw: {
+                key: value
+                for key, value in parse_addon(*arg, **kw).items()
+                if key not in ('name', 'summary')
+            }
+            response = self.client.post(
+                self.url,
+                data={
+                    'summary': {'en-US': 'replacement summary'},
+                    'version': {'upload': self.upload.uuid, 'license': self.license.id},
+                },
+            )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'categories': ['This field is required for addons with listed versions.'],
+            'name': ['This field is required for addons with listed versions.'],
+            # 'summary': summary was provided via POST, so we're good
+        }
 
     def test_not_authenticated(self):
         self.client.logout_api()
@@ -852,17 +915,115 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 201, response.content
 
+    def test_set_slug(self):
+        # Check for slugs with invalid characters in it
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'slug': '!@!#!@##@$$%$#%#%$^^%&%',
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': [
+                'Enter a valid “slug” consisting of letters, numbers, underscores or '
+                'hyphens.'
+            ]
+        }
+
+        # Check for a slug in the DeniedSlug list
+        DeniedSlug.objects.create(name='denied-slug')
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'slug': 'denied-slug',
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': ['This slug cannot be used. Please choose another.']
+        }
+
+        # Check for all numeric slugs - DeniedSlug.blocked checks for these too.
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'slug': '1234',
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': ['This slug cannot be used. Please choose another.']
+        }
+
+    def test_slug_uniqueness(self):
+        # Check for duplicate - we get this for free because Addon.slug is unique=True
+        addon_factory(slug='foo', status=amo.STATUS_DISABLED)
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'slug': 'foo',
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'slug': ['addon with this slug already exists.']}
+
     def test_set_extra_data(self):
+        self.upload.update(automated_signing=False)
         data = {
-            **self.minimal_data,
+            'categories': {'firefox': ['bookmarks']},
             'description': {'en-US': 'new description'},
             'developer_comments': {'en-US': 'comments'},
             'homepage': {'en-US': 'https://my.home.page/'},
+            'is_experimental': True,
+            'requires_payment': True,
             # 'name'  # don't update - should retain name from the manifest
             'slug': 'addon-slug',
             'summary': {'en-US': 'new summary'},
-            'support_email': {'en-US': 'email@me'},
+            'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
+            'version': {'upload': self.upload.uuid, 'license': self.license.id},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+
+        assert response.status_code == 201, response.content
+        addon = Addon.objects.get()
+        data = response.data
+        assert data['categories'] == {'firefox': ['bookmarks']}
+        assert addon.all_categories == [
+            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
+        ]
+        assert data['description'] == {'en-US': 'new description'}
+        assert addon.description == 'new description'
+        assert data['developer_comments'] == {'en-US': 'comments'}
+        assert addon.developer_comments == 'comments'
+        assert data['homepage']['url'] == {'en-US': 'https://my.home.page/'}
+        assert addon.homepage == 'https://my.home.page/'
+        assert data['is_experimental'] is True
+        assert addon.is_experimental is True
+        assert data['requires_payment'] is True
+        assert addon.requires_payment is True
+        assert data['name'] == {'en-US': 'My WebExtension Addon'}
+        assert addon.name == 'My WebExtension Addon'
+        assert data['slug'] == 'addon-slug' == addon.slug
+        assert data['summary'] == {'en-US': 'new summary'}
+        assert addon.summary == 'new summary'
+        assert data['support_email'] == {'en-US': 'email@me.me'}
+        assert addon.support_email == 'email@me.me'
+        assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
+        assert addon.support_url == 'https://my.home.page/support/'
+
+    def test_set_disabled(self):
+        data = {
+            **self.minimal_data,
+            'is_disabled': True,
         }
         response = self.client.post(
             self.url,
@@ -871,24 +1032,28 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         addon = Addon.objects.get()
 
         assert response.status_code == 201, response.content
-        data = response.data
-        assert data['description'] == {'en-US': 'new description'}
-        assert addon.description == 'new description'
-        assert data['developer_comments'] == {'en-US': 'comments'}
-        assert addon.developer_comments == 'comments'
-        assert data['homepage']['url'] == {'en-US': 'https://my.home.page/'}
-        assert addon.homepage == 'https://my.home.page/'
-        assert data['name'] == {'en-US': 'My WebExtension Addon'}
-        assert addon.name == 'My WebExtension Addon'
-        assert data['slug'] == 'addon-slug' == addon.slug
-        assert data['summary'] == {'en-US': 'new summary'}
-        assert addon.summary == 'new summary'
-        assert data['support_email'] == {'en-US': 'email@me'}
-        assert addon.support_email == 'email@me'
-        assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
-        assert addon.support_url == 'https://my.home.page/support/'
-        assert data['status'] == 'nominated'
-        assert addon.status == amo.STATUS_NOMINATED
+        assert response.data['is_disabled'] is True
+        assert addon.is_disabled is True
+        assert addon.disabled_by_user is True  # sets the user property
+
+    def test_set_homepage_support_url_email(self):
+        data = {
+            **self.minimal_data,
+            'homepage': {'ro': '#%^%&&%^&^&^*'},
+            'support_email': {'en-US': '#%^%&&%^&^&^*'},
+            'support_url': {'fr': '#%^%&&%^&^&^*'},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': ['Enter a valid URL.'],
+            'support_email': ['Enter a valid email address.'],
+            'support_url': ['Enter a valid URL.'],
+        }
 
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
@@ -1039,6 +1204,47 @@ class TestAddonViewSetUpdate(TestCase):
         assert response.data == {'categories': ['Invalid category name.']}
         assert self.addon.reload().app_categories == {'firefox': [tabs_cat]}
 
+    def test_set_slug_invalid(self):
+        response = self.client.patch(
+            self.url,
+            data={'slug': '!@!#!@##@$$%$#%#%$^^%&%'},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': [
+                'Enter a valid “slug” consisting of letters, numbers, underscores or '
+                'hyphens.'
+            ]
+        }
+
+    def test_set_slug_denied(self):
+        DeniedSlug.objects.create(name='denied-slug')
+        response = self.client.patch(
+            self.url,
+            data={'slug': 'denied-slug'},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': ['This slug cannot be used. Please choose another.']
+        }
+
+        response = self.client.patch(
+            self.url,
+            data={'slug': '1234'},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'slug': ['This slug cannot be used. Please choose another.']
+        }
+
+        # except if the slug was already in use (e.g. admin allowed)
+        self.addon.update(slug='denied-slug')
+        response = self.client.patch(
+            self.url,
+            data={'slug': 'denied-slug'},
+        )
+        assert response.status_code == 200, response.content
+
     def test_set_extra_data(self):
         self.addon.description = 'Existing description'
         self.addon.save()
@@ -1047,9 +1253,11 @@ class TestAddonViewSetUpdate(TestCase):
             'developer_comments': {'en-US': 'comments'},
             'homepage': {'en-US': 'https://my.home.page/'},
             # 'description'  # don't update - should retain existing
+            'is_experimental': True,
+            'requires_payment': True,
             'slug': 'addon-slug',
             'summary': {'en-US': 'new summary'},
-            'support_email': {'en-US': 'email@me'},
+            'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
         }
         response = self.client.patch(
@@ -1068,13 +1276,61 @@ class TestAddonViewSetUpdate(TestCase):
         assert addon.homepage == 'https://my.home.page/'
         assert data['description'] == {'en-US': 'Existing description'}
         assert addon.description == 'Existing description'
+        assert data['is_experimental'] is True
+        assert addon.is_experimental is True
+        assert data['requires_payment'] is True
+        assert addon.requires_payment is True
         assert data['slug'] == 'addon-slug' == addon.slug
         assert data['summary'] == {'en-US': 'new summary'}
         assert addon.summary == 'new summary'
-        assert data['support_email'] == {'en-US': 'email@me'}
-        assert addon.support_email == 'email@me'
+        assert data['support_email'] == {'en-US': 'email@me.me'}
+        assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
+
+    def test_set_disabled(self):
+        response = self.client.patch(
+            self.url,
+            data={'is_disabled': True},
+        )
+        addon = Addon.objects.get()
+
+        assert response.status_code == 200, response.content
+        data = response.data
+        assert data['is_disabled'] is True
+        assert addon.is_disabled is True
+        assert addon.disabled_by_user is True  # sets the user property
+
+        # Confirm that a STATUS_DISABLED can't be overriden
+        addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.patch(
+            self.url,
+            data={'is_disabled': False},
+        )
+        addon.reload()
+        assert response.status_code == 200, response.content
+        data = response.data
+        assert data['is_disabled'] is True  # still True
+        assert addon.is_disabled is True  # still True
+        assert addon.disabled_by_user is False  # user property is False,
+
+    def test_set_homepage_support_url_email(self):
+        data = {
+            'homepage': {'ro': '#%^%&&%^&^&^*'},
+            'support_email': {'en-US': '#%^%&&%^&^&^*'},
+            'support_url': {'fr': '#%^%&&%^&^&^*'},
+        }
+        response = self.client.patch(
+            self.url,
+            data=data,
+        )
+
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': ['Enter a valid URL.'],
+            'support_email': ['Enter a valid email address.'],
+            'support_url': ['Enter a valid URL.'],
+        }
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):
@@ -1262,7 +1518,10 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.upload = self.get_upload(
-            'webextension.xpi', user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API
+            'webextension.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
         self.addon = addon_factory(users=(self.user,), guid='@webextension-guid')
         self.url = reverse_ns(
@@ -1272,12 +1531,38 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         )
         self.client.login_api(self.user)
         self.license = License.objects.create(builtin=1)
-        self.minimal_data = {'upload': self.upload.uuid, 'license': self.license.id}
+        self.minimal_data = {'upload': self.upload.uuid}
 
-    def test_basic(self):
+    def test_basic_unlisted(self):
         response = self.client.post(
             self.url,
             data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['license'] is None
+        assert data['compatibility'] == {
+            'firefox': {'max': '*', 'min': '42.0'},
+        }
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == VersionSerializer(
+            context={'request': request}
+        ).to_representation(version)
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+
+    def test_basic_listed(self):
+        self.upload.update(automated_signing=False)
+        self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
+        self.addon.update_status()
+        assert self.addon.status == amo.STATUS_NULL
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'license': self.license.id},
         )
         assert response.status_code == 201, response.content
         data = response.data
@@ -1294,6 +1579,8 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert data == VersionSerializer(
             context={'request': request}
         ).to_representation(version)
+        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert self.addon.status == amo.STATUS_NOMINATED
 
     def test_not_authenticated(self):
         self.client.logout_api()
@@ -1350,13 +1637,32 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         }
         assert self.addon.reload().versions.count() == 1
 
-    def test_missing_license(self):
+    def test_listed_metadata_missing(self):
+        self.addon.set_categories([])
+        self.upload.update(automated_signing=False)
         response = self.client.post(
             self.url,
             data={'upload': self.upload.uuid},
         )
         assert response.status_code == 400, response.content
-        assert response.data == {'license': ['This field is required.']}
+        assert response.data == {
+            'license': ['This field is required for listed versions.'],
+        }
+
+        # If the license is set we'll get further validation errors from about the addon
+        # fields that aren't set.
+        response = self.client.post(
+            self.url,
+            data={'upload': self.upload.uuid, 'license': self.license.id},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Addon metadata is required to be set to create a listed version: '
+                "['categories']."
+            ],
+        }
+
         assert self.addon.reload().versions.count() == 1
 
     def test_set_extra_data(self):

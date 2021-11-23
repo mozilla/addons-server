@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-11-02 18:45+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-16 19:07+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4377,10 +4377,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Haben Sie im Internet ein interessantes Bild gefunden? Erforschen Sie mit TinEye seine Herkunft."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Für Momente, in denen Sie Laser aus Katzenaugen abfeuern müssen."
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Lassen Sie sich Webseiten vorlesen. Über 40 Sprachen werden unterstützt."
 
@@ -4425,13 +4421,13 @@ msgid "See all extensions"
 msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr "Verbesserung der Produktivität"
+
+#. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
 msgid "Top anti-tracking extensions"
 msgstr "Höchstbewertete Erweiterungen gegen Tracking"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Erweiterungen zur Bildersuche"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4841,6 +4837,9 @@ msgstr "Sofort ablehnen. Nur bei schwerwiegenden Sicherheitsproblemen verwenden.
 
 msgid "days"
 msgstr "Tagen"
+
+msgid "Choose one or more reasons:"
+msgstr "Wählen Sie einen oder mehrere Gründe aus:"
 
 msgid "Choose a canned response..."
 msgstr "Eine fertige Antwort auswählen …"

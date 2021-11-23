@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-05-26 04:58+0000\n"
-"Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-09 10:51+0000\n"
+"Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -276,11 +276,13 @@ msgstr ""
 msgid "Oops"
 msgstr "อุปส์"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>อุ๊ปส์!  เรามีข้อผิดพลาด</h1> <p>เราจะทำการซ่อมแซมในเร็ว ๆ นี้</p><p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p>"
+msgstr ""
+"<h1>อุ๊ปส์! เรามีข้อผิดพลาด</h1> <p>เราจะทำการแก้ไขในเร็ว ๆ นี้</p> <p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p> คุณยังสามารถช่วยเราแก้ไขปัญหานี้ได้โดย<a href=\"https://github.com/"
+"mozilla/addons/issues/new\">รายงานปัญหา</a>พร้อมระบุรายละเอียดว่าคุณเข้ามาที่หน้านี้อย่างไร </p>"
 
 msgid "Register or Log in"
 msgstr "ลงทะเบียนหรือเข้าสู่ระบบ"
@@ -475,9 +477,9 @@ msgstr "ร้องขอการพิจารณาแล้ว"
 msgid "Review Unlisted"
 msgstr "หมายเหตุบทวิจารณ์"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete Multiple %(name)s"
-msgstr "อธิบายส่วนเสริมของคุณ"
+msgstr "ลบหลาย %(name)s"
 
 msgid "Home"
 msgstr "หน้าแรก"
@@ -502,13 +504,11 @@ msgstr "ลบ"
 msgid "Update"
 msgstr "อัปเดต"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "ไปยังการส่งของฉัน"
+msgstr "ปฏิเสธการส่ง"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "ไปยังการส่งของฉัน"
+msgstr "อนุมัติการส่ง"
 
 #, python-format
 msgid "Add %(name)s"
@@ -1335,9 +1335,8 @@ msgstr "Creative Commons แบบแสดงที่มา อนุญาต
 msgid "Not Promoted"
 msgstr "โปรโมต"
 
-#, fuzzy
 msgid "Recommended"
-msgstr "แสดงความคิดเห็นแล้ว"
+msgstr "แนะนำ"
 
 msgid "Sponsored"
 msgstr "ได้รับการสนับสนุน"
@@ -1623,7 +1622,6 @@ msgstr "ก่อนที่จะเปลี่ยนภาษาเริ่
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
 msgid "An author can only be present once."
 msgstr "สามารถระบุผู้สร้างหนึ่งคนได้ครั้งเดียวเท่านั้น"
 
@@ -1669,9 +1667,8 @@ msgstr "กรุณาระบุนโยบายความเป็นส
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "ไม่รองรับไฟล์ชนิดนี้ โปรดอัปโหลดไฟล์เก็บถาวร {extensions}"
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "โทเค็น JWT ไม่ถูกต้อง"
+msgstr "ที่เก็บถาวรไม่ถูกต้องหรือเสียหาย"
 
 msgid "View current"
 msgstr "ดูปัจจุบัน"
@@ -1735,9 +1732,8 @@ msgstr ""
 msgid "Display Name"
 msgstr "ชื่อที่แสดงผล"
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "โทเค็น JWT ไม่ถูกต้อง"
+msgstr "ไฟล์ส่วนเสริมไม่ถูกต้องหรือเสียหาย"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -1845,9 +1841,8 @@ msgstr "ภาพจะต้องกว้างอย่างน้อย {0
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "มิติของภาพจะต้องอยู่ในอัตราส่วน 4:3"
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "รูปภาพจะต้องกว้าง {0} พิกเซลและสูง {1} พิกเซลเท่านั้น"
+msgstr "ไอคอนจะต้องมีความกว้างและความสูงอย่างน้อย {0} พิกเซล"
 
 msgid "Icon must be square (same width and height)."
 msgstr "ไอคอนต้องเป็นสี่เหลี่ยมจัตุรัส (ความกว้างและความสูงเดียวกัน)"
@@ -4298,10 +4293,6 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4346,14 +4337,13 @@ msgid "See all extensions"
 msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "สำรวจส่วนขยาย"
+msgid "Productivity boosters"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Image search extensions"
-msgstr "ดูส่วนขยายทั้งหมด"
+msgid "Top anti-tracking extensions"
+msgstr "สำรวจส่วนขยาย"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4768,6 +4758,9 @@ msgstr ""
 
 msgid "days"
 msgstr "วัน"
+
+msgid "Choose one or more reasons:"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr ""

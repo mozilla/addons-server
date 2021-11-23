@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-02 18:07+0000\n"
-"PO-Revision-Date: 2021-10-27 02:28+0000\n"
+"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"PO-Revision-Date: 2021-11-10 12:36+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1549,9 +1549,8 @@ msgstr "Không có hành động"
 msgid "Flag for human review"
 msgstr ""
 
-#, fuzzy
 msgid "Delay auto-approval"
-msgstr "Bật tự động phê duyệt"
+msgstr "Trì hoãn tự động phê duyệt"
 
 msgid "Delay auto-approval indefinitely"
 msgstr ""
@@ -1860,10 +1859,10 @@ msgstr "Biểu tượng phải là hình vuông (cùng chiều rộng và chiề
 msgid "There was an error uploading your preview."
 msgstr "Có lỗi khi đang tải lên ảnh xem trước của bạn."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Không thể xóa hoặc tắt phiên bản được phê duyệt mới nhất của tiện ích được đề xuất này vì phiên bản trước đó không được phê duyệt để đề xuất. Vui lòng liên hệ với quản trị viên AMO nếu bạn cần trợ "
+"Không thể xóa hoặc vô hiệu hóa phiên bản mới nhất được phê duyệt của tiện ích %s vì phiên bản trước đó không được chấp thuận cho quảng cáo %s. Vui lòng liên hệ với quản trị viên AMO nếu bạn cần trợ "
 "giúp về việc này."
 
 #, python-format
@@ -1896,9 +1895,8 @@ msgstr "Màu của văn bản và biểu tượng trong vùng tiêu đề, ngo�
 msgid "Toolbar area background"
 msgstr "Nền khu vực thanh công cụ"
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "Màu nền cho thanh điều hướng, thanh dấu trang và thẻ đã chọn.  Trường kê khai:  toolbar."
+msgstr "Màu nền cho thanh điều hướng, thanh dấu trang và thẻ đang hoạt động.  Trường trong manifest:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Biểu tượng và văn bản khu vực thanh công cụ"
@@ -3410,13 +3408,13 @@ msgstr "Xóa phiên bản"
 msgid "Disable Version"
 msgstr "Vô hiệu hóa phiên bản"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Không thể xóa hoặc tắt phiên bản được phê duyệt mới nhất của tiện ích được đề xuất này vì phiên bản trước đó không được phê duyệt để đề xuất. Vui lòng liên hệ với quản trị viên AMO nếu bạn cần trợ "
-"giúp về việc này."
+"Không thể xóa hoặc vô hiệu hóa phiên bản được phê duyệt mới nhất của tiện ích %(promoted_group_name)s vì phiên bản trước không được phê duyệt cho quảng cáo %(promoted_group_name)s. Vui lòng liên hệ "
+"với quản trị viên AMO nếu bạn cần trợ giúp về việc này."
 
 msgid "Hide Add-on"
 msgstr "Ẩn tiện ích"
@@ -4332,16 +4330,11 @@ msgid "All your emoji needs—always just a click away."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Một số trang gặp khó khăn khi phát video trên Firefox dành cho Android. Tiện ích mở rộng này cung cấp một bản sửa lỗi."
+msgstr "Một số trang web gặp khó khăn khi phát video trên Android. Đây là một cách sửa."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4388,14 +4381,14 @@ msgstr "Chúng thêm các tính năng vào Firefox để giúp duyệt web nhanh
 msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
+#. editorial content for the secondary hero shelves.
+msgid "Productivity boosters"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
 msgid "Top anti-tracking extensions"
 msgstr "Tiện ích chống theo dõi hàng đầu"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Tiện ích mở rộng tìm kiếm hình ảnh"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4448,23 +4441,20 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
+msgstr "Xem thêm trình quản lý mật khẩu được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr "Công cụ dịch thuật"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Bản dịch tên tiện ích"
+msgstr "Xem thêm các công cụ dịch thuật được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Mạng xã hội"
+msgstr "Phát trực tuyến xã hội"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4476,46 +4466,40 @@ msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
+msgstr "Xem thêm các trình quản lý thẻ được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Xem thêm các tiện ích phổ biến"
+msgstr "Xem các tiện ích mở rộng khác được gắn thẻ \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
+msgstr "Xem thêm các trình chặn quảng cáo được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Bản dịch tên tiện ích"
+msgstr "Xem thêm các tiện ích YouTube được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Chủ đề được đề xuất"
+msgstr "Chủ đề thịnh hành"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Xem các chủ đề phổ biến"
+msgstr "Xem các chủ đề thịnh hành khác"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4807,6 +4791,9 @@ msgstr ""
 msgid "days"
 msgstr "ngày"
 
+msgid "Choose one or more reasons:"
+msgstr ""
+
 msgid "Choose a canned response..."
 msgstr "Chọn một mẫu phản hồi sẵn..."
 
@@ -4942,9 +4929,8 @@ msgstr ""
 msgid "Reject Multiple Versions"
 msgstr "Từ chối nhiều phiên bản"
 
-#, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Điều này sẽ từ chối các phiên bản công khai được chọn. Các ý kiến sẽ được gửi đến nhà phát triển."
+msgstr "Điều này sẽ từ chối các phiên bản được chọn. Các bình luận sẽ được gửi đến nhà phát triển."
 
 msgid "Block Multiple Versions"
 msgstr "Chặn nhiều phiên bản"
@@ -4991,13 +4977,11 @@ msgstr "Nhật ký đánh giá"
 msgid "Add-on Review Guide"
 msgstr "Hướng dẫn đánh giá tiện ích"
 
-#, fuzzy
 msgid "Security Scanners"
-msgstr "Kiểm tra Bảo mật"
+msgstr "Trình quét bảo mật"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Kiểm tra Bảo mật"
+msgstr "Được gắn cờ bởi trình quét"
 
 #, fuzzy
 msgid "Flagged for Human Review"
@@ -5594,15 +5578,13 @@ msgstr "Đánh giá đang chờ xử lý khác ({0})"
 msgid "Updates"
 msgstr "Cập nhật"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Đang chờ xét duyệt"
+msgstr "Đánh giá xếp hạng"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Tự động phê duyệt ({0})"
+msgstr "Tự động phê duyệt"
 
 #, fuzzy
 msgid "Pending Rejection"
