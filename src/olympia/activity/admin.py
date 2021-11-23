@@ -62,9 +62,6 @@ class ReviewActionReasonLogAdmin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
 
-    def has_delete_permission(self, request, obj=None):
-        return False
-
     def get_form(self, request, obj=None, **kwargs):
         form = super(ReviewActionReasonLogAdmin, self).get_form(request, obj, **kwargs)
         form.base_fields['reason'].widget.can_add_related = False
