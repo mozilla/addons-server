@@ -10,6 +10,7 @@ from django.db.models import Prefetch, Q
 from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
@@ -52,7 +53,7 @@ from olympia.amo.decorators import (
     permission_required,
     post_required,
 )
-from olympia.amo.utils import paginate, render
+from olympia.amo.utils import paginate
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
     AllowListedViewerOrReviewer,
@@ -148,7 +149,7 @@ def ratings_moderation_log(request):
 
     data = context(form=form, pager=pager)
 
-    return render(request, 'reviewers/moderationlog.html', data)
+    return TemplateResponse(request, 'reviewers/moderationlog.html', context=data)
 
 
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
@@ -180,7 +181,9 @@ def ratings_moderation_log_detail(request, id):
         return redirect('reviewers.ratings_moderation_log.detail', id)
 
     data = context(log=log, can_undelete=can_undelete)
-    return render(request, 'reviewers/moderationlog_detail.html', data)
+    return TemplateResponse(
+        request, 'reviewers/moderationlog_detail.html', context=data
+    )
 
 
 @any_reviewer_or_moderator_required
@@ -315,10 +318,10 @@ def dashboard(request):
                 reverse('reviewers.queue_pending_rejection'),
             )
         ]
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/dashboard.html',
-        context(
+        context=context(
             **{
                 # base_context includes motd.
                 'sections': sections
@@ -332,7 +335,7 @@ def motd(request):
     form = None
     form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
     data = context(form=form)
-    return render(request, 'reviewers/motd.html', data)
+    return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
 
 @permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
@@ -343,7 +346,7 @@ def save_motd(request):
         set_config('reviewers_review_motd', form.cleaned_data['motd'])
         return redirect(reverse('reviewers.motd'))
     data = context(form=form)
-    return render(request, 'reviewers/motd.html', data)
+    return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
 
 def is_admin_reviewer(request):
@@ -387,10 +390,10 @@ def _queue(request, tab, unlisted=False):
     page = paginate(request, table.rows, per_page=per_page, count=qs.count())
     table.set_page(page)
 
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/queue.html',
-        context(
+        context=context(
             table=table,
             page=page,
             tab=tab,
@@ -485,10 +488,10 @@ def queue_moderated(request):
             )
         return redirect(reverse('reviewers.queue_moderated'))
 
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/queue.html',
-        context(
+        context=context(
             reviews_formset=reviews_formset,
             tab='moderated',
             page=page,
@@ -864,7 +867,7 @@ def review(request, addon, channel=None):
         whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url,
     )
-    return render(request, 'reviewers/review.html', ctx)
+    return TemplateResponse(request, 'reviewers/review.html', context=ctx)
 
 
 @never_cache
@@ -1001,7 +1004,7 @@ def reviewlog(request):
 
     pager = amo.utils.paginate(request, approvals, 50)
     data = context(form=form, pager=pager)
-    return render(request, 'reviewers/reviewlog.html', data)
+    return TemplateResponse(request, 'reviewers/reviewlog.html', context=data)
 
 
 @any_reviewer_required
@@ -1009,15 +1012,15 @@ def reviewlog(request):
 def abuse_reports(request, addon):
     reports = amo.utils.paginate(request, AbuseReport.objects.for_addon(addon))
     data = context(addon=addon, reports=reports, version=addon.current_version)
-    return render(request, 'reviewers/abuse_reports.html', data)
+    return TemplateResponse(request, 'reviewers/abuse_reports.html', context=data)
 
 
 @any_reviewer_required
 def leaderboard(request):
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/leaderboard.html',
-        context(scores=ReviewerScore.all_users_by_score()),
+        context=context(scores=ReviewerScore.all_users_by_score()),
     )
 
 
@@ -1081,10 +1084,10 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
         'reviewers.review',
         args=(channel_text or 'listed', addon.pk),
     )
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/policy_view.html',
-        {
+        context={
             'addon': addon,
             'review_url': review_url,
             'content': eula_or_privacy,

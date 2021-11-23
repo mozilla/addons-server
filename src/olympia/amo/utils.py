@@ -70,11 +70,6 @@ from olympia.lib import unicodehelper
 log = getLogger('z.amo')
 
 
-def render(request, template, ctx=None, status=None, content_type=None):
-    rendered = loader.render_to_string(template, ctx, request=request)
-    return HttpResponse(rendered, status=status, content_type=content_type)
-
-
 def from_string(string):
     return engines['jinja2'].from_string(string)
 

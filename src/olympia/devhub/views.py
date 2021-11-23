@@ -13,6 +13,7 @@ from django.db.models import Count
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.translation import gettext, gettext_lazy as _
 from django.views.decorators.cache import never_cache
@@ -48,7 +49,6 @@ from olympia.amo.utils import (
     StopWatch,
     escape_all,
     is_safe_url,
-    render,
     send_mail,
 )
 from olympia.api.models import APIKey, APIKeyConfirmation
@@ -132,7 +132,7 @@ def index(request):
         recent_addons = request.user.addons.all().order_by('-modified')[:3]
         ctx['recent_addons'] = recent_addons
 
-    return render(request, 'devhub/index.html', ctx)
+    return TemplateResponse(request, 'devhub/index.html', context=ctx)
 
 
 @login_required
@@ -159,21 +159,25 @@ def dashboard(request, theme=False):
         data['sorting'] = data['filter'].field
         data['sort_opts'] = data['filter'].opts
 
-    return render(request, 'devhub/addons/dashboard.html', data)
+    return TemplateResponse(request, 'devhub/addons/dashboard.html', context=data)
 
 
 @dev_required
 def ajax_compat_status(request, addon_id, addon):
     if not (addon.accepts_compatible_apps() and addon.current_version):
         raise http.Http404()
-    return render(request, 'devhub/addons/ajax_compat_status.html', dict(addon=addon))
+    return TemplateResponse(
+        request, 'devhub/addons/ajax_compat_status.html', context={'addon': addon}
+    )
 
 
 @dev_required
 def ajax_compat_error(request, addon_id, addon):
     if not (addon.accepts_compatible_apps() and addon.current_version):
         raise http.Http404()
-    return render(request, 'devhub/addons/ajax_compat_error.html', dict(addon=addon))
+    return TemplateResponse(
+        request, 'devhub/addons/ajax_compat_error.html', context={'addon': addon}
+    )
 
 
 @dev_required
@@ -197,10 +201,10 @@ def ajax_compat_update(request, addon_id, addon, version_id):
         for form in compat_form.forms:
             if isinstance(form, forms.CompatForm) and 'max' in form.changed_data:
                 _log_max_version_change(addon, version, form.instance)
-    return render(
+    return TemplateResponse(
         request,
         'devhub/addons/ajax_compat_update.html',
-        dict(addon=addon, version=version, compat_form=compat_form),
+        context={'addon': addon, 'version': version, 'compat_form': compat_form},
     )
 
 
@@ -337,10 +341,14 @@ def feed(request, addon_id=None):
     addon_items = _get_addons(request, addons_all, addon_selected, action)
 
     pager = amo_utils.paginate(request, items, 20)
-    data = dict(
-        addons=addon_items, pager=pager, activities=activities, rss=rssurl, addon=addon
-    )
-    return render(request, 'devhub/addons/activity.html', data)
+    data = {
+        'addons': addon_items,
+        'pager': pager,
+        'activities': activities,
+        'rss': rssurl,
+        'addon': addon,
+    }
+    return TemplateResponse(request, 'devhub/addons/activity.html', context=data)
 
 
 @dev_required
@@ -369,7 +377,7 @@ def edit(request, addon_id, addon):
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
 
-    return render(request, 'devhub/addons/edit.html', data)
+    return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
 
 
 @dev_required(owner_for_post=True)
@@ -493,7 +501,7 @@ def invitation(request, addon_id):
         'addon': addon,
         'invitation': invitation,
     }
-    return render(request, 'devhub/addons/invitation.html', ctx)
+    return TemplateResponse(request, 'devhub/addons/invitation.html', context=ctx)
 
 
 @dev_required(owner_for_post=True)
@@ -632,15 +640,15 @@ def ownership(request, addon_id, addon):
 
         return redirect(addon.get_dev_url('owner'))
 
-    return render(request, 'devhub/addons/owner.html', ctx)
+    return TemplateResponse(request, 'devhub/addons/owner.html', context=ctx)
 
 
 @login_required
 def validate_addon(request):
-    return render(
+    return TemplateResponse(
         request,
         'devhub/validate_addon.html',
-        {
+        context={
             'title': gettext('Validate Add-on'),
             'new_addon_form': forms.DistributionChoiceForm(),
         },
@@ -744,7 +752,7 @@ def file_validation(request, addon_id, addon, file_id):
     if file_.has_been_validated:
         context['validation_data'] = file_.validation.processed_validation
 
-    return render(request, 'devhub/validation.html', context)
+    return TemplateResponse(request, 'devhub/validation.html', context=context)
 
 
 @csrf_exempt
@@ -855,7 +863,7 @@ def upload_detail(request, uuid, format='html'):
     if upload.validation:
         context['validation_data'] = upload.processed_validation
 
-    return render(request, 'devhub/validation.html', context)
+    return TemplateResponse(request, 'devhub/validation.html', context=context)
 
 
 @dev_required
@@ -982,7 +990,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
         'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
     }
 
-    return render(request, 'devhub/addons/edit/%s.html' % section, data)
+    return TemplateResponse(
+        request, 'devhub/addons/edit/%s.html' % section, context=data
+    )
 
 
 @never_cache
@@ -1166,7 +1176,7 @@ def version_edit(request, addon_id, addon, version_id):
         }
     )
 
-    return render(request, 'devhub/versions/edit.html', data)
+    return TemplateResponse(request, 'devhub/versions/edit.html', context=data)
 
 
 def _log_max_version_change(addon, version, appversion):
@@ -1243,7 +1253,7 @@ def version_list(request, addon_id, addon):
     token = request.COOKIES.get(API_TOKEN_COOKIE, None)
 
     data = {'addon': addon, 'versions': versions, 'token': token, 'is_admin': is_admin}
-    return render(request, 'devhub/versions/list.html', data)
+    return TemplateResponse(request, 'devhub/versions/list.html', context=data)
 
 
 @dev_required
@@ -1307,10 +1317,10 @@ def _submit_distribution(request, addon, next_view):
         args = [addon.slug] if addon else []
         args.append(data['channel'])
         return redirect(next_view, *args)
-    return render(
+    return TemplateResponse(
         request,
         'devhub/addons/submit/distribute.html',
-        {
+        context={
             'addon': addon,
             'distribution_form': form,
             'submit_notification_warning': get_config('submit_notification_warning'),
@@ -1477,10 +1487,10 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
         if existing_properties
         else []
     )
-    return render(
+    return TemplateResponse(
         request,
         template,
-        {
+        context={
             'new_addon_form': form,
             'is_admin': is_admin,
             'addon': addon,
@@ -1631,7 +1641,9 @@ def _submit_source(request, addon, version, submit_page, next_view):
         version.pk,
     )
     timer.log_interval('5.validation failed, re-displaying the template')
-    return render(request, 'devhub/addons/submit/source.html', context)
+    return TemplateResponse(
+        request, 'devhub/addons/submit/source.html', context=context
+    )
 
 
 @dev_required(submitting=True)
@@ -1733,7 +1745,7 @@ def _submit_details(request, addon, version):
     template = 'devhub/addons/submit/%s' % (
         'describe.html' if show_all_fields else 'describe_minimal.html'
     )
-    return render(request, template, context)
+    return TemplateResponse(request, template, context=context)
 
 
 @dev_required(submitting=True)
@@ -1780,10 +1792,10 @@ def _submit_finish(request, addon, version):
         tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
     submit_page = 'version' if version else 'addon'
-    return render(
+    return TemplateResponse(
         request,
         'devhub/addons/submit/done.html',
-        {
+        context={
             'addon': addon,
             'uploaded_version': uploaded_version,
             'submit_page': submit_page,
@@ -1901,7 +1913,7 @@ def render_agreement(request, template, next_step, **extra_context):
             'agreement_message': str(DeveloperAgreementRestriction.error_message),
         }
         context.update(extra_context)
-        return render(request, template, context)
+        return TemplateResponse(request, template, context=context)
     else:
         # The developer has already read the agreement, we should just redirect
         # to the next step.
@@ -1977,7 +1989,7 @@ def api_key(request):
         'token': request.GET.get('token'),  # For confirmation step.
     }
 
-    return render(request, 'devhub/api/key.html', context_data)
+    return TemplateResponse(request, 'devhub/api/key.html', context=context_data)
 
 
 def send_key_change_email(to_email, key):

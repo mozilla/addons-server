@@ -3,6 +3,7 @@ import os
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.cache import patch_vary_headers
 
@@ -12,7 +13,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonRegionalRestrictions
-from olympia.amo.utils import HttpResponseXSendFile, render, urlparams
+from olympia.amo.utils import HttpResponseXSendFile, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version
 
@@ -36,10 +37,10 @@ def update_info(request, addon, version_num):
     ).last()
     if not version:
         raise http.Http404()
-    return render(
+    return TemplateResponse(
         request,
         'versions/update_info.html',
-        {'version': version},
+        context={'version': version},
         content_type='application/xhtml+xml',
     )
 

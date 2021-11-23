@@ -11,6 +11,7 @@ from django.core.exceptions import PermissionDenied, ViewDoesNotExist
 from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.db.transaction import non_atomic_requests
 from django.http import Http404, HttpResponse, JsonResponse
+from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
 
@@ -21,7 +22,7 @@ from rest_framework.views import APIView
 
 import olympia
 from olympia import amo
-from olympia.amo.utils import HttpResponseXSendFile, render, use_fake_fxa
+from olympia.amo.utils import HttpResponseXSendFile, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
@@ -76,16 +77,18 @@ def robots(request):
     """Generate a robots.txt"""
     _service = request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN
     if _service or not settings.ENGAGE_ROBOTS:
-        template = 'User-agent: *\nDisallow: /'
+        response = HttpResponse('User-agent: *\nDisallow: /', content_type='text/plain')
     else:
         ctx = {
             'apps': amo.APP_USAGE,
             'mozilla_user_id': settings.TASK_USER_ID,
             'mozilla_user_username': 'mozilla',
         }
-        template = render(request, 'amo/robots.html', ctx)
+        response = TemplateResponse(
+            request, 'amo/robots.html', context=ctx, content_type='text/plain'
+        )
 
-    return HttpResponse(template, content_type='text/plain')
+    return response
 
 
 @non_atomic_requests
@@ -96,7 +99,7 @@ def contribute(request):
 
 @non_atomic_requests
 def handler403(request, exception=None, **kwargs):
-    return render(request, 'amo/403.html', status=403)
+    return TemplateResponse(request, 'amo/403.html', status=403)
 
 
 @non_atomic_requests
@@ -104,7 +107,7 @@ def handler404(request, exception=None, **kwargs):
     if getattr(request, 'is_api', False):
         # It's a v3+ api request
         return JsonResponse({'detail': str(NotFound.default_detail)}, status=404)
-    return render(request, 'amo/404.html', status=404)
+    return TemplateResponse(request, 'amo/404.html', status=404)
 
 
 @non_atomic_requests
@@ -122,7 +125,7 @@ def handler500(request, **kwargs):
         return HttpResponse(
             json.dumps(base_500_data()), content_type='application/json', status=500
         )
-    return render(request, 'amo/500.html', status=500)
+    return TemplateResponse(request, 'amo/500.html', status=500)
 
 
 @non_atomic_requests
@@ -134,7 +137,7 @@ def csrf_failure(request, reason=''):
         'no_referer': reason == REASON_NO_REFERER,
         'no_cookie': reason == REASON_NO_CSRF_COOKIE,
     }
-    return render(request, 'amo/403.html', ctx, status=403)
+    return TemplateResponse(request, 'amo/403.html', context=ctx, status=403)
 
 
 @non_atomic_requests
@@ -194,10 +197,10 @@ def fake_fxa_authorization(request):
     interesting_accounts = UserProfile.objects.exclude(groups=None).exclude(
         deleted=True
     )[:25]
-    return render(
+    return TemplateResponse(
         request,
         'amo/fake_fxa_authorization.html',
-        {'interesting_accounts': interesting_accounts},
+        context={'interesting_accounts': interesting_accounts},
     )
 
 
