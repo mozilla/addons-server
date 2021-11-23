@@ -1641,7 +1641,9 @@ def _submit_source(request, addon, version, submit_page, next_view):
         version.pk,
     )
     timer.log_interval('5.validation failed, re-displaying the template')
-    return TemplateResponse(request, 'devhub/addons/submit/source.html', context=context)
+    return TemplateResponse(
+        request, 'devhub/addons/submit/source.html', context=context
+    )
 
 
 @dev_required(submitting=True)
