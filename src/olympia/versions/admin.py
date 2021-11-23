@@ -1,6 +1,12 @@
 from django.contrib import admin
 
-from .models import InstallOrigin, License, Version, VersionReviewerFlags
+from .models import (
+    DeniedInstallOrigin,
+    InstallOrigin,
+    License,
+    Version,
+    VersionReviewerFlags,
+)
 
 
 class VersionReviewerFlagsInline(admin.StackedInline):
@@ -78,6 +84,13 @@ class InstallOriginAdmin(admin.ModelAdmin):
     version_version.short_description = 'Version'
 
 
+class DeniedInstallOriginAdmin(admin.ModelAdmin):
+    view_on_site = False
+    list_display = ('id', 'hostname_pattern', 'include_subdomains')
+    search_fields = ('hostname_pattern',)
+
+
 admin.site.register(InstallOrigin, InstallOriginAdmin)
+admin.site.register(DeniedInstallOrigin, DeniedInstallOriginAdmin)
 admin.site.register(License, LicenseAdmin)
 admin.site.register(Version, VersionAdmin)

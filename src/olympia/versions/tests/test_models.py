@@ -51,7 +51,9 @@ from olympia.users.utils import get_task_user
 from olympia.versions.compare import version_int, VersionString
 from olympia.versions.models import (
     ApplicationsVersions,
+    DeniedInstallOrigin,
     License,
+    InstallOrigin,
     Version,
     VersionCreateError,
     VersionPreview,
@@ -1922,3 +1924,123 @@ class TestVersionPreview(BasePreviewMixin, TestCase):
             version=addon_factory().current_version
         )
         return version_preview
+
+
+class TestInstallOrigin(TestCase):
+    def test_save_extract_base_domain(self):
+        version = addon_factory().current_version
+        install_origin = InstallOrigin.objects.create(
+            version=version, origin='https://mozilla.github.io'
+        )
+        assert install_origin.base_domain == 'mozilla.github.io'
+
+        install_origin.origin = 'https://foo.example.com'
+        install_origin.save()
+        assert install_origin.base_domain == 'example.com'
+        install_origin.reload()
+        assert install_origin.base_domain == 'example.com'
+
+    def test_punycode(self):
+        assert InstallOrigin.punycode('examplé.com') == 'xn--exampl-gva.com'
+        assert InstallOrigin.punycode('xn--exampl-gva.com') == 'xn--exampl-gva.com'
+        assert InstallOrigin.punycode('example.com') == 'example.com'
+
+
+class TestDeniedInstallOrigin(TestCase):
+    def test_save_always_punycode(self):
+        denied_install_origin = DeniedInstallOrigin.objects.create(
+            hostname_pattern='eXamplÉ.com'
+        )
+        assert denied_install_origin.hostname_pattern == 'xn--exampl-gva.com'
+
+        denied_install_origin.hostname_pattern = '*.examplé.com'
+        denied_install_origin.save()
+        assert denied_install_origin.hostname_pattern == '*.xn--exampl-gva.com'
+        denied_install_origin.reload()
+        assert denied_install_origin.hostname_pattern == '*.xn--exampl-gva.com'
+
+    def test_find_denied_origins_empty_list(self):
+        DeniedInstallOrigin.objects.create(hostname_pattern='foo.example.com')
+        DeniedInstallOrigin.objects.create(
+            hostname_pattern='bar.com', include_subdomains=True
+        )
+        assert DeniedInstallOrigin.find_denied_origins([]) == set()
+
+    def test_find_denied_origins_nothing_denied(self):
+        assert DeniedInstallOrigin.find_denied_origins(['https://example.com']) == set()
+        assert (
+            DeniedInstallOrigin.find_denied_origins(
+                ['https://example.com', 'https://foo.bar.com']
+            )
+            == set()
+        )
+        assert (
+            DeniedInstallOrigin.find_denied_origins(
+                ['https://example.com', 'https://foo.baré.com']
+            )
+            == set()
+        )
+
+    def test_find_denied_origins_idn(self):
+        DeniedInstallOrigin.objects.create(hostname_pattern='examplé.com')
+        assert DeniedInstallOrigin.find_denied_origins(
+            ['https://foo.com', 'https://examplé.com']
+        ) == {'https://examplé.com'}
+
+    def test_find_denied_origins_multiple_matches(self):
+        DeniedInstallOrigin.objects.create(hostname_pattern='example.com')
+        assert DeniedInstallOrigin.find_denied_origins(
+            ['https://example.com', 'http://example.com', 'https://foo.com']
+        ) == {
+            'https://example.com',
+            'http://example.com',
+        }
+
+    def test_find_denied_origins_glob(self):
+        DeniedInstallOrigin.objects.create(hostname_pattern='example.*')
+        assert DeniedInstallOrigin.find_denied_origins(
+            ['https://example.com', 'https://example.co.uk', 'https://foo.com']
+        ) == {
+            'https://example.com',
+            'https://example.co.uk',
+        }
+
+    def test_find_denied_origins_multiple_denied_origins_match(self):
+        DeniedInstallOrigin.objects.create(hostname_pattern='example.com')
+        DeniedInstallOrigin.objects.create(hostname_pattern='example.*')
+        assert DeniedInstallOrigin.find_denied_origins(
+            ['https://example.com', 'http://example.com', 'https://foo.com']
+        ) == {
+            'https://example.com',
+            'http://example.com',
+        }
+
+    def test_find_denied_origins_include_subdomains(self):
+        DeniedInstallOrigin.objects.create(
+            hostname_pattern='example.com', include_subdomains=True
+        )
+        assert DeniedInstallOrigin.find_denied_origins(
+            ['https://example.com', 'https://foo.example.com', 'https://foo.com']
+        ) == {
+            'https://example.com',
+            'https://foo.example.com',
+        }
+
+    def test_find_denied_origins_include_subdomains_complex_match(self):
+        DeniedInstallOrigin.objects.create(
+            hostname_pattern='example.*', include_subdomains=True
+        )
+        assert DeniedInstallOrigin.find_denied_origins(
+            ['https://example.com', 'https://foo.example.com', 'https://foo.com']
+        ) == {
+            'https://example.com',
+            'https://foo.example.com',
+        }
+
+    def test_find_denied_origins_input_not_an_origin(self):
+        # The linter would raise an error, so we only need to ensure nothing
+        # blows up on addons-server side.
+        DeniedInstallOrigin.objects.create(hostname_pattern='example.com')
+        assert DeniedInstallOrigin.find_denied_origins(
+            ['https://example.com', 'rofl', 'https://foo.com']
+        ) == {'https://example.com'}
