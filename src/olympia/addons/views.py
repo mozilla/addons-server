@@ -18,7 +18,6 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     UpdateModelMixin,
 )
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
@@ -34,6 +33,7 @@ from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
+    AllowAddonAuthorIfNotMozillaDisabled,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
     AllowListedViewerOrReviewer,
@@ -187,13 +187,18 @@ def find_replacement_addon(request):
 class AddonViewSet(
     CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet
 ):
+    _write_permissions = [
+        APIGatePermission('addon-submission-api'),
+        AllowAddonAuthorIfNotMozillaDisabled,
+        IsSubmissionAllowedFor,
+    ]
     permission_classes = [
         AnyOf(
             AllowReadOnlyIfPublic,
             AllowAddonAuthor,
             AllowListedViewerOrReviewer,
             AllowUnlistedViewerOrReviewer,
-        ),
+        )
     ]
     authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
     georestriction_classes = [
@@ -255,11 +260,7 @@ class AddonViewSet(
             if not restriction.has_permission(request, self):
                 raise UnavailableForLegalReasons()
         if self.action in ('create', 'update', 'partial_update'):
-            self.permission_classes = [
-                APIGatePermission('addon-submission-api'),
-                IsAuthenticated,
-                IsSubmissionAllowedFor,
-            ]
+            self.permission_classes = self._write_permissions
         super().check_permissions(request)
 
     def check_object_permissions(self, request, obj):
@@ -277,10 +278,7 @@ class AddonViewSet(
                 raise UnavailableForLegalReasons()
 
         if self.action in ('update', 'partial_update'):
-            self.permission_classes = [
-                APIGatePermission('addon-submission-api'),
-                AllowAddonAuthor,
-            ]
+            self.permission_classes = self._write_permissions
         try:
             super().check_object_permissions(request, obj)
         except exceptions.APIException as exc:
@@ -321,7 +319,8 @@ class AddonChildMixin:
 
         `permission_classes` can be use passed to change which permission
         classes the parent viewset will be used when loading the Addon object,
-        otherwise AddonViewSet.permission_classes will be used.
+        otherwise AddonViewSet.permission_classess will be used for safe actions and
+        AddonViewSet._write_permissions for unsafe actions.
 
         `georestriction_classes` can be use passed to change which regional
         restriction classes the parent viewset will be used when loading the
@@ -331,7 +330,11 @@ class AddonChildMixin:
             return self.addon_object
 
         if permission_classes is None:
-            permission_classes = AddonViewSet.permission_classes
+            permission_classes = (
+                AddonViewSet._write_permissions
+                if self.action in ('create', 'update', 'partial_update')
+                else AddonViewSet.permission_classes
+            )
         if georestriction_classes is None:
             georestriction_classes = AddonViewSet.georestriction_classes
 
@@ -354,7 +357,7 @@ class AddonVersionViewSet(
     GenericViewSet,
 ):
     # Permissions are always checked against the parent add-on in
-    # get_addon_object() using AddonViewSet.permission_classes so we don't need
+    # get_addon_object() using AddonViewSet's permissions so we don't need
     # to set any here. Some extra permission classes are added dynamically
     # below in check_permissions() and check_object_permissions() depending on
     # what the client is requesting to see.
@@ -379,42 +382,34 @@ class AddonVersionViewSet(
         )
 
     def check_permissions(self, request):
-        if self.action == 'list':
-            requested = self.request.GET.get('filter')
-            if requested == 'all_with_deleted':
-                # To see deleted versions, you need Addons:ViewDeleted.
-                self.permission_classes = [
-                    GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)
-                ]
-            elif requested == 'all_with_unlisted':
-                # To see unlisted versions, you need to be add-on author or
-                # unlisted reviewer.
-                self.permission_classes = [
-                    AnyOf(AllowUnlistedViewerOrReviewer, AllowAddonAuthor)
-                ]
-            elif requested == 'all_without_unlisted':
-                # To see all listed versions (not just public ones) you need to
-                # be add-on author or reviewer.
-                self.permission_classes = [
-                    AnyOf(
-                        AllowListedViewerOrReviewer,
-                        AllowUnlistedViewerOrReviewer,
-                        AllowAddonAuthor,
-                    )
-                ]
-            # When listing, we can't use AllowRelatedObjectPermissions() with
-            # check_permissions(), because AllowAddonAuthor needs an author to
-            # do the actual permission check. To work around that, we call
-            # super + check_object_permission() ourselves, passing down the
-            # addon object directly.
-            return super().check_object_permissions(request, self.get_addon_object())
-        elif self.action in ('create', 'update', 'partial_update'):
+        requested = self.request.GET.get('filter')
+        if requested == 'all_with_deleted':
+            # To see deleted versions, you need Addons:ViewDeleted.
             self.permission_classes = [
-                APIGatePermission('addon-submission-api'),
-                IsAuthenticated,
-                IsSubmissionAllowedFor,
+                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)
             ]
-        super().check_permissions(request)
+        elif requested == 'all_with_unlisted':
+            # To see unlisted versions, you need to be add-on author or
+            # unlisted reviewer.
+            self.permission_classes = [
+                AnyOf(AllowUnlistedViewerOrReviewer, AllowAddonAuthor)
+            ]
+        elif requested == 'all_without_unlisted':
+            # To see all listed versions (not just public ones) you need to
+            # be add-on author or reviewer.
+            self.permission_classes = [
+                AnyOf(
+                    AllowListedViewerOrReviewer,
+                    AllowUnlistedViewerOrReviewer,
+                    AllowAddonAuthor,
+                )
+            ]
+        # When listing, we can't use AllowRelatedObjectPermissions() with
+        # check_permissions(), because AllowAddonAuthor needs an author to
+        # do the actual permission check. To work around that, we call
+        # super + check_object_permission() ourselves, passing down the
+        # addon object directly.
+        return super().check_object_permissions(request, self.get_addon_object())
 
     def check_object_permissions(self, request, obj):
         # If the instance is marked as deleted and the client is not allowed to
@@ -439,11 +434,6 @@ class AddonVersionViewSet(
                 AllowRelatedObjectPermissions(
                     'addon', [AnyOf(AllowListedViewerOrReviewer, AllowAddonAuthor)]
                 )
-            ]
-        if self.action in ('update', 'partial_update'):
-            self.permission_classes = [
-                APIGatePermission('addon-submission-api'),
-                AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
             ]
 
         super().check_object_permissions(request, obj)

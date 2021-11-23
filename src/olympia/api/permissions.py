@@ -1,6 +1,7 @@
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import SAFE_METHODS, BasePermission
 
+from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import AddonRegionalRestrictions
 from olympia.amo import permissions
@@ -112,6 +113,15 @@ class AllowAddonAuthor(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return obj.authors.filter(pk=request.user.pk).exists()
+
+
+class AllowAddonAuthorIfNotMozillaDisabled(AllowAddonAuthor):
+    """Allow access to the objects authors if it's not been disabled by us"""
+
+    def has_object_permission(self, request, view, obj):
+        return obj.status != amo.STATUS_DISABLED and super().has_object_permission(
+            request, view, obj
+        )
 
 
 class AllowOwner(BasePermission):
