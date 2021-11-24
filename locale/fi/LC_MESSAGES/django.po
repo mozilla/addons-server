@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"POT-Creation-Date: 2021-11-23 18:05+0000\n"
 "PO-Revision-Date: 2021-11-10 11:13+0000\n"
 "Last-Translator: Konta <konstelias04@gmail.com>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -378,9 +378,6 @@ msgstr "Sähköpostiosoitetta ei löytynyt."
 
 msgid "Unavailable for legal reasons."
 msgstr "Ei saatavilla lainsäädännöllisistä syistä."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "Tämän kentän tulee sisältää vähintään {num} merkkiä."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Kielikoodi {lang_code} on virheellinen."
@@ -4407,6 +4404,18 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

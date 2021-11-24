@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-16 17:49+0000\n"
+"POT-Creation-Date: 2021-11-23 18:05+0000\n"
 "PO-Revision-Date: 2021-07-27 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -387,9 +387,6 @@ msgstr "Adresa e-pošte nije pronađena."
 
 msgid "Unavailable for legal reasons."
 msgstr "Nedostupno iz pravnih razloga."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "Polje mora sadržati barem {num} znaka."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Kȏd jezika {lang_code} nije ispravan."
@@ -4333,6 +4330,18 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
