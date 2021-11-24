@@ -278,6 +278,7 @@ def validate_file_path(path, channel):
         )
         return json.dumps(results)
 
+    parsed_data = {}
     try:
         parsed_data = parse_addon(path, minimal=True)
     except NoManifestFound:

@@ -506,6 +506,7 @@ class TestParseXpi(TestCase):
             'default_locale': None,
             'homepage': None,
             'manifest_version': 2,
+            'install_origins': [],
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
@@ -526,6 +527,7 @@ class TestParseXpi(TestCase):
             'default_locale': None,
             'homepage': None,
             'manifest_version': 2,
+            'install_origins': [],
         }
         parsed = self.parse(minimal=True, user=None)
         assert parsed == expected
