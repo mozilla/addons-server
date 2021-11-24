@@ -1,7 +1,6 @@
 from datetime import timedelta
 
 from django import forms
-from django.conf import settings
 from django.forms import widgets
 from django.forms.models import (
     BaseModelFormSet,
@@ -202,6 +201,7 @@ class ReviewForm(forms.Form):
     reasons = forms.ModelMultipleChoiceField(
         label=_('Choose one or more reasons:'),
         queryset=ReviewActionReason.objects.filter(is_active__exact=True),
+        required=True,
     )
 
     def is_valid(self):
@@ -295,9 +295,6 @@ class ReviewForm(forms.Form):
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()
         ]
-
-        # Only require reasons if the feature is enabled.
-        self.fields['reasons'].required = settings.ENABLE_FEATURE_REVIEW_ACTION_REASON
 
     @property
     def unreviewed_files(self):

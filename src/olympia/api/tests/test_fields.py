@@ -1,9 +1,8 @@
-from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
 import pytest
 from unittest.mock import Mock
-from rest_framework import serializers
+from rest_framework import exceptions, serializers
 from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
 
@@ -130,28 +129,42 @@ class TestTranslationSerializerField(TestCase):
         result = field.run_validation(data)
         assert result == data
         # A flat string value is forbidden now
-        with self.assertRaises(ValidationError) as exc:
+        with self.assertRaises(exceptions.ValidationError) as exc:
             field.run_validation(data['fr'])
-        assert exc.exception.message == (
+        assert exc.exception.detail == [
             'You must provide an object of {lang-code:value}.'
-        )
+        ]
 
     def test_to_internal_value_strip(self):
         data = {'fr': '  Non mais Allô quoi ! ', 'en-US': ''}
-        field = self.field_class()
+        field = self.field_class(allow_blank=True)
         result = field.run_validation(data)
         assert result == {'fr': 'Non mais Allô quoi !', 'en-US': ''}
+
+    def test_to_allow_blank(self):
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            self.field_class().run_validation({'en-US': ''})
+        assert exc.exception.detail == ['This field may not be blank.']
+
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            self.field_class().run_validation({'fr': '  '})
+        assert exc.exception.detail == ['This field may not be blank.']
+
+        result = self.field_class(allow_blank=True).run_validation(
+            {'fr': '  ', 'en-US': ''}
+        )
+        assert result == {'fr': '', 'en-US': ''}
 
     def test_wrong_locale_code(self):
         data = {
             'unknown-locale': 'some name',
         }
         field = self.field_class()
-        with self.assertRaises(ValidationError) as exc:
+        with self.assertRaises(exceptions.ValidationError) as exc:
             field.run_validation(data)
-        assert exc.exception.message == (
+        assert exc.exception.detail == [
             "The language code 'unknown-locale' is invalid."
-        )
+        ]
 
     def test_none_type_locale_is_allowed(self):
         # None values are valid because they are used to nullify existing

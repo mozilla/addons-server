@@ -1,4 +1,3 @@
-from django.test.utils import override_settings
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
@@ -195,14 +194,15 @@ class TestReviewForm(TestCase):
         assert form.is_valid()
         assert not form.errors
 
-    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
-    def test_reasons_not_required_with_setting_off(self):
+    def test_reasons_optional_for_public(self):
         self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         form = self.get_form()
         assert not form.is_bound
         form = self.get_form(
             data={
-                'action': 'reply',
+                'action': 'public',
                 'comments': 'lol',
             }
         )
@@ -245,28 +245,6 @@ class TestReviewForm(TestCase):
                 ],
             }
         )
-        form.helper.actions['reply']['comments'] = False
-        assert form.is_bound
-        assert form.is_valid()
-        assert not form.errors
-
-    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
-    def test_comments_and_action_required_by_default_reason_feature_off(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
-        form = self.get_form()
-        assert not form.is_bound
-        form = self.get_form(data={})
-        assert form.is_bound
-        assert not form.is_valid()
-        assert form.errors == {
-            'action': ['This field is required.'],
-            'comments': ['This field is required.'],
-        }
-
-        # Alter the action to make it not require comments to be sent
-        # regardless of what the action actually is, what we want to test is
-        # the form behaviour.
-        form = self.get_form(data={'action': 'reply'})
         form.helper.actions['reply']['comments'] = False
         assert form.is_bound
         assert form.is_valid()
@@ -406,22 +384,6 @@ class TestReviewForm(TestCase):
                     )
                 ],
             }
-        )
-        form.helper.actions['reject_multiple_versions']['versions'] = True
-        assert form.is_bound
-        assert not form.is_valid()
-        assert form.errors == {'versions': ['This field is required.']}
-
-    @override_settings(ENABLE_FEATURE_REVIEW_ACTION_REASON=False)
-    def test_versions_required_reason_feature_off(self):
-        # auto-approve everything (including self.addon.current_version)
-        for version in Version.unfiltered.all():
-            AutoApprovalSummary.objects.create(
-                version=version, verdict=amo.AUTO_APPROVED
-            )
-        self.grant_permission(self.request.user, 'Addons:Review')
-        form = self.get_form(
-            data={'action': 'reject_multiple_versions', 'comments': 'lol'}
         )
         form.helper.actions['reject_multiple_versions']['versions'] = True
         assert form.is_bound

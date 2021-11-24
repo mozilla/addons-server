@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-16 17:49+0000\n"
-"PO-Revision-Date: 2021-11-17 11:16+0000\n"
+"POT-Creation-Date: 2021-11-23 18:05+0000\n"
+"PO-Revision-Date: 2021-11-24 10:52+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -387,9 +387,6 @@ msgstr "Endereço de email não encontrado."
 
 msgid "Unavailable for legal reasons."
 msgstr "Não disponível por motivos legais"
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "O campo deve ter pelo menos {num} caracteres."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "O código de idioma {lang_code} é inválido."
@@ -4436,6 +4433,18 @@ msgstr "Retorne para um tempo mais simples, quando os principais resultados de p
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr "Pare de expor aos sites seu endereço de email. O Firefox Relay protege sua identidade e evita lixo eletrônico."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr "Aproveite a mudança automática de cores do Firefox, em sincronia com a luz do dia e a escuridão da noite."
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr "Elimine distrações do YouTube. Remova sugestões de vídeos relacionados e recomendados, comentários e outras coisas."
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr "Leve emojis com você para qualquer lugar na web."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

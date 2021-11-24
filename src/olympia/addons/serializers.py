@@ -4,7 +4,7 @@ from urllib.parse import urlsplit, urlunsplit
 from django.http.request import QueryDict
 from django.urls import reverse
 
-from rest_framework import exceptions, serializers
+from rest_framework import exceptions, fields, serializers
 
 import olympia.core.logger
 from olympia import activity, amo
@@ -180,6 +180,12 @@ class LicenseNameSerializerField(serializers.Field):
         # get_attribute(), we just have to return the data at this point.
         return obj
 
+    def run_validation(self, data=fields.empty):
+        return self.custom_translation_field.run_validation(data)
+
+    def to_internal_value(self, value):
+        return self.custom_translation_field.to_internal_value(value)
+
 
 class ESLicenseNameSerializerField(LicenseNameSerializerField):
     """Like LicenseNameSerializerField, but uses the data from ES to avoid
@@ -205,6 +211,8 @@ class LicenseSerializer(serializers.ModelSerializer):
     class Meta:
         model = License
         fields = ('id', 'is_custom', 'name', 'text', 'url')
+        writeable_fields = ('name', 'text')
+        read_only_fields = tuple(set(fields) - set(writeable_fields))
 
     def get_is_custom(self, obj):
         return not bool(obj.builtin)
@@ -229,6 +237,11 @@ class LicenseSerializer(serializers.ModelSerializer):
         request = self.context.get('request', None)
         if request and is_gate_active(request, 'del-version-license-is-custom'):
             data.pop('is_custom', None)
+        return data
+
+    def validate(self, data):
+        if self.instance and not self.get_is_custom(self.instance):
+            raise exceptions.ValidationError('Built in licenses can not be updated.')
         return data
 
 
@@ -373,9 +386,14 @@ class VersionSerializer(SimpleVersionSerializer):
     )
     license = SplitField(
         serializers.PrimaryKeyRelatedField(
-            queryset=License.objects.builtins(), required=False
+            queryset=License.objects.exclude(builtin=License.OTHER), required=False
         ),
         LicenseSerializer(),
+    )
+    custom_license = LicenseSerializer(
+        write_only=True,
+        required=False,
+        source='license',
     )
     upload = serializers.SlugRelatedField(
         slug_field='uuid', queryset=FileUpload.objects.all(), write_only=True
@@ -387,6 +405,7 @@ class VersionSerializer(SimpleVersionSerializer):
             'id',
             'channel',
             'compatibility',
+            'custom_license',
             'edit_url',
             'file',
             'is_strict_compatibility_enabled',
@@ -398,6 +417,7 @@ class VersionSerializer(SimpleVersionSerializer):
         )
         writeable_fields = (
             'compatibility',
+            'custom_license',
             'license',
             'release_notes',
             'upload',
@@ -449,7 +469,12 @@ class VersionSerializer(SimpleVersionSerializer):
             # We test for new addons in AddonSerailizer.validate instead
             if channel == amo.RELEASE_CHANNEL_LISTED and not data.get('license'):
                 raise exceptions.ValidationError(
-                    {'license': 'This field is required for listed versions.'},
+                    {
+                        'license': (
+                            'This field, or custom_license, is required for listed '
+                            'versions.'
+                        )
+                    },
                     code='required',
                 )
 
@@ -470,8 +495,41 @@ class VersionSerializer(SimpleVersionSerializer):
                         f'version: {missing_addon_metadata}.',
                         code='required',
                     )
+
+            addon_type = self.parsed_data['type']
+
         else:
             data.pop('upload', None)  # upload can only be set during create
+            addon_type = self.addon.type
+
+        # We have to check the raw request data because data from both fields will be
+        # under `license` at this point.
+        if (
+            (request := self.context.get('request'))
+            and 'license' in request.data
+            and 'custom_license' in request.data
+        ):
+            raise exceptions.ValidationError(
+                'Both `license` and `custom_license` cannot be provided together.'
+            )
+        if (
+            'license' in data
+            and isinstance(data['license'], License)
+            and data['license'].creative_commons
+            == (addon_type != amo.ADDON_STATICTHEME)
+        ):
+            raise exceptions.ValidationError(
+                {'license': 'Wrong addon type for this license.'},
+                code='required',
+            )
+        if (
+            'license' in data
+            and isinstance(data['license'], dict)
+            and addon_type == amo.ADDON_STATICTHEME
+        ):
+            raise exceptions.ValidationError(
+                {'custom_license': 'Custom licenses are not supported for themes.'},
+            )
         return data
 
     def create(self, validated_data):
@@ -480,7 +538,7 @@ class VersionSerializer(SimpleVersionSerializer):
             **self.parsed_data,
             **validated_data,
         }
-        if 'license' in validated_data:
+        if isinstance(validated_data.get('license'), License):
             parsed_and_validated_data['license_id'] = validated_data['license'].id
         version = Version.from_upload(
             upload=upload,
@@ -489,6 +547,11 @@ class VersionSerializer(SimpleVersionSerializer):
             compatibility=validated_data.get('compatible_apps'),
             parsed_data=parsed_and_validated_data,
         )
+        if isinstance(validated_data.get('license'), dict):
+            # If we got a custom license lets create it and assign it to the version.
+            version.update(
+                license=self.fields['custom_license'].create(validated_data['license'])
+            )
         upload.update(addon=version.addon)
         if (
             self.addon
@@ -500,9 +563,24 @@ class VersionSerializer(SimpleVersionSerializer):
         return version
 
     def update(self, instance, validated_data):
+        custom_license = (
+            validated_data.pop('license')
+            if isinstance(validated_data.get('license'), dict)
+            else None
+        )
+
         instance = super().update(instance, validated_data)
         if 'compatible_apps' in validated_data:
             instance.set_compatible_apps(validated_data['compatible_apps'])
+        if custom_license:
+            if (
+                existing := getattr(instance, 'license', None)
+            ) and existing.builtin == License.OTHER:
+                self.fields['custom_license'].update(existing, custom_license)
+            else:
+                instance.update(
+                    license=self.fields['custom_license'].create(custom_license)
+                )
         return instance
 
 
@@ -698,7 +776,7 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
-    name = TranslationSerializerField(required=False)
+    name = TranslationSerializerField(required=False, max_length=50)
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
     promoted = PromotedAddonSerializer(read_only=True)
     ratings = serializers.SerializerMethodField()
@@ -707,7 +785,7 @@ class AddonSerializer(serializers.ModelSerializer):
     status = ReverseChoiceField(
         choices=list(amo.STATUS_CHOICES_API.items()), read_only=True
     )
-    summary = TranslationSerializerField(required=False)
+    summary = TranslationSerializerField(required=False, max_length=250)
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)
     tags = serializers.SerializerMethodField()

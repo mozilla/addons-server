@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-16 17:49+0000\n"
-"PO-Revision-Date: 2021-11-18 18:22+0000\n"
-"Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
+"POT-Creation-Date: 2021-11-23 18:05+0000\n"
+"PO-Revision-Date: 2021-11-24 10:58+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -387,9 +387,6 @@ msgstr "E-mailadres niet gevonden."
 
 msgid "Unavailable for legal reasons."
 msgstr "Om juridische redenen niet beschikbaar."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "Het veld dient ten minste {num} tekens te bevatten."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "De taalcode {lang_code} is ongeldig."
@@ -4387,6 +4384,18 @@ msgstr "Keer terug naar een eenvoudiger tijdperk – toen uw beste zoekresultate
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr "Stop met het geven van uw e-mailadres aan websites. Firefox Relay beschermt uw identiteit en voorkomt ongewenste berichten."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr "Geniet van automatisch veranderende kleuren van Firefox, synchroon met het daglicht en de nachtelijke duisternis."
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr "Elimineer afleidingen op YouTube. Verwijder gerelateerde en aanbevolen videosuggesties, opmerkingen en meer."
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr "Neem emoji’s overal op het internet mee."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

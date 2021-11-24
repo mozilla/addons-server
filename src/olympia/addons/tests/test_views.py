@@ -743,7 +743,10 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             self.url,
             data={
                 'categories': {'firefox': ['bookmarks']},
-                'version': {'upload': self.upload.uuid, 'license': self.license.id},
+                'version': {
+                    'upload': self.upload.uuid,
+                    'license': self.license.id,
+                },
             },
         )
         assert response.status_code == 201, response.content
@@ -769,7 +772,11 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 400, response.content
         assert response.data == {
-            'version': {'license': ['This field is required for listed versions.']},
+            'version': {
+                'license': [
+                    'This field, or custom_license, is required for listed versions.'
+                ]
+            },
         }
 
         # If the license is set we'll get further validation errors from addon
@@ -785,7 +792,10 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
                 self.url,
                 data={
                     'summary': {'en-US': 'replacement summary'},
-                    'version': {'upload': self.upload.uuid, 'license': self.license.id},
+                    'version': {
+                        'upload': self.upload.uuid,
+                        'license': self.license.id,
+                    },
                 },
             )
         assert response.status_code == 400, response.content
@@ -1019,6 +1029,40 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
+
+    def test_fields_max_length(self):
+        data = {
+            **self.minimal_data,
+            'name': {'fr': 'é' * 51},
+            'summary': {'en-US': 'a' * 251},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'name': ['Ensure this field has no more than 50 characters.'],
+            'summary': ['Ensure this field has no more than 250 characters.'],
+        }
+
+    def test_empty_strings_disallowed(self):
+        # if a string is required-ish (at least in some circumstances) we'll prevent
+        # empty strings
+        data = {
+            **self.minimal_data,
+            'summary': {'en-US': ''},
+            'name': {'en-US': ''},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'summary': ['This field may not be blank.'],
+            'name': ['This field may not be blank.'],
+        }
 
     def test_set_disabled(self):
         data = {
@@ -1646,7 +1690,9 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 400, response.content
         assert response.data == {
-            'license': ['This field is required for listed versions.'],
+            'license': [
+                'This field, or custom_license, is required for listed versions.'
+            ],
         }
 
         # If the license is set we'll get further validation errors from about the addon
@@ -1783,6 +1829,59 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             data=self.minimal_data,
         )
         assert response.status_code == 403
+
+    def test_custom_license(self):
+        self.upload.update(automated_signing=False)
+        self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
+        self.addon.update_status()
+        assert self.addon.status == amo.STATUS_NULL
+        license_data = {
+            'name': {'en-US': 'my custom license name'},
+            'text': {'en-US': 'my custom license text'},
+        }
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'custom_license': license_data},
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert self.addon.status == amo.STATUS_NOMINATED
+
+        new_license = License.objects.latest('created')
+        assert version.license == new_license
+
+        assert data['license'] == {
+            'id': new_license.id,
+            'name': license_data['name'],
+            'text': license_data['text'],
+            'is_custom': True,
+            'url': 'http://testserver' + version.license_url(),
+        }
+
+    def test_cannot_supply_both_custom_and_license_id(self):
+        license_data = {
+            'name': {'en-US': 'custom license name'},
+            'text': {'en-US': 'custom license text'},
+        }
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'license': self.license.id,
+                'custom_license': license_data,
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Both `license` and `custom_license` cannot be provided together.'
+            ]
+        }
 
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
@@ -2003,6 +2102,144 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             data={'release_notes': {'en-US': 'Something new'}},
         )
         assert response.status_code == 403
+
+    def test_custom_license(self):
+        # First assume no license - edge case because we enforce a license for listed
+        # versions, but possible.
+        self.version.update(license=None)
+        license_data = {
+            'name': {'en-US': 'custom license name'},
+            'text': {'en-US': 'custom license text'},
+        }
+        response = self.client.patch(
+            self.url,
+            data={'custom_license': license_data},
+        )
+        assert response.status_code == 200, response.content
+        data = response.data
+
+        self.version.reload()
+        new_license = License.objects.latest('created')
+        assert self.version.license == new_license
+        assert data['license'] == {
+            'id': new_license.id,
+            'name': license_data['name'],
+            'text': license_data['text'],
+            'is_custom': True,
+            'url': 'http://testserver' + self.version.license_url(),
+        }
+
+        # And then check we can update an existing custom license
+        num_licenses = License.objects.count()
+        response = self.client.patch(
+            self.url,
+            data={'custom_license': {'name': {'en-US': 'neú name'}}},
+        )
+        assert response.status_code == 200, response.content
+        data = response.data
+
+        self.version.reload()
+        new_license.reload()
+        assert self.version.license == new_license
+        assert data['license'] == {
+            'id': new_license.id,
+            'name': {'en-US': 'neú name'},
+            'text': license_data['text'],  # no change
+            'is_custom': True,
+            'url': 'http://testserver' + self.version.license_url(),
+        }
+        assert new_license.name == 'neú name'
+        assert License.objects.count() == num_licenses
+
+    def test_custom_license_from_builtin(self):
+        assert self.version.license.builtin != License.OTHER
+        builtin_license = self.version.license
+        license_data = {
+            'name': {'en-US': 'custom license name'},
+            'text': {'en-US': 'custom license text'},
+        }
+        response = self.client.patch(
+            self.url,
+            data={'custom_license': license_data},
+        )
+        assert response.status_code == 200, response.content
+        data = response.data
+
+        self.version.reload()
+        new_license = License.objects.latest('created')
+        assert self.version.license == new_license
+        assert new_license != builtin_license
+        assert data['license'] == {
+            'id': new_license.id,
+            'name': license_data['name'],
+            'text': license_data['text'],
+            'is_custom': True,
+            'url': 'http://testserver' + self.version.license_url(),
+        }
+
+        # and check we can change back to a builtin from a custom license
+        response = self.client.patch(
+            self.url,
+            data={'license': builtin_license.id},
+        )
+        assert response.status_code == 200, response.content
+        data = response.data
+
+        self.version.reload()
+        assert self.version.license == builtin_license
+        assert data['license']['id'] == builtin_license.id
+        assert data['license']['name']['en-US'] == builtin_license.name
+        assert data['license']['is_custom'] is False
+        assert data['license']['url'] == builtin_license.url
+
+    def test_no_custom_license_for_themes(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        license_data = {
+            'name': {'en-US': 'custom license name'},
+            'text': {'en-US': 'custom license text'},
+        }
+        response = self.client.patch(
+            self.url,
+            data={'custom_license': license_data},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'custom_license': ['Custom licenses are not supported for themes.']
+        }
+
+    def test_license_type_matches_addon_type(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.patch(
+            self.url,
+            data={'license': self.version.license.id},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'license': ['Wrong addon type for this license.']}
+
+        self.addon.update(type=amo.ADDON_EXTENSION)
+        self.version.license.update(creative_commons=True)
+        response = self.client.patch(
+            self.url,
+            data={'license': self.version.license.id},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'license': ['Wrong addon type for this license.']}
+
+    def test_cannot_supply_both_custom_and_license_id(self):
+        license_data = {
+            'name': {'en-US': 'custom license name'},
+            'text': {'en-US': 'custom license text'},
+        }
+        response = self.client.patch(
+            self.url,
+            data={'license': self.version.license.id, 'custom_license': license_data},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Both `license` and `custom_license` cannot be provided together.'
+            ]
+        }
 
 
 class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):
