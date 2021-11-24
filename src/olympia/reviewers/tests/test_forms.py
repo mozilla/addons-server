@@ -194,21 +194,6 @@ class TestReviewForm(TestCase):
         assert form.is_valid()
         assert not form.errors
 
-    def test_reasons_not_required_for_themes(self):
-        self.grant_permission(self.request.user, 'Addons:ThemeReview')
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        form = self.get_form()
-        assert not form.is_bound
-        form = self.get_form(
-            data={
-                'action': 'reply',
-                'comments': 'lol',
-            }
-        )
-        assert form.is_bound
-        assert form.is_valid()
-        assert not form.errors
-
     def test_reasons_optional_for_public(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
