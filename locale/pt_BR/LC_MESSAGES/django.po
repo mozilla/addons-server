@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-24 10:51+0000\n"
+"PO-Revision-Date: 2021-11-24 10:52+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4440,11 +4440,11 @@ msgstr "Aproveite a mudança automática de cores do Firefox, em sincronia com a
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Elimine distrações do YouTube. Remova sugestões de vídeos relacionados e recomendados, comentários e outras coisas."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Leve emojis com você para qualquer lugar na web."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
