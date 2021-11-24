@@ -4,7 +4,7 @@ from urllib.parse import urlsplit, urlunsplit
 from django.http.request import QueryDict
 from django.urls import reverse
 
-from rest_framework import exceptions, serializers
+from rest_framework import exceptions, fields, serializers
 
 import olympia.core.logger
 from olympia import activity, amo
@@ -179,6 +179,9 @@ class LicenseNameSerializerField(serializers.Field):
         # Like TranslationSerializerField, the bulk of the logic is in
         # get_attribute(), we just have to return the data at this point.
         return obj
+
+    def run_validation(self, data=fields.empty):
+        return self.custom_translation_field.run_validation(data)
 
     def to_internal_value(self, value):
         return self.custom_translation_field.to_internal_value(value)
