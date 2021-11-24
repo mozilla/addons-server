@@ -1353,6 +1353,9 @@ class TestAddonViewSetUpdate(TestCase):
         )
         addon.reload()
         assert response.status_code == 403  # Disabled addons can't be written to
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
 
     def test_set_homepage_support_url_email(self):
         data = {
@@ -1829,6 +1832,9 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             data=self.minimal_data,
         )
         assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
 
     def test_custom_license(self):
         self.upload.update(automated_signing=False)
@@ -2102,6 +2108,9 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             data={'release_notes': {'en-US': 'Something new'}},
         )
         assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
 
     def test_custom_license(self):
         # First assume no license - edge case because we enforce a license for listed

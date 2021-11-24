@@ -187,7 +187,7 @@ def find_replacement_addon(request):
 class AddonViewSet(
     CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet
 ):
-    _write_permissions = [
+    write_permission_classes = [
         APIGatePermission('addon-submission-api'),
         AllowAddonAuthorIfNotMozillaDisabled,
         IsSubmissionAllowedFor,
@@ -260,7 +260,7 @@ class AddonViewSet(
             if not restriction.has_permission(request, self):
                 raise UnavailableForLegalReasons()
         if self.action in ('create', 'update', 'partial_update'):
-            self.permission_classes = self._write_permissions
+            self.permission_classes = self.write_permission_classes
         super().check_permissions(request)
 
     def check_object_permissions(self, request, obj):
@@ -278,7 +278,7 @@ class AddonViewSet(
                 raise UnavailableForLegalReasons()
 
         if self.action in ('update', 'partial_update'):
-            self.permission_classes = self._write_permissions
+            self.permission_classes = self.write_permission_classes
         try:
             super().check_object_permissions(request, obj)
         except exceptions.APIException as exc:
@@ -319,8 +319,8 @@ class AddonChildMixin:
 
         `permission_classes` can be use passed to change which permission
         classes the parent viewset will be used when loading the Addon object,
-        otherwise AddonViewSet.permission_classess will be used for safe actions and
-        AddonViewSet._write_permissions for unsafe actions.
+        otherwise AddonViewSet.permission_classes will be used for safe actions and
+        AddonViewSet.write_permission_classes for unsafe actions.
 
         `georestriction_classes` can be use passed to change which regional
         restriction classes the parent viewset will be used when loading the
@@ -331,7 +331,7 @@ class AddonChildMixin:
 
         if permission_classes is None:
             permission_classes = (
-                AddonViewSet._write_permissions
+                AddonViewSet.write_permission_classes
                 if self.action in ('create', 'update', 'partial_update')
                 else AddonViewSet.permission_classes
             )
