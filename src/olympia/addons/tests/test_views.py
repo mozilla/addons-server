@@ -1352,11 +1352,10 @@ class TestAddonViewSetUpdate(TestCase):
             data={'is_disabled': False},
         )
         addon.reload()
-        assert response.status_code == 200, response.content
-        data = response.data
-        assert data['is_disabled'] is True  # still True
-        assert addon.is_disabled is True  # still True
-        assert addon.disabled_by_user is False  # user property is False,
+        assert response.status_code == 403  # Disabled addons can't be written to
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
 
     def test_set_homepage_support_url_email(self):
         data = {
@@ -1634,7 +1633,9 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 401
         assert response.data == {
-            'detail': 'Authentication credentials were not provided.'
+            'detail': 'Authentication credentials were not provided.',
+            'is_disabled_by_developer': False,
+            'is_disabled_by_mozilla': False,
         }
         assert self.addon.reload().versions.count() == 1
 
@@ -1677,7 +1678,9 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             )
         assert response.status_code == 403
         assert response.data == {
-            'detail': 'You do not have permission to perform this action.'
+            'detail': 'You do not have permission to perform this action.',
+            'is_disabled_by_developer': False,
+            'is_disabled_by_mozilla': False,
         }
         assert self.addon.reload().versions.count() == 1
 
@@ -1822,6 +1825,17 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert 'Version 0.0.1 matches ' in str(response.data['non_field_errors'])
         assert self.addon.reload().versions.count() == 1
 
+    def test_cant_update_disabled_addon(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+
     def test_custom_license(self):
         self.upload.update(automated_signing=False)
         self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
@@ -1939,7 +1953,9 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         )
         assert response.status_code == 401
         assert response.data == {
-            'detail': 'Authentication credentials were not provided.'
+            'detail': 'Authentication credentials were not provided.',
+            'is_disabled_by_developer': False,
+            'is_disabled_by_mozilla': False,
         }
         assert self.version.release_notes != 'Something new'
 
@@ -1982,7 +1998,9 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             )
         assert response.status_code == 403
         assert response.data == {
-            'detail': 'You do not have permission to perform this action.'
+            'detail': 'You do not have permission to perform this action.',
+            'is_disabled_by_developer': False,
+            'is_disabled_by_mozilla': False,
         }
         assert self.version.release_notes != 'Something new'
 
@@ -2082,6 +2100,17 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             },
         )
         assert response.data == {'compatibility': ['Unknown app version specified']}
+
+    def test_cant_update_disabled_addon(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.patch(
+            self.url,
+            data={'release_notes': {'en-US': 'Something new'}},
+        )
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
 
     def test_custom_license(self):
         # First assume no license - edge case because we enforce a license for listed
