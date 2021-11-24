@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-24 10:08+0000\n"
+"PO-Revision-Date: 2021-11-24 10:10+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4380,11 +4380,11 @@ msgstr "Насолоджуйтесь автоматичною зміною ко�
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Усуньте усе зайве на YouTube. Приберіть пов’язані та рекомендовані відео пропозиції, коментарі тощо."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Візьміть емоджі з собою всюди в інтернеті."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
