@@ -366,7 +366,9 @@ class CollectionViewSetDataMixin:
         data.update(name={'en-US': '   '})
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {
+            'name': ['This field may not be blank.']
+        }
 
     @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_update_name_invalid_flat_input(self):
@@ -375,13 +377,17 @@ class CollectionViewSetDataMixin:
         data.update(name='   ')
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {
+            'name': ['This field may not be blank.']
+        }
 
         # Passing a dict of localised values
         data.update(name={'en-US': '   '})
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {
+            'name': ['This field may not be blank.']
+        }
 
     def test_description_no_links(self):
         self.client.login_api(self.user)
@@ -1296,7 +1302,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
 
     def test_fail_when_no_addon(self):
         self.client.login_api(self.user)
-        response = self.send(self.url, data={'notes': {'en-US': ''}})
+        response = self.send(self.url, data={'notes': {'en-US': 'a'}})
         assert response.status_code == 400
         assert json.loads(response.content) == {'addon': ['This field is required.']}
 
