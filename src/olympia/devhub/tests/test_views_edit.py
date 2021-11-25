@@ -785,7 +785,10 @@ class TestEditMedia(BaseTestEdit):
         assert response.context['form'].errors == {}
         addon = self.get_addon()
 
-        assert addon.get_icon_url(64).endswith('icons/default-64.png?v=20210601')
+        assert (
+            addon.get_icon_url(64)
+            == 'http://testserver/static/img/addon-icons/default-64.png'
+        )
 
         for k in data:
             assert str(getattr(addon, k)) == data[k]
