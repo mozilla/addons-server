@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-25 04:25+0000\n"
+"PO-Revision-Date: 2021-11-25 04:34+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4294,11 +4294,11 @@ msgstr "不必再向网站提供真实邮箱。Firefox Relay 可保护您的身�
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
-msgstr "让 Firefox 随昼夜交替自动改变配色 ❤️ 。"
+msgstr "享受 Firefox 随昼夜交替自动改变配色。"
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "消除 YouTube 干扰。移除相关﹠推荐的视频、评论及更多。"
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
