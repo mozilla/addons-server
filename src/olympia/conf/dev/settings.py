@@ -31,7 +31,6 @@ MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
 # to xpi files. We want those on the dedicated CDN domain.
 ADDONS_URL = '%s/user-media/addons/' % CDN_HOST
 
-CSP_CONNECT_SRC += (SITE_URL,)
 CSP_FONT_SRC += (STATIC_URL,)
 # CSP_IMG_SRC already contains 'self', but we could be on reviewers or admin
 # domain and want to load things from the regular domain.

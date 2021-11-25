@@ -18,7 +18,7 @@ class TestCSPHeaders(TestCase):
         response = self.client.get('/en-US/developers/')
         assert response.status_code == 200
         # Make sure a default-src is set.
-        assert "default-src 'self'" in response['content-security-policy']
+        assert "default-src 'none'" in response['content-security-policy']
         # Make sure a object-src is locked down.
         assert "object-src 'none'" in response['content-security-policy']
         # The report-uri should be set.
@@ -30,7 +30,8 @@ class TestCSPHeaders(TestCase):
         assert 'form-action' in response['content-security-policy']
         assert 'frame-src' in response['content-security-policy']
         assert 'child-src' in response['content-security-policy']
-        assert 'base-uri' in response['content-security-policy']
+        # Some things we don't use and are not defining on purpose.
+        assert 'base-uri' not in response['content-security-policy']
 
     def test_unsafe_inline_not_in_script_src(self):
         """Make sure a script-src does not have unsafe-inline."""
@@ -43,11 +44,6 @@ class TestCSPHeaders(TestCase):
     def test_data_uri_not_in_script_src(self):
         """Make sure a script-src does not have data:."""
         assert 'data:' not in base_settings.CSP_SCRIPT_SRC
-
-    def test_http_protocol_not_in_base_uri(self):
-        """Make sure a base-uri does not have hosts using http:."""
-        for val in base_settings.CSP_BASE_URI:
-            assert not val.startswith('http:')
 
     def test_http_protocol_not_in_script_src(self):
         """Make sure a script-src does not have hosts using http:."""
@@ -94,18 +90,19 @@ class TestCSPHeaders(TestCase):
 
     def test_self_in_common_settings(self):
         """Check 'self' is defined for common settings."""
-        assert "'self'" in base_settings.CSP_BASE_URI
         assert "'self'" in base_settings.CSP_CONNECT_SRC
-        assert "'self'" in base_settings.CSP_CHILD_SRC
-        assert "'self'" in base_settings.CSP_FRAME_SRC
         assert "'self'" in base_settings.CSP_IMG_SRC
-        assert "'self'" in base_settings.CSP_STYLE_SRC
         assert "'self'" in base_settings.CSP_FORM_ACTION
 
-    def test_not_self_in_script_src(self):
-        """script-src should not need 'self' or a.m.o for services.a.m.o"""
+    def test_not_self_in_script_child_or_style_src(self):
+        """script-src/style-src/child-src should not need 'self' or the entire
+        a.m.o. domain"""
         assert "'self'" not in base_settings.CSP_SCRIPT_SRC
         assert 'https://addons.mozilla.org' not in base_settings.CSP_SCRIPT_SRC
+        assert "'self'" not in base_settings.CSP_STYLE_SRC
+        assert 'https://addons.mozilla.org' not in base_settings.CSP_STYLE_SRC
+        assert "'self'" not in base_settings.CSP_CHILD_SRC
+        assert 'https://addons.mozilla.org' not in base_settings.CSP_CHILD_SRC
 
     def test_analytics_in_common_settings(self):
         """Check for anaytics hosts in img-src and script-src"""
