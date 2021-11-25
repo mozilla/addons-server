@@ -454,30 +454,71 @@ class VersionSerializer(SimpleVersionSerializer):
                 ),
             )
 
+    def _check_license(self, data):
+        # We have to check the raw request data because data from both fields will be
+        # under `license` at this point.
+        if (
+            (request := self.context.get('request'))
+            and 'license' in request.data
+            and 'custom_license' in request.data
+        ):
+            raise exceptions.ValidationError(
+                'Both `license` and `custom_license` cannot be provided together.'
+            )
+
+        license_ = data.get('license')
+        if not self.instance:
+            channel = data['upload'].channel
+            if channel == amo.RELEASE_CHANNEL_LISTED and not license_:
+                # If the previous version has a license we can use that, otherwise its
+                # required. This is what we do in Version.from_upload to get the
+                # license.
+                previous_version = self.addon and self.addon.find_latest_version(
+                    channel=channel, exclude=()
+                )
+                if not previous_version or not previous_version.license_id:
+                    raise exceptions.ValidationError(
+                        {
+                            'license': (
+                                'This field, or custom_license, is required for listed '
+                                'versions.'
+                            )
+                        },
+                        code='required',
+                    )
+            addon_type = self.parsed_data['type']
+        else:
+            addon_type = self.addon.type
+
+        if isinstance(license_, License) and license_.creative_commons == (
+            addon_type != amo.ADDON_STATICTHEME
+        ):
+            raise exceptions.ValidationError(
+                {'license': 'Wrong addon type for this license.'},
+                code='required',
+            )
+        if isinstance(license_, dict) and addon_type == amo.ADDON_STATICTHEME:
+            raise exceptions.ValidationError(
+                {'custom_license': 'Custom licenses are not supported for themes.'},
+            )
+
     def validate(self, data):
         if not self.instance:
             # Parse the file to get and validate package data with the addon.
             self.parsed_data = parse_addon(
                 data.get('upload'), addon=self.addon, user=self.context['request'].user
             )
+
+        self._check_license(data)
+
+        if not self.instance:
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
             self._check_blocklist(guid, self.parsed_data.get('version'))
+
             channel = data['upload'].channel
-
             # If this is a new version to an existing addon, check that all the required
-            # metadata is set.
-            # We test for new addons in AddonSerailizer.validate instead
-            if channel == amo.RELEASE_CHANNEL_LISTED and not data.get('license'):
-                raise exceptions.ValidationError(
-                    {
-                        'license': (
-                            'This field, or custom_license, is required for listed '
-                            'versions.'
-                        )
-                    },
-                    code='required',
-                )
-
+            # metadata is set. We test for new addons in AddonSerailizer.validate
+            # instead.
             if channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
                 # This is replicating what Addon.get_required_metadata does
                 missing_addon_metadata = [
@@ -495,41 +536,9 @@ class VersionSerializer(SimpleVersionSerializer):
                         f'version: {missing_addon_metadata}.',
                         code='required',
                     )
-
-            addon_type = self.parsed_data['type']
-
         else:
             data.pop('upload', None)  # upload can only be set during create
-            addon_type = self.addon.type
 
-        # We have to check the raw request data because data from both fields will be
-        # under `license` at this point.
-        if (
-            (request := self.context.get('request'))
-            and 'license' in request.data
-            and 'custom_license' in request.data
-        ):
-            raise exceptions.ValidationError(
-                'Both `license` and `custom_license` cannot be provided together.'
-            )
-        if (
-            'license' in data
-            and isinstance(data['license'], License)
-            and data['license'].creative_commons
-            == (addon_type != amo.ADDON_STATICTHEME)
-        ):
-            raise exceptions.ValidationError(
-                {'license': 'Wrong addon type for this license.'},
-                code='required',
-            )
-        if (
-            'license' in data
-            and isinstance(data['license'], dict)
-            and addon_type == amo.ADDON_STATICTHEME
-        ):
-            raise exceptions.ValidationError(
-                {'custom_license': 'Custom licenses are not supported for themes.'},
-            )
         return data
 
     def create(self, validated_data):

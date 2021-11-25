@@ -1685,6 +1685,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert self.addon.reload().versions.count() == 1
 
     def test_listed_metadata_missing(self):
+        self.addon.current_version.update(license=None)
         self.addon.set_categories([])
         self.upload.update(automated_signing=False)
         response = self.client.post(
@@ -1713,6 +1714,19 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         }
 
         assert self.addon.reload().versions.count() == 1
+
+    def test_license_inherited_from_previous_version(self):
+        previous_license = self.addon.current_version.license
+        self.upload.update(automated_signing=False)
+        response = self.client.post(
+            self.url,
+            data={'upload': self.upload.uuid},
+        )
+        assert response.status_code == 201, response.content
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        assert version.license == previous_license
 
     def test_set_extra_data(self):
         response = self.client.post(
