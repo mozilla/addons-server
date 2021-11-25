@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-25 04:16+0000\n"
+"PO-Revision-Date: 2021-11-25 04:26+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4373,11 +4373,11 @@ msgstr "გაერთეთ, Firefox-ზე ფერების დღე-�
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "გაასუფთავეთ YouTube ყურადღების გამფანტავი შიგთავსისგან. მოაცილეთ მსგავსი და შემოთავაზებული ვიდეოები, გამოხმაურებები და ა.შ."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "თან წაიყოლეთ ემოჯები ყველგან, ვებსივრცეში."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
