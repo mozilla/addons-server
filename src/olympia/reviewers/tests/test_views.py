@@ -5471,12 +5471,9 @@ class TestReview(ReviewBase):
             doc('.data-toggle.review-comments')[0].attrib['data-value']
             == 'public|reject|reject_multiple_versions|reply|super|comment|'
         )
-        assert (
-            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == 'public|reject|reject_multiple_versions|reply|'
-        )
-        # we don't show files and tested with for any static theme actions
+        # we don't show files, reasons, and tested with for any static theme actions
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == '|'
+        assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'] == '|'
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == '|'
 
     def test_post_review_ignore_disabled(self):

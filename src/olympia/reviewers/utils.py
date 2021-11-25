@@ -489,6 +489,7 @@ class ReviewHelper:
             self.version and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
         )
         promoted_group = self.addon.promoted_group(currently_approved=False)
+        is_static_theme = self.addon.type == amo.ADDON_STATICTHEME
 
         # Default permissions / admin needed values if it's just a regular
         # code review, nothing fancy.
@@ -512,7 +513,7 @@ class ReviewHelper:
         elif self.content_review:
             is_admin_needed = self.addon.needs_admin_content_review
             permission = amo.permissions.ADDONS_CONTENT_REVIEW
-        elif self.addon.type == amo.ADDON_STATICTHEME:
+        elif is_static_theme:
             is_admin_needed = self.addon.needs_admin_theme_review
             permission = amo.permissions.STATIC_THEMES_REVIEW
             permission_post_review = permission
@@ -569,11 +570,7 @@ class ReviewHelper:
         # Special logic for availability of reject multiple action:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
-        elif (
-            self.content_review
-            or promoted_group.pre_review
-            or self.addon.type == amo.ADDON_STATICTHEME
-        ):
+        elif self.content_review or promoted_group.pre_review or is_static_theme:
             can_reject_multiple = (
                 addon_is_valid_and_version_is_listed and is_appropriate_reviewer
             )
@@ -603,7 +600,7 @@ class ReviewHelper:
                 and is_appropriate_reviewer
                 and not version_is_blocked
             ),
-            'allows_reasons': True,
+            'allows_reasons': not is_static_theme,
             'requires_reasons': False,
         }
         actions['reject'] = {
@@ -624,8 +621,8 @@ class ReviewHelper:
                 and version_is_unreviewed
                 and is_appropriate_reviewer
             ),
-            'allows_reasons': True,
-            'requires_reasons': True,
+            'allows_reasons': not is_static_theme,
+            'requires_reasons': not is_static_theme,
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
@@ -672,8 +669,8 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': (can_reject_multiple),
-            'allows_reasons': True,
-            'requires_reasons': True,
+            'allows_reasons': not is_static_theme,
+            'requires_reasons': not is_static_theme,
         }
         actions['block_multiple_versions'] = {
             'method': self.handler.block_multiple_versions,
@@ -687,9 +684,7 @@ class ReviewHelper:
                 'admin page.'
             ),
             'available': (
-                self.addon.type != amo.ADDON_STATICTHEME
-                and version_is_unlisted
-                and is_appropriate_reviewer
+                not is_static_theme and version_is_unlisted and is_appropriate_reviewer
             ),
         }
         actions['confirm_multiple_versions'] = {
@@ -703,9 +698,7 @@ class ReviewHelper:
             ),
             'comments': False,
             'available': (
-                self.addon.type != amo.ADDON_STATICTHEME
-                and version_is_unlisted
-                and is_appropriate_reviewer
+                not is_static_theme and version_is_unlisted and is_appropriate_reviewer
             ),
         }
         actions['reply'] = {
@@ -721,8 +714,8 @@ class ReviewHelper:
                 and is_reviewer
                 and (not promoted_group.admin_review or is_appropriate_reviewer)
             ),
-            'allows_reasons': True,
-            'requires_reasons': True,
+            'allows_reasons': not is_static_theme,
+            'requires_reasons': not is_static_theme,
         }
         actions['super'] = {
             'method': self.handler.process_super_review,
