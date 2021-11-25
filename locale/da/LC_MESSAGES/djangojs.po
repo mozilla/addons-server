@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2020-12-18 16:20+0000\n"
+"PO-Revision-Date: 2020-12-18 16:08+0000\n"
 "Last-Translator: holgermogensen <holgermogensen@gmail.com>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -97,13 +97,13 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Hvis din tilføjelse kræver en konto til en hjemmeside for at blive fuldt testet, skal du inkludere et testbrugernavn og -adgangskode under noter til anmelderen (dette kan gøres i næste trin)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Tjekliste til indsendelse af tilføjelser"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Bekræft venligst følgende punkter, inden du afslutter din indsendelse. Dette minimerer forsinkelser og misforståelser under vurderingsprocessen:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -111,7 +111,7 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Valideringsprocessen fandt disse problemer, der kan føre til afvisning:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen, du uploadede, blev ikke genkendt."
@@ -132,7 +132,7 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "Dette tema er ikke kompatibelt med din version af {0}"
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Markeret til gennemgang"
 
 msgid "Your input is required"
 msgstr "Dit input er påkrævet"
