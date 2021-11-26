@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-26 22:32+0000\n"
+"PO-Revision-Date: 2021-11-26 22:41+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4377,7 +4377,7 @@ msgstr "Zbavte se na YouTube rušivých prvků. Odstraňte návrhy související
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Vezměte si emotikony všude na webu s sebou."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4480,7 +4480,7 @@ msgstr "Další vybraná rozšíření pro správu panelů"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Rozšíření se štítkem “{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
@@ -4488,7 +4488,7 @@ msgstr "Zobrazit další rozšíření se štítkem „{tag}“"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Výkonné blokátory reklam"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -4496,7 +4496,7 @@ msgstr "Další vybraná rozšíření pro blokování reklam"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
-msgstr ""
+msgstr "Vylepšení pro YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4565,7 +4565,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "Přidávání tohoto typu doplňku není povoleno"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "Nemůžete odeslat doplněk pomocí ID končícího touto příponou"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
