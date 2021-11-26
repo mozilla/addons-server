@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-26 22:05+0000\n"
+"PO-Revision-Date: 2021-11-26 22:20+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2673,6 +2673,8 @@ msgstr "Záznam tohoto doplňku bude úspěšnější, pokud přidáte podrobný
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Přidáním podrobného popisu a snímků obrazovky na stránku doplňku můžete ke svému rozšíření přilákat uživatele. Získejte pomoc <a %(a_attrs)s>při vytváření atraktivní stránky doplňku</a> na webu "
+"workshopu tvorby rozšíření pro Firefox."
 
 msgid "Manage Listing"
 msgstr "Spravovat záznam"
@@ -4363,7 +4365,7 @@ msgstr "Vraťte se do jednodušších časů, kdy se nejlepší výsledky vyhled
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Přestaňte webům dávat svou e-mailovou adresu. Firefox Relay chrání vaši identitu a předchází doručování nevyžádané pošty."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
