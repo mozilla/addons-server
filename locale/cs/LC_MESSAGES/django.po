@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-24 20:55+0000\n"
+"PO-Revision-Date: 2021-11-26 18:00+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -447,7 +447,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Tento doplněk už ve sbírce je"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Stav schválení"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
