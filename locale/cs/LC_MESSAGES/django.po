@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-26 19:17+0000\n"
+"PO-Revision-Date: 2021-11-26 19:22+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1847,6 +1847,8 @@ msgstr "Při nahrávání obrázku se vyskytla chyba."
 #, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Nejnovější schválenou verzi tohoto doplňku pro %s nelze odstranit ani zakázat, protože předchozí verze nebyla schválena pro propagaci aplikace %s. Pokud s tím potřebujete pomoci, obraťte se na "
+"správce AMO."
 
 #, python-format
 msgid "Version %s disabled."
