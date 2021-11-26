@@ -80,10 +80,12 @@ CHANNEL_CHOICES_LOOKUP = {
 UPLOAD_SOURCE_DEVHUB = 1
 UPLOAD_SOURCE_SIGNING_API = 2
 UPLOAD_SOURCE_ADDON_API = 3
+UPLOAD_SOURCE_AUTOMATIC = 4
 UPLOAD_SOURCE_CHOICES = (
     (UPLOAD_SOURCE_DEVHUB, _('Developer Hub')),
     (UPLOAD_SOURCE_SIGNING_API, _('Signing API')),
     (UPLOAD_SOURCE_ADDON_API, _('Addon API')),
+    (UPLOAD_SOURCE_AUTOMATIC, _('Automatically generated')),
 )
 
 # Add-on author roles.
@@ -111,6 +113,7 @@ ADDON_API = 8  # not actually a type but used to identify extensions + themes
 _ADDON_PERSONA = 9  # Deprecated.  Aka Lightweight Themes.
 ADDON_STATICTHEME = 10
 _ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
+ADDON_PERMISSION_ENABLER = 12
 
 # Addon type groupings
 
@@ -128,6 +131,7 @@ ADDON_TYPE = {
     ADDON_PLUGIN: _('Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
+    ADDON_PERMISSION_ENABLER: _('Permission Enabler'),
 }
 
 # Plural
@@ -141,6 +145,7 @@ ADDON_TYPES = {
     ADDON_PLUGIN: _('Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
+    ADDON_PERMISSION_ENABLER: _('Permission Enablers'),
 }
 
 # Searchable Add-on Types
@@ -162,19 +167,7 @@ ADDON_SLUGS = {
     ADDON_LPAPP: 'language-tools',
     _ADDON_SEARCH: 'search-tools',
     ADDON_STATICTHEME: 'themes',
-}
-
-# These are used in the update API.
-ADDON_SLUGS_UPDATE = {
-    ADDON_EXTENSION: 'extension',
-    _ADDON_THEME: 'theme',
-    ADDON_DICT: 'extension',
-    _ADDON_SEARCH: 'search',
-    ADDON_LPAPP: 'item',
-    ADDON_LPADDON: 'extension',
-    _ADDON_PERSONA: 'background-theme',
-    ADDON_PLUGIN: 'plugin',
-    ADDON_STATICTHEME: 'static-theme',
+    ADDON_PERMISSION_ENABLER: 'permission-enablers',
 }
 
 # A slug to ID map for the search API. Included are all ADDON_TYPES that are
@@ -188,6 +181,7 @@ ADDON_SEARCH_SLUGS = {
     'language': ADDON_LPAPP,
     'persona': _ADDON_PERSONA,
     'statictheme': ADDON_STATICTHEME,
+    'enabler': ADDON_PERMISSION_ENABLER,
 }
 
 ADDON_TYPE_CHOICES_API = {
@@ -198,9 +192,16 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_LPAPP: 'language',
     _ADDON_PERSONA: 'persona',
     ADDON_STATICTHEME: 'statictheme',
+    ADDON_PERMISSION_ENABLER: 'enabler',
 }
 
-ADDON_TYPES_WITH_STATS = (ADDON_EXTENSION, ADDON_STATICTHEME, ADDON_DICT, ADDON_LPAPP)
+ADDON_TYPES_WITH_STATS = (
+    ADDON_EXTENSION,
+    ADDON_STATICTHEME,
+    ADDON_DICT,
+    ADDON_LPAPP,
+    ADDON_PERMISSION_ENABLER,
+)
 
 # Edit addon information
 MAX_TAGS = 10

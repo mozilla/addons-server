@@ -1,18 +1,30 @@
 import uuid
+import json
+import zipfile
+
+from io import BytesIO
+from urllib.parse import urlparse
 
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+from django.core.files.base import File
+from django.db.transaction import atomic
+from django.utils import translation
 from django.utils.translation import gettext
 
 from django_statsd.clients import statsd
 
-from olympia import amo
+from olympia import amo, core
 from olympia.access.acl import action_allowed_user
 from olympia.amo.utils import normalize_string
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleErrorMessage
-from olympia.users.models import DeveloperAgreementRestriction, UserRestrictionHistory
+from olympia.users.models import (
+    DeveloperAgreementRestriction,
+    UserProfile,
+    UserRestrictionHistory,
+)
 
 
 def generate_addon_guid():
@@ -247,3 +259,130 @@ class RestrictionChecker:
         except IndexError:
             msg = None
         return msg
+
+
+class PermissionEnablerCreator:
+    """Helper class to create new permission enabler add-ons and versions.
+
+    Assumes parameters have already been validated beforehand."""
+
+    SITE_PERMISSIONS = {
+        'webmidi': 'WebMIDI',
+    }
+    MIN_VERSION = '96.0'
+
+    def __init__(self, *, user, remote_addr, install_origins, site_permissions):
+        self.user = user
+        self.remote_addr = remote_addr
+        self.install_origins = install_origins
+        self.site_permissions = site_permissions
+
+    def _create_manifest(self, version_number):
+
+        hostnames = ', '.join(
+            [urlparse(origin).netloc for origin in self.install_origins]
+        )
+        permissions = ', '.join(
+            self.SITE_PERMISSIONS.get(permission, permission)
+            for permission in self.site_permissions
+        )
+        # FIXME: https://github.com/mozilla/addons-server/issues/18421 to
+        # generate translations for the name & description (we'll need
+        # __MSG_extensionName__and _locales/ folder etc). At the moment the
+        # gettext call is just here to prepare for the future and allow
+        # translators to work on translations, but we're always generating in
+        # english.
+        with translation.override('en-US'):
+            manifest_data = {
+                'manifest_version': 2,
+                'version': version_number,
+                'name': gettext('Site permissions for {hostnames}').format(
+                    hostnames=hostnames
+                ),
+                'description': gettext(
+                    'This add-on provides {hostnames} with access to the following '
+                    'protected DOM APIs: {permissions}.'
+                ).format(hostnames=hostnames, permissions=permissions),
+                'install_origins': self.install_origins,
+                'site_permissions': self.site_permissions,
+                'browser_specific_settings': {
+                    'gecko': {'strict_min_version': self.MIN_VERSION}
+                },
+            }
+        return manifest_data
+
+    def _create_zipfile(self, manifest_data):
+        # Create the xpi containing the manifest, in memory.
+        raw_buffer = BytesIO()
+        with zipfile.ZipFile(raw_buffer, 'w') as zip_file:
+            zip_file.writestr('manifest.json', json.dumps(manifest_data, indent=2))
+        raw_buffer.seek(0)
+        filename = 'automatic.xpi'
+        file_obj = File(raw_buffer, filename)
+
+        return file_obj
+
+    @atomic
+    def create_version(self, addon=None):
+        from olympia.addons.models import Addon
+        from olympia.versions.utils import get_next_version_number
+        from olympia.devhub.tasks import create_version_for_upload
+        from olympia.files.models import FileUpload
+        from olympia.files.utils import parse_addon
+
+        version_number = '1.0'
+
+        # If passing an existing add-on, we need to bump the version number
+        # to avoid clashes.
+        if addon is not None:
+            version_number = get_next_version_number(addon)
+
+        # Create the manifest, with more user-friendly name & description built
+        # from install_origins/site_permissions, and then the zipfile with that
+        # manifest inside.
+        manifest_data = self._create_manifest(version_number)
+        file_obj = self._create_zipfile(manifest_data)
+
+        # Parse the zip we just created. The user needs to be the Mozilla User
+        # because regular submissions of this type of add-on is forbidden to
+        # normal users.
+        parsed_data = parse_addon(
+            file_obj,
+            addon=addon,
+            user=UserProfile.objects.get(pk=settings.TASK_USER_ID),
+        )
+
+        if addon is None:
+            # Create the Addon instance (without a Version/File at this point).
+            addon = Addon.initialize_addon_from_upload(
+                data=parsed_data,
+                upload=file_obj,
+                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                user=self.user,
+            )
+        else:
+            # If the user isn't an author, something is wrong.
+            if not addon.authors.filter(pk=self.user.pk).exists():
+                raise ImproperlyConfigured(
+                    'PermissionEnablerCreator was instantiated with a bogus addon/user'
+                )
+            # FIXME: if we already have an add-on, we'll likely want to update
+            # its name and description so that it matches the latest manifest
+            # values (which we have in parsed_data).
+
+        # Create the FileUpload that will become the File+Version.
+        with core.override_remote_addr(self.remote_addr):
+            upload = FileUpload.from_post(
+                file_obj,
+                file_obj.name,
+                file_obj.size,
+                addon=addon,
+                version=version_number,
+                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                user=self.user,
+                source=amo.UPLOAD_SOURCE_AUTOMATIC,
+            )
+        # And finally create the Version instance from the FileUpload.
+        return create_version_for_upload(
+            addon, upload, amo.RELEASE_CHANNEL_UNLISTED, parsed_data=parsed_data
+        )

@@ -793,6 +793,24 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             parsed_data=self.mocks['parse_addon'].return_value,
         )
 
+    def test_pass_parsed_data(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version=None
+        )
+        parsed_data = mock.Mock()
+        tasks.create_version_for_upload(
+            self.addon, upload, amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data
+        )
+        assert self.mocks['parse_addon'].call_count == 0
+        self.mocks['Version.from_upload'].assert_called_with(
+            upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
+            parsed_data=parsed_data,
+        )
+
 
 class TestAPIKeyInSubmission(UploadMixin, TestCase):
     def setUp(self):

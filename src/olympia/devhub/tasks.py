@@ -106,7 +106,7 @@ def submit_file(addon_pk, upload_pk, channel):
 
 
 @transaction.atomic
-def create_version_for_upload(addon, upload, channel):
+def create_version_for_upload(addon, upload, channel, parsed_data=None):
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version
     ).exists()
@@ -118,6 +118,7 @@ def create_version_for_upload(addon, upload, channel):
             'Skipping Version creation for {upload_uuid} that would '
             ' cause duplicate version'.format(upload_uuid=upload.uuid)
         )
+        return None
     else:
         log.info(
             'Creating version for {upload_uuid} that passed '
@@ -126,8 +127,9 @@ def create_version_for_upload(addon, upload, channel):
         # Note: if we somehow managed to get here with an invalid add-on,
         # parse_addon() will raise ValidationError and the task will fail
         # loudly in sentry.
-        parsed_data = parse_addon(upload, addon, user=upload.user)
-        Version.from_upload(
+        if parsed_data is None:
+            parsed_data = parse_addon(upload, addon, user=upload.user)
+        version = Version.from_upload(
             upload,
             addon,
             channel,
@@ -139,6 +141,7 @@ def create_version_for_upload(addon, upload, channel):
         # gets flagged as invalid. We need to manually set the status.
         if addon.status == amo.STATUS_NULL and channel == amo.RELEASE_CHANNEL_LISTED:
             addon.update(status=amo.STATUS_NOMINATED)
+        return version
 
 
 @task

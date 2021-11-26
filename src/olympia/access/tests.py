@@ -133,6 +133,11 @@ class TestHasPerm(TestCase):
         assert not check_addon_ownership(self.request, self.addon)
         self.test_admin()
 
+    def test_permission_enabler(self):
+        self.addon.update(type=amo.ADDON_PERMISSION_ENABLER)
+        assert not check_addon_ownership(self.request, self.addon)
+        self.test_admin()
+
     def test_deleted(self):
         self.addon.update(status=amo.STATUS_DELETED)
         assert not check_addon_ownership(self.request, self.addon)
@@ -141,6 +146,10 @@ class TestHasPerm(TestCase):
 
     def test_ignore_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
+        assert check_addon_ownership(self.request, self.addon, ignore_disabled=True)
+
+    def test_ignore_disabled_permission_enabler(self):
+        self.addon.update(type=amo.ADDON_PERMISSION_ENABLER)
         assert check_addon_ownership(self.request, self.addon, ignore_disabled=True)
 
     def test_owner(self):

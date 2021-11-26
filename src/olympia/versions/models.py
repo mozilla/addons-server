@@ -114,7 +114,12 @@ class VersionManager(ManagerBase):
                 channel=amo.RELEASE_CHANNEL_LISTED,
                 addon__status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
                 addon__disabled_by_user=False,
-                addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT),
+                addon__type__in=(
+                    amo.ADDON_EXTENSION,
+                    amo.ADDON_PERMISSION_ENABLER,
+                    amo.ADDON_LPAPP,
+                    amo.ADDON_DICT,
+                ),
             )
             # For unlisted, add-on can't be deleted or disabled.
             | Q(
