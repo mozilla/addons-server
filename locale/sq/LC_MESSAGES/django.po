@@ -4884,7 +4884,7 @@ msgid "Weight breakdown not available."
 msgstr "Analiza e peshës s’është gati."
 
 msgid "Is available to be used in reviews"
-msgstr ""
+msgstr "Është gati për t’u përdorur në shqyrtime"
 
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "S’mund të parashtroni koment, nëse është përkufizuar parametri `canned_response`."
