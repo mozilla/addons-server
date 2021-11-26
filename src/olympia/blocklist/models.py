@@ -226,8 +226,16 @@ class BlocklistSubmission(ModelBase):
         max_length=255, blank=False, default=Block.MIN, validators=(no_asterisk,)
     )
     max_version = VersionStringField(max_length=255, blank=False, default=Block.MAX)
-    url = models.CharField(max_length=255, blank=True)
-    reason = models.TextField(blank=True)
+    url = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='The URL related to this block, i.e. the bug filed.',
+    )
+    reason = models.TextField(
+        blank=True,
+        help_text='Note this reason will be displayed'
+        ' publicly on the block-addon pages.',
+    )
     updated_by = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
     signoff_by = models.ForeignKey(
         UserProfile, null=True, on_delete=models.SET_NULL, related_name='+'
