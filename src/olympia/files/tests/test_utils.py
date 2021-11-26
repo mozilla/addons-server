@@ -499,6 +499,27 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             'install_origins'
         ] == ['https://bâr.net', 'https://alice.org']
 
+    def test_install_origins_wrong_type_ignored(self):
+        self.parse({'install_origins': 42})['install_origins'] == []
+        self.parse({'install_origins': None})['install_origins'] == []
+        self.parse({'install_origins': {}})['install_origins'] == []
+
+    def test_install_origins_wrong_type_inside_list_ignored(self):
+        self.parse({'install_origins': [42]})['install_origins'] == []
+        self.parse({'install_origins': [None]})['install_origins'] == []
+        self.parse({'install_origins': [{}]})['install_origins'] == []
+        self.parse({'install_origins': [['https://inception.com']]})[
+            'install_origins'
+        ] == []
+        self.parse({'install_origins': [42, 'https://goo.com']})['install_origins'] == [
+            'https://goo.com'
+        ]
+
+        # 'flop' is not a valid origin, but the linter is responsible for that
+        # validation. We just care about it being a string so that we don't
+        # raise a TypeError later in the process.
+        self.parse({'install_origins': [42, 'flop']})['install_origins'] == ['flop']
+
 
 class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_langpack(self):

@@ -268,7 +268,15 @@ class ManifestJSONExtractor:
 
     @property
     def install_origins(self):
-        return self.get('install_origins', [])
+        value = self.get('install_origins', [])
+        # We will be processing install_origins regardless of validation
+        # status, so it can be invalid. We need to ensure it's a list of
+        # strings at least, to prevent exceptions later.
+        return (
+            list(filter(lambda item: isinstance(item, str), value))
+            if isinstance(value, list)
+            else []
+        )
 
     def apps(self):
         """Get `AppVersion`s for the application."""
@@ -404,6 +412,7 @@ class ManifestJSONExtractor:
             'homepage': self.homepage,
             'default_locale': self.get('default_locale'),
             'manifest_version': self.get('manifest_version'),
+            'install_origins': self.install_origins,
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -422,7 +431,6 @@ class ManifestJSONExtractor:
                     # webextensions don't.
                     'strict_compatibility': data['type'] == amo.ADDON_LPAPP,
                     'is_experiment': self.is_experiment,
-                    'install_origins': self.install_origins,
                 }
             )
             if self.type == amo.ADDON_EXTENSION:

@@ -278,9 +278,9 @@ def validate_file_path(path, channel):
         )
         return json.dumps(results)
 
-    # Annotate results with potential legacy add-ons restrictions.
+    parsed_data = {}
     try:
-        parse_addon(path, minimal=True)
+        parsed_data = parse_addon(path, minimal=True)
     except NoManifestFound:
         # If no manifest is found the linter will pick it up and
         # will know what message to return to the developer.
@@ -291,7 +291,9 @@ def validate_file_path(path, channel):
         pass
 
     log.info('Running linter on %s', path)
-    return run_addons_linter(path, channel=channel)
+    results = run_addons_linter(path, channel=channel)
+    results = annotations.annotate_validation_results(results, parsed_data)
+    return results
 
 
 @validation_task
@@ -307,9 +309,8 @@ def forward_linter_results(results, upload_pk):
 @task
 @use_primary_db
 def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_signed):
-    """Annotate a set of validation results and save them to the given
-    FileUpload instance.
-    """
+    """Save a set of validation results to a FileUpload instance corresponding
+    to the given upload_pk."""
     upload = FileUpload.objects.get(pk=upload_pk)
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
@@ -370,8 +371,8 @@ def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_sign
 @task(ignore_result=False)
 @use_primary_db
 def handle_file_validation_result(results, file_id, *args):
-    """Annotate a set of validation results and save them to the given File
-    instance."""
+    """Save a set of validation results to a FileValidation instance
+    corresponding to the given file_id."""
 
     file_ = File.objects.get(pk=file_id)
     return FileValidation.from_json(file_, results).pk

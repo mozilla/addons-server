@@ -3,6 +3,7 @@ import os
 
 from base64 import b64encode
 from urllib.parse import urlparse
+from fnmatch import fnmatch
 
 import django.dispatch
 
@@ -1108,10 +1109,14 @@ class ApplicationsVersions(models.Model):
         return f'{self.get_application_display()} {self.min} - {self.max}'
 
 
-class InstallOrigin(models.Model):
+class InstallOrigin(ModelBase):
     version = models.ForeignKey(Version, on_delete=models.CASCADE)
     origin = models.CharField(max_length=255)
     base_domain = models.CharField(max_length=255)
+
+    @staticmethod
+    def punycode(hostname):
+        return hostname.encode('idna').decode('utf-8').lower()
 
     def _extract_base_domain_from_origin(self, origin):
         """Extract base domain from an origin according to publicsuffix list.
@@ -1123,7 +1128,7 @@ class InstallOrigin(models.Model):
         # behavior - idna=True is the default and that means it expects input
         # to be idna-encoded. That's the format we'd like to return anyway, to
         # make it obvious to reviewers/admins when the base domain is an IDN.
-        hostname = hostname.encode('idna').decode('utf-8').lower()
+        hostname = self.punycode(hostname)
         return get_sld(hostname)
 
     def save(self, *args, **kwargs):
@@ -1132,3 +1137,44 @@ class InstallOrigin(models.Model):
 
     def __str__(self):
         return f'{self.version.version} : {self.origin} ({self.base_domain})'
+
+
+class DeniedInstallOrigin(ModelBase):
+    hostname_pattern = models.CharField(
+        max_length=255,
+        unique=True,
+        help_text='Hostname unix-style pattern to deny.',
+    )
+    include_subdomains = models.BooleanField(
+        default=False,
+        help_text=(
+            'Automatically check for subdomains of hostname pattern '
+            '(Additional check with `*.` prepended to the original pattern).'
+        ),
+    )
+
+    def save(self, *args, **kwargs):
+        # Transform pattern so that we always compare things in punycode.
+        self.hostname_pattern = InstallOrigin.punycode(self.hostname_pattern)
+        return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.hostname_pattern
+
+    @classmethod
+    def find_denied_origins(cls, install_origins):
+        """
+        Filter input list of origins to only return denied origins (Empty set
+        returned means all the install origins passed in argument are allowed).
+        """
+        denied = set()
+        denied_install_origins = cls.objects.all()
+        for origin in install_origins:
+            hostname = InstallOrigin.punycode(urlparse(origin).netloc)
+            for denied_origin in denied_install_origins:
+                if fnmatch(hostname, denied_origin.hostname_pattern) or (
+                    denied_origin.include_subdomains
+                    and fnmatch(hostname, f'*.{denied_origin.hostname_pattern}')
+                ):
+                    denied.add(origin)
+        return denied
