@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-26 22:20+0000\n"
+"PO-Revision-Date: 2021-11-26 22:32+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4369,11 +4369,11 @@ msgstr "Přestaňte webům dávat svou e-mailovou adresu. Firefox Relay chrání
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
-msgstr ""
+msgstr "Těšte se z automaticky se měnících barev Firefoxu sladěných s denním světlem a noční temnotou."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Zbavte se na YouTube rušivých prvků. Odstraňte návrhy souvisejících a doporučených videí, komentáře a další věci."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
