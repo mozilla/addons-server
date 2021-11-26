@@ -1177,11 +1177,7 @@ class Addon(OnChangeMixin, ModelBase):
             return jinja_helpers.user_media_url('addon_icons') + path
 
     def get_default_icon_url(self, size):
-        # We don't update the default icon very frequently so there is no
-        # automated query parameter for cachebusting...
-        return '{}img/addon-icons/{}-{}.png?v=20210601'.format(
-            settings.STATIC_URL, 'default', size
-        )
+        return staticfiles_storage.url(f'img/addon-icons/default-{size}.png')
 
     @use_primary_db
     def update_status(self, ignore_version=None):

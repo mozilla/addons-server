@@ -9,10 +9,6 @@ from olympia.access import acl
 from urllib.parse import quote
 
 
-def static_url(request):
-    return {'CDN_HOST': settings.CDN_HOST, 'STATIC_URL': settings.STATIC_URL}
-
-
 def i18n(request):
     lang = get_language()
     return {

@@ -803,16 +803,30 @@ class TestAddonModels(TestCase):
 
         addon = Addon.objects.get(pk=3615)
         addon.icon_type = None
-        assert addon.get_icon_url(32).endswith('icons/default-32.png?v=20210601')
+        assert (
+            addon.get_icon_url(32)
+            == 'http://testserver/static/img/addon-icons/default-32.png'
+        )
 
     def test_icon_url_default(self):
-        a = Addon.objects.get(pk=3615)
-        a.update(icon_type='')
-        default = 'icons/default-32.png?v=20210601'
-        assert a.get_icon_url(32).endswith(default)
-        assert a.get_icon_url(32).endswith(default)
-        assert a.get_icon_url(32, use_default=True).endswith(default)
-        assert a.get_icon_url(32, use_default=False) is None
+        addon = Addon.objects.get(pk=3615)
+        addon.update(icon_type='')
+        # In prod there would be some cachebusting because we're using
+        # staticfiles's storage url() method, but in tests where we don't run
+        # collectstatic first that is not the case.
+        assert (
+            addon.get_icon_url(32)
+            == 'http://testserver/static/img/addon-icons/default-32.png'
+        )
+        assert (
+            addon.get_icon_url(64)
+            == 'http://testserver/static/img/addon-icons/default-64.png'
+        )
+        assert (
+            addon.get_icon_url(32, use_default=True)
+            == 'http://testserver/static/img/addon-icons/default-32.png'
+        )
+        assert addon.get_icon_url(32, use_default=False) is None
 
     def test_thumbnail_url(self):
         """
