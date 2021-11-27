@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-25 02:50+0000\n"
+"PO-Revision-Date: 2021-11-27 08:01+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4368,7 +4368,7 @@ msgstr "Sluta ge webbplatser din riktiga e-postadress. Firefox Relay skyddar din
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
-msgstr ""
+msgstr "Njut av att automatiskt ändra färger på Firefox i synk med dagens ljus och nattens mörker."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
