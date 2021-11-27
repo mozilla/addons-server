@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-27 15:12+0000\n"
+"PO-Revision-Date: 2021-11-27 15:14+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4395,7 +4395,7 @@ msgstr "Eliminearje ôfliedingen op YouTube. Smyt relatearre en oanrekommandearr
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Nim emoji’s oeral op it ynternet mei."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
