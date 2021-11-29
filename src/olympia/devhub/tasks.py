@@ -292,8 +292,8 @@ def validate_file_path(path, channel):
 
     log.info('Running linter on %s', path)
     results = run_addons_linter(path, channel=channel)
-    results = annotations.annotate_validation_results(results, parsed_data)
-    return results
+    annotations.annotate_validation_results(results, parsed_data)
+    return json.dumps(results)
 
 
 @validation_task
@@ -518,21 +518,20 @@ def run_addons_linter(path, channel):
 
     parsed_data = json.loads(force_str(output))
 
-    result = json.dumps(fix_addons_linter_output(parsed_data, channel))
-    track_validation_stats(result)
+    results = fix_addons_linter_output(parsed_data, channel)
+    track_validation_stats(results)
 
-    return result
+    return results
 
 
-def track_validation_stats(json_result):
+def track_validation_stats(results):
     """
-    Given a raw JSON string of validator results, log some stats.
+    Given a dict of validator results, log some stats.
     """
-    result = json.loads(force_str(json_result))
-    result_kind = 'success' if result['errors'] == 0 else 'failure'
+    result_kind = 'success' if results['errors'] == 0 else 'failure'
     statsd.incr(f'devhub.linter.results.all.{result_kind}')
 
-    listed_tag = 'listed' if result['metadata']['listed'] else 'unlisted'
+    listed_tag = 'listed' if results['metadata']['listed'] else 'unlisted'
 
     # Track listed/unlisted success/fail.
     statsd.incr(f'devhub.linter.results.{listed_tag}.{result_kind}')
