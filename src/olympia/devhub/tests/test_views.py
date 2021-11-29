@@ -1381,7 +1381,7 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_not_a_valid_xpi(self, run_addons_linter_mock):
-        run_addons_linter_mock.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('unopenable.xpi')
         # We never even reach the linter (we can't: because we're repacking
         # zip files, we should raise an error if the zip is invalid before
@@ -1405,7 +1405,7 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_invalid_zip_file(self, run_addons_linter_mock):
-        run_addons_linter_mock.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file(
             '../../../files/fixtures/files/archive-with-invalid-chars-in-filenames.zip'
         )
@@ -1426,10 +1426,10 @@ class TestUploadDetail(UploadMixin, TestCase):
         assert message == [('Invalid file name in archive: path\\to\\file.txt', False)]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_experiment_xpi_allowed(self, mock_validator):
+    def test_experiment_xpi_allowed(self, run_addons_linter_mock):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Experiments:submit')
-        mock_validator.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file(
             '../../../files/fixtures/files/experiment_inside_webextension.xpi'
         )
@@ -1441,8 +1441,8 @@ class TestUploadDetail(UploadMixin, TestCase):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_experiment_xpi_not_allowed(self, mock_validator):
-        mock_validator.return_value = json.dumps(self.validation_ok())
+    def test_experiment_xpi_not_allowed(self, run_addons_linter_mock):
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file(
             '../../../files/fixtures/files/experiment_inside_webextension.xpi'
         )
@@ -1461,11 +1461,11 @@ class TestUploadDetail(UploadMixin, TestCase):
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_restricted_addon_allowed(self, mock_validator):
+    def test_restricted_addon_allowed(self, run_addons_linter_mock):
         user = user_factory()
         self.grant_permission(user, 'SystemAddon:Submit')
         assert self.client.login(email=user.email)
-        mock_validator.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(
@@ -1475,10 +1475,10 @@ class TestUploadDetail(UploadMixin, TestCase):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_restricted_addon_not_allowed(self, mock_validator):
+    def test_restricted_addon_not_allowed(self, run_addons_linter_mock):
         user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
-        mock_validator.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(
@@ -1498,12 +1498,12 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
-    def test_mozilla_signed_allowed(self, mock_get_signature, mock_validator):
+    def test_mozilla_signed_allowed(self, get_signer_mock, run_addons_linter_mock):
         user = user_factory()
         assert self.client.login(email=user.email)
         self.grant_permission(user, 'SystemAddon:Submit')
-        mock_validator.return_value = json.dumps(self.validation_ok())
-        mock_get_signature.return_value = 'Mozilla Extensions'
+        run_addons_linter_mock.return_value = self.validation_ok()
+        get_signer_mock.return_value = 'Mozilla Extensions'
         self.upload_file(
             '../../../files/fixtures/files/webextension_signed_already.xpi'
         )
@@ -1515,10 +1515,10 @@ class TestUploadDetail(UploadMixin, TestCase):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
-    def test_mozilla_signed_not_allowed_not_allowed(self, mock_get_signature):
+    def test_mozilla_signed_not_allowed_not_allowed(self, get_signer_mock):
         user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
-        mock_get_signature.return_value = 'Mozilla Extensions'
+        get_signer_mock.return_value = 'Mozilla Extensions'
         self.upload_file(
             '../../../files/fixtures/files/webextension_signed_already.xpi'
         )
@@ -1537,13 +1537,13 @@ class TestUploadDetail(UploadMixin, TestCase):
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_system_addon_update_allowed(self, mock_validator):
+    def test_system_addon_update_allowed(self, run_addons_linter_mock):
         """Updates to system addons are allowed from anyone."""
         user = user_factory(email='pinkpanda@notzilla.com')
         addon = addon_factory(guid='systemaddon@mozilla.org')
         AddonUser.objects.create(addon=addon, user=user)
         assert self.client.login(email='pinkpanda@notzilla.com')
-        mock_validator.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(

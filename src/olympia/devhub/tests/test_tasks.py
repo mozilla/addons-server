@@ -316,7 +316,7 @@ class TestTrackValidatorStats(TestCase):
     def result(self, **overrides):
         result = VALIDATOR_SKELETON_RESULTS.copy()
         result.update(overrides)
-        return json.dumps(result)
+        return result
 
     def test_count_all_successes(self):
         tasks.track_validation_stats(self.result(errors=0))
@@ -336,30 +336,28 @@ class TestTrackValidatorStats(TestCase):
 
 
 class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
-    mock_sign_addon_warning = json.dumps(
-        {
-            'warnings': 1,
-            'errors': 0,
-            'messages': [
-                {
-                    'context': None,
-                    'editors_only': False,
-                    'description': 'Add-ons which are already signed will be '
-                    're-signed when published on AMO. This will '
-                    'replace any existing signatures on the add-on.',
-                    'column': None,
-                    'type': 'warning',
-                    'id': ['testcases_content', 'signed_xpi'],
-                    'file': '',
-                    'tier': 2,
-                    'message': 'Package already signed',
-                    'uid': '87326f8f699f447e90b3d5a66a78513e',
-                    'line': None,
-                    'compatibility_type': None,
-                },
-            ],
-        }
-    )
+    mock_sign_addon_warning = {
+        'warnings': 1,
+        'errors': 0,
+        'messages': [
+            {
+                'context': None,
+                'editors_only': False,
+                'description': 'Add-ons which are already signed will be '
+                're-signed when published on AMO. This will '
+                'replace any existing signatures on the add-on.',
+                'column': None,
+                'type': 'warning',
+                'id': ['testcases_content', 'signed_xpi'],
+                'file': '',
+                'tier': 2,
+                'message': 'Package already signed',
+                'uid': '87326f8f699f447e90b3d5a66a78513e',
+                'line': None,
+                'compatibility_type': None,
+            },
+        ],
+    }
 
     def setUp(self):
         super().setUp()
@@ -369,14 +367,14 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_pass_validation(self, _mock):
-        _mock.return_value = '{"errors": 0}'
+        _mock.return_value = {'errors': 0}
         upload = self.get_upload(abspath=self.valid_path, with_validation=False)
         tasks.validate(upload, listed=True)
         assert upload.reload().valid
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_fail_validation(self, _mock):
-        _mock.return_value = '{"errors": 2}'
+        _mock.return_value = {'errors': 2}
         upload = self.get_upload(abspath=self.valid_path, with_validation=False)
         tasks.validate(upload, listed=True)
         assert not upload.reload().valid
@@ -427,7 +425,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_calls_run_linter(self, run_addons_linter_mock):
-        run_addons_linter_mock.return_value = '{"errors": 0}'
+        run_addons_linter_mock.return_value = {'errors': 0}
         upload = self.get_upload(abspath=self.valid_path, with_validation=False)
         assert not upload.valid
         tasks.validate(upload, listed=True)
@@ -456,11 +454,9 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
             # This is a relatively small add-on but we are making sure that
             # we're using a temporary file for all our linter output.
-            result = json.loads(
-                tasks.run_addons_linter(
-                    get_addon_file('webextension_containing_binary_files.xpi'),
-                    amo.RELEASE_CHANNEL_LISTED,
-                )
+            result = tasks.run_addons_linter(
+                get_addon_file('webextension_containing_binary_files.xpi'),
+                amo.RELEASE_CHANNEL_LISTED,
             )
 
             assert tmpf.call_count == 2
@@ -530,7 +526,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
         mv3_path = get_addon_file('webextension_mv3.xpi')
         result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
-        assert json.loads(result or '{}').get('errors') == 1
+        assert result.get('errors') == 1
 
     @override_switch('enable-mv3-submissions', active=True)
     def test_mv3_submission_enabled(self):
@@ -546,13 +542,13 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
         mv3_path = get_addon_file('webextension_mv3.xpi')
         result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
-        assert json.loads(result or '{}').get('errors') == 0
+        assert result.get('errors') == 0
 
         # double check v2 manifests still work
         result = tasks.run_addons_linter(
             self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
         )
-        assert json.loads(result or '{}').get('errors') == 0
+        assert result.get('errors') == 0
 
 
 class TestValidateFilePath(ValidatorTestCase):
@@ -593,6 +589,7 @@ class TestValidateFilePath(ValidatorTestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_manifest_not_found_error(self, run_addons_linter_mock, parse_addon_mock):
         parse_addon_mock.side_effect = NoManifestFound(message='Fôo')
+        run_addons_linter_mock.return_value = {}
         # When parse_addon() raises a NoManifestFound error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
@@ -606,6 +603,7 @@ class TestValidateFilePath(ValidatorTestCase):
         self, run_addons_linter_mock, parse_addon_mock
     ):
         parse_addon_mock.side_effect = NoManifestFound(message='Fôo')
+        run_addons_linter_mock.return_value = {}
         # When parse_addon() raises a InvalidManifest error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
@@ -613,6 +611,25 @@ class TestValidateFilePath(ValidatorTestCase):
             channel=amo.RELEASE_CHANNEL_LISTED,
         )
         assert run_addons_linter_mock.call_count == 1
+
+    @mock.patch('olympia.devhub.tasks.annotations.annotate_validation_results')
+    @mock.patch('olympia.devhub.tasks.parse_addon')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_validate_file_path_mocks(
+        self, run_addons_linter_mock, parse_addon_mock, annotate_validation_results_mock
+    ):
+        parse_addon_mock.return_value = mock.Mock()
+        run_addons_linter_mock.return_value = {'fake_results': True}
+        tasks.validate_file_path(
+            get_addon_file('webextension.xpi'),
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
+        assert parse_addon_mock.call_count == 1
+        assert run_addons_linter_mock.call_count == 1
+        assert annotate_validation_results_mock.call_count == 1
+        annotate_validation_results_mock.assert_called_with(
+            run_addons_linter_mock.return_value, parse_addon_mock.return_value
+        )
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
