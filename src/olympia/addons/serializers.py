@@ -18,6 +18,7 @@ from olympia.api.fields import (
     EmailTranslationField,
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
+    LazyChoiceField,
     OutgoingURLField,
     OutgoingURLTranslationField,
     ReverseChoiceField,
@@ -38,6 +39,7 @@ from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedAddon
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.ratings.utils import get_grouped_ratings
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -46,7 +48,7 @@ from olympia.versions.models import (
     VersionPreview,
 )
 
-from .models import Addon, DeniedSlug, Preview, ReplacementAddon, attach_tags
+from .models import Addon, DeniedSlug, Preview, ReplacementAddon
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -788,7 +790,12 @@ class AddonSerializer(serializers.ModelSerializer):
     summary = TranslationSerializerField(required=False, max_length=250)
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)
-    tags = serializers.SerializerMethodField()
+    tags = serializers.ListField(
+        child=LazyChoiceField(choices=Tag.objects.values_list('tag_text', flat=True)),
+        max_length=amo.MAX_TAGS,
+        source='tag_list',
+        required=False,
+    )
     type = ReverseChoiceField(
         choices=list(amo.ADDON_TYPE_CHOICES_API.items()), read_only=True
     )
@@ -853,6 +860,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'summary',
             'support_email',
             'support_url',
+            'tags',
             'version',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
@@ -884,13 +892,6 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def get_has_privacy_policy(self, obj):
         return bool(getattr(obj, 'has_privacy_policy', obj.privacy_policy))
-
-    def get_tags(self, obj):
-        if not hasattr(obj, 'tag_list'):
-            attach_tags([obj])
-        # attach_tags() might not have attached anything to the addon, if it
-        # had no tags.
-        return getattr(obj, 'tag_list', [])
 
     def get_url(self, obj):
         # Use absolutify(get_detail_url()), get_absolute_url() calls
@@ -995,6 +996,7 @@ class AddonSerializer(serializers.ModelSerializer):
         )
         # Add categories
         addon.set_categories(validated_data.get('all_categories', []))
+        addon.set_tag_list(validated_data.get('tag_list', []))
 
         self.fields['version'].create(
             {**validated_data.get('version', {}), 'addon': addon}
@@ -1019,6 +1021,9 @@ class AddonSerializer(serializers.ModelSerializer):
         if 'all_categories' in validated_data:
             del instance.all_categories  # super.update will have set it.
             instance.set_categories(validated_data['all_categories'])
+        if 'tag_list' in validated_data:
+            del instance.tag_list  # super.update will have set it.
+            instance.set_tag_list(validated_data['tag_list'])
         return instance
 
 
@@ -1046,6 +1051,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     authors = BaseUserSerializer(many=True, source='listed_authors')
     current_version = ESCurrentVersionSerializer()
     previews = ESPreviewSerializer(many=True, source='current_previews')
+    tags = serializers.ListField(source='tag_list')
     _score = serializers.SerializerMethodField()
 
     datetime_fields = ('created', 'last_updated', 'modified')
