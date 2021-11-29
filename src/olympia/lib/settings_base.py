@@ -1269,8 +1269,7 @@ CSP_EXCLUDE_URL_PREFIXES = ()
 
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
 # will default to being open to anything.
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_BASE_URI = ("'self'",)
+CSP_DEFAULT_SRC = ("'none'",)
 CSP_CONNECT_SRC = (
     "'self'",
     'https://sentry.prod.mozaws.net',
@@ -1282,18 +1281,15 @@ CSP_FONT_SRC = (
     PROD_STATIC_URL,
 )
 CSP_CHILD_SRC = (
-    "'self'",
     'https://www.google.com/recaptcha/',
     'https://www.recaptcha.net/recaptcha/',
 )
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
-    'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
     PROD_STATIC_URL,
     PROD_MEDIA_URL,
-    'https://static.addons.mozilla.net',  # CDN origin server.
     'https://sentry.prod.mozaws.net',
 )
 CSP_MEDIA_SRC = ('https://videos.cdn.mozilla.net',)
@@ -1308,7 +1304,6 @@ CSP_SCRIPT_SRC = (
     PROD_STATIC_URL,
 )
 CSP_STYLE_SRC = (
-    "'self'",
     "'unsafe-inline'",
     PROD_STATIC_URL,
 )
