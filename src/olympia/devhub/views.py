@@ -1586,7 +1586,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
         addon.slug,
         version.pk,
     )
-    timer.log_interval('1.form populated')
+    timer.log_interval('1.form_populated')
 
     if request.method == 'POST' and form.is_valid():
         log.info(
@@ -1594,7 +1594,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
             addon.slug,
             version.pk,
         )
-        timer.log_interval('2.form validated')
+        timer.log_interval('2.form_validated')
         if form.cleaned_data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True}
@@ -1618,7 +1618,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
                 addon.slug,
                 version.pk,
             )
-            timer.log_interval('3.form saved')
+            timer.log_interval('3.form_saved')
 
         result = redirect(next_view, *redirect_args)
         log.info(
@@ -1626,7 +1626,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
             addon.slug,
             version.pk,
         )
-        timer.log_interval('4.redirecting to next view')
+        timer.log_interval('4.redirecting_to_next_view')
         return result
     context = {
         'form': form,
@@ -1640,7 +1640,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
         addon.slug,
         version.pk,
     )
-    timer.log_interval('5.validation failed, re-displaying the template')
+    timer.log_interval('5.validation_failed_re-displaying_the_template')
     return TemplateResponse(
         request, 'devhub/addons/submit/source.html', context=context
     )
