@@ -13,10 +13,5 @@ class Migration(migrations.Migration):
         migrations.RemoveField(
             model_name='file',
             name='is_webextension',
-        ),
-        migrations.AlterField(
-            model_name='fileupload',
-            name='source',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'Developer Hub'), (2, 'Signing API'), (3, 'Addon API')], default=None, null=True),
-        ),
+        )
     ]
