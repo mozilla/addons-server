@@ -121,7 +121,6 @@ class TestEditLicense(TestOwnership):
             builtin=11,
             name='copyright',
             url='license.url',
-            creative_commons=True,
             on_form=True,
         )
 
@@ -801,7 +800,7 @@ class TestEditAuthorStaticTheme(TestEditAuthor):
         super().setUp()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.cc_license = License.objects.create(
-            builtin=11, url='license.url', creative_commons=True, on_form=True
+            builtin=11, url='license.url', on_form=True
         )
         self.version.update(license=self.cc_license)
 

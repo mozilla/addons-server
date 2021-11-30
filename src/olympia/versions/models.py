@@ -37,7 +37,7 @@ from olympia.amo.models import (
 )
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.licenses import CC_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
@@ -1027,7 +1027,10 @@ models.signals.post_delete.connect(
 
 class LicenseManager(ManagerBase):
     def builtins(self, cc=False):
-        return self.filter(builtin__gt=0, creative_commons=cc).order_by('builtin')
+        cc_filter = Q(builtin__in=CC_LICENSES.keys())
+        if not cc:
+            cc_filter = ~cc_filter
+        return self.filter(cc_filter, builtin__gt=0).order_by('builtin')
 
 
 class License(ModelBase):
@@ -1041,10 +1044,6 @@ class License(ModelBase):
     on_form = models.BooleanField(
         default=False, help_text='Is this a license choice in the devhub?'
     )
-    icons = models.CharField(
-        max_length=255, null=True, help_text='Space-separated list of icon identifiers.'
-    )
-    creative_commons = models.BooleanField(default=False)
 
     objects = LicenseManager()
 
@@ -1059,6 +1058,14 @@ class License(ModelBase):
     @property
     def _constant(self):
         return LICENSES_BY_BUILTIN.get(self.builtin)
+
+    @property
+    def creative_commons(self):
+        return bool((constant := self._constant) and constant.creative_commons)
+
+    @property
+    def icons(self):
+        return ((constant := self._constant) and constant.icons) or ''
 
 
 models.signals.pre_save.connect(

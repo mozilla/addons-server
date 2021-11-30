@@ -2240,7 +2240,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         assert response.data == {'license': ['Wrong addon type for this license.']}
 
         self.addon.update(type=amo.ADDON_EXTENSION)
-        self.version.license.update(creative_commons=True)
+        self.version.license.update(builtin=12)
         response = self.client.patch(
             self.url,
             data={'license': self.version.license.id},

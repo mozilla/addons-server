@@ -86,3 +86,6 @@ ALL_LICENSES = (
     LICENSE_COPYRIGHT_AR,
 )
 LICENSES_BY_BUILTIN = {license.builtin: license for license in ALL_LICENSES}
+CC_LICENSES = {
+    license.builtin: license for license in ALL_LICENSES if license.creative_commons
+}
