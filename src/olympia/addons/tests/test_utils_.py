@@ -491,8 +491,9 @@ class TestPermissionEnablerCreator(TestCase):
             site_permissions=['webmidi', 'webblah'],
         )
         addon = addon_factory(
-            version_kw={'version': '1.0'}, type=amo.ADDON_PERMISSION_ENABLER,
-            users=[creator.user]
+            version_kw={'version': '1.0'},
+            type=amo.ADDON_PERMISSION_ENABLER,
+            users=[creator.user],
         )
         initial_version = addon.versions.get()
         self.make_addon_unlisted(addon)
@@ -533,8 +534,9 @@ class TestPermissionEnablerCreator(TestCase):
             site_permissions=['webmidi', 'webblah'],
         )
         addon = addon_factory(
-            version_kw={'version': '1.0'}, type=amo.ADDON_PERMISSION_ENABLER,
-            users=[user_factory()]
+            version_kw={'version': '1.0'},
+            type=amo.ADDON_PERMISSION_ENABLER,
+            users=[user_factory()],
         )
         self.make_addon_unlisted(addon)
         with self.assertRaises(ImproperlyConfigured):
