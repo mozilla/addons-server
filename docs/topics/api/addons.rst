@@ -453,6 +453,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is only present in version detail detail endpoint: all other endpoints omit it.
     :>json string|null license.url: The URL of the full text of license.
+    :>json string|null license.slug: The license :ref:`slug <license-list>`, for non-custom (predefined) licenses.
     :>json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
@@ -485,7 +486,7 @@ This endpoint allows a submission of an upload to an existing add-on to create a
         where min/max versions from the manifest, or defaults, will be used.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
-    :<json int license: The id of a non-custom license. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
+    :<json string license: The :ref:`slug of a non-custom license <license-list>`. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
@@ -567,7 +568,7 @@ This endpoint allows the metadata for an existing version to be edited.
     :<json object|array compatibility: Either an object detailing which :ref:`applications <addon-detail-application>` and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`, where default min/max versions will be used if not already defined.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
-    :<json int license: The id of a non-custom license. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
+    :<json string license: The :ref:`slug of a non-custom license <license-list>`. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).

@@ -1588,6 +1588,7 @@ DRF_API_GATES = {
         'is-restart-required-shim',
         'is-webextension-shim',
         'version-files',
+        'del-version-license-slug',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1600,6 +1601,7 @@ DRF_API_GATES = {
         'is-restart-required-shim',
         'is-webextension-shim',
         'version-files',
+        'del-version-license-slug',
     ),
     'v5': (
         'addons-search-_score-field',

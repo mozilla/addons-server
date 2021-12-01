@@ -938,15 +938,14 @@ def version_factory(file_kw=None, **kw):
         ),
     )
     application = kw.pop('application', amo.FIREFOX.id)
+    license_kw = kw.pop('license_kw', {})
     if not kw.get('license') and not kw.get('license_id'):
         # Is there a built-in one we can use?
         builtins = License.objects.builtins()
         if builtins.exists():
             kw['license_id'] = builtins[0].id
         else:
-            license_kw = {'builtin': 99}
-            license_kw.update(kw.get('license_kw', {}))
-            kw['license'] = license_factory(**license_kw)
+            kw['license'] = license_factory(**{'builtin': 99, **license_kw})
     promotion_approved = kw.pop('promotion_approved', False)
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = _get_created(kw.pop('created', 'now'))

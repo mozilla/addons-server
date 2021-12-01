@@ -1067,6 +1067,10 @@ class License(ModelBase):
     def icons(self):
         return ((constant := self._constant) and constant.icons) or ''
 
+    @property
+    def slug(self):
+        return ((constant := self._constant) and constant.slug) or None
+
 
 models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='license_translations'

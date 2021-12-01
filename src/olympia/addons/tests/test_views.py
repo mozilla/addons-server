@@ -745,7 +745,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
                 'categories': {'firefox': ['bookmarks']},
                 'version': {
                     'upload': self.upload.uuid,
-                    'license': self.license.id,
+                    'license': self.license.slug,
                 },
             },
         )
@@ -794,7 +794,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
                     'summary': {'en-US': 'replacement summary'},
                     'version': {
                         'upload': self.upload.uuid,
-                        'license': self.license.id,
+                        'license': self.license.slug,
                     },
                 },
             )
@@ -996,7 +996,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'summary': {'en-US': 'new summary'},
             'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
-            'version': {'upload': self.upload.uuid, 'license': self.license.id},
+            'version': {'upload': self.upload.uuid, 'license': self.license.slug},
         }
         response = self.client.post(
             self.url,
@@ -1573,7 +1573,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             api_version='v5',
         )
         self.client.login_api(self.user)
-        self.license = License.objects.create(builtin=1)
+        self.license = License.objects.create(builtin=2)
         self.minimal_data = {'upload': self.upload.uuid}
 
     def test_basic_unlisted(self):
@@ -1605,7 +1605,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert self.addon.status == amo.STATUS_NULL
         response = self.client.post(
             self.url,
-            data={**self.minimal_data, 'license': self.license.id},
+            data={**self.minimal_data, 'license': self.license.slug},
         )
         assert response.status_code == 201, response.content
         data = response.data
@@ -1703,7 +1703,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         # fields that aren't set.
         response = self.client.post(
             self.url,
-            data={'upload': self.upload.uuid, 'license': self.license.id},
+            data={'upload': self.upload.uuid, 'license': self.license.slug},
         )
         assert response.status_code == 400, response.content
         assert response.data == {
@@ -1881,6 +1881,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             'text': license_data['text'],
             'is_custom': True,
             'url': 'http://testserver' + version.license_url(),
+            'slug': None,
         }
 
     def test_cannot_supply_both_custom_and_license_id(self):
@@ -1892,7 +1893,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             self.url,
             data={
                 **self.minimal_data,
-                'license': self.license.id,
+                'license': self.license.slug,
                 'custom_license': license_data,
             },
         )
@@ -1930,7 +1931,11 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
-        self.addon = addon_factory(users=(self.user,), guid='@webextension-guid')
+        self.addon = addon_factory(
+            users=(self.user,),
+            guid='@webextension-guid',
+            version_kw={'license_kw': {'builtin': 1}},
+        )
         self.version = self.addon.current_version
         self.url = reverse_ns(
             'addon-version-detail',
@@ -2150,6 +2155,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             'text': license_data['text'],
             'is_custom': True,
             'url': 'http://testserver' + self.version.license_url(),
+            'slug': None,
         }
 
         # And then check we can update an existing custom license
@@ -2170,6 +2176,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             'text': license_data['text'],  # no change
             'is_custom': True,
             'url': 'http://testserver' + self.version.license_url(),
+            'slug': None,
         }
         assert new_license.name == 'neú name'
         assert License.objects.count() == num_licenses
@@ -2198,12 +2205,13 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             'text': license_data['text'],
             'is_custom': True,
             'url': 'http://testserver' + self.version.license_url(),
+            'slug': None,
         }
 
         # and check we can change back to a builtin from a custom license
         response = self.client.patch(
             self.url,
-            data={'license': builtin_license.id},
+            data={'license': builtin_license.slug},
         )
         assert response.status_code == 200, response.content
         data = response.data
@@ -2211,7 +2219,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         self.version.reload()
         assert self.version.license == builtin_license
         assert data['license']['id'] == builtin_license.id
-        assert data['license']['name']['en-US'] == builtin_license.name
+        assert data['license']['name']['en-US'] == str(builtin_license)
         assert data['license']['is_custom'] is False
         assert data['license']['url'] == builtin_license.url
 
@@ -2234,7 +2242,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.patch(
             self.url,
-            data={'license': self.version.license.id},
+            data={'license': self.version.license.slug},
         )
         assert response.status_code == 400, response.content
         assert response.data == {'license': ['Wrong addon type for this license.']}
@@ -2243,7 +2251,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         self.version.license.update(builtin=12)
         response = self.client.patch(
             self.url,
-            data={'license': self.version.license.id},
+            data={'license': self.version.license.slug},
         )
         assert response.status_code == 400, response.content
         assert response.data == {'license': ['Wrong addon type for this license.']}
@@ -2255,7 +2263,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         }
         response = self.client.patch(
             self.url,
-            data={'license': self.version.license.id, 'custom_license': license_data},
+            data={'license': self.version.license.slug, 'custom_license': license_data},
         )
         assert response.status_code == 400, response.content
         assert response.data == {

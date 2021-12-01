@@ -19,28 +19,28 @@ class LICENSE_MPL2(_LicenseBase):
 
 
 class LICENSE_GPL2(_LicenseBase):
-    name = _('GNU General Public License v2.0 or later')
+    name = _('GNU General Public License v2.0')
     url = 'http://www.gnu.org/licenses/gpl-2.0.html'
     builtin = 2
     slug = 'GPL-2.0-or-later'
 
 
 class LICENSE_GPL3(_LicenseBase):
-    name = _('GNU General Public License v3.0 or later')
+    name = _('GNU General Public License v3.0')
     url = 'http://www.gnu.org/licenses/gpl-3.0.html'
     builtin = 3
     slug = 'GPL-3.0-or-later'
 
 
 class LICENSE_LGPL2(_LicenseBase):
-    name = _('GNU Library General Public License v2.1 or later')
+    name = _('GNU Library General Public License v2.1')
     url = 'http://www.gnu.org/licenses/lgpl-2.1.html'
     builtin = 4
     slug = 'LGPL-2.1-or-later'
 
 
 class LICENSE_LGPL3(_LicenseBase):
-    name = _('GNU Library General Public License v3.0 or later')
+    name = _('GNU Library General Public License v3.0')
     url = 'http://www.gnu.org/licenses/lgpl-3.0.html'
     builtin = 5
     slug = 'GPL-3.0-or-later'
@@ -68,7 +68,7 @@ class LICENSE_MPL1(_LicenseBase):
     url = 'http://www.mozilla.org/MPL/MPL-1.1.html'
     builtin = 10
     slug = 'MPL-1.1'
-    on_form = True  # obsolete and unavailable for selection
+    on_form = False  # obsolete and unavailable for selection
 
 
 class LICENSE_CC_COPYRIGHT(_LicenseBase):
@@ -164,3 +164,4 @@ LICENSES_BY_BUILTIN = {license.builtin: license for license in ALL_LICENSES}
 CC_LICENSES = {
     license.builtin: license for license in ALL_LICENSES if license.creative_commons
 }
+LICENSES_BY_SLUG = {license.slug: license for license in ALL_LICENSES if license.slug}
