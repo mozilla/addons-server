@@ -199,7 +199,7 @@ class TestFileUploadViewSet(TestCase):
             response = self._create_post(ip=ip)
             assert response.status_code == 201, response.content
 
-    def test_throttling_verb_ip_hourly(self):
+    def test_throttling_ip_hourly(self):
         ip = '63.245.208.194'
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for _ in range(0, 50):
@@ -212,7 +212,7 @@ class TestFileUploadViewSet(TestCase):
 
             # At this point we should be throttled since we're using the same
             # IP. (we're still inside the frozen time context).
-            response = self._create_post(ip='63.245.208.194')
+            response = self._create_post(ip=ip)
             assert response.status_code == 429, response.content
 
             # One minute later, past the 'burst' throttling period, we're still
@@ -238,7 +238,7 @@ class TestFileUploadViewSet(TestCase):
                 )
 
             # At this point we should be throttled since we're using the same
-            # IP. (we're still inside the frozen time context).
+            # user. (we're still inside the frozen time context).
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 429, response.content
 
@@ -259,7 +259,7 @@ class TestFileUploadViewSet(TestCase):
                 )
 
             # At this point we should be throttled since we're using the same
-            # IP. (we're still inside the frozen time context).
+            # user. (we're still inside the frozen time context).
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 429, response.content
 
@@ -285,7 +285,7 @@ class TestFileUploadViewSet(TestCase):
                 )
 
             # At this point we should be throttled since we're using the same
-            # IP. (we're still inside the frozen time context).
+            # user. (we're still inside the frozen time context).
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 429, response.content
 
