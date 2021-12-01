@@ -1,4 +1,5 @@
-[{
+[
+    {
         "pk": 418039,
         "model": "translations.translation",
         "fields": {
@@ -225,7 +226,7 @@
             "created": "2007-03-05 13:09:56",
             "notes": null,
             "modified": "2010-05-19 16:41:22",
-            "read_dev_agreement": "2019-12-03 00:00:00",
+            "read_dev_agreement": "2021-12-02 00:00:00",
             "last_login": "2010-05-20 13:00:37"
         }
     },
