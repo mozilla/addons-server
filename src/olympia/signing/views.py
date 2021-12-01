@@ -17,7 +17,7 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.api.throttling import addon_upload_throttles
+from olympia.api.throttling import addon_submission_throttles
 from olympia.blocklist.models import Block
 from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.devhub.permissions import IsSubmissionAllowedFor
@@ -80,7 +80,7 @@ def with_addon(allow_missing=False):
 class VersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
-    throttle_classes = addon_upload_throttles
+    throttle_classes = addon_submission_throttles
 
     def check_throttles(self, request):
         # Let users with LanguagePack:Submit permission bypass throttles.

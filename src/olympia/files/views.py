@@ -14,6 +14,7 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import HttpResponseXSendFile
 from olympia.api.authentication import JWTKeyAuthentication, WebTokenAuthentication
 from olympia.api.permissions import AllowOwner, APIGatePermission
+from olympia.api.throttling import file_upload_throttles
 from olympia.devhub import tasks as devhub_tasks
 from olympia.devhub.permissions import IsSubmissionAllowedFor
 
@@ -60,6 +61,7 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
     ]
     authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
     lookup_field = 'uuid'
+    throttle_classes = file_upload_throttles
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
