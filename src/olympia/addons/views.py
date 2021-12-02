@@ -44,7 +44,7 @@ from olympia.api.permissions import (
     GroupPermission,
     RegionalRestriction,
 )
-from olympia.api.throttling import addon_upload_throttles
+from olympia.api.throttling import addon_submission_throttles
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.permissions import IsSubmissionAllowedFor
@@ -210,7 +210,7 @@ class AddonViewSet(
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
-    throttle_classes = addon_upload_throttles
+    throttle_classes = addon_submission_throttles
 
     def get_queryset(self):
         """Return queryset to be used for the view."""
@@ -366,7 +366,7 @@ class AddonVersionViewSet(
     # what the client is requesting to see.
     permission_classes = []
     authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
-    throttle_classes = addon_upload_throttles
+    throttle_classes = addon_submission_throttles
 
     def get_serializer_class(self):
         if (
