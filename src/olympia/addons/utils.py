@@ -23,9 +23,9 @@ from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleErrorMessage
 from olympia.users.models import (
     DeveloperAgreementRestriction,
-    UserProfile,
     UserRestrictionHistory,
 )
+from olympia.users.utils import get_task_user
 
 
 def generate_addon_guid():
@@ -361,7 +361,7 @@ class SitePermissionVersionCreator:
         parsed_data = parse_addon(
             file_obj,
             addon=addon,
-            user=UserProfile.objects.get(pk=settings.TASK_USER_ID),
+            user=get_task_user(),
         )
 
         if addon is None:
