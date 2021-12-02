@@ -154,7 +154,7 @@ def check_addon_ownership(request, addon, dev=False, admin=True, ignore_disabled
     # read-only requests).
     if not ignore_disabled and (
         addon.status == amo.STATUS_DISABLED
-        or addon.type == amo.ADDON_PERMISSION_ENABLER
+        or addon.type == amo.ADDON_SITE_PERMISSION
     ):
         return False
     # Addon owners can do everything else.

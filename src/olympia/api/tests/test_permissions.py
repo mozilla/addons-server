@@ -195,7 +195,7 @@ class TestAllowIfNotPermissionEnablerType(TestCase):
     def setUp(self):
         self.permission = AllowIfNotPermissionEnablerType()
         self.owner = user_factory()
-        self.addon = addon_factory(type=amo.ADDON_PERMISSION_ENABLER)
+        self.addon = addon_factory(type=amo.ADDON_SITE_PERMISSION)
         self.addon.addonuser_set.create(user=self.owner)
         self.request = RequestFactory().get('/')
         self.request.user = AnonymousUser()

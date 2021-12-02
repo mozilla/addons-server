@@ -1268,7 +1268,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
             upload,
             self.version,
             parsed_data={
-                'type': amo.ADDON_PERMISSION_ENABLER,
+                'type': amo.ADDON_SITE_PERMISSION,
                 'site_permissions': ['one', 'two'],
             },
         )

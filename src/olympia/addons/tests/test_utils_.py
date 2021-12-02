@@ -473,7 +473,7 @@ class TestPermissionEnablerCreator(TestCase):
         ]
         assert addon.pk
         assert addon.status == amo.STATUS_NULL
-        assert addon.type == amo.ADDON_PERMISSION_ENABLER
+        assert addon.type == amo.ADDON_SITE_PERMISSION
         assert list(addon.authors.all()) == [creator.user]
         assert file_.status == amo.STATUS_AWAITING_REVIEW
         assert file_._site_permissions
@@ -492,7 +492,7 @@ class TestPermissionEnablerCreator(TestCase):
         )
         addon = addon_factory(
             version_kw={'version': '1.0'},
-            type=amo.ADDON_PERMISSION_ENABLER,
+            type=amo.ADDON_SITE_PERMISSION,
             users=[creator.user],
         )
         initial_version = addon.versions.get()
@@ -517,7 +517,7 @@ class TestPermissionEnablerCreator(TestCase):
         ]
         assert addon.pk
         assert addon.status == amo.STATUS_NULL
-        assert addon.type == amo.ADDON_PERMISSION_ENABLER
+        assert addon.type == amo.ADDON_SITE_PERMISSION
         assert list(addon.authors.all()) == [creator.user]
         assert file_.status == amo.STATUS_AWAITING_REVIEW
         assert file_._site_permissions
@@ -535,7 +535,7 @@ class TestPermissionEnablerCreator(TestCase):
         )
         addon = addon_factory(
             version_kw={'version': '1.0'},
-            type=amo.ADDON_PERMISSION_ENABLER,
+            type=amo.ADDON_SITE_PERMISSION,
             users=[user_factory()],
         )
         self.make_addon_unlisted(addon)

@@ -164,7 +164,7 @@ class File(OnChangeMixin, ModelBase):
         # site_permissions are not related to webext permissions (they are
         # Web APIs a particular site can enable with a specially generated
         # add-on) and thefore are stored separately.
-        if parsed_data.get('type') == amo.ADDON_PERMISSION_ENABLER:
+        if parsed_data.get('type') == amo.ADDON_SITE_PERMISSION:
             site_permissions = list(parsed_data.get('site_permissions', []))
             FileSitePermission.objects.create(
                 permissions=site_permissions,

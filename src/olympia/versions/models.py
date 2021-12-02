@@ -116,7 +116,7 @@ class VersionManager(ManagerBase):
                 addon__disabled_by_user=False,
                 addon__type__in=(
                     amo.ADDON_EXTENSION,
-                    amo.ADDON_PERMISSION_ENABLER,
+                    amo.ADDON_SITE_PERMISSION,
                     amo.ADDON_LPAPP,
                     amo.ADDON_DICT,
                 ),

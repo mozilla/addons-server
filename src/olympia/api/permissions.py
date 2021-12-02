@@ -137,7 +137,7 @@ class AllowIfNotPermissionEnablerType(BasePermission):
         return True
 
     def has_object_permission(self, request, view, obj):
-        return obj.type != amo.ADDON_PERMISSION_ENABLER
+        return obj.type != amo.ADDON_SITE_PERMISSION
 
 
 class AllowOwner(BasePermission):

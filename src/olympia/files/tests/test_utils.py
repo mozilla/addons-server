@@ -629,7 +629,7 @@ class TestPermissionEnabler(AppVersionsMixin, TestCase):
     def test_permission_enabler(self):
         task_user = user_factory(pk=settings.TASK_USER_ID)
         parsed_data = self.parse()
-        assert parsed_data['type'] == amo.ADDON_PERMISSION_ENABLER
+        assert parsed_data['type'] == amo.ADDON_SITE_PERMISSION
         assert parsed_data['site_permissions'] == ['webmidi']
         assert utils.check_xpi_info(parsed_data, user=task_user)
 
