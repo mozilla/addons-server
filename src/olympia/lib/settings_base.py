@@ -1488,9 +1488,10 @@ SIMULATE_NAV_PAY = False
 # When the dev. agreement gets updated, you need users to re-accept it and the
 # config 'last_dev_agreement_change_date' is not set, use this fallback.
 # You won't want to do this for minor format changes.
+# This value should be updated shortly after new agreement became effective.
 # The tuple is passed through to datetime.date, so please use a valid date
 # tuple.
-DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2019, 12, 2, 12, 00)
+DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2021, 12, 1, 12, 00)
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.

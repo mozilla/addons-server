@@ -164,19 +164,6 @@ ADDON_SLUGS = {
     ADDON_STATICTHEME: 'themes',
 }
 
-# These are used in the update API.
-ADDON_SLUGS_UPDATE = {
-    ADDON_EXTENSION: 'extension',
-    _ADDON_THEME: 'theme',
-    ADDON_DICT: 'extension',
-    _ADDON_SEARCH: 'search',
-    ADDON_LPAPP: 'item',
-    ADDON_LPADDON: 'extension',
-    _ADDON_PERSONA: 'background-theme',
-    ADDON_PLUGIN: 'plugin',
-    ADDON_STATICTHEME: 'static-theme',
-}
-
 # A slug to ID map for the search API. Included are all ADDON_TYPES that are
 # found in ADDON_SEARCH_TYPES.
 ADDON_SEARCH_SLUGS = {

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-25 04:34+0000\n"
+"PO-Revision-Date: 2021-12-02 05:37+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1196,7 +1196,7 @@ msgid "Download Firefox themes that celebrate style of all forms—patterns, flo
 msgstr "下载 Firefox 主题，庆祝篇 - 图案、花卉、纹理、模型等。"
 
 msgid "Film and TV"
-msgstr "电影和电视"
+msgstr "影视"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr "下载 Firefox 主题，影视篇。此分类包括像火影忍者这样的动画，像黑客帝国的电影，电视剧（权力的游戏）等内容的主题。"

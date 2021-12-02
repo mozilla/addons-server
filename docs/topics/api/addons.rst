@@ -319,6 +319,7 @@ This endpoint allows a submission of an upload to create a new add-on and settin
     :<json string slug: The add-on slug.  Valid slugs must only contain letters, numbers (`categories L and N <http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table>`_), ``-``, ``_``, ``~``, and can't be all numeric.
     :<json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
+    :<json array tags: List containing the text of the tags set on the add-on.
     :<json object version: Object containing the :ref:`version <version-create-request>` to create this addon with.
 
 ----
@@ -353,6 +354,7 @@ This endpoint allows an add-on's AMO metadata to be edited.
     :<json string slug: The add-on slug.  Valid slugs must only contain letters, numbers (`categories L and N <http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table>`_), ``-``, ``_``, ``~``, and can't be all numeric.
     :<json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
+    :<json array tags: List containing the text of the tags set on the add-on.
 
 
 -------------

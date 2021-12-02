@@ -1793,6 +1793,23 @@ class Addon(OnChangeMixin, ModelBase):
 
         return GitExtractionEntry.objects.filter(addon=self, in_progress=True).exists()
 
+    @cached_property
+    def tag_list(self):
+        attach_tags([self])
+        return self.tag_list
+
+    def set_tag_list(self, new_tag_list):
+        tag_list_to_add = set(new_tag_list) - set(self.tag_list)
+        tag_list_to_drop = set(self.tag_list) - set(new_tag_list)
+        tags = Tag.objects.filter(tag_text__in=(*tag_list_to_add, *tag_list_to_drop))
+
+        for tag in tags:
+            if tag.tag_text in tag_list_to_add:
+                tag.add_tag(self)
+            elif tag.tag_text in tag_list_to_drop:
+                tag.remove_tag(self)
+        self.tag_list = new_tag_list
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
 
