@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django.test.utils import override_settings
 
 import pytest
@@ -13,6 +15,7 @@ from olympia.api.fields import (
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
     GetTextTranslationSerializerFieldFlat,
+    LazyChoiceField,
     FallbackField,
     ReverseChoiceField,
     SlugOrPrimaryKeyRelatedField,
@@ -718,3 +721,37 @@ class TestFallbackField(TestCase):
         assert addon.name == 'ho!'  # updated
         assert addon.description is None
         assert addon.summary is None
+
+
+class TestLazyChoiceField(TestCase):
+    def setUp(self) -> None:
+        super().setUp()
+        self.aa = addon_factory(slug='aa')
+        self.bb = addon_factory(slug='bb')
+
+    def test_init_doesnt_evaluate_choices(self):
+        with self.assertNumQueries(0):
+            # No queries for __init__
+            field = LazyChoiceField(choices=Addon.objects.values_list('id', flat=True))
+        # the queryset will be evaluated for this
+        assert field.choices
+        # queryset caching should prevent a further database call though
+        with self.assertNumQueries(0):
+            assert field.choices
+
+    def test_super_functionality(self):
+        """Check the normal functionality of ChoiceField works."""
+        field = LazyChoiceField(choices=Addon.objects.values_list('id', 'slug'))
+
+        assert field.to_representation(self.aa.id) == self.aa.id
+        assert field.to_representation(str(self.aa.id)) == self.aa.id
+        assert field.to_representation(12345) == 12345
+        assert field.to_internal_value(self.bb.id) == self.bb.id
+        assert field.to_internal_value(str(self.bb.id)) == self.bb.id
+        with self.assertRaises(exceptions.ValidationError):
+            # not a valid choice
+            field.to_internal_value(12345)
+        assert field.choice_strings_to_values == OrderedDict(
+            ((str(self.aa.id), self.aa.id), (str(self.bb.id), self.bb.id))
+        )
+        assert field.choices == {self.aa.id: 'aa', self.bb.id: 'bb'}

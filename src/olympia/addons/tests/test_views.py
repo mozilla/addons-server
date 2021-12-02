@@ -44,6 +44,7 @@ from olympia.constants.promoted import (
 )
 from olympia.files.utils import parse_addon
 from olympia.files.tests.test_models import UploadMixin
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion, License
 
@@ -1099,6 +1100,40 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'support_url': ['Enter a valid URL.'],
         }
 
+    def test_set_tags(self):
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'tags': ['foo', 'bar']},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'tags': {
+                0: ['"foo" is not a valid choice.'],
+                1: ['"bar" is not a valid choice.'],
+            }
+        }
+
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                'tags': list(Tag.objects.values_list('tag_text', flat=True)),
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'tags': ['Ensure this field has no more than 10 elements.'],
+        }
+
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'tags': ['zoom', 'music']},
+        )
+        assert response.status_code == 201, response.content
+        assert response.data['tags'] == ['zoom', 'music']
+        addon = Addon.objects.get()
+        assert [tag.tag_text for tag in addon.tags.all()] == ['music', 'zoom']
+
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
     client_class = JWTAPITestClient
@@ -1374,6 +1409,41 @@ class TestAddonViewSetUpdate(TestCase):
             'support_email': ['Enter a valid email address.'],
             'support_url': ['Enter a valid URL.'],
         }
+
+    def test_set_tags(self):
+        response = self.client.patch(
+            self.url,
+            data={'tags': ['foo', 'bar']},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'tags': {
+                0: ['"foo" is not a valid choice.'],
+                1: ['"bar" is not a valid choice.'],
+            }
+        }
+
+        response = self.client.patch(
+            self.url,
+            data={'tags': list(Tag.objects.values_list('tag_text', flat=True))},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'tags': ['Ensure this field has no more than 10 elements.'],
+        }
+
+        # we're going to keep "zoom", but drop "security"
+        Tag.objects.get(tag_text='zoom').add_tag(self.addon)
+        Tag.objects.get(tag_text='security').add_tag(self.addon)
+
+        response = self.client.patch(
+            self.url,
+            data={'tags': ['zoom', 'music']},
+        )
+        assert response.status_code == 200, response.content
+        assert response.data['tags'] == ['zoom', 'music']
+        self.addon.reload()
+        assert [tag.tag_text for tag in self.addon.tags.all()] == ['music', 'zoom']
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):

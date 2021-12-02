@@ -548,3 +548,27 @@ class FallbackField(fields.Field):
             if rep:
                 return rep
         return rep
+
+
+class LazyChoiceField(fields.ChoiceField):
+    """Like ChoiceField but doesn't end up evaluating `choices` in __init__ so suitable
+    for using with queryset."""
+
+    def _get_choices(self):
+        return fields.flatten_choices_dict(self.grouped_choices)
+
+    def _set_choices(self, choices):
+        self._choices = choices
+
+    @property
+    def grouped_choices(self):
+        return fields.to_choices_dict(self._choices)
+
+    @property
+    def choice_strings_to_values(self):
+        # Map the string representation of choices to the underlying value.
+        # Allows us to deal with eg. integer choices while supporting either
+        # integer or string input, but still get the correct datatype out.
+        return {str(key): key for key in self.choices}
+
+    choices = property(_get_choices, _set_choices)
