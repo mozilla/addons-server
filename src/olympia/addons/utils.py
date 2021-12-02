@@ -312,10 +312,10 @@ class SitePermissionVersionCreator:
     @atomic
     def create_version(self, addon=None):
         from olympia.addons.models import Addon
-        from olympia.versions.utils import get_next_version_number
-        from olympia.devhub.tasks import create_version_for_upload
+        from olympia.devhub.utils import create_version_for_upload
         from olympia.files.models import FileUpload
         from olympia.files.utils import parse_addon
+        from olympia.versions.utils import get_next_version_number
 
         version_number = '1.0'
 
