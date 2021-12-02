@@ -25,7 +25,7 @@ from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
 from olympia.landfill.collection import generate_collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
-from olympia.devhub.tasks import create_version_for_upload
+from olympia.devhub.utils import create_version_for_upload
 from olympia.hero.models import PrimaryHero, SecondaryHero
 from olympia.constants.promoted import RECOMMENDED
 
