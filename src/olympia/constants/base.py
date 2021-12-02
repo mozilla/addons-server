@@ -131,7 +131,7 @@ ADDON_TYPE = {
     ADDON_PLUGIN: _('Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
-    ADDON_SITE_PERMISSION: _('Permission Enabler'),
+    ADDON_SITE_PERMISSION: _('Site Permission'),
 }
 
 # Plural
@@ -145,7 +145,7 @@ ADDON_TYPES = {
     ADDON_PLUGIN: _('Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
-    ADDON_SITE_PERMISSION: _('Permission Enablers'),
+    ADDON_SITE_PERMISSION: _('Site Permissions'),
 }
 
 # Searchable Add-on Types
@@ -167,7 +167,7 @@ ADDON_SLUGS = {
     ADDON_LPAPP: 'language-tools',
     _ADDON_SEARCH: 'search-tools',
     ADDON_STATICTHEME: 'themes',
-    ADDON_SITE_PERMISSION: 'permission-enablers',
+    ADDON_SITE_PERMISSION: 'sitepermission',
 }
 
 # These are used in the update API.
@@ -181,7 +181,7 @@ ADDON_SLUGS_UPDATE = {
     _ADDON_PERSONA: 'background-theme',
     ADDON_PLUGIN: 'plugin',
     ADDON_STATICTHEME: 'static-theme',
-    ADDON_SITE_PERMISSION: 'permission-enabler',
+    ADDON_SITE_PERMISSION: 'sitepermission',
 }
 
 # A slug to ID map for the search API. Included are all ADDON_TYPES that are
@@ -195,7 +195,7 @@ ADDON_SEARCH_SLUGS = {
     'language': ADDON_LPAPP,
     'persona': _ADDON_PERSONA,
     'statictheme': ADDON_STATICTHEME,
-    'enabler': ADDON_SITE_PERMISSION,
+    'sitepermission': ADDON_SITE_PERMISSION,
 }
 
 ADDON_TYPE_CHOICES_API = {
@@ -206,7 +206,7 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_LPAPP: 'language',
     _ADDON_PERSONA: 'persona',
     ADDON_STATICTHEME: 'statictheme',
-    ADDON_SITE_PERMISSION: 'enabler',
+    ADDON_SITE_PERMISSION: 'sitepermission',
 }
 
 ADDON_TYPES_WITH_STATS = (
