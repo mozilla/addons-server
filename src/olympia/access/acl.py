@@ -149,12 +149,8 @@ def check_addon_ownership(request, addon, dev=False, admin=True, ignore_disabled
     # Users with 'Addons:Edit' can do anything.
     if admin and action_allowed(request, amo.permissions.ADDONS_EDIT):
         return True
-    # Only admins can edit admin-disabled addons or permission-enabler add-ons,
-    # unless the caller determined it was ok (for specific scenarios like
-    # read-only requests).
-    if not ignore_disabled and (
-        addon.status == amo.STATUS_DISABLED or addon.type == amo.ADDON_SITE_PERMISSION
-    ):
+    # Only admins can edit admin-disabled addons.
+    if addon.status == amo.STATUS_DISABLED and not ignore_disabled:
         return False
     # Addon owners can do everything else.
     roles = (amo.AUTHOR_ROLE_OWNER,)

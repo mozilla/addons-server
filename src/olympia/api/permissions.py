@@ -129,17 +129,6 @@ class AllowIfNotMozillaDisabled(BasePermission):
         return obj.status != amo.STATUS_DISABLED
 
 
-class AllowIfNotPermissionEnablerType(BasePermission):
-    """Allow access unless it's a permission enabler add-on (those are
-    automatically generated and should not be edited)."""
-
-    def has_permission(self, request, view):
-        return True
-
-    def has_object_permission(self, request, view, obj):
-        return obj.type != amo.ADDON_SITE_PERMISSION
-
-
 class AllowOwner(BasePermission):
     """
     Permission class to use when you are dealing with a model instance that has

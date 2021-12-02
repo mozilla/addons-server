@@ -34,7 +34,6 @@ from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowIfNotMozillaDisabled,
-    AllowIfNotPermissionEnablerType,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
     AllowListedViewerOrReviewer,
@@ -192,7 +191,6 @@ class AddonViewSet(
         APIGatePermission('addon-submission-api'),
         AllowAddonAuthor,
         AllowIfNotMozillaDisabled,
-        AllowIfNotPermissionEnablerType,
         IsSubmissionAllowedFor,
     ]
     permission_classes = [
