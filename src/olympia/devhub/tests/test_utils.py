@@ -1,5 +1,7 @@
+import json
 import os.path
 from copy import deepcopy
+from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -12,13 +14,21 @@ from celery.result import AsyncResult
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.amo.tests import (
+    addon_factory,
+    TestCase,
+    user_factory,
+    version_factory,
+)
+from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
+from olympia.versions.models import Version
 
 
 class TestAddonsLinterListed(UploadMixin, TestCase):
@@ -602,3 +612,141 @@ def test_add_manifest_version_error():
     validation['metadata']['manifestVersion'] = 2
     utils.add_manifest_version_error(validation)
     assert validation['messages'] == []
+
+
+class TestCreateVersionForUpload(UploadMixin, TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        super().setUp()
+        self.addon = Addon.objects.get(pk=3615)
+        self.mocks = {}
+        for key in ['Version.from_upload', 'parse_addon']:
+            patcher = mock.patch('olympia.devhub.utils.%s' % key)
+            self.mocks[key] = patcher.start()
+            self.addCleanup(patcher.stop)
+        self.user = user_factory()
+
+    def test_file_passed_all_validations_not_most_recent(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0'
+        )
+        newer_upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0'
+        )
+        newer_upload.update(created=datetime.today() + timedelta(hours=1))
+
+        # Check that the older file won't turn into a Version.
+        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        assert not self.mocks['Version.from_upload'].called
+
+        # But the newer one will.
+        utils.create_version_for_upload(
+            self.addon, newer_upload, amo.RELEASE_CHANNEL_LISTED
+        )
+        self.mocks['Version.from_upload'].assert_called_with(
+            newer_upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
+            parsed_data=self.mocks['parse_addon'].return_value,
+        )
+
+    def test_file_passed_all_validations_version_exists(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0'
+        )
+        Version.objects.create(addon=upload.addon, version=upload.version)
+
+        # Check that the older file won't turn into a Version.
+        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        assert not self.mocks['Version.from_upload'].called
+
+    def test_file_passed_all_validations_most_recent_failed(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0'
+        )
+        newer_upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0'
+        )
+        newer_upload.update(
+            created=datetime.today() + timedelta(hours=1),
+            valid=False,
+            validation=json.dumps({'errors': 5}),
+        )
+
+        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        assert not self.mocks['Version.from_upload'].called
+
+    def test_file_passed_all_validations_most_recent(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0'
+        )
+        newer_upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='0.5'
+        )
+        newer_upload.update(created=datetime.today() + timedelta(hours=1))
+
+        # The Version is created because the newer upload is for a different
+        # version_string.
+        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
+            upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
+            parsed_data=self.mocks['parse_addon'].return_value,
+        )
+
+    def test_file_passed_all_validations_beta_string(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0beta1'
+        )
+        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
+            upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
+            parsed_data=self.mocks['parse_addon'].return_value,
+        )
+
+    def test_file_passed_all_validations_no_version(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version=None
+        )
+        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
+        self.mocks['Version.from_upload'].assert_called_with(
+            upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
+            parsed_data=self.mocks['parse_addon'].return_value,
+        )
+
+    def test_pass_parsed_data(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version=None
+        )
+        parsed_data = mock.Mock()
+        utils.create_version_for_upload(
+            self.addon, upload, amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data
+        )
+        assert self.mocks['parse_addon'].call_count == 0
+        self.mocks['Version.from_upload'].assert_called_with(
+            upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
+            parsed_data=parsed_data,
+        )
