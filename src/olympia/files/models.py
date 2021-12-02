@@ -166,7 +166,7 @@ class File(OnChangeMixin, ModelBase):
         # add-on) and thefore are stored separately.
         if parsed_data.get('type') == amo.ADDON_PERMISSION_ENABLER:
             site_permissions = list(parsed_data.get('site_permissions', []))
-            SitePermission.objects.create(
+            FileSitePermission.objects.create(
                 permissions=site_permissions,
                 file=file_,
             )
@@ -684,7 +684,7 @@ class WebextPermission(ModelBase):
         db_table = 'webext_permissions'
 
 
-class SitePermission(ModelBase):
+class FileSitePermission(ModelBase):
     permissions = models.JSONField(default=list)
     file = models.OneToOneField(
         'File', related_name='_site_permissions', on_delete=models.CASCADE
