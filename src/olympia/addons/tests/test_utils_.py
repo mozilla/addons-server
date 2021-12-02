@@ -16,7 +16,7 @@ from olympia.addons.utils import (
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
-    PermissionEnablerCreator,
+    SitePermissionVersionCreator,
     RestrictionChecker,
     TAAR_LITE_FALLBACK_REASON_EMPTY,
     TAAR_LITE_FALLBACK_REASON_TIMEOUT,
@@ -29,6 +29,7 @@ from olympia.addons.utils import (
 )
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.applications.models import AppVersion
+from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
 from olympia.files.models import FileUpload
 from olympia.users.models import (
     EmailUserRestriction,
@@ -380,13 +381,13 @@ class TestRestrictionChecker(TestCase):
             assert restriction_mock.call_count == 1
 
 
-class TestPermissionEnablerCreator(TestCase):
+class TestSitePermissionVersionCreator(TestCase):
     def setUp(self):
         self.task_user = user_factory(pk=settings.TASK_USER_ID)
         for app in ['firefox', 'android']:
             AppVersion.objects.get_or_create(
                 application=amo.APPS[app].id,
-                version=PermissionEnablerCreator.MIN_VERSION,
+                version=SITE_PERMISSION_MIN_VERSION,
             )
             AppVersion.objects.get_or_create(
                 application=amo.APPS[app].id,
@@ -394,45 +395,41 @@ class TestPermissionEnablerCreator(TestCase):
             )
 
     def test_create_manifest_single_origin_single_permission(self):
-        creator = PermissionEnablerCreator(
+        creator = SitePermissionVersionCreator(
             user=user_factory(),
             remote_addr='4.8.15.16',
             install_origins=['https://example.com'],
-            site_permissions=['webmidi'],
+            site_permissions=['midi-sysex'],
         )
         manifest_data = creator._create_manifest('1.0')
         assert manifest_data == {
-            'browser_specific_settings': {'gecko': {'strict_min_version': '96.0'}},
-            'description': 'This add-on provides example.com with access to the '
-            'following protected DOM APIs: WebMIDI.',
+            'browser_specific_settings': {'gecko': {'strict_min_version': '97.0'}},
             'install_origins': ['https://example.com'],
             'manifest_version': 2,
             'name': 'Site permissions for example.com',
-            'site_permissions': ['webmidi'],
+            'site_permissions': ['midi-sysex'],
             'version': '1.0',
         }
 
     def test_create_manifest_multiple_origins_and_permissions(self):
-        creator = PermissionEnablerCreator(
+        creator = SitePermissionVersionCreator(
             user=user_factory(),
             remote_addr='4.8.15.16',
             install_origins=['https://example.com', 'https://foo.com'],
-            site_permissions=['webmidi', 'webblah'],
+            site_permissions=['midi-sysex', 'webblah'],
         )
         manifest_data = creator._create_manifest('2.0')
         assert manifest_data == {
-            'browser_specific_settings': {'gecko': {'strict_min_version': '96.0'}},
-            'description': 'This add-on provides example.com, foo.com with access to '
-            'the following protected DOM APIs: WebMIDI, webblah.',
+            'browser_specific_settings': {'gecko': {'strict_min_version': '97.0'}},
             'install_origins': ['https://example.com', 'https://foo.com'],
             'manifest_version': 2,
             'name': 'Site permissions for example.com, foo.com',
-            'site_permissions': ['webmidi', 'webblah'],
+            'site_permissions': ['midi-sysex', 'webblah'],
             'version': '2.0',
         }
 
     def test_create_zipfile(self):
-        creator = PermissionEnablerCreator(
+        creator = SitePermissionVersionCreator(
             user=None,
             remote_addr=None,
             install_origins=None,
@@ -448,11 +445,11 @@ class TestPermissionEnablerCreator(TestCase):
 
     @override_switch('record-install-origins', active=True)
     def test_create_version_no_addon(self):
-        creator = PermissionEnablerCreator(
+        creator = SitePermissionVersionCreator(
             user=user_factory(),
             remote_addr='4.8.15.16',
             install_origins=['https://example.com', 'https://foo.com'],
-            site_permissions=['webmidi', 'webblah'],
+            site_permissions=['midi-sysex', 'webblah'],
         )
         version = creator.create_version()
         assert version
@@ -477,18 +474,18 @@ class TestPermissionEnablerCreator(TestCase):
         assert list(addon.authors.all()) == [creator.user]
         assert file_.status == amo.STATUS_AWAITING_REVIEW
         assert file_._site_permissions
-        assert file_._site_permissions.permissions == ['webmidi', 'webblah']
+        assert file_._site_permissions.permissions == ['midi-sysex', 'webblah']
         activity = ActivityLog.objects.for_addons(addon).latest('pk')
         assert activity.user == creator.user
         assert activity.iplog_set.all()[0].ip_address == '4.8.15.16'
 
     @override_switch('record-install-origins', active=True)
-    def test_create_version_existing_addon(self):
-        creator = PermissionEnablerCreator(
+    def test_create_version_existing_addon_wrong_origins(self):
+        creator = SitePermissionVersionCreator(
             user=user_factory(),
             remote_addr='4.8.15.16',
             install_origins=['https://example.com', 'https://foo.com'],
-            site_permissions=['webmidi', 'webblah'],
+            site_permissions=['midi-sysex', 'webblah'],
         )
         addon = addon_factory(
             version_kw={'version': '1.0'},
@@ -496,6 +493,31 @@ class TestPermissionEnablerCreator(TestCase):
             users=[creator.user],
         )
         initial_version = addon.versions.get()
+        self.make_addon_unlisted(addon)
+        with self.assertRaises(ImproperlyConfigured):
+            creator.create_version(addon=addon)
+
+        # Both need to match, not just one.
+        initial_version.installorigin_set.create(origin='https://example.com')
+        with self.assertRaises(ImproperlyConfigured):
+            creator.create_version(addon=addon)
+
+    @override_switch('record-install-origins', active=True)
+    def test_create_version_existing_addon(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com', 'https://foo.com'],
+            site_permissions=['midi-sysex', 'webblah'],
+        )
+        addon = addon_factory(
+            version_kw={'version': '1.0'},
+            type=amo.ADDON_SITE_PERMISSION,
+            users=[creator.user],
+        )
+        initial_version = addon.versions.get()
+        initial_version.installorigin_set.create(origin='https://foo.com')
+        initial_version.installorigin_set.create(origin='https://example.com')
         self.make_addon_unlisted(addon)
         version = creator.create_version(addon=addon)
         assert version
@@ -521,17 +543,17 @@ class TestPermissionEnablerCreator(TestCase):
         assert list(addon.authors.all()) == [creator.user]
         assert file_.status == amo.STATUS_AWAITING_REVIEW
         assert file_._site_permissions
-        assert file_._site_permissions.permissions == ['webmidi', 'webblah']
+        assert file_._site_permissions.permissions == ['midi-sysex', 'webblah']
         activity = ActivityLog.objects.for_addons(addon).latest('pk')
         assert activity.user == creator.user
         assert activity.iplog_set.all()[0].ip_address == '4.8.15.16'
 
     def test_create_version_existing_addon_but_user_is_not_an_author(self):
-        creator = PermissionEnablerCreator(
+        creator = SitePermissionVersionCreator(
             user=user_factory(),
             remote_addr='4.8.15.16',
             install_origins=['https://example.com', 'https://foo.com'],
-            site_permissions=['webmidi', 'webblah'],
+            site_permissions=['midi-sysex', 'webblah'],
         )
         addon = addon_factory(
             version_kw={'version': '1.0'},

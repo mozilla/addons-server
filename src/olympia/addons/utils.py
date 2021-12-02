@@ -18,6 +18,7 @@ from django_statsd.clients import statsd
 from olympia import amo, core
 from olympia.access.acl import action_allowed_user
 from olympia.amo.utils import normalize_string
+from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleErrorMessage
 from olympia.users.models import (
@@ -261,20 +262,15 @@ class RestrictionChecker:
         return msg
 
 
-class PermissionEnablerCreator:
+class SitePermissionVersionCreator:
     """Helper class to create new permission enabler add-ons and versions.
 
     Assumes parameters have already been validated beforehand."""
 
-    SITE_PERMISSIONS = {
-        'webmidi': 'WebMIDI',
-    }
-    MIN_VERSION = '96.0'
-
     def __init__(self, *, user, remote_addr, install_origins, site_permissions):
         self.user = user
         self.remote_addr = remote_addr
-        self.install_origins = install_origins
+        self.install_origins = sorted(install_origins or [])
         self.site_permissions = site_permissions
 
     def _create_manifest(self, version_number):
@@ -282,16 +278,11 @@ class PermissionEnablerCreator:
         hostnames = ', '.join(
             [urlparse(origin).netloc for origin in self.install_origins]
         )
-        permissions = ', '.join(
-            self.SITE_PERMISSIONS.get(permission, permission)
-            for permission in self.site_permissions
-        )
         # FIXME: https://github.com/mozilla/addons-server/issues/18421 to
-        # generate translations for the name & description (we'll need
-        # __MSG_extensionName__and _locales/ folder etc). At the moment the
-        # gettext call is just here to prepare for the future and allow
-        # translators to work on translations, but we're always generating in
-        # english.
+        # generate translations for the name (we'll need __MSG_extensionName__
+        # and _locales/ folder etc). At the moment the gettext() call is just
+        # here to prepare for the future and allow translators to work on
+        # translations, but we're always generating in english.
         with translation.override('en-US'):
             manifest_data = {
                 'manifest_version': 2,
@@ -299,14 +290,10 @@ class PermissionEnablerCreator:
                 'name': gettext('Site permissions for {hostnames}').format(
                     hostnames=hostnames
                 ),
-                'description': gettext(
-                    'This add-on provides {hostnames} with access to the following '
-                    'protected DOM APIs: {permissions}.'
-                ).format(hostnames=hostnames, permissions=permissions),
                 'install_origins': self.install_origins,
                 'site_permissions': self.site_permissions,
                 'browser_specific_settings': {
-                    'gecko': {'strict_min_version': self.MIN_VERSION}
+                    'gecko': {'strict_min_version': SITE_PERMISSION_MIN_VERSION}
                 },
             }
         return manifest_data
@@ -333,8 +320,33 @@ class PermissionEnablerCreator:
         version_number = '1.0'
 
         # If passing an existing add-on, we need to bump the version number
-        # to avoid clashes.
+        # to avoid clashes, and also perform a few checks.
         if addon is not None:
+            # Obviously we want an add-on with the right type.
+            if addon.type != amo.ADDON_SITE_PERMISSION:
+                raise ImproperlyConfigured(
+                    'SitePermissionVersionCreator was instantiated with non '
+                    'site-permission add-on'
+                )
+            # If the user isn't an author, something is wrong.
+            if not addon.authors.filter(pk=self.user.pk).exists():
+                raise ImproperlyConfigured(
+                    'SitePermissionVersionCreator was instantiated with a '
+                    'bogus addon/user'
+                )
+            # Changing the origins isn't supported at the moment.
+            latest_version = addon.find_latest_version(
+                exclude=(), channel=amo.RELEASE_CHANNEL_UNLISTED
+            )
+            previous_origins = sorted(
+                latest_version.installorigin_set.all().values_list('origin', flat=True)
+            )
+            if previous_origins != self.install_origins:
+                raise ImproperlyConfigured(
+                    'SitePermissionVersionCreator was instantiated with an '
+                    'addon that has different origins'
+                )
+
             version_number = get_next_version_number(addon)
 
         # Create the manifest, with more user-friendly name & description built
@@ -360,15 +372,6 @@ class PermissionEnablerCreator:
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
                 user=self.user,
             )
-        else:
-            # If the user isn't an author, something is wrong.
-            if not addon.authors.filter(pk=self.user.pk).exists():
-                raise ImproperlyConfigured(
-                    'PermissionEnablerCreator was instantiated with a bogus addon/user'
-                )
-            # FIXME: if we already have an add-on, we'll likely want to update
-            # its name and description so that it matches the latest manifest
-            # values (which we have in parsed_data).
 
         # Create the FileUpload that will become the File+Version.
         with core.override_remote_addr(self.remote_addr):
@@ -380,7 +383,7 @@ class PermissionEnablerCreator:
                 version=version_number,
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
                 user=self.user,
-                source=amo.UPLOAD_SOURCE_AUTOMATIC,
+                source=amo.UPLOAD_SOURCE_GENERATED,
             )
         # And finally create the Version instance from the FileUpload.
         return create_version_for_upload(
