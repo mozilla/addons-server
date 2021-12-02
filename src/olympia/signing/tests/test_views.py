@@ -1307,7 +1307,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_version_exists_with_pk(self):
         # Mock Version.from_upload so the Version won't be created.
-        with mock.patch('olympia.devhub.tasks.Version.from_upload'):
+        with mock.patch('olympia.devhub.utils.Version.from_upload'):
             self.create_version('3.0')
         upload = FileUpload.objects.latest()
         upload.update(created=datetime.today() - timedelta(hours=1))

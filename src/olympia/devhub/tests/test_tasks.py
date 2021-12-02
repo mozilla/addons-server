@@ -652,7 +652,7 @@ class TestSubmitFile(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.addon = Addon.objects.get(pk=3615)
-        patcher = mock.patch('olympia.devhub.tasks.create_version_for_upload')
+        patcher = mock.patch('olympia.devhub.utils.create_version_for_upload')
         self.create_version_for_upload = patcher.start()
         self.addCleanup(patcher.stop)
 
