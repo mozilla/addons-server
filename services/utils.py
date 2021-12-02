@@ -59,10 +59,10 @@ version_re = re.compile(
 )
 
 
-def get_cdn_url(id, row):
+def get_cdn_url(id, *, filename, filehash):
     host = user_media_url('addons')
-    url = posixpath.join(host, str(id), row['filename'])
-    params = urlencode({'filehash': row['hash']})
+    url = posixpath.join(host, str(id), filename)
+    params = urlencode({'filehash': filehash})
     return f'{url}?{params}'
 
 
