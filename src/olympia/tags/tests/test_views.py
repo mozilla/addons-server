@@ -3,7 +3,7 @@ from olympia.amo.tests import APITestClient, TestCase, reverse_ns
 from ..models import Tag
 
 
-class TestStaticCategoryView(TestCase):
+class TestTagListView(TestCase):
     client_class = APITestClient
 
     def setUp(self):
@@ -15,6 +15,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         tags = list(Tag.objects.all())
 
+        assert len(response.data) > 0
         assert len(response.data) == len(tags)
 
         assert response.data == [tag.tag_text for tag in tags]
