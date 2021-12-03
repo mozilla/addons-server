@@ -33,7 +33,7 @@ This endpoint allows you to search through public add-ons.
     :query string promoted: Filter to add-ons in a specific :ref:`promoted category <addon-detail-promoted-category>`.  Can be combined with `app`.   Multiple promoted categories can be specified, separated by comma(s), in which case any add-ons in any of the promotions will be returned.
     :query string ratings: Filter to add-ons that have average ratings of a :ref:`threshold value <addon-threshold-param>`.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
-    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
+    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned. See :ref:`available tags <tag-list>`
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
     :query string users: Filter to add-ons that have average daily users of a :ref:`threshold value <addon-threshold-param>`.
     :>json int count: The number of results for this query.
@@ -113,7 +113,7 @@ for autocomplete though, there are a couple key differences:
     :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
+    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned. See :ref:`available tags <tag-list>`
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
 
@@ -204,7 +204,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`). This field supports "linkification" and therefore might contain HTML hyperlinks.
     :>json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
-    :>json array tags: List containing the text of the tags set on the add-on.
+    :>json array tags: List containing the tag names set on the add-on.
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
     :>json string versions_url: The URL to the version history page for the add-on.
@@ -319,7 +319,7 @@ This endpoint allows a submission of an upload to create a new add-on and settin
     :<json string slug: The add-on slug.  Valid slugs must only contain letters, numbers (`categories L and N <http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table>`_), ``-``, ``_``, ``~``, and can't be all numeric.
     :<json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
-    :<json array tags: List containing the text of the tags set on the add-on.
+    :<json array tags: List containing the tag names to set on the add-on - see :ref:`available tags <tag-list>`.
     :<json object version: Object containing the :ref:`version <version-create-request>` to create this addon with.
 
 ----
@@ -354,7 +354,7 @@ This endpoint allows an add-on's AMO metadata to be edited.
     :<json string slug: The add-on slug.  Valid slugs must only contain letters, numbers (`categories L and N <http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table>`_), ``-``, ``_``, ``~``, and can't be all numeric.
     :<json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
-    :<json array tags: List containing the text of the tags set on the add-on.
+    :<json array tags: List containing the tag names to set on the add-on - see :ref:`available tags <tag-list>`.
 
 
 -------------

@@ -5,6 +5,7 @@ from rest_framework_nested.routers import NestedSimpleRouter
 
 from olympia.activity.views import VersionReviewNotesViewSet
 from olympia.files.views import FileUploadViewSet
+from olympia.tags.views import TagListView
 
 from .views import (
     AddonAutoCompleteSearchView,
@@ -73,4 +74,5 @@ addons_v4 = urls
 
 addons_v5 = addons_v4 + [
     re_path(r'', include(uploads.urls)),
+    re_path(r'^tags/$', TagListView.as_view(), name='tag-list'),
 ]
