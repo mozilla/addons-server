@@ -115,13 +115,18 @@ class AllowAddonAuthor(BasePermission):
         return obj.authors.filter(pk=request.user.pk).exists()
 
 
-class AllowAddonAuthorIfNotMozillaDisabled(AllowAddonAuthor):
-    """Allow access to the objects authors if it's not been disabled by us"""
+class AllowIfNotMozillaDisabled(BasePermission):
+    """Allow access unless disabled by mozilla.
+
+    Typically this permission should be used together with AllowAddonAuthor,
+    to allow write access to authors unless the add-on was disabled by Mozilla.
+    For public-facing API, see AllowReadOnlyIfPublic."""
+
+    def has_permission(self, request, view):
+        return True
 
     def has_object_permission(self, request, view, obj):
-        return obj.status != amo.STATUS_DISABLED and super().has_object_permission(
-            request, view, obj
-        )
+        return obj.status != amo.STATUS_DISABLED
 
 
 class AllowOwner(BasePermission):

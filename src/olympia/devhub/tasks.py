@@ -40,6 +40,7 @@ from olympia.amo.utils import (
     utc_millesecs_from_epoch,
 )
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
+from olympia.devhub import file_validation_annotations as annotations
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
     InvalidManifest,
@@ -49,8 +50,6 @@ from olympia.files.utils import (
     UnsupportedFileType,
     InvalidZipFile,
 )
-from olympia.versions.models import Version
-from olympia.devhub import file_validation_annotations as annotations
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
@@ -94,6 +93,8 @@ def validate_and_submit(addon, file_, channel):
 @task
 @use_primary_db
 def submit_file(addon_pk, upload_pk, channel):
+    from olympia.devhub.utils import create_version_for_upload
+
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
@@ -103,42 +104,6 @@ def submit_file(addon_pk, upload_pk, channel):
             'Skipping version creation for {upload_uuid} that failed '
             'validation'.format(upload_uuid=upload.uuid)
         )
-
-
-@transaction.atomic
-def create_version_for_upload(addon, upload, channel):
-    fileupload_exists = addon.fileupload_set.filter(
-        created__gt=upload.created, version=upload.version
-    ).exists()
-    version_exists = Version.unfiltered.filter(
-        addon=addon, version=upload.version
-    ).exists()
-    if fileupload_exists or version_exists:
-        log.info(
-            'Skipping Version creation for {upload_uuid} that would '
-            ' cause duplicate version'.format(upload_uuid=upload.uuid)
-        )
-    else:
-        log.info(
-            'Creating version for {upload_uuid} that passed '
-            'validation'.format(upload_uuid=upload.uuid)
-        )
-        # Note: if we somehow managed to get here with an invalid add-on,
-        # parse_addon() will raise ValidationError and the task will fail
-        # loudly in sentry.
-        parsed_data = parse_addon(upload, addon, user=upload.user)
-        Version.from_upload(
-            upload,
-            addon,
-            channel,
-            selected_apps=[x[0] for x in amo.APPS_CHOICES],
-            parsed_data=parsed_data,
-        )
-        # The add-on's status will be STATUS_NULL when its first version is
-        # created because the version has no files when it gets added and it
-        # gets flagged as invalid. We need to manually set the status.
-        if addon.status == amo.STATUS_NULL and channel == amo.RELEASE_CHANNEL_LISTED:
-            addon.update(status=amo.STATUS_NOMINATED)
 
 
 @task

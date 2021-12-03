@@ -33,7 +33,7 @@ from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
-    AllowAddonAuthorIfNotMozillaDisabled,
+    AllowIfNotMozillaDisabled,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
     AllowListedViewerOrReviewer,
@@ -189,7 +189,8 @@ class AddonViewSet(
 ):
     write_permission_classes = [
         APIGatePermission('addon-submission-api'),
-        AllowAddonAuthorIfNotMozillaDisabled,
+        AllowAddonAuthor,
+        AllowIfNotMozillaDisabled,
         IsSubmissionAllowedFor,
     ]
     permission_classes = [

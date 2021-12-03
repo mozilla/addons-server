@@ -19,8 +19,8 @@ from olympia.amo.tests import (
 )
 from olympia.api.permissions import (
     AllowAddonAuthor,
-    AllowAddonAuthorIfNotMozillaDisabled,
     AllowAnyKindOfReviewer,
+    AllowIfNotMozillaDisabled,
     AllowIfPublic,
     AllowNone,
     AllowOwner,
@@ -170,11 +170,18 @@ class TestAllowAddonAuthor(TestCase):
         )
 
 
-class TestAllowAddonAuthorIfNotMozillaDisabled(TestAllowAddonAuthor):
+class TestAllowIfNotMozillaDisabled(TestCase):
     def setUp(self):
-        super().setUp()
-        self.permission = AllowAddonAuthorIfNotMozillaDisabled()
+        self.permission = AllowIfNotMozillaDisabled()
+        self.owner = user_factory()
+        self.addon = addon_factory()
+        self.addon.addonuser_set.create(user=self.owner)
         self.addon.update(status=amo.STATUS_DISABLED)
+        self.request = RequestFactory().get('/')
+        self.request.user = AnonymousUser()
+
+    def test_has_permission(self):
+        assert self.permission.has_permission(self.request, myview)
 
     def test_has_object_permission_owner(self):
         self.request.user = self.owner

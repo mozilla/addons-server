@@ -136,7 +136,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert self.parse({'name': 'addon-name'})['guid'] is None
 
     def test_type(self):
-        """manifest.json addons are always ADDON_EXTENSION."""
+        """manifest.json addons with no specific properties present are extensions."""
         assert self.parse({})['type'] == amo.ADDON_EXTENSION
 
     def test_name(self):
@@ -333,11 +333,9 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
-    def test_allow_static_theme_waffle(self):
+    def test_static_theme(self):
         manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
-
         utils.check_xpi_info(manifest)
-
         assert self.parse({'theme': {}})['type'] == amo.ADDON_STATICTHEME
 
     def test_extensions_dont_have_strict_compatibility(self):
@@ -620,6 +618,31 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         self.grant_permission(user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
 
         utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
+
+
+class TestPermissionEnabler(AppVersionsMixin, TestCase):
+    def parse(self):
+        return utils.ManifestJSONExtractor(
+            '/fake_path', '{"site_permissions": ["webmidi"]}'
+        ).parse()
+
+    def test_permission_enabler(self):
+        task_user = user_factory(pk=settings.TASK_USER_ID)
+        parsed_data = self.parse()
+        assert parsed_data['type'] == amo.ADDON_SITE_PERMISSION
+        assert parsed_data['site_permissions'] == ['webmidi']
+        assert utils.check_xpi_info(parsed_data, user=task_user)
+
+    def test_disallow_regular_submission_of_permission_enabler_addons_no_user(self):
+        parsed_data = self.parse()
+        with self.assertRaises(ValidationError):
+            utils.check_xpi_info(parsed_data)
+
+    def test_disallow_regular_submission_of_permission_enabler_addons_normal_user(self):
+        user = user_factory()
+        parsed_data = self.parse()
+        with self.assertRaises(ValidationError):
+            utils.check_xpi_info(parsed_data, user=user)
 
 
 class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
