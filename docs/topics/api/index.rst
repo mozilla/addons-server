@@ -46,3 +46,4 @@ using the API.
    scanners
    shelves
    signing
+   tags
