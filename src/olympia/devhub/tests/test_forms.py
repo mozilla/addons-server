@@ -11,6 +11,7 @@ from django.utils import translation
 import pytest
 from freezegun import freeze_time
 
+from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo, core
@@ -848,9 +849,21 @@ class TestIconForm(TestCase):
         rm_local_tmp_dir(self.temp_dir)
         super().tearDown()
 
-    def get_icon_paths(self):
-        path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
-        return [f'{path}-{size}.png' for size in amo.ADDON_ICON_SIZES]
+    def test_default_icons(self):
+        form = forms.AddonFormMedia(request=self.request, instance=self.addon)
+        content = str(form['icon_type'])
+        doc = pq(content)
+        imgs = doc('img')
+        assert len(imgs) == 1  # Only one default icon available atm
+        assert imgs[0].attrib == {
+            'alt': '',
+            # In dev/stage/prod where STATICFILES_STORAGE is ManifestStaticFilesStorage,
+            # we'd get some hashed file names, but in tests this is deactivated so that
+            # we don't need to run collecstatic to run tests.
+            'src': 'http://testserver/static/img/addon-icons/default-32.png',
+            'data-src-64': 'http://testserver/static/img/addon-icons/default-64.png',
+            'data-src-128': 'http://testserver/static/img/addon-icons/default-128.png',
+        }
 
     @mock.patch('olympia.amo.models.ModelBase.update')
     def test_icon_modified(self, update_mock):
