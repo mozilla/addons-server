@@ -36,7 +36,7 @@ def action_allowed_user(user, permission):
     Note: relies in user.groups_list, which is cached on the user instance the
     first time it's accessed.
     """
-    if not user.is_authenticated:
+    if user is None or not user.is_authenticated:
         return False
 
     assert permission in amo.permissions.PERMISSIONS_LIST  # constants only.
@@ -86,6 +86,16 @@ def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
     return not parsed_addon_data.get(
         'is_mozilla_signed_extension'
     ) or action_allowed_user(user, amo.permissions.SYSTEM_ADDON_SUBMIT)
+
+
+def site_permission_addons_submission_allowed(user, parsed_addon_data):
+    """Site Permission Add-ons can only be submitted by users with a specific
+    permission."""
+    return (
+        not parsed_addon_data.get('type') == amo.ADDON_SITE_PERMISSION
+        or action_allowed_user(user, amo.permissions.ADDONS_SUBMIT_SITE_PERMISSION)
+        or (user and user.pk == settings.TASK_USER_ID)
+    )
 
 
 def check_ownership(

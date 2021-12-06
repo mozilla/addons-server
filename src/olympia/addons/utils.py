@@ -263,7 +263,7 @@ class RestrictionChecker:
 
 
 class SitePermissionVersionCreator:
-    """Helper class to create new permission enabler add-ons and versions.
+    """Helper class to create new site permission add-ons and versions.
 
     Assumes parameters have already been validated beforehand."""
 
