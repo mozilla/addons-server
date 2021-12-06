@@ -778,6 +778,12 @@ class TestAddonSubmitSource(TestSubmitBase):
         )
 
     @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_on_initial_display(self, log_mock):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert log_mock.info.call_count == 0
+
+    @mock.patch('olympia.devhub.views.log')
     def test_logging_failed_validation(self, log_mock):
         # Not including a source file when expected to fail validation.
         response = self.post(has_source=True, source=None, expect_errors=True)

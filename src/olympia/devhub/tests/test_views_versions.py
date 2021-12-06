@@ -856,6 +856,85 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log.details is None
         assert log.arguments == [self.addon, self.version]
 
+    @mock.patch('olympia.devhub.views.log')
+    def test_logging(self, log_mock):
+        with temp.NamedTemporaryFile(
+            suffix='.zip', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert log_mock.info.call_count == 5
+        assert log_mock.info.call_args_list[0][0] == (
+            'Starting version_edit, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[1][0] == (
+            'version_edit, form populated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[2][0] == (
+            'version_edit, form validated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[3][0] == (
+            'version_edit, form saved, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[4][0] == (
+            'version_edit, redirecting to next view, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_on_initial_display(self, log_mock):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert log_mock.info.call_count == 0
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_logging_failed_validation(self, log_mock):
+        with temp.NamedTemporaryFile(
+            suffix='.exe', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert response.context['version_form'].errors == {
+            'source': [
+                'Unsupported file type, please upload an archive file '
+                + '(.zip, .tar.gz, .tgz, .tar.bz2).'
+            ]
+        }
+        assert log_mock.info.call_count == 3
+        assert log_mock.info.call_args_list[0][0] == (
+            'Starting version_edit, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[1][0] == (
+            'version_edit, form populated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[2][0] == (
+            'version_edit, validation failed, re-displaying the template, '
+            + 'addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+
     def test_email_is_sent_to_relevant_people_for_source_code_upload(self):
         # Have a reviewer review a version.
         reviewer = user_factory()
