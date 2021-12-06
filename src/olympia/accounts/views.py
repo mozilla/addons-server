@@ -56,6 +56,7 @@ from olympia.amo.reverse import get_url_prefix
 from olympia.amo.utils import fetch_subscribed_newsletters, is_safe_url, use_fake_fxa
 from olympia.api.authentication import (
     JWTKeyAuthentication,
+    SessionIDAuthentication,
     UnsubscribeTokenAuthentication,
     WebTokenAuthentication,
 )
@@ -182,11 +183,15 @@ def update_user(user, identity):
         user.update(auth_id=UserProfile._meta.get_field('auth_id').default())
 
 
-def login_user(sender, request, user, identity):
+def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
     log.info(f'Logging in user {user} from FxA')
     user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
+    if token_data:
+        request.session['fxa_access_token_expiry'] = token_data['access_token_expiry']
+        request.session['fxa_refresh_token'] = token_data['refresh_token']
+        request.session['fxa_config_name'] = token_data['config_name']
 
 
 def fxa_error_message(message, login_help_url):
@@ -267,11 +272,13 @@ def with_user(f):
                     'uid': 'fake_fxa_id-%s'
                     % force_str(binascii.b2a_hex(os.urandom(16))),
                 }
-                id_token = identity['email']
+                id_token, token_data = identity['email'], {}
             else:
-                identity, id_token = verify.fxa_identify(
+                identity, token_data = verify.fxa_identify(
                     data['code'], config=fxa_config
                 )
+                token_data['config_name'] = self.get_config_name(request)
+                id_token = token_data.get('id_token')
         except verify.IdentificationError:
             log.info('Profile not found. Code: {}'.format(data['code']))
             return safe_redirect(request, next_path, ERROR_NO_PROFILE)
@@ -316,7 +323,14 @@ def with_user(f):
                         id_token=id_token,
                     )
                 )
-            return f(self, request, user=user, identity=identity, next_path=next_path)
+            return f(
+                self,
+                request,
+                user=user,
+                identity=identity,
+                next_path=next_path,
+                token_data=token_data,
+            )
 
     return inner
 
@@ -388,7 +402,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
     @never_cache
     @with_user
-    def get(self, request, user, identity, next_path):
+    def get(self, request, user, identity, next_path, token_data):
         # At this point @with_user guarantees that we have a valid fxa
         # identity. We are proceeding with either registering the user or
         # logging them on.
@@ -420,7 +434,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
         else:
             action = 'login'
 
-        login_user(self.__class__, request, user, identity)
+        login_user(self.__class__, request, user, identity, token_data)
         response = safe_redirect(request, next_path, action)
         add_api_token_to_response(response, user)
         return response
@@ -578,7 +592,11 @@ class AccountViewSet(
 
 
 class ProfileView(APIView):
-    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    authentication_classes = [
+        JWTKeyAuthentication,
+        WebTokenAuthentication,
+        SessionIDAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

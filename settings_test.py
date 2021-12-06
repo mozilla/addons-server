@@ -93,3 +93,6 @@ CELERY_TASK_ROUTES.update({
     'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
     'olympia.lib.es.tests.test_commands.dummy_task': {'queue': 'amo'},
 })
+
+# switch cached_db out for just cache sessions to avoid extra db queries
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'

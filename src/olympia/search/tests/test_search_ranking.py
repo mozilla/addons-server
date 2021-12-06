@@ -4,13 +4,13 @@ from django.conf import settings
 from django.utils.encoding import force_str
 
 from olympia import amo
-from olympia.amo.tests import APITestClient, ESTestCase, reverse_ns
+from olympia.amo.tests import APITestClientWebToken, ESTestCase, reverse_ns
 from olympia.constants.promoted import LINE, RECOMMENDED, VERIFIED
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
 class TestRankingScenarios(ESTestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def _check_scenario(self, query, expected, **kwargs):
         def get_name_from_result(item, expected_lang):

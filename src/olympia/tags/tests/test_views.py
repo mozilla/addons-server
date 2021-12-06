@@ -1,10 +1,10 @@
-from olympia.amo.tests import APITestClient, TestCase, reverse_ns
+from olympia.amo.tests import APITestClientWebToken, TestCase, reverse_ns
 
 from ..models import Tag
 
 
 class TestTagListView(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()

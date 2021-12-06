@@ -43,7 +43,7 @@ from olympia.amo.templatetags.jinja_helpers import (
     format_datetime,
 )
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     addon_factory,
     check_links,
@@ -6361,7 +6361,7 @@ class TestPolicyView(ReviewerTest):
 
 
 class TestAddonReviewerViewSet(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -6801,7 +6801,7 @@ class TestAddonReviewerViewSet(TestCase):
 
 
 class TestAddonReviewerViewSetJsonValidation(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     fixtures = ['devhub/addon-validation-1']
 
     def setUp(self):
@@ -6949,7 +6949,7 @@ class AddonReviewerViewSetPermissionMixin:
 class TestReviewAddonVersionViewSetDetail(
     TestCase, AddonReviewerViewSetPermissionMixin
 ):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     __test__ = True
 
     def setUp(self):
@@ -7167,7 +7167,7 @@ class TestReviewAddonVersionViewSetDetail(
 
 
 class TestReviewAddonVersionViewSetList(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -7296,7 +7296,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
 
 
 class TestDraftCommentViewSet(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -7940,7 +7940,7 @@ class TestDraftCommentViewSet(TestCase):
 class TestReviewAddonVersionCompareViewSet(
     TestCase, AddonReviewerViewSetPermissionMixin
 ):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     __test__ = True
 
     def setUp(self):
@@ -8454,7 +8454,7 @@ class TestDownloadGitFileView(TestCase):
 
 
 class TestCannedResponseViewSet(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()

@@ -9,7 +9,7 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory,
-    APITestClient,
+    APITestClientWebToken,
     collection_factory,
     ESTestCase,
     reverse_ns,
@@ -29,7 +29,7 @@ from olympia.users.models import UserProfile
 
 
 class TestShelfViewSet(ESTestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     @classmethod
     def setUpTestData(cls):
@@ -308,7 +308,7 @@ class TestShelfViewSet(ESTestCase):
 
 
 class TestEditorialShelfViewSet(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def test_basic(self):
         url = reverse_ns('shelves-editorial-list', api_version='v5')

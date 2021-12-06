@@ -14,7 +14,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     addon_factory,
     get_random_ip,
@@ -33,7 +33,7 @@ locmem_cache['default'][
 
 
 class TestRatingViewSetGet(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     list_url_name = 'rating-list'
     detail_url_name = 'rating-detail'
 
@@ -1182,7 +1182,7 @@ class TestRatingViewSetGet(TestCase):
 
 
 class TestRatingViewSetDelete(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     detail_url_name = 'rating-detail'
 
     def setUp(self):
@@ -1333,7 +1333,7 @@ class TestRatingViewSetDelete(TestCase):
 
 
 class TestRatingViewSetEdit(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     detail_url_name = 'rating-detail'
 
     def setUp(self):
@@ -1583,7 +1583,7 @@ class TestRatingViewSetEdit(TestCase):
 
 
 class TestRatingViewSetPost(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     list_url_name = 'rating-list'
     detail_url_name = 'rating-detail'
     abuse_report_url_name = 'abusereportaddon-list'
@@ -2254,7 +2254,7 @@ class TestRatingViewSetPost(TestCase):
 
 
 class TestRatingViewSetFlag(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     flag_url_name = 'rating-flag'
 
     def setUp(self):
@@ -2453,7 +2453,7 @@ class TestRatingViewSetFlag(TestCase):
 
 
 class TestRatingViewSetReply(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     reply_url_name = 'rating-reply'
 
     def setUp(self):

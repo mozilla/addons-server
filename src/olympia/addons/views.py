@@ -28,7 +28,11 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import get_outgoing_url
-from olympia.api.authentication import JWTKeyAuthentication, WebTokenAuthentication
+from olympia.api.authentication import (
+    JWTKeyAuthentication,
+    SessionIDAuthentication,
+    WebTokenAuthentication,
+)
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
@@ -201,7 +205,11 @@ class AddonViewSet(
             AllowUnlistedViewerOrReviewer,
         )
     ]
-    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    authentication_classes = [
+        JWTKeyAuthentication,
+        WebTokenAuthentication,
+        SessionIDAuthentication,
+    ]
     georestriction_classes = [
         RegionalRestriction | GroupPermission(amo.permissions.ADDONS_EDIT)
     ]
@@ -363,7 +371,11 @@ class AddonVersionViewSet(
     # below in check_permissions() and check_object_permissions() depending on
     # what the client is requesting to see.
     permission_classes = []
-    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    authentication_classes = [
+        JWTKeyAuthentication,
+        WebTokenAuthentication,
+        SessionIDAuthentication,
+    ]
     throttle_classes = addon_submission_throttles
 
     def get_serializer_class(self):

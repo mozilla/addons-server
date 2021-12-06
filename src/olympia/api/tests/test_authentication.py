@@ -20,14 +20,20 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from olympia import core
+from olympia.accounts.verify import IdentificationError
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
+    APITestClientSessionID,
     TestCase,
     WithDynamicEndpoints,
     user_factory,
 )
-from olympia.api.authentication import JWTKeyAuthentication, WebTokenAuthentication
+from olympia.api.authentication import (
+    JWTKeyAuthentication,
+    SessionIDAuthentication,
+    WebTokenAuthentication,
+)
 from olympia.api.tests import JWTAuthKeyTester
 
 
@@ -48,7 +54,7 @@ class JWTKeyAuthTestView(APIView):
 
 
 class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -175,7 +181,7 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
 
 
 class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -215,7 +221,7 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCa
 
 
 class TestWebTokenAuthentication(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -354,3 +360,148 @@ class TestWebTokenAuthentication(TestCase):
         data = json.loads(signing.b64_decode(force_bytes(token.split(':')[0])))
         assert data['user_id'] == self.user.pk
         assert data['auth_hash'] == self.user.get_session_auth_hash()
+
+
+class TestSessionIDAuthentication(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.auth = SessionIDAuthentication()
+        self.factory = RequestFactory()
+        self.user = user_factory(read_dev_agreement=datetime.now())
+        self.update_token_mock = self.patch(
+            'olympia.api.authentication.check_and_update_fxa_access_token'
+        )
+
+    def _authenticate(self, token):
+        url = absolutify('/api/v4/whatever/')
+        request = self.factory.post(
+            url,
+            HTTP_HOST='testserver',
+            HTTP_AUTHORIZATION=f'Session {token}',
+        )
+        self.initialize_session({}, request=request)
+
+        return self.auth.authenticate(request)
+
+    def test_success(self):
+        token = self.client.create_session(self.user)
+        user, _ = self._authenticate(token)
+        assert user == self.user
+        self.update_token_mock.assert_called()
+
+    def test_authenticate_header(self):
+        request = self.factory.post('/api/v4/whatever/')
+        assert self.auth.authenticate_header(request) == (
+            'Session realm='
+            '"Access to addons.mozilla.org internal API with session key"'
+        )
+
+    def test_wrong_header_only_prefix(self):
+        request = self.factory.post(
+            '/api/v4/whatever/',
+            HTTP_AUTHORIZATION=SessionIDAuthentication.auth_header_prefix,
+        )
+        with self.assertRaises(AuthenticationFailed) as exp:
+            self.auth.authenticate(request)
+        assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
+        assert exp.exception.detail['detail'] == (
+            'Invalid Authorization header. No credentials provided.'
+        )
+
+    def test_wrong_header_too_many_spaces(self):
+        request = self.factory.post(
+            '/api/v4/whatever/',
+            HTTP_AUTHORIZATION='{} foo bar'.format(
+                SessionIDAuthentication.auth_header_prefix
+            ),
+        )
+        with self.assertRaises(AuthenticationFailed) as exp:
+            self.auth.authenticate(request)
+        assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
+        assert exp.exception.detail['detail'] == (
+            'Invalid Authorization header. '
+            'Credentials string should not contain spaces.'
+        )
+
+    def test_no_token(self):
+        request = self.factory.post('/api/v4/whatever/')
+        self.auth.authenticate(request) is None
+        self.update_token_mock.assert_not_called()
+
+    def test_still_valid_token(self):
+        not_so_old_date = datetime.now() - timedelta(
+            seconds=settings.SESSION_COOKIE_AGE - 30
+        )
+        with freeze_time(not_so_old_date):
+            token = self.client.create_session(self.user)
+        assert self._authenticate(token)[0] == self.user
+        self.update_token_mock.assert_called()
+
+    def test_bad_token(self):
+        token = 'garbage'
+        with self.assertRaises(AuthenticationFailed) as exp:
+            self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
+        assert exp.exception.detail['detail'] == (
+            'Valid user session not found matching the provided session key.'
+        )
+        self.update_token_mock.assert_not_called()
+
+    def test_user_id_is_none(self):
+        token = self.client.create_session(self.user, _auth_user_id=None)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+        self.update_token_mock.assert_not_called()
+
+    def test_no_user_id_in_payload(self):
+        data = {
+            'auth_hash': self.user.get_session_auth_hash(),
+        }
+        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+        self.update_token_mock.assert_not_called()
+
+    def test_no_auth_hash_in_payload(self):
+        data = {
+            'user_id': self.user.pk,
+        }
+        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+        self.update_token_mock.assert_not_called()
+
+    def test_user_deleted(self):
+        self.user.delete()
+        token = self.client.create_session(self.user)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+        self.update_token_mock.assert_not_called()
+
+    def test_invalid_user_not_found(self):
+        token = self.client.create_session(self.user, _auth_user_id=-1)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+        self.update_token_mock.assert_not_called()
+
+    def test_invalid_user_other_user(self):
+        user2 = user_factory(read_dev_agreement=datetime.now())
+        token = self.client.create_session(self.user, _auth_user_id=user2.pk)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+        self.update_token_mock.assert_not_called()
+
+    def test_wrong_auth_id(self):
+        token = self.client.create_session(self.user)
+        self.user.update(auth_id=self.user.auth_id + 42)
+        with self.assertRaises(AuthenticationFailed):
+            self._authenticate(token)
+        self.update_token_mock.assert_not_called()
+
+    def test_fxa_access_token_validity_token_invalid(self):
+        self.update_token_mock.side_effect = IdentificationError
+        token = self.client.create_session(self.user)
+        with self.assertRaises(AuthenticationFailed):
+            assert self.user == self._authenticate(token)[0]
