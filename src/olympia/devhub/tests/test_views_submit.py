@@ -1510,7 +1510,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
-        License.objects.create(builtin=11, on_form=True, creative_commons=True)
+        License.objects.create(builtin=11, on_form=True)
         self.get_addon().update(status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
 
     def get_dict(self, minimal=True, **kw):

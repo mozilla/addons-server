@@ -93,6 +93,7 @@ class AddonSerializerOutputTestMixin:
             # License text is not present in version serializer used from
             # AddonSerializer.
             'url': 'http://license.example.com/',
+            'slug': None,
         }
 
     def _test_version(self, version, data):
@@ -1106,6 +1107,7 @@ class TestVersionSerializerOutput(TestCase):
                 'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
             'url': 'http://license.example.com/',
+            'slug': None,
         }
         assert result['reviewed'] == (now.replace(microsecond=0).isoformat() + 'Z')
 
@@ -1203,6 +1205,8 @@ class TestVersionSerializerOutput(TestCase):
         )
         assert result['id'] == license.pk
         assert result['is_custom'] is False
+        assert result['slug']
+        assert result['slug'] == license.slug
         # A request with no ?lang gets you the site default l10n in a dict to
         # match how non-constant values are returned.
         assert result['name'] == {'en-US': builtin_license_name_english}
@@ -1231,6 +1235,14 @@ class TestVersionSerializerOutput(TestCase):
             license
         )
         assert result['name'] == {'fr': builtin_license_name_french}
+
+        # Make sure the license slug is not present in v3/v4
+        gates = {self.request.version: ('del-version-license-slug',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = LicenseSerializer(
+                context={'request': self.request}
+            ).to_representation(license)
+            assert 'slug' not in result
 
     def test_file_webext_permissions(self):
         self.version = addon_factory().current_version

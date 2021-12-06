@@ -115,13 +115,12 @@ class TestEditLicense(TestOwnership):
         self.version.license = None
         self.version.save()
         self.license = License.objects.create(
-            builtin=1, name='bsd', url='license.url', on_form=True
+            builtin=7, name='bsd', url='license.url', on_form=True
         )
         self.cc_license = License.objects.create(
             builtin=11,
             name='copyright',
             url='license.url',
-            creative_commons=True,
             on_form=True,
         )
 
@@ -139,7 +138,7 @@ class TestEditLicense(TestOwnership):
         assert response.status_code == 302
 
     def test_success_add_builtin(self):
-        data = self.build_form_data({'builtin': 1})
+        data = self.build_form_data({'builtin': 7})
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         assert self.license == self.get_version().license
@@ -183,7 +182,7 @@ class TestEditLicense(TestOwnership):
         assert license_two.id == license_one.id
 
     def test_success_switch_license(self):
-        data = self.build_form_data({'builtin': 1})
+        data = self.build_form_data({'builtin': 7})
         response = self.client.post(self.url, data)
         license_one = self.get_version().license
 
@@ -199,10 +198,10 @@ class TestEditLicense(TestOwnership):
         assert license_one != license_two
 
         # Make sure the old license wasn't edited.
-        license = License.objects.get(builtin=1)
+        license = License.objects.get(builtin=7)
         assert str(license.name) == 'bsd'
 
-        data = self.build_form_data({'builtin': 1})
+        data = self.build_form_data({'builtin': 7})
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         license_three = self.get_version().license
@@ -241,7 +240,7 @@ class TestEditLicense(TestOwnership):
         doc = pq(str(LicenseForm(version=self.version)))
         for license in License.objects.builtins():
             radio = 'input.license[value="%s"]' % license.builtin
-            assert doc(radio).parent().text() == (str(license.name) + ' Details')
+            assert doc(radio).parent().text() == (str(license) + ' Details')
             assert doc(radio + '+ a').attr('href') == license.url
         assert doc('input[name=builtin]:last-child').parent().text() == 'Other'
 
@@ -801,7 +800,7 @@ class TestEditAuthorStaticTheme(TestEditAuthor):
         super().setUp()
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.cc_license = License.objects.create(
-            builtin=11, url='license.url', creative_commons=True, on_form=True
+            builtin=11, url='license.url', on_form=True
         )
         self.version.update(license=self.cc_license)
 
