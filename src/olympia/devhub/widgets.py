@@ -10,10 +10,13 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 
 
 class IconTypeSelect(forms.RadioSelect):
+    # The JavaScript in js/zamboni/devhub.js uses these data attributes to
+    # reset preview icons when the corresponding default icon is clicked on.
     base_html = (
         '<li>'
         '<a href="#" class="{active}">'
-        '<img src="{icon_url}" alt="">'
+        '<img data-src-64="{icon_url_64}" data-src-128="{icon_url_128}" '
+        'src="{icon_url_32}" alt="">'
         '</a>'
         '{original_widget}'
         '</li>'
@@ -42,7 +45,9 @@ class IconTypeSelect(forms.RadioSelect):
                     format_html(
                         self.base_html,
                         active='active' if option_value == value else '',
-                        icon_url=static(f'img/addon-icons/{icon_name}-32.png'),
+                        icon_url_32=static(f'img/addon-icons/{icon_name}-32.png'),
+                        icon_url_64=static(f'img/addon-icons/{icon_name}-64.png'),
+                        icon_url_128=static(f'img/addon-icons/{icon_name}-128.png'),
                         icon_name=icon_name,
                         original_widget=original_widget,
                     )
