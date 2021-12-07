@@ -6,6 +6,9 @@ updates:
     interval: daily
   open-pull-requests-limit: 99
   ignore:
+  - dependency-name: django
+    versions:
+    - ">= 4"
   - dependency-name: billiard
     versions:
     - ">= 4"
