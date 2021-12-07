@@ -90,7 +90,7 @@ def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
 
 def site_permission_addons_submission_allowed(user, parsed_addon_data):
     """Site Permission Add-ons can only be submitted by users with a specific
-    permission."""
+    permission or the task user."""
     return (
         not parsed_addon_data.get('type') == amo.ADDON_SITE_PERMISSION
         or action_allowed_user(user, amo.permissions.ADDONS_SUBMIT_SITE_PERMISSION)
