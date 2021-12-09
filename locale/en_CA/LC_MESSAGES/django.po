@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-09 16:12+0000\n"
+"PO-Revision-Date: 2021-12-09 16:32+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -4339,11 +4339,11 @@ msgstr "Enjoy automatically changing of colours on Firefox in sync with the ligh
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Take emojis with you everywhere on the web."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
