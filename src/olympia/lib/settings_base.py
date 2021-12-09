@@ -1288,6 +1288,7 @@ CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
     'blob:',  # Needed for image uploads.
+    'data:',  # Needed for theme wizard.
     PROD_STATIC_URL,
     PROD_MEDIA_URL,
     'https://sentry.prod.mozaws.net',
