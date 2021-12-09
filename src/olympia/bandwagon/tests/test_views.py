@@ -314,7 +314,7 @@ class CollectionViewSetDataMixin:
     data = {
         'name': {'fr': 'lé $túff', 'en-US': '$tuff'},
         'description': {'fr': 'Un dis une dát', 'en-US': 'dis n dat'},
-        'slug': 'stuff',
+        'slug': 'Stuff',
         'public': True,
         'default_locale': 'fr',
     }
@@ -343,7 +343,7 @@ class CollectionViewSetDataMixin:
             collection = collection.reload()
             assert collection.name == data['name']['fr']
             assert collection.description == data['description']['fr']
-            assert collection.slug == data['slug']
+            assert collection.slug == data['slug'] == 'Stuff'
             assert collection.listed == data['public']
             assert collection.default_locale == data['default_locale']
 
