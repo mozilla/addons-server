@@ -993,7 +993,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'is_experimental': True,
             'requires_payment': True,
             # 'name'  # don't update - should retain name from the manifest
-            'slug': 'addon-slug',
+            'slug': 'addon-Slug',
             'summary': {'en-US': 'new summary'},
             'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
@@ -1023,6 +1023,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.requires_payment is True
         assert data['name'] == {'en-US': 'My WebExtension Addon'}
         assert addon.name == 'My WebExtension Addon'
+        # addon.slug always gets slugified back to lowercase
         assert data['slug'] == 'addon-slug' == addon.slug
         assert data['summary'] == {'en-US': 'new summary'}
         assert addon.summary == 'new summary'
@@ -1334,7 +1335,7 @@ class TestAddonViewSetUpdate(TestCase):
             # 'description'  # don't update - should retain existing
             'is_experimental': True,
             'requires_payment': True,
-            'slug': 'addon-slug',
+            'slug': 'addoN-slug',
             'summary': {'en-US': 'new summary'},
             'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
@@ -1359,6 +1360,7 @@ class TestAddonViewSetUpdate(TestCase):
         assert addon.is_experimental is True
         assert data['requires_payment'] is True
         assert addon.requires_payment is True
+        # addon.slug always gets slugified back to lowercase
         assert data['slug'] == 'addon-slug' == addon.slug
         assert data['summary'] == {'en-US': 'new summary'}
         assert addon.summary == 'new summary'

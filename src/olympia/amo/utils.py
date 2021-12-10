@@ -489,7 +489,7 @@ def slug_validator(slug, message=validate_slug.message):
     Regexes don't work here because they won't check alnums in the right
     locale.
     """
-    if not (slug and slugify(slug) == slug):
+    if not (slug and slugify(slug, lower=False) == slug):
         raise ValidationError(message, code=validate_slug.code)
 
 
