@@ -4554,7 +4554,7 @@ msgstr "Больше расширений для управления вклад
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
-msgstr ""
+msgstr "Улучшатели YouTube"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
