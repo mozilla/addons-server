@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-11-30 09:24+0000\n"
-"Last-Translator: Anton <dart@criogames.com>\n"
+"PO-Revision-Date: 2021-12-11 12:13+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -2659,7 +2659,7 @@ msgid "How to Distribute this Version"
 msgstr "Как распространять эту версию"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Для начала выберите способ распространения этой версии."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
@@ -2686,6 +2686,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Готово! ✨ Вы получите электронное письмо с подтверждением, когда эта версия будет опубликована на %(site_domain)s. Обратите внимание, что публикация может занять до 24 часов, или дольше, если "
+"дополнение выбрано для ручной проверки. Если вы не увидите письмо через 24 часа, проверьте папку со спамом."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Ваше дополнение будет успешнее, если вы добавите детальное описание. Подготовьте вашу информацию для публикации:"
@@ -2710,7 +2712,7 @@ msgid "Version Signature Pending"
 msgstr "Ожидание подписи версии"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "Готово! ✨ Вы получите уведомление по электронной почте, когда подписанный файл будет готов к загрузке из Центра разработки. Если вы не увидите письмо через 24 часа, проверьте папку со спамом."
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
@@ -2747,7 +2749,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "Вам не нужно представлять исходный код, и вы готовы к следующему шагу."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Вы должны отправить исходный код вашего расширения."
 
 #, fuzzy
 msgid "Your source code must include:"
@@ -4439,7 +4441,7 @@ msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
-msgstr ""
+msgstr "Повышение продуктивности"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
@@ -4870,7 +4872,7 @@ msgid "days"
 msgstr "дней"
 
 msgid "Choose one or more reasons:"
-msgstr ""
+msgstr "Выберите одну или несколько причин:"
 
 msgid "Choose a canned response..."
 msgstr "Выберите стандартный ответ..."
