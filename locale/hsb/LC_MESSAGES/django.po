@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-13 20:31+0000\n"
+"PO-Revision-Date: 2021-12-13 20:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4386,7 +4386,7 @@ msgstr "Eliminujće wotwjedźenja YouTube. Wotstrońće podobne a doporučene wi
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Wzmiće emodźije wšudźe we webje sobu."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
