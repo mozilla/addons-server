@@ -43,7 +43,7 @@ class LICENSE_LGPL3(_LicenseBase):
     name = _('GNU Library General Public License v3.0')
     url = 'http://www.gnu.org/licenses/lgpl-3.0.html'
     builtin = 5
-    slug = 'GPL-3.0-or-later'
+    slug = 'LGPL-3.0-or-later'
 
 
 class LICENSE_MIT(_LicenseBase):
