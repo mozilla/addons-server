@@ -1082,6 +1082,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.is_disabled is True
         assert addon.disabled_by_user is True  # sets the user property
 
+    @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
             **self.minimal_data,
@@ -1099,6 +1100,25 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'homepage': ['Enter a valid URL.'],
             'support_email': ['Enter a valid email address.'],
             'support_url': ['Enter a valid URL.'],
+        }
+
+        data = {
+            **self.minimal_data,
+            'homepage': {'ro': settings.EXTERNAL_SITE_URL},
+            'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        msg = (
+            'This field can only be used to link to external websites. '
+            f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [msg],
+            'support_url': [msg],
         }
 
     def test_set_tags(self):
@@ -1394,6 +1414,7 @@ class TestAddonViewSetUpdate(TestCase):
             'You do not have permission to perform this action.'
         )
 
+    @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
             'homepage': {'ro': '#%^%&&%^&^&^*'},
@@ -1410,6 +1431,24 @@ class TestAddonViewSetUpdate(TestCase):
             'homepage': ['Enter a valid URL.'],
             'support_email': ['Enter a valid email address.'],
             'support_url': ['Enter a valid URL.'],
+        }
+
+        data = {
+            'homepage': {'ro': settings.EXTERNAL_SITE_URL},
+            'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
+        }
+        response = self.client.patch(
+            self.url,
+            data=data,
+        )
+        msg = (
+            'This field can only be used to link to external websites. '
+            f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [msg],
+            'support_url': [msg],
         }
 
     def test_set_tags(self):

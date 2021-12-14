@@ -1,5 +1,6 @@
 from collections import OrderedDict
 
+from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
@@ -11,12 +12,15 @@ from rest_framework.test import APIRequestFactory
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.fields import (
+    AbsoluteOutgoingURLField,
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
     GetTextTranslationSerializerFieldFlat,
     LazyChoiceField,
     FallbackField,
+    OutgoingURLField,
     ReverseChoiceField,
     SlugOrPrimaryKeyRelatedField,
     SplitField,
@@ -755,3 +759,52 @@ class TestLazyChoiceField(TestCase):
             ((str(self.aa.id), self.aa.id), (str(self.bb.id), self.bb.id))
         )
         assert field.choices == {self.aa.id: 'aa', self.bb.id: 'bb'}
+
+
+@override_settings(EXTERNAL_SITE_URL='https://amazing.site')
+class TestOutgoingURLField(TestCase):
+    def test_adds_outgoing(self):
+        field = OutgoingURLField()
+        assert field.to_representation('/foo/baa/') == {
+            'url': '/foo/baa/',
+            'outgoing': '/',
+        }
+        assert field.to_representation('http://foo/baa/') == {
+            'url': 'http://foo/baa/',
+            'outgoing': get_outgoing_url('http://foo/baa/'),
+        }
+
+    def test_allow_internal(self):
+        user_input = f'{settings.EXTERNAL_SITE_URL}/foo/baa/'
+        with self.assertRaises(exceptions.ValidationError):
+            OutgoingURLField().run_validation(user_input)
+
+        with self.assertRaises(exceptions.ValidationError):
+            OutgoingURLField(allow_internal=False).run_validation(user_input)
+
+        OutgoingURLField(allow_internal=True).run_validation(user_input)
+
+
+@override_settings(EXTERNAL_SITE_URL='https://amazing.site')
+class TestAbsoluteOutgoingURLField(TestCase):
+    def test_absolutifys(self):
+        field = AbsoluteOutgoingURLField()
+        assert field.to_representation('/foo/baa/') == {
+            'url': f'{settings.EXTERNAL_SITE_URL}/foo/baa/',
+            'outgoing': f'{settings.EXTERNAL_SITE_URL}/foo/baa/',
+        }
+        assert field.to_representation('http://foo/baa/') == {
+            'url': 'http://foo/baa/',
+            'outgoing': get_outgoing_url('http://foo/baa/'),
+        }
+
+    def test_allow_internal(self):
+        user_input = f'{settings.EXTERNAL_SITE_URL}/foo/baa/'
+
+        # default is allow_internal=True so shouldn't raise
+        AbsoluteOutgoingURLField().run_validation(user_input)
+
+        with self.assertRaises(exceptions.ValidationError):
+            AbsoluteOutgoingURLField(allow_internal=False).run_validation(user_input)
+
+        AbsoluteOutgoingURLField(allow_internal=True).run_validation(user_input)

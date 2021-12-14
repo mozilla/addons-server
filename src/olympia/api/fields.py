@@ -1,5 +1,8 @@
+import re
+
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.validators import RegexValidator
 from django.utils.encoding import smart_str
 from django.utils.translation import get_language, gettext, gettext_lazy as _, override
 
@@ -330,6 +333,23 @@ class OutgoingSerializerMixin:
     URL fields, but wrapped with our outgoing server.
     """
 
+    def __init__(self, **kwargs):
+        # By default prevent internal urls from being specified
+        allow_internal = kwargs.pop('allow_internal', False)
+        super().__init__(**kwargs)
+        if not allow_internal:
+            validator = RegexValidator(
+                regex=r'%s' % re.escape(settings.EXTERNAL_SITE_URL),
+                message=_(
+                    'This field can only be used to link to external websites.'
+                    ' URLs on %(domain)s are not allowed.',
+                )
+                % {'domain': settings.EXTERNAL_SITE_URL},
+                code='no_amo_url',
+                inverse_match=True,
+            )
+            self.validators.append(validator)
+
     def to_representation(self, value):
         data = super().to_representation(value)
         request = self.context.get('request', None)
@@ -385,6 +405,12 @@ class OutgoingURLESTranslationField(
 
 
 class AbsoluteOutgoingURLField(OutgoingURLField):
+    def __init__(self, **kwargs):
+        # Switch the default to allow_internal=True, because absolutify is only needed
+        # for internal urls so using this class means they're possible values.
+        kwargs['allow_internal'] = kwargs.get('allow_internal', True)
+        super().__init__(**kwargs)
+
     def to_representation(self, obj):
         return super().to_representation(absolutify(obj) if obj else obj)
 
