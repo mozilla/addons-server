@@ -233,8 +233,8 @@ class BlocklistSubmission(ModelBase):
     )
     reason = models.TextField(
         blank=True,
-        help_text='Note this reason will be displayed'
-        ' publicly on the block-addon pages.',
+        help_text='Note this reason will be displayed publicly on the block-addon '
+        'pages.',
     )
     updated_by = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
     signoff_by = models.ForeignKey(
