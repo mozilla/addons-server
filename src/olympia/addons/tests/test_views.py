@@ -1976,6 +1976,28 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             ]
         }
 
+    def test_cannot_submit_listed_to_disabled_(self):
+        self.addon.update(disabled_by_user=True)
+        self.upload.update(automated_signing=False)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Listed versions cannot be submitted while add-on is disabled.'
+            ],
+        }
+
+        # but we can submit an unlisted version though
+        self.upload.update(automated_signing=True)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
     client_class = JWTAPITestClient

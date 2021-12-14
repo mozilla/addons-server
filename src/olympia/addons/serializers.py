@@ -537,8 +537,12 @@ class VersionSerializer(SimpleVersionSerializer):
             channel = data['upload'].channel
             # If this is a new version to an existing addon, check that all the required
             # metadata is set. We test for new addons in AddonSerailizer.validate
-            # instead.
+            # instead. Also check for submitting listed versions when disabled.
             if channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
+                if self.addon.disabled_by_user:
+                    raise exceptions.ValidationError(
+                        'Listed versions cannot be submitted while add-on is disabled.'
+                    )
                 # This is replicating what Addon.get_required_metadata does
                 missing_addon_metadata = [
                     field
