@@ -5,7 +5,7 @@ from django.views.decorators.cache import never_cache
 from . import views
 
 services_patterns = [
-    re_path(r'^monitor\.json$', never_cache(views.monitor), name='amo.monitor'),
+    re_path(r'^monitor\.json$', never_cache(views.heartbeat), name='amo.monitor'),
     re_path(r'^client_info', views.client_info, name='amo.client_info'),
     re_path(r'^loaded$', never_cache(views.loaded), name='amo.loaded'),
     re_path(r'^403', views.handler403),
@@ -22,6 +22,10 @@ urlpatterns = [
     re_path(r'^contribute\.json$', views.contribute, name='contribute.json'),
     re_path(r'^services/', include(services_patterns)),
     re_path(r'^__version__$', views.version, name='version.json'),
+    re_path(r'^__heartbeat__$', never_cache(views.heartbeat), name='amo.heartbeat'),
+    re_path(
+        r'^__lbheartbeat__$', never_cache(views.lbheartbeat), name='amo.lbheartbeat'
+    ),
     re_path(
         r'^opensearch\.xml$',
         TemplateView.as_view(

@@ -20,7 +20,6 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-import olympia
 from olympia import amo
 from olympia.amo.utils import HttpResponseXSendFile, use_fake_fxa
 from olympia.api.exceptions import base_500_data
@@ -31,12 +30,9 @@ from . import monitors
 from .sitemap import get_sitemap_path, get_sitemaps, render_index_xml
 
 
-sitemap_log = olympia.core.logger.getLogger('z.monitor')
-
-
 @never_cache
 @non_atomic_requests
-def monitor(request):
+def heartbeat(request):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
     results = {}
@@ -54,7 +50,13 @@ def monitor(request):
     # If anything broke, send HTTP 500.
     status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
 
-    return http.HttpResponse(json.dumps(status_summary), status=status_code)
+    return JsonResponse(status_summary, status=status_code)
+
+
+@never_cache
+@non_atomic_requests
+def lbheartbeat(request):
+    return HttpResponse(status=200)
 
 
 @never_cache
