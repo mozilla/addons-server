@@ -270,6 +270,8 @@ SUPPORTED_NONAPPS = (
     'sitemap.xml',
     'static',
     'user-media',
+    '__heartbeat__',
+    '__lbheartbeat__',
     '__version__',
 )
 DEFAULT_APP = 'firefox'
@@ -287,6 +289,8 @@ SUPPORTED_NONLOCALES = (
     'downloads',
     'static',
     'user-media',
+    '__heartbeat__',
+    '__lbheartbeat__',
     '__version__',
 )
 

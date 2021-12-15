@@ -71,3 +71,9 @@ class TestMonitor(TestCase):
 
         status, signer_result = monitors.signer()
         assert status == ''
+
+    def test_database(self):
+        with self.assertNumQueries(2):
+            status, result = monitors.database()
+        assert status == ''
+        assert result is None

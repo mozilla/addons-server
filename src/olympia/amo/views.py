@@ -35,17 +35,22 @@ from .sitemap import get_sitemap_path, get_sitemaps, render_index_xml
 def heartbeat(request):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
-    results = {}
 
-    checks = ['memcache', 'libraries', 'elastic', 'path', 'rabbitmq', 'signer']
+    checks = [
+        'memcache',
+        'libraries',
+        'elastic',
+        'path',
+        'rabbitmq',
+        'signer',
+        'database',
+    ]
 
     for check in checks:
-        with statsd.timer('monitor.%s' % check) as timer:
-            status, result = getattr(monitors, check)()
+        with statsd.timer('monitor.%s' % check):
+            status, _ = getattr(monitors, check)()
         # state is a string. If it is empty, that means everything is fine.
         status_summary[check] = {'state': not status, 'status': status}
-        results['%s_results' % check] = result
-        results['%s_timer' % check] = timer.ms
 
     # If anything broke, send HTTP 500.
     status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
