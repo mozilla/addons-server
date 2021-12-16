@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-16 12:30+0000\n"
+"PO-Revision-Date: 2021-12-16 12:52+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3067,7 +3067,7 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "Υπεγράφη για αυτό-διανομή. Εσείς χειρίζεστε τις ενημερώσεις."
 
 msgid "Latest Version:"
-msgstr "Τελευταία έκδοση"
+msgstr "Τελευταία έκδοση:"
 
 msgid "This is the newest uploaded unlisted version"
 msgstr "Αυτή είναι η νεότερη μεταφορτωμένη έκδοση που δεν έχει καταχωρηθεί"
@@ -3088,7 +3088,7 @@ msgid "Admin Manage"
 msgstr "Διαχείριση διαχειριστή"
 
 msgid "View Statistics Dashboard"
-msgstr "Προβολή ταμπλό στατιστικών"
+msgstr "Προβολή πίνακα στατιστικών"
 
 msgid "Developer News"
 msgstr "Ειδήσεις προγραμματιστών"
@@ -3111,7 +3111,7 @@ msgid "Some HTML supported."
 msgstr "Μερική υποστήριξη HTML."
 
 msgid "Remove this application"
-msgstr "Αφαίρεση αυτής της εφαρμογής"
+msgstr "Αφαίρεση εφαρμογής"
 
 #. {0} is the maximum number of add-on categories allowed.                {1} is
 #. the application name.
@@ -3121,7 +3121,7 @@ msgstr[0] "Επιλέξτε <b>μέχρι {0}</b> {1} κατηγορία για 
 msgstr[1] "Επιλέξτε <b>μέχρι {0}</b> {1} κατηγορίες για το πρόσθετο:"
 
 msgid "End-User License Agreement"
-msgstr "Αδειοδότηση τελικού χρήστη (EULA)"
+msgstr "Συμφωνία άδειας τελικού χρήστη"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr "Παρακαλούμε σημειώστε ότι μια EULA δεν είναι ίδια με μια άδεια κώδικα, όπως η GPL ή η MPL. Αφορά μόνο τα καταχωρημένα πρόσθετα."
@@ -3364,19 +3364,19 @@ msgid "Status & Versions"
 msgstr "Κατάσταση & εκδόσεις"
 
 msgid "Edit this version"
-msgstr "Επεξεργασία αυτής της έκδοσης"
+msgstr "Επεξεργασία έκδοσης"
 
 msgid "Re-enable Version"
 msgstr "Εκ νέου ενεργοποίηση έκδοσης"
 
 msgid "Review History"
-msgstr "Προβολή ιστορικού"
+msgstr "Ιστορικό αξιολογήσεων"
 
 msgid "Close Review History"
 msgstr "Κλείσιμο ιστορικού αξιολόγησης"
 
 msgid "Request Review"
-msgstr "Απαίτηση αξιολόγησης"
+msgstr "Αίτημα αξιολόγησης"
 
 msgid "Cancel Review Request"
 msgstr "Ακύρωση αιτήματος αξιολόγησης"
@@ -4827,7 +4827,7 @@ msgid "Approved reviews"
 msgstr "Εγκεκριμένες αξιολογήσεις"
 
 msgid "Deleted reviews"
-msgstr "Διαγραμμένες αξιολογήσεις  "
+msgstr "Διαγραμμένες αξιολογήσεις"
 
 msgid "View entries between"
 msgstr "Προβολή ενδιάμεσων εγγραφών"
@@ -4836,7 +4836,7 @@ msgid "and"
 msgstr "και"
 
 msgid "Filter by type/action"
-msgstr "Φιλτράρισμα με βάση τον τύπο/λειτουργία"
+msgstr "Φιλτράρισμα κατά τύπο/ενέργεια"
 
 msgid "containing"
 msgstr "Περιέχει"
@@ -5307,7 +5307,7 @@ msgstr "Διαχειριστικές ενέργειες:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "από τον/την  %(user)s στις %(date)s %(stars)s (%(locale)s)"
+msgstr "από %(user)s στις %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -5317,7 +5317,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr "Όλες οι κριτικές έχουν περάσει από έλεγχο. Συγχαρητήρια!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr "Προς το παρόν δεν υπάρχουν πρόσθετα αυτού του τύπου για αξιολόγηση."
+msgstr "Προς το παρόν, δεν υπάρχουν πρόσθετα αυτού του τύπου για αξιολόγηση."
 
 msgid "Helpful Links:"
 msgstr "Χρήσιμοι σύνδεσμοι:"
@@ -6057,7 +6057,7 @@ msgstr "Απόρριψη αλλαγών"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Θέλετε σίγουρα να αφαιρέσετε όλες τις <b>{0}</b> μεταφράσεις; Αυτή η ενέργεια δεν μπορεί να ανακληθεί."
+msgstr "Θέλετε σίγουρα να αφαιρέσετε όλες τις μεταφράσεις για τα <b>{0}</b>; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί."
 
 msgid "Delete Locale"
 msgstr "Διαγραφή γλώσσας"
