@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2021-12-16 13:31+0000\n"
+"PO-Revision-Date: 2021-12-16 13:34+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -330,25 +330,25 @@ msgid "Collections"
 msgstr "Συλλογές"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Κατηγορία Προβεβλημένο Καρουζέλ"
+msgstr "Κατηγορία προτεινόμενης συλλογής"
 
 msgid "Category Landing Top Rated"
-msgstr "Κατηγορία Υψηλότερη Βαθμολογία"
+msgstr "Κατηγορία υψηλότερης βαθμολογίας"
 
 msgid "Category Landing Most Popular"
-msgstr "Κατηγορία Δημοφιλέστερα"
+msgstr "Κατηγορία δημοφιλέστερων"
 
 msgid "Category Landing Recently Added"
-msgstr "Κατηγορία Προστέθηκαν πρόσφατα"
+msgstr "Κατηγορία πρόσφατων προσθηκών"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Αναζήτηση Λίστας Προβεβλημένων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά προβεβλημένα"
 
 msgid "Browse Listing Users Sort"
-msgstr "Αναζήτηση Λίστας Χρηστών Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά χρήστη"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Αναζήτηση Λίστας Αξιολογήσεων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά βαθμολογία"
 
 msgid "Browse Listing Created Sort"
 msgstr "Ταξινόμηση λίστας κατά δημιουργία"
