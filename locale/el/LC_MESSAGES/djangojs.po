@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2021-12-16 13:23+0000\n"
+"PO-Revision-Date: 2021-12-16 13:31+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -288,7 +288,7 @@ msgid "Homepage Up and Coming"
 msgstr "Προσεχή πρόσθετα αρχικής σελίδας"
 
 msgid "Homepage Most Popular"
-msgstr "Δημοφιλέστερη Αρχική Σελίδα"
+msgstr "Δημοφιλέστερο αρχικής σελίδας"
 
 msgid "Detail Page"
 msgstr "Σελίδα λεπτομερειών"
@@ -351,19 +351,19 @@ msgid "Browse Listing Rating Sort"
 msgstr "Αναζήτηση Λίστας Αξιολογήσεων Ταξινόμηση"
 
 msgid "Browse Listing Created Sort"
-msgstr "Αναζήτηση Λίστας Δημιουργηθέντων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά δημιουργία"
 
 msgid "Browse Listing Name Sort"
-msgstr "Αναζήτηση Λίστας Ονομάτων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά όνομα"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Αναζήτηση Λίστας Δημοφιλών Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά δημοφιλή"
 
 msgid "Browse Listing Updated Sort"
-msgstr "Αναζήτηση Λίστας Ανανεωμένων"
+msgstr "Ταξινόμηση λίστας κατά ενημερώσεις"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Αναζήτηση Λίστας Προσεχών"
+msgstr "Ταξινόμηση λίστας κατά επερχόμενα"
 
 msgid "Total Amount Contributed"
 msgstr "Σύνολο συνεισφορών"
@@ -665,7 +665,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Μόνο με το Firefox — Λήψη του Firefox τώρα!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Λυπούμαστε, θα χρειαστείτε ένα πρόγραμμα περιήγησης με βάση τα προϊόντα Mozilla (όπως το Firefox) για να εγκαταστήσετε αρθρώματα αναζήτησης."
+msgstr "Λυπούμαστε, θα χρειαστείτε ένα πρόγραμμα περιήγησης με βάση τα προϊόντα Mozilla (όπως το Firefox) για να εγκαταστήσετε ένα άρθρωμα αναζήτησης."
 
 msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"
@@ -674,7 +674,7 @@ msgid "Enter a new author's email address"
 msgstr "Εισαγάγετε τη διεύθυνση email νέου δημιουργού"
 
 msgid "There was an error uploading your file."
-msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
+msgstr "Προέκυψε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
 msgid "{files} file"
 msgid_plural "{files} files"
