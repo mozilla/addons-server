@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-16 13:12+0000\n"
+"PO-Revision-Date: 2021-12-16 13:21+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -79,10 +79,10 @@ msgid "The homepage field can only be used to link to external websites."
 msgstr "Το πεδίο αρχικής σελίδας μπορεί να χρησιμοποιηθεί μόνο για σύνδεση σε εξωτερικούς ιστοτόπους."
 
 msgid "Images must be either PNG or JPG."
-msgstr "Οι εικόνες θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
+msgstr "Οι εικόνες πρέπει να είναι σε μορφή PNG ή JPG."
 
 msgid "Images cannot be animated."
-msgstr "Οι εικόνες δεν επιτρέπεται να έχουν εφέ κίνησης."
+msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -613,10 +613,10 @@ msgid "{addon} {version} escalated."
 msgstr "Κλιμακώθηκε η έκδοση {version} του {addon}."
 
 msgid "Super review requested"
-msgstr "Ζητήθηκε υπερ αξιολόγηση"
+msgstr "Ζητήθηκε υπεραξιολόγηση"
 
 msgid "{addon} {version} review requested."
-msgstr "Έγινε αίτηση αξιολόγησης για το {addon} {version}."
+msgstr "Ζητήθηκε αξιολόγηση για το {addon} {version}."
 
 msgid "Review requested"
 msgstr "Ζητήθηκε αξιολόγηση"
@@ -636,43 +636,43 @@ msgstr ""
 "χρόνο από το συνηθισμένο."
 
 msgid "Comment on {addon} {version}."
-msgstr "Σχόλιο για το πρόσθετο {addon} {version}."
+msgstr "Σχόλιο στο {addon} {version}."
 
 msgid "Commented"
 msgstr "Σχολίασε"
 
 msgid "{tag} added to {addon}."
-msgstr "Προστέθηκε η ετικέτα {tag} στο {addon}."
+msgstr "Η ετικέτα «{tag}» προστέθηκε στο {addon}."
 
 msgid "{tag} removed from {addon}."
-msgstr "Αφαιρέθηκε η ετικέτα {tag} από το {addon}."
+msgstr "Η ετικέτα «{tag}» αφαιρέθηκε από το {addon}."
 
 msgid "{addon} added to {collection}."
-msgstr "Το {addon} προστέθηκε στη συλλογή {collection}."
+msgstr "Το {addon} προστέθηκε στη συλλογή «{collection}»."
 
 msgid "{addon} removed from {collection}."
-msgstr "Αφαιρέθηκε το {addon} από τη συλλογή {collection}."
+msgstr "Το {addon} αφαιρέθηκε από τη συλλογή «{collection}»."
 
 msgid "{rating} for {addon} written."
 msgstr "Υπεβλήθη η βαθμολογία {rating} για το {addon}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
-msgstr "Το {addon} προβάλλεται σε: {0}."
+msgstr "Το {addon} προβάλλεται στην κατηγορία «{0}»."
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr "Το {addon} δεν προβάλλεται πια σε: {0}."
+msgstr "Το {addon} δεν προβάλλεται πια στην κατηγορία «{0}»."
 
 msgid "{addon} is now featured."
-msgstr "Το {addon} είναι τώρα στα προβεβλημένα."
+msgstr "Το {addon} είναι πλέον προβεβλημένο."
 
 msgid "{addon} is no longer featured."
 msgstr "Το {addon} δεν είναι πια προβεβλημένο."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr "Προστέθηκε ο {0} {1}."
+msgstr "Το {0} {1} προστέθηκε."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
@@ -682,10 +682,10 @@ msgid "{addon} is now licensed under {0}."
 msgstr "Το {addon} υπόκειται στην άδεια {0}."
 
 msgid "{addon} policy changed."
-msgstr "Άλλαξε η πολιτική του {addon}."
+msgstr "Η πολιτική του {addon} άλλαξε."
 
 msgid "{addon} icon changed."
-msgstr "Άλλαξε το εικονίδιο του {addon}."
+msgstr "Το εικονίδιο του {addon} άλλαξε."
 
 msgid "{rating} for {addon} approved."
 msgstr "Εγκρίθηκε η βαθμολογία {rating} για το {addon}."
@@ -712,7 +712,7 @@ msgid "Password changed."
 msgstr "Ο κωδικός πρόσβασης άλλαξε."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "Το {addon} {version} επικυρώθηκε αλλά αναμένεται να γίνει δημόσιο."
+msgstr "Το {addon} {version} εγκρίθηκε αλλά αναμένεται να γίνει δημόσιο."
 
 msgid "Approved but waiting"
 msgstr "Εγκρίθηκε αλλά αναμένεται"
@@ -724,13 +724,13 @@ msgid "Created: {0}."
 msgstr "Δημιουργία: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr "Επεξεργάστηκε το πεδίο: {2} ορίστηκε ως: {0}."
+msgstr "Επεξεργασμένο πεδίο: το «{2}» ορίστηκε σε: {0}."
 
 msgid "Deleted: {1}."
 msgstr "Διαγράφηκε: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr "Ο χρήστης {user} επεξεργάστηκε, αιτία: {1}"
+msgstr "Ο χρήστης {user} τροποποιήθηκε, αιτία: {1}"
 
 msgid "User {user} anonymized."
 msgstr "Ο χρήστης {user} είναι ανώνυμος."
@@ -754,7 +754,7 @@ msgid "User {user} picture deleted."
 msgstr "Η εικόνα του χρήστη {user} διαγράφτηκε."
 
 msgid "User {0.name} added to {group}."
-msgstr "Ο χρήστης {0.name} προστέθηκε στο {group}."
+msgstr "Ο χρήστης {0.name} προστέθηκε στην ομάδα «{group}»."
 
 msgid "User {0.name} removed from {group}."
 msgstr "Ο χρήστης {0.name} αφαιρέθηκε από την ομάδα «{group}»."
