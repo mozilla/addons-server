@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-18 13:10+0000\n"
+"PO-Revision-Date: 2021-12-18 13:22+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2753,9 +2753,8 @@ msgstr "Вы должны отправить исходный код вашег�
 msgid "Your source code must include:"
 msgstr "Ваш исходный код должен включать:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Пошаговые инструкции о том, как создать точную копию кода дополнения."
+msgstr "Пошаговые инструкции о том, как создать точную копию кода дополнения в файле README в исходном коде или в примечаниях для рецензента на следующей странице."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Скрипт сборки, который выполняет все необходимые технические действия."
@@ -2763,17 +2762,11 @@ msgstr "Скрипт сборки, который выполняет все не
 msgid "Operating system and build environment requirements."
 msgstr "Требования к операционной системе и среде сборки."
 
-#, fuzzy
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr ""
-"Сведения (включая требуемые версии и инструкции по установке) о любых программных продуктах, используемых в процессе сборки (например, используемые версии <span class=\"tech-emphasis\">node</span> и"
-" <span class=\"tech-emphasis\">npm</span>)."
+msgstr "Требуемая версия и инструкции по установке любых программ, используемых в процессе сборки (таких как <span class=\"tech-emphasis\">node</span> и <span class=\"tech-emphasis\">npm</span>)."
 
-#, fuzzy
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
-msgstr ""
-"<span class=\"instruction-emphasis\">Примечание:</span> Исходные файлы (кроме сторонних библиотек с открытым исходных кодом) не могут быть транспайлированы, объединены, минифицированы или каким-либо"
-" другим образом сгенерированы машиной."
+msgstr "Исходные файлы (кроме сторонних библиотек с открытым исходных кодом) не могут быть транспайлированы, объединены, минифицированы или каким-либо другим образом сгенерированы машиной."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
@@ -4369,9 +4362,8 @@ msgid "Goodbye, annoying cookie warnings!"
 msgstr "Пока пока, надоедливые предупреждения о куках!"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "All your emoji needs—always just a click away."
-msgstr "Выйдите на новый уровень. Десятки удивительных эмодзи для любого случая — всегда на расстоянии одного щелчка."
+msgstr "Все эмодзи для любого случая — всегда на расстоянии одного щелчка."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4443,19 +4435,17 @@ msgstr "Повышение продуктивности"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "Популярные расширения"
+msgstr "Лучшие расширения для защиты от слежки"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Рекомендуемые менеджеры паролей"
+msgstr "Надежные менеджеры паролей"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Посмотреть выбор наших сотрудников"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4478,9 +4468,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Расширения для повышения приватности"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Больше рекомендуемых расширений"
+msgstr "Больше рекомендуемых расширений для повышения приватности"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4500,50 +4489,44 @@ msgid "See more recommended themes"
 msgstr "Больше рекомендуемых тем"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Больше расширений для управления вкладками"
+msgstr "Больше менеджеров паролей отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr "Инструменты перевода"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Больше инструментов перевода"
+msgstr "Больше инструментов перевода отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Вещание в социальных сетях"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Больше расширений для вещания в социальных сетях"
+msgstr "Больше расширений для вещания в социальных сетях отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr "Менеджеры вкладок"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Больше расширений для управления вкладками"
+msgstr "Больше расширений для управления вкладками отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
 msgstr "Расширения с тегами “{tag}”"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Больше популярных расширений"
+msgstr "Больше расширений с тегом \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Обновить блокировку дополнений"
+msgstr "Элитные блокировщики рекламы"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4560,14 +4543,12 @@ msgid "See more YouTube extension staff picks"
 msgstr "Больше инструментов перевода"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Рекомендуемые темы"
+msgstr "Популярные темы"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Больше рекомендуемых тем"
+msgstr "Больше набирающих популярность тем"
 
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."
@@ -5640,9 +5621,8 @@ msgstr "наличие совпадающих правил"
 msgid "result state"
 msgstr "результат состояния"
 
-#, fuzzy
 msgid "Excluding results solely matching these rules"
-msgstr "все, кроме результатов, соответствующих только этому правилу"
+msgstr "Кроме результатов, соответствующих только этим правилам"
 
 msgid "presence of a version"
 msgstr "наличие версии"
