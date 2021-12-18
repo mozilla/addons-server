@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-18 13:22+0000\n"
+"PO-Revision-Date: 2021-12-18 13:24+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -4506,7 +4506,7 @@ msgstr "Вещание в социальных сетях"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
-msgstr "Больше расширений для вещания в социальных сетях отобранных нашими сотрудниками"
+msgstr "Больше средств вещания в социальных сетях отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4529,18 +4529,16 @@ msgid "Elite ad blockers"
 msgstr "Элитные блокировщики рекламы"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Больше расширений для управления вкладками"
+msgstr "Больше средств блокировки рекламы отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube boosters"
 msgstr "Улучшатели YouTube"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Больше инструментов перевода"
+msgstr "Больше расширений для YouTube отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
