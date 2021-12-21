@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-06 13:11+0000\n"
+"PO-Revision-Date: 2021-12-06 13:12+0000\n"
 "Last-Translator: icorei783 <icorei783@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -509,13 +509,11 @@ msgstr "Xóa"
 msgid "Update"
 msgstr "Cập nhật"
 
-#, fuzzy
 msgid "Reject Submission"
-msgstr "Chuyển đến đệ trình của tôi"
+msgstr "Từ chối đệ trình"
 
-#, fuzzy
 msgid "Approve Submission"
-msgstr "Chuyển đến đệ trình của tôi"
+msgstr "Chấp nhận đệ trình"
 
 #, python-format
 msgid "Add %(name)s"
@@ -1183,7 +1181,7 @@ msgid "User Interface"
 msgstr "Giao diện Người dùng"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Tải xuống các giao diện người dùng cho các tiện ích mở rộng của Firefox để thay đổi các trang web để đọc, tìm kiếm, duyệt web và hơn thế nữa dễ dàng hơn."
 
 msgid "Animals"
 msgstr "Động vật"
