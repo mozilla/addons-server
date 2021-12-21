@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-13 20:32+0000\n"
+"PO-Revision-Date: 2021-12-21 22:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3531,7 +3531,7 @@ msgstr "Wuzběhńće tekst a klikńće z prawej tastu, zo byšće spěšne pytan
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr "Wužiwajće wizuelne zapołožki. Mějće přistup na swoje najlubše sydła z kachličkoweho napohlada."
+msgstr "Wužiwajće wizuelne zapołožki. Mějće přistup k swojim najlubšim sydłam z kachličkoweho napohlada."
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -3569,7 +3569,7 @@ msgstr "Lochke přełožki. Wuzběhńće tekst na webstronje - abo wubjerće cy�
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr "Akademiska wěda k ruce. Mějće darmotny přistup na přez 10 milionow slědźerskich dźěłow."
+msgstr "Akademiska wěda k ruce. Mějće darmotny přistup k přez 10 milionam slědźerskich dźěłow."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3703,7 +3703,7 @@ msgstr "Přehladujće anonymnje. Přehladujće web ze zakrytej identitu - samo, 
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr "Wužiwajće wizuelne zapołožki. Mějće přistup na swoje najlubše sydła, njedawno začinjene rajtarki a wjace - wšitko z wulkotneho kachličkeho napohlada."
+msgstr "Wužiwajće wizuelne zapołožki. Mějće přistup k swojim najlubšim sydłam, njedawno začinjenym rajtarkam a wjace - wšitko z wulkotneho kachličkeho napohlada."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
@@ -3757,7 +3757,7 @@ msgstr "Přiměrće swoju stronu noweho rajtarka, zo byšće swoju preferowanu l
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr "Składujće hesła wěsće a mějće přistup na nje přez wjacore graty."
+msgstr "Składujće hesła wěsće a mějće přistup k nim přez wjacore graty."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
@@ -3774,7 +3774,7 @@ msgstr "Klikńće z prawej tastu a ćehńće wotkazy, kotrež chceće w nowych r
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr "Klikńće z prawej tastu na symbol w swojej symbolowej lajsće, zo byšće přistup na njedawno začinjene rajtarki měł."
+msgstr "Klikńće z prawej tastu na symbol w swojej symbolowej lajsće, zo byšće přistup k njedawno začinjenym rajtarkam měł."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -3827,7 +3827,7 @@ msgstr "Sćehńće wobrazy, kotrež we webje namakaće."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr "Wobmjezujće přistup na njepřihódny abo njewitany wobsah z filtrom."
+msgstr "Wobmjezujće přistup k njepřihódnemu abo njewitanemu wobsahej z filtrom."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
@@ -3859,7 +3859,7 @@ msgstr "Dóstańće profesionelne němske přełožki z jendźelšćiny, franco�
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr "Wobarajće Firefox přistup na wěste websydła. Wulkotny nastroj za sebjedisciplinu online."
+msgstr "Wobarajće Firefox přistup k wěstym websydłam. Wulkotny nastroj za sebjedisciplinu online."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
@@ -4015,7 +4015,7 @@ msgstr "Za wokomiki, hdyž dyrbiće lasery z kóčki wutřělić."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Mějće lochki přistup na swoje wočinjene rajtarki, zapołožki a historiju, zo byšće Firefox přepytał."
+msgstr "Mějće lochki přistup k swojim wočinjenym rajtarkam, zapołožkam a historiji, zo byšće Firefox přepytał."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
