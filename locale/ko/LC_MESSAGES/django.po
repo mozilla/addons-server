@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-23 05:23+0000\n"
+"PO-Revision-Date: 2021-12-27 08:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1631,7 +1631,7 @@ msgid "An author can only be present once."
 msgstr "제작자는 한명만 표시됩니다."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "작성자로 추가하려면 계정에 표시 이름이 필요합니다."
 
 msgid "Must have at least one owner."
 msgstr "적어도 한명의 소유자는 있어야 합니다."
@@ -1698,10 +1698,10 @@ msgid "You have submitted too many uploads recently. Please try again after some
 msgstr "최근에 너무 많은 업로드를 했습니다. 잠시 후 다시 시도해주세요."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "{version} 버전은 이 부가 기능의 {block_link}와 일치합니다. 추가 정보는 {amo_admins}에 문의 할 수 있습니다."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "블록리스트 항목"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} 버전이 이전에 업로드 되고 삭제된적이 있습니다."
