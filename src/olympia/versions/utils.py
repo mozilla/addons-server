@@ -1,4 +1,3 @@
-import copy
 import os
 import io
 import re
@@ -138,20 +137,3 @@ def process_color_value(prop, value):
         return prop, 'rgb(%s,%s,%s)' % tuple(value)
     # strip out spaces because jquery.minicolors chokes on them
     return prop, str(value).replace(' ', '')
-
-
-def new_69_theme_properties_from_old(original):
-    manifest = copy.deepcopy(original)
-    # colors first
-    colors = original.get('theme', {}).get('colors', {})
-    for prop, value in colors.items():
-        new_color_prop = DEPRECATED_COLOR_TO_CSS.get(prop)
-        if new_color_prop and new_color_prop not in colors:
-            manifest['theme']['colors'].pop(prop)
-            manifest['theme']['colors'][new_color_prop] = value
-    # the background image property changed too
-    images = original.get('theme', {}).get('images', {})
-    if 'headerURL' in images and 'theme_frame' not in images:
-        manifest['theme']['images'].pop('headerURL')
-        manifest['theme']['images']['theme_frame'] = images.get('headerURL')
-    return manifest
