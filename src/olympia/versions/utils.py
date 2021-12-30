@@ -1,10 +1,8 @@
 import copy
-import json
 import os
 import io
 import re
 import tempfile
-import zipfile
 
 from base64 import b64encode
 
@@ -157,20 +155,3 @@ def new_69_theme_properties_from_old(original):
         manifest['theme']['images'].pop('headerURL')
         manifest['theme']['images']['theme_frame'] = images.get('headerURL')
     return manifest
-
-
-def build_69_compatible_theme(old_xpi, new_xpi, new_version_number):
-    if not os.path.exists(os.path.dirname(new_xpi)):
-        os.makedirs(os.path.dirname(new_xpi))
-    with zipfile.ZipFile(old_xpi, 'r') as src:
-        with zipfile.ZipFile(new_xpi, 'w') as dest:
-            for entry in src.infolist():
-                if entry.filename == 'manifest.json':
-                    old_manifest = json.loads(src.read(entry))
-                    manifest = new_69_theme_properties_from_old(old_manifest)
-                    # bump the version number
-                    manifest['version'] = new_version_number
-                    # write replacement manifest
-                    dest.writestr('manifest.json', json.dumps(manifest))
-                else:
-                    dest.writestr(entry.filename, src.read(entry))
