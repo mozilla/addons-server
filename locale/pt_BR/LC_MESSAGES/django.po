@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-31 19:07+0000\n"
+"PO-Revision-Date: 2021-12-31 19:10+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4261,7 +4261,7 @@ msgstr "Encontre páginas web arquivadas, descontinuadas ou desaparecidas."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Mude a aparência do seu navegador. Crie seus próprios temas facilmente para deixar o Firefox com o visual que você deseja."
+msgstr "Mude a aparência do seu navegador. Crie facilmente seus próprios temas para deixar o Firefox com um visual que te agrada."
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
@@ -6073,7 +6073,7 @@ msgstr "Descartar alterações"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr "Deseja realmente remover todas as traduções de <b>{0}</b>? Isso não pode ser desfeito."
+msgstr "Tem certeza que quer remover todas as traduções de <b>{0}</b>? Isso não pode ser desfeito."
 
 msgid "Delete Locale"
 msgstr "Excluir idioma"
