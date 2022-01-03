@@ -1,3 +1,5 @@
+from urllib.parse import quote_plus
+
 from django_jinja import library
 import jinja2
 
@@ -10,7 +12,7 @@ from olympia.amo.templatetags.jinja_helpers import drf_url
 def login_link(context):
     next_path = path_with_query(context['request'])
     login_start = drf_url(context, 'accounts.login_start')
-    return f'{login_start}?to={next_path}'
+    return f'{login_start}?to={quote_plus(next_path)}'
 
 
 @library.global_function
