@@ -1633,25 +1633,6 @@ class Addon(OnChangeMixin, ModelBase):
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
 
-    def check_ownership(
-        self, request, require_owner, require_author, ignore_disabled, admin
-    ):
-        """
-        Used by acl.check_ownership to see if request.user has permissions for
-        the addon.
-        """
-        if require_author:
-            require_owner = False
-            ignore_disabled = True
-            admin = False
-        return acl.check_addon_ownership(
-            request,
-            self,
-            admin=admin,
-            dev=(not require_owner),
-            ignore_disabled=ignore_disabled,
-        )
-
     def should_show_permissions(self, version=None):
         version = version or self.current_version
         return (

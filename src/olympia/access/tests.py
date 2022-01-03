@@ -14,7 +14,6 @@ from .acl import (
     action_allowed_user,
     check_addon_ownership,
     check_listed_addons_reviewer,
-    check_ownership,
     check_static_theme_reviewer,
     check_unlisted_addons_reviewer,
     check_unlisted_addons_viewer_or_reviewer,
@@ -122,15 +121,6 @@ class TestHasPerm(TestCase):
         assert check_addon_ownership(self.request, self.addon)
         assert check_addon_ownership(self.request, self.addon, admin=True)
         assert not check_addon_ownership(self.request, self.addon, admin=False)
-
-    def test_require_author(self):
-        assert check_ownership(self.request, self.addon, require_author=True)
-
-    def test_require_author_when_admin(self):
-        self.request = self.fake_request_with_user(self.login_admin())
-        assert check_ownership(self.request, self.addon, require_author=False)
-
-        assert not check_ownership(self.request, self.addon, require_author=True)
 
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)

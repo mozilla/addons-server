@@ -36,7 +36,6 @@ from rest_framework.test import APIClient, APIRequestFactory
 from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
-from olympia.access.acl import check_ownership
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
@@ -883,7 +882,6 @@ def req_factory_factory(url, user=None, post=False, data=None, session=None):
         req.user = AnonymousUser()
     if session is not None:
         req.session = session
-    req.check_ownership = partial(check_ownership, req)
     return req
 
 

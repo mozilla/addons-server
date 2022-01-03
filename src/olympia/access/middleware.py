@@ -1,25 +1,16 @@
-"""
-This middleware will handle marking users into certain groups and loading
-their ACLs into the request.
-"""
-from functools import partial
-
 from django.utils.deprecation import MiddlewareMixin
 
 import olympia.core.logger
 from olympia import core
-from olympia.access import acl
 
 
 log = olympia.core.logger.getLogger('z.access')
 
 
 class UserAndAddrMiddleware(MiddlewareMixin):
+    """Persist user and remote addr in current thread while processing the
+    request."""
     def process_request(self, request):
-        """Attach authentication/permission helpers to request, and persist
-        user and remote addr in current thread."""
-        request.check_ownership = partial(acl.check_ownership, request)
-
         # Persist the user and remote addr in the thread to make it accessible
         # in log() statements etc. `user` could be anonymous here, it's kept
         # lazy to avoid early database queries.
