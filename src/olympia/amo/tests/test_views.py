@@ -296,7 +296,7 @@ class TestOtherStuff(TestCase):
         doc = pq(response.content)
         expected_link = (
             'http://testserver/api/v5/accounts/login/start/'
-            '?to=/en-US/firefox/pages/appversions/'
+            '?to=%2Fen-US%2Ffirefox%2Fpages%2Fappversions%2F'
         )
         assert doc('.account.anonymous a')[1].attrib['href'] == expected_link
 
