@@ -1104,14 +1104,6 @@ def upload_image(request, addon_id, addon, upload_type):
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(addon.versions.all(), pk=version_id)
     posting = request.method == 'POST'
-    if posting:
-        log.info(
-            'Starting version_edit, addon.slug: %s, version.id: %s',
-            addon.slug,
-            version.id,
-        )
-        timer = StopWatch('devhub.views.version_edit.')
-        timer.start()
     static_theme = addon.type == amo.ADDON_STATICTHEME
     version_form = (
         forms.VersionForm(
@@ -1122,18 +1114,21 @@ def version_edit(request, addon_id, addon, version_id):
         if not static_theme
         else None
     )
-    if posting:
-        log.info(
-            'version_edit, form populated, addon.slug: %s, version.id: %s',
-            addon.slug,
-            version.id,
-        )
-        timer.log_interval('1.form_populated')
 
     data = {}
 
+    has_source = version_form and version_form['source'].data
     if version_form:
         data['version_form'] = version_form
+        if has_source and posting:
+            timer = StopWatch('devhub.views.version_edit.')
+            timer.start()
+            log.info(
+                'version_edit, form populated, addon.slug: %s, version.id: %s',
+                addon.slug,
+                version.id,
+            )
+            timer.log_interval('1.form_populated')
 
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
@@ -1145,12 +1140,13 @@ def version_edit(request, addon_id, addon, version_id):
         data['compat_form'] = compat_form
 
     if request.method == 'POST' and all([form.is_valid() for form in data.values()]):
-        log.info(
-            'version_edit, form validated, addon.slug: %s, version.id: %s',
-            addon.slug,
-            version.id,
-        )
-        timer.log_interval('2.form_validated')
+        if has_source:
+            log.info(
+                'version_edit, form validated, addon.slug: %s, version.id: %s',
+                addon.slug,
+                version.id,
+            )
+            timer.log_interval('2.form_validated')
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
@@ -1165,12 +1161,13 @@ def version_edit(request, addon_id, addon, version_id):
 
         if 'version_form' in data:
             data['version_form'].save()
-            log.info(
-                'version_edit, form saved, addon.slug: %s, version.id: %s',
-                addon.slug,
-                version.id,
-            )
-            timer.log_interval('3.form_saved')
+            if has_source:
+                log.info(
+                    'version_edit, form saved, addon.slug: %s, version.id: %s',
+                    addon.slug,
+                    version.id,
+                )
+                timer.log_interval('3.form_saved')
 
             if 'approval_notes' in version_form.changed_data:
                 ActivityLog.create(
@@ -1193,12 +1190,14 @@ def version_edit(request, addon_id, addon, version_id):
 
         messages.success(request, gettext('Changes successfully saved.'))
         result = redirect('devhub.versions.edit', addon.slug, version_id)
-        log.info(
-            'version_edit, redirecting to next view, addon.slug: %s, version.id: %s',
-            addon.slug,
-            version.id,
-        )
-        timer.log_interval('4.redirecting_to_next_view')
+        if has_source:
+            log.info(
+                'version_edit, redirecting to next view, '
+                + 'addon.slug: %s, version.id: %s',
+                addon.slug,
+                version.id,
+            )
+            timer.log_interval('4.redirecting_to_next_view')
 
         return result
 
@@ -1212,7 +1211,7 @@ def version_edit(request, addon_id, addon, version_id):
         }
     )
 
-    if posting:
+    if has_source and posting:
         log.info(
             'version_edit, validation failed, re-displaying the template, '
             + 'addon.slug: %s, version.id: %s',
@@ -1606,14 +1605,6 @@ def submit_version_theme_wizard(request, addon_id, addon, channel):
 
 def _submit_source(request, addon, version, submit_page, next_view):
     posting = request.method == 'POST'
-    if posting:
-        log.info(
-            'Starting _submit_source, addon.slug: %s, version.pk: %s',
-            addon.slug,
-            version.pk,
-        )
-        timer = StopWatch('devhub.views._submit_source.')
-        timer.start()
     redirect_args = (
         [addon.slug, version.pk]
         if version and submit_page == 'version'
@@ -1627,7 +1618,10 @@ def _submit_source(request, addon, version, submit_page, next_view):
         instance=version,
         request=request,
     )
-    if posting:
+    has_source = form.data.get('has_source') == 'yes'
+    if has_source and posting:
+        timer = StopWatch('devhub.views._submit_source.')
+        timer.start()
         log.info(
             '_submit_source, form populated, addon.slug: %s, version.pk: %s',
             addon.slug,
@@ -1636,12 +1630,13 @@ def _submit_source(request, addon, version, submit_page, next_view):
         timer.log_interval('1.form_populated')
 
     if request.method == 'POST' and form.is_valid():
-        log.info(
-            '_submit_source, form validated, addon.slug: %s, version.pk: %s',
-            addon.slug,
-            version.pk,
-        )
-        timer.log_interval('2.form_validated')
+        if has_source:
+            log.info(
+                '_submit_source, form validated, addon.slug: %s, version.pk: %s',
+                addon.slug,
+                version.pk,
+            )
+            timer.log_interval('2.form_validated')
         if form.cleaned_data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True}
@@ -1668,12 +1663,14 @@ def _submit_source(request, addon, version, submit_page, next_view):
             timer.log_interval('3.form_saved')
 
         result = redirect(next_view, *redirect_args)
-        log.info(
-            '_submit_source, redirecting to next view, addon.slug: %s, version.pk: %s',
-            addon.slug,
-            version.pk,
-        )
-        timer.log_interval('4.redirecting_to_next_view')
+        if has_source:
+            log.info(
+                '_submit_source, redirecting to next view, '
+                + 'addon.slug: %s, version.pk: %s',
+                addon.slug,
+                version.pk,
+            )
+            timer.log_interval('4.redirecting_to_next_view')
         return result
     context = {
         'form': form,
@@ -1681,7 +1678,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
         'version': version,
         'submit_page': submit_page,
     }
-    if posting:
+    if has_source and posting:
         log.info(
             '_submit_source, validation failed, re-displaying the template, '
             + 'addon.slug: %s, version.pk: %s',

@@ -867,28 +867,23 @@ class TestVersionEditDetails(TestVersionEditBase):
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
         assert response.status_code == 302
-        assert log_mock.info.call_count == 5
+        assert log_mock.info.call_count == 4
         assert log_mock.info.call_args_list[0][0] == (
-            'Starting version_edit, addon.slug: %s, version.id: %s',
-            self.addon.slug,
-            self.version.id,
-        )
-        assert log_mock.info.call_args_list[1][0] == (
             'version_edit, form populated, addon.slug: %s, version.id: %s',
             self.addon.slug,
             self.version.id,
         )
-        assert log_mock.info.call_args_list[2][0] == (
+        assert log_mock.info.call_args_list[1][0] == (
             'version_edit, form validated, addon.slug: %s, version.id: %s',
             self.addon.slug,
             self.version.id,
         )
-        assert log_mock.info.call_args_list[3][0] == (
+        assert log_mock.info.call_args_list[2][0] == (
             'version_edit, form saved, addon.slug: %s, version.id: %s',
             self.addon.slug,
             self.version.id,
         )
-        assert log_mock.info.call_args_list[4][0] == (
+        assert log_mock.info.call_args_list[3][0] == (
             'version_edit, redirecting to next view, addon.slug: %s, version.id: %s',
             self.addon.slug,
             self.version.id,
@@ -898,6 +893,13 @@ class TestVersionEditDetails(TestVersionEditBase):
     def test_no_logging_on_initial_display(self, log_mock):
         response = self.client.get(self.url)
         assert response.status_code == 200
+        assert log_mock.info.call_count == 0
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_without_source(self, log_mock):
+        data = self.formset(release_notes='xx')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
         assert log_mock.info.call_count == 0
 
     @mock.patch('olympia.devhub.views.log')
@@ -917,18 +919,13 @@ class TestVersionEditDetails(TestVersionEditBase):
                 + '(.zip, .tar.gz, .tgz, .tar.bz2).'
             ]
         }
-        assert log_mock.info.call_count == 3
+        assert log_mock.info.call_count == 2
         assert log_mock.info.call_args_list[0][0] == (
-            'Starting version_edit, addon.slug: %s, version.id: %s',
-            self.addon.slug,
-            self.version.id,
-        )
-        assert log_mock.info.call_args_list[1][0] == (
             'version_edit, form populated, addon.slug: %s, version.id: %s',
             self.addon.slug,
             self.version.id,
         )
-        assert log_mock.info.call_args_list[2][0] == (
+        assert log_mock.info.call_args_list[1][0] == (
             'version_edit, validation failed, re-displaying the template, '
             + 'addon.slug: %s, version.id: %s',
             self.addon.slug,
