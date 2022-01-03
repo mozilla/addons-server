@@ -79,32 +79,19 @@ def fxa_login_url(
     return f'{base_url}?{urlencode(query)}'
 
 
-def default_fxa_register_url(request):
-    request.session.setdefault('fxa_state', generate_fxa_state())
-    return fxa_login_url(
-        config=settings.FXA_CONFIG['default'],
-        state=request.session['fxa_state'],
-        next_path=path_with_query(request),
-        action='signup',
-    )
-
-
-def default_fxa_login_url(request):
-    request.session.setdefault('fxa_state', generate_fxa_state())
-    return fxa_login_url(
-        config=settings.FXA_CONFIG['default'],
-        state=request.session['fxa_state'],
-        next_path=path_with_query(request),
-        action='signin',
-    )
-
-
 def generate_fxa_state():
     return force_str(binascii.hexlify(os.urandom(32)))
 
 
 def redirect_for_login(request):
-    return HttpResponseRedirect(default_fxa_login_url(request))
+    request.session.setdefault('fxa_state', generate_fxa_state())
+    url = fxa_login_url(
+        config=settings.FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path=path_with_query(request),
+        action='signin',
+    )
+    return HttpResponseRedirect(url)
 
 
 def path_with_query(request):
