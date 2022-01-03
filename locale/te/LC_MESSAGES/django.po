@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2021-12-07 12:53+0000\n"
+"PO-Revision-Date: 2022-01-03 14:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -942,9 +942,8 @@ msgstr "జాబితాచేయని"
 msgid "Signing API"
 msgstr ""
 
-#, fuzzy
 msgid "Addon API"
-msgstr "పొడగింతలు"
+msgstr ""
 
 msgid "Owner"
 msgstr "యజమాని"
@@ -2640,9 +2639,8 @@ msgstr "మీరు మూల కోడును సమర్పించాల
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
 msgstr ""
 
-#, fuzzy
 msgid "Do you use any of the following in your extension?"
-msgstr "వీటిలో మీరు దేనినైనా వాడుతారా?"
+msgstr "కిందివాటిలో దేనినైనా మీ పొడగింతలో వాడుతున్నారా?"
 
 msgid "Code generators or minifiers"
 msgstr ""
