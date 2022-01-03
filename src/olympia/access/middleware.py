@@ -10,6 +10,7 @@ log = olympia.core.logger.getLogger('z.access')
 class UserAndAddrMiddleware(MiddlewareMixin):
     """Persist user and remote addr in current thread while processing the
     request."""
+
     def process_request(self, request):
         # Persist the user and remote addr in the thread to make it accessible
         # in log() statements etc. `user` could be anonymous here, it's kept
