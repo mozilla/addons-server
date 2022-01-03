@@ -18,28 +18,6 @@ from olympia.core.logger import getLogger
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
 
 
-def fxa_config(request):
-    config = {
-        camel_case(key): value
-        for key, value in settings.FXA_CONFIG['default'].items()
-        if key != 'client_secret'
-    }
-    request.session.setdefault('fxa_state', generate_fxa_state())
-
-    config.update(
-        **{
-            'contentHost': settings.FXA_CONTENT_HOST,
-            'oauthHost': settings.FXA_OAUTH_HOST,
-            'profileHost': settings.FXA_PROFILE_HOST,
-            'scope': 'profile openid',
-            'state': request.session['fxa_state'],
-        }
-    )
-    if request.user.is_authenticated:
-        config['email'] = request.user.email
-    return config
-
-
 def fxa_login_url(
     config,
     state,
