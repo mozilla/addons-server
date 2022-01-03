@@ -21,7 +21,7 @@
   </li>
 {% elif request.session %}
   <li class="account anonymous nomenu login legacy">
-    {% trans reg=register_link(), login=login_link() %}
+    {% trans reg=login_link(), login=login_link() %}
         <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
     {% endtrans %}
   </li>

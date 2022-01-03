@@ -181,22 +181,3 @@ def allow_cross_site_request(f):
         return response
 
     return wrapper
-
-
-def allow_mine(f):
-    @functools.wraps(f)
-    def wrapper(request, user_id, *args, **kw):
-        """
-        If the author is `mine` then show the current user's collection
-        (or something).
-        """
-        # Prevent circular ref in accounts.utils
-        from olympia.accounts.utils import redirect_for_login
-
-        if user_id == 'mine':
-            if not request.user.is_authenticated:
-                return redirect_for_login(request)
-            user_id = request.user.id
-        return f(request, user_id, *args, **kw)
-
-    return wrapper
