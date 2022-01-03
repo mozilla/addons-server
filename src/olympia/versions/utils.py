@@ -1,10 +1,7 @@
-import copy
-import json
 import os
 import io
 import re
 import tempfile
-import zipfile
 
 from base64 import b64encode
 
@@ -140,37 +137,3 @@ def process_color_value(prop, value):
         return prop, 'rgb(%s,%s,%s)' % tuple(value)
     # strip out spaces because jquery.minicolors chokes on them
     return prop, str(value).replace(' ', '')
-
-
-def new_69_theme_properties_from_old(original):
-    manifest = copy.deepcopy(original)
-    # colors first
-    colors = original.get('theme', {}).get('colors', {})
-    for prop, value in colors.items():
-        new_color_prop = DEPRECATED_COLOR_TO_CSS.get(prop)
-        if new_color_prop and new_color_prop not in colors:
-            manifest['theme']['colors'].pop(prop)
-            manifest['theme']['colors'][new_color_prop] = value
-    # the background image property changed too
-    images = original.get('theme', {}).get('images', {})
-    if 'headerURL' in images and 'theme_frame' not in images:
-        manifest['theme']['images'].pop('headerURL')
-        manifest['theme']['images']['theme_frame'] = images.get('headerURL')
-    return manifest
-
-
-def build_69_compatible_theme(old_xpi, new_xpi, new_version_number):
-    if not os.path.exists(os.path.dirname(new_xpi)):
-        os.makedirs(os.path.dirname(new_xpi))
-    with zipfile.ZipFile(old_xpi, 'r') as src:
-        with zipfile.ZipFile(new_xpi, 'w') as dest:
-            for entry in src.infolist():
-                if entry.filename == 'manifest.json':
-                    old_manifest = json.loads(src.read(entry))
-                    manifest = new_69_theme_properties_from_old(old_manifest)
-                    # bump the version number
-                    manifest['version'] = new_version_number
-                    # write replacement manifest
-                    dest.writestr('manifest.json', json.dumps(manifest))
-                else:
-                    dest.writestr(entry.filename, src.read(entry))
