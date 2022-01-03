@@ -25,7 +25,6 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import activity, amo, core
-from olympia.access import acl
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
