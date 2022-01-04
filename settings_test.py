@@ -42,7 +42,7 @@ MEDIA_URL = '%s/user-media/' % CDN_HOST
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Overrides whatever storage you might have put in local settings.
-DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'olympia.amo.utils.SafeStorage'
 
 TASK_USER_ID = 1337
 

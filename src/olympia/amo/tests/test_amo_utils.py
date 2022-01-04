@@ -9,7 +9,7 @@ import pytest
 
 from olympia.amo.tests import get_temp_filename, TestCase
 from olympia.amo.utils import (
-    LocalFileStorage,
+    SafeStorage,
     cache_ns_key,
     escape_all,
     find_language,
@@ -171,11 +171,11 @@ def test_find_language(test_input, expected):
     assert find_language(test_input) == expected
 
 
-class TestLocalFileStorage(TestCase):
+class TestSafeStorage(TestCase):
     def setUp(self):
         super().setUp()
         self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
-        self.stor = LocalFileStorage()
+        self.stor = SafeStorage()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)

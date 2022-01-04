@@ -115,7 +115,7 @@ class PrimaryHeroImage(ModelBase):
     @property
     def thumbnail_path(self):
         (path, fn) = os.path.split(self.custom_image.path)
-        return path + b'/thumbs/' + fn
+        return path + '/thumbs/' + fn
 
     @property
     def image_url(self):
@@ -123,7 +123,7 @@ class PrimaryHeroImage(ModelBase):
 
     @property
     def preview_url(self):
-        fn = os.path.basename(self.custom_image.path).decode('utf-8')
+        fn = os.path.basename(self.custom_image.path)
         return f'{HERO_PREVIEW_URL}{fn}?modified={int(self.modified.timestamp())}'
 
     def preview_image(self):

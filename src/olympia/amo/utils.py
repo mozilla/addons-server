@@ -775,7 +775,7 @@ class HttpResponseXSendFile(HttpResponse):
         super().__init__('', status=status, content_type=content_type)
         # We normalize the path because if it contains dots, nginx will flag
         # the URI as unsafe.
-        self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
+        self[settings.XSENDFILE_HEADER] = force_bytes(os.path.normpath(path))
         if etag:
             self['ETag'] = quote_etag(etag)
         if attachment:
@@ -844,32 +844,11 @@ def escape_all(value):
     return value
 
 
-class LocalFileStorage(FileSystemStorage):
-    """Local storage to an unregulated absolute file path.
-
-    Unregulated means that, unlike the default file storage, you can write to
-    any path on the system if you have access.
-
-    Unlike Django's default FileSystemStorage, this class behaves more like a
+class SafeStorage(FileSystemStorage):
+    """Unlike Django's default FileSystemStorage, this class behaves more like a
     "cloud" storage system. Specifically, you never have to write defensive
     code that prepares for leading directory paths to exist.
     """
-
-    def __init__(self, base_url=None):
-        super().__init__(base_url=base_url)
-
-    def delete(self, name):
-        """Delete a file or empty directory path.
-
-        Unlike the default file system storage this will also delete an empty
-        directory path. This behavior is more in line with other storage
-        systems like S3.
-        """
-        full_path = self.path(name)
-        if os.path.isdir(full_path):
-            os.rmdir(full_path)
-        else:
-            return super().delete(name)
 
     def _open(self, name, mode='rb'):
         if mode.startswith('w'):
@@ -885,10 +864,7 @@ class LocalFileStorage(FileSystemStorage):
         return super()._open(name, mode=mode)
 
     def path(self, name):
-        """Actual file system path to name without any safety checks."""
-        return os.path.normpath(
-            os.path.join(force_bytes(self.location), force_bytes(name))
-        )
+        return os.path.normpath(super().path(force_str(name)))
 
 
 def attach_trans_dict(model, objs):
