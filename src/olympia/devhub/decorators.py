@@ -100,16 +100,18 @@ def readonly_if_site_permission(f):
     pages for site permission add-ons."""
 
     @functools.wraps(f)
-    def wrapper(request, addon=None, *args, **kwargs):
-        return (
+    def wrapper(request, *args, **kwargs):
+        addon = kwargs.get('addon')
+        if (
             request
             and addon
             and (
                 addon.type != amo.ADDON_SITE_PERMISSION
                 or request.method in ('HEAD', 'GET')
             )
-        )
-        return f(*args, **kwargs)
+        ):
+            return f(request, *args, **kwargs)
+        raise PermissionDenied
 
     return wrapper
 
