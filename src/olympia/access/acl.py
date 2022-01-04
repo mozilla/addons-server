@@ -98,50 +98,6 @@ def site_permission_addons_submission_allowed(user, parsed_addon_data):
     )
 
 
-def check_ownership(
-    request,
-    obj,
-    require_owner=False,
-    require_author=False,
-    ignore_disabled=False,
-    admin=True,
-):
-    """
-    A convenience function.  Check if request.user has permissions
-    for the object.
-    """
-    if hasattr(obj, 'check_ownership'):
-        return obj.check_ownership(
-            request,
-            require_owner=require_owner,
-            require_author=require_author,
-            ignore_disabled=ignore_disabled,
-            admin=admin,
-        )
-    return False
-
-
-def check_collection_ownership(request, collection, require_owner=False):
-    if not request.user.is_authenticated:
-        return False
-
-    if request.user.id == collection.author_id:
-        return True
-    elif collection.author_id == settings.TASK_USER_ID and action_allowed_user(
-        request.user, amo.permissions.ADMIN_CURATION
-    ):
-        return True
-    elif not require_owner:
-        return (
-            collection.pk == settings.COLLECTION_FEATURED_THEMES_ID
-            and action_allowed_user(
-                request.user, amo.permissions.COLLECTIONS_CONTRIBUTE
-            )
-        )
-    else:
-        return False
-
-
 def check_addon_ownership(request, addon, dev=False, admin=True, ignore_disabled=False):
     """
     Check request.user's permissions for the addon.
