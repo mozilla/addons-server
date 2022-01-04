@@ -910,7 +910,6 @@ class ReviewBase:
         return {
             'name': addon.name,
             'number': self.version.version if self.version else '',
-            'reviewer': self.user.reviewer_name or self.user.name,
             'addon_url': absolutify(addon_url),
             'dev_versions_url': absolutify(dev_ver_url),
             'review_url': absolutify(
