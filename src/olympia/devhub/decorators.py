@@ -56,16 +56,28 @@ def dev_required(
                 # On read-only requests, ignore disabled so developers can
                 # still view their add-on.
                 if acl.check_addon_ownership(
-                    request, addon, dev=True, ignore_disabled=True
+                    request,
+                    addon,
+                    allow_developer=True,
+                    allow_mozilla_disabled_addon=True,
+                    allow_site_permission=True,
                 ):
                     # Redirect to the submit flow if they're not done.
                     if not submitting and addon.should_redirect_to_submit_flow():
                         return redirect('devhub.submit.details', addon.slug)
                     return fun()
-            # Require an owner or dev for POST requests (if the add-on status
-            # is disabled that check will return False).
+            # Require an owner or deveveloper for POST requests (if the add-on
+            # status is disabled that check will return False). Allow site
+            # permission add-ons, an extra check will be made for pages that
+            # don't make sense if the add-on is a site permission add-on
+            # through the @readonly_if_site_permission decorator below.
             elif request.method == 'POST':
-                if acl.check_addon_ownership(request, addon, dev=not owner_for_post):
+                if acl.check_addon_ownership(
+                    request,
+                    addon,
+                    allow_developer=not owner_for_post,
+                    allow_site_permission=True,
+                ):
                     return fun()
             raise PermissionDenied
 
@@ -78,6 +90,28 @@ def dev_required(
         return decorator(f)
     else:
         return decorator
+
+
+def readonly_if_site_permission(f):
+    """If the add-on is a site permission add-on, only allow readonly requests.
+
+    Add this decorator on top of dev_required() (which would normally allow
+    editing site permission add-ons) to disallow edition of specific devhub
+    pages for site permission add-ons."""
+
+    @functools.wraps(f)
+    def wrapper(request, addon=None, *args, **kwargs):
+        return (
+            request
+            and addon
+            and (
+                addon.type != amo.ADDON_SITE_PERMISSION
+                or request.method in ('HEAD', 'GET')
+            )
+        )
+        return f(*args, **kwargs)
+
+    return wrapper
 
 
 def no_admin_disabled(f):

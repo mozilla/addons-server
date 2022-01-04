@@ -7,14 +7,17 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 
 
+# FIXME: name is incorrect, since it allows developers and not just owners.
+# should by author_or_unlisted_viewer_or_reviewer ?
 def owner_or_unlisted_viewer_or_reviewer(request, addon):
-    return (
-        acl.check_unlisted_addons_viewer_or_reviewer(request)
-        # We don't want "admins" here, because it includes anyone with the
-        # "Addons:Edit" perm, we only want those with
-        # "ReviewerTools:ViewUnlisted" or "Addons:ReviewUnlisted" perm
-        # (which is checked above).
-        or acl.check_addon_ownership(request, addon, admin=False, dev=True)
+    return acl.check_unlisted_addons_viewer_or_reviewer(
+        request
+    ) or acl.check_addon_ownership(
+        request,
+        addon,
+        allow_addons_edit_permission=False,
+        allow_developer=True,
+        allow_site_permission=True,
     )
 
 

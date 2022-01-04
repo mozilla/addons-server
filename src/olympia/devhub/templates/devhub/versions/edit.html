@@ -50,7 +50,7 @@
                     {% endfor %}
                   </tbody>
                 </table>
-                {% if check_addon_ownership(request, addon, dev=True) %}
+                {% if check_addon_ownership(request, addon, allow_developer=True) %}
                   <p class="add-app{% if not compat_form.extra_forms %} hide{% endif %}">
                     <a href="#">{{ _('Add Another Application&hellip;') }}</a>
                   </p>

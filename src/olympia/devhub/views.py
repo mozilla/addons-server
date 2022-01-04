@@ -52,7 +52,11 @@ from olympia.amo.utils import (
     send_mail,
 )
 from olympia.api.models import APIKey, APIKeyConfirmation
-from olympia.devhub.decorators import dev_required, no_admin_disabled
+from olympia.devhub.decorators import (
+    dev_required,
+    no_admin_disabled,
+    readonly_if_site_permission,
+)
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_manifest_version_error,
@@ -181,6 +185,7 @@ def ajax_compat_error(request, addon_id, addon):
 
 
 @dev_required
+@readonly_if_site_permission
 def ajax_compat_update(request, addon_id, addon, version_id):
     if not addon.accepts_compatible_apps():
         raise http.Http404()
@@ -324,7 +329,7 @@ def feed(request, addon_id=None):
             )
 
             if not acl.check_addon_ownership(
-                request, addon, dev=True, ignore_disabled=True
+                request, addon, allow_developer=True, allow_mozilla_disabled_addon=True
             ):
                 raise PermissionDenied
             addons = [addon]
@@ -411,6 +416,7 @@ def delete(request, addon_id, addon):
 
 @dev_required
 @post_required
+@readonly_if_site_permission
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
     ActivityLog.create(amo.LOG.USER_ENABLE, addon)
@@ -419,6 +425,7 @@ def enable(request, addon_id, addon):
 
 @dev_required(owner_for_post=True)
 @post_required
+@readonly_if_site_permission
 def cancel(request, addon_id, addon, channel):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     latest_version = addon.find_latest_version(channel=channel)
@@ -436,6 +443,7 @@ def cancel(request, addon_id, addon, channel):
 
 @dev_required
 @post_required
+@readonly_if_site_permission
 def disable(request, addon_id, addon):
     # Also set the latest listed version to STATUS_DISABLED if it was
     # AWAITING_REVIEW, to not waste reviewers time.
@@ -536,7 +544,7 @@ def ownership(request, addon_id, addon):
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    if addon.type != amo.ADDON_STATICTHEME:
+    if addon.type not in (amo.ADDON_STATICTHEME, amo.ADDON_SITE_PERMISSION):
         policy_form = forms.PolicyForm(post_data, addon=addon)
         ctx['policy_form'] = policy_form
         fs.append(policy_form)
@@ -705,6 +713,7 @@ def upload(request, channel='listed', addon=None, is_standalone=False):
 
 @post_required
 @dev_required
+@readonly_if_site_permission
 def upload_for_version(request, addon_id, addon, channel):
     return upload(request, channel=channel, addon=addon)
 
@@ -718,6 +727,7 @@ def standalone_upload_detail(request, uuid):
 
 
 @dev_required(submitting=True)
+@readonly_if_site_permission
 @json_view
 def upload_detail_for_version(request, addon_id, addon, uuid):
     try:
@@ -867,6 +877,7 @@ def upload_detail(request, uuid, format='html'):
 
 
 @dev_required
+@readonly_if_site_permission
 def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
     static_theme = addon.type == amo.ADDON_STATICTHEME
@@ -1011,6 +1022,7 @@ def image_status(request, addon_id, addon):
 
 
 @dev_required
+@readonly_if_site_permission
 @json_view
 def upload_image(request, addon_id, addon, upload_type):
     errors = []
@@ -1101,6 +1113,7 @@ def upload_image(request, addon_id, addon, upload_type):
 
 
 @dev_required
+@readonly_if_site_permission
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(addon.versions.all(), pk=version_id)
     posting = request.method == 'POST'
@@ -1233,6 +1246,7 @@ def _log_max_version_change(addon, version, appversion):
 
 @dev_required
 @post_required
+@readonly_if_site_permission
 @transaction.atomic
 def version_delete(request, addon_id, addon):
     version_id = request.POST.get('version_id')
@@ -1260,6 +1274,7 @@ def version_delete(request, addon_id, addon):
 
 @dev_required
 @post_required
+@readonly_if_site_permission
 @transaction.atomic
 def version_reenable(request, addon_id, addon):
     version_id = request.POST.get('version_id')
@@ -1380,6 +1395,7 @@ def submit_addon_distribution(request):
 
 
 @dev_required(submitting=True)
+@readonly_if_site_permission
 def submit_version_distribution(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
@@ -1559,6 +1575,7 @@ def submit_addon_upload(request, channel):
 
 @dev_required(submitting=True)
 @no_admin_disabled
+@readonly_if_site_permission
 def submit_version_upload(request, addon_id, addon, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
@@ -1568,6 +1585,7 @@ def submit_version_upload(request, addon_id, addon, channel):
 
 @dev_required
 @no_admin_disabled
+@readonly_if_site_permission
 def submit_version_auto(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
@@ -1594,6 +1612,7 @@ def submit_addon_theme_wizard(request, channel):
 
 @dev_required
 @no_admin_disabled
+@readonly_if_site_permission
 def submit_version_theme_wizard(request, addon_id, addon, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
@@ -1692,6 +1711,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
 
 
 @dev_required(submitting=True)
+@readonly_if_site_permission
 def submit_addon_source(request, addon_id, addon, channel):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     version = addon.find_latest_version(channel=channel)
@@ -1699,6 +1719,7 @@ def submit_addon_source(request, addon_id, addon, channel):
 
 
 @dev_required(submitting=True)
+@readonly_if_site_permission
 def submit_version_source(request, addon_id, addon, version_id):
     version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_source(
@@ -1794,11 +1815,13 @@ def _submit_details(request, addon, version):
 
 
 @dev_required(submitting=True)
+@readonly_if_site_permission
 def submit_addon_details(request, addon_id, addon):
     return _submit_details(request, addon, None)
 
 
 @dev_required(submitting=True)
+@readonly_if_site_permission
 def submit_version_details(request, addon_id, addon, version_id):
     version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_details(request, addon, version)
@@ -1850,6 +1873,7 @@ def _submit_finish(request, addon, version):
 
 
 @dev_required(submitting=True)
+@readonly_if_site_permission
 def submit_addon_finish(request, addon_id, addon):
     # Bounce to the details step if incomplete
     if not addon.has_complete_metadata() and addon.find_latest_version(
@@ -1863,6 +1887,7 @@ def submit_addon_finish(request, addon_id, addon):
 
 
 @dev_required
+@readonly_if_site_permission
 def submit_version_finish(request, addon_id, addon, version_id):
     version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_finish(request, addon, version)
@@ -1870,6 +1895,7 @@ def submit_version_finish(request, addon_id, addon, version_id):
 
 @dev_required
 @post_required
+@readonly_if_site_permission
 def remove_locale(request, addon_id, addon):
     POST = request.POST
     if 'locale' in POST and POST['locale'] != addon.default_locale:
@@ -1880,6 +1906,7 @@ def remove_locale(request, addon_id, addon):
 
 @dev_required
 @post_required
+@readonly_if_site_permission
 def request_review(request, addon_id, addon):
     if not addon.can_request_review():
         return http.HttpResponseBadRequest()

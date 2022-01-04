@@ -1140,7 +1140,7 @@ def download_git_stored_file(request, version_id, filename):
         raise http.Http404
 
     if version.channel == amo.RELEASE_CHANNEL_LISTED:
-        is_owner = acl.check_addon_ownership(request, addon, dev=True)
+        is_owner = acl.check_addon_ownership(request, addon, allow_developer=True)
         if not (acl.is_reviewer(request, addon) or is_owner):
             raise PermissionDenied
     else:

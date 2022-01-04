@@ -116,16 +116,20 @@ class TestHasPerm(TestCase):
         self.client.logout()
         assert not check_addon_ownership(self.request, self.addon)
 
-    def test_admin(self):
+    def test_allow_addons_edit_permission(self):
         self.request = self.fake_request_with_user(self.login_admin())
         assert check_addon_ownership(self.request, self.addon)
-        assert check_addon_ownership(self.request, self.addon, admin=True)
-        assert not check_addon_ownership(self.request, self.addon, admin=False)
+        assert check_addon_ownership(
+            self.request, self.addon, allow_addons_edit_permission=True
+        )
+        assert not check_addon_ownership(
+            self.request, self.addon, allow_addons_edit_permission=False
+        )
 
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert not check_addon_ownership(self.request, self.addon)
-        self.test_admin()
+        self.test_allow_addons_edit_permission()
 
     def test_deleted(self):
         self.addon.update(status=amo.STATUS_DELETED)
@@ -133,9 +137,11 @@ class TestHasPerm(TestCase):
         self.request.user = self.login_admin()
         assert not check_addon_ownership(self.request, self.addon)
 
-    def test_ignore_disabled(self):
+    def test_allow_mozilla_disabled_addon(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert check_addon_ownership(self.request, self.addon, ignore_disabled=True)
+        assert check_addon_ownership(
+            self.request, self.addon, allow_mozilla_disabled_addon=True
+        )
 
     def test_owner(self):
         assert check_addon_ownership(self.request, self.addon)
@@ -145,11 +151,11 @@ class TestHasPerm(TestCase):
         assert not check_addon_ownership(self.request, self.addon)
 
     def test_dev(self):
-        assert check_addon_ownership(self.request, self.addon, dev=True)
+        assert check_addon_ownership(self.request, self.addon, allow_developer=True)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert check_addon_ownership(self.request, self.addon, dev=True)
+        assert check_addon_ownership(self.request, self.addon, allow_developer=True)
 
     def test_add_and_remove_group(self):
         group = Group.objects.create(name='A Test Group', rules='Test:Group')
@@ -179,7 +185,7 @@ class TestHasPerm(TestCase):
 
         assert not check_addon_ownership(self.request, self.addon)
         # `user_dev` is a developer of `self.addon`.
-        assert check_addon_ownership(self.request, self.addon, dev=True)
+        assert check_addon_ownership(self.request, self.addon, allow_developer=True)
 
 
 class TestCheckReviewer(TestCase):

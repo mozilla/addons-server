@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% if addon %}
-  {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
+  {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, allow_developer=True) %}
 {% endif %}
 {% block bodyclass %}developer-hub gutter {{ editable_body_class }}{% endblock %}
 
