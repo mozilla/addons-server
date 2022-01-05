@@ -7,10 +7,6 @@ Details:
 
 Version(s) affected:
 {{ version_numbers }}
-
-Reviewer:
-{{ reviewer }}
-
 ********
 
 Please address the issues raised in the reviewer's notes and inquire about any unclear items. Afterwards, please upload a new version of your add-on at {{ dev_versions_url }}.
