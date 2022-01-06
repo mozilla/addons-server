@@ -270,6 +270,8 @@ SUPPORTED_NONAPPS = (
     'sitemap.xml',
     'static',
     'user-media',
+    '__heartbeat__',
+    '__lbheartbeat__',
     '__version__',
 )
 DEFAULT_APP = 'firefox'
@@ -287,6 +289,8 @@ SUPPORTED_NONLOCALES = (
     'downloads',
     'static',
     'user-media',
+    '__heartbeat__',
+    '__lbheartbeat__',
     '__version__',
 )
 
@@ -437,6 +441,7 @@ MIDDLEWARE = (
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
+    'olympia.amo.middleware.LBHeartbeatMiddleware',
     'olympia.amo.middleware.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',

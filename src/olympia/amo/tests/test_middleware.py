@@ -66,6 +66,18 @@ class TestMiddleware(TestCase):
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.call_count == 3
 
+    def test_lbheartbeat_middleware(self):
+        # /__lbheartbeat__ should be return a 200 from middleware, bypassing later
+        # middleware and view code.
+
+        with self.assertNumQueries(0):
+            response = test.Client().get('/__lbheartbeat__', SERVER_NAME='elb-internal')
+        assert response.status_code == 200
+        assert response.content == b''
+        assert response['Cache-Control'] == (
+            'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
 
 def test_redirect_with_unicode_get():
     response = test.Client().get(

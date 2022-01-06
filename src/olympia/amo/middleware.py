@@ -11,13 +11,19 @@ from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.exceptions import ImproperlyConfigured
 from django.db import transaction
 from django.http import (
+    HttpResponse,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
     JsonResponse,
 )
 from django.middleware import common
 from django.template.response import TemplateResponse
-from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
+from django.utils.cache import (
+    add_never_cache_headers,
+    get_max_age,
+    patch_cache_control,
+    patch_vary_headers,
+)
 from django.utils.crypto import constant_time_compare
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_str, iri_to_uri
@@ -352,3 +358,19 @@ class CacheControlMiddleware:
         elif max_age_from_response is None:
             patch_cache_control(response, s_maxage=0)
         return response
+
+
+class LBHeartbeatMiddleware:
+    """Middleware to capture request to /__lbheartbeat__ and return a 200.
+    Must be placed above CommonMiddleware to work with ELB.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path == '/__lbheartbeat__':
+            response = HttpResponse(status=200)
+            add_never_cache_headers(response)
+            return response
+        return self.get_response(request)
