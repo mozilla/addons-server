@@ -100,7 +100,11 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         has_permission = is_appropriate_reviewer(
             addon, channel
         ) or acl.check_addon_ownership(
-            request, addon, allow_developer=True, allow_mozilla_disabled_addon=True
+            request,
+            addon,
+            allow_developer=True,
+            allow_mozilla_disabled_addon=True,
+            allow_site_permission=True,
         )
     else:
         # Everyone can see public things, and we can use the CDN in that case.
