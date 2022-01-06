@@ -60,12 +60,6 @@ def heartbeat(request):
 
 @never_cache
 @non_atomic_requests
-def lbheartbeat(request):
-    return HttpResponse(status=200)
-
-
-@never_cache
-@non_atomic_requests
 def client_info(request):
     if getattr(settings, 'ENV', None) != 'dev':
         raise PermissionDenied
@@ -148,6 +142,7 @@ def csrf_failure(request, reason=''):
 
 
 @non_atomic_requests
+@never_cache
 def loaded(request):
     return http.HttpResponse(
         '%s' % request.META['wsgi.loaded'], content_type='text/plain'

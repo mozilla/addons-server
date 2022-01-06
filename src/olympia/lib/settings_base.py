@@ -441,6 +441,7 @@ MIDDLEWARE = (
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
+    'olympia.amo.middleware.LBHeartbeatMiddleware',
     'olympia.amo.middleware.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
