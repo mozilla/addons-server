@@ -224,9 +224,7 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
 
 
 def author_or_unlisted_viewer_or_reviewer(request, addon):
-    return check_unlisted_addons_viewer_or_reviewer(
-        request
-    ) or check_addon_ownership(
+    return check_unlisted_addons_viewer_or_reviewer(request) or check_addon_ownership(
         request,
         addon,
         allow_addons_edit_permission=False,
