@@ -805,6 +805,12 @@ class TestEditAuthorStaticTheme(TestEditAuthor):
         self.version.update(license=self.cc_license)
 
 
+class TestEditAuthorSitePermission(TestEditAuthor):
+    def setUp(self):
+        super().setUp()
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+
+
 class TestAuthorInvitation(TestCase):
     def setUp(self):
         self.addon = addon_factory()

@@ -466,6 +466,20 @@ class TestDelete(TestCase):
         assert Addon.objects.filter(id=theme.id).exists()
         self.assert3xx(response, theme.get_dev_url('versions'))
 
+    def test_post_site_permission(self):
+        site_permission = addon_factory(
+            type=amo.ADDON_SITE_PERMISSION,
+            users=[self.user],
+        )
+        response = self.client.post(
+            site_permission.get_dev_url('delete'),
+            {'slug': site_permission.slug},
+            follow=True,
+        )
+        assert pq(response.content)('.notification-box').text() == ('Add-on deleted.')
+        assert not Addon.objects.filter(pk=site_permission.pk).exists()
+        self.assert3xx(response, reverse('devhub.addons'))
+
 
 class TestHome(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -1213,6 +1227,11 @@ class TestUpload(UploadMixin, TestCase):
         self.post()
         # Make sure it was called with listed=False.
         assert not validate_mock.call_args[1]['listed']
+
+    def test_site_permission_upload_forbidden(self):
+        response = self.post()
+        assert response.status_code == 404
+        assert FileUpload.objects.count() == 0
 
 
 class TestUploadDetail(UploadMixin, TestCase):
