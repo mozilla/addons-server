@@ -1109,6 +1109,7 @@ class TestGetBackgroundImages(TestCase):
         assert len(images.items()) == 1
         assert len(images['weta.png']) == 126447
 
+    @mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
     def test_get_background_images_no_theme_data_provided(self):
         images = utils.get_background_images(self.file_obj, theme_data=None)
         assert 'weta.png' in images

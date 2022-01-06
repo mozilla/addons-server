@@ -121,6 +121,7 @@ class TestRecalculateHash(TestCase):
         'file_path',
         amo.tests.AMOPaths().file_fixture_path('https-everywhere.xpi'),
     )
+    @mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
     def test_regenerate_hash(self):
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(filename='https-everywhere.xpi', version=version)

@@ -15,9 +15,9 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     addon_factory,
+    root_storage,
     TestCase,
     user_factory,
     version_factory,
@@ -268,7 +268,7 @@ def test_extract_theme_properties(zip_file):
 
     # Add the zip in the right place
     zip_file = os.path.join(settings.ROOT, zip_file)
-    copy_stored_file(zip_file, addon.current_version.file.file_path)
+    root_storage.copy_stored_file(zip_file, addon.current_version.file.file_path)
     result = utils.extract_theme_properties(addon, addon.current_version.channel)
     assert result == {
         'colors': {'frame': '#adb09f', 'tab_background_text': '#000'},

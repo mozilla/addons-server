@@ -7,7 +7,6 @@ from django.db import models
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
@@ -21,6 +20,7 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
+from olympia.amo.utils import SafeStorage
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
@@ -85,6 +85,7 @@ class TestUserProfile(TestCase):
         user = UserProfile.objects.get(pk=4043307)
 
         # Create a photo so that we can test deletion.
+        storage = SafeStorage(user_media='userpics')
         with storage.open(user.picture_path, 'wb') as fobj:
             fobj.write(b'test data\n')
 
@@ -215,6 +216,7 @@ class TestUserProfile(TestCase):
         assert not user_multi._ratings_all.exists()  # Even replies.
         assert not user_multi.collections.exists()
 
+        storage = SafeStorage(user_media='userpics')
         assert not storage.exists(user_sole.picture_path)
         assert not storage.exists(user_sole.picture_path_original)
         assert not storage.exists(user_multi.picture_path)
@@ -268,6 +270,7 @@ class TestUserProfile(TestCase):
         user.update(picture_type='image/png')
 
         # Create a photo so that we can test deletion.
+        storage = SafeStorage(user_media='userpics')
         with storage.open(user.picture_path, 'wb') as fobj:
             fobj.write(b'test data\n')
 
@@ -304,6 +307,7 @@ class TestUserProfile(TestCase):
         assert not user._ratings_all.exists()  # Even replies.
         assert not user.collections.exists()
 
+        storage = SafeStorage(user_media='userpics')
         assert not storage.exists(user.picture_path)
         assert not storage.exists(user.picture_path_original)
 
@@ -330,6 +334,7 @@ class TestUserProfile(TestCase):
         user.update(picture_type='image/png')
 
         # Create a photo so that we can test deletion.
+        storage = SafeStorage(user_media='userpics')
         with storage.open(user.picture_path, 'wb') as fobj:
             fobj.write(b'test data\n')
 
@@ -361,6 +366,7 @@ class TestUserProfile(TestCase):
         user.update(picture_type='image/png')
 
         # Create a photo so that we can test deletion.
+        storage = SafeStorage(user_media='userpics')
         with storage.open(user.picture_path, 'wb') as fobj:
             fobj.write(b'test data\n')
 

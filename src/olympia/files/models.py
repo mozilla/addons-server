@@ -26,7 +26,6 @@ from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import user_media_path, user_media_url
 from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_as_xpi
 
@@ -174,7 +173,7 @@ class File(OnChangeMixin, ModelBase):
         log.info(f'New file: {file_!r} from {upload!r}')
 
         # Move the uploaded file from the temp location.
-        copy_stored_file(upload_path, file_.current_file_path)
+        storage.copy_stored_file(upload_path, file_.current_file_path)
 
         if upload.validation:
             validation = json.loads(upload.validation)
@@ -294,7 +293,7 @@ class File(OnChangeMixin, ModelBase):
                 log.info(
                     log_message.format(source=source_path, destination=destination_path)
                 )
-                move_stored_file(source_path, destination_path)
+                storage.move_stored_file(source_path, destination_path)
                 # Now that the file has been deleted, remove the directory if
                 # it exists to prevent the main directory from growing too
                 # much (#11464)

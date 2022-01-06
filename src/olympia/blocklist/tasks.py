@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.contrib.admin.models import CHANGE, LogEntry
 from django.contrib.admin.options import get_content_type_for_model
-from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.utils.encoding import force_str
 
@@ -14,7 +13,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.storage_utils import rm_stored_dir
+from olympia.amo.utils import SafeStorage
 from olympia.constants.blocklist import (
     MLBF_TIME_CONFIG_KEY,
     MLBF_BASE_ID_CONFIG_KEY,
@@ -82,6 +81,7 @@ def upload_filter(generation_time, is_base=True):
             'generation_time': generation_time,
             'attachment_type': BLOCKLIST_RECORD_MLBF_BASE,
         }
+        storage = SafeStorage(user_media='mlbf_storage')
         with storage.open(mlbf.filter_path, 'rb') as filter_file:
             attachment = ('filter.bin', filter_file, 'application/octet-stream')
             server.publish_attachment(data, attachment)
@@ -108,6 +108,7 @@ def cleanup_old_files(*, base_filter_id):
     log.info('Starting clean up of old MLBF folders...')
     six_months_ago = datetime_to_ts(datetime.now() - timedelta(weeks=26))
     base_filter_ts = int(base_filter_id)
+    storage = SafeStorage(user_media='mlbf_storage')
     for dir in storage.listdir(settings.MLBF_STORAGE_PATH)[0]:
         dir = force_str(dir)
         # skip non-numeric folder names
@@ -128,4 +129,4 @@ def cleanup_old_files(*, base_filter_id):
             )
         else:
             log.info('Deleting %s because > 6 months old (%s)', dir, dir_as_date)
-            rm_stored_dir(os.path.join(settings.MLBF_STORAGE_PATH, dir), storage)
+            storage.rm_stored_dir(os.path.join(settings.MLBF_STORAGE_PATH, dir))

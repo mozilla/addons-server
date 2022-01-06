@@ -23,7 +23,6 @@ from olympia import amo, core
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonUser
-from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     format_date,
     url as url_reverse,
@@ -1899,7 +1898,7 @@ class TestThemeBackgroundImage(TestCase):
         zip_file = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        copy_stored_file(zip_file, destination)
+        self.root_storage.copy_stored_file(zip_file, destination)
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(force_str(response.content))

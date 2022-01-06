@@ -10,6 +10,7 @@ from django.templatetags.static import static
 from django.utils.safestring import mark_safe
 
 from olympia.amo.models import LongNameIndex, ModelBase
+from olympia.amo.utils import SafeStorage
 from olympia.constants.promoted import PROMOTED_GROUPS
 from olympia.promoted.models import PromotedAddon
 
@@ -104,9 +105,16 @@ def hero_image_directory(instance, filename):
     return f'hero-featured-image/{prefix}.jpg'
 
 
+def hero_image_storage():
+    return SafeStorage(user_media='')
+
+
 class PrimaryHeroImage(ModelBase):
     custom_image = models.ImageField(
-        upload_to=hero_image_directory, blank=False, verbose_name='custom image path'
+        upload_to=hero_image_directory,
+        storage=hero_image_storage,
+        blank=False,
+        verbose_name='custom image path',
     )
 
     def __str__(self):

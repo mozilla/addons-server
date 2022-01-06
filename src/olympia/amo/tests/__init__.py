@@ -50,7 +50,7 @@ from olympia.addons.models import (
 )
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
 from olympia.amo.urlresolvers import Prefixer
-from olympia.amo.storage_utils import copy_stored_file
+from olympia.amo.utils import SafeStorage
 from olympia.addons.tasks import compute_last_updated, unindex_addons
 from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
@@ -89,6 +89,11 @@ ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES.key
 
 # django2.2 encodes with the decimal code; django3.2 with the hex code.
 SQUOTE_ESCAPED = escape("'")
+
+
+# A Storage instance for the filesystem root to be used during tests that read fixtures
+# and/or try to copy them under settings.STORAGE_ROOT.
+root_storage = SafeStorage(location='/')
 
 
 def get_es_index_name(key):
@@ -460,6 +465,8 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     """Base class for all amo tests."""
 
     client_class = TestClient
+
+    root_storage = root_storage
 
     def _pre_setup(self):
         super()._pre_setup()
@@ -865,7 +872,7 @@ def file_factory(**kw):
     )
 
     if os.path.exists(fixture_path):
-        copy_stored_file(fixture_path, file_.current_file_path)
+        root_storage.copy_stored_file(fixture_path, file_.current_file_path)
 
     return file_
 

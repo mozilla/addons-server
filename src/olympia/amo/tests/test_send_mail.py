@@ -3,7 +3,6 @@ import os.path
 
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.core.mail import EmailMessage
 from django.utils import translation
 
@@ -240,7 +239,7 @@ class TestSendMail(TestCase):
         attachments = [
             (
                 os.path.basename(path),
-                storage.open(path, 'r').read(),
+                self.root_storage.open(path, 'r').read(),
                 mimetypes.guess_type(path)[0],
             )
         ]
