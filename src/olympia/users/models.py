@@ -801,11 +801,9 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         _('Email Pattern'),
         max_length=100,
         help_text=_(
-            'Either enter full domain or email that should be blocked or use '
-            ' glob-style wildcards to match other patterns.'
-            ' E.g "@*.mail.com"\n'
-            ' Please note that we do not include "@" in the match so you '
-            ' should do that in the pattern.'
+            'Enter full email that should be blocked or use unix-style wildcards, '
+            'e.g. "*@example.com". If you need to block a domain incl subdomains, '
+            'add a second entry, e.g. "*@*.example.com".'
         ),
     )
 
