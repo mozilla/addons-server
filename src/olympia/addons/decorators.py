@@ -7,20 +7,6 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 
 
-# FIXME: name is incorrect, since it allows developers and not just owners.
-# should by author_or_unlisted_viewer_or_reviewer ?
-def owner_or_unlisted_viewer_or_reviewer(request, addon):
-    return acl.check_unlisted_addons_viewer_or_reviewer(
-        request
-    ) or acl.check_addon_ownership(
-        request,
-        addon,
-        allow_addons_edit_permission=False,
-        allow_developer=True,
-        allow_site_permission=True,
-    )
-
-
 def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=False):
     @functools.wraps(f)
     def wrapper(request, addon_id=None, *args, **kw):
@@ -52,7 +38,8 @@ def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=F
             include_deleted=include_deleted_when_checking_versions
         )
         if not (
-            has_listed_versions or owner_or_unlisted_viewer_or_reviewer(request, addon)
+            has_listed_versions
+            or acl.author_or_unlisted_viewer_or_reviewer(request, addon)
         ):
             raise http.Http404
         return f(request, addon, *args, **kw)

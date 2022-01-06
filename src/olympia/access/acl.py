@@ -221,3 +221,15 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
         )
     allow_access = any(action_allowed_user(user, perm) for perm in permissions)
     return allow_access
+
+
+def author_or_unlisted_viewer_or_reviewer(request, addon):
+    return check_unlisted_addons_viewer_or_reviewer(
+        request
+    ) or check_addon_ownership(
+        request,
+        addon,
+        allow_addons_edit_permission=False,
+        allow_developer=True,
+        allow_site_permission=True,
+    )

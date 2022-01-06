@@ -41,7 +41,6 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
-from olympia.addons.decorators import owner_or_unlisted_viewer_or_reviewer
 from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
@@ -1144,7 +1143,7 @@ def download_git_stored_file(request, version_id, filename):
         if not (acl.is_reviewer(request, addon) or is_owner):
             raise PermissionDenied
     else:
-        if not owner_or_unlisted_viewer_or_reviewer(request, addon):
+        if not acl.author_or_unlisted_viewer_or_reviewer(request, addon):
             raise http.Http404
 
     file = version.file
