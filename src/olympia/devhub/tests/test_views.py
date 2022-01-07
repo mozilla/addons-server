@@ -1228,11 +1228,6 @@ class TestUpload(UploadMixin, TestCase):
         # Make sure it was called with listed=False.
         assert not validate_mock.call_args[1]['listed']
 
-    def test_site_permission_upload_forbidden(self):
-        response = self.post()
-        assert response.status_code == 404
-        assert FileUpload.objects.count() == 0
-
 
 class TestUploadDetail(UploadMixin, TestCase):
     fixtures = ['base/appversion', 'base/users']

@@ -104,7 +104,7 @@ class TestSubmitBase(TestCase):
         return source
 
 
-class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
+class TestAddonSubmitAgreement(TestSubmitBase):
     def test_set_read_dev_agreement(self):
         response = self.client.post(
             reverse('devhub.submit.agreement'),
@@ -1900,6 +1900,9 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             response, reverse('devhub.submit.version.agreement', args=[self.addon.slug])
         )
 
+    def test_site_permission_not_allowed(self):
+        pass
+
 
 class TestVersionSubmitAutoChannel(TestSubmitBase):
     """Just check we chose the right upload channel.  The upload tests
@@ -1947,6 +1950,9 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
         self.assert3xx(
             response, reverse('devhub.submit.version.agreement', args=[self.addon.slug])
         )
+
+    def test_site_permission_not_allowed(self):
+        pass
 
 
 class VersionSubmitUploadMixin:
@@ -2220,6 +2226,9 @@ class VersionSubmitUploadMixin:
         else:
             assert version.previews.all().count() == 0
 
+    def test_site_permission_not_allowed(self):
+        pass
+
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.RELEASE_CHANNEL_LISTED
@@ -2393,6 +2402,13 @@ class TestVersionSubmitSource(TestAddonSubmitSource):
             'devhub.submit.version.details', args=[addon.slug, self.version.pk]
         )
         assert not self.get_version().source
+
+    def test_site_permission_not_allowed(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+        response = self.client.post(self.url)
+        assert response.status_code == 403
 
 
 class TestVersionSubmitDetails(TestSubmitBase):

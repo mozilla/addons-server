@@ -33,9 +33,13 @@ def dev_required(
     POST even if the add-on is a site permission add-on (which typically are
     not edited in devhub, since they are automatically generated).
 
-    Unless submitting is True, attempting to access the decorated view with an
-    incomplete add-on that has a listed version will redirect to the submit
-    details step to complete metadata required for listed submission.
+    When submitting is True, access is not allowed if the add-on is a site
+    permission add-on, regardless of other arguments. When it's False,
+    attempting to access the decorated view with an incomplete add-on that has
+    a listed version will redirect to the submit details step to complete
+    metadata required for listed submission.
+
+    Any non-allowed case will raise a PermissionDenied.
     """
 
     def decorator(f):
@@ -46,6 +50,8 @@ def dev_required(
             def fun():
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
+            if submitting and addon.type == amo.ADDON_SITE_PERMISSION :
+                raise PermissionDenied
             if request.method in ('HEAD', 'GET'):
                 # Allow reviewers for read operations, if file_id is present
                 # and the reviewer is the right kind of reviewer for this file.
