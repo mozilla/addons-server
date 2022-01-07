@@ -1901,7 +1901,11 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         )
 
     def test_site_permission_not_allowed(self):
-        pass
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+        response = self.client.post(self.url)
+        assert response.status_code == 403
 
 
 class TestVersionSubmitAutoChannel(TestSubmitBase):
@@ -1952,7 +1956,11 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
         )
 
     def test_site_permission_not_allowed(self):
-        pass
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+        response = self.client.post(self.url)
+        assert response.status_code == 403
 
 
 class VersionSubmitUploadMixin:
@@ -2227,7 +2235,11 @@ class VersionSubmitUploadMixin:
             assert version.previews.all().count() == 0
 
     def test_site_permission_not_allowed(self):
-        pass
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+        response = self.client.post(self.url)
+        assert response.status_code == 403
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
