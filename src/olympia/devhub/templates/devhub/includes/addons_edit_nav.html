@@ -11,7 +11,7 @@
       {% include "devhub/includes/addon_details.html" %}
     </ul>
     <p class="addon-upload">
-      {% if (addon.has_complete_metadata() or addon.status != amo.STATUS_NULL) and not addon.is_disabled %}
+      {% if (addon.has_complete_metadata() or addon.status != amo.STATUS_NULL) and not addon.is_disabled and check_addon_ownership(request, addon, allow_developer=True) %}
         <strong>
           {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
           <a href="{{ version_upload_url }}"
