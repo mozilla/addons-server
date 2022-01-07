@@ -507,7 +507,15 @@ def invitation(request, addon_id):
 @dev_required(owner_for_post=True, allow_site_permission_for_post=True)
 def ownership(request, addon_id, addon):
     fs = []
-    ctx = {'addon': addon}
+    ctx = {
+        'addon': addon,
+        # Override editable_body_class, because this page is not editable by
+        # regular developers, but can be edited by owners even if it's a site
+        # permission add-on.
+        'editable_body_class': 'no-edit'
+        if not acl.check_addon_ownership(request, addon, allow_site_permission=True)
+        else '',
+    }
     post_data = request.POST if request.method == 'POST' else None
     # Authors.
     user_form = forms.AuthorFormSet(
@@ -1566,7 +1574,7 @@ def submit_version_upload(request, addon_id, addon, channel):
     return _submit_upload(request, addon, channel_id, 'devhub.submit.version.source')
 
 
-@dev_required
+@dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():

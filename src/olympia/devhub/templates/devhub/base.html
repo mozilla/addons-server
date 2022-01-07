@@ -7,9 +7,9 @@
 {% endblock %}
 
 {% if addon %}
-  {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, allow_developer=True) %}
+  {% set default_body_class = "no-edit" if not check_addon_ownership(request, addon, allow_developer=True) %}
 {% endif %}
-{% block bodyclass %}developer-hub {{ editable_body_class }}{% endblock %}
+{% block bodyclass %}developer-hub {{ editable_body_class|default(default_body_class) }}{% endblock %}
 
 {# Don't show the amo header on devhub pages #}
 {% set hide_header = True %}
