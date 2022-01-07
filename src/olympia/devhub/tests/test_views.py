@@ -346,7 +346,7 @@ class TestDevRequired(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.edit_page_url = self.addon.get_dev_url('edit')
         self.get_url = self.addon.get_dev_url('versions')
-        self.post_url = self.addon.get_dev_url('delete')
+        self.delete_url = self.addon.get_dev_url('delete')
         assert self.client.login(email='del@icio.us')
         self.au = self.addon.addonuser_set.get(user__email='del@icio.us')
         assert self.au.role == amo.AUTHOR_ROLE_OWNER
@@ -359,20 +359,46 @@ class TestDevRequired(TestCase):
         )
 
     def test_dev_get(self):
-        assert self.client.get(self.get_url).status_code == 200
-        assert self.client.get(self.edit_page_url).status_code == 200
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' not in doc('body')[0].attrib['class']
+        response = self.client.get(self.edit_page_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' not in doc('body')[0].attrib['class']
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' in doc('body')[0].attrib['class']
+        response = self.client.get(self.edit_page_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' in doc('body')[0].attrib['class']
+        self.assert3xx(self.client.post(self.delete_url), self.get_url)
 
     def test_dev_post(self):
-        self.assert3xx(self.client.post(self.post_url), self.get_url)
+        self.assert3xx(self.client.post(self.delete_url), self.get_url)
 
-    def test_disabled_post_dev(self):
+    def test_disabled_post_owner(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert self.client.post(self.get_url).status_code == 403
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' in doc('body')[0].attrib['class']
+        assert self.client.post(self.delete_url).status_code == 403
 
     def test_disabled_post_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.login(email='admin@mozilla.com')
-        self.assert3xx(self.client.post(self.post_url), self.get_url)
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' not in doc('body')[0].attrib['class']
+        self.assert3xx(self.client.post(self.delete_url), self.get_url)
 
 
 class TestVersionStats(TestCase):

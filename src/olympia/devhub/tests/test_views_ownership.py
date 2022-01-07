@@ -536,6 +536,13 @@ class TestEditAuthor(TestOwnership):
             position=1,
         )
 
+        # Make sure we can load the page and the no-edit class is not present
+        # (it would disable the submit button)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' not in doc('body')[0].attrib['class']
+
         # Edit the user we just added.
         data = self.build_form_data(
             {
@@ -715,6 +722,11 @@ class TestEditAuthor(TestOwnership):
             position=1,
         )
         self.client.login(email='regular@mozilla.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' in doc('body')[0].attrib['class']
+
         data = self.build_form_data({})
         response = self.client.post(self.url, data, follow=True)
         assert response.status_code == 403

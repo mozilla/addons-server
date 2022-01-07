@@ -742,6 +742,9 @@ class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
     listed = False
     __test__ = True
 
+    def test_no_edit_if_disabled(self):
+        pass
+
     def test_site_permission(self):
         self.addon.update(type=amo.ADDON_SITE_PERMISSION)
         response = self.client.get(self.url)

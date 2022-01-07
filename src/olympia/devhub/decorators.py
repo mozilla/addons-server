@@ -50,7 +50,7 @@ def dev_required(
             def fun():
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
-            if submitting and addon.type == amo.ADDON_SITE_PERMISSION :
+            if submitting and addon.type == amo.ADDON_SITE_PERMISSION:
                 raise PermissionDenied
             if request.method in ('HEAD', 'GET'):
                 # Allow reviewers for read operations, if file_id is present
