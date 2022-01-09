@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2020-11-19 16:10+0000\n"
-"Last-Translator: ralph.seaborn <ralph.seaborn@gmx.com>\n"
+"PO-Revision-Date: 2022-01-09 15:09+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
@@ -19,13 +19,13 @@ msgstr ""
 msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "{0} stjarna"
-msgstr[1] ""
+msgstr[1] "{0} stjörnur"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Vandamál kom upp við að hafa samband við netþjóninn."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "Veldu skrá..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr ""
@@ -33,19 +33,19 @@ msgstr ""
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% lokið"
 
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} af {1}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Hætta við"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Sendi inn {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Villa með {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
@@ -145,16 +145,16 @@ msgid "Updating results&hellip;"
 msgstr ""
 
 msgid "Category"
-msgstr ""
+msgstr "Flokkur"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Leita að þemum fyrir <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Leita að forritum fyrir <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Leita í viðbótum fyrir <b>{0}</b>"
 
 msgid "Use original"
 msgstr ""
