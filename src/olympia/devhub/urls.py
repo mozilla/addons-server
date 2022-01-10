@@ -250,6 +250,11 @@ urlpatterns = decorate(
             views.standalone_upload_detail,
             name='devhub.standalone_upload_detail',
         ),
+        re_path(
+            r'^site_permission_generator/$',
+            views.site_permission_generator,
+            name='devhub.site_permission_generator',
+        ),
         # URLs for a single add-on.
         re_path(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),
         re_path(r'^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),

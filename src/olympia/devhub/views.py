@@ -162,6 +162,37 @@ def dashboard(request, theme=False):
     return TemplateResponse(request, 'devhub/addons/dashboard.html', context=data)
 
 
+@login_required
+def site_permission_generator(request):
+    if not RestrictionChecker(request=request).is_submission_allowed():
+        # FIXME: likely need a specific agreement page and not the generic
+        # submission one. Something like we do for api keys. Maybe refactor it
+        # (both view and template) cause it's probably generic.
+        return redirect('devhub.submit.agreement')
+    form = forms.SitePermissionGeneratorForm(
+        request.POST if request.method == 'POST' else None
+    )
+    if request.method == 'POST' and form.is_valid():
+        # FIXME: Annoying, we probably want to call this in a task, but then
+        # we wouldn't have the addon and version instances to redirect to the
+        # finish page.
+        from olympia.addons.utils import SitePermissionVersionCreator
+        generator = SitePermissionVersionCreator(
+            user=request.user,
+            remote_addr=request.META.get('REMOTE_ADDR', ''),
+            install_origins=[form.cleaned_data['origin']],
+            site_permissions=form.cleaned_data['site_permissions'],
+        )
+        version = generator.create_version()
+        addon = version.addon
+        return redirect('devhub.submit.version.finish', addon.slug, version.pk)
+    return TemplateResponse(
+        request, 'devhub/site_permission_generator.html', context={
+            'form': form
+        }
+    )
+
+
 @dev_required
 def ajax_compat_status(request, addon_id, addon):
     if not (addon.accepts_compatible_apps() and addon.current_version):
