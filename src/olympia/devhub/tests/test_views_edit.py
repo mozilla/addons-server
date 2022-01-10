@@ -737,10 +737,31 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         assert addon.description_id
         assert addon.description == 'Sométhing descriptive.'
 
+    def test_no_edit_if_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        # When an add-on is mozilla-disabled and has no listed versions, being
+        # the author is not enough to see it in devhub, you'll get a 404. If
+        # it has listed versions, they are allowed to see it.
+        expected_status_code = 200 if self.listed else 404
+        response = self.client.get(self.url)
+        assert response.status_code == expected_status_code
+
+        # In any case they won't be able to edit it.
+        response = self.client.post(self.describe_edit_url, self.get_dict())
+        assert response.status_code == 403
+
 
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
     listed = False
     __test__ = True
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        response = self.client.post(self.describe_edit_url, self.get_dict())
+        assert response.status_code == 403
 
 
 class TestEditMedia(BaseTestEdit):
@@ -1423,6 +1444,14 @@ class TestEditAdditionalDetailsUnlisted(TagTestsMixin, BaseTestEditAdditionalDet
     listed = False
     __test__ = True
 
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.details_url)
+        assert response.status_code == 200
+
+        response = self.client.post(self.details_edit_url, {})
+        assert response.status_code == 403
+
 
 class TestEditTechnical(BaseTestEdit):
     __test__ = True
@@ -1472,24 +1501,37 @@ class TestEditTechnicalUnlisted(BaseTestEdit):
     __test__ = True
     listed = False
 
-    def test_whiteboard(self):
-        edit_url = self.get_url('technical', edit=True)
+    def setUp(self):
+        super().setUp()
+        self.technical_url = self.get_url('technical')
+        self.technical_edit_url = self.get_url('technical', edit=True)
 
+    def test_whiteboard(self):
         # It's okay to post empty whiteboard instructions.
-        response = self.client.post(edit_url, {'whiteboard-public': ''})
+        response = self.client.post(self.technical_edit_url, {'whiteboard-public': ''})
         assert response.context['form'].errors == {}
 
         # Let's update it.
-        response = self.client.post(edit_url, {'whiteboard-public': 'important stuff'})
+        response = self.client.post(
+            self.technical_edit_url, {'whiteboard-public': 'important stuff'}
+        )
         assert response.context['form'].errors == {}
         addon = self.get_addon()
         assert addon.whiteboard.public == 'important stuff'
 
         # And clear it again.
-        response = self.client.post(edit_url, {'whiteboard-public': ''})
+        response = self.client.post(self.technical_edit_url, {'whiteboard-public': ''})
         assert response.context['form'].errors == {}
         addon = self.get_addon()
         assert addon.whiteboard.public == ''
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.technical_url)
+        assert response.status_code == 200
+
+        response = self.client.post(self.technical_edit_url, {})
+        assert response.status_code == 403
 
 
 class StaticMixin:

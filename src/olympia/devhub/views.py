@@ -324,7 +324,7 @@ def feed(request, addon_id=None):
             )
 
             if not acl.check_addon_ownership(
-                request, addon, dev=True, ignore_disabled=True
+                request, addon, allow_developer=True, allow_mozilla_disabled_addon=True
             ):
                 raise PermissionDenied
             addons = [addon]
@@ -380,7 +380,7 @@ def edit(request, addon_id, addon):
     return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
 
 
-@dev_required(owner_for_post=True)
+@dev_required(owner_for_post=True, allow_site_permission_for_post=True)
 @post_required
 def delete(request, addon_id, addon):
     # Database deletes only allowed for free or incomplete addons.
@@ -504,10 +504,18 @@ def invitation(request, addon_id):
     return TemplateResponse(request, 'devhub/addons/invitation.html', context=ctx)
 
 
-@dev_required(owner_for_post=True)
+@dev_required(owner_for_post=True, allow_site_permission_for_post=True)
 def ownership(request, addon_id, addon):
     fs = []
-    ctx = {'addon': addon}
+    ctx = {
+        'addon': addon,
+        # Override editable_body_class, because this page is not editable by
+        # regular developers, but can be edited by owners even if it's a site
+        # permission add-on.
+        'editable_body_class': 'no-edit'
+        if not acl.check_addon_ownership(request, addon, allow_site_permission=True)
+        else '',
+    }
     post_data = request.POST if request.method == 'POST' else None
     # Authors.
     user_form = forms.AuthorFormSet(
@@ -536,7 +544,7 @@ def ownership(request, addon_id, addon):
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    if addon.type != amo.ADDON_STATICTHEME:
+    if addon.type not in (amo.ADDON_STATICTHEME, amo.ADDON_SITE_PERMISSION):
         policy_form = forms.PolicyForm(post_data, addon=addon)
         ctx['policy_form'] = policy_form
         fs.append(policy_form)
@@ -1566,7 +1574,7 @@ def submit_version_upload(request, addon_id, addon, channel):
     return _submit_upload(request, addon, channel_id, 'devhub.submit.version.source')
 
 
-@dev_required
+@dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():

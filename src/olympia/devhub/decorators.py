@@ -15,15 +15,31 @@ from olympia.versions.models import Version
 def dev_required(
     owner_for_post=False,
     allow_reviewers_for_read=False,
+    allow_site_permission_for_post=False,
     submitting=False,
     qs=Addon.objects.all,
 ):
     """Requires user to be add-on owner or admin.
 
+    When owner_for_post is True, only owners can make a POST request. That
+    argument can also be a callable.
+
     When allow_reviewers_for_read is True, reviewers can view the page if the
     request is a HEAD or GET, provided that a file_id is also passed as keyword
     argument (so the channel can be checked to determine whether the reviewer
-    has access)
+    has access).
+
+    When allow_site_permission_for_post is True, allowed authors can make a
+    POST even if the add-on is a site permission add-on (which typically are
+    not edited in devhub, since they are automatically generated).
+
+    When submitting is True, access is not allowed if the add-on is a site
+    permission add-on, regardless of other arguments. When it's False,
+    attempting to access the decorated view with an incomplete add-on that has
+    a listed version will redirect to the submit details step to complete
+    metadata required for listed submission.
+
+    Any non-allowed case will raise a PermissionDenied.
     """
 
     def decorator(f):
@@ -34,6 +50,8 @@ def dev_required(
             def fun():
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
+            if submitting and addon.type == amo.ADDON_SITE_PERMISSION:
+                raise PermissionDenied
             if request.method in ('HEAD', 'GET'):
                 # Allow reviewers for read operations, if file_id is present
                 # and the reviewer is the right kind of reviewer for this file.
@@ -53,19 +71,29 @@ def dev_required(
                     else:
                         raise ImproperlyConfigured
 
-                # On read-only requests, ignore disabled so developers can
-                # still view their add-on.
+                # On read-only requests, we can allow developers, and even let
+                # authors see mozilla disabled or site permission add-ons.
                 if acl.check_addon_ownership(
-                    request, addon, dev=True, ignore_disabled=True
+                    request,
+                    addon,
+                    allow_developer=True,
+                    allow_mozilla_disabled_addon=True,
+                    allow_site_permission=True,
                 ):
-                    # Redirect to the submit flow if they're not done.
+                    # Redirect to the submit flow if they're not done with
+                    # listed submission.
                     if not submitting and addon.should_redirect_to_submit_flow():
                         return redirect('devhub.submit.details', addon.slug)
                     return fun()
-            # Require an owner or dev for POST requests (if the add-on status
-            # is disabled that check will return False).
+            # Require an owner or deveveloper for POST requests (if the add-on
+            # status is disabled that check will return False).
             elif request.method == 'POST':
-                if acl.check_addon_ownership(request, addon, dev=not owner_for_post):
+                if acl.check_addon_ownership(
+                    request,
+                    addon,
+                    allow_developer=not owner_for_post,
+                    allow_site_permission=allow_site_permission_for_post,
+                ):
                     return fun()
             raise PermissionDenied
 

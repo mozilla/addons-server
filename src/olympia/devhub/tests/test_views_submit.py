@@ -104,7 +104,20 @@ class TestSubmitBase(TestCase):
         return source
 
 
-class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
+class AddonSubmitSitePermissionMixin:
+    # Site permissions add-ons are automatically generated so it shouldn't be
+    # possible to submit new versions of them. This mixin contains a test
+    # verifying that self.url 403s, to be added to the classes testing the
+    # various version submission steps below - self.url is different in each.
+    def test_site_permission_not_allowed(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+        response = self.client.post(self.url)
+        assert response.status_code == 403
+
+
+class TestAddonSubmitAgreement(TestSubmitBase):
     def test_set_read_dev_agreement(self):
         response = self.client.post(
             reverse('devhub.submit.agreement'),
@@ -1805,7 +1818,7 @@ class TestAddonSubmitResume(TestSubmitBase):
         self.assert3xx(response, reverse('devhub.submit.details', args=['a3615']))
 
 
-class TestVersionSubmitDistribution(TestSubmitBase):
+class TestVersionSubmitDistribution(AddonSubmitSitePermissionMixin, TestSubmitBase):
     def setUp(self):
         super().setUp()
         self.url = reverse('devhub.submit.version.distribution', args=[self.addon.slug])
@@ -1901,7 +1914,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         )
 
 
-class TestVersionSubmitAutoChannel(TestSubmitBase):
+class TestVersionSubmitAutoChannel(AddonSubmitSitePermissionMixin, TestSubmitBase):
     """Just check we chose the right upload channel.  The upload tests
     themselves are in other tests."""
 
@@ -2221,7 +2234,9 @@ class VersionSubmitUploadMixin:
             assert version.previews.all().count() == 0
 
 
-class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
+class TestVersionSubmitUploadListed(
+    AddonSubmitSitePermissionMixin, VersionSubmitUploadMixin, UploadMixin, TestCase
+):
     channel = amo.RELEASE_CHANNEL_LISTED
 
     def test_success(self):
@@ -2346,7 +2361,9 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         )
 
 
-class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, TestCase):
+class TestVersionSubmitUploadUnlisted(
+    AddonSubmitSitePermissionMixin, VersionSubmitUploadMixin, UploadMixin, TestCase
+):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
     def test_success(self):

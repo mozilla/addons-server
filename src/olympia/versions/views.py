@@ -99,7 +99,13 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         use_cdn = False
         has_permission = is_appropriate_reviewer(
             addon, channel
-        ) or acl.check_addon_ownership(request, addon, dev=True, ignore_disabled=True)
+        ) or acl.check_addon_ownership(
+            request,
+            addon,
+            allow_developer=True,
+            allow_mozilla_disabled_addon=True,
+            allow_site_permission=True,
+        )
     else:
         # Everyone can see public things, and we can use the CDN in that case.
         use_cdn = True
@@ -199,10 +205,8 @@ def download_source(request, version_id):
         and not version.deleted
         and not addon.is_deleted
     ):
-        # Don't rely on 'admin' parameter for check_addon_ownership(), it
-        # doesn't check the permission we want to check.
         has_permission = has_permission or acl.check_addon_ownership(
-            request, addon, admin=False, dev=True
+            request, addon, allow_addons_edit_permission=False, allow_developer=True
         )
     if not has_permission:
         raise http.Http404()

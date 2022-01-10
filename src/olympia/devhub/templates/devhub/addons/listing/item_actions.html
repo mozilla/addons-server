@@ -2,7 +2,7 @@
 <ul>
 {% set show_listed=addon.has_listed_versions() %}
 {% if not addon.has_complete_metadata() and addon.status == amo.STATUS_NULL and addon.can_request_review() %}
-  {% if check_addon_ownership(request, addon, dev=True) %}
+  {% if check_addon_ownership(request, addon, allow_developer=True) %}
     <li>
       <form action="{{ url('devhub.request-review', addon.slug) }}" method="post" class="resume">
         {% csrf_token %}
@@ -24,7 +24,7 @@
     </li>
   {% endif %}
 {% else %}
-  {% if check_addon_ownership(request, addon, dev=True) %}
+  {% if check_addon_ownership(request, addon, allow_developer=True) %}
     <li>
       <a href="{{ addon.get_dev_url() }}" class="tooltip"
          title="{{ _("Edit details on this add-on's product page") }}">
