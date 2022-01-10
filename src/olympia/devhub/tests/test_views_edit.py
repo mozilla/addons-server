@@ -739,14 +739,14 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
     def test_no_edit_if_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        # addon_view has a check on has_listed_versions +
-        # author_or_unlisted_viewer_or_reviewer(), when the add-on is
-        # pure unlisted and also mozilla disabled it won't pass, resulting in
-        # a 404.
+        # When an add-on is mozilla-disabled and has no listed versions, being
+        # the author is not enough to see it in devhub, you'll get a 404. If
+        # it has listed versions, they are allowed to see it.
         expected_status_code = 200 if self.listed else 404
         response = self.client.get(self.url)
         assert response.status_code == expected_status_code
 
+        # In any case they won't be able to edit it.
         response = self.client.post(self.describe_edit_url, self.get_dict())
         assert response.status_code == 403
 
