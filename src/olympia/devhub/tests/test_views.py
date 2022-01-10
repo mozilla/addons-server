@@ -2,7 +2,7 @@ import json
 import os
 
 from datetime import datetime, timedelta
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 
 from django.conf import settings
 from django.core import mail
@@ -780,7 +780,7 @@ class TestActivityFeed(TestCase):
         assert '<a href=' not in timestamp.html()
 
 
-class TestAPIAgreement(TestCase):
+class TestDeveloperAgreement(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
@@ -791,12 +791,24 @@ class TestAPIAgreement(TestCase):
 
     def test_agreement_read(self):
         self.user.update(read_dev_agreement=self.days_ago(0))
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
+        self.assert3xx(response, reverse('devhub.index'))
+
+    def test_custom_redirect(self):
+        self.user.update(read_dev_agreement=self.days_ago(0))
+        response = self.client.get(
+            '%s%s%s'
+            % (
+                reverse('devhub.developer_agreement'),
+                '?to=',
+                quote(reverse('devhub.api_key')),
+            )
+        )
         self.assert3xx(response, reverse('devhub.api_key'))
 
     def test_agreement_unread_captcha_inactive(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
         form = response.context['agreement_form']
@@ -807,7 +819,7 @@ class TestAPIAgreement(TestCase):
     @override_switch('developer-agreement-captcha', active=True)
     def test_agreement_unread_captcha_active(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
         form = response.context['agreement_form']
@@ -818,21 +830,21 @@ class TestAPIAgreement(TestCase):
     def test_agreement_submit_success(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.post(
-            reverse('devhub.api_key_agreement'),
+            reverse('devhub.developer_agreement'),
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
         assert response.status_code == 302
-        assert response['Location'] == reverse('devhub.api_key')
+        assert response['Location'] == reverse('devhub.index')
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
     @override_switch('developer-agreement-captcha', active=True)
     def test_agreement_submit_captcha_active_error(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.post(reverse('devhub.api_key_agreement'))
+        response = self.client.post(reverse('devhub.developer_agreement'))
 
         # Captcha is properly rendered
         doc = pq(response.content)
@@ -858,7 +870,7 @@ class TestAPIAgreement(TestCase):
         )
 
         response = self.client.post(
-            reverse('devhub.api_key_agreement'),
+            reverse('devhub.developer_agreement'),
             data={
                 'g-recaptcha-response': 'test',
                 'distribution_agreement': 'on',
@@ -867,7 +879,7 @@ class TestAPIAgreement(TestCase):
         )
 
         assert response.status_code == 302
-        assert response['Location'] == reverse('devhub.api_key')
+        assert response['Location'] == reverse('devhub.index')
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
@@ -875,7 +887,7 @@ class TestAPIAgreement(TestCase):
         set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
         before_agreement_last_changed = datetime(2018, 1, 1, 12, 0) - timedelta(days=1)
         self.user.update(read_dev_agreement=before_agreement_last_changed)
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
@@ -884,7 +896,7 @@ class TestAPIAgreement(TestCase):
         is_submission_allowed_mock.return_value = False
         self.user.update(read_dev_agreement=None)
         response = self.client.post(
-            reverse('devhub.api_key_agreement'),
+            reverse('devhub.developer_agreement'),
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -910,7 +922,7 @@ class TestAPIAgreement(TestCase):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         self.user.update(read_dev_agreement=None)
         response = self.client.post(
-            reverse('devhub.api_key_agreement'),
+            reverse('devhub.developer_agreement'),
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -932,7 +944,7 @@ class TestAPIAgreement(TestCase):
         # api keys page.
         is_submission_allowed_mock.return_value = False
         self.user.update(read_dev_agreement=self.days_ago(0))
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
@@ -950,12 +962,26 @@ class TestAPIKeyPage(TestCase):
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.api_key'))
-        self.assert3xx(response, reverse('devhub.api_key_agreement'))
+        self.assert3xx(
+            response,
+            '%s%s'
+            % (
+                reverse('devhub.developer_agreement'),
+                '?to=%2Fen-US%2Fdevelopers%2Faddon%2Fapi%2Fkey%2F',
+            ),
+        )
 
     def test_redirect_if_restricted(self):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         response = self.client.get(reverse('devhub.api_key'))
-        self.assert3xx(response, reverse('devhub.api_key_agreement'))
+        self.assert3xx(
+            response,
+            '%s%s'
+            % (
+                reverse('devhub.developer_agreement'),
+                '?to=%2Fen-US%2Fdevelopers%2Faddon%2Fapi%2Fkey%2F',
+            ),
+        )
 
     def test_view_without_credentials_not_confirmed_yet(self):
         response = self.client.get(self.url)

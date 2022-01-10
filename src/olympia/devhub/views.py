@@ -2,6 +2,7 @@ import datetime
 import os
 import time
 
+from urllib.parse import quote
 from uuid import UUID, uuid4
 
 from django import forms as django_forms, http
@@ -165,10 +166,9 @@ def dashboard(request, theme=False):
 @login_required
 def site_permission_generator(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
-        # FIXME: likely need a specific agreement page and not the generic
-        # submission one. Something like we do for api keys. Maybe refactor it
-        # (both view and template) cause it's probably generic.
-        return redirect('devhub.submit.agreement')
+        return redirect(
+            '%s%s%s' % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
+        )
     form = forms.SitePermissionGeneratorForm(
         request.POST if request.method == 'POST' else None
     )
@@ -187,9 +187,7 @@ def site_permission_generator(request):
         addon = version.addon
         return redirect('devhub.submit.version.finish', addon.slug, version.pk)
     return TemplateResponse(
-        request, 'devhub/site_permission_generator.html', context={
-            'form': form
-        }
+        request, 'devhub/site_permission_generator.html', context={'form': form}
     )
 
 
@@ -1964,11 +1962,11 @@ def docs(request, doc_name=None):
 
 
 @login_required
-def api_key_agreement(request):
+def developer_agreement(request):
     return render_agreement(
         request=request,
-        template='devhub/api/agreement.html',
-        next_step='devhub.api_key',
+        template='devhub/agreement.html',
+        next_step=request.GET.get('to'),
     )
 
 
@@ -1976,6 +1974,8 @@ def render_agreement(request, template, next_step, **extra_context):
     form = forms.AgreementForm(
         request.POST if request.method == 'POST' else None, request=request
     )
+    if not is_safe_url(next_step, request):
+        next_step = reverse('devhub.index')
     if request.method == 'POST' and form.is_valid():
         # Developer has validated the form: let's update its profile and
         # redirect to next step. Note that the form is supposed to always be
@@ -2009,7 +2009,9 @@ def render_agreement(request, template, next_step, **extra_context):
 @transaction.atomic
 def api_key(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
-        return redirect(reverse('devhub.api_key_agreement'))
+        return redirect(
+            '%s%s%s' % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
+        )
 
     try:
         credentials = APIKey.get_jwt_key(user=request.user)

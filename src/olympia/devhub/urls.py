@@ -206,8 +206,8 @@ urlpatterns = decorate(
         # Submission API
         re_path(
             r'^addon/agreement/$',
-            views.api_key_agreement,
-            name='devhub.api_key_agreement',
+            views.developer_agreement,
+            name='devhub.developer_agreement',
         ),
         re_path(r'^addon/api/key/$', views.api_key, name='devhub.api_key'),
         # Standalone validator:
