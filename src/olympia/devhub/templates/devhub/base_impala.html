@@ -7,9 +7,9 @@
 {% endblock %}
 
 {% if addon %}
-  {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, allow_developer=True) %}
+  {% set default_body_class = "no-edit" if not check_addon_ownership(request, addon, allow_developer=True) %}
 {% endif %}
-{% block bodyclass %}developer-hub gutter {{ editable_body_class }}{% endblock %}
+{% block bodyclass %}developer-hub gutter {{ editable_body_class|default(default_body_class) }}{% endblock %}
 
 {% block bodyattrs %}
 {% if addon %}data-default-locale="{{ addon.default_locale|lower }}"{% endif %}
