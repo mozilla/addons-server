@@ -1447,7 +1447,7 @@ CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 CSRF_USE_SESSIONS = True
 
 # Default file storage mechanism that holds media.
-DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'olympia.amo.utils.SafeStorage'
 
 # And how long we'll give the server to respond for monitoring.
 # We currently do not have any actual timeouts during the signing-process.

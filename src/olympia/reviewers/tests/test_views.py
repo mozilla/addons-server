@@ -36,7 +36,6 @@ from olympia.addons.models import (
     AddonUser,
     DeniedGuid,
 )
-from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify,
     format_date,
@@ -8541,7 +8540,7 @@ class TestThemeBackgroundImages(ReviewBase):
         zip_file = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
         )
-        copy_stored_file(zip_file, destination)
+        self.root_storage.copy_stored_file(zip_file, destination)
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)

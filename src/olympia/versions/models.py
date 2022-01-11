@@ -35,7 +35,7 @@ from olympia.amo.models import (
     ModelBase,
     OnChangeMixin,
 )
-from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
+from olympia.amo.utils import sorted_groupby, SafeStorage, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import CC_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
@@ -160,6 +160,10 @@ def source_upload_path(instance, filename):
     )
 
 
+def source_upload_storage():
+    return SafeStorage(user_media='')
+
+
 class VersionCreateError(ValueError):
     pass
 
@@ -184,7 +188,11 @@ class Version(OnChangeMixin, ModelBase):
     deleted = models.BooleanField(default=False)
 
     source = models.FileField(
-        upload_to=source_upload_path, null=True, blank=True, max_length=255
+        upload_to=source_upload_path,
+        storage=source_upload_storage,
+        null=True,
+        blank=True,
+        max_length=255,
     )
 
     channel = models.IntegerField(

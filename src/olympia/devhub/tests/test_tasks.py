@@ -9,7 +9,6 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 
 from unittest import mock
 import pytest
@@ -20,7 +19,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser, Preview
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, root_storage
 from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
 from olympia.amo.utils import image_size, utc_millesecs_from_epoch
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
@@ -124,17 +123,17 @@ def test_recreate_previews(pngcrush_image_mock):
     addon = addon_factory()
     # Set up the preview so it has files in the right places.
     preview_no_original = Preview.objects.create(addon=addon)
-    with storage.open(preview_no_original.image_path, 'wb') as dest:
+    with root_storage.open(preview_no_original.image_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('preview_landscape.jpg'), 'rb'), dest)
-    with storage.open(preview_no_original.thumbnail_path, 'wb') as dest:
+    with root_storage.open(preview_no_original.thumbnail_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('mozilla.png'), 'rb'), dest)
     # And again but this time with an "original" image.
     preview_has_original = Preview.objects.create(addon=addon)
-    with storage.open(preview_has_original.image_path, 'wb') as dest:
+    with root_storage.open(preview_has_original.image_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('preview_landscape.jpg'), 'rb'), dest)
-    with storage.open(preview_has_original.thumbnail_path, 'wb') as dest:
+    with root_storage.open(preview_has_original.thumbnail_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('mozilla.png'), 'rb'), dest)
-    with storage.open(preview_has_original.original_path, 'wb') as dest:
+    with root_storage.open(preview_has_original.original_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('teamaddons.jpg'), 'rb'), dest)
 
     tasks.recreate_previews([addon.id])
@@ -145,13 +144,13 @@ def test_recreate_previews(pngcrush_image_mock):
         'thumbnail_format': 'jpg',
     }
     # Check no resize for full size, but resize happened for thumbnail
-    assert storage.size(preview_no_original.image_path) == storage.size(
+    assert root_storage.size(preview_no_original.image_path) == root_storage.size(
         get_image_path('preview_landscape.jpg')
     )
-    assert storage.size(preview_no_original.thumbnail_path) != storage.size(
+    assert root_storage.size(preview_no_original.thumbnail_path) != root_storage.size(
         get_image_path('mozilla.png')
     )
-    assert storage.size(preview_no_original.thumbnail_path) > 0
+    assert root_storage.size(preview_no_original.thumbnail_path) > 0
 
     assert preview_has_original.reload().sizes == {
         'image': [2400, 1600],
@@ -160,14 +159,14 @@ def test_recreate_previews(pngcrush_image_mock):
         'thumbnail_format': 'jpg',
     }
     # Check both full and thumbnail changed, but original didn't.
-    assert storage.size(preview_has_original.image_path) != storage.size(
+    assert root_storage.size(preview_has_original.image_path) != root_storage.size(
         get_image_path('preview_landscape.jpg')
     )
-    assert storage.size(preview_has_original.thumbnail_path) != storage.size(
+    assert root_storage.size(preview_has_original.thumbnail_path) != root_storage.size(
         get_image_path('mozilla.png')
     )
-    assert storage.size(preview_has_original.thumbnail_path) > 0
-    assert storage.size(preview_has_original.original_path) == storage.size(
+    assert root_storage.size(preview_has_original.thumbnail_path) > 0
+    assert root_storage.size(preview_has_original.original_path) == root_storage.size(
         get_image_path('teamaddons.jpg')
     )
 
@@ -551,6 +550,12 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
 
 class TestValidateFilePath(ValidatorTestCase):
+    def setUp(self):
+        super().setUp()
+        patcher = mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
+        self.addCleanup(patcher.stop)
+        patcher.start()
+
     def test_success(self):
         result = json.loads(
             tasks.validate_file_path(

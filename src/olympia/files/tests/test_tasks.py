@@ -16,7 +16,7 @@ from olympia.files.tests.test_utils import AppVersionsMixin
 
 
 class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
-    @mock.patch('olympia.files.tasks.move_stored_file')
+    @mock.patch('olympia.amo.utils.SafeStorage.move_stored_file')
     @mock.patch('olympia.files.tasks.get_sha256')
     @mock.patch('olympia.files.tasks.shutil')
     @mock.patch.object(SafeZip, 'extract_to_dest')

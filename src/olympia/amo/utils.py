@@ -36,6 +36,7 @@ from django.http.response import HttpResponseRedirectBase
 from django.template import engines, loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.functional import cached_property
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import (
     _urlparse as django_urlparse,
@@ -62,7 +63,6 @@ from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator
 from olympia.amo.urlresolvers import linkify_with_outgoing
 from olympia.translations.models import Translation
-from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode
 from olympia.lib import unicodehelper
 
@@ -194,6 +194,7 @@ def send_mail(
     from olympia.amo.templatetags.jinja_helpers import absolutify
     from olympia.amo.tasks import send_email
     from olympia.users import notifications
+    from olympia.users.models import UserNotification
 
     if not recipient_list:
         return True
@@ -775,7 +776,7 @@ class HttpResponseXSendFile(HttpResponse):
         super().__init__('', status=status, content_type=content_type)
         # We normalize the path because if it contains dots, nginx will flag
         # the URI as unsafe.
-        self[settings.XSENDFILE_HEADER] = os.path.normpath(path)
+        self[settings.XSENDFILE_HEADER] = force_bytes(os.path.normpath(path))
         if etag:
             self['ETag'] = quote_etag(etag)
         if attachment:
@@ -844,32 +845,31 @@ def escape_all(value):
     return value
 
 
-class LocalFileStorage(FileSystemStorage):
-    """Local storage to an unregulated absolute file path.
-
-    Unregulated means that, unlike the default file storage, you can write to
-    any path on the system if you have access.
-
-    Unlike Django's default FileSystemStorage, this class behaves more like a
+class SafeStorage(FileSystemStorage):
+    """Unlike Django's default FileSystemStorage, this class behaves more like a
     "cloud" storage system. Specifically, you never have to write defensive
     code that prepares for leading directory paths to exist.
+
+    Storage is relative to settings.STORAGE_ROOT by default.
     """
 
-    def __init__(self, base_url=None):
-        super().__init__(base_url=base_url)
+    DEFAULT_CHUNK_SIZE = 64 * 2 ** 10  # 64kB
 
-    def delete(self, name):
-        """Delete a file or empty directory path.
+    def __init__(self, *args, **kwargs):
+        """If `user_media` arg is provided, location will be lazily resolved under the
+        appropriate user_media_path. If `user_media` is falsey MEDIA_ROOT is used - see
+        user_media_path for the resolution logic."""
+        if 'user_media' in kwargs:
+            self._user_media = kwargs.pop('user_media')
+        super().__init__(*args, **kwargs)
 
-        Unlike the default file system storage this will also delete an empty
-        directory path. This behavior is more in line with other storage
-        systems like S3.
-        """
-        full_path = self.path(name)
-        if os.path.isdir(full_path):
-            os.rmdir(full_path)
-        else:
-            return super().delete(name)
+    @cached_property
+    def base_location(self):
+        from olympia.amo.templatetags.jinja_helpers import user_media_path
+
+        if hasattr(self, '_user_media'):
+            return user_media_path(self._user_media or '')
+        return self._value_or_setting(self._location, settings.STORAGE_ROOT)
 
     def _open(self, name, mode='rb'):
         if mode.startswith('w'):
@@ -885,10 +885,75 @@ class LocalFileStorage(FileSystemStorage):
         return super()._open(name, mode=mode)
 
     def path(self, name):
-        """Actual file system path to name without any safety checks."""
-        return os.path.normpath(
-            os.path.join(force_bytes(self.location), force_bytes(name))
-        )
+        return os.path.normpath(super().path(force_str(name)))
+
+    def walk(self, path):
+        """
+        Generate the file names in a stored directory tree by walking the tree
+        top-down.
+
+        For each directory in the tree rooted at the directory top (including top
+        itself), it yields a 3-tuple (dirpath, dirnames, filenames).
+        """
+        roots = [force_str(path)]
+        while len(roots):
+            new_roots = []
+            for root in roots:
+                root = force_str(root)
+                dirs, files = self.listdir(root)
+                files = [force_str(f) for f in files]
+                dirs = [force_str(d) for d in dirs]
+                yield root, dirs, files
+                for dn in dirs:
+                    dn = force_str(dn)
+                    new_roots.append(f'{root}/{dn}')
+            roots[:] = new_roots
+
+    def copy_stored_file(self, src_path, dest_path, chunk_size=DEFAULT_CHUNK_SIZE):
+        """
+        Copy one storage path to another storage path.
+
+        Each path will be managed by the same storage implementation.
+
+        Note: both src_path and dest_path must be sub directories of self.location.
+        """
+        if src_path == dest_path:
+            return
+        with self.open(src_path, 'rb') as src:
+            with self.open(dest_path, 'wb') as dest:
+                while True:
+                    chunk = src.read(chunk_size)
+                    if chunk:
+                        dest.write(chunk)
+                    else:
+                        break
+
+    def move_stored_file(self, src_path, dest_path, chunk_size=DEFAULT_CHUNK_SIZE):
+        """
+        Move a storage path to another storage path.
+
+        The source file will be copied to the new path then deleted.
+        This attempts to be compatible with a wide range of storage backends
+        rather than attempt to be optimized for each individual one.
+
+        Note: both src_path and dest_path must be sub directories of self.location.
+        """
+        self.copy_stored_file(src_path, dest_path, chunk_size=chunk_size)
+        self.delete(src_path)
+
+    def rm_stored_dir(self, dir_path):
+        """
+        Removes a stored directory and all files stored beneath that path.
+        """
+        empty_dirs = []
+        # Delete all files first then all empty directories.
+        for root, dirs, files in self.walk(dir_path):
+            for fn in files:
+                self.delete(f'{root}/{fn}')
+            empty_dirs.insert(0, root)
+        empty_dirs.append(dir_path)
+        for dn in empty_dirs:
+            self.delete(dn)
 
 
 def attach_trans_dict(model, objs):

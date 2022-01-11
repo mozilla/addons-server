@@ -1063,6 +1063,9 @@ class TestFileFromUpload(UploadMixin, TestCase):
             guid='@webextension-guid', type=amo.ADDON_EXTENSION, name='xxx'
         )
         self.version = Version.objects.create(addon=self.addon)
+        patcher = mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
+        self.addCleanup(patcher.stop)
+        patcher.start()
 
     def upload(self, name):
         validation_data = json.dumps(
@@ -1074,8 +1077,8 @@ class TestFileFromUpload(UploadMixin, TestCase):
             }
         )
         fname = nfd_str(self.xpi_path(name))
-        if not storage.exists(fname):
-            with storage.open(fname, 'w') as fs:
+        if not self.root_storage.exists(fname):
+            with self.root_storage.open(fname, 'w') as fs:
                 shutil.copyfileobj(open(fname), fs)
         data = {
             'path': force_str(fname),
@@ -1119,7 +1122,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'jets-0.1.xpi'
 
-    @mock.patch('olympia.files.models.copy_stored_file')
+    @mock.patch('olympia.amo.utils.SafeStorage.copy_stored_file')
     def test_dont_send_both_bytes_and_str_to_copy_stored_file(
         self, copy_stored_file_mock
     ):
@@ -1208,7 +1211,8 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_permissions(self):
         upload = self.upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(upload, user=user_factory())
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
         # 5 permissions; 2 content_scripts entries.
         assert len(parsed_data['permissions']) == 5
         assert len(parsed_data['content_scripts']) == 2
@@ -1240,7 +1244,8 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_optional_permissions(self):
         upload = self.upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(upload, user=user_factory())
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
         assert len(parsed_data['optional_permissions']) == 2
         file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
         permissions_list = file_.optional_permissions
