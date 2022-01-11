@@ -340,9 +340,9 @@ pytz==2021.3 \
 sentry_sdk==1.5.2 \
     --hash=sha256:2cec50166bcb67e1965f8073541b2321e3864cd6fd42a526bcde9f0c4e4cc3f8 \
     --hash=sha256:7bbaa32bba806ec629962f207b597e86831c7ee2c1f287c21ba7de7fea9a9c46
-redis==4.0.2 \
-    --hash=sha256:c8481cf414474e3497ec7971a1ba9b998c8efad0f0d289a009a5bbef040894f9 \
-    --hash=sha256:ccf692811f2c1fc7a92b466aa2599e4a6d2d73d5f736a2c70be600657c0da34a
+redis==4.1.0 \
+    --hash=sha256:e13fad67c098a33141bacde872786960e86a5c97a4255009bcd43c795fa1cc77 \
+    --hash=sha256:21f0a23bce707909076e6ba2ce076cba59bff60d2ab22972e0647fdf620ffe47
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pyupio, safety
 requests==2.27.1 \
     --hash=sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d \
