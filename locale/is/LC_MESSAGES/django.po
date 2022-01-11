@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2022-01-11 15:41+0000\n"
+"PO-Revision-Date: 2022-01-11 15:46+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -140,7 +140,7 @@ msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr ""
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Viðbót ekki á AMO -"
 
 msgid "Listed"
 msgstr ""
@@ -158,10 +158,10 @@ msgid "More"
 msgstr "Meira"
 
 msgid "My Add-ons"
-msgstr ""
+msgstr "Viðbæturnar mínar"
 
 msgid "My Themes"
-msgstr ""
+msgstr "Þemun mín"
 
 msgid "Git-Extract"
 msgstr ""
@@ -176,25 +176,25 @@ msgid "Account Settings"
 msgstr "Stillingar reiknings"
 
 msgid "My Collections"
-msgstr ""
+msgstr "Söfnin mín"
 
 msgid "Log out"
 msgstr "Skrá út"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Stjórna innsendingunum mínum"
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Senda inn nýja viðbót"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Senda inn nýtt þema"
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "Þróunarmiðstöð"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Sýsla með API-lykla"
 
 msgid "Reviewer Tools"
 msgstr ""
@@ -203,7 +203,7 @@ msgid "Admin Tools"
 msgstr ""
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Jákvæð heiltala"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
@@ -234,10 +234,10 @@ msgid "Not allowed"
 msgstr "Ekki leyft"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Úbbs! Ekki leyft."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Þú reyndir að gera eitthvað sem þú máttir ekki gera."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -2056,8 +2056,8 @@ msgstr "Loka"
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> viðbót"
+msgstr[1] "<b>{0}</b> viðbætur"
 
 msgid "Recent Activity"
 msgstr "Nýleg virkni"
@@ -2461,8 +2461,8 @@ msgstr[1] ""
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> virkur notandi"
+msgstr[1] "<strong>{0}</strong> virkir notendur"
 
 msgid "Submit a New Version"
 msgstr ""
@@ -3057,7 +3057,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "Gakktu til liðs við okkur!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -5405,7 +5405,7 @@ msgid "Flagged for human review"
 msgstr ""
 
 msgid "Download"
-msgstr ""
+msgstr "Sækja"
 
 msgid "Not Auto Approved Because"
 msgstr ""
