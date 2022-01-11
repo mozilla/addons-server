@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 19:42+0000\n"
+"PO-Revision-Date: 2022-01-11 19:44+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4603,7 +4603,7 @@ msgstr "Mehr von Mitarbeitern ausgewählte Werbeblocker ansehen"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube-Anpassungen"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -6155,6 +6155,8 @@ msgstr "E-Mail-Muster"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Geben Sie die vollständige E-Mail-Adresse ein, die blockiert werden soll, und verwenden Sie dabei Platzhalter im Unix-Stil wie „*@example.com“. Wenn Sie eine Domain inklusive Subdomains blockieren "
+"möchten, fügen Sie einen weiteren Eintrag wie „*@*.example.com“ hinzu."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Die E-Mail-Adresse, die Sie für Ihr Konto verwendet haben, ist für die Übermittlung von Add-ons nicht zulässig."
