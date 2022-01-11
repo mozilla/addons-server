@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2022-01-11 15:22+0000\n"
+"PO-Revision-Date: 2022-01-11 15:33+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -136,7 +136,7 @@ msgid "Flagged for review"
 msgstr "Flaggað til yfirferðar"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "Aðgerðar er krafist af þinni hálfu"
 
 msgid "Marked for deletion"
 msgstr "Merkt til eyðingar"
@@ -222,13 +222,13 @@ msgid "Details for {0}"
 msgstr "Upplýsingar um {0}"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Söfn búin til"
 
 msgid "Add-ons in Use"
 msgstr "Viðbætur í notkun"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Viðbætur búnar til"
 
 msgid "Add-ons Downloaded"
 msgstr "Viðbætur sóttar"
@@ -366,7 +366,7 @@ msgid "Total Amount Contributed"
 msgstr ""
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "Meðalframlag"
 
 msgid "Usage"
 msgstr "Notkun"
@@ -434,43 +434,43 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Countries, last {0} days"
-msgstr ""
+msgstr "Lönd, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Countries from {0} to {1}"
-msgstr ""
+msgstr "Lönd frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Stýrikerfi, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Stýrikerfi frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Tungumál, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Tungumál frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Útgáfur viðbótar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Útgáfur viðbótar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Staða viðbótar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Staða viðbótar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -578,50 +578,50 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Áskrifendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Áskrifendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Einkunnir, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Einkunnir frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Sala, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Sala frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Uppsetningar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Uppsetningar frá {0} til {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> síðustu {1} daga"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> frá {1} til {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> meðaltal síðustu {1} daga"
 
 msgid "No data available."
-msgstr ""
+msgstr "Engin gögn tiltæk."
 
 msgid "Date"
 msgstr "Dagsetning"
@@ -638,40 +638,40 @@ msgstr "Bæta við í {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr ""
+msgstr "Setja samt upp fyrir {0}"
 
 msgid "Download for {0} anyway"
-msgstr ""
+msgstr "Sækja samt fyrir {0}"
 
 msgid "Not available for your platform"
-msgstr ""
+msgstr "Ekki í boði fyrir stýrikerfið þitt"
 
 msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
+msgstr "Þessi viðbót er ekki samhæfð útgáfu þinni af {0}."
 
 msgid "View other versions"
 msgstr "Skoða aðrar útgáfur"
 
 msgid "Works with {app} {min} - {max}"
-msgstr ""
+msgstr "Virkar með {app} {min} - {max}"
 
 msgid "Works with {app}"
-msgstr ""
+msgstr "Virkar með {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "Aðeins með Firefox — Fáðu þér Firefox núna!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "Því miður þarftu vafra sem byggir á Mozilla (t.a.m. Firefox) til að setja upp leitarviðbót."
 
 msgid "Changes Saved"
 msgstr "Breytingar vistaðar"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Settu inn tölvupóstfang nýs höfundar"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Villa kom upp við að senda inn skrána þína."
 
 msgid "{files} file"
 msgid_plural "{files} files"
