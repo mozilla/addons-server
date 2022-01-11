@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 19:32+0000\n"
+"PO-Revision-Date: 2022-01-11 19:35+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3691,7 +3691,7 @@ msgstr "שינוי אופן הגלישה ב־Reddit על־ידי הוספת תג
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "צילום מסך של דפי אינטרנט, עריכה ושיתוף."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -4463,7 +4463,7 @@ msgstr "הצגת הרחבות מומלצות נוספות"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "ערכות נושא פופולריות"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
@@ -4524,7 +4524,7 @@ msgstr "הצגת הרחבות פופולריות נוספות"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "מנהלי לשוניות"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4550,7 +4550,7 @@ msgstr "הצגת הרחבות מומלצות נוספות"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "התאמה אישית של YouTube"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
