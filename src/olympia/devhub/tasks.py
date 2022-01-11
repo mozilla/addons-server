@@ -14,6 +14,7 @@ import waffle
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.exceptions import ImproperlyConfigured
 from django.core.files.storage import default_storage as storage
 from django.core.validators import ValidationError
 from django.db import transaction
@@ -50,6 +51,7 @@ from olympia.files.utils import (
     UnsupportedFileType,
     InvalidZipFile,
 )
+from olympia.users.models import UserProfile
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
@@ -742,3 +744,23 @@ def send_api_key_revocation_email(emails):
         use_deny_list=False,
         perm_setting='individual_contact',
     )
+
+
+@task
+@use_primary_db
+def create_site_permission_version(
+    *, addon_pk, user_pk, remote_addr, install_origins, site_permissions, **kwargs
+):
+    from olympia.addons.utils import SitePermissionVersionCreator
+
+    if addon_pk is not None:
+        raise ImproperlyConfigured('Not implemented')
+
+    user = UserProfile.objects.filter(deleted=False).get(pk=user_pk)
+    generator = SitePermissionVersionCreator(
+        user=user,
+        remote_addr=remote_addr,
+        install_origins=install_origins,
+        site_permissions=site_permissions,
+    )
+    generator.create_version()

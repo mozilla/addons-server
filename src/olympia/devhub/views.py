@@ -172,22 +172,20 @@ def site_permission_generator(request):
     form = forms.SitePermissionGeneratorForm(
         request.POST if request.method == 'POST' else None
     )
+    success = None
     if request.method == 'POST' and form.is_valid():
-        # FIXME: Annoying, we probably want to call this in a task, but then
-        # we wouldn't have the addon and version instances to redirect to the
-        # finish page.
-        from olympia.addons.utils import SitePermissionVersionCreator
-        generator = SitePermissionVersionCreator(
-            user=request.user,
+        tasks.create_site_permission_version.delay(
+            addon_pk=None,
+            user_pk=request.user.pk,
             remote_addr=request.META.get('REMOTE_ADDR', ''),
             install_origins=[form.cleaned_data['origin']],
             site_permissions=form.cleaned_data['site_permissions'],
         )
-        version = generator.create_version()
-        addon = version.addon
-        return redirect('devhub.submit.version.finish', addon.slug, version.pk)
+        success = True
     return TemplateResponse(
-        request, 'devhub/site_permission_generator.html', context={'form': form}
+        request,
+        'devhub/site_permission_generator.html',
+        context={'form': form, 'success': success},
     )
 
 

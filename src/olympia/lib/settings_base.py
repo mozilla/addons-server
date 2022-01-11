@@ -1079,6 +1079,7 @@ CELERY_TASK_ROUTES = {
     # AMO Devhub.
     'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {'queue': 'devhub'},
+    'olympia.devhub.tasks.create_site_permission_version': {'queue': 'devhub'},
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
