@@ -20,7 +20,7 @@ from olympia.users.models import DeniedName
 
 class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
-    description = TranslationSerializerField(required=False)
+    description = TranslationSerializerField(allow_blank=True, required=False)
     url = serializers.SerializerMethodField()
     author = BaseUserSerializer(default=serializers.CurrentUserDefault())
     public = serializers.BooleanField(source='listed', default=True)

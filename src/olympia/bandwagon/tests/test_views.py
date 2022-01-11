@@ -490,6 +490,20 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
             'name': ['You must provide an object of {lang-code:value}.']
         }
 
+    def test_create_blank_description(self):
+        self.client.login_api(self.user)
+        data = {
+            'description': {'en-US': ''},
+            'name': {'en-US': 'this'},
+            'slug': 'minimal',
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        assert collection.description == data['description']['en-US']
+        assert collection.name == data['name']['en-US']
+        assert collection.slug == data['slug']
+
     @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_create_minimal_flat_input(self):
         self.client.login_api(self.user)
