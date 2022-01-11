@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 19:53+0000\n"
+"PO-Revision-Date: 2022-01-11 20:06+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1324,13 +1324,13 @@ msgid "GNU General Public License v2.0"
 msgstr "Загальна публічна ліцензія GNU v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "Загальна публічна ліцензія GNU v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "Загальна громадська ліцензія GNU для бібліотек v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "Загальна громадська ліцензія GNU для бібліотек v3.0"
 
 msgid "The MIT License"
 msgstr "Ліцензія MIT"
@@ -1339,7 +1339,7 @@ msgid "The BSD License"
 msgstr "Ліцензія BSD"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Публічна Ліцензія Mozilla 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Усі права захищені"
@@ -1616,7 +1616,7 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Додатки Open Search {blog_link_open}більше не підтримуються в AMO{blog_link_close}. Натомість, ви можете створити {doc_link_open}розширення пошуку{doc_link_close}."
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Початок установлення {origin} не дозволяється."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Це закінчення вже використовується. Виберіть будь ласка інше."
@@ -3678,7 +3678,7 @@ msgstr "Автоматично перезавантажуйте вкладки �
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Розділяйте частини вашого онлайн-життя на забарвлені вкладки та вкладки з розділеними куками. Тепер інтегровано з Mozilla VPN для додаткового рівня приватності."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4434,19 +4434,19 @@ msgstr "Візьміть емоджі з собою всюди в інтерне
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Обмежте вебсайти, які відвертають увагу й марнують час."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Стиште гамір зі свого Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Налаштуйте YouTube на свій смак."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Видаляйте дані вебперегляду безпосередньо з панелі інструментів браузера."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4570,7 +4570,7 @@ msgstr "Переглянути більше відібраних персона�
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Пристосування YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -6121,6 +6121,8 @@ msgstr "Шаблон електронної пошти"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Введіть повну електронну адресу, яку потрібно заблокувати, або використовуйте символи підставлення у стилі Unix, напр. \"*@example.com\". Якщо вам потрібно заблокувати домен, включно з субдоменами, "
+"додайте другий запис, напр. \"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Адреса електронної пошти, яку ви використовуєте в обліковому записі, не дозволена для подання додатків."
