@@ -1408,6 +1408,7 @@ class SitePermissionGeneratorForm(forms.Form):
     )
 
     def clean_origin(self):
+        actual_value = str(self.data.get('origin'))
         value = self.cleaned_data.get('origin')
         # Note that URLField should already ensure it's an URL.
         error_message = _(
@@ -1420,7 +1421,9 @@ class SitePermissionGeneratorForm(forms.Form):
             raise forms.ValidationError(error_message)
         if (
             not parsed.scheme
+            or parsed.scheme not in ('https', 'http')
             or not parsed.netloc
+            or not actual_value.startswith(parsed.scheme)
             or parsed.path
             or parsed.params
             or parsed.query
