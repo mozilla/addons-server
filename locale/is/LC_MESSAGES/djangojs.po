@@ -169,8 +169,8 @@ msgstr[1] "{0} niðurhöl"
 
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "Notandi"
-msgstr[1] "{{$count}} notendur"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
@@ -692,8 +692,8 @@ msgstr "Hleð inn..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<p>1 staf.</p>"
-msgstr[1] "(%d stafir%s)"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
