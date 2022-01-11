@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2022-01-09 15:09+0000\n"
+"PO-Revision-Date: 2022-01-11 14:24+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr "Veldu skrá..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr ""
+msgstr "Nafn viðbótar ætti að enda á .zip, .xpi or .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -64,7 +64,7 @@ msgid "See full validation report"
 msgstr ""
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Sannreyni {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
@@ -139,10 +139,10 @@ msgid "Your input is required"
 msgstr ""
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Merkt til eyðingar"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Uppfæri niðurstöður&hellip;"
 
 msgid "Category"
 msgstr "Flokkur"
@@ -157,69 +157,69 @@ msgid "Search add-ons for <b>{0}</b>"
 msgstr "Leita í viðbótum fyrir <b>{0}</b>"
 
 msgid "Use original"
-msgstr ""
+msgstr "Nota upprunalegt"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Vika {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} niðurhal"
+msgstr[1] "{0} niðurhöl"
 
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Notandi"
+msgstr[1] "{{$count}} notendur"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} viðbót"
+msgstr[1] "{0} viðbætur"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} safn"
+msgstr[1] "{0} söfn"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} umsögn"
+msgstr[1] "{0} umsagnir"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} sala"
+msgstr[1] "{0} sölur"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} endurgreiðsla"
+msgstr[1] "{0} endurgreiðslur"
 
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} uppsetning"
+msgstr[1] "{0} uppsetningar"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Sótt gögn"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Daglegir notendur"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Upphæð, í USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Fjöldi framlaga"
 
 msgid "More Info..."
-msgstr ""
+msgstr "Nánari upplýsingar..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "Upplýsingar um {0}"
 
 msgid "Collections Created"
 msgstr ""
@@ -243,22 +243,22 @@ msgid "User Signups"
 msgstr ""
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Áskrifendur"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Einkunnir"
 
 msgid "Sales"
-msgstr ""
+msgstr "Sala"
 
 msgid "Installs"
-msgstr ""
+msgstr "Uppsetningar"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Óþekkt"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Viðbætur"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -273,7 +273,7 @@ msgid "Search Suggestions"
 msgstr ""
 
 msgid "Search Results"
-msgstr ""
+msgstr "Leitarniðurstöður"
 
 msgid "Homepage Promo"
 msgstr ""
@@ -297,34 +297,34 @@ msgid "Detail Page (Development Channel)"
 msgstr ""
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Oft notað með"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Annað frá höfundinum"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "Kerfiskröfur"
 
 msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Kynnstu höfundinum"
 
 msgid "User Profile"
-msgstr ""
+msgstr "Notandasnið"
 
 msgid "Version History"
-msgstr ""
+msgstr "Útgáfuferill"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Deiling"
 
 msgid "Category Pages"
 msgstr ""
 
 msgid "Collections"
-msgstr ""
+msgstr "Söfn"
 
 msgid "Category Landing Featured Carousel"
 msgstr ""
@@ -369,28 +369,28 @@ msgid "Average Contribution"
 msgstr ""
 
 msgid "Usage"
-msgstr ""
+msgstr "Notkun"
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -624,17 +624,17 @@ msgid "No data available."
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "Dagsetning"
 
 msgid "Other"
-msgstr ""
+msgstr "Annað"
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr ""
+msgstr "Samþykkja og setja upp"
 
 msgid "Add to {0}"
-msgstr ""
+msgstr "Bæta við í {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
@@ -650,7 +650,7 @@ msgid "This add-on is not compatible with your version of {0}."
 msgstr ""
 
 msgid "View other versions"
-msgstr ""
+msgstr "Skoða aðrar útgáfur"
 
 msgid "Works with {app} {min} - {max}"
 msgstr ""
@@ -665,7 +665,7 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr ""
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "Breytingar vistaðar"
 
 msgid "Enter a new author's email address"
 msgstr ""
@@ -675,8 +675,8 @@ msgstr ""
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} skrá"
+msgstr[1] "{files} skrár"
 
 msgid "Image changes being processed"
 msgstr ""
@@ -685,20 +685,20 @@ msgid "Select an application first"
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "Engar niðurstöður fundust."
 
 msgid "Loading..."
-msgstr ""
+msgstr "Hleð inn..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>1 staf.</p>"
+msgstr[1] "(%d stafir%s)"
 
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> stafur eftir"
+msgstr[1] "<b>{0}</b> stafir eftir"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ""
@@ -713,7 +713,7 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Hleð inn&hellip;"
 
 msgid "Version Notes"
 msgstr ""
@@ -740,25 +740,25 @@ msgid "Flagged"
 msgstr ""
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Tvítaka"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Hafnað"
 
 msgid "Approved"
-msgstr ""
+msgstr "Samþykkt"
 
 msgid "No results found"
-msgstr ""
+msgstr "Engar niðurstöður fundust"
 
 msgid "Theme"
-msgstr ""
+msgstr "Þema"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Höfundur umsagnar"
 
 msgid "Status"
-msgstr ""
+msgstr "Staða"
 
 msgid "All tests passed successfully."
 msgstr ""
@@ -767,19 +767,19 @@ msgid "These tests were not run."
 msgstr ""
 
 msgid "Tests"
-msgstr ""
+msgstr "Prófanir"
 
 msgid "Error"
-msgstr ""
+msgstr "Villa"
 
 msgid "Warning"
-msgstr ""
+msgstr "Aðvörun"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} lína {1} dálkur {2}"
 
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} lína {1}"
 
 msgid "Add-on failed validation."
 msgstr ""
@@ -789,21 +789,21 @@ msgstr ""
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Villa"
+msgstr[1] ", %n villur."
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} aðvörun"
+msgstr[1] "{0} aðvaranir"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} tilkynning"
+msgstr[1] "{0} tilkynningar"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Innri villa í netþjóni"
