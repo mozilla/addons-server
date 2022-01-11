@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-23 18:05+0000\n"
+"POT-Creation-Date: 2022-01-11 18:09+0000\n"
 "PO-Revision-Date: 2021-12-19 12:57+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -151,6 +151,9 @@ msgstr "Søkjesti for tillegg og samling må avsluttast med \"/\""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tilleggsnamn kan ikkje innehalde varemerka Mozilla eller Firefox."
 
+msgid "Site permissions for {hostnames}"
+msgstr ""
+
 msgid "Sort by:"
 msgstr "Sorter etter:"
 
@@ -243,13 +246,13 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"Du ser denne meldinga fordi denne HTTPS-nettstaden krev ein «Referer header» som skal sendast frå nettlesaren din, men ingen vart sende. Denne header-en vert krevd av tryggingsgrunnar for å sikre at"
-" nettlesaren din ikkje blir kapra av ein tredjepart."
+"Du ser denne meldinga fordi denne HTTPS-nettstaden krev ein «Referer header» som skal sendast frå nettlesaren din, men ingen vart sende. Denne header-en vert krevd av tryggingsgrunnar for å sikre "
+"at nettlesaren din ikkje blir kapra av ein tredjepart."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
-"Dersom du har konfigurert nettlesaren din for å deaktivere «Referer headers», bør du aktivere dei på nytt, i alle fall for denne nettstaden, eller for HTTPS-tilkoplingar, eller for «same-"
-"origin»-førespurnadar."
+"Dersom du har konfigurert nettlesaren din for å deaktivere «Referer headers», bør du aktivere dei på nytt, i alle fall for denne nettstaden, eller for HTTPS-tilkoplingar, eller for «same-origin»-"
+"førespurnadar."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -264,10 +267,10 @@ msgstr "Ikkje funne"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Vi beklagar, men vi klarte ikkje å finne det du leita etter.</h1> <p> Sida eller fila du spurde etter vart ikkje funnen på nettstaden. Det er mogleg at du trykte på ei lenke som er utdatert, "
 "eller at du skreiv inn adressa med feil. </p> <ul> <li>Dersom du skreiv inn adressa, dobbelsjekk stavinga.</li> <li> Dersom du følgde ei lenke frå ein annan stad, %(open_bug_link)ssend inn ein "
@@ -417,16 +420,13 @@ msgstr "Versjonar"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 "Om det støtta programmet ditt ikkje krev ei manifest-fil, må du likevel inkludere ein av følgjande eigenskapar som spesifisert %(amo_manifests_mdn_link_open)sher%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne tilpassa adressa vert allereie brukt av ei av samlingane dine."
-
-msgid "Name cannot be empty."
-msgstr "Namn kan ikkje vere tomt."
 
 msgid "This name cannot be used."
 msgstr "Dette namnet kan ikkje brukast."
@@ -961,6 +961,9 @@ msgstr ""
 msgid "Addon API"
 msgstr "Tilleggs-API"
 
+msgid "Automatically generated by AMO"
+msgstr ""
+
 msgid "Owner"
 msgstr "Eigar"
 
@@ -997,6 +1000,10 @@ msgstr "Forelda LWT"
 msgid "Theme (Static)"
 msgstr "Tema (Statisk)"
 
+#, fuzzy
+msgid "Site Permission"
+msgstr "Løyve:"
+
 msgid "Extensions"
 msgstr "Utvidingar"
 
@@ -1023,6 +1030,10 @@ msgstr "Forelda LWT-ar"
 
 msgid "Themes (Static)"
 msgstr "Tema (statiske)"
+
+#, fuzzy
+msgid "Site Permissions"
+msgstr "Løyve:"
 
 msgid "Alerts & Updates"
 msgstr "Varslingar og oppdateringar"
@@ -1296,6 +1307,32 @@ msgstr "Reise"
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Mozilla Public License 2.0"
+msgstr ""
+
+msgid "GNU General Public License v2.0"
+msgstr ""
+
+msgid "GNU General Public License v3.0"
+msgstr ""
+
+msgid "GNU Library General Public License v2.1"
+msgstr ""
+
+msgid "GNU Library General Public License v3.0"
+msgstr ""
+
+#, fuzzy
+msgid "The MIT License"
+msgstr "Lisens"
+
+#, fuzzy
+msgid "The BSD License"
+msgstr "Lisens"
+
+msgid "Mozilla Public License 1.1"
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Alle rettar med atterhald"
@@ -1572,6 +1609,9 @@ msgstr "Siste endringar for tillegga mine"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-tillegg er ikkje lenger støtta {blog_link_open}på AMO{blog_link_close}. Du kan lage ei {doc_link_open}søkjeutviding i staden{doc_link_close}."
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne adresseteksten er allereie i bruk. Vel ein annan."
@@ -2040,7 +2080,9 @@ msgstr ""
 "versjon av utvidinga."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Oppdater kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Last opp ny versjon</a> eller <a href=\"#\" "
 "class=\"close\">ignorer</a>"
@@ -2257,8 +2299,8 @@ msgid "Email"
 msgstr "E-post"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2820,8 +2862,8 @@ msgstr "JWT-hemmelegheit"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "For å gjere API-forandringar, send eit <a href=\"%(jwt_url)s\">JSON Web token (JWT)</a> som authorization-header. Du må lage ein JWT for kvar førespurnad som beskrive i <a href=\"%(docs_url)s\">API-"
 "dokumentasjonen</a>."
@@ -2907,17 +2949,20 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
 "Kjære tilleggsutviklar,\n"
 "\n"
-"Vi la merke til at dei hemmelege AMO API-innloggingsopplysningane dine var inkluderte i eit tillegg som vart sendt til addons.mozilla.org. For å ta vare på kontoen din og tillegga dine, oppheva vi dei lekande innloggingsopplysningane.\n"
+"Vi la merke til at dei hemmelege AMO API-innloggingsopplysningane dine var inkluderte i eit tillegg som vart sendt til addons.mozilla.org. For å ta vare på kontoen din og tillegga dine, oppheva vi "
+"dei lekande innloggingsopplysningane.\n"
 "Du kan generere nye API-innloggingsopplysningar på %(api_keys_url)s\n"
 "\n"
-"Forsikre deg om at du aldri deler innloggingsopplysningane dine med nokon. Inkluder dei aldri i eit offentleg kodelager, tillegg eller nokon annan offentleg stad. Vi oppfordrar deg til å gå gjennom kodelagera og utvidingane dine for å fjerne referansar til AMO-innloggingsopplysningane.\n"
+"Forsikre deg om at du aldri deler innloggingsopplysningane dine med nokon. Inkluder dei aldri i eit offentleg kodelager, tillegg eller nokon annan offentleg stad. Vi oppfordrar deg til å gå gjennom "
+"kodelagera og utvidingane dine for å fjerne referansar til AMO-innloggingsopplysningane.\n"
 "\n"
 "Takk skal du ha,\n"
 "Mozilla-tilleggsteamet"
@@ -3520,7 +3565,6 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr ""
 
@@ -3588,7 +3632,8 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+#. editorial content for the primary hero shelves.
+msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3597,7 +3642,6 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
@@ -3674,7 +3718,6 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
@@ -4288,6 +4331,18 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4331,6 +4386,22 @@ msgstr ""
 msgid "Take emojis with you everywhere on the web."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Put restrictions on distracting, time-wasting websites."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove clutter from your Twitter."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize YouTube to taste."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Delete browsing data directly from the browser toolbar."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Utvidingar er som appar for Firefox."
@@ -4344,19 +4415,23 @@ msgid "See all extensions"
 msgstr "Vis alle utvidingar"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top extensions of 2021"
+msgstr "Populære udvidingar"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Steam extensions"
+msgstr "Vis alle utvidingar"
+
+#. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Populære udvidingar"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Strong password managers"
-msgstr "Tilrådde passordhandterarar"
+msgid "Read more"
+msgstr "Lagre og legg til meir"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4402,6 +4477,11 @@ msgstr "Tilrådde tema"
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
 msgstr "Vis fleire tilrådde tema"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Strong password managers"
+msgstr "Tilrådde passordhandterarar"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4454,7 +4534,7 @@ msgid "See more ad blocker staff picks"
 msgstr "Vis fleire tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube boosters"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -4561,8 +4641,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Vanlege spørsmål om vurderinger"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -6023,9 +6103,7 @@ msgstr ""
 msgid "Email Pattern"
 msgstr ""
 
-msgid ""
-"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
-" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
@@ -6037,8 +6115,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6094,7 +6172,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
