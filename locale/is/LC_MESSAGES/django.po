@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: 2022-01-11 15:18+0000\n"
+"PO-Revision-Date: 2022-01-11 15:41+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -26,7 +26,7 @@ msgid "Addons"
 msgstr "Viðbætur"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "lágmarksfjöldi skýrslna (flokkað eftir guid-auðkennum)"
 
 msgid "creation date"
 msgstr "upprunadagsetning"
@@ -55,23 +55,23 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr ""
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Gakktu úr skugga um að þessi reitur hafi ekki fleiri en {max_length} stafi."
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Breytt:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Eftir %(filter_title)s"
 
 msgid "All"
 msgstr "Allt"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "Engir tenglar eru leyfðir."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Ekki er hægt að nota þetta birtingarnafn."
 
 msgid "This reviewer name cannot be used."
 msgstr ""
@@ -115,7 +115,7 @@ msgid "Version {0}"
 msgstr "Útgáfa {0}"
 
 msgid "Review note"
-msgstr ""
+msgstr "Athugasemd yfirferðar"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""

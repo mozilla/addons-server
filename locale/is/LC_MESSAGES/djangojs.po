@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2022-01-11 15:33+0000\n"
+"PO-Revision-Date: 2022-01-11 15:36+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -682,7 +682,7 @@ msgid "Image changes being processed"
 msgstr ""
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Veldu fyrst forrit"
 
 msgid "No results found."
 msgstr "Engar niðurstöður fundust."
@@ -704,13 +704,13 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr ""
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "Fjarlægja þessa staðfærslu"
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} skoðaði þessa síðu fyrst."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} var að skoða þessa viðbót fyrst."
 
 msgid "Loading&hellip;"
 msgstr "Hleð inn&hellip;"
@@ -737,7 +737,7 @@ msgid "Requested Info"
 msgstr ""
 
 msgid "Flagged"
-msgstr ""
+msgstr "Flaggað"
 
 msgid "Duplicate"
 msgstr "Tvítaka"
@@ -764,7 +764,7 @@ msgid "All tests passed successfully."
 msgstr ""
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Þessi próf voru ekki keyrð."
 
 msgid "Tests"
 msgstr "Prófanir"
