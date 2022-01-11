@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2020-11-19 18:50+0000\n"
-"Last-Translator: ralph.seaborn <ralph.seaborn@gmx.com>\n"
+"PO-Revision-Date: 2022-01-11 15:22+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
@@ -52,19 +52,19 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Viðbótin þín féll á sannvottun með {0} villu."
+msgstr[1] "Viðbótin þín féll á sannvottun með {0} villum."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;og {0} í viðbót"
+msgstr[1] "&hellip;og {0} í viðbót"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Sjá fulla sannvottunarskýrslu"
 
 msgid "Validating {0}"
-msgstr "Sannreyni {0}"
+msgstr "Sannvotta {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
@@ -101,7 +101,7 @@ msgid "If your add-on requires an account to a website in order to be fully test
 msgstr ""
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Gátlisti við innsendingu viðbóta"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
@@ -133,7 +133,7 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr ""
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Flaggað til yfirferðar"
 
 msgid "Your input is required"
 msgstr ""
@@ -225,16 +225,16 @@ msgid "Collections Created"
 msgstr ""
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Viðbætur í notkun"
 
 msgid "Add-ons Created"
 msgstr ""
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Viðbætur sóttar"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Viðbætur uppfærðar"
 
 msgid "Reviews Written"
 msgstr "Umsagnir skrifaðar"
@@ -258,7 +258,7 @@ msgid "Unknown"
 msgstr "Óþekkt"
 
 msgid "Add-ons Manager"
-msgstr "Viðbætur"
+msgstr "Viðbótastjóri"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -321,7 +321,7 @@ msgid "Sharing"
 msgstr "Deiling"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Flokkasíður"
 
 msgid "Collections"
 msgstr "Söfn"
