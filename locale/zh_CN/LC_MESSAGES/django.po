@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 18:09+0000\n"
+"PO-Revision-Date: 2022-01-12 18:10+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1309,10 +1309,10 @@ msgid "GNU General Public License v3.0"
 msgstr "GNU 通用公共许可证 v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "GNU 库通用公共许可证 v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "GNU 库通用公共许可证 v3.0"
 
 #, fuzzy
 msgid "The MIT License"
@@ -1323,7 +1323,7 @@ msgid "The BSD License"
 msgstr "许可协议"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla 公共许可证 1.1"
 
 msgid "All Rights Reserved"
 msgstr "保留所有权利"
@@ -4363,15 +4363,15 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "让您的 Twitter 内容重归整洁。"
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "依个人喜好定制 YouTube。"
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "直接从浏览器工具栏中删除浏览数据。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4500,7 +4500,7 @@ msgstr "更多编辑推荐 > 广告拦截工具"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube 体验定制"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
