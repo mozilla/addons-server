@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 03:08+0000\n"
+"PO-Revision-Date: 2022-01-12 03:13+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4313,17 +4313,14 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "在網路上看到有趣的圖片？使用 TinEye 來尋找圖片來源。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "在 Firefox 中直接開啟閱讀 ePub 檔案—有放大文字、頁面大小等功能。"
+msgstr "在 Firefox 中直接開啟閱讀 ePUB 檔案—有放大文字、頁面大小等功能。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "使用滑鼠手勢關閉分頁、切換頁面與更多功能。"
 
@@ -6050,7 +6047,7 @@ msgid "Email Pattern"
 msgstr "郵件模式"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
-msgstr ""
+msgstr "請輸入要封鎖的完整電子郵件地址，或使用 unix 格式的萬用字元（例如「*@example.com」）。若您要封鎖包含所有子網域的完整網域，請另外針對子網域加入一筆「*@*.example.com」。"
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "您的帳號不允許用來上架附加元件。"
