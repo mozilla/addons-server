@@ -29,7 +29,13 @@ from olympia.amo.templatetags.jinja_helpers import (
     url as url_reverse,
     urlparams,
 )
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    fxa_login_link,
+    user_factory,
+    version_factory,
+)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
@@ -2083,3 +2089,91 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
         assert reverse('stats.overview', args=[self.addon.slug]) in str(
             response.content
         )
+
+
+class TestSitePermissionGenerator(TestCase):
+    def setUp(self):
+        self.url = reverse('devhub.site_permission_generator')
+        self.user = user_factory()
+        self.client.login(email=self.user.email)
+        self.user.update(last_login_ip='192.168.1.1')
+        set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
+
+    def test_not_logged_in(self):
+        self.client.logout()
+        response = self.client.get(self.url)
+        self.assert3xx(response, fxa_login_link(response=response, to=self.url))
+
+    def test_redirect_to_agreement_if_restricted(self):
+        assert self.user.read_dev_agreement is None
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response,
+            '%s%s%s' % (reverse('devhub.developer_agreement'), '?to=', self.url),
+        )
+
+    def test_errors(self):
+        self.user.update(read_dev_agreement=self.days_ago(1))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = {
+            'origin': 'foo',  # wrong
+            'site_permissions': ['bar'],  # also wrong
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert not response.context['form'].is_valid()
+        doc = pq(response.content)
+        errors = doc('.errorlist')
+        assert len(errors) == 2
+        assert errors[0].text_content() == 'Enter a valid URL.'
+        assert (
+            errors[1].text_content()
+            == 'Select a valid choice. bar is not one of the available choices.'
+        )
+
+    @override_switch('record-install-origins', active=True)
+    def test_success(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version='97.0')
+        AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version='*')
+        AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='97.0')
+        AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='*')
+
+        self.user.update(read_dev_agreement=self.days_ago(1))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.devhub-form form')
+        data = {
+            'origin': 'https://foo.com',
+            'site_permissions': ['midi-sysex'],
+        }
+        response = self.client.post(self.url, data, REMOTE_ADDR='15.16.23.42')
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.devhub-form form')
+        assert 'Version Signature Pending' in response.content.decode('utf-8')
+        # Since we're in tests, tasks are executed synchronously so we can
+        # directly check the add-on has been created.
+        assert Addon.objects.count() == 1
+        addon = Addon.objects.get()
+        version = addon.versions.all()[0]
+        file_ = version.file
+        assert version.pk
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.version == '1.0'
+        assert sorted(
+            version.installorigin_set.all().values_list('origin', flat=True)
+        ) == [
+            'https://foo.com',
+        ]
+        assert addon.status == amo.STATUS_NULL
+        assert addon.type == amo.ADDON_SITE_PERMISSION
+        assert list(addon.authors.all()) == [self.user]
+        assert file_.status == amo.STATUS_AWAITING_REVIEW
+        assert file_._site_permissions
+        assert file_._site_permissions.permissions == ['midi-sysex']
+        activity = ActivityLog.objects.for_addons(addon).latest('pk')
+        assert activity.user == self.user
+        assert activity.iplog_set.all()[0].ip_address == '15.16.23.42'
