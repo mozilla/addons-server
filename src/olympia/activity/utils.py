@@ -33,6 +33,9 @@ REPLY_TO_PREFIX = 'reviewreply+'
 ACTIVITY_MAIL_GROUP = 'Activity Mail CC'
 NOTIFICATIONS_FROM_EMAIL = 'notifications@%s' % settings.INBOUND_EMAIL_DOMAIN
 SOCKETLABS_SPAM_THRESHOLD = 10.0
+# Types of users who might be sending or receiving emails.
+ADDON_AUTHOR = 'An add-on author'
+ADDON_REVIEWER = 'An add-on reviewer'
 
 
 class ActivityEmailError(ValueError):
@@ -204,18 +207,26 @@ def add_email_to_activity_log(parser):
         raise ActivityEmailError('Your account is not allowed to send replies.')
 
 
-def action_from_user(user, version):
+def type_of_user(user, version):
     if version.addon.authors.filter(pk=user.pk).exists():
+        return ADDON_AUTHOR
+    if acl.is_user_any_kind_of_reviewer(user):
+        return ADDON_REVIEWER
+
+
+def action_from_user(user, version):
+    if type_of_user(user, version) == ADDON_AUTHOR:
         return amo.LOG.DEVELOPER_REPLY_VERSION
-    elif acl.is_user_any_kind_of_reviewer(user):
+    if type_of_user(user, version) == ADDON_REVIEWER:
         return amo.LOG.REVIEWER_REPLY_VERSION
 
 
 def template_from_user(user, version):
     template = 'activity/emails/developer.txt'
-    if not version.addon.authors.filter(
-        pk=user.pk
-    ).exists() and acl.is_user_any_kind_of_reviewer(user):
+    if (
+        type_of_user(user, version) != ADDON_AUTHOR
+        and type_of_user(user, version) == ADDON_REVIEWER
+    ):
         template = 'activity/emails/from_reviewer.txt'
     return loader.get_template(template)
 
@@ -258,6 +269,11 @@ def notify_about_activity_log(
     else:
         comments = unescape(comments)
 
+    type_of_sender = type_of_user(note.user, version)
+    sender_name = (
+        ADDON_REVIEWER if type_of_sender == ADDON_REVIEWER else note.author_name
+    )
+
     # Collect add-on authors (excl. the person who sent the email.) and build
     # the context for them.
     addon_authors = set(addon.authors.all()) - {note.user}
@@ -265,7 +281,7 @@ def notify_about_activity_log(
     author_context_dict = {
         'name': addon.name,
         'number': version.version,
-        'author': note.author_name,
+        'author': sender_name,
         'comments': comments,
         'url': absolutify(addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
@@ -280,7 +296,7 @@ def notify_about_activity_log(
         )
     # Build and send the mail for authors.
     template = template_from_user(note.user, version)
-    from_email = formataddr((note.author_name, NOTIFICATIONS_FROM_EMAIL))
+    from_email = formataddr((sender_name, NOTIFICATIONS_FROM_EMAIL))
     send_activity_mail(
         subject,
         template.render(author_context_dict),
@@ -297,6 +313,10 @@ def notify_about_activity_log(
             task_user = {get_task_user()}
         except UserProfile.DoesNotExist:
             task_user = set()
+        # Update the author and from_email to use the real name in all cases.
+        from_email = formataddr((note.author_name, NOTIFICATIONS_FROM_EMAIL))
+        reviewer_context_dict = author_context_dict.copy()
+        reviewer_context_dict['author'] = note.author_name
 
     if send_to_reviewers:
         # Collect reviewers on the thread (excl. the email sender and task user
@@ -308,7 +328,6 @@ def notify_about_activity_log(
             if acl.is_user_any_kind_of_reviewer(alog.user)
         }
         reviewers = log_users - addon_authors - task_user - {note.user}
-        reviewer_context_dict = author_context_dict.copy()
         reviewer_context_dict['url'] = absolutify(
             reverse(
                 'reviewers.review',
