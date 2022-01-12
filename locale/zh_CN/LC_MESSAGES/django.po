@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 18:10+0000\n"
+"PO-Revision-Date: 2022-01-12 18:18+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -988,9 +988,8 @@ msgstr "不赞成使用的 LWT"
 msgid "Theme (Static)"
 msgstr "主题 (静态)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "权限："
+msgstr "网站权限"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -1022,9 +1021,8 @@ msgstr "不赞成使用的 LWT"
 msgid "Themes (Static)"
 msgstr "主题 (静态)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "权限："
+msgstr "网站权限"
 
 msgid "Alerts & Updates"
 msgstr "提醒和更新"
@@ -1314,13 +1312,11 @@ msgstr "GNU 库通用公共许可证 v2.1"
 msgid "GNU Library General Public License v3.0"
 msgstr "GNU 库通用公共许可证 v3.0"
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "许可协议"
+msgstr "MIT 许可证"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "许可协议"
+msgstr "BSD 许可证"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla 公共许可证 1.1"
