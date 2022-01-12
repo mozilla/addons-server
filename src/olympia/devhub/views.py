@@ -167,7 +167,8 @@ def dashboard(request, theme=False):
 def site_permission_generator(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect(
-            '%s%s%s' % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
+            '%s%s%s'
+            % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
         )
     form = forms.SitePermissionGeneratorForm(
         request.POST if request.method == 'POST' else None
@@ -2007,7 +2008,8 @@ def render_agreement(request, template, next_step, **extra_context):
 def api_key(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect(
-            '%s%s%s' % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
+            '%s%s%s'
+            % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
         )
 
     try:
