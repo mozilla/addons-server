@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 07:16+0000\n"
+"PO-Revision-Date: 2022-01-12 07:09+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4389,11 +4389,11 @@ msgstr "Een interessante afbeelding op het web gevonden? Gebruik TinEye om de he
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "Lees ePUB-bestanden binnen Firefox – verhoog lettergrootte, pagina-afmetingen en meer."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr ""
+msgstr "Pas uw muisbewegingen aan. Ontdek nieuwe manieren van navigeren met meer dan 50 instellingen."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4445,19 +4445,19 @@ msgstr "Neem emoji’s overal op het internet mee."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Leg beperkingen op aan afleidende, tijdverspillende websites."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Verwijder rommel van uw Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Pas YouTube naar smaak aan."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Verwijder navigatiegegevens rechtstreeks vanuit de browserwerkbalk."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
