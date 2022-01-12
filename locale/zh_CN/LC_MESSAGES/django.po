@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 18:18+0000\n"
+"PO-Revision-Date: 2022-01-12 18:25+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4295,17 +4295,14 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "在网上发现了一个有趣的图片？用 TinEye 探索它的出处。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "在 Firefox 中阅览 ePub 文件—支持放大文字、调整页面尺寸等功能。"
+msgstr "在 Firefox 中阅览 ePUB 文件—支持放大文字、调整页面尺寸等功能。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "自定义鼠标手势。探索使用 50 多种配置模式浏览网页的全新方法。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "使用鼠标手势关闭标签页，浏览页面等。"
 
@@ -4383,14 +4380,12 @@ msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "热门扩展"
+msgstr "2021 年度扩展"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "浏览所有扩展"
+msgstr "Steam 扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
