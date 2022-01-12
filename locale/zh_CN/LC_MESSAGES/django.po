@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 18:25+0000\n"
+"PO-Revision-Date: 2022-01-12 18:43+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4352,7 +4352,7 @@ msgstr "网上冲浪，怎能少得了 emoji 表情 🐴 。"
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "限制分散注意力、浪费时间的网站。"
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
