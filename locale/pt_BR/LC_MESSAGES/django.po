@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 17:08+0000\n"
+"PO-Revision-Date: 2022-01-12 17:10+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4522,23 +4522,20 @@ msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "Extensões populares"
+msgstr "Principais extensões de 2021"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "Ver todas extensões"
+msgstr "Extensões do Steam"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
 msgstr "Ferramentas para aumentar a produtividade"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Read more"
-msgstr "Salvar e adicionar mais"
+msgstr "Saiba mais"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
