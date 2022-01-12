@@ -14,7 +14,6 @@ import waffle
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.exceptions import ImproperlyConfigured
 from django.core.files.storage import default_storage as storage
 from django.core.validators import ValidationError
 from django.db import transaction
@@ -30,6 +29,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.addons.models import Addon, Preview
+from olympia.addons.utils import SitePermissionVersionCreator
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.utils import (
@@ -749,13 +749,10 @@ def send_api_key_revocation_email(emails):
 @task
 @use_primary_db
 def create_site_permission_version(
-    *, addon_pk, user_pk, remote_addr, install_origins, site_permissions, **kwargs
+    *, user_pk, remote_addr, install_origins, site_permissions, **kwargs
 ):
-    from olympia.addons.utils import SitePermissionVersionCreator
-
-    if addon_pk is not None:
-        raise ImproperlyConfigured('Not implemented')
-
+    # Can raise if the user does not exist, but that's ok, we don't want to go
+    # any further if that's the case.
     user = UserProfile.objects.filter(deleted=False).get(pk=user_pk)
     generator = SitePermissionVersionCreator(
         user=user,

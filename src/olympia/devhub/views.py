@@ -175,7 +175,6 @@ def site_permission_generator(request):
     success = None
     if request.method == 'POST' and form.is_valid():
         tasks.create_site_permission_version.delay(
-            addon_pk=None,
             user_pk=request.user.pk,
             remote_addr=request.META.get('REMOTE_ADDR', ''),
             install_origins=[form.cleaned_data['origin']],
