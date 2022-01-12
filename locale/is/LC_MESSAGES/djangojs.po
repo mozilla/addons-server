@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 17:43+0000\n"
+"PO-Revision-Date: 2022-01-12 18:41+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -115,10 +115,10 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Skráartegundin sem þú sendir inn er ekki þekkt."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Skráin þín fer yfir hámarksstærðina {0}."
 
 msgid "You cancelled the upload."
 msgstr "Þú hættir við innsendinguna."
@@ -288,13 +288,13 @@ msgid "Homepage Most Popular"
 msgstr ""
 
 msgid "Detail Page"
-msgstr ""
+msgstr "Ítarleg síða"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Ítarleg síða (neðst)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Ítarleg síða (þróunarrás)"
 
 msgid "Often Used With"
 msgstr "Oft notað með"
@@ -410,27 +410,27 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Niðurhal, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal frá {0} í {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Forrit, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Forrit frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Countries, last {0} days"
@@ -490,11 +490,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
-msgstr ""
+msgstr "Niðurhal á efni, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal á efni frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
@@ -506,75 +506,75 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Framlög, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Framlög frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Vefmælingar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Vefmælingar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Viðbætur í notkun, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Viðbætur í notkun frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Viðbætur sóttar, síðustu {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Viðbætur sóttar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Viðbætur búnar til, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Viðbætur búnar til frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Viðbætur uppfærðar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Viðbætur uppfærðar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Umsagnir skrifaðar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Umsagnir skrifaðar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Nýskráningar notenda, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Nýskráningar notenda frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Söfn búin til, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Söfn búin til frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -679,7 +679,7 @@ msgstr[0] "{files} skrá"
 msgstr[1] "{files} skrár"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Myndbreytingar eru í vinnslu"
 
 msgid "Select an application first"
 msgstr "Veldu fyrst forrit"
@@ -692,8 +692,8 @@ msgstr "Hleð inn..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> stafur"
+msgstr[1] "<b>{0}</b> stafir"
 
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
@@ -701,7 +701,7 @@ msgstr[0] "<b>{0}</b> stafur eftir"
 msgstr[1] "<b>{0}</b> stafir eftir"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Þessi eiginleiki er tímabundið óvirkur meðan við sinnum viðhaldi á vefsvæðinu. Athugaðu aftur aðeins síðar."
 
 msgid "Remove this localization"
 msgstr "Fjarlægja þessa staðfærslu"
@@ -716,13 +716,13 @@ msgid "Loading&hellip;"
 msgstr "Hleð inn&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Útgáfuskýringar"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Athugasemdir fyrir umsagnaraðila"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "Engar útgáfuskýringar fundust"
 
 msgid "Review Text"
 msgstr ""
@@ -734,7 +734,7 @@ msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"
-msgstr ""
+msgstr "Umbeðnar upplýsingar"
 
 msgid "Flagged"
 msgstr "Flaggað"
