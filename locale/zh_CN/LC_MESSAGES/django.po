@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 18:43+0000\n"
+"PO-Revision-Date: 2022-01-13 18:16+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1596,7 +1596,7 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "{blog_link_open}AMO 已不再支持{blog_link_close} Open Search 附加组件。您可以改为创建{doc_link_open}搜索引擎扩展{doc_link_close}。"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "不允许从 {origin} 安装。"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "这个短网址已经被使用，请另选一个。"
@@ -4392,9 +4392,8 @@ msgid "Productivity boosters"
 msgstr "生产力工具"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Read more"
-msgstr "保存并添加更多项目"
+msgstr "阅读更多"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
