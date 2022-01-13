@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 07:09+0000\n"
+"PO-Revision-Date: 2022-01-12 07:19+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1622,7 +1622,7 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Open Search-add-ons worden {blog_link_open}niet meer ondersteund op AMO{blog_link_close}. U kunt in plaats daarvan een {doc_link_open}zoekextensie maken{doc_link_close}."
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "De installatiebron {origin} is niet toegestaan."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Deze identificator wordt al gebruikt. Kies een andere."
@@ -6135,6 +6135,8 @@ msgstr "E-mailpatroon"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Voer het volledige e-mailadres in dat moet worden geblokkeerd of gebruik wildcards in Unix-stijl, b.v. ‘*@voorbeeld.com’. Als u een domein inclusief subdomeinen wilt blokkeren, voeg dan een tweede "
+"item toe, b.v. ‘*@*.voorbeeld.com’."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Het e-mailadres dat u voor uw account hebt gebruikt is niet toegestaan voor het indienen van add-ons."
