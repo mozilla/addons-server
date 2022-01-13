@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 23:21+0000\n"
+"PO-Revision-Date: 2022-01-13 23:22+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -152,7 +152,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Τα ονόματα προσθέτων δεν μπορούν να περιέχουν τα εμπορικά σήματα της Mozilla ή του Firefox."
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
+msgstr "Άδειες ιστοτόπων για {hostnames}"
 
 msgid "Sort by:"
 msgstr "Ταξινόμηση κατά:"
@@ -4494,7 +4494,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Αφαιρέστε τα περιττά στοιχεία από το Twitter σας."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
