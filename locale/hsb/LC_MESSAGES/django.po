@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 22:21+0000\n"
+"PO-Revision-Date: 2022-01-13 22:10+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3677,7 +3677,7 @@ msgstr "Začitajće rajtarki po nastajenych časowych interwalach awtomatisce zn
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Dźělće dźěle swojeho žiwjenja online do přez barby skodowanych rajtarkow ze separatnymi plackami. Nětko do Mozilla VPN za přidatnu runinu priwatnosće integrowane."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
