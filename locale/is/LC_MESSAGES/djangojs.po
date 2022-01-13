@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 15:09+0000\n"
+"PO-Revision-Date: 2022-01-13 15:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -67,32 +67,32 @@ msgid "Validating {0}"
 msgstr "Fullgilda {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Viðbótin þín fer yfir hámarksstærðina {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Upp kom óvænt villa í netþjóni við fullgildingu."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Lauk við að fullgilda {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Fullgilding viðbótarinnar þinnar féll á tímamörkum, það þarf að yfirfara hana handvirkt."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Viðbótin þín var fullgilt með engum villum og {0} aðvörun."
+msgstr[1] "Viðbótin þín var fullgilt með engum villum og {0} aðvörunum."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Viðbótin þín var fullgilt með engum villum og {0} skilaboðum."
+msgstr[1] "Viðbótin þín var fullgilt með engum villum og {0} skilaboðum."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Viðbótin þín var fullgilt með engum villum eða aðvörunum."
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
@@ -169,8 +169,8 @@ msgstr[1] "{0} niðurhöl"
 
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} notandi"
+msgstr[1] "{0} notendur"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
@@ -270,7 +270,7 @@ msgid "Add-ons Manager Learn More"
 msgstr ""
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Tillögur í leit"
 
 msgid "Search Results"
 msgstr "Leitarniðurstöður"
@@ -728,7 +728,7 @@ msgid "Review Text"
 msgstr "Yfirfara texta"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "Yfirferðarskýringar fundust"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Hámarksstærð innsendinga er {0} - veldu minni bakgrunnsmynd."
