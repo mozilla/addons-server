@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 13:54+0000\n"
+"PO-Revision-Date: 2022-01-13 15:09+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -45,14 +45,14 @@ msgstr "Útdráttur úr skilaboðum"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr "%d valdar skýrslur hafa verið merktar sem gildar."
+msgstr ""
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr "%d valdar skýrslur hafa verið merktar sem grunsamlegar."
+msgstr ""
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr "Merktu valdar misnotkunarskýrslur sem grunsamlegar"
+msgstr ""
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Gakktu úr skugga um að þessi reitur hafi ekki fleiri en {max_length} stafi."
@@ -74,10 +74,10 @@ msgid "This display name cannot be used."
 msgstr "Ekki er hægt að nota þetta birtingarnafn."
 
 msgid "This reviewer name cannot be used."
-msgstr "Ekki er hægt að nota þetta yfirlestrarnafn."
+msgstr ""
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr "Heimasíðusvæðið er aðeins hægt að nota til að tengja við ytri vefsíður."
+msgstr ""
 
 msgid "Images must be either PNG or JPG."
 msgstr "Myndir verða að vera annað hvort PNG eða JPG."
@@ -90,23 +90,23 @@ msgid "Please use images smaller than %dMB."
 msgstr "Notaðu myndir minni en %dMB."
 
 msgid "You are already logged in."
-msgstr "Þú ert þegar innskráð/ur."
+msgstr ""
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Ekki var hægt að þátta innskráningartilraun þína. Reyndu aftur."
+msgstr ""
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Firefox-reikningurinn þinn fannst ekki. Reyndu aftur."
+msgstr ""
 
 msgid "You could not be logged in. Please try again."
-msgstr "Ekki var hægt að skrá þig inn. Reyndu aftur."
+msgstr ""
 
 msgid "Need help?"
 msgstr "Þarftu hjálp?"
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr "Tilkynningin [%s] er ekki til"
+msgstr ""
 
 msgid "Review"
 msgstr "Yfirfara"
@@ -2015,7 +2015,7 @@ msgid "Validation Results for {0}"
 msgstr ""
 
 msgid "Validation Results"
-msgstr "Niðurstöður sannvottunar"
+msgstr "Niðurstöður fullgildingar"
 
 msgid "Validated at:"
 msgstr ""
@@ -3280,7 +3280,7 @@ msgid "Status"
 msgstr "Staða"
 
 msgid "Validation"
-msgstr "Sannvottun"
+msgstr "Fullgilding"
 
 msgid "Delete/Disable"
 msgstr ""

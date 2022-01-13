@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 18:42+0000\n"
+"PO-Revision-Date: 2022-01-13 15:09+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -52,8 +52,8 @@ msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Viðbótin þín féll á sannvottun með {0} villu."
-msgstr[1] "Viðbótin þín féll á sannvottun með {0} villum."
+msgstr[0] "Viðbótin þín féll á fullgildingu með {0} villu."
+msgstr[1] "Viðbótin þín féll á fullgildingu með {0} villum."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -61,10 +61,10 @@ msgstr[0] "&hellip;og {0} í viðbót"
 msgstr[1] "&hellip;og {0} í viðbót"
 
 msgid "See full validation report"
-msgstr "Sjá fulla sannvottunarskýrslu"
+msgstr "Sjá alla fullgildingarskýrsluna"
 
 msgid "Validating {0}"
-msgstr "Sannvotta {0}"
+msgstr "Fullgilda {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr ""
@@ -79,7 +79,7 @@ msgid "Finished validating {0}"
 msgstr ""
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Fullgilding viðbótarinnar þinnar féll á tímamörkum, það þarf að yfirfara hana handvirkt."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -112,7 +112,7 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Fullgildingarferlið fann þessi vandamál sem geta leitt til höfnunar:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Skráartegundin sem þú sendir inn er ekki þekkt."
@@ -725,7 +725,7 @@ msgid "No version notes found"
 msgstr "Engar útgáfuskýringar fundust"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Yfirfara texta"
 
 msgid "Review notes found"
 msgstr ""
@@ -782,10 +782,10 @@ msgid "{0} line {1}"
 msgstr "{0} lína {1}"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Viðbót féll á fullgildingu."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Viðbót stóðst fullgildingu."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -803,7 +803,7 @@ msgstr[0] "{0} tilkynning"
 msgstr[1] "{0} tilkynningar"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Fullgildingarferlinu var ekki hægt að ljúka eða að því lauk með villumeldingum"
 
 msgid "Internal server error"
 msgstr "Innri villa í netþjóni"
