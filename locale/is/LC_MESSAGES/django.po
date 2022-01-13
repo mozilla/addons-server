@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 15:09+0000\n"
+"PO-Revision-Date: 2022-01-13 16:11+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -74,7 +74,7 @@ msgid "This display name cannot be used."
 msgstr "Ekki er hægt að nota þetta birtingarnafn."
 
 msgid "This reviewer name cannot be used."
-msgstr ""
+msgstr "Ekki er hægt að nota þetta yfirferðarnafn."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
@@ -203,7 +203,7 @@ msgid "Reviewer Tools"
 msgstr ""
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "Kerfisstjóratól"
 
 msgid "Positive integer"
 msgstr "Jákvæð heiltala"
@@ -311,19 +311,19 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr ""
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Fara á fyrstu síðu"
 
 msgid "Previous"
 msgstr "Fyrra"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Fara á öftustu síðu"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Birti <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr ""
