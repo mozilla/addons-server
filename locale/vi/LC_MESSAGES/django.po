@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 06:21+0000\n"
+"PO-Revision-Date: 2022-01-13 06:22+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1012,9 +1012,8 @@ msgstr "LWT ngừng hoạt động"
 msgid "Theme (Static)"
 msgstr "Chủ đề (Tĩnh)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Quyền hạn:"
+msgstr "Quyền hạn trang web"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -1046,9 +1045,8 @@ msgstr "LWTs không còn hỗ trợ"
 msgid "Themes (Static)"
 msgstr "Các chủ đề (Tĩnh)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Quyền hạn:"
+msgstr "Quyền hạn trang web"
 
 msgid "Alerts & Updates"
 msgstr "Cảnh báo & Cập nhật"
@@ -1347,13 +1345,11 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Giấy phép"
+msgstr "Giấy phép MIT"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Giấy phép"
+msgstr "Giấy phép BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr ""
@@ -4451,14 +4447,12 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "Các tiện ích mở rộng phổ biến"
+msgstr "Tiện ích mở rộng hàng đầu 2021"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "Xem tất cả các tiện ích mở rộng"
+msgstr "Tiện ích mở rộng Steam"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
