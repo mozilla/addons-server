@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 22:10+0000\n"
+"PO-Revision-Date: 2022-01-13 22:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4434,7 +4434,7 @@ msgstr "Wzmiće emodźije wšudźe we webje sobu."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Wobmjezujće wotchilace, čas rubjace websydła."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
