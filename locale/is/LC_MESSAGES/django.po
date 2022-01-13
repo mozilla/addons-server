@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 15:46+0000\n"
+"PO-Revision-Date: 2022-01-13 13:51+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -80,14 +80,14 @@ msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Myndir verða að vera annað hvort PNG eða JPG."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Myndir mega ekki vera með hreyfingu."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Notaðu myndir minni en %dMB."
 
 msgid "You are already logged in."
 msgstr ""
@@ -124,7 +124,7 @@ msgid "Authors"
 msgstr "Höfundar"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Einkunnir"
 
 msgid "Reviewer Tools (listed)"
 msgstr ""
@@ -143,7 +143,7 @@ msgid "- Add-on not on AMO -"
 msgstr "- Viðbót ekki á AMO -"
 
 msgid "Listed"
-msgstr ""
+msgstr "Upptalið"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
@@ -222,7 +222,7 @@ msgid "Enter a valid IP4 or IP6 network."
 msgstr ""
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -261,10 +261,10 @@ msgstr "Fannst ekki"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
@@ -401,15 +401,15 @@ msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_versi
 msgstr ""
 
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 msgid "Versions"
 msgstr "Útgáfur"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -450,7 +450,7 @@ msgid "%(value)s contains *"
 msgstr ""
 
 msgid "Invalid version"
-msgstr ""
+msgstr "Ógild útgáfa"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -466,7 +466,7 @@ msgid "Delete Multiple %(name)s"
 msgstr ""
 
 msgid "Home"
-msgstr ""
+msgstr "Heim"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -981,9 +981,8 @@ msgstr ""
 msgid "Theme (Static)"
 msgstr ""
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Heimildir:"
+msgstr "Heimild vefsvæðis"
 
 msgid "Extensions"
 msgstr "Forritsaukar"
@@ -992,16 +991,16 @@ msgid "Deprecated Complete Themes"
 msgstr ""
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "Orðasöfn"
 
 msgid "Search Tools"
 msgstr "Leitarverkfæri"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Tungumálapakkar (forrit)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Tungumálapakkar (viðbætur)"
 
 msgid "Plugins"
 msgstr "Viðbætur"
@@ -1012,12 +1011,11 @@ msgstr ""
 msgid "Themes (Static)"
 msgstr ""
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Heimildir:"
+msgstr "Heimildir vefsvæðis"
 
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Aðvaranir og uppfærslur"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
@@ -1041,13 +1039,13 @@ msgid "Download Firefox extensions that can help download web, music and video c
 msgstr ""
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Streymi, fréttaveitur og blogg"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Leikir og afþreying"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
@@ -1304,13 +1302,11 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Notkunarleyfi"
+msgstr "MIT notkunarleyfið"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Notkunarleyfi"
+msgstr "BSD notkunarleyfið"
 
 msgid "Mozilla Public License 1.1"
 msgstr ""
@@ -2054,9 +2050,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -2269,8 +2263,8 @@ msgid "Email"
 msgstr "Tölvupóstur"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2820,8 +2814,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2893,8 +2887,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -4343,9 +4336,8 @@ msgid "Top extensions of 2021"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "Forritsaukar"
+msgstr "Steam-viðaukar"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
@@ -4549,8 +4541,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5058,10 +5050,10 @@ msgid "View Privacy Policy"
 msgstr ""
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "Krefst greiðslu"
 
 msgid "EULA"
-msgstr ""
+msgstr "EULA-skilmálar"
 
 msgid "View End-User License Agreement"
 msgstr ""
@@ -5194,7 +5186,7 @@ msgid "There are currently no add-ons of this type to review."
 msgstr ""
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Hjálplegir tenglar:"
 
 msgid "Add-on Policy"
 msgstr ""
@@ -5235,7 +5227,7 @@ msgid "Files:"
 msgstr "Skrár:"
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Prófað á:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
@@ -5425,7 +5417,7 @@ msgid "No top reviewers yet."
 msgstr ""
 
 msgid "All Time"
-msgstr ""
+msgstr "Allra tíma"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
@@ -5639,28 +5631,28 @@ msgid "by Medium"
 msgstr ""
 
 msgid "by Content"
-msgstr ""
+msgstr "eftir efni"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "eftir kynningarátaki"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Daglegir notendur"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "eftir útgáfu viðbótar"
 
 msgid "by Application"
-msgstr ""
+msgstr "eftir forritum"
 
 msgid "by Language"
-msgstr ""
+msgstr "eftir tungumáli"
 
 msgid "by Platform"
-msgstr ""
+msgstr "eftir stýrikerfum"
 
 msgid "by Country"
-msgstr ""
+msgstr "eftir löndum"
 
 msgid "close"
 msgstr "loka"
@@ -5689,7 +5681,7 @@ msgstr ""
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Tölfræði fyrir {0}"
 
 msgid "Statistics Dashboard"
 msgstr ""
@@ -5829,7 +5821,7 @@ msgid "Legal Notices"
 msgstr ""
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Tilkynna misnotkun á vörumerki"
 
 msgid "Site Status"
 msgstr ""
@@ -5852,16 +5844,16 @@ msgid "Forum"
 msgstr "Vefspjall"
 
 msgid "Download Firefox"
-msgstr ""
+msgstr "Sækja Firefox"
 
 msgid "Android Browser"
-msgstr ""
+msgstr "Android vafra"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS vafra"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus vafra"
 
 msgid "Desktop Browser"
 msgstr "Vafri"
@@ -5994,8 +5986,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6032,13 +6024,13 @@ msgid "User Notifications"
 msgstr ""
 
 msgid "Ban"
-msgstr ""
+msgstr "Banna"
 
 msgid "Reset session(s)"
-msgstr ""
+msgstr "Frumstilla lotu(r)"
 
 msgid "Delete picture"
-msgstr ""
+msgstr "Eyða mynd"
 
 #, python-format
 msgid ""
@@ -6051,8 +6043,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6096,4 +6087,4 @@ msgid "others"
 msgstr "aðrir"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} og nýrra"
