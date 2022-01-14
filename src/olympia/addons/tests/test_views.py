@@ -1414,6 +1414,20 @@ class TestAddonViewSetUpdate(TestCase):
             'You do not have permission to perform this action.'
         )
 
+    def test_write_site_permission(self):
+        addon = Addon.objects.get()
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.patch(
+            self.url,
+            data={'slug': 'a-new-slug'},
+        )
+        addon.reload()
+        # Site Permission Addons can't be written to.
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+
     @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
@@ -1735,6 +1749,14 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         ).to_representation(version)
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         assert self.addon.status == amo.STATUS_NOMINATED
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data},
+        )
+        assert response.status_code == 403
 
     def test_not_authenticated(self):
         self.client.logout_api()
@@ -2110,6 +2132,14 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             'is_disabled_by_mozilla': False,
         }
         assert self.version.release_notes != 'Something new'
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.patch(
+            self.url,
+            data={'release_notes': {'en-US': 'Something new'}},
+        )
+        assert response.status_code == 403
 
     def test_not_your_addon(self):
         self.addon.addonuser_set.get(user=self.user).update(

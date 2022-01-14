@@ -21,6 +21,7 @@ from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowAnyKindOfReviewer,
     AllowIfNotMozillaDisabled,
+    AllowIfNotSitePermission,
     AllowIfPublic,
     AllowNone,
     AllowOwner,
@@ -183,11 +184,50 @@ class TestAllowIfNotMozillaDisabled(TestCase):
     def test_has_permission(self):
         assert self.permission.has_permission(self.request, myview)
 
-    def test_has_object_permission_owner(self):
+    def test_has_object_permission_disabled(self):
+        assert not self.permission.has_object_permission(
+            self.request, myview, self.addon
+        )
+
+    def test_has_object_permission_disabled_owner(self):
         self.request.user = self.owner
         assert not self.permission.has_object_permission(
             self.request, myview, self.addon
         )
+
+    def test_has_object_permission_non_disabled(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        assert self.permission.has_object_permission(self.request, myview, self.addon)
+
+
+class TestAllowIfNotSitePermission(TestCase):
+    def setUp(self):
+        self.permission = AllowIfNotSitePermission()
+        self.owner = user_factory()
+        self.addon = addon_factory()
+        self.addon.addonuser_set.create(user=self.owner)
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        self.request = RequestFactory().get('/')
+        self.request.user = AnonymousUser()
+
+    def test_has_permission(self):
+        assert self.permission.has_permission(self.request, myview)
+
+    def test_has_object_permission_site_permission_addon(self):
+        assert not self.permission.has_object_permission(
+            self.request, myview, self.addon
+        )
+
+    def test_has_object_permission_site_permission_addon_owner(self):
+        self.request.user = self.owner
+        assert not self.permission.has_object_permission(
+            self.request, myview, self.addon
+        )
+
+    def test_has_object_permission_regular_addon(self):
+        self.request.user = self.owner
+        self.addon.update(type=amo.ADDON_EXTENSION)
+        assert self.permission.has_object_permission(self.request, myview, self.addon)
 
 
 class TestAllowOwner(TestCase):

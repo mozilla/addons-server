@@ -34,6 +34,7 @@ from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowIfNotMozillaDisabled,
+    AllowIfNotSitePermission,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
     AllowListedViewerOrReviewer,
@@ -191,6 +192,7 @@ class AddonViewSet(
         APIGatePermission('addon-submission-api'),
         AllowAddonAuthor,
         AllowIfNotMozillaDisabled,
+        AllowIfNotSitePermission,
         IsSubmissionAllowedFor,
     ]
     permission_classes = [
@@ -410,6 +412,9 @@ class AddonVersionViewSet(
         # do the actual permission check. To work around that, we call
         # super + check_object_permission() ourselves, passing down the
         # addon object directly.
+        # Note that just calling get_addon_object() will trigger permission
+        # checks on its own using AddonViewSet permission classes, regardless
+        # of what permission classes are set on self.
         return super().check_object_permissions(request, self.get_addon_object())
 
     def check_object_permissions(self, request, obj):
