@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 07:19+0000\n"
+"PO-Revision-Date: 2022-01-12 07:11+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4478,7 +4478,7 @@ msgstr "Topextensies van 2021"
 
 #. editorial content for the secondary hero shelves.
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam-extensies"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
