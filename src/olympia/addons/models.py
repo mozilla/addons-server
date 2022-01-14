@@ -892,6 +892,8 @@ class Addon(OnChangeMixin, ModelBase):
             )
         if user:
             AddonUser(addon=addon, user=user).save()
+        activity.log_create(amo.LOG.CREATE_ADDON, addon)
+        log.info(f'New addon {addon!r} from {upload!r}')
         timer.log_interval('7.end')
         return addon
 
@@ -916,7 +918,6 @@ class Addon(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         addon = cls.initialize_addon_from_upload(parsed_data, upload, channel, user)
-
         Version.from_upload(
             upload=upload,
             addon=addon,
@@ -924,10 +925,6 @@ class Addon(OnChangeMixin, ModelBase):
             selected_apps=selected_apps,
             parsed_data=parsed_data,
         )
-
-        activity.log_create(amo.LOG.CREATE_ADDON, addon)
-        log.info(f'New addon {addon!r} from {upload!r}')
-
         return addon
 
     @classmethod

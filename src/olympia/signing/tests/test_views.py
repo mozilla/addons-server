@@ -142,6 +142,11 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.CREATE_ADDON.id)
+            .exists()
+        )
 
     def test_new_addon_random_slug_unlisted_channel(self):
         guid = '@create-webextension'
