@@ -126,3 +126,12 @@ class TestDeniedOrigins(TestCase):
             'description': [],
             'compatibility_type': None,
         }
+
+    def test_empty_parsed_data(self):
+        DeniedInstallOrigin.objects.create(hostname_pattern='foo.com')
+        results = deepcopy(VALIDATOR_SKELETON_RESULTS)
+        data = {}
+        return_value = annotate_validation_results(results, data)
+        assert return_value == results
+        assert results['errors'] == 0
+        assert len(results['messages']) == 0
