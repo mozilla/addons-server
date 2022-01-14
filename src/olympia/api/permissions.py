@@ -129,6 +129,21 @@ class AllowIfNotMozillaDisabled(BasePermission):
         return obj.status != amo.STATUS_DISABLED
 
 
+class AllowIfNotSitePermission(BasePermission):
+    """Allow access unless the add-on is a site permission.
+
+    Typically this permission should be used together with AllowAddonAuthor,
+    to allow write access to authors unless the add-on was a site permission
+    add-on.
+    For public-facing API, see AllowReadOnlyIfPublic."""
+
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return obj.type != amo.ADDON_SITE_PERMISSION
+
+
 class AllowOwner(BasePermission):
     """
     Permission class to use when you are dealing with a model instance that has
