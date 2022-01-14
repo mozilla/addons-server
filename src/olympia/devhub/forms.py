@@ -1423,6 +1423,9 @@ class SitePermissionGeneratorForm(forms.Form):
             not parsed.scheme
             or parsed.scheme not in ('https', 'http')
             or not parsed.netloc
+            # Django's URLField adds a scheme if there wasn't one, translating
+            # "foo" into "http://foo". We want to make sure the scheme was
+            # explicitly present in the submitted value.
             or not actual_value.startswith(parsed.scheme)
             or parsed.path
             or parsed.params
