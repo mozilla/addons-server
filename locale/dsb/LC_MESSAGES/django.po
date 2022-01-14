@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-14 14:23+0000\n"
+"PO-Revision-Date: 2022-01-14 14:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1612,7 +1612,7 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Dodanki Open Search se {blog_link_open}na AMO wěcej pódpěraju{blog_link_close}. Móžośo {doc_link_open}město togo pytańske rozšyrjenje{doc_link_close} wužywaś."
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Instalaciski póchad {origin} njejo dowólony."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Toś to adresowe mě se južo wužywa. Pšosym wubjeŕśo druge."
@@ -3681,7 +3681,7 @@ msgstr "Zacytajśo rejtariki awtomatiski pó nastajonych casowych interwalach zn
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Źělśo źěle swójogo žywjenja online do pśez barwy skoděrowanych rejtarikow ze separatnymi cookiejami. Něnto do Mozilla VPN za pśidatnu rowninu priwatnosći integrěrowane."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4441,19 +4441,19 @@ msgstr "Wzejśo emoźije wšuźi we webje sobu."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Wobgranicujśo wótchcylajuce, cas rubjece websedła."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Wótwónoźćo mólece elementy z Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Pśiměŕśo YouTube swójim žycenjam."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Wulašujśo pśeglědowańske daty direktnje ze symboloweje rědki wobglědowaka."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4580,7 +4580,7 @@ msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja za blokěrowanje wa
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Pśiměrjenje YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -6133,6 +6133,8 @@ msgstr "E-mailowy muster"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Zapódajśo dopołnu e-mailowu adresu, kótaraž ma se blokěrowaś abo wužywajśo zastupujuce symbole w stilu Unix, na pś. „*@example.com“. Jolic musyśo domenu inkluziwnje póddomeny blokěrowaś, pśidajśo "
+"dalšny zapisk, na pś. „*@*.example.com“."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "E-mailowa adresa, kótaruž sćo wužył za swójo konto njejo dowólona za zapódawanje dodankow."
