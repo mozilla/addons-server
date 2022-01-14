@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-14 09:42+0000\n"
+"PO-Revision-Date: 2022-01-14 09:49+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -1007,9 +1007,8 @@ msgstr "Ferâldere LWT"
 msgid "Theme (Static)"
 msgstr "Tema (statysk)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Tastimmingen:"
+msgstr "Websitemachtiging"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -1041,9 +1040,8 @@ msgstr "Ferâldere LWT’s"
 msgid "Themes (Static)"
 msgstr "Tema’s (statysk)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Tastimmingen:"
+msgstr "Websitemachtigingen"
 
 msgid "Alerts & Updates"
 msgstr "Warskôgingen en fernijingen"
@@ -1340,13 +1338,11 @@ msgstr "GNU Library General Public License v2.1"
 msgid "GNU Library General Public License v3.0"
 msgstr "GNU Library General Public License v3.0"
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Lisinsje"
+msgstr "De MIT-lisinsje"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Lisinsje"
+msgstr "De BSD-lisinsje"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1627,7 +1623,7 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Open Search-add-ons wurde {blog_link_open}net mear stipe op AMO{blog_link_close}. Jo kinne yn stee dêrfan in {doc_link_open}sykútwreiding meitsje{doc_link_close}."
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "De ynstallaasjeboarne {origin} is net tastien."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Dizze identifikator wurdt al brûkt. Kies in oar."
@@ -3693,7 +3689,7 @@ msgstr "Laad automatysk ljepblêden opnij op basis fan tiidsynterfallen dy’t j
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Hâld dielen fan jo online libben skieden yn kleurkodearre en troch cookies skieden ljepblêden. No yntegrearre mei Mozilla VPN foar in ekstra laach privacy."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4392,17 +4388,14 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "In ynteressante ôfbylding op it web fûn? Brûk TinEye om de werkomst derfan te efterheljen."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "Lês ePub-bestannen binnen Firefox – ferheegje lettergrutte, side-ôfmjittingen en mear."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "Pas jo mûsbewegingen oan. Untdek in nije manier fan navigearjen mei mear as 50 ynstellingen."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Brûk mûsbewegingen om ljepblêden te sluten, nei siden te navigearjen, en mear."
 
@@ -4452,19 +4445,19 @@ msgstr "Nim emoji’s oeral op it ynternet mei."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Lis beheiningen op oan ôfliedende, tiidsferspillende websites."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Smyt rommel fan jo Twitter fuort."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Pas YouTube nei smaak oan."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Smyt navigaasjegegevens streekrjocht fan de browserarkbalke út fuort."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4480,23 +4473,20 @@ msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "Populêre útwreidingen"
+msgstr "Topútwreidingen fan 2021"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "Alle útwreidingen besjen"
+msgstr "Steam-útwreidingen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
 msgstr "Produktiviteitsboosters"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Read more"
-msgstr "Bewarje en mear tafoegje"
+msgstr "Mear ynfo"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4593,7 +4583,7 @@ msgstr "Mear stêfkarren foar advertinsjeblokkearring besjen"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube-oanpassingen"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -6146,6 +6136,8 @@ msgstr "E-mailpatroan"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Fier it folsleine e-mailadres yn dat blokkearre wurde moat of brûk wildcards yn Unix-styl, byg. ‘*@foarbyld.com’. As jo in domein ynklusyf subdomeinen blokkearje wolle, foegje dan in twadde item ta,"
+" byg. ‘*@*.foarbyld.com’."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "It e-mailadres dat jo foar jo account brûkt hawwe is net tastien foar it yntsjinjen fan add-ons."
