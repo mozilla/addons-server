@@ -1412,8 +1412,8 @@ class SitePermissionGeneratorForm(forms.Form):
         value = self.cleaned_data.get('origin')
         # Note that URLField should already ensure it's an URL.
         error_message = _(
-            'Origin should be made of a scheme (protocol), a hostname (domain) and an '
-            'optional port'
+            'Origin should include only a scheme (protocol), a hostname (domain) and '
+            'an optional port'
         )
         try:
             parsed = urlparse(value)
