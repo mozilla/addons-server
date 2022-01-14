@@ -2095,6 +2095,11 @@ class TestUnlistedPendingManualApproval(QueueTest):
             AddonReviewerFlags.objects.create(
                 addon=addon, auto_approval_disabled_unlisted=True
             )
+        # Set one of the add-ons as needing an admin, regular reviewer
+        # shouldn't see it in their queue.
+        self.reserved_addon = self.expected_addons.pop()
+        flags = AddonReviewerFlags.objects.get(addon=self.reserved_addon)
+        flags.update(needs_admin_code_review=True)
 
     def test_results(self):
         with self.assertNumQueries(14):
@@ -2108,11 +2113,19 @@ class TestUnlistedPendingManualApproval(QueueTest):
             # - 1 translations
             self._test_results()
 
+    def test_results_admin_reviewer(self):
+        self.client.login(email='admin@mozilla.com')
+        # Add back the add-on set as needing an admin code review to the
+        # expected list since we are now an admin reviewer.
+        self.expected_addons.append(self.reserved_addon)
+        self.test_results()
+        self.test_queue_layout()
+
     def test_queue_layout(self):
         self._test_queue_layout(
             'Unlisted Add-ons Pending Manual Approval',
             tab_position=1,
-            total_addons=4,
+            total_addons=len(self.expected_addons),
             total_queues=2,
             per_page=1,
         )

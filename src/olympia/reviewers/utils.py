@@ -282,7 +282,9 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_unlisted_pending_manual_approval_queue()
+        return Addon.objects.get_unlisted_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer
+        )
 
     @classmethod
     def default_order_by(cls):
