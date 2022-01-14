@@ -887,3 +887,51 @@ class TestCategoryForm(TestCase):
         form = forms.CategoryFormSet(addon=addon, request=request)
         apps = [f.app for f in form.forms]
         assert apps == [amo.FIREFOX]
+
+
+_DEFAULT_SITE_PERMISSIONS = [
+    forms.SitePermissionGeneratorForm.declared_fields['site_permissions'].choices[0][0]
+]
+
+
+@pytest.mark.parametrize(
+    'origin',
+    [
+        'https://foo.com/testing',  # path
+        'file:/foo/bar',  # invalid scheme
+        'file:///foo/bar',  # invalid scheme
+        'ftp://somewhere.com',  # invalid scheme
+        'https://foo.bar.栃木.jp/',  # trailing slash
+        '',  # empty string
+        [],  # array (doh!)
+        {},  # dict (doh!)
+        'https://*.wildcard.com',  # wildcard
+        'example.com',  # no scheme
+        'https://',  # no hostname
+        None,  # null
+        42,  # int
+    ],
+)
+def test_site_permission_generator_origin_invalid(origin):
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin}
+    )
+    assert not form.is_valid()
+
+
+@pytest.mark.parametrize(
+    'origin',
+    [
+        'https://example.com',
+        'https://foo.example.com',
+        'https://xn--fo-9ja.com',
+        'https://foo.bar.栃木.jp',
+        'https://example.com:8888',
+    ],
+)
+def test_site_permission_generator_origin_valid(origin):
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin}
+    )
+    assert form.is_valid()
+    assert form.cleaned_data['origin'] == origin

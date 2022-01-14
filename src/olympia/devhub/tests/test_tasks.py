@@ -891,3 +891,27 @@ class TestForwardLinterResults(TestCase):
         results = {'errors': 1}
         returned_results = tasks.forward_linter_results(results, 123)
         assert results == returned_results
+
+
+class TestCreateSitePermissionVersion(TestCase):
+    @mock.patch('olympia.devhub.tasks.SitePermissionVersionCreator')
+    def test_pass_down_to_creator_util(self, SitePermissionVersionCreator_mock):
+        user = user_factory()
+        tasks.create_site_permission_version(
+            user_pk=user.pk,
+            remote_addr='127.0.0.42',
+            install_origins=['https://example.com'],
+            site_permissions=['foo'],
+        )
+        assert SitePermissionVersionCreator_mock.call_count == 1
+        assert SitePermissionVersionCreator_mock.call_args[0] == ()
+        assert SitePermissionVersionCreator_mock.call_args[1] == {
+            'user': user,
+            'remote_addr': '127.0.0.42',
+            'install_origins': ['https://example.com'],
+            'site_permissions': ['foo'],
+        }
+        assert (
+            SitePermissionVersionCreator_mock.return_value.create_version.call_count
+            == 1
+        )
