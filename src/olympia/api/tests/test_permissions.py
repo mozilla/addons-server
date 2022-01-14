@@ -196,7 +196,7 @@ class TestAllowIfNotMozillaDisabled(TestCase):
         )
 
     def test_has_object_permission_non_disabled(self):
-        self.addon.update(type=amo.STATUS_NULL)
+        self.addon.update(status=amo.STATUS_NULL)
         assert self.permission.has_object_permission(self.request, myview, self.addon)
 
 
