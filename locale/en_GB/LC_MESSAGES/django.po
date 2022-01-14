@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-14 07:09+0000\n"
+"PO-Revision-Date: 2022-01-14 07:18+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -993,9 +993,8 @@ msgstr "Deprecated LWT"
 msgid "Theme (Static)"
 msgstr "Theme (Static)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Permissions:"
+msgstr "Site Permission"
 
 msgid "Extensions"
 msgstr "Extensions"
@@ -1024,9 +1023,8 @@ msgstr "Deprecated LWTs"
 msgid "Themes (Static)"
 msgstr "Themes (Static)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Permissions:"
+msgstr "Site Permissions"
 
 msgid "Alerts & Updates"
 msgstr "Alerts & Updates"
@@ -1212,7 +1210,7 @@ msgid "Film and TV"
 msgstr "Film and TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Download Firefox themes with films and television. This category includes anime like \"Uchiha Madara\", films like \"The Matrix\", shows like \"Game of Thrones\" and more."
+msgstr "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr "Download Firefox themes with the Firefox browser theme. This category includes colourful, diverse depictions of the Firefox logo, including more general fox themes."
@@ -1316,13 +1314,11 @@ msgstr "GNU Library General Public Licence v2.1"
 msgid "GNU Library General Public License v3.0"
 msgstr "GNU Library General Public Licence v3.0"
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Licence"
+msgstr "The MIT Licence"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Licence"
+msgstr "The BSD Licence"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public Licence 1.1"
@@ -4360,19 +4356,16 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Find an interesting image on the web? Use TinEye to explore its origins."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Read ePub files right in Firefox—increase font size, page dimensions and more."
+msgstr "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Customise mouse gestures. Discover a new way to navigate with 50+ configurations."
+msgstr "Customise mouse gestures. Discover new ways to navigate with 50+ configurations."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "Use mouse gestures to close tabs, navigate pages and more."
+msgstr "Use mouse gestures to close tabs, navigate pages & more."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4447,23 +4440,20 @@ msgid "See all extensions"
 msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "Popular extensions"
+msgstr "Top extensions of 2021"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "See all extensions"
+msgstr "Steam extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
 msgstr "Productivity boosters"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Read more"
-msgstr "Save and add more"
+msgstr "Read more"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
