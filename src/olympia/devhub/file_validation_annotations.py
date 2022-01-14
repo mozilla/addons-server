@@ -73,16 +73,17 @@ def annotate_validation_results(results, parsed_data):
     """Annotate validation results with potential add-on restrictions like
     denied origins."""
     if waffle.switch_is_active('record-install-origins'):
-        denied_origins = sorted(
-            DeniedInstallOrigin.find_denied_origins(parsed_data['install_origins'])
-        )
-        for origin in denied_origins:
-            insert_validation_message(
-                results,
-                message=gettext(
-                    'The install origin {origin} is not permitted.'.format(
-                        origin=origin
-                    )
-                ),
+        if install_origins := parsed_data.get('install_origins'):
+            denied_origins = sorted(
+                DeniedInstallOrigin.find_denied_origins(install_origins)
             )
+            for origin in denied_origins:
+                insert_validation_message(
+                    results,
+                    message=gettext(
+                        'The install origin {origin} is not permitted.'.format(
+                            origin=origin
+                        )
+                    ),
+                )
     return results
