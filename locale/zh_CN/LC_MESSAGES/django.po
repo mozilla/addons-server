@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 18:59+0000\n"
+"PO-Revision-Date: 2022-01-14 14:16+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3598,7 +3598,7 @@ msgstr "根据您设置的时间间隔自动重载标签页。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "身份标签页现已整合 Mozilla VPN，为您提供更多隐私保护。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
