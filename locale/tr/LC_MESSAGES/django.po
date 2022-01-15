@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-15 09:30+0000\n"
+"PO-Revision-Date: 2022-01-15 12:21+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4349,9 +4349,8 @@ msgid "Read ePUB files right in Firefox—increase font size, page dimensions & 
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Fare hareketlerini özelleştirin. 50'den fazla fare hareketiyle gezinmenin yeni yolunu keşfedin."
+msgstr "Fare hareketlerini özelleştirin. 50'den fazla fare hareketiyle gezinmenin yeni yollarını keşfedin."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4388,7 +4387,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Sitelere e-posta adresinizi vermeyi bırakın. Firefox Relay, kimliğinizi korur ve istenmeyen e-postaları önler."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4400,7 +4399,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Emojileri, web'de gittiğiniz her yere yanınızda götürün."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
@@ -4857,7 +4856,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr ""
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Derhal reddet. Bunu sadece ciddi güvenlik sorunları durumunda kullanın."
 
 msgid "days"
 msgstr "gün"
@@ -4947,7 +4946,7 @@ msgid "Total Weight"
 msgstr "Toplam ağırlık"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Zararlılık skoru"
 
 msgid "Type"
 msgstr "Türü"
@@ -5427,7 +5426,7 @@ msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Bekleyen retleri temizle"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
