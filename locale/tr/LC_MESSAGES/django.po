@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 21:20+0000\n"
+"PO-Revision-Date: 2022-01-15 09:30+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -420,7 +420,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Lütfen WebExtensions'ın %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s'da \"*\" kabul etmeyeceğini unutmayın."
 
 msgid "GUID"
 msgstr "GUID"
@@ -2781,7 +2781,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr ""
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Eklentinizin kaynak kodunu göndermelisiniz."
 
 msgid "Your source code must include:"
 msgstr "Kaynak kodunuz şunları içermelidir:"
@@ -3729,7 +3729,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Google ve Yandex arama sonuçlarına tıkladığınızda devreye giren reklam takipçilerini durdurun."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
@@ -3760,15 +3760,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Parolalarınızı güvenle saklayın ve onlara tüm cihazlarınızdan erişin."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Web'de nereye gittiğinizi bilin. Ziyaret ettiğiniz web sitelerinin ülkelerini öğrenin. Bilinçli bir internet gezgini olun."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Okuma deneyiminizi geliştirin. Okuduğunuz metnin etrafındaki dağınıklığı kaldırarak onu daha okunaklı hale getirin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3777,7 +3777,7 @@ msgstr "Yeni sekmede açmak istediğiniz bağlantıları sağ tıklayıp sürük
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Araç çubuğunuzdaki simgeye sağ tıklayarak en son kapattığınız sekmelere erişin."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -3818,7 +3818,7 @@ msgstr "Wikipedia'ya yeni ve modern bir görünüm uygular."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Fare hareketlerini kullanarak daha hızlı işlem yapın."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -3830,7 +3830,7 @@ msgstr "Web'de bulduğunuz görselleri indirin."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Uygunsuz veya istenmeyen içeriklere erişimi filtrelerle kısıtlayın."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
@@ -3935,7 +3935,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Tüm dünyadan 30.000'den fazla radyo istasyonundan müziğin tadını çıkarın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4036,11 +4036,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Kolay erişilebilir bir panel aracılığıyla yer imlerinizi düzenleyin."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Parolaları güvenle saklayın ve bilinen web sitelerine otomatik giriş yapın."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4083,7 +4083,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "VPN kullanıyor musunuz? IP adresiniz sızabilir. WebRTC'yi devre dışı bırakarak buna bir son verin."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
@@ -4434,9 +4434,8 @@ msgstr "Tüm uzantılara bak"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "Popüler uzantılar"
+msgstr "2021'in en popüler uzantıları"
 
 #. editorial content for the secondary hero shelves.
 # 95%
@@ -5043,7 +5042,7 @@ msgid "Recommended ({0})"
 msgstr "Önerilen ({0})"
 
 msgid "Other Pending Review ({0})"
-msgstr ""
+msgstr "Diğer inceleme bekleyen ({0})"
 
 msgid "Review Log"
 msgstr "İnceleme Günlüğü"
@@ -5295,7 +5294,7 @@ msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Listelenmemiş Eklentiler – Firefox Eklentileri"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr ""
