@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-15 18:09+0000\n"
+"PO-Revision-Date: 2022-01-15 18:11+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4507,7 +4507,7 @@ msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
-msgstr ""
+msgstr "Tuottavuuden tehostajat"
 
 #. editorial content for the secondary hero shelves.
 msgid "Read more"
@@ -4515,7 +4515,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Katso henkilöstön valinnat"
 
 #. editorial content for the homepage shelves.
 # 87%
@@ -4564,9 +4564,8 @@ msgid "See more recommended themes"
 msgstr "Katso lisää suositeltuja teemoja"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Suositellut salasanojen hallintaohjelmat"
+msgstr "Vahvojen salasanojen hallintaohjelmat"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4602,7 +4601,7 @@ msgstr "Katso lisää välilehtien hallinnan laajennuksia"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "“{tag}”-tunnistellaa merkityt laajennukset"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4630,9 +4629,8 @@ msgstr "Katso lisää kielityökaluja"
 #. editorial content for the homepage shelves.
 # 87%
 # 100%
-#, fuzzy
 msgid "Trending themes"
-msgstr "Suositellut teemat"
+msgstr "Nousussa olevat teemat"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
