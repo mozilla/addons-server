@@ -62,6 +62,7 @@ from olympia.users.models import (
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
+    DeniedInstallOrigin,
     License,
     Version,
 )
@@ -1433,4 +1434,8 @@ class SitePermissionGeneratorForm(forms.Form):
             or parsed.fragment
         ):
             raise forms.ValidationError(error_message)
+        if DeniedInstallOrigin.find_denied_origins([value]):
+            raise forms.ValidationError(
+                str(DeniedInstallOrigin.ERROR_MESSAGE).format(origin=value)
+            )
         return value
