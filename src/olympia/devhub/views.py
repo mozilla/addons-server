@@ -171,8 +171,7 @@ def site_permission_generator(request):
             % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
         )
     form = forms.SitePermissionGeneratorForm(
-        request.POST if request.method == 'POST' else None,
-        request=request
+        request.POST if request.method == 'POST' else None, request=request
     )
     success = None
     if request.method == 'POST' and form.is_valid():
