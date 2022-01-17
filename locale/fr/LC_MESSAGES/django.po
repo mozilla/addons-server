@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 14:54+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2022-01-17 16:27+0000\n"
+"Last-Translator: Yaya.Cout <yaya.cout@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -159,7 +159,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Les noms des modules ne peuvent contenir les marques déposées Mozilla ou Firefox."
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
+msgstr "Autorisations de site pour {hostnames}"
 
 msgid "Sort by:"
 msgstr "Trier par :"
@@ -1360,22 +1360,22 @@ msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "GNU General Public License v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "GNU Library General Public License v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "GNU Library General Public License v3.0"
 
 msgid "The MIT License"
-msgstr ""
+msgstr "La licence MIT"
 
 msgid "The BSD License"
-msgstr ""
+msgstr "La licence BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1656,7 +1656,7 @@ msgstr ""
 "Les modules complémentaires Open Search {blog_link_open}ne sont plus pris en charge sur AMO{blog_link_close}. Vous pouvez créer une {doc_link_open}extension de recherche{doc_link_close} à la place."
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "L’origine d’installation {origin} n’est pas autorisée."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce raccourci est déjà utilisé. Merci d’en choisir un autre."
