@@ -1436,6 +1436,6 @@ class SitePermissionGeneratorForm(forms.Form):
             raise forms.ValidationError(error_message)
         if DeniedInstallOrigin.find_denied_origins([value]):
             raise forms.ValidationError(
-                str(DeniedInstallOrigin.ERROR_MESSAGE).format(origin=value)
+                DeniedInstallOrigin.ERROR_MESSAGE.format(origin=value)
             )
         return value
