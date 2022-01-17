@@ -18,6 +18,7 @@ from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonCategory, DeniedSlug
 from olympia.amo.tests import (
     APITestClient,
@@ -737,6 +738,12 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             addon.find_latest_version(channel=None).channel
             == amo.RELEASE_CHANNEL_UNLISTED
         )
+        assert (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.CREATE_ADDON.id)
+            .count()
+            == 1
+        )
 
     def test_basic_listed(self):
         self.upload.update(automated_signing=False)
@@ -762,6 +769,12 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             addon
         )
         assert addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.CREATE_ADDON.id)
+            .count()
+            == 1
+        )
 
     def test_listed_metadata_missing(self):
         self.upload.update(automated_signing=False)
