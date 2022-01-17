@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-16 13:04+0000\n"
+"PO-Revision-Date: 2022-01-16 13:35+0000\n"
 "Last-Translator: Nicole <nicolecosen@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -1658,7 +1658,7 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "I componenti aggiuntivi Open Search {blog_link_open}non sono più supportati su AMO{blog_link_close}. Puoi invece creare un’{doc_link_open}estensione di ricerca{doc_link_close}."
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "L’origine dell’installazione {origin} non è consentita."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Questo slug è già in uso. Scegline un altro."
@@ -4452,17 +4452,14 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Hai trovato un’immagine interessante sul Web? Utilizza TinEye per scoprire da dove arriva."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Leggi i file ePub direttamente in Firefox: aumenta le dimensioni del carattere, le dimensioni della pagina ed altro ancora."
+msgstr "Leggi i file ePUB direttamente in Firefox: aumenta le dimensioni del carattere, le dimensioni della pagina ed altro ancora."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Personalizza le azioni del mouse. Scopri un nuovo modo di navigare con oltre 50 configurazioni."
+msgstr "Personalizza le azioni del mouse. Scopri nuovi modi di navigare con oltre 50 configurazioni."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Usa le azioni del mouse per chiudere le schede, navigare tra le pagine e molto altro."
 
@@ -4512,19 +4509,19 @@ msgstr "Porta le emoji con te ovunque sul Web."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Metti delle restrizioni sui siti che ti fanno distrarre e perdere tempo."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Rimuovi gli elementi di disturbo da Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Personalizza YouTube secondo i tuoi gusti."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Elimina i dati di navigazione direttamente dalla barra degli strumenti del browser."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4540,23 +4537,20 @@ msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "Estensioni più popolari"
+msgstr "Le estensioni più popolari del 2021"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "Visualizza tutte le estensioni"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
 msgstr "Strumenti per aumentare la produttività"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Read more"
-msgstr "Salva e aggiungi altro"
+msgstr "Ulteriori informazioni"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4653,7 +4647,7 @@ msgstr "Visualizza altri strumenti per il blocco delle pubblicità scelti dallo 
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Personalizzazione di YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
