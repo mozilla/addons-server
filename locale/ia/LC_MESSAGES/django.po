@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-17 21:13+0000\n"
+"PO-Revision-Date: 2022-01-17 21:22+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1318,10 +1318,10 @@ msgid "Mozilla Public License 2.0"
 msgstr "Licentia public Mozilla 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "Licentia public general GNU v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "Licentia public general GNU v3.0"
 
 msgid "GNU Library General Public License v2.1"
 msgstr ""
@@ -1338,7 +1338,7 @@ msgid "The BSD License"
 msgstr "Licentias"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Licentia public Mozilla 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Tote le derectos es reservate"
@@ -4562,7 +4562,7 @@ msgstr "Vide altere blocatores de avisos seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Personalisationes de YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
