@@ -992,3 +992,11 @@ def test_site_permission_generator_duplicates():
         request=request,
     )
     assert not form.is_valid()
+
+    # Deleting the duplicate should make submission possible again.
+    addon.delete()
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.com'},
+        request=request,
+    )
+    assert form.is_valid()
