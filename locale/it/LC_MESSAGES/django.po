@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-16 13:35+0000\n"
-"Last-Translator: Nicole <nicolecosen@gmail.com>\n"
+"PO-Revision-Date: 2022-01-17 13:12+0000\n"
+"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1375,10 +1375,10 @@ msgid "GNU Library General Public License v3.0"
 msgstr "GNU Library General Public License v3.0"
 
 msgid "The MIT License"
-msgstr ""
+msgstr "Licenza MIT"
 
 msgid "The BSD License"
-msgstr ""
+msgstr "Licenza BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -3752,7 +3752,7 @@ msgstr "Ricarica automaticamente le schede a intervalli di tempo stabiliti da te
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Isola le diverse parti della tua vita online grazie alle schede con codifica colorata e con cookie separati. Da ora integrate con Mozilla VPN per un ulteriore livello di privacy."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4542,7 +4542,7 @@ msgstr "Le estensioni più popolari del 2021"
 
 #. editorial content for the secondary hero shelves.
 msgid "Steam extensions"
-msgstr ""
+msgstr "Estensioni per Steam"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
@@ -6209,6 +6209,8 @@ msgstr "Pattern email"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Inserisci l’indirizzo email completo da bloccare o utilizza wildcard in stile Unix, come “*@example.com”. Se devi bloccare un dominio e i suoi sottodomini, aggiungi una seconda voce, come "
+"“*@*.example.com”."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "L’indirizzo email del tuo account non possiede i permessi necessari per caricare componenti aggiuntivi."
