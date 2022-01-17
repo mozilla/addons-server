@@ -80,10 +80,8 @@ def annotate_validation_results(results, parsed_data):
             for origin in denied_origins:
                 insert_validation_message(
                     results,
-                    message=gettext(
-                        'The install origin {origin} is not permitted.'.format(
-                            origin=origin
-                        )
+                    message=str(DeniedInstallOrigin.ERROR_MESSAGE).format(
+                        origin=origin
                     ),
                 )
     return results

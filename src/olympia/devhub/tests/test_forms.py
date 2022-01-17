@@ -30,7 +30,7 @@ from olympia.devhub import forms
 from olympia.files.models import FileUpload
 from olympia.signing.views import VersionView
 from olympia.tags.models import AddonTag, Tag
-from olympia.versions.models import ApplicationsVersions
+from olympia.versions.models import ApplicationsVersions, DeniedInstallOrigin
 
 
 class TestNewUploadForm(TestCase):
@@ -935,3 +935,19 @@ def test_site_permission_generator_origin_valid(origin):
     )
     assert form.is_valid()
     assert form.cleaned_data['origin'] == origin
+
+
+@pytest.mark.django_db
+def test_site_permission_generator_origin_denied():
+    DeniedInstallOrigin.objects.create(hostname_pattern='*.tld')
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.com'}
+    )
+    assert form.is_valid()
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.tld'}
+    )
+    assert not form.is_valid()
+    assert form.errors['origin'] == [
+        'The install origin https://foo.tld is not permitted.'
+    ]
