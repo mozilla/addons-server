@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-17 21:33+0000\n"
+"PO-Revision-Date: 2022-01-17 21:35+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4363,12 +4363,10 @@ msgid "Read ePUB files right in Firefox—increase font size, page dimensions & 
 msgstr "Lege files ePUB directemente in Firefox, aggrandi le litteras, augmenta le dimensiones del pagina, e plus."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Personalisa le gestos del mus. Discoperi un nove maniera pro navigar con plus de 50 configurationes."
+msgstr "Personalisa le gestos del mus. Discoperi nove manieras pro navigar con plus de 50 e plus configurationes."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Usa gestos del mus pro clauder schedas, navigar inter paginas, e plus."
 
@@ -4445,9 +4443,8 @@ msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "Extensiones popular"
+msgstr "Melior extensiones del 2021"
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
@@ -4459,9 +4456,8 @@ msgid "Productivity boosters"
 msgstr "Auxilios de productivitate"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Read more"
-msgstr "Salvar e adder plus"
+msgstr "Leger plus"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
