@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-17 20:43+0000\n"
+"PO-Revision-Date: 2022-01-17 20:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4465,18 +4465,16 @@ msgid "Top extensions of 2021"
 msgstr "Woblubowane rozšyrjenja 2021"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "Wšykne rozšyrjenja pokazaś"
+msgstr "Rozšěrjenja Steam"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
 msgstr "Zmócnjaki produktiwnosći"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Read more"
-msgstr "Składowaś a wěcej pśidaś"
+msgstr "Wěcej cytaś"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
