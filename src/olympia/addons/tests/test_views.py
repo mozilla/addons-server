@@ -747,7 +747,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
                 'categories': {'firefox': ['bookmarks']},
                 'version': {
                     'upload': self.upload.uuid,
-                    'license': self.license.id,
+                    'license': self.license.slug,
                 },
             },
         )
@@ -796,7 +796,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
                     'summary': {'en-US': 'replacement summary'},
                     'version': {
                         'upload': self.upload.uuid,
-                        'license': self.license.id,
+                        'license': self.license.slug,
                     },
                 },
             )
@@ -994,11 +994,11 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'is_experimental': True,
             'requires_payment': True,
             # 'name'  # don't update - should retain name from the manifest
-            'slug': 'addon-slug',
+            'slug': 'addon-Slug',
             'summary': {'en-US': 'new summary'},
             'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
-            'version': {'upload': self.upload.uuid, 'license': self.license.id},
+            'version': {'upload': self.upload.uuid, 'license': self.license.slug},
         }
         response = self.client.post(
             self.url,
@@ -1024,6 +1024,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.requires_payment is True
         assert data['name'] == {'en-US': 'My WebExtension Addon'}
         assert addon.name == 'My WebExtension Addon'
+        # addon.slug always gets slugified back to lowercase
         assert data['slug'] == 'addon-slug' == addon.slug
         assert data['summary'] == {'en-US': 'new summary'}
         assert addon.summary == 'new summary'
@@ -1082,6 +1083,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.is_disabled is True
         assert addon.disabled_by_user is True  # sets the user property
 
+    @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
             **self.minimal_data,
@@ -1099,6 +1101,25 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'homepage': ['Enter a valid URL.'],
             'support_email': ['Enter a valid email address.'],
             'support_url': ['Enter a valid URL.'],
+        }
+
+        data = {
+            **self.minimal_data,
+            'homepage': {'ro': settings.EXTERNAL_SITE_URL},
+            'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+        msg = (
+            'This field can only be used to link to external websites. '
+            f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [msg],
+            'support_url': [msg],
         }
 
     def test_set_tags(self):
@@ -1339,7 +1360,7 @@ class TestAddonViewSetUpdate(TestCase):
             # 'description'  # don't update - should retain existing
             'is_experimental': True,
             'requires_payment': True,
-            'slug': 'addon-slug',
+            'slug': 'addoN-slug',
             'summary': {'en-US': 'new summary'},
             'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
@@ -1364,6 +1385,7 @@ class TestAddonViewSetUpdate(TestCase):
         assert addon.is_experimental is True
         assert data['requires_payment'] is True
         assert addon.requires_payment is True
+        # addon.slug always gets slugified back to lowercase
         assert data['slug'] == 'addon-slug' == addon.slug
         assert data['summary'] == {'en-US': 'new summary'}
         assert addon.summary == 'new summary'
@@ -1397,6 +1419,21 @@ class TestAddonViewSetUpdate(TestCase):
             'You do not have permission to perform this action.'
         )
 
+    def test_write_site_permission(self):
+        addon = Addon.objects.get()
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.patch(
+            self.url,
+            data={'slug': 'a-new-slug'},
+        )
+        addon.reload()
+        # Site Permission Addons can't be written to.
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+
+    @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
             'homepage': {'ro': '#%^%&&%^&^&^*'},
@@ -1413,6 +1450,24 @@ class TestAddonViewSetUpdate(TestCase):
             'homepage': ['Enter a valid URL.'],
             'support_email': ['Enter a valid email address.'],
             'support_url': ['Enter a valid URL.'],
+        }
+
+        data = {
+            'homepage': {'ro': settings.EXTERNAL_SITE_URL},
+            'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
+        }
+        response = self.client.patch(
+            self.url,
+            data=data,
+        )
+        msg = (
+            'This field can only be used to link to external websites. '
+            f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [msg],
+            'support_url': [msg],
         }
 
     def test_set_tags(self):
@@ -1648,7 +1703,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             api_version='v5',
         )
         self.client.login_api(self.user)
-        self.license = License.objects.create(builtin=1)
+        self.license = License.objects.create(builtin=2)
         self.minimal_data = {'upload': self.upload.uuid}
 
     def test_basic_unlisted(self):
@@ -1680,7 +1735,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         assert self.addon.status == amo.STATUS_NULL
         response = self.client.post(
             self.url,
-            data={**self.minimal_data, 'license': self.license.id},
+            data={**self.minimal_data, 'license': self.license.slug},
         )
         assert response.status_code == 201, response.content
         data = response.data
@@ -1699,6 +1754,14 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         ).to_representation(version)
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         assert self.addon.status == amo.STATUS_NOMINATED
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data},
+        )
+        assert response.status_code == 403
 
     def test_not_authenticated(self):
         self.client.logout_api()
@@ -1778,7 +1841,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         # fields that aren't set.
         response = self.client.post(
             self.url,
-            data={'upload': self.upload.uuid, 'license': self.license.id},
+            data={'upload': self.upload.uuid, 'license': self.license.slug},
         )
         assert response.status_code == 400, response.content
         assert response.data == {
@@ -1956,6 +2019,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             'text': license_data['text'],
             'is_custom': True,
             'url': 'http://testserver' + version.license_url(),
+            'slug': None,
         }
 
     def test_cannot_supply_both_custom_and_license_id(self):
@@ -1967,7 +2031,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
             self.url,
             data={
                 **self.minimal_data,
-                'license': self.license.id,
+                'license': self.license.slug,
                 'custom_license': license_data,
             },
         )
@@ -1977,6 +2041,28 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
                 'Both `license` and `custom_license` cannot be provided together.'
             ]
         }
+
+    def test_cannot_submit_listed_to_disabled_(self):
+        self.addon.update(disabled_by_user=True)
+        self.upload.update(automated_signing=False)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': [
+                'Listed versions cannot be submitted while add-on is disabled.'
+            ],
+        }
+
+        # but we can submit an unlisted version though
+        self.upload.update(automated_signing=True)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
 
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
@@ -2005,7 +2091,11 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
-        self.addon = addon_factory(users=(self.user,), guid='@webextension-guid')
+        self.addon = addon_factory(
+            users=(self.user,),
+            guid='@webextension-guid',
+            version_kw={'license_kw': {'builtin': 1}},
+        )
         self.version = self.addon.current_version
         self.url = reverse_ns(
             'addon-version-detail',
@@ -2047,6 +2137,14 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             'is_disabled_by_mozilla': False,
         }
         assert self.version.release_notes != 'Something new'
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.patch(
+            self.url,
+            data={'release_notes': {'en-US': 'Something new'}},
+        )
+        assert response.status_code == 403
 
     def test_not_your_addon(self):
         self.addon.addonuser_set.get(user=self.user).update(
@@ -2225,6 +2323,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             'text': license_data['text'],
             'is_custom': True,
             'url': 'http://testserver' + self.version.license_url(),
+            'slug': None,
         }
 
         # And then check we can update an existing custom license
@@ -2245,6 +2344,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             'text': license_data['text'],  # no change
             'is_custom': True,
             'url': 'http://testserver' + self.version.license_url(),
+            'slug': None,
         }
         assert new_license.name == 'neú name'
         assert License.objects.count() == num_licenses
@@ -2273,12 +2373,13 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             'text': license_data['text'],
             'is_custom': True,
             'url': 'http://testserver' + self.version.license_url(),
+            'slug': None,
         }
 
         # and check we can change back to a builtin from a custom license
         response = self.client.patch(
             self.url,
-            data={'license': builtin_license.id},
+            data={'license': builtin_license.slug},
         )
         assert response.status_code == 200, response.content
         data = response.data
@@ -2286,7 +2387,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         self.version.reload()
         assert self.version.license == builtin_license
         assert data['license']['id'] == builtin_license.id
-        assert data['license']['name']['en-US'] == builtin_license.name
+        assert data['license']['name']['en-US'] == str(builtin_license)
         assert data['license']['is_custom'] is False
         assert data['license']['url'] == builtin_license.url
 
@@ -2309,16 +2410,16 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.patch(
             self.url,
-            data={'license': self.version.license.id},
+            data={'license': self.version.license.slug},
         )
         assert response.status_code == 400, response.content
         assert response.data == {'license': ['Wrong addon type for this license.']}
 
         self.addon.update(type=amo.ADDON_EXTENSION)
-        self.version.license.update(creative_commons=True)
+        self.version.license.update(builtin=12)
         response = self.client.patch(
             self.url,
-            data={'license': self.version.license.id},
+            data={'license': self.version.license.slug},
         )
         assert response.status_code == 400, response.content
         assert response.data == {'license': ['Wrong addon type for this license.']}
@@ -2330,7 +2431,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         }
         response = self.client.patch(
             self.url,
-            data={'license': self.version.license.id, 'custom_license': license_data},
+            data={'license': self.version.license.slug, 'custom_license': license_data},
         )
         assert response.status_code == 400, response.content
         assert response.data == {

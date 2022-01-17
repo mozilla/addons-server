@@ -4,10 +4,10 @@ from django import forms
 from django.conf import settings
 from django.contrib import admin
 from django.core.exceptions import ValidationError
+from django.core.files.storage import default_storage as storage
 from django.forms import BaseInlineFormSet
 from django.utils.safestring import mark_safe
 
-from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.utils import resize_image
 
 from .models import PrimaryHero, SecondaryHeroModule, PrimaryHeroImage
@@ -70,11 +70,11 @@ class PrimaryHeroImageAdmin(admin.ModelAdmin):
 
         with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as tmp:
             resize_image(obj.custom_image.path, tmp.name, size_thumb, format='jpg')
-            copy_stored_file(tmp.name, obj.thumbnail_path)
+            storage.copy_stored_file(tmp.name, obj.thumbnail_path)
 
         with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as tmp:
             resize_image(obj.custom_image.path, tmp.name, size_full, format='jpg')
-            copy_stored_file(tmp.name, obj.custom_image.path)
+            storage.copy_stored_file(tmp.name, obj.custom_image.path)
 
     def delete_queryset(self, request, queryset):
         for obj in queryset:

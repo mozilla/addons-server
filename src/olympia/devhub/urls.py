@@ -206,8 +206,8 @@ urlpatterns = decorate(
         # Submission API
         re_path(
             r'^addon/agreement/$',
-            views.api_key_agreement,
-            name='devhub.api_key_agreement',
+            views.developer_agreement,
+            name='devhub.developer_agreement',
         ),
         re_path(r'^addon/api/key/$', views.api_key, name='devhub.api_key'),
         # Standalone validator:
@@ -249,6 +249,11 @@ urlpatterns = decorate(
             r'^standalone-upload/([^/]+)$',
             views.standalone_upload_detail,
             name='devhub.standalone_upload_detail',
+        ),
+        re_path(
+            r'^site_permission_generator/$',
+            views.site_permission_generator,
+            name='devhub.site_permission_generator',
         ),
         # URLs for a single add-on.
         re_path(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),

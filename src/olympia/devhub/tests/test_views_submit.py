@@ -104,7 +104,20 @@ class TestSubmitBase(TestCase):
         return source
 
 
-class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
+class AddonSubmitSitePermissionMixin:
+    # Site permissions add-ons are automatically generated so it shouldn't be
+    # possible to submit new versions of them. This mixin contains a test
+    # verifying that self.url 403s, to be added to the classes testing the
+    # various version submission steps below - self.url is different in each.
+    def test_site_permission_not_allowed(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+        response = self.client.post(self.url)
+        assert response.status_code == 403
+
+
+class TestAddonSubmitAgreement(TestSubmitBase):
     def test_set_read_dev_agreement(self):
         response = self.client.post(
             reverse('devhub.submit.agreement'),
@@ -750,32 +763,39 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_logging(self, log_mock):
         response = self.post(has_source=True, source=self.generate_source_zip())
         self.assert3xx(response, self.next_url)
-        assert log_mock.info.call_count == 5
+        assert log_mock.info.call_count == 4
         assert log_mock.info.call_args_list[0][0] == (
-            'Starting _submit_source, addon.slug: %s, version.pk: %s',
-            self.addon.slug,
-            self.get_version().pk,
-        )
-        assert log_mock.info.call_args_list[1][0] == (
             '_submit_source, form populated, addon.slug: %s, version.pk: %s',
             self.addon.slug,
             self.get_version().pk,
         )
-        assert log_mock.info.call_args_list[2][0] == (
+        assert log_mock.info.call_args_list[1][0] == (
             '_submit_source, form validated, addon.slug: %s, version.pk: %s',
             self.addon.slug,
             self.get_version().pk,
         )
-        assert log_mock.info.call_args_list[3][0] == (
+        assert log_mock.info.call_args_list[2][0] == (
             '_submit_source, form saved, addon.slug: %s, version.pk: %s',
             self.addon.slug,
             self.get_version().pk,
         )
-        assert log_mock.info.call_args_list[4][0] == (
+        assert log_mock.info.call_args_list[3][0] == (
             '_submit_source, redirecting to next view, addon.slug: %s, version.pk: %s',
             self.addon.slug,
             self.get_version().pk,
         )
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_on_initial_display(self, log_mock):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert log_mock.info.call_count == 0
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_without_source(self, log_mock):
+        response = self.post(has_source=False, source=None)
+        self.assert3xx(response, self.next_url)
+        assert log_mock.info.call_count == 0
 
     @mock.patch('olympia.devhub.views.log')
     def test_logging_failed_validation(self, log_mock):
@@ -784,18 +804,13 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert response.context['form'].errors == {
             'source': ['You have not uploaded a source file.']
         }
-        assert log_mock.info.call_count == 3
+        assert log_mock.info.call_count == 2
         assert log_mock.info.call_args_list[0][0] == (
-            'Starting _submit_source, addon.slug: %s, version.pk: %s',
-            self.addon.slug,
-            self.get_version().pk,
-        )
-        assert log_mock.info.call_args_list[1][0] == (
             '_submit_source, form populated, addon.slug: %s, version.pk: %s',
             self.addon.slug,
             self.get_version().pk,
         )
-        assert log_mock.info.call_args_list[2][0] == (
+        assert log_mock.info.call_args_list[1][0] == (
             '_submit_source, validation failed, re-displaying the template, '
             + 'addon.slug: %s, version.pk: %s',
             self.addon.slug,
@@ -1510,7 +1525,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
-        License.objects.create(builtin=11, on_form=True, creative_commons=True)
+        License.objects.create(builtin=11, on_form=True)
         self.get_addon().update(status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
 
     def get_dict(self, minimal=True, **kw):
@@ -1803,7 +1818,7 @@ class TestAddonSubmitResume(TestSubmitBase):
         self.assert3xx(response, reverse('devhub.submit.details', args=['a3615']))
 
 
-class TestVersionSubmitDistribution(TestSubmitBase):
+class TestVersionSubmitDistribution(AddonSubmitSitePermissionMixin, TestSubmitBase):
     def setUp(self):
         super().setUp()
         self.url = reverse('devhub.submit.version.distribution', args=[self.addon.slug])
@@ -1899,7 +1914,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         )
 
 
-class TestVersionSubmitAutoChannel(TestSubmitBase):
+class TestVersionSubmitAutoChannel(AddonSubmitSitePermissionMixin, TestSubmitBase):
     """Just check we chose the right upload channel.  The upload tests
     themselves are in other tests."""
 
@@ -2219,7 +2234,9 @@ class VersionSubmitUploadMixin:
             assert version.previews.all().count() == 0
 
 
-class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
+class TestVersionSubmitUploadListed(
+    AddonSubmitSitePermissionMixin, VersionSubmitUploadMixin, UploadMixin, TestCase
+):
     channel = amo.RELEASE_CHANNEL_LISTED
 
     def test_success(self):
@@ -2344,7 +2361,9 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         )
 
 
-class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, TestCase):
+class TestVersionSubmitUploadUnlisted(
+    AddonSubmitSitePermissionMixin, VersionSubmitUploadMixin, UploadMixin, TestCase
+):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
     def test_success(self):

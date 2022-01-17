@@ -11,9 +11,9 @@ from olympia.users.models import UserProfile
 
 from .acl import (
     action_allowed,
+    action_allowed_user,
     check_addon_ownership,
     check_listed_addons_reviewer,
-    check_ownership,
     check_static_theme_reviewer,
     check_unlisted_addons_reviewer,
     check_unlisted_addons_viewer_or_reviewer,
@@ -73,6 +73,9 @@ def test_anonymous_user():
     fake_request = req_factory_factory('/')
     assert not action_allowed(fake_request, amo.permissions.ANY_ADMIN)
 
+    # This should not cause an exception (and obviously not return True either)
+    assert not action_allowed_user(None, amo.permissions.ANY_ADMIN)
+
 
 class ACLTestCase(TestCase):
     """Test some basic ACLs by going to various locked pages on AMO."""
@@ -87,7 +90,7 @@ class ACLTestCase(TestCase):
         )
 
 
-class TestHasPerm(TestCase):
+class TestCheckAddonOwnership(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
@@ -99,6 +102,11 @@ class TestHasPerm(TestCase):
         assert self.au.role == amo.AUTHOR_ROLE_OWNER
         self.request = self.fake_request_with_user(self.user)
 
+        # Extra kwargs to self.check_addon_ownership in all tests. Override in child
+        # test classes to run all the tests with a different set of base
+        # kwargs.
+        self.extra_kwargs = {}
+
     def fake_request_with_user(self, user):
         request = mock.Mock()
         request.user = user
@@ -108,54 +116,60 @@ class TestHasPerm(TestCase):
         assert self.client.login(email='admin@mozilla.com')
         return UserProfile.objects.get(email='admin@mozilla.com')
 
+    def check_addon_ownership(self, *args, **kwargs):
+        _kwargs = self.extra_kwargs.copy()
+        _kwargs.update(kwargs)
+        return check_addon_ownership(*args, **_kwargs)
+
     def test_anonymous(self):
         self.request.user = AnonymousUser()
         self.client.logout()
-        assert not check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.request, self.addon)
 
-    def test_admin(self):
+    def test_allow_addons_edit_permission(self):
         self.request = self.fake_request_with_user(self.login_admin())
-        assert check_addon_ownership(self.request, self.addon)
-        assert check_addon_ownership(self.request, self.addon, admin=True)
-        assert not check_addon_ownership(self.request, self.addon, admin=False)
-
-    def test_require_author(self):
-        assert check_ownership(self.request, self.addon, require_author=True)
-
-    def test_require_author_when_admin(self):
-        self.request = self.fake_request_with_user(self.login_admin())
-        assert check_ownership(self.request, self.addon, require_author=False)
-
-        assert not check_ownership(self.request, self.addon, require_author=True)
+        assert self.check_addon_ownership(self.request, self.addon)
+        assert self.check_addon_ownership(
+            self.request, self.addon, allow_addons_edit_permission=True
+        )
+        assert not self.check_addon_ownership(
+            self.request, self.addon, allow_addons_edit_permission=False
+        )
 
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert not check_addon_ownership(self.request, self.addon)
-        self.test_admin()
+        assert not self.check_addon_ownership(self.request, self.addon)
+        self.test_allow_addons_edit_permission()
 
     def test_deleted(self):
         self.addon.update(status=amo.STATUS_DELETED)
-        assert not check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.request, self.addon)
         self.request.user = self.login_admin()
-        assert not check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.request, self.addon)
 
-    def test_ignore_disabled(self):
+    def test_allow_mozilla_disabled_addon(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert check_addon_ownership(self.request, self.addon, ignore_disabled=True)
+        assert self.check_addon_ownership(
+            self.request, self.addon, allow_mozilla_disabled_addon=True
+        )
 
     def test_owner(self):
-        assert check_addon_ownership(self.request, self.addon)
+        assert self.check_addon_ownership(self.request, self.addon)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert not check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.request, self.addon)
 
-    def test_dev(self):
-        assert check_addon_ownership(self.request, self.addon, dev=True)
+    def test_allow_developer(self):
+        assert self.check_addon_ownership(
+            self.request, self.addon, allow_developer=True
+        )
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert check_addon_ownership(self.request, self.addon, dev=True)
+        assert self.check_addon_ownership(
+            self.request, self.addon, allow_developer=True
+        )
 
     def test_add_and_remove_group(self):
         group = Group.objects.create(name='A Test Group', rules='Test:Group')
@@ -183,9 +197,60 @@ class TestHasPerm(TestCase):
         # Now, let's make sure `user_dev` is not an owner.
         self.request = self.fake_request_with_user(user_dev)
 
-        assert not check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.request, self.addon)
         # `user_dev` is a developer of `self.addon`.
-        assert check_addon_ownership(self.request, self.addon, dev=True)
+        assert self.check_addon_ownership(
+            self.request, self.addon, allow_developer=True
+        )
+
+
+class TestCheckAddonOwnershipSitePermission(TestCheckAddonOwnership):
+    def setUp(self):
+        super().setUp()
+        self.extra_kwargs = {'allow_site_permission': True}
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+
+
+class TestCheckAddonOwnershipSitePermissionFalse(TestCheckAddonOwnership):
+    def setUp(self):
+        super().setUp()
+        # allow_site_permission defaults to False so we don't need to change
+        # self.extra_kwargs.
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+
+    def test_allow_mozilla_disabled_addon(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        # Not authorized - even if we're allowing mozilla disabled add-ons,
+        # it's still a site permission add-on and we're not allowing that.
+        assert not self.check_addon_ownership(
+            self.request, self.addon, allow_mozilla_disabled_addon=True
+        )
+
+    def test_owner(self):
+        # Not authorized - even if we're allowing owners by default,
+        # it's still a site permission add-on and we're not allowing that.
+        assert not self.check_addon_ownership(self.request, self.addon)
+
+    def test_allow_developer(self):
+        # Not authorized - even if we're allowing developers,
+        # it's still a site permission add-on and we're not allowing that.
+        self.au.role = amo.AUTHOR_ROLE_DEV
+        self.au.save()
+        assert not self.check_addon_ownership(
+            self.request, self.addon, allow_developer=True
+        )
+
+    def test_owner_of_a_different_addon(self):
+        user_dev = user_factory()
+        addon_factory(users=[user_dev])
+        self.addon.addonuser_set.create(user=user_dev, role=amo.AUTHOR_ROLE_DEV)
+        self.request = self.fake_request_with_user(user_dev)
+        # Not authorized - even when we're allowing owners/developers,
+        # it's still a site permission add-on and we're not allowing that.
+        assert not self.check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(
+            self.request, self.addon, allow_developer=True
+        )
 
 
 class TestCheckReviewer(TestCase):

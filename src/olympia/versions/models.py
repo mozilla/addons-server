@@ -14,7 +14,7 @@ from django.db.models import Q
 from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
-from django.utils.translation import gettext
+from django.utils.translation import gettext, gettext_lazy as _
 
 import markupsafe
 from olympia.constants.applications import APP_IDS
@@ -35,9 +35,9 @@ from olympia.amo.models import (
     ModelBase,
     OnChangeMixin,
 )
-from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
+from olympia.amo.utils import sorted_groupby, SafeStorage, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.licenses import CC_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
@@ -160,6 +160,10 @@ def source_upload_path(instance, filename):
     )
 
 
+def source_upload_storage():
+    return SafeStorage(user_media='')
+
+
 class VersionCreateError(ValueError):
     pass
 
@@ -184,7 +188,11 @@ class Version(OnChangeMixin, ModelBase):
     deleted = models.BooleanField(default=False)
 
     source = models.FileField(
-        upload_to=source_upload_path, null=True, blank=True, max_length=255
+        upload_to=source_upload_path,
+        storage=source_upload_storage,
+        null=True,
+        blank=True,
+        max_length=255,
     )
 
     channel = models.IntegerField(
@@ -1027,7 +1035,10 @@ models.signals.post_delete.connect(
 
 class LicenseManager(ManagerBase):
     def builtins(self, cc=False):
-        return self.filter(builtin__gt=0, creative_commons=cc).order_by('builtin')
+        cc_filter = Q(builtin__in=CC_LICENSES.keys())
+        if not cc:
+            cc_filter = ~cc_filter
+        return self.filter(cc_filter, builtin__gt=0).order_by('builtin')
 
 
 class License(ModelBase):
@@ -1041,10 +1052,6 @@ class License(ModelBase):
     on_form = models.BooleanField(
         default=False, help_text='Is this a license choice in the devhub?'
     )
-    icons = models.CharField(
-        max_length=255, null=True, help_text='Space-separated list of icon identifiers.'
-    )
-    creative_commons = models.BooleanField(default=False)
 
     objects = LicenseManager()
 
@@ -1059,6 +1066,18 @@ class License(ModelBase):
     @property
     def _constant(self):
         return LICENSES_BY_BUILTIN.get(self.builtin)
+
+    @property
+    def creative_commons(self):
+        return bool((constant := self._constant) and constant.creative_commons)
+
+    @property
+    def icons(self):
+        return ((constant := self._constant) and constant.icons) or ''
+
+    @property
+    def slug(self):
+        return ((constant := self._constant) and constant.slug) or None
 
 
 models.signals.pre_save.connect(
@@ -1140,6 +1159,8 @@ class InstallOrigin(ModelBase):
 
 
 class DeniedInstallOrigin(ModelBase):
+    ERROR_MESSAGE = _('The install origin {origin} is not permitted.')
+
     hostname_pattern = models.CharField(
         max_length=255,
         unique=True,

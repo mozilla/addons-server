@@ -33,6 +33,7 @@ from olympia.blocklist.models import Block
 from olympia.constants.applications import APPS, APPS_ALL, APP_IDS
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.licenses import LICENSES_BY_SLUG
 from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
@@ -204,15 +205,31 @@ class ESLicenseNameSerializerField(LicenseNameSerializerField):
         return self.custom_translation_field.attach_translations(obj, data, field_name)
 
 
+class LicenseSlugSerializerField(serializers.SlugRelatedField):
+    def __init__(self, **kwargs):
+        super().__init__(
+            slug_field='builtin',
+            queryset=License.objects.exclude(builtin=License.OTHER),
+            **kwargs,
+        )
+
+    def to_internal_value(self, data):
+        license_ = LICENSES_BY_SLUG.get(data)
+        if not license_:
+            self.fail('invalid')
+        return super().to_internal_value(license_.builtin)
+
+
 class LicenseSerializer(serializers.ModelSerializer):
     is_custom = serializers.SerializerMethodField()
     name = LicenseNameSerializerField()
     text = TranslationSerializerField()
     url = serializers.SerializerMethodField()
+    slug = serializers.ReadOnlyField()
 
     class Meta:
         model = License
-        fields = ('id', 'is_custom', 'name', 'text', 'url')
+        fields = ('id', 'is_custom', 'name', 'slug', 'text', 'url')
         writeable_fields = ('name', 'text')
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
@@ -239,6 +256,8 @@ class LicenseSerializer(serializers.ModelSerializer):
         request = self.context.get('request', None)
         if request and is_gate_active(request, 'del-version-license-is-custom'):
             data.pop('is_custom', None)
+        if request and is_gate_active(request, 'del-version-license-slug'):
+            data.pop('slug', None)
         return data
 
     def validate(self, data):
@@ -250,7 +269,7 @@ class LicenseSerializer(serializers.ModelSerializer):
 class CompactLicenseSerializer(LicenseSerializer):
     class Meta:
         model = License
-        fields = ('id', 'is_custom', 'name', 'url')
+        fields = ('id', 'is_custom', 'name', 'slug', 'url')
 
 
 class MinimalVersionSerializer(serializers.ModelSerializer):
@@ -387,9 +406,7 @@ class VersionSerializer(SimpleVersionSerializer):
         choices=list(amo.CHANNEL_CHOICES_API.items()), read_only=True
     )
     license = SplitField(
-        serializers.PrimaryKeyRelatedField(
-            queryset=License.objects.exclude(builtin=License.OTHER), required=False
-        ),
+        LicenseSlugSerializerField(required=False),
         LicenseSerializer(),
     )
     custom_license = LicenseSerializer(
@@ -520,8 +537,12 @@ class VersionSerializer(SimpleVersionSerializer):
             channel = data['upload'].channel
             # If this is a new version to an existing addon, check that all the required
             # metadata is set. We test for new addons in AddonSerailizer.validate
-            # instead.
+            # instead. Also check for submitting listed versions when disabled.
             if channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
+                if self.addon.disabled_by_user:
+                    raise exceptions.ValidationError(
+                        'Listed versions cannot be submitted while add-on is disabled.'
+                    )
                 # This is replicating what Addon.get_required_metadata does
                 missing_addon_metadata = [
                     field

@@ -113,8 +113,8 @@ class TestHideDisabledFiles(TestCase):
         mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path, self.msg)
         assert mv_mock.call_count == 1
 
-    @mock.patch('olympia.files.models.storage.exists')
-    @mock.patch('olympia.files.models.move_stored_file')
+    @mock.patch('olympia.amo.utils.SafeStorage.exists')
+    @mock.patch('olympia.amo.utils.SafeStorage.move_stored_file')
     def test_move_disabled_addon_ioerror(self, mv_mock, storage_exists):
         # raise an IOError for the first file, we need to make sure
         # that the second one is still being properly processed

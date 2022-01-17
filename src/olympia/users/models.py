@@ -17,7 +17,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.template import loader
 from django.templatetags.static import static
@@ -35,6 +34,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField, CIDRField
 from olympia.amo.models import LongNameIndex, ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.utils import SafeStorage
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -464,6 +464,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # Recursive import
         from olympia.users.tasks import delete_photo
 
+        storage = SafeStorage(user_media='userpics')
+
         if storage.exists(self.picture_path):
             delete_photo.delay(self.picture_path)
 
@@ -801,11 +803,9 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         _('Email Pattern'),
         max_length=100,
         help_text=_(
-            'Either enter full domain or email that should be blocked or use '
-            ' glob-style wildcards to match other patterns.'
-            ' E.g "@*.mail.com"\n'
-            ' Please note that we do not include "@" in the match so you '
-            ' should do that in the pattern.'
+            'Enter full email that should be blocked or use unix-style wildcards, '
+            'e.g. "*@example.com". If you need to block a domain incl subdomains, '
+            'add a second entry, e.g. "*@*.example.com".'
         ),
     )
 

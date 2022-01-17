@@ -1599,3 +1599,8 @@ span.distribution-tag-unlisted {
 .source-submission-note p:last-child {
     margin-bottom: 1.5em;
 }
+
+.site_permission_generator select, .site_permission_generator input[type="text"] {
+    box-sizing: border-box;
+    width: 80%;
+}

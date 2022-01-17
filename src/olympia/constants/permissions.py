@@ -41,6 +41,10 @@ ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
 STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 # Can review recommend(ed|able) add-ons
 ADDONS_RECOMMENDED_REVIEW = AclPermission('Addons', 'RecommendedReview')
+# Can submit Site Permission add-ons - typically used to submit add-ons needed
+# for Firefox testing, the automatic creation is handled by the task user which
+# is special cased to not require the permission.
+ADDONS_SUBMIT_SITE_PERMISSION = AclPermission('Addons', 'SubmitSitePermission')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')

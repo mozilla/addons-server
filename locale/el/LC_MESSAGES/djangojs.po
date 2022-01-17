@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2021-09-08 09:31+0000\n"
+"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"PO-Revision-Date: 2021-12-16 13:34+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -288,7 +288,7 @@ msgid "Homepage Up and Coming"
 msgstr "Προσεχή πρόσθετα αρχικής σελίδας"
 
 msgid "Homepage Most Popular"
-msgstr "Δημοφιλέστερη Αρχική Σελίδα"
+msgstr "Δημοφιλέστερο αρχικής σελίδας"
 
 msgid "Detail Page"
 msgstr "Σελίδα λεπτομερειών"
@@ -330,40 +330,40 @@ msgid "Collections"
 msgstr "Συλλογές"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Κατηγορία Προβεβλημένο Καρουζέλ"
+msgstr "Κατηγορία προτεινόμενης συλλογής"
 
 msgid "Category Landing Top Rated"
-msgstr "Κατηγορία Υψηλότερη Βαθμολογία"
+msgstr "Κατηγορία υψηλότερης βαθμολογίας"
 
 msgid "Category Landing Most Popular"
-msgstr "Κατηγορία Δημοφιλέστερα"
+msgstr "Κατηγορία δημοφιλέστερων"
 
 msgid "Category Landing Recently Added"
-msgstr "Κατηγορία Προστέθηκαν πρόσφατα"
+msgstr "Κατηγορία πρόσφατων προσθηκών"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Αναζήτηση Λίστας Προβεβλημένων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά προβεβλημένα"
 
 msgid "Browse Listing Users Sort"
-msgstr "Αναζήτηση Λίστας Χρηστών Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά χρήστη"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Αναζήτηση Λίστας Αξιολογήσεων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά βαθμολογία"
 
 msgid "Browse Listing Created Sort"
-msgstr "Αναζήτηση Λίστας Δημιουργηθέντων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά δημιουργία"
 
 msgid "Browse Listing Name Sort"
-msgstr "Αναζήτηση Λίστας Ονομάτων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά όνομα"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Αναζήτηση Λίστας Δημοφιλών Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά δημοφιλή"
 
 msgid "Browse Listing Updated Sort"
-msgstr "Αναζήτηση Λίστας Ανανεωμένων"
+msgstr "Ταξινόμηση λίστας κατά ενημερώσεις"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Αναζήτηση Λίστας Προσεχών"
+msgstr "Ταξινόμηση λίστας κατά επερχόμενα"
 
 msgid "Total Amount Contributed"
 msgstr "Σύνολο συνεισφορών"
@@ -665,7 +665,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Μόνο με το Firefox — Λήψη του Firefox τώρα!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Λυπούμαστε, θα χρειαστείτε ένα πρόγραμμα περιήγησης με βάση τα προϊόντα Mozilla (όπως το Firefox) για να εγκαταστήσετε αρθρώματα αναζήτησης."
+msgstr "Λυπούμαστε, θα χρειαστείτε ένα πρόγραμμα περιήγησης με βάση τα προϊόντα Mozilla (όπως το Firefox) για να εγκαταστήσετε ένα άρθρωμα αναζήτησης."
 
 msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"
@@ -674,7 +674,7 @@ msgid "Enter a new author's email address"
 msgstr "Εισαγάγετε τη διεύθυνση email νέου δημιουργού"
 
 msgid "There was an error uploading your file."
-msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
+msgstr "Προέκυψε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -682,7 +682,7 @@ msgstr[0] "{files} αρχείο"
 msgstr[1] "{files} αρχεία"
 
 msgid "Image changes being processed"
-msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
+msgstr "Οι αλλαγές εικόνων βρίσκονται υπό επεξεργασία"
 
 msgid "Select an application first"
 msgstr "Επιλέξτε πρώτα εφαρμογή"
@@ -710,13 +710,13 @@ msgid "Remove this localization"
 msgstr "Αφαίρεση μετάφρασης"
 
 msgid "{name} was viewing this page first."
-msgstr "Ο/Η {name} είχε φορτώσει τη σελίδα πριν από εσάς."
+msgstr "Ο/Η {name} έβλεπε τη σελίδα πριν από εσάς."
 
 msgid "{name} was viewing this add-on first."
 msgstr "Ο/Η {name} είδε αυτό το πρόσθετο πρώτα."
 
 msgid "Loading&hellip;"
-msgstr "Γίνεται φόρτωση&hellip;"
+msgstr "Φόρτωση&hellip;"
 
 msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
@@ -802,8 +802,8 @@ msgstr[1] "{0} προειδοποιήσεις"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] "{0} σημείωμα"
-msgstr[1] "{0} σημειώματα"
+msgstr[0] "{0} σημείωση"
+msgstr[1] "{0} σημειώσεις"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr "Δεν ολοκληρώθηκε η επικύρωση ή ολοκληρώθηκε με σφάλματα"

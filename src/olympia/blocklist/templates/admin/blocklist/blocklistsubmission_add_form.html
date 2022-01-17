@@ -87,11 +87,13 @@
       {{ form.url.errors }}
       {{ form.url.label_tag }}
       {{ form.url }}
+      <p class="help">{{ form.url.help_text }}</p>
     </div>
     <div class="form-row">
       {{ form.reason.errors }}
       {{ form.reason.label_tag }}
       {{ form.reason }}
+      <p class="help">{{ form.reason.help_text }}</p>
     </div>
     {% block submit_buttons_bottom %}
     <div class="submit-row">

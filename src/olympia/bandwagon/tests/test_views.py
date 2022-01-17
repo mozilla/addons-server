@@ -314,7 +314,7 @@ class CollectionViewSetDataMixin:
     data = {
         'name': {'fr': 'lé $túff', 'en-US': '$tuff'},
         'description': {'fr': 'Un dis une dát', 'en-US': 'dis n dat'},
-        'slug': 'stuff',
+        'slug': 'Stuff',
         'public': True,
         'default_locale': 'fr',
     }
@@ -343,7 +343,7 @@ class CollectionViewSetDataMixin:
             collection = collection.reload()
             assert collection.name == data['name']['fr']
             assert collection.description == data['description']['fr']
-            assert collection.slug == data['slug']
+            assert collection.slug == data['slug'] == 'Stuff'
             assert collection.listed == data['public']
             assert collection.default_locale == data['default_locale']
 
@@ -489,6 +489,20 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         assert json.loads(response.content) == {
             'name': ['You must provide an object of {lang-code:value}.']
         }
+
+    def test_create_blank_description(self):
+        self.client.login_api(self.user)
+        data = {
+            'description': {'en-US': ''},
+            'name': {'en-US': 'this'},
+            'slug': 'minimal',
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        assert collection.description == data['description']['en-US']
+        assert collection.name == data['name']['en-US']
+        assert collection.slug == data['slug']
 
     @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_create_minimal_flat_input(self):

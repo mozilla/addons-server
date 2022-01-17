@@ -37,7 +37,6 @@ from rest_framework.test import APIClient, APIRequestFactory
 from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
-from olympia.access.acl import check_ownership
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
@@ -51,8 +50,7 @@ from olympia.addons.models import (
 )
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
 from olympia.amo.urlresolvers import Prefixer
-from olympia.amo.utils import use_fake_fxa
-from olympia.amo.storage_utils import copy_stored_file
+from olympia.amo.utils import SafeStorage, use_fake_fxa
 from olympia.addons.tasks import compute_last_updated, unindex_addons
 from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
@@ -91,6 +89,11 @@ ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES.key
 
 # django2.2 encodes with the decimal code; django3.2 with the hex code.
 SQUOTE_ESCAPED = escape("'")
+
+
+# A Storage instance for the filesystem root to be used during tests that read fixtures
+# and/or try to copy them under settings.STORAGE_ROOT.
+root_storage = SafeStorage(location='/')
 
 
 def get_es_index_name(key):
@@ -498,6 +501,8 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
 
     client_class = TestClient
 
+    root_storage = root_storage
+
     def _pre_setup(self):
         super()._pre_setup()
         self.client = self.client_class()
@@ -902,7 +907,7 @@ def file_factory(**kw):
     )
 
     if os.path.exists(fixture_path):
-        copy_stored_file(fixture_path, file_.current_file_path)
+        root_storage.copy_stored_file(fixture_path, file_.current_file_path)
 
     return file_
 
@@ -920,7 +925,6 @@ def req_factory_factory(url, user=None, post=False, data=None, session=None):
         req.user = AnonymousUser()
     if session is not None:
         req.session = session
-    req.check_ownership = partial(check_ownership, req)
     return req
 
 
@@ -975,15 +979,14 @@ def version_factory(file_kw=None, **kw):
         ),
     )
     application = kw.pop('application', amo.FIREFOX.id)
+    license_kw = kw.pop('license_kw', {})
     if not kw.get('license') and not kw.get('license_id'):
         # Is there a built-in one we can use?
         builtins = License.objects.builtins()
         if builtins.exists():
             kw['license_id'] = builtins[0].id
         else:
-            license_kw = {'builtin': 99}
-            license_kw.update(kw.get('license_kw', {}))
-            kw['license'] = license_factory(**license_kw)
+            kw['license'] = license_factory(**{'builtin': 99, **license_kw})
     promotion_approved = kw.pop('promotion_approved', False)
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = _get_created(kw.pop('created', 'now'))

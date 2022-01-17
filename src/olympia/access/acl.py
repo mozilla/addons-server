@@ -36,7 +36,7 @@ def action_allowed_user(user, permission):
     Note: relies in user.groups_list, which is cached on the user instance the
     first time it's accessed.
     """
-    if not user.is_authenticated:
+    if user is None or not user.is_authenticated:
         return False
 
     assert permission in amo.permissions.PERMISSIONS_LIST  # constants only.
@@ -88,58 +88,40 @@ def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
     ) or action_allowed_user(user, amo.permissions.SYSTEM_ADDON_SUBMIT)
 
 
-def check_ownership(
+def site_permission_addons_submission_allowed(user, parsed_addon_data):
+    """Site Permission Add-ons can only be submitted by users with a specific
+    permission or the task user."""
+    return (
+        not parsed_addon_data.get('type') == amo.ADDON_SITE_PERMISSION
+        or action_allowed_user(user, amo.permissions.ADDONS_SUBMIT_SITE_PERMISSION)
+        or (user and user.pk == settings.TASK_USER_ID)
+    )
+
+
+def check_addon_ownership(
     request,
-    obj,
-    require_owner=False,
-    require_author=False,
-    ignore_disabled=False,
-    admin=True,
+    addon,
+    allow_developer=False,
+    allow_addons_edit_permission=True,
+    allow_mozilla_disabled_addon=False,
+    allow_site_permission=False,
 ):
     """
-    A convenience function.  Check if request.user has permissions
-    for the object.
-    """
-    if hasattr(obj, 'check_ownership'):
-        return obj.check_ownership(
-            request,
-            require_owner=require_owner,
-            require_author=require_author,
-            ignore_disabled=ignore_disabled,
-            admin=admin,
-        )
-    return False
+    Check that request.user is the owner of the add-on.
 
+    Will always return False for deleted add-ons.
 
-def check_collection_ownership(request, collection, require_owner=False):
-    if not request.user.is_authenticated:
-        return False
-
-    if request.user.id == collection.author_id:
-        return True
-    elif collection.author_id == settings.TASK_USER_ID and action_allowed_user(
-        request.user, amo.permissions.ADMIN_CURATION
-    ):
-        return True
-    elif not require_owner:
-        return (
-            collection.pk == settings.COLLECTION_FEATURED_THEMES_ID
-            and action_allowed_user(
-                request.user, amo.permissions.COLLECTIONS_CONTRIBUTE
-            )
-        )
-    else:
-        return False
-
-
-def check_addon_ownership(request, addon, dev=False, admin=True, ignore_disabled=False):
-    """
-    Check request.user's permissions for the addon.
-
-    If user is an admin they can do anything.
-    If the add-on is disabled only admins have permission.
-    If they're an add-on owner they can do anything.
-    dev=True checks that the user has an owner or developer role.
+    By default, this function will:
+    - return False for mozilla disabled add-ons. Can be bypassed with
+      allow_mozilla_disabled_addon=True.
+    - return False if the author is just a developer and not an owner. Can be
+      bypassed with allow_developer=True.
+    - return False for site permission add-ons regardless of authorship. Can be
+      bypassed with allow_site_permission=True, in which case regular authorship checks
+      apply.
+    - return False for non authors. Can be bypassed with
+      allow_addons_edit_permission=True and the user has the Addons:Edit
+      permission. This has precedence over all other checks.
     """
     if not request.user.is_authenticated:
         return False
@@ -147,14 +129,19 @@ def check_addon_ownership(request, addon, dev=False, admin=True, ignore_disabled
     if addon.is_deleted:
         return False
     # Users with 'Addons:Edit' can do anything.
-    if admin and action_allowed(request, amo.permissions.ADDONS_EDIT):
+    if allow_addons_edit_permission and action_allowed(
+        request, amo.permissions.ADDONS_EDIT
+    ):
         return True
     # Only admins can edit admin-disabled addons.
-    if addon.status == amo.STATUS_DISABLED and not ignore_disabled:
+    if addon.status == amo.STATUS_DISABLED and not allow_mozilla_disabled_addon:
+        return False
+    # Site permission add-ons can't be edited by default.
+    if addon.type == amo.ADDON_SITE_PERMISSION and not allow_site_permission:
         return False
     # Addon owners can do everything else.
     roles = (amo.AUTHOR_ROLE_OWNER,)
-    if dev:
+    if allow_developer:
         roles += (amo.AUTHOR_ROLE_DEV,)
 
     return addon.addonuser_set.filter(user=request.user, role__in=roles).exists()
@@ -234,3 +221,13 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
         )
     allow_access = any(action_allowed_user(user, perm) for perm in permissions)
     return allow_access
+
+
+def author_or_unlisted_viewer_or_reviewer(request, addon):
+    return check_unlisted_addons_viewer_or_reviewer(request) or check_addon_ownership(
+        request,
+        addon,
+        allow_addons_edit_permission=False,
+        allow_developer=True,
+        allow_site_permission=True,
+    )

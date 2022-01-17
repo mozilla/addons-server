@@ -620,25 +620,33 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
 
 
-class TestPermissionEnabler(AppVersionsMixin, TestCase):
+class TestSitePermission(AppVersionsMixin, TestCase):
     def parse(self):
         return utils.ManifestJSONExtractor(
             '/fake_path', '{"site_permissions": ["webmidi"]}'
         ).parse()
 
-    def test_permission_enabler(self):
-        task_user = user_factory(pk=settings.TASK_USER_ID)
+    def test_allow_regular_submission_of_site_permissions_addons_with_permission(self):
+        user = user_factory()
+        self.grant_permission(user, 'Addons:SubmitSitePermission')
         parsed_data = self.parse()
         assert parsed_data['type'] == amo.ADDON_SITE_PERMISSION
         assert parsed_data['site_permissions'] == ['webmidi']
-        assert utils.check_xpi_info(parsed_data, user=task_user)
+        assert utils.check_xpi_info(parsed_data, user=user)
 
-    def test_disallow_regular_submission_of_permission_enabler_addons_no_user(self):
+    def test_allow_submission_of_site_permissions_addons_from_task_user(self):
+        user = user_factory(pk=settings.TASK_USER_ID)
+        parsed_data = self.parse()
+        assert parsed_data['type'] == amo.ADDON_SITE_PERMISSION
+        assert parsed_data['site_permissions'] == ['webmidi']
+        assert utils.check_xpi_info(parsed_data, user=user)
+
+    def test_disallow_regular_submission_of_site_permission_addons_no_user(self):
         parsed_data = self.parse()
         with self.assertRaises(ValidationError):
             utils.check_xpi_info(parsed_data)
 
-    def test_disallow_regular_submission_of_permission_enabler_addons_normal_user(self):
+    def test_disallow_regular_submission_of_site_permission_addons_normal_user(self):
         user = user_factory()
         parsed_data = self.parse()
         with self.assertRaises(ValidationError):
@@ -1101,6 +1109,7 @@ class TestGetBackgroundImages(TestCase):
         assert len(images.items()) == 1
         assert len(images['weta.png']) == 126447
 
+    @mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
     def test_get_background_images_no_theme_data_provided(self):
         images = utils.get_background_images(self.file_obj, theme_data=None)
         assert 'weta.png' in images

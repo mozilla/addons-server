@@ -270,6 +270,8 @@ SUPPORTED_NONAPPS = (
     'sitemap.xml',
     'static',
     'user-media',
+    '__heartbeat__',
+    '__lbheartbeat__',
     '__version__',
 )
 DEFAULT_APP = 'firefox'
@@ -287,6 +289,8 @@ SUPPORTED_NONLOCALES = (
     'downloads',
     'static',
     'user-media',
+    '__heartbeat__',
+    '__lbheartbeat__',
     '__version__',
 )
 
@@ -437,6 +441,7 @@ MIDDLEWARE = (
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
+    'olympia.amo.middleware.LBHeartbeatMiddleware',
     'olympia.amo.middleware.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
@@ -1073,6 +1078,7 @@ CELERY_TASK_ROUTES = {
     # AMO Devhub.
     'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {'queue': 'devhub'},
+    'olympia.devhub.tasks.create_site_permission_version': {'queue': 'devhub'},
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
@@ -1287,6 +1293,7 @@ CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
     'blob:',  # Needed for image uploads.
+    'data:',  # Needed for theme wizard.
     PROD_STATIC_URL,
     PROD_MEDIA_URL,
     'https://sentry.prod.mozaws.net',
@@ -1440,7 +1447,7 @@ CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 CSRF_USE_SESSIONS = True
 
 # Default file storage mechanism that holds media.
-DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'olympia.amo.utils.SafeStorage'
 
 # And how long we'll give the server to respond for monitoring.
 # We currently do not have any actual timeouts during the signing-process.
@@ -1588,6 +1595,7 @@ DRF_API_GATES = {
         'is-restart-required-shim',
         'is-webextension-shim',
         'version-files',
+        'del-version-license-slug',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1600,6 +1608,7 @@ DRF_API_GATES = {
         'is-restart-required-shim',
         'is-webextension-shim',
         'version-files',
+        'del-version-license-slug',
     ),
     'v5': (
         'addons-search-_score-field',

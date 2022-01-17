@@ -11,6 +11,7 @@ from django.utils import translation
 import pytest
 from freezegun import freeze_time
 
+from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo, core
@@ -29,7 +30,7 @@ from olympia.devhub import forms
 from olympia.files.models import FileUpload
 from olympia.signing.views import VersionView
 from olympia.tags.models import AddonTag, Tag
-from olympia.versions.models import ApplicationsVersions
+from olympia.versions.models import ApplicationsVersions, DeniedInstallOrigin
 
 
 class TestNewUploadForm(TestCase):
@@ -848,9 +849,21 @@ class TestIconForm(TestCase):
         rm_local_tmp_dir(self.temp_dir)
         super().tearDown()
 
-    def get_icon_paths(self):
-        path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
-        return [f'{path}-{size}.png' for size in amo.ADDON_ICON_SIZES]
+    def test_default_icons(self):
+        form = forms.AddonFormMedia(request=self.request, instance=self.addon)
+        content = str(form['icon_type'])
+        doc = pq(content)
+        imgs = doc('img')
+        assert len(imgs) == 1  # Only one default icon available atm
+        assert imgs[0].attrib == {
+            'alt': '',
+            # In dev/stage/prod where STATICFILES_STORAGE is ManifestStaticFilesStorage,
+            # we'd get some hashed file names, but in tests this is deactivated so that
+            # we don't need to run collectstatic to run tests.
+            'src': 'http://testserver/static/img/addon-icons/default-32.png',
+            'data-src-64': 'http://testserver/static/img/addon-icons/default-64.png',
+            'data-src-128': 'http://testserver/static/img/addon-icons/default-128.png',
+        }
 
     @mock.patch('olympia.amo.models.ModelBase.update')
     def test_icon_modified(self, update_mock):
@@ -874,3 +887,67 @@ class TestCategoryForm(TestCase):
         form = forms.CategoryFormSet(addon=addon, request=request)
         apps = [f.app for f in form.forms]
         assert apps == [amo.FIREFOX]
+
+
+_DEFAULT_SITE_PERMISSIONS = [
+    forms.SitePermissionGeneratorForm.declared_fields['site_permissions'].choices[0][0]
+]
+
+
+@pytest.mark.parametrize(
+    'origin',
+    [
+        'https://foo.com/testing',  # path
+        'file:/foo/bar',  # invalid scheme
+        'file:///foo/bar',  # invalid scheme
+        'ftp://somewhere.com',  # invalid scheme
+        'https://foo.bar.栃木.jp/',  # trailing slash
+        '',  # empty string
+        [],  # array (doh!)
+        {},  # dict (doh!)
+        'https://*.wildcard.com',  # wildcard
+        'example.com',  # no scheme
+        'https://',  # no hostname
+        None,  # null
+        42,  # int
+    ],
+)
+def test_site_permission_generator_origin_invalid(origin):
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin}
+    )
+    assert not form.is_valid()
+
+
+@pytest.mark.parametrize(
+    'origin',
+    [
+        'https://example.com',
+        'https://foo.example.com',
+        'https://xn--fo-9ja.com',
+        'https://foo.bar.栃木.jp',
+        'https://example.com:8888',
+    ],
+)
+def test_site_permission_generator_origin_valid(origin):
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin}
+    )
+    assert form.is_valid()
+    assert form.cleaned_data['origin'] == origin
+
+
+@pytest.mark.django_db
+def test_site_permission_generator_origin_denied():
+    DeniedInstallOrigin.objects.create(hostname_pattern='*.tld')
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.com'}
+    )
+    assert form.is_valid()
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.tld'}
+    )
+    assert not form.is_valid()
+    assert form.errors['origin'] == [
+        'The install origin https://foo.tld is not permitted.'
+    ]

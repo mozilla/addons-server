@@ -11,13 +11,19 @@ from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.exceptions import ImproperlyConfigured
 from django.db import transaction
 from django.http import (
+    HttpResponse,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
     JsonResponse,
 )
 from django.middleware import common
 from django.template.response import TemplateResponse
-from django.utils.cache import get_max_age, patch_cache_control, patch_vary_headers
+from django.utils.cache import (
+    add_never_cache_headers,
+    get_max_age,
+    patch_cache_control,
+    patch_vary_headers,
+)
 from django.utils.crypto import constant_time_compare
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_str, iri_to_uri
@@ -362,9 +368,26 @@ class CacheControlMiddleware:
         return response
 
 
+class LBHeartbeatMiddleware:
+    """Middleware to capture request to /__lbheartbeat__ and return a 200.
+    Must be placed above CommonMiddleware to work with ELB.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path == '/__lbheartbeat__':
+            response = HttpResponse(status=200)
+            add_never_cache_headers(response)
+            return response
+        return self.get_response(request)
+
+
 class TokenValidMiddleware:
     """Middleware to check the FxA auth tokens haven't expired, and refresh if
-    necessary."""
+    necessary.
+    """
 
     def __init__(self, get_response):
         self.get_response = get_response
@@ -377,5 +400,4 @@ class TokenValidMiddleware:
             except IdentificationError:
                 log.info(f'Failed refreshing access_token for {request.user.id}')
                 return redirect_for_login(request)
-
         return self.get_response(request)

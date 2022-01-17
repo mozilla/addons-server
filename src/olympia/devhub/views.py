@@ -2,6 +2,7 @@ import datetime
 import os
 import time
 
+from urllib.parse import quote
 from uuid import UUID, uuid4
 
 from django import forms as django_forms, http
@@ -160,6 +161,32 @@ def dashboard(request, theme=False):
         data['sort_opts'] = data['filter'].opts
 
     return TemplateResponse(request, 'devhub/addons/dashboard.html', context=data)
+
+
+@login_required
+def site_permission_generator(request):
+    if not RestrictionChecker(request=request).is_submission_allowed():
+        return redirect(
+            '%s%s%s'
+            % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
+        )
+    form = forms.SitePermissionGeneratorForm(
+        request.POST if request.method == 'POST' else None
+    )
+    success = None
+    if request.method == 'POST' and form.is_valid():
+        tasks.create_site_permission_version.delay(
+            user_pk=request.user.pk,
+            remote_addr=request.META.get('REMOTE_ADDR', ''),
+            install_origins=[form.cleaned_data['origin']],
+            site_permissions=form.cleaned_data['site_permissions'],
+        )
+        success = True
+    return TemplateResponse(
+        request,
+        'devhub/site_permission_generator.html',
+        context={'form': form, 'success': success},
+    )
 
 
 @dev_required
@@ -324,7 +351,7 @@ def feed(request, addon_id=None):
             )
 
             if not acl.check_addon_ownership(
-                request, addon, dev=True, ignore_disabled=True
+                request, addon, allow_developer=True, allow_mozilla_disabled_addon=True
             ):
                 raise PermissionDenied
             addons = [addon]
@@ -380,7 +407,7 @@ def edit(request, addon_id, addon):
     return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
 
 
-@dev_required(owner_for_post=True)
+@dev_required(owner_for_post=True, allow_site_permission_for_post=True)
 @post_required
 def delete(request, addon_id, addon):
     # Database deletes only allowed for free or incomplete addons.
@@ -504,10 +531,18 @@ def invitation(request, addon_id):
     return TemplateResponse(request, 'devhub/addons/invitation.html', context=ctx)
 
 
-@dev_required(owner_for_post=True)
+@dev_required(owner_for_post=True, allow_site_permission_for_post=True)
 def ownership(request, addon_id, addon):
     fs = []
-    ctx = {'addon': addon}
+    ctx = {
+        'addon': addon,
+        # Override editable_body_class, because this page is not editable by
+        # regular developers, but can be edited by owners even if it's a site
+        # permission add-on.
+        'editable_body_class': 'no-edit'
+        if not acl.check_addon_ownership(request, addon, allow_site_permission=True)
+        else '',
+    }
     post_data = request.POST if request.method == 'POST' else None
     # Authors.
     user_form = forms.AuthorFormSet(
@@ -536,7 +571,7 @@ def ownership(request, addon_id, addon):
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    if addon.type != amo.ADDON_STATICTHEME:
+    if addon.type not in (amo.ADDON_STATICTHEME, amo.ADDON_SITE_PERMISSION):
         policy_form = forms.PolicyForm(post_data, addon=addon)
         ctx['policy_form'] = policy_form
         fs.append(policy_form)
@@ -1103,6 +1138,7 @@ def upload_image(request, addon_id, addon, upload_type):
 @dev_required
 def version_edit(request, addon_id, addon, version_id):
     version = get_object_or_404(addon.versions.all(), pk=version_id)
+    posting = request.method == 'POST'
     static_theme = addon.type == amo.ADDON_STATICTHEME
     version_form = (
         forms.VersionForm(
@@ -1116,8 +1152,18 @@ def version_edit(request, addon_id, addon, version_id):
 
     data = {}
 
+    has_source = version_form and version_form['source'].data
     if version_form:
         data['version_form'] = version_form
+        if has_source and posting:
+            timer = StopWatch('devhub.views.version_edit.')
+            timer.start()
+            log.info(
+                'version_edit, form populated, addon.slug: %s, version.id: %s',
+                addon.slug,
+                version.id,
+            )
+            timer.log_interval('1.form_populated')
 
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
@@ -1129,6 +1175,13 @@ def version_edit(request, addon_id, addon, version_id):
         data['compat_form'] = compat_form
 
     if request.method == 'POST' and all([form.is_valid() for form in data.values()]):
+        if has_source:
+            log.info(
+                'version_edit, form validated, addon.slug: %s, version.id: %s',
+                addon.slug,
+                version.id,
+            )
+            timer.log_interval('2.form_validated')
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):
                 compat.version = version
@@ -1143,6 +1196,13 @@ def version_edit(request, addon_id, addon, version_id):
 
         if 'version_form' in data:
             data['version_form'].save()
+            if has_source:
+                log.info(
+                    'version_edit, form saved, addon.slug: %s, version.id: %s',
+                    addon.slug,
+                    version.id,
+                )
+                timer.log_interval('3.form_saved')
 
             if 'approval_notes' in version_form.changed_data:
                 ActivityLog.create(
@@ -1164,7 +1224,17 @@ def version_edit(request, addon_id, addon, version_id):
                 )
 
         messages.success(request, gettext('Changes successfully saved.'))
-        return redirect('devhub.versions.edit', addon.slug, version_id)
+        result = redirect('devhub.versions.edit', addon.slug, version_id)
+        if has_source:
+            log.info(
+                'version_edit, redirecting to next view, '
+                + 'addon.slug: %s, version.id: %s',
+                addon.slug,
+                version.id,
+            )
+            timer.log_interval('4.redirecting_to_next_view')
+
+        return result
 
     data.update(
         {
@@ -1176,6 +1246,14 @@ def version_edit(request, addon_id, addon, version_id):
         }
     )
 
+    if has_source and posting:
+        log.info(
+            'version_edit, validation failed, re-displaying the template, '
+            + 'addon.slug: %s, version.id: %s',
+            addon.slug,
+            version.id,
+        )
+        timer.log_interval('5.validation_failed_re-displaying_the_template')
     return TemplateResponse(request, 'devhub/versions/edit.html', context=data)
 
 
@@ -1523,7 +1601,7 @@ def submit_version_upload(request, addon_id, addon, channel):
     return _submit_upload(request, addon, channel_id, 'devhub.submit.version.source')
 
 
-@dev_required
+@dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1561,13 +1639,7 @@ def submit_version_theme_wizard(request, addon_id, addon, channel):
 
 
 def _submit_source(request, addon, version, submit_page, next_view):
-    log.info(
-        'Starting _submit_source, addon.slug: %s, version.pk: %s',
-        addon.slug,
-        version.pk,
-    )
-    timer = StopWatch('devhub.views._submit_source.')
-    timer.start()
+    posting = request.method == 'POST'
     redirect_args = (
         [addon.slug, version.pk]
         if version and submit_page == 'version'
@@ -1581,20 +1653,25 @@ def _submit_source(request, addon, version, submit_page, next_view):
         instance=version,
         request=request,
     )
-    log.info(
-        '_submit_source, form populated, addon.slug: %s, version.pk: %s',
-        addon.slug,
-        version.pk,
-    )
-    timer.log_interval('1.form_populated')
-
-    if request.method == 'POST' and form.is_valid():
+    has_source = form.data.get('has_source') == 'yes'
+    if has_source and posting:
+        timer = StopWatch('devhub.views._submit_source.')
+        timer.start()
         log.info(
-            '_submit_source, form validated, addon.slug: %s, version.pk: %s',
+            '_submit_source, form populated, addon.slug: %s, version.pk: %s',
             addon.slug,
             version.pk,
         )
-        timer.log_interval('2.form_validated')
+        timer.log_interval('1.form_populated')
+
+    if request.method == 'POST' and form.is_valid():
+        if has_source:
+            log.info(
+                '_submit_source, form validated, addon.slug: %s, version.pk: %s',
+                addon.slug,
+                version.pk,
+            )
+            timer.log_interval('2.form_validated')
         if form.cleaned_data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True}
@@ -1621,12 +1698,14 @@ def _submit_source(request, addon, version, submit_page, next_view):
             timer.log_interval('3.form_saved')
 
         result = redirect(next_view, *redirect_args)
-        log.info(
-            '_submit_source, redirecting to next view, addon.slug: %s, version.pk: %s',
-            addon.slug,
-            version.pk,
-        )
-        timer.log_interval('4.redirecting_to_next_view')
+        if has_source:
+            log.info(
+                '_submit_source, redirecting to next view, '
+                + 'addon.slug: %s, version.pk: %s',
+                addon.slug,
+                version.pk,
+            )
+            timer.log_interval('4.redirecting_to_next_view')
         return result
     context = {
         'form': form,
@@ -1634,13 +1713,14 @@ def _submit_source(request, addon, version, submit_page, next_view):
         'version': version,
         'submit_page': submit_page,
     }
-    log.info(
-        '_submit_source, validation failed, re-displaying the template, '
-        + 'addon.slug: %s, version.pk: %s',
-        addon.slug,
-        version.pk,
-    )
-    timer.log_interval('5.validation_failed_re-displaying_the_template')
+    if has_source and posting:
+        log.info(
+            '_submit_source, validation failed, re-displaying the template, '
+            + 'addon.slug: %s, version.pk: %s',
+            addon.slug,
+            version.pk,
+        )
+        timer.log_interval('5.validation_failed_re-displaying_the_template')
     return TemplateResponse(
         request, 'devhub/addons/submit/source.html', context=context
     )
@@ -1880,11 +1960,11 @@ def docs(request, doc_name=None):
 
 
 @login_required
-def api_key_agreement(request):
+def developer_agreement(request):
     return render_agreement(
         request=request,
-        template='devhub/api/agreement.html',
-        next_step='devhub.api_key',
+        template='devhub/agreement.html',
+        next_step=request.GET.get('to'),
     )
 
 
@@ -1892,6 +1972,8 @@ def render_agreement(request, template, next_step, **extra_context):
     form = forms.AgreementForm(
         request.POST if request.method == 'POST' else None, request=request
     )
+    if not is_safe_url(next_step, request):
+        next_step = reverse('devhub.index')
     if request.method == 'POST' and form.is_valid():
         # Developer has validated the form: let's update its profile and
         # redirect to next step. Note that the form is supposed to always be
@@ -1925,7 +2007,10 @@ def render_agreement(request, template, next_step, **extra_context):
 @transaction.atomic
 def api_key(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
-        return redirect(reverse('devhub.api_key_agreement'))
+        return redirect(
+            '%s%s%s'
+            % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
+        )
 
     try:
         credentials = APIKey.get_jwt_key(user=request.user)

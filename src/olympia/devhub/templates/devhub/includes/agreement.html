@@ -1,0 +1,42 @@
+<form method="post">
+  {% if not agreement_form.has_error('__all__') %}
+  <p>
+    {{ agreement_message }}
+  </p>
+  <ul class="agreement-links">
+    <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Firefox Add-on Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
+    <li>{{ agreement_form.review_policy }}<a href="{{ url('devhub.docs', 'policies/reviews') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Policies and Rules') }}</a> {{ agreement_form.review_policy.errors }}</li>
+  </ul>
+  <p>
+    {{ _('I have read and accept this Agreement and the Rules and Policies') }}.
+  </p>
+
+  {% if 'display_name' in agreement_form.fields %}
+  <h3> {{ _('Display Name') }} </h3>
+  <p> {{ _('Your account needs a display name set so users know who your add-on is coming from. Please enter one below.' )}} </p>
+  <p>
+    {{ agreement_form.display_name.label_tag() }}
+    {{ agreement_form.display_name }}
+    {{ agreement_form.display_name.errors }}
+  </p>
+  {% endif %}
+
+  {% if 'recaptcha' in agreement_form.fields %}
+  <p>
+    {{ agreement_form.recaptcha }}
+    {{ agreement_form.recaptcha.errors }}
+  </p>
+  {% endif %}
+
+  <div class="submit-buttons">
+      {% csrf_token %}
+      <button id="accept-agreement" type="submit">
+        {{ _('Accept') }}
+      </button>
+    {{ _('or <a href="{0}">Cancel</a>')|format_html(url('devhub.index')) }}
+  </div>
+  {% else %}
+    {{ agreement_form.non_field_errors() }}
+  {% endif %}
+</form>
+<p><a href="https://extensionworkshop.com/documentation/publish/developer-accounts/">{{ _('More information on Developer Accounts') }}</a></p>

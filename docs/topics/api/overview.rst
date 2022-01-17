@@ -428,8 +428,9 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-09-23: flattened ``files`` in version detail from an array to a single ``file``. https://github.com/mozilla/addons-server/issues/17839
 * 2021-09-30: removed ``is_webextension`` from file objects (all addons have been webextensions for a while now) in all endpoints. https://github.com/mozilla/addons-server/issues/17658
 * 2021-11-18: added docs for the under-development addon submission & edit apis.
-* 2021-11-25: added ``custom_license`` to version create/edit endpoints to allow non-predefined licenses to be created and updated. https://github.com/mozilla/addons-server/issues/18034
+* 2021-11-25: added ``custom_license`` to version create/update endpoints to allow non-predefined licenses to be created and updated. https://github.com/mozilla/addons-server/issues/18034
 * 2021-12-09: enabled setting ``tags`` via addon submission and edit apis. https://github.com/mozilla/addons-server/issues/18268
+* 2021-12-09: changed ``license`` in version create/update endpoints to accept a license slug rather than numeric ID, and documented supported licenses. https://github.com/mozilla/addons-server/issues/18361
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

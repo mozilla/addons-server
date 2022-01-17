@@ -2,7 +2,7 @@ import os
 import tarfile
 import zipfile
 
-from urllib.parse import urlsplit
+from urllib.parse import urlparse, urlsplit
 
 from django import forms
 from django.conf import settings
@@ -62,6 +62,7 @@ from olympia.users.models import (
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
+    DeniedInstallOrigin,
     License,
     Version,
 )
@@ -1396,3 +1397,45 @@ class SingleCategoryForm(forms.Form):
                 AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
+
+
+class SitePermissionGeneratorForm(forms.Form):
+    origin = forms.URLField(
+        label=_('Origin'),
+        widget=forms.TextInput(attrs={'placeholder': 'https://example.com'}),
+    )
+    site_permissions = forms.MultipleChoiceField(
+        label=_('Permissions'), choices=(('midi-sysex', 'WebMIDI'),)
+    )
+
+    def clean_origin(self):
+        actual_value = str(self.data.get('origin'))
+        value = self.cleaned_data.get('origin')
+        # Note that URLField should already ensure it's an URL.
+        error_message = _(
+            'Origin should include only a scheme (protocol), a hostname (domain) and '
+            'an optional port'
+        )
+        try:
+            parsed = urlparse(value)
+        except ValueError:
+            raise forms.ValidationError(error_message)
+        if (
+            not parsed.scheme
+            or parsed.scheme not in ('https', 'http')
+            or not parsed.netloc
+            # Django's URLField adds a scheme if there wasn't one, translating
+            # "foo" into "http://foo". We want to make sure the scheme was
+            # explicitly present in the submitted value.
+            or not actual_value.startswith(parsed.scheme)
+            or parsed.path
+            or parsed.params
+            or parsed.query
+            or parsed.fragment
+        ):
+            raise forms.ValidationError(error_message)
+        if DeniedInstallOrigin.find_denied_origins([value]):
+            raise forms.ValidationError(
+                DeniedInstallOrigin.ERROR_MESSAGE.format(origin=value)
+            )
+        return value

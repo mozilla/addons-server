@@ -9,10 +9,10 @@ from unittest.mock import MagicMock
 from pathlib import Path
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 from olympia import amo
 from olympia.addons.cron import hide_disabled_files
-from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.tests import (
     addon_factory,
     version_factory,
@@ -216,7 +216,7 @@ def test_extract_and_commit_from_version_fallback_file_path(settings):
     # path, just like it would happen if by misfortune we run the extraction
     # after the add-on/file status has changed but before the file has been
     # moved.
-    move_stored_file(
+    storage.move_stored_file(
         addon.current_version.file.current_file_path,
         addon.current_version.file.fallback_file_path,
     )

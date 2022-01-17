@@ -41,7 +41,6 @@ class TestVersion(TestCase):
         self.addon = self.get_addon()
         self.version = Version.objects.get(id=81551)
         self.url = self.addon.get_dev_url('versions')
-
         self.disable_url = self.addon.get_dev_url('disable')
         self.enable_url = self.addon.get_dev_url('enable')
         self.delete_url = reverse('devhub.versions.delete', args=['a3615'])
@@ -728,6 +727,21 @@ class TestVersion(TestCase):
         # Extra tags in the headers too
         assert doc('h3 span.distribution-tag-listed').length == 2
 
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+
+        # Authors can see the versions page of a site permission add-on.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # They can't delete/disable/enable versions though.
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 403
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 403
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 403
+
 
 class TestVersionEditBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
@@ -856,6 +870,82 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log.details is None
         assert log.arguments == [self.addon, self.version]
 
+    @mock.patch('olympia.devhub.views.log')
+    def test_logging(self, log_mock):
+        with temp.NamedTemporaryFile(
+            suffix='.zip', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert log_mock.info.call_count == 4
+        assert log_mock.info.call_args_list[0][0] == (
+            'version_edit, form populated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[1][0] == (
+            'version_edit, form validated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[2][0] == (
+            'version_edit, form saved, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[3][0] == (
+            'version_edit, redirecting to next view, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_on_initial_display(self, log_mock):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert log_mock.info.call_count == 0
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_without_source(self, log_mock):
+        data = self.formset(release_notes='xx')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert log_mock.info.call_count == 0
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_logging_failed_validation(self, log_mock):
+        with temp.NamedTemporaryFile(
+            suffix='.exe', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2 ** 21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert response.context['version_form'].errors == {
+            'source': [
+                'Unsupported file type, please upload an archive file '
+                + '(.zip, .tar.gz, .tgz, .tar.bz2).'
+            ]
+        }
+        assert log_mock.info.call_count == 2
+        assert log_mock.info.call_args_list[0][0] == (
+            'version_edit, form populated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[1][0] == (
+            'version_edit, validation failed, re-displaying the template, '
+            + 'addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+
     def test_email_is_sent_to_relevant_people_for_source_code_upload(self):
         # Have a reviewer review a version.
         reviewer = user_factory()
@@ -927,6 +1017,16 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert not version.addon.needs_admin_code_review
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        # Authors can see a version page of a site permission add-on.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # They can't edit it though.
+        response = self.client.post(self.url, self.formset())
+        assert response.status_code == 403
 
 
 class TestVersionEditStaticTheme(TestVersionEditBase):

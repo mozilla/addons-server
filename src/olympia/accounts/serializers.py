@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.core.files.storage import default_storage
 from django.utils.translation import gettext
 
 from rest_framework import serializers
@@ -14,6 +13,7 @@ from olympia.amo.utils import (
     clean_nl,
     has_links,
     ImageCheck,
+    SafeStorage,
     subscribe_newsletter,
     unsubscribe_newsletter,
     urlparams,
@@ -192,14 +192,15 @@ class UserProfileSerializer(PublicUserProfileSerializer):
 
         photo = validated_data.get('picture_upload')
         if photo:
-            tmp_destination = instance.picture_path_original
+            original = instance.picture_path_original
 
-            with default_storage.open(tmp_destination, 'wb') as temp_file:
+            storage = SafeStorage(user_media='userpics')
+            with storage.open(original, 'wb') as original_file:
                 for chunk in photo.chunks():
-                    temp_file.write(chunk)
+                    original_file.write(chunk)
             instance.update(picture_type=photo.content_type)
             resize_photo.delay(
-                tmp_destination,
+                original,
                 instance.picture_path,
                 set_modified_on=instance.serializable_reference(),
             )

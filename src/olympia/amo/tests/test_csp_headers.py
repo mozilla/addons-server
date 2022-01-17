@@ -41,9 +41,12 @@ class TestCSPHeaders(TestCase):
         """Make sure a script-src does not have unsafe-eval."""
         assert "'unsafe-eval'" not in base_settings.CSP_SCRIPT_SRC
 
-    def test_data_uri_not_in_script_src(self):
-        """Make sure a script-src does not have data:."""
+    def test_data_and_blob_not_in_script_and_style_src(self):
+        """Make sure a script-src/style-src does not have data: or blob:."""
+        assert 'blob:' not in base_settings.CSP_SCRIPT_SRC
         assert 'data:' not in base_settings.CSP_SCRIPT_SRC
+        assert 'blob:' not in base_settings.CSP_STYLE_SRC
+        assert 'data:' not in base_settings.CSP_STYLE_SRC
 
     def test_http_protocol_not_in_script_src(self):
         """Make sure a script-src does not have hosts using http:."""
@@ -69,6 +72,11 @@ class TestCSPHeaders(TestCase):
         """Make sure a img-src does not have hosts using http:."""
         for val in base_settings.CSP_IMG_SRC:
             assert not val.startswith('http:')
+
+    def test_blob_and_data_in_img_src(self):
+        """Test that img-src contains data/blob."""
+        assert 'blob:' in base_settings.CSP_IMG_SRC
+        assert 'data:' in base_settings.CSP_IMG_SRC
 
     def test_child_src_matches_frame_src(self):
         """Check frame-src directive has same settings as child-src"""

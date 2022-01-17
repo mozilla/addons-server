@@ -25,7 +25,6 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import activity, amo, core
-from olympia.access import acl
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
@@ -893,6 +892,8 @@ class Addon(OnChangeMixin, ModelBase):
             )
         if user:
             AddonUser(addon=addon, user=user).save()
+        activity.log_create(amo.LOG.CREATE_ADDON, addon)
+        log.info(f'New addon {addon!r} from {upload!r}')
         timer.log_interval('7.end')
         return addon
 
@@ -917,7 +918,6 @@ class Addon(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         addon = cls.initialize_addon_from_upload(parsed_data, upload, channel, user)
-
         Version.from_upload(
             upload=upload,
             addon=addon,
@@ -925,10 +925,6 @@ class Addon(OnChangeMixin, ModelBase):
             selected_apps=selected_apps,
             parsed_data=parsed_data,
         )
-
-        activity.log_create(amo.LOG.CREATE_ADDON, addon)
-        log.info(f'New addon {addon!r} from {upload!r}')
-
         return addon
 
     @classmethod
@@ -1632,25 +1628,6 @@ class Addon(OnChangeMixin, ModelBase):
         """NULLify strings in this locale for the add-on and versions."""
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
-
-    def check_ownership(
-        self, request, require_owner, require_author, ignore_disabled, admin
-    ):
-        """
-        Used by acl.check_ownership to see if request.user has permissions for
-        the addon.
-        """
-        if require_author:
-            require_owner = False
-            ignore_disabled = True
-            admin = False
-        return acl.check_addon_ownership(
-            request,
-            self,
-            admin=admin,
-            dev=(not require_owner),
-            ignore_disabled=ignore_disabled,
-        )
 
     def should_show_permissions(self, version=None):
         version = version or self.current_version

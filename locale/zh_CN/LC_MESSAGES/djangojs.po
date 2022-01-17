@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-23 18:06+0000\n"
-"PO-Revision-Date: 2021-09-29 16:44+0000\n"
+"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"PO-Revision-Date: 2022-01-02 12:10+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -26,7 +26,7 @@ msgid "Select a file..."
 msgstr "选择文件..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "您的附加组件应以 .zip、.xpi、.jar 或 .crx 结尾"
+msgstr "您的附加组件应以 .zip、.xpi 或 .crx 作为后缀"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -63,7 +63,7 @@ msgid "Validating {0}"
 msgstr "正在验证 {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr "您的附加组件超出大小限制 {0}。"
+msgstr "您的附加组件超出大小限制，不能超过 {0}。"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "从服务器上接收到一个空的响应；状态：{0}"

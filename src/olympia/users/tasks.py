@@ -1,11 +1,9 @@
-from django.core.files.storage import default_storage as storage
-
 import olympia.core.logger
 
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.utils import resize_image
+from olympia.amo.utils import resize_image, SafeStorage
 
 from .models import UserProfile
 
@@ -22,7 +20,7 @@ def delete_photo(dst, **kw):
         return
 
     try:
-        storage.delete(dst)
+        SafeStorage(user_media='userpics').delete(dst)
     except Exception as e:
         task_log.error('Error deleting userpic: %s' % e)
 

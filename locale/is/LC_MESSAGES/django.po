@@ -1,44 +1,47 @@
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-23 18:05+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"PO-Revision-Date: 2022-01-13 16:11+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "Generated-By: Babel 2.9.0\n"
+"X-Generator: Pontoon\n"
 
 msgid "type"
-msgstr ""
+msgstr "tegund"
 
 msgid "Users"
-msgstr ""
+msgstr "Notendur"
 
 msgid "Addons"
-msgstr ""
+msgstr "Viðbætur"
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
+msgstr "lágmarksfjöldi skýrslna (flokkað eftir guid-auðkennum)"
 
 msgid "creation date"
-msgstr ""
+msgstr "upprunadagsetning"
 
 msgid "User / Add-on"
-msgstr ""
+msgstr "Notandi / Viðbót"
 
 msgid "Distribution"
-msgstr ""
+msgstr "Dreifing"
 
 msgid "Reporter's country"
-msgstr ""
+msgstr "Land tilkynnanda"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "Útdráttur úr skilaboðum"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -52,39 +55,39 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr ""
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Gakktu úr skugga um að þessi reitur hafi ekki fleiri en {max_length} stafi."
 
 msgid "Modified on:"
-msgstr ""
+msgstr "Breytt:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Eftir %(filter_title)s"
 
 msgid "All"
-msgstr ""
+msgstr "Allt"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "Engir tenglar eru leyfðir."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Ekki er hægt að nota þetta birtingarnafn."
 
 msgid "This reviewer name cannot be used."
-msgstr ""
+msgstr "Ekki er hægt að nota þetta yfirferðarnafn."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Myndir verða að vera annað hvort PNG eða JPG."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Myndir mega ekki vera með hreyfingu."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Notaðu myndir minni en %dMB."
 
 msgid "You are already logged in."
 msgstr ""
@@ -99,29 +102,29 @@ msgid "You could not be logged in. Please try again."
 msgstr ""
 
 msgid "Need help?"
-msgstr ""
+msgstr "Þarftu hjálp?"
 
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr ""
 
 msgid "Review"
-msgstr ""
+msgstr "Yfirfara"
 
 msgid "Version {0}"
-msgstr ""
+msgstr "Útgáfa {0}"
 
 msgid "Review note"
-msgstr ""
+msgstr "Athugasemd yfirferðar"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "Authors"
-msgstr ""
+msgstr "Höfundar"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Einkunnir"
 
 msgid "Reviewer Tools (listed)"
 msgstr ""
@@ -137,10 +140,10 @@ msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr ""
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Viðbót ekki á AMO -"
 
 msgid "Listed"
-msgstr ""
+msgstr "Upptalið"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr ""
@@ -148,59 +151,62 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-msgid "Sort by:"
+msgid "Site permissions for {hostnames}"
 msgstr ""
+
+msgid "Sort by:"
+msgstr "Raða eftir:"
 
 msgid "More"
-msgstr ""
+msgstr "Meira"
 
 msgid "My Add-ons"
-msgstr ""
+msgstr "Viðbæturnar mínar"
 
 msgid "My Themes"
-msgstr ""
+msgstr "Þemun mín"
 
 msgid "Git-Extract"
 msgstr ""
 
 msgid "Tools"
-msgstr ""
+msgstr "Verkfæri"
 
 msgid "My Profile"
-msgstr ""
+msgstr "Notandasniðið mitt"
 
 msgid "Account Settings"
-msgstr ""
+msgstr "Stillingar reiknings"
 
 msgid "My Collections"
-msgstr ""
+msgstr "Söfnin mín"
 
 msgid "Log out"
-msgstr ""
+msgstr "Skrá út"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Stjórna innsendingunum mínum"
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Senda inn nýja viðbót"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Senda inn nýtt þema"
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "Þróunarmiðstöð"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Sýsla með API-lykla"
 
 msgid "Reviewer Tools"
 msgstr ""
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "Kerfisstjóratól"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Jákvæð heiltala"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
@@ -216,7 +222,7 @@ msgid "Enter a valid IP4 or IP6 network."
 msgstr ""
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
@@ -228,13 +234,13 @@ msgid "Ensure this field contains at least one letter or number character."
 msgstr ""
 
 msgid "Not allowed"
-msgstr ""
+msgstr "Ekki leyft"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Úbbs! Ekki leyft."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Þú reyndir að gera eitthvað sem þú máttir ekki gera."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -250,19 +256,19 @@ msgid ""
 msgstr ""
 
 msgid "Not Found"
-msgstr ""
+msgstr "Fannst ekki"
 
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
-msgstr ""
+msgstr "Úbbs"
 
 #, python-format
 msgid ""
@@ -274,17 +280,17 @@ msgid "Register or Log in"
 msgstr ""
 
 msgid "Email:"
-msgstr ""
+msgstr "Tölvupóstfang:"
 
 msgid "OK"
-msgstr ""
+msgstr "Í lagi"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "Fyrra"
 
 msgid "Next"
-msgstr ""
+msgstr "Næsta"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -305,32 +311,32 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr ""
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Fara á fyrstu síðu"
 
 msgid "Previous"
-msgstr ""
+msgstr "Fyrra"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Fara á öftustu síðu"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr ""
+msgstr "Birti <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr ""
+msgstr "Fyrir {0} síðan"
 
 msgid "Title"
-msgstr ""
+msgstr "Titill"
 
 msgid "Body"
-msgstr ""
+msgstr "Meginmál"
 
 msgid "Another Title"
 msgstr ""
@@ -395,21 +401,18 @@ msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_versi
 msgstr ""
 
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 msgid "Versions"
-msgstr ""
+msgstr "Útgáfur"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
-
-msgid "Name cannot be empty."
 msgstr ""
 
 msgid "This name cannot be used."
@@ -447,7 +450,7 @@ msgid "%(value)s contains *"
 msgstr ""
 
 msgid "Invalid version"
-msgstr ""
+msgstr "Ógild útgáfa"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -463,7 +466,7 @@ msgid "Delete Multiple %(name)s"
 msgstr ""
 
 msgid "Home"
-msgstr ""
+msgstr "Heim"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -474,16 +477,16 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "Vista"
 
 msgid "Save and add more"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "Eyða"
 
 msgid "Update"
-msgstr ""
+msgstr "Uppfæra"
 
 msgid "Reject Submission"
 msgstr ""
@@ -499,7 +502,7 @@ msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
 msgid "Submit"
-msgstr ""
+msgstr "Senda inn"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
@@ -509,7 +512,7 @@ msgid "Edit Block"
 msgstr ""
 
 msgid "versions"
-msgstr ""
+msgstr "útgáfur"
 
 msgid "{addon} was created."
 msgstr ""
@@ -563,7 +566,7 @@ msgid "{addon} {version} approved."
 msgstr ""
 
 msgid "Approved"
-msgstr ""
+msgstr "Samþykkt"
 
 msgid "{addon} {version} given preliminary review."
 msgstr ""
@@ -575,7 +578,7 @@ msgid "{addon} {version} rejected."
 msgstr ""
 
 msgid "Rejected"
-msgstr ""
+msgstr "Hafnað"
 
 msgid "{addon} {version} retained."
 msgstr ""
@@ -611,7 +614,7 @@ msgid "Comment on {addon} {version}."
 msgstr ""
 
 msgid "Commented"
-msgstr ""
+msgstr "Setti inn athugasemd"
 
 msgid "{tag} added to {addon}."
 msgstr ""
@@ -644,7 +647,7 @@ msgstr ""
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} bætt við"
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
@@ -681,7 +684,7 @@ msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 
 msgid "Password changed."
-msgstr ""
+msgstr "Lykilorði breytt."
 
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
@@ -690,16 +693,16 @@ msgid "Approved but waiting"
 msgstr ""
 
 msgid "Account updated."
-msgstr ""
+msgstr "Aðgangur uppfærður."
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "Búið til: {0}."
 
 msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Eytt: {1}."
 
 msgid "User {user} edited, reason: {1}"
 msgstr ""
@@ -895,31 +898,31 @@ msgid "Force enabled"
 msgstr ""
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Farsími"
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox fyrir Android"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Óþekkt"
 
 msgid "Incomplete"
-msgstr ""
+msgstr "Óklárað"
 
 msgid "Awaiting Review"
 msgstr ""
@@ -928,10 +931,10 @@ msgid "Disabled by Mozilla"
 msgstr ""
 
 msgid "Deleted"
-msgstr ""
+msgstr "Eytt"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Óskráð"
 
 msgid "Signing API"
 msgstr ""
@@ -939,26 +942,29 @@ msgstr ""
 msgid "Addon API"
 msgstr ""
 
-msgid "Owner"
+msgid "Automatically generated by AMO"
 msgstr ""
+
+msgid "Owner"
+msgstr "Eigandi"
 
 msgid "Developer"
-msgstr ""
+msgstr "Forritari"
 
 msgid "(Deleted)"
-msgstr ""
+msgstr "(eytt)"
 
 msgid "Extension"
-msgstr ""
+msgstr "Forritsauki"
 
 msgid "Deprecated Complete Theme"
 msgstr ""
 
 msgid "Dictionary"
-msgstr ""
+msgstr "Orðasafn"
 
 msgid "Search Engine"
-msgstr ""
+msgstr "Leitarvél"
 
 msgid "Language Pack (Application)"
 msgstr ""
@@ -967,7 +973,7 @@ msgid "Language Pack (Add-on)"
 msgstr ""
 
 msgid "Plugin"
-msgstr ""
+msgstr "Viðbót"
 
 msgid "Deprecated LWT"
 msgstr ""
@@ -975,26 +981,29 @@ msgstr ""
 msgid "Theme (Static)"
 msgstr ""
 
+msgid "Site Permission"
+msgstr "Heimild vefsvæðis"
+
 msgid "Extensions"
-msgstr ""
+msgstr "Forritsaukar"
 
 msgid "Deprecated Complete Themes"
 msgstr ""
 
 msgid "Dictionaries"
-msgstr ""
+msgstr "Orðasöfn"
 
 msgid "Search Tools"
-msgstr ""
+msgstr "Leitarverkfæri"
 
 msgid "Language Packs (Application)"
-msgstr ""
+msgstr "Tungumálapakkar (forrit)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Tungumálapakkar (viðbætur)"
 
 msgid "Plugins"
-msgstr ""
+msgstr "Viðbætur"
 
 msgid "Deprecated LWTs"
 msgstr ""
@@ -1002,20 +1011,23 @@ msgstr ""
 msgid "Themes (Static)"
 msgstr ""
 
+msgid "Site Permissions"
+msgstr "Heimildir vefsvæðis"
+
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Aðvaranir og uppfærslur"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
 
 msgid "Appearance"
-msgstr ""
+msgstr "Útlit"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
 msgstr ""
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "Bókamerki"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
 msgstr ""
@@ -1027,19 +1039,19 @@ msgid "Download Firefox extensions that can help download web, music and video c
 msgstr ""
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Streymi, fréttaveitur og blogg"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Leikir og afþreying"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
 
 msgid "Language Support"
-msgstr ""
+msgstr "Tungumálastuðningur"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
 msgstr ""
@@ -1051,7 +1063,7 @@ msgid "Download Firefox extensions that enhance photo, music and video experienc
 msgstr ""
 
 msgid "Privacy & Security"
-msgstr ""
+msgstr "Gagnaleynd og öryggi"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
@@ -1072,7 +1084,7 @@ msgid "Download Firefox extensions to enhance social media and instant messaging
 msgstr ""
 
 msgid "Tabs"
-msgstr ""
+msgstr "Flipar"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
@@ -1084,7 +1096,7 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr ""
 
 msgid "Other"
-msgstr ""
+msgstr "Annað"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -1096,13 +1108,13 @@ msgid "Download extensions to enhance Firefox for Android. Perform quick searche
 msgstr ""
 
 msgid "Experimental"
-msgstr ""
+msgstr "Á tilraunastigi"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
 
 msgid "Performance"
-msgstr ""
+msgstr "Afköst"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr ""
@@ -1114,13 +1126,13 @@ msgid "Download Firefox extensions to enhance photos and media. This category in
 msgstr ""
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Öryggi og gagnaleynd"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
 
 msgid "Social Networking"
-msgstr ""
+msgstr "Samfélagsmiðlar"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
 msgstr ""
@@ -1132,40 +1144,40 @@ msgid "Download Firefox extensions to give your entertainment experience a boost
 msgstr ""
 
 msgid "User Interface"
-msgstr ""
+msgstr "Notandaviðmót"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
 msgstr ""
 
 msgid "Animals"
-msgstr ""
+msgstr "Dýr"
 
 msgid "Compact"
-msgstr ""
+msgstr "Þjappað"
 
 msgid "Large"
-msgstr ""
+msgstr "Stórt"
 
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Ýmislegt"
 
 msgid "Modern"
-msgstr ""
+msgstr "Framúrstefnulegt"
 
 msgid "Nature"
-msgstr ""
+msgstr "Náttúra"
 
 msgid "OS Integration"
-msgstr ""
+msgstr "Samþætting við stýrikerfi"
 
 msgid "Retro"
-msgstr ""
+msgstr "Retró"
 
 msgid "Sports"
-msgstr ""
+msgstr "Íþróttir"
 
 msgid "Abstract"
-msgstr ""
+msgstr "Óhlutbundið"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
 msgstr ""
@@ -1177,13 +1189,13 @@ msgid "Download Firefox themes for niche interests and topics. This category inc
 msgstr ""
 
 msgid "Fashion"
-msgstr ""
+msgstr "Tíska"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
 msgstr ""
 
 msgid "Film and TV"
-msgstr ""
+msgstr "Kvikmyndir og sjónvarp"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
@@ -1192,19 +1204,19 @@ msgid "Download Firefox themes with the Firefox browser theme. This category inc
 msgstr ""
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
 msgstr ""
 
 msgid "Holiday"
-msgstr ""
+msgstr "Frítími og hátíðir"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
 msgstr ""
 
 msgid "Music"
-msgstr ""
+msgstr "Tónlist"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
@@ -1222,13 +1234,13 @@ msgid "Download Firefox themes that feature the environment and the natural worl
 msgstr ""
 
 msgid "Seasonal"
-msgstr ""
+msgstr "Árstíðabundið"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr ""
 
 msgid "Solid"
-msgstr ""
+msgstr "Gegnheilt"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
@@ -1237,46 +1249,70 @@ msgid "Download Firefox themes that feature a variety of sports. This category i
 msgstr ""
 
 msgid "Websites"
-msgstr ""
+msgstr "Vefsvæði"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
 msgstr ""
 
 msgid "General"
-msgstr ""
+msgstr "Almennt"
 
 msgid "Business"
-msgstr ""
+msgstr "Viðskipti"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr ""
+msgstr "Orðasöfn og alfræði"
 
 msgid "Kids"
-msgstr ""
+msgstr "Krakkar"
 
 msgid "Multiple Search"
 msgstr ""
 
 msgid "News & Blogs"
-msgstr ""
+msgstr "Fréttir og blogg"
 
 msgid "Photos & Images"
-msgstr ""
+msgstr "Myndefni"
 
 msgid "Shopping & E-Commerce"
-msgstr ""
+msgstr "Verslun og netviðskipti"
 
 msgid "Social & People"
-msgstr ""
+msgstr "Fólk og samfélag"
 
 msgid "Travel"
-msgstr ""
+msgstr "Ferðalög"
 
 msgid "Video"
+msgstr "Myndskeið"
+
+msgid "Mozilla Public License 2.0"
+msgstr ""
+
+msgid "GNU General Public License v2.0"
+msgstr ""
+
+msgid "GNU General Public License v3.0"
+msgstr ""
+
+msgid "GNU Library General Public License v2.1"
+msgstr ""
+
+msgid "GNU Library General Public License v3.0"
+msgstr ""
+
+msgid "The MIT License"
+msgstr "MIT notkunarleyfið"
+
+msgid "The BSD License"
+msgstr "BSD notkunarleyfið"
+
+msgid "Mozilla Public License 1.1"
 msgstr ""
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Öll réttindi áskilin"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
@@ -1300,37 +1336,37 @@ msgid "Not Promoted"
 msgstr ""
 
 msgid "Recommended"
-msgstr ""
+msgstr "Mælt með"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Kostað"
 
 msgid "Verified"
-msgstr ""
+msgstr "Sannreynt"
 
 msgid "By Firefox"
-msgstr ""
+msgstr "Af Firefox"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Kastljós"
 
 msgid "Strategic"
 msgstr ""
 
 msgid "Add-on"
-msgstr ""
+msgstr "Viðbót"
 
 msgid "Static Theme"
 msgstr ""
 
 msgid "Persona"
-msgstr ""
+msgstr "Persóna"
 
 msgid "Security"
-msgstr ""
+msgstr "Öryggi"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Gagnaleynd"
 
 msgid "Development Practices"
 msgstr ""
@@ -1339,13 +1375,13 @@ msgid "No Reputation"
 msgstr ""
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Gott (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Mjög gott (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Frábært (3)"
 
 msgid "Manual Reviewer Points"
 msgstr ""
@@ -1423,46 +1459,46 @@ msgid "Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr ""
+msgstr "1 stig"
 
 msgid "Level 2"
-msgstr ""
+msgstr "2 stig"
 
 msgid "Level 3"
-msgstr ""
+msgstr "3 stig"
 
 msgid "Level 4"
-msgstr ""
+msgstr "4 stig"
 
 msgid "Level 5"
-msgstr ""
+msgstr "5 stig"
 
 msgid "Level 6"
-msgstr ""
+msgstr "Stig 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Stig 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Stig 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Stig 9"
 
 msgid "Request More Info"
 msgstr ""
 
 msgid "Flag"
-msgstr ""
+msgstr "Fáni"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Tvítaka"
 
 msgid "Reject"
-msgstr ""
+msgstr "Hafna"
 
 msgid "Approve"
-msgstr ""
+msgstr "Samþykkja"
 
 msgid "Sexual or pornographic content"
 msgstr ""
@@ -1492,7 +1528,7 @@ msgid "Header image alignment problem"
 msgstr ""
 
 msgid "No action"
-msgstr ""
+msgstr "Engin aðgerð"
 
 msgid "Flag for human review"
 msgstr ""
@@ -1519,25 +1555,25 @@ msgid "Inconclusive"
 msgstr ""
 
 msgid "New"
-msgstr ""
+msgstr "Nýtt"
 
 msgid "Running"
-msgstr ""
+msgstr "Keyrandi"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Hætt við"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Hætti við"
 
 msgid "Completed"
-msgstr ""
+msgstr "Lokið"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Áætlað"
 
 msgid "Core"
-msgstr ""
+msgstr "Kjarni"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -1547,6 +1583,9 @@ msgid "Recent Changes for My Add-ons"
 msgstr ""
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
+msgstr ""
+
+msgid "The install origin {origin} is not permitted."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -1600,7 +1639,7 @@ msgid "Slug incorrect."
 msgstr ""
 
 msgid "Details"
-msgstr ""
+msgstr "Nánar"
 
 msgid "What is your license's name?"
 msgstr ""
@@ -1669,10 +1708,10 @@ msgid "Continue with existing upload instead?"
 msgstr ""
 
 msgid "Yes"
-msgstr ""
+msgstr "Já"
 
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 msgid "You have not uploaded a source file."
 msgstr ""
@@ -1692,7 +1731,7 @@ msgid ""
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "Birtingarnafn"
 
 msgid "Invalid or corrupt add-on file."
 msgstr ""
@@ -1714,19 +1753,19 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr ""
 
 msgid "Updated"
-msgstr ""
+msgstr "Uppfært"
 
 msgid "Name"
-msgstr ""
+msgstr "Heiti"
 
 msgid "Created"
-msgstr ""
+msgstr "Búið til"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Sótt gögn"
 
 msgid "Rating"
-msgstr ""
+msgstr "Einkunn"
 
 msgid "All My Add-ons"
 msgstr ""
@@ -1750,7 +1789,7 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "Sniði eytt."
 
 msgid "Add-on deleted."
 msgstr ""
@@ -1901,7 +1940,7 @@ msgid "Your account needs a display name set so users know who your add-on is co
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Samþykkja"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr ""
@@ -1911,7 +1950,7 @@ msgstr ""
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "{0} viðbætur"
 
 msgid "Return to the DevHub homepage"
 msgstr ""
@@ -1927,13 +1966,13 @@ msgid "Extension Workshop"
 msgstr ""
 
 msgid "Documentation"
-msgstr ""
+msgstr "Hjálparskjöl"
 
 msgid "Extension Development"
 msgstr ""
 
 msgid "Themes"
-msgstr ""
+msgstr "Þemu"
 
 msgid "Developer Policies"
 msgstr ""
@@ -1945,7 +1984,7 @@ msgid "Development Add-ons"
 msgstr ""
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Aðstoð og samfélag"
 
 msgid "Add-ons Blog"
 msgstr ""
@@ -1960,7 +1999,7 @@ msgid "Search Developer Docs"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Leita"
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -1976,7 +2015,7 @@ msgid "Validation Results for {0}"
 msgstr ""
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Niðurstöður fullgildingar"
 
 msgid "Validated at:"
 msgstr ""
@@ -1993,13 +2032,13 @@ msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)
 msgstr ""
 
 msgid "No results found."
-msgstr ""
+msgstr "Engar niðurstöður fundust."
 
 msgid "Refine Activity"
 msgstr ""
 
 msgid "Activity"
-msgstr ""
+msgstr "Virkni"
 
 msgid "Subscribe to this feed"
 msgstr ""
@@ -2011,16 +2050,14 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
 msgstr ""
 
 msgid "Compatibility"
-msgstr ""
+msgstr "Samhæfni"
 
 msgid "Update Compatibility"
 msgstr ""
@@ -2029,37 +2066,37 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr ""
 
 msgid "Application"
-msgstr ""
+msgstr "Forrit"
 
 msgid "Supported Versions"
 msgstr ""
 
 msgid "Remove"
-msgstr ""
+msgstr "Fjarlægja"
 
 msgid "Add Another Application&hellip;"
 msgstr ""
 
 msgid "Save Changes"
-msgstr ""
+msgstr "Vista breytingar"
 
 msgid "or"
-msgstr ""
+msgstr "eða"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Hætta við"
 
 msgid "Close"
-msgstr ""
+msgstr "Loka"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> viðbót"
+msgstr[1] "<b>{0}</b> viðbætur"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "Nýleg virkni"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
@@ -2071,17 +2108,17 @@ msgstr ""
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> þema"
+msgstr[1] "<b>{0}</b> þemu"
 
 msgid "Edit Product Page"
 msgstr ""
 
 msgid "None"
-msgstr ""
+msgstr "Ekkert"
 
 msgid "Preview"
-msgstr ""
+msgstr "Forskoða"
 
 msgid "Preview of listed version"
 msgstr ""
@@ -2099,7 +2136,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Decline"
-msgstr ""
+msgstr "Hafna"
 
 msgid "Manage Authors & License"
 msgstr ""
@@ -2122,13 +2159,13 @@ msgid "Additional Details"
 msgstr ""
 
 msgid "Edit"
-msgstr ""
+msgstr "Breyta"
 
 msgid "Additional Details for {0}"
 msgstr ""
 
 msgid "Tags"
-msgstr ""
+msgstr "Merki"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
 msgstr ""
@@ -2149,7 +2186,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr ""
+msgstr "Heimasíða"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
@@ -2161,7 +2198,7 @@ msgstr ""
 
 #. {0} is the addon name
 msgid "Describe {0}"
-msgstr ""
+msgstr "Lýstu {0}"
 
 msgid "Name and Summary"
 msgstr ""
@@ -2172,7 +2209,7 @@ msgid ""
 msgstr ""
 
 msgid "Summary"
-msgstr ""
+msgstr "Samantekt"
 
 msgid "Add-on URL"
 msgstr ""
@@ -2190,10 +2227,10 @@ msgid "This summary should clearly explain what your add-on does. It will be sho
 msgstr ""
 
 msgid "Description"
-msgstr ""
+msgstr "Lýsing"
 
 msgid "Experimental?"
-msgstr ""
+msgstr "Á tilraunastigi?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -2217,21 +2254,21 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr ""
 
 msgid "Categories"
-msgstr ""
+msgstr "Flokkar"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
 
 msgid "Email"
-msgstr ""
+msgstr "Tölvupóstur"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
-msgstr ""
+msgstr "Vefsvæði"
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
@@ -2239,10 +2276,10 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "Myndir"
 
 msgid "Technical Details"
-msgstr ""
+msgstr "Tæknilegar upplýsingar"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
@@ -2260,7 +2297,7 @@ msgid "Universally unique identifier"
 msgstr ""
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
 msgstr ""
@@ -2321,7 +2358,7 @@ msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Skjámyndir"
 
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr ""
@@ -2342,7 +2379,7 @@ msgid "Having screenshots in your product page greatly increases its chances of 
 msgstr ""
 
 msgid "Continue"
-msgstr ""
+msgstr "Halda áfram"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
 msgstr ""
@@ -2396,7 +2433,7 @@ msgid "Hide messages present in previous version and ignored"
 msgstr ""
 
 msgid "Top"
-msgstr ""
+msgstr "Efst"
 
 msgid "Delete Add-on"
 msgstr ""
@@ -2413,13 +2450,13 @@ msgid "Please tell us why you are deleting your add-on:"
 msgstr ""
 
 msgid "Actions"
-msgstr ""
+msgstr "Aðgerðir"
 
 msgid "Resume the submission process for this add-on"
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "Halda áfram"
 
 msgid "Delete this add-on."
 msgstr ""
@@ -2431,13 +2468,13 @@ msgid "Upload a new version of this add-on"
 msgstr ""
 
 msgid "New Version"
-msgstr ""
+msgstr "Ný útgáfa"
 
 msgid "Daily statistics on downloads and users"
 msgstr ""
 
 msgid "Statistics"
-msgstr ""
+msgstr "Tölfræði"
 
 msgid "Manage Status & Versions"
 msgstr ""
@@ -2460,8 +2497,8 @@ msgstr[1] ""
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> virkur notandi"
+msgstr[1] "<strong>{0}</strong> virkir notendur"
 
 msgid "Submit a New Version"
 msgstr ""
@@ -2482,7 +2519,7 @@ msgid "Name and Summary:"
 msgstr ""
 
 msgid "required"
-msgstr ""
+msgstr "nauðsynlegt"
 
 #, python-format
 msgid ""
@@ -2497,16 +2534,16 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
 msgid "Name:"
-msgstr ""
+msgstr "Heiti:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
 msgid "Summary:"
-msgstr ""
+msgstr "Samantekt:"
 
 msgid "Description:"
-msgstr ""
+msgstr "Lýsing:"
 
 msgid "This add-on is experimental"
 msgstr ""
@@ -2524,7 +2561,7 @@ msgid "Support website:"
 msgstr ""
 
 msgid "License:"
-msgstr ""
+msgstr "Notkunarleyfi:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -2539,7 +2576,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "Remember"
-msgstr ""
+msgstr "Muna"
 
 #, python-format
 msgid ""
@@ -2557,7 +2594,7 @@ msgid "Describe Version"
 msgstr ""
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "Útgáfuupplýsingar:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -2691,7 +2728,7 @@ msgid "Where to Host Version"
 msgstr ""
 
 msgid "Change"
-msgstr ""
+msgstr "Breyta"
 
 msgid "Upload Version"
 msgstr ""
@@ -2745,7 +2782,7 @@ msgid "Select colors for your theme"
 msgstr ""
 
 msgid "optional"
-msgstr ""
+msgstr "valfrjálst"
 
 msgid "Browser preview"
 msgstr ""
@@ -2757,7 +2794,7 @@ msgid "Finish Theme"
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "Til baka"
 
 msgid "API Credentials"
 msgstr ""
@@ -2777,8 +2814,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2792,7 +2829,7 @@ msgid "You don't have any API credentials."
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "Afturkalla"
 
 msgid "Revoke and regenerate credentials"
 msgstr ""
@@ -2850,15 +2887,14 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
 
 msgid "Invisible"
-msgstr ""
+msgstr "Ósýnilegt"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -2877,18 +2913,18 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "Búið til:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr ""
+msgstr "Síðast uppfært:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
 msgid "Status:"
-msgstr ""
+msgstr "Staða:"
 
 msgid "Listed Version:"
 msgstr ""
@@ -2906,7 +2942,7 @@ msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
 msgid "Latest Version:"
-msgstr ""
+msgstr "Nýjasta útgáfa:"
 
 msgid "This is the newest uploaded unlisted version"
 msgstr ""
@@ -2915,7 +2951,7 @@ msgid "Upload New Version"
 msgstr ""
 
 msgid "View All"
-msgstr ""
+msgstr "Birta allt"
 
 msgid "Listed Review Page"
 msgstr ""
@@ -2936,7 +2972,7 @@ msgid "View the blog &#9658;"
 msgstr ""
 
 msgid "License"
-msgstr ""
+msgstr "Notkunarleyfi"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -2966,7 +3002,7 @@ msgid "Please note that a EULA is not the same as a code license, such as the GP
 msgstr ""
 
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Meðferð persónuupplýsinga"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -2993,10 +3029,10 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
-msgstr ""
+msgstr "Fyrir forritara"
 
 msgid "For end users"
 msgstr ""
@@ -3014,23 +3050,23 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
 msgid "Email Address"
-msgstr ""
+msgstr "Tölvupóstfang"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
 msgid "Sign Up"
-msgstr ""
+msgstr "Nýskrá"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Takk!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
 
 msgid "Resources"
-msgstr ""
+msgstr "Tilföng"
 
 msgid "WebExtensions API"
 msgstr ""
@@ -3039,7 +3075,7 @@ msgid "Web-Ext: build & test extensions"
 msgstr ""
 
 msgid "Promote"
-msgstr ""
+msgstr "Hækka í tign"
 
 msgid "\"Get The Add-on\" button"
 msgstr ""
@@ -3048,7 +3084,7 @@ msgid "Recommended Extensions program"
 msgstr ""
 
 msgid "Contribute"
-msgstr ""
+msgstr "Taktu þátt"
 
 msgid "Review Add-ons"
 msgstr ""
@@ -3057,7 +3093,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "Gakktu til liðs við okkur!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -3066,7 +3102,7 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 msgid "Get started"
-msgstr ""
+msgstr "Komast í gang"
 
 msgid "More Ways to Participate"
 msgstr ""
@@ -3078,7 +3114,7 @@ msgid "See how"
 msgstr ""
 
 msgid "Get involved"
-msgstr ""
+msgstr "Taktu þátt"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -3106,13 +3142,13 @@ msgid "Add-on Developer Hub"
 msgstr ""
 
 msgid "Support"
-msgstr ""
+msgstr "Aðstoð"
 
 msgid "Blog"
-msgstr ""
+msgstr "Blogg"
 
 msgid "Sign Out"
-msgstr ""
+msgstr "Skrá út"
 
 msgid "No Photo"
 msgstr ""
@@ -3121,7 +3157,7 @@ msgid "User Photo"
 msgstr ""
 
 msgid "Profile"
-msgstr ""
+msgstr "Snið"
 
 msgid "Submit or Manage Extensions"
 msgstr ""
@@ -3146,10 +3182,10 @@ msgstr ""
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
-msgstr ""
+msgstr "Sýsla með {0}"
 
 msgid "Files"
-msgstr ""
+msgstr "Skrár"
 
 msgid "Version Notes"
 msgstr ""
@@ -3169,7 +3205,7 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr ""
 
 msgid "Source code"
-msgstr ""
+msgstr "Grunnkóði"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
@@ -3216,13 +3252,13 @@ msgid "Load older..."
 msgstr ""
 
 msgid "by"
-msgstr ""
+msgstr "eftir"
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Settu inn svar"
 
 msgid "Reply"
-msgstr ""
+msgstr "Svara"
 
 msgid "Listing visibility"
 msgstr ""
@@ -3241,10 +3277,10 @@ msgid "Currently on AMO"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "Staða"
 
 msgid "Validation"
-msgstr ""
+msgstr "Fullgilding"
 
 msgid "Delete/Disable"
 msgstr ""
@@ -3253,7 +3289,7 @@ msgid "Next version of this add-on"
 msgstr ""
 
 msgid "Other versions"
-msgstr ""
+msgstr "Aðrar útgáfur"
 
 msgid "All versions"
 msgstr ""
@@ -3262,7 +3298,7 @@ msgid "Upload a New Version"
 msgstr ""
 
 msgid "Version"
-msgstr ""
+msgstr "Útgáfa"
 
 msgid "Delete Version {version}"
 msgstr ""
@@ -3281,7 +3317,7 @@ msgid "Are you sure you wish to delete this version?"
 msgstr ""
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Eyða útgáfu"
 
 msgid "Disable Version"
 msgstr ""
@@ -3313,14 +3349,14 @@ msgstr ""
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} villa"
+msgstr[1] "{0} villur"
 
 #. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} aðvörun"
+msgstr[1] "{0} aðvaranir"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3446,7 +3482,6 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr ""
 
@@ -3514,7 +3549,8 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+#. editorial content for the primary hero shelves.
+msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3523,7 +3559,6 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
@@ -3600,7 +3635,6 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
@@ -4214,6 +4248,18 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr ""
 
@@ -4257,6 +4303,22 @@ msgstr ""
 msgid "Take emojis with you everywhere on the web."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Put restrictions on distracting, time-wasting websites."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove clutter from your Twitter."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize YouTube to taste."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Delete browsing data directly from the browser toolbar."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4270,16 +4332,19 @@ msgid "See all extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
+msgid "Top extensions of 2021"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Steam extensions"
+msgstr "Steam-viðaukar"
+
+#. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Strong password managers"
+msgid "Read more"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4327,6 +4392,10 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
+msgid "Strong password managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr ""
 
@@ -4371,7 +4440,7 @@ msgid "See more ad blocker staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "YouTube boosters"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -4453,7 +4522,7 @@ msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Óvænt villa."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
@@ -4463,7 +4532,7 @@ msgid "Review Guidelines"
 msgstr ""
 
 msgid "Sections"
-msgstr ""
+msgstr "Hlutar"
 
 msgid "Some tips for writing a great review"
 msgstr ""
@@ -4472,12 +4541,12 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "Gera:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
@@ -4507,7 +4576,7 @@ msgid "Take a moment to read your review before submitting it to minimize typos.
 msgstr ""
 
 msgid "Don’t:"
-msgstr ""
+msgstr "Ekki:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
@@ -4564,10 +4633,10 @@ msgid ""
 msgstr ""
 
 msgid "User"
-msgstr ""
+msgstr "Notandi"
 
 msgid "IP Address"
-msgstr ""
+msgstr "IP-vistfang"
 
 msgid "Spam or otherwise non-review content"
 msgstr ""
@@ -4582,7 +4651,7 @@ msgid "Other (please specify)"
 msgstr ""
 
 msgid "This field is required."
-msgstr ""
+msgstr "Fylla þarf út þennan reit."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
@@ -4636,7 +4705,7 @@ msgid "View entries between"
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "og"
 
 msgid "Filter by type/action"
 msgstr ""
@@ -4649,20 +4718,20 @@ msgstr ""
 
 #. L10n: end, as in "end date"
 msgid "end"
-msgstr ""
+msgstr "endir"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
 msgstr ""
 
 msgid "Comments:"
-msgstr ""
+msgstr "Athugasemdir:"
 
 msgid "Operating systems:"
 msgstr ""
 
 msgid "Applications:"
-msgstr ""
+msgstr "Forrit:"
 
 msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr ""
@@ -4740,10 +4809,10 @@ msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
 msgid "ID"
-msgstr ""
+msgstr "Auðkenni"
 
 msgid "Flags"
-msgstr ""
+msgstr "Flögg"
 
 msgid "Last Review"
 msgstr ""
@@ -4761,7 +4830,7 @@ msgid "Maliciousness Score"
 msgstr ""
 
 msgid "Type"
-msgstr ""
+msgstr "Tegund"
 
 msgid "Waiting Time"
 msgstr ""
@@ -4770,7 +4839,7 @@ msgid "Pending Rejection Deadline"
 msgstr ""
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Síðast uppfært"
 
 msgid "Listed versions needing human review ({0})"
 msgstr ""
@@ -4833,7 +4902,7 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Comment"
-msgstr ""
+msgstr "Athugasemd"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
@@ -4842,13 +4911,13 @@ msgid "Pre-Review Add-ons"
 msgstr ""
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Mælt með ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr ""
 
 msgid "Review Log"
-msgstr ""
+msgstr "Yfirferðarskrá"
 
 msgid "Add-on Review Guide"
 msgstr ""
@@ -4881,10 +4950,10 @@ msgid "Content Review ({0})"
 msgstr ""
 
 msgid "New ({0})"
-msgstr ""
+msgstr "Nýtt ({0})"
 
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Uppfærslur ({0})"
 
 msgid "Theme Review Guide"
 msgstr ""
@@ -4911,7 +4980,7 @@ msgid "Unlisted Add-ons Pending Manual Approval"
 msgstr ""
 
 msgid "Announcement"
-msgstr ""
+msgstr "Tilkynning"
 
 msgid "Update message of the day"
 msgstr ""
@@ -4920,7 +4989,7 @@ msgid "Add-ons Pending Rejection ({0})"
 msgstr ""
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Óþekkt villa kom upp"
 
 msgid "Self-reviews are not allowed."
 msgstr ""
@@ -4966,10 +5035,10 @@ msgid "Support Website"
 msgstr ""
 
 msgid "Visibility"
-msgstr ""
+msgstr "Sýnileiki"
 
 msgid "Visible"
-msgstr ""
+msgstr "Sýnilegt"
 
 msgid "Weekly Downloads"
 msgstr ""
@@ -4981,10 +5050,10 @@ msgid "View Privacy Policy"
 msgstr ""
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "Krefst greiðslu"
 
 msgid "EULA"
-msgstr ""
+msgstr "EULA-skilmálar"
 
 msgid "View End-User License Agreement"
 msgstr ""
@@ -5029,26 +5098,26 @@ msgid "No review points awarded yet."
 msgstr ""
 
 msgid "Rank"
-msgstr ""
+msgstr "Sæti"
 
 msgid "Score"
-msgstr ""
+msgstr "Einkunn"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
 msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "Sía"
 
 msgid "Date"
-msgstr ""
+msgstr "Dagsetning"
 
 msgid "Event"
-msgstr ""
+msgstr "Atvik"
 
 msgid "More details."
-msgstr ""
+msgstr "Nánari upplýsingar."
 
 msgid "No events found for this period."
 msgstr ""
@@ -5073,7 +5142,7 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
+msgstr "Endurvekja"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5117,7 +5186,7 @@ msgid "There are currently no add-ons of this type to review."
 msgstr ""
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Hjálplegir tenglar:"
 
 msgid "Add-on Policy"
 msgstr ""
@@ -5134,7 +5203,7 @@ msgstr ""
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "Yfirferð {0}"
 
 msgid "Add-on important changes history"
 msgstr ""
@@ -5155,10 +5224,10 @@ msgid "Insert canned response..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "Skrár:"
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Prófað á:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
@@ -5173,7 +5242,7 @@ msgid "Update whiteboards"
 msgstr ""
 
 msgid "More Actions"
-msgstr ""
+msgstr "Fleiri aðgerðir"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -5245,7 +5314,7 @@ msgid "Update add-on block"
 msgstr ""
 
 msgid "(admin)"
-msgstr ""
+msgstr "(stjórnandi)"
 
 msgid "Admin Page"
 msgstr ""
@@ -5254,40 +5323,40 @@ msgid "Review This Add-on"
 msgstr ""
 
 msgid "More Information"
-msgstr ""
+msgstr "Nánari upplýsingar"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Upplausn"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
 msgstr ""
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Höfundur umsagnar"
 
 msgid "Add-on has been deleted."
 msgstr ""
 
 msgid "Show Comments"
-msgstr ""
+msgstr "Birta athugasemdir"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "Fela athugasemdir"
 
 msgid "No reviews found for this period."
 msgstr ""
 
 msgid "Origin:"
-msgstr ""
+msgstr "Upphaf:"
 
 msgid "Method:"
-msgstr ""
+msgstr "Aðferð:"
 
 msgid "Source:"
-msgstr ""
+msgstr "Uppruni:"
 
 msgid "Source URL:"
-msgstr ""
+msgstr "Uppruni:"
 
 msgid "Dismiss this announcement"
 msgstr ""
@@ -5302,16 +5371,16 @@ msgid "Browse all files in this version"
 msgstr ""
 
 msgid "Contents"
-msgstr ""
+msgstr "Innihald"
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
 msgid "Compare"
-msgstr ""
+msgstr "Bera saman"
 
 msgid "Permissions:"
-msgstr ""
+msgstr "Heimildir:"
 
 msgid "Optional permissions:"
 msgstr ""
@@ -5321,10 +5390,10 @@ msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
 
 msgid "Older"
-msgstr ""
+msgstr "Eldri"
 
 msgid "Newer"
-msgstr ""
+msgstr "Nýrri"
 
 msgid "{num} versions flagged by scanners on other pages."
 msgstr ""
@@ -5348,17 +5417,17 @@ msgid "No top reviewers yet."
 msgstr ""
 
 msgid "All Time"
-msgstr ""
+msgstr "Allra tíma"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr ""
 
 msgid "Theme"
-msgstr ""
+msgstr "Þema"
 
 msgid "No results found"
-msgstr ""
+msgstr "Engar niðurstöður fundust"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5369,13 +5438,13 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr ""
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(staðfest)"
 
 msgid "Pending Rejection on review of new version"
 msgstr ""
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "Samhæfni:"
 
 msgid "Additional sources:"
 msgstr ""
@@ -5405,7 +5474,7 @@ msgid "Flagged for human review"
 msgstr ""
 
 msgid "Download"
-msgstr ""
+msgstr "Sækja"
 
 msgid "Not Auto Approved Because"
 msgstr ""
@@ -5427,7 +5496,7 @@ msgid "Other Pending Review"
 msgstr ""
 
 msgid "Updates"
-msgstr ""
+msgstr "Uppfærslur"
 
 msgid "Rating Reviews"
 msgstr ""
@@ -5491,10 +5560,10 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Hætta við"
 
 msgid "Run"
-msgstr ""
+msgstr "Keyra"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5553,7 +5622,7 @@ msgid "No uploaded file for that addon and version."
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "Yfirlit"
 
 msgid "by Source"
 msgstr ""
@@ -5562,43 +5631,43 @@ msgid "by Medium"
 msgstr ""
 
 msgid "by Content"
-msgstr ""
+msgstr "eftir efni"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "eftir kynningarátaki"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Daglegir notendur"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "eftir útgáfu viðbótar"
 
 msgid "by Application"
-msgstr ""
+msgstr "eftir forritum"
 
 msgid "by Language"
-msgstr ""
+msgstr "eftir tungumáli"
 
 msgid "by Platform"
-msgstr ""
+msgstr "eftir stýrikerfum"
 
 msgid "by Country"
-msgstr ""
+msgstr "eftir löndum"
 
 msgid "close"
-msgstr ""
+msgstr "loka"
 
 msgid "Custom Date Range"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "Frá"
 
 msgid "To"
-msgstr ""
+msgstr "Til"
 
 msgid "Export"
-msgstr ""
+msgstr "Flytja út"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -5612,46 +5681,46 @@ msgstr ""
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Tölfræði fyrir {0}"
 
 msgid "Statistics Dashboard"
 msgstr ""
 
 msgid "Controls:"
-msgstr ""
+msgstr "Stýringar:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "endurstilla aðdrátt"
 
 msgid "Group by:"
-msgstr ""
+msgstr "Hópa eftir:"
 
 msgid "day"
-msgstr ""
+msgstr "dagur"
 
 msgid "week"
-msgstr ""
+msgstr "vika"
 
 msgid "month"
-msgstr ""
+msgstr "mánuður"
 
 msgid "For last:"
-msgstr ""
+msgstr "Síðustu:"
 
 msgid "7 days"
-msgstr ""
+msgstr "7 daga"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 daga"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 daga"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 daga"
 
 msgid "Custom..."
-msgstr ""
+msgstr "Sérsniðið..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
 msgstr ""
@@ -5696,7 +5765,7 @@ msgid "<b>{0}</b> Weekly Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr ""
+msgstr "Hleð inn..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
@@ -5752,13 +5821,13 @@ msgid "Legal Notices"
 msgstr ""
 
 msgid "Report Trademark Abuse"
-msgstr ""
+msgstr "Tilkynna misnotkun á vörumerki"
 
 msgid "Site Status"
 msgstr ""
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Tilkynna um villu"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
@@ -5769,53 +5838,53 @@ msgid "get to know <b>add-ons</b>"
 msgstr ""
 
 msgid "About"
-msgstr ""
+msgstr "Um hugbúnaðinn"
 
 msgid "Forum"
-msgstr ""
+msgstr "Vefspjall"
 
 msgid "Download Firefox"
-msgstr ""
+msgstr "Sækja Firefox"
 
 msgid "Android Browser"
-msgstr ""
+msgstr "Android vafra"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS vafra"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus vafra"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Vafri"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
 
 msgid "Other languages"
-msgstr ""
+msgstr "Önnur tungumál"
 
 msgid "Go"
-msgstr ""
+msgstr "Fara"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr ""
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Viðbætur"
 
 msgid "Add-ons"
-msgstr ""
+msgstr "Viðbætur"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr ""
 
 msgid "Required fields"
-msgstr ""
+msgstr "Nauðsynlegir reitir"
 
 msgid "(optional)"
-msgstr ""
+msgstr "(valfrjálst)"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5837,7 +5906,7 @@ msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save
 msgstr ""
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Henda breytingum"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
@@ -5866,7 +5935,7 @@ msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr ""
 
 msgid "Reset session"
-msgstr ""
+msgstr "Frumstilla setu"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -5879,7 +5948,7 @@ msgid "Profile Photo"
 msgstr ""
 
 msgid "Collections"
-msgstr ""
+msgstr "Söfn"
 
 msgid "Activity Logs"
 msgstr ""
@@ -5905,9 +5974,7 @@ msgstr ""
 msgid "Email Pattern"
 msgstr ""
 
-msgid ""
-"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
-" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
@@ -5919,8 +5986,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5957,13 +6024,13 @@ msgid "User Notifications"
 msgstr ""
 
 msgid "Ban"
-msgstr ""
+msgstr "Banna"
 
 msgid "Reset session(s)"
-msgstr ""
+msgstr "Frumstilla lotu(r)"
 
 msgid "Delete picture"
-msgstr ""
+msgstr "Eyða mynd"
 
 #, python-format
 msgid ""
@@ -5976,8 +6043,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6018,7 +6084,7 @@ msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "aðrir"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} og nýrra"

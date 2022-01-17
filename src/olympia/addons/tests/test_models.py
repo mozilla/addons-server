@@ -2721,6 +2721,20 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
 
+    def test_activity_log(self):
+        core.set_user(self.user)
+        self.upload = self.get_upload('webextension.xpi')
+        parsed_data = parse_addon(self.upload, user=self.user)
+        addon = Addon.from_upload(
+            self.upload, [self.selected_app], parsed_data=parsed_data
+        )
+        assert addon
+        assert (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.CREATE_ADDON.id)
+            .exists()
+        )
+
 
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
 

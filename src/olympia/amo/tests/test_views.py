@@ -291,26 +291,28 @@ class TestOtherStuff(TestCase):
 
         title_eq('/firefox/', 'Firefox', 'Add-ons')
 
-    @patch(
-        'olympia.accounts.utils.default_fxa_login_url',
-        lambda request: 'https://login.com',
-    )
     def test_login_link(self):
-        r = self.client.get(reverse('apps.appversions'), follow=True)
-        doc = pq(r.content)
-        assert 'https://login.com' == (doc('.account.anonymous a')[1].attrib['href'])
+        response = self.client.get(reverse('apps.appversions'), follow=True)
+        doc = pq(response.content)
+        expected_link = (
+            'http://testserver/api/v5/accounts/login/start/'
+            '?to=%2Fen-US%2Ffirefox%2Fpages%2Fappversions%2F'
+        )
+        assert doc('.account.anonymous a')[1].attrib['href'] == expected_link
 
     def test_tools_loggedout(self):
-        r = self.client.get(reverse('apps.appversions'), follow=True)
-        assert pq(r.content)('#aux-nav .tools').length == 0
+        response = self.client.get(reverse('apps.appversions'), follow=True)
+        assert pq(response.content)('#aux-nav .tools').length == 0
 
     def test_language_selector(self):
         doc = pq(test.Client().get('/en-US/firefox/pages/appversions/').content)
         assert doc('form.languages option[selected]').attr('value') == 'en-us'
 
     def test_language_selector_variables(self):
-        r = self.client.get('/en-US/firefox/pages/appversions/?foo=fooval&bar=barval')
-        doc = pq(r.content)('form.languages')
+        response = self.client.get(
+            '/en-US/firefox/pages/appversions/?foo=fooval&bar=barval'
+        )
+        doc = pq(response.content)('form.languages')
 
         assert doc('input[type=hidden][name=foo]').attr('value') == 'fooval'
         assert doc('input[type=hidden][name=bar]').attr('value') == 'barval'

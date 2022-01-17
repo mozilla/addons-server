@@ -482,15 +482,8 @@ function initUploadIcon() {
       $('#icon_preview').show();
 
       $('#icon_preview_32 img').attr('src', $('img', $parent).attr('src'));
-      $('#icon_preview_64 img').attr(
-        'src',
-        $('img', $parent).attr('src').replace(/32/, '64'),
-      );
-      $('#icon_preview_128 img').attr(
-        'src',
-        $('img', $parent).attr('src').replace(/32/, '128'),
-      );
-
+      $('#icon_preview_64 img').attr('src', $('img', $parent).data('src-64'));
+      $('#icon_preview_128 img').attr('src', $('img', $parent).data('src-128'));
       $error_list.html('');
     },
   );
