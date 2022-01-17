@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-17 21:22+0000\n"
+"PO-Revision-Date: 2022-01-17 21:33+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -999,9 +999,8 @@ msgstr "LWT obsolete"
 msgid "Theme (Static)"
 msgstr "Thema (Static)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Permissiones:"
+msgstr "Permission del sito"
 
 msgid "Extensions"
 msgstr "Extensiones"
@@ -1030,9 +1029,8 @@ msgstr "LWTs obsolete"
 msgid "Themes (Static)"
 msgstr "Themas (Static)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Permissiones:"
+msgstr "Permissiones del sito"
 
 msgid "Alerts & Updates"
 msgstr "Alertas & actualisationes"
@@ -1329,13 +1327,11 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Licentias"
+msgstr "Licentia de MIT"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Licentias"
+msgstr "Licentia de BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Licentia public Mozilla 1.1"
@@ -4363,9 +4359,8 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Trova tu sur le web un imagine interessante? Usa TinEye pro explorar su origines."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Lege files ePub directemente in Firefox. Aggrandi le litteras, augmenta le dimension del pagina, e multo plus."
+msgstr "Lege files ePUB directemente in Firefox, aggrandi le litteras, augmenta le dimensiones del pagina, e plus."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
