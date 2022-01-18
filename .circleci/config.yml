@@ -468,7 +468,7 @@ commands:
       - run:
           name: Initial setup
           command: |
-            curl -sL https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb --output mysql-apt-config.deb
+            curl -sL https://dev.mysql.com/get/mysql-apt-config_0.8.22-1_all.deb --output mysql-apt-config.deb
             sudo dpkg -i mysql-apt-config.deb
             sudo apt-get update -q
             sudo apt-get install -y gettext pngcrush librsvg2-bin libmysqlclient-dev libgit2-dev

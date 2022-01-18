@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-14 14:30+0000\n"
+"PO-Revision-Date: 2022-01-17 20:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -996,9 +996,8 @@ msgstr "Zestarjona lažka drastwa"
 msgid "Theme (Static)"
 msgstr "Drastwa (statiska)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Pšawa:"
+msgstr "Sedłowe pšawo"
 
 msgid "Extensions"
 msgstr "Rozšyrjenja"
@@ -1027,9 +1026,8 @@ msgstr "Zestarjone lažke drastwy"
 msgid "Themes (Static)"
 msgstr "Drastwy (statiske)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Pšawa:"
+msgstr "Sedłowe pšawa"
 
 msgid "Alerts & Updates"
 msgstr "Pokaze a aktualizacije"
@@ -1326,13 +1324,11 @@ msgstr "Licenca GNU Library General Public License v2.1"
 msgid "GNU Library General Public License v3.0"
 msgstr "Licenca GNU Library General Public License v3.0"
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Licenca"
+msgstr "MIT-licenca"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Licenca"
+msgstr "BSD-licenca"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Licenca Mozilla Public License 1.1"
@@ -4381,17 +4377,14 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Sćo namakał zajmny wobraz w interneśe? Wužywajśo TinEye, aby wuslěźił, wótkul póchada."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Cytajśo ePub-dataje direktnje w Firefox - pówušćo wjelikosć pisma, wótměry boka a wěcej."
+msgstr "Cytajśo ePUB-dataje direktnje w Firefox - pówušćo wjelikosć pisma, wótměry boka a wěcej."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Pśiměrśo gesty myški. Namakajśo nowu móžnosć, aby z wěcej ako 50 konfiguracijami nawigěrował."
+msgstr "Pśiměrśo gesty myški. Namakajśo nowe móžnosći, aby z wěcej ako 50 konfiguracijami nawigěrował."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Wužywajśo gesty myški, aby rejtariki zacynił, jaden bok slědk šeł, znowego zacytał a wěcej."
 
@@ -4468,23 +4461,20 @@ msgid "See all extensions"
 msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top extensions of 2021"
-msgstr "Woblubowane rozšyrjenja"
+msgstr "Woblubowane rozšyrjenja 2021"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Steam extensions"
-msgstr "Wšykne rozšyrjenja pokazaś"
+msgstr "Rozšěrjenja Steam"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
 msgstr "Zmócnjaki produktiwnosći"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Read more"
-msgstr "Składowaś a wěcej pśidaś"
+msgstr "Wěcej cytaś"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
