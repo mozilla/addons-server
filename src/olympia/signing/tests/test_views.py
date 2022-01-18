@@ -145,7 +145,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert (
             ActivityLog.objects.for_addons(addon)
             .filter(action=amo.LOG.CREATE_ADDON.id)
-            .exists()
+            .count()
+            == 1
         )
 
     def test_new_addon_random_slug_unlisted_channel(self):

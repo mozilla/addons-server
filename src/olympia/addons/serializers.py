@@ -6,8 +6,7 @@ from django.urls import reverse
 
 from rest_framework import exceptions, fields, serializers
 
-import olympia.core.logger
-from olympia import activity, amo
+from olympia import amo
 from olympia.accounts.serializers import (
     BaseUserSerializer,
     UserProfileBasketSyncSerializer,
@@ -1030,11 +1029,6 @@ class AddonSerializer(serializers.ModelSerializer):
 
         self.fields['version'].create(
             {**validated_data.get('version', {}), 'addon': addon}
-        )
-
-        activity.log_create(amo.LOG.CREATE_ADDON, addon)
-        olympia.core.logger.getLogger('z.addons').info(
-            f'New addon {addon!r} from {upload!r}'
         )
 
         if (
