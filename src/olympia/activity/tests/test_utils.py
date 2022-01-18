@@ -19,7 +19,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.activity.models import MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken
 from olympia.activity.utils import (
     ACTIVITY_MAIL_GROUP,
-    ADDON_REVIEWER,
+    ADDON_REVIEWER_NAME,
     ActivityEmailEncodingError,
     ActivityEmailError,
     ActivityEmailParser,
@@ -309,6 +309,7 @@ class TestLogAndNotify(TestCase):
         call,
         url,
         reason_text,
+        *,
         author,
         is_from_developer=False,
         is_to_developer=False,
@@ -324,7 +325,7 @@ class TestLogAndNotify(TestCase):
         assert 'If we do not hear from you within' not in body
         assert self.reviewer.name not in body
         if is_to_developer and not is_from_developer:
-            assert ('%s wrote:' % ADDON_REVIEWER) in body
+            assert ('%s wrote:' % ADDON_REVIEWER_NAME) in body
         else:
             assert ('%s wrote:' % author.name) in body
 
@@ -356,9 +357,9 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            self.developer,
-            True,
-            True,
+            author=self.developer,
+            is_from_developer=True,
+            is_to_developer=True,
         )
         review_url = absolutify(
             reverse(
@@ -371,9 +372,9 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[1],
             review_url,
             'you reviewed this add-on.',
-            self.developer,
-            True,
-            True,
+            author=self.developer,
+            is_from_developer=True,
+            is_to_developer=True,
         )
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -391,7 +392,7 @@ class TestLogAndNotify(TestCase):
         assert logs[0].details['comments'] == 'Thîs ïs a revïewer replyîng'
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr((ADDON_REVIEWER, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr((ADDON_REVIEWER_NAME, NOTIFICATIONS_FROM_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2
@@ -404,17 +405,17 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            self.developer,
-            False,
-            True,
+            author=self.reviewer,
+            is_from_developer=False,
+            is_to_developer=True,
         )
         self._check_email(
             send_mail_mock.call_args_list[1],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            self.developer,
-            False,
-            True,
+            author=self.reviewer,
+            is_from_developer=False,
+            is_to_developer=True,
         )
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -476,7 +477,7 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[1],
             review_url,
             'you are member of the activity email cc group.',
-            self.developer,
+            author=self.developer,
         )
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -544,7 +545,7 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            self.developer,
+            author=self.developer,
         )
         review_url = absolutify(
             reverse(
@@ -557,7 +558,7 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[1],
             review_url,
             'you reviewed this add-on.',
-            self.developer,
+            author=self.developer,
         )
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -590,7 +591,7 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            self.developer,
+            author=self.developer,
         )
         review_url = absolutify(
             reverse(
@@ -603,7 +604,7 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[1],
             review_url,
             'you reviewed this add-on.',
-            self.developer,
+            author=self.developer,
         )
 
     @mock.patch('olympia.activity.utils.send_mail')
@@ -643,7 +644,7 @@ class TestLogAndNotify(TestCase):
         assert ActivityLog.objects.count() == 1  # No new activity created.
 
         assert send_mail_mock.call_count == 2  # Both authors.
-        sender = formataddr((ADDON_REVIEWER, NOTIFICATIONS_FROM_EMAIL))
+        sender = formataddr((ADDON_REVIEWER_NAME, NOTIFICATIONS_FROM_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
         assert len(recipients) == 2
@@ -656,17 +657,17 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            self.reviewer,
-            False,
-            True,
+            author=self.reviewer,
+            is_from_developer=False,
+            is_to_developer=True,
         )
         self._check_email(
             send_mail_mock.call_args_list[1],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            self.reviewer,
-            False,
-            True,
+            author=self.reviewer,
+            is_from_developer=False,
+            is_to_developer=True,
         )
 
 
