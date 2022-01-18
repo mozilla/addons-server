@@ -1000,3 +1000,38 @@ def test_site_permission_generator_duplicates():
         request=request,
     )
     assert form.is_valid()
+
+
+@pytest.mark.django_db
+def test_site_permission_generator_duplicates_same_permission():
+    request = req_factory_factory('/', user=user_factory())
+    addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[request.user])
+    version = addon.versions.get()
+    FileSitePermission.objects.create(
+        file=version.file, permissions=_DEFAULT_SITE_PERMISSIONS
+    )
+    version.installorigin_set.create(origin='https://example.com')
+
+    # User already has a site permission, for the same set of permissions, but
+    # for a different origin.
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.com'},
+        request=request,
+    )
+    assert form.is_valid()
+
+    # Duplicate.
+    version.installorigin_set.create(origin='https://foo.com')
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.com'},
+        request=request,
+    )
+    assert not form.is_valid()
+
+    # Deleting the duplicate should make submission possible again.
+    addon.delete()
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.com'},
+        request=request,
+    )
+    assert form.is_valid()
