@@ -1408,6 +1408,30 @@ class SitePermissionGeneratorForm(forms.Form):
         label=_('Permissions'), choices=(('midi-sysex', 'WebMIDI'),)
     )
 
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        origin = self.cleaned_data.get('origin')
+        site_permissions = self.cleaned_data.get('site_permissions')
+        already_exists = (
+            self.request.user.addons.all()
+            .filter(
+                type=amo.ADDON_SITE_PERMISSION,
+                versions__installorigin__origin=origin,
+                versions__file___site_permissions__permissions=site_permissions,
+            )
+            .exists()
+        )
+        if already_exists:
+            raise forms.ValidationError(
+                _(
+                    'You have generated a site permission add-on for the same origin '
+                    'and permissions.'
+                )
+            )
+
     def clean_origin(self):
         actual_value = str(self.data.get('origin'))
         value = self.cleaned_data.get('origin')
