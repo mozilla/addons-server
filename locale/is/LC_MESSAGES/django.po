@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 15:32+0000\n"
+"PO-Revision-Date: 2022-01-19 15:47+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -756,7 +756,7 @@ msgid "Developer Reply"
 msgstr ""
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Svar frá yfirferðaraðila fyrir {addon} {version}."
 
 msgid "Reviewer Reply"
 msgstr "Svar yfirferðaraðila"
@@ -1386,7 +1386,7 @@ msgid "Excellent (3)"
 msgstr "Frábært (3)"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Handvirkir punktar yfirferðaraðila"
 
 msgid "New Legacy Add-on Review"
 msgstr ""
@@ -4781,7 +4781,7 @@ msgid "Auto-approval delayed indefinitely"
 msgstr ""
 
 msgid "Is locked by a reviewer"
-msgstr ""
+msgstr "er læst af yfirferðaraðila"
 
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
@@ -4892,7 +4892,7 @@ msgid "This will confirm approval of the selected versions without notifying the
 msgstr ""
 
 msgid "Reviewer reply"
-msgstr ""
+msgstr "Svar yfirferðaraðila"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -5088,7 +5088,7 @@ msgid "Add-on name translations"
 msgstr "Þýðingar á nafni viðbótar"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Yfirferðarverkfæri – Viðbætur fyrir Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr ""
@@ -5147,7 +5147,7 @@ msgid "Undelete"
 msgstr "Endurvekja"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr " – Yfirferðarverkfæri – Viðbætur fyrir Firefox"
 
 msgid "Back to review"
 msgstr ""
@@ -5194,7 +5194,7 @@ msgid "Add-on Policy"
 msgstr ""
 
 msgid "Reviewer's Guide"
-msgstr ""
+msgstr "Leiðbeiningar yfirferðaraðila"
 
 msgid "{addon} – Add-ons for Firefox"
 msgstr ""
@@ -5413,10 +5413,10 @@ msgid "No points awarded yet."
 msgstr ""
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Efstu yfirferðaraðilar (síðustu 7 daga)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Ennþá engir efstu yfirferðaraðilar."
 
 msgid "All Time"
 msgstr "Allra tíma"
@@ -6019,7 +6019,7 @@ msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "viðbótin mín er yfirfarin af yfirferðaraðila"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
