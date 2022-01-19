@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 11:41+0000\n"
+"PO-Revision-Date: 2022-01-19 12:47+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -4337,7 +4337,7 @@ msgstr "Efstu viðbæturnar 2021"
 
 #. editorial content for the secondary hero shelves.
 msgid "Steam extensions"
-msgstr "Steam-viðaukar"
+msgstr "Steam-forritsviðaukar"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
@@ -4369,11 +4369,11 @@ msgstr "Sjá fleiri vinsæl þemu"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
-msgstr ""
+msgstr "Forritsaukar fyrir aukna persónuvernd"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended privacy extensions"
-msgstr ""
+msgstr "Sjá fleiri forritsauka fyrir aukna persónuvernd"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4409,11 +4409,11 @@ msgstr "Skoðaðu fleiri þýðingatól sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
-msgstr ""
+msgstr "Samfélagsmiðlastreymi"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
-msgstr ""
+msgstr "Skoðaðu fleiri samfélagsmiðlastreymi sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4421,39 +4421,39 @@ msgstr "Flipastýringar"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
-msgstr ""
+msgstr "Skoðaðu fleiri tól til umsýslu flipa sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Forritsaukar merktir “{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
-msgstr ""
+msgstr "Sjá fleiri forritsviðauka merkta með \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Auglýsingabanar fyrir elítuna"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
-msgstr ""
+msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Sérsníðing YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
-msgstr ""
+msgstr "Skoðaðu fleiri YouTube-viðbætur sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
-msgstr ""
+msgstr "Þemu í umræðunni"
 
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
-msgstr ""
+msgstr "Sjá fleiri umrædd þemu"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -4642,13 +4642,13 @@ msgid "Spam or otherwise non-review content"
 msgstr ""
 
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Óviðeigandi umtal/málfar"
 
 msgid "Misplaced bug report or support request"
 msgstr ""
 
 msgid "Other (please specify)"
-msgstr ""
+msgstr "Annað (tilgreindu nákvæmlega)"
 
 msgid "This field is required."
 msgstr "Fylla þarf út þennan reit."
@@ -4672,7 +4672,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr ""
+msgstr "Ógilt flagg [{}] - verður að vera eitt af [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
@@ -4686,35 +4686,35 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Not yet rated"
-msgstr ""
+msgstr "Engin einkunn ennþá"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Gefin {0} af 5 stjörnum"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Gefin %(rating)s af 5 stjörnum"
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "Samþykktar umsagnir"
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Eyddar umsagnir"
 
 msgid "View entries between"
-msgstr ""
+msgstr "Skoða færslur milli"
 
 msgid "and"
 msgstr "og"
 
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Sía eftir tegund/aðgerð"
 
 msgid "containing"
-msgstr ""
+msgstr "sem innihalda"
 
 msgid "start"
-msgstr ""
+msgstr "upphaf"
 
 #. L10n: end, as in "end date"
 msgid "end"
@@ -4722,13 +4722,13 @@ msgstr "endir"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr ""
+msgstr "viðbót, umsagnaraðili eða athugasemd"
 
 msgid "Comments:"
 msgstr "Athugasemdir:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "Stýrikerfi:"
 
 msgid "Applications:"
 msgstr "Forrit:"
@@ -4740,13 +4740,13 @@ msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
 
 msgid "days"
-msgstr ""
+msgstr "dagar"
 
 msgid "Choose one or more reasons:"
-msgstr ""
+msgstr "Veldu eina eða fleiri ástæður:"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Veldu staðlað svar..."
 
 msgid "Private Whiteboard"
 msgstr ""
@@ -4755,10 +4755,10 @@ msgid "Keep review; remove flags"
 msgstr ""
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Sleppa í bili"
 
 msgid "Delete review"
-msgstr ""
+msgstr "Eyða umsögn"
 
 msgid "Needs Admin Code Review"
 msgstr ""
@@ -4815,7 +4815,7 @@ msgid "Flags"
 msgstr "Flögg"
 
 msgid "Last Review"
-msgstr ""
+msgstr "Síðasta yfirferð"
 
 msgid "Code Weight"
 msgstr ""
@@ -4827,7 +4827,7 @@ msgid "Total Weight"
 msgstr ""
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Illskustig"
 
 msgid "Type"
 msgstr "Tegund"
@@ -5001,10 +5001,10 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "{addon} – EULA"
-msgstr ""
+msgstr "{addon} – EULA"
 
 msgid "{addon} – Privacy Policy"
-msgstr ""
+msgstr "{addon} – Meðferð persónuupplýsinga"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5013,7 +5013,7 @@ msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Misnotkunarskýrslur"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
@@ -5041,13 +5041,13 @@ msgid "Visible"
 msgstr "Sýnilegt"
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "Vikulegt niðurhal"
 
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Meðaltal daglegra notenda"
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Skoða stefnu vegna meðferðar persónuupplýsinga"
 
 msgid "Requires Payment"
 msgstr "Krefst greiðslu"
@@ -5056,34 +5056,34 @@ msgid "EULA"
 msgstr "EULA-skilmálar"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Skoða samning um notandaleyfi"
 
 msgid "Last Approval Date"
-msgstr ""
+msgstr "Síðast samþykkt þann"
 
 msgid "Abuse Reports ({num})"
-msgstr ""
+msgstr "Misnotkunarskýrslur ({num})"
 
 msgid "Bad User Ratings ({num})"
-msgstr ""
+msgstr "Slæmar einkunnir notenda ({num})"
 
 msgid "Theme Images"
-msgstr ""
+msgstr "Myndir í þema"
 
 msgid "Rendered Preview"
-msgstr ""
+msgstr "Myndgerð forskoðun"
 
 msgid "More about this add-on"
-msgstr ""
+msgstr "Meira um þessa viðbót"
 
 msgid "Image Gallery"
-msgstr ""
+msgstr "Myndasafn"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Ekkert að sjá hér. Hönnuðurinn hafði ekki með neinar nánari upplýsingar."
 
 msgid "Add-on name translations"
-msgstr ""
+msgstr "Þýðingar á nafni viðbótar"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5120,10 +5120,10 @@ msgid "More details."
 msgstr "Nánari upplýsingar."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Engin atvik fundust á þessu tímabili."
 
 msgid "Log details"
-msgstr ""
+msgstr "Ítarlegt í atvikaskrá"
 
 msgid "Review Author"
 msgstr ""
@@ -5365,7 +5365,7 @@ msgid "Files in this version:"
 msgstr ""
 
 msgid "All Platforms"
-msgstr ""
+msgstr "Öll stýrikerfi"
 
 msgid "Browse all files in this version"
 msgstr ""
@@ -5421,7 +5421,7 @@ msgstr "Allra tíma"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Þú ert með <span>{0}</span> punkta."
 
 msgid "Theme"
 msgstr "Þema"
@@ -5625,10 +5625,10 @@ msgid "Overview"
 msgstr "Yfirlit"
 
 msgid "by Source"
-msgstr ""
+msgstr "eftir uppruna"
 
 msgid "by Medium"
-msgstr ""
+msgstr "eftir miðli"
 
 msgid "by Content"
 msgstr "eftir efni"
@@ -5658,7 +5658,7 @@ msgid "close"
 msgstr "loka"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Sérsniðið dagsetningabil"
 
 msgid "From"
 msgstr "Frá"
@@ -5868,7 +5868,7 @@ msgid "Go"
 msgstr "Fara"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Fara til baka á heimasíðu {0} viðbótarinnar"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Viðbætur"
@@ -5878,7 +5878,7 @@ msgstr "Viðbætur"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Nýskráðu þig</a> eða <a href=\"%(login)s\">skráðu þig inn</a>"
 
 msgid "Required fields"
 msgstr "Nauðsynlegir reitir"
