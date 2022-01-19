@@ -423,6 +423,22 @@ class TestActivityLog(TestCase):
         assert len(versions[0].all_activity) == 1
         assert len(versions[1].all_activity) == 1
 
+    def test_hide_user_from_developer_transformer(self):
+        addon = Addon.objects.get()
+        # This action's user can be shown.
+        ActivityLog.create(amo.LOG.CREATE_ADDON, addon, user=self.request.user)
+        # This action's user should not be shown.
+        ActivityLog.create(amo.LOG.FORCE_DISABLE, addon, user=self.request.user)
+
+        logs = ActivityLog.objects.all().transform(
+            ActivityLog.transformer_hide_user_from_developer
+        )
+
+        assert logs[0].action == amo.LOG.FORCE_DISABLE.id
+        assert logs[0].user is None
+        assert logs[1].action == amo.LOG.CREATE_ADDON.id
+        assert logs[1].user == self.request.user
+
     def test_xss_arguments_and_escaping(self):
         addon = Addon.objects.get()
         addon.name = 'Delicious <script src="x.js">Bookmarks'

@@ -420,6 +420,13 @@ class ActivityLog(ModelBase):
         return markupsafe.Markup(self.formatter.format(*args, **kw))
 
     @classmethod
+    def transformer_hide_user_from_developer(cls, logs):
+        """Remove user from actions where it shouldn't be shown to a developer."""
+        for log in logs:
+            if log.action not in constants.activity.LOG_SHOW_USER_TO_DEVELOPER:
+                log.user = None
+
+    @classmethod
     def arguments_builder(cls, activities):
         def handle_renames(value):
             # Cope with renames of key models (use the original model name like
@@ -673,13 +680,7 @@ class ActivityLog(ModelBase):
 
     @property
     def author_name(self):
-        """Name of the user that triggered the activity.
-
-        If it's a reviewer action that will be shown to developers, the
-        `reviewer_name` property is used if present, otherwise `name` is
-        used."""
-        if self.action in constants.activity.LOG_REVIEW_QUEUE_DEVELOPER:
-            return self.user.reviewer_name or self.user.name
+        """Name of the user that triggered the activity."""
         return self.user.name
 
     @classmethod

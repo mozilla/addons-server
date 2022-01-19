@@ -274,7 +274,7 @@ def notify_about_activity_log(
     sender_name = (
         ADDON_REVIEWER_NAME
         if type_of_sender == USER_TYPE_ADDON_REVIEWER
-        else note.author_name
+        else note.user.name
     )
 
     # Collect add-on authors (excl. the person who sent the email.) and build
@@ -318,9 +318,9 @@ def notify_about_activity_log(
             task_user = set()
         # Update the author and from_email to use the real name because it will
         # be used in emails to reviewers and staff, and not add-on developers.
-        from_email = formataddr((note.author_name, NOTIFICATIONS_FROM_EMAIL))
+        from_email = formataddr((note.user.name, NOTIFICATIONS_FROM_EMAIL))
         reviewer_context_dict = author_context_dict.copy()
-        reviewer_context_dict['author'] = note.author_name
+        reviewer_context_dict['author'] = note.user.name
 
     if send_to_reviewers:
         # Collect reviewers on the thread (excl. the email sender and task user
