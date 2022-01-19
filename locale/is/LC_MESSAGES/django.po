@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 16:11+0000\n"
+"PO-Revision-Date: 2022-01-19 10:23+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -45,14 +45,14 @@ msgstr "Útdráttur úr skilaboðum"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "%d valdar skýrslur hafa verið merktar sem gildar."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "%d valdar skýrslur hafa verið merktar sem grunsamlegar."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "Merkja valdar misnotkunarskýrslur sem grunsamlegar"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Gakktu úr skugga um að þessi reitur hafi ekki fleiri en {max_length} stafi."
@@ -77,7 +77,7 @@ msgid "This reviewer name cannot be used."
 msgstr "Ekki er hægt að nota þetta yfirferðarnafn."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Heimasíðureitinn er aðeins hægt að nota til að tengja við ytri vefsíður."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Myndir verða að vera annað hvort PNG eða JPG."
@@ -90,23 +90,23 @@ msgid "Please use images smaller than %dMB."
 msgstr "Notaðu myndir minni en %dMB."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "Þú ert þegar innskráð/ur."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Ekki var hægt að þátta innskráningartilraun þína. Reyndu aftur."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "Firefox-reikningurinn þinn fannst ekki. Reyndu aftur."
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "Ekki var hægt að skrá þig inn. Reyndu aftur."
 
 msgid "Need help?"
 msgstr "Þarftu hjálp?"
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Tilkynningin [%s] er ekki til"
 
 msgid "Review"
 msgstr "Yfirfara"
@@ -118,7 +118,7 @@ msgid "Review note"
 msgstr "Athugasemd yfirferðar"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Aðeins nýjustu útgáfur af viðbótum geta bætt athugasemdum við."
 
 msgid "Authors"
 msgstr "Höfundar"
@@ -146,13 +146,13 @@ msgid "Listed"
 msgstr "Upptalið"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Slóðir á viðbætur og söfn þurfa að enda á \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Nöfn viðbóta mega ekki innihalda vörumerki Mozilla eða Firefox."
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
+msgstr "Heimildir vefsvæðis fyrir {hostnames}"
 
 msgid "Sort by:"
 msgstr "Raða eftir:"
@@ -167,7 +167,7 @@ msgid "My Themes"
 msgstr "Þemun mín"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Verkfæri"
@@ -213,7 +213,7 @@ msgid "This field can only be used to link to external websites. URLs on %(domai
 msgstr ""
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Ekki rétt, reyndu aftur."
 
 msgid "Error verifying input, please try again."
 msgstr ""
@@ -297,18 +297,18 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr ""
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Viðhald í gangi"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Þessi eiginleiki er óvirkur tímabundið meðan við sinnum viðhaldi á vefsvæðinu. Notaðu 'Til baka'-hnappinn í vafranum þínum og reyndu aftur aðeins síðar."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Einhverjir eiginleikar á þessari síðu hafa verið gerðir óvirkir tímabundið á meðan viðhald vefsvæðis fer fram. Reyndu aftur seinna."
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Síða <a href=\"%(current_pg_url)s\">%(current_pg)s</a> af <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
 msgstr "Fara á fyrstu síðu"
@@ -326,7 +326,7 @@ msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Birti <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "Viðbætur fyrir {0}"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"

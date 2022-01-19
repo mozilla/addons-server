@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 10:13+0000\n"
+"PO-Revision-Date: 2022-01-19 10:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -341,16 +341,16 @@ msgid "Category Landing Recently Added"
 msgstr "Flokkur í nýlega bætt við á fyrstu síðu"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Röðun eftir úrvalsefni við skoðun lista"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Röðun eftir notendum við skoðun lista"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Röðun eftir einkunn við skoðun lista"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Röðun eftir hvenær bíð til við skoðun lista"
 
 msgid "Browse Listing Name Sort"
 msgstr "Röðun eftir nafni við skoðun lista"
@@ -359,10 +359,10 @@ msgid "Browse Listing Popular Sort"
 msgstr "Röðun eftir vinsældum við skoðun lista"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Röðun eftir uppfærslu við skoðun lista"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Röðun eftir væntanlegu við skoðun lista"
 
 msgid "Total Amount Contributed"
 msgstr "Samtals framlagt"
