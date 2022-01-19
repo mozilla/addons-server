@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 16:13+0000\n"
+"PO-Revision-Date: 2022-01-19 16:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -210,7 +210,7 @@ msgstr "Jákvæð heiltala"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Aðeins er hægt að nota þennan reit til að tengja við ytri vefsíður. URL-slóðir á %(domain)s eru ekki leyfðar."
 
 msgid "Incorrect, please try again."
 msgstr "Ekki rétt, reyndu aftur."
@@ -231,7 +231,7 @@ msgid "Must contain at least one printable character."
 msgstr ""
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr ""
+msgstr "Gakktu úr skugga um að þessi reitur innihaldi að minnsta kosti einn bókstaf eða tölustaf."
 
 msgid "Not allowed"
 msgstr "Ekki leyft"
