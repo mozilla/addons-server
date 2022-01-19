@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 15:47+0000\n"
+"PO-Revision-Date: 2022-01-19 16:13+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1389,58 +1389,58 @@ msgid "Manual Reviewer Points"
 msgstr "Handvirkir punktar yfirferðaraðila"
 
 msgid "New Legacy Add-on Review"
-msgstr ""
+msgstr "Yfirferð á nýrri eldri gerð viðbótar"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Bráðabirgðayfirferð viðbótar"
 
 msgid "Updated Legacy Add-on Review"
-msgstr ""
+msgstr "Yfirferð á uppfærðri eldri gerð viðbótar"
 
 msgid "New Dictionary Review"
-msgstr ""
+msgstr "Yfirferð á nýju orðasafni"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Bráðabirgðayfirferð orðasafns"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Yfirferð á uppfærðu orðasafni"
 
 msgid "New Language Pack Review"
-msgstr ""
+msgstr "Yfirferð á nýjum tungumálapakka"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Bráðabirgðayfirferð tungumálapakka"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Yfirferð á uppfærðum tungumálapakka"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Yfirferð á þema"
 
 msgid "Theme (Static) Review"
-msgstr ""
+msgstr "Yfirferð á þema (fast - static)"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "Yfirferð á nýrri leitarþjónustu"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Bráðabirgðayfirferð leitarþjónustu"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Yfirferð á uppfærðri leitarþjónustu"
 
 msgid "New Complete Theme Review"
-msgstr ""
+msgstr "Yfirferð á nýju heilu þema"
 
 msgid "Preliminary Complete Theme Review"
-msgstr ""
+msgstr "Bráðabirgðayfirferð á nýju heilu þema"
 
 msgid "Updated Complete Theme Review"
-msgstr ""
+msgstr "Bráðabirgðayfirferð á uppfærðu heilu þema"
 
 msgid "Moderated Add-on Review"
-msgstr ""
+msgstr "Ritstýrð yfirferð viðbótar"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr ""
@@ -1449,16 +1449,16 @@ msgid "Add-on Content Review"
 msgstr ""
 
 msgid "Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Yfirferð viðbótar (mesta áhætta)"
 
 msgid "Add-on Review (High Risk)"
-msgstr ""
+msgstr "Yfirferð viðbótar (mikil áhætta)"
 
 msgid "Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Yfirferð viðbótar (miðlungs áhætta)"
 
 msgid "Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Yfirferð viðbótar (lítil áhætta)"
 
 msgid "Level 1"
 msgstr "Stig 1"
@@ -1536,25 +1536,25 @@ msgid "Flag for human review"
 msgstr "Senda í mannlegan yfirlestur"
 
 msgid "Delay auto-approval"
-msgstr ""
+msgstr "Tefja sjálfvirkt-samþykki"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Tefja sjálfvirkt-samþykki ótímabundið"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Tefja sjálfvirkt-samþykki ótímabundið og bæta við takmörkunum"
 
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
+msgstr "Tefja sjálfvirkt-samþykki ótímabundið og bæta við takmörkunum fyrir seinni tíma samþykki"
 
 msgid "True positive"
-msgstr ""
+msgstr "Sannjákvætt"
 
 msgid "False positive"
-msgstr ""
+msgstr "falsjákvætt"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Tvírætt"
 
 msgid "New"
 msgstr "Nýtt"
@@ -1582,7 +1582,7 @@ msgid "Recent Changes for %s"
 msgstr "Nýlegar breytingar á %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Nýlegar breytingar á mínum viðbótum"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
@@ -1736,7 +1736,7 @@ msgid "Display Name"
 msgstr "Birtingarnafn"
 
 msgid "Invalid or corrupt add-on file."
-msgstr ""
+msgstr "Viðbótar-skráin er ógild eða skemmd."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -1856,15 +1856,15 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Útgáfa %s óvirk."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Útgáfa %s eydd."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Útgáfa %s virkjuð aftur."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -1945,7 +1945,7 @@ msgid "Accept"
 msgstr "Samþykkja"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr ""
+msgstr "eða <a href=\"{0}\">Hætta við</a>"
 
 msgid "More information on Developer Accounts"
 msgstr ""
@@ -1955,14 +1955,14 @@ msgid "{0} Add-ons"
 msgstr "{0} viðbætur"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Fara til baka á heimasíðu DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
 msgstr ""
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "fleiri viðbætur..."
 
 msgid "Extension Workshop"
 msgstr ""
@@ -1971,7 +1971,7 @@ msgid "Documentation"
 msgstr "Hjálparskjöl"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Þróun forritsviðauka"
 
 msgid "Themes"
 msgstr "Þemu"
@@ -1995,7 +1995,7 @@ msgid "Add-ons Forum"
 msgstr ""
 
 msgid "More Resources"
-msgstr ""
+msgstr "Fleiri tilföng"
 
 msgid "Search Developer Docs"
 msgstr ""
@@ -2023,27 +2023,27 @@ msgid "Validated at:"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Nýleg virkni í mínum viðbótum"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Nýleg virkni í {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 
 msgid "No results found."
 msgstr "Engar niðurstöður fundust."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Fínstilla virkni"
 
 msgid "Activity"
 msgstr "Virkni"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Gerast áskrifandi að þessu streymi"
 
 #, python-format
 msgid ""
@@ -2062,7 +2062,7 @@ msgid "Compatibility"
 msgstr "Samhæfni"
 
 msgid "Update Compatibility"
-msgstr ""
+msgstr "Samhæfni uppfærslu"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
@@ -2071,13 +2071,13 @@ msgid "Application"
 msgstr "Forrit"
 
 msgid "Supported Versions"
-msgstr ""
+msgstr "Studdar útgáfur"
 
 msgid "Remove"
 msgstr "Fjarlægja"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Bæta við öðru forriti&hellip;"
 
 msgid "Save Changes"
 msgstr "Vista breytingar"
@@ -2102,10 +2102,10 @@ msgstr "Nýleg virkni"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s frá %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Eldri virkni í mínum viðbótum"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2114,7 +2114,7 @@ msgstr[0] "<b>{0}</b> þema"
 msgstr[1] "<b>{0}</b> þemu"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Breyta vörusíðu"
 
 msgid "None"
 msgstr "Ekkert"
@@ -2141,13 +2141,13 @@ msgid "Decline"
 msgstr "Hafna"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Sýsla með höfunda og notkunarleyfi"
 
 msgid "About author roles"
-msgstr ""
+msgstr "Um hlutverk höfunda"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Höfundar sem bíða eftir staðfestingu"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
@@ -2158,13 +2158,13 @@ msgid ""
 msgstr ""
 
 msgid "Additional Details"
-msgstr ""
+msgstr "Viðbótaratriði"
 
 msgid "Edit"
 msgstr "Breyta"
 
 msgid "Additional Details for {0}"
-msgstr ""
+msgstr "Viðbótaratriði fyrir {0}"
 
 msgid "Tags"
 msgstr "Merki"
@@ -2285,7 +2285,7 @@ msgstr "Tæknilegar upplýsingar"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Tæknilegar upplýsingar fyrir {0}"
 
 msgid "Developer Comments"
 msgstr "Athugasemd forritara"
@@ -2296,7 +2296,7 @@ msgid ""
 msgstr ""
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Sértækt einstakt auðkenni"
 
 msgid "UUID"
 msgstr "UUID"
@@ -2316,7 +2316,7 @@ msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "Táknmynd viðbótar"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -2772,10 +2772,10 @@ msgid "6.9MB max"
 msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG eða GIF (ekki með hreyfingu)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Hliðjafnað efst til hægri"
 
 msgid "Select a different header image"
 msgstr ""
@@ -2799,7 +2799,7 @@ msgid "Back"
 msgstr "Til baka"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "API-auðkenni"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2828,7 +2828,7 @@ msgid "A confirmation link will be sent to your email address. After confirmatio
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Þú ert ekki með nein API-auðkenni."
 
 msgid "Revoke"
 msgstr "Afturkalla"
@@ -2965,7 +2965,7 @@ msgid "Admin Manage"
 msgstr ""
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Skoða tölfræðistjórnborð"
 
 msgid "Developer News"
 msgstr ""
