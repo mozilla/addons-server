@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 10:03+0000\n"
+"PO-Revision-Date: 2022-01-19 10:13+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -308,7 +308,7 @@ msgid "Dependencies"
 msgstr "Kerfiskröfur"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Selja dýrara"
 
 msgid "Meet the Developer"
 msgstr "Kynnstu höfundinum"
@@ -329,16 +329,16 @@ msgid "Collections"
 msgstr "Söfn"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Flokkur í úrvalshringekju á fyrstu síðu"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Flokkur í hæstu einkunn á fyrstu síðu"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Flokkur í vinsælasta á fyrstu síðu"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Flokkur í nýlega bætt við á fyrstu síðu"
 
 msgid "Browse Listing Featured Sort"
 msgstr ""
@@ -353,10 +353,10 @@ msgid "Browse Listing Created Sort"
 msgstr ""
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Röðun eftir nafni við skoðun lista"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Röðun eftir vinsældum við skoðun lista"
 
 msgid "Browse Listing Updated Sort"
 msgstr ""
