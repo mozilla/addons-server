@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-17 16:27+0000\n"
-"Last-Translator: Yaya.Cout <yaya.cout@free.fr>\n"
+"PO-Revision-Date: 2022-01-19 08:16+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4502,19 +4502,19 @@ msgstr "Emportez des emojis partout avec vous sur le Web."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Mettez des restrictions sur les sites web distrayants et chronophages."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Retirez le superflu de votre Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Personnalisez YouTube à votre convenance."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Supprimez les données de navigation directement depuis la barre d’outils du navigateur."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4535,7 +4535,7 @@ msgstr "Meilleures extensions de 2021"
 
 #. editorial content for the secondary hero shelves.
 msgid "Steam extensions"
-msgstr ""
+msgstr "Extensions Steam"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity boosters"
