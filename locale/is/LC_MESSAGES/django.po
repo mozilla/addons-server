@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 10:23+0000\n"
+"PO-Revision-Date: 2022-01-19 10:31+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -339,7 +339,7 @@ msgid "Body"
 msgstr "Meginmál"
 
 msgid "Another Title"
-msgstr ""
+msgstr "Annar titill"
 
 msgid "Another Body"
 msgstr ""
@@ -1033,7 +1033,7 @@ msgid "Download extensions that enhance bookmarks by password-protecting them, s
 msgstr ""
 
 msgid "Download Management"
-msgstr ""
+msgstr "Umsýsla niðurhals"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
@@ -1057,7 +1057,7 @@ msgid "Download Firefox extensions that offer language support like grammar chec
 msgstr ""
 
 msgid "Photos, Music & Videos"
-msgstr ""
+msgstr "Ljósmyndir, tónlist og myndskeið"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
@@ -1072,13 +1072,13 @@ msgid "Download Firefox extensions for search and look-up. This category include
 msgstr ""
 
 msgid "Shopping"
-msgstr ""
+msgstr "Verslun"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
 msgstr ""
 
 msgid "Social & Communication"
-msgstr ""
+msgstr "Félagslegt og samskipti"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
@@ -1090,7 +1090,7 @@ msgid "Download Firefox extension to customize tabs and the new tab page. Discov
 msgstr ""
 
 msgid "Web Development"
-msgstr ""
+msgstr "Vefhönnun"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
@@ -1102,7 +1102,7 @@ msgid "Download Firefox extensions that can be unpredictable and creative, yet u
 msgstr ""
 
 msgid "Device Features & Location"
-msgstr ""
+msgstr "Eiginleikar tækja og staðsetning"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
 msgstr ""
@@ -1120,7 +1120,7 @@ msgid "Download extensions that give Firefox a performance boost. Find extension
 msgstr ""
 
 msgid "Photos & Media"
-msgstr ""
+msgstr "Ljósmyndir og margmiðlun"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
@@ -1138,7 +1138,7 @@ msgid "Download Firefox extensions to enhance your experience on popular social 
 msgstr ""
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "Íþróttir og leikir"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
 msgstr ""
@@ -1183,7 +1183,7 @@ msgid "Download Firefox artistic and conceptual themes. This category includes c
 msgstr ""
 
 msgid "Causes"
-msgstr ""
+msgstr "Málstaðir"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
 msgstr ""
@@ -1228,7 +1228,7 @@ msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr ""
 
 msgid "Scenery"
-msgstr ""
+msgstr "Landslag og náttúra"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
 msgstr ""
@@ -1267,7 +1267,7 @@ msgid "Kids"
 msgstr "Krakkar"
 
 msgid "Multiple Search"
-msgstr ""
+msgstr "Fjölþætt leit"
 
 msgid "News & Blogs"
 msgstr "Fréttir og blogg"
