@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 14:43+0000\n"
+"PO-Revision-Date: 2022-01-19 15:32+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -127,17 +127,17 @@ msgid "Ratings"
 msgstr "Einkunnir"
 
 msgid "Reviewer Tools (listed)"
-msgstr ""
+msgstr "Yfirferðarverkfæri (í lista)"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr ""
+msgstr "Yfirferðarverkfæri (ekki í lista)"
 
 msgid "Reviewer links"
-msgstr ""
+msgstr "Tenglar yfirferðar"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Git-útdráttur ræstur fyrir \"%(addons)s\"."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Viðbót ekki á AMO -"
@@ -200,7 +200,7 @@ msgid "Manage API Keys"
 msgstr "Sýsla með API-lykla"
 
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Yfirferðarverkfæri"
 
 msgid "Admin Tools"
 msgstr "Kerfisstjóratól"
@@ -275,6 +275,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
+"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur líka"
+" hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
 
 msgid "Register or Log in"
 msgstr "Nýskráðu þig eða skráðu inn"
@@ -342,7 +344,7 @@ msgid "Another Title"
 msgstr "Annar titill"
 
 msgid "Another Body"
-msgstr ""
+msgstr "Annað meginmál"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
@@ -351,7 +353,7 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "Undirritunin er útrunnin."
 
 msgid "Error decoding signature."
 msgstr "Villa við afkóðun undirritunar."
@@ -382,13 +384,13 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Staðfesting fyrir API-lykla forritara"
 
 msgid "Application Versions"
 msgstr "Útgáfur forrits"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "ásættanlegar útgáfur fyrir öll forrit á AMO."
 
 msgid "Valid Application Versions"
 msgstr "Gildar útgáfur forrits"
@@ -453,13 +455,13 @@ msgid "Invalid version"
 msgstr "Ógild útgáfa"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Lágmarksútgáfa má ekki vera hærri en hámarksútgáfa"
 
 msgid "Review Listed"
-msgstr ""
+msgstr "Yfirfara í lista"
 
 msgid "Review Unlisted"
-msgstr ""
+msgstr "Yfirfara ekki í lista"
 
 #, python-format
 msgid "Delete Multiple %(name)s"
@@ -569,7 +571,7 @@ msgid "Approved"
 msgstr "Samþykkt"
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "{addon} {version} gefin bráðabirgðayfirferð."
 
 msgid "Preliminarily approved"
 msgstr ""
@@ -590,13 +592,13 @@ msgid "{addon} {version} escalated."
 msgstr ""
 
 msgid "Super review requested"
-msgstr ""
+msgstr "Beðið um ofur-yfirferð"
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Beðið um yfirferð fyrir {addon} {version}."
 
 msgid "Review requested"
-msgstr ""
+msgstr "Beðið um yfirferð"
 
 msgid "{addon} {version} more information requested."
 msgstr ""
@@ -605,7 +607,7 @@ msgid "More information requested"
 msgstr ""
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Beðið um ofur-yfirferð fyrir {addon} {version}."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
@@ -669,7 +671,7 @@ msgid "{user} approved {rating} for {addon}."
 msgstr ""
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Yfirferð {rating} fyrir {addon} eytt."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr ""
@@ -720,7 +722,7 @@ msgid "{rating} for {addon} updated."
 msgstr ""
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} yfirfarin."
 
 msgid "User {user} banned."
 msgstr "Notandinn {user} bannaður."
@@ -757,7 +759,7 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Svar yfirferðaraðila"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -1846,7 +1848,7 @@ msgid "Icon must be square (same width and height)."
 msgstr "Táknmynd verður að vera ferningslaga (sama breidd og hæð)."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Villa kom upp við að senda inn umsögnina þína."
 
 #, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -1910,7 +1912,7 @@ msgid "The highlight color of the active tab. Implemented as a border around the
 msgstr ""
 
 msgid "Review requested."
-msgstr ""
+msgstr "Beðið um yfirferð."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -1931,7 +1933,7 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "Forsendur og reglur fyrir yfirferð"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -2118,7 +2120,7 @@ msgid "None"
 msgstr "Ekkert"
 
 msgid "Preview"
-msgstr "Forskoða"
+msgstr "Forskoðun"
 
 msgid "Preview of listed version"
 msgstr ""
@@ -2570,7 +2572,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Athugasemdir til yfirferðaraðila:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr ""
@@ -2785,7 +2787,7 @@ msgid "optional"
 msgstr "valfrjálst"
 
 msgid "Browser preview"
-msgstr ""
+msgstr "Forskoðun vafra"
 
 msgid "Uploading Theme"
 msgstr "Sendi inn þema"
@@ -3087,7 +3089,7 @@ msgid "Contribute"
 msgstr "Taktu þátt"
 
 msgid "Review Add-ons"
-msgstr ""
+msgstr "Yfirfara viðbætur"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
 msgstr ""
@@ -3199,7 +3201,7 @@ msgid "Approval Status"
 msgstr ""
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Athugasemdir fyrir umsagnaraðila"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr ""
@@ -3231,19 +3233,19 @@ msgid "Re-enable Version"
 msgstr ""
 
 msgid "Review History"
-msgstr ""
+msgstr "Ferill yfirferða"
 
 msgid "Close Review History"
-msgstr ""
+msgstr "Loka yfirferðaferli"
 
 msgid "Request Review"
-msgstr ""
+msgstr "Biðja um yfirferð"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Hætta við beiðni um yfirferð"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "Hleð inn yfirferðaferli..."
 
 msgid "We had a problem retrieving review notes"
 msgstr ""
@@ -4800,7 +4802,7 @@ msgid "Is available to be used in reviews"
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Þú getur ekki sent inn athugasemd ef \"staðlað svar\" er skilgreint."
 
 msgid "You can't submit an empty comment."
 msgstr ""
@@ -5332,7 +5334,7 @@ msgid "Add-on Review Log – Add-ons for Firefox"
 msgstr ""
 
 msgid "Reviewer"
-msgstr "Höfundur umsagnar"
+msgstr "Yfirferðaraðili"
 
 msgid "Add-on has been deleted."
 msgstr "Viðbótinni hefur verið eytt."
