@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 12:47+0000\n"
+"PO-Revision-Date: 2022-01-19 12:59+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -210,28 +210,28 @@ msgstr "Jákvæð heiltala"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Aðeins er hægt að nota þennan reit til að tengja við ytri vefsíður. URL-slóðir á %(domain)s eru ekki leyfðar."
 
 msgid "Incorrect, please try again."
 msgstr "Ekki rétt, reyndu aftur."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Villa við að staðfesta innslátt, reyndu aftur."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Settu inn gilt IP4- eða IP6-netkerfi."
 
 msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Sumir eiginleikar eru óvirkir tímabundið meðan við sinnum viðhaldi vefsíðna. Full afköst koma innan skamms."
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "Verður að innihalda að minnsta kosti einn prentanlegan staf."
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr ""
+msgstr "Gakktu úr skugga um að þessi reitur innihaldi að minnsta kosti einn staf eða tölustaf."
 
 msgid "Not allowed"
 msgstr "Ekki leyft"
@@ -5762,43 +5762,43 @@ msgid "Platform usage by Date"
 msgstr ""
 
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr ""
+msgstr "<b>{0}</b> vikulegt niðurhal"
 
 msgid "Loading..."
 msgstr "Hleð inn..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b> daglegir notendur að meðaltali"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Efstu forrit"
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Sjá fleiri forrit&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Efstu tungumál"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Sjá fleiri tungumál&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Efstu stýrikerfi"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Sjá fleiri stýrikerfi&hellip;"
 
 msgid "Download sources by Date"
 msgstr ""
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Staða viðbóta eftir dagsetningu"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Daglegir notendur eftir dagsetningum"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Hvað eru daglegir notendur?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
@@ -5806,25 +5806,25 @@ msgid ""
 msgstr ""
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Útgáfur forrits eftir dagsetningum"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Mozilla-viðbætur"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "Til baka í viðbætur"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "Táknmerki á síðufót"
 
 msgid "Legal Notices"
-msgstr ""
+msgstr "Lögfræðilegar athugasemdir"
 
 msgid "Report Trademark Abuse"
 msgstr "Tilkynna misnotkun á vörumerki"
 
 msgid "Site Status"
-msgstr ""
+msgstr "Staða vefsvæðis"
 
 msgid "Report a bug"
 msgstr "Tilkynna um villu"
@@ -5856,7 +5856,7 @@ msgid "Focus Browser"
 msgstr "Focus vafra"
 
 msgid "Desktop Browser"
-msgstr "Vafri"
+msgstr "Borðtölvuvafra"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr ""
@@ -5942,16 +5942,16 @@ msgid "The users \"%(users)s\" had their API Key reset."
 msgstr ""
 
 msgid "Reset API Key"
-msgstr ""
+msgstr "Frumstilla API-lykil"
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Auðkennismynd"
 
 msgid "Collections"
 msgstr "Söfn"
 
 msgid "Activity Logs"
-msgstr ""
+msgstr "Atvikaskrár virkni"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""
@@ -5960,10 +5960,10 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr ""
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Enginn notandi er með þetta tölvupóstfang."
 
 msgid "Firefox user {id}"
-msgstr ""
+msgstr "Firefox-notandi {id}"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
