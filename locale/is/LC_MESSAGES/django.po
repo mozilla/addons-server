@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 12:59+0000\n"
+"PO-Revision-Date: 2022-01-19 14:43+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -210,28 +210,28 @@ msgstr "Jákvæð heiltala"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "Aðeins er hægt að nota þennan reit til að tengja við ytri vefsíður. URL-slóðir á %(domain)s eru ekki leyfðar."
+msgstr ""
 
 msgid "Incorrect, please try again."
 msgstr "Ekki rétt, reyndu aftur."
 
 msgid "Error verifying input, please try again."
-msgstr "Villa við að staðfesta innslátt, reyndu aftur."
+msgstr ""
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr "Settu inn gilt IP4- eða IP6-netkerfi."
+msgstr ""
 
 msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Sumir eiginleikar eru óvirkir tímabundið meðan við sinnum viðhaldi vefsíðna. Full afköst koma innan skamms."
+msgstr ""
 
 msgid "Must contain at least one printable character."
-msgstr "Verður að innihalda að minnsta kosti einn prentanlegan staf."
+msgstr ""
 
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Gakktu úr skugga um að þessi reitur innihaldi að minnsta kosti einn staf eða tölustaf."
+msgstr ""
 
 msgid "Not allowed"
 msgstr "Ekki leyft"
@@ -2996,7 +2996,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "End-User License Agreement"
-msgstr ""
+msgstr "EULA samningur um notandaleyfi"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
 msgstr ""
@@ -3026,7 +3026,7 @@ msgid "Visit the Firefox Extension Workshop"
 msgstr ""
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Tengstu við okkur"
 
 msgid "Twitter"
 msgstr "Twitter"
@@ -3069,7 +3069,7 @@ msgid "Resources"
 msgstr "Tilföng"
 
 msgid "WebExtensions API"
-msgstr ""
+msgstr "API-forritsviðmót WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3078,7 +3078,7 @@ msgid "Promote"
 msgstr "Hækka í tign"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "\"Ná í viðbótina\" hnappur"
 
 msgid "Recommended Extensions program"
 msgstr ""
@@ -5221,7 +5221,7 @@ msgid "You can still submit this form, however only do so if you know it won't c
 msgstr ""
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Setja inn staðlað svar..."
 
 msgid "Files:"
 msgstr "Skrár:"
@@ -5317,7 +5317,7 @@ msgid "(admin)"
 msgstr "(stjórnandi)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "Stjórnandasíða"
 
 msgid "Review This Add-on"
 msgstr ""
@@ -5335,7 +5335,7 @@ msgid "Reviewer"
 msgstr "Höfundur umsagnar"
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Viðbótinni hefur verið eytt."
 
 msgid "Show Comments"
 msgstr "Birta athugasemdir"
@@ -5344,7 +5344,7 @@ msgid "Hide Comments"
 msgstr "Fela athugasemdir"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Engar umsagnir fundust á þessu tímabili."
 
 msgid "Origin:"
 msgstr "Upphaf:"
@@ -5356,25 +5356,25 @@ msgid "Source:"
 msgstr "Uppruni:"
 
 msgid "Source URL:"
-msgstr "Uppruni:"
+msgstr "Upprunaslóð:"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Hunsa þessa tilkynningu"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Skrár þessari útgáfu:"
 
 msgid "All Platforms"
 msgstr "Öll stýrikerfi"
 
 msgid "Browse all files in this version"
-msgstr ""
+msgstr "Skoða allar skrár þessari útgáfu"
 
 msgid "Contents"
 msgstr "Innihald"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Bera þessa útgáfu saman við síðustu yfirförnu útgáfu"
 
 msgid "Compare"
 msgstr "Bera saman"
@@ -5383,11 +5383,11 @@ msgid "Permissions:"
 msgstr "Heimildir:"
 
 msgid "Optional permissions:"
-msgstr ""
+msgstr "Upprunalegar heimildir:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Frá %(user)s á %(date)s</div>"
 
 msgid "Older"
 msgstr "Eldri"
@@ -5431,11 +5431,11 @@ msgstr "Engar niðurstöður fundust"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s á %(date)s [%(ip_address)s]"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Útgáfa %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
 msgstr "(staðfest)"
@@ -5468,10 +5468,10 @@ msgid "Metadata Weight:"
 msgstr ""
 
 msgid "Flagged by scanners"
-msgstr ""
+msgstr "Flaggað af skönnum"
 
 msgid "Flagged for human review"
-msgstr ""
+msgstr "Flaggað til mannlegrar yfirferðar"
 
 msgid "Download"
 msgstr "Sækja"
@@ -5502,10 +5502,10 @@ msgid "Rating Reviews"
 msgstr ""
 
 msgid "Auto Approved"
-msgstr ""
+msgstr "Samþykkt sjálfvirkt"
 
 msgid "Pending Rejection"
-msgstr ""
+msgstr "Höfnun í bið"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -5671,20 +5671,20 @@ msgstr "Flytja út"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Tölfræðistjórnborð :: Viðbætur fyrir {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Tölfræðistjórnborð"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Tölfræðistjórnborð :: Viðbætur fyrir {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
 msgstr "Tölfræði fyrir {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Tölfræðistjórnborð"
 
 msgid "Controls:"
 msgstr "Stýringar:"
@@ -5723,22 +5723,22 @@ msgid "Custom..."
 msgstr "Sérsniðið..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Því miður, tölfræðin er ekki tiltæk í augnablikinu."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Hleð inn nýjustu gögnum&hellip;"
 
 msgid "No data available."
-msgstr ""
+msgstr "Engin gögn tiltæk."
 
 msgid "This dashboard is <b>private</b>."
-msgstr ""
+msgstr "Þetta stjórnborð er <b>einkamál</b>."
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Notkun forrits eftir dagsetningum"
 
 msgid "Download campaigns by Date"
-msgstr ""
+msgstr "Niðurhalsherferðir eftir dagsetningum"
 
 msgid "About tracking external sources..."
 msgstr ""
@@ -5747,19 +5747,19 @@ msgid "Download contents by Date"
 msgstr ""
 
 msgid "User countries by Date"
-msgstr ""
+msgstr "Lönd notenda eftir dagsetningu"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Niðurhalað eftir dagsetningum"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Tungumál notenda eftir dagsetningum"
 
 msgid "Download mediums by Date"
-msgstr ""
+msgstr "Niðurhal gagnamiðla eftir dagsetningum"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Notkun stýrikerfa eftir dagsetningum"
 
 msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> vikulegt niðurhal"
@@ -5833,9 +5833,11 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annarsstaðar er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "náðu að kynnast <b>viðbótum</b>"
 
 msgid "About"
 msgstr "Um hugbúnaðinn"
@@ -5859,7 +5861,7 @@ msgid "Desktop Browser"
 msgstr "Borðtölvuvafra"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta-prófunar, daglegar, þróunarútgáfur"
 
 msgid "Other languages"
 msgstr "Önnur tungumál"
@@ -5889,17 +5891,17 @@ msgstr "(valfrjálst)"
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Staðfæra fyrir: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Fyrirliggjandi staðfærslur"
 
 msgid "New Locales"
-msgstr ""
+msgstr "Nýjar staðfærslur"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
@@ -5913,7 +5915,7 @@ msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot 
 msgstr ""
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Eyða staðfærslu"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -5928,7 +5930,7 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Banna valda notendur"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
@@ -5954,10 +5956,10 @@ msgid "Activity Logs"
 msgstr "Atvikaskrár virkni"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Settu inn gilt IPv4- eða IPv6-vistfang, t.d. 127.0.0.1. Verður umbreytt yfir í  /32 netkerfi."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Þú mátt bara setja inn eitt, annað hvort IP-vistfang eða netkerfi."
 
 msgid "No user with that email."
 msgstr "Enginn notandi er með þetta tölvupóstfang."
@@ -5966,7 +5968,7 @@ msgid "Firefox user {id}"
 msgstr "Firefox-notandi {id}"
 
 msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+msgstr "Settu inn gilt IPv6- eða IPv6-CIDR netkerfissvið, t.d. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
