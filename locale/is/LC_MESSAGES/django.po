@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-20 10:09+0000\n"
+"PO-Revision-Date: 2022-01-20 10:13+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -668,31 +668,31 @@ msgid "{rating} for {addon} approved."
 msgstr "{rating} fyrir {addon} samþykkt."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "{user} samþykkti {rating} fyrir {addon}."
 
 msgid "Review {rating} for {addon} deleted."
 msgstr "Yfirferð {rating} fyrir {addon} eytt."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "{user} eyddi {rating} fyrir {addon}."
 
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Hámarksútgáfa forrits fyrir {version} uppfærð."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Höfundar sendu tölvupóst varðandi samhæfni {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "Tölvupóstur sendur til höfundar varðandi samhæfni viðbótar."
 
 msgid "Password changed."
 msgstr "Lykilorði breytt."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} er samþykkt en bíður þess að verða birt opinberlega."
 
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Samþykkt en bíður"
 
 msgid "Account updated."
 msgstr "Aðgangur uppfærður."
@@ -753,7 +753,7 @@ msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
 msgid "Developer Reply"
-msgstr ""
+msgstr "Svar þróunaraðila"
 
 msgid "Reply by reviewer on {addon} {version}."
 msgstr "Svar frá yfirferðaraðila fyrir {addon} {version}."
@@ -789,13 +789,13 @@ msgid "{addon} {version} content approved."
 msgstr ""
 
 msgid "Content approved"
-msgstr ""
+msgstr "Efni samþykkt"
 
 msgid "{addon} {version} content rejected."
 msgstr ""
 
 msgid "Content rejected"
-msgstr ""
+msgstr "Efni hafnað"
 
 msgid "{addon} information request altered or removed by admin."
 msgstr ""
@@ -1803,10 +1803,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Boð samþykkt."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Boði hafnað."
 
 msgid "An author has been added to your add-on"
 msgstr ""
@@ -1906,7 +1906,7 @@ msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest
 msgstr ""
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "Áherslulitun flipa"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
@@ -1921,13 +1921,13 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "Nýr API-lykill búinn til"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "API-lykill afturkallaður"
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Viðbótin mín passar ekki í neinn af flokkunum"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
