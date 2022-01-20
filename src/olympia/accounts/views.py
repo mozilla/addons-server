@@ -781,7 +781,7 @@ class AccountNotificationUnsubscribeView(AccountNotificationMixin, GenericAPIVie
 
 
 class FxaNotificationView(FxAConfigMixin, APIView):
-    authentication_classes = []  # TODO: reimplement FxA auth in authentication_class?
+    authentication_classes = []
     permission_classes = []
 
     FXA_PROFILE_CHANGE_EVENT = (
@@ -792,35 +792,43 @@ class FxaNotificationView(FxAConfigMixin, APIView):
         'https://schemas.accounts.firefox.com/event/password-change'
     )
 
-    def get_fxa_verifying_keys(self):
-        if not hasattr(self, 'fxa_verifying_keys'):
+    @classmethod
+    def get_fxa_verifying_keys(cls):
+        if not hasattr(cls, 'fxa_verifying_keys'):
             response = requests.get(f'{settings.FXA_OAUTH_HOST}/jwks')
-            self.fxa_verifying_keys = (
+            cls.fxa_verifying_keys = (
                 response.json().get('keys') if response.status_code == 200 else []
             )
 
-        if not self.fxa_verifying_keys:
+        if not cls.fxa_verifying_keys:
             raise exceptions.AuthenticationFailed(
                 'FXA verifying keys are not available.'
             )
 
-        return self.fxa_verifying_keys
+        return cls.fxa_verifying_keys
 
-    def get_jwt(self, request):
-        request_jwt = request.headers['Authorization'].split('Bearer ')[1]
+    def get_jwt_payload(self, request):
         client_id = self.get_fxa_config(request)['client_id']
+        authenticated_jwt = None
 
-        for verifying_key in self.get_fxa_verifying_keys():
-            if verifying_key['alg'] != 'RS256':
-                # we only support RS256
-                continue
-            algorithm = jwt.algorithms.RSAAlgorithm.from_jwk(verifying_key)
-            authenticated_jwt = jwt.decode(
-                request_jwt,
-                algorithm,
-                audience=client_id,
-                algorithms=[verifying_key['alg']],
-            )
+        auth_header_split = request.headers.get('Authorization', '').split('Bearer ')
+        if len(auth_header_split) == 2 and auth_header_split[1]:
+            for verifying_key in self.get_fxa_verifying_keys():
+                if verifying_key.get('alg') != 'RS256':
+                    # we only support RS256
+                    continue
+                request_jwt = auth_header_split[1]
+                try:
+                    algorithm = jwt.algorithms.RSAAlgorithm.from_jwk(verifying_key)
+                    authenticated_jwt = jwt.decode(
+                        request_jwt,
+                        algorithm,
+                        audience=client_id,
+                        algorithms=[verifying_key['alg']],
+                    )
+                except (ValueError, TypeError, jwt.exceptions.PyJWTError):
+                    pass  # We raise when `not authenticated_jwt` below
+                break
 
         if not authenticated_jwt:
             raise exceptions.AuthenticationFailed(
@@ -846,20 +854,14 @@ class FxaNotificationView(FxAConfigMixin, APIView):
         if event_key == self.FXA_PASSWORDCHANGE_EVENT:
             log.info(f'Fxa Webhook: Got password-change event for {uid}')
             clear_sessions_event.delay(uid, timestamp, 'password-change')
+        else:
+            log.info('Fxa Webhook: Ignoring unknown event type %r', event_key)
 
     def post(self, request):
-        jwt = self.get_jwt(request)
-        events = jwt.get('events', {})
-        uid = jwt.get('sub')
+        payload = self.get_jwt_payload(request)
+        events = payload.get('events', {})
+        uid = payload.get('sub')
         for event_key, event_data in events.items():
-            log.debug(
-                'fxa webhook',
-                extra={
-                    'jwt': jwt,
-                    'event_key': event_key,
-                    'event_data': event_data,
-                },
-            )
             self.process_event(uid, event_key, event_data)
 
         return Response('202 Accepted', status=202)

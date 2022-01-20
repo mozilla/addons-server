@@ -15,6 +15,7 @@ from django.test.utils import override_settings
 from django.utils.encoding import force_str
 
 import freezegun
+import jwt
 import responses
 from rest_framework import exceptions
 from rest_framework.settings import api_settings
@@ -26,6 +27,7 @@ from olympia import amo
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
+from olympia.accounts.views import FxaNotificationView
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClient,
@@ -2317,35 +2319,61 @@ class TestFxaNotificationView(TestCase):
             f'{settings.FXA_OAUTH_HOST}/jwks',
             json={},
         )
-        view = views.FxaNotificationView()
-        assert view.get_fxa_verifying_keys() == self.JWKS_RESPONSE['keys']
-        # the call is cached on .fxa_verifiying_keys after the first call
-        assert view.get_fxa_verifying_keys() == self.JWKS_RESPONSE['keys']
-        del view.fxa_verifying_keys
+        assert (
+            FxaNotificationView().get_fxa_verifying_keys() == self.JWKS_RESPONSE['keys']
+        )
+        # the call is cached on cls.fxa_verifiying_keys after the first call
+        assert (
+            FxaNotificationView().get_fxa_verifying_keys() == self.JWKS_RESPONSE['keys']
+        )
+        del FxaNotificationView.fxa_verifying_keys
         with self.assertRaises(exceptions.AuthenticationFailed):
-            view.get_fxa_verifying_keys()
+            FxaNotificationView().get_fxa_verifying_keys()
 
     @mock.patch('olympia.accounts.views.jwt.decode')
-    def test_get_jwt(self, decode_mock):
-        view = views.FxaNotificationView()
-        view.fxa_verifying_keys = [
+    def test_get_jwt_payload(self, decode_mock):
+        FxaNotificationView.fxa_verifying_keys = [
             {'kty': 'RSA', 'alg': 'fooo'},  # should be ignored
             *self.JWKS_RESPONSE['keys'],
         ]
         decode_mock.return_value = self.FXA_EVENT
-        request = RequestFactory().get('/', HTTP_AUTHORIZATION='Bearer fooo')
+        request_factory = RequestFactory()
 
-        authd_jwt = view.get_jwt(request)
+        authd_jwt = FxaNotificationView().get_jwt_payload(
+            request_factory.get('/', HTTP_AUTHORIZATION='Bearer fooo')
+        )
         assert authd_jwt == self.FXA_EVENT
+
+        # check a malformed bearer header is handled
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_jwt_payload(
+                request_factory.get('/', HTTP_AUTHORIZATION='Bearer ')
+            )
+
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_jwt_payload(
+                request_factory.get('/', HTTP_AUTHORIZATION='Fooo')
+            )
+
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_jwt_payload(
+                request_factory.get('/', HTTP_AUTHORIZATION='Bearer baa Bearer ')
+            )
+
+        # check decode exceptions are caught
+        decode_mock.side_effect = jwt.exceptions.PyJWTError()
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_jwt_payload(
+                request_factory.get('/', HTTP_AUTHORIZATION='Bearer fooo')
+            )
 
     def test_post(self):
         url = reverse_ns('fxa-notification', api_version='auth')
         class_path = (
-            f'{views.FxaNotificationView.__module__}.'
-            f'{views.FxaNotificationView.__name__}'
+            f'{FxaNotificationView.__module__}.' f'{FxaNotificationView.__name__}'
         )
         with (
-            mock.patch(f'{class_path}.get_jwt') as get_jwt_mock,
+            mock.patch(f'{class_path}.get_jwt_payload') as get_jwt_mock,
             mock.patch(f'{class_path}.process_event') as process_event_mock,
             freezegun.freeze_time(),
         ):
@@ -2353,18 +2381,17 @@ class TestFxaNotificationView(TestCase):
             response = self.client.post(url)
             process_event_mock.assert_called_with(
                 self.FXA_ID,
-                views.FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
+                FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
                 {'email': 'example@mozilla.com'},
             )
         assert response.status_code == 202
 
     @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
     def test_process_event_email_change(self, event_mock):
-        view = views.FxaNotificationView()
         with freezegun.freeze_time():
-            view.process_event(
+            FxaNotificationView().process_event(
                 self.FXA_ID,
-                view.FXA_PROFILE_CHANGE_EVENT,
+                FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
                 {'email': 'new-email@example.com'},
             )
             event_mock.assert_called_with(
@@ -2377,11 +2404,10 @@ class TestFxaNotificationView(TestCase):
             fxa_id=self.FXA_ID,
             email_changed=datetime(2017, 10, 11),
         )
-        view = views.FxaNotificationView()
         with freezegun.freeze_time():
-            view.process_event(
+            FxaNotificationView().process_event(
                 self.FXA_ID,
-                view.FXA_PROFILE_CHANGE_EVENT,
+                FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
                 {'email': 'new-email@example.com'},
             )
             now = datetime.now()
@@ -2391,11 +2417,10 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.utils.delete_user_event.delay')
     def test_process_event_delete(self, event_mock):
-        view = views.FxaNotificationView()
         with freezegun.freeze_time():
-            view.process_event(
+            FxaNotificationView().process_event(
                 self.FXA_ID,
-                view.FXA_DELETE_EVENT,
+                FxaNotificationView.FXA_DELETE_EVENT,
                 {},
             )
             event_mock.assert_called_with(self.FXA_ID, datetime.now().timestamp())
@@ -2403,10 +2428,9 @@ class TestFxaNotificationView(TestCase):
     @override_switch('fxa-account-delete', active=True)
     def test_process_event_delete_integration(self):
         user = user_factory(fxa_id=self.FXA_ID)
-        view = views.FxaNotificationView()
-        view.process_event(
+        FxaNotificationView().process_event(
             self.FXA_ID,
-            view.FXA_DELETE_EVENT,
+            FxaNotificationView.FXA_DELETE_EVENT,
             {},
         )
         user.reload()
@@ -2416,11 +2440,10 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.utils.clear_sessions_event.delay')
     def test_process_event_password_change(self, event_mock):
-        view = views.FxaNotificationView()
         with freezegun.freeze_time():
-            view.process_event(
+            FxaNotificationView().process_event(
                 self.FXA_ID,
-                view.FXA_PASSWORDCHANGE_EVENT,
+                FxaNotificationView.FXA_PASSWORDCHANGE_EVENT,
                 {},
             )
             event_mock.assert_called_with(
@@ -2429,10 +2452,9 @@ class TestFxaNotificationView(TestCase):
 
     def test_process_event_password_change_integration(self):
         user = user_factory(fxa_id=self.FXA_ID)
-        view = views.FxaNotificationView()
-        view.process_event(
+        FxaNotificationView().process_event(
             self.FXA_ID,
-            view.FXA_PASSWORDCHANGE_EVENT,
+            FxaNotificationView.FXA_PASSWORDCHANGE_EVENT,
             {},
         )
         user.reload()
