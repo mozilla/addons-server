@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-20 10:21+0000\n"
+"PO-Revision-Date: 2022-01-20 10:32+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -246,14 +246,19 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Þú sérð þessi skilaboð vegna þess að þetta HTTPS-vefsvæði krefst þess að 'Referer header' tilvísunarhaus sé sendur af vafranum þínum, en ekkert var sent. Slíkur haus er nauðsynlegur af "
+"öryggisástæðum til að tryggja að utanaðkomandi aðilar hertaki ekki samskipti vafrans þíns."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"Ef þú hefur stillt vafrann þinn til að gera „Referer“ tilvísunarhausa óvirka, virkjaðu þá aftur að minnsta kosti fyrir þetta vefsvæði eða fyrir HTTPS-tengingar eða fyrir „same-origin“ beiðnir."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Þú sérð þessi skilaboð vegna þess að þetta vefsvæði krefst CSRF-vefköku við innsendingu útfyllingarforma. Slík vefkaka er nauðsynleg af öryggisástæðum til að tryggja að utanaðkomandi aðilar hertaki "
+"ekki samskipti vafrans þíns."
 
 msgid "Not Found"
 msgstr "Fannst ekki"
@@ -3046,10 +3051,10 @@ msgid "Community forum"
 msgstr "Spjallsvæði notenda"
 
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "Fréttabréf fyrir þróunaraðila viðbóta"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Fylgstu með fréttum og viðburðum fyrir þróunaraðila Firefox-viðbóta."
 
 msgid "Email Address"
 msgstr "Tölvupóstfang"
@@ -3113,7 +3118,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "Sjáðu hvernig"
 
 msgid "Get involved"
 msgstr "Taktu þátt"
@@ -3153,10 +3158,10 @@ msgid "Sign Out"
 msgstr "Skrá út"
 
 msgid "No Photo"
-msgstr ""
+msgstr "Engin mynd"
 
 msgid "User Photo"
-msgstr ""
+msgstr "Notandamynd"
 
 msgid "Profile"
 msgstr "Snið"
@@ -3224,10 +3229,10 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr ""
 
 msgid "Status & Versions"
-msgstr ""
+msgstr "Staða og útgáfur"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Breyta þessari útgáfu"
 
 msgid "Re-enable Version"
 msgstr ""
