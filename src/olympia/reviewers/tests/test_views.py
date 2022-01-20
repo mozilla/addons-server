@@ -8546,7 +8546,7 @@ class TestThemeBackgroundImages(ReviewBase):
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)
-        assert data == {}
+        assert not data
 
     def test_header_images(self):
         destination = self.addon.current_version.file.current_file_path
