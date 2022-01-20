@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-19 16:21+0000\n"
+"PO-Revision-Date: 2022-01-20 07:59+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -449,7 +449,7 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s inniheldur *"
 
 msgid "Invalid version"
 msgstr "Ógild útgáfa"
@@ -517,55 +517,55 @@ msgid "versions"
 msgstr "útgáfur"
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} var búin til."
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "{addon} eiginleikum breytt."
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "{addon} lýsingu breytt."
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Flokkum breytt fyrir {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) bætt við {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) fjarlægt úr {addon}."
 
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Framlög til {addon}."
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} óvirkt."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} virkt."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "Stöðu {addon} breytt í {status}."
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} bætt við {addon}."
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} breytt fyrir {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Útgáfu {0} eytt úr {addon}."
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Skránni {0.name} bætt við {version} af {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Skránni {0} eytt úr {version} af {addon}."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} samþykkt."
 
 msgid "Approved"
 msgstr "Samþykkt"
@@ -574,16 +574,16 @@ msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} gefin bráðabirgðayfirferð."
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Samþykkt til bráðabirgða"
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} hafnað."
 
 msgid "Rejected"
 msgstr "Hafnað"
 
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} haldið eftir."
 
 msgid "Retained"
 msgstr "Haldið eftir"
