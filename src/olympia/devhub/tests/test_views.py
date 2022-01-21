@@ -42,7 +42,7 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
-from olympia.files.models import FileUpload
+from olympia.files.models import FileSitePermission, FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
@@ -2176,3 +2176,26 @@ class TestSitePermissionGenerator(TestCase):
         activity = ActivityLog.objects.for_addons(addon).latest('pk')
         assert activity.user == self.user
         assert activity.iplog_set.all()[0].ip_address == '15.16.23.42'
+
+    def test_non_field_errors(self):
+        self.user.update(read_dev_agreement=self.days_ago(1))
+        # Generate a duplicate in order to get an error not attached to a
+        # particular form field.
+        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.user])
+        version = addon.versions.get()
+        FileSitePermission.objects.create(file=version.file, permissions=['midi-sysex'])
+        version.installorigin_set.create(origin='https://example.com')
+        data = {
+            'origin': 'https://example.com',
+            'site_permissions': ['midi-sysex'],
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        form = response.context['form']
+        assert not form.is_valid()
+        doc = pq(response.content)
+        form_element = doc('.site_permission_generator form')
+        assert (
+            'site permission add-on for the same origin and permissions'
+            in form_element.text()
+        )
