@@ -272,7 +272,7 @@ class TestLogAndNotify(TestCase):
     def setUp(self):
         self.developer = user_factory()
         self.developer2 = user_factory()
-        self.reviewer = user_factory(reviewer_name='Revîewer')
+        self.reviewer = user_factory()
         self.grant_permission(self.reviewer, 'Addons:Review', 'Addon Reviewers')
 
         self.addon = addon_factory()
