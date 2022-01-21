@@ -1,4 +1,5 @@
 from django import test
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponse, HttpResponseRedirect
 from django.test.client import RequestFactory
@@ -10,7 +11,7 @@ import pytest
 from unittest.mock import patch, Mock
 from pyquery import PyQuery as pq
 
-from olympia.accounts.utils import default_fxa_login_url
+from olympia.accounts.utils import fxa_login_url, path_with_query
 from olympia.accounts.verify import IdentificationError
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI,
@@ -345,4 +346,9 @@ class TestTokenValidMiddleware(TestCase):
         request = self.get_request()
         response = self.middleware(request)
         assert isinstance(response, HttpResponseRedirect)
-        assert response['Location'] == default_fxa_login_url(request)
+        assert response['Location'] == fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=request.session['fxa_state'],
+            next_path=path_with_query(request),
+            action='signin',
+        )
