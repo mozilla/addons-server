@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-21 20:02+0000\n"
+"PO-Revision-Date: 2022-01-21 20:05+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2038,7 +2038,7 @@ msgid "The origin (scheme + hostname + optional port) you need the permission to
 msgstr "Походження (схема + ім’я хосту + необов’язковий порт), для якого потрібно ввімкнути дозвіл. Тут також потрібно розмістити додаток."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "Дозволи, надані створеним додатком для джерела."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Використовуйте розташоване нижче поле, щоб завантажити свій пакунок додатка."
