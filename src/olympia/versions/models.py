@@ -1191,7 +1191,7 @@ class DeniedInstallOrigin(ModelBase):
         denied = set()
         denied_install_origins = cls.objects.all()
         for origin in install_origins:
-            hostname = InstallOrigin.punycode(urlparse(origin).netloc)
+            hostname = InstallOrigin.punycode(urlparse(origin).hostname or '')
             for denied_origin in denied_install_origins:
                 if fnmatch(hostname, denied_origin.hostname_pattern) or (
                     denied_origin.include_subdomains

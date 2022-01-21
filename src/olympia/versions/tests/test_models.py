@@ -1987,6 +1987,12 @@ class TestDeniedInstallOrigin(TestCase):
             ['https://foo.com', 'https://examplé.com']
         ) == {'https://examplé.com'}
 
+    def test_find_denied_origins_with_port(self):
+        DeniedInstallOrigin.objects.create(hostname_pattern='example.com')
+        assert DeniedInstallOrigin.find_denied_origins(
+            ['https://foo.com', 'https://example.com:8888']
+        ) == {'https://example.com:8888'}
+
     def test_find_denied_origins_multiple_matches(self):
         DeniedInstallOrigin.objects.create(hostname_pattern='example.com')
         assert DeniedInstallOrigin.find_denied_origins(
