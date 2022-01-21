@@ -239,7 +239,7 @@ class SessionIDAuthentication(BaseAuthentication):
                 'detail': gettext(
                     'Valid user session not found matching the provided session key.'
                 ),
-                'code': 'ERROR_INVALID_HEADER',
+                'code': 'ERROR_SIGNATURE_EXPIRED',
             }
             raise exceptions.AuthenticationFailed(msg)
 
@@ -253,7 +253,7 @@ class SessionIDAuthentication(BaseAuthentication):
                 'detail': gettext(
                     'Access token refresh failed; user needs to login to FxA again.'
                 ),
-                'code': 'ERROR_INVALID_HEADER',
+                'code': 'ERROR_SIGNATURE_EXPIRED',
             }
             raise exceptions.AuthenticationFailed(msg)
 

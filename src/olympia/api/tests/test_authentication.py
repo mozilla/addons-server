@@ -443,7 +443,7 @@ class TestSessionIDAuthentication(TestCase):
         token = 'garbage'
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
+        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
@@ -451,57 +451,63 @@ class TestSessionIDAuthentication(TestCase):
 
     def test_user_id_is_none(self):
         token = self.client.create_session(self.user, _auth_user_id=None)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
-        self.update_token_mock.assert_not_called()
-
-    def test_no_user_id_in_payload(self):
-        data = {
-            'auth_hash': self.user.get_session_auth_hash(),
-        }
-        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
-        with self.assertRaises(AuthenticationFailed):
-            self._authenticate(token)
-        self.update_token_mock.assert_not_called()
-
-    def test_no_auth_hash_in_payload(self):
-        data = {
-            'user_id': self.user.pk,
-        }
-        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
-        with self.assertRaises(AuthenticationFailed):
-            self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['detail'] == (
+            'Valid user session not found matching the provided session key.'
+        )
         self.update_token_mock.assert_not_called()
 
     def test_user_deleted(self):
         self.user.delete()
         token = self.client.create_session(self.user)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['detail'] == (
+            'Valid user session not found matching the provided session key.'
+        )
         self.update_token_mock.assert_not_called()
 
     def test_invalid_user_not_found(self):
         token = self.client.create_session(self.user, _auth_user_id=-1)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['detail'] == (
+            'Valid user session not found matching the provided session key.'
+        )
         self.update_token_mock.assert_not_called()
 
     def test_invalid_user_other_user(self):
         user2 = user_factory(read_dev_agreement=datetime.now())
         token = self.client.create_session(self.user, _auth_user_id=user2.pk)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['detail'] == (
+            'Valid user session not found matching the provided session key.'
+        )
         self.update_token_mock.assert_not_called()
 
     def test_wrong_auth_id(self):
         token = self.client.create_session(self.user)
         self.user.update(auth_id=self.user.auth_id + 42)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['detail'] == (
+            'Valid user session not found matching the provided session key.'
+        )
         self.update_token_mock.assert_not_called()
 
     def test_fxa_access_token_validity_token_invalid(self):
         self.update_token_mock.side_effect = IdentificationError
         token = self.client.create_session(self.user)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             assert self.user == self._authenticate(token)[0]
+        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['detail'] == (
+            'Access token refresh failed; user needs to login to FxA again.'
+        )
