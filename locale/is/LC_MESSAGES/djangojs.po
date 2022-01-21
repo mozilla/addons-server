@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-17 17:27+0000\n"
+"PO-Revision-Date: 2022-01-19 10:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -269,7 +269,7 @@ msgid "Add-ons Manager Featured"
 msgstr "Sérvalið í viðbótastjóra"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Frekari upplýsingar um viðbótastjóra"
 
 msgid "Search Suggestions"
 msgstr "Tillögur í leit"
@@ -278,16 +278,16 @@ msgid "Search Results"
 msgstr "Leitarniðurstöður"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Heimasíða kynningarefni"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Heimasíða úrvalsefni"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Nýtt og væntanlegt á heimasíðu"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Vinsælast á heimasíðu"
 
 msgid "Detail Page"
 msgstr "Ítarleg síða"
@@ -308,7 +308,7 @@ msgid "Dependencies"
 msgstr "Kerfiskröfur"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Selja dýrara"
 
 msgid "Meet the Developer"
 msgstr "Kynnstu höfundinum"
@@ -329,43 +329,43 @@ msgid "Collections"
 msgstr "Söfn"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Flokkur í úrvalshringekju á fyrstu síðu"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Flokkur í hæstu einkunn á fyrstu síðu"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Flokkur í vinsælasta á fyrstu síðu"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Flokkur í nýlega bætt við á fyrstu síðu"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Röðun eftir úrvalsefni við skoðun lista"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Röðun eftir notendum við skoðun lista"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Röðun eftir einkunn við skoðun lista"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Röðun eftir hvenær bíð til við skoðun lista"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Röðun eftir nafni við skoðun lista"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Röðun eftir vinsældum við skoðun lista"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Röðun eftir uppfærslu við skoðun lista"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Röðun eftir væntanlegu við skoðun lista"
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Samtals framlagt"
 
 msgid "Average Contribution"
 msgstr "Meðalframlag"
@@ -396,19 +396,19 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Niðurhal og daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal og daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Uppsetningar og daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Uppsetningar og daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -476,19 +476,19 @@ msgstr "Staða viðbótar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Niðurhal grunnkóða, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal grunnkóða frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr ""
+msgstr "Niðurhal gagnamiðla, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal gagnamiðla frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
@@ -500,11 +500,11 @@ msgstr "Niðurhal á efni frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr ""
+msgstr "Niðurhalsherferðir, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr ""
+msgstr "Niðurhalsherferðir frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"

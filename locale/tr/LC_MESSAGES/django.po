@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-15 12:22+0000\n"
+"PO-Revision-Date: 2022-01-19 11:30+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1105,6 +1105,8 @@ msgstr "Gizlilik ve Güvenlik"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Web'de gizlice ve güvenle gezinmenizi sağlayacak Firefox uzantılarını indirin. Bu kategoride reklamları ve sinsi takipçileri engelleyen yönlendirmeleri yöneten ve daha fazlasını yapan uzantılar yer "
+"alıyor."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -3609,12 +3611,12 @@ msgstr "Sekmeyi kapattıktan sonra çerezleri otomatik olarak silin."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "İstediğiniz sayfanın metin boyutunu ayarlamak ve sayfanın boyutunu büyütmek için basit bir yol."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Takipçileri durdurun ve onlar hakkında daha fazla bilgi edinin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3725,7 +3727,7 @@ msgstr "Etkili indirme yönetimi. Durum çubuğu, indirme geçmişi sayfası ve 
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "İnternetten OneNote'a bilgi kaydedip düzenleyin, işaretleyin ve daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
@@ -3738,11 +3740,11 @@ msgstr "Sekmeleri kapatmak, sayfalarda gezinmek ve daha fazlası için fare hare
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Arama sonuçlarınızın yanında sitelerin küçük resimleri görünsün."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Ekranınızı karartarak gözlerinizi rahatlatın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3752,7 +3754,7 @@ msgstr "Varsayılan olarak tüm açılır pencereleri engelleyin, ardından hang
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "İstediğiniz web sayfasının görünümünü kişiselleştirin. Renkleri, sayfa arka planlarını ve daha fazlasını değiştirin."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
@@ -3793,15 +3795,15 @@ msgstr "Zaman aralıklarına göre sekmeleri otomatik olarak tazeleyin."
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Bozuk ve kopya yer imlerini bulun ve sorunları giderin."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Cihazlar arasında eşitlenebilen yapılacaklar listesiyle işlerinizi halledin."
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Fiyat geçmişini izleyin, rakip ürünleri bulun, satıcı puanlarını öğrenin ve daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3842,7 +3844,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Firefox'taki gizlilik seçeneklerini özelleştirmenin doğrudan yolu."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
@@ -3870,7 +3872,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Favori RSS akışlarınızı tek bir sayfadan kontrol edin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3883,7 +3885,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Birden çok yer imi klasörü kullanananlar için yer imlerini kaydetmenin daha etkili bir yöntemi."
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
@@ -3891,7 +3893,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Tek bir tıklamayla bütün web sayfasını istediğiniz dile çevirin."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
@@ -3926,7 +3928,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Tarayıcı önbelleğinizi tek bir tıklama veya tuşla temizleyin."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
@@ -4079,7 +4081,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Kişisel yer imlerinizi parola ile koruyun."
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."

@@ -27,7 +27,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.devhub import forms
-from olympia.files.models import FileUpload
+from olympia.files.models import FileSitePermission, FileUpload
 from olympia.signing.views import VersionView
 from olympia.tags.models import AddonTag, Tag
 from olympia.versions.models import ApplicationsVersions, DeniedInstallOrigin
@@ -912,9 +912,12 @@ _DEFAULT_SITE_PERMISSIONS = [
         42,  # int
     ],
 )
+@pytest.mark.django_db
 def test_site_permission_generator_origin_invalid(origin):
+    request = req_factory_factory('/', user=user_factory())
     form = forms.SitePermissionGeneratorForm(
-        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin}
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin},
+        request=request,
     )
     assert not form.is_valid()
 
@@ -929,25 +932,180 @@ def test_site_permission_generator_origin_invalid(origin):
         'https://example.com:8888',
     ],
 )
+@pytest.mark.django_db
 def test_site_permission_generator_origin_valid(origin):
+    request = req_factory_factory('/', user=user_factory())
     form = forms.SitePermissionGeneratorForm(
-        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin}
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin},
+        request=request,
     )
     assert form.is_valid()
     assert form.cleaned_data['origin'] == origin
 
 
-@pytest.mark.django_db
-def test_site_permission_generator_origin_denied():
-    DeniedInstallOrigin.objects.create(hostname_pattern='*.tld')
-    form = forms.SitePermissionGeneratorForm(
-        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.com'}
-    )
-    assert form.is_valid()
-    form = forms.SitePermissionGeneratorForm(
-        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': 'https://foo.tld'}
-    )
-    assert not form.is_valid()
-    assert form.errors['origin'] == [
-        'The install origin https://foo.tld is not permitted.'
-    ]
+class SitePermissionGeneratorTests(TestCase):
+    def setUp(self):
+        self.request = req_factory_factory('/', post=True, user=user_factory())
+
+    def test_site_permission_generator_origin_denied(self):
+
+        DeniedInstallOrigin.objects.create(hostname_pattern='*.tld')
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.tld',
+            },
+            request=self.request,
+        )
+        assert not form.is_valid()
+        assert form.errors['origin'] == [
+            'The install origin https://foo.tld is not permitted.'
+        ]
+
+    def test_site_permission_generator_duplicates(self):
+        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
+        version = addon.versions.get()
+        FileSitePermission.objects.create(file=version.file, permissions=['something'])
+        version.installorigin_set.create(origin='https://example.com')
+
+        # User already has a site permission, but for a different origin/permissions.
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+        # User already has a site permission, but for different permissions
+        version.installorigin_set.get().update(origin='https://foo.com')
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+        # Duplicate.
+        version.file._site_permissions.update(permissions=_DEFAULT_SITE_PERMISSIONS)
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert not form.is_valid()
+
+    def test_site_permission_generator_deleted_duplicates(self):
+        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
+        version = addon.versions.get()
+        FileSitePermission.objects.create(
+            file=version.file, permissions=_DEFAULT_SITE_PERMISSIONS
+        )
+        version.installorigin_set.create(origin='https://foo.com')
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert not form.is_valid()
+
+        # Deleting the duplicate should make submission possible again.
+        addon.delete()
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+    def test_site_permission_generator_duplicates_same_permission(self):
+        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
+        version = addon.versions.get()
+        FileSitePermission.objects.create(
+            file=version.file, permissions=_DEFAULT_SITE_PERMISSIONS
+        )
+        version.installorigin_set.create(origin='https://example.com')
+
+        # User already has a site permission, for the same set of permissions, but
+        # for a different origin.
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+        # Duplicate.
+        version.installorigin_set.create(origin='https://foo.com')
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert not form.is_valid()
+
+        # Deleting the duplicate should make submission possible again.
+        addon.delete()
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+    def test_rate_limiting(self):
+        self.request.META['REMOTE_ADDR'] = '5.6.7.8'
+        with freeze_time('2021-01-08 15:16:23.42') as frozen_time:
+            for x in range(0, 6):
+                self._add_fake_throttling_action(
+                    view_class=VersionView,
+                    url='/',
+                    user=self.request.user,
+                    remote_addr=get_random_ip(),
+                )
+
+            form = forms.SitePermissionGeneratorForm(
+                {
+                    'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                    'origin': 'https://foo.com',
+                },
+                request=self.request,
+            )
+            assert not form.is_valid()
+            assert form.errors.get('__all__') == [
+                'You have submitted too many uploads recently. '
+                'Please try again after some time.'
+            ]
+
+            frozen_time.tick(delta=timedelta(seconds=61))
+            form = forms.SitePermissionGeneratorForm(
+                {
+                    'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                    'origin': 'https://foo.com',
+                },
+                request=self.request,
+            )
+            assert form.is_valid()
