@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1654,9 +1654,6 @@ msgstr "Perubahan Terkini untuk Add-ons Saya"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug ini sedang digunakan. Sila pilih yang lain."
 
@@ -1748,6 +1745,9 @@ msgstr "Julat versi tidak sah."
 msgid "Need at least one compatible application."
 msgstr "Perlu sekurang-kurangnya satu aplikasi yang serasi."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Ada ralat dengan muat naik anda. Sila cuba lagi."
 
@@ -1756,9 +1756,6 @@ msgstr "Pembatalan gagal pengesahan"
 
 msgid "Need to select at least one application."
 msgstr "Perlu pilih sekurang-kurangnya satu aplikasi."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1799,6 +1796,19 @@ msgid ""
 msgstr ""
 
 msgid "Display Name"
+msgstr ""
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Keizinan:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
 msgstr ""
 
 #, fuzzy
@@ -2008,25 +2018,6 @@ msgstr "Add-on saya tidak boleh dimuatkan ke dalam mana-mana kategori"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Perjanjian Distribusi Add-on Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Polisi Semakan dan Peraturan"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Saya sudah membaca dan menerima Perjanjian ini dan Peraturan serta Polisi"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr "Terima"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "atau <a href=\"{0}\">Batal</a>"
-
-#, fuzzy
-msgid "More information on Developer Accounts"
-msgstr "Maklumat lanjut tentang lesen Creative Commons"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Add-ons {0}"
@@ -2080,6 +2071,16 @@ msgstr "Dokumen Pembangun Carian"
 
 msgid "Search"
 msgstr "Cari"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Keizinan:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Gunakan medan di bawah untuk memuat naik pakej add-on anda."
@@ -2219,6 +2220,9 @@ msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
+
+msgid "Accept"
+msgstr "Terima"
 
 msgid "Decline"
 msgstr ""
@@ -2765,13 +2769,6 @@ msgstr "Anda juga boleh edit versi ini untuk menambah nota, atau kod sumber vers
 msgid "Edit version {0}"
 msgstr "Edit versi {0}"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "Versi Ditandatangani"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3098,11 +3095,34 @@ msgstr "Urusan Pentadbir"
 msgid "View Statistics Dashboard"
 msgstr "Lihat Statistik Papan Pemuka"
 
+msgid "Review Policies and Rules"
+msgstr "Polisi Semakan dan Peraturan"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Saya sudah membaca dan menerima Perjanjian ini dan Peraturan serta Polisi"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "atau <a href=\"{0}\">Batal</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "Maklumat lanjut tentang lesen Creative Commons"
+
 msgid "Developer News"
 msgstr "Berita Pembangun"
 
 msgid "View the blog &#9658;"
 msgstr "Lihat blog &#9658;"
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "Versi Ditandatangani"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Lesen"
@@ -3818,9 +3838,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Gunakan gerak isyarat tetikus untuk menutup tab, undur satu halaman, muat semula dan banyak lagi."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr "Sertakan imej kecil bersama hasil carian anda."
 
 #. editorial content for the discovery pane.
@@ -4458,6 +4477,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr "Pelbagai emoji menarik untuk setiap keadaan—hanya perlu klik sahaja."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4480,6 +4504,11 @@ msgstr "Alami cara baru menavigasi dengan 50+ gerak isyarat tetikus."
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Gunakan gerak isyarat tetikus untuk menutup tab, undur satu halaman, muat semula dan banyak lagi."
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Sertakan imej kecil bersama hasil carian anda."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4507,10 +4536,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4556,22 +4581,19 @@ msgid "See all extensions"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Ekstensi"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Steam extensions"
+msgid "Image search extensions"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr ""
+#, fuzzy
+msgid "Writing tools"
+msgstr "Lokaliti Sedia Ada"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4681,10 +4703,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "mengikut Versi Add-on"
@@ -4698,6 +4716,26 @@ msgstr "Komen"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "Pilih warna untuk tema anda"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Komen"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Pilih warna untuk tema anda"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Komen"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Layari semua ekstensi"
 
 msgid "Could not parse the manifest file."
 msgstr "Tidak dapat menghuraikan manifes fail."
@@ -6446,3 +6484,6 @@ msgstr "lain-lain"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} dan kemudian"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

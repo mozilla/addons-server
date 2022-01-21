@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1638,9 +1638,6 @@ msgstr "K'ak'a' taq Jaloj pa Taq Nutz'aqat"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Nokisäx re slug re'. Tacha' jun chik."
 
@@ -1734,6 +1731,9 @@ msgstr "Rajilab'al man okel ta ruwäch."
 msgid "Need at least one compatible application."
 msgstr "K'atzinel jun k'amonel chokoy."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "There was an error with your upload. Please try again."
 msgstr "K'o jun sachoj rik'in ri ataqoj. Tatojtob'ej chik."
 
@@ -1743,9 +1743,6 @@ msgstr "Tirepüx rusachoj jikib'anem"
 #, fuzzy
 msgid "Need to select at least one application."
 msgstr "K'atzinel jun k'amonel chokoy."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1787,6 +1784,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Tik'ut B'i'aj"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Ruxe'el:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Taq ya'oj q'ij:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Man okel ta o itzelanel tz'aqat yakb'äl."
@@ -1992,24 +2003,6 @@ msgstr "Ri nutz'aqat man nuk'äm ta ri pa majun ruwäch"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Ruch'ob'otzij Kijachik Rutz'aqat Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Kib'eyal chuqa' Kina'ojil Nik'onem"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Xinsik'ij chuqa' ütz yentz'ët ri Ch'ob'otzij chuqa' taq ri B'eyal chuqa' ri taq Na'ojil"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr "Tik'ul"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "o <a href=\"{0}\">Tiq'at</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Ch'aqa' chik etamab'äl chi rij ri Rub'i' Kitaqoya'l B'anonela'"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Taq tz'aqat"
@@ -2062,6 +2055,16 @@ msgstr "Kekanöx Kiwujil B'anonel"
 
 msgid "Search"
 msgstr "Tikanöx"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Taq ya'oj q'ij:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Tawokisaj ri k'ojlib'äl ikim richin najotob'a' tz'aqat pisaj."
@@ -2202,6 +2205,9 @@ msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
+
+msgid "Accept"
+msgstr "Tik'ul"
 
 msgid "Decline"
 msgstr "Tixutüx"
@@ -2743,13 +2749,6 @@ msgstr "Yatikïr nanük' ri ruwäch xatäq rik'in ye'atz'aqatisaj ruch'utitzijol
 msgid "Edit version {0}"
 msgstr "Tinuk' ruwäch {0}"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "Ruwäch Juch'un"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3065,11 +3064,33 @@ msgstr "Runuk'samajixik Nuk'samajel"
 msgid "View Statistics Dashboard"
 msgstr "Titz'et Rupas Molob'a'"
 
+msgid "Review Policies and Rules"
+msgstr "Kib'eyal chuqa' Kina'ojil Nik'onem"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Xinsik'ij chuqa' ütz yentz'ët ri Ch'ob'otzij chuqa' taq ri B'eyal chuqa' ri taq Na'ojil"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "o <a href=\"{0}\">Tiq'at</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Ch'aqa' chik etamab'äl chi rij ri Rub'i' Kitaqoya'l B'anonela'"
+
 msgid "Developer News"
 msgstr "Kitzijol B'anonela'"
 
 msgid "View the blog &#9658;"
 msgstr "Titz'et ri ichinya'l"
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "Ruwäch Juch'un"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Ya'oj q'ij"
@@ -3776,9 +3797,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Tawokisaj retal rupaläj ch'oy richin ye'atz'apij taq ruwi', natzolij jun ruxaq, yak'exon chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr "Tik'asäs ke'atz'eta' koköj taq wachib'äl junam kik'in ri ye'ilitäj toq yakanon."
 
 #. editorial content for the discovery pane.
@@ -4411,6 +4431,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr "Tacha' chi kikojol jeb'ël taq emojis achike na ri nawajo'—junelïk rik'in jun pitz'oj."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4433,6 +4458,11 @@ msgstr "Tawila' jun k'ak'a' rub'anikil richin yatok pa k'amaya'l rik'in 50+ ruw�
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Tawokisaj retal rupaläj ch'oy richin ye'atz'apij taq ruwi', natzolij jun ruxaq, yak'exon chuqa' ch'aqa' chik."
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Tik'asäs ke'atz'eta' koköj taq wachib'äl junam kik'in ri ye'ilitäj toq yakanon."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4460,10 +4490,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4507,23 +4533,19 @@ msgid "See all extensions"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Kekanöx taq k'amal"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "Ketz'et ronojel ri taq k'amal"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "Tiyak chuqa' titz'aqatisäx ch'aqa'"
+msgid "Image search extensions"
+msgstr "Ketz'et ronojel ri taq k'amal"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Writing tools"
+msgstr "Ch'ab'äl e K'o"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4633,10 +4655,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "chi Ruwäch Tz'aqat"
@@ -4650,6 +4668,26 @@ msgstr "Xchilab'ëx"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "Ke'acha' taq rub'onil awachinel"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Xchilab'ëx"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Ke'acha' taq rub'onil awachinel"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Xchilab'ëx"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 msgid "Could not parse the manifest file."
 msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
@@ -6390,3 +6428,6 @@ msgstr "juley chik"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} chuqa' ri nipe"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

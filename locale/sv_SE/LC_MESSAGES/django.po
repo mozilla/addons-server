@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2022-01-12 23:46+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -249,7 +249,8 @@ msgstr ""
 "säkerställa att din webbläsare inte kapas av tredje part."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "Om du har konfigurerat din webbläsare för att inaktivera \"Referer headers\", aktivera dem, åtminstone för den här webbplatsen eller för HTTPS-anslutningar eller för \"same-origin\" förfrågningar."
+msgstr ""
+"Om du har konfigurerat din webbläsare för att inaktivera \"Referer headers\", aktivera dem, åtminstone för den här webbplatsen eller för HTTPS-anslutningar eller för \"same-origin\" förfrågningar."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -264,10 +265,10 @@ msgstr "Hittades inte"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Tyvärr, men vi kan inte hitta det du letar efter.</h1> <p> Sidan eller filen du ville nå hittades inte på vår webbplats. Det är möjligt att du klickade på en gammal länk eller skrev in adressen "
 "fel.</p> <ul> <li>Om du skrev in adressen, dubbelkolla stavningen.</li> <li>Om du följde en länk hit, vänligen %(open_bug_link)sanmäl det här%(close_bug_link)s. Berätta var du kom ifrån och vad du "
@@ -283,8 +284,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Hoppsan! Något gick fel.</h1> <p>Vi kommer att fixa det snart.</p> <p>Du kan prova att uppdatera sidan eller gå tillbaka till <a href=\"%(home)s\">tilläggets hemsida</a>. Du kan också hjälpa oss"
-" att fixa detta genom att <a href=\"https://github.com/mozilla/addons/issues/new\">rapportera ett problem</a> med information om hur du kom till den här sidan.</p>"
+"<h1>Hoppsan! Något gick fel.</h1> <p>Vi kommer att fixa det snart.</p> <p>Du kan prova att uppdatera sidan eller gå tillbaka till <a href=\"%(home)s\">tilläggets hemsida</a>. Du kan också hjälpa "
+"oss att fixa detta genom att <a href=\"https://github.com/mozilla/addons/issues/new\">rapportera ett problem</a> med information om hur du kom till den här sidan.</p>"
 
 msgid "Register or Log in"
 msgstr "Registrera dig eller logga in"
@@ -418,11 +419,11 @@ msgstr "Versioner"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Om din applikation som stöds inte kräver en manifest-fil behöver du fortfarande inkludera en av följande egenskaper enligt "
-"specifikationen%(amo_manifests_mdn_link_open)shär%(amo_manifests_mdn_link_close)s."
+"Om din applikation som stöds inte kräver en manifest-fil behöver du fortfarande inkludera en av följande egenskaper enligt specifikationen%(amo_manifests_mdn_link_open)shär"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denna anpassade URL används redan av en av dina samlingar."
@@ -1600,9 +1601,6 @@ msgstr "Senaste ändringar för mitt tillägg"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-tillägg stöds {blog_link_open}inte längre på AMO{blog_link_close}. Du kan istället skapa ett {doc_link_open}söktillägg{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr "Installationsursprunget {origin} är inte tillåtet."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Sluggen används redan. Välj en annan."
 
@@ -1695,6 +1693,9 @@ msgstr "Ogiltigt versionsintervall."
 msgid "Need at least one compatible application."
 msgstr "Behöver minst en kompatibel applikation."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Du har skickat in för många uppladdningar nyligen. Vänligen försök igen efter en stund."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Det uppstod ett fel med din uppladdning. Försök igen."
 
@@ -1703,9 +1704,6 @@ msgstr "Åsidosätt misslyckad validering"
 
 msgid "Need to select at least one application."
 msgstr "Välj åtminstone ett program."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Du har skickat in för många uppladdningar nyligen. Vänligen försök igen efter en stund."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Version {version} matchar {block_link} för detta tillägg. Du kan kontakta {amo_admins} för ytterligare information."
@@ -1749,6 +1747,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Visningsnamn"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Ursprung:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Behörigheter:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Ogiltig eller korrupt tilläggsfil."
@@ -1949,24 +1961,6 @@ msgstr "Mitt tillägg passar inte in i någon av kategorierna"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox distributionsavtal för tillägg"
 
-msgid "Review Policies and Rules"
-msgstr "Granskningspolicy och regler"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Jag har läst och accepterat detta avtal, reglerna och policyn"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Ditt konto behöver ett visningsnamn så att användarna vet vem tillägget kommer från. Vänligen ange en nedan."
-
-msgid "Accept"
-msgstr "Godkänn"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "eller <a href=\"{0}\">Avbryt</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Mer information om utvecklarkonton"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} tillägg"
@@ -2020,6 +2014,16 @@ msgstr "Sök i utvecklardokument"
 msgid "Search"
 msgstr "Sök"
 
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Webbplatsbehörigheter"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr "Använd fältet nedan för att ladda upp ditt tilläggspaket."
 
@@ -2071,7 +2075,9 @@ msgstr ""
 "version av detta tillägg."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uppdatera kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Ladda upp ny version</a> or <a href=\"#\" "
 "class=\"close\">Ignorera</a>"
@@ -2158,6 +2164,9 @@ msgstr "Att acceptera inbjudan ger dig tillgång till redigering av tillägget o
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klicka på knappen Godkänn nedan för att bekräfta att du vill läggas till som författare för {addon_name}."
 
+msgid "Accept"
+msgstr "Godkänn"
+
 msgid "Decline"
 msgstr "Avböj"
 
@@ -2239,8 +2248,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
-"Sammanfattningen ska förklara vad din utökning gör, tydligt och koncist. Både namn och sammanfattning kommer att visas på din produktsida och sökresultat. De har en kombinerad max längd på 70 tecken"
-" och en minsta längd på 2 tecken för varje."
+"Sammanfattningen ska förklara vad din utökning gör, tydligt och koncist. Både namn och sammanfattning kommer att visas på din produktsida och sökresultat. De har en kombinerad max längd på 70 "
+"tecken och en minsta längd på 2 tecken för varje."
 
 msgid "Summary"
 msgstr "Sammanfattning"
@@ -2297,8 +2306,8 @@ msgid "Email"
 msgstr "E-postadress"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Om du vill visa en e-postadress för supportfrågor,\n"
 "                          skriv den här. Om du har olika adresser\n"
@@ -2643,8 +2652,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Om du skickade in källkod, som inte innehåller instruktioner, måste du ange dem här. Ange bygginstruktioner steg-för-steg för att skapa en exakt kopia av tilläggskoden, "
-"per%(policy_requirements_open)spolicy krav%(policy_requirements_close)s."
+"Om du skickade in källkod, som inte innehåller instruktioner, måste du ange dem här. Ange bygginstruktioner steg-för-steg för att skapa en exakt kopia av tilläggskoden, per"
+"%(policy_requirements_open)spolicy krav%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dessa anteckningar visas endast för dig och våra granskare."
@@ -2717,13 +2726,6 @@ msgstr "Du kan också redigera denna version som du just skickat in genom att l�
 msgid "Edit version {0}"
 msgstr "Redigera version {0}"
 
-msgid "Version Signature Pending"
-msgstr "Väntande versionssignatur"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Du är klar! ✨ Du kommer att meddelas via e-post när den signerade filen är redo att laddas ner från Developer Hub. Om du inte ser ett e-postmeddelande inom 24 timmar, kontrollera din skräppostmapp."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Som en påminnelse är ditt tillägg föremål för manuell granskning när som helst."
 
@@ -2773,7 +2775,8 @@ msgid "Operating system and build environment requirements."
 msgstr "Operativsystem och krav på byggmiljön."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr "Den nödvändiga versionen och installationsinstruktionerna för alla program som används i byggprocessen (t.ex. <span class=\"tech-emphasis\">node</span> och <span class=\"tech-emphasis\">npm</span>)."
+msgstr ""
+"Den nödvändiga versionen och installationsinstruktionerna för alla program som används i byggprocessen (t.ex. <span class=\"tech-emphasis\">node</span> och <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Källfiler (förutom tredjepartsbibliotek med öppen källkod) kan inte transponeras, sammanfogas, minifieras eller på annat sätt maskingenereras."
@@ -2881,11 +2884,11 @@ msgstr "JWT-hemlighet"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a "
-"href=\"%(docs_url)s\">API-dokumentationen</a>."
+"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a href="
+"\"%(docs_url)s\">API-dokumentationen</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -2984,7 +2987,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2994,7 +2998,8 @@ msgstr ""
 "Vi märkte att dina hemliga AMO API-referenser inkluderades i ett tillägg som skickades till addons.mozilla.org. För att skydda ditt konto och dina tillägg, återkallade vi läckta referenser.\n"
 "Du kan skapa nya API-referenser på %(api_keys_url)s\n"
 "\n"
-"Se till att du aldrig delar dina referenser med någon. Inkludera dem aldrig i ett offentligt arkiv, tillägg eller någon annan offentlig plats. Vi uppmuntrar dig att granska dina kodförråd och dina tillägg för att ta bort alla referenser till dina AMO-referenser.\n"
+"Se till att du aldrig delar dina referenser med någon. Inkludera dem aldrig i ett offentligt arkiv, tillägg eller någon annan offentlig plats. Vi uppmuntrar dig att granska dina kodförråd och dina "
+"tillägg för att ta bort alla referenser till dina AMO-referenser.\n"
 "\n"
 "Tack,\n"
 "Mozilla tilläggsteam"
@@ -3073,11 +3078,33 @@ msgstr "Administrationssida"
 msgid "View Statistics Dashboard"
 msgstr "Visa statistiköversikt"
 
+msgid "Review Policies and Rules"
+msgstr "Granskningspolicy och regler"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Jag har läst och accepterat detta avtal, reglerna och policyn"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Ditt konto behöver ett visningsnamn så att användarna vet vem tillägget kommer från. Vänligen ange en nedan."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "eller <a href=\"{0}\">Avbryt</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Mer information om utvecklarkonton"
+
 msgid "Developer News"
 msgstr "Utvecklarnyheter"
 
 msgid "View the blog &#9658;"
 msgstr "Visa bloggen &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Väntande versionssignatur"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Du är klar! ✨ Du kommer att meddelas via e-post när den signerade filen är redo att laddas ner från Developer Hub. Om du inte ser ett e-postmeddelande inom 24 timmar, kontrollera din skräppostmapp."
 
 msgid "License"
 msgstr "Licens"
@@ -3446,8 +3473,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Den senaste godkända versionen av detta%(promoted_group_name)s-tillägg kan inte raderas eller inaktiveras eftersom den tidigare versionen inte godkändes för %(promoted_group_name)s-kampanj. Kontakta"
-" AMO admins om du behöver hjälp med detta."
+"Den senaste godkända versionen av detta%(promoted_group_name)s-tillägg kan inte raderas eller inaktiveras eftersom den tidigare versionen inte godkändes för %(promoted_group_name)s-kampanj. "
+"Kontakta AMO admins om du behöver hjälp med detta."
 
 msgid "Hide Add-on"
 msgstr "Dölj tillägg"
@@ -3760,8 +3787,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Använd musgester för att stänga flikar, navigera på sidor och mer."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Njut av miniatyrbilder av webbplatser vid sidan av din sökning."
 
 #. editorial content for the discovery pane.
@@ -4360,6 +4387,11 @@ msgstr "Hejdå, irriterande kakvarningar!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Alla emojis du behöver, bara ett klick bort."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Sluta ge webbplatser din riktiga e-postadress. Firefox Relay skyddar din identitet och förhindrar skräppost."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Vissa webbplatser har svårt att spela upp videor på Android. Här är en lösning."
@@ -4379,6 +4411,10 @@ msgstr "Anpassa musgester. Upptäck ett nytt sätt att navigera med över 50 kon
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Använd musgester för att stänga flikar, navigera på sidor och mer."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Njut av miniatyrbilder av webbplatser vid sidan av din sökning."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4407,10 +4443,6 @@ msgstr "Försvinn, irriterande varningar om kakor!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Återgå till en enklare tid — när dina bästa sökresultat stod ovanför annonserna (Google och Bing-sökmotorkompatibla)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Sluta ge webbplatser din riktiga e-postadress. Firefox Relay skyddar din identitet och förhindrar skräppost."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4453,20 +4485,19 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top extensions of 2021"
-msgstr "De bästa tilläggen 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-anpassning"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Steam-tillägg"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Produktivitetsförstärkare"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Läs mer"
+#, fuzzy
+msgid "Writing tools"
+msgstr "Översättningsverktyg"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4561,10 +4592,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Se fler utvalda annonsblockerare som valts av anställda"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-anpassning"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Se fler YouTube-tillägg som valts av anställda"
 
@@ -4575,6 +4602,26 @@ msgstr "Trendiga teman"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Se fler trendiga teman"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Trendiga teman"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Se fler trendiga teman"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Trendiga teman"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Se fler rekommenderade tillägg"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
@@ -4662,8 +4709,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Vanliga frågor om granskning"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Ett tilläggs recensioner är ett sätt för dig att dela med dig av dina åsikter om tillägg som du har installerat och använt. Vår moderationsgrupp förbehåller sig rätten att vägra eller ta bort "
 "recension som inte överensstämmer med dessa riktlinjer."
@@ -6113,8 +6160,8 @@ msgstr "E-postmönster"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
-"Ange fullständig e-post som ska blockeras eller använd unix-stil jokertecken, t.ex. \"*@exempel.com\". Om du behöver blockera en domän inkl underdomäner, lägg till en andra post, t.ex. "
-"\"*@*.exempel.com\"."
+"Ange fullständig e-post som ska blockeras eller använd unix-stil jokertecken, t.ex. \"*@exempel.com\". Om du behöver blockera en domän inkl underdomäner, lägg till en andra post, t.ex. \"*@*."
+"exempel.com\"."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Den e-postadress du använde för ditt konto kan inte användas för att skicka in tillägg."
@@ -6127,8 +6174,8 @@ msgstr ""
 "\"Användarbegränsningar för e-post\"."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg samt våra granskningsprinciper och regler. Distributionsavtalet för Firefox-tillägg länkar också till vår "
 "sekretesspolicy som förklarar hur vi hanterar din information."
@@ -6190,7 +6237,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6203,7 +6251,8 @@ msgid ""
 msgstr ""
 "Hälsningar %(author_name)s,\n"
 "\n"
-"Du har blivit inbjuden att bli författare till %(addon_name)s på %(domain)s Att acceptera inbjudan ger dig tillgång till redigering av tillägget och kan visa ditt namn i författarlistan på webbplatsen.\n"
+"Du har blivit inbjuden att bli författare till %(addon_name)s på %(domain)s Att acceptera inbjudan ger dig tillgång till redigering av tillägget och kan visa ditt namn i författarlistan på "
+"webbplatsen.\n"
 "\n"
 "Klicka på länken nedan för att svara om du vill läggas till som författare för %(addon_name)s.\n"
 "\n"
@@ -6262,3 +6311,6 @@ msgstr "andra"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} och senare"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "Installationsursprunget {origin} är inte tillåtet."
