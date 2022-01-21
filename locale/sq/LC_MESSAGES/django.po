@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-11-26 15:09+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1621,9 +1621,6 @@ msgstr "Ndryshime Së Fundi për Shtesat e Mia"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Shtesat Open Search {blog_link_open}s’mbulohen më në AMO{blog_link_close}. Në vend të kësaj, mund të krijoni një {doc_link_open}zgjerim kërkimesh{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Ky identifikues është i përdorur tashmë. Ju lutemi, zgjidhni një tjetër."
 
@@ -1716,6 +1713,9 @@ msgstr "Interval i pavlefshëm versioni."
 msgid "Need at least one compatible application."
 msgstr "Lyp të paktën një aplikacion të përputhshëm."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Keni parashtruar ca si shumë ngarkime tani së fundi. Ju lutemi, riprovoni pas ca kohe."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Pati një gabim me ngarkimin tuaj. Ju lutemi, riprovoni."
 
@@ -1724,9 +1724,6 @@ msgstr "Anashkaloje vleftësimin e dështuar"
 
 msgid "Need to select at least one application."
 msgstr "Lypset të përzgjidhet të paktën një aplikacion."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Keni parashtruar ca si shumë ngarkime tani së fundi. Ju lutemi, riprovoni pas ca kohe."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Versioni {version} përputhet me {block_link} për këtë shtesë. Për më tepër informacion, mund të lidheni me {amo_admins}."
@@ -1770,6 +1767,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Emër në Ekran"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Origjinë:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Leje:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Kartelë shtese e pavlefshme ose e dëmtuar."
@@ -1972,24 +1983,6 @@ msgstr "Shtesa ime s’hyn në ndonjë nga kategoritë e mundshme"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Marrëveshje Shpërndarjesh Shtesash Firefox-i"
 
-msgid "Review Policies and Rules"
-msgstr "Shihni Rregulla"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "E kam lexuar dhe e pranoj këtë Marrëveshje dhe Rregulla dhe Politika"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Llogarisë tuaj i duhet një emër shfaqjeje, që kështu përdoruesit të dinë se prej kujt vjen shtesa juaj. Ju lutemi, jepni një të tillë më poshtë."
-
-msgid "Accept"
-msgstr "Pranoje"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "ose <a href=\"{0}\">Anulojeni</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Më tepër të dhëna rreth Llogarish Zhvilluesish"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Shtesa për {0}"
@@ -2043,6 +2036,16 @@ msgstr "Kërkoni te Dokumentime për Zhvillues"
 
 msgid "Search"
 msgstr "Kërkoni"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Leje:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Përdorni fushën më poshtë për të ngarkuar paketën e shtesës suaj."
@@ -2185,6 +2188,9 @@ msgstr "Pranimi i ftesës do t’ju japë hyrje të përpunoni shtesën, dhe mun
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klikoni mbi butonin Pranoje, që të ripohoni se doni të shtoheni si një autor për {addon_name}."
+
+msgid "Accept"
+msgstr "Pranoje"
 
 msgid "Decline"
 msgstr "Hidhe poshtë"
@@ -2730,14 +2736,6 @@ msgstr "Këtë version mund ta përpunoni edhe duke shtuar shënime versioni, os
 msgid "Edit version {0}"
 msgstr "Përpunoni versionin {0}"
 
-msgid "Version Signature Pending"
-msgstr "Në Pritje të Nënshkrimit të Versionit"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Mbaruat! ✨ Do të njoftoheni me email, kur kartela e nënshkruar të jetë gati për t’u shkarkuar që nga Qendra e Zhvilluesve. Nëse nuk shihni ndonjë email pas 24 orësh, ju lutemi, kontrolloni te dosja "
-"juaj e të padëshiruarve."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Për t’jua kujtuar, shtesa juaj është subjekt shqyrtimi dorazi në çfarëdo kohe."
 
@@ -3090,11 +3088,34 @@ msgstr ""
 msgid "View Statistics Dashboard"
 msgstr "Shihni Pultin e Statistikave"
 
+msgid "Review Policies and Rules"
+msgstr "Shihni Rregulla"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "E kam lexuar dhe e pranoj këtë Marrëveshje dhe Rregulla dhe Politika"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Llogarisë tuaj i duhet një emër shfaqjeje, që kështu përdoruesit të dinë se prej kujt vjen shtesa juaj. Ju lutemi, jepni një të tillë më poshtë."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "ose <a href=\"{0}\">Anulojeni</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Më tepër të dhëna rreth Llogarish Zhvilluesish"
+
 msgid "Developer News"
 msgstr "Lajme Zhvilluesish"
 
 msgid "View the blog &#9658;"
 msgstr "Shihni blogun &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Në Pritje të Nënshkrimit të Versionit"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Mbaruat! ✨ Do të njoftoheni me email, kur kartela e nënshkruar të jetë gati për t’u shkarkuar që nga Qendra e Zhvilluesve. Nëse nuk shihni ndonjë email pas 24 orësh, ju lutemi, kontrolloni te dosja "
+"juaj e të padëshiruarve."
 
 msgid "License"
 msgstr "Licencë"
@@ -3787,8 +3808,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Përdorni gjeste miu për të mbyllur skeda, për të lëvizur nëpër faqe, etj."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Shijoni figura miniaturë sajtesh, tok me përfundimet e kërkimeve tuaja."
 
 #. editorial content for the discovery pane.
@@ -4390,6 +4411,11 @@ msgstr "Lamtumirë, sinjalizime të bezdisura cookie-sh!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Krejt nevojat tuaja për emoji—përherë vetëm një klik larg."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Reshtni së dhëni sajteve adresën tuaj email. Firefox Relay mbron identitetin tuaj & parandalon poshtë hedhurinë."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Disa sajte kanë vështirësi të luajnë video nën Android. Ky zgjerim sjell zgjidhje."
@@ -4412,6 +4438,10 @@ msgstr "Përshtatni gjeste miu. Zbuloni një rrugë të re për të lëvizur, p�
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Përdorni gjeste miu për të mbyllur skeda, për të lëvizur nëpër faqe, etj."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Shijoni figura miniaturë sajtesh, tok me përfundimet e kërkimeve tuaja."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4440,10 +4470,6 @@ msgstr "Qëohuni, sinjalizime të bezdisura cookie-sh!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Riktheni te një kohë më e thjeshtë — kur përfundimet kryesuese tuajat gjendeshin mbi reklamat (e përputhshme me motorë kërkimi Google dhe Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Reshtni së dhëni sajteve adresën tuaj email. Firefox Relay mbron identitetin tuaj & parandalon poshtë hedhurinë."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4485,25 +4511,20 @@ msgstr "Ato i shtojnë Firefox-it veçori për ta bërë shfletimin më të shpe
 msgid "See all extensions"
 msgstr "Shihni tërë zgjerimet"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Zgjerime popullore"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Steam extensions"
+msgid "Image search extensions"
 msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Përforcues prodhimtarie"
-
-#. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "Ruajeni dhe shtoni të tjera"
+msgid "Writing tools"
+msgstr "Mjete përkthimi"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4599,10 +4620,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Shihni më tepër bllokues reklamash të zgjedhur nga stafi"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Shihni më tepër zgjerime YouTube të zgjedhura nga stafi"
 
@@ -4613,6 +4630,26 @@ msgstr "Tema në modë"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Shihni më tepër tema në modë"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Tema në modë"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Shihni më tepër tema në modë"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Tema në modë"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Shihni më tepër zgjerime të rekomanduara"
 
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
@@ -6298,3 +6335,6 @@ msgstr "të tjera"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} dhe më të vonshëm"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

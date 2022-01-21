@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-11-25 04:26+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1630,9 +1630,6 @@ msgstr "ბოლო ცვლილებები ჩემს დამატ
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open-Search-დამატებები აღარაა {blog_link_open}მხარდაჭერილი AMO-საიტზე{blog_link_close}. სანაცვლოდ, შეგიძლიათ {doc_link_open}საძიებო გაფართოების შექმნა{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "ეს დაბოლოება უკვე გამოიყენება. გთხოვთ, შეარჩიოთ სხვა."
 
@@ -1725,6 +1722,9 @@ msgstr "ვერსიის არასწორი დიაპაზონ�
 msgid "Need at least one compatible application."
 msgstr "საჭიროა, სულ მცირე ერთი თავსებადი პროგრამა მაინც."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "ზედმეტად ბევრი ატვირთული მასალა წარადგინეთ ახლახან. გთხოვთ, მოითმინოთ და კვლავ სცადოთ ცოტა მოგვიანებით."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "ატვირთვა ვერ მოხერხდა. გთხოვთ სცადოთ მოგვიანებით."
 
@@ -1733,9 +1733,6 @@ msgstr "წარუმატებელ დამოწმებაზე გ�
 
 msgid "Need to select at least one application."
 msgstr "საჭიროა, სულ მცირე ერთი პროგრამის არჩევა."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "ზედმეტად ბევრი ატვირთული მასალა წარადგინეთ ახლახან. გთხოვთ, მოითმინოთ და კვლავ სცადოთ ცოტა მოგვიანებით."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "ვერსია {version} და {block_link} ემთხვევა ამ დამატებისთვის. დამატებითი ინფორმაციისთვის, შეგიძლიათ {amo_admins}-ს დაუკავშირდეთ."
@@ -1779,6 +1776,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "გამოსაჩენი სახელი"
+
+#, fuzzy
+msgid "Origin"
+msgstr "წარმომავლობა:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "ნებართვები:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "დამატების უმართებულო ან დაზიანებული ფაილი."
@@ -1978,24 +1989,6 @@ msgstr "ჩემი დამატება არცერთ კატეგ
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "შეთანხმება, Firefox დამატების გავრცელების თაობაზე"
 
-msgid "Review Policies and Rules"
-msgstr "მიმოხილვის დებულება და წესები"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "წავიკითხე და ვეთანხმები მოცემული ხელშეკრულებით გათვალისწინებულ წესებსა და დებულებებს"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "თქვენი ანგარიში საჭიროებს გამოსაჩენ სახელს, რომ მომხმარებლებმა იცოდნენ, ვისგანაა დამატება. გთხოვთ, მიუთითოთ ქვემოთ."
-
-msgid "Accept"
-msgstr "მიღება"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "ან <a href=\"{0}\">გაუქმება</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "ვრცლად, შემმუშავებლის ანგარიშების შესახებ"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} დამატებები"
@@ -2048,6 +2041,16 @@ msgstr "ძიება შემმუშავებლის მასალ�
 
 msgid "Search"
 msgstr "ძიება"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "ნებართვები:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "დამატების ნაკრების ასატვირთად გამოიყენეთ ქვემოთ მოცემული ველი."
@@ -2186,6 +2189,9 @@ msgstr "მოწვევაზე თანხმობით დამატ�
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "დაწკაპეთ მიღების ღილაკზე ქვემოთ დასადასტურებლად, რომ გსურთ დაემატოთ {addon_name} დამატების თანაავტორად."
+
+msgid "Accept"
+msgstr "მიღება"
 
 msgid "Decline"
 msgstr "უარყოფა"
@@ -2729,12 +2735,6 @@ msgstr "თქვენ ასევე შეგიძლიათ ამ ვ�
 msgid "Edit version {0}"
 msgstr "{0} ვერსიის ჩასწორება"
 
-msgid "Version Signature Pending"
-msgstr "ხელმოწერის მომლოდინე ვერსია"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr "მზადაა! ✨ ელფოსტით გაცნობებთ, როცა ხელმოწერილი ფაილი მზად იქნება ჩამოსატვირთად Developer Hub-დან. თუ 24 საათში ელფოსტას ვერ მიიღებთ, გთხოვთ, გადაამოწმოთ უსარგებლო წერილების საქაღალდეში."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "შეგახსენებთ, თქვენი დამატება ექვემდებარება ადამიანის მიერ შემოწმებას, ნებისმიერ დროს."
 
@@ -3086,11 +3086,32 @@ msgstr "მმართველის გამართვა"
 msgid "View Statistics Dashboard"
 msgstr "სტატისტიკური მონაცემების გვერდი"
 
+msgid "Review Policies and Rules"
+msgstr "მიმოხილვის დებულება და წესები"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "წავიკითხე და ვეთანხმები მოცემული ხელშეკრულებით გათვალისწინებულ წესებსა და დებულებებს"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "თქვენი ანგარიში საჭიროებს გამოსაჩენ სახელს, რომ მომხმარებლებმა იცოდნენ, ვისგანაა დამატება. გთხოვთ, მიუთითოთ ქვემოთ."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "ან <a href=\"{0}\">გაუქმება</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "ვრცლად, შემმუშავებლის ანგარიშების შესახებ"
+
 msgid "Developer News"
 msgstr "შემმუშავებლის სიახლეები"
 
 msgid "View the blog &#9658;"
 msgstr "ეწვიეთ სვეტს &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "ხელმოწერის მომლოდინე ვერსია"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr "მზადაა! ✨ ელფოსტით გაცნობებთ, როცა ხელმოწერილი ფაილი მზად იქნება ჩამოსატვირთად Developer Hub-დან. თუ 24 საათში ელფოსტას ვერ მიიღებთ, გთხოვთ, გადაამოწმოთ უსარგებლო წერილების საქაღალდეში."
 
 msgid "License"
 msgstr "ლიცენზია"
@@ -3770,8 +3791,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, გვერდებზე გადასასვლელად და ა. შ."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "იხილეთ საიტების გამოსახულებები, მოძიებული შედეგების გვერდით."
 
 #. editorial content for the discovery pane.
@@ -4371,6 +4392,11 @@ msgstr "მშვიდობით, ფუნთუშების აბეზ
 msgid "All your emoji needs—always just a click away."
 msgstr "ყველა საჭირო სიცილაკი — მუდამ თქვენს თითებთან ახლოს."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "შეწყვიტეთ საიტებისთვის თქვენი ელფოსტის მისამართის გამჟღავნება. Firefox Relay იცავს თქვენს პირადულობასა და გარიდებთ უსარგებლო წერილებს."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "საიტების ნაწილს ხარვეზები აქვს ვიდეოების გაშვებისას. იხილეთ, როგორ მოგვარდება."
@@ -4393,6 +4419,10 @@ msgstr "მოირგეთ თაგვის ჟესტები. აღ�
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, გვერდებზე გადასასვლელად და ა. შ."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "იხილეთ საიტების გამოსახულებები, მოძიებული შედეგების გვერდით."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4421,10 +4451,6 @@ msgstr "აქშა, ფუნთუშების აბეზარო შ�
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "დაიბრუნეთ ის დრო — როცა ძიების სასურველ შედეგებს, რეკლამები არ ფარავდა (საძიებოები Google და Bing თავსებადია)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "შეწყვიტეთ საიტებისთვის თქვენი ელფოსტის მისამართის გამჟღავნება. Firefox Relay იცავს თქვენს პირადულობასა და გარიდებთ უსარგებლო წერილებს."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4467,23 +4493,19 @@ msgid "See all extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "გავრცელებული გაფართოებები"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Steam extensions"
+msgid "Image search extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "შედეგიანობის გასაუმჯობესებელი"
-
-#. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "შენახვა და კიდევ დამატება"
+msgid "Writing tools"
+msgstr "თარგმნის ხელსაწყოები"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4578,10 +4600,6 @@ msgid "See more ad blocker staff picks"
 msgstr "რეკლამის სხვა შემზღუდავები, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "სხვა YouTube-ხელსაწყოები, თანამშრომლების შერჩეული"
 
@@ -4592,6 +4610,26 @@ msgstr "ფართოდ გავრცელებული თემებ�
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "სხვა ფართოდ გავრცელებული თემები"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "ფართოდ გავრცელებული თემები"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "სხვა ფართოდ გავრცელებული თემები"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "ფართოდ გავრცელებული თემები"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "სხვა სასურველი გაფართოებები"
 
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
@@ -6276,3 +6314,6 @@ msgstr "და სხვები"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} და უფრო ახალ ვერსიებთან"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

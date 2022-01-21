@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-12-27 08:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -1633,9 +1633,6 @@ msgstr "내 부가 기능의 최근 변경사항"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search 부가 기능은 {blog_link_open}AMO에서 더 이상 지원되지 않습니다{blog_link_close}. 대신 {doc_link_open}검색 확장 프로그램{doc_link_close}을 만들 수 있습니다."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "이미 사용중인 주화입니다. 다른걸 사용해 주세요."
 
@@ -1728,6 +1725,9 @@ msgstr "잘못된 버전 범위입니다."
 msgid "Need at least one compatible application."
 msgstr "호환되는 애플리케이션이 최소 한개는 있어야 합니다."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "최근에 너무 많은 업로드를 했습니다. 잠시 후 다시 시도해주세요."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "업로드 도중 오류가 있었습니다. 다시 해주세요."
 
@@ -1736,9 +1736,6 @@ msgstr "Override failed validation"
 
 msgid "Need to select at least one application."
 msgstr "적어도 하나의 애플리케이션을 선택해야 합니다."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "최근에 너무 많은 업로드를 했습니다. 잠시 후 다시 시도해주세요."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "{version} 버전은 이 부가 기능의 {block_link}와 일치합니다. 추가 정보는 {amo_admins}에 문의 할 수 있습니다."
@@ -1780,6 +1777,19 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "표시 이름"
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "권한:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "잘못되거나 손상된 부가기능 파일입니다."
@@ -1985,25 +1995,6 @@ msgstr "어떤 분류에도 이 부가 기능과 부합하지 않습니다"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox 부가 기능 배포 계약"
 
-msgid "Review Policies and Rules"
-msgstr "검토 정책과 규칙"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "본 계약과 규칙 및 정책을 읽고 동의합니다"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr "동의"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "또는 <a href=\"{0}\">취소</a>"
-
-#, fuzzy
-msgid "More information on Developer Accounts"
-msgstr "추가 정보 필요"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} 부가 기능"
@@ -2058,6 +2049,16 @@ msgstr "개발자 문서 검색"
 
 msgid "Search"
 msgstr "검색"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "권한:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "부가 기능 패키지를 업로드 하려면 아래 항목을 입력해 주세요."
@@ -2198,6 +2199,9 @@ msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
+
+msgid "Accept"
+msgstr "동의"
 
 msgid "Decline"
 msgstr "거절"
@@ -2744,13 +2748,6 @@ msgstr "압축되거나 난독화, 컴파일된 코드를 포함하고 있다면
 msgid "Edit version {0}"
 msgstr "버전 {0} 수정"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "버전 사인됨"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3075,11 +3072,34 @@ msgstr "관리자 관리"
 msgid "View Statistics Dashboard"
 msgstr "통계 대시보드 보기"
 
+msgid "Review Policies and Rules"
+msgstr "검토 정책과 규칙"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "본 계약과 규칙 및 정책을 읽고 동의합니다"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "또는 <a href=\"{0}\">취소</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "추가 정보 필요"
+
 msgid "Developer News"
 msgstr "개발자 뉴스"
 
 msgid "View the blog &#9658;"
 msgstr "블로그 보기 &#9658;"
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "버전 사인됨"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "라이선스"
@@ -3775,8 +3795,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4375,6 +4394,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4393,6 +4417,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4421,10 +4449,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4467,25 +4491,20 @@ msgstr "Firefox에 다양한 기능을 추가하여 더 빠르고, 안전하고,
 msgid "See all extensions"
 msgstr "모든 확장기능 보기"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "인기 확장 기능"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "모든 확장기능 보기"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "저장하고 추가하기"
+msgid "Image search extensions"
+msgstr "모든 확장기능 보기"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Writing tools"
+msgstr "탭 관리 도구"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4591,10 +4610,6 @@ msgid "See more ad blocker staff picks"
 msgstr "추천 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "부가 기능 이름 번역"
@@ -4608,6 +4623,26 @@ msgstr "추천 테마"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "추천 테마 더보기"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "추천 테마"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "추천 테마 더보기"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "추천 테마"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "추천 확장 기능 더보기"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -6370,3 +6405,6 @@ msgstr "그 외 여러명"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} 이상"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

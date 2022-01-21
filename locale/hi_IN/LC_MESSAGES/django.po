@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1630,9 +1630,6 @@ msgstr "मेरे ऐड-ऑनों के लिए हाल ही म�
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "यह स्लग पहले से ही उपयोग में है। कृपया दूसरा चुनें।"
 
@@ -1725,6 +1722,9 @@ msgstr "अमान्य संस्करण विस्तार।"
 msgid "Need at least one compatible application."
 msgstr "कम से कम एक संगत अनुप्रयोग की आवश्यकता है।"
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "There was an error with your upload. Please try again."
 msgstr "आपके अपलोड में कोई त्रुटि थी। कृपया पुन: प्रयास करें।"
 
@@ -1733,9 +1733,6 @@ msgstr ""
 
 msgid "Need to select at least one application."
 msgstr "कम से कम एक अनुप्रयोग की चयन करने की आवश्यकता है।"
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1777,6 +1774,19 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "प्रदर्शित होने वाले नाम"
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "अनुमति‌:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1977,24 +1987,6 @@ msgstr "मेरे ऐड-ऑन इन श्रेणियों में 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox ऐड-ऑन वितरण समझौता"
 
-msgid "Review Policies and Rules"
-msgstr "नीतियों और नियमों की समीक्षा करें"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr "स्वीकार करें"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "या <a href=\"{0}\">रद्द करें</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "डेवलपर खातों पर अधिक जानकारी"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} ऐड-ऑन्स"
@@ -2048,6 +2040,16 @@ msgstr "डेवलपर दस्तावेज़ खोजें"
 
 msgid "Search"
 msgstr "खोजें"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "अनुमति‌:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "अपना ऐड-ऑन पैकेज अपलोड करने के लिए नीचे दिए गए फ़ील्ड का उपयोग करें।"
@@ -2185,6 +2187,9 @@ msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
+
+msgid "Accept"
+msgstr "स्वीकार करें"
 
 msgid "Decline"
 msgstr ""
@@ -2704,13 +2709,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "संस्करण {0} संपादित करें"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "संस्करण हस्ताक्षरित"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3021,10 +3019,32 @@ msgstr "व्यवस्थापक प्रबंधन"
 msgid "View Statistics Dashboard"
 msgstr ""
 
+msgid "Review Policies and Rules"
+msgstr "नीतियों और नियमों की समीक्षा करें"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "या <a href=\"{0}\">रद्द करें</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "डेवलपर खातों पर अधिक जानकारी"
+
 msgid "Developer News"
 msgstr "डेवलेपर समाचार"
 
 msgid "View the blog &#9658;"
+msgstr ""
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "संस्करण हस्ताक्षरित"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
 
 msgid "License"
@@ -3706,8 +3726,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4306,6 +4325,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4324,6 +4348,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4352,10 +4380,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4400,23 +4424,18 @@ msgid "See all extensions"
 msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "एक्स्टेंशन"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "सभी एक्सटेंशन ब्राउज करें"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "सहेजें और अधिक जोड़ें"
+msgid "Image search extensions"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4526,10 +4545,6 @@ msgid "See more ad blocker staff picks"
 msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "ऐड-ऑन संस्करण द्वारा"
@@ -4543,6 +4558,26 @@ msgstr "टिप्पणी की गई"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "अपनी थीम के लिए रंगों का चयन करें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "टिप्पणी की गई"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "अपनी थीम के लिए रंगों का चयन करें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "टिप्पणी की गई"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 msgid "Could not parse the manifest file."
 msgstr "मैनिफेस्ट फ़ाइल को पार्स नहीं कर सका।"
@@ -6243,3 +6278,6 @@ msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} और बाद में"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

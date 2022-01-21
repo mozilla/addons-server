@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1641,9 +1641,6 @@ msgstr "Modificări recente pentru suplimentele mele"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Suplimentele cu căutare deschisă {blog_link_open}nu mai au suport pe AMO{blog_link_close}. Poți crea {doc_link_open}în schimb o extensie de căutare{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Slugul este deja utilizat. Te rugăm să alegi altul."
 
@@ -1738,6 +1735,9 @@ msgstr "Domeniu de versiune nevalid."
 msgid "Need at least one compatible application."
 msgstr "Necesită cel puțin o aplicație compatibilă."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Ai realizat prea multe încărcări în ultimul timp. Te rugăm să încerci din nou mai târziu."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "A apărut o eroare la încărcare. Te rugăm să încerci din nou."
 
@@ -1746,9 +1746,6 @@ msgstr "Înlocuire forțată validare eșuată"
 
 msgid "Need to select at least one application."
 msgstr "Necesită selectarea cel puțin a unei aplicații."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Ai realizat prea multe încărcări în ultimul timp. Te rugăm să încerci din nou mai târziu."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Versiunea {version} corespunde cu {block_link} pentru acest supliment. Contactează {amo_admins} pentru informații suplimentare."
@@ -1790,6 +1787,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Nume afișat"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Origine:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Permisiuni:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Fișier de supliment nevalid sau corupt."
@@ -1990,24 +2001,6 @@ msgstr "Suplimentul meu nu se încadrează în niciuna dintre categorii"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Acord de distribuție pentru suplimente Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Politici și norme de recenzare"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Am citit și accept acest Acord și Regulile și politicile"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Trebuie să setezi un nume de afișat pentru ca utilizatorii să știe de unde vine suplimentul. Te rugăm să introduci unul mai jos."
-
-msgid "Accept"
-msgstr "Acceptă"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "sau <a href=\"{0}\">Anulează</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Mai multe informații despre conturile de dezvoltatori"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Suplimente pentru {0}"
@@ -2061,6 +2054,16 @@ msgstr "Caută documente pentru dezvoltatori"
 
 msgid "Search"
 msgstr "Caută"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Permisiuni:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Folosește câmpul de mai jos ca să încarci pachetul suplimentului tău."
@@ -2205,6 +2208,9 @@ msgstr "Acceptarea invitației îți va da acces pentru editarea suplimentului �
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Dă clic pe butonul de acceptare de mai jos pentru confirmarea că vrei să fii adăugat(ă) ca autor pentru {addon_name}."
+
+msgid "Accept"
+msgstr "Acceptă"
 
 msgid "Decline"
 msgstr "Refuză"
@@ -2753,12 +2759,6 @@ msgstr "Poți edita această versiune și pentru a adăuga note privind versiune
 msgid "Edit version {0}"
 msgstr "Editează versiunea {0}"
 
-msgid "Version Signature Pending"
-msgstr "În așteptarea semnării versiunii"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3120,11 +3120,32 @@ msgstr "Setări admin"
 msgid "View Statistics Dashboard"
 msgstr "Vezi tabloul de bord pentru statistici"
 
+msgid "Review Policies and Rules"
+msgstr "Politici și norme de recenzare"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Am citit și accept acest Acord și Regulile și politicile"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Trebuie să setezi un nume de afișat pentru ca utilizatorii să știe de unde vine suplimentul. Te rugăm să introduci unul mai jos."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "sau <a href=\"{0}\">Anulează</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Mai multe informații despre conturile de dezvoltatori"
+
 msgid "Developer News"
 msgstr "Știri pentru dezvoltatori"
 
 msgid "View the blog &#9658;"
 msgstr "Vezi blogul &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "În așteptarea semnării versiunii"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Licență"
@@ -3819,8 +3840,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Bucură-te de imagini miniaturale ale site-urilor web alături de rezultatele căutărilor tale."
 
 #. editorial content for the discovery pane.
@@ -4425,6 +4446,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr "Excelează în jocul emojiurilor. Zeci de emojiuri pentru orice ocazie—mereu la un clic distanță."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4448,6 +4474,10 @@ msgstr "Personalizează gesturile din mouse. Descoperă un mod nou de navigare c
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Bucură-te de imagini miniaturale ale site-urilor web alături de rezultatele căutărilor tale."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4477,10 +4507,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4523,25 +4549,20 @@ msgstr "Acestea adaugă funcționalități în Firefox pentru a face navigarea m
 msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Extensii populare"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "Vezi toate extensiile"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "Salvează și adaugă mai multe"
+msgid "Image search extensions"
+msgstr "Vezi toate extensiile"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Writing tools"
+msgstr "Instrumente de traducere"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4645,10 +4666,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
@@ -4662,6 +4679,26 @@ msgstr "Teme recomandate"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "Vezi mai multe teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Vezi mai multe teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Vezi mai multe extensii recomandate"
 
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
@@ -6390,3 +6427,6 @@ msgstr "altele"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} și versiunile ulterioare"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

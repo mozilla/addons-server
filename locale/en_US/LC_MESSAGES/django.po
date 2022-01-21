@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1749,9 +1749,6 @@ msgstr "Recent Changes for My Add-ons"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr "The install origin {origin} is not permitted."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "This slug is already in use. Please choose another."
 
@@ -1846,6 +1843,9 @@ msgstr "Invalid version range."
 msgid "Need at least one compatible application."
 msgstr "Need at least one compatible application."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "You have submitted too many uploads recently. Please try again after some time."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "There was an error with your upload. Please try again."
 
@@ -1855,9 +1855,6 @@ msgstr "Override failed validation"
 #, fuzzy
 msgid "Need to select at least one application."
 msgstr "Need at least one compatible application."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "You have submitted too many uploads recently. Please try again after some time."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
@@ -1905,6 +1902,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Display Name"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Origin:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Versions"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "You have generated a site permission add-on for the same origin and permissions."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -2126,26 +2137,6 @@ msgstr "My add-on doesn't fit into any of the categories"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox Add-on Distribution Agreement"
 
-#, fuzzy
-msgid "Review Policies and Rules"
-msgstr "Review Date"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "I have read and accept this Agreement and the Rules and Policies"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-
-msgid "Accept"
-msgstr "Accept"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "or <a href=\"{0}\">Cancel</a>"
-
-#, fuzzy
-msgid "More information on Developer Accounts"
-msgstr "More information requested"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Add-ons"
@@ -2201,6 +2192,16 @@ msgstr "Search Developer Docs"
 
 msgid "Search"
 msgstr "Search"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Versions"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr "The permission(s) the generated add-on will grant on the origin."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Use the field below to upload your add-on package."
@@ -2345,6 +2346,9 @@ msgstr "Accepting the invitation will give you access to edit the add-on, and ma
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+
+msgid "Accept"
+msgstr "Accept"
 
 msgid "Decline"
 msgstr "Decline"
@@ -2945,13 +2949,6 @@ msgstr "You can also edit this version you just submitted by adding version note
 msgid "Edit version {0}"
 msgstr "Beta Version {0}"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "Version Notes"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "As a reminder, your add-on is subject to manual review at any time."
 
@@ -3341,11 +3338,35 @@ msgstr "Admin Page"
 msgid "View Statistics Dashboard"
 msgstr "View Statistics Dashboard"
 
+#, fuzzy
+msgid "Review Policies and Rules"
+msgstr "Review Date"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "I have read and accept this Agreement and the Rules and Policies"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "or <a href=\"{0}\">Cancel</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "More information requested"
+
 msgid "Developer News"
 msgstr "Developer News"
 
 msgid "View the blog &#9658;"
 msgstr "View the blog &#9658;"
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "Version Notes"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 
 msgid "License"
 msgstr "License"
@@ -4090,9 +4111,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Use mouse gestures to close tabs, go back one page, reload, and more."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr "Enjoy thumbnail images alongside your search returns."
 
 #. editorial content for the discovery pane.
@@ -4744,6 +4764,11 @@ msgstr "Begone, annoying cookie warnings!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Dozens of amazing emojis—always a click away."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4767,6 +4792,11 @@ msgstr "Discover a new way to navigate with 50+ helpful mouse gestures."
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Use mouse gestures to close tabs, go back one page, reload, and more."
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Enjoy thumbnail images alongside your search returns."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4799,10 +4829,6 @@ msgstr "Begone, annoying cookie warnings!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4846,25 +4872,20 @@ msgstr "They add features to Firefox to make browsing faster, safer, or just pla
 msgid "See all extensions"
 msgstr "Browse all add-ons"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Extensions"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube customization"
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Steam extensions"
+msgid "Image search extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Productivity boosters"
-
-#. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "Save and add more"
+msgid "Writing tools"
+msgstr "Tab organizers and tools"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4978,10 +4999,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Recommended Extensions program"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube customization"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "by Add-on Version"
@@ -4995,6 +5012,26 @@ msgstr "Recommended ({0})"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "See more recommended themes"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Recommended ({0})"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "See more recommended themes"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Recommended ({0})"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Recommended Extensions program"
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
@@ -6854,3 +6891,6 @@ msgstr "others"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} and later"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "The install origin {origin} is not permitted."

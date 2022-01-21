@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-05-20 11:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1606,9 +1606,6 @@ msgstr "Siste endringer for mine utvidelser"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-tillegg støttes ikke lenger {blog_link_open}på AMO{blog_link_close}. Du kan opprette en {doc_link_open}søkeutvidelse i stedet{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Denne adresseteksten er allerede i bruk. Velg en annen."
 
@@ -1701,6 +1698,9 @@ msgstr "Feil versjonsområde."
 msgid "Need at least one compatible application."
 msgstr "Trenger minst ett kompatibelt program."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Du har sendt inn for mange opplastinger i det siste. Prøv igjen om en stund."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Det oppstod en feil med opplastingen. Prøv igjen."
 
@@ -1709,9 +1709,6 @@ msgstr "Overstyringen feilet validering"
 
 msgid "Need to select at least one application."
 msgstr "Velg minst ett program."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Du har sendt inn for mange opplastinger i det siste. Prøv igjen om en stund."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Versjon {version} samsvarer med {block_link} for dette tillegget. Du kan kontakte {amo_admins} for mer informasjon."
@@ -1753,6 +1750,19 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Visningsnavn"
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Tillatelser:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Ugyldig eller skadet tilleggsfil."
@@ -1952,24 +1962,6 @@ msgstr "Utvidelsen passer ikke i noen av kategoriene"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox distribusjonsavtale for utvidelser"
 
-msgid "Review Policies and Rules"
-msgstr "Vurderingspraksis og regler"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Jeg har lest og godtatt denne avtalen, reglene og retningslinjene"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr "Godta"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "eller <a href=\"{0}\">Avbryt</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Mer informasjon om utviklerkontoer"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Utvidelser"
@@ -2022,6 +2014,16 @@ msgstr "Søk i utviklerdokumentasjon"
 
 msgid "Search"
 msgstr "Søk"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Tillatelser:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Bruk feltet nedenfor for å laste opp utvidelsespakken din."
@@ -2162,6 +2164,9 @@ msgstr "Godkjenning av invitasjonen vil gi deg tilgang til å redigere tillegget
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klikk på Godta-knappen nedenfor for å bekrefte at du vil bli lagt til som opphavsmann for {addon_name}."
+
+msgid "Accept"
+msgstr "Godta"
 
 msgid "Decline"
 msgstr "Avvis"
@@ -2683,12 +2688,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Rediger versjon {0}"
 
-msgid "Version Signature Pending"
-msgstr "Versjonsignering venter"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3026,11 +3025,32 @@ msgstr "Administrationsside"
 msgid "View Statistics Dashboard"
 msgstr "Vis statistikkoversikt"
 
+msgid "Review Policies and Rules"
+msgstr "Vurderingspraksis og regler"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Jeg har lest og godtatt denne avtalen, reglene og retningslinjene"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "eller <a href=\"{0}\">Avbryt</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Mer informasjon om utviklerkontoer"
+
 msgid "Developer News"
 msgstr "Nyheter for utviklere"
 
 msgid "View the blog &#9658;"
 msgstr "Les bloggen &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Versjonsignering venter"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Lisens"
@@ -3704,8 +3724,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4305,6 +4324,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4324,6 +4348,10 @@ msgstr "Tilpass musebevegelser. Oppdag en ny måte å navigere med over 50 konfi
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4352,10 +4380,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4399,23 +4423,19 @@ msgid "See all extensions"
 msgstr "Se alle utvidelser"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Populære utvidelser"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "Se alle utvidelser"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "Lagre og legg til mer"
+msgid "Image search extensions"
+msgstr "Se alle utvidelser"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Writing tools"
+msgstr "Fane-organisering og verktøy"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4519,10 +4539,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Vis flere anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "Vis flere populære utvidelser"
@@ -4536,6 +4552,26 @@ msgstr "Anbefalte tema"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "Vis flere populære tema"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Anbefalte tema"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Vis flere populære tema"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Anbefalte tema"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Vis flere anbefalte utvidelser"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikke analysere manifestfilen."
@@ -6201,4 +6237,7 @@ msgid "others"
 msgstr ""
 
 msgid "{app} {min} and later"
+msgstr ""
+
+msgid "The install origin {origin} is not permitted."
 msgstr ""
