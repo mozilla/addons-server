@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-21 20:05+0000\n"
+"PO-Revision-Date: 2022-01-21 20:31+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1764,19 +1764,17 @@ msgstr ""
 msgid "Display Name"
 msgstr "Відображуване ім’я"
 
-#, fuzzy
 msgid "Origin"
-msgstr "Джерело:"
+msgstr "Джерело"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Дозволи:"
+msgstr "Дозволи"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "Ви створили додаток дозволів вебсайту для однакового походження та дозволів."
+msgstr "Ви згенерували додаток дозволів вебсайту для однакового джерела й дозволів."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "Походження має включати лише схему (протокол), ім’я хосту (домен) і необов’язковий порт"
+msgstr "Джерело має включати лише схему (протокол), ім’я хосту (домен) і необов’язковий порт"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Недійсний або пошкоджений файл розширення."
@@ -2030,15 +2028,14 @@ msgstr "Пошук документації для розробників"
 msgid "Search"
 msgstr "Пошук"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "Дозволи сайту"
+msgstr "Додаток для генерування дозволів сайту"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr "Походження (схема + ім’я хосту + необов’язковий порт), для якого потрібно ввімкнути дозвіл. Тут також потрібно розмістити додаток."
+msgstr "Джерело (схема + ім’я хосту + необов’язковий порт), для якого потрібно ввімкнути дозвіл. Тут також потрібно розмістити додаток."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr "Дозволи, надані створеним додатком для джерела."
+msgstr "Дозволи, надані згенерованим додатком для джерела."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Використовуйте розташоване нижче поле, щоб завантажити свій пакунок додатка."
@@ -3787,9 +3784,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Користуйтеся рухами мишею для закриття вкладок, переходів по сторінках та інших дій."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Переглядайте мініатюри зображень вебсайтів поруч з результатами пошуку."
+msgstr "Переглядайте зображення мініатюр поруч з результатами пошуку."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4492,14 +4488,12 @@ msgid "YouTube customization"
 msgstr "Пристосування YouTube"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "Переглянути всі розширення"
+msgstr "Розширення пошуку зображень"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Writing tools"
-msgstr "Засоби для перекладу"
+msgstr "Засоби написання"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4606,9 +4600,8 @@ msgid "See more trending themes"
 msgstr "Більше популярних тем"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Популярні теми"
+msgstr "Найвище оцінені теми"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
