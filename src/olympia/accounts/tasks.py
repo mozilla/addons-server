@@ -17,7 +17,11 @@ def user_profile_from_uid(f):
     @functools.wraps(f)
     def wrapper(uid, timestamp, *args, **kw):
         try:
-            timestamp = datetime.fromtimestamp(timestamp)
+            timestamp = (
+                timestamp
+                if isinstance(timestamp, datetime)
+                else datetime.fromtimestamp(timestamp)
+            )
             profile = UserProfile.objects.get(fxa_id=uid)
             return f(profile, timestamp, *args, **kw)
         except ValueError as e:
@@ -33,29 +37,29 @@ def user_profile_from_uid(f):
 @task
 @use_primary_db
 @user_profile_from_uid
-def primary_email_change_event(profile, changed_date, email):
+def primary_email_change_event(user, event_date, email):
     """Process the primaryEmailChangedEvent."""
-    if not profile.email_changed or profile.email_changed < changed_date:
-        profile.update(email=email, email_changed=changed_date)
+    if not user.email_changed or user.email_changed < event_date:
+        user.update(email=email, email_changed=event_date)
         log.info(
             'Account pk [%s] email [%s] changed from FxA on %s'
-            % (profile.id, email, changed_date)
+            % (user.id, email, event_date)
         )
     else:
         log.warning(
             'Account pk [%s] email updated ignored, %s >= %s'
-            % (profile.id, profile.email_changed, changed_date)
+            % (user.id, user.email_changed, event_date)
         )
 
 
 @task
 @use_primary_db
 @user_profile_from_uid
-def delete_user_event(user, deleted_date):
+def delete_user_event(user, event_date):
     """Process the delete user event."""
     if switch_is_active('fxa-account-delete'):
         user.delete(addon_msg='Deleted via FxA account deletion')
-        log.info(f'Account pk [{user.id}] deleted from FxA on {deleted_date}')
+        log.info(f'Account pk [{user.id}] deleted from FxA on {event_date}')
     else:
         log.info(
             f'Skipping deletion from FxA for account [{user.id}] because '

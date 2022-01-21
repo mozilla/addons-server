@@ -22,7 +22,7 @@ def fxa_identify(code, config=None):
     try:
         with statsd.timer('accounts.fxa.identify.all'):
             data = get_fxa_token(code, config)
-            profile = get_fxa_profile(data['access_token'], config)
+            profile = get_fxa_profile(data['access_token'])
     except Exception:
         statsd.incr('accounts.fxa.identify.all.fail')
         raise
@@ -63,7 +63,7 @@ def get_fxa_token(code, config):
         raise IdentificationError(f'Could not get access token for {code}')
 
 
-def get_fxa_profile(token, config):
+def get_fxa_profile(token):
     """Given a FxA access token, return profile information for the
     corresponding user."""
     with statsd.timer('accounts.fxa.identify.profile'):

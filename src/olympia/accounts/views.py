@@ -3,6 +3,7 @@ import binascii
 import functools
 import os
 
+from datetime import datetime
 from urllib.parse import quote_plus
 
 from django.conf import settings
@@ -17,6 +18,8 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
 
+import jwt
+import requests
 import waffle
 
 from corsheaders.conf import conf as corsheaders_conf
@@ -28,10 +31,10 @@ from corsheaders.middleware import (
     ACCESS_CONTROL_MAX_AGE,
 )
 from django_statsd.clients import statsd
+from rest_framework import exceptions
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
-from rest_framework.exceptions import PermissionDenied
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import (
     DestroyModelMixin,
@@ -73,6 +76,7 @@ from .serializers import (
     UserNotificationSerializer,
     UserProfileSerializer,
 )
+from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
 from .utils import fxa_login_url, generate_fxa_state
 
 
@@ -134,7 +138,7 @@ def find_user(identity):
             # Alternatively if someone tried to log in as the task user then
             # prevent that because that user "owns" a number of important
             # addons and collections, and it's actions are special cased.
-            raise PermissionDenied()
+            raise exceptions.PermissionDenied()
         return user
     except UserProfile.DoesNotExist:
         return None
@@ -774,3 +778,90 @@ class AccountNotificationUnsubscribeView(AccountNotificationMixin, GenericAPIVie
                 _('Notification [%s] does not exist') % notification_name
             )
         return Response(serializer.data)
+
+
+class FxaNotificationView(FxAConfigMixin, APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    FXA_PROFILE_CHANGE_EVENT = (
+        'https://schemas.accounts.firefox.com/event/profile-change'
+    )
+    FXA_DELETE_EVENT = 'https://schemas.accounts.firefox.com/event/delete-user'
+    FXA_PASSWORDCHANGE_EVENT = (
+        'https://schemas.accounts.firefox.com/event/password-change'
+    )
+
+    @classmethod
+    def get_fxa_verifying_keys(cls):
+        if not hasattr(cls, 'fxa_verifying_keys'):
+            response = requests.get(f'{settings.FXA_OAUTH_HOST}/jwks')
+            cls.fxa_verifying_keys = (
+                response.json().get('keys') if response.status_code == 200 else []
+            )
+
+        if not cls.fxa_verifying_keys:
+            raise exceptions.AuthenticationFailed(
+                'FXA verifying keys are not available.'
+            )
+
+        return cls.fxa_verifying_keys
+
+    def get_jwt_payload(self, request):
+        client_id = self.get_fxa_config(request)['client_id']
+        authenticated_jwt = None
+
+        auth_header_split = request.headers.get('Authorization', '').split('Bearer ')
+        if len(auth_header_split) == 2 and auth_header_split[1]:
+            for verifying_key in self.get_fxa_verifying_keys():
+                if verifying_key.get('alg') != 'RS256':
+                    # we only support RS256
+                    continue
+                request_jwt = auth_header_split[1]
+                try:
+                    algorithm = jwt.algorithms.RSAAlgorithm.from_jwk(verifying_key)
+                    authenticated_jwt = jwt.decode(
+                        request_jwt,
+                        algorithm,
+                        audience=client_id,
+                        algorithms=[verifying_key['alg']],
+                    )
+                except (ValueError, TypeError, jwt.exceptions.PyJWTError):
+                    pass  # We raise when `not authenticated_jwt` below
+                break
+
+        if not authenticated_jwt:
+            raise exceptions.AuthenticationFailed(
+                'Could not authenticate JWT with FXA key.'
+            )
+
+        return authenticated_jwt
+
+    def process_event(self, uid, event_key, event_data):
+        timestamp = event_data.get('changeTime') or datetime.now().timestamp()
+        if event_key == self.FXA_PROFILE_CHANGE_EVENT:
+            log.info(f'Fxa Webhook: Got profile change event for {uid}')
+            new_email = event_data.get('email')
+            if not new_email:
+                log.info(
+                    'Email property missing/empty for "%s" event; ignoring' % event_key
+                )
+            else:
+                primary_email_change_event.delay(uid, timestamp, new_email)
+        if event_key == self.FXA_DELETE_EVENT:
+            log.info(f'Fxa Webhook: Got delete event for {uid}')
+            delete_user_event.delay(uid, timestamp)
+        if event_key == self.FXA_PASSWORDCHANGE_EVENT:
+            log.info(f'Fxa Webhook: Got password-change event for {uid}')
+            clear_sessions_event.delay(uid, timestamp, 'password-change')
+        else:
+            log.info('Fxa Webhook: Ignoring unknown event type %r', event_key)
+
+    def post(self, request):
+        payload = self.get_jwt_payload(request)
+        events = payload.get('events', {})
+        uid = payload.get('sub')
+        for event_key, event_data in events.items():
+            self.process_event(uid, event_key, event_data)
+
+        return Response('202 Accepted', status=202)
