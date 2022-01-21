@@ -29,10 +29,12 @@ def main():
     if not opts.deprecations:
         opts.python += ' -W ignore::DeprecationWarning'
 
-    django_cmd = f'{opts.user or ""} cd {opts.zamboni}; {opts.python} manage.py'.strip()
+    django_cmd = '{u} cd {z}; {p} manage.py'.format(
+        u=(opts.user or ''), z=opts.zamboni, p=opts.python
+    ).strip()
     ctx = {
         'django': django_cmd,
-        'z_cron': f'{django_cmd} cron',
+        'z_cron': '{django_cmd} cron'.format(django_cmd=django_cmd),
         'python': opts.python,
     }
 
