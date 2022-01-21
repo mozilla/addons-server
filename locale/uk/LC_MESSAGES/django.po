@@ -4604,19 +4604,16 @@ msgid "Top rated themes"
 msgstr "Найвище оцінені теми"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Більше популярних тем"
+msgstr "Найвище оцінені теми"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Популярні теми"
+msgstr "Популярні розширення"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Більше рекомендованих розширень"
+msgstr "Більше популярних розширень"
 
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
