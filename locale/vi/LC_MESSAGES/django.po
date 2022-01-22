@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-22 05:58+0000\n"
+"PO-Revision-Date: 2022-01-22 08:42+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1250,22 +1250,22 @@ msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Tải xuống các chủ đề Firefox với Firefox Nhật Bản. Danh mục này bao gồm các chủ đề mô tả linh vật Foxkeh dễ thương ở nhiều tư thế khác nhau trên các cảnh quan đa dạng."
 
 msgid "Holiday"
 msgstr "Ngày lễ"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Tải xuống các chủ đề của Firefox với các ngày lễ. Danh mục này bao gồm Giáng sinh, Halloween, Lễ tạ ơn, Ngày thánh Patrick, Lễ Phục sinh, ngày 4 tháng 7, v.v."
 
 msgid "Music"
 msgstr "Âm nhạc"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Tải xuống các chủ đề Firefox cho sở thích âm nhạc và nghệ sĩ. Danh mục này bao gồm các ban nhạc nổi tiếng như Nirvana và BTS, nhạc cụ, video âm nhạc, v.v."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Tải xuống các chủ đề của Firefox với động vật và phong cảnh thiên nhiên. Danh mục này bao gồm hoa, hoàng hôn, cáo, các mùa, hành tinh, mèo con, chim, v.v."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Tải xuống các chủ đề Firefox thú vị, sáng tạo và độc đáo."
@@ -1274,7 +1274,7 @@ msgid "Scenery"
 msgstr "Phong cảnh"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Tải xuống các chủ đề Firefox giới thiệu về môi trường và thế giới tự nhiên. Danh mục này bao gồm cảnh hoàng hôn, bãi biển, hình minh họa, đường chân trời của thành phố, v.v."
 
 msgid "Seasonal"
 msgstr "Theo mùa"
