@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-22 19:10+0000\n"
+"PO-Revision-Date: 2022-01-22 19:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1767,7 +1767,7 @@ msgid "You have generated a site permission add-on for the same origin and permi
 msgstr "Tu ha generate un additivo de permission sito pro le mesme origine e permissiones."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
+msgstr "Le origine deberea includer solo un schema (protocollo), un nomine de hospite (dominio) e un porta optional"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "File de additivo non valide o corrupte."
