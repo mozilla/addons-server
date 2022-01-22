@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-22 14:21+0000\n"
+"PO-Revision-Date: 2022-01-22 14:24+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1754,10 +1754,10 @@ msgid "Permissions"
 msgstr "Behörigheter"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
+msgstr "Du har genererat ett tillägg för webbplatsbehörighet för samma ursprung och behörigheter."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
+msgstr "Ursprung bör endast innehålla ett schema (protokoll), ett värdnamn (domän) och en valfri port"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Ogiltig eller korrupt tilläggsfil."
@@ -2012,13 +2012,13 @@ msgid "Search"
 msgstr "Sök"
 
 msgid "Generate Site Permission Add-on"
-msgstr ""
+msgstr "Generera tillägg för webbplatsbehörighet"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
+msgstr "Ursprunget (schema + värdnamn + valfri port) som du behöver tillstånd för att aktiveras på. Det är också här du behöver vara värd för tillägget."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "Behörigheten eller behörigheter som det genererade tillägget kommer att godkänna för ursprunget."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Använd fältet nedan för att ladda upp ditt tilläggspaket."
