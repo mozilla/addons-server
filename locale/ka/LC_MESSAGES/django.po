@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-23 05:51+0000\n"
+"PO-Revision-Date: 2022-01-23 05:59+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1346,9 +1346,8 @@ msgstr "GNU Library General Public License v3.0"
 msgid "The MIT License"
 msgstr "MIT-ლიცენზია"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "ლიცენზია"
+msgstr "BSD-ლიცენზია"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1778,9 +1777,8 @@ msgstr "გამოსაჩენი სახელი"
 msgid "Origin"
 msgstr "წარმომავლობა:"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "ნებართვები:"
+msgstr "ნებართვები"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
 msgstr ""
@@ -3695,6 +3693,8 @@ msgstr "ჩანართების თვითგანახლება �
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
+"გამოყავით ერთმანეტთისგან თქვენი ინტერნეტსაქმიანობის სხვადასხვა არეები ფერებად დაყოფილი და გამიჯნული ფუნთუშების მქონე ჩანართებით. ახლა უკვე ჩაშენებულია Mozilla VPN-ში პირადულობის დაცვის დამატებით "
+"შრედ."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3782,7 +3782,6 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, გვერდებზე გადასასვლელად და ა. შ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
 msgstr "იხილეთ საიტების გამოსახულებები, მოძიებული შედეგების გვერდით."
 
@@ -4397,19 +4396,16 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "საინტერესო სურათი ნახეთ ინტერნეტში? გამოიყენეთ TinEye მისი წარმომავლობის დასადგენად."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "გახსენით ePub ფაილები პირდაპირ Firefox-ში — მიუთითეთ შრიფტის, გვერდების ზომები და ა. შ."
+msgstr "გახსენით ePub-ფაილები პირდაპირ Firefox-ში – მიუთითეთ შრიფტის, გვერდების ზომები და ა.შ."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "მოირგეთ თაგვის ჟესტები. აღმოაჩინეთ გვერდებზე გადაადგილების 50+ საშუალება."
+msgstr "მოირგეთ თაგვის ჟესტები. აღმოაჩინეთ გვერდებზე გადაადგილების 50-ზე მეტი საშუალება."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, გვერდებზე გადასასვლელად და ა. შ."
+msgstr "თაგვის ჟესტების გამოყენება ჩანართების დასახურად, გვერდებზე გადასასვლელად და ა.შ."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4457,11 +4453,11 @@ msgstr "თან წაიყოლეთ ემოჯები ყველგ
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "დააწესეთ შეზღუდვები ყურადღების გასაფანტ, დროის ფუჭად გასაყვან საიტებზე."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "მოაცილეთ ზედმეტობა თქვენი Twitter-იდან."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
@@ -4489,14 +4485,12 @@ msgid "YouTube customization"
 msgstr "YouTube-ის უკეთ მორგება"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "ყველა გაფართოების ნახვა"
+msgstr "სურათის საძიებო გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Writing tools"
-msgstr "თარგმნის ხელსაწყოები"
+msgstr "საწერი ხელსაწყოები"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4603,24 +4597,20 @@ msgid "See more trending themes"
 msgstr "სხვა ფართოდ გავრცელებული თემები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "ფართოდ გავრცელებული თემები"
+msgstr "საუკეთესოდ შეფასებული თემები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "სხვა ფართოდ გავრცელებული თემები"
+msgstr "სხვა საუკეთესოდ შეფასებული თემები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "ფართოდ გავრცელებული თემები"
+msgstr "ფართოდ გავრცელებული გაფართოებები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "სხვა სასურველი გაფართოებები"
+msgstr "სხვა გავრცელებული გაფართოებები"
 
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
