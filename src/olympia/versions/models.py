@@ -49,7 +49,6 @@ from olympia.translations.fields import (
     save_signal,
 )
 from olympia.scanners.models import ScannerResult
-from olympia.users.utils import get_task_user
 
 from .compare import version_int
 from .fields import VersionStringField
