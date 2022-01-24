@@ -19,7 +19,10 @@ from rest_framework.viewsets import GenericViewSet
 import olympia.core.logger
 
 from olympia import amo
-from olympia.activity.models import ActivityLog
+from olympia.access import acl
+from olympia.activity.models import (
+    ActivityLog,
+)
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
@@ -48,6 +51,8 @@ class VersionReviewNotesViewSet(
 
     def get_queryset(self):
         alog = ActivityLog.objects.for_versions(self.get_version_object())
+        if not acl.is_user_any_kind_of_reviewer(self.request.user):
+            alog = alog.transform(ActivityLog.transformer_anonymize_user_for_developer)
         return alog.filter(action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER)
 
     def get_addon_object(self):

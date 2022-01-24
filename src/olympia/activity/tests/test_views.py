@@ -5,7 +5,7 @@ from unittest import mock
 from django.test.utils import override_settings
 
 from olympia import amo
-from olympia.activity.models import ActivityLog, ActivityLogToken
+from olympia.activity.models import ActivityLog, ActivityLogToken, GENERIC_USER_NAME
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import EmailCreationPermission, inbound_email
@@ -176,6 +176,34 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         )
         response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 200
+
+    def test_user_anonymized_for_developer(self):
+        self._login_developer()
+        response = self.client.get(self.url)
+        result = json.loads(response.content)
+        if 'results' in result:
+            result = result['results'][0]
+        assert result['user']['name'] == GENERIC_USER_NAME
+
+    def test_user_not_anonymized_for_reviewer(self):
+        self._login_reviewer()
+        response = self.client.get(self.url)
+        result = json.loads(response.content)
+        if 'results' in result:
+            result = result['results'][0]
+        assert result['user']['name'] == self.user.name
+
+    def test_allowed_action_not_anonymized_for_developer(self):
+        self.note = self.log(
+            'a reply', amo.LOG.DEVELOPER_REPLY_VERSION, self.days_ago(0)
+        )
+        self._set_tested_url()
+        self._login_developer()
+        response = self.client.get(self.url)
+        result = json.loads(response.content)
+        if 'results' in result:
+            result = result['results'][0]
+        assert result['user']['name'] == self.user.name
 
 
 class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):

@@ -435,9 +435,11 @@ class ActivityLog(ModelBase):
         """Replace the user with a generic user in actions where it shouldn't
         be shown to a developer.
         """
+        generic_user = GenericMozillaUser()
+
         for log in logs:
             if log.action not in constants.activity.LOG_SHOW_USER_TO_DEVELOPER:
-                log.user = GenericMozillaUser.objects.create()
+                log.user = generic_user
 
     @classmethod
     def arguments_builder(cls, activities):
