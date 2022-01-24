@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-24 09:01+0000\n"
+"PO-Revision-Date: 2022-01-24 09:08+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1783,7 +1783,7 @@ msgid "You have generated a site permission add-on for the same origin and permi
 msgstr "თქვენ შექმენით საიტის ნებართვის დანამატი იმავე წარმომავლობისა და ნებართვებისთვის."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "წარმომავლობა უნდა შეიცავდეს მხოლოდ სქემას (ოქმს), მისამართს (დომენს) და დამატებით პორტს"
+msgstr "წარმომავლობად უნდა მიეთითოს მხოლოდ სქემა (ოქმი), მისამართი (დომენი) და დამატებითი პორტი"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "დამატების უმართებულო ან დაზიანებული ფაილი."
@@ -2040,10 +2040,10 @@ msgid "Generate Site Permission Add-on"
 msgstr "საიტის ნებართვის დანამატის შედგენა"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
+msgstr "წარმომავლობა (სქემა + მისამართი + დამატებითი პორტი), რომლისთვისაც გესაჭიროებათ ნებართვა. ეს ის მისამართი უნდა იყოს, სადაც გსურთ განათავსოთ თქვენი დამატება."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "ნებართვა(ები), რომელიც ენიჭება აღნიშნული წარმომავლობის მქონე დამატებას."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "დამატების ნაკრების ასატვირთად გამოიყენეთ ქვემოთ მოცემული ველი."
@@ -6294,4 +6294,4 @@ msgid "{app} {min} and later"
 msgstr "{app} {min} და უფრო ახალ ვერსიებთან"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "{origin} წარმომავლობის მქონე ვერ ჩაიდგმება."
