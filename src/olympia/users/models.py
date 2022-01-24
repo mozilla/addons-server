@@ -1,4 +1,5 @@
 import binascii
+from cgi import test
 import os
 import random
 import re

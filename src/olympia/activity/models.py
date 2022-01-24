@@ -39,6 +39,17 @@ log = olympia.core.logger.getLogger('z.amo.activity')
 # Number of times a token can be used.
 MAX_TOKEN_USE_COUNT = 100
 
+GENERIC_USER_NAME = gettext('Add-ons Review Team')
+
+
+class GenericMozillaUser(UserProfile):
+    class Meta:
+        proxy = True
+
+    @property
+    def name(self):
+        return GENERIC_USER_NAME
+
 
 class ActivityLogToken(ModelBase):
     id = PositiveAutoField(primary_key=True)
@@ -420,11 +431,13 @@ class ActivityLog(ModelBase):
         return markupsafe.Markup(self.formatter.format(*args, **kw))
 
     @classmethod
-    def transformer_hide_user_from_developer(cls, logs):
-        """Remove user from actions where it shouldn't be shown to a developer."""
+    def transformer_anonymize_user_for_developer(cls, logs):
+        """Replace the user with a generic user in actions where it shouldn't
+        be shown to a developer.
+        """
         for log in logs:
             if log.action not in constants.activity.LOG_SHOW_USER_TO_DEVELOPER:
-                log.user = None
+                log.user = GenericMozillaUser.objects.create()
 
     @classmethod
     def arguments_builder(cls, activities):
@@ -677,11 +690,6 @@ class ActivityLog(ModelBase):
 
     def __html__(self):
         return self
-
-    @property
-    def author_name(self):
-        """Name of the user that triggered the activity."""
-        return self.user.name
 
     @classmethod
     def create(cls, action, *args, **kw):

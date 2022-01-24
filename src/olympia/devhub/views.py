@@ -80,7 +80,6 @@ log = olympia.core.logger.getLogger('z.devhub')
 # We use a session cookie to make sure people see the dev agreement.
 
 MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
-GENERIC_USER_NAME = _('Add-ons Review Team')
 
 
 def get_fileupload_by_uuid_or_404(value):
@@ -148,7 +147,6 @@ def dashboard(request, theme=False):
         addon_tab=not theme,
         theme=theme,
         addon_items=addon_items,
-        generic_name=GENERIC_USER_NAME,
     )
     if data['addon_tab']:
         addons, data['filter'] = addon_listing(request)
@@ -317,7 +315,7 @@ def _get_items(action, addons):
     items = (
         ActivityLog.objects.for_addons(addons)
         .exclude(action__in=amo.LOG_HIDE_DEVELOPER)
-        .transform(ActivityLog.transformer_hide_user_from_developer)
+        .transform(ActivityLog.transformer_anonymize_user_for_developer)
     )
     if filter_:
         items = items.filter(action__in=[i.id for i in filter_])
@@ -378,7 +376,6 @@ def feed(request, addon_id=None):
         'activities': activities,
         'rss': rssurl,
         'addon': addon,
-        'generic_name': GENERIC_USER_NAME,
     }
     return TemplateResponse(request, 'devhub/addons/activity.html', context=data)
 

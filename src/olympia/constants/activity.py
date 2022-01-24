@@ -835,6 +835,8 @@ LOG_HIDE_DEVELOPER = [
 LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) - set(LOG_HIDE_DEVELOPER))
 
 # Actions for which the user name can be shown to developers.
+# This is used by transformer_anonymize_user_for_developer to determine
+# whether to anonymize the user for an activity.
 LOG_SHOW_USER_TO_DEVELOPER = [
     log.id for log in LOGS if hasattr(log, 'show_user_to_developer')
 ]

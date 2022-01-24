@@ -21,7 +21,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.accounts.views import API_TOKEN_COOKIE
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import GENERIC_USER_NAME, ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonUser
 from olympia.amo.templatetags.jinja_helpers import (
     format_date,
@@ -41,7 +41,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
-from olympia.devhub.views import GENERIC_USER_NAME, get_next_version_number
+from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileSitePermission, FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
