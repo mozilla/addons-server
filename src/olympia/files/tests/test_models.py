@@ -20,7 +20,7 @@ import pytest
 
 from unittest.mock import patch
 
-from olympia import amo
+from olympia import amo, core
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, create_default_webext_appversion, user_factory
@@ -69,16 +69,17 @@ class UploadMixin(amo.tests.AMOPaths):
             user = user_factory()
         with open(abspath if abspath else self.file_path(filename), 'rb') as f:
             xpi = f.read()
-        upload = FileUpload.from_post(
-            [xpi],
-            filename=abspath or filename,
-            size=1234,
-            user=user,
-            addon=addon,
-            version=version,
-            source=source,
-            channel=channel,
-        )
+        with core.override_remote_addr('127.0.0.62'):
+            upload = FileUpload.from_post(
+                [xpi],
+                filename=abspath or filename,
+                size=1234,
+                user=user,
+                addon=addon,
+                version=version,
+                source=source,
+                channel=channel,
+            )
         if with_validation:
             # Simulate what validation does after uploading an add-on.
             upload.validation = validation or json.dumps(

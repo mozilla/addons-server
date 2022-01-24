@@ -1153,7 +1153,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert self.upload.addon == self.addon
 
     def test_from_upload_no_user(self):
-        self.upload.update(user=None)
+        self.upload.user = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
                 self.upload,
@@ -1164,7 +1164,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
     def test_from_upload_no_ip_address(self):
-        self.upload.update(ip_address=None)
+        self.upload.ip_address = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
                 self.upload,
@@ -1175,7 +1175,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
     def test_from_upload_no_source(self):
-        self.upload.update(source=None)
+        self.upload.source = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
                 self.upload,
@@ -1187,7 +1187,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @mock.patch('olympia.versions.models.log')
     def test_logging(self, log_mock):
-        user = UserProfile.objects.get(email='regular@mozilla.com')
+        user = UserProfile.objects.get(
+            email='regular@mozitest_from_upload_no_usella.com'
+        )
         user.update(last_login_ip='1.2.3.4')
         self.upload.update(
             user=user,
@@ -1650,9 +1652,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
 
-class TestExtensionVersionFromUploadTransactional(
-    TransactionTestCase, UploadMixin
-):
+class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMixin):
     filename = 'webextension_no_id.xpi'
 
     def setUp(self):
