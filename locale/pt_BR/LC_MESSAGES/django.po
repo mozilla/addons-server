@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-24 14:02+0000\n"
+"PO-Revision-Date: 2022-01-24 21:17+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1779,13 +1779,11 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nome de exibição"
 
-#, fuzzy
 msgid "Origin"
-msgstr "Origem:"
+msgstr "Origem"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Permissões:"
+msgstr "Permissões"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
 msgstr "Você gerou uma extensão de permissão de site para a mesma origem e permissões."
@@ -2052,15 +2050,14 @@ msgstr "Pesquisar documentação"
 msgid "Search"
 msgstr "Pesquisar"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "Permissões do site"
+msgstr "Gerar extensão de permissões de site"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
+msgstr "A origem (esquema + nome de host + porta opcional) onde você precisa de permissão para ser ativada. Também é onde você precisa hospedar a extensão."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "As permissões que a extensão gerada concede na origem."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Use o campo abaixo para enviar o pacote da extensão."
@@ -3849,9 +3846,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Use gestos do mouse para fechar abas, navegar em páginas e muito mais."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Aproveite imagens em miniatura de sites ao lado dos resultados de pesquisas."
+msgstr "Veja imagens em miniatura ao lado de resultados de pesquisas."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4552,14 +4548,12 @@ msgid "YouTube customization"
 msgstr "Personalização do YouTube"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "Ver todas extensões"
+msgstr "Extensões de pesquisa de imagens"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Writing tools"
-msgstr "Ferramentas de tradução"
+msgstr "Ferramentas de escrita"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4667,24 +4661,20 @@ msgid "See more trending themes"
 msgstr "Mais temas em alta"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Temas em alta"
+msgstr "Temas melhor avaliados"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Mais temas em alta"
+msgstr "Mais temas melhor avaliados"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Temas em alta"
+msgstr "Extensões em alta"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Mais extensões recomendadas"
+msgstr "Mais extensões em alta"
 
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
