@@ -1,16 +1,14 @@
-import django
-import django.conf
-import django.core.management
-import django.utils
+"""
+WSGI endpoint for addons-server.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
+"""
 
 from django.core.wsgi import get_wsgi_application
 
 
-# Do validate and activate translations before running the app.
-django.setup()
-django.utils.translation.activate(django.conf.settings.LANGUAGE_CODE)
-
-
 # This is referenced in docker/uwsgi.ini: module = olympia.wsgi:application
-def application(env, start_response):
-    return get_wsgi_application()(env, start_response)
+application = get_wsgi_application()
