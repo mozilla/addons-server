@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-24 09:52+0000\n"
+"PO-Revision-Date: 2022-01-24 10:40+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3811,9 +3811,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Használjon egérgesztusokat a lapok bezárásához, a lapok közti navigációhoz, és egyebekhez."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Élvezze a weboldalak bélyegképeit a keresési találatok mellett."
+msgstr "Lássa a bélyegképeket a keresési találatok mellett."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4514,14 +4513,12 @@ msgid "YouTube customization"
 msgstr "YouTube testreszabás"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "Összes kiegészítő megtekintése"
+msgstr "Képkereső kiegészítők"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Writing tools"
-msgstr "Fordítási eszközök"
+msgstr "Íróeszközök"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4629,24 +4626,20 @@ msgid "See more trending themes"
 msgstr "További felkapott témák megtekintése"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Felkapott témák"
+msgstr "Legjobbra értékelt témák"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "További felkapott témák megtekintése"
+msgstr "További legjobbra értékelt témák megtekintése"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Felkapott témák"
+msgstr "Felkapott kiegészítők"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "További ajánlott kiegészítők megtekintése"
+msgstr "További felkapott kiegészítők megtekintése"
 
 msgid "Could not parse the manifest file."
 msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
