@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-20 11:03+0000\n"
+"PO-Revision-Date: 2022-01-24 10:11+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -216,19 +216,19 @@ msgid "Incorrect, please try again."
 msgstr "Ekki rétt, reyndu aftur."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Villa við að staðfesta inntaksgögn, reyndu aftur."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Settu inn gilt IP4- eða IP6-netkerfi."
 
 msgid "CIDR"
 msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Einhverjir eiginleikar eru tímabundið óvirkir meðan við sinnum viðhaldi á vefsvæðinu. Athugaðu aftur aðeins síðar."
 
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "Verður að innihalda að minnsta kosti einn prentanlegan staf."
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "Gakktu úr skugga um að þessi reitur innihaldi að minnsta kosti einn bókstaf eða tölustaf."
@@ -266,17 +266,17 @@ msgstr "Fannst ekki"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Því miður getum við ekki fundið það sem þú ert að leita að.</h1> <p>Síðan eða skjalið sem þú baðst um fannst ekki á vefsvæðinu okkar. Það er mögulegt að þú hafir smellt á tengil sem er úreltur "
 "eða sett inn rangt skrifað vistsfang.</p> <ul> <li>Ef þú skrifaðir inn vistfangið skaltu athuga vel stafsetninguna.</li> <li>Ef þú smelltir á tengil einhvers staðar ættirðu að %(open_bug_link)s "
 "tilkynna vandamálið %(close_bug_link)s. Segðu okkur hvaðan þú komst, að hverju þú leitaðir og við munum gera okkar besta til að laga þetta. </li> </ul> <p>Eða þú getur bara hoppað yfir á nokkrar af "
 "vinsælustu síðunum á vefsvæðinu okkar. </p> <ul> <li>Hefur þú áhuga á <a href=\"%(rec)s\">lista með úrvali viðbóta </a>? </li> <li> Viltu <a href=\"%(search)s\">leita að viðbótum </a>? Þú getur "
-"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. </"
-"li> </ul>"
+"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. "
+"</li> </ul>"
 
 msgid "Oops"
 msgstr "Úbbs"
@@ -286,8 +286,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur "
-"líka hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
+"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur líka"
+" hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
 
 msgid "Register or Log in"
 msgstr "Nýskráðu þig eða skráðu inn"
@@ -358,10 +358,10 @@ msgid "Another Body"
 msgstr "Annað meginmál"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Ógildur auðkennishaus. Engin auðkenni gefin."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Ógildur auðkennishaus. Auðkennastrengur ætti ekki að innihalda bil."
 
 msgid "Signature has expired."
 msgstr "Undirritunin er útrunnin."
@@ -370,7 +370,7 @@ msgid "Error decoding signature."
 msgstr "Villa við afkóðun undirritunar."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Röng tegund á einum eða fleiri lyklum í farmi"
 
 msgid "Invalid JWT Token."
 msgstr "Ógilt JWT-teikn."
@@ -421,8 +421,8 @@ msgstr "Útgáfur"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -449,7 +449,7 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Blokk með GUID %(guid)s fannst ekki"
 
 #, python-format
 msgid "Addon with GUID %(guid)s does not exist"
@@ -476,7 +476,7 @@ msgstr "Yfirfara ekki í lista"
 
 #, python-format
 msgid "Delete Multiple %(name)s"
-msgstr ""
+msgstr "Eyða mörgum %(name)s"
 
 msgid "Home"
 msgstr "Heim"
@@ -502,10 +502,10 @@ msgid "Update"
 msgstr "Uppfæra"
 
 msgid "Reject Submission"
-msgstr ""
+msgstr "Hafna innsendingu"
 
 msgid "Approve Submission"
-msgstr ""
+msgstr "Samþykkja innsendingu"
 
 #, python-format
 msgid "Add %(name)s"
@@ -519,10 +519,10 @@ msgstr "Senda inn"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
+msgstr "%(count)s GUID viðbóta með %(adu)s notendur"
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Breyta blokk"
 
 msgid "versions"
 msgstr "útgáfur"
@@ -845,22 +845,22 @@ msgid "User {user} api key reset."
 msgstr ""
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokk fyrir {0} bætt við blokkalista."
 
 msgid "Block added"
-msgstr ""
+msgstr "Blokk bætt við"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokk fyrir {0} breytt í blokkalista."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blokk breytt"
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr ""
+msgstr "Blokk fyrir {0} eytt úr blokkalista."
 
 msgid "Block deleted"
-msgstr ""
+msgstr "Blokk eytt"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -1706,7 +1706,7 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr ""
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "færsla í blokkalista"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2066,9 +2066,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -2284,8 +2282,8 @@ msgid "Email"
 msgstr "Tölvupóstur"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2829,8 +2827,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2902,8 +2900,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -4597,8 +4594,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr ""
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5889,8 +5886,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annarsstaðar er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a href=\"https://creativecommons.org/"
-"licenses/by-sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
+"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annarsstaðar er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "náðu að kynnast <b>viðbótum</b>"
@@ -6044,8 +6041,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6101,8 +6098,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
