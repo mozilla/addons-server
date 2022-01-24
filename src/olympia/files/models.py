@@ -455,7 +455,7 @@ class FileUpload(ModelBase):
         max_length=255, default='', help_text="The user's original filename"
     )
     hash = models.CharField(max_length=255, default='')
-    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     automated_signing = models.BooleanField(default=False)
@@ -464,10 +464,8 @@ class FileUpload(ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey('addons.Addon', null=True, on_delete=models.CASCADE)
     access_token = models.CharField(max_length=40, null=True)
-    ip_address = models.CharField(max_length=45, null=True, default=None)
-    source = models.PositiveSmallIntegerField(
-        choices=amo.UPLOAD_SOURCE_CHOICES, default=None, null=True
-    )
+    ip_address = models.CharField(max_length=45)
+    source = models.PositiveSmallIntegerField(choices=amo.UPLOAD_SOURCE_CHOICES)
 
     objects = ManagerBase()
 
@@ -534,7 +532,7 @@ class FileUpload(ModelBase):
         log.info(
             f'UPLOAD: {self.name!r} ({size} bytes) to {self.path!r}',
             extra={
-                'email': (self.user.email if self.user and self.user.email else ''),
+                'email': (self.user.email if self.user.email else ''),
                 'upload_hash': self.hash,
             },
         )

@@ -841,7 +841,7 @@ class Addon(OnChangeMixin, ModelBase):
         return True
 
     @classmethod
-    def initialize_addon_from_upload(cls, data, upload, channel, user):
+    def initialize_addon_from_upload(cls, *, data, upload, channel, user):
         timer = StopWatch('addons.models.initialize_addon_from_upload.')
         timer.start()
         fields = [field.name for field in cls._meta.get_fields()]
@@ -892,7 +892,7 @@ class Addon(OnChangeMixin, ModelBase):
             )
         if user:
             AddonUser(addon=addon, user=user).save()
-        activity.log_create(amo.LOG.CREATE_ADDON, addon)
+        activity.log_create(amo.LOG.CREATE_ADDON, addon, user=user)
         log.info(f'New addon {addon!r} from {upload!r}')
         timer.log_interval('7.end')
         return addon
@@ -900,11 +900,11 @@ class Addon(OnChangeMixin, ModelBase):
     @classmethod
     def from_upload(
         cls,
+        *,
         upload,
         selected_apps,
         channel=amo.RELEASE_CHANNEL_LISTED,
-        parsed_data=None,
-        user=None,
+        parsed_data,
     ):
         """
         Create an Addon instance, a Version and corresponding File(s) from a
@@ -917,7 +917,9 @@ class Addon(OnChangeMixin, ModelBase):
         """
         assert parsed_data is not None
 
-        addon = cls.initialize_addon_from_upload(parsed_data, upload, channel, user)
+        addon = cls.initialize_addon_from_upload(
+            data=parsed_data, upload=upload, channel=channel, user=upload.user
+        )
         Version.from_upload(
             upload=upload,
             addon=addon,

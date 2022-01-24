@@ -1019,6 +1019,7 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
         if not (
             self.cleaned_data['upload'].valid
             or self.cleaned_data['upload'].validation_timeout
+            or self.cleaned_data['upload'].user != self.request.user
             or self.cleaned_data['admin_override_validation']
             and acl.action_allowed(self.request, amo.permissions.REVIEWS_ADMIN)
         ):

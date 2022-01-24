@@ -314,7 +314,7 @@ class Version(OnChangeMixin, ModelBase):
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
         )
-        email = upload.user.email if upload.user and upload.user.email else ''
+        email = upload.user.email if upload.user.email else ''
         with core.override_remote_addr(upload.ip_address):
             # The following log statement is used by foxsec-pipeline.
             # We override the IP because it might be called from a task and we
@@ -329,9 +329,7 @@ class Version(OnChangeMixin, ModelBase):
                     'from_api': upload.source == amo.UPLOAD_SOURCE_SIGNING_API,
                 },
             )
-            activity.log_create(
-                amo.LOG.ADD_VERSION, version, addon, user=upload.user or get_task_user()
-            )
+            activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=upload.user)
 
         if not compatibility:
             compatibility = {

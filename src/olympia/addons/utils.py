@@ -312,9 +312,9 @@ class SitePermissionVersionCreator:
     @atomic
     def create_version(self, addon=None):
         from olympia.addons.models import Addon
-        from olympia.devhub.utils import create_version_for_upload
         from olympia.files.models import FileUpload
         from olympia.files.utils import parse_addon
+        from olympia.versions.models import Version
         from olympia.versions.utils import get_next_version_number
 
         version_number = '1.0'
@@ -364,17 +364,17 @@ class SitePermissionVersionCreator:
             user=get_task_user(),
         )
 
-        if addon is None:
-            # Create the Addon instance (without a Version/File at this point).
-            addon = Addon.initialize_addon_from_upload(
-                data=parsed_data,
-                upload=file_obj,
-                channel=amo.RELEASE_CHANNEL_UNLISTED,
-                user=self.user,
-            )
-
-        # Create the FileUpload that will become the File+Version.
         with core.override_remote_addr(self.remote_addr):
+            if addon is None:
+                # Create the Addon instance (without a Version/File at this point).
+                addon = Addon.initialize_addon_from_upload(
+                    data=parsed_data,
+                    upload=file_obj,
+                    channel=amo.RELEASE_CHANNEL_UNLISTED,
+                    user=self.user,
+                )
+
+            # Create the FileUpload that will become the File+Version.
             upload = FileUpload.from_post(
                 file_obj,
                 file_obj.name,
@@ -385,7 +385,12 @@ class SitePermissionVersionCreator:
                 user=self.user,
                 source=amo.UPLOAD_SOURCE_GENERATED,
             )
+
         # And finally create the Version instance from the FileUpload.
-        return create_version_for_upload(
-            addon, upload, amo.RELEASE_CHANNEL_UNLISTED, parsed_data=parsed_data
+        return Version.from_upload(
+            upload,
+            addon,
+            amo.RELEASE_CHANNEL_UNLISTED,
+            selected_apps=[x[0] for x in amo.APPS_CHOICES],
+            parsed_data=parsed_data,
         )

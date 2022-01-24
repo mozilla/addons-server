@@ -699,7 +699,6 @@ def handle_upload(
     submit=False,
     source=amo.UPLOAD_SOURCE_DEVHUB,
 ):
-    user = request.user if request.user.is_authenticated else None
     upload = FileUpload.from_post(
         filedata,
         filedata.name,
@@ -707,7 +706,7 @@ def handle_upload(
         addon=addon,
         channel=channel,
         source=source,
-        user=user,
+        user=request.user,
     )
 
     if submit:
@@ -1522,7 +1521,6 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
                 channel=channel,
                 selected_apps=data['compatible_apps'],
                 parsed_data=data['parsed_data'],
-                user=request.user,
             )
             version = addon.find_latest_version(channel=channel)
             url_args = [
