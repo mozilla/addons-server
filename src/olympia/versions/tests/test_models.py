@@ -1,5 +1,4 @@
 import os.path
-import json
 
 from datetime import datetime, timedelta
 
@@ -35,7 +34,7 @@ from olympia.constants.promoted import (
     STRATEGIC,
 )
 from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
-from olympia.files.models import File, FileUpload
+from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedApproval
