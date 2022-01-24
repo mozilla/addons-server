@@ -282,7 +282,11 @@ class Version(OnChangeMixin, ModelBase):
         if upload.addon and upload.addon != addon:
             raise VersionCreateError('FileUpload was made for a different Addon')
 
-        if not upload.user or not upload.ip_address or not upload.source:
+        if (
+            not getattr(upload, 'user', None)
+            or not upload.ip_address
+            or not upload.source
+        ):
             raise VersionCreateError('FileUpload does not have some required fields')
 
         if not upload.user.last_login_ip or not upload.user.email:
