@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-24 09:50+0000\n"
+"PO-Revision-Date: 2022-01-24 09:52+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1780,16 +1780,14 @@ msgstr ""
 msgid "Display Name"
 msgstr "Megjelenő név"
 
-#, fuzzy
 msgid "Origin"
-msgstr "Eredet:"
+msgstr "Eredet"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Engedélyek:"
+msgstr "Engedélyek"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
+msgstr "Azonos eredettel és engedélyekkel állított elő egy oldalengedély-kiegészítőt."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
 msgstr "Az eredet csak egy sémát (protokollt), egy gazdagépnevet (domaint) és opcionálisan egy portot tartalmazhat"
@@ -2047,15 +2045,14 @@ msgstr "Keresés fejlesztői doksiban"
 msgid "Search"
 msgstr "Keresés"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "Oldalengedély"
+msgstr "Oldalengedély-kiegészítő előállítása"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
 msgstr "Az eredet (séma + gazdagépnév + opcionális port), amelyen be kell kapcsolni az engedélyt. Innen kell kiszolgálnia a kiegészítőt is."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "Azon engedélyek, amelyeket az előállított kiegészítő nyújt az eredeten."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
