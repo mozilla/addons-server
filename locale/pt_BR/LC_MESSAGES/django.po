@@ -1791,7 +1791,7 @@ msgid "You have generated a site permission add-on for the same origin and permi
 msgstr "Você gerou uma extensão de permissão de site para a mesma origem e permissões."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
+msgstr "A origem deve incluir apenas um esquema (protocolo), um nome de host (domínio) e uma porta opcional"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Arquivo de extensão inválido ou corrompido."
