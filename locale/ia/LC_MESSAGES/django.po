@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-22 19:11+0000\n"
+"PO-Revision-Date: 2022-01-24 20:40+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2028,10 +2028,10 @@ msgid "Generate Site Permission Add-on"
 msgstr "Permission del sito"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
+msgstr "Le origine (schema + nomine de hospite + porta optional) pro le qual te besonia le permission pro le activation. Isto essera alsi ubi tu debe hospitar le additivo."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "Le permission(es) que le additivo generate accordara al origine."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Usa le campo infra pro incargar tu pacchetto de additivo."
@@ -3679,7 +3679,7 @@ msgstr "Recarga automaticamente le schedas in base a intervallos de tempore que 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Mantener le partes de tu vita online separate in schedas separate per codice de color e cookie. Ora integrate con Mozilla VPN pro un altere strato de confidentialitate."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
