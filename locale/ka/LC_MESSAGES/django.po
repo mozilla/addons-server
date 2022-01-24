@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-23 05:59+0000\n"
+"PO-Revision-Date: 2022-01-24 09:01+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1773,18 +1773,17 @@ msgstr ""
 msgid "Display Name"
 msgstr "გამოსაჩენი სახელი"
 
-#, fuzzy
 msgid "Origin"
-msgstr "წარმომავლობა:"
+msgstr "წარმომავლობა"
 
 msgid "Permissions"
 msgstr "ნებართვები"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
+msgstr "თქვენ შექმენით საიტის ნებართვის დანამატი იმავე წარმომავლობისა და ნებართვებისთვის."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
+msgstr "წარმომავლობა უნდა შეიცავდეს მხოლოდ სქემას (ოქმს), მისამართს (დომენს) და დამატებით პორტს"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "დამატების უმართებულო ან დაზიანებული ფაილი."
@@ -2037,9 +2036,8 @@ msgstr "ძიება შემმუშავებლის მასალ�
 msgid "Search"
 msgstr "ძიება"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "ნებართვები:"
+msgstr "საიტის ნებართვის დანამატის შედგენა"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
 msgstr ""
