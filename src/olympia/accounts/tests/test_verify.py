@@ -23,7 +23,7 @@ class TestProfile(TestCase):
         profile_data = {'email': 'yo@oy.com'}
         self.get.return_value.status_code = 200
         self.get.return_value.json.return_value = profile_data
-        profile = verify.get_fxa_profile('profile-plz', {})
+        profile = verify.get_fxa_profile('profile-plz')
         assert profile == profile_data
         self.get.assert_called_with(
             'https://app.fxa/v1/profile',
@@ -38,7 +38,7 @@ class TestProfile(TestCase):
         self.get.return_value.status_code = 200
         self.get.return_value.json.return_value = profile_data
         with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_profile('profile-plz', {})
+            verify.get_fxa_profile('profile-plz')
         self.get.assert_called_with(
             'https://app.fxa/v1/profile',
             headers={
@@ -52,7 +52,7 @@ class TestProfile(TestCase):
         self.get.return_value.status_code = 400
         self.get.json.return_value = profile_data
         with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_profile('profile-plz', {})
+            verify.get_fxa_profile('profile-plz')
         self.get.assert_called_with(
             'https://app.fxa/v1/profile',
             headers={
@@ -195,7 +195,7 @@ class TestIdentify(TestCase):
         with pytest.raises(verify.IdentificationError):
             verify.fxa_identify('heya', self.CONFIG)
         self.get_fxa_token.assert_called_with(code='heya', config=self.CONFIG)
-        self.get_profile.assert_called_with('bee5', self.CONFIG)
+        self.get_profile.assert_called_with('bee5')
 
     def test_all_good(self):
         self.get_fxa_token.return_value = get_fxa_token_data = {'access_token': 'cafe'}
@@ -204,7 +204,7 @@ class TestIdentify(TestCase):
         assert identity == {'email': 'me@em.hi'}
         assert token_data == get_fxa_token_data
         self.get_fxa_token.assert_called_with(code='heya', config=self.CONFIG)
-        self.get_profile.assert_called_with('cafe', self.CONFIG)
+        self.get_profile.assert_called_with('cafe')
 
     def test_with_id_token(self):
         self.get_fxa_token.return_value = get_fxa_token_data = {
@@ -216,7 +216,7 @@ class TestIdentify(TestCase):
         assert identity == {'email': 'me@em.hi'}
         assert token_data == get_fxa_token_data
         self.get_fxa_token.assert_called_with(code='heya', config=self.CONFIG)
-        self.get_profile.assert_called_with('cafe', self.CONFIG)
+        self.get_profile.assert_called_with('cafe')
 
 
 @override_settings(USE_FAKE_FXA_AUTH=False, DEBUG=True)

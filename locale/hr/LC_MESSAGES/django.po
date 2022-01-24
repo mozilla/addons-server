@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-07-27 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -1628,9 +1628,6 @@ msgstr "Nedavne promjene za Moji dodaci"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Ovaj se URL naziv stranice već koristi. Odaberi jedan drugi naziv."
 
@@ -1725,6 +1722,9 @@ msgstr "Neispravan raspon verzija."
 msgid "Need at least one compatible application."
 msgstr "Potrebna je barem jedna kompatibilna aplikacija."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Nedavno si poslao/la previše prijenosa. Pokušaj ponovo nakon nekog vremena."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Dogodila se greška u tvom prijenosu. Pokušaj ponovo."
 
@@ -1733,9 +1733,6 @@ msgstr "Zanemari neuspjelu provjeru"
 
 msgid "Need to select at least one application."
 msgstr "Moraš odabrati barem jednu aplikaciju."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Nedavno si poslao/la previše prijenosa. Pokušaj ponovo nakon nekog vremena."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1777,6 +1774,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Prikazano ime"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Izvor:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Dopuštenja:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Neispravna ili oštećena datoteka dodatka."
@@ -1979,25 +1990,6 @@ msgstr "Moj dodatak se ne uklapa u bilo koju od kategorija"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-# 75%
-msgid "Review Policies and Rules"
-msgstr "Pravila za recenzije"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr "Prihvati"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "ili <a href=\"{0}\">Odustani</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Više informacija o računima programera"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} dodaci"
@@ -2051,6 +2043,16 @@ msgstr "Pretraži dokumente programera"
 
 msgid "Search"
 msgstr "Traži"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Dopuštenja:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -2192,6 +2194,9 @@ msgstr "Prihvaćanjem pozivnice moći ćeš uređivati dodatak i prikazati svoje
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klikni donji gumb „Prihvati”, kako bi te se dodalo kao autora za {addon_name}."
+
+msgid "Accept"
+msgstr "Prihvati"
 
 msgid "Decline"
 msgstr "Odbij"
@@ -2727,12 +2732,6 @@ msgstr "Ovu verziju možeš i urediti, dodavanjem napomena uz verziju ili dodava
 msgid "Edit version {0}"
 msgstr "Uredi verziju {0}"
 
-msgid "Version Signature Pending"
-msgstr "Čeka se na potpisivanje verzije"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3044,11 +3043,33 @@ msgstr "Upravljanje administratorima"
 msgid "View Statistics Dashboard"
 msgstr "Pregled Nadzorne ploče statistike"
 
+# 75%
+msgid "Review Policies and Rules"
+msgstr "Pravila za recenzije"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "ili <a href=\"{0}\">Odustani</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Više informacija o računima programera"
+
 msgid "Developer News"
 msgstr "Vijesti za programere"
 
 msgid "View the blog &#9658;"
 msgstr "Pogledaj blog &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Čeka se na potpisivanje verzije"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Licenca"
@@ -3730,8 +3751,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Uživaj u sličicama web-stranica pored rezultata pretrage."
 
 #. editorial content for the discovery pane.
@@ -4330,6 +4351,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Neke web stranice imaju poteškoće s reprodukcijom videozapisa na Androidu. Ovo ispravlja te poteškoće."
@@ -4349,6 +4375,10 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Uživaj u sličicama web-stranica pored rezultata pretrage."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4376,10 +4406,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4423,23 +4449,19 @@ msgid "See all extensions"
 msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Popularna proširenja"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "Pogledaj sva proširenja"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "Spremi i dodaj još"
+msgid "Image search extensions"
+msgstr "Pogledaj sva proširenja"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Writing tools"
+msgstr "Alati za prevođenje"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4543,10 +4565,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Pogledaj još preporučenih proširenja"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "Pogledaj još alata za prevođenje"
@@ -4560,6 +4578,26 @@ msgstr "Preporučene teme"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "Pogledaj još popularnih tema"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Preporučene teme"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Pogledaj još popularnih tema"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Preporučene teme"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Pogledaj još preporučenih proširenja"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -6217,3 +6255,6 @@ msgstr "drugi"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} i noviji"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

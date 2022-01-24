@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 20:06+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-21 20:31+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1615,9 +1615,6 @@ msgstr "Нещодавні зміни для моїх додатків"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Додатки Open Search {blog_link_open}більше не підтримуються в AMO{blog_link_close}. Натомість, ви можете створити {doc_link_open}розширення пошуку{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr "Початок установлення {origin} не дозволяється."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Це закінчення вже використовується. Виберіть будь ласка інше."
 
@@ -1712,6 +1709,9 @@ msgstr "Невірний діапазон версій."
 msgid "Need at least one compatible application."
 msgstr "Потрібен, принаймні, один сумісний додаток."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Нещодавно ви відправили забагато вивантажень. Повторіть наступну спробу трохи згодом."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "У процесі Вашого завантаження сталася помилка. Будь ласка, спробуйте знову."
 
@@ -1720,9 +1720,6 @@ msgstr "Ігнорувати невдалу валідацію"
 
 msgid "Need to select at least one application."
 msgstr "Необхідно обрати принаймні одну програму."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Нещодавно ви відправили забагато вивантажень. Повторіть наступну спробу трохи згодом."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Версія {version} збігається з {block_link} для цього додатка. Для отримання додаткової інформації ви можете зв’язатися з {amo_admins}."
@@ -1766,6 +1763,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Відображуване ім’я"
+
+msgid "Origin"
+msgstr "Джерело"
+
+msgid "Permissions"
+msgstr "Дозволи"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "Ви згенерували додаток дозволів вебсайту для однакового джерела й дозволів."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "Джерело має включати лише схему (протокол), ім’я хосту (домен) і необов’язковий порт"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Недійсний або пошкоджений файл розширення."
@@ -1966,24 +1975,6 @@ msgstr "Мій додаток не підходить жодній з катег
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Угода Firefox про розповсюдження додатків"
 
-msgid "Review Policies and Rules"
-msgstr "Політика перевірки й правила"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Я прочитав і приймаю цю угоду, а також правила і політики"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Необхідно вказати ім'я для відображення, щоб користувачі знали чий це додаток. Будь ласка, введіть його внизу."
-
-msgid "Accept"
-msgstr "Схвалити"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "чи<a href=\"{0}\">Скасувати</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Докладніше про обліковий запис розробника"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Додатки {0}"
@@ -2036,6 +2027,15 @@ msgstr "Пошук документації для розробників"
 
 msgid "Search"
 msgstr "Пошук"
+
+msgid "Generate Site Permission Add-on"
+msgstr "Додаток для генерування дозволів сайту"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr "Джерело (схема + ім’я хосту + необов’язковий порт), для якого потрібно ввімкнути дозвіл. Тут також потрібно розмістити додаток."
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr "Дозволи, надані згенерованим додатком для джерела."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Використовуйте розташоване нижче поле, щоб завантажити свій пакунок додатка."
@@ -2176,6 +2176,9 @@ msgstr "Прийнявши запрошення, ви отримаєте дос�
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Натисніть кнопку Прийняти внизу, щоб підтвердити долучення до авторів {addon_name}."
+
+msgid "Accept"
+msgstr "Схвалити"
 
 msgid "Decline"
 msgstr "Відхилити"
@@ -2723,14 +2726,6 @@ msgstr "Ви також можете змінювати цю версію з д�
 msgid "Edit version {0}"
 msgstr "Змінити версію {0}"
 
-msgid "Version Signature Pending"
-msgstr "Очікується підписання версії"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Усе готово! ✨ Ви отримаєте сповіщення електронною поштою, коли підписаний файл буде готовий для завантаження з Центру розробників. Якщо ви не бачите електронного листа через 24 години, перевірте "
-"теку зі спамом."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Нагадуємо, що ваш додаток у будь-який час підлягає ручному огляду."
 
@@ -3082,11 +3077,34 @@ msgstr "Керування адміністратором"
 msgid "View Statistics Dashboard"
 msgstr "Переглянути панель статистики"
 
+msgid "Review Policies and Rules"
+msgstr "Політика перевірки й правила"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Я прочитав і приймаю цю угоду, а також правила і політики"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Необхідно вказати ім'я для відображення, щоб користувачі знали чий це додаток. Будь ласка, введіть його внизу."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "чи<a href=\"{0}\">Скасувати</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Докладніше про обліковий запис розробника"
+
 msgid "Developer News"
 msgstr "Новини розробників"
 
 msgid "View the blog &#9658;"
 msgstr "Прочитати блог &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Очікується підписання версії"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Усе готово! ✨ Ви отримаєте сповіщення електронною поштою, коли підписаний файл буде готовий для завантаження з Центру розробників. Якщо ви не бачите електронного листа через 24 години, перевірте "
+"теку зі спамом."
 
 msgid "License"
 msgstr "Ліцензія"
@@ -3766,9 +3784,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Користуйтеся рухами мишею для закриття вкладок, переходів по сторінках та інших дій."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Переглядайте мініатюри зображень вебсайтів поруч з результатами пошуку."
+msgid "See thumbnail images alongside your search returns."
+msgstr "Переглядайте зображення мініатюр поруч з результатами пошуку."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4368,6 +4385,11 @@ msgstr "Прощавайте, надокучливі попередження п
 msgid "All your emoji needs—always just a click away."
 msgstr "Усі ваші емоджі — завжди на віддалі одного натиску."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Припиніть надавати сайтам свою електронну адресу. Firefox Relay захищає вашу особистість і запобігає небажаній пошті."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Деякі сайти мають труднощі з відтворенням відео на Android. Перед вами розв'язувок проблеми."
@@ -4387,6 +4409,10 @@ msgstr "Налаштуйте рухи мишею. Ознайомтеся з но
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Користуйтеся рухами мишею для закриття вкладок, переходів по сторінках та інших дій."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Переглядайте мініатюри зображень вебсайтів поруч з результатами пошуку."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4415,10 +4441,6 @@ msgstr "Приберіть надокучливі попередження пр�
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Поверніться в часи, коли ваші найкращі результати пошуку стояли над оголошеннями (сумісні з пошуковою системою Google і Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Припиніть надавати сайтам свою електронну адресу. Firefox Relay захищає вашу особистість і запобігає небажаній пошті."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4461,20 +4483,17 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top extensions of 2021"
-msgstr "Найпопулярніші розширення 2021 року"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Пристосування YouTube"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Steam-розширення"
+msgid "Image search extensions"
+msgstr "Розширення пошуку зображень"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Підвищення продуктивності"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Докладніше"
+msgid "Writing tools"
+msgstr "Засоби написання"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4569,10 +4588,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Переглянути більше відібраних персоналом блокувальників реклами"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Пристосування YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Переглянути більше розширень YouTube відібраних персоналом"
 
@@ -4583,6 +4598,22 @@ msgstr "Популярні теми"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Більше популярних тем"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "Найвище оцінені теми"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "Найвище оцінені теми"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Популярні розширення"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "Більше популярних розширень"
 
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
@@ -6269,3 +6300,6 @@ msgstr "інші"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} і вище"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "Початок установлення {origin} не дозволяється."

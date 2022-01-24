@@ -147,7 +147,11 @@ class WebTokenAuthentication(BaseAuthentication):
                 'User tried to authenticate with invalid auth hash in'
                 'payload {}'.format(payload)
             )
-            raise exceptions.AuthenticationFailed()
+            msg = {
+                'detail': gettext('Auth hash mismatch. Session is likely expired.'),
+                'code': 'ERROR_AUTHENTICATION_EXPIRED',
+            }
+            raise exceptions.AuthenticationFailed(msg)
 
         # Set user in thread like UserAndAddrMiddleware does.
         core.set_user(user)

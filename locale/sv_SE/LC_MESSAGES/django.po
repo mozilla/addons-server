@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 23:46+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-22 14:24+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1600,9 +1600,6 @@ msgstr "Senaste ändringar för mitt tillägg"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-tillägg stöds {blog_link_open}inte längre på AMO{blog_link_close}. Du kan istället skapa ett {doc_link_open}söktillägg{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr "Installationsursprunget {origin} är inte tillåtet."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Sluggen används redan. Välj en annan."
 
@@ -1695,6 +1692,9 @@ msgstr "Ogiltigt versionsintervall."
 msgid "Need at least one compatible application."
 msgstr "Behöver minst en kompatibel applikation."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Du har skickat in för många uppladdningar nyligen. Vänligen försök igen efter en stund."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Det uppstod ett fel med din uppladdning. Försök igen."
 
@@ -1703,9 +1703,6 @@ msgstr "Åsidosätt misslyckad validering"
 
 msgid "Need to select at least one application."
 msgstr "Välj åtminstone ett program."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Du har skickat in för många uppladdningar nyligen. Vänligen försök igen efter en stund."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Version {version} matchar {block_link} för detta tillägg. Du kan kontakta {amo_admins} för ytterligare information."
@@ -1749,6 +1746,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Visningsnamn"
+
+msgid "Origin"
+msgstr "Ursprung"
+
+msgid "Permissions"
+msgstr "Behörigheter"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "Du har genererat ett tillägg för webbplatsbehörighet för samma ursprung och behörigheter."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "Ursprung bör endast innehålla ett schema (protokoll), ett värdnamn (domän) och en valfri port"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Ogiltig eller korrupt tilläggsfil."
@@ -1949,24 +1958,6 @@ msgstr "Mitt tillägg passar inte in i någon av kategorierna"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox distributionsavtal för tillägg"
 
-msgid "Review Policies and Rules"
-msgstr "Granskningspolicy och regler"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Jag har läst och accepterat detta avtal, reglerna och policyn"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Ditt konto behöver ett visningsnamn så att användarna vet vem tillägget kommer från. Vänligen ange en nedan."
-
-msgid "Accept"
-msgstr "Godkänn"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "eller <a href=\"{0}\">Avbryt</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Mer information om utvecklarkonton"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} tillägg"
@@ -2019,6 +2010,15 @@ msgstr "Sök i utvecklardokument"
 
 msgid "Search"
 msgstr "Sök"
+
+msgid "Generate Site Permission Add-on"
+msgstr "Generera tillägg för webbplatsbehörighet"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr "Ursprunget (schema + värdnamn + valfri port) som du behöver tillstånd för att aktiveras på. Det är också här du behöver vara värd för tillägget."
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr "Behörigheten eller behörigheter som det genererade tillägget kommer att godkänna för ursprunget."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Använd fältet nedan för att ladda upp ditt tilläggspaket."
@@ -2157,6 +2157,9 @@ msgstr "Att acceptera inbjudan ger dig tillgång till redigering av tillägget o
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klicka på knappen Godkänn nedan för att bekräfta att du vill läggas till som författare för {addon_name}."
+
+msgid "Accept"
+msgstr "Godkänn"
 
 msgid "Decline"
 msgstr "Avböj"
@@ -2717,13 +2720,6 @@ msgstr "Du kan också redigera denna version som du just skickat in genom att l�
 msgid "Edit version {0}"
 msgstr "Redigera version {0}"
 
-msgid "Version Signature Pending"
-msgstr "Väntande versionssignatur"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Du är klar! ✨ Du kommer att meddelas via e-post när den signerade filen är redo att laddas ner från Developer Hub. Om du inte ser ett e-postmeddelande inom 24 timmar, kontrollera din skräppostmapp."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Som en påminnelse är ditt tillägg föremål för manuell granskning när som helst."
 
@@ -3073,11 +3069,33 @@ msgstr "Administrationssida"
 msgid "View Statistics Dashboard"
 msgstr "Visa statistiköversikt"
 
+msgid "Review Policies and Rules"
+msgstr "Granskningspolicy och regler"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Jag har läst och accepterat detta avtal, reglerna och policyn"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Ditt konto behöver ett visningsnamn så att användarna vet vem tillägget kommer från. Vänligen ange en nedan."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "eller <a href=\"{0}\">Avbryt</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Mer information om utvecklarkonton"
+
 msgid "Developer News"
 msgstr "Utvecklarnyheter"
 
 msgid "View the blog &#9658;"
 msgstr "Visa bloggen &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Väntande versionssignatur"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Du är klar! ✨ Du kommer att meddelas via e-post när den signerade filen är redo att laddas ner från Developer Hub. Om du inte ser ett e-postmeddelande inom 24 timmar, kontrollera din skräppostmapp."
 
 msgid "License"
 msgstr "Licens"
@@ -3760,9 +3778,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Använd musgester för att stänga flikar, navigera på sidor och mer."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Njut av miniatyrbilder av webbplatser vid sidan av din sökning."
+msgid "See thumbnail images alongside your search returns."
+msgstr "Se miniatyrbilder tillsammans med dina sökresultat."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4360,6 +4377,11 @@ msgstr "Hejdå, irriterande kakvarningar!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Alla emojis du behöver, bara ett klick bort."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Sluta ge webbplatser din riktiga e-postadress. Firefox Relay skyddar din identitet och förhindrar skräppost."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Vissa webbplatser har svårt att spela upp videor på Android. Här är en lösning."
@@ -4379,6 +4401,10 @@ msgstr "Anpassa musgester. Upptäck ett nytt sätt att navigera med över 50 kon
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Använd musgester för att stänga flikar, navigera på sidor och mer."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Njut av miniatyrbilder av webbplatser vid sidan av din sökning."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4407,10 +4433,6 @@ msgstr "Försvinn, irriterande varningar om kakor!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Återgå till en enklare tid — när dina bästa sökresultat stod ovanför annonserna (Google och Bing-sökmotorkompatibla)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Sluta ge webbplatser din riktiga e-postadress. Firefox Relay skyddar din identitet och förhindrar skräppost."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4453,20 +4475,17 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top extensions of 2021"
-msgstr "De bästa tilläggen 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-anpassning"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Steam-tillägg"
+msgid "Image search extensions"
+msgstr "Bildsökningstillägg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Produktivitetsförstärkare"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Läs mer"
+msgid "Writing tools"
+msgstr "Skrivverktyg"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4561,10 +4580,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Se fler utvalda annonsblockerare som valts av anställda"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-anpassning"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Se fler YouTube-tillägg som valts av anställda"
 
@@ -4575,6 +4590,22 @@ msgstr "Trendiga teman"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Se fler trendiga teman"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "Högst rankade teman"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "Se fler topprankade teman"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Populära tillägg"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "Se fler populära tillägg"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
@@ -6262,3 +6293,6 @@ msgstr "andra"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} och senare"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "Installationsursprunget {origin} är inte tillåtet."

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-17 20:44+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-21 18:57+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1607,9 +1607,6 @@ msgstr "Nejnowše změny za móje dodanki"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Dodanki Open Search se {blog_link_open}na AMO wěcej pódpěraju{blog_link_close}. Móžośo {doc_link_open}město togo pytańske rozšyrjenje{doc_link_close} wužywaś."
 
-msgid "The install origin {origin} is not permitted."
-msgstr "Instalaciski póchad {origin} njejo dowólony."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Toś to adresowe mě se južo wužywa. Pšosym wubjeŕśo druge."
 
@@ -1706,6 +1703,9 @@ msgstr "Njepłaśiwy wersijowy wobceŕk."
 msgid "Need at least one compatible application."
 msgstr "Nanejmjenjej jadno kompatibelne nałoženje trěbne."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Sćo njedawno zapódał pśewjele nagraśow. Pšosym wopytajśo hyšći raz za bejny cas."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Pśi nagrawanju jo zmólka nastała. Pšosym wopytajśo hyšći raz."
 
@@ -1714,9 +1714,6 @@ msgstr "Njeraźone pśeglědanje pśepisaś"
 
 msgid "Need to select at least one application."
 msgstr "Musyśo nanejmjenjej jadno nałoženje wubraś."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Sćo njedawno zapódał pśewjele nagraśow. Pšosym wopytajśo hyšći raz za bejny cas."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Wersija {version} {block_link} za toś ten dodank wótpowědujo. Móžośo se z {amo_admins} za pśidatne informacije do zwiska stajiś."
@@ -1760,6 +1757,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Zwobraznjeńske mě"
+
+msgid "Origin"
+msgstr "Póchad"
+
+msgid "Permissions"
+msgstr "Pšawa"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "Sćo generěrował dodank sedłowego pšawa za ten samski póchad a te samske pšawa."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "Póchad měł jano šemu (protokol) , hostmě (domenu) a opcionalny port wopśimowaś"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Njepłaśiwa abo wobškóźona dodankowa dataja."
@@ -1960,24 +1969,6 @@ msgstr "Mój dodank njegóźi se do žedneje kategorije"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dojadnanje za rozdźělowanje dodankow Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Pśeglědowańske zasady a pšawidła"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Som toś to dojadnanje, pšawidła a zasady pśecytał a akceptěrował"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Wašo konto zwobraznjeńske mě trjeba, aby wužywarje wěźeli, wót kogo waš dodank pśiźo. Pšosym zapódajśo jo dołojce."
-
-msgid "Accept"
-msgstr "Akceptěrowaś"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "abo <a href=\"{0}\">Pśetergnuś</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Dalšne informacije wó wuwijarskich kontach"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Dodanki za {0}"
@@ -2030,6 +2021,15 @@ msgstr "Wuwijarske dokumenty pśepytowaś"
 
 msgid "Search"
 msgstr "Pytaś"
+
+msgid "Generate Site Permission Add-on"
+msgstr "Dodank sedłowego pšawa generěrowaś"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr "Póchad (šema + hostmě + opcionalny port), za kótaryž pšawo trjebaśo, aby se zmóžnił. Tam musyśo teke dodank góspodowaś."
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr "Pšawa, kótarež generěrowany dodank za póchad pśizwólujo."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Wužywajśo slědujuce pólo, aby swój dodankowy pakśik nagrał."
@@ -2172,6 +2172,9 @@ msgstr "Akceptěrowanje pśepšosby wam pśistup ma wobźěłowanje dodanka dajo
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klikniśo na tłocašk „Akceptěrowaś“ dołojce, aby wobkšuśił, až cośo awtor {addon_name} byś."
+
+msgid "Accept"
+msgstr "Akceptěrowaś"
 
 msgid "Decline"
 msgstr "Wótpokazaś"
@@ -2722,12 +2725,6 @@ msgstr "Móžośo teke toś tu wersiju wobźěłaś, aby wersijowe informacije a
 msgid "Edit version {0}"
 msgstr "Wersiju wobźěłaś {0}"
 
-msgid "Version Signature Pending"
-msgstr "Wersijowe signěrowanje hyšći faluje"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr "Sćo gótowy! ✨ Dostanjośo mejlku, gaž signěrowana dataja jo za ześěgnjenje z wuwijaŕskego rožka k dispozciji. Pśeglědajśo swój spamowy zarědnik, jolic mejlku pó 24 góźin njedostanjośo."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "K dopominanju, waš dodank se kuždy cas manuelne pśeglědowanje pomina."
 
@@ -3075,11 +3072,32 @@ msgstr "Zastojanje administratora"
 msgid "View Statistics Dashboard"
 msgstr "Pśeglěd statistiki pokazaś"
 
+msgid "Review Policies and Rules"
+msgstr "Pśeglědowańske zasady a pšawidła"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Som toś to dojadnanje, pšawidła a zasady pśecytał a akceptěrował"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Wašo konto zwobraznjeńske mě trjeba, aby wužywarje wěźeli, wót kogo waš dodank pśiźo. Pšosym zapódajśo jo dołojce."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "abo <a href=\"{0}\">Pśetergnuś</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Dalšne informacije wó wuwijarskich kontach"
+
 msgid "Developer News"
 msgstr "Nowosći wuwijarjow"
 
 msgid "View the blog &#9658;"
 msgstr "Cytajśo blog &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Wersijowe signěrowanje hyšći faluje"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr "Sćo gótowy! ✨ Dostanjośo mejlku, gaž signěrowana dataja jo za ześěgnjenje z wuwijaŕskego rožka k dispozciji. Pśeglědajśo swój spamowy zarědnik, jolic mejlku pó 24 góźin njedostanjośo."
 
 msgid "License"
 msgstr "Licenca"
@@ -3765,9 +3783,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Wužywajśo gesty myški, aby rejtariki zacynił, jaden bok slědk šeł, znowego zacytał a wěcej."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Wužywajśo miniaturki websedłow z pytańskimi wuslědkami."
+msgid "See thumbnail images alongside your search returns."
+msgstr "Glejśo miniaturki z pytańskimi wuslědkami."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4368,6 +4385,11 @@ msgstr "Mějśo se, wobuzne cookiejowe warnowanja!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Wšykne emoźije, kótarež trjebaśo – pśecej jano jadno kliknjenje zdalone."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Njedajśo wěcej sedłam swóju e-mailowu adresu. Firefox Relay wašu identitu šćita a spamowym mejlkam zajźujo."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Někotare sedła maju śěžkosći, wideo na Android wótgrawaś. How jo rozwězanje."
@@ -4387,6 +4409,10 @@ msgstr "Pśiměrśo gesty myški. Namakajśo nowe móžnosći, aby z wěcej ako 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Wužywajśo gesty myški, aby rejtariki zacynił, jaden bok slědk šeł, znowego zacytał a wěcej."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Wužywajśo miniaturki websedłow z pytańskimi wuslědkami."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4415,10 +4441,6 @@ msgstr "Pšec z wobuznymi cookiejowymi warnowanjami!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Slědk k jadnorjejšemu casoju – gaž wašo nejwažnjejše pytańske wuslědki su stojali nad wabjenim (kompatibelne z pytnicoma Google a Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Njedajśo wěcej sedłam swóju e-mailowu adresu. Firefox Relay wašu identitu šćita a spamowym mejlkam zajźujo."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4461,20 +4483,17 @@ msgid "See all extensions"
 msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top extensions of 2021"
-msgstr "Woblubowane rozšyrjenja 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Pśiměrjenje YouTube"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Rozšěrjenja Steam"
+msgid "Image search extensions"
+msgstr "Rozšyrjenja za pytanje wobrazow"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Zmócnjaki produktiwnosći"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Wěcej cytaś"
+msgid "Writing tools"
+msgstr "Pisańske rědy"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4569,10 +4588,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja za blokěrowanje wabjenja pokazaś"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Pśiměrjenje YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja YouTube pokazaś"
 
@@ -4583,6 +4598,22 @@ msgstr "Woblubowane drastwy"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Dalšne tuchylu woblubowane drastwy se woglědaś"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "Wusoko pógódnośone drastwy"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "Dalšne nejwušej pógódnośone drastwy se woglědaś"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Woblubowane rozšyrjenja"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "Dalšne tuchylu woblubowane rozšyrjenja se woglědaś"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njedajo se analyzěrowaś."
@@ -6272,3 +6303,6 @@ msgstr "druge"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} a nowšymi"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "Instalaciski póchad {origin} njejo dowólony."

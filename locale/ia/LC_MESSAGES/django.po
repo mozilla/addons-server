@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-20 22:04+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-22 19:11+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1322,10 +1322,10 @@ msgid "GNU General Public License v3.0"
 msgstr "Licentia public general GNU v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "Public licentia general de bibliotheca GNU v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "Public licentia general de bibliotheca GNU 3.0"
 
 msgid "The MIT License"
 msgstr "Licentia de MIT"
@@ -1610,9 +1610,6 @@ msgstr "Recente cambiamentos pro mi additivos"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Le additivos de recerca aperte {blog_link_open}non es plus supportate sur AMO{blog_link_close}. Tu pote crear in vice un {doc_link_open}extension de recerca{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Iste identificator es ja in uso. Per favor elige un altere."
 
@@ -1705,6 +1702,9 @@ msgstr "Intervallo de version non valide."
 msgid "Need at least one compatible application."
 msgstr "Il necesse al minus un application compatibile."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Tu ha incargate troppo de files recentemente. Reproba post alcun tempore."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Ha occurrite un error con tu incargamento. Per favor tenta lo de novo."
 
@@ -1713,9 +1713,6 @@ msgstr "Supplantar validation mancate"
 
 msgid "Need to select at least one application."
 msgstr "Il es necesse al minus eliger un application compatibile."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Tu ha incargate troppo de files recentemente. Reproba post alcun tempore."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Version {version} corresponde a {block_link} pro iste additivo. Tu pote contactar {amo_admins} pro plus informationes."
@@ -1759,6 +1756,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Nomine monstrate"
+
+msgid "Origin"
+msgstr "Origine"
+
+msgid "Permissions"
+msgstr "Permissiones"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "Tu ha generate un additivo de permission sito pro le mesme origine e permissiones."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "Le origine deberea includer solo un schema (protocollo), un nomine de hospite (dominio) e un porta optional"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "File de additivo non valide o corrupte."
@@ -1961,24 +1970,6 @@ msgstr "Mi additivo non corresponde a alcun del categorias"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Accordo de distribution del additivos de Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Politicas e regulas de revision"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Io ha legite e accepta iste accordo e le regulas e politicas"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Tu conto require un nomine a monstrar, de sorta que le usatores cognosce le autor de tu additivo. Insere lo infra."
-
-msgid "Accept"
-msgstr "Acceptar"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "o <a href=\"{0}\">Cancellar</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Altere informationes sur Creative Commons licenses"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr " Additivos pro {0}"
@@ -2031,6 +2022,16 @@ msgstr "Recercar in le documentation de disveloppatores"
 
 msgid "Search"
 msgstr "Recercar"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Permission del sito"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Usa le campo infra pro incargar tu pacchetto de additivo."
@@ -2169,6 +2170,9 @@ msgstr "Le acceptation del invitation te dara accesso a rediger le additivo e po
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Clicca sur le button Acceptar infra pro confirmar que tu desira esser addite como autor pro {addon_name}."
+
+msgid "Accept"
+msgstr "Acceptar"
 
 msgid "Decline"
 msgstr "Refusar"
@@ -2713,14 +2717,6 @@ msgstr "Tu pote alsi modificar iste version pro adder notas de version o codific
 msgid "Edit version {0}"
 msgstr "Rediger version {0}"
 
-msgid "Version Signature Pending"
-msgstr "Firma de version pendente"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Tu ha finite! ✨ Tu recipera un notification in e-mail quando le file signate es preste a esser discargate del Centro de disveloppamento. Si tu non vide un e-mail post 24 horas, verifica tu dossier "
-"de spam."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Non oblida que tu additivo pote esser subjecte a un revision manual a omne momento."
 
@@ -3062,11 +3058,34 @@ msgstr "Gestion de Administrator"
 msgid "View Statistics Dashboard"
 msgstr "Vider pannello de statistica"
 
+msgid "Review Policies and Rules"
+msgstr "Politicas e regulas de revision"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Io ha legite e accepta iste accordo e le regulas e politicas"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Tu conto require un nomine a monstrar, de sorta que le usatores cognosce le autor de tu additivo. Insere lo infra."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "o <a href=\"{0}\">Cancellar</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Altere informationes sur Creative Commons licenses"
+
 msgid "Developer News"
 msgstr "Novas de disveloppator"
 
 msgid "View the blog &#9658;"
 msgstr "Vide le blog &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Firma de version pendente"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Tu ha finite! ✨ Tu recipera un notification in e-mail quando le file signate es preste a esser discargate del Centro de disveloppamento. Si tu non vide un e-mail post 24 horas, verifica tu dossier "
+"de spam."
 
 msgid "License"
 msgstr "Licentias"
@@ -3748,8 +3767,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Usa gestos del mus pro clauder schedas, navigar inter paginas, e plus."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Gaude del imagines in miniatura del sitos web al latere de tu retornos de recerca."
 
 #. editorial content for the discovery pane.
@@ -4350,6 +4369,11 @@ msgstr "Adeo, enoiose avisos de cookies!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Tote le emojis que te servi: sempre a portata de un clic."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Cessa donar a sitos tu adresse e-mail. Firefox Relay protege tu identitate e impedi le posta immunditia."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android. Iste extension forni un remedio."
@@ -4369,6 +4393,10 @@ msgstr "Personalisa le gestos del mus. Discoperi nove manieras pro navigar con p
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Usa gestos del mus pro clauder schedas, navigar inter paginas, e plus."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Gaude del imagines in miniatura del sitos web al latere de tu retornos de recerca."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4397,10 +4425,6 @@ msgstr "Adeo, enoiose avisos de cookies!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Retornar a un tempore plus simple: quando tu melior resultatos del recerca stava supra le avisos publicitari (compatibile con le motores de recerca Google e Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Cessa donar a sitos tu adresse e-mail. Firefox Relay protege tu identitate e impedi le posta immunditia."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4443,20 +4467,17 @@ msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top extensions of 2021"
-msgstr "Melior extensiones del 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Personalisationes de YouTube"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Extensiones de Steam"
+msgid "Image search extensions"
+msgstr "Extensiones de recerca imagine"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Auxilios de productivitate"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Leger plus"
+msgid "Writing tools"
+msgstr "Utensiles de scriptura"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4551,10 +4572,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Vide altere blocatores de avisos seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Personalisationes de YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Vide altere extensiones YouTube seligite per nostre equipa"
 
@@ -4565,6 +4582,22 @@ msgstr "Themas de tendentia"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Vide altere themas de tendentia"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "Le themas melio evalutate"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "Vide altere themas melio valutate"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Extensiones de tendentia"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "Vide altere extensiones de tendentia"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile tractar le file manifesto."
@@ -6247,3 +6280,6 @@ msgstr "alteres"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} e plus recente"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

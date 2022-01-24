@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-12-02 17:39+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1623,9 +1623,6 @@ msgstr "Nedavne spremembe za Moje dodatke"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Razširitve Open Search {blog_link_open}niso več podprte na AMO{blog_link_close}. Namesto njih lahko ustvarite {doc_link_open}razširitev za iskanje{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Ta rekleta se že uporablja. Izberite kako drugo."
 
@@ -1722,6 +1719,9 @@ msgstr "Neveljavno območje različic."
 msgid "Need at least one compatible application."
 msgstr "Potrebujem vsaj eno združljivo aplikacijo."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "V zadnjem času ste naložili preveč datotek. Poskusite znova čez nekaj časa."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Prišlo je do napake med nalaganjem. Prosimo, poskusite znova."
 
@@ -1730,9 +1730,6 @@ msgstr "Preglasi neuspešno preverjanje veljavnosti"
 
 msgid "Need to select at least one application."
 msgstr "Izbrati je treba vsaj en program."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "V zadnjem času ste naložili preveč datotek. Poskusite znova čez nekaj časa."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Različica {version} se ujema z {block_link} za to razširitev. Za več informacij se obrnite na {amo_admins}."
@@ -1774,6 +1771,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Prikazno ime"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Izvor:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Dovoljenja:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Neveljavna ali pokvarjena datoteka dodatka."
@@ -1972,24 +1983,6 @@ msgstr "Moj dodatek ne spada v nobeno od kategorij"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Sporazum o razširjanju dodatkov za Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Smernice in pravila za preglede"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Prebral sem sporazum, pravila in politiko ter se strinjam z njimi"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Vašemu računu je treba nastaviti prikazno ime, da bodo uporabniki vedeli, od koga prihaja vaš dodatek. Vnesite ime spodaj."
-
-msgid "Accept"
-msgstr "Sprejmi"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "ali <a href=\"{0}\">Prekliči</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Več informacij o razvijalskih računih"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Dodatki za {0}"
@@ -2042,6 +2035,16 @@ msgstr "Iskanje po Dokumentaciji za razvijalce"
 
 msgid "Search"
 msgstr "Iskanje"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Dovoljenja:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Uporabite polje spodaj, da prenesete paket za svojo aplikacijo."
@@ -2187,6 +2190,9 @@ msgstr "S sprejemom povabila boste dobili dostop za urejanje dodatka, vaše ime 
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Kliknite gumb Sprejmi in potrdite, da želite biti dodani kot avtor za {addon_name}."
+
+msgid "Accept"
+msgstr "Sprejmi"
 
 msgid "Decline"
 msgstr "Zavrni"
@@ -2728,13 +2734,6 @@ msgstr "Različici, ki ste jo poslali, lahko tudi dodate opombe ob izdaji ali iz
 msgid "Edit version {0}"
 msgstr "Uredi različico {0}"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "Različica podpisana"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3054,11 +3053,33 @@ msgstr "Upravljanje skrbništva"
 msgid "View Statistics Dashboard"
 msgstr "Prikaži nadzorno ploščo s statistiko"
 
+msgid "Review Policies and Rules"
+msgstr "Smernice in pravila za preglede"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Prebral sem sporazum, pravila in politiko ter se strinjam z njimi"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Vašemu računu je treba nastaviti prikazno ime, da bodo uporabniki vedeli, od koga prihaja vaš dodatek. Vnesite ime spodaj."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "ali <a href=\"{0}\">Prekliči</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Več informacij o razvijalskih računih"
+
 msgid "Developer News"
 msgstr "Novice za razvijalce"
 
 msgid "View the blog &#9658;"
 msgstr "Glejte blog &#9658;"
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "Različica podpisana"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Licenca"
@@ -3746,8 +3767,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Uporabljajte poteze z miško za zapiranje zavihkov, krmarjenje po straneh in drugo."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Opremite zadetke iskanja s predoglednimi ploščicami spletnih strani."
 
 #. editorial content for the discovery pane.
@@ -4352,6 +4373,11 @@ msgstr "Zbogom, nadležna obvestila o piškotkih!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Še več smeškov. Ducati očarljivih smeškov za vsako priložnost — vedno le klik stran."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v sistemu Android. Tu je popravek."
@@ -4374,6 +4400,10 @@ msgstr "Prilagodite miškine kretnje. Odkrijte nov način za krmarjenje z več k
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Uporabljajte poteze z miško za zapiranje zavihkov, krmarjenje po straneh in drugo."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Opremite zadetke iskanja s predoglednimi ploščicami spletnih strani."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4402,10 +4432,6 @@ msgstr "Poberite se, obvestila o piškotkih!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Vrnite se v preprostejše čase – ko so najustreznejši zadetki iskanja ležali nad oglasi (združljivo z iskalnikoma Google in Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4448,23 +4474,19 @@ msgid "See all extensions"
 msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Priljubljene razširitve"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "Prikaži vse razširitve"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "Shrani in dodaj več"
+msgid "Image search extensions"
+msgstr "Prikaži vse razširitve"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Writing tools"
+msgstr "Orodja za prevajanje"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4567,10 +4589,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Več razširitev za upravljanje zavihkov"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "Več orodij za prevajanje"
@@ -4583,6 +4601,26 @@ msgstr "Trenutno priljubljene teme"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "Več priporočenih tem"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Trenutno priljubljene teme"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Več priporočenih tem"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Trenutno priljubljene teme"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Več priporočenih razširitev"
 
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
@@ -6287,3 +6325,6 @@ msgstr "drugi"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} in novejšimi"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

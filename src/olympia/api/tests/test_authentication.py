@@ -309,47 +309,66 @@ class TestWebTokenAuthentication(TestCase):
 
     def test_user_id_is_none(self):
         token = self.client.generate_api_token(self.user, user_id=None)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert 'code' not in exp.exception.detail
 
     def test_no_user_id_in_payload(self):
         data = {
             'auth_hash': self.user.get_session_auth_hash(),
         }
         token = signing.dumps(data, salt=WebTokenAuthentication.salt)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert 'code' not in exp.exception.detail
 
     def test_no_auth_hash_in_payload(self):
         data = {
             'user_id': self.user.pk,
         }
         token = signing.dumps(data, salt=WebTokenAuthentication.salt)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
+        assert (
+            exp.exception.detail['detail']
+            == 'Auth hash mismatch. Session is likely expired.'
+        )
 
     def test_user_deleted(self):
         self.user.delete()
         token = self.client.generate_api_token(self.user)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert 'code' not in exp.exception.detail
 
     def test_invalid_user_not_found(self):
         token = self.client.generate_api_token(self.user, user_id=-1)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert 'code' not in exp.exception.detail
 
     def test_invalid_user_other_user(self):
         user2 = user_factory(read_dev_agreement=datetime.now())
         token = self.client.generate_api_token(self.user, user_id=user2.pk)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
+        assert (
+            exp.exception.detail['detail']
+            == 'Auth hash mismatch. Session is likely expired.'
+        )
 
     def test_wrong_auth_id(self):
         token = self.client.generate_api_token(self.user)
         self.user.update(auth_id=self.user.auth_id + 42)
-        with self.assertRaises(AuthenticationFailed):
+        with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
+        assert (
+            exp.exception.detail['detail']
+            == 'Auth hash mismatch. Session is likely expired.'
+        )
 
     def test_make_sure_token_is_decodable(self):
         token = self.client.generate_api_token(self.user)

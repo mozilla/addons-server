@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 21:05+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-22 23:24+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1624,9 +1624,6 @@ msgstr "שינויים אחרונים עבור התוספות שלי"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "תוספות של Open Search {blog_link_open}אינן נתמכות עוד ב־AMO{blog_link_close}. באפשרותך ליצור {doc_link_open}הרחבת חיפוש במקום{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
@@ -1719,6 +1716,9 @@ msgstr "טווח הגרסאות שגוי."
 msgid "Need at least one compatible application."
 msgstr "נדרש לפחות יישום תואם אחד."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "הגשת יותר מידי העלאות לאחרונה. נא לנסות שוב לאחר זמן מה."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "אירעה שגיאה עם ההעלאה שלך. נא לנסות שוב."
 
@@ -1727,9 +1727,6 @@ msgstr "בדיקת האימות על המעקף נכשלה"
 
 msgid "Need to select at least one application."
 msgstr "יש לבחור ביישום אחד לפחות."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "הגשת יותר מידי העלאות לאחרונה. נא לנסות שוב לאחר זמן מה."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "הגרסה {version} תואמת ל־{block_link} עבור תוספת זו. באפשרותך ליצור קשר עם {amo_admins} לקבלת מידע נוסף."
@@ -1771,6 +1768,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "שם תצוגה"
+
+msgid "Origin"
+msgstr ""
+
+msgid "Permissions"
+msgstr "הרשאות"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "קובץ התוספת לא חוקי או פגום."
@@ -1978,24 +1987,6 @@ msgstr "התוספת שלי לא מתאימה לאף אחת מהקטגוריות
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "הסכם הפצת תוספת של Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "סקירת מדיניות וכללים"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "קראתי והסכם זה מקובל עלי לרבות הכללים והמדיניות"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "החשבון שלך זקוק שם לתצוגה כך שמשתמשים ידעו ממי התוספת שלך מגיעה. נא להזין אחד למטה."
-
-msgid "Accept"
-msgstr "הסכמה"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "או <a href=\"{0}\">ביטול</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "מידע נוסף על חשבונות מפתחים"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "התוספות של {0}"
@@ -2049,6 +2040,16 @@ msgstr "חיפוש בתיעוד המפתחים"
 
 msgid "Search"
 msgstr "חיפוש"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "הרשאת אתר"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "יש להשתמש בשדה שלהלן כדי להעלות את חבילת התוספת שלך."
@@ -2185,6 +2186,9 @@ msgstr "אישור ההזמנה תעניק לך גישה לערוך את התו�
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "יש ללחוץ על כפתור האישור למטה כדי לאשר שברצונך להתווסף כיוצר עבור {addon_name}."
+
+msgid "Accept"
+msgstr "הסכמה"
 
 msgid "Decline"
 msgstr "דחייה"
@@ -2715,12 +2719,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "עריכת גרסה {0}"
 
-msgid "Version Signature Pending"
-msgstr "חתימת גרסה בהמתנה"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3040,11 +3038,32 @@ msgstr "הגדרות ניהול"
 msgid "View Statistics Dashboard"
 msgstr "הצגת לוח סטטיסטיקה"
 
+msgid "Review Policies and Rules"
+msgstr "סקירת מדיניות וכללים"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "קראתי והסכם זה מקובל עלי לרבות הכללים והמדיניות"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "החשבון שלך זקוק שם לתצוגה כך שמשתמשים ידעו ממי התוספת שלך מגיעה. נא להזין אחד למטה."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "או <a href=\"{0}\">ביטול</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "מידע נוסף על חשבונות מפתחים"
+
 msgid "Developer News"
 msgstr "חדשות המפתחים"
 
 msgid "View the blog &#9658;"
 msgstr "צפייה בבלוג &#9668;"
+
+msgid "Version Signature Pending"
+msgstr "חתימת גרסה בהמתנה"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "רישיון"
@@ -3736,8 +3755,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לעבור בין דפים ועוד."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4340,6 +4358,11 @@ msgstr "להתראות, אזהרות עוגיות מעצבנות!"
 msgid "All your emoji needs—always just a click away."
 msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגיעה."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "ישנם אתרים המתקשים בהפעלת סרטונים ב־Android. הרחבה זו מספקת את התיקון."
@@ -4359,6 +4382,10 @@ msgstr "מחוות עכבר מותאמות אישית. גלו דרכים חדש�
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לעבור בין דפים ועוד."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4386,10 +4413,6 @@ msgstr "הסתלקו, אזהרות עוגיות מעצבנות!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4433,21 +4456,17 @@ msgid "See all extensions"
 msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Top extensions of 2021"
-msgstr "ההרחבות המובילות של 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "התאמה אישית של YouTube"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "הרחבות של Steam"
+msgid "Image search extensions"
+msgstr "הרחבות לחיפוש תמונות"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "מידע נוסף"
+msgid "Writing tools"
+msgstr "כלים לכתיבה"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4549,10 +4568,6 @@ msgid "See more ad blocker staff picks"
 msgstr "הצגת הרחבות מומלצות נוספות"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "התאמה אישית של YouTube"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "תרגומים לשם התוספת"
@@ -4564,6 +4579,22 @@ msgstr "ערכות הנושא שמובילות לאחרונה"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "הצגת ערכות נושא נוספות שמובילות לאחרונה"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "ערכות נושא בדירוג הגבוה ביותר"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "הצגת ערכות נושא נוספות בדירוג גבוה"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "ההרחבות שמובילות לאחרונה"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "הצגת הרחבות נוספות שמובילות לאחרונה"
 
 msgid "Could not parse the manifest file."
 msgstr "לא ניתן לפענח את קובץ ה־manifest."
@@ -6298,3 +6329,6 @@ msgstr "אחרים"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} ומעלה"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

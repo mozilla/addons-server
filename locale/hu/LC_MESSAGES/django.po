@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 11:03+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-24 10:40+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1633,9 +1633,6 @@ msgstr "Saját kiegészítők legutóbbi változásai"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Az Open Search kiegészítők {blog_link_open}már nem támogatott az AMO-n{blog_link_close}. Helyette létrehozhat {doc_link_open}egy keresési kiegészítőt{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr "A(z) {origin} telepítési eredet nem engedélyezett."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Ezt a SEO URL-t már használja valaki. Válasszon másikat."
 
@@ -1728,6 +1725,9 @@ msgstr "Érvénytelen verziótartomány."
 msgid "Need at least one compatible application."
 msgstr "Legalább egy kompatibilis alkalmazásra szükség van."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Túl sok feltöltést küldött be a közelmúltban. Próbálkozzon újra egy kicsit később."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Hiba történt a feltöltés közben, próbálja újra."
 
@@ -1736,9 +1736,6 @@ msgstr "Sikertelen vizsgálat felülbírálása"
 
 msgid "Need to select at least one application."
 msgstr "Legalább egy alkalmazást ki kell választania."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Túl sok feltöltést küldött be a közelmúltban. Próbálkozzon újra egy kicsit később."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
@@ -1782,6 +1779,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Megjelenő név"
+
+msgid "Origin"
+msgstr "Eredet"
+
+msgid "Permissions"
+msgstr "Engedélyek"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "Azonos eredettel és engedélyekkel állított elő egy oldalengedély-kiegészítőt."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "Az eredet csak egy sémát (protokollt), egy gazdagépnevet (domaint) és opcionálisan egy portot tartalmazhat"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Érvénytelen vagy sérült kiegészítőfájl."
@@ -1982,24 +1991,6 @@ msgstr "A kiegészítő nem illik egyik kategóriába sem"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox kiegészítő terjesztési megállapodás"
 
-msgid "Review Policies and Rules"
-msgstr "Értékelési irányelvek és szabályok"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Elolvastam, és elfogadom ezt a megállapodást, valamint a szabályokat és az irányelveket"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "A fiókjához meg kell adnia egy megjelenítendő nevet, hogy a felhasználók tudják, hogy kitől származik a kiegészítő. Adja meg alább."
-
-msgid "Accept"
-msgstr "Elfogadás"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "vagy <a href=\"{0}\">Mégsem</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "További információk a fejlesztői fiókokról"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} kiegészítők"
@@ -2053,6 +2044,15 @@ msgstr "Keresés fejlesztői doksiban"
 
 msgid "Search"
 msgstr "Keresés"
+
+msgid "Generate Site Permission Add-on"
+msgstr "Oldalengedély-kiegészítő előállítása"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr "Az eredet (séma + gazdagépnév + opcionális port), amelyen be kell kapcsolni az engedélyt. Innen kell kiszolgálnia a kiegészítőt is."
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr "Azon engedélyek, amelyeket az előállított kiegészítő nyújt az eredeten."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
@@ -2195,6 +2195,9 @@ msgstr "A meghívó elfogadásával hozzáférést kaphat a kiegészítő szerke
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Kattintson a lenti Elfogadás gombra, hogy megerősítse azt, hogy a(z) {addon_name} kiegészítő szerzője akar lenni."
+
+msgid "Accept"
+msgstr "Elfogadás"
 
 msgid "Decline"
 msgstr "Elutasítás"
@@ -2742,13 +2745,6 @@ msgstr "Ezt a verziót is szerkesztheti, hogy verziómegjegyzéseket adjon hozz�
 msgid "Edit version {0}"
 msgstr "{0} verzió szerkesztése"
 
-msgid "Version Signature Pending"
-msgstr "Verzió aláírása függőben"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Kész van! ✨ Értesítő e-mailt fog kapni, amint az aláírt fájl készen áll a Fejlesztői központból történő letöltésre. Ha 24 óra után sem látja az e-mailt, akkor ellenőrizze a levélszemét mappáját."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Emlékeztetőül: a kiegészítője bármikor kézi ellenőrzés alá kerülhet."
 
@@ -3098,11 +3094,33 @@ msgstr "Adminisztrációs kezelés"
 msgid "View Statistics Dashboard"
 msgstr "Statisztika áttekintése"
 
+msgid "Review Policies and Rules"
+msgstr "Értékelési irányelvek és szabályok"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Elolvastam, és elfogadom ezt a megállapodást, valamint a szabályokat és az irányelveket"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "A fiókjához meg kell adnia egy megjelenítendő nevet, hogy a felhasználók tudják, hogy kitől származik a kiegészítő. Adja meg alább."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "vagy <a href=\"{0}\">Mégsem</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "További információk a fejlesztői fiókokról"
+
 msgid "Developer News"
 msgstr "Fejlesztői hírek"
 
 msgid "View the blog &#9658;"
 msgstr "A blog megtekintése &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Verzió aláírása függőben"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Kész van! ✨ Értesítő e-mailt fog kapni, amint az aláírt fájl készen áll a Fejlesztői központból történő letöltésre. Ha 24 óra után sem látja az e-mailt, akkor ellenőrizze a levélszemét mappáját."
 
 msgid "License"
 msgstr "Licenc"
@@ -3793,9 +3811,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Használjon egérgesztusokat a lapok bezárásához, a lapok közti navigációhoz, és egyebekhez."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Élvezze a weboldalak bélyegképeit a keresési találatok mellett."
+msgid "See thumbnail images alongside your search returns."
+msgstr "Lássa a bélyegképeket a keresési találatok mellett."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4393,6 +4410,11 @@ msgstr "Viszlát, bosszantó sütifigyelmeztetések!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Az összes emodzsi, amelyre szüksége lehet – mindig csak egy kattintásnyira."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Ne adja meg az oldalaknak az e-mail-címét. A Firefox Relay védi személyazonosságát és megakadályozza a levélszemetet."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Egyes webhelyek nehezen tudnak videókat lejátszani Androidon. Itt egy javítás."
@@ -4412,6 +4434,10 @@ msgstr "Szabja testre az egérgesztusokat. Fedezze fel a navigáció új módjai
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Használjon egérgesztusokat a lapok bezárásához, a lapok közti navigációhoz, és egyebekhez."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Élvezze a weboldalak bélyegképeit a keresési találatok mellett."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4440,10 +4466,6 @@ msgstr "Bosszantó sütifigyelmeztetések, távozzatok!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Térjen vissza egy egyszerűbb időbe – amikor a keresési találatok a reklámok felett jelentek meg (a Google és a Bing keresővel kompatibilis)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Ne adja meg az oldalaknak az e-mail-címét. A Firefox Relay védi személyazonosságát és megakadályozza a levélszemetet."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4486,21 +4508,17 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Top extensions of 2021"
-msgstr "2021 legnépszerűbb kiegészítői"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube testreszabás"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Steam kiegészítők"
+msgid "Image search extensions"
+msgstr "Képkereső kiegészítők"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Hatékonyságnövelők"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Bővebben"
+msgid "Writing tools"
+msgstr "Íróeszközök"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4596,10 +4614,6 @@ msgid "See more ad blocker staff picks"
 msgstr "További, stáb által javasolt reklámblokkoló kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube testreszabás"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "További, stáb által javasolt YouTube-kiegészítők megtekintése"
 
@@ -4610,6 +4624,22 @@ msgstr "Felkapott témák"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "További felkapott témák megtekintése"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "Legjobbra értékelt témák"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "További legjobbra értékelt témák megtekintése"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Felkapott kiegészítők"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "További felkapott kiegészítők megtekintése"
 
 msgid "Could not parse the manifest file."
 msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
@@ -6301,3 +6331,6 @@ msgstr "mások"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} és frissebbek"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "A(z) {origin} telepítési eredet nem engedélyezett."

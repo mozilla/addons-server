@@ -3,7 +3,6 @@ import os
 import sys
 
 import django
-from django import http
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sitemaps.views import x_robots_tag
@@ -139,14 +138,6 @@ def csrf_failure(request, reason=''):
         'no_cookie': reason == REASON_NO_CSRF_COOKIE,
     }
     return TemplateResponse(request, 'amo/403.html', context=ctx, status=403)
-
-
-@non_atomic_requests
-@never_cache
-def loaded(request):
-    return http.HttpResponse(
-        '%s' % request.META['wsgi.loaded'], content_type='text/plain'
-    )
 
 
 @non_atomic_requests

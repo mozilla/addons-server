@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 06:22+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-22 08:42+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -153,7 +153,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox."
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
+msgstr "Quyền hạn trang web cho {hostnames}"
 
 msgid "Sort by:"
 msgstr "Sắp xếp theo:"
@@ -168,7 +168,7 @@ msgid "My Themes"
 msgstr "Giao diện của tôi"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Công cụ"
@@ -451,7 +451,7 @@ msgstr "Trạng thái đăng xuất"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s đang trong một đệ trình đang chờ xử lý"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -1229,7 +1229,7 @@ msgid "Causes"
 msgstr "Mục đích"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Tải các chủ đề Firefox với các sở thích và đề tài phù hợp. Thể loại này bao gồm các chủ đề về thể thao, ngày lễ, nhân ái, quốc gia, và hơn thế nữa."
 
 msgid "Fashion"
 msgstr "Thời trang"
@@ -1241,7 +1241,7 @@ msgid "Film and TV"
 msgstr "Phim và TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Tải các chủ đề Firefox về phim và điện ảnh. Thể loại này bao gồm các anime như Uchiha Madara, các bộ phim như The Matrix, các shows (Games of Thrones), v.v."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
@@ -1250,22 +1250,22 @@ msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Tải xuống các chủ đề Firefox với Firefox Nhật Bản. Danh mục này bao gồm các chủ đề mô tả linh vật Foxkeh dễ thương ở nhiều tư thế khác nhau trên các cảnh quan đa dạng."
 
 msgid "Holiday"
 msgstr "Ngày lễ"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Tải xuống các chủ đề của Firefox với các ngày lễ. Danh mục này bao gồm Giáng sinh, Halloween, Lễ tạ ơn, Ngày thánh Patrick, Lễ Phục sinh, ngày 4 tháng 7, v.v."
 
 msgid "Music"
 msgstr "Âm nhạc"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Tải xuống các chủ đề Firefox cho sở thích âm nhạc và nghệ sĩ. Danh mục này bao gồm các ban nhạc nổi tiếng như Nirvana và BTS, nhạc cụ, video âm nhạc, v.v."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Tải xuống các chủ đề của Firefox với động vật và phong cảnh thiên nhiên. Danh mục này bao gồm hoa, hoàng hôn, cáo, các mùa, hành tinh, mèo con, chim, v.v."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Tải xuống các chủ đề Firefox thú vị, sáng tạo và độc đáo."
@@ -1274,7 +1274,7 @@ msgid "Scenery"
 msgstr "Phong cảnh"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Tải xuống các chủ đề Firefox giới thiệu về môi trường và thế giới tự nhiên. Danh mục này bao gồm cảnh hoàng hôn, bãi biển, hình minh họa, đường chân trời của thành phố, v.v."
 
 msgid "Seasonal"
 msgstr "Theo mùa"
@@ -1629,9 +1629,6 @@ msgstr "Những thay đổi gần đây cho tiện ích của tôi"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug này đã được sử dụng. Vui lòng chọn cái khác."
 
@@ -1722,6 +1719,9 @@ msgstr "Khoảng phiên bản bất hợp lệ."
 msgid "Need at least one compatible application."
 msgstr "Cần ít nhất một ứng dụng tương thích."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Có một lỗi với việc tải lên của bạn. Vui lòng thử lại."
 
@@ -1730,9 +1730,6 @@ msgstr ""
 
 msgid "Need to select at least one application."
 msgstr "Cần chọn ít nhất một ứng dụng."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1774,6 +1771,19 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Tên hiển thị"
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Quyền hạn:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Tập tin tiện ích không hợp lệ hoặc bị hỏng."
@@ -1974,24 +1984,6 @@ msgstr "Tiện ích của tôi không khớp bất kì phân mục nào"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Thỏa thuận phân phối tiện ích Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Xem lại chính sách và quy tắc"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Tôi đã đọc và chấp nhận thỏa thuận này và các quy tắc và chính sách"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Tài khoản của bạn cần một tên hiển thị để người dùng biết ai là tiện ích mở rộng của bạn. Vui lòng nhập một cái bên dưới."
-
-msgid "Accept"
-msgstr "Chấp nhận"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "hoặc <a href=\"{0}\">Hủy bỏ</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Thông tin thêm về tài khoản nhà phát triển"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Tiện ích"
@@ -2045,6 +2037,16 @@ msgstr "Tìm kiếm trong Tài liệu Nhà phát triển"
 
 msgid "Search"
 msgstr "Tìm kiếm"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Quyền hạn trang web"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Sử dụng trường bên dưới để tải lên gói tiện ích của bạn."
@@ -2183,6 +2185,9 @@ msgstr "Chấp nhận lời mời sẽ cung cấp cho bạn quyền truy cập �
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Nhấp vào nút Chấp nhận bên dưới để xác nhận bạn muốn được thêm làm tác giả cho {addon_name}."
+
+msgid "Accept"
+msgstr "Chấp nhận"
 
 msgid "Decline"
 msgstr "Từ chối"
@@ -2710,12 +2715,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Chỉnh sửa phiên bản {0}"
 
-msgid "Version Signature Pending"
-msgstr "Phiên bản chữ ký đang chờ xử lý"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3065,11 +3064,32 @@ msgstr ""
 msgid "View Statistics Dashboard"
 msgstr "Hiển thị Bảng thống kê"
 
+msgid "Review Policies and Rules"
+msgstr "Xem lại chính sách và quy tắc"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Tôi đã đọc và chấp nhận thỏa thuận này và các quy tắc và chính sách"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Tài khoản của bạn cần một tên hiển thị để người dùng biết ai là tiện ích mở rộng của bạn. Vui lòng nhập một cái bên dưới."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "hoặc <a href=\"{0}\">Hủy bỏ</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Thông tin thêm về tài khoản nhà phát triển"
+
 msgid "Developer News"
 msgstr "Tin tức nhà phát triển"
 
 msgid "View the blog &#9658;"
 msgstr "Xem blog &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Phiên bản chữ ký đang chờ xử lý"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Giấy phép"
@@ -3753,8 +3773,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4353,6 +4372,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Một số trang web gặp khó khăn khi phát video trên Android. Đây là một cách sửa."
@@ -4371,6 +4395,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4399,10 +4427,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4446,21 +4470,19 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Top extensions of 2021"
-msgstr "Tiện ích mở rộng hàng đầu 2021"
-
-#. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Tiện ích mở rộng Steam"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Xem thêm"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Xem tất cả các tiện ích mở rộng"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Writing tools"
+msgstr "Công cụ dịch thuật"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4557,10 +4579,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Xem thêm các trình chặn quảng cáo được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Xem thêm các tiện ích YouTube được lựa chọn bởi biên tập viên"
 
@@ -4571,6 +4589,26 @@ msgstr "Chủ đề thịnh hành"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Xem các chủ đề thịnh hành khác"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Chủ đề thịnh hành"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Xem các chủ đề thịnh hành khác"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Chủ đề thịnh hành"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -6252,3 +6290,6 @@ msgstr "khác"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} trở lên"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

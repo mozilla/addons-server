@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-12 07:11+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-23 21:49+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1621,9 +1621,6 @@ msgstr "Recente wijzigingen voor mijn add-ons"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-add-ons worden {blog_link_open}niet meer ondersteund op AMO{blog_link_close}. U kunt in plaats daarvan een {doc_link_open}zoekextensie maken{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr "De installatiebron {origin} is niet toegestaan."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Deze identificator wordt al gebruikt. Kies een andere."
 
@@ -1716,6 +1713,9 @@ msgstr "Ongeldig versiebereik."
 msgid "Need at least one compatible application."
 msgstr "Er dient ten minste één compatibele toepassing te zijn."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "U hebt onlangs te veel uploads ingediend. Probeer het na enige tijd nog eens."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Er is een fout opgetreden tijdens uw upload. Probeer het opnieuw."
 
@@ -1724,9 +1724,6 @@ msgstr "Mislukte validatie negeren"
 
 msgid "Need to select at least one application."
 msgstr "U dient ten minste één toepassing te selecteren."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "U hebt onlangs te veel uploads ingediend. Probeer het na enige tijd nog eens."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Versie {version} komt overeen met {block_link} voor deze add-on. U kunt contact opnemen met {amo_admins} voor aanvullende informatie."
@@ -1770,6 +1767,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Weergavenaam"
+
+msgid "Origin"
+msgstr "Oorsprong"
+
+msgid "Permissions"
+msgstr "Toestemmingen"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "U hebt een websitemachtigingen-add-on gemaakt voor dezelfde oorsprong en toestemmingen."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "De oorsprong dient alleen een schema (protocol), een hostnaam (domein) en een optionele poort te bevatten"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Ongeldig of beschadigd add-onbestand."
@@ -1970,24 +1979,6 @@ msgstr "Mijn add-on past niet in een van de categorieën"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox-add-on-distributieovereenkomst"
 
-msgid "Review Policies and Rules"
-msgstr "Beoordelingsregels en -beleid"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Ik heb deze Overeenkomst en de Regels en het Beleid gelezen en accepteer deze"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Uw account heeft een weergavenaam nodig zodat gebruikers weten van wie uw add-on afkomstig is. Voer er hieronder een in."
-
-msgid "Accept"
-msgstr "Accepteren"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "of <a href=\"{0}\">Annuleer</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Meer informatie over Ontwikkelaarsaccounts"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0}-add-ons"
@@ -2041,6 +2032,15 @@ msgstr "Ontwikkelaarsdocumentatie doorzoeken"
 
 msgid "Search"
 msgstr "Zoeken"
+
+msgid "Generate Site Permission Add-on"
+msgstr "Websitemachtigingen-add-on maken"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr "De machtiging(en) die de gemaakte add-on aan de oorsprong zal toekennen."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Gebruik onderstaand veld om uw add-on-pakket te uploaden."
@@ -2181,6 +2181,9 @@ msgstr "Als u de uitnodiging accepteert, krijgt u toegang om de add-on te bewerk
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klik hieronder op de knop Accepteren om te bevestigen dat u wilt worden toegevoegd als schrijver voor {addon_name}."
+
+msgid "Accept"
+msgstr "Accepteren"
 
 msgid "Decline"
 msgstr "Weigeren"
@@ -2726,14 +2729,6 @@ msgstr "U kunt deze versie ook bewerken om versieopmerkingen toe te voegen, of b
 msgid "Edit version {0}"
 msgstr "Versie {0} bewerken"
 
-msgid "Version Signature Pending"
-msgstr "Versieondertekening in behandeling"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"U bent klaar! ✨ U ontvangt een e-mailbericht wanneer het ondertekende bestand klaar is om te worden gedownload vanuit de Ontwikkelaarshub. Als u na 24 uur geen e-mail ontvangt, controleer dan uw "
-"spammap."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Ter herinnering: uw add-on kan op elk moment handmatig worden beoordeeld."
 
@@ -3085,11 +3080,34 @@ msgstr "Beheerdersbeheer"
 msgid "View Statistics Dashboard"
 msgstr "Statistiekendashboard bekijken"
 
+msgid "Review Policies and Rules"
+msgstr "Beoordelingsregels en -beleid"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Ik heb deze Overeenkomst en de Regels en het Beleid gelezen en accepteer deze"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Uw account heeft een weergavenaam nodig zodat gebruikers weten van wie uw add-on afkomstig is. Voer er hieronder een in."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "of <a href=\"{0}\">Annuleer</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Meer informatie over Ontwikkelaarsaccounts"
+
 msgid "Developer News"
 msgstr "Ontwikkelaarsnieuws"
 
 msgid "View the blog &#9658;"
 msgstr "Lees de blog &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Versieondertekening in behandeling"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"U bent klaar! ✨ U ontvangt een e-mailbericht wanneer het ondertekende bestand klaar is om te worden gedownload vanuit de Ontwikkelaarshub. Als u na 24 uur geen e-mail ontvangt, controleer dan uw "
+"spammap."
 
 msgid "License"
 msgstr "Licentie"
@@ -3776,9 +3794,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Gebruik muisbewegingen om tabbladen te sluiten, naar pagina’s te navigeren, en meer."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Geniet van miniatuurafbeeldingen van websites bij uw zoekresultaten."
+msgid "See thumbnail images alongside your search returns."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4379,6 +4396,11 @@ msgstr "Vaarwel, vervelende cookiewaarschuwingen!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Al uw emoji-behoeften – altijd via een muisklik."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Stop met het geven van uw e-mailadres aan websites. Firefox Relay beschermt uw identiteit en voorkomt ongewenste berichten."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Sommige websites hebben moeite met het afspelen van video’s op Android. Deze extensie biedt een oplossing."
@@ -4398,6 +4420,10 @@ msgstr "Pas uw muisbewegingen aan. Ontdek nieuwe manieren van navigeren met meer
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Gebruik muisbewegingen om tabbladen te sluiten, naar pagina’s te navigeren, en meer."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Geniet van miniatuurafbeeldingen van websites bij uw zoekresultaten."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4426,10 +4452,6 @@ msgstr "Ga heen, vervelende cookiewaarschuwingen!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Keer terug naar een eenvoudiger tijdperk – toen uw beste zoekresultaten boven de advertenties stonden (compatibel met de zoekmachines van Google en Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Stop met het geven van uw e-mailadres aan websites. Firefox Relay beschermt uw identiteit en voorkomt ongewenste berichten."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4472,21 +4494,17 @@ msgid "See all extensions"
 msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Top extensions of 2021"
-msgstr "Topextensies van 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-aanpassingen"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Steam-extensies"
+msgid "Image search extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Productiviteitsboosters"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Meer info"
+msgid "Writing tools"
+msgstr "Schrijfhulpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4582,10 +4600,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Meer stafkeuzes voor advertentieblokkering bekijken"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-aanpassingen"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Meer stafkeuzes voor YouTube-extensies bekijken"
 
@@ -4596,6 +4610,22 @@ msgstr "Trending thema’s"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Meer trending thema’s bekijken"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "Hoogst gewaardeerde thema’s"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "Meer hoogst gewaardeerde thema’s bekijken"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Populaire extensies"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "Meer populaire extensies bekijken"
 
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
@@ -6283,3 +6313,6 @@ msgstr "overigen"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} en hoger"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "De installatiebron {origin} is niet toegestaan."

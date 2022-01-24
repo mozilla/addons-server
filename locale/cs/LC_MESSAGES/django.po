@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-12-04 17:44+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1617,9 +1617,6 @@ msgstr "Nedávné změny pro mé doplňky"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Doplňky ve formátu Open Search {blog_link_open}již nejsou na webu doplňků podporovány{blog_link_close}. Místo nich můžete vytvořit {doc_link_open}rozšíření pro vyhledávání{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Toto URL je již používáno. Zvolte prosím jiné."
 
@@ -1714,6 +1711,9 @@ msgstr "Neplatný rozsah verzí."
 msgid "Need at least one compatible application."
 msgstr "Je vyžadována alespoň jedna kompatibilní aplikace."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "V poslední době jste toho odeslali příliš mnoho. Zkuste to prosím znovu za nějaký čas."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Při nahrávání se vyskytla chyba. Zkuste to prosím znovu."
 
@@ -1722,9 +1722,6 @@ msgstr "Přepsat nezdařenou validaci"
 
 msgid "Need to select at least one application."
 msgstr "Vyberte alespoň jednu aplikaci."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "V poslední době jste toho odeslali příliš mnoho. Zkuste to prosím znovu za nějaký čas."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1768,6 +1765,19 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Zobrazované jméno"
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Oprávnění:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Neplatný nebo poškozený soubor doplňku."
@@ -1968,24 +1978,6 @@ msgstr "Můj doplněk nezapadá do žádné z kategorií"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dohoda o distribuci doplňků pro Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Zásady a pravidla pro kontrolu doplňků"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Přečetl jsem si tuto dohodu, pravidla i zásady a souhlasím s nimi"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Váš účet potřebuje mít nastavené zobrazované jméno, aby uživatelé věděli, od koho váš doplněk pochází. Zadejte ho prosím níže."
-
-msgid "Accept"
-msgstr "Přijmout"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "nebo <a href=\"{0}\">Zrušit</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Další informace o účtech pro vývojáře"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Doplňky pro {0}"
@@ -2039,6 +2031,16 @@ msgstr "Prohledat dokumentaci"
 
 msgid "Search"
 msgstr "Hledat"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Oprávnění:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Pro nahrání vašeho doplňku použijte formulář níže."
@@ -2183,6 +2185,9 @@ msgstr "Přijetím nabídky budete mít možnost doplněk upravovat a v seznamu 
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Kliknutím na tlačítko Přijmout potvrdíte, že chcete být přidán jako autor doplňku {addon_name}."
+
+msgid "Accept"
+msgstr "Přijmout"
 
 msgid "Decline"
 msgstr "Odmítnout"
@@ -2727,12 +2732,6 @@ msgstr "Tuto verzi můžete také upravit přidáním poznámek k vydání nebo 
 msgid "Edit version {0}"
 msgstr "Upravit verzi {0}"
 
-msgid "Version Signature Pending"
-msgstr "Verze čeká na podespání"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3080,11 +3079,32 @@ msgstr "Správa administrace"
 msgid "View Statistics Dashboard"
 msgstr "Zobrazit nástěnku se statistikami"
 
+msgid "Review Policies and Rules"
+msgstr "Zásady a pravidla pro kontrolu doplňků"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Přečetl jsem si tuto dohodu, pravidla i zásady a souhlasím s nimi"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Váš účet potřebuje mít nastavené zobrazované jméno, aby uživatelé věděli, od koho váš doplněk pochází. Zadejte ho prosím níže."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "nebo <a href=\"{0}\">Zrušit</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Další informace o účtech pro vývojáře"
+
 msgid "Developer News"
 msgstr "Novinky pro vývojáře"
 
 msgid "View the blog &#9658;"
 msgstr "Přejít na blog &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Verze čeká na podespání"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Licence"
@@ -3770,8 +3790,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Provádějte zavření panelů, procházení stránek a další činnosti pomocí gest myši."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Nechte si vedle výsledků vyhledávání zobrazovat náhledy daných stránek."
 
 #. editorial content for the discovery pane.
@@ -4371,6 +4391,11 @@ msgstr "Sbohem, otravná upozornění na cookies!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Emoji pro každou příležitost vždy po ruce."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Přestaňte webům dávat svou e-mailovou adresu. Firefox Relay chrání vaši identitu a předchází doručování nevyžádané pošty."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Některé weby mají potíže s přehráváním videí v systému Android. Tady je oprava."
@@ -4393,6 +4418,10 @@ msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navi
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Provádějte zavření panelů, procházení stránek a další činnosti pomocí gest myši."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Nechte si vedle výsledků vyhledávání zobrazovat náhledy daných stránek."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4421,10 +4450,6 @@ msgstr "Sbohem, otravná upozornění na cookies!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Vraťte se do jednodušších časů, kdy se nejlepší výsledky vyhledávání nacházely nad reklamami (kompatibilní s vyhledávači Google a Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Přestaňte webům dávat svou e-mailovou adresu. Firefox Relay chrání vaši identitu a předchází doručování nevyžádané pošty."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4466,25 +4491,20 @@ msgstr "Přidávají do Firefoxu funkce, se kterými je brouzdání rychlejší,
 msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Oblíbená rozšíření"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Steam extensions"
+msgid "Image search extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Nástroje na zvýšení produktivity"
-
-#. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "Uložit a přidat další"
+msgid "Writing tools"
+msgstr "Jazykové překladače"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4580,10 +4600,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Další vybraná rozšíření pro blokování reklam"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Další vybraná rozšíření pro YouTube"
 
@@ -4594,6 +4610,26 @@ msgstr "Právě populární motivy vzhledu"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Další populární vzhledy"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Právě populární motivy vzhledu"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Další populární vzhledy"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Právě populární motivy vzhledu"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Další doporučená rozšíření"
 
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
@@ -6281,3 +6317,6 @@ msgstr "ostatní"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} a novější"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""
