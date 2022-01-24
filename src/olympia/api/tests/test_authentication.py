@@ -462,7 +462,7 @@ class TestSessionIDAuthentication(TestCase):
         token = 'garbage'
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
@@ -472,7 +472,7 @@ class TestSessionIDAuthentication(TestCase):
         token = self.client.create_session(self.user, _auth_user_id=None)
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
@@ -483,7 +483,7 @@ class TestSessionIDAuthentication(TestCase):
         token = self.client.create_session(self.user)
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
@@ -493,7 +493,7 @@ class TestSessionIDAuthentication(TestCase):
         token = self.client.create_session(self.user, _auth_user_id=-1)
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
@@ -504,7 +504,7 @@ class TestSessionIDAuthentication(TestCase):
         token = self.client.create_session(self.user, _auth_user_id=user2.pk)
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
@@ -515,7 +515,7 @@ class TestSessionIDAuthentication(TestCase):
         self.user.update(auth_id=self.user.auth_id + 42)
         with self.assertRaises(AuthenticationFailed) as exp:
             self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
@@ -526,7 +526,7 @@ class TestSessionIDAuthentication(TestCase):
         token = self.client.create_session(self.user)
         with self.assertRaises(AuthenticationFailed) as exp:
             assert self.user == self._authenticate(token)[0]
-        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
+        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
         assert exp.exception.detail['detail'] == (
             'Access token refresh failed; user needs to login to FxA again.'
         )
