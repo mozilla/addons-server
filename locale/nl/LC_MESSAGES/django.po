@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-23 21:44+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"PO-Revision-Date: 2022-01-24 08:43+0000\n"
+"Last-Translator: Onno Ekker <o.e.ekker@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -1778,7 +1778,7 @@ msgid "You have generated a site permission add-on for the same origin and permi
 msgstr "U hebt een websitemachtigingen-add-on gemaakt voor dezelfde oorsprong en toestemmingen."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
+msgstr "De oorsprong dient alleen een schema (protocol), een hostnaam (domein) en een optionele poort te bevatten"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Ongeldig of beschadigd add-onbestand."
@@ -2034,13 +2034,13 @@ msgid "Search"
 msgstr "Zoeken"
 
 msgid "Generate Site Permission Add-on"
-msgstr ""
+msgstr "Websitemachtigingen-add-on maken"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
 msgstr ""
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "De machtiging(en) die de gemaakte add-on aan de oorsprong zal toekennen."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Gebruik onderstaand veld om uw add-on-pakket te uploaden."
@@ -4504,7 +4504,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "Schrijfhulpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4613,7 +4613,7 @@ msgstr "Meer trending thema’s bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Top rated themes"
-msgstr ""
+msgstr "Hoogst gewaardeerde thema’s"
 
 #. editorial content for the homepage shelves.
 msgid "See more top rated themes"
