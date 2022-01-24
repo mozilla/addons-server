@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-24 16:31+0000\n"
+"PO-Revision-Date: 2022-01-24 16:39+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -994,9 +994,8 @@ msgstr "Deprecated LWT"
 msgid "Theme (Static)"
 msgstr "Theme (Static)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Permissions:"
+msgstr "Site Permission"
 
 msgid "Extensions"
 msgstr "Extensions"
@@ -1025,9 +1024,8 @@ msgstr "Deprecated LWTs"
 msgid "Themes (Static)"
 msgstr "Themes (Static)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Permissions:"
+msgstr "Site Permissions"
 
 msgid "Alerts & Updates"
 msgstr "Alerts & Updates"
@@ -1317,13 +1315,11 @@ msgstr "GNU Library General Public License v2.1"
 msgid "GNU Library General Public License v3.0"
 msgstr "GNU Library General Public License v3.0"
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "License"
+msgstr "The MIT License"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "License"
+msgstr "The BSD License"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1749,13 +1745,11 @@ msgstr ""
 msgid "Display Name"
 msgstr "Display Name"
 
-#, fuzzy
 msgid "Origin"
-msgstr "Origin:"
+msgstr "Origin"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Permissions:"
+msgstr "Permissions"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
 msgstr "You have generated a site permission add-on for the same origin and permissions."
@@ -2014,9 +2008,8 @@ msgstr "Search Developer Docs"
 msgid "Search"
 msgstr "Search"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "Permissions:"
+msgstr "Generate Site Permission Add-on"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
 msgstr "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
@@ -3752,9 +3745,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Use mouse gestures to close tabs, navigate pages, and more."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "See thumbnail images alongside your search returns."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4366,17 +4358,14 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Find an interesting image on the web? Use TinEye to explore its origins."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Read ePub files right in Firefox—increase font size, page dimensions, and more."
+msgstr "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
+msgstr "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Use mouse gestures to close tabs, navigate pages, and more."
 
@@ -4458,14 +4447,12 @@ msgid "YouTube customization"
 msgstr "YouTube customization"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "See all extensions"
+msgstr "Image search extensions"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Writing tools"
-msgstr "Translation tools"
+msgstr "Writing tools"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4572,24 +4559,20 @@ msgid "See more trending themes"
 msgstr "See more trending themes"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Trending themes"
+msgstr "Top rated themes"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "See more trending themes"
+msgstr "See more top rated themes"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Trending themes"
+msgstr "Trending extensions"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "See more recommended extensions"
+msgstr "See more trending extensions"
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
