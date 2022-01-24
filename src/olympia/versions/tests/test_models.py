@@ -1651,7 +1651,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
 
 class TestExtensionVersionFromUploadTransactional(
-    TransactionTestCase, amo.tests.AMOPaths
+    TransactionTestCase, UploadMixin
 ):
     filename = 'webextension_no_id.xpi'
 
@@ -1660,39 +1660,6 @@ class TestExtensionVersionFromUploadTransactional(
         # We can't use `setUpTestData` here because it doesn't play well with
         # the behavior of `TransactionTestCase`
         amo.tests.create_default_webext_appversion()
-
-    def get_upload(
-        self,
-        filename=None,
-        abspath=None,
-        validation=None,
-        addon=None,
-        user=None,
-        version=None,
-        with_validation=True,
-    ):
-        fpath = self.file_fixture_path(filename)
-        with open(abspath if abspath else fpath, 'rb') as fobj:
-            xpi = fobj.read()
-        upload = FileUpload.from_post([xpi], filename=abspath or filename, size=1234)
-        upload.addon = addon
-        upload.user = user
-        upload.version = version
-        upload.ip_address = '127.0.0.42'
-        upload.source = amo.UPLOAD_SOURCE_DEVHUB
-        if with_validation:
-            # Simulate what fetch_manifest() does after uploading an app.
-            upload.validation = validation or json.dumps(
-                {
-                    'errors': 0,
-                    'warnings': 1,
-                    'notices': 2,
-                    'metadata': {},
-                    'messages': [],
-                }
-            )
-        upload.save()
-        return upload
 
     @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=False)

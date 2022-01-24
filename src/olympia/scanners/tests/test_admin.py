@@ -929,7 +929,9 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 404
 
     def test_change_page(self):
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(
+            user=user_factory(), ip_address='1.2.3.4', source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         version = addon_factory().current_version
         result = ScannerResult.objects.create(
             scanner=YARA, upload=upload, version=version

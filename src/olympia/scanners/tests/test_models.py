@@ -7,7 +7,8 @@ from django.test.utils import override_settings
 from freezegun import freeze_time
 from unittest import mock
 
-from olympia.amo.tests import TestCase, addon_factory
+from olympia import amo
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -293,7 +294,12 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
 
     def create_file_upload(self):
         addon = addon_factory()
-        return FileUpload.objects.create(addon=addon)
+        return FileUpload.objects.create(
+            addon=addon,
+            user=user_factory(),
+            ip_address='1.2.3.4',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+        )
 
     def create_customs_result(self):
         upload = self.create_file_upload()

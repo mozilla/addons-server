@@ -377,8 +377,8 @@ class SitePermissionVersionCreator:
             # Create the FileUpload that will become the File+Version.
             upload = FileUpload.from_post(
                 file_obj,
-                file_obj.name,
-                file_obj.size,
+                filename=file_obj.name,
+                size=file_obj.size,
                 addon=addon,
                 version=version_number,
                 channel=amo.RELEASE_CHANNEL_UNLISTED,

@@ -701,8 +701,8 @@ def handle_upload(
 ):
     upload = FileUpload.from_post(
         filedata,
-        filedata.name,
-        filedata.size,
+        filename=filedata.name,
+        size=filedata.size,
         addon=addon,
         channel=channel,
         source=source,

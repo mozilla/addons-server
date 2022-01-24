@@ -555,14 +555,19 @@ class FileUpload(ModelBase):
         return f'{absolute_url}?access_token={self.access_token}'
 
     @classmethod
-    def from_post(cls, chunks, filename, size, **params):
+    def from_post(
+        cls, chunks, *, filename, size, addon=None, version='', user, source, channel
+    ):
         max_ip_length = cls._meta.get_field('ip_address').max_length
-        params['ip_address'] = (core.get_remote_addr() or '')[:max_ip_length]
-        if 'channel' in params:
-            params['automated_signing'] = (
-                params.pop('channel') == amo.RELEASE_CHANNEL_UNLISTED
-            )
-        upload = FileUpload(**params)
+        ip_address = (core.get_remote_addr() or '')[:max_ip_length]
+        upload = FileUpload(
+            addon=addon,
+            user=user,
+            source=source,
+            automated_signing=channel == amo.RELEASE_CHANNEL_UNLISTED,
+            ip_address=ip_address,
+            version=version,
+        )
         upload.add_file(chunks, filename, size)
 
         # The following log statement is used by foxsec-pipeline.
