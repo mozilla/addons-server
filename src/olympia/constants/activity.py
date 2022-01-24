@@ -67,6 +67,7 @@ class EDIT_CONTRIBUTIONS(_LOG):
     id = 7
     action_class = 'edit'
     format = _('Contributions for {addon}.')
+    show_user_to_developer = True
 
 
 class USER_DISABLE(_LOG):
