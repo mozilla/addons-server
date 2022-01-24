@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-21 16:17+0000\n"
-"PO-Revision-Date: 2022-01-24 21:02+0000\n"
+"PO-Revision-Date: 2022-01-24 21:05+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3766,9 +3766,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Usa gestos del mus pro clauder schedas, navigar inter paginas, e plus."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Gaude del imagines in miniatura del sitos web al latere de tu retornos de recerca."
+msgstr "Vide imagines in miniatura a latere de tu retornos de recerca."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
