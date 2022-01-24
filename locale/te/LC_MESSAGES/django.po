@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2022-01-03 14:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -1588,9 +1588,6 @@ msgstr "నా పొడిగింతల కోసం ఇటీవలి మ�
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "ఈ స్లగ్ ఇప్పటికే ఉపయోగంలో ఉంది. దయచేసి మరొకదాన్ని ఎంచుకోండి."
 
@@ -1683,6 +1680,9 @@ msgstr "చెల్లని వెర్షను అవధి."
 msgid "Need at least one compatible application."
 msgstr "కనీసం ఒక అనుగుణ్య అనువర్తనం కావాలి."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "మీరు ఈమధ్య చాలా ఎక్కింపులను సమర్పించారు. దయచేసి కొంత సమయం తర్వాత మళ్ళీ ప్రయత్నించండి."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "మీ ఎక్కింపుతో ఏదో పొరపాటు జరిగింది. మళ్ళి ప్రయత్నించండి."
 
@@ -1691,9 +1691,6 @@ msgstr ""
 
 msgid "Need to select at least one application."
 msgstr "కనీసం ఒక అనువర్తనాన్నైనా ఎంచుకోవాలి."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "మీరు ఈమధ్య చాలా ఎక్కింపులను సమర్పించారు. దయచేసి కొంత సమయం తర్వాత మళ్ళీ ప్రయత్నించండి."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1735,6 +1732,20 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "ప్రదర్శన పేరు"
+
+#, fuzzy
+msgid "Origin"
+msgstr "మూలం:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "అనుమతులు:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "చెల్లని లేదా పాడైన పొడగింత ఫైలు."
@@ -1933,24 +1944,6 @@ msgstr "నా పొడగింత ఏ వర్గానికి సరి�
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox పొడగింతల పంపిణీ ఒప్పందం"
 
-msgid "Review Policies and Rules"
-msgstr "సమీక్ష విధానాలు మరియు నియమాలు"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "ఈ ఒప్పందాన్నీ, నియమాలును, విధానాలను నేను చదివాను, వాటికి అంగీకరిస్తున్నాను"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "వాడుకరులకు పొడగింత ఎవరి నుండి వచ్చిందో తెలియడానికి మీ ఖాతాకు చూపించే పేరు అమర్చుకోవాలి. దయచేసి ఒక పేరును కింద ఇవ్వండి."
-
-msgid "Accept"
-msgstr "అంగీకరించు"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "లేదా <a href=\"{0}\"> రద్దు చేయి </a>"
-
-msgid "More information on Developer Accounts"
-msgstr "డెవలపర్ ఖాతాలపై మరింత సమాచారం"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} పొడిగింతలు"
@@ -2003,6 +1996,16 @@ msgstr "డెవలపర్ పత్రావళిలో వెతకండ�
 
 msgid "Search"
 msgstr "వెతుకు"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "అనుమతులు:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "మీ పొడగింత ప్యాకేజీని ఎక్కించడానికి క్రింది ఖాళీని ఉపయోగించండి."
@@ -2139,6 +2142,9 @@ msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
+
+msgid "Accept"
+msgstr "అంగీకరించు"
 
 msgid "Decline"
 msgstr "తిరస్కరించు"
@@ -2656,12 +2662,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "వెర్షన్ను సవరించండి {0}"
 
-msgid "Version Signature Pending"
-msgstr ""
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -2972,11 +2972,32 @@ msgstr "నిర్వాహక నిర్వహించండం"
 msgid "View Statistics Dashboard"
 msgstr "గణాంకాల డాష్‌బోర్డు చూడండి"
 
+msgid "Review Policies and Rules"
+msgstr "సమీక్ష విధానాలు మరియు నియమాలు"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "ఈ ఒప్పందాన్నీ, నియమాలును, విధానాలను నేను చదివాను, వాటికి అంగీకరిస్తున్నాను"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "వాడుకరులకు పొడగింత ఎవరి నుండి వచ్చిందో తెలియడానికి మీ ఖాతాకు చూపించే పేరు అమర్చుకోవాలి. దయచేసి ఒక పేరును కింద ఇవ్వండి."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "లేదా <a href=\"{0}\"> రద్దు చేయి </a>"
+
+msgid "More information on Developer Accounts"
+msgstr "డెవలపర్ ఖాతాలపై మరింత సమాచారం"
+
 msgid "Developer News"
 msgstr "డెవలపర్ వార్తలు"
 
 msgid "View the blog &#9658;"
 msgstr "బ్లాగుని చూడండి &#9658;"
+
+msgid "Version Signature Pending"
+msgstr ""
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "లైసెన్సు"
@@ -3646,8 +3667,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4246,6 +4266,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4264,6 +4289,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4292,10 +4321,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4339,23 +4364,19 @@ msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "ప్రాచుర్య పొడగింతలు"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "పొడగింతలన్నీ చూడండి"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Read more"
-msgstr "ప్రపంచం చుట్టుపక్కలనుండి తక్షణ వాతావరణ సమాచారం"
+msgid "Image search extensions"
+msgstr "పొడగింతలన్నీ చూడండి"
+
+#. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Writing tools"
+msgstr "ఉన్న లోకేల్స్"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4457,10 +4478,6 @@ msgid "See more ad blocker staff picks"
 msgstr "మరిన్ని ట్యాబు నిర్వహణ పొడగింతలను చూడండి"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "మరిన్ని అనువాద పనిముట్లను చూడండి"
@@ -4473,6 +4490,26 @@ msgstr "ట్రెండవుతూన్న అలంకారాలు"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "మరిన్ని ప్రాచుర్య అలంకారాలను చూడండి"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "ట్రెండవుతూన్న అలంకారాలు"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "మరిన్ని ప్రాచుర్య అలంకారాలను చూడండి"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "ట్రెండవుతూన్న అలంకారాలు"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "మరిన్ని సిఫార్సుచేయబడ్డ పొడగింతలను చూడండి"
 
 msgid "Could not parse the manifest file."
 msgstr "మానిఫెస్ట్ ఫైల్‌ను చదవడం సాధ్యంకాలేదు."
@@ -6108,3 +6145,6 @@ msgstr "ఇతరులు"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} మరియు తరువాత"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

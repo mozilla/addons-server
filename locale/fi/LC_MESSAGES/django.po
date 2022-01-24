@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2021-11-10 11:13+0000\n"
-"Last-Translator: Konta <konstelias04@gmail.com>\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-15 18:11+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -1661,9 +1661,6 @@ msgstr ""
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Tämä osoitemuoto on jo käytössä. Valitse jokin toinen."
 
@@ -1756,6 +1753,9 @@ msgstr "Virheellinen versioalue."
 msgid "Need at least one compatible application."
 msgstr "Tarvitset vähintään yhden yhteensopivan sovelluksen."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Latauksessa tapahtui virhe. Yritä uudelleen."
 
@@ -1764,9 +1764,6 @@ msgstr "Ohita epäonnistunut vahvistus"
 
 msgid "Need to select at least one application."
 msgstr "On valittava vähintään yksi sovellus."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1808,6 +1805,19 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Näyttönimi"
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Oikeudet:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Virheellinen tai rikkinäinen lisäosatiedosto."
@@ -2011,25 +2021,6 @@ msgstr "Lisäosani ei sovi mihinkään näistä luokista"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefoxin lisäosan jakelusopimus"
 
-# 85%
-msgid "Review Policies and Rules"
-msgstr "Tarkastele käytäntöjä ja sääntöjä"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Olen lukenut ja hyväksynyt tämän sopimuksen, sekä säännöt ja käytännöt"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr "Hyväksy"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "tai <a href=\"{0}\">peruuta</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Lisätietoja kehittäjätileistä"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0}-lisäosat"
@@ -2084,6 +2075,16 @@ msgstr "Etsi kehitysdokumenteista"
 
 msgid "Search"
 msgstr "Etsi"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Oikeudet:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Siirrä lisäosapakettisi alla olevan kentän avulla."
@@ -2227,6 +2228,9 @@ msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
+
+msgid "Accept"
+msgstr "Hyväksy"
 
 msgid "Decline"
 msgstr "Hylkää"
@@ -2768,13 +2772,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Muokkaa versiota {0}"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "Versiokommentit"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3101,11 +3098,34 @@ msgstr "Ylläpitäjän hallinta"
 msgid "View Statistics Dashboard"
 msgstr ""
 
+# 85%
+msgid "Review Policies and Rules"
+msgstr "Tarkastele käytäntöjä ja sääntöjä"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Olen lukenut ja hyväksynyt tämän sopimuksen, sekä säännöt ja käytännöt"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "tai <a href=\"{0}\">peruuta</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Lisätietoja kehittäjätileistä"
+
 msgid "Developer News"
 msgstr "Kehitysuutiset"
 
 msgid "View the blog &#9658;"
 msgstr "Siirry blogiin &#9658;"
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "Versiokommentit"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "License"
 msgstr "Lisenssi"
@@ -3803,8 +3823,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Käytä hiirieleitä sulkeaksesi välilehtiä, liikkuaksesi sivuilla jne."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Lisää sivustojen esikatselukuvat hakutulosten viereen."
 
 #. editorial content for the discovery pane.
@@ -4404,6 +4424,11 @@ msgstr "Hyvästi, ärsyttävät evästevaroitukset!"
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4425,6 +4450,10 @@ msgstr "Mukauta hiirieleitä. Löydä uusi tapa liikkua yli 50 eri määrityksen
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Käytä hiirieleitä sulkeaksesi välilehtiä, liikkuaksesi sivuilla jne."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Lisää sivustojen esikatselukuvat hakutulosten viereen."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4452,10 +4481,6 @@ msgstr "Menkää pois, inhottavat evästevaroitukset!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4498,28 +4523,24 @@ msgstr "Ne lisäävät ominaisuuksia Firefoxiin tehden selaamisesta aiempaa nope
 msgid "See all extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Suositut laajennukset"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTuben mukauttaminen"
 
 #. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Steam extensions"
+msgid "Image search extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr ""
+#, fuzzy
+msgid "Writing tools"
+msgstr "Kielityökalut"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Katso henkilöstön valinnat"
 
 # 87%
 # 100%
@@ -4568,9 +4589,8 @@ msgid "See more recommended themes"
 msgstr "Katso lisää suositeltuja teemoja"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Suositellut salasanojen hallintaohjelmat"
+msgstr "Vahvojen salasanojen hallintaohjelmat"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4606,7 +4626,7 @@ msgstr "Katso lisää välilehtien hallinnan laajennuksia"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "“{tag}”-tunnistellaa merkityt laajennukset"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4623,10 +4643,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Katso lisää välilehtien hallinnan laajennuksia"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "Katso lisää kielityökaluja"
@@ -4634,14 +4650,37 @@ msgstr "Katso lisää kielityökaluja"
 # 87%
 # 100%
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "Suositellut teemat"
+msgstr "Nousussa olevat teemat"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more trending themes"
 msgstr "Katso lisää suositeltuja teemoja"
+
+# 87%
+# 100%
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Nousussa olevat teemat"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Katso lisää suositeltuja teemoja"
+
+# 87%
+# 100%
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Nousussa olevat teemat"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Katso lisää suositeltuja laajennuksia"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -6419,4 +6458,7 @@ msgid "others"
 msgstr ""
 
 msgid "{app} {min} and later"
+msgstr ""
+
+msgid "The install origin {origin} is not permitted."
 msgstr ""

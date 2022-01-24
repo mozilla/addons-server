@@ -38,3 +38,18 @@ When making an authenticated API request, put your generated API Token into an
 HTTP Authorization header prefixed with ``Bearer``, like this::
 
     Authorization: Bearer eyJhdXRoX2hhc2giOiJiY2E0MTZkN2RiMGU3NjFmYTA2NDE4MjAzZWU1NTMwOTM4OGZhNzcxIiwidXNlcl9pZCI6MTIzNDV9:1cqe2Q:cPMlmz8ejIkutD-gNo3EWU8IfL8
+
+
+========================
+FxA Notification Webhook
+========================
+
+To integrate with Firefox Account's `webhook <https://mozilla.github.io/ecosystem-platform/platform/firefox-accounts/integration-with-fxa#webhook-events>`_
+the following endpoint is available:
+
+``/api/auth/fxa-notification/``
+
+Authentication is accomplished by decoding using the known `JWT keys available` <https://oauth.accounts.firefox.com/v1/jwks>`_
+- normal AMO authentication is not used.
+
+This endpoint is not usable for anything other than AMOs internal integration with Firefox Accounts.

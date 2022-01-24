@@ -1,6 +1,6 @@
 import base64
-import datetime
 import json
+from datetime import datetime
 from unittest import mock
 
 from os import path
@@ -14,15 +14,20 @@ from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.utils.encoding import force_str
 
-from rest_framework.exceptions import PermissionDenied
+import freezegun
+import jwt
+import responses
+from rest_framework import exceptions
 from rest_framework.settings import api_settings
 from rest_framework.test import APIClient, APIRequestFactory
 from waffle.models import Switch
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
+from olympia.accounts.views import FxaNotificationView
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClient,
@@ -287,9 +292,9 @@ class TestFindUser(TestCase):
             fxa_id='abc',
             email='me@amo.ca',
             deleted=True,
-            banned=datetime.datetime.now(),
+            banned=datetime.now(),
         )
-        with self.assertRaises(PermissionDenied):
+        with self.assertRaises(exceptions.PermissionDenied):
             views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
 
     def test_find_user_deleted(self):
@@ -298,9 +303,9 @@ class TestFindUser(TestCase):
 
     def test_find_user_mozilla(self):
         task_user = user_factory(id=settings.TASK_USER_ID, fxa_id='abc')
-        with self.assertRaises(PermissionDenied):
+        with self.assertRaises(exceptions.PermissionDenied):
             views.find_user({'uid': '123456', 'email': task_user.email})
-        with self.assertRaises(PermissionDenied):
+        with self.assertRaises(exceptions.PermissionDenied):
             views.find_user({'uid': task_user.fxa_id, 'email': 'doesnt@matta'})
 
 
@@ -1024,7 +1029,7 @@ class TestAuthenticateView(TestCase, PatchMixin, InitializeSessionMixin):
             email='real@yeahoo.com',
             fxa_id='10',
             deleted=True,
-            banned=datetime.datetime.now(),
+            banned=datetime.now(),
         )
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, 'someopenidtoken'
@@ -2269,3 +2274,188 @@ class TestAccountNotificationUnsubscribe(TestCase):
         response = self.client.post(self.url, data=data)
         assert response.status_code == 403
         assert response.data == {'detail': 'Email address not found.'}
+
+
+class TestFxaNotificationView(TestCase):
+    FXA_ID = 'ABCDEF012345689'
+    FXA_EVENT = {
+        'iss': 'https://accounts.firefox.com/',
+        'sub': FXA_ID,
+        'aud': 'REMOTE_SYSTEM',
+        'iat': 1565720808,
+        'jti': 'e19ed6c5-4816-4171-aa43-56ffe80dbda1',
+        'events': {
+            'https://schemas.accounts.firefox.com/event/profile-change': {
+                'email': 'example@mozilla.com'
+            }
+        },
+    }
+    JWKS_RESPONSE = {
+        'keys': [
+            {
+                'kty': 'RSA',
+                'alg': 'RS256',
+                'kid': '20190730-15e473fd',
+                'fxa-createdAt': 1564502400,
+                'use': 'sig',
+                'n': '15OpVGC7ws_SlU0gRbRh1Iwo8_gR8ElX2CDnbN5blKyXLg-ll0ogktoDXc-tDvTab'
+                'RTxi7AXU0wWQ247odhHT47y5uz0GASYXdfPponynQ_xR9CpNn1eEL1gvDhQN9rfPIzfncl'
+                '8FUi9V4WMd5f600QC81yDw9dX-Z8gdkru0aDaoEKF9-wU2TqrCNcQdiJCX9BISotjz_9cm'
+                'GwKXFEekQNJWBeRQxH2bUmgwUK0HaqwW9WbYOs-zstNXXWFsgK9fbDQqQeGehXLZM4Cy5M'
+                'gl_iuSvnT3rLzPo2BmlxMLUvRqBx3_v8BTtwmNGA0v9O0FJS_mnDq0Iue0Dz8BssQCQ',
+                'e': 'AQAB',
+            }
+        ]
+    }
+
+    def test_get_fxa_verifying_keys(self):
+        responses.add(
+            responses.GET,
+            f'{settings.FXA_OAUTH_HOST}/jwks',
+            json=self.JWKS_RESPONSE,
+        )
+        responses.add(
+            responses.GET,
+            f'{settings.FXA_OAUTH_HOST}/jwks',
+            json={},
+        )
+        assert (
+            FxaNotificationView().get_fxa_verifying_keys() == self.JWKS_RESPONSE['keys']
+        )
+        # the call is cached on cls.fxa_verifiying_keys after the first call
+        assert (
+            FxaNotificationView().get_fxa_verifying_keys() == self.JWKS_RESPONSE['keys']
+        )
+        del FxaNotificationView.fxa_verifying_keys
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_fxa_verifying_keys()
+
+    @mock.patch('olympia.accounts.views.jwt.decode')
+    def test_get_jwt_payload(self, decode_mock):
+        FxaNotificationView.fxa_verifying_keys = [
+            {'kty': 'RSA', 'alg': 'fooo'},  # should be ignored
+            *self.JWKS_RESPONSE['keys'],
+        ]
+        decode_mock.return_value = self.FXA_EVENT
+        request_factory = RequestFactory()
+
+        authd_jwt = FxaNotificationView().get_jwt_payload(
+            request_factory.get('/', HTTP_AUTHORIZATION='Bearer fooo')
+        )
+        assert authd_jwt == self.FXA_EVENT
+
+        # check a malformed bearer header is handled
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_jwt_payload(
+                request_factory.get('/', HTTP_AUTHORIZATION='Bearer ')
+            )
+
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_jwt_payload(
+                request_factory.get('/', HTTP_AUTHORIZATION='Fooo')
+            )
+
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_jwt_payload(
+                request_factory.get('/', HTTP_AUTHORIZATION='Bearer baa Bearer ')
+            )
+
+        # check decode exceptions are caught
+        decode_mock.side_effect = jwt.exceptions.PyJWTError()
+        with self.assertRaises(exceptions.AuthenticationFailed):
+            FxaNotificationView().get_jwt_payload(
+                request_factory.get('/', HTTP_AUTHORIZATION='Bearer fooo')
+            )
+
+    def test_post(self):
+        url = reverse_ns('fxa-notification', api_version='auth')
+        class_path = (
+            f'{FxaNotificationView.__module__}.' f'{FxaNotificationView.__name__}'
+        )
+        with (
+            mock.patch(f'{class_path}.get_jwt_payload') as get_jwt_mock,
+            mock.patch(f'{class_path}.process_event') as process_event_mock,
+            freezegun.freeze_time(),
+        ):
+            get_jwt_mock.return_value = self.FXA_EVENT
+            response = self.client.post(url)
+            process_event_mock.assert_called_with(
+                self.FXA_ID,
+                FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
+                {'email': 'example@mozilla.com'},
+            )
+        assert response.status_code == 202
+
+    @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
+    def test_process_event_email_change(self, event_mock):
+        with freezegun.freeze_time():
+            FxaNotificationView().process_event(
+                self.FXA_ID,
+                FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
+                {'email': 'new-email@example.com'},
+            )
+            event_mock.assert_called_with(
+                self.FXA_ID, datetime.now().timestamp(), 'new-email@example.com'
+            )
+
+    def test_process_event_email_change_integration(self):
+        user = user_factory(
+            email='old-email@example.com',
+            fxa_id=self.FXA_ID,
+            email_changed=datetime(2017, 10, 11),
+        )
+        with freezegun.freeze_time():
+            FxaNotificationView().process_event(
+                self.FXA_ID,
+                FxaNotificationView.FXA_PROFILE_CHANGE_EVENT,
+                {'email': 'new-email@example.com'},
+            )
+            now = datetime.now()
+        user.reload()
+        assert user.email == 'new-email@example.com'
+        assert user.email_changed == now
+
+    @mock.patch('olympia.accounts.utils.delete_user_event.delay')
+    def test_process_event_delete(self, event_mock):
+        with freezegun.freeze_time():
+            FxaNotificationView().process_event(
+                self.FXA_ID,
+                FxaNotificationView.FXA_DELETE_EVENT,
+                {},
+            )
+            event_mock.assert_called_with(self.FXA_ID, datetime.now().timestamp())
+
+    @override_switch('fxa-account-delete', active=True)
+    def test_process_event_delete_integration(self):
+        user = user_factory(fxa_id=self.FXA_ID)
+        FxaNotificationView().process_event(
+            self.FXA_ID,
+            FxaNotificationView.FXA_DELETE_EVENT,
+            {},
+        )
+        user.reload()
+        assert user.email is not None
+        assert user.deleted
+        assert user.fxa_id is not None
+
+    @mock.patch('olympia.accounts.utils.clear_sessions_event.delay')
+    def test_process_event_password_change(self, event_mock):
+        with freezegun.freeze_time():
+            FxaNotificationView().process_event(
+                self.FXA_ID,
+                FxaNotificationView.FXA_PASSWORDCHANGE_EVENT,
+                {},
+            )
+            event_mock.assert_called_with(
+                self.FXA_ID, datetime.now().timestamp(), 'password-change'
+            )
+
+    def test_process_event_password_change_integration(self):
+        user = user_factory(fxa_id=self.FXA_ID)
+        FxaNotificationView().process_event(
+            self.FXA_ID,
+            FxaNotificationView.FXA_PASSWORDCHANGE_EVENT,
+            {},
+        )
+        user.reload()
+        assert user.auth_id is None

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 14:54+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-19 08:16+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -159,7 +159,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Les noms des modules ne peuvent contenir les marques déposées Mozilla ou Firefox."
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
+msgstr "Autorisations de site pour {hostnames}"
 
 msgid "Sort by:"
 msgstr "Trier par :"
@@ -1360,22 +1360,22 @@ msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "GNU General Public License v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "GNU Library General Public License v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "GNU Library General Public License v3.0"
 
 msgid "The MIT License"
-msgstr ""
+msgstr "La licence MIT"
 
 msgid "The BSD License"
-msgstr ""
+msgstr "La licence BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
@@ -1655,9 +1655,6 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr ""
 "Les modules complémentaires Open Search {blog_link_open}ne sont plus pris en charge sur AMO{blog_link_close}. Vous pouvez créer une {doc_link_open}extension de recherche{doc_link_close} à la place."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce raccourci est déjà utilisé. Merci d’en choisir un autre."
 
@@ -1750,6 +1747,9 @@ msgstr "Intervalle de version invalide."
 msgid "Need at least one compatible application."
 msgstr "Au moins une application compatible est nécessaire."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Vous avez envoyé trop de fichiers en ligne récemment. Veuillez réessayer après un certain temps."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Il y a eu une erreur avec votre envoi. Merci de réessayer."
 
@@ -1758,9 +1758,6 @@ msgstr "Passer outre la validation échouée"
 
 msgid "Need to select at least one application."
 msgstr "Choisissez au moins une application."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Vous avez envoyé trop de fichiers en ligne récemment. Veuillez réessayer après un certain temps."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "La version {version} correspond à {block_link} pour ce module complémentaire. Vous pouvez contacter {amo_admins} pour plus d’informations."
@@ -1805,6 +1802,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Nom à afficher"
+
+msgid "Origin"
+msgstr ""
+
+msgid "Permissions"
+msgstr ""
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Fichier du module complémentaire invalide ou corrompu."
@@ -2007,24 +2016,6 @@ msgstr "Mon module ne correspond à aucune de ces catégories"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Accord de distribution des modules complémentaires Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Règles et principes de révision"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "J’ai lu et j’accepte cet accord ainsi que les règles et principes"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Un nom à afficher est nécessaire pour compléter votre compte afin que les utilisateurs et utilisatrices sachent qui a réalisé votre module complémentaire. Veuillez en saisir un ci-dessous."
-
-msgid "Accept"
-msgstr "Accepter"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "ou <a href=\"{0}\">Annuler</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Informations supplémentaires sur les comptes de développeur"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Modules"
@@ -2078,6 +2069,15 @@ msgstr "Chercher dans les documentations développeur"
 
 msgid "Search"
 msgstr "Recherche"
+
+msgid "Generate Site Permission Add-on"
+msgstr ""
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Utilisez le champ ci-dessous pour envoyer votre paquet de module."
@@ -2218,6 +2218,9 @@ msgstr "Si vous acceptez l’invitation, vous pourrez modifier le module complé
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Cliquez sur le bouton Accepter ci-dessous pour confirmer que vous souhaitez être ajouté en tant qu’auteur pour {addon_name}."
+
+msgid "Accept"
+msgstr "Accepter"
 
 msgid "Decline"
 msgstr "Refuser"
@@ -2774,14 +2777,6 @@ msgstr "Vous pouvez également modifier cette version pour ajouter des notes de 
 msgid "Edit version {0}"
 msgstr "Modifier la version {0}"
 
-msgid "Version Signature Pending"
-msgstr "Signature de version en attente"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Vous avez terminé ! ✨ Vous recevrez un e-mail lorsque le fichier signé sera prêt à être téléchargé depuis le Pôle développeurs. Si vous ne voyez pas d’e-mail après 24 heures, veuillez vérifier vos "
-"messages indésirables."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Pour rappel, votre module complémentaire est sujet à révision manuelle à tout moment."
 
@@ -3134,11 +3129,34 @@ msgstr "Page d’administration"
 msgid "View Statistics Dashboard"
 msgstr "Voir le tableau de bord des statistiques"
 
+msgid "Review Policies and Rules"
+msgstr "Règles et principes de révision"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "J’ai lu et j’accepte cet accord ainsi que les règles et principes"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Un nom à afficher est nécessaire pour compléter votre compte afin que les utilisateurs et utilisatrices sachent qui a réalisé votre module complémentaire. Veuillez en saisir un ci-dessous."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "ou <a href=\"{0}\">Annuler</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Informations supplémentaires sur les comptes de développeur"
+
 msgid "Developer News"
 msgstr "Nouvelles développeur"
 
 msgid "View the blog &#9658;"
 msgstr "Voir le blog &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Signature de version en attente"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Vous avez terminé ! ✨ Vous recevrez un e-mail lorsque le fichier signé sera prêt à être téléchargé depuis le Pôle développeurs. Si vous ne voyez pas d’e-mail après 24 heures, veuillez vérifier vos "
+"messages indésirables."
 
 msgid "License"
 msgstr "Licence"
@@ -3832,9 +3850,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Utilisez les gestes de la souris pour fermer les onglets, parcourir les pages, etc."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Associez les vignettes des sites web à vos résultats de recherche."
+msgid "See thumbnail images alongside your search returns."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4436,6 +4453,11 @@ msgstr "Débarrassez-vous de ces avertissements de cookies pénibles."
 msgid "All your emoji needs—always just a click away."
 msgstr "Tous les émojis dont vous avez besoin — toujours à portée de clic."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Arrêtez de donner votre adresse e-mail aux sites. Firefox Relay protège votre identité et empêche le courrier indésirable."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Certains sites web ont des difficultés pour lire les vidéos sur Android. Voici une solution."
@@ -4455,6 +4477,10 @@ msgstr "Personnalisez les gestes de la souris. Découvrez de nouvelles façons d
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Utilisez les gestes de la souris pour fermer les onglets, parcourir les pages, etc."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Associez les vignettes des sites web à vos résultats de recherche."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4485,10 +4511,6 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Revenez à une époque plus simple — lorsque les meilleurs résultats de recherche se trouvaient au-dessus des annonces (compatible avec les moteurs de recherche Google et Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Arrêtez de donner votre adresse e-mail aux sites. Firefox Relay protège votre identité et empêche le courrier indésirable."
-
-#. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
 msgstr "Profitez du changement automatique des couleurs de Firefox synchronisé avec la lumière du jour et l’obscurité de la nuit."
 
@@ -4502,19 +4524,19 @@ msgstr "Emportez des emojis partout avec vous sur le Web."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Mettez des restrictions sur les sites web distrayants et chronophages."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Retirez le superflu de votre Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Personnalisez YouTube à votre convenance."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Supprimez les données de navigation directement depuis la barre d’outils du navigateur."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4529,21 +4551,17 @@ msgid "See all extensions"
 msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Top extensions of 2021"
-msgstr "Meilleures extensions de 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Personnalisation YouTube"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
+msgid "Image search extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Boosters de productivité"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "En savoir plus"
+msgid "Writing tools"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4639,10 +4657,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Voir plus d’extensions pour le blocage des publicités choisies par l’équipe"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Personnalisation YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Voir davantage d’extensions pour YouTube choisies par l’équipe"
 
@@ -4653,6 +4667,22 @@ msgstr "Thèmes populaires"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Voir plus de thèmes populaires"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
@@ -6342,3 +6372,6 @@ msgstr "autres"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} et supérieures"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "L’origine d’installation {origin} n’est pas autorisée."

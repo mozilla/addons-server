@@ -1,4 +1,5 @@
 import os
+import subprocess
 from unittest import mock
 
 from django.conf import settings
@@ -214,3 +215,18 @@ class TestWriteSitemaps(TestCase):
         assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-addons-android.xml'))
         assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-users-android.xml'))
         assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-tags-android.xml'))
+
+
+def test_gen_cron():
+    args = [
+        'scripts/crontab/gen-cron.py',
+        '-z ./',
+        '-u root',
+    ]
+    output = subprocess.check_output(args)
+
+    assert b'MAILTO=amo-crons@mozilla.com' in output
+    # check some known jobs are rendered as expected in the output
+    prefix = b'root cd  ./; /usr/bin/python -W ignore::DeprecationWarning manage.py'
+    assert (b'*/5 * * * * %s auto_approve' % prefix) in output
+    assert (b'10 * * * * %s cron update_blog_posts' % prefix) in output

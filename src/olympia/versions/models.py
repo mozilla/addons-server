@@ -14,7 +14,7 @@ from django.db.models import Q
 from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
-from django.utils.translation import gettext
+from django.utils.translation import gettext, gettext_lazy as _
 
 import markupsafe
 from olympia.constants.applications import APP_IDS
@@ -1159,6 +1159,8 @@ class InstallOrigin(ModelBase):
 
 
 class DeniedInstallOrigin(ModelBase):
+    ERROR_MESSAGE = _('The install origin {origin} is not permitted.')
+
     hostname_pattern = models.CharField(
         max_length=255,
         unique=True,

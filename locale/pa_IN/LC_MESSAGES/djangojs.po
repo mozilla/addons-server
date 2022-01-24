@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2020-08-31 08:36+0000\n"
-"Last-Translator: Satnam S Virdi <pika10singh@gmail.com>\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-18 15:17+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -26,9 +26,8 @@ msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਵੇਲੇ ਇੱਕ ਮੁਸ਼�
 msgid "Select a file..."
 msgstr "...ਫਾਈਲ ਚੁਣੋ"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਅਖੀਰ ਵਿੱਚ .zip, .xpi, .crx, .jar ਜਾਂ .xml ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਅਖੀਰ ਵਿੱਚ .zip, .xpi, ਜਾਂ .crx ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -436,14 +435,12 @@ msgid "Applications from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
+msgstr "ਦੇਸ਼, ਪਿਛਲੇ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਦੇਸ਼"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -486,9 +483,8 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸੋਮੇ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਠੀਕ-ਠਾਕ ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #, fuzzy

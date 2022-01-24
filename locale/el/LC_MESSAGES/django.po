@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-13 23:22+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-22 11:32+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1655,9 +1655,6 @@ msgstr "Πρόσφατες αλλαγές για τα πρόσθετα μου"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Τα πρόσθετα Open Search {blog_link_open}δεν υποστηρίζονται πλέον στο AMO{blog_link_close}. Μπορείτε να δημιουργήσετε μια {doc_link_open}επέκταση αναζήτησης{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλούμε διαλέξτε κάποιο άλλο."
 
@@ -1750,6 +1747,9 @@ msgstr "Μη έγκυρο εύρος εκδόσεων."
 msgid "Need at least one compatible application."
 msgstr "Απαιτείται τουλάχιστον μία συμβατή εφαρμογή."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Έχετε υποβάλει πολλές αναρτήσεις πρόσφατα. Παρακαλούμε δοκιμάστε ξανά αργότερα."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Προέκυψε σφάλμα με τη μεταφόρτωσή σας. Παρακαλούμε δοκιμάστε ξανά."
 
@@ -1758,9 +1758,6 @@ msgstr "Η παράκαμψη απέτυχε να επικυρωθεί"
 
 msgid "Need to select at least one application."
 msgstr "Πρέπει να επιλέξετε τουλάχιστον μια εφαρμογή."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Έχετε υποβάλει πολλές αναρτήσεις πρόσφατα. Παρακαλούμε δοκιμάστε ξανά αργότερα."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Η έκδοση {version} ταιριάζει με το {block_link} για αυτό το πρόσθετο. Μπορείτε να επικοινωνήσετε με τους {amo_admins} για περισσότερες πληροφορίες."
@@ -1805,6 +1802,19 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Εμφανιζόμενο όνομα"
+
+msgid "Origin"
+msgstr "Προέλευση"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Δικαιώματα:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Άκυρο ή κατεστραμμένο αρχείο προσθέτου."
@@ -2005,24 +2015,6 @@ msgstr "Το πρόσθετο μου δεν ταιριάζει με καμία �
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Συμφωνία διανομής προσθέτων Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Πολιτικές και κανόνες αξιολόγησης"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Έχω διαβάσει και αποδεχθεί αυτήν τη συμφωνία, τους κανόνες και τις πολιτικές"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Ο λογαριασμός σας απαιτεί ένα εμφανιζόμενο όνομα, ώστε να γνωρίζουν οι χρήστες από ποιον προέρχεται το πρόσθετό σας. Παρακαλούμε εισαγάγετε ένα όνομα παρακάτω."
-
-msgid "Accept"
-msgstr "Αποδοχή"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "ή <a href=\"{0}\">Ακύρωση</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Περισσότερες πληροφορίες για τους λογαριασμούς προγραμματιστών"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Πρόσθετα {0}"
@@ -2076,6 +2068,16 @@ msgstr "Αναζήτηση τεκμηρίωσης προγραμματιστή"
 
 msgid "Search"
 msgstr "Αναζήτηση"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Άδεια ιστοτόπου"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Χρησιμοποιήστε το πεδίο παρακάτω για να μεταφορτώσετε τη συσκευασία προσθέτου σας."
@@ -2218,6 +2220,9 @@ msgstr "Η αποδοχή της πρόσκλησης θα σας δώσει π�
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Κάντε κλικ στο κουμπί «Αποδοχή» παρακάτω για να επιβεβαιώσετε ότι θέλετε να προστεθείτε ως δημιουργός του {addon_name}."
+
+msgid "Accept"
+msgstr "Αποδοχή"
 
 msgid "Decline"
 msgstr "Απόρριψη"
@@ -2764,14 +2769,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Επεξεργασία έκδοσης {0}"
 
-msgid "Version Signature Pending"
-msgstr "Εκκρεμεί η υπογραφή έκδοσης"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Τελειώσατε! ✨ Θα ειδοποιηθείτε μέσω email όταν το υπογεγραμμένο αρχείο θα είναι έτοιμο για λήψη από το Κέντρο προγραμματιστών. Αν δεν δείτε κάποιο email μετά από 24 ώρες, παρακαλούμε ελέγξτε τον "
-"φάκελο ανεπιθύμητών σας."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Υπενθύμιση: το πρόσθετό σας υπόκειται σε χειροκίνητο έλεγχο ανά πάσα στιγμή."
 
@@ -3126,11 +3123,34 @@ msgstr "Διαχείριση διαχειριστή"
 msgid "View Statistics Dashboard"
 msgstr "Προβολή πίνακα στατιστικών"
 
+msgid "Review Policies and Rules"
+msgstr "Πολιτικές και κανόνες αξιολόγησης"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Έχω διαβάσει και αποδεχθεί αυτήν τη συμφωνία, τους κανόνες και τις πολιτικές"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Ο λογαριασμός σας απαιτεί ένα εμφανιζόμενο όνομα, ώστε να γνωρίζουν οι χρήστες από ποιον προέρχεται το πρόσθετό σας. Παρακαλούμε εισαγάγετε ένα όνομα παρακάτω."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "ή <a href=\"{0}\">Ακύρωση</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Περισσότερες πληροφορίες για τους λογαριασμούς προγραμματιστών"
+
 msgid "Developer News"
 msgstr "Ειδήσεις προγραμματιστών"
 
 msgid "View the blog &#9658;"
 msgstr "Προβολή του blog &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Εκκρεμεί η υπογραφή έκδοσης"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Τελειώσατε! ✨ Θα ειδοποιηθείτε μέσω email όταν το υπογεγραμμένο αρχείο θα είναι έτοιμο για λήψη από το Κέντρο προγραμματιστών. Αν δεν δείτε κάποιο email μετά από 24 ώρες, παρακαλούμε ελέγξτε τον "
+"φάκελο ανεπιθύμητών σας."
 
 msgid "License"
 msgstr "Άδεια"
@@ -3823,8 +3843,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για κλείσιμο καρτελών, πλοήγηση σε σελίδες και πολλά άλλα."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Απολαύστε μικρογραφίες ιστοτόπων δίπλα στα αποτελέσματα αναζήτησής σας."
 
 #. editorial content for the discovery pane.
@@ -4424,6 +4444,11 @@ msgstr "Αντίο, ενοχλητικές προειδοποιήσεις cookie
 msgid "All your emoji needs—always just a click away."
 msgstr "Όλες οι ανάγκες σας για emoji—πάντα με ένα κλικ."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Σταματήστε να δίνετε στους ιστοτόπους τη διεύθυνση email σας. Το Firefox Relay προστατεύει την ταυτότητά σας και αποτρέπει την ανεπιθύμητη αλληλογραφία."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Ορισμένοι ιστότοποι δυσκολεύονται με την αναπαραγωγή βίντεο στο Firefox για Android. Αυτή η επέκταση διορθώνει το σφάλμα."
@@ -4443,6 +4468,10 @@ msgstr "Προσαρμογή κινήσεων ποντικιού. Ανακαλύ
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για κλείσιμο καρτελών, πλοήγηση σε σελίδες και πολλά άλλα."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Απολαύστε μικρογραφίες ιστοτόπων δίπλα στα αποτελέσματα αναζήτησής σας."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4471,10 +4500,6 @@ msgstr "Εξαφανιστείτε, ενοχλητικές προειδοποι�
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Επιστρέψτε σε πιο απλές εποχές — όταν τα κορυφαία αποτελέσματα αναζήτησης βρίσκονταν πάνω από τις διαφημίσεις (συμβατό με τις μηχανές αναζήτησης Google και Bing)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Σταματήστε να δίνετε στους ιστοτόπους τη διεύθυνση email σας. Το Firefox Relay προστατεύει την ταυτότητά σας και αποτρέπει την ανεπιθύμητη αλληλογραφία."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4517,21 +4542,17 @@ msgid "See all extensions"
 msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Top extensions of 2021"
-msgstr "Κορυφαίες επεκτάσεις του 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Προσαρμογή YouTube"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Επεκτάσεις για το Steam"
+msgid "Image search extensions"
+msgstr "Επεκτάσεις αναζήτησης εικόνων"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Εργαλεία αυξημένης παραγωγικότητας"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Διαβάστε περισσότερα"
+msgid "Writing tools"
+msgstr "Εργαλεία συγγραφής"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4627,10 +4648,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις φραγής διαφημίσεων"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Προσαρμογή YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις YouTube"
 
@@ -4641,6 +4658,26 @@ msgstr "Δημοφιλή θέματα"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Περισσότερα δημοφιλή θέματα"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Δημοφιλή θέματα"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Περισσότερα δημοφιλή θέματα"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Δημοφιλή θέματα"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Περισσότερες προτεινόμενες επεκτάσεις"
 
 msgid "Could not parse the manifest file."
 msgstr "Αδυναμία λήψης αρχείου manifest."
@@ -6338,3 +6375,6 @@ msgstr "άλλοι"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} και νεότερα"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-14 14:16+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-22 17:12+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1595,9 +1595,6 @@ msgstr "我的附加组件的近期更改"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "{blog_link_open}AMO 已不再支持{blog_link_close} Open Search 附加组件。您可以改为创建{doc_link_open}搜索引擎扩展{doc_link_close}。"
 
-msgid "The install origin {origin} is not permitted."
-msgstr "不允许从 {origin} 安装。"
-
 msgid "This slug is already in use. Please choose another."
 msgstr "这个短网址已经被使用，请另选一个。"
 
@@ -1688,6 +1685,9 @@ msgstr "版本范围无效。"
 msgid "Need at least one compatible application."
 msgstr "需要至少一个兼容的应用程序。"
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "您最近提交了太多上传内容。请过一段时间再试。"
+
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上传过程中发生错误，请重试。"
 
@@ -1696,9 +1696,6 @@ msgstr "无视验证失败"
 
 msgid "Need to select at least one application."
 msgstr "需要选择至少一个应用程序。"
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "您最近提交了太多上传内容。请过一段时间再试。"
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "版本 {version} 与该附加组件的 {block_link} 相匹配。您可以联系 {amo_admins} 了解更多信息。"
@@ -1740,6 +1737,19 @@ msgstr "由您自己托管。<span class=\"helptext\">提交的内容由 Mozilla
 
 msgid "Display Name"
 msgstr "显示名称"
+
+#, fuzzy
+msgid "Origin"
+msgstr "来源："
+
+msgid "Permissions"
+msgstr "权限"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "无效或损坏的附加组件文件。"
@@ -1938,24 +1948,6 @@ msgstr "我的附加组件不适合任何分类"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox 附加组件分发协议"
 
-msgid "Review Policies and Rules"
-msgstr "审核政策及规则"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "我已阅读并同意本协议和规则与政策"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "您的账户需要设置显示名称，以便用户知道附加组件来自于谁。请在下方输入。"
-
-msgid "Accept"
-msgstr "接受"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "或<a href=\"{0}\">取消</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "更多有关“开发者账户”的信息"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} 附加组件"
@@ -2009,6 +2001,16 @@ msgstr "搜索开发者文档"
 
 msgid "Search"
 msgstr "搜索"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "网站权限"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "使用下面的按钮上传您的附加组件包。"
@@ -2143,6 +2145,9 @@ msgstr "接受邀请函后，可让您编辑此附加组件，并可能会在附
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "点击下方接受按钮，来确认您要被添加为 {addon_name} 的作者。"
+
+msgid "Accept"
+msgstr "接受"
 
 msgid "Decline"
 msgstr "拒绝"
@@ -2658,12 +2663,6 @@ msgstr "您还可以编辑此版本，为您刚刚的提交添加版本说明、
 msgid "Edit version {0}"
 msgstr "编辑版本 {0}"
 
-msgid "Version Signature Pending"
-msgstr "等待版本签名"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr "完成！✨ 当已签名文件可在开发者中心下载时，您将会收到确认邮件，若未在 24 小时内收到，则请检查垃圾邮件夹。"
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "提醒一下，您的附加组件会随时接受人工审核。"
 
@@ -3008,11 +3007,32 @@ msgstr "管理员管理"
 msgid "View Statistics Dashboard"
 msgstr "查看统计数据面板"
 
+msgid "Review Policies and Rules"
+msgstr "审核政策及规则"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "我已阅读并同意本协议和规则与政策"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "您的账户需要设置显示名称，以便用户知道附加组件来自于谁。请在下方输入。"
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "或<a href=\"{0}\">取消</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "更多有关“开发者账户”的信息"
+
 msgid "Developer News"
 msgstr "开发者新闻"
 
 msgid "View the blog &#9658;"
 msgstr "查看博客 &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "等待版本签名"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr "完成！✨ 当已签名文件可在开发者中心下载时，您将会收到确认邮件，若未在 24 小时内收到，则请检查垃圾邮件夹。"
 
 msgid "License"
 msgstr "许可协议"
@@ -3686,9 +3706,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "使用鼠标手势关闭标签页，浏览页面等。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "在返回的搜索结果旁欣赏网站缩略图。"
+msgid "See thumbnail images alongside your search returns."
+msgstr "在返回的搜索结果旁查看网站缩略图。"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4286,6 +4305,11 @@ msgstr "滚蛋吧，烦人的 Cookie 警告！"
 msgid "All your emoji needs—always just a click away."
 msgstr "所有您需要的 emoji 表情 — 只需轻轻一点。"
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "不必再向网站提供真实邮箱。Firefox Relay 可保护您的身份并减少垃圾邮件。"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些网站无法在 Android 上正常播放视频，此扩展可修正此问题。"
@@ -4305,6 +4329,10 @@ msgstr "自定义鼠标手势。探索使用 50 多种配置模式浏览网页�
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "使用鼠标手势关闭标签页，浏览页面等。"
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "在返回的搜索结果旁欣赏网站缩略图。"
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4333,10 +4361,6 @@ msgstr "滚蛋吧，烦人的 Cookie 警告！"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "返璞归真 — 将重要搜索结果列于广告的上方（适用于 Google、Bing 搜索引擎）。"
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "不必再向网站提供真实邮箱。Firefox Relay 可保护您的身份并减少垃圾邮件。"
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4379,21 +4403,18 @@ msgid "See all extensions"
 msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Top extensions of 2021"
-msgstr "2021 年度扩展"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube 体验定制"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Steam 扩展"
+msgid "Image search extensions"
+msgstr "图片搜索扩展"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "生产力工具"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "阅读更多"
+#, fuzzy
+msgid "Writing tools"
+msgstr "翻译工具"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4489,10 +4510,6 @@ msgid "See more ad blocker staff picks"
 msgstr "更多编辑推荐 > 广告拦截工具"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube 体验定制"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "更多编辑推荐 > YouTube 扩展"
 
@@ -4503,6 +4520,22 @@ msgstr "热门主题"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "更多热门主题"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "最受好评的主题"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "更多好评主题"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "热门扩展"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "更多热门扩展"
 
 msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"
@@ -6168,3 +6201,6 @@ msgstr "等"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "不允许从 {origin} 安装。"

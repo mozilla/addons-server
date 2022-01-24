@@ -62,6 +62,7 @@ from olympia.users.models import (
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
+    DeniedInstallOrigin,
     License,
     Version,
 )
@@ -952,7 +953,29 @@ class CompatAppSelectWidget(forms.CheckboxSelectMultiple):
         return data
 
 
-class NewUploadForm(forms.Form):
+class CheckThrottlesMixin:
+    def check_throttles(self, request):
+        """
+        Check if request should be throttled by calling the signing API
+        throttling method.
+
+        Raises ValidationError if the request is throttled.
+        """
+        from olympia.signing.views import VersionView  # circular import
+
+        view = VersionView()
+        try:
+            view.check_throttles(request)
+        except Throttled:
+            raise forms.ValidationError(
+                _(
+                    'You have submitted too many uploads recently. '
+                    'Please try again after some time.'
+                )
+            )
+
+
+class NewUploadForm(CheckThrottlesMixin, forms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -1001,26 +1024,6 @@ class NewUploadForm(forms.Form):
         ):
             raise forms.ValidationError(
                 gettext('There was an error with your upload. Please try again.')
-            )
-
-    def check_throttles(self, request):
-        """
-        Check if request should be throttled by calling the signing API
-        throttling method.
-
-        Raises ValidationError if the request is throttled.
-        """
-        from olympia.signing.views import VersionView  # circular import
-
-        view = VersionView()
-        try:
-            view.check_throttles(request)
-        except Throttled:
-            raise forms.ValidationError(
-                _(
-                    'You have submitted too many uploads recently. '
-                    'Please try again after some time.'
-                )
             )
 
     def check_blocklist(self, guid, version_string):
@@ -1398,7 +1401,7 @@ class SingleCategoryForm(forms.Form):
         del self.addon.all_categories
 
 
-class SitePermissionGeneratorForm(forms.Form):
+class SitePermissionGeneratorForm(CheckThrottlesMixin, forms.Form):
     origin = forms.URLField(
         label=_('Origin'),
         widget=forms.TextInput(attrs={'placeholder': 'https://example.com'}),
@@ -1406,6 +1409,31 @@ class SitePermissionGeneratorForm(forms.Form):
     site_permissions = forms.MultipleChoiceField(
         label=_('Permissions'), choices=(('midi-sysex', 'WebMIDI'),)
     )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        self.check_throttles(self.request)
+        origin = self.cleaned_data.get('origin')
+        site_permissions = self.cleaned_data.get('site_permissions')
+        already_exists = (
+            self.request.user.addons.all()
+            .filter(
+                type=amo.ADDON_SITE_PERMISSION,
+                versions__installorigin__origin=origin,
+                versions__file___site_permissions__permissions=site_permissions,
+            )
+            .exists()
+        )
+        if already_exists:
+            raise forms.ValidationError(
+                _(
+                    'You have generated a site permission add-on for the same origin '
+                    'and permissions.'
+                )
+            )
 
     def clean_origin(self):
         actual_value = str(self.data.get('origin'))
@@ -1433,4 +1461,8 @@ class SitePermissionGeneratorForm(forms.Form):
             or parsed.fragment
         ):
             raise forms.ValidationError(error_message)
+        if DeniedInstallOrigin.find_denied_origins([value]):
+            raise forms.ValidationError(
+                DeniedInstallOrigin.ERROR_MESSAGE.format(origin=value)
+            )
         return value

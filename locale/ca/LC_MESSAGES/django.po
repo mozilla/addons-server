@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1725,9 +1725,6 @@ msgstr ""
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
@@ -1822,6 +1819,9 @@ msgstr "Número de versió invàlid. "
 msgid "Need at least one compatible application."
 msgstr "Es necessita com a mínim una aplicació compatible."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "There was an error with your upload. Please try again."
 msgstr "S'ha produït un error quan es pujava el fitxer. Torneu-ho a provar."
 
@@ -1831,9 +1831,6 @@ msgstr ""
 #, fuzzy
 msgid "Need to select at least one application."
 msgstr "Es necessita com a mínim una aplicació compatible."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1877,6 +1874,19 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Nom a mostrar"
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Versions"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -2085,26 +2095,6 @@ msgstr "El meu complement no s'escau amb cap d'aquestes categories."
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
-msgid "Review Policies and Rules"
-msgstr "Comentari"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr ""
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "o <a href=\"{0}\">Cancel·la</a>"
-
-#, fuzzy
-msgid "More information on Developer Accounts"
-msgstr "S'ha sol·licitat més informació"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Complements del {0}"
@@ -2160,6 +2150,16 @@ msgstr ""
 
 msgid "Search"
 msgstr "Cerca"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Versions"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -2305,6 +2305,9 @@ msgid "Accepting the invitation will give you access to edit the add-on, and may
 msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+msgstr ""
+
+msgid "Accept"
 msgstr ""
 
 msgid "Decline"
@@ -2866,13 +2869,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Versió Beta {0}"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "Notes de la versió"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3206,10 +3202,34 @@ msgstr "Pàgina d'administració"
 msgid "View Statistics Dashboard"
 msgstr "Mostra el tauler d'estadístiques"
 
+#, fuzzy
+msgid "Review Policies and Rules"
+msgstr "Comentari"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "o <a href=\"{0}\">Cancel·la</a>"
+
+#, fuzzy
+msgid "More information on Developer Accounts"
+msgstr "S'ha sol·licitat més informació"
+
 msgid "Developer News"
 msgstr ""
 
 msgid "View the blog &#9658;"
+msgstr ""
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "Notes de la versió"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
 
 msgid "License"
@@ -3916,8 +3936,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4516,6 +4535,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4534,6 +4558,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4562,10 +4590,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4609,23 +4633,18 @@ msgstr ""
 msgid "See all extensions"
 msgstr "Mostra tots els complements"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Extensions"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "Mostra tots els complements"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Read more"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Mostra tots els complements"
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4737,10 +4756,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Mostra tots els complements"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "per la versió del complement"
@@ -4754,6 +4769,26 @@ msgstr "Comentari"
 #, fuzzy
 msgid "See more trending themes"
 msgstr "Seleccioneu una icona pel vostre complement:"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Comentari"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Seleccioneu una icona pel vostre complement:"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Comentari"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Mostra tots els complements"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -6525,4 +6560,7 @@ msgid "others"
 msgstr "altres"
 
 msgid "{app} {min} and later"
+msgstr ""
+
+msgid "The install origin {origin} is not permitted."
 msgstr ""

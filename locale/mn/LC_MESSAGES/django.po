@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1672,9 +1672,6 @@ msgstr ""
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-msgid "The install origin {origin} is not permitted."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
@@ -1769,6 +1766,9 @@ msgstr ""
 msgid "Need at least one compatible application."
 msgstr ""
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
@@ -1776,9 +1776,6 @@ msgid "Override failed validation"
 msgstr ""
 
 msgid "Need to select at least one application."
-msgstr ""
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
@@ -1820,6 +1817,19 @@ msgid ""
 msgstr ""
 
 msgid "Display Name"
+msgstr ""
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Хувилбарууд"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
 msgstr ""
 
 msgid "Invalid or corrupt add-on file."
@@ -2023,25 +2033,6 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
-msgid "Review Policies and Rules"
-msgstr "Review"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr ""
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "буюу <a href=\"{0}\">Цуцлах</a>"
-
-msgid "More information on Developer Accounts"
-msgstr ""
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr ""
@@ -2098,6 +2089,16 @@ msgstr ""
 #, fuzzy
 msgid "Search"
 msgstr "Search"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Хувилбарууд"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -2236,6 +2237,9 @@ msgid "Accepting the invitation will give you access to edit the add-on, and may
 msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
+msgstr ""
+
+msgid "Accept"
 msgstr ""
 
 msgid "Decline"
@@ -2779,13 +2783,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr ""
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "Хувилбарын тэмдэглэл"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
@@ -3107,10 +3104,33 @@ msgstr "Admin Flag"
 msgid "View Statistics Dashboard"
 msgstr ""
 
+#, fuzzy
+msgid "Review Policies and Rules"
+msgstr "Review"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "буюу <a href=\"{0}\">Цуцлах</a>"
+
+msgid "More information on Developer Accounts"
+msgstr ""
+
 msgid "Developer News"
 msgstr ""
 
 msgid "View the blog &#9658;"
+msgstr ""
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "Хувилбарын тэмдэглэл"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
 
 #, fuzzy
@@ -3812,8 +3832,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4412,6 +4431,11 @@ msgstr ""
 msgid "All your emoji needs—always just a click away."
 msgstr ""
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4430,6 +4454,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4458,10 +4486,6 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4506,24 +4530,19 @@ msgstr ""
 msgid "See all extensions"
 msgstr "Өргөтгөлүүд"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top extensions of 2021"
-msgstr "Өргөтгөлүүд"
-
-# Plural in this context means many of the add-on type
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Steam extensions"
-msgstr "Өргөтгөлүүд"
-
-#. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
+# Plural in this context means many of the add-on type
 #. editorial content for the secondary hero shelves.
-msgid "Read more"
+#, fuzzy
+msgid "Image search extensions"
+msgstr "Өргөтгөлүүд"
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4642,10 +4661,6 @@ msgstr ""
 msgid "See more ad blocker staff picks"
 msgstr "Өргөтгөлүүд"
 
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4661,6 +4676,28 @@ msgstr "Тайлбар:"
 #. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more trending themes"
+msgstr "Өргөтгөлүүд"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Тайлбар:"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Өргөтгөлүүд"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Тайлбар:"
+
+# Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
 msgstr "Өргөтгөлүүд"
 
 msgid "Could not parse the manifest file."
@@ -6405,4 +6442,7 @@ msgid "others"
 msgstr ""
 
 msgid "{app} {min} and later"
+msgstr ""
+
+msgid "The install origin {origin} is not permitted."
 msgstr ""

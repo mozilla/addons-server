@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-11 18:09+0000\n"
-"PO-Revision-Date: 2022-01-11 19:44+0000\n"
+"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"PO-Revision-Date: 2022-01-21 18:46+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1634,9 +1634,6 @@ msgstr "Neueste Änderungen für meine Add-ons"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open-Search-Add-ons werden von {blog_link_open}in AMO nicht mehr unterstützt{blog_link_close}. Sie können stattdessen eine {doc_link_open}Sucherweiterung erstellen{doc_link_close}."
 
-msgid "The install origin {origin} is not permitted."
-msgstr "Der Installationsursprung {origin} ist nicht zulässig."
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Dieser Adressname wird bereits verwendet. Bitte wählen Sie einen anderen."
 
@@ -1729,6 +1726,9 @@ msgstr "Ungültige Versionsspanne."
 msgid "Need at least one compatible application."
 msgstr "Mindestens eine kompatible Anwendung erforderlich."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Sie haben in letzter Zeit zu viele Uploads übermittelt. Bitte versuchen Sie es nach einiger Zeit erneut."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Beim Hochladen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
 
@@ -1737,9 +1737,6 @@ msgstr "Fehlgeschlagene Validierung außer Kraft setzen"
 
 msgid "Need to select at least one application."
 msgstr "Es muss mindestens eine Anwendung ausgewählt werden."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Sie haben in letzter Zeit zu viele Uploads übermittelt. Bitte versuchen Sie es nach einiger Zeit erneut."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Version {version} passt zu {block_link} für dieses Add-on. Weitere Informationen erhalten Sie per E-Mail von {amo_admins}."
@@ -1784,6 +1781,18 @@ msgstr ""
 
 msgid "Display Name"
 msgstr "Anzeigename"
+
+msgid "Origin"
+msgstr "Ursprung"
+
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "Sie haben ein Add-on für Website-Berechtigungen für denselben Ursprung und dieselben Berechtigungen erzeugt."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "Der Ursprung sollte nur ein Schema (Protokoll), einen Hostnamen (Domäne) und einen optionalen Port enthalten"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Ungültige oder beschädigte Add-on-Datei."
@@ -1984,24 +1993,6 @@ msgstr "Mein Add-on passt in keine der Kategorien"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox-Add-on-Verteilungsvereinbarung"
 
-msgid "Review Policies and Rules"
-msgstr "Richtlinien und Regeln zur Überprüfung"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Ich habe diese Einverständniserklärung sowie die Regeln und Richtlinien gelesen und akzeptiere sie"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "In Ihrem Konto muss ein Anzeigename festgelegt sein, damit Benutzer wissen, von wem Ihr Add-on stammt. Bitte geben Sie hier einen Anzeigenamen ein."
-
-msgid "Accept"
-msgstr "Annehmen"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "oder <a href=\"{0}\">Abbrechen</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Weitere Informationen zu Entwicklerkonten"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Add-ons"
@@ -2055,6 +2046,15 @@ msgstr "Entwicklerdokumentation durchsuchen"
 
 msgid "Search"
 msgstr "Suchen"
+
+msgid "Generate Site Permission Add-on"
+msgstr "Add-on für Website-Berechtigung erzeugen"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr "Der Ursprung (Schema + Hostname + optionaler Port), für den Sie die Berechtigung benötigen, um aktiviert zu werden. Hier müssen Sie auch das Add-on hosten."
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr "Die Berechtigung(en), die das generierte Add-on für den Ursprung gewährt."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Verwenden Sie das folgende Feld, um Ihr Add-on-Paket hochzuladen."
@@ -2195,6 +2195,9 @@ msgstr "Wenn Sie die Einladung annehmen, haben Sie Zugriff auf die Bearbeitung d
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Klicken Sie unten auf die Schaltfläche „Akzeptieren“, um zu bestätigen, dass Sie als Autor für {addon_name} hinzugefügt werden möchten."
+
+msgid "Accept"
+msgstr "Annehmen"
 
 msgid "Decline"
 msgstr "Ablehnen"
@@ -2743,14 +2746,6 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Version bearbeiten {0}"
 
-msgid "Version Signature Pending"
-msgstr "Versionssignierung ausstehend"
-
-msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
-"Sie sind fertig! ✨ Sie werden per E-Mail benachrichtigt, wenn die signierte Datei von der Entwicklerecke heruntergeladen werden kann. Wenn Sie nach 24 Stunden keine E-Mail erhalten, sehen Sie bitte "
-"in Ihrem Spam-Ordner nach."
-
 msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Zur Erinnerung: Ihr Add-on kann jederzeit manuell überprüft werden."
 
@@ -3105,11 +3100,34 @@ msgstr "Administrator-Verwaltung"
 msgid "View Statistics Dashboard"
 msgstr "Statistik-Übersicht anzeigen"
 
+msgid "Review Policies and Rules"
+msgstr "Richtlinien und Regeln zur Überprüfung"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Ich habe diese Einverständniserklärung sowie die Regeln und Richtlinien gelesen und akzeptiere sie"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "In Ihrem Konto muss ein Anzeigename festgelegt sein, damit Benutzer wissen, von wem Ihr Add-on stammt. Bitte geben Sie hier einen Anzeigenamen ein."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "oder <a href=\"{0}\">Abbrechen</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Weitere Informationen zu Entwicklerkonten"
+
 msgid "Developer News"
 msgstr "Entwicklernachrichten"
 
 msgid "View the blog &#9658;"
 msgstr "Lesen Sie den Blog ►"
+
+msgid "Version Signature Pending"
+msgstr "Versionssignierung ausstehend"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Sie sind fertig! ✨ Sie werden per E-Mail benachrichtigt, wenn die signierte Datei von der Entwicklerecke heruntergeladen werden kann. Wenn Sie nach 24 Stunden keine E-Mail erhalten, sehen Sie bitte "
+"in Ihrem Spam-Ordner nach."
 
 msgid "License"
 msgstr "Lizenz"
@@ -3797,8 +3815,7 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Verwenden Sie Mausgesten, um Tabs zu schließen, durch Seiten zu navigieren und vieles mehr."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr "Erhalten Sie Vorschaugrafiken von Websites bei den Suchergebnissen."
 
 #. editorial content for the discovery pane.
@@ -4399,6 +4416,11 @@ msgstr "Weg mit nervigen Cookie-Warnungen!"
 msgid "All your emoji needs—always just a click away."
 msgstr "Alle Emojis, die Sie brauchen – immer nur einen Klick entfernt."
 
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Geben Sie Ihre E-Mail-Adresse nicht mehr auf Websites preis. Firefox Relay schützt Ihre Identität und verhindert Spam-E-Mails."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Einige Websites haben Schwierigkeiten, Videos auf Android abzuspielen. Hier ist eine Lösung."
@@ -4418,6 +4440,10 @@ msgstr "Anpassbare Mausgesten. Entdecken Sie mit über 50 hilfreichen Einstellun
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Verwenden Sie Mausgesten, um Tabs zu schließen, durch Seiten zu navigieren und vieles mehr."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Erhalten Sie Vorschaugrafiken von Websites bei den Suchergebnissen."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4446,10 +4472,6 @@ msgstr "Weg mit nervigen Cookie-Warnungen!"
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Zurück zu einfacheren Zeiten – als die wichtigsten Suchergebnisse noch über der Werbung standen (kompatibel mit den Google- und Bing-Suchmaschinen)."
-
-#. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Geben Sie Ihre E-Mail-Adresse nicht mehr auf Websites preis. Firefox Relay schützt Ihre Identität und verhindert Spam-E-Mails."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4492,21 +4514,17 @@ msgid "See all extensions"
 msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Top extensions of 2021"
-msgstr "Beliebteste Erweiterungen des Jahres 2021"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-Anpassungen"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Steam-Erweiterungen"
+msgid "Image search extensions"
+msgstr "Erweiterungen zur Bildersuche"
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity boosters"
-msgstr "Verbesserung der Produktivität"
-
-#. editorial content for the secondary hero shelves.
-msgid "Read more"
-msgstr "Weitere Informationen"
+msgid "Writing tools"
+msgstr "Schreibwerkzeuge"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4602,10 +4620,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte Werbeblocker ansehen"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-Anpassungen"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Weitere von Mitarbeitern ausgewählte YouTube-Erweiterungen ansehen"
 
@@ -4616,6 +4630,22 @@ msgstr "Aktuell beliebte Themes"
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
 msgstr "Mehr aktuell beliebte Themes ansehen"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "Höchstbewertete Themes"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "Mehr höchstbewertete Themes ansehen"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Aktuell beliebte Erweiterungen"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "Mehr aktuell beliebte Erweiterungen ansehen"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifest-Datei konnte nicht verarbeitet werden."
@@ -6309,3 +6339,6 @@ msgstr "Andere"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} und neuer"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "Der Installationsursprung {origin} ist nicht zulässig."

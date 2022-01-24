@@ -23,6 +23,7 @@
                     <div class="item">
                         <div class="item_wrapper">
                             {% csrf_token %}
+                            {{ form.non_field_errors() }}
                             <table>
                                 <tr>
                                     <th><label for="{{ form.origin.auto_id }}">{{ form.origin.label }}
