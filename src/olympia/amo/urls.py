@@ -6,7 +6,6 @@ from . import views
 services_patterns = [
     re_path(r'^monitor\.json$', views.heartbeat, name='amo.monitor'),
     re_path(r'^client_info', views.client_info, name='amo.client_info'),
-    re_path(r'^loaded$', views.loaded, name='amo.loaded'),
     re_path(r'^403', views.handler403),
     re_path(r'^404', views.handler404),
     re_path(r'^500', views.handler500),
