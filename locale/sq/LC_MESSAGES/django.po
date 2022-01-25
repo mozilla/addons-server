@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2021-11-26 15:09+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -109,6 +109,10 @@ msgstr "Ju duhet ndihmë?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Njoftimi [%s] s’ekziston"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Udhërrëfyes Shqyrtimesh Shtesash"
 
 msgid "Review"
 msgstr "Shqyrtim"
@@ -373,6 +377,15 @@ msgstr "Nënshkrimi ka skaduar."
 
 msgid "Error decoding signature."
 msgstr "Gabim në shkodimin e nënshkrimit."
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Lloj i gabuar për një ose më tepër kyçe te ngarkesa"

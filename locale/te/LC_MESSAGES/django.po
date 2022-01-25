@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2022-01-03 14:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -106,6 +106,10 @@ msgstr "సహాయం కావాలా?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "[%s] గమనింపు లేనే లేదు"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "యాడ్-ఆన్ సమీక్ష గైడు"
 
 msgid "Review"
 msgstr "సమీక్ష"
@@ -354,6 +358,15 @@ msgstr "సంతకం కాలంచెల్లింది."
 
 msgid "Error decoding signature."
 msgstr "సంతకం డీకోడు చేయడంలో పొరపాటు."
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "పేలోడ్లో ఒకటి లేదా మరిన్ని కీలు తప్పు రకంలో ఉన్నాయి"

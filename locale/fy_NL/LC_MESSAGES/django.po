@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2022-01-14 09:49+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,6 +110,10 @@ msgstr "Help nedich?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Notifikaasje [%s] bestiet net"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Add-on-beoardielingsgids"
 
 msgid "Review"
 msgstr "Beoardieling"
@@ -374,6 +378,15 @@ msgstr "Undertekening is ferrûn."
 
 msgid "Error decoding signature."
 msgstr "Flater by dekodearjen ûndertekening."
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Ien of mear kaaien yn de payload binne fan it ferkearde type"

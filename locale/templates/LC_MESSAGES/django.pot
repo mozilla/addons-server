@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,49 +99,53 @@ msgstr ""
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:175 src/olympia/devhub/views.py:1076
+#: src/olympia/accounts/serializers.py:175 src/olympia/devhub/views.py:1078
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:179 src/olympia/devhub/views.py:1082
+#: src/olympia/accounts/serializers.py:179 src/olympia/devhub/views.py:1084
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:185 src/olympia/devhub/views.py:1092
+#: src/olympia/accounts/serializers.py:185 src/olympia/devhub/views.py:1094
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr ""
 
-#: src/olympia/accounts/views.py:93
+#: src/olympia/accounts/views.py:98
 msgid "You are already logged in."
 msgstr ""
 
-#: src/olympia/accounts/views.py:94
+#: src/olympia/accounts/views.py:99
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
-#: src/olympia/accounts/views.py:95
+#: src/olympia/accounts/views.py:100
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr ""
 
-#: src/olympia/accounts/views.py:96
+#: src/olympia/accounts/views.py:101
 msgid "You could not be logged in. Please try again."
 msgstr ""
 
-#: src/olympia/accounts/views.py:196
+#: src/olympia/accounts/views.py:205
 msgid "Need help?"
 msgstr ""
 
-#: src/olympia/accounts/views.py:774
+#: src/olympia/accounts/views.py:796
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr ""
 
-#: src/olympia/activity/models.py:593
+#: src/olympia/activity/models.py:42
+msgid "Add-ons Review Team"
+msgstr ""
+
+#: src/olympia/activity/models.py:615
 msgid "Review"
 msgstr ""
 
-#: src/olympia/activity/models.py:597
+#: src/olympia/activity/models.py:619
 #: src/olympia/devhub/templates/devhub/versions/list.html:41
 msgid "Version {0}"
 msgstr ""
@@ -150,7 +154,7 @@ msgstr ""
 msgid "Review note"
 msgstr ""
 
-#: src/olympia/activity/views.py:93
+#: src/olympia/activity/views.py:98
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
@@ -280,7 +284,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2071
+#: src/olympia/devhub/views.py:2073
 msgid "Manage API Keys"
 msgstr ""
 
@@ -320,7 +324,7 @@ msgstr ""
 msgid "CIDR"
 msgstr ""
 
-#: src/olympia/amo/middleware.py:233 src/olympia/templates/base.html:65
+#: src/olympia/amo/middleware.py:241 src/olympia/templates/base.html:65
 #: src/olympia/templates/impala/base.html:77
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
@@ -518,35 +522,49 @@ msgstr ""
 msgid "Another Body"
 msgstr ""
 
-#: src/olympia/api/authentication.py:61 src/olympia/api/authentication.py:263
+#: src/olympia/api/authentication.py:66 src/olympia/api/authentication.py:199
+#: src/olympia/api/authentication.py:381
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
 
-#: src/olympia/api/authentication.py:69 src/olympia/api/authentication.py:266
+#: src/olympia/api/authentication.py:74 src/olympia/api/authentication.py:207
+#: src/olympia/api/authentication.py:384
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
-#: src/olympia/api/authentication.py:103 src/olympia/api/authentication.py:208
+#: src/olympia/api/authentication.py:108 src/olympia/api/authentication.py:326
 msgid "Signature has expired."
 msgstr ""
 
-#: src/olympia/api/authentication.py:109 src/olympia/api/authentication.py:211
+#: src/olympia/api/authentication.py:114 src/olympia/api/authentication.py:329
 msgid "Error decoding signature."
 msgstr ""
 
-#: src/olympia/api/authentication.py:205
+#: src/olympia/api/authentication.py:151
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+#: src/olympia/api/authentication.py:243
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+#: src/olympia/api/authentication.py:257
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
+
+#: src/olympia/api/authentication.py:323
 msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
-#: src/olympia/api/authentication.py:214
+#: src/olympia/api/authentication.py:332
 msgid "Invalid JWT Token."
 msgstr ""
 
-#: src/olympia/api/authentication.py:289
+#: src/olympia/api/authentication.py:407
 msgid "Invalid token or hash."
 msgstr ""
 
-#: src/olympia/api/authentication.py:291
+#: src/olympia/api/authentication.py:409
 msgid "Email address not found."
 msgstr ""
 
@@ -760,515 +778,515 @@ msgstr ""
 msgid "{addon} was created."
 msgstr ""
 
-#: src/olympia/constants/activity.py:30
+#: src/olympia/constants/activity.py:31
 msgid "{addon} properties edited."
 msgstr ""
 
-#: src/olympia/constants/activity.py:36
+#: src/olympia/constants/activity.py:38
 msgid "{addon} description edited."
 msgstr ""
 
-#: src/olympia/constants/activity.py:42
+#: src/olympia/constants/activity.py:45
 msgid "Categories edited for {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:48
+#: src/olympia/constants/activity.py:52
 msgid "{0.name} ({1}) added to {addon}."
 msgstr ""
 
 #. L10n: {0} is the user being removed, {1} is their role.
-#: src/olympia/constants/activity.py:56
+#: src/olympia/constants/activity.py:61
 msgid "{0.name} ({1}) removed from {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:63
+#: src/olympia/constants/activity.py:69
 msgid "Contributions for {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:68
+#: src/olympia/constants/activity.py:74
 msgid "{addon} disabled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:74
+#: src/olympia/constants/activity.py:81
 msgid "{addon} enabled."
 msgstr ""
 
 #. L10n: {status} is the status
-#: src/olympia/constants/activity.py:81
+#: src/olympia/constants/activity.py:89
 msgid "{addon} status changed to {status}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:88
+#: src/olympia/constants/activity.py:96
 msgid "{version} added to {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:96
+#: src/olympia/constants/activity.py:105
 msgid "{version} edited for {addon}."
 msgstr ""
 
 #. L10n: {0} is the version number
-#: src/olympia/constants/activity.py:104
+#: src/olympia/constants/activity.py:114
 msgid "Version {0} deleted from {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:111
+#: src/olympia/constants/activity.py:122
 msgid "File {0.name} added to {version} of {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:123
+#: src/olympia/constants/activity.py:134
 msgid "File {0} deleted from {version} of {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:129
+#: src/olympia/constants/activity.py:140
 msgid "{addon} {version} approved."
 msgstr ""
 
-#: src/olympia/constants/activity.py:130 src/olympia/constants/base.py:25
+#: src/olympia/constants/activity.py:141 src/olympia/constants/base.py:25
 #: src/olympia/constants/base.py:32
 msgid "Approved"
 msgstr ""
 
-#: src/olympia/constants/activity.py:140
+#: src/olympia/constants/activity.py:151
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
-#: src/olympia/constants/activity.py:141
+#: src/olympia/constants/activity.py:152
 msgid "Preliminarily approved"
 msgstr ""
 
-#: src/olympia/constants/activity.py:152
+#: src/olympia/constants/activity.py:163
 msgid "{addon} {version} rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:153
+#: src/olympia/constants/activity.py:164
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:22
 msgid "Rejected"
 msgstr ""
 
-#: src/olympia/constants/activity.py:163
+#: src/olympia/constants/activity.py:174
 msgid "{addon} {version} retained."
 msgstr ""
 
-#: src/olympia/constants/activity.py:164
+#: src/olympia/constants/activity.py:175
 msgid "Retained"
 msgstr ""
 
-#: src/olympia/constants/activity.py:174
+#: src/olympia/constants/activity.py:185
 msgid "{addon} {version} escalated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:175 src/olympia/constants/activity.py:209
+#: src/olympia/constants/activity.py:186 src/olympia/constants/activity.py:220
 msgid "Super review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:185
+#: src/olympia/constants/activity.py:196
 msgid "{addon} {version} review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:186
+#: src/olympia/constants/activity.py:197
 msgid "Review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:195
+#: src/olympia/constants/activity.py:206
 msgid "{addon} {version} more information requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:196
+#: src/olympia/constants/activity.py:207
 msgid "More information requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:208
+#: src/olympia/constants/activity.py:219
 msgid "{addon} {version} super review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:212
+#: src/olympia/constants/activity.py:223
 msgid ""
 "The addon has been flagged for Admin Review.  It's still in our review queue,"
 " but it will need to be checked by one of our admin reviewers. The review "
 "might take longer than usual."
 msgstr ""
 
-#: src/olympia/constants/activity.py:223
+#: src/olympia/constants/activity.py:234
 msgid "Comment on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:224
+#: src/olympia/constants/activity.py:235
 msgid "Commented"
 msgstr ""
 
-#: src/olympia/constants/activity.py:234
+#: src/olympia/constants/activity.py:245
 msgid "{tag} added to {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:240
+#: src/olympia/constants/activity.py:252
 msgid "{tag} removed from {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:246
+#: src/olympia/constants/activity.py:259
 msgid "{addon} added to {collection}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:252
+#: src/olympia/constants/activity.py:265
 msgid "{addon} removed from {collection}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:258
+#: src/olympia/constants/activity.py:271
 msgid "{rating} for {addon} written."
 msgstr ""
 
 #. L10n: {0} is a category name.
-#: src/olympia/constants/activity.py:266
+#: src/olympia/constants/activity.py:279
 msgid "{addon} featured in {0}."
 msgstr ""
 
 #. L10n: {0} is a category name.
-#: src/olympia/constants/activity.py:273
+#: src/olympia/constants/activity.py:286
 msgid "{addon} no longer featured in {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:278
+#: src/olympia/constants/activity.py:291
 msgid "{addon} is now featured."
 msgstr ""
 
-#: src/olympia/constants/activity.py:284
+#: src/olympia/constants/activity.py:297
 msgid "{addon} is no longer featured."
 msgstr ""
 
 #. L10n: {0} is the application, {1} is the version of the app
-#: src/olympia/constants/activity.py:292
+#: src/olympia/constants/activity.py:305
 msgid "{0} {1} added."
 msgstr ""
 
 #. L10n: {0} is a user, {1} is their role
-#: src/olympia/constants/activity.py:300
+#: src/olympia/constants/activity.py:313
 msgid "{0.name} role changed to {1} for {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:309
+#: src/olympia/constants/activity.py:323
 msgid "{addon} is now licensed under {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:315
+#: src/olympia/constants/activity.py:330
 msgid "{addon} policy changed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:321
+#: src/olympia/constants/activity.py:337
 msgid "{addon} icon changed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:327
+#: src/olympia/constants/activity.py:344
 msgid "{rating} for {addon} approved."
 msgstr ""
 
-#: src/olympia/constants/activity.py:328
+#: src/olympia/constants/activity.py:345
 msgid "{user} approved {rating} for {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:338
+#: src/olympia/constants/activity.py:355
 msgid "Review {rating} for {addon} deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:339
+#: src/olympia/constants/activity.py:356
 msgid "{user} deleted {rating} for {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:346
+#: src/olympia/constants/activity.py:363
 msgid "Application max version for {version} updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:351
+#: src/olympia/constants/activity.py:368
 msgid "Authors emailed about compatibility of {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:356
+#: src/olympia/constants/activity.py:373
 msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 
-#: src/olympia/constants/activity.py:361
+#: src/olympia/constants/activity.py:378
 msgid "Password changed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:367
+#: src/olympia/constants/activity.py:384
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
 
-#: src/olympia/constants/activity.py:368
+#: src/olympia/constants/activity.py:385
 msgid "Approved but waiting"
 msgstr ""
 
-#: src/olympia/constants/activity.py:376
+#: src/olympia/constants/activity.py:393
 msgid "Account updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:391
+#: src/olympia/constants/activity.py:408
 msgid "Created: {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:397
+#: src/olympia/constants/activity.py:414
 msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:403
+#: src/olympia/constants/activity.py:420
 msgid "Deleted: {1}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:409
+#: src/olympia/constants/activity.py:426
 msgid "User {user} edited, reason: {1}"
 msgstr ""
 
-#: src/olympia/constants/activity.py:415
+#: src/olympia/constants/activity.py:432
 msgid "User {user} anonymized."
 msgstr ""
 
-#: src/olympia/constants/activity.py:422
+#: src/olympia/constants/activity.py:439
 msgid "User {user} restricted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:429
+#: src/olympia/constants/activity.py:446
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:436
+#: src/olympia/constants/activity.py:453
 msgid "{rating} for {addon} updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:442
+#: src/olympia/constants/activity.py:459
 msgid "{addon} reviewed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:448
+#: src/olympia/constants/activity.py:465
 msgid "User {user} banned."
 msgstr ""
 
-#: src/olympia/constants/activity.py:455
+#: src/olympia/constants/activity.py:472
 msgid "User {user} picture deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:462
+#: src/olympia/constants/activity.py:479
 msgid "User {0.name} added to {group}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:470
+#: src/olympia/constants/activity.py:487
 msgid "User {0.name} removed from {group}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:477
+#: src/olympia/constants/activity.py:494
 msgid "{addon} unlisted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:483 src/olympia/constants/activity.py:490
-#: src/olympia/constants/activity.py:504 src/olympia/constants/activity.py:510
-#: src/olympia/constants/activity.py:517 src/olympia/constants/activity.py:525
-#: src/olympia/constants/activity.py:533
+#: src/olympia/constants/activity.py:500 src/olympia/constants/activity.py:507
+#: src/olympia/constants/activity.py:521 src/olympia/constants/activity.py:527
+#: src/olympia/constants/activity.py:534 src/olympia/constants/activity.py:542
+#: src/olympia/constants/activity.py:550
 msgid "{file} was signed."
 msgstr ""
 
 #. L10n: {0} is the add-on GUID.
-#: src/olympia/constants/activity.py:498
+#: src/olympia/constants/activity.py:515
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#: src/olympia/constants/activity.py:539
+#: src/olympia/constants/activity.py:556
 msgid "{addon} migrated from preliminary."
 msgstr ""
 
-#: src/olympia/constants/activity.py:546
+#: src/olympia/constants/activity.py:563
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:547
+#: src/olympia/constants/activity.py:564
 msgid "Developer Reply"
 msgstr ""
 
-#: src/olympia/constants/activity.py:554
+#: src/olympia/constants/activity.py:572
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:555
+#: src/olympia/constants/activity.py:573
 msgid "Reviewer Reply"
 msgstr ""
 
-#: src/olympia/constants/activity.py:562
+#: src/olympia/constants/activity.py:580
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:563
+#: src/olympia/constants/activity.py:581
 msgid "Approval notes changed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:570
+#: src/olympia/constants/activity.py:589
 msgid "Source code uploaded for {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:571
+#: src/olympia/constants/activity.py:590
 msgid "Source code uploaded"
 msgstr ""
 
-#: src/olympia/constants/activity.py:578
+#: src/olympia/constants/activity.py:598
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:579
+#: src/olympia/constants/activity.py:599
 msgid "Auto-Approval confirmed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:588
+#: src/olympia/constants/activity.py:608
 msgid "{addon} {version} re-enabled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:593
+#: src/olympia/constants/activity.py:613
 msgid "{addon} {version} disabled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:598
+#: src/olympia/constants/activity.py:618
 msgid "{addon} {version} content approved."
 msgstr ""
 
-#: src/olympia/constants/activity.py:599
+#: src/olympia/constants/activity.py:619
 msgid "Content approved"
 msgstr ""
 
-#: src/olympia/constants/activity.py:609
+#: src/olympia/constants/activity.py:629
 msgid "{addon} {version} content rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:610
+#: src/olympia/constants/activity.py:630
 msgid "Content rejected"
 msgstr ""
 
-#: src/olympia/constants/activity.py:619
+#: src/olympia/constants/activity.py:639
 msgid "{addon} information request altered or removed by admin."
 msgstr ""
 
-#: src/olympia/constants/activity.py:620
+#: src/olympia/constants/activity.py:640
 msgid "Information request altered"
 msgstr ""
 
-#: src/olympia/constants/activity.py:628
+#: src/olympia/constants/activity.py:648
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:629
+#: src/olympia/constants/activity.py:649
 msgid "Information request removed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:636
+#: src/olympia/constants/activity.py:656
 msgid "{addon} {version} admin add-on-review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:637
+#: src/olympia/constants/activity.py:657
 msgid "Admin add-on-review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:646
+#: src/olympia/constants/activity.py:666
 msgid "{addon} {version} admin content-review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:647
+#: src/olympia/constants/activity.py:667
 msgid "Admin content-review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:656
+#: src/olympia/constants/activity.py:676
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:657
+#: src/olympia/constants/activity.py:677
 msgid "Admin theme-review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:667
+#: src/olympia/constants/activity.py:687
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
-#: src/olympia/constants/activity.py:673
+#: src/olympia/constants/activity.py:693
 msgid "User {user} api key reset."
 msgstr ""
 
-#: src/olympia/constants/activity.py:682
+#: src/olympia/constants/activity.py:702
 msgid "Block for {0} added to Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:683
+#: src/olympia/constants/activity.py:703
 msgid "Block added"
 msgstr ""
 
-#: src/olympia/constants/activity.py:691
+#: src/olympia/constants/activity.py:711
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:692
+#: src/olympia/constants/activity.py:712
 msgid "Block edited"
 msgstr ""
 
-#: src/olympia/constants/activity.py:700
+#: src/olympia/constants/activity.py:720
 msgid "Block for {0} deleted from Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:701
+#: src/olympia/constants/activity.py:721
 msgid "Block deleted"
 msgstr ""
 
-#: src/olympia/constants/activity.py:709
+#: src/olympia/constants/activity.py:729
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#: src/olympia/constants/activity.py:717
+#: src/olympia/constants/activity.py:737
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr ""
 
-#: src/olympia/constants/activity.py:724
+#: src/olympia/constants/activity.py:744
 msgid "Block {1} action for {0} signed off."
 msgstr ""
 
-#: src/olympia/constants/activity.py:725
+#: src/olympia/constants/activity.py:745
 msgid "Block action signoff"
 msgstr ""
 
-#: src/olympia/constants/activity.py:730
+#: src/olympia/constants/activity.py:750
 msgid "User {user} session(s) reset."
 msgstr ""
 
-#: src/olympia/constants/activity.py:736
+#: src/olympia/constants/activity.py:756
 msgid "User {user} throttled for scope \"{0}\""
 msgstr ""
 
-#: src/olympia/constants/activity.py:743
+#: src/olympia/constants/activity.py:763
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:744
+#: src/olympia/constants/activity.py:764
 msgid "Content reject scheduled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:755
+#: src/olympia/constants/activity.py:775
 msgid "{addon} {version} reject scheduled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:756
+#: src/olympia/constants/activity.py:776
 msgid "Rejection scheduled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:766
+#: src/olympia/constants/activity.py:786
 msgid "{addon} {version} re-signed (previously {0})."
 msgstr ""
 
-#: src/olympia/constants/activity.py:767
+#: src/olympia/constants/activity.py:787
 msgid "Version re-signed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:778
+#: src/olympia/constants/activity.py:798
 msgid "{user} force-disabled {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:779
+#: src/olympia/constants/activity.py:799
 msgid "Force disabled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:787
+#: src/olympia/constants/activity.py:807
 msgid "{user} force-enabled {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:788
+#: src/olympia/constants/activity.py:808
 msgid "Force enabled"
 msgstr ""
 
@@ -2617,92 +2635,92 @@ msgstr ""
 msgid "User Reviews"
 msgstr ""
 
-#: src/olympia/devhub/views.py:415
+#: src/olympia/devhub/views.py:417
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
-#: src/olympia/devhub/views.py:426
+#: src/olympia/devhub/views.py:428
 msgid "Theme deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:426
+#: src/olympia/devhub/views.py:428
 msgid "Add-on deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:432
+#: src/olympia/devhub/views.py:434
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:434
+#: src/olympia/devhub/views.py:436
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:518
+#: src/olympia/devhub/views.py:520
 msgid "Invitation accepted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:521
+#: src/olympia/devhub/views.py:523
 msgid "Invitation declined."
 msgstr ""
 
-#: src/olympia/devhub/views.py:605
+#: src/olympia/devhub/views.py:607
 msgid "An author has been added to your add-on"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:3
-#: src/olympia/devhub/views.py:611
+#: src/olympia/devhub/views.py:613
 msgid "Author invitation for {addon_name}"
 msgstr ""
 
-#: src/olympia/devhub/views.py:624
+#: src/olympia/devhub/views.py:626
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
 
-#: src/olympia/devhub/views.py:631
+#: src/olympia/devhub/views.py:633
 msgid "An author role has been changed on your add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:656
+#: src/olympia/devhub/views.py:658
 msgid "An author has been removed from your add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:667 src/olympia/devhub/views.py:1226
+#: src/olympia/devhub/views.py:669 src/olympia/devhub/views.py:1228
 msgid "Changes successfully saved."
 msgstr ""
 
-#: src/olympia/devhub/views.py:687
+#: src/olympia/devhub/views.py:689
 msgid "Validate Add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1074
+#: src/olympia/devhub/views.py:1076
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1080
+#: src/olympia/devhub/views.py:1082
 msgid "Icons cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1106
+#: src/olympia/devhub/views.py:1108
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1111
+#: src/olympia/devhub/views.py:1113
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1119
+#: src/olympia/devhub/views.py:1121
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1124
+#: src/olympia/devhub/views.py:1126
 msgid "Icon must be square (same width and height)."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1130
+#: src/olympia/devhub/views.py:1132
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1279
+#: src/olympia/devhub/views.py:1281
 #, python-format
 msgid ""
 "The latest approved version of this %s addon cannot be deleted or disabled "
@@ -2710,115 +2728,115 @@ msgid ""
 "contact AMO Admins if you need help with this."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1287
+#: src/olympia/devhub/views.py:1289
 #, python-format
 msgid "Version %s disabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1291
+#: src/olympia/devhub/views.py:1293
 #, python-format
 msgid "Version %s deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1302
+#: src/olympia/devhub/views.py:1304
 #, python-format
 msgid "Version %s re-enabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1315
+#: src/olympia/devhub/views.py:1317
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1427
+#: src/olympia/devhub/views.py:1429
 msgid "Header area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1428
+#: src/olympia/devhub/views.py:1430
 msgid ""
 "The color of the header area background, displayed in the part of the header "
 "not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1437
+#: src/olympia/devhub/views.py:1439
 msgid "Header area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1438
+#: src/olympia/devhub/views.py:1440
 msgid ""
 "The color of the text and icons in the header area, except the active tab. "
 "Manifest field:  tab_background_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1446
+#: src/olympia/devhub/views.py:1448
 msgid "Toolbar area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1447
+#: src/olympia/devhub/views.py:1449
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
 "active tab.  Manifest field:  toolbar."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1455
+#: src/olympia/devhub/views.py:1457
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1456
+#: src/olympia/devhub/views.py:1458
 msgid ""
 "The color of the text and icons in the toolbar and the active tab. Manifest "
 "field:  bookmark_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1464
+#: src/olympia/devhub/views.py:1466
 msgid "Toolbar field area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1465
+#: src/olympia/devhub/views.py:1467
 msgid ""
 "The background color for fields in the toolbar, such as the URL bar. Manifest"
 " field:  toolbar_field."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1473
+#: src/olympia/devhub/views.py:1475
 msgid "Toolbar field area text"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1474
+#: src/olympia/devhub/views.py:1476
 msgid ""
 "The color of text in fields in the toolbar, such as the URL bar. Manifest "
 "field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1483
+#: src/olympia/devhub/views.py:1485
 msgid "Tab highlight"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1484
+#: src/olympia/devhub/views.py:1486
 msgid ""
 "The highlight color of the active tab. Implemented as a border around the tab"
 " on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:"
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1930
+#: src/olympia/devhub/views.py:1932
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1932
+#: src/olympia/devhub/views.py:1934
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2037
+#: src/olympia/devhub/views.py:2039
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2084
+#: src/olympia/devhub/views.py:2086
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2095
+#: src/olympia/devhub/views.py:2097
 msgid "API key revoked"
 msgstr ""
 

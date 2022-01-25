@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2021-12-08 05:51+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -107,6 +107,10 @@ msgstr "Tesriḍ tallelt?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Alɣu [%s] ulac-it"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Amnir n ucegger n uzegrir"
 
 msgid "Review"
 msgstr "Acegger"
@@ -366,6 +370,15 @@ msgstr "Azmul yemmut."
 
 msgid "Error decoding signature."
 msgstr "Tuccḍa deg uzmek n uzmul."
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Yir anaw i yiwet neɣ ugar n tsura deg usali"

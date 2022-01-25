@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2021-05-20 11:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,6 +106,10 @@ msgstr "Trenger du hjelp?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Varsel [%s] eksisterer ikke"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Vurderingsretningslinjer for tillegg"
 
 msgid "Review"
 msgstr "Omtale"
@@ -367,6 +371,15 @@ msgstr "Signaturen har utgått."
 
 msgid "Error decoding signature."
 msgstr "Feil ved dekoding av signatur."
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Feil type for en eller flere nøkler i pakkeinnhold"

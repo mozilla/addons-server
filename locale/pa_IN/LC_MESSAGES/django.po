@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,6 +106,10 @@ msgstr "ਮਦਦ ਚਾਹੀਦੀ ਹੈ?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "ਸੂਚਨਾ [%s] ਮੌਜੂਦ ਨਹੀਂ ਹੈ"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਗਾਈਡ"
 
 msgid "Review"
 msgstr "ਪੜਤਾਲ"
@@ -361,6 +365,15 @@ msgstr "ਦਸਤਖਤ ਦੀ ਮਿਆਦ ਪੁੱਗ ਗਈ ਹੈ।"
 
 msgid "Error decoding signature."
 msgstr "ਗਲਤੀ ਡੀਕੋਡਿੰਗ ਦਸਤਖਤ।"
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "ਗ਼ਲਤ ਕਿਸਮ ਲਈ ਪੇਇਲੋਡ ਵਿਚ ਇਕ ਜਾਂ ਵਧੇਰੇ ਕੁੰਜੀਆਂ"
