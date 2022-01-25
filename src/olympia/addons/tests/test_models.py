@@ -2427,6 +2427,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         super().setUp()
         self.selected_app = amo.FIREFOX.id
         self.user = UserProfile.objects.get(pk=999)
+        self.user.update(last_login_ip='127.0.0.10')
         self.addCleanup(translation.deactivate)
 
         def _app(application):
@@ -2732,8 +2733,11 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         assert addon.default_locale == 'en-US'
 
     def test_activity_log(self):
-        core.set_user(self.user)
-        self.upload = self.get_upload('webextension.xpi')
+        # Set current user as the task user, but use an upload that belongs to
+        # another, making sure the activity log belongs to them and not the
+        # task user.
+        core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
+        self.upload = self.get_upload('webextension.xpi', user=self.user)
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
             self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
@@ -2742,8 +2746,15 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         assert (
             ActivityLog.objects.for_addons(addon)
             .filter(action=amo.LOG.CREATE_ADDON.id)
-            .exists()
+            .count()
+            == 1
         )
+        log = (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.CREATE_ADDON.id)
+            .get()
+        )
+        assert log.user == self.user
 
 
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
