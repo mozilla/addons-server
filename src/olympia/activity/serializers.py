@@ -46,14 +46,12 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         return obj.pk in self.to_highlight
 
     def get_user(self, obj):
-        """Return minimal user information using ActivityLog.author_name to
-        avoid revealing actual name of reviewers for their review actions if
-        they have set an alias.
+        """Return minimal user information from ActivityLog.
 
         id, username and url are present for backwards-compatibility in v3 API
         only."""
         data = {
-            'name': obj.author_name,
+            'name': obj.user.name,
         }
         request = self.context.get('request')
         if request and is_gate_active(request, 'activity-user-shim'):

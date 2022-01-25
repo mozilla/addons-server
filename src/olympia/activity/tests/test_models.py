@@ -6,11 +6,13 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core
 from olympia.activity.models import (
+    GENERIC_USER_NAME,
     MAX_TOKEN_USE_COUNT,
     ActivityLog,
     ActivityLogToken,
     AddonLog,
     DraftComment,
+    GenericMozillaUser,
     IPLog,
     ReviewActionReasonLog,
 )
@@ -422,6 +424,23 @@ class TestActivityLog(TestCase):
 
         assert len(versions[0].all_activity) == 1
         assert len(versions[1].all_activity) == 1
+
+    def test_anonymize_user_for_developer_transformer(self):
+        addon = Addon.objects.get()
+        # This action's user can be shown.
+        ActivityLog.create(amo.LOG.CREATE_ADDON, addon, user=self.request.user)
+        # This action's user should not be shown.
+        ActivityLog.create(amo.LOG.FORCE_DISABLE, addon, user=self.request.user)
+
+        logs = ActivityLog.objects.all().transform(
+            ActivityLog.transformer_anonymize_user_for_developer
+        )
+
+        assert logs[0].action == amo.LOG.FORCE_DISABLE.id
+        assert isinstance(logs[0].user, GenericMozillaUser)
+        assert logs[0].user.name == GENERIC_USER_NAME
+        assert logs[1].action == amo.LOG.CREATE_ADDON.id
+        assert logs[1].user == self.request.user
 
     def test_xss_arguments_and_escaping(self):
         addon = Addon.objects.get()

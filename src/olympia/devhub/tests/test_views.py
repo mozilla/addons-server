@@ -21,7 +21,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.accounts.views import API_TOKEN_COOKIE
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import GENERIC_USER_NAME, ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonUser
 from olympia.amo.templatetags.jinja_helpers import (
     format_date,
@@ -738,51 +738,29 @@ class TestActivityFeed(TestCase):
         doc = pq(res.content)
         assert len(doc('#recent-activity .item')) == 2
 
-    def test_reviewer_name_is_used_for_reviewer_actions(self):
-        self.action_user.update(display_name='HîdeMe', reviewer_name='ShöwMe')
-        self.add_log(action=amo.LOG.APPROVE_VERSION)
+    def test_names_for_action_users(self):
+        self.add_log(action=amo.LOG.CREATE_ADDON)
+        self.add_log(action=amo.LOG.ADD_RATING)
+
         response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(response.content)
-        assert len(doc('#recent-activity .item')) == 1
-
-        content = force_str(response.content)
-        assert self.action_user.reviewer_name in content
-        assert self.action_user.name not in content
-
-    def test_regular_name_is_used_for_non_reviewer_actions(self):
-        # Fields are inverted compared to the test above.
-        self.action_user.update(reviewer_name='HîdeMe', display_name='ShöwMe')
-        self.add_log(action=amo.LOG.ADD_RATING)  # not a reviewer action.
-        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
-        doc = pq(response.content)
-        assert len(doc('#recent-activity .item')) == 1
-
-        content = force_str(response.content)
-        # Assertions are inverted compared to the test above.
-        assert self.action_user.reviewer_name not in content
-        assert self.action_user.name in content
+        timestamp = doc('#recent-activity div.item p.timestamp')
+        assert len(timestamp) == 2
+        assert self.action_user.name
+        assert 'by %s' % GENERIC_USER_NAME in timestamp.eq(0).html()
+        assert 'by %s' % self.action_user.name in timestamp.eq(1).html()
 
     def test_addons_dashboard_name(self):
-        self.add_log()
+        self.add_log(action=amo.LOG.CREATE_ADDON)
+        self.add_log(action=amo.LOG.ADD_RATING)
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
         timestamp = doc('.recent-activity li.item span.activity-timestamp')
-        assert len(timestamp) == 1
+        assert len(timestamp) == 2
         assert self.action_user.name
-        assert self.action_user.name in timestamp.html()
-        assert '<a href=' not in timestamp.html()
-
-    def test_addons_dashboard_reviewer_name(self):
-        self.action_user.update(reviewer_name='bob')
-        self.add_log(action=amo.LOG.APPROVE_VERSION)
-        res = self.client.get(reverse('devhub.addons'))
-        doc = pq(res.content)
-        timestamp = doc('.recent-activity li.item span.activity-timestamp')
-        assert len(timestamp) == 1
-        assert self.action_user.name
-        assert self.action_user.name not in timestamp.html()
-        assert self.action_user.reviewer_name in timestamp.html()
-        assert '<a href=' not in timestamp.html()
+        assert 'by %s' % GENERIC_USER_NAME in timestamp.eq(0).html()
+        assert 'by %s' % self.action_user.name in timestamp.eq(1).html()
+        assert '<a href=' not in timestamp.eq(0).html()
 
 
 class TestDeveloperAgreement(TestCase):

@@ -312,8 +312,10 @@ def _get_items(action, addons):
     }
 
     filter_ = filters.get(action)
-    items = ActivityLog.objects.for_addons(addons).exclude(
-        action__in=amo.LOG_HIDE_DEVELOPER
+    items = (
+        ActivityLog.objects.for_addons(addons)
+        .exclude(action__in=amo.LOG_HIDE_DEVELOPER)
+        .transform(ActivityLog.transformer_anonymize_user_for_developer)
     )
     if filter_:
         items = items.filter(action__in=[i.id for i in filter_])
