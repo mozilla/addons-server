@@ -289,7 +289,9 @@ class TestRestrictionChecker(TestCase):
         # Test with a submission restriction (the default): approval should be allowed.
         EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
         upload = FileUpload.objects.create(
-            user=self.request.user, ip_address='10.0.0.2'
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -306,7 +308,9 @@ class TestRestrictionChecker(TestCase):
             restriction_type=RESTRICTION_TYPES.APPROVAL,
         )
         upload = FileUpload.objects.create(
-            user=self.request.user, ip_address='10.0.0.2'
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -362,7 +366,9 @@ class TestRestrictionChecker(TestCase):
 
     def test_is_auto_approval_allowed_with_mocks(self, incr_mock):
         upload = FileUpload.objects.create(
-            user=self.request.user, ip_address='10.0.0.2'
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         checker = RestrictionChecker(upload=upload)
         with ExitStack() as stack:

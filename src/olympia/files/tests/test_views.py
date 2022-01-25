@@ -69,10 +69,20 @@ class TestFileUploadViewSet(TestCase):
         self.list_url = reverse_ns('addon-upload-list', api_version='v5')
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
         # Add a file upload
-        self.upload = FileUpload.objects.create(user=self.user)
+        self.upload = FileUpload.objects.create(
+            user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API, ip_address='127.0.0.9'
+        )
         # Add some other ones from other users
-        self.other_user_upload = FileUpload.objects.create(user=user_factory())
-        FileUpload.objects.create()
+        self.other_user_upload = FileUpload.objects.create(
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            ip_address='127.0.0.10',
+        )
+        FileUpload.objects.create(
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            ip_address='127.0.0.11',
+        )
 
         self.detail_url = reverse_ns(
             'addon-upload-detail',

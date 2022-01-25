@@ -1390,7 +1390,13 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_has_failed_upload(self):
         addon = Addon.objects.get(guid=self.guid)
-        FileUpload.objects.create(addon=addon, version='3.0')
+        FileUpload.objects.create(
+            addon=addon,
+            version='3.0',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_SIGNING_API,
+            ip_address='127.0.0.70',
+        )
         self.create_version('3.0')
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 200

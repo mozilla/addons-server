@@ -900,8 +900,8 @@ class Addon(OnChangeMixin, ModelBase):
     @classmethod
     def from_upload(
         cls,
-        *,
         upload,
+        *,
         selected_apps,
         channel=amo.RELEASE_CHANNEL_LISTED,
         parsed_data,

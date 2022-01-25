@@ -2464,7 +2464,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         deleted.update(status=amo.STATUS_APPROVED)
         deleted.delete()
@@ -2481,7 +2481,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         assert AddonGUID.objects.filter(guid='@webextension-guid').count() == 1
         # Claim the add-on.
@@ -2495,7 +2495,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         deleted.reload()
         assert addon.guid == '@webextension-guid'
@@ -2513,12 +2513,12 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         # Upload a couple of addons so we can pretend they were soft deleted.
         deleted1 = Addon.from_upload(
             self.get_upload('webextension.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         deleted2 = Addon.from_upload(
             self.get_upload('webextension_no_id.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         AddonUser(addon=deleted1, user=self.user).save()
@@ -2532,7 +2532,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         assert addon.name == 'My WebExtension Addon'
         assert addon.guid == '@webextension-guid'
@@ -2546,7 +2546,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
     def test_xpi_version(self):
         addon = Addon.from_upload(
             self.get_upload('webextension.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         version = addon.versions.get()
@@ -2559,7 +2559,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         # Make sure default_locale follows the active translation.
         addon = Addon.from_upload(
             self.get_upload('webextension.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert addon.default_locale == 'en-US'
@@ -2567,7 +2567,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         translation.activate('es')
         addon = Addon.from_upload(
             self.get_upload('webextension.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert addon.default_locale == 'es'
@@ -2576,7 +2576,9 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         upload = self.get_upload('webextension.xpi')
         assert not upload.validation_timeout
         addon = Addon.from_upload(
-            upload, [self.selected_app], parsed_data=self.dummy_parsed_data
+            upload,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
         assert not addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
@@ -2591,7 +2593,9 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         upload.validation = json.dumps(validation)
         assert upload.validation_timeout
         addon = Addon.from_upload(
-            upload, [self.selected_app], parsed_data=self.dummy_parsed_data
+            upload,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
         assert addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
@@ -2601,7 +2605,9 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         assert not upload.validation_timeout
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         addon = Addon.from_upload(
-            upload, [self.selected_app], parsed_data=self.dummy_parsed_data
+            upload,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
         assert addon.needs_admin_code_review
         assert addon.auto_approval_disabled
@@ -2612,7 +2618,9 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         self.dummy_parsed_data['type'] = amo.ADDON_LPAPP
         addon = Addon.from_upload(
-            upload, [self.selected_app], parsed_data=self.dummy_parsed_data
+            upload,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
         assert not addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
@@ -2621,7 +2629,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension_no_id.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
 
         assert addon.guid is not None
@@ -2632,7 +2640,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension_no_id.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         new_addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         assert new_addon.guid is not None
         assert new_addon.guid != addon.guid
@@ -2643,7 +2651,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
 
         assert addon.guid == '@webextension-guid'
@@ -2652,14 +2660,16 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         with self.assertRaises(forms.ValidationError) as e:
             self.upload = self.get_upload('webextension.xpi')
             parsed_data = parse_addon(self.upload, user=self.user)
-            Addon.from_upload(self.upload, [self.selected_app], parsed_data=parsed_data)
+            Addon.from_upload(
+                self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+            )
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_webextension_resolve_translations(self):
         self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
 
         # Normalized from `en` to `en-US`
@@ -2690,7 +2700,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
 
         addon = Addon.from_upload(
             self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
 
@@ -2714,7 +2724,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
 
         addon = Addon.from_upload(
             self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
 
@@ -2726,7 +2736,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         assert addon
         assert (
