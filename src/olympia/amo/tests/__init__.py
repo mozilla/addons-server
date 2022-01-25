@@ -15,6 +15,7 @@ from tempfile import NamedTemporaryFile
 
 from django import forms, test
 from django.conf import settings
+from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core import signing
@@ -49,7 +50,7 @@ from olympia.addons.models import (
 )
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
 from olympia.amo.urlresolvers import Prefixer
-from olympia.amo.utils import SafeStorage
+from olympia.amo.utils import SafeStorage, use_fake_fxa
 from olympia.addons.tasks import compute_last_updated, unindex_addons
 from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
@@ -301,8 +302,8 @@ def initialize_session(request, session_data):
 
 
 class InitializeSessionMixin:
-    def initialize_session(self, session_data):
-        request = HttpRequest()
+    def initialize_session(self, session_data, request=None):
+        request = request or HttpRequest()
         initialize_session(request, session_data)
         # Set the cookie to represent the session.
         session_cookie = settings.SESSION_COOKIE_NAME
@@ -330,7 +331,7 @@ class TestClient(Client):
             raise AttributeError
 
 
-class APITestClient(APIClient):
+class APITestClientWebToken(APIClient):
     def generate_api_token(self, user, **payload_overrides):
         """
         Creates a jwt token for this user.
@@ -360,7 +361,42 @@ class APITestClient(APIClient):
         self.defaults.pop('HTTP_AUTHORIZATION', None)
 
 
-class JWTAPITestClient(JWTAuthKeyTester, APIClient):
+class APITestClientSessionID(APIClient):
+    def create_session(self, user, **overrides):
+        """
+        Creates a session in the database for this user and returns the session key.
+        """
+        request = HttpRequest()
+        request.user = user
+        # this is pretty much what django.contrib.auth.login does to initialize session
+        fxa_details = (
+            {'fxa_access_token_expiry': time.time() + 1000}
+            if not use_fake_fxa()
+            else {}
+        )
+        initialize_session(
+            request,
+            {
+                auth.SESSION_KEY: user._meta.pk.value_to_string(user),
+                auth.BACKEND_SESSION_KEY: settings.AUTHENTICATION_BACKENDS[0],
+                auth.HASH_SESSION_KEY: user.get_session_auth_hash(),
+                **fxa_details,
+                **overrides,
+            },
+        )
+        return request.session.session_key
+
+    def login_api(self, user):
+        self.defaults['HTTP_AUTHORIZATION'] = f'Session {self.create_session(user)}'
+
+    def logout_api(self):
+        """
+        Removes the Authorization header from future requests.
+        """
+        self.defaults.pop('HTTP_AUTHORIZATION', None)
+
+
+class APITestClientJWT(JWTAuthKeyTester, APIClient):
     api_key = None
 
     @property
@@ -607,7 +643,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         assert self.client.login(email=email)
 
     def enable_messages(self, request):
-        setattr(request, 'session', 'session')
+        setattr(request, 'session', {})
         messages = FallbackStorage(request)
         setattr(request, '_messages', messages)
         return request

@@ -9,8 +9,8 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import (
-    APITestClient,
-    JWTAPITestClient,
+    APITestClientWebToken,
+    APITestClientJWT,
     get_random_ip,
     reverse_ns,
     TestCase,
@@ -62,7 +62,7 @@ class TestServeFileUpload(UploadMixin, TestCase):
 
 
 class TestFileUploadViewSet(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -307,4 +307,4 @@ class TestFileUploadViewSet(TestCase):
 
 
 class TestFileUploadViewSetJWTAuth(TestFileUploadViewSet):
-    client_class = JWTAPITestClient
+    client_class = APITestClientJWT

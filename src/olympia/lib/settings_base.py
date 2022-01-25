@@ -948,8 +948,7 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY', default='')
 # Allow URLs from these servers. Use full domain names.
 REDIRECT_URL_ALLOW_LIST = ['addons.mozilla.org']
 
-# Default to short expiration; check "remember me" to override
-SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 # See: https://github.com/mozilla/addons-server/issues/1789
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # This value must be kept in sync with authTokenValidFor from addons-frontend:
@@ -1630,6 +1629,7 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'olympia.api.authentication.WebTokenAuthentication',
+        'olympia.api.authentication.SessionIDAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': ('olympia.api.pagination.CustomPageNumberPagination'),
     # Set parser classes to include the fix for
@@ -1722,6 +1722,7 @@ FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
+VERIFY_FXA_ACCESS_TOKEN = True
 
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path

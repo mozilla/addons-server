@@ -1,22 +1,26 @@
 from django import test
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
 
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from pyquery import PyQuery as pq
 
+from olympia.accounts.utils import fxa_login_url, path_with_query
+from olympia.accounts.verify import IdentificationError
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI,
     CacheControlMiddleware,
     RequestIdMiddleware,
     SetRemoteAddrFromForwardedFor,
+    TokenValidMiddleware,
 )
-from olympia.amo.tests import reverse_ns, TestCase
+from olympia.amo.tests import reverse_ns, TestCase, user_factory
 from olympia.zadmin.models import Config
 
 
@@ -312,3 +316,39 @@ class TestCacheControlMiddleware(TestCase):
         )
         assert response.status_code == 200
         assert response['Cache-Control'] == 's-maxage=0'
+
+
+class TestTokenValidMiddleware(TestCase):
+    def setUp(self):
+        self.get_response_mock = Mock()
+        self.response = Mock()
+        self.response.data = {}
+        self.get_response_mock.return_value = self.response
+        self.middleware = TokenValidMiddleware(self.get_response_mock)
+        self.update_token_mock = self.patch(
+            'olympia.amo.middleware.check_and_update_fxa_access_token'
+        )
+        self.user = user_factory()
+
+    def get_request(self, session=None):
+        request = RequestFactory().get('/')
+        request.user = self.user
+        request.session = session or {}
+        return request
+
+    def test_check_token_returns(self):
+        request = self.get_request(session={'access_token_expiry': 12345})
+        assert self.middleware(request) == self.response
+        self.update_token_mock.assert_called_with(request)
+
+    def test_redirect_because_check_token_raises(self):
+        self.update_token_mock.side_effect = IdentificationError()
+        request = self.get_request()
+        response = self.middleware(request)
+        assert isinstance(response, HttpResponseRedirect)
+        assert response['Location'] == fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=request.session['fxa_state'],
+            next_path=path_with_query(request),
+            action='signin',
+        )

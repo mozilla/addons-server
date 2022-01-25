@@ -53,6 +53,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
     }
 
 
@@ -84,6 +85,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
     }
 
 
@@ -118,6 +120,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
         'prompt': ['none'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
     }
 
 
@@ -171,6 +174,7 @@ def test_fxa_login_url_when_faking_fxa_auth():
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
     }
 
 

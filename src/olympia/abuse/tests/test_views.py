@@ -6,7 +6,7 @@ from unittest import mock
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     addon_factory,
     get_random_ip,
@@ -16,7 +16,7 @@ from olympia.amo.tests import (
 
 
 class AddonAbuseViewSetTestBase:
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.url = reverse_ns('abusereportaddon-list')
@@ -404,7 +404,7 @@ class TestAddonAbuseViewSetLoggedIn(AddonAbuseViewSetTestBase, TestCase):
 
 
 class UserAbuseViewSetTestBase:
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.url = reverse_ns('abusereportuser-list')

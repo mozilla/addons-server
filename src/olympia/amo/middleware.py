@@ -34,12 +34,20 @@ from rest_framework import permissions
 
 import MySQLdb as mysql
 
+import olympia.core.logger
 from olympia import amo
+from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.verify import (
+    check_and_update_fxa_access_token,
+    IdentificationError,
+)
 
 from . import urlresolvers
 from .reverse import set_url_prefix
 from .templatetags.jinja_helpers import urlparams
 
+
+log = olympia.core.logger.getLogger('amo.middleware')
 
 auth_path = re.compile('%saccounts/authenticate/?$' % settings.DRF_API_REGEX)
 
@@ -373,4 +381,23 @@ class LBHeartbeatMiddleware:
             response = HttpResponse(status=200)
             add_never_cache_headers(response)
             return response
+        return self.get_response(request)
+
+
+class TokenValidMiddleware:
+    """Middleware to check the FxA auth tokens haven't expired, and refresh if
+    necessary.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # API requests are validated in SessionIDAuthentication
+        if not getattr(request, 'is_api', False):
+            try:
+                check_and_update_fxa_access_token(request)
+            except IdentificationError:
+                log.info(f'Failed refreshing access_token for {request.user.id}')
+                return redirect_for_login(request)
         return self.get_response(request)

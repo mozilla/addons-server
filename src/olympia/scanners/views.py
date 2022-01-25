@@ -7,6 +7,7 @@ from rest_framework.generics import ListAPIView
 from olympia import amo
 from olympia.api.authentication import (
     JWTKeyAuthentication,
+    SessionIDAuthentication,
     WebTokenAuthentication,
 )
 from olympia.constants.scanners import (
@@ -22,7 +23,11 @@ from .serializers import ScannerResultSerializer
 
 
 class ScannerResultView(ListAPIView):
-    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    authentication_classes = [
+        JWTKeyAuthentication,
+        WebTokenAuthentication,
+        SessionIDAuthentication,
+    ]
 
     permission_classes = [GroupPermission(amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW)]
 

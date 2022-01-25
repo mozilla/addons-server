@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from olympia import amo
 from olympia.access.models import GroupUser
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     WithDynamicEndpoints,
     addon_factory,
@@ -47,7 +47,7 @@ def myview(*args, **kwargs):
 
 
 class TestGroupPermissionOnView(WithDynamicEndpoints):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     # Note: be careful when testing, under the hood we're using a method that
     # relies on UserProfile.groups_list, which is cached on the UserProfile

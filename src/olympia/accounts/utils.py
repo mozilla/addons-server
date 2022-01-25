@@ -35,6 +35,7 @@ def fxa_login_url(
         'client_id': config['client_id'],
         'scope': 'profile openid',
         'state': state,
+        'access_type': 'offline',
     }
     if action is not None:
         query['action'] = action

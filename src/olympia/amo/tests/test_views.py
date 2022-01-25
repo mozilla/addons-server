@@ -25,7 +25,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser, get_random_slug
 from olympia.amo.sitemap import get_sitemap_path
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     WithDynamicEndpointsAndTransactions,
     check_links,
@@ -537,7 +537,7 @@ class TestVersion(TestCase):
 
 
 class TestSiteStatusAPI(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()

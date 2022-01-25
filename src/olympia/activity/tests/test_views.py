@@ -12,7 +12,7 @@ from olympia.activity.views import EmailCreationPermission, inbound_email
 from olympia.addons.models import AddonUser, AddonRegionalRestrictions
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     addon_factory,
     req_factory_factory,
@@ -217,7 +217,7 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
 
 class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -258,7 +258,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
 
 
 class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -337,7 +337,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
 
 
 class TestReviewNotesViewSetCreate(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
