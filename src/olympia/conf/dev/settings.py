@@ -109,3 +109,7 @@ VAMO_URL = 'https://versioncheck-dev.allizom.org'
 REMOTE_SETTINGS_IS_TEST_SERVER = True
 
 SITEMAP_DEBUG_AVAILABLE = True
+
+# This is a temporary change to make testing auth/session changes practical
+# https://github.com/mozilla/addons-server/issues/18688
+SESSION_COOKIE_AGE = 300  # 5 minutes
