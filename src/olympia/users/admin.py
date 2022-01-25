@@ -104,7 +104,6 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                     'fxa_id',
                     'username',
                     'display_name',
-                    'reviewer_name',
                     'biography',
                     'homepage',
                     'location',

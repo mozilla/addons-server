@@ -1448,43 +1448,6 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.patch(data={'display_name': 'a' * 50})
         assert response.status_code == 200
 
-    def test_reviewer_name_validation(self):
-        # For reviewer_name, validation rules are the same as display_name,
-        # except that it's only for reviewers and blank names are allowed.
-        # (validation is only applied if there is a non-blank value).
-        self.grant_permission(self.user, 'Addons:Review')
-        self.client.login_api(self.user)
-        response = self.patch(data={'reviewer_name': 'a'})
-        assert response.status_code == 400
-        assert json.loads(force_str(response.content)) == {
-            'reviewer_name': ['Ensure this field has at least 2 characters.']
-        }
-
-        response = self.patch(data={'reviewer_name': 'a' * 51})
-        assert response.status_code == 400
-        assert json.loads(force_str(response.content)) == {
-            'reviewer_name': ['Ensure this field has no more than 50 characters.']
-        }
-
-        response = self.patch(data={'reviewer_name': '\x7F\u20DF'})
-        assert response.status_code == 400
-        assert json.loads(force_str(response.content)) == {
-            'reviewer_name': ['Must contain at least one printable character.']
-        }
-
-        response = self.patch(data={'reviewer_name': 'a\x7F'})
-        assert response.status_code == 200
-
-        response = self.patch(data={'reviewer_name': 'a' * 50})
-        assert response.status_code == 200
-        self.user.reload()
-        assert self.user.reviewer_name == 'a' * 50
-
-        response = self.patch(data={'reviewer_name': ''})
-        assert response.status_code == 200
-        self.user.reload()
-        assert self.user.reviewer_name == ''
-
     def test_picture_upload(self):
         # Make sure the picture doesn't exist already or we get a false-postive
         assert not path.exists(self.user.picture_path)

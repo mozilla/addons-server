@@ -132,7 +132,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         'occupation',
         'picture_type',
         'read_dev_agreement',
-        'reviewer_name',
         'username',
     )
 
@@ -187,14 +186,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     basket_token = models.CharField(blank=True, default='', max_length=128)
 
     bypass_upload_restrictions = models.BooleanField(default=False)
-
-    reviewer_name = models.CharField(
-        max_length=50,
-        default='',
-        null=True,
-        blank=True,
-        validators=[validators.MinLengthValidator(2)],
-    )
 
     class Meta:
         db_table = 'users'
