@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -113,6 +113,10 @@ msgstr "¿Necesitas ayuda?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "La notificación [%s] no existe"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Guía de revisión de complementos"
 
 msgid "Review"
 msgstr "Revisión"
@@ -380,6 +384,15 @@ msgstr "La firma ha expirado."
 
 msgid "Error decoding signature."
 msgstr "Error al descodificar la firma."
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Tipo incorrecto para una o más claves del contenido"

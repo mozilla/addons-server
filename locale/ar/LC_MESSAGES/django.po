@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -114,6 +114,10 @@ msgstr "أتريد يد العون والمساعدة؟"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "الإخطار [%s] غير موجود"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "دليل مراجعة الإضافات"
 
 msgid "Review"
 msgstr "راجِع"
@@ -368,6 +372,15 @@ msgstr "انقضى التوقيع."
 
 msgid "Error decoding signature."
 msgstr "حدث عُطل في فكّ ترميز التوقيع."
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "أحد مفاتيح الحمولة/payload (أو أكثر) نوعه خطأ."

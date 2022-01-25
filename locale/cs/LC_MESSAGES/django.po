@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2021-12-04 17:44+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -111,6 +111,10 @@ msgstr "Potřebujete pomoci?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Upozornění [%s] neexistuje"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Příručka pro kontrolu doplňků"
 
 msgid "Review"
 msgstr "Recenze"
@@ -374,6 +378,15 @@ msgstr "Platnost podpisu vypršela."
 
 msgid "Error decoding signature."
 msgstr "Chyba při čtení podpisu."
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Špatný typ pro jeden nebo více klíčů v datovém obsahu"

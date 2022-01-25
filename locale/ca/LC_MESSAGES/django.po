@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-21 16:17+0000\n"
+"POT-Creation-Date: 2022-01-25 18:59+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -118,6 +118,10 @@ msgstr "Necessiteu ajuda?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "La notificació [%s] no existeix"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Valoració completa del complement"
 
 msgid "Review"
 msgstr "Comentari"
@@ -385,6 +389,15 @@ msgid "Signature has expired."
 msgstr ""
 
 msgid "Error decoding signature."
+msgstr ""
+
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
