@@ -452,11 +452,11 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.upload = self.get_upload('webextension_no_id.xpi')
         assert self.client.login(email='regular@mozilla.com')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.user.update(last_login_ip='192.168.1.1')
         self.client.post(reverse('devhub.submit.agreement'))
+        self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
 
     def post(
         self,
@@ -553,7 +553,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert get_addon_count('Beastify') == 2
 
     def test_new_addon_is_already_blocked(self):
-        self.upload = self.get_upload('webextension.xpi')
+        self.upload = self.get_upload('webextension.xpi', user=self.user)
         guid = '@webextension-guid'
         block = Block.objects.create(guid=guid, updated_by=user_factory())
 
@@ -595,7 +595,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             'metadata': {},
             'messages': [],
         }
-        self.upload = self.get_upload('webextension.xpi', validation=json.dumps(result))
+        self.upload = self.get_upload(
+            'webextension.xpi', validation=json.dumps(result), user=self.user
+        )
         response = self.post(listed=False)
         addon = Addon.objects.get()
         version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -645,7 +647,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path)
+        self.upload = self.get_upload(abspath=path, user=self.user)
         response = self.post()
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
@@ -661,7 +663,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path)
+        self.upload = self.get_upload(abspath=path, user=self.user)
         response = self.post(listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -687,7 +689,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path)
+        self.upload = self.get_upload(abspath=path, user=self.user)
         response = self.post(url=url)
         addon = Addon.objects.get()
         # Next step is same as non-wizard flow too.
@@ -715,7 +717,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path)
+        self.upload = self.get_upload(abspath=path, user=self.user)
         response = self.post(url=url, listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1972,7 +1974,6 @@ class VersionSubmitUploadMixin:
 
     def setUp(self):
         super().setUp()
-        self.upload = self.get_upload('webextension.xpi')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.addon.update(guid='@webextension-guid')
@@ -1986,6 +1987,7 @@ class VersionSubmitUploadMixin:
         )
         assert self.addon.has_complete_metadata()
         self.version.save()
+        self.upload = self.get_upload('webextension.xpi', user=self.user)
 
     def post(
         self,

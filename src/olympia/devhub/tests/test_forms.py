@@ -35,16 +35,22 @@ from olympia.versions.models import ApplicationsVersions, DeniedInstallOrigin
 
 class TestNewUploadForm(TestCase):
     def test_firefox_default_selected(self):
-        upload = FileUpload.objects.create(valid=False)
+        user = user_factory()
+        upload = FileUpload.objects.create(
+            valid=False,
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         form = forms.NewUploadForm(data, request=request)
         assert form.fields['compatible_apps'].initial == [amo.FIREFOX.id]
 
     def test_previous_compatible_apps_initially_selected(self):
         addon = addon_factory()
-
+        user = user_factory()
         appversion = AppVersion.objects.create(
             application=amo.ANDROID.id, version='1.0'
         )
@@ -55,10 +61,15 @@ class TestNewUploadForm(TestCase):
             max=appversion,
         )
 
-        upload = FileUpload.objects.create(valid=False)
+        upload = FileUpload.objects.create(
+            valid=False,
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
 
         # Without an add-on, we only pre-select the default which is Firefox
         form = forms.NewUploadForm(data, request=request)
@@ -77,10 +88,16 @@ class TestNewUploadForm(TestCase):
         of the compatibility apps multi-select to correctly render
         images.
         """
-        upload = FileUpload.objects.create(valid=False)
+        user = user_factory()
+        upload = FileUpload.objects.create(
+            valid=False,
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         form = forms.NewUploadForm(data, request=request)
         result = form.fields['compatible_apps'].widget.render(
             name='compatible_apps', value=amo.FIREFOX.id
@@ -93,11 +110,22 @@ class TestNewUploadForm(TestCase):
         assert 'class="app android"' in result
 
     def test_only_valid_uploads(self):
-        upload = FileUpload.objects.create(valid=False)
-        upload = FileUpload.objects.create(valid=False)
+        user = user_factory()
+        upload = FileUpload.objects.create(
+            valid=False,
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
+        upload = FileUpload.objects.create(
+            valid=False,
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         form = forms.NewUploadForm(data, request=request)
         assert (
             'There was an error with your upload. Please try again.'
@@ -127,10 +155,17 @@ class TestNewUploadForm(TestCase):
 
     @mock.patch('olympia.devhub.forms.parse_addon')
     def test_throttling(self, parse_addon_mock):
-        upload = FileUpload.objects.create(valid=True, name='foo.xpi')
+        user = user_factory()
+        upload = FileUpload.objects.create(
+            valid=True,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         request.META['REMOTE_ADDR'] = '5.6.7.8'
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for x in range(0, 6):
@@ -166,13 +201,20 @@ class TestNewUploadForm(TestCase):
         refactor the form to not call it anymore, we need to make sure those
         checks are run at some point.
         """
+        user = user_factory()
         mock_parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        upload = FileUpload.objects.create(valid=True, name='foo.xpi')
+        upload = FileUpload.objects.create(
+            valid=True,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         addon = Addon.objects.create()
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         form = forms.NewUploadForm(data, addon=addon, request=request)
         form.clean()
         assert mock_check_xpi_info.called
