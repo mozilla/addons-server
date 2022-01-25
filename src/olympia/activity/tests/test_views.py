@@ -193,6 +193,16 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
             result = result['results'][0]
         assert result['user']['name'] == self.user.name
 
+    def test_user_not_anonymized_for_view_only_reviewer(self):
+        user = UserProfile.objects.create(username='view-only-reviewer')
+        self.grant_permission(user, 'ReviewerTools:View')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        result = json.loads(response.content)
+        if 'results' in result:
+            result = result['results'][0]
+        assert result['user']['name'] == self.user.name
+
     def test_allowed_action_not_anonymized_for_developer(self):
         self.note = self.log(
             'a reply', amo.LOG.DEVELOPER_REPLY_VERSION, self.days_ago(0)

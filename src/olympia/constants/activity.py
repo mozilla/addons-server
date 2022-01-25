@@ -67,7 +67,6 @@ class EDIT_CONTRIBUTIONS(_LOG):
     id = 7
     action_class = 'edit'
     format = _('Contributions for {addon}.')
-    show_user_to_developer = True
 
 
 class USER_DISABLE(_LOG):
@@ -650,7 +649,6 @@ class DEVELOPER_CLEAR_INFO_REQUEST(_LOG):
     short = _('Information request removed')
     keep = True
     review_queue = True
-    show_user_to_developer = True
 
 
 class REQUEST_ADMIN_REVIEW_CODE(_LOG):
