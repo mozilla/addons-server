@@ -532,7 +532,7 @@ class FileUpload(ModelBase):
         log.info(
             f'UPLOAD: {self.name!r} ({size} bytes) to {self.path!r}',
             extra={
-                'email': (self.user.email if self.user.email else ''),
+                'email': (self.user.email or ''),
                 'upload_hash': self.hash,
             },
         )

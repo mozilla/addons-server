@@ -317,7 +317,6 @@ class Version(OnChangeMixin, ModelBase):
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
         )
-        email = upload.user.email if upload.user.email else ''
         with core.override_remote_addr(upload.ip_address):
             # The following log statement is used by foxsec-pipeline.
             # We override the IP because it might be called from a task and we
@@ -325,7 +324,7 @@ class Version(OnChangeMixin, ModelBase):
             log.info(
                 f'New version: {version!r} ({version.id}) from {upload!r}',
                 extra={
-                    'email': email,
+                    'email': upload.user.email,
                     'guid': addon.guid,
                     'upload': upload.uuid.hex,
                     'user_id': upload.user_id,
