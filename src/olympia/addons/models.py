@@ -890,8 +890,7 @@ class Addon(OnChangeMixin, ModelBase):
                 f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
                 f'by addon [{addon.pk}].'
             )
-        if user:
-            AddonUser(addon=addon, user=user).save()
+        AddonUser(addon=addon, user=user).save()
         activity.log_create(amo.LOG.CREATE_ADDON, addon, user=user)
         log.info(f'New addon {addon!r} from {upload!r}')
         timer.log_interval('7.end')
