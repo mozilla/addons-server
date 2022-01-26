@@ -49,7 +49,6 @@ from olympia.translations.fields import (
     save_signal,
 )
 from olympia.scanners.models import ScannerResult
-from olympia.users.utils import get_task_user
 
 from .compare import version_int
 from .fields import VersionStringField
@@ -283,7 +282,11 @@ class Version(OnChangeMixin, ModelBase):
         if upload.addon and upload.addon != addon:
             raise VersionCreateError('FileUpload was made for a different Addon')
 
-        if not upload.user or not upload.ip_address or not upload.source:
+        if (
+            not getattr(upload, 'user', None)
+            or not upload.ip_address
+            or not upload.source
+        ):
             raise VersionCreateError('FileUpload does not have some required fields')
 
         if not upload.user.last_login_ip or not upload.user.email:
@@ -314,7 +317,6 @@ class Version(OnChangeMixin, ModelBase):
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
         )
-        email = upload.user.email if upload.user and upload.user.email else ''
         with core.override_remote_addr(upload.ip_address):
             # The following log statement is used by foxsec-pipeline.
             # We override the IP because it might be called from a task and we
@@ -322,16 +324,14 @@ class Version(OnChangeMixin, ModelBase):
             log.info(
                 f'New version: {version!r} ({version.id}) from {upload!r}',
                 extra={
-                    'email': email,
+                    'email': upload.user.email,
                     'guid': addon.guid,
                     'upload': upload.uuid.hex,
                     'user_id': upload.user_id,
                     'from_api': upload.source == amo.UPLOAD_SOURCE_SIGNING_API,
                 },
             )
-            activity.log_create(
-                amo.LOG.ADD_VERSION, version, addon, user=upload.user or get_task_user()
-            )
+            activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=upload.user)
 
         if not compatibility:
             compatibility = {

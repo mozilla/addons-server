@@ -20,10 +20,10 @@ import pytest
 
 from unittest.mock import patch
 
-from olympia import amo
+from olympia import amo, core
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.tests import TestCase, create_default_webext_appversion, user_factory
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
@@ -35,6 +35,7 @@ from olympia.files.models import (
     track_file_status_change,
 )
 from olympia.files.utils import Extractor, check_xpi_info, parse_addon
+from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
@@ -47,20 +48,7 @@ class UploadMixin(amo.tests.AMOPaths):
     """
 
     def setUp(self):
-        versions = {
-            amo.DEFAULT_WEBEXT_MIN_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
-            amo.DEFAULT_WEBEXT_MAX_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
-        }
-        for version in versions:
-            AppVersion.objects.get_or_create(
-                application=amo.FIREFOX.id, version=version
-            )
-            AppVersion.objects.get_or_create(
-                application=amo.ANDROID.id, version=version
-            )
+        create_default_webext_appversion()
 
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
@@ -81,15 +69,19 @@ class UploadMixin(amo.tests.AMOPaths):
             user = user_factory()
         with open(abspath if abspath else self.file_path(filename), 'rb') as f:
             xpi = f.read()
-        upload = FileUpload.from_post([xpi], filename=abspath or filename, size=1234)
-        upload.addon = addon
-        upload.user = user
-        upload.version = version
-        upload.ip_address = '127.0.0.42'
-        upload.source = source
-        upload.automated_signing = channel == amo.RELEASE_CHANNEL_UNLISTED
+        with core.override_remote_addr('127.0.0.62'):
+            upload = FileUpload.from_post(
+                [xpi],
+                filename=abspath or filename,
+                size=1234,
+                user=user,
+                addon=addon,
+                version=version,
+                source=source,
+                channel=channel,
+            )
         if with_validation:
-            # Simulate what fetch_manifest() does after uploading an app.
+            # Simulate what validation does after uploading an add-on.
             upload.validation = validation or json.dumps(
                 {
                     'errors': 0,
@@ -99,7 +91,7 @@ class UploadMixin(amo.tests.AMOPaths):
                     'messages': [],
                 }
             )
-        upload.save()
+            upload.save()
         return upload
 
 
@@ -705,11 +697,17 @@ class TestFileUpload(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.data = b'file contents'
+        self.user = UserProfile.objects.latest('pk')
 
     def upload(self, **params):
         # The data should be in chunks.
         data = [bytes(bytearray(s)) for s in chunked(self.data, 3)]
-        return FileUpload.from_post(data, 'filenamé.xpi', len(self.data), **params)
+        params.setdefault('user', self.user)
+        params.setdefault('source', amo.UPLOAD_SOURCE_DEVHUB)
+        params.setdefault('channel', amo.RELEASE_CHANNEL_UNLISTED)
+        return FileUpload.from_post(
+            data, filename='filenamé.xpi', size=len(self.data), **params
+        )
 
     def test_from_post_write_file(self):
         assert storage.open(self.upload().path, 'rb').read() == self.data
@@ -726,51 +724,96 @@ class TestFileUpload(UploadMixin, TestCase):
         hashdigest = hashlib.sha256(self.data).hexdigest()
         assert self.upload().hash == 'sha256:%s' % hashdigest
 
-    def test_from_post_extra_params(self):
-        upload = self.upload(automated_signing=True, addon_id=3615)
-        assert upload.addon_id == 3615
-        assert upload.automated_signing
-
     def test_from_post_is_one_query(self):
+        addon = Addon.objects.get(pk=3615)
         with self.assertNumQueries(1):
-            self.upload(automated_signing=True, addon_id=3615)
+            self.upload(addon=addon)
 
     def test_save_without_validation(self):
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(
+            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+        )
         assert not upload.valid
 
     def test_save_with_validation(self):
-        upload = FileUpload.objects.create(validation='{"errors": 0, "metadata": {}}')
+        upload = FileUpload.objects.create(
+            validation='{"errors": 0, "metadata": {}}',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.46',
+        )
         assert upload.valid
 
-        upload = FileUpload.objects.create(validation='{"errors": 1}')
+        upload = FileUpload.objects.create(
+            validation='{"errors": 1}',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.46',
+        )
         assert not upload.valid
 
         with self.assertRaises(ValueError):
-            upload = FileUpload.objects.create(validation='wtf')
+            upload = FileUpload.objects.create(
+                validation='wtf',
+                user=self.user,
+                source=amo.UPLOAD_SOURCE_DEVHUB,
+                ip_address='127.0.0.46',
+            )
 
     def test_update_with_validation(self):
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(
+            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+        )
         upload.validation = '{"errors": 0, "metadata": {}}'
         upload.save()
         assert upload.valid
 
     def test_update_without_validation(self):
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(
+            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+        )
         upload.save()
         assert not upload.valid
 
     def test_ascii_names(self):
-        upload = FileUpload.from_post(b'', 'jétpack.xpi', 0)
+        upload = FileUpload.from_post(
+            b'',
+            filename='jétpack.xpi',
+            size=0,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post(b'', 'мозила_србија-0.11-fx.xpi', 0)
+        upload = FileUpload.from_post(
+            b'',
+            filename='мозила_србија-0.11-fx.xpi',
+            size=0,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post(b'', 'フォクすけといっしょ.xpi', 0)
+        upload = FileUpload.from_post(
+            b'',
+            filename='フォクすけといっしょ.xpi',
+            size=0,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post(b'', '\u05d0\u05d5\u05e1\u05e3.xpi', 0)
+        upload = FileUpload.from_post(
+            b'',
+            filename='\u05d0\u05d5\u05e1\u05e3.xpi',
+            size=0,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         assert 'xpi' in upload.name
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
@@ -960,7 +1003,14 @@ class TestFileUpload(UploadMixin, TestCase):
         """Test to ensure we raise an explicit exception when a .crx file isn't
         a true crx (doesn't have to be caught, showing a 500 error is fine)."""
         data = b'Cr42\x02\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
-        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        upload = FileUpload.from_post(
+            [data],
+            filename='test.crx',
+            size=1234,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         # We couldn't convert it as it's an invalid or unsupported crx, so
         # re storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
@@ -971,7 +1021,14 @@ class TestFileUpload(UploadMixin, TestCase):
         explicit exception otherwise (doesn't have to be caught, showing a 500
         error is fine)."""
         data = b'Cr24\x04\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
-        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        upload = FileUpload.from_post(
+            [data],
+            filename='test.crx',
+            size=1234,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         # We couldn't convert it as it's an invalid or unsupported crx, so
         # re storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
@@ -981,7 +1038,14 @@ class TestFileUpload(UploadMixin, TestCase):
         """Test to ensure we raise an explicit exception when we can't unpack
         a crx (doesn't have to be caught, showing a 500 error is fine)."""
         data = b'Cr24\x02\x00\x00\x00&\x00\x00\x00\x01\x00\x00'
-        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        upload = FileUpload.from_post(
+            [data],
+            filename='test.crx',
+            size=1234,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         # We're storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
         storage.delete(upload.path)
@@ -993,14 +1057,21 @@ class TestFileUpload(UploadMixin, TestCase):
         storage.delete(upload.path)
 
     def test_generate_access_token_on_save(self):
-        upload = FileUpload()
+        upload = FileUpload(
+            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+        )
         assert not upload.access_token
         upload.save()
         assert upload.access_token
 
     def test_access_token_is_not_changed_if_already_set(self):
         access_token = 'some-access-token'
-        upload = FileUpload.objects.create(access_token=access_token)
+        upload = FileUpload.objects.create(
+            access_token=access_token,
+            user=UserProfile.objects.latest('pk'),
+            ip_address='127.0.0.45',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+        )
         assert upload.access_token == access_token
 
     def test_generate_access_token(self):
@@ -1009,7 +1080,12 @@ class TestFileUpload(UploadMixin, TestCase):
 
     def test_get_authenticated_download_url(self):
         access_token = 'some-access-token'
-        upload = FileUpload.objects.create(access_token=access_token)
+        upload = FileUpload.objects.create(
+            access_token=access_token,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.48',
+        )
         site_url = 'https://example.com'
         relative_url = reverse(
             'files.serve_file_upload', kwargs={'uuid': upload.uuid.hex}
@@ -1085,6 +1161,9 @@ class TestFileFromUpload(UploadMixin, TestCase):
             'name': force_str(name),
             'hash': 'sha256:%s' % name,
             'validation': validation_data,
+            'source': amo.UPLOAD_SOURCE_DEVHUB,
+            'ip_address': '127.0.0.50',
+            'user': user_factory(),
         }
         return FileUpload.objects.create(**data)
 

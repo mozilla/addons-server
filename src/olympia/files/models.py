@@ -455,7 +455,7 @@ class FileUpload(ModelBase):
         max_length=255, default='', help_text="The user's original filename"
     )
     hash = models.CharField(max_length=255, default='')
-    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     automated_signing = models.BooleanField(default=False)
@@ -464,10 +464,8 @@ class FileUpload(ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey('addons.Addon', null=True, on_delete=models.CASCADE)
     access_token = models.CharField(max_length=40, null=True)
-    ip_address = models.CharField(max_length=45, null=True, default=None)
-    source = models.PositiveSmallIntegerField(
-        choices=amo.UPLOAD_SOURCE_CHOICES, default=None, null=True
-    )
+    ip_address = models.CharField(max_length=45)
+    source = models.PositiveSmallIntegerField(choices=amo.UPLOAD_SOURCE_CHOICES)
 
     objects = ManagerBase()
 
@@ -534,7 +532,7 @@ class FileUpload(ModelBase):
         log.info(
             f'UPLOAD: {self.name!r} ({size} bytes) to {self.path!r}',
             extra={
-                'email': (self.user.email if self.user and self.user.email else ''),
+                'email': (self.user.email or ''),
                 'upload_hash': self.hash,
             },
         )
@@ -557,14 +555,28 @@ class FileUpload(ModelBase):
         return f'{absolute_url}?access_token={self.access_token}'
 
     @classmethod
-    def from_post(cls, chunks, filename, size, **params):
+    def from_post(
+        cls,
+        chunks,
+        *,
+        filename,
+        size,
+        user,
+        source,
+        channel,
+        addon=None,
+        version=None,
+    ):
         max_ip_length = cls._meta.get_field('ip_address').max_length
-        params['ip_address'] = (core.get_remote_addr() or '')[:max_ip_length]
-        if 'channel' in params:
-            params['automated_signing'] = (
-                params.pop('channel') == amo.RELEASE_CHANNEL_UNLISTED
-            )
-        upload = FileUpload(**params)
+        ip_address = (core.get_remote_addr() or '')[:max_ip_length]
+        upload = FileUpload(
+            addon=addon,
+            user=user,
+            source=source,
+            automated_signing=channel == amo.RELEASE_CHANNEL_UNLISTED,
+            ip_address=ip_address,
+            version=version,
+        )
         upload.add_file(chunks, filename, size)
 
         # The following log statement is used by foxsec-pipeline.
@@ -584,7 +596,7 @@ class FileUpload(ModelBase):
     def validation_timeout(self):
         if self.processed:
             validation = self.load_validation()
-            messages = validation['messages']
+            messages = validation.get('messages', [])
             timeout_id = ['validator', 'unexpected_exception', 'validation_timeout']
             return any(msg['id'] == timeout_id for msg in messages)
         else:
@@ -606,7 +618,7 @@ class FileUpload(ModelBase):
         return self.processed and self.valid
 
     def load_validation(self):
-        return json.loads(self.validation)
+        return json.loads(self.validation or '{}')
 
     @property
     def pretty_name(self):

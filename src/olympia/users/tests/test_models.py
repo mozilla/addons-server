@@ -807,7 +807,9 @@ class TestIPNetworkUserRestriction(TestCase):
         # Submission is not allowed.
         assert not IPNetworkUserRestriction.allow_submission(request)
         # Approval is.
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert IPNetworkUserRestriction.allow_auto_approval(upload)
 
     def test_blocked_approval_last_login_ip(self):
@@ -820,7 +822,9 @@ class TestIPNetworkUserRestriction(TestCase):
         assert IPNetworkUserRestriction.allow_submission(request)
         # Approval is blocked even though it was with a different ip, because
         # of the user last_login_ip.
-        upload = FileUpload.objects.create(ip_address='192.168.1.2', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.1.2', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert not IPNetworkUserRestriction.allow_auto_approval(upload)
 
     def test_blocked_approval_while_allowing_submission(self):
@@ -832,7 +836,9 @@ class TestIPNetworkUserRestriction(TestCase):
         # Submission remains allowed.
         assert IPNetworkUserRestriction.allow_submission(request)
         # Approval is blocked.
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert not IPNetworkUserRestriction.allow_auto_approval(upload)
 
 
@@ -863,7 +869,9 @@ class TestDisposableEmailDomainRestriction(TestCase):
         # Submission remains allowed.
         assert DisposableEmailDomainRestriction.allow_submission(request)
         # Approval is blocked.
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert not DisposableEmailDomainRestriction.allow_auto_approval(upload)
 
     def test_allowed_approval(self):
@@ -873,7 +881,9 @@ class TestDisposableEmailDomainRestriction(TestCase):
         # Submission is blocked.
         assert not DisposableEmailDomainRestriction.allow_submission(request)
         # Approval is allowed.
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert DisposableEmailDomainRestriction.allow_auto_approval(upload)
 
 
@@ -979,7 +989,9 @@ class TestEmailUserRestriction(TestCase):
         assert EmailUserRestriction.allow_email(
             request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
         )
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert not EmailUserRestriction.allow_auto_approval(upload)
 
     def test_allowed_approval(self):
@@ -990,7 +1002,9 @@ class TestEmailUserRestriction(TestCase):
         assert not EmailUserRestriction.allow_email(
             request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
         )
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert EmailUserRestriction.allow_auto_approval(upload)
 
 

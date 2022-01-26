@@ -1,5 +1,4 @@
 import os.path
-import json
 
 from datetime import datetime, timedelta
 
@@ -35,7 +34,7 @@ from olympia.constants.promoted import (
     STRATEGIC,
 )
 from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
-from olympia.files.models import File, FileUpload
+from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedApproval
@@ -1153,7 +1152,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert self.upload.addon == self.addon
 
     def test_from_upload_no_user(self):
-        self.upload.update(user=None)
+        self.upload.user = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
                 self.upload,
@@ -1164,7 +1163,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
     def test_from_upload_no_ip_address(self):
-        self.upload.update(ip_address=None)
+        self.upload.ip_address = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
                 self.upload,
@@ -1175,7 +1174,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
     def test_from_upload_no_source(self):
-        self.upload.update(source=None)
+        self.upload.source = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
                 self.upload,
@@ -1650,9 +1649,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
 
-class TestExtensionVersionFromUploadTransactional(
-    TransactionTestCase, amo.tests.AMOPaths
-):
+class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMixin):
     filename = 'webextension_no_id.xpi'
 
     def setUp(self):
@@ -1660,39 +1657,6 @@ class TestExtensionVersionFromUploadTransactional(
         # We can't use `setUpTestData` here because it doesn't play well with
         # the behavior of `TransactionTestCase`
         amo.tests.create_default_webext_appversion()
-
-    def get_upload(
-        self,
-        filename=None,
-        abspath=None,
-        validation=None,
-        addon=None,
-        user=None,
-        version=None,
-        with_validation=True,
-    ):
-        fpath = self.file_fixture_path(filename)
-        with open(abspath if abspath else fpath, 'rb') as fobj:
-            xpi = fobj.read()
-        upload = FileUpload.from_post([xpi], filename=abspath or filename, size=1234)
-        upload.addon = addon
-        upload.user = user
-        upload.version = version
-        upload.ip_address = '127.0.0.42'
-        upload.source = amo.UPLOAD_SOURCE_DEVHUB
-        if with_validation:
-            # Simulate what fetch_manifest() does after uploading an app.
-            upload.validation = validation or json.dumps(
-                {
-                    'errors': 0,
-                    'warnings': 1,
-                    'notices': 2,
-                    'metadata': {},
-                    'messages': [],
-                }
-            )
-        upload.save()
-        return upload
 
     @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=False)

@@ -949,6 +949,7 @@ def create_default_webext_appversion():
         amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
         amo.DEFAULT_WEBEXT_MAX_VERSION,
+        amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
     }
     for version in versions:
         AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version=version)
@@ -957,6 +958,7 @@ def create_default_webext_appversion():
         amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
         amo.DEFAULT_WEBEXT_MAX_VERSION,
+        amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
     }
     for version in versions:
         AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)

@@ -91,8 +91,8 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
 
         upload = FileUpload.from_post(
             filedata,
-            filedata.name,
-            filedata.size,
+            filename=filedata.name,
+            size=filedata.size,
             channel=channel,
             source=amo.UPLOAD_SOURCE_ADDON_API,
             user=request.user,
