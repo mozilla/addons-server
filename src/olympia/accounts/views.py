@@ -866,10 +866,10 @@ class FxaNotificationView(FxAConfigMixin, APIView):
                 )
             else:
                 primary_email_change_event.delay(uid, timestamp, new_email)
-        if event_key == self.FXA_DELETE_EVENT:
+        elif event_key == self.FXA_DELETE_EVENT:
             log.info(f'Fxa Webhook: Got delete event for {uid}')
             delete_user_event.delay(uid, timestamp)
-        if event_key == self.FXA_PASSWORDCHANGE_EVENT:
+        elif event_key == self.FXA_PASSWORDCHANGE_EVENT:
             log.info(f'Fxa Webhook: Got password-change event for {uid}')
             clear_sessions_event.delay(uid, timestamp, 'password-change')
         else:
