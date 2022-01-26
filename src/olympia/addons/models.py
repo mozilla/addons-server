@@ -903,8 +903,8 @@ class Addon(OnChangeMixin, ModelBase):
         upload,
         *,
         selected_apps,
-        channel=amo.RELEASE_CHANNEL_LISTED,
         parsed_data,
+        channel=amo.RELEASE_CHANNEL_LISTED,
     ):
         """
         Create an Addon instance, a Version and corresponding File(s) from a
