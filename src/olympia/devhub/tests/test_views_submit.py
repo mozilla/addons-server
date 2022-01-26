@@ -2159,7 +2159,7 @@ class VersionSubmitUploadMixin:
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path)
+        self.upload = self.get_upload(abspath=path, user=self.user)
         response = self.post()
 
         version = self.addon.find_latest_version(channel=self.channel)
@@ -2218,7 +2218,7 @@ class VersionSubmitUploadMixin:
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path)
+        self.upload = self.get_upload(abspath=path, user=self.user)
         response = self.post()
 
         version = self.addon.find_latest_version(channel=self.channel)
@@ -2267,6 +2267,7 @@ class TestVersionSubmitUploadListed(
                     'warnings': 1,
                 }
             ),
+            user=self.user,
         )
         self.addon.update(
             guid='@experiment-inside-webextension-guid', status=amo.STATUS_APPROVED
@@ -2289,6 +2290,7 @@ class TestVersionSubmitUploadListed(
                     'warnings': 1,
                 }
             ),
+            user=self.user,
         )
         self.addon.update(
             guid='@theme–experiment-inside-webextension-guid',
@@ -2323,6 +2325,7 @@ class TestVersionSubmitUploadListed(
                     'warnings': 1,
                 }
             ),
+            user=self.user,
         )
 
         self.addon.update(type=amo.ADDON_LPAPP)
@@ -2377,7 +2380,11 @@ class TestVersionSubmitUploadUnlisted(
             'metadata': {},
             'messages': [],
         }
-        self.upload = self.get_upload('webextension.xpi', validation=json.dumps(result))
+        self.upload = self.get_upload(
+            'webextension.xpi',
+            validation=json.dumps(result),
+            user=self.user,
+        )
         response = self.post()
         version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
