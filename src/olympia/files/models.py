@@ -556,7 +556,16 @@ class FileUpload(ModelBase):
 
     @classmethod
     def from_post(
-        cls, chunks, *, filename, size, addon=None, version='', user, source, channel
+        cls,
+        chunks,
+        *,
+        filename,
+        size,
+        user,
+        source,
+        channel,
+        addon=None,
+        version=None,
     ):
         max_ip_length = cls._meta.get_field('ip_address').max_length
         ip_address = (core.get_remote_addr() or '')[:max_ip_length]
