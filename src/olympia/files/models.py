@@ -596,7 +596,7 @@ class FileUpload(ModelBase):
     def validation_timeout(self):
         if self.processed:
             validation = self.load_validation()
-            messages = validation['messages']
+            messages = validation.get('messages', [])
             timeout_id = ['validator', 'unexpected_exception', 'validation_timeout']
             return any(msg['id'] == timeout_id for msg in messages)
         else:
@@ -618,7 +618,7 @@ class FileUpload(ModelBase):
         return self.processed and self.valid
 
     def load_validation(self):
-        return json.loads(self.validation)
+        return json.loads(self.validation or '{}')
 
     @property
     def pretty_name(self):

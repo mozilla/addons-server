@@ -1016,11 +1016,14 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
             self.fields['compatible_apps'].initial = compat_apps
 
     def _clean_upload(self):
-        if not (
-            self.cleaned_data['upload'].valid
+        own_upload = self.cleaned_data['upload'].user == self.request.user
+
+        if (
+            not own_upload
+            or not self.cleaned_data['upload'].valid
             or self.cleaned_data['upload'].validation_timeout
-            or self.cleaned_data['upload'].user != self.request.user
-            or self.cleaned_data['admin_override_validation']
+        ) and not (
+            self.cleaned_data['admin_override_validation']
             and acl.action_allowed(self.request, amo.permissions.REVIEWS_ADMIN)
         ):
             raise forms.ValidationError(

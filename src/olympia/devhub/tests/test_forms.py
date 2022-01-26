@@ -38,6 +38,7 @@ class TestNewUploadForm(TestCase):
         user = user_factory()
         upload = FileUpload.objects.create(
             valid=False,
+            name='foo.xpi',
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
@@ -63,6 +64,7 @@ class TestNewUploadForm(TestCase):
 
         upload = FileUpload.objects.create(
             valid=False,
+            name='foo.xpi',
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
@@ -91,6 +93,7 @@ class TestNewUploadForm(TestCase):
         user = user_factory()
         upload = FileUpload.objects.create(
             valid=False,
+            name='foo.xpi',
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
@@ -109,16 +112,19 @@ class TestNewUploadForm(TestCase):
         )
         assert 'class="app android"' in result
 
-    def test_only_valid_uploads(self):
+    @mock.patch('olympia.devhub.forms.parse_addon')
+    def test_only_valid_uploads(self, parse_addon_mock):
         user = user_factory()
         upload = FileUpload.objects.create(
             valid=False,
+            name='foo.xpi',
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
         )
         upload = FileUpload.objects.create(
             valid=False,
+            name='foo.xpi',
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
@@ -138,9 +144,14 @@ class TestNewUploadForm(TestCase):
             acl.return_value = True
             data['admin_override_validation'] = True
             form = forms.NewUploadForm(data, request=request)
+            assert form.is_valid()
+
+            # Regular users can't override
+            acl.return_value = False
+            form = forms.NewUploadForm(data, request=request)
             assert (
-                'There was an error with your upload. Please try'
-                not in form.errors.get('__all__')
+                'There was an error with your upload. Please try again.'
+                in form.errors.get('__all__')
             ), form.errors
 
         upload.validation = '{"errors": 0}'
@@ -148,10 +159,43 @@ class TestNewUploadForm(TestCase):
         addon = Addon.objects.create()
         data.pop('admin_override_validation')
         form = forms.NewUploadForm(data, request=request, addon=addon)
+        assert form.is_valid()
+
+    @mock.patch('olympia.devhub.forms.parse_addon')
+    def test_valid_upload_from_different_user(self, parse_addon_mock):
+        upload = FileUpload.objects.create(
+            valid=True,
+            name='foo.xpi',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
+        data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, request=request)
+        assert not form.is_valid()
         assert (
             'There was an error with your upload. Please try again.'
-            not in form.errors.get('__all__')
-        ), form.errors
+            in form.errors.get('__all__')
+        ), (form.errors)
+
+        # Admin override can bypass
+        with mock.patch('olympia.access.acl.action_allowed_user') as acl:
+            # For the 'Addons:Edit' permission check.
+            acl.return_value = True
+            data['admin_override_validation'] = True
+            form = forms.NewUploadForm(data, request=request)
+            assert form.is_valid()
+
+            # Regular users can't override
+            acl.return_value = False
+            form = forms.NewUploadForm(data, request=request)
+            assert not form.is_valid()
+            assert (
+                'There was an error with your upload. Please try again.'
+                in form.errors.get('__all__')
+            ), form.errors
 
     @mock.patch('olympia.devhub.forms.parse_addon')
     def test_throttling(self, parse_addon_mock):
