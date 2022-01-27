@@ -353,7 +353,11 @@ def feed(request, addon_id=None):
             )
 
             if not acl.check_addon_ownership(
-                request, addon, allow_developer=True, allow_mozilla_disabled_addon=True
+                request,
+                addon,
+                allow_developer=True,
+                allow_mozilla_disabled_addon=True,
+                allow_site_permission=True,
             ):
                 raise PermissionDenied
             addons = [addon]

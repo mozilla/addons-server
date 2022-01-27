@@ -674,6 +674,13 @@ class TestActivityFeed(TestCase):
         doc = pq(response.content)
         assert doc('header h2').text() == ('Recent Activity for %s' % self.addon.name)
 
+    def test_feed_for_site_permission_addon(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('header h2').text() == ('Recent Activity for %s' % self.addon.name)
+
     def test_feed_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
