@@ -917,29 +917,16 @@ MINIFY_BUNDLES = {
     },
 }
 
+CACHES = {
+    'default': env.cache(
+        'CACHES_DEFAULT',
+        'memcache://%s' % os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
+    )
+}
+CACHES['default']['TIMEOUT'] = 500
+CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.PyMemcacheCache'
 # Prefix for cache keys (will prevent collisions when running parallel copies)
-# This value is being used by `conf/settings/{dev,stage,prod}.py
-CACHE_KEY_PREFIX = 'amo:%s:' % BUILD_ID
-
-CACHE_BACKEND = 'django.core.cache.backends.memcached.PyMemcacheCache'
-
-CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_KEY_PREFIX
-FETCH_BY_ID = True
-
-# Number of seconds a count() query should be cached.  Keep it short because
-# it's not possible to invalidate these queries.
-CACHE_COUNT_TIMEOUT = 60
-
-# To enable pylibmc compression (in bytes)
-PYLIBMC_MIN_COMPRESS_LEN = 0  # disabled
-
-# External tools.
-JAVA_BIN = '/usr/bin/java'
-
-# URL paths
-# paths for images, e.g. mozcdn.com/amo or '/static'
-VAMO_URL = 'https://versioncheck.addons.mozilla.org'
-
+CACHES['default']['KEY_PREFIX'] = 'amo:%s:' % BUILD_ID
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
