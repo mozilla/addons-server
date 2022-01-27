@@ -1510,7 +1510,25 @@ class TestUploadDetail(UploadMixin, TestCase):
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_restricted_addon_allowed(self, run_addons_linter_mock):
+    def test_restricted_guid_addon_allowed_because_signed_and_has_permission(
+        self, run_addons_linter_mock
+    ):
+        user = user_factory()
+        self.grant_permission(user, 'SystemAddon:Submit')
+        assert self.client.login(email=user.email)
+        run_addons_linter_mock.return_value = self.validation_ok()
+        self.upload_file('../../../files/fixtures/files/mozilla_guid_signed.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
+        data = json.loads(force_str(response.content))
+        assert data['validation']['messages'] == []
+
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_restricted_guid_addon_not_allowed_because_not_signed(
+        self, run_addons_linter_mock
+    ):
         user = user_factory()
         self.grant_permission(user, 'SystemAddon:Submit')
         assert self.client.login(email=user.email)
@@ -1521,12 +1539,22 @@ class TestUploadDetail(UploadMixin, TestCase):
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
         data = json.loads(force_str(response.content))
-        assert data['validation']['messages'] == []
+        assert data['validation']['messages'] == [
+            {
+                'tier': 1,
+                'message': (
+                    'Add-ons using an ID ending with this suffix need to be signed '
+                    'with privileged certificate before being submitted'
+                ),
+                'fatal': True,
+                'type': 'error',
+            }
+        ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_restricted_addon_not_allowed(self, run_addons_linter_mock):
-        user_factory(email='redpanda@mozilla.com')
-        assert self.client.login(email='redpanda@mozilla.com')
+    def test_restricted_guid_addon_not_allowed(self, run_addons_linter_mock):
+        user = user_factory()
+        assert self.client.login(email=user.email)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
