@@ -99,7 +99,7 @@ FXA_CONFIG = {
         'client_secret': env(
             'FXA_CLIENT_SECRET',
             default='4828af02f60a12738a79c7121b06d42b481f112dce1831440902a8412d2770c5',
-        ),  # noqa
+        ),
         # fxa redirects to http://olympia.test/api/auth/authenticate-callback/
     },
     'amo': {
@@ -107,7 +107,7 @@ FXA_CONFIG = {
         'client_secret': env(
             'FXA_CLIENT_SECRET',
             default='ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38',
-        ),  # noqa
+        ),
         # fxa redirects to http://localhost:3000/fxa-authenticate
     },
     'local': {
@@ -115,8 +115,8 @@ FXA_CONFIG = {
         'client_secret': env(
             'FXA_CLIENT_SECRET',
             default='d7d5f1148a35b12c067fb9eafafc29d35165a90f5d8b0032f1fcd37468ae49fe',
-        ),  # noqa
-        # noqa fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  #noqa
+        ),
+        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  # noqa
     },
 }
 FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
