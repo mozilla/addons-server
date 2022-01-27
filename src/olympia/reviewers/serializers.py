@@ -144,7 +144,7 @@ class FileEntriesMixin:
         cache_key = force_str(
             hashlib.sha256(
                 force_bytes(
-                    f'reviewers:fileentriesserializer:hashes'
+                    'reviewers:fileentriesserializer:hashes'
                     f':{commit.hex}:{selected_file}',
                 )
             ).hexdigest()
