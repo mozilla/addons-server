@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-25 18:59+0000\n"
-"PO-Revision-Date: 2022-01-27 08:21+0000\n"
-"Last-Translator: Yaya.Cout <yaya.cout@free.fr>\n"
+"PO-Revision-Date: 2022-01-27 16:36+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -387,13 +387,13 @@ msgid "Error decoding signature."
 msgstr "Erreur de décodage de la signature."
 
 msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
+msgstr "Non-concordance du hachage d’authentification. La session est probablement expirée."
 
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "L’actualisation du jeton d’accès a échoué ; l’utilisateur doit se reconnecter à FxA."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Type incorrect pour une ou plusieurs clés dans la charge utile"
@@ -1822,10 +1822,10 @@ msgid "Permissions"
 msgstr "Permissions"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
+msgstr "Vous avez généré un module complémentaire d’autorisation de site pour la même origine et les mêmes autorisations."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
+msgstr "L’origine ne devrait inclure qu’un schéma (protocole), un nom d’hôte (domaine) et un port facultatif"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Fichier du module complémentaire invalide ou corrompu."
@@ -2083,13 +2083,13 @@ msgid "Search"
 msgstr "Recherche"
 
 msgid "Generate Site Permission Add-on"
-msgstr ""
+msgstr "Générer un module complémentaire d’autorisation de site"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
+msgstr "L’origine (schéma + nom d’hôte + port facultatif) pour laquelle vous avez besoin d’activer l’autorisation. Ce sera également là où vous devrez héberger le module complémentaire."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "La ou les autorisations que le module complémentaire généré accordera sur l’origine."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Utilisez le champ ci-dessous pour envoyer votre paquet de module."
@@ -3863,7 +3863,7 @@ msgstr "Utilisez les gestes de la souris pour fermer les onglets, parcourir les 
 
 #. editorial content for the discovery pane.
 msgid "See thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Associez des vignettes à vos résultats de recherche."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
