@@ -20,10 +20,13 @@ from olympia.addons.serializers import (
     AddonDeveloperSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
+    DeveloperVersionSerializer,
+    DeveloperListVersionSerializer,
     ESAddonAutoCompleteSerializer,
     ESAddonSerializer,
     LanguageToolsSerializer,
     LicenseSerializer,
+    ListVersionSerializer,
     ReplacementAddonSerializer,
     SimpleVersionSerializer,
     VersionSerializer,
@@ -1031,13 +1034,15 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
 
 class TestVersionSerializerOutput(TestCase):
+    serializer_class = VersionSerializer
+
     def setUp(self):
         super().setUp()
         self.request = APIRequestFactory().get('/')
         self.request.version = 'v5'
 
     def serialize(self):
-        serializer = VersionSerializer(context={'request': self.request})
+        serializer = self.serializer_class(context={'request': self.request})
         return serializer.to_representation(self.version)
 
     def test_basic(self):
@@ -1284,26 +1289,47 @@ class TestVersionSerializerOutput(TestCase):
             assert 'files' in result
             assert result['files'] == [default_file_result]
 
+
+class TestDeveloperVersionSerializerOutput(TestVersionSerializerOutput):
+    serializer_class = DeveloperVersionSerializer
+
     def test_readonly_fields(self):
-        serializer = VersionSerializer()
+        serializer = self.serializer_class()
         fields_read_only = {
             name for name, field in serializer.get_fields().items() if field.read_only
         }
         assert fields_read_only == set(serializer.Meta.read_only_fields)
 
+    def test_source(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        assert result['source'] is None
 
-class TestVersionListSerializerOutput(TestCase):
+        self.version.update(source='whatever.zip')
+        result = self.serialize()
+        assert result['source'] == absolutify(
+            reverse('downloads.source', args=(self.version.id,))
+        )
+
+
+class TestListVersionSerializerOutput(TestCase):
+    serializer_class = ListVersionSerializer
+
     def setUp(self):
         self.request = APIRequestFactory().get('/')
 
     def serialize(self):
-        serializer = SimpleVersionSerializer(context={'request': self.request})
+        serializer = self.serializer_class(context={'request': self.request})
         return serializer.to_representation(self.version)
 
     def test_basic(self):
         self.version = addon_factory().current_version
         result = self.serialize()
         assert 'text' not in result['license']
+
+
+class TestDeveloperListVersionSerializerOutput(TestListVersionSerializerOutput):
+    serializer_class = DeveloperListVersionSerializer
 
 
 class TestSimpleVersionSerializerOutput(TestCase):

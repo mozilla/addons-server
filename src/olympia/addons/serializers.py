@@ -1,24 +1,20 @@
 import re
-from urllib.parse import urlsplit, urlunsplit
 
-from django.http.request import QueryDict
 from django.urls import reverse
 
-from rest_framework import exceptions, fields, serializers
+from rest_framework import exceptions, serializers
 
 from olympia import amo
 from olympia.accounts.serializers import (
     BaseUserSerializer,
     UserProfileBasketSyncSerializer,
 )
+from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import slug_validator, sorted_groupby
+from olympia.amo.utils import slug_validator
 from olympia.api.fields import (
     EmailTranslationField,
-    ESTranslationSerializerField,
-    GetTextTranslationSerializerField,
     LazyChoiceField,
-    OutgoingURLField,
     OutgoingURLTranslationField,
     ReverseChoiceField,
     SplitField,
@@ -29,10 +25,9 @@ from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
-from olympia.constants.applications import APPS, APPS_ALL, APP_IDS
+from olympia.constants.applications import APPS_ALL, APP_IDS
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
-from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.licenses import LICENSES_BY_SLUG
+from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
@@ -48,7 +43,16 @@ from olympia.versions.models import (
     VersionPreview,
 )
 
-from .models import Addon, DeniedSlug, Preview, ReplacementAddon
+from .fields import (
+    CategoriesSerializerField,
+    ContributionSerializerField,
+    ESLicenseNameSerializerField,
+    LicenseNameSerializerField,
+    LicenseSlugSerializerField,
+    SourceFileField,
+    VersionCompatabilityField,
+)
+from .models import Addon, AddonReviewerFlags, DeniedSlug, Preview, ReplacementAddon
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -147,78 +151,6 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
         return data
 
 
-class LicenseNameSerializerField(serializers.Field):
-    """Field to handle license name translations.
-
-    Builtin licenses, for better or worse, don't necessarily have their name
-    translated in the database like custom licenses. Instead, the string is in
-    this repos, and translated using gettext. This field deals with that
-    difference, delegating the rendering to TranslationSerializerField or
-    GetTextTranslationSerializerField depending on what the license instance
-    is.
-    """
-
-    builtin_translation_field_class = GetTextTranslationSerializerField
-    custom_translation_field_class = TranslationSerializerField
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.builtin_translation_field = self.builtin_translation_field_class()
-        self.custom_translation_field = self.custom_translation_field_class()
-
-    def bind(self, field_name, parent):
-        super().bind(field_name, parent)
-        self.builtin_translation_field.bind(field_name, parent)
-        self.custom_translation_field.bind(field_name, parent)
-
-    def get_attribute(self, obj):
-        if obj._constant:
-            return self.builtin_translation_field.get_attribute(obj._constant)
-        else:
-            return self.custom_translation_field.get_attribute(obj)
-
-    def to_representation(self, obj):
-        # Like TranslationSerializerField, the bulk of the logic is in
-        # get_attribute(), we just have to return the data at this point.
-        return obj
-
-    def run_validation(self, data=fields.empty):
-        return self.custom_translation_field.run_validation(data)
-
-    def to_internal_value(self, value):
-        return self.custom_translation_field.to_internal_value(value)
-
-
-class ESLicenseNameSerializerField(LicenseNameSerializerField):
-    """Like LicenseNameSerializerField, but uses the data from ES to avoid
-    a database query for custom licenses.
-
-    BaseESSerializer automatically changes
-    TranslationSerializerField to ESTranslationSerializerField for all base
-    fields on the serializer, but License name has its own special field to
-    handle builtin licences so it's done separately."""
-
-    custom_translation_field_class = ESTranslationSerializerField
-
-    def attach_translations(self, obj, data, field_name):
-        return self.custom_translation_field.attach_translations(obj, data, field_name)
-
-
-class LicenseSlugSerializerField(serializers.SlugRelatedField):
-    def __init__(self, **kwargs):
-        super().__init__(
-            slug_field='builtin',
-            queryset=License.objects.exclude(builtin=License.OTHER),
-            **kwargs,
-        )
-
-    def to_internal_value(self, data):
-        license_ = LICENSES_BY_SLUG.get(data)
-        if not license_:
-            self.fail('invalid')
-        return super().to_internal_value(license_.builtin)
-
-
 class LicenseSerializer(serializers.ModelSerializer):
     is_custom = serializers.SerializerMethodField()
     name = LicenseNameSerializerField()
@@ -288,71 +220,6 @@ class MinimalVersionSerializer(serializers.ModelSerializer):
         return repr
 
 
-class VersionCompatabilityField(serializers.Field):
-    def to_internal_value(self, data):
-        """Note: this returns unsaved and incomplete ApplicationsVersions objects that
-        need to have version set, and may have missing min or max AppVersion instances
-        for new Version instances. (As intended - we want to be able to partially
-        specify min or max and have the manifest or defaults be instead used).
-        """
-        try:
-            if isinstance(data, list):
-                # if it's a list of apps, normalize into a dict first
-                data = {key: {} for key in data}
-            if isinstance(data, dict):
-                version = self.parent.instance
-                existing = version.compatible_apps if version else {}
-                qs = AppVersion.objects
-                internal = {}
-                for app_name, min_max in data.items():
-                    app = amo.APPS[app_name]
-                    apps_versions = existing.get(
-                        app, ApplicationsVersions(application=app.id)
-                    )
-
-                    app_qs = qs.filter(application=app.id)
-                    if 'max' in min_max:
-                        apps_versions.max = app_qs.get(version=min_max['max'])
-                    elif version:
-                        apps_versions.max = app_qs.get(
-                            version=amo.DEFAULT_WEBEXT_MAX_VERSION
-                        )
-
-                    app_qs = app_qs.exclude(version='*')
-                    if 'min' in min_max:
-                        apps_versions.min = app_qs.get(version=min_max['min'])
-                    elif version:
-                        apps_versions.min = app_qs.get(
-                            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[app]
-                        )
-
-                    internal[app] = apps_versions
-                return internal
-            else:
-                # if it's neither it's not a valid input
-                raise exceptions.ValidationError('Invalid value')
-        except KeyError:
-            raise exceptions.ValidationError('Invalid app specified')
-        except AppVersion.DoesNotExist:
-            raise exceptions.ValidationError('Unknown app version specified')
-
-    def to_representation(self, value):
-        return {
-            app.short: (
-                {
-                    'min': compat.min.version,
-                    'max': compat.max.version,
-                }
-                if compat
-                else {
-                    'min': amo.D2C_MIN_VERSIONS.get(app.id, '1.0'),
-                    'max': amo.FAKE_MAX_VERSION,
-                }
-            )
-            for app, compat in value.items()
-        }
-
-
 class SimpleVersionSerializer(MinimalVersionSerializer):
     compatibility = VersionCompatabilityField(
         # default to just Desktop Firefox; most of the times developers don't develop
@@ -408,11 +275,35 @@ class VersionSerializer(SimpleVersionSerializer):
         LicenseSlugSerializerField(required=False),
         LicenseSerializer(),
     )
+
+    class Meta:
+        model = Version
+        fields = (
+            'id',
+            'channel',
+            'compatibility',
+            'edit_url',
+            'file',
+            'is_strict_compatibility_enabled',
+            'license',
+            'release_notes',
+            'reviewed',
+            'version',
+        )
+        read_only_fields = fields
+
+    def __init__(self, instance=None, data=serializers.empty, **kwargs):
+        self.addon = kwargs.pop('addon', None)
+        super().__init__(instance=instance, data=data, **kwargs)
+
+
+class DeveloperVersionSerializer(VersionSerializer):
     custom_license = LicenseSerializer(
         write_only=True,
         required=False,
         source='license',
     )
+    source = SourceFileField(required=False, allow_null=True)
     upload = serializers.SlugRelatedField(
         slug_field='uuid', queryset=FileUpload.objects.all(), write_only=True
     )
@@ -430,6 +321,7 @@ class VersionSerializer(SimpleVersionSerializer):
             'license',
             'release_notes',
             'reviewed',
+            'source',
             'upload',
             'version',
         )
@@ -438,15 +330,21 @@ class VersionSerializer(SimpleVersionSerializer):
             'custom_license',
             'license',
             'release_notes',
+            'source',
             'upload',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
     def __init__(self, instance=None, data=serializers.empty, **kwargs):
-        self.addon = kwargs.pop('addon', None)
         if instance and isinstance(data, dict):
             data.pop('upload', None)  # we only support upload field for create
         super().__init__(instance=instance, data=data, **kwargs)
+
+    def to_representation(self, instance):
+        # SourceFileField needs the version id to build the url.
+        if 'source' in self.fields and instance.source:
+            self.id = instance.id
+        return super().to_representation(instance)
 
     def validate_upload(self, value):
         own_upload = (request := self.context.get('request')) and (
@@ -563,6 +461,25 @@ class VersionSerializer(SimpleVersionSerializer):
 
         return data
 
+    def _update_admin_review_flag_and_logging(self, version):
+        if version.source and not version.addon.needs_admin_code_review:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=version.addon, defaults={'needs_admin_code_review': True}
+            )
+            # Add Activity Log, notifying staff, relevant reviewers and other authors of
+            # the add-on.
+            log_and_notify(
+                amo.LOG.SOURCE_CODE_UPLOADED,
+                None,
+                self.context['request'].user,
+                version,
+            )
+        elif version.addon.needs_admin_code_review:
+            AddonReviewerFlags.objects.update(
+                addon=version.addon,
+                needs_admin_code_review=False,
+            )
+
     def create(self, validated_data):
         upload = validated_data.get('upload')
         parsed_and_validated_data = {
@@ -591,6 +508,12 @@ class VersionSerializer(SimpleVersionSerializer):
             and upload.channel == amo.RELEASE_CHANNEL_LISTED
         ):
             self.addon.update(status=amo.STATUS_NOMINATED)
+
+        if 'source' in validated_data:
+            version.source = validated_data['source']
+            version.save()
+            self._update_admin_review_flag_and_logging(version)
+
         return version
 
     def update(self, instance, validated_data):
@@ -612,12 +535,19 @@ class VersionSerializer(SimpleVersionSerializer):
                 instance.update(
                     license=self.fields['custom_license'].create(custom_license)
                 )
+        if 'source' in validated_data:
+            self._update_admin_review_flag_and_logging(instance)
         return instance
 
 
-class VersionListSerializer(VersionSerializer):
+class ListVersionSerializer(VersionSerializer):
     # When we're listing versions, we don't want to include the full license
     # text every time: we only do this for the version detail endpoint.
+    license = CompactLicenseSerializer()
+
+
+class DeveloperListVersionSerializer(DeveloperVersionSerializer):
+    # As ListVersionSerializer, but based on DeveloperVersionSerializer instead
     license = CompactLicenseSerializer()
 
 
@@ -722,68 +652,6 @@ class PromotedAddonSerializer(serializers.ModelSerializer):
         return [app.short for app in obj.approved_applications]
 
 
-class CategoriesSerializerField(serializers.Field):
-    def to_internal_value(self, data):
-        try:
-            categories = []
-            for app_name, category_names in data.items():
-                if len(category_names) > amo.MAX_CATEGORIES:
-                    raise exceptions.ValidationError(
-                        'Maximum number of categories per application '
-                        f'({amo.MAX_CATEGORIES}) exceeded'
-                    )
-                if len(category_names) > 1 and 'other' in category_names:
-                    raise exceptions.ValidationError(
-                        'The "other" category cannot be combined with another category'
-                    )
-                app_cats = CATEGORIES[APPS[app_name].id]
-                # We don't know the addon_type at this point, so try them all and we'll
-                # drop anything that's wrong later in AddonSerializer.validate
-                all_cat_slugs = set()
-                for type_cats in app_cats.values():
-                    categories.extend(
-                        type_cats[name] for name in category_names if name in type_cats
-                    )
-                    all_cat_slugs.update(type_cats.keys())
-                # Now double-check all the category names were found
-                if not all_cat_slugs.issuperset(category_names):
-                    raise exceptions.ValidationError('Invalid category name.')
-            return categories
-        except KeyError:
-            raise exceptions.ValidationError('Invalid app name.')
-
-    def to_representation(self, value):
-        grouped = sorted_groupby(
-            sorted(value),
-            key=lambda x: getattr(amo.APP_IDS.get(x.application), 'short', ''),
-        )
-        return {
-            app_name: [cat.slug for cat in categories]
-            for app_name, categories in grouped
-        }
-
-
-class ContributionSerializerField(OutgoingURLField):
-    def to_representation(self, value):
-        if not value:
-            # don't add anything when it's not set.
-            return value
-        parts = urlsplit(value)
-        query = QueryDict(parts.query, mutable=True)
-        query.update(amo.CONTRIBUTE_UTM_PARAMS)
-        return super().to_representation(
-            urlunsplit(
-                (
-                    parts.scheme,
-                    parts.netloc,
-                    parts.path,
-                    query.urlencode(),
-                    parts.fragment,
-                )
-            )
-        )
-
-
 class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(
         many=True, source='listed_authors', read_only=True
@@ -829,7 +697,7 @@ class AddonSerializer(serializers.ModelSerializer):
         choices=list(amo.ADDON_TYPE_CHOICES_API.items()), read_only=True
     )
     url = serializers.SerializerMethodField()
-    version = VersionSerializer(write_only=True)
+    version = DeveloperVersionSerializer(write_only=True)
     versions_url = serializers.SerializerMethodField()
 
     class Meta:

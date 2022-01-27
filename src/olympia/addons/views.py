@@ -73,13 +73,15 @@ from .serializers import (
     AddonEulaPolicySerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
+    DeveloperVersionSerializer,
+    DeveloperListVersionSerializer,
     ESAddonAutoCompleteSerializer,
     ESAddonSerializer,
     LanguageToolsSerializer,
     ReplacementAddonSerializer,
     StaticCategorySerializer,
     VersionSerializer,
-    VersionListSerializer,
+    ListVersionSerializer,
 )
 from .utils import (
     get_addon_recommendations,
@@ -381,14 +383,28 @@ class AddonVersionViewSet(
     throttle_classes = addon_submission_throttles
 
     def get_serializer_class(self):
+        use_developer_serializer = getattr(
+            self.request, 'user', None
+        ) and acl.author_or_unlisted_viewer_or_reviewer(
+            self.request, self.get_addon_object()
+        )
+
         if (
             self.action == 'list'
             and self.request
             and not is_gate_active(self.request, 'keep-license-text-in-version-list')
         ):
-            serializer_class = VersionListSerializer
+            serializer_class = (
+                ListVersionSerializer
+                if not use_developer_serializer
+                else DeveloperListVersionSerializer
+            )
         else:
-            serializer_class = VersionSerializer
+            serializer_class = (
+                VersionSerializer
+                if not use_developer_serializer
+                else DeveloperVersionSerializer
+            )
         return serializer_class
 
     def get_serializer(self, *args, **kwargs):
