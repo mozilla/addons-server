@@ -1178,12 +1178,15 @@ class HttpResponseTemporaryRedirect(HttpResponseRedirectBase):
 
 def is_safe_url(url, request, allowed_hosts=None):
     """Use Django's `url_has_allowed_host_and_scheme()` and pass a configured
-    list of allowed hosts and enforce HTTPS.  `allowed_hosts` can be specified."""
+    list of allowed hosts and enforce HTTPS.  `allowed_hosts` can be specified.
+
+    If using fake FxA, just return True.
+    """
     allowed_hosts = allowed_hosts or (
         settings.DOMAIN,
         urlparse(settings.CODE_MANAGER_URL).netloc,
     )
     require_https = request.is_secure() if request else False
-    return url_has_allowed_host_and_scheme(
+    return use_fake_fxa() or url_has_allowed_host_and_scheme(
         url, allowed_hosts=allowed_hosts, require_https=require_https
     )
