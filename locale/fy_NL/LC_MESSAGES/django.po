@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-25 18:59+0000\n"
-"PO-Revision-Date: 2022-01-27 12:31+0000\n"
+"PO-Revision-Date: 2022-01-27 12:37+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -379,13 +379,13 @@ msgid "Error decoding signature."
 msgstr "Flater by dekodearjen ûndertekening."
 
 msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
+msgstr "Autentikaasjehash komt net oerien. Sesje is wierskynlik ferrûn."
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Der is gjin jildige brûkerssesje fûn dy’t oerienkomt mei de opjûne sesjekaai."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Fernijen fan tagongstoken mislearre; brûker moat opnij oanmelde by FxA."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Ien of mear kaaien yn de payload binne fan it ferkearde type"
@@ -1788,10 +1788,10 @@ msgid "Permissions"
 msgstr "Tastimmingen"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
+msgstr "Jo hawwe in websitemachtigingen-add-on makke foar deselde oarsprong en tastimmingen."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
+msgstr "De oarsprong moat allinnich in skema (protokol), in hostnamme (domein) en in opsjonele poarte befetsje"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Unjildich of skansearre add-onbestân."
@@ -2046,15 +2046,14 @@ msgstr "Untwikkelersdokumintaasje trochsykje"
 msgid "Search"
 msgstr "Sykje"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "Websitemachtiging"
+msgstr "Websitemachtigings-add-on meitsje"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
+msgstr "De oarsprong (skema+hostnamme+opsjonele poarte) wêrfoar jo de tastimming ynskeakele hawwe wolle. Dit is ek wêr’t jo de add-on hoste moatte."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "De machtiging(en) dy’t de makke add-on oan de oarsprong takenne sil."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Brûk ûndersteand fjild om jo add-on-pakket op te laden."
@@ -3808,9 +3807,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Brûk mûsbewegingen om ljepblêden te sluten, nei siden te navigearjen, en mear."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Genietsje fan miniatuerôfbyldingen fan websites by jo sykresultaten."
+msgstr "Miniatuerôfbyldingen njonken jo sykresultaten toane."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4513,14 +4511,12 @@ msgid "YouTube customization"
 msgstr "YouTube-oanpassingen"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Image search extensions"
-msgstr "Alle útwreidingen besjen"
+msgstr "Utwreidingen om ôfbyldingen te sykjen"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Writing tools"
-msgstr "Oersethelpmiddelen"
+msgstr "Skriuwhelpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4628,24 +4624,20 @@ msgid "See more trending themes"
 msgstr "Mear trending tema’s besjen"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Trending tema’s"
+msgstr "Heechst wurdearre tema’s"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Mear trending tema’s besjen"
+msgstr "Mear heechst wurdearre tema’s besjen"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Trending tema’s"
+msgstr "Populêre útwreidingen"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Mear oanrekommandearre útwreidingen besjen"
+msgstr "Mear populêre útwreidingen besjen"
 
 msgid "Could not parse the manifest file."
 msgstr "Kin it manifest-bestân net ferwurkje."
