@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-25 18:59+0000\n"
-"PO-Revision-Date: 2022-01-23 21:49+0000\n"
+"PO-Revision-Date: 2022-01-26 06:40+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -111,7 +111,7 @@ msgid "Notification [%s] does not exist"
 msgstr "Notificatie [%s] bestaat niet"
 
 msgid "Add-ons Review Team"
-msgstr ""
+msgstr "Add-on-beoordelingsteam"
 
 msgid "Review"
 msgstr "Beoordeling"
@@ -380,13 +380,13 @@ msgid "Error decoding signature."
 msgstr "Fout bij decoderen van ondertekening."
 
 msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
+msgstr "Authenticatiehash komt niet overeen. Sessie is waarschijnlijk verlopen."
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Er is geen geldige gebruikerssessie gevonden die overeenkomt met de opgegeven sessiesleutel."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Vernieuwen van toegangstoken mislukt; gebruiker moet opnieuw aanmelden bij FxA."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Een of meer sleutels in de payload zijn van het verkeerde type"
@@ -2049,7 +2049,7 @@ msgid "Generate Site Permission Add-on"
 msgstr "Websitemachtigingen-add-on maken"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
+msgstr "De oorsprong (schema+hostnaam+optionele poort) waarvoor u de toestemming ingeschakeld wilt hebben. Dit is ook waar u de add-on dient te hosten."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
 msgstr "De machtiging(en) die de gemaakte add-on aan de oorsprong zal toekennen."
@@ -3807,7 +3807,7 @@ msgstr "Gebruik muisbewegingen om tabbladen te sluiten, naar pagina’s te navig
 
 #. editorial content for the discovery pane.
 msgid "See thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Miniatuurafbeeldingen naast uw zoekresultaten tonen."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4512,7 +4512,7 @@ msgstr "YouTube-aanpassingen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search extensions"
-msgstr ""
+msgstr "Extensies om afbeeldingen te zoeken"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
