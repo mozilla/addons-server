@@ -1,3 +1,4 @@
+import hashlib
 import io
 import os
 import mimetypes
@@ -14,7 +15,7 @@ from rest_framework.reverse import reverse as drf_reverse
 from django.core.cache import cache
 from django.urls import reverse
 from django.utils.functional import cached_property
-from django.utils.encoding import force_str
+from django.utils.encoding import force_bytes, force_str
 from django.utils.translation import gettext
 
 from olympia import amo
@@ -34,7 +35,6 @@ from olympia.files.models import File, FileValidation
 from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.git.utils import AddonGitRepository, get_mime_type_for_blob
-from olympia.lib.cache import make_key
 from olympia.lib import unicodehelper
 
 
@@ -141,10 +141,13 @@ class FileEntriesMixin:
 
         # Normalize the key as we want to avoid that we exceed max
         # key lengh because of selected_file.
-        cache_key = make_key(
-            f'reviewers:fileentriesserializer:hashes' f':{commit.hex}:{selected_file}',
-            with_locale=False,
-            normalize=True,
+        cache_key = force_str(
+            hashlib.sha256(
+                force_bytes(
+                    'reviewers:fileentriesserializer:hashes'
+                    f':{commit.hex}:{selected_file}',
+                )
+            ).hexdigest()
         )
 
         def _calculate_hash():
