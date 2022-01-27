@@ -337,6 +337,33 @@ class TestRunYara(UploadMixin, TestCase):
         assert received_results == self.results
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_with_invalid_filename(self, incr_mock):
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for all files in the xpi.
+        rule = ScannerRule.objects.create(
+            name='always_true',
+            scanner=YARA,
+            definition='rule always_true { condition: true }',
+        )
+        self.upload = self.get_upload('archive-with-invalid-chars-in-filenames.zip')
+
+        received_results = run_yara(self.results, self.upload.pk)
+
+        yara_results = ScannerResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.upload == self.upload
+        assert len(yara_result.results) == 1
+        print(yara_result.results[0])
+        assert yara_result.results[0] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': 'path\\to\\file.txt'},
+        }
+        # The task should always return the results.
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_run_is_json(self, incr_mock):
         assert len(ScannerResult.objects.all()) == 0
         # This rule will match for just all *.json files

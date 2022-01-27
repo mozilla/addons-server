@@ -1185,6 +1185,15 @@ class TestSafeZip(TestCase):
         with pytest.raises(utils.InvalidZipFile):
             utils.SafeZip(filename)
 
+    def test_ignores_error_for_archive_with_backslashes_in_filenames_with_argument(
+        self,
+    ):
+        filename = (
+            'src/olympia/files/'
+            'fixtures/files/archive-with-invalid-chars-in-filenames.zip'
+        )
+        utils.SafeZip(filename, ignore_filename_errors=True)
+
     def test_raises_validation_error_when_uncompressed_size_is_too_large(self):
         with override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000):
             with pytest.raises(utils.InvalidZipFile):
@@ -1219,6 +1228,26 @@ class TestArchiveMemberValidator(TestCase):
     def test_raises_when_filename_is_dot_dot(self):
         with pytest.raises(utils.InvalidZipFile):
             utils._validate_archive_member_name_and_size('..', 123)
+
+    def test_ignores_when_filename_is_dot_dot_slash_with_argument(self):
+        utils._validate_archive_member_name_and_size(
+            '../', 123, ignore_filename_errors=True
+        )
+
+    def test_ignores_when_filename_starts_with_slash_with_argument(self):
+        utils._validate_archive_member_name_and_size(
+            '/..', 123, ignore_filename_errors=True
+        )
+
+    def test_ignores_when_filename_contains_backslashes_with_argument(self):
+        utils._validate_archive_member_name_and_size(
+            'path\\to\\file.txt', 123, ignore_filename_errors=True
+        )
+
+    def test_ignores_when_filename_is_dot_dot_with_argument(self):
+        utils._validate_archive_member_name_and_size(
+            '..', 123, ignore_filename_errors=True
+        )
 
     def test_does_not_raise_when_filename_is_dot_dot_extension(self):
         utils._validate_archive_member_name_and_size('foo..svg', 123)
