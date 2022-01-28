@@ -532,14 +532,16 @@ class FSyncedTarFile(FSyncMixin, tarfile.TarFile):
     pass
 
 
-def archive_member_validator(archive, member):
+def archive_member_validator(archive, member, ignore_filename_errors=False):
     """Validate a member of an archive member (TarInfo or ZipInfo)."""
     filename = getattr(member, 'filename', getattr(member, 'name', None))
     filesize = getattr(member, 'file_size', getattr(member, 'size', None))
-    _validate_archive_member_name_and_size(filename, filesize)
+    _validate_archive_member_name_and_size(filename, filesize, ignore_filename_errors)
 
 
-def _validate_archive_member_name_and_size(filename, filesize):
+def _validate_archive_member_name_and_size(
+    filename, filesize, ignore_filename_errors=False
+):
     if filename is None or filesize is None:
         raise InvalidZipFile(gettext('Unsupported archive type.'))
 
@@ -555,16 +557,17 @@ def _validate_archive_member_name_and_size(filename, filesize):
         )
         raise InvalidZipFile(msg)
 
-    if (
-        '\\' in filename
-        or '../' in filename
-        or '..' == filename
-        or filename.startswith('/')
-    ):
-        log.error('Extraction error, invalid file name: %s' % (filename))
-        # L10n: {0} is the name of the invalid file.
-        msg = gettext('Invalid file name in archive: {0}')
-        raise InvalidZipFile(msg.format(filename))
+    if not ignore_filename_errors:
+        if (
+            '\\' in filename
+            or '../' in filename
+            or '..' == filename
+            or filename.startswith('/')
+        ):
+            log.error('Extraction error, invalid file name: %s' % (filename))
+            # L10n: {0} is the name of the invalid file.
+            msg = gettext('Invalid file name in archive: {0}')
+            raise InvalidZipFile(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
         log.error(f'Extraction error, file too big for file ({filename}): {filesize}')
@@ -574,11 +577,14 @@ def _validate_archive_member_name_and_size(filename, filesize):
 
 
 class SafeZip:
-    def __init__(self, source, mode='r', force_fsync=False):
+    def __init__(
+        self, source, mode='r', force_fsync=False, ignore_filename_errors=False
+    ):
         self.source = source
         self.info_list = None
         self.mode = mode
         self.force_fsync = force_fsync
+        self.ignore_filename_errors = ignore_filename_errors
         self.initialize_and_validate()
 
     def initialize_and_validate(self):
@@ -595,7 +601,7 @@ class SafeZip:
         total_file_size = 0
         for info in info_list:
             total_file_size += info.file_size
-            archive_member_validator(self.source, info)
+            archive_member_validator(self.source, info, self.ignore_filename_errors)
 
         if total_file_size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
             raise InvalidZipFile(gettext('Uncompressed size is too large'))

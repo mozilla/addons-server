@@ -248,7 +248,7 @@ def _run_yara_for_path(scanner_result, path, definition=None):
         externals = ScannerRule.get_yara_externals()
         rules = yara.compile(source=definition, externals=externals)
 
-        zip_file = SafeZip(source=path)
+        zip_file = SafeZip(source=path, ignore_filename_errors=True)
         for zip_info in zip_file.info_list:
             if not zip_info.is_dir():
                 file_content = zip_file.read(zip_info)
