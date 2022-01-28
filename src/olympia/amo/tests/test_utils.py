@@ -6,7 +6,6 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.test import RequestFactory
-from django.test.utils import override_settings
 from django.utils.functional import cached_property
 from django.utils.http import quote_etag
 
@@ -373,8 +372,3 @@ class TestIsSafeUrl(TestCase):
         assert not is_safe_url(
             f'https://{settings.DOMAIN}', request, allowed_hosts=[foobaa_domain]
         )
-
-    @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
-    def test_allows_anything_when_using_fake_fxa(self):
-        request = RequestFactory().get('/')
-        assert is_safe_url('https://not-olympia.dev:7000', request)
