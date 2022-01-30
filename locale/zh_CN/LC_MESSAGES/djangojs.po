@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-25 18:59+0000\n"
-"PO-Revision-Date: 2022-01-02 12:10+0000\n"
+"PO-Revision-Date: 2022-01-30 08:02+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -63,7 +63,7 @@ msgid "Validating {0}"
 msgstr "正在验证 {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr "您的附加组件超出大小限制，不能超过 {0}。"
+msgstr "您的附加组件超出大小限制：最大不能超过 {0}。"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "从服务器上接收到一个空的响应；状态：{0}"
