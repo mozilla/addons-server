@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-25 18:59+0000\n"
-"PO-Revision-Date: 2022-01-27 06:03+0000\n"
+"PO-Revision-Date: 2022-01-22 17:06+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3768,7 +3768,6 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Sekmeleri kapatmak, sayfalarda gezinmek ve daha fazlası için fare hareketlerini kullanın."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
 msgstr "Arama sonuçlarınızın yanında sitelerin küçük resimleri görünsün."
 
@@ -4390,7 +4389,6 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Fare hareketlerini özelleştirin. 50'den fazla fare hareketiyle gezinmenin yeni yollarını keşfedin."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Sekmeleri kapatmak, sayfalarda gezinmek ve daha fazlası için fare hareketlerini kullanın."
 
@@ -4476,14 +4474,12 @@ msgstr "YouTube özelleştirme"
 #. editorial content for the secondary hero shelves.
 # 95%
 # 100%
-#, fuzzy
 msgid "Image search extensions"
-msgstr "Tüm uzantılara bak"
+msgstr "Görsel arama uzantıları"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Writing tools"
-msgstr "Çeviri araçları"
+msgstr "Yazma araçları"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4599,24 +4595,20 @@ msgid "See more trending themes"
 msgstr "Gündemdeki diğer temalara bakın"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Gündemdeki temalar"
+msgstr "En yüksek puanlı temalar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Gündemdeki diğer temalara bakın"
+msgstr "En yüksek puanlı diğer temalara bakın"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Gündemdeki temalar"
+msgstr "Gündemdeki uzantılar"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Önerdiğimiz diğer uzantılara bakın"
+msgstr "Gündemdeki diğer uzantılara bakın"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifest dosyası ayrıştırılamadı."
