@@ -747,7 +747,7 @@ class TestActivityFeed(TestCase):
 
     def test_names_for_action_users(self):
         self.add_log(action=amo.LOG.CREATE_ADDON)
-        self.add_log(action=amo.LOG.ADD_RATING)
+        self.add_log(action=amo.LOG.APPROVE_VERSION)
 
         response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(response.content)
@@ -759,7 +759,7 @@ class TestActivityFeed(TestCase):
 
     def test_addons_dashboard_name(self):
         self.add_log(action=amo.LOG.CREATE_ADDON)
-        self.add_log(action=amo.LOG.ADD_RATING)
+        self.add_log(action=amo.LOG.APPROVE_VERSION)
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
         timestamp = doc('.recent-activity li.item span.activity-timestamp')
