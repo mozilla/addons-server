@@ -78,7 +78,7 @@ from .serializers import (
     UserProfileSerializer,
 )
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
-from .utils import fxa_login_url, generate_fxa_state, is_safe_login_redirect_url
+from .utils import fxa_login_url, generate_fxa_state
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -223,7 +223,7 @@ def parse_next_path(state_parts, request=None):
         except (TypeError, ValueError):
             log.info(f'Error decoding next_path {encoded_path}')
             pass
-    if not is_safe_login_redirect_url(next_path, request):
+    if not is_safe_url(next_path, request):
         next_path = None
     return next_path
 
@@ -416,7 +416,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
                 user = register_user(identity)
             else:
                 reregister_user(user)
-            if not is_safe_login_redirect_url(next_path, request):
+            if not is_safe_url(next_path, request):
                 next_path = None
             # If we just reverse() directly, we'd use a prefixer instance
             # initialized from the current view, which would not contain the

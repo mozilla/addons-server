@@ -6,7 +6,6 @@ from datetime import datetime
 from urllib.parse import parse_qs, urlparse
 from unittest import mock
 
-from django.conf import settings
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -378,17 +377,3 @@ class TestProcessFxAEventResetTestCase(TestCase):
 
 class TestProcessFxAEventPasswordChangeTestCase(TestProcessFxAEventResetTestCase):
     event = 'passwordChange'
-
-
-class TestIsSafeLoginRedirectUrl(TestCase):
-    @mock.patch('olympia.accounts.utils.is_safe_url')
-    def test_calls_is_safe_url(self, is_safe_url_mock):
-        request = RequestFactory().get('/')
-        assert utils.is_safe_login_redirect_url(f'https://{settings.DOMAIN}', request)
-        is_safe_url_mock.assert_called()
-        is_safe_url_mock.assert_called_with(f'https://{settings.DOMAIN}', request, None)
-
-    @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
-    def test_allows_anything_when_using_fake_fxa(self):
-        request = RequestFactory().get('/')
-        assert utils.is_safe_login_redirect_url('https://not-olympia.dev:7000', request)

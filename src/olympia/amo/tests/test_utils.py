@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.test import RequestFactory
+from django.test.utils import override_settings
 from django.utils.functional import cached_property
 from django.utils.http import quote_etag
 
@@ -372,3 +373,9 @@ class TestIsSafeUrl(TestCase):
         assert not is_safe_url(
             f'https://{settings.DOMAIN}', request, allowed_hosts=[foobaa_domain]
         )
+
+    @override_settings(DOMAIN='mozilla.com', ADDONS_FRONTEND_PROXY_PORT='1234')
+    def test_includes_host_for_proxy_when_proxy_port_setting_exists(self):
+        request = RequestFactory().get('/')
+        assert is_safe_url('https://mozilla.com:1234', request)
+        assert not is_safe_url('https://mozilla.com:9876', request)

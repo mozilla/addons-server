@@ -1182,6 +1182,9 @@ def is_safe_url(url, request, allowed_hosts=None):
     allowed_hosts = allowed_hosts or (
         settings.DOMAIN,
         urlparse(settings.CODE_MANAGER_URL).netloc,
+        f'{settings.DOMAIN}:{settings.ADDONS_FRONTEND_PROXY_PORT}'
+        if settings.ADDONS_FRONTEND_PROXY_PORT
+        else None,
     )
     require_https = request.is_secure() if request else False
     return url_has_allowed_host_and_scheme(

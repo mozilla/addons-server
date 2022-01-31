@@ -200,6 +200,10 @@ HOSTNAME = socket.gethostname()
 # need the real domain.
 DOMAIN = HOSTNAME
 
+# The port used by the frontend when running frontend locally with
+# addons-server in docker. This will default it to None for dev/prod/stage.
+ADDONS_FRONTEND_PROXY_PORT = None
+
 # Full base URL for your main site including protocol.  No trailing slash.
 #   Example: https://addons.mozilla.org
 SITE_URL = 'http://%s' % DOMAIN

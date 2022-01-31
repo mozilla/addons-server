@@ -27,7 +27,7 @@ def fxa_login_url(
     request=None,
     id_token=None,
 ):
-    if next_path and is_safe_login_redirect_url(next_path, request):
+    if next_path and is_safe_url(next_path, request):
         state += ':' + force_str(urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(
             '='
         )
@@ -157,10 +157,3 @@ def process_sqs_queue(queue_url):
     except Exception as exc:
         log.exception('Error while processing account events: %s' % exc)
         raise exc
-
-
-def is_safe_login_redirect_url(url, request, allowed_hosts=None):
-    """Calls our is_safe_url function, which accepts the `allowed_hosts`,
-    unless using fake FxA, in which was we just return True.
-    """
-    return use_fake_fxa() or is_safe_url(url, request, allowed_hosts)
