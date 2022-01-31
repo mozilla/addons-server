@@ -831,7 +831,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             suffix='.zip', dir=temp.gettempdir()
         ) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             self.version.source.save(
                 os.path.basename(source_file.name), DjangoFile(source_file)
@@ -852,7 +852,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             suffix='.zip', dir=temp.gettempdir()
         ) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -876,7 +876,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             suffix='.zip', dir=temp.gettempdir()
         ) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -922,7 +922,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             suffix='.exe', dir=temp.gettempdir()
         ) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -985,7 +985,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             suffix='.exe', dir=temp.gettempdir()
         ) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -997,7 +997,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         tmp_file = temp.NamedTemporaryFile
         with tmp_file(suffix='.zip', dir=tdir) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)

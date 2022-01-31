@@ -311,16 +311,13 @@ class AddonManager(ManagerBase):
             exclude_listed_pending_rejection=False,
             theme_review=theme_review,
         )
-        filters = (
-            Q(
-                status__in=statuses,
-                type__in=types,
-                versions__channel=amo.RELEASE_CHANNEL_LISTED,
-                versions__file__status=amo.STATUS_AWAITING_REVIEW,
-                versions__reviewerflags__pending_rejection=None,
-            )
-            & ~Q(disabled_by_user=True)
-        )
+        filters = Q(
+            status__in=statuses,
+            type__in=types,
+            versions__channel=amo.RELEASE_CHANNEL_LISTED,
+            versions__file__status=amo.STATUS_AWAITING_REVIEW,
+            versions__reviewerflags__pending_rejection=None,
+        ) & ~Q(disabled_by_user=True)
         if recommendable:
             filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
         elif not theme_review:
