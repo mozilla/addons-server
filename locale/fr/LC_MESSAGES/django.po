@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-25 18:59+0000\n"
-"PO-Revision-Date: 2022-01-28 17:22+0000\n"
+"PO-Revision-Date: 2022-01-31 08:19+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -390,7 +390,7 @@ msgid "Auth hash mismatch. Session is likely expired."
 msgstr "Non-concordance du hachage d’authentification. La session est probablement expirée."
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Aucune session valide correspondante à la clé de session fournie."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr "L’actualisation du jeton d’accès a échoué ; l’utilisateur doit se reconnecter à FxA."
@@ -3775,6 +3775,8 @@ msgstr "Rechargez automatiquement le contenu des onglets ouverts en fonction des
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
+"Gardez certains aspects de votre vie en ligne privés grâce à un système de code couleur et de cookies dans des onglets séparés. Maintenant intégré avec Mozilla VPN pour un niveau supplémentaire de "
+"confidentialité."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
