@@ -231,7 +231,7 @@ class TestAddonIndexer(TestCase):
             assert extracted[field_name] == getattr(self.addon, field_name)
 
         assert extracted['app'] == [FIREFOX.id]
-        assert extracted['boost'] == self.addon.average_daily_users ** 0.2 * 4
+        assert extracted['boost'] == self.addon.average_daily_users**0.2 * 4
         assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['current_version']
         assert extracted['listed_authors'] == [

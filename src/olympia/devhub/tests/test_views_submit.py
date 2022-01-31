@@ -74,7 +74,7 @@ class TestSubmitBase(TestCase):
         return self.get_addon().versions.latest()
 
     def generate_source_zip(
-        self, suffix='.zip', data='z' * (2 ** 21), compression=zipfile.ZIP_DEFLATED
+        self, suffix='.zip', data='z' * (2**21), compression=zipfile.ZIP_DEFLATED
     ):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
@@ -83,7 +83,7 @@ class TestSubmitBase(TestCase):
         source.seek(0)
         return source
 
-    def generate_source_tar(self, suffix='.tar.gz', data=b't' * (2 ** 21), mode=None):
+    def generate_source_tar(self, suffix='.tar.gz', data=b't' * (2**21), mode=None):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
         if mode is None:
@@ -96,7 +96,7 @@ class TestSubmitBase(TestCase):
         source.seek(0)
         return source
 
-    def generate_source_garbage(self, suffix='.zip', data=b'g' * (2 ** 21)):
+    def generate_source_garbage(self, suffix='.zip', data=b'g' * (2**21)):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
         source.write(data)
@@ -874,7 +874,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert not self.get_version().source
         assert not self.addon.needs_admin_code_review
 
-    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
+    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2**22)
     def test_submit_source_in_memory_upload(self):
         source = self.generate_source_zip()
         source_size = os.stat(source.name)[stat.ST_SIZE]
@@ -887,7 +887,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
-    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
+    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2**22)
     def test_submit_source_in_memory_upload_with_targz(self):
         source = self.generate_source_tar()
         source_size = os.stat(source.name)[stat.ST_SIZE]

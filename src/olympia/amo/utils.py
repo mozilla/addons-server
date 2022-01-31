@@ -853,7 +853,7 @@ class SafeStorage(FileSystemStorage):
     Storage is relative to settings.STORAGE_ROOT by default.
     """
 
-    DEFAULT_CHUNK_SIZE = 64 * 2 ** 10  # 64kB
+    DEFAULT_CHUNK_SIZE = 64 * 2**10  # 64kB
 
     def __init__(self, *args, **kwargs):
         """If `user_media` arg is provided, location will be lazily resolved under the

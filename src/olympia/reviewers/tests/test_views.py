@@ -4454,7 +4454,7 @@ class TestReview(ReviewBase):
         version = self.addon.current_version
         tdir = temp.gettempdir()
         source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir, mode='r+')
-        source_file.write('a' * (2 ** 21))
+        source_file.write('a' * (2**21))
         source_file.seek(0)
         version.source.save(os.path.basename(source_file.name), DjangoFile(source_file))
         version.save()

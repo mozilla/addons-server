@@ -1,8 +1,8 @@
 import re
 
 
-BIGINT_POSITIVE_MAX = 2 ** 63 - 1
-MAX_VERSION_PART = 2 ** 16 - 1
+BIGINT_POSITIVE_MAX = 2**63 - 1
+MAX_VERSION_PART = 2**16 - 1
 
 version_re = re.compile(
     r"""(?P<major>\d+|\*)      # major (x in x.y)
