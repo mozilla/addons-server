@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import sys
 
 import django
@@ -105,8 +106,15 @@ def handler403(request, exception=None, **kwargs):
 @non_atomic_requests
 def handler404(request, exception=None, **kwargs):
     if getattr(request, 'is_api', False):
-        # It's a v3+ api request
+        # It's a v3+ api request (/api/vX/ or /api/auth/)
         return JsonResponse({'detail': str(NotFound.default_detail)}, status=404)
+    elif re.match(r'^/api/\d\.\d/', getattr(request, 'path_info', '')):
+        # It's a legacy API request in the form of /api/X.Y/. We use path_info,
+        # which is set in LocaleAndAppURLMiddleware, because there might be a
+        # locale and app prefix we don't care about in the URL.
+        response = HttpResponse(status=404)
+        patch_cache_control(response, max_age=60 * 60 * 48)
+        return response
     return TemplateResponse(request, 'amo/404.html', status=404)
 
 

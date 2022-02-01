@@ -90,6 +90,12 @@ class Test404(TestCase):
         data = json.loads(response.content)
         assert data['detail'] == 'Not found.'
 
+    def test_404_legacy_api(self):
+        response = self.client.get('/en-US/firefox/api/1.0/search')
+        assert response.status_code == 404
+        self.assertTemplateNotUsed(response, 'amo/404.html')
+        assert response['Cache-Control'] == 'max-age=172800'
+
 
 class Test500(TestCase):
     def test_500_renders_correctly_with_no_queries_or_auth(self):
