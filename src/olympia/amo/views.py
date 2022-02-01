@@ -10,7 +10,7 @@ from django.contrib.sitemaps.views import x_robots_tag
 from django.core.exceptions import PermissionDenied, ViewDoesNotExist
 from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.db.transaction import non_atomic_requests
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, HttpResponseNotFound, JsonResponse
 from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
@@ -112,7 +112,7 @@ def handler404(request, exception=None, **kwargs):
         # It's a legacy API request in the form of /api/X.Y/. We use path_info,
         # which is set in LocaleAndAppURLMiddleware, because there might be a
         # locale and app prefix we don't care about in the URL.
-        response = HttpResponse(status=404)
+        response = HttpResponseNotFound()
         patch_cache_control(response, max_age=60 * 60 * 48)
         return response
     return TemplateResponse(request, 'amo/404.html', status=404)
