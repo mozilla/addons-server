@@ -379,3 +379,9 @@ class TestIsSafeUrl(TestCase):
         request = RequestFactory().get('/')
         assert is_safe_url('https://mozilla.com:1234', request)
         assert not is_safe_url('https://mozilla.com:9876', request)
+
+    @override_settings(DOMAIN='mozilla.com')
+    def test_proxy_port_defaults_to_none(self):
+        request = RequestFactory().get('/')
+        assert is_safe_url('https://mozilla.com', request)
+        assert not is_safe_url('https://mozilla.com:7000', request)

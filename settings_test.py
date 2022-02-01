@@ -96,3 +96,5 @@ CELERY_TASK_ROUTES.update({
 
 # switch cached_db out for just cache sessions to avoid extra db queries
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+ADDONS_FRONTEND_PROXY_PORT = None
