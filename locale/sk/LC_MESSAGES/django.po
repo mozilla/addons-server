@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-11-07 09:45+0000\n"
 "Last-Translator: Vlado Valaštiak <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -73,9 +73,6 @@ msgstr "Odkazy nie sú povolené."
 
 msgid "This display name cannot be used."
 msgstr "Toto zobrazené meno nemôže byť použité."
-
-msgid "This reviewer name cannot be used."
-msgstr ""
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Pole pre domovskú stránku môže odkazovať len na externé webové stránky."
@@ -4656,6 +4653,9 @@ msgstr "Nemôžete nahrať rozšírenie, ktorého ID končí na %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2022-01-22 23:24+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -75,9 +75,6 @@ msgstr "קישורים אינם מותרים."
 
 msgid "This display name cannot be used."
 msgstr "לא ניתן להשתמש בשם תצוגה זה."
-
-msgid "This reviewer name cannot be used."
-msgstr "לא ניתן להשתמש בשם הסוקר הזה."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "ניתן להשתמש בשדה דף הבית כדי לקשר לאתרים חיצוניים בלבד."
@@ -4673,6 +4670,9 @@ msgstr "לא ניתן להגיש תוספת עם המשתמשת במזהה שמ�
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "לא ניתן להגיש הרחבות החתומות על־ידי Mozilla"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr "לא ניתן להגיש ערכת שפה"

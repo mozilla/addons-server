@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2022-01-03 14:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -71,9 +71,6 @@ msgstr "లంకెలు అనుమతించబడవు."
 
 msgid "This display name cannot be used."
 msgstr "ఈ పేరును వాడుకోలేరు."
-
-msgid "This reviewer name cannot be used."
-msgstr "ఈ సమీక్షకుని పేరును వాడలేరు."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "హోమ్‌పేజీ ఫీల్డు బయటి వెబ్‌సైట్లకు లంకె చేయడానికి మాత్రమే వాడగలరు."
@@ -4583,6 +4580,9 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "మొజిల్లా సంతకం చేసిన పొడగింతను మీరు సమర్పించలేరు"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr ""

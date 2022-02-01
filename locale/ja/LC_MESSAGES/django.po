@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-11-20 10:34+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -74,9 +74,6 @@ msgstr "リンクの使用は許可されていません。"
 
 msgid "This display name cannot be used."
 msgstr "この表示名は使用できません。"
-
-msgid "This reviewer name cannot be used."
-msgstr "このレビュー担当者名は使用できません。"
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "ホームページフィールドは、外部ウェブサイトへのリンクにのみ使用できます。"
@@ -4713,6 +4710,9 @@ msgstr "%sで終わる GUID が設定されたアドオンを投稿すること�
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "あなたは Mozilla Signed Extension を登録できません"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr "あなたは言語パックを登録できません"

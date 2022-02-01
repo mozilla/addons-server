@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-11-25 15:44+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -71,9 +71,6 @@ msgstr "Não são permitidas ligações."
 
 msgid "This display name cannot be used."
 msgstr "Este nome de apresentação não pode ser utilizado."
-
-msgid "This reviewer name cannot be used."
-msgstr "Este nome de revisor não pode ser utilizado."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "O campo da página inicial só pode ser utilizado para ligações a sites externos."
@@ -4740,6 +4737,9 @@ msgstr "Não pode submeter um extra utilizando um ID que termine com este sufixo
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Não pode submeter uma extensão assinada pela Mozilla"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr "Você não pode enviar um pacote de idiomas"

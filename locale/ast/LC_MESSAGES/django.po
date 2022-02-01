@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-09-06 00:04+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,9 +71,6 @@ msgid "No links are allowed."
 msgstr ""
 
 msgid "This display name cannot be used."
-msgstr ""
-
-msgid "This reviewer name cannot be used."
 msgstr ""
 
 msgid "The homepage field can only be used to link to external websites."
@@ -4580,6 +4577,9 @@ msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
 msgstr ""
 
 msgid "You cannot submit a language pack"

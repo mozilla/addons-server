@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,9 +72,6 @@ msgstr "Majun ximonel ya'on q'ij chi re."
 
 msgid "This display name cannot be used."
 msgstr "Man tikirel ta nokisäx re b'i'aj xk'ut pe."
-
-msgid "This reviewer name cannot be used."
-msgstr "Man tikirel ta nokisäx re rub'i' nik'onel re'."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Ri tikirib'äl ruxaq nokisäx richin yexim aj juk'an ajk'amaya'l ruxaq."
@@ -4763,6 +4760,9 @@ msgstr "Man yatikïr ta natäq jun tz'aqat rik'in jun guid k'isinäq rik'in %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 #, fuzzy
 msgid "You cannot submit a language pack"

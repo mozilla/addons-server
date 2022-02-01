@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,10 +77,6 @@ msgstr "Tiada pautan dibenarkan."
 
 msgid "This display name cannot be used."
 msgstr "Nama paparan ini tidak boleh digunakan."
-
-#, fuzzy
-msgid "This reviewer name cannot be used."
-msgstr "Nama ini tidak boleh digunakan."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Medan laman hanya boleh digunakan untuk membuat pautan ke laman web luar."
@@ -4811,6 +4807,9 @@ msgstr "Anda tidak boleh kemukakan add-on dengan guid yang berakhir dengan %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 #, fuzzy
 msgid "You cannot submit a language pack"

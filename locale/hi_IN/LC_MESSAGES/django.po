@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,9 +72,6 @@ msgstr "कोई भी लिंक की अनुमति नहीं ह
 
 msgid "This display name cannot be used."
 msgstr "इस डिस्प्ले नाम का उपयोग नहीं किया जा सकता है।"
-
-msgid "This reviewer name cannot be used."
-msgstr "इस समीक्षक नाम का उपयोग नहीं किया जा सकता है।"
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "होमपेज फ़ील्ड का उपयोग केवल बाहरी वेबसाइटों से जोड़ने के लिए किया जा सकता है।"
@@ -4651,6 +4648,9 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "आप एक Mozilla हस्ताक्षरित एक्सटेंशन जमा नहीं कर सकते हैं"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr ""
