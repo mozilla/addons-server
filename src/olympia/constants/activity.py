@@ -257,18 +257,21 @@ class ADD_TO_COLLECTION(_LOG):
     id = 27
     action_class = 'collection'
     format = _('{addon} added to {collection}.')
+    show_user_to_developer = True
 
 
 class REMOVE_FROM_COLLECTION(_LOG):
     id = 28
     action_class = 'collection'
     format = _('{addon} removed from {collection}.')
+    show_user_to_developer = True
 
 
 class ADD_RATING(_LOG):
     id = 29
     action_class = 'review'
     format = _('{rating} for {addon} written.')
+    show_user_to_developer = True
 
 
 # TODO(davedash): Add these when we do the admin site
@@ -361,6 +364,7 @@ class DELETE_RATING(_LOG):
 class MAX_APPVERSION_UPDATED(_LOG):
     id = 46
     format = _('Application max version for {version} updated.')
+    show_user_to_developer = True
 
 
 class BULK_VALIDATION_EMAILED(_LOG):
@@ -451,6 +455,7 @@ class EDIT_RATING(_LOG):
     id = 107
     action_class = 'review'
     format = _('{rating} for {addon} updated.')
+    show_user_to_developer = True
 
 
 class THEME_REVIEW(_LOG):
@@ -514,6 +519,7 @@ class DELETE_ADDON(_LOG):
     # L10n: {0} is the add-on GUID.
     format = _('Addon id {0} with GUID {1} has been deleted')
     keep = True
+    show_user_to_developer = True
 
 
 class EXPERIMENT_SIGNED(_LOG):
@@ -606,11 +612,13 @@ class CONFIRM_AUTO_APPROVED(_LOG):
 class ENABLE_VERSION(_LOG):
     id = 145
     format = _('{addon} {version} re-enabled.')
+    show_user_to_developer = True
 
 
 class DISABLE_VERSION(_LOG):
     id = 146
     format = _('{addon} {version} disabled.')
+    show_user_to_developer = True
 
 
 class APPROVE_CONTENT(_LOG):
