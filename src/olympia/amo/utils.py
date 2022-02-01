@@ -1179,10 +1179,16 @@ class HttpResponseTemporaryRedirect(HttpResponseRedirectBase):
 def is_safe_url(url, request, allowed_hosts=None):
     """Use Django's `url_has_allowed_host_and_scheme()` and pass a configured
     list of allowed hosts and enforce HTTPS.  `allowed_hosts` can be specified."""
-    allowed_hosts = allowed_hosts or (
-        settings.DOMAIN,
-        urlparse(settings.CODE_MANAGER_URL).netloc,
-    )
+    if not allowed_hosts:
+        allowed_hosts = (
+            settings.DOMAIN,
+            urlparse(settings.CODE_MANAGER_URL).netloc,
+        )
+        if settings.ADDONS_FRONTEND_PROXY_PORT:
+            allowed_hosts = allowed_hosts + (
+                f'{settings.DOMAIN}:{settings.ADDONS_FRONTEND_PROXY_PORT}',
+            )
+
     require_https = request.is_secure() if request else False
     return url_has_allowed_host_and_scheme(
         url, allowed_hosts=allowed_hosts, require_https=require_https
