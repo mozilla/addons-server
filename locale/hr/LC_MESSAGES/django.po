@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-07-27 16:19+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -74,9 +74,6 @@ msgstr "Poveznice nisu dopuštene."
 
 msgid "This display name cannot be used."
 msgstr "Ime prikaza nije moguće koristiti."
-
-msgid "This reviewer name cannot be used."
-msgstr "Ime recenzenta nije moguće koristiti."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Polje za naslovnicu se može koristiti samo za povezivanje na vanjske web stranice."
@@ -4670,6 +4667,9 @@ msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
 msgstr ""
 
 msgid "You cannot submit a language pack"

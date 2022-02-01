@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -78,9 +78,6 @@ msgstr "No se permiten enlaces."
 
 msgid "This display name cannot be used."
 msgstr "No se puede utilizar el nombre mostrado."
-
-msgid "This reviewer name cannot be used."
-msgstr "No se puede utilizar este nombre de revisor."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "El campo de la página de inicio solo se puede utilizar para vincularlo a sitios web externos."
@@ -4829,6 +4826,9 @@ msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "No puedes enviar una extensión firmada de Mozilla"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr "No puedes enviar un paquete de idioma"

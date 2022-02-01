@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -71,9 +71,6 @@ msgstr "Nu se permit linkuri."
 
 msgid "This display name cannot be used."
 msgstr "Acest nume afișat nu poate fi folosit."
-
-msgid "This reviewer name cannot be used."
-msgstr "Acest nume de recenzent nu poate fi folosit."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Câmpul pentru pagina de start poate fi utilizat numai pentru linkuri către site-uri web externe."
@@ -4774,6 +4771,9 @@ msgstr "Nu poți trimite un supliment cu un ID care se termină în %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nu poți trimite o extensie semnată de Mozilla"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr "Nu poți trimite un pachet lingvistic"

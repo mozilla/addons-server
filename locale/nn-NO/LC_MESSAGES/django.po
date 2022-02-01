@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-12-19 12:57+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,9 +72,6 @@ msgstr "Ingen lenker er tillatne."
 
 msgid "This display name cannot be used."
 msgstr "Dette visingsnamnet kan ikkje brukast."
-
-msgid "This reviewer name cannot be used."
-msgstr "Dette vurderar-namnet kan ikkje brukast."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Heimesidefeltet kan berre brukast for å lenke til eksterne nettsider."
@@ -4661,6 +4658,9 @@ msgstr "Du kan ikkje sende inn ei utviding med ein guid som sluttar med %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Du kan ikkje sende inn ei Mozilla-signert utviding"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 #, fuzzy
 msgid "You cannot submit a language pack"

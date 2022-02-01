@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,10 +75,6 @@ msgid "No links are allowed."
 msgstr "به هیچ پیوندی اجازه داده نمی‌شود."
 
 msgid "This display name cannot be used."
-msgstr "نام انتخاب شده قابل استفاده نیست."
-
-#, fuzzy
-msgid "This reviewer name cannot be used."
 msgstr "نام انتخاب شده قابل استفاده نیست."
 
 msgid "The homepage field can only be used to link to external websites."
@@ -4778,6 +4774,9 @@ msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
 msgstr ""
 
 msgid "You cannot submit a language pack"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-12-02 17:39+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -71,9 +71,6 @@ msgstr "Povezave niso dovoljene."
 
 msgid "This display name cannot be used."
 msgstr "Tega prikaznega imena ni mogoče uporabljati."
-
-msgid "This reviewer name cannot be used."
-msgstr "Tega imena pregledovalca ne morete uporabiti."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Polje domače strani se lahko uporablja samo za povezave na zunanja spletna mesta."
@@ -4694,6 +4691,9 @@ msgstr "Ne morete oddati dodatka, katerega ID se končuje s to pripono"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ne morete poslati Mozilline podpisane razširitve"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr "Ne morete poslati jezikovnega paketa"

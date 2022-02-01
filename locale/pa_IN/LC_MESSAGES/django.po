@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,9 +71,6 @@ msgstr "ਕਿਸੇ ਲਿੰਕ ਦੀ ਇਜ਼ਾਜਤ ਨਹੀਂ।"
 
 msgid "This display name cannot be used."
 msgstr "ਇਹ ਡਿਸਪਲੇਅ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
-
-msgid "This reviewer name cannot be used."
-msgstr "ਇਹ ਸਮੀਖਿਅਕ ਦਾ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "ਮੁੱਖ-ਸਫ਼ੇ ਖੇਤਰ ਨੂੰ ਸਿਰਫ਼ ਬਾਹਰੀ ਵੈਬਸਾਈਟਾਂ ਨਾਲ ਲਿੰਕ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ।"
@@ -4714,6 +4711,9 @@ msgstr "ਤੁਸੀਂ ਇੱਕ ਗਾਈਡ ਅੰਤ %s ਨਾਲ ਐਡਆ�
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr "ਤੁਸੀਂ ਭਾਸ਼ਾ ਪੈਕ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"

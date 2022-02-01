@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2022-01-22 03:36+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -74,9 +74,6 @@ msgstr "링크는 넣을 수 없습니다."
 
 msgid "This display name cannot be used."
 msgstr "이 표시 이름은 사용할 수 없습니다."
-
-msgid "This reviewer name cannot be used."
-msgstr "이 검토자의 이름은 사용할 수 없습니다."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "홈페이지 필드는 외부 웹 사이트 연결에만 사용 할 수 있습니다."
@@ -4709,6 +4706,9 @@ msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
+msgstr ""
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
 msgstr ""
 
 #, fuzzy

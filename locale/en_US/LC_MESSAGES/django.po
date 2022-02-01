@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -78,10 +78,6 @@ msgstr "No links are allowed."
 
 msgid "This display name cannot be used."
 msgstr "This display name cannot be used."
-
-#, fuzzy
-msgid "This reviewer name cannot be used."
-msgstr "This name cannot be used."
 
 #, fuzzy
 msgid "The homepage field can only be used to link to external websites."
@@ -5108,6 +5104,9 @@ msgstr "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "You cannot submit a Mozilla Signed Extension"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
 
 #, fuzzy
 msgid "You cannot submit a language pack"

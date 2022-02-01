@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-25 18:59+0000\n"
+"POT-Creation-Date: 2022-02-01 18:07+0000\n"
 "PO-Revision-Date: 2021-12-04 17:44+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -75,9 +75,6 @@ msgid "No links are allowed."
 msgstr "Odkazy nejsou povoleny."
 
 msgid "This display name cannot be used."
-msgstr "Toto jméno nemůže být použito."
-
-msgid "This reviewer name cannot be used."
 msgstr "Toto jméno nemůže být použito."
 
 msgid "The homepage field can only be used to link to external websites."
@@ -4703,6 +4700,9 @@ msgstr "Nemůžete odeslat doplněk pomocí ID končícího touto příponou"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
 
 msgid "You cannot submit a language pack"
 msgstr "Nemůžete odeslat jazykový balíček"
