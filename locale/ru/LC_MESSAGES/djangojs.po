@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-25 18:59+0000\n"
-"PO-Revision-Date: 2020-12-13 13:16+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2022-01-29 13:44+0000\n"
+"Last-Translator: jankonstanta <jankonstanta@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "Select a file..."
 msgstr "Выбрать файл..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Имя файла дополнения должно заканчиваться на .zip, .xpi или .crx"
+msgstr "Расширение файла дополнения должно заканчиваться на .zip, .xpi или .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
