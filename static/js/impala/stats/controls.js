@@ -7,26 +7,9 @@
     minDate = Date.iso($('.primary').attr('data-min-date')),
     msDay = 24 * 60 * 60 * 1000; // One day in milliseconds.
 
-  $.datepicker.setDefaults({ showAnim: '' });
   var $customModal = $('#custom-criteria').modal('#custom-date-range', {
     width: 520,
     hideme: true,
-  });
-  var $startPicker = $('#start-date-picker').datepicker({
-    maxDate: 0,
-    minDate: minDate,
-    dateFormat: 'yy-mm-dd',
-    onSelect: function (dateText) {
-      $('#date-range-start').val(dateText);
-    },
-  });
-  var $endPicker = $('#end-date-picker').datepicker({
-    maxDate: 0,
-    minDate: minDate,
-    dateFormat: 'yy-mm-dd',
-    onSelect: function (dateText) {
-      $('#date-range-end').val(dateText);
-    },
   });
 
   $rangeSelector.click(function (e) {
@@ -61,9 +44,7 @@
       }
 
       $('#date-range-start').val(startStr);
-      $startPicker.datepicker('setDate', startStr);
       $('#date-range-end').val(endStr);
-      $endPicker.datepicker('setDate', endStr);
     }
     if (newState.range) {
       if (!newState.range.custom) {

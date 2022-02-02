@@ -743,7 +743,6 @@ MINIFY_BUNDLES = {
             'js/node_lib/ui/menu.js',
             'js/node_lib/ui/mouse.js',
             'js/node_lib/ui/autocomplete.js',
-            'js/node_lib/ui/datepicker.js',
             'js/node_lib/ui/sortable.js',
             'js/zamboni/helpers.js',
             'js/common/banners.js',
