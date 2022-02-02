@@ -607,7 +607,6 @@ MINIFY_BUNDLES = {
         'zamboni/css': (
             'css/legacy/main.css',
             'css/legacy/main-mozilla.css',
-            'css/legacy/jquery-lightbox.css',
             'css/zamboni/zamboni.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
@@ -621,7 +620,6 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/impala': (
             'css/impala/base.css',
-            'css/legacy/jquery-lightbox.css',
             'css/impala/site.less',
             'css/impala/typography.less',
             'css/impala/forms.less',
@@ -640,7 +638,6 @@ MINIFY_BUNDLES = {
             'css/impala/expando.less',
             'css/impala/popups.less',
             'css/impala/l10n.less',
-            'css/impala/lightbox.less',
             'css/impala/prose.less',
             'css/impala/abuse.less',
             'css/impala/paginator.less',
@@ -659,10 +656,6 @@ MINIFY_BUNDLES = {
             'css/impala/compat.less',
         ),
         'zamboni/stats': ('css/impala/stats.less',),
-        'zamboni/discovery-pane': (
-            'css/impala/promos.less',
-            'css/legacy/jquery-lightbox.css',
-        ),
         'zamboni/devhub': (
             'css/impala/tooltips.less',
             'css/zamboni/developers.css',
@@ -752,11 +745,8 @@ MINIFY_BUNDLES = {
             # Homepage
             'js/zamboni/homepage.js',
             # Add-ons details page
-            'js/lib/ui.lightbox.js',
-            'js/zamboni/addon_details.js',
             'js/impala/abuse.js',
             'js/zamboni/ratings.js',
-            'js/lib/jquery.hoverIntent.js',
             # Unicode letters for our makeslug function
             'js/zamboni/unicode.js',
             # Users
@@ -827,8 +817,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/l10n.js',
             'js/impala/forms.js',
             # Add-ons details page
-            'js/lib/ui.lightbox.js',
-            'js/impala/addon_details.js',
             'js/impala/abuse.js',
             'js/impala/ratings.js',
             # Browse listing pages
@@ -848,26 +836,6 @@ MINIFY_BUNDLES = {
             'js/impala/site_suggestions.js',
             # Login
             'js/impala/login.js',
-        ),
-        'zamboni/discovery': (
-            'js/node_lib/jquery.js',
-            'js/node_lib/jquery.browser.js',
-            'js/node_lib/underscore.js',
-            'js/zamboni/browser.js',
-            'js/zamboni/init.js',
-            'js/impala/capabilities.js',
-            'js/lib/format.js',
-            'js/impala/carousel.js',
-            'js/zamboni/analytics.js',
-            # Add-ons details
-            'js/node_lib/jquery.cookie.js',
-            'js/zamboni/storage.js',
-            'js/zamboni/buttons.js',
-            'js/lib/ui.lightbox.js',
-            'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/debouncer.js',
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',
