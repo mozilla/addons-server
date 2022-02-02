@@ -474,11 +474,6 @@ class DeveloperVersionSerializer(VersionSerializer):
                 self.context['request'].user,
                 version,
             )
-        elif version.addon.needs_admin_code_review:
-            AddonReviewerFlags.objects.update(
-                addon=version.addon,
-                needs_admin_code_review=False,
-            )
 
     def create(self, validated_data):
         upload = validated_data.get('upload')

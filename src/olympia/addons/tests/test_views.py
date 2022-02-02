@@ -2608,7 +2608,7 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
 
     def test_source_set_null_clears_field(self):
         AddonReviewerFlags.objects.create(
-            addon=self.version.addon, needs_admin_code_review=False
+            addon=self.version.addon, needs_admin_code_review=True
         )
         self.version.update(source='src.zip')
         response = self.client.patch(
@@ -2618,7 +2618,7 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
         assert response.status_code == 200, response.content
         self.version.reload()
         assert not self.version.source
-        assert not self.addon.needs_admin_code_review
+        assert self.addon.needs_admin_code_review  # still set
 
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
