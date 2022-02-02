@@ -6,8 +6,8 @@
     <div class="addon-previews">
       {% if addon.current_previews %}
         {% with preview=addon.current_previews[0] %}
-          <a class="screenshot thumbnail" rel="jquery-lightbox"
-            href="{{ preview.image_url }}" title="{{ preview.caption }}">
+          <a class="screenshot thumbnail" target="_blank" rel="noopener noreferrer"
+             href="{{ preview.image_url }}" title="{{ preview.caption }}">
               <img alt="" src="{{ preview.thumbnail_url }}" />
           </a>
         {% endwith %}
@@ -218,8 +218,8 @@
       {% if addon.current_previews|length > 1 %}
         <h4>{{ _('Image Gallery') }}</h4>
         {% for preview in addon.current_previews[1:] %}
-        <a class="screenshot thumbnail" rel="jquery-lightbox"
-          href="{{ preview.image_url }}" title="{{ preview.caption }}">
+        <a class="screenshot thumbnail" target="_blank" rel="noopener noreferrer"
+           href="{{ preview.image_url }}" title="{{ preview.caption }}">
             <img src="{{ preview.thumbnail_url }}" alt="" />
         </a>
         {% endfor %}
