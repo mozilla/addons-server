@@ -1,4 +1,4 @@
-{% extends "devhub/base_impala.html" %}
+{% extends "devhub/base.html" %}
 
 
 {% set title = _('Manage My Submissions') %}
@@ -6,7 +6,7 @@
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
 
 {% block content %}
-  <section class="primary">
+  <section>
     <header class="hero">
       <h1>{{ title }}</h1>
 
@@ -58,11 +58,11 @@
   {% include "addons/includes/dashboard_tabs.html" %}
   <section class="dashboard primary" role="main">
     <div class="listing island hero c">
-      {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
+      {{ addon_listing_header(request.get_full_path(), search_filter=filter) }}
       <div class="items">
         {{ dev_addon_listing_items(addons.object_list) }}
       </div>
-      {{ addons|impala_paginator }}
+      {{ addons|paginator }}
     </div>
   </section>
 {% endif %}
@@ -76,11 +76,11 @@
     </h2>
     {% include "addons/includes/dashboard_tabs.html" %}
     <div class="listing island hero c">
-      {{ impala_addon_listing_header(request.get_full_path(), search_filter=filter) }}
+      {{ addon_listing_header(request.get_full_path(), search_filter=filter) }}
       <div class="items">
         {{ dev_addon_listing_items(themes.object_list) }}
       </div>
-      {{ themes|impala_paginator }}
+      {{ themes|paginator }}
     </div>
   </section>
 {% endif %}

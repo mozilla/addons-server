@@ -4,9 +4,9 @@ from django_jinja import library
 
 
 @library.global_function
-@library.render_with('addons/impala/listing/sorter.html')
+@library.render_with('devhub/includes/listing_header.html')
 @jinja2.pass_context
-def impala_addon_listing_header(
+def addon_listing_header(
     context,
     url_base,
     sort_opts=None,

@@ -236,7 +236,7 @@
         {% endfor %}
       </table>
     </div>
-    {% if versions.paginator.num_pages > 1 %}
+    {% if versions.paginator.num_pages %}
       <div class="listing-footer">
         {{ versions|paginator }}
       </div>
