@@ -1706,7 +1706,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
 
 class SubmitSourceMixin:
-    def _generate_source_tar(self, suffix='.tar.gz', data=b't' * (2 ** 21), mode=None):
+    def _generate_source_tar(self, suffix='.tar.gz', data=b't' * (2**21), mode=None):
         source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
         if mode is None:
             mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
@@ -1719,7 +1719,7 @@ class SubmitSourceMixin:
         return source
 
     def _generate_source_zip(
-        self, suffix='.zip', data='z' * (2 ** 21), compression=zipfile.ZIP_DEFLATED
+        self, suffix='.zip', data='z' * (2**21), compression=zipfile.ZIP_DEFLATED
     ):
         source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
         with zipfile.ZipFile(source, 'w', compression=compression) as zip_file:
