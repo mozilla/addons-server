@@ -628,10 +628,3 @@ $.fn.exists = function (callback, args) {
   }
   return len > 0;
 };
-
-$(function () {
-  'use strict';
-
-  // Notification banners that go on every page.
-  initBanners();
-});

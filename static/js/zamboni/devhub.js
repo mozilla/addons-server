@@ -959,7 +959,6 @@ function initAuthorFields() {
     var numForms = authors_pending_confirmation.children('.author').length,
       manager = $('#id_authors_pending_confirmation-TOTAL_FORMS');
     authors_pending_confirmation.append(empty_form([numForms]));
-    authors_pending_confirmation.find('.blank .author-email').placeholder();
     manager.val(authors_pending_confirmation.children('.author').length);
   }
 }
