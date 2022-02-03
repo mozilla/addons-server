@@ -100,7 +100,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('id', olympia.amo.fields.PositiveAutoField(primary_key=True, serialize=False)),
-                ('network', olympia.amo.fields.CIDRField(blank=True, help_text='Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28', null=True)),
+                ('network', olympia.amo.fields.CIDRField(blank=True, help_text='Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28', null=True)),
             ],
             options={
                 'db_table': 'users_user_network_restriction',
