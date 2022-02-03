@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-01 18:07+0000\n"
-"PO-Revision-Date: 2021-12-23 04:35+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"PO-Revision-Date: 2022-01-29 19:21+0000\n"
+"Last-Translator: Jiye Back <jiye080202@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgid_plural "{0} stars"
 msgstr[0] "별점 {0}점"
 
 msgid "There was a problem contacting the server."
-msgstr "서버와 연결 도중 문제가 발생했습니다."
+msgstr "서버와 연결 중 문제가 발생했습니다."
 
 msgid "Select a file..."
 msgstr "파일 선택..."
