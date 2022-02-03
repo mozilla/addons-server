@@ -1,9 +1,17 @@
+import io
 import json
+import mimetypes
+import os
+import stat
+import tarfile
+import tempfile
+import zipfile
 
 from unittest import mock
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
@@ -19,7 +27,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonCategory, DeniedSlug
+from olympia.addons.models import AddonCategory, AddonReviewerFlags, DeniedSlug
 from olympia.amo.tests import (
     APITestClientWebToken,
     ESTestCase,
@@ -59,8 +67,8 @@ from ..models import (
 from ..serializers import (
     AddonSerializer,
     AddonSerializerWithUnlistedData,
+    DeveloperVersionSerializer,
     LicenseSerializer,
-    VersionSerializer,
 )
 from ..utils import generate_addon_guid
 from ..views import (
@@ -1680,8 +1688,134 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
+    def test_developer_version_serializer_used_for_authors(self):
+        self.version.update(source='src.zip')
+        # not logged in
+        assert 'source' not in self.client.get(self.url).data
 
-class TestVersionViewSetCreate(UploadMixin, TestCase):
+        user = UserProfile.objects.create(username='user')
+        self.client.login_api(user)
+
+        # logged in but not an author
+        assert 'source' not in self.client.get(self.url).data
+
+        AddonUser.objects.create(user=user, addon=self.addon)
+
+        # the field is present when the user is an author of the add-on.
+        assert 'source' in self.client.get(self.url).data
+
+
+class SubmitSourceMixin:
+    def _generate_source_tar(self, suffix='.tar.gz', data=b't' * (2 ** 21), mode=None):
+        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
+        if mode is None:
+            mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
+        with tarfile.open(fileobj=source, mode=mode) as tar_file:
+            tar_info = tarfile.TarInfo('foo')
+            tar_info.size = len(data)
+            tar_file.addfile(tar_info, io.BytesIO(data))
+
+        source.seek(0)
+        return source
+
+    def _generate_source_zip(
+        self, suffix='.zip', data='z' * (2 ** 21), compression=zipfile.ZIP_DEFLATED
+    ):
+        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
+        with zipfile.ZipFile(source, 'w', compression=compression) as zip_file:
+            zip_file.writestr('foo', data)
+        source.seek(0)
+        return source
+
+    def test_source_zip(self):
+        _, version = self._submit_source(
+            self.file_path('webextension_with_image.zip'),
+        )
+        assert version.source
+        assert str(version.source).endswith('.zip')
+        assert self.addon.needs_admin_code_review
+        mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
+        assert mode == '0100644'
+
+    def test_source_targz(self):
+        _, version = self._submit_source(self.file_path('webextension_no_id.tar.gz'))
+        assert version.source
+        assert str(version.source).endswith('.tar.gz')
+        assert self.addon.needs_admin_code_review
+        mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
+        assert mode == '0100644'
+
+    def test_source_tgz(self):
+        _, version = self._submit_source(self.file_path('webextension_no_id.tgz'))
+        assert version.source
+        assert str(version.source).endswith('.tgz')
+        assert self.addon.needs_admin_code_review
+        mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
+        assert mode == '0100644'
+
+    def test_source_tarbz2(self):
+        _, version = self._submit_source(
+            self.file_path('webextension_no_id.tar.bz2'),
+        )
+        assert version.source
+        assert str(version.source).endswith('.tar.bz2')
+        assert self.addon.needs_admin_code_review
+        mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
+        assert mode == '0100644'
+
+    def test_with_bad_source_extension(self):
+        response, version = self._submit_source(
+            self.file_path('webextension_crx3.crx'),
+            error=True,
+        )
+        assert response.data['source'] == [
+            'Unsupported file type, please upload an archive file '
+            '(.zip, .tar.gz, .tgz, .tar.bz2).'
+        ]
+        assert not version or not version.source
+        self.addon.reload()
+        assert not self.addon.needs_admin_code_review
+
+    def test_with_bad_source_broken_archive(self):
+        source = self._generate_source_zip(
+            data='Hello World', compression=zipfile.ZIP_STORED
+        )
+        data = source.read().replace(b'Hello World', b'dlroW olleH')
+        source.seek(0)  # First seek to rewrite from the beginning
+        source.write(data)
+        source.seek(0)  # Second seek to reset like it's fresh.
+        # Still looks like a zip at first glance.
+        assert zipfile.is_zipfile(source)
+        source.seek(0)  # Last seek to reset source descriptor before posting.
+        with open(source.name, 'rb'):
+            response, version = self._submit_source(
+                source.name,
+                error=True,
+            )
+        assert response.data['source'] == ['Invalid or broken archive.']
+        self.addon.reload()
+        assert not version or not version.source
+        assert not self.addon.needs_admin_code_review
+
+    def test_with_bad_source_broken_archive_compressed_tar(self):
+        source = self._generate_source_tar()
+        with open(source.name, 'r+b') as fobj:
+            fobj.truncate(512)
+        # Still looks like a tar at first glance.
+        assert tarfile.is_tarfile(source.name)
+        # Re-open and post.
+        with open(source.name, 'rb'):
+            response, version = self._submit_source(
+                source.name,
+                error=True,
+            )
+        assert response.data['source'] == ['Invalid or broken archive.']
+        self.addon.reload()
+        assert not version or not version.source
+        assert not self.addon.needs_admin_code_review
+
+
+class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
     client_class = APITestClientWebToken
 
     @classmethod
@@ -1736,7 +1870,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == VersionSerializer(
+        assert data == DeveloperVersionSerializer(
             context={'request': request}
         ).to_representation(version)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
@@ -1762,7 +1896,7 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == VersionSerializer(
+        assert data == DeveloperVersionSerializer(
             context={'request': request}
         ).to_representation(version)
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
@@ -2077,12 +2211,31 @@ class TestVersionViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 201, response.content
 
+    def _submit_source(self, filepath, error=False):
+        _, filename = os.path.split(filepath)
+        src = SimpleUploadedFile(
+            filename,
+            open(filepath, 'rb').read(),
+            content_type=mimetypes.guess_type(filename)[0],
+        )
+        response = self.client.post(
+            self.url, data={**self.minimal_data, 'source': src}, format='multipart'
+        )
+        if not error:
+            assert response.status_code == 201, response.content
+            self.addon.reload()
+            version = self.addon.find_latest_version(channel=None)
+        else:
+            assert response.status_code == 400
+            version = None
+        return response, version
+
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
     client_class = APITestClientJWT
 
 
-class TestVersionViewSetUpdate(UploadMixin, TestCase):
+class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
     client_class = APITestClientWebToken
 
     @classmethod
@@ -2133,7 +2286,7 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == VersionSerializer(
+        assert data == DeveloperVersionSerializer(
             context={'request': request}
         ).to_representation(version)
 
@@ -2453,6 +2606,35 @@ class TestVersionViewSetUpdate(UploadMixin, TestCase):
             ]
         }
 
+    def test_source_set_null_clears_field(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.version.addon, needs_admin_code_review=True
+        )
+        self.version.update(source='src.zip')
+        response = self.client.patch(
+            self.url,
+            data={'source': None},
+        )
+        assert response.status_code == 200, response.content
+        self.version.reload()
+        assert not self.version.source
+        assert self.addon.needs_admin_code_review  # still set
+
+    def _submit_source(self, filepath, error=False):
+        _, filename = os.path.split(filepath)
+        src = SimpleUploadedFile(
+            filename,
+            open(filepath, 'rb').read(),
+            content_type=mimetypes.guess_type(filename)[0],
+        )
+        response = self.client.patch(self.url, data={'source': src}, format='multipart')
+        if not error:
+            assert response.status_code == 200, response.content
+        else:
+            assert response.status_code == 400
+        self.version.reload()
+        return response, self.version
+
 
 class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):
     client_class = APITestClientJWT
@@ -2769,6 +2951,25 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         assert response.status_code == 200
         result = json.loads(force_str(response.content))
         assert result['results'] == []
+
+    def test_developer_version_serializer_used_for_authors(self):
+        self.version.update(source='src.zip')
+        # not logged in
+        assert 'source' not in self.client.get(self.url).data['results'][0]
+        assert 'source' not in self.client.get(self.url).data['results'][1]
+
+        user = UserProfile.objects.create(username='user')
+        self.client.login_api(user)
+
+        # logged in but not an author
+        assert 'source' not in self.client.get(self.url).data['results'][0]
+        assert 'source' not in self.client.get(self.url).data['results'][1]
+
+        AddonUser.objects.create(user=user, addon=self.addon)
+
+        # the field is present when the user is an author of the add-on.
+        assert 'source' in self.client.get(self.url).data['results'][0]
+        assert 'source' in self.client.get(self.url).data['results'][1]
 
 
 class TestAddonViewSetEulaPolicy(TestCase):

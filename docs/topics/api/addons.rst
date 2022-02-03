@@ -459,6 +459,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
+    :>json string|null source: The (absolute) URL to download the submitted source for this version. This field is only present for authenticated users, for their own add-ons.
     :>json string version: The version number string for the version.
 
 
@@ -493,6 +494,7 @@ This endpoint allows a submission of an upload to an existing add-on to create a
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :<json string upload: The uuid for the xpi upload to create this version with.
+    :<json string|null: source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -547,6 +549,32 @@ Shorthand, for when you only want to define compatible apps, but use the min/max
     }
 
 
+~~~~~~~~~~~~~~~
+Version Sources
+~~~~~~~~~~~~~~~
+
+.. _version-sources:
+
+Version source files cannot be uploaded as JSON - the request must be sent as form-data instead.
+Other fields can be set/updated at the same time as ``source`` if desired.
+
+.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
+
+    .. _version-sources-request-create:
+
+    :form source: The add-on file being uploaded.
+    :form compatibility: See :ref:`create <version-create-request>` for details.
+    :form upload: The uuid for the xpi upload to create this version with.
+    :reqheader Content-Type: multipart/form-data
+
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+
+    .. _version-sources-request-edit:
+
+    :form source: The add-on file being uploaded.
+    :reqheader Content-Type: multipart/form-data
+
 ------------
 Version Edit
 ------------
@@ -574,6 +602,7 @@ This endpoint allows the metadata for an existing version to be edited.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|null: source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
 
 
 -------------
