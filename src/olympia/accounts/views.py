@@ -349,13 +349,9 @@ def generate_api_token(user):
 
 
 def add_api_token_to_response(response, user):
-    """Generate API token and add it to the response (both as a `token` key in
-    the response if it was json and by setting a cookie named API_TOKEN_COOKIE.
-    """
+    """Generate API token and add it in a session cookie named API_TOKEN_COOKIE."""
     token = generate_api_token(user)
-    if hasattr(response, 'data'):
-        response.data['token'] = token
-    # Also include the API token in a session cookie, so that it is
+    # Include the API token in a session cookie, so that it is
     # available for universal frontend apps.
     response.set_cookie(
         API_TOKEN_COOKIE,
