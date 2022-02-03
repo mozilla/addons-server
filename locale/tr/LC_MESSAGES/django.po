@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-01 18:07+0000\n"
-"PO-Revision-Date: 2022-01-22 17:06+0000\n"
-"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
+"PO-Revision-Date: 2022-02-03 15:00+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -271,16 +271,16 @@ msgstr "Bulunamadı"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Üzgünüz, aradığınız sayfayı bulamadık.</h1><p>Talep ettiğiniz sayfa veya dosya sitemizde bulunamadı. Eski bir bağlantıya tıklamış veya adresi yanlış yazmış olabilirsiniz.</p><ul><li>Adresi elle "
-"yazdıysanız lütfen tekrar kontrol edin.</li><li>Başka bir sayfadaki bağlantıya tıkladıysanız lütfen %(open_bug_link)ssorunu bildirin%(close_bug_link)s. Hangi sayfadan geldiğinizi ve neyi "
-"aradığınızı yazarsanız sorunu düzeltmek için elimizden geleni yaparız.</li></ul><p>İsterseniz, web sitemizdeki popüler sayfalara da göz atabilirsiniz.</p><ul><li><a href=\"%(rec)s\">Öne çıkan "
-"eklentiler</a> listesiyle mi ilgileniyorsunuz?</li><li><a href=\"%(search)s\">Eklenti araması</a> yapmak mı istiyorsunuz? <a href=\"%(search)s\">Arama sayfasına</a> gidebilir veya üstteki arama "
-"kutusunu kullanabilirsiniz.</li><li>Baştan başlamak isterseniz <a href=\"%(home)s\">eklenti ana sayfasına</a> gitmeniz yeterlidir.</li></ul>"
+"yazdıysanız lütfen tekrar kontrol edin.</li><li>Başka bir sayfadaki bağlantıya tıkladıysanız lütfen %(open_bug_link)ssorunu bildirin%(close_bug_link)s. Hangi sayfadan geldiğinizi ve neyi aradığınızı"
+" yazarsanız sorunu düzeltmek için elimizden geleni yaparız.</li></ul><p>İsterseniz, web sitemizdeki popüler sayfalara da göz atabilirsiniz.</p><ul><li><a href=\"%(rec)s\">Öne çıkan eklentiler</a> "
+"listesiyle mi ilgileniyorsunuz?</li><li><a href=\"%(search)s\">Eklenti araması</a> yapmak mı istiyorsunuz? <a href=\"%(search)s\">Arama sayfasına</a> gidebilir veya üstteki arama kutusunu "
+"kullanabilirsiniz.</li><li>Baştan başlamak isterseniz <a href=\"%(home)s\">eklenti ana sayfasına</a> gitmeniz yeterlidir.</li></ul>"
 
 msgid "Oops"
 msgstr "Hata"
@@ -290,8 +290,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Bir hata oluştu.</h1> <p>Yakında bu hatayı düzelteceğiz.</p> <p>Sayfayı yenilemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler Ana Sayfası</a>'na dönebilirsiniz. Ayrıca <a href=\"https://"
-"github.com/mozilla/addons/issues/new\">sorunu rapor edip</a> bu sayfaya nasıl geldiğiniz anlatarak sorunu gidermemize yardım edebilirsiniz.</p>"
+"<h1>Bir hata oluştu.</h1> <p>Yakında bu hatayı düzelteceğiz.</p> <p>Sayfayı yenilemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler Ana Sayfası</a>'na dönebilirsiniz. Ayrıca <a "
+"href=\"https://github.com/mozilla/addons/issues/new\">sorunu rapor edip</a> bu sayfaya nasıl geldiğiniz anlatarak sorunu gidermemize yardım edebilirsiniz.</p>"
 
 msgid "Register or Log in"
 msgstr "Kaydol veya giriş yap"
@@ -380,7 +380,7 @@ msgid "Auth hash mismatch. Session is likely expired."
 msgstr ""
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Sağlanan oturum anahtarıyla eşleşen geçerli kullanıcı oturumu bulunamadı."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr ""
@@ -439,8 +439,8 @@ msgstr "Sürümler"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 "Desteklenen uygulamanız manifest dosyası gerektirmese bile %(amo_manifests_mdn_link_open)sburada%(amo_manifests_mdn_link_close)s belirtildiği şekilde gerekli özelliklere sahip bir dosya "
 "eklemelisiniz."
@@ -1917,8 +1917,8 @@ msgstr "Ön izlemenizi yüklerken bir hata oluştu."
 #, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Bu %s eklentisinin en son onaylanmış sürümü silinemez veya devre dışı bırakılamaz çünkü önceki sürüm %s tanıtımı için onaylanmamış. Bu konuda ilgili yardıma ihtiyacınız varsa lütfen AMO "
-"yöneticileri ile iletişime geçin."
+"Bu %s eklentisinin en son onaylanmış sürümü silinemez veya devre dışı bırakılamaz çünkü önceki sürüm %s tanıtımı için onaylanmamış. Bu konuda ilgili yardıma ihtiyacınız varsa lütfen AMO yöneticileri"
+" ile iletişime geçin."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2119,12 +2119,10 @@ msgstr ""
 "yüklemeyi düşünün."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uyumluluğu güncelle</a> <a href=\"%(version_url)s\" class=\"button\">Yeni sürüm yükle</a> veya <a href=\"#\" class="
-"\"close\">görmezden gel</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uyumluluğu güncelle</a> <a href=\"%(version_url)s\" class=\"button\">Yeni sürüm yükle</a> veya <a href=\"#\" "
+"class=\"close\">görmezden gel</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Uygulama uygunluğu sınırlarına bak ve güncelle"
@@ -2285,9 +2283,9 @@ msgstr ""
 msgid "Describe Add-on"
 msgstr "Eklentinizi tanımlayın"
 
+#. {0} is the addon name
 # 75%
 # 100%
-#. {0} is the addon name
 msgid "Describe {0}"
 msgstr "{0} eklentinizi tanımlayın"
 
@@ -2356,8 +2354,8 @@ msgid "Email"
 msgstr "E-posta"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Destek talepleri için bir e-posta adresi görüntülemek isterseniz buraya girin. Her dil için farklı adresleriniz varsa, bu alanın birden çok çevirisi eklenebilir. Yalnızca listelenen eklentiler için "
 "geçerlidir."
@@ -2914,8 +2912,8 @@ msgstr "JWT sırrı"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2987,8 +2985,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3947,7 +3944,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Daha sonra incelemek için genel veya sitelere özel notlar oluşturun."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3971,7 +3968,7 @@ msgstr "Tüm dünyadan 30.000'den fazla radyo istasyonundan müziğin tadını �
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "YouTube videolarının sadece sesini dinleyerek internet kotanızdan tasarruf edin."
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
@@ -4047,7 +4044,7 @@ msgstr "Olur da bir kediden lazer ateşlemeniz gerekirse."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Açık sekmelere, yer imlerine ve geçmişe erişerek Firefox'ta kolaylıkla arama yapın."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4063,7 +4060,7 @@ msgstr "Tüm parola alanlarına gösterme/gizleme özelliği ekler."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Video oynatıcı hariç her şeyi karanlık hale getirerek videoya odaklanın."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -4096,7 +4093,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Sadece güvendiğiniz sitelerin web içeriklerine izin verin. Güvenle sörf yapın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4105,7 +4102,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Seçtiğiniz web sitelerinin tarayıcı geçmişini otomatik olarak silin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4135,7 +4132,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Sitelerin coğrafi konumlarını öğrenin, bilinçli bir web gezgini olun."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
@@ -4153,7 +4150,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Tarayıcınızın ses ayarlarına ince ayar yapın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4365,7 +4362,7 @@ msgstr "Can sıkıcı çerez uyarılarına elveda!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Tüm emoji ihtiyaçlarınız bir tık uzağınızda."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4378,7 +4375,7 @@ msgstr "Bazı web siteleri Android'de video oynatmakta zorluk çekiyor. İşte b
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Web'de ilginç bir görsel mi buldunuz? Kökenini keşfetmek için TinEye'ı kullanın."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4460,9 +4457,9 @@ msgstr "Uzantılar Firefox'ta çalışan uygulamalardır."
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Daha hızlı, daha güvenli ve daha eğlenceli gezintiler için Firefox’a yeni özellikler kazandırırlar."
 
+#. editorial content for the secondary hero shelves.
 # 95%
 # 100%
-#. editorial content for the secondary hero shelves.
 msgid "See all extensions"
 msgstr "Tüm uzantılara bak"
 
@@ -4471,9 +4468,9 @@ msgstr "Tüm uzantılara bak"
 msgid "YouTube customization"
 msgstr "YouTube özelleştirme"
 
+#. editorial content for the secondary hero shelves.
 # 95%
 # 100%
-#. editorial content for the secondary hero shelves.
 msgid "Image search extensions"
 msgstr "Görsel arama uzantıları"
 
@@ -4501,9 +4498,9 @@ msgstr "Popüler temalar"
 msgid "See more popular themes"
 msgstr "Diğer popüler temalara bakın"
 
+#. editorial content for the homepage shelves.
 # 95%
 # 100%
-#. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
 msgstr "Gelişmiş gizlilik uzantıları"
 
@@ -4511,14 +4508,14 @@ msgstr "Gelişmiş gizlilik uzantıları"
 msgid "See more recommended privacy extensions"
 msgstr "Önerdiğimiz diğer gizlilik uzantılarına bakın"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
+# Plural in this context means many of the add-on type
 msgid "Popular extensions"
 msgstr "Popüler uzantılar"
 
+#. editorial content for the homepage shelves.
 # 95%
 # 100%
-#. editorial content for the homepage shelves.
 msgid "See more popular extensions"
 msgstr "Diğer popüler uzantılara bakın"
 
@@ -4550,9 +4547,9 @@ msgstr ""
 msgid "Social streaming"
 msgstr "Sosyal akış"
 
+#. editorial content for the homepage shelves.
 # 95%
 # 100%
-#. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr ""
 
@@ -4568,9 +4565,9 @@ msgstr ""
 msgid "“{tag}” tagged extensions"
 msgstr "“{tag}” etiketli uzantılar"
 
+#. editorial content for the homepage shelves.
 # 95%
 # 100%
-#. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" etiketli diğer uzantılara bakın"
 
@@ -4699,8 +4696,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "İncelemeler hakkında sıkça sorulan sorular"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -5870,8 +5867,8 @@ msgstr "{0} :: İstatistik Panosu"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "İstatistik Panosu :: {0} eklentileri"
 
-# %1 is an add-on name.
 #. {0} is an add-on name
+# %1 is an add-on name.
 msgid "Statistics for {0}"
 msgstr "{0} İstatistikleri"
 
@@ -6193,8 +6190,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6255,8 +6252,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
