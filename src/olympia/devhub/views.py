@@ -1509,6 +1509,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
     form = forms.NewUploadForm(
         request.POST or None, request.FILES or None, addon=addon, request=request
     )
+    channel_text = amo.CHANNEL_CHOICES_API[channel]
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
 
@@ -1521,6 +1522,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
                 parsed_data=data['parsed_data'],
             )
             url_args = [addon.slug, version.id]
+            statsd.incr(f'devhub.submission.version.{channel_text}')
         else:
             addon = Addon.from_upload(
                 upload=data['upload'],
@@ -1529,10 +1531,8 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
                 parsed_data=data['parsed_data'],
             )
             version = addon.find_latest_version(channel=channel)
-            url_args = [
-                addon.slug,
-                'listed' if channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted',
-            ]
+            url_args = [addon.slug, channel_text]
+            statsd.incr(f'devhub.submission.addon.{channel_text}')
 
         check_validation_override(request, form, addon, version)
         if (

@@ -2,6 +2,7 @@ import re
 
 from django.urls import reverse
 
+from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
 from olympia import amo
@@ -496,13 +497,18 @@ class DeveloperVersionSerializer(VersionSerializer):
                 license=self.fields['custom_license'].create(validated_data['license'])
             )
         upload.update(addon=version.addon)
-        if (
-            self.addon
-            and self.addon.status == amo.STATUS_NULL
-            and self.addon.has_complete_metadata()
-            and upload.channel == amo.RELEASE_CHANNEL_LISTED
-        ):
-            self.addon.update(status=amo.STATUS_NOMINATED)
+        channel_text = amo.CHANNEL_CHOICES_API[upload.channel]
+        if self.addon:
+            # self.addon is None when creating a new add-on
+            statsd.incr(f'addons.submission.version.{channel_text}')
+            if (
+                self.addon.status == amo.STATUS_NULL
+                and self.addon.has_complete_metadata()
+                and upload.channel == amo.RELEASE_CHANNEL_LISTED
+            ):
+                self.addon.update(status=amo.STATUS_NOMINATED)
+        else:
+            statsd.incr(f'addons.submission.addon.{channel_text}')
 
         if 'source' in validated_data:
             version.source = validated_data['source']

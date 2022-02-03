@@ -726,6 +726,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         self.client.login_api(self.user)
         self.license = License.objects.create(builtin=1)
         self.minimal_data = {'version': {'upload': self.upload.uuid}}
+        self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
 
     def test_basic_unlisted(self):
         response = self.client.post(
@@ -753,6 +754,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             .count()
             == 1
         )
+        self.statsd_incr_mock.assert_any_call('addons.submission.addon.unlisted')
 
     def test_basic_listed(self):
         self.upload.update(automated_signing=False)
@@ -784,6 +786,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             .count()
             == 1
         )
+        self.statsd_incr_mock.assert_any_call('addons.submission.addon.listed')
 
     def test_listed_metadata_missing(self):
         self.upload.update(automated_signing=False)
@@ -1053,6 +1056,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
+        self.statsd_incr_mock.assert_any_call('addons.submission.addon.listed')
 
     def test_fields_max_length(self):
         data = {
@@ -1852,6 +1856,7 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         self.client.login_api(self.user)
         self.license = License.objects.create(builtin=2)
         self.minimal_data = {'upload': self.upload.uuid}
+        self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
 
     def test_basic_unlisted(self):
         response = self.client.post(
@@ -1874,6 +1879,7 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
             context={'request': request}
         ).to_representation(version)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
 
     def test_basic_listed(self):
         self.upload.update(automated_signing=False)
@@ -1901,6 +1907,7 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         ).to_representation(version)
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         assert self.addon.status == amo.STATUS_NOMINATED
+        self.statsd_incr_mock.assert_any_call('addons.submission.version.listed')
 
     def test_site_permission(self):
         self.addon.update(type=amo.ADDON_SITE_PERMISSION)
@@ -2012,6 +2019,7 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         assert self.addon.versions.count() == 2
         version = self.addon.find_latest_version(channel=None)
         assert version.license == previous_license
+        self.statsd_incr_mock.assert_any_call('addons.submission.version.listed')
 
     def test_set_extra_data(self):
         response = self.client.post(
@@ -2029,6 +2037,7 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         version = self.addon.find_latest_version(channel=None)
         assert data['release_notes'] == {'en-US': 'dsdsdsd'}
         assert version.release_notes == 'dsdsdsd'
+        self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
 
     def test_compatibility_list(self):
         response = self.client.post(
