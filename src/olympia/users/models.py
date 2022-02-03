@@ -695,7 +695,7 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
     network = CIDRField(
         blank=True,
         null=True,
-        help_text=_('Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28'),
+        help_text=_('Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28'),
     )
 
     error_message = _(
