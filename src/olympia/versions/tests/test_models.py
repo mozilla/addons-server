@@ -920,6 +920,45 @@ class TestVersion(TestCase):
         flags.update(pending_rejection=in_the_past)
         assert version.pending_rejection == in_the_past
 
+    def test_pending_rejection_by_property(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        user = user_factory()
+        # No flags: None
+        assert version.pending_rejection_by is None
+        # Flag present, value is None (default): None.
+        flags = VersionReviewerFlags.objects.create(version=version)
+        assert flags.pending_rejection_by is None
+        assert version.pending_rejection_by is None
+        # Flag present, value is a user.
+        flags.update(pending_rejection_by=user)
+        assert version.pending_rejection_by == user
+
+    def test_pending_rejection_by_cleared_when_pending_rejection_cleared(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        user = user_factory()
+        flags = VersionReviewerFlags.objects.create(
+            version=version,
+            pending_rejection=self.days_ago(1),
+            pending_rejection_by=user,
+        )
+        assert flags.pending_rejection
+        assert flags.pending_rejection_by == user
+        assert not flags.needs_human_review_by_mad
+
+        # Update, but do not clear pending_rejection. Both should remain.
+        flags.update(needs_human_review_by_mad=True)
+        flags.save()
+        assert flags.pending_rejection
+        assert flags.pending_rejection_by == user
+
+        # Clear pending_rejection. pending_rejection_by should be cleared as well.
+        flags.update(pending_rejection=None)
+        flags.save()
+        assert flags.pending_rejection is None
+        assert flags.pending_rejection_by is None
+
     def test_needs_human_review_by_mad(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version

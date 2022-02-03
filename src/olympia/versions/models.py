@@ -49,6 +49,7 @@ from olympia.translations.fields import (
     save_signal,
 )
 from olympia.scanners.models import ScannerResult
+from olympia.users.models import UserProfile
 
 from .compare import version_int
 from .fields import VersionStringField
@@ -851,6 +852,13 @@ class Version(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def pending_rejection_by(self):
+        try:
+            return self.reviewerflags.pending_rejection_by
+        except VersionReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def needs_human_review_by_mad(self):
         try:
             return self.reviewerflags.needs_human_review_by_mad
@@ -896,6 +904,14 @@ class VersionReviewerFlags(ModelBase):
     pending_rejection = models.DateTimeField(
         default=None, null=True, blank=True, db_index=True
     )
+    pending_rejection_by = models.ForeignKey(
+        UserProfile, null=True, on_delete=models.CASCADE
+    )
+
+    def save(self, *args, **kwargs):
+        if not self.pending_rejection:
+            self.pending_rejection_by = None
+        super().save(*args, **kwargs)
 
 
 def generate_static_theme_preview(theme_data, version_pk):
