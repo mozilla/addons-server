@@ -49,8 +49,6 @@
         data-appid="{{ amo.FIREFOX.id }}"
         data-anonymous="{{ (not user.is_authenticated)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
-        data-media-url="{{ MEDIA_URL }}"
-        data-static-url="{{ STATIC_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">

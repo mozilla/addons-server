@@ -406,36 +406,6 @@ $.fn.modal = function (click_target, o) {
   return $modal;
 };
 
-// Modal from URL. Pass in a URL, and load it in a modal.
-function modalFromURL(url, settings) {
-  settings = settings || {};
-  var a = $('<a>'),
-    defaults = { deleteme: true, close: true },
-    data = settings.data || {},
-    callback = settings.callback;
-
-  delete settings.callback;
-  settings = $.extend(defaults, settings);
-
-  var inside = $('<div>', {
-      class: 'modal-inside',
-      text: gettext('Loading...'),
-    }),
-    modal = $('<div>', { class: 'modal' }).modal(a, settings);
-
-  modal.append(inside);
-  a.trigger('click');
-
-  $.get(url, data, function (html) {
-    modal.appendTo('body');
-    inside.html('').append(html);
-    if (callback) {
-      callback.call(modal);
-    }
-  });
-  return modal;
-}
-
 // Slugify
 // This allows you to create a line of text with a "Edit" field,
 // and swap it out for an editable slug.  For example:
@@ -658,13 +628,6 @@ $.fn.exists = function (callback, args) {
   }
   return len > 0;
 };
-
-// Bind to the mobile site if a mobile link is clicked.
-$(document).on('click', '.mobile-link', function (e) {
-  e.preventDefault();
-  $.cookie('mamo', 'on', { expires: 30, path: '/' });
-  window.location.reload();
-});
 
 $(function () {
   'use strict';
