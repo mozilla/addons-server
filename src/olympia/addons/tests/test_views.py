@@ -2220,6 +2220,39 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         )
         assert response.status_code == 201, response.content
 
+    def test_duplicate_version_number_error(self):
+        self.addon.current_version.update(version='0.0.1')
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': ['Version 0.0.1 already exists.'],
+        }
+
+        # Still an error if the existing version is disabled
+        self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': ['Version 0.0.1 already exists.'],
+        }
+
+        # And even if it's been deleted (different message though)
+        self.addon.current_version.delete()
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': ['Version 0.0.1 was uploaded before and deleted.'],
+        }
+
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
         src = SimpleUploadedFile(

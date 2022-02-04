@@ -419,6 +419,18 @@ class DeveloperVersionSerializer(VersionSerializer):
                 {'custom_license': 'Custom licenses are not supported for themes.'},
             )
 
+    def _check_for_existing_versions(self, version_string):
+        # Make sure we don't already have this version.
+        existing_versions = Version.unfiltered.filter(
+            addon=self.addon, version=version_string
+        )
+        if existing_versions.exists():
+            if existing_versions[0].deleted:
+                msg = f'Version {version_string} was uploaded before and deleted.'
+            else:
+                msg = f'Version {version_string} already exists.'
+            raise exceptions.ValidationError({'version': msg})
+
     def validate(self, data):
         if not self.instance:
             # Parse the file to get and validate package data with the addon.
@@ -431,6 +443,8 @@ class DeveloperVersionSerializer(VersionSerializer):
         if not self.instance:
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
             self._check_blocklist(guid, self.parsed_data.get('version'))
+            if self.addon:
+                self._check_for_existing_versions(self.parsed_data.get('version'))
 
             channel = data['upload'].channel
             # If this is a new version to an existing addon, check that all the required
