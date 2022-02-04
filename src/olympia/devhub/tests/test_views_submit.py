@@ -457,6 +457,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         self.user.update(last_login_ip='192.168.1.1')
         self.client.post(reverse('devhub.submit.agreement'))
         self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
+        self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
 
     def post(
         self,
@@ -584,6 +585,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert log_items.filter(
             action=amo.LOG.CREATE_ADDON.id
         ), 'New add-on creation never logged.'
+        self.statsd_incr_mock.assert_any_call('devhub.submission.addon.listed')
 
     def test_success_unlisted(self):
         assert Addon.objects.count() == 0
@@ -608,6 +610,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug, 'unlisted'])
         )
+        self.statsd_incr_mock.assert_any_call('devhub.submission.addon.unlisted')
 
     def test_missing_compatible_apps(self):
         url = reverse('devhub.submit.upload', args=['listed'])
@@ -1988,6 +1991,7 @@ class VersionSubmitUploadMixin:
         assert self.addon.has_complete_metadata()
         self.version.save()
         self.upload = self.get_upload('webextension.xpi', user=self.user)
+        self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
 
     def post(
         self,
@@ -2254,6 +2258,7 @@ class TestVersionSubmitUploadListed(
         log = logs_qs.get()
         assert log.iplog_set.count() == 1
         assert log.iplog_set.get().ip_address == self.upload.ip_address
+        self.statsd_incr_mock.assert_any_call('devhub.submission.version.listed')
 
     def test_experiment_inside_webext_upload_without_permission(self):
         self.upload = self.get_upload(
@@ -2390,6 +2395,7 @@ class TestVersionSubmitUploadUnlisted(
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert version.file.status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
+        self.statsd_incr_mock.assert_any_call('devhub.submission.version.unlisted')
 
     def test_show_warning_and_remove_change_link_if_addon_is_invisible(self):
         self.addon.update(disabled_by_user=True)

@@ -1,12 +1,14 @@
 import uuid
 
-import waffle
-
-from celery import chain, chord
 from django.conf import settings
 from django.db import transaction
 from django.forms import ValidationError
 from django.utils.translation import gettext
+
+import waffle
+
+from celery import chain, chord
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 
@@ -385,6 +387,12 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
             channel,
             selected_apps=[x[0] for x in amo.APPS_CHOICES],
             parsed_data=parsed_data,
+        )
+        new_addon = not Version.unfiltered.filter(addon=addon).exists()
+        channel_name = amo.CHANNEL_CHOICES_API[channel]
+        # This function is only called via the signing api flow
+        statsd.incr(
+            f'signing.submission.{"addon" if new_addon else "version"}.{channel_name}'
         )
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it

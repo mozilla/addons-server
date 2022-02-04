@@ -621,11 +621,38 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         super().setUp()
         self.addon = Addon.objects.get(pk=3615)
         self.mocks = {}
-        for key in ['Version.from_upload', 'parse_addon']:
+        for key in ['Version.from_upload', 'parse_addon', 'statsd.incr']:
             patcher = mock.patch('olympia.devhub.utils.%s' % key)
             self.mocks[key] = patcher.start()
             self.addCleanup(patcher.stop)
         self.user = user_factory()
+
+    def test_statsd_logging_new_addon(self):
+        empty_addon = Addon.objects.create()
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=empty_addon, version=None
+        )
+        parsed_data = mock.Mock()
+        utils.create_version_for_upload(
+            empty_addon, upload, amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data
+        )
+        assert self.mocks['parse_addon'].call_count == 0
+        self.mocks['Version.from_upload'].assert_called()
+        self.mocks['statsd.incr'].assert_any_call('signing.submission.addon.listed')
+
+    def test_statsd_logging_new_version(self):
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version=None
+        )
+        parsed_data = mock.Mock()
+        utils.create_version_for_upload(
+            self.addon, upload, amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data
+        )
+        assert self.mocks['parse_addon'].call_count == 0
+        self.mocks['Version.from_upload'].assert_called()
+        self.mocks['statsd.incr'].assert_any_call('signing.submission.version.listed')
 
     def test_file_passed_all_validations_not_most_recent(self):
         file_ = get_addon_file('valid_webextension.xpi')
