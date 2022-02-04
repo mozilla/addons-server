@@ -639,9 +639,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         )
         assert self.mocks['parse_addon'].call_count == 0
         self.mocks['Version.from_upload'].assert_called()
-        self.mocks['statsd.incr'].assert_any_call(
-            'signing.submission.addon.listed'
-        ), self.mocks['statsd.incr'].mock_calls
+        self.mocks['statsd.incr'].assert_any_call('signing.submission.addon.listed')
 
     def test_statsd_logging_new_version(self):
         file_ = get_addon_file('valid_webextension.xpi')
@@ -654,9 +652,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         )
         assert self.mocks['parse_addon'].call_count == 0
         self.mocks['Version.from_upload'].assert_called()
-        self.mocks['statsd.incr'].assert_any_call(
-            'signing.submission.version.listed'
-        ), self.mocks['statsd.incr'].mock_calls
+        self.mocks['statsd.incr'].assert_any_call('signing.submission.version.listed')
 
     def test_file_passed_all_validations_not_most_recent(self):
         file_ = get_addon_file('valid_webextension.xpi')
