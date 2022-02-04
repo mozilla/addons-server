@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-01 18:07+0000\n"
-"PO-Revision-Date: 2022-02-04 19:03+0000\n"
+"PO-Revision-Date: 2022-02-04 19:09+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2764,7 +2764,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "Ni vam potrebno poslati izvorne kode in pripravljeni ste na naslednji korak."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Predložiti morate izvorno kodo razširitve."
 
 msgid "Your source code must include:"
 msgstr "Vaša izvorna koda mora vsebovati:"
@@ -4323,7 +4323,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "Dvokliknite katerokoli besedo za takojšnji ogled njene definicije."
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
@@ -4398,7 +4398,7 @@ msgstr "Opremite zadetke iskanja s predoglednimi ploščicami spletnih strani."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Spletne strani, ki se preberejo naglas. Več kot 40 podprtih jezikov."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
@@ -4442,7 +4442,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Odstranite navlako iz Twitterja."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
@@ -4450,7 +4450,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Izbrišite podatke o brskanju neposredno iz orodne vrstice brskalnika."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
