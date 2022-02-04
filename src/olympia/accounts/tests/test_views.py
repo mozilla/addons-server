@@ -2453,15 +2453,12 @@ class TestFxaNotificationView(TestCase):
 
     @mock.patch('olympia.accounts.utils.clear_sessions_event.delay')
     def test_process_event_password_change(self, event_mock):
-        with freezegun.freeze_time():
-            FxaNotificationView().process_event(
-                self.FXA_ID,
-                FxaNotificationView.FXA_PASSWORDCHANGE_EVENT,
-                {},
-            )
-            event_mock.assert_called_with(
-                self.FXA_ID, datetime.now().timestamp(), 'password-change'
-            )
+        FxaNotificationView().process_event(
+            self.FXA_ID,
+            FxaNotificationView.FXA_PASSWORDCHANGE_EVENT,
+            {'changeTime': 1565721242227},
+        )
+        event_mock.assert_called_with(self.FXA_ID, 1565721242.227, 'password-change')
 
     def test_process_event_password_change_integration(self):
         user = user_factory(fxa_id=self.FXA_ID)
