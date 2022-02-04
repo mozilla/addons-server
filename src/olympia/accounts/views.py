@@ -2,8 +2,8 @@ import base64
 import binascii
 import functools
 import os
+import time
 
-from datetime import datetime
 from urllib.parse import quote_plus
 
 from django.conf import settings
@@ -852,7 +852,11 @@ class FxaNotificationView(FxAConfigMixin, APIView):
         return authenticated_jwt
 
     def process_event(self, uid, event_key, event_data):
-        timestamp = event_data.get('changeTime') or datetime.now().timestamp()
+        timestamp = (
+            change_time / 1000
+            if (change_time := event_data.get('changeTime'))
+            else time.time()
+        )
         if event_key == self.FXA_PROFILE_CHANGE_EVENT:
             log.info(f'Fxa Webhook: Got profile change event for {uid}')
             new_email = event_data.get('email')

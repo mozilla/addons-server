@@ -17,11 +17,7 @@ def user_profile_from_uid(f):
     @functools.wraps(f)
     def wrapper(uid, timestamp, *args, **kw):
         try:
-            timestamp = (
-                timestamp
-                if isinstance(timestamp, datetime)
-                else datetime.fromtimestamp(timestamp)
-            )
+            timestamp = datetime.fromtimestamp(timestamp)
             profile = UserProfile.objects.get(fxa_id=uid)
             return f(profile, timestamp, *args, **kw)
         except ValueError as e:
