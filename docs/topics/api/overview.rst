@@ -436,6 +436,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-12-09: changed ``license`` in version create/update endpoints to accept a license slug rather than numeric ID, and documented supported licenses. https://github.com/mozilla/addons-server/issues/18361
 * 2022-01-27: added ``ERROR_AUTHENTICATION_EXPIRED`` error code for authentication failures. https://github.com/mozilla/addons-server/issues/18669
 * 2022-02-03: added ``source`` to version detail responses, for developer's own add-ons.  ``source`` can also be set via version create/update endpoints. https://github.com/mozilla/addons-server/issues/9913
+* 2022-02-10: added session id auth, for internal api authentication, replacing the existing internal auth based on tokens. https://github.com/mozilla/addons-server/issues/18743
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
