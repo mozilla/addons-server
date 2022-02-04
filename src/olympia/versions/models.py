@@ -908,10 +908,33 @@ class VersionReviewerFlags(ModelBase):
         UserProfile, null=True, on_delete=models.CASCADE
     )
 
-    def save(self, *args, **kwargs):
-        if not self.pending_rejection:
-            self.pending_rejection_by = None
-        super().save(*args, **kwargs)
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                name='pending_rejection_both_none',
+                check=(
+                    models.Q(
+                        pending_rejection__isnull=True,
+                        pending_rejection_by__isnull=True,
+                    )
+                    | models.Q(
+                        pending_rejection__isnull=False,
+                    )
+                ),
+            )
+        ]
+
+
+def version_review_flags_save_signal(sender, instance, **kw):
+    if not instance.pending_rejection:
+        instance.pending_rejection_by = None
+
+
+models.signals.pre_save.connect(
+    version_review_flags_save_signal,
+    sender=VersionReviewerFlags,
+    dispatch_uid='version_review_flags',
+)
 
 
 def generate_static_theme_preview(theme_data, version_pk):
