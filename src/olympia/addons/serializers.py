@@ -5,6 +5,8 @@ from django.urls import reverse
 from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
+import olympia.core.logger
+
 from olympia import amo
 from olympia.accounts.serializers import (
     BaseUserSerializer,
@@ -12,7 +14,7 @@ from olympia.accounts.serializers import (
 )
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import slug_validator
+from olympia.amo.utils import StopWatch, slug_validator
 from olympia.api.fields import (
     EmailTranslationField,
     LazyChoiceField,
@@ -54,6 +56,9 @@ from .fields import (
     VersionCompatabilityField,
 )
 from .models import Addon, AddonReviewerFlags, DeniedSlug, Preview, ReplacementAddon
+
+
+log = olympia.core.logger.getLogger('z.addons')
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -491,6 +496,18 @@ class DeveloperVersionSerializer(VersionSerializer):
             )
 
     def create(self, validated_data):
+        has_source = 'source' in validated_data and validated_data['source']
+        slug = self.addon.slug if self.addon else validated_data.get('addon').slug
+
+        if has_source:
+            timer = StopWatch('addons.serializers.developer_version_serializer.create.')
+            timer.start()
+            log.info(
+                'create, source upload received, addon.slug: %s',
+                slug,
+            )
+            timer.log_interval('1.source_received')
+
         upload = validated_data.get('upload')
         parsed_and_validated_data = {
             **self.parsed_data,
@@ -527,11 +544,31 @@ class DeveloperVersionSerializer(VersionSerializer):
         if 'source' in validated_data:
             version.source = validated_data['source']
             version.save()
+            if has_source:
+                log.info(
+                    'create, version with source saved, addon.slug: %s, version.id: %s',
+                    slug,
+                    version.id,
+                )
+                timer.log_interval('2.version_saved')
+
             self._update_admin_review_flag_and_logging(version)
 
         return version
 
     def update(self, instance, validated_data):
+        has_source = 'source' in validated_data and validated_data['source']
+
+        if has_source:
+            timer = StopWatch('addons.serializers.developer_version_serializer.update.')
+            timer.start()
+            log.info(
+                'update, source upload received, addon.slug: %s, version.id: %s',
+                instance.addon.slug,
+                instance.id,
+            )
+            timer.log_interval('1.source_received')
+
         custom_license = (
             validated_data.pop('license')
             if isinstance(validated_data.get('license'), dict)
@@ -539,6 +576,15 @@ class DeveloperVersionSerializer(VersionSerializer):
         )
 
         instance = super().update(instance, validated_data)
+
+        if has_source:
+            log.info(
+                'update, version with source updated, addon.slug: %s, version.id: %s',
+                instance.addon.slug,
+                instance.id,
+            )
+            timer.log_interval('2.version_saved')
+
         if 'compatible_apps' in validated_data:
             instance.set_compatible_apps(validated_data['compatible_apps'])
         if custom_license:
