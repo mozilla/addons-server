@@ -178,7 +178,8 @@ def add_email_to_activity_log(parser):
             else:
                 log.warning(
                     '%s did not have perms to reply to email thread %s.',
-                    user.email, version.id
+                    user.email,
+                    version.id,
                 )
                 raise ActivityEmailTokenError(
                     "You don't have permission to reply to this add-on. You "
