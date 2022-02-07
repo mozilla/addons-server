@@ -70,7 +70,7 @@ class ActivityEmailParser:
         )
 
         if invalid_email:
-            log.exception("ActivityEmailParser didn't get a valid message.")
+            log.warning("ActivityEmailParser didn't get a valid message.")
             raise ActivityEmailEncodingError(
                 'Invalid or malformed json message object.'
             )
@@ -106,7 +106,7 @@ class ActivityEmailParser:
                 # Someone sent an email to notifications@
                 to_notifications_alias = True
         if to_notifications_alias:
-            log.exception('TO: notifications email used (%s)' % ', '.join(addresses))
+            log.warning('TO: notifications email used (%s)', ', '.join(addresses))
             raise ActivityEmailToNotificationsError(
                 'This email address is not meant to receive emails directly. '
                 'If you want to get in contact with add-on reviewers, please '
@@ -155,7 +155,7 @@ def add_email_to_activity_log(parser):
     try:
         token = ActivityLogToken.objects.get(uuid=uuid)
     except (ActivityLogToken.DoesNotExist, ValidationError):
-        log.error('An email was skipped with non-existing uuid %s.' % uuid)
+        log.warning('An email was skipped with non-existing uuid %s.', uuid)
         raise ActivityEmailUUIDError(
             'UUID found in email address TO: header but is not a valid token '
             '(%s).' % uuid
@@ -176,9 +176,9 @@ def add_email_to_activity_log(parser):
                 token.increment_use()
                 return note
             else:
-                log.error(
-                    '%s did not have perms to reply to email thread %s.'
-                    % (user.email, version.id)
+                log.warning(
+                    '%s did not have perms to reply to email thread %s.',
+                    user.email, version.id
                 )
                 raise ActivityEmailTokenError(
                     "You don't have permission to reply to this add-on. You "
