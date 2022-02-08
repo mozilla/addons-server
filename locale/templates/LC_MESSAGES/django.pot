@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Need help?"
 msgstr ""
 
-#: src/olympia/accounts/views.py:796
+#: src/olympia/accounts/views.py:792
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr ""
@@ -204,16 +204,6 @@ msgstr ""
 msgid "Site permissions for {hostnames}"
 msgstr ""
 
-#: src/olympia/addons/templates/addons/impala/listing/sorter.html:2
-msgid "Sort by:"
-msgstr ""
-
-#: src/olympia/addons/templates/addons/impala/listing/sorter.html:14
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:58
-#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:15
-msgid "More"
-msgstr ""
-
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4
 #: src/olympia/devhub/templates/devhub/nav.html:14
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
@@ -273,7 +263,7 @@ msgid "Submit a New Theme"
 msgstr ""
 
 #: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:85
-#: src/olympia/devhub/templatetags/jinja_helpers.py:35
+#: src/olympia/devhub/templatetags/jinja_helpers.py:34
 #: src/olympia/templates/footer.html:6
 msgid "Developer Hub"
 msgstr ""
@@ -730,7 +720,7 @@ msgid "Delete"
 msgstr ""
 
 #: src/olympia/blocklist/templates/admin/blocklist/blocklistsubmission_change_form.html:11
-#: src/olympia/stats/templates/stats/popup.html:27
+#: src/olympia/stats/templates/stats/popup.html:25
 msgid "Update"
 msgstr ""
 
@@ -2567,14 +2557,14 @@ msgstr ""
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
-#: src/olympia/devhub/utils.py:84
+#: src/olympia/devhub/utils.py:86
 #, python-format
 msgid ""
 "Validation generated too many errors/warnings so %s messages were truncated. "
 "After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-#: src/olympia/devhub/utils.py:332
+#: src/olympia/devhub/utils.py:334
 msgid ""
 "Manifest V3 is currently not supported for upload. {start_href}Read more "
 "about the support timeline{end_href}."
@@ -3714,6 +3704,12 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:58
+#: src/olympia/devhub/templates/devhub/includes/listing_header.html:14
+#: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:15
+msgid "More"
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:62
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:4
 msgid "Manage Status & Versions"
@@ -4501,6 +4497,10 @@ msgid ""
 "code. It is only relevant for listed add-ons."
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
+msgid "Sort by:"
+msgstr ""
+
 #. %s is a list of HTML tags.
 #: src/olympia/devhub/templates/devhub/includes/macros.html:7
 #, python-format
@@ -5061,14 +5061,14 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 #. L10n: first parameter is the number of errors
-#: src/olympia/devhub/templatetags/jinja_helpers.py:81
+#: src/olympia/devhub/templatetags/jinja_helpers.py:80
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: first parameter is the number of warnings
-#: src/olympia/devhub/templatetags/jinja_helpers.py:85
+#: src/olympia/devhub/templatetags/jinja_helpers.py:84
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
@@ -8373,7 +8373,7 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/popup.html:19
+#: src/olympia/stats/templates/stats/popup.html:18
 msgid "To"
 msgstr ""
 
@@ -8795,7 +8795,7 @@ msgid "Firefox user {id}"
 msgstr ""
 
 #: src/olympia/users/models.py:698
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 #: src/olympia/users/models.py:701
@@ -8965,11 +8965,11 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: src/olympia/versions/models.py:1125
+#: src/olympia/versions/models.py:1164
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1162
+#: src/olympia/versions/models.py:1201
 msgid "The install origin {origin} is not permitted."
 msgstr ""
 

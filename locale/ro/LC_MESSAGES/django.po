@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -153,12 +153,6 @@ msgstr "Denumirile suplimentelor nu pot conține mărci comerciale Mozilla sau F
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Sortează după:"
-
-msgid "More"
-msgstr "Mai multe"
 
 msgid "My Add-ons"
 msgstr "Suplimentele mele"
@@ -2584,6 +2578,9 @@ msgstr "Statistici zilnice pentru descărcări și utilizatori"
 msgid "Statistics"
 msgstr "Statistici"
 
+msgid "More"
+msgstr "Mai multe"
+
 msgid "Manage Status & Versions"
 msgstr "Gestionează starea și versiunile"
 
@@ -3162,6 +3159,9 @@ msgstr "Licență"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Te rugăm să alegi o licență corespunzătoare drepturilor pe care le acorzi asupra codului tău sursă. Are relevanță numai pentru suplimentele listate."
+
+msgid "Sort by:"
+msgstr "Sortează după:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6281,7 +6281,8 @@ msgstr "Nu există niciun utilizator cu acea adresă de e-mail."
 msgid "Firefox user {id}"
 msgstr "Utilizator Firefox {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Introdu un interval valid de rețea CIDR IPv6 sau IPv6, de ex. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,12 +148,6 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
-
-msgid "Sort by:"
-msgstr ""
-
-msgid "More"
 msgstr ""
 
 msgid "My Add-ons"
@@ -2486,6 +2480,9 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
+msgid "More"
+msgstr ""
+
 msgid "Manage Status & Versions"
 msgstr ""
 
@@ -3001,6 +2998,9 @@ msgid "License"
 msgstr ""
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Sort by:"
 msgstr ""
 
 #. %s is a list of HTML tags.
@@ -6007,7 +6007,7 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr ""
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

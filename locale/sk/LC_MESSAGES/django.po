@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2021-11-07 09:45+0000\n"
 "Last-Translator: Vlado Valaštiak <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -156,12 +156,6 @@ msgstr "Názov doplnku nemôže obsahovať ochranné známky Mozilla alebo Firef
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Zoradiť podľa:"
-
-msgid "More"
-msgstr "Viac"
 
 msgid "My Add-ons"
 msgstr "Moje doplnky"
@@ -2542,6 +2536,9 @@ msgstr "Denné štatistiky prevzatí a počtov používateľov"
 msgid "Statistics"
 msgstr "Štatistika"
 
+msgid "More"
+msgstr "Viac"
+
 msgid "Manage Status & Versions"
 msgstr "Správa stavu a verzií"
 
@@ -3063,6 +3060,9 @@ msgstr "Licencia"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "Zoradiť podľa:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6138,8 +6138,9 @@ msgstr "Používateľ s touto e-mailovou adresou neexistuje."
 msgid "Firefox user {id}"
 msgstr "Používateľ Firefoxu - {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "Zadajte platnú IP4 alebo IP6 sieť."
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""

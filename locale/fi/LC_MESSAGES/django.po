@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2022-01-15 18:11+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -162,12 +162,6 @@ msgstr "Lisäosan nimi ei voi sisältää Mozillan tai Firefoxin tavaramerkkejä
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Järjestys:"
-
-msgid "More"
-msgstr "Lisää"
 
 msgid "My Add-ons"
 msgstr "Lisäosani"
@@ -2597,6 +2591,9 @@ msgstr "Päivittäiset tilastot latauksista ja käyttäjistä"
 msgid "Statistics"
 msgstr "Tilastot"
 
+msgid "More"
+msgstr "Lisää"
+
 msgid "Manage Status & Versions"
 msgstr "Hallitse tilaa ja versioita"
 
@@ -3142,6 +3139,9 @@ msgstr "Lisenssi"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "Järjestys:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6339,8 +6339,9 @@ msgstr "Ei käyttäjää tällä sähköpostiosoitteella."
 msgid "Firefox user {id}"
 msgstr "Firefox-käyttäjä {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "Kirjoita kelvollinen IP4- tai IP6-verkko."
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""

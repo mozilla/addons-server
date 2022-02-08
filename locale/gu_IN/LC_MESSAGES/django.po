@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,12 +154,6 @@ msgstr "એડ-ઓન નામોમાં Mozilla અથવા Firefox ટ્�
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr ""
-
-msgid "More"
-msgstr "વધારે"
 
 msgid "My Add-ons"
 msgstr "મારા ઍડ-ઑન્સ"
@@ -2508,6 +2502,9 @@ msgstr ""
 msgid "Statistics"
 msgstr ""
 
+msgid "More"
+msgstr "વધારે"
+
 msgid "Manage Status & Versions"
 msgstr ""
 
@@ -3024,6 +3021,9 @@ msgid "License"
 msgstr "લાયસન્સ"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Sort by:"
 msgstr ""
 
 #. %s is a list of HTML tags.
@@ -6066,7 +6066,7 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr ""
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

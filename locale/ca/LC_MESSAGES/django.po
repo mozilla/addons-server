@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -169,14 +169,6 @@ msgstr ""
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Ordenat per:"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "More"
-msgstr "Més"
 
 msgid "My Add-ons"
 msgstr "Els meus complements"
@@ -2680,6 +2672,11 @@ msgstr "Estadístiques diàries en les baixades i usuaris."
 msgid "Statistics"
 msgstr "Estadístiques"
 
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "More"
+msgstr "Més"
+
 # %s is the version number.
 msgid "Manage Status & Versions"
 msgstr "Gestiona l'estat i les versions"
@@ -3246,6 +3243,9 @@ msgstr "Llicència"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "Ordenat per:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6445,7 +6445,7 @@ msgstr "No hi ha cap usuari amb una adreça de correu."
 msgid "Firefox user {id}"
 msgstr "Denuncia l'usuari {0}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

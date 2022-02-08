@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2022-02-01 15:54+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -160,12 +160,6 @@ msgstr "Имена дополнений не могут содержать то�
 
 msgid "Site permissions for {hostnames}"
 msgstr "Разрешения на сайты для {hostnames}"
-
-msgid "Sort by:"
-msgstr "Сортировать по:"
-
-msgid "More"
-msgstr "Ещё"
 
 msgid "My Add-ons"
 msgstr "Мои дополнения"
@@ -2577,6 +2571,9 @@ msgstr "Ежедневная статистика по загрузкам и п�
 msgid "Statistics"
 msgstr "Статистика"
 
+msgid "More"
+msgstr "Ещё"
+
 msgid "Manage Status & Versions"
 msgstr "Управление статусом и версиями"
 
@@ -3148,6 +3145,9 @@ msgstr "Лицензия"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Пожалуйста, выберите лицензию, подходящую для прав, предоставляемых вами на ваш исходный код. Это относится только к опубликованным дополнениям."
+
+msgid "Sort by:"
+msgstr "Сортировать по:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6206,7 +6206,8 @@ msgstr "Нет пользователя с таким почтовым адре�
 msgid "Firefox user {id}"
 msgstr "Пользователь Firefox {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Введите корректную IPv6 или IPv6 CIDR подсеть, например, 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
