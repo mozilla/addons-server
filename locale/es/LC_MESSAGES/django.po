@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -162,12 +162,6 @@ msgstr "Los nombres de complementos no pueden incluir las marcas Mozilla o Firef
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Ordenar por:"
-
-msgid "More"
-msgstr "Más"
 
 msgid "My Add-ons"
 msgstr "Mis complementos"
@@ -2609,6 +2603,9 @@ msgstr "Estadísticas diarias de descargas y usuarios"
 msgid "Statistics"
 msgstr "Estadísticas"
 
+msgid "More"
+msgstr "Más"
+
 msgid "Manage Status & Versions"
 msgstr "Administrar estado y versiones"
 
@@ -3186,6 +3183,9 @@ msgid "Please choose a license appropriate for the rights you grant on your sour
 msgstr ""
 "Por favor, elige una licencia apropiada para los derechos que garantizas en el código fuente.\n"
 "                  Solo es útil para complementos listados."
+
+msgid "Sort by:"
+msgstr "Ordenar por:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6362,7 +6362,8 @@ msgstr "No se ha encontrado un usuario con ese correo electrónico."
 msgid "Firefox user {id}"
 msgstr "Usuario de Firefox {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Introduce un rango de red IPv6 o IPv6 válido; por ejemplo, 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

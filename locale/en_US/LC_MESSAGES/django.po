@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -167,12 +167,6 @@ msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Site permissions for {hostnames}"
-
-msgid "Sort by:"
-msgstr "Sort by:"
-
-msgid "More"
-msgstr "More"
 
 msgid "My Add-ons"
 msgstr "My Add-ons"
@@ -2748,6 +2742,9 @@ msgstr "Daily statistics on downloads and users."
 msgid "Statistics"
 msgstr "Statistics"
 
+msgid "More"
+msgstr "More"
+
 msgid "Manage Status & Versions"
 msgstr "Manage Status & Versions"
 
@@ -3382,6 +3379,9 @@ msgstr "License"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
+
+msgid "Sort by:"
+msgstr "Sort by:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6733,7 +6733,8 @@ msgstr "No user with that email."
 msgid "Firefox user {id}"
 msgstr "Firefox for Android"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

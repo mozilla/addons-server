@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2022-01-12 22:55+0000\n"
 "Last-Translator: martin <martin@northlands.io>\n"
 "Language-Team: MozillaDanmark\n"
@@ -160,12 +160,6 @@ msgstr ""
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Sortér efter:"
-
-msgid "More"
-msgstr "Flere"
 
 msgid "My Add-ons"
 msgstr "Mine tilføjelser"
@@ -2578,6 +2572,9 @@ msgstr "Vis statisitik for bruger"
 msgid "Statistics"
 msgstr "Statistik"
 
+msgid "More"
+msgstr "Flere"
+
 msgid "Manage Status & Versions"
 msgstr ""
 
@@ -3104,6 +3101,9 @@ msgstr "Licens"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "Sortér efter:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6246,7 +6246,7 @@ msgstr "Ingen bruger med denne mailadresse."
 msgid "Firefox user {id}"
 msgstr "Firefox-bruger {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

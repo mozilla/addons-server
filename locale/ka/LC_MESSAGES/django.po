@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2022-01-26 19:07+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,12 +153,6 @@ msgstr "დამატების სახელში Mozilla-ს ან Fir
 
 msgid "Site permissions for {hostnames}"
 msgstr "საიტის ნებართვები მისამართისთვის {hostnames}"
-
-msgid "Sort by:"
-msgstr "დალაგება:"
-
-msgid "More"
-msgstr "სხვა"
 
 msgid "My Add-ons"
 msgstr "ჩემი დამატებები"
@@ -2554,6 +2548,9 @@ msgstr "ჩამოტვირთვებისა და მომხმა�
 msgid "Statistics"
 msgstr "სტატისტიკური მონაცემები"
 
+msgid "More"
+msgstr "სხვა"
+
 msgid "Manage Status & Versions"
 msgstr "მდგომარეობისა და ვერსიების მართვა"
 
@@ -3120,6 +3117,9 @@ msgstr "ლიცენზია"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "გთხოვთ მიუთითოთ პირველწყარო კოდზე, თქვენი უფლებების შესაბამისი ლიცენზია. ეხება, მხოლოდ გამოქვეყნებულ დამატებებს."
+
+msgid "Sort by:"
+msgstr "დალაგება:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6152,7 +6152,8 @@ msgstr "ამ ელფოსტით მომხმარებელი ა
 msgid "Firefox user {id}"
 msgstr "Firefox-ის მომხმარებელი {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "მიუთითეთ მართებული IPv6 ან IPv6-CIDR-ქსელის შუალედი, მაგ. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

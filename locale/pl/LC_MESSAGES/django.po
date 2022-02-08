@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -170,12 +170,6 @@ msgstr "Nazwy dodatków nie mogą zawierać znaków towarowych Mozilli lub Firef
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Sortuj wg:"
-
-msgid "More"
-msgstr "Więcej"
 
 msgid "My Add-ons"
 msgstr "Moje dodatki"
@@ -2636,6 +2630,9 @@ msgstr "Dzienne statystyki pobrań i użytkowników."
 msgid "Statistics"
 msgstr "Statystyki"
 
+msgid "More"
+msgstr "Więcej"
+
 msgid "Manage Status & Versions"
 msgstr "Zarządzanie statusem i wersjami"
 
@@ -3176,6 +3173,9 @@ msgstr "Licencja"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Wybierz licencję odpowiednią dla praw, których udzielasz do kodu źródłowego.Dotyczy tylko wyświetlanych dodatków."
+
+msgid "Sort by:"
+msgstr "Sortuj wg:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6415,7 +6415,7 @@ msgstr "Nie ma użytkownika z takim adresem e-mail."
 msgid "Firefox user {id}"
 msgstr "Firefox dla Androida"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

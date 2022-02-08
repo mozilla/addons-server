@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2022-01-03 14:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -153,12 +153,6 @@ msgstr "పొడగింతల పేర్లలో Mozilla లేదా Fire
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "దీని ద్వారా క్రమబద్ధీకరించు:"
-
-msgid "More"
-msgstr "ఇంకా"
 
 msgid "My Add-ons"
 msgstr "నా పొడిగింతలు"
@@ -2497,6 +2491,9 @@ msgstr "దింపుకోళ్ళు, వాడుకరుపై రోజ
 msgid "Statistics"
 msgstr "గణాంకాలు"
 
+msgid "More"
+msgstr "ఇంకా"
+
 msgid "Manage Status & Versions"
 msgstr "స్థితి మరియు వెర్షన్లు నిర్వహించండి"
 
@@ -3014,6 +3011,9 @@ msgstr "లైసెన్సు"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "దీని ద్వారా క్రమబద్ధీకరించు:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6034,8 +6034,9 @@ msgstr "ఆ ఇమెయిల్తో వినియోగదారులు 
 msgid "Firefox user {id}"
 msgstr "Firefox వాడుకరి {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "సరియైన IP4 లేదా IP6 నెట్‌వర్క్‌ను ఇవ్వండి."
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""

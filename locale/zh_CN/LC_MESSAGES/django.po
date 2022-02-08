@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2022-01-30 07:01+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -153,12 +153,6 @@ msgstr "附加组件名称不得包含 Mozilla 或 Firefox 商标。"
 
 msgid "Site permissions for {hostnames}"
 msgstr "{hostnames} 的网站权限"
-
-msgid "Sort by:"
-msgstr "排序依照："
-
-msgid "More"
-msgstr "更多"
 
 msgid "My Add-ons"
 msgstr "我的附加组件"
@@ -2507,6 +2501,9 @@ msgstr "下载量与用户量的每日统计数据"
 msgid "Statistics"
 msgstr "统计数据"
 
+msgid "More"
+msgstr "更多"
+
 msgid "Manage Status & Versions"
 msgstr "管理状态和版本"
 
@@ -3057,6 +3054,9 @@ msgstr "许可协议"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "请选择一个许可协议，标明您对您的源代码授予的权利。此项只与上架的附加组件相关。"
+
+msgid "Sort by:"
+msgstr "排序依照："
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6071,7 +6071,8 @@ msgstr "那个邮件地址没有用户。"
 msgid "Firefox user {id}"
 msgstr "Firefox 用户 {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "请输入有效的 IPv6 或 IPv6 CIDR 网络范围，例如： 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

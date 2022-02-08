@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,12 +163,6 @@ msgstr ""
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "مرتب‌سازی بر حسب:"
-
-msgid "More"
-msgstr "بیشتر"
 
 msgid "My Add-ons"
 msgstr "افزودنی‌های من"
@@ -2623,6 +2617,9 @@ msgstr ""
 msgid "Statistics"
 msgstr "آمار"
 
+msgid "More"
+msgstr "بیشتر"
+
 msgid "Manage Status & Versions"
 msgstr ""
 
@@ -3171,6 +3168,9 @@ msgstr "مجوز"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "مرتب‌سازی بر حسب:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6338,7 +6338,7 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr "فایرفاکس برای آندروید"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

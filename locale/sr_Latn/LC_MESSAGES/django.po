@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -163,12 +163,6 @@ msgstr ""
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Poređaj po:"
-
-msgid "More"
-msgstr "Još"
 
 msgid "My Add-ons"
 msgstr "Moji dodaci"
@@ -3008,6 +3002,9 @@ msgstr "Dnevne statistike o preuzimanju i korisnicima."
 msgid "Statistics"
 msgstr "Statistika"
 
+msgid "More"
+msgstr "Još"
+
 msgid "Manage Status & Versions"
 msgstr "Upravljanje statusa i verzijama"
 
@@ -3675,6 +3672,9 @@ msgid ""
 "Please choose a license appropriate for the rights you grant on your source "
 "code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "Poređaj po:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -7261,7 +7261,7 @@ msgstr "Nema korisnika sa tom adresom e-pošte."
 msgid "Firefox user {id}"
 msgstr "Firefox za Android"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid ""

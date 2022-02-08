@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -154,12 +154,6 @@ msgstr "Ri kib'i' tz'aqat man tikirel ta nikik'waj ketal ri Mozilla chuqa' Firef
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Tichol chi:"
-
-msgid "More"
-msgstr "Ch'aqa' chik"
 
 msgid "My Add-ons"
 msgstr "Taq Nutz'aqat"
@@ -2580,6 +2574,9 @@ msgstr "Chi q'ij kimolob'a' qasanïk chuqa' okisanel"
 msgid "Statistics"
 msgstr "Kimolob'a'"
 
+msgid "More"
+msgstr "Ch'aqa' chik"
+
 msgid "Manage Status & Versions"
 msgstr "Kenuk'samajïx B'anikil & Ruwäch"
 
@@ -3107,6 +3104,9 @@ msgstr "Ya'oj q'ij"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Tacha' jun ruk'amon ya'oj q'ij kichin ri taq ch'ojib'äl ye'ajikib'a' pa ri ruxe'el b'itz'ib'. Xa xe okel pa cholajin taq tz'aqat"
+
+msgid "Sort by:"
+msgstr "Tichol chi:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6310,8 +6310,9 @@ msgstr "Majun okisanel rik'in ri taqoya'l ri' xilitäj."
 msgid "Firefox user {id}"
 msgstr "Firefox okisanel {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "Tatz'ib'aj jun okel IP4 p IP 6 k'amab'ey."
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""

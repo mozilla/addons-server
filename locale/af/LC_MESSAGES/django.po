@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -164,12 +164,6 @@ msgstr ""
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Sorteer volgens:"
-
-msgid "More"
-msgstr "Meer"
 
 msgid "My Add-ons"
 msgstr "My byvoegings"
@@ -2635,6 +2629,9 @@ msgstr ""
 msgid "Statistics"
 msgstr "Statistiek"
 
+msgid "More"
+msgstr "Meer"
+
 msgid "Manage Status & Versions"
 msgstr ""
 
@@ -3187,6 +3184,9 @@ msgstr "Lisensie"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "Sorteer volgens:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6384,7 +6384,7 @@ msgstr "Geen gebruiker met daardie e-posadres nie."
 msgid "Firefox user {id}"
 msgstr "Rapporteer gebruiker {0}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2021-06-08 15:09+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -158,12 +158,6 @@ msgstr "Nama pengaya tidak boleh mengandung merek dagang Mozilla atau Firefox."
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "Urut berdasarkan:"
-
-msgid "More"
-msgstr "Lebih banyak"
 
 msgid "My Add-ons"
 msgstr "Pengayaku"
@@ -2590,6 +2584,9 @@ msgstr "Statistik harian untuk unduhan dan pengguna"
 msgid "Statistics"
 msgstr "Statistik"
 
+msgid "More"
+msgstr "Lebih banyak"
+
 msgid "Manage Status & Versions"
 msgstr "Kelola Status & Versi"
 
@@ -3127,6 +3124,9 @@ msgid "Please choose a license appropriate for the rights you grant on your sour
 msgstr ""
 "Harap memilih lisensi yang tepat bagi hak yang ingin anda berikan untuk kode sumber anda.\n"
 "                  Hanya relevan untuk pengaya yang terdaftar."
+
+msgid "Sort by:"
+msgstr "Urut berdasarkan:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6298,7 +6298,8 @@ msgstr "Tidak ada pengguna dengan email tersebut."
 msgid "Firefox user {id}"
 msgstr "Pengguna Firefox {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Masukkan rentang jaringan IPv6 atau IPv6 CIDR yang valid, misalnya 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."

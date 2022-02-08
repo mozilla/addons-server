@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-01 18:07+0000\n"
+"POT-Creation-Date: 2022-02-08 17:03+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -162,12 +162,6 @@ msgstr "لا يمكنك استعمال العلامتين التجارتين Moz
 
 msgid "Site permissions for {hostnames}"
 msgstr ""
-
-msgid "Sort by:"
-msgstr "ترتيب حسب:"
-
-msgid "More"
-msgstr "المزيد"
 
 msgid "My Add-ons"
 msgstr "إضافاتي"
@@ -2591,6 +2585,9 @@ msgstr ""
 msgid "Statistics"
 msgstr "الإحصائيات"
 
+msgid "More"
+msgstr "المزيد"
+
 msgid "Manage Status & Versions"
 msgstr ""
 
@@ -3152,6 +3149,9 @@ msgstr "الرخصة"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "ترتيب حسب:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -6354,8 +6354,9 @@ msgstr "ما من مستخدم بهذا البريد الإلكتروني."
 msgid "Firefox user {id}"
 msgstr "مستخدم فيرفكس {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "أدخل رقم تعريفي IP4 أو IP6 صالح."
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
