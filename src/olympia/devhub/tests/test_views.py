@@ -2012,7 +2012,9 @@ class TestLogout(UserViewBase):
     def test_redirect(self):
         self.client.login(email='jbalogh@mozilla.com')
         self.client.get(reverse('devhub.index'), follow=True)
-        url = '/en-US/about'
+        # Just picking a random target URL that works without auth and won't redirect
+        # itself.
+        url = reverse('version.json')
         response = self.client.get(
             urlparams(reverse('devhub.logout'), to=url), follow=True
         )
@@ -2020,10 +2022,10 @@ class TestLogout(UserViewBase):
 
         # Test an invalid domain
         url = urlparams(
-            reverse('devhub.logout'), to='/en-US/about', domain='http://evil.com'
+            reverse('devhub.logout'), to='/__version__', domain='http://evil.com'
         )
         response = self.client.get(url, follow=False)
-        self.assert3xx(response, '/en-US/about', status_code=302)
+        self.assert3xx(response, '/__version__', status_code=302)
 
     def test_session_cookie_deleted_on_logout(self):
         self.client.login(email='jbalogh@mozilla.com')
