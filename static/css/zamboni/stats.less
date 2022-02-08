@@ -1,4 +1,4 @@
-@import 'lib';
+@import '../impala/lib';
 
 .statistics {
     #page {
@@ -516,6 +516,12 @@ table.stats-aggregate tbody span.change.minus {
     margin-top: .1em;
 }
 
+#side-nav a {
+    display: block;
+    font-weight: normal;
+    padding: 4px;
+}
+
 #side-nav .active a {
     background-color: @menu-active;
     color: @dark-gray;
@@ -524,4 +530,15 @@ table.stats-aggregate tbody span.change.minus {
     &:after {
         color: inherit;
     }
+}
+
+#popup-staging {
+    display: none;
+}
+
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
 }

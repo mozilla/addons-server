@@ -4,11 +4,12 @@ from django.http import HttpResponsePermanentRedirect as perma_redirect
 from django.urls import reverse
 from django.views.generic.base import TemplateView
 
+from olympia.amo.views import frontend_view
 
 urlpatterns = [
     re_path(
         r'^about$',
-        TemplateView.as_view(template_name='pages/about.lhtml'),
+        frontend_view,
         name='pages.about',
     ),
     re_path(
@@ -21,7 +22,7 @@ urlpatterns = [
     ),
     re_path(
         r'^review_guide$',
-        TemplateView.as_view(template_name='pages/review_guide.html'),
+	frontend_view,
         name='pages.review_guide',
     ),
     re_path(
