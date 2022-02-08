@@ -831,7 +831,7 @@ class ReviewBase:
         if version.needs_human_review_by_mad:
             version.reviewerflags.update(needs_human_review_by_mad=False)
 
-    def log_action(self, action, version=None, file=None, timestamp=None):
+    def log_action(self, action, version=None, file=None, timestamp=None, user=None):
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
@@ -852,7 +852,7 @@ class ReviewBase:
 
         args = (*args, *self.data.get('reasons', []))
 
-        kwargs = {'user': self.user, 'created': timestamp, 'details': details}
+        kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.create(action, *args, **kwargs)
 
     def notify_email(
@@ -1211,7 +1211,13 @@ class ReviewBase:
             file = version.file
             if not pending_rejection_deadline:
                 self.set_file(amo.STATUS_DISABLED, file, hide_disabled_file=True)
-            self.log_action(action_id, version=version, file=file, timestamp=now)
+            self.log_action(
+                action_id,
+                version=version,
+                file=file,
+                timestamp=now,
+                user=version.pending_rejection_by,
+            )
             if self.human_review:
                 # Clear needs human review flags on rejected versions, we
                 # consider that the reviewer looked at them before rejecting.
@@ -1220,7 +1226,12 @@ class ReviewBase:
                 # immediate rejection.
                 VersionReviewerFlags.objects.update_or_create(
                     version=version,
-                    defaults={'pending_rejection': pending_rejection_deadline},
+                    defaults={
+                        'pending_rejection': pending_rejection_deadline,
+                        'pending_rejection_by': self.user
+                        if pending_rejection_deadline
+                        else None,
+                    },
                 )
 
         # A rejection (delayed or not) implies the next version should be

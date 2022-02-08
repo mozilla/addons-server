@@ -49,6 +49,7 @@ from olympia.translations.fields import (
     save_signal,
 )
 from olympia.scanners.models import ScannerResult
+from olympia.users.models import UserProfile
 
 from .compare import version_int
 from .fields import VersionStringField
@@ -851,6 +852,13 @@ class Version(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def pending_rejection_by(self):
+        try:
+            return self.reviewerflags.pending_rejection_by
+        except VersionReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def needs_human_review_by_mad(self):
         try:
             return self.reviewerflags.needs_human_review_by_mad
@@ -896,6 +904,37 @@ class VersionReviewerFlags(ModelBase):
     pending_rejection = models.DateTimeField(
         default=None, null=True, blank=True, db_index=True
     )
+    pending_rejection_by = models.ForeignKey(
+        UserProfile, null=True, on_delete=models.CASCADE
+    )
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                name='pending_rejection_both_none',
+                check=(
+                    models.Q(
+                        pending_rejection__isnull=True,
+                        pending_rejection_by__isnull=True,
+                    )
+                    | models.Q(
+                        pending_rejection__isnull=False,
+                    )
+                ),
+            )
+        ]
+
+
+def version_review_flags_save_signal(sender, instance, **kw):
+    if not instance.pending_rejection:
+        instance.pending_rejection_by = None
+
+
+models.signals.pre_save.connect(
+    version_review_flags_save_signal,
+    sender=VersionReviewerFlags,
+    dispatch_uid='version_review_flags',
+)
 
 
 def generate_static_theme_preview(theme_data, version_pk):

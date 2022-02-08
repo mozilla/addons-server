@@ -790,6 +790,20 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.log_action(amo.LOG.APPROVE_VERSION)
         assert ReviewActionReasonLog.objects.count() == 2
 
+    def test_log_action_override_user(self):
+        # ActivityLog.user will default to self.user in log_action.
+        self.helper.set_data(self.get_data())
+        self.helper.handler.log_action(amo.LOG.REJECT_VERSION)
+        logs = ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id)
+        assert logs.count() == 1
+        assert logs[0].user == self.request.user
+        # We can override the user.
+        task_user = UserProfile.objects.get(id=settings.TASK_USER_ID)
+        self.helper.handler.log_action(amo.LOG.APPROVE_VERSION, user=task_user)
+        logs = ActivityLog.objects.filter(action=amo.LOG.APPROVE_VERSION.id)
+        assert logs.count() == 1
+        assert logs[0].user == task_user
+
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
         base_fragment = 'To respond, please reply to this email or visit'
@@ -1797,6 +1811,11 @@ class TestReviewHelper(TestReviewHelperBase):
         assert list(self.addon.versions.all()) == [self.version, old_version]
         assert self.file.status == amo.STATUS_DISABLED
 
+        # The versions are not pending rejection.
+        for version in self.addon.versions.all():
+            assert version.pending_rejection is None
+            assert version.pending_rejection_by is None
+
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
@@ -1870,6 +1889,7 @@ class TestReviewHelper(TestReviewHelperBase):
         for version in self.addon.versions.all():
             assert version.pending_rejection
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
+            assert version.pending_rejection_by == self.request.user
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
@@ -2159,6 +2179,74 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+
+    def test_reject_multiple_versions_delayed_uses_original_user(self):
+        # Do a rejection with delay.
+        original_user = self.request.user
+        self.version = version_factory(addon=self.addon, version='3.0')
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+        )
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+
+        assert self.addon.status == amo.STATUS_APPROVED
+
+        data = self.get_data().copy()
+        data.update(
+            {
+                'versions': self.addon.versions.all(),
+                'delayed_rejection': True,
+                'delayed_rejection_days': 14,
+            }
+        )
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        # Addon status didn't change.
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+
+        # The versions are now pending rejection.
+        for version in self.addon.versions.all():
+            assert version.pending_rejection
+            assert version.pending_rejection_by == original_user
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 2
+
+        # The request user is recorded as scheduling the rejection.
+        for log in ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.REJECT_VERSION.id
+        ):
+            assert log.user == original_user
+
+        # Now reject without delay, running as the task user.
+        task_user = UserProfile.objects.get(id=settings.TASK_USER_ID)
+        self.request.user = task_user
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper = self.get_helper()
+        self.helper.set_data(data)
+
+        # Clear our the ActivityLogs.
+        ActivityLog.objects.all().delete()
+
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NULL
+
+        # The versions are not pending rejection.
+        for version in self.addon.versions.all():
+            assert version.pending_rejection is None
+            assert version.pending_rejection_by is None
+
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+
+        # The request user is recorded as scheduling the rejection.
+        for log in ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.REJECT_VERSION.id
+        ):
+            assert log.user == original_user
 
     def test_approve_content_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
