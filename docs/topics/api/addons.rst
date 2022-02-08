@@ -479,7 +479,7 @@ This endpoint allows a submission of an upload to an existing add-on to create a
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :<json string upload: The uuid for the xpi upload to create this version with.
-    :<json string|null: source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
+    :<json string|null source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -582,7 +582,7 @@ This endpoint allows the metadata for an existing version to be edited.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
-    :<json string|null: source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
+    :<json string|null source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
 
 
 -------------
