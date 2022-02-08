@@ -9,7 +9,7 @@ from django_jinja import library
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.templatetags.jinja_helpers import new_context
+from olympia.amo.templatetags.jinja_helpers import new_context
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import ReviewerScore
 from olympia.reviewers.templatetags import code_manager

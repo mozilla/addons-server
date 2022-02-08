@@ -8,8 +8,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import filter_queryset_to_pending_replies
-from olympia.addons.templatetags.jinja_helpers import new_context
-from olympia.amo.templatetags.jinja_helpers import format_date, page_title
+from olympia.amo.templatetags.jinja_helpers import format_date, new_context, page_title
 from olympia.files.models import File
 
 
@@ -94,3 +93,35 @@ def pending_activity_log_count_for_developer(version):
         action__in=amo.LOG_REVIEW_QUEUE_DEVELOPER
     )
     return filter_queryset_to_pending_replies(alog).count()
+
+
+@library.global_function
+@library.render_with('devhub/includes/listing_header.html')
+@jinja2.pass_context
+def addon_listing_header(
+    context,
+    url_base,
+    sort_opts=None,
+    selected=None,
+    extra_sort_opts=None,
+    search_filter=None,
+):
+    if sort_opts is None:
+        sort_opts = {}
+    if extra_sort_opts is None:
+        extra_sort_opts = {}
+    if search_filter:
+        selected = search_filter.field
+        sort_opts = search_filter.opts
+        if hasattr(search_filter, 'extras'):
+            extra_sort_opts = search_filter.extras
+    # When an "extra" sort option becomes selected, it will appear alongside
+    # the normal sort options.
+    old_extras = extra_sort_opts
+    sort_opts, extra_sort_opts = list(sort_opts), []
+    for k, v in old_extras:
+        if k == selected:
+            sort_opts.append((k, v, True))
+        else:
+            extra_sort_opts.append((k, v))
+    return new_context(**locals())

@@ -305,3 +305,9 @@ class Spaceless(Extension):
 
     def _strip_spaces(self, *, caller):
         return strip_spaces_between_tags(caller().strip())
+
+
+def new_context(context, **kw):
+    c = dict(context.items())
+    c.update(kw)
+    return c
