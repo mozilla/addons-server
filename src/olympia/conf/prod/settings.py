@@ -95,8 +95,3 @@ REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
 BIGQUERY_AMO_DATASET = 'amo_prod'
-
-# We don't want to enable the new addon submission on prod yet
-DRF_API_GATES['v5'] = tuple(
-    gate for gate in DRF_API_GATES['v5'] if gate != 'addon-submission-api'
-)

@@ -296,11 +296,6 @@ Create
 This endpoint allows a submission of an upload to create a new add-on and setting other AMO metadata.
 
     .. note::
-        This is an in-progress API that is not yet available on addons.mozilla.org
-        production environments. See :ref:`the older signing API <upload-version>` for
-        how to submit new add-ons/versions on AMO today.
-
-    .. note::
         This API requires :doc:`authentication <auth>`.
 
 .. http:post:: /api/v5/addons/addon/
@@ -329,11 +324,6 @@ Edit
 .. _addon-edit:
 
 This endpoint allows an add-on's AMO metadata to be edited.
-
-    .. note::
-        This is an in-progress API that is not yet available on addons.mozilla.org
-        production environments. The only supported method of editing metadata today is
-        via developer hub.
 
     .. note::
         This API requires :doc:`authentication <auth>`.
@@ -472,11 +462,6 @@ Version Create
 This endpoint allows a submission of an upload to an existing add-on to create a new version, and setting other AMO metadata.
 
     .. note::
-        This is an in-progress API that is not yet available on addons.mozilla.org
-        production environments. See :ref:`the older signing API <upload-version>` for
-        how to submit new add-ons/versions on AMO today.
-
-    .. note::
         This API requires :doc:`authentication <auth>`.
 
 .. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
@@ -584,11 +569,6 @@ Version Edit
 This endpoint allows the metadata for an existing version to be edited.
 
     .. note::
-        This is an in-progress API that is not yet available on addons.mozilla.org
-        production environments. The only supported method of editing metadata today is
-        via developer hub.
-
-    .. note::
         This API requires :doc:`authentication <auth>`.
 
 .. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
@@ -612,11 +592,6 @@ Upload Create
 .. _upload-create:
 
 This endpoint is for uploading an addon file, to then be submitted to create a new addon or version.
-
-    .. note::
-        This is an in-progress API that is not yet available on addons.mozilla.org
-        production environments. See :ref:`the older signing API <upload-version>` for
-        how to submit new add-ons/versions on AMO today.
 
     .. note::
         This API requires :doc:`authentication <auth>`.
@@ -645,9 +620,7 @@ Upload List
 This endpoint is for listing your previous uploads.
 
     .. note::
-        This is an in-progress API that is not yet available on addons.mozilla.org
-        production environments. See :ref:`the older signing API <upload-version>` for
-        how to submit new add-ons/versions on AMO today.
+        This API requires :doc:`authentication <auth>`.
 
 .. http:get:: /api/v5/addons/upload/
 
@@ -668,9 +641,7 @@ Upload Detail
 This endpoint is for fetching a single previous upload by uuid.
 
     .. note::
-        This is an in-progress API that is not yet available on addons.mozilla.org
-        production environments. See :ref:`the older signing API <upload-version>` for
-        how to submit new add-ons/versions on AMO today.
+        This API requires :doc:`authentication <auth>`.
 
 .. http:get:: /api/v5/addons/upload/<string:uuid>/
 
