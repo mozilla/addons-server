@@ -1,11 +1,124 @@
 @import '../impala/lib';
 
-.dashboard .island {
-    border-radius: 0 5px 5px;
-    float: left;
+.dashboard {
+    position: relative;
+    margin-left: 0;
+    margin-right: 210px;
+    clear: none;
+    float: none;
+    width: auto;
+    display: block;
 
-    .users {
-        color: #390;
+    #sorter {
+        font-family: @sans-stack;
+        font-size: 11px;
+        margin-bottom: 1em;
+
+        h3, ul, li {
+            color: @note-gray;
+            display: inline;
+            margin: 0;
+        }
+        li.selected a {
+            color: @orange;
+            font-weight: bold;
+            pointer-events: none;
+            text-decoration: none;
+        }
+
+        a {
+            border-right: 1px solid #ccc;
+            padding: 0 6px;
+        }
+
+        li:last-child a {
+            border-right: 0;
+        }
+
+        h3 {
+            font: inherit;
+        }
+    }
+
+    .listing {
+        .item {
+            background: #fff;
+            border-bottom: 0;
+            color: #666;
+            display: table;
+            padding: 0;
+            position: static;
+            width: 100%;
+
+            &:hover {
+                background-color: rgba(201,221,242,.1);
+
+                .item-actions a {
+                    color: #447bc4;
+                }
+            }
+
+            h3 {
+                color: inherit;
+                font-size: 16px;
+                font-weight: 700;
+                line-height: 18px;
+                margin: 0 0 5px;
+
+                img {
+                    top: auto;
+                    left: 25px;
+                }
+            }
+
+            .info {
+                border-top: 1px dotted #c9ddf2;
+                display: table-cell;
+                max-width: 470px;
+                overflow: hidden;
+                padding: 20px 0 20px 102px;
+                position: static;
+                vertical-align: top;
+            }
+
+            .item-actions {
+                h5, ul {
+                    margin: 0;
+                }
+
+                a {
+                    color: #999;
+                }
+            }
+        }
+    }
+
+    .island {
+        border-radius: 0 5px 5px;
+        display: block;
+        float: left;
+        margin-bottom: 15px;
+        margin-right: 0;
+        padding: 14px 14px 16px;
+        position: relative;
+        width: 720px;
+
+        .users {
+            color: #390;
+        }
+
+        h3 {
+            overflow: visible;
+        }
+    }
+}
+
+.devhub-sidebar {
+    clear: none;
+    float: right;
+
+    .item {
+        margin: 0;
     }
 }
 
@@ -109,6 +222,7 @@ h3 a.subscribe-feed {
     position: static;
 }
 
-#page h2.submission-count {
+h2.submission-count {
+    margin-top: 0;
     margin-bottom: 20px;
 }

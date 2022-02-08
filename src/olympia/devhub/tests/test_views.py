@@ -126,7 +126,7 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 10
         assert len(doc('.item .info.extension')) == 10
-        assert doc('nav.paginator').length == 0
+        assert doc('ol.pagination').length == 0
         for addon in addons:
             assert addon.get_icon_url(64) in doc('.item .info h3 a').html()
 
@@ -137,7 +137,7 @@ class TestDashboard(HubTest):
         response = self.client.get(self.url, {'page': 2})
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 5
-        assert doc('nav.paginator').length == 1
+        assert doc('ol.pagination').length == 1
 
     def test_themes(self):
         """Check themes show on dashboard."""
