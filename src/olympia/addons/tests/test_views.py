@@ -1731,7 +1731,7 @@ class SubmitSourceMixin:
         source.seek(0)
         return source
 
-    @mock.patch('olympia.addons.serializers.log')
+    @mock.patch('olympia.addons.views.log')
     def test_source_zip(self, log_mock):
         is_update = hasattr(self, 'version')
         _, version = self._submit_source(
@@ -1742,8 +1742,8 @@ class SubmitSourceMixin:
         assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
-        assert log_mock.info.call_count == 2
-        expected_message_1 = (
+        assert log_mock.info.call_count == 4
+        assert log_mock.info.call_args_list[0][0] == (
             (
                 'update, source upload received, addon.slug: %s, version.id: %s',
                 version.addon.slug,
@@ -1755,21 +1755,42 @@ class SubmitSourceMixin:
                 version.addon.slug,
             )
         )
-        assert log_mock.info.call_args_list[0][0] == expected_message_1
-        expected_message_2 = (
+        assert log_mock.info.call_args_list[1][0] == (
             (
-                'update, version with source updated, addon.slug: %s, version.id: %s',
+                'update, serializer loaded, addon.slug: %s, version.id: %s',
                 version.addon.slug,
                 version.id,
             )
             if is_update
             else (
-                'create, version with source saved, addon.slug: %s, version.id: %s',
+                'create, serializer loaded, addon.slug: %s',
+                version.addon.slug,
+            )
+        )
+        assert log_mock.info.call_args_list[2][0] == (
+            (
+                'update, serializer validated, addon.slug: %s, version.id: %s',
                 version.addon.slug,
                 version.id,
             )
+            if is_update
+            else (
+                'create, serializer validated, addon.slug: %s',
+                version.addon.slug,
+            )
         )
-        assert log_mock.info.call_args_list[1][0] == expected_message_2
+        assert log_mock.info.call_args_list[3][0] == (
+            (
+                'update, data saved, addon.slug: %s, version.id: %s',
+                version.addon.slug,
+                version.id,
+            )
+            if is_update
+            else (
+                'create, data saved, addon.slug: %s',
+                version.addon.slug,
+            )
+        )
 
     def test_source_targz(self):
         _, version = self._submit_source(self.file_path('webextension_no_id.tar.gz'))
@@ -1911,7 +1932,7 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
 
-    @mock.patch('olympia.addons.serializers.log')
+    @mock.patch('olympia.addons.views.log')
     def test_does_not_log_without_source(self, log_mock):
         response = self.client.post(
             self.url,
@@ -2371,7 +2392,7 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             context={'request': request}
         ).to_representation(version)
 
-    @mock.patch('olympia.addons.serializers.log')
+    @mock.patch('olympia.addons.views.log')
     def test_does_not_log_without_source(self, log_mock):
         response = self.client.patch(
             self.url,
@@ -2696,7 +2717,7 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             ]
         }
 
-    @mock.patch('olympia.addons.serializers.log')
+    @mock.patch('olympia.addons.views.log')
     def test_source_set_null_clears_field(self, log_mock):
         AddonReviewerFlags.objects.create(
             addon=self.version.addon, needs_admin_code_review=True
