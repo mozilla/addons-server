@@ -22,7 +22,7 @@ urlpatterns = [
     ),
     re_path(
         r'^review_guide$',
-	frontend_view,
+        frontend_view,
         name='pages.review_guide',
     ),
     re_path(
