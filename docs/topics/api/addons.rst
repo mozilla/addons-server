@@ -559,7 +559,7 @@ contain complex data structure (list or object) such as ``compatability``, ``rel
 or ``custom_license`` can not, so seperate API calls are needed.
 
 Note: as form-data can not be nested as objects it's not possible to set ``source`` as part of the
-``version`` object defined during an :ref:`Add-on create <addon-edit>`.
+``version`` object defined during an :ref:`Add-on create <addon-create>`.
 
 .. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
 
