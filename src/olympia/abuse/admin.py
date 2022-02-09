@@ -20,8 +20,8 @@ from .models import AbuseReport
 
 
 class AbuseReportTypeFilter(admin.SimpleListFilter):
-    # Human-readable title which will be displayed in the
-    # right admin sidebar just above the filter options.
+    # Human-readable title to be displayed in the sidebar just above the filter options.
+    # L10n: label for the list of abuse report types: addons, users
     title = gettext('type')
 
     # Parameter for the filter that will be used in the URL query.
