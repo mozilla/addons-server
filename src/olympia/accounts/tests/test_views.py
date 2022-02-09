@@ -29,6 +29,7 @@ from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.accounts.views import FxaNotificationView
+from olympia.activity.models import UserLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClientWebToken,
@@ -1601,6 +1602,12 @@ class TestAccountViewSetDelete(TestCase):
         assert self.client.cookies[settings.SESSION_COOKIE_NAME].value == ''
         assert self.client.cookies['dontremoveme'].value == 'keepme'
         assert self.user.reload().deleted
+        # Two UserLog instances get created - one for request.user, one for the instance
+        assert UserLog.objects.filter(user=self.user).count() == 2
+        alog = UserLog.objects.filter(user=self.user).first().activity_log
+        # For a user deleting their own account, they're just duplicates
+        assert alog == UserLog.objects.filter(user=self.user).last().activity_log
+        assert alog.arguments == [self.user]
 
     def test_no_auth(self):
         response = self.client.delete(self.url)
@@ -1625,6 +1632,13 @@ class TestAccountViewSetDelete(TestCase):
         assert random_user.reload().deleted
         assert views.API_TOKEN_COOKIE not in response.cookies
         assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
+        # Two UserLog instances get created - one for request.user, one for the instance
+        assert UserLog.objects.filter(user=self.user).count() == 1
+        assert UserLog.objects.filter(user=random_user).count() == 1
+        alog = UserLog.objects.get(user=random_user).activity_log
+        # For admins deleting a user account, they're the same underlying log
+        assert alog == UserLog.objects.get(user=self.user).activity_log
+        assert alog.arguments == [random_user]
 
     def test_developers_can_delete(self):
         self.client.login_api(self.user)

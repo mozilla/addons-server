@@ -54,6 +54,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.reverse import get_url_prefix
 from olympia.amo.utils import fetch_subscribed_newsletters, is_safe_url, use_fake_fxa
@@ -571,6 +572,7 @@ class AccountViewSet(
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
+        ActivityLog.create(amo.LOG.USER_DELETED, instance)
         self.perform_destroy(instance)
         response = Response(status=HTTP_204_NO_CONTENT)
         if instance == request.user:
