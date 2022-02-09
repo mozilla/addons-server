@@ -295,6 +295,11 @@ Create
 
 This endpoint allows a submission of an upload to create a new add-on and setting other AMO metadata.
 
+To create an add-on with a listed version from an upload (an :ref:`upload <upload-create>`
+that has channel == ``listed``) certain metadata must be defined - a version ``license``, an
+add-on ``name``, an add-on ``summary``, and add-on categories for each app the version
+is compatible with.
+
     .. note::
         This API requires :doc:`authentication <auth>`.
 
@@ -459,7 +464,15 @@ Version Create
 
 .. _version-create:
 
-This endpoint allows a submission of an upload to an existing add-on to create a new version, and setting other AMO metadata.
+This endpoint allows a submission of an upload to an existing add-on to create a new version,
+and setting other AMO metadata.
+
+To create a listed version from an upload (an :ref:`upload <upload-create>` that
+has channel == ``listed``) certain metadata must be defined - a version ``license``, an
+add-on ``name``, an add-on ``summary``, and add-on categories for each app the version
+is compatible with.  Add-on properties cannot be set with version create so an
+:ref:`add-on update <addon-edit>` must be made beforehand if the properties are not
+already defined.
 
     .. note::
         This API requires :doc:`authentication <auth>`.
@@ -474,7 +487,7 @@ This endpoint allows a submission of an upload to an existing add-on to create a
         where min/max versions from the manifest, or defaults, will be used.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
-    :<json string license: The :ref:`slug of a non-custom license <license-list>`. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
+    :<json string license: The :ref:`slug of a non-custom license <license-list>`. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.  If neither are provided, and there was a license defined for the previous version, it will inherit the previous version's license.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
@@ -540,16 +553,21 @@ Version Sources
 
 .. _version-sources:
 
-Version source files cannot be uploaded as JSON - the request must be sent as form-data instead.
-Other fields can be set/updated at the same time as ``source`` if desired.
+Version source files cannot be uploaded as JSON - the request must be sent as multipart form-data instead.
+If desired, ``license`` can be set set/updated at the same time as ``source``, but fields that
+contain complex data structure (list or object) such as ``compatability``, ``release_notes``,
+or ``custom_license`` can not, so seperate API calls are needed.
+
+Note: as form-data can not be nested as objects it's not possible to set ``source`` as part of the
+``version`` object defined during an :ref:`Add-on create <addon-edit>`.
 
 .. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
 
     .. _version-sources-request-create:
 
     :form source: The add-on file being uploaded.
-    :form compatibility: See :ref:`create <version-create-request>` for details.
     :form upload: The uuid for the xpi upload to create this version with.
+    :form license: The :ref:`slug of a non-custom license <license-list>` (optional).
     :reqheader Content-Type: multipart/form-data
 
 
@@ -558,6 +576,7 @@ Other fields can be set/updated at the same time as ``source`` if desired.
     .. _version-sources-request-edit:
 
     :form source: The add-on file being uploaded.
+    :form license: The :ref:`slug of a non-custom license <license-list>` (optional).
     :reqheader Content-Type: multipart/form-data
 
 ------------
@@ -606,9 +625,9 @@ This endpoint is for uploading an addon file, to then be submitted to create a n
 
 
 After the file has uploaded the :ref:`upload response <upload-detail-object>` will be
-returned immediately, and the addon submitted for validation.  The :ref:`upload detail endpoint <upload-detail>`
-should be queried for validation status to determine when/if the upload can be used to
-create an add-on/version.
+returned immediately, and the addon submitted for validation.
+The :ref:`upload detail endpoint <upload-detail>` should be queried for validation status
+to determine when/if the upload can be used to create an add-on/version.
 
 
 -----------
