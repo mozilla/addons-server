@@ -76,7 +76,7 @@
                   <ul>
                     {% if not settings.READ_ONLY %}
                       {% block user_login_include %}
-                        {% include "impala/user_login.html" %}
+                        {% include "user_login.html" %}
                       {% endblock %}
                     {% endif %}
                     {% block aux_nav %}
@@ -88,7 +88,7 @@
                 </nav>
                 <div id="masthead">
                   {% block site_header_title %}
-                  {% include "impala/header_title.html" %}
+                  {% include "header_title.html" %}
                   {% endblock %}
                   {% block navbar %}{% endblock %}
                   {% block site_stats %}{% endblock %}

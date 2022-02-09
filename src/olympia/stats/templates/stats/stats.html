@@ -1,4 +1,4 @@
-{% extends "impala/base_shared.html" %}
+{% extends "devhub/base.html" %}
 
 {% set range = view.range %}
 
@@ -23,7 +23,8 @@
       {% endif %}
 {% endblock %}
 
-{% block navbar %}
+{% block outer_content %}
+{{ super() }}
 <header>
   <hgroup>
     {% if addon %}

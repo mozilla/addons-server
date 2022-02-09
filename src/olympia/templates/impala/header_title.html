@@ -1,9 +1,0 @@
-<h1 class="site-title">
-{% macro heading(app, text, icon) -%}
-<a href="{{ url('home') }}" title="{{ _('Return to the {0} Add-ons homepage')|format_html(amo.FIREFOX.pretty) }}">
-  <img alt="{{ amo.FIREFOX.pretty }}" src="{{ static('img/icons/firefox.png')|safe }}">
-  {{ text }}
-</a>
-{%- endmacro %}
-{{ heading('Firefox', _('Add-ons'), 'firefox') }}
-</h1>
