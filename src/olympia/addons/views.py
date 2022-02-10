@@ -9,7 +9,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 
 from elasticsearch_dsl import Q, query, Search
-from rest_framework import exceptions, serializers
+from rest_framework import exceptions, serializers, status
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (
@@ -64,6 +64,7 @@ from olympia.search.filters import (
     SortingFilter,
 )
 from olympia.translations.query import order_by_translation
+from olympia.amo.utils import StopWatch
 from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
@@ -524,6 +525,96 @@ class AddonVersionViewSet(
             # doesn't scale as nicely in those versions.
             queryset = queryset.transform(Version.transformer_license)
         return queryset
+
+    def create(self, request, *args, **kwargs):
+        addon = self.get_addon_object()
+        has_source = request.data.get('source')
+        if has_source:
+            timer = StopWatch('addons.views.AddonVersionViewSet.create.')
+            timer.start()
+            log.info(
+                'create, source upload received, addon.slug: %s',
+                addon.slug,
+            )
+            timer.log_interval('1.source_received')
+
+        serializer = self.get_serializer(data=request.data)
+        if has_source:
+            log.info(
+                'create, serializer loaded, addon.slug: %s',
+                addon.slug,
+            )
+            timer.log_interval('2.serializer_loaded')
+
+        serializer.is_valid(raise_exception=True)
+        if has_source:
+            log.info(
+                'create, serializer validated, addon.slug: %s',
+                addon.slug,
+            )
+            timer.log_interval('3.serializer_validated')
+
+        self.perform_create(serializer)
+        if has_source:
+            log.info(
+                'create, data saved, addon.slug: %s',
+                addon.slug,
+            )
+            timer.log_interval('4.data_saved')
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        addon = self.get_addon_object()
+        has_source = request.data.get('source')
+        if has_source:
+            timer = StopWatch('addons.views.AddonVersionViewSet.update.')
+            timer.start()
+            log.info(
+                'update, source upload received, addon.slug: %s, version.id: %s',
+                addon.slug,
+                instance.id,
+            )
+            timer.log_interval('1.source_received')
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if has_source:
+            log.info(
+                'update, serializer loaded, addon.slug: %s, version.id: %s',
+                addon.slug,
+                instance.id,
+            )
+            timer.log_interval('2.serializer_loaded')
+
+        serializer.is_valid(raise_exception=True)
+        if has_source:
+            log.info(
+                'update, serializer validated, addon.slug: %s, version.id: %s',
+                addon.slug,
+                instance.id,
+            )
+            timer.log_interval('3.serializer_validated')
+
+        self.perform_update(serializer)
+        if has_source:
+            log.info(
+                'update, data saved, addon.slug: %s, version.id: %s',
+                addon.slug,
+                instance.id,
+            )
+            timer.log_interval('4.data_saved')
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
 
 
 class AddonSearchView(ListAPIView):

@@ -1731,7 +1731,9 @@ class SubmitSourceMixin:
         source.seek(0)
         return source
 
-    def test_source_zip(self):
+    @mock.patch('olympia.addons.views.log')
+    def test_source_zip(self, log_mock):
+        is_update = hasattr(self, 'version')
         _, version = self._submit_source(
             self.file_path('webextension_with_image.zip'),
         )
@@ -1740,6 +1742,55 @@ class SubmitSourceMixin:
         assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
+        assert log_mock.info.call_count == 4
+        assert log_mock.info.call_args_list[0][0] == (
+            (
+                'update, source upload received, addon.slug: %s, version.id: %s',
+                version.addon.slug,
+                version.id,
+            )
+            if is_update
+            else (
+                'create, source upload received, addon.slug: %s',
+                version.addon.slug,
+            )
+        )
+        assert log_mock.info.call_args_list[1][0] == (
+            (
+                'update, serializer loaded, addon.slug: %s, version.id: %s',
+                version.addon.slug,
+                version.id,
+            )
+            if is_update
+            else (
+                'create, serializer loaded, addon.slug: %s',
+                version.addon.slug,
+            )
+        )
+        assert log_mock.info.call_args_list[2][0] == (
+            (
+                'update, serializer validated, addon.slug: %s, version.id: %s',
+                version.addon.slug,
+                version.id,
+            )
+            if is_update
+            else (
+                'create, serializer validated, addon.slug: %s',
+                version.addon.slug,
+            )
+        )
+        assert log_mock.info.call_args_list[3][0] == (
+            (
+                'update, data saved, addon.slug: %s, version.id: %s',
+                version.addon.slug,
+                version.id,
+            )
+            if is_update
+            else (
+                'create, data saved, addon.slug: %s',
+                version.addon.slug,
+            )
+        )
 
     def test_source_targz(self):
         _, version = self._submit_source(self.file_path('webextension_no_id.tar.gz'))
@@ -1880,6 +1931,15 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         ).to_representation(version)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
+
+    @mock.patch('olympia.addons.views.log')
+    def test_does_not_log_without_source(self, log_mock):
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+        )
+        assert response.status_code == 201, response.content
+        assert log_mock.info.call_count == 0
 
     def test_basic_listed(self):
         self.upload.update(automated_signing=False)
@@ -2332,6 +2392,15 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             context={'request': request}
         ).to_representation(version)
 
+    @mock.patch('olympia.addons.views.log')
+    def test_does_not_log_without_source(self, log_mock):
+        response = self.client.patch(
+            self.url,
+            data={'release_notes': {'en-US': 'Something new'}},
+        )
+        assert response.status_code == 200, response.content
+        assert log_mock.info.call_count == 0
+
     def test_not_authenticated(self):
         self.client.logout_api()
         response = self.client.patch(
@@ -2648,7 +2717,8 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             ]
         }
 
-    def test_source_set_null_clears_field(self):
+    @mock.patch('olympia.addons.views.log')
+    def test_source_set_null_clears_field(self, log_mock):
         AddonReviewerFlags.objects.create(
             addon=self.version.addon, needs_admin_code_review=True
         )
@@ -2661,6 +2731,8 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
         self.version.reload()
         assert not self.version.source
         assert self.addon.needs_admin_code_review  # still set
+        # No logging when setting source to None.
+        assert log_mock.info.call_count == 0
 
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
