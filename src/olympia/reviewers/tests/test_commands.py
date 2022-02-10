@@ -16,6 +16,7 @@ from olympia.amo.tests import (
     addon_factory,
     user_factory,
     version_factory,
+    version_review_flags_factory,
 )
 from olympia.amo.utils import days_ago
 from olympia.constants.promoted import RECOMMENDED
@@ -662,7 +663,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(days=2)
             )
             ActivityLog.create(
@@ -680,7 +681,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -710,7 +711,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -731,7 +732,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -752,7 +753,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -778,7 +779,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         )
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -796,7 +797,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
         version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -827,7 +828,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             addon=addon, version='42.1', file_kw={'status': amo.STATUS_DISABLED}
         )
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -852,7 +853,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -881,7 +882,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -909,7 +910,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -920,7 +921,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 user=self.user,
             )
         more_recent_version = version_factory(addon=addon, version='43.0')
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=more_recent_version,
             pending_rejection=datetime.now() + timedelta(days=3),
         )
@@ -944,7 +945,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version21 = addon2.current_version
         version22 = version_factory(addon=addon2, version='22.1')
         for version in Version.objects.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -978,7 +979,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             # The ActivityLog doesn't match a pending rejection, so we should
@@ -998,7 +999,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             # The ActivityLog doesn't have details, so we should
@@ -1014,7 +1015,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             # The ActivityLog doesn't have comments, so we should
@@ -1035,7 +1036,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author1, author2])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -1046,7 +1047,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 user=self.user,
             )
         more_recent_version = version_factory(addon=addon)
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=more_recent_version,
             pending_rejection=datetime.now() + timedelta(days=3),
         )
@@ -1208,8 +1209,11 @@ class TestAutoReject(TestCase):
         self.version = self.addon.current_version
         self.file = self.version.file
         self.yesterday = self.days_ago(1)
-        VersionReviewerFlags.objects.create(
-            version=self.version, pending_rejection=self.yesterday
+        self.user = user_factory()
+        version_review_flags_factory(
+            version=self.version,
+            pending_rejection=self.yesterday,
+            pending_rejection_by=self.user,
         )
 
     def test_prevent_multiple_runs_in_parallel(self):
@@ -1228,15 +1232,13 @@ class TestAutoReject(TestCase):
         version = version_factory(
             addon=self.addon, version='0.9', created=self.days_ago(42)
         )
-        VersionReviewerFlags.objects.create(
-            version=version, pending_rejection=self.yesterday
-        )
+        version_review_flags_factory(version=version, pending_rejection=self.yesterday)
         qs = auto_reject.Command().fetch_addon_candidates(now=datetime.now())
         assert list(qs) == [self.addon]
 
     def test_fetch_addon_candidates(self):
         pending_future_rejection = addon_factory()
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=pending_future_rejection.current_version,
             pending_rejection=datetime.now() + timedelta(days=7),
         )
@@ -1245,7 +1247,7 @@ class TestAutoReject(TestCase):
             version_kw={'version': '10.0'}
         )
         version_factory(addon=other_addon_with_pending_rejection, version='11.0')
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=other_addon_with_pending_rejection.current_version,
             pending_rejection=self.yesterday,
         )
@@ -1260,13 +1262,13 @@ class TestAutoReject(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             version='2.0',
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=awaiting_review_pending_rejection, pending_rejection=self.yesterday
         )
         # One that is pending rejection in the future (it shouldn't be picked
         # up).
         future_pending_rejection = version_factory(addon=self.addon, version='3.0')
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=future_pending_rejection,
             pending_rejection=datetime.now() + timedelta(days=7),
         )
@@ -1322,8 +1324,10 @@ class TestAutoReject(TestCase):
 
     def test_reject_versions(self):
         another_pending_rejection = version_factory(addon=self.addon, version='2.0')
-        VersionReviewerFlags.objects.create(
-            version=another_pending_rejection, pending_rejection=self.yesterday
+        version_review_flags_factory(
+            version=another_pending_rejection,
+            pending_rejection=self.yesterday,
+            pending_rejection_by=self.user,
         )
         ActivityLog.objects.for_addons(self.addon).delete()
 
@@ -1358,6 +1362,10 @@ class TestAutoReject(TestCase):
         # in this test).
         assert not VersionReviewerFlags.objects.filter(
             pending_rejection__isnull=False
+        ).exists()
+        # The pending_rejection_by should also have been cleared.
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection_by__isnull=False
         ).exists()
 
         # No mail should have gone out.
@@ -1408,15 +1416,13 @@ class TestAutoReject(TestCase):
         version = version_factory(
             addon=all_pending_rejection, version='0.9', created=self.days_ago(42)
         )
-        VersionReviewerFlags.objects.create(
-            version=version, pending_rejection=self.yesterday
-        )
+        version_review_flags_factory(version=version, pending_rejection=self.yesterday)
         # Add-on with an old version pending rejection, but a newer one
         # approved: only the old one should be rejected.
         old_pending_rejection = addon_factory(
             version_kw={'version': '10.0', 'created': self.days_ago(2)}
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=old_pending_rejection.current_version,
             pending_rejection=self.yesterday,
         )
@@ -1431,13 +1437,13 @@ class TestAutoReject(TestCase):
         new_pending_rejection_new_version = version_factory(
             addon=new_pending_rejection, version='21.0', created=self.days_ago(2)
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=new_pending_rejection_new_version, pending_rejection=self.yesterday
         )
         # Add-on with a version pending rejection in the future, it shouldn't
         # be touched yet.
         future_pending_rejection = addon_factory()
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=future_pending_rejection.current_version,
             pending_rejection=datetime.now() + timedelta(days=2),
         )

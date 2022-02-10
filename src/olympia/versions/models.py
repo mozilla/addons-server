@@ -480,7 +480,7 @@ class Version(OnChangeMixin, ModelBase):
             # records purposes, the flag serves no purpose anymore if the
             # version is deleted).
             VersionReviewerFlags.objects.filter(version=self).update(
-                pending_rejection=None
+                pending_rejection=None, pending_rejection_by=None
             )
 
             previews_pks = list(
