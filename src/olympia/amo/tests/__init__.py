@@ -66,7 +66,12 @@ from olympia.promoted.models import (
 )
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import (
+    ApplicationsVersions,
+    License,
+    Version,
+    VersionReviewerFlags,
+)
 from olympia.users.models import UserProfile
 
 from . import dynamic_urls
@@ -941,6 +946,23 @@ def user_factory(**kw):
 def developer_factory(**kw):
     kw.setdefault('read_dev_agreement', datetime.now())
     return user_factory(**kw)
+
+
+def version_review_flags_factory(**kw):
+    if 'version' not in kw:
+        kw['version'] = version_factory(
+            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+    pending_rejection = kw.pop('pending_rejection', None)
+    pending_rejection_by = kw.pop(
+        'pending_rejection_by', user_factory() if pending_rejection else None
+    )
+    flags = VersionReviewerFlags.objects.create(
+        pending_rejection=pending_rejection,
+        pending_rejection_by=pending_rejection_by,
+        **kw,
+    )
+    return flags
 
 
 def create_default_webext_appversion():

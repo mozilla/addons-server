@@ -27,7 +27,13 @@ from olympia.addons.models import (
     AddonGUID,
     track_addon_status_change,
 )
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    user_factory,
+    version_factory,
+    version_review_flags_factory,
+)
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -623,11 +629,14 @@ class TestAddonModels(TestCase):
 
     def test_delete_clear_pending_rejection(self):
         addon = addon_factory()
+        user = user_factory()
         version_factory(addon=addon)
         other_addon = addon_factory()
         for version in Version.objects.all():
-            VersionReviewerFlags.objects.create(
-                version=version, pending_rejection=datetime.now() + timedelta(days=1)
+            version_review_flags_factory(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(days=1),
+                pending_rejection_by=user,
             )
         assert VersionReviewerFlags.objects.filter(version__addon=addon).exists()
         addon.delete()
@@ -642,7 +651,17 @@ class TestAddonModels(TestCase):
         assert VersionReviewerFlags.objects.filter(
             version__addon=other_addon,
             pending_rejection__isnull=False,
+            pending_rejection_by=user,
         ).exists()
+        # pending_rejection_by should have been cleared for those not pending
+        # rejection.
+        assert (
+            VersionReviewerFlags.objects.filter(
+                version__addon=other_addon,
+                pending_rejection_by=user,
+            ).count()
+            == 1
+        )
 
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
@@ -3032,13 +3051,11 @@ class TestGetMadQueue(TestCase):
     def test_returns_addons_with_versions_flagged_by_mad(self):
         flagged_addon = addon_factory()
         version = version_factory(addon=flagged_addon)
-        VersionReviewerFlags.objects.create(
-            version=version, needs_human_review_by_mad=True
-        )
+        version_review_flags_factory(version=version, needs_human_review_by_mad=True)
         other_addon = addon_factory()
         version = version_factory(addon=other_addon)
         addon_pending_rejection = addon_factory()
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=addon_pending_rejection.current_version,
             needs_human_review_by_mad=True,
             pending_rejection=datetime.now(),
@@ -3196,7 +3213,7 @@ class TestListedPendingManualApprovalQueue(TestCase):
         version_factory(
             addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
             ),

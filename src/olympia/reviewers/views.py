@@ -1315,7 +1315,7 @@ class AddonReviewerViewSet(GenericViewSet):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         status_code = status.HTTP_202_ACCEPTED
         VersionReviewerFlags.objects.filter(version__addon=addon).update(
-            pending_rejection=None
+            pending_rejection=None, pending_rejection_by=None
         )
         return Response(status=status_code)
 

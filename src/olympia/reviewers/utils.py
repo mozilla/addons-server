@@ -988,7 +988,7 @@ class ReviewBase:
             # Clear pending rejection since we approved that version.
             VersionReviewerFlags.objects.filter(
                 version=self.version,
-            ).update(pending_rejection=None)
+            ).update(pending_rejection=None, pending_rejection_by=None)
 
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
@@ -1154,7 +1154,7 @@ class ReviewBase:
             VersionReviewerFlags.objects.filter(
                 version__addon=self.addon,
                 version__channel=channel,
-            ).update(pending_rejection=None)
+            ).update(pending_rejection=None, pending_rejection_by=None)
 
             # Assign reviewer incentive scores.
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED

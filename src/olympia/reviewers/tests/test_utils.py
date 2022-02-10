@@ -21,6 +21,7 @@ from olympia.amo.tests import (
     addon_factory,
     user_factory,
     version_factory,
+    version_review_flags_factory,
 )
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
@@ -672,7 +673,7 @@ class TestReviewHelper(TestReviewHelperBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.version, pending_rejection=datetime.now()
         )
         expected = ['reply', 'super', 'comment']
@@ -715,7 +716,7 @@ class TestReviewHelper(TestReviewHelperBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.version, pending_rejection=datetime.now()
         )
         expected = [
@@ -982,7 +983,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_unlisted_approve_latest_version_need_human_review(self):
         self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.version.update(needs_human_review=True)
-        flags = VersionReviewerFlags.objects.create(
+        flags = version_review_flags_factory(
             version=self.version,
             needs_human_review_by_mad=True,
         )
@@ -1005,7 +1006,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.request = None  # Not a human review
         self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.version.update(needs_human_review=True)
-        flags = VersionReviewerFlags.objects.create(
+        flags = version_review_flags_factory(
             version=self.version, needs_human_review_by_mad=True
         )
         AddonReviewerFlags.objects.create(
@@ -1026,10 +1027,11 @@ class TestReviewHelper(TestReviewHelperBase):
         assert addon_flags.auto_approval_disabled_until_next_approval_unlisted
 
     def test_nomination_to_public_with_version_reviewer_flags(self):
-        flags = VersionReviewerFlags.objects.create(
+        flags = version_review_flags_factory(
             version=self.addon.current_version,
             needs_human_review_by_mad=True,
             pending_rejection=datetime.now() + timedelta(days=2),
+            pending_rejection_by=user_factory(),
         )
         assert flags.needs_human_review_by_mad
 
@@ -1039,6 +1041,7 @@ class TestReviewHelper(TestReviewHelperBase):
         flags.refresh_from_db()
         assert not flags.needs_human_review_by_mad
         assert not flags.pending_rejection
+        assert not flags.pending_rejection_by
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_nomination_to_public(self, sign_mock):
@@ -1434,8 +1437,10 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
         for version in self.addon.versions.all():
-            VersionReviewerFlags.objects.create(
-                version=version, pending_rejection=datetime.now() + timedelta(days=7)
+            version_review_flags_factory(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(days=7),
+                pending_rejection_by=user_factory(),
             )
 
         self.helper = self.get_helper()  # To make it pick up the new version.
@@ -1464,6 +1469,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not VersionReviewerFlags.objects.filter(
             version__addon=self.addon, pending_rejection__isnull=False
         ).exists()
+        # pending_rejection_by should be cleared as well.
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=self.addon, pending_rejection_by__isnull=False
+        ).exists()
 
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
@@ -1475,7 +1484,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.needs_human_review is False
 
     def test_addon_with_version_and_scanner_flag_confirm_auto_approvals(self):
-        flags = VersionReviewerFlags.objects.create(
+        flags = version_review_flags_factory(
             version=self.addon.current_version,
             needs_human_review_by_mad=True,
         )
@@ -1490,7 +1499,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        flags = VersionReviewerFlags.objects.create(
+        flags = version_review_flags_factory(
             version=self.version,
             needs_human_review_by_mad=True,
         )
@@ -2375,7 +2384,7 @@ class TestReviewHelper(TestReviewHelperBase):
             channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
         # Add a needs_human_review_by_mad flag that should be cleared later.
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.version, needs_human_review_by_mad=True
         )
         # Safeguards.
