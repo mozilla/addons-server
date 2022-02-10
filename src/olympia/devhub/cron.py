@@ -14,17 +14,27 @@ log = olympia.core.logger.getLogger('z.cron')
 
 def update_blog_posts():
     """Update the blog post cache."""
-    items = requests.get(settings.DEVELOPER_BLOG_URL, timeout=10).json()
-    if not items:
+    response = requests.get(settings.DEVELOPER_BLOG_URL, timeout=10)
+    items = response.json()
+    if not (response.status_code == 200 and items and len(items) > 1):
         return
 
-    BlogPost.objects.all().delete()
+    latest_five = items[:5]
+    latest_five_ids = [item['id'] for item in latest_five]
+    BlogPost.objects.exclude(post_id__in=latest_five_ids).delete()
+    existing_blogposts = {post.post_id: post for post in BlogPost.objects.all()}
 
-    for item in items[:5]:
-        BlogPost.objects.create(
-            title=item['title']['rendered'],
-            date_posted=datetime.strptime(item['date'], '%Y-%m-%dT%H:%M:%S'),
-            permalink=item['link'],
-        )
+    for item in latest_five:
+        existing = existing_blogposts.get(item['id'])
+        data = {
+            'title': item['title']['rendered'],
+            'date_posted': datetime.strptime(item['date'], '%Y-%m-%dT%H:%M:%S'),
+            'date_modified': datetime.strptime(item['modified'], '%Y-%m-%dT%H:%M:%S'),
+            'permalink': item['link'],
+        }
+        if not existing:
+            BlogPost.objects.create(post_id=item['id'], **data)
+        elif existing.date_modified != data['date_modified']:
+            existing.update(**data)
 
-    log.info(f'Adding {BlogPost.objects.count():d} blog posts.')
+    log.info(f'Adding {len(latest_five)} blog posts.')
