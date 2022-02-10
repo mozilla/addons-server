@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.conf import settings
+from django.core.exceptions import BadRequest
 
 import requests
 
@@ -15,9 +16,12 @@ log = olympia.core.logger.getLogger('z.cron')
 def update_blog_posts():
     """Update the blog post cache."""
     response = requests.get(settings.DEVELOPER_BLOG_URL, timeout=10)
-    items = response.json()
+    try:
+        items = response.json()
+    except requests.exceptions.JSONDecodeError:
+        items = None
     if not (response.status_code == 200 and items and len(items) > 1):
-        return
+        raise BadRequest('Developer blog JSON import failed.')
 
     latest_five = items[:5]
     latest_five_ids = [item['id'] for item in latest_five]

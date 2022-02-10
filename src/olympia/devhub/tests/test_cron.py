@@ -3,6 +3,7 @@ import os
 from datetime import date, datetime
 
 from django.conf import settings
+from django.core.exceptions import BadRequest
 
 import responses
 
@@ -20,14 +21,13 @@ class TestUpdateBlogPosts(TestCase):
         with open(blog_path) as blog_file:
             cls.content = json.load(blog_file)
 
-    def setUp(self):
+    def test_from_empty(self):
         responses.add(
             responses.GET,
             settings.DEVELOPER_BLOG_URL,
             json=self.content,
         )
 
-    def test_from_empty(self):
         assert BlogPost.objects.count() == 0
 
         update_blog_posts()
@@ -44,6 +44,11 @@ class TestUpdateBlogPosts(TestCase):
         )
 
     def test_replace_existing(self):
+        responses.add(
+            responses.GET,
+            settings.DEVELOPER_BLOG_URL,
+            json=self.content,
+        )
         no_change = BlogPost.objects.create(
             post_id=9018,
             date_posted=date(2021, 7, 29),
@@ -80,3 +85,31 @@ class TestUpdateBlogPosts(TestCase):
             == changed.reload().title
             == ('Review Articles on AMO and New Blog Name')
         )
+
+    def test_error_empty(self):
+        responses.add(
+            responses.GET,
+            settings.DEVELOPER_BLOG_URL,
+            json=[],
+        )
+        with self.assertRaises(BadRequest):
+            update_blog_posts()
+
+    def test_error_not_json(self):
+        responses.add(
+            responses.GET,
+            settings.DEVELOPER_BLOG_URL,
+            body='error',
+        )
+        with self.assertRaises(BadRequest):
+            update_blog_posts()
+
+    def test_error_status_code(self):
+        responses.add(
+            responses.GET,
+            settings.DEVELOPER_BLOG_URL,
+            json=self.content,
+            status=500,
+        )
+        with self.assertRaises(BadRequest):
+            update_blog_posts()
