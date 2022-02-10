@@ -51,6 +51,7 @@ from olympia.amo.tests import (
     reverse_ns,
     user_factory,
     version_factory,
+    version_review_flags_factory,
 )
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.blocklist.utils import block_activity_log_save
@@ -691,7 +692,7 @@ class TestDashboard(TestCase):
         )
 
         pending_rejection = addon_factory(name='Pending Rejection Addôn')
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=pending_rejection.current_version,
             pending_rejection=datetime.now() + timedelta(days=4),
         )
@@ -1656,11 +1657,11 @@ class TestExtensionQueue(QueueTest):
     def test_pending_rejection_filtered_out(self):
         for addon in self.addons.values():
             AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.addons['Nominated Two'].current_version,
             pending_rejection=datetime.now(),
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.addons['Pending Two'].current_version,
             pending_rejection=datetime.now(),
         )
@@ -2287,11 +2288,11 @@ class TestAutoApprovedQueue(QueueTest):
     def test_pending_rejection_filtered_out(self):
         self.login_with_permission()
         self.generate_files()
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.expected_addons[0].current_version,
             pending_rejection=datetime.now(),
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.expected_addons[1].current_version,
             pending_rejection=datetime.now(),
         )
@@ -2479,11 +2480,11 @@ class TestContentReviewQueue(QueueTest):
     def test_pending_rejection_filtered_out(self):
         self.login_with_permission()
         self.generate_files()
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.expected_addons[0].current_version,
             pending_rejection=datetime.now(),
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.expected_addons[1].current_version,
             pending_rejection=datetime.now(),
         )
@@ -2639,7 +2640,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
 
     def generate_files(self):
         addon1 = addon_factory(created=self.days_ago(4))
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=addon1.versions.get(),
             pending_rejection=datetime.now() + timedelta(days=1),
         )
@@ -2649,7 +2650,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=addon2.versions.get(),
             pending_rejection=datetime.now() + timedelta(days=2),
         )
@@ -2662,7 +2663,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
             name='Has a version pending rejection but it is not the current',
             version_kw={'created': self.days_ago(1), 'version': '0.1'},
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=addon.current_version, pending_rejection=datetime.now()
         )
         version_factory(addon=addon, version='0.2')
@@ -3308,7 +3309,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)('#versions-history .review-files')
         assert doc('.pending-rejection') == []
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.version,
             pending_rejection=datetime.now() + timedelta(hours=1, minutes=1),
         )
@@ -3322,7 +3323,7 @@ class TestReview(ReviewBase):
     def test_item_history_pending_rejection_but_latest_is_unreviewed(self):
         # Adding a non-pending rejection as the latest version shouldn't change
         # anything if it's public.
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.version,
             pending_rejection=datetime.now() + timedelta(hours=1, minutes=1),
         )
@@ -3354,7 +3355,7 @@ class TestReview(ReviewBase):
                 addon=self.addon, version=f'1.{i}', created=self.days_ago(365 - i)
             )
             if not bool(i % 5):
-                VersionReviewerFlags.objects.create(
+                version_review_flags_factory(
                     version=version, pending_rejection=datetime.now()
                 )
 
@@ -3612,7 +3613,7 @@ class TestReview(ReviewBase):
             needs_admin_theme_review=True,
             auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.addon.current_version, pending_rejection=datetime.now()
         )
         self.login_as_reviewer()
@@ -3984,7 +3985,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#clear_pending_rejections')
 
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=self.addon.current_version, pending_rejection=datetime.now()
         )
         response = self.client.get(self.url)
@@ -5741,7 +5742,7 @@ class TestReview(ReviewBase):
             version = version_factory(
                 addon=self.addon, version=f'1.{i}', created=self.days_ago(365 - i)
             )
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, needs_human_review_by_mad=not bool(i % 3)
             )
 
@@ -6802,13 +6803,18 @@ class TestAddonReviewerViewSet(TestCase):
         self.client.login_api(self.user)
         version_factory(addon=self.addon)
         for version in self.addon.versions.all():
-            VersionReviewerFlags.objects.create(
-                version=version, pending_rejection=datetime.now() + timedelta(days=7)
+            version_review_flags_factory(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(days=7),
+                pending_rejection_by=user_factory(),
             )
         response = self.client.post(self.clear_pending_rejections_url)
         assert response.status_code == 202
         assert not VersionReviewerFlags.objects.filter(
             version__addon=self.addon, pending_rejection__isnull=False
+        ).exists()
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=self.addon, pending_rejection_by__isnull=False
         ).exists()
 
 
@@ -8576,13 +8582,13 @@ class TestMadQueue(QueueTest):
 
         # This add-on should be listed once, even with two versions.
         listed_addon = addon_factory(created=self.days_ago(15))
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=listed_addon, channel=amo.RELEASE_CHANNEL_LISTED
             ),
             needs_human_review_by_mad=True,
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=listed_addon, channel=amo.RELEASE_CHANNEL_LISTED
             ),
@@ -8591,13 +8597,13 @@ class TestMadQueue(QueueTest):
 
         # This add-on should be listed once, even with two versions.
         unlisted_addon = addon_factory(created=self.days_ago(5))
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=unlisted_addon, channel=amo.RELEASE_CHANNEL_UNLISTED
             ),
             needs_human_review_by_mad=True,
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=unlisted_addon, channel=amo.RELEASE_CHANNEL_UNLISTED
             ),
@@ -8607,13 +8613,13 @@ class TestMadQueue(QueueTest):
         # This add-on should not be listed, because the latest version is not
         # flagged.
         listed_addon_previous = addon_factory(created=self.days_ago(15))
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=listed_addon_previous, channel=amo.RELEASE_CHANNEL_LISTED
             ),
             needs_human_review_by_mad=True,
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=listed_addon_previous, channel=amo.RELEASE_CHANNEL_LISTED
             ),
@@ -8623,14 +8629,14 @@ class TestMadQueue(QueueTest):
         unflagged_addon = addon_factory()
         version_factory(addon=unflagged_addon)
 
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(addon=addon_factory()),
             needs_human_review_by_mad=False,
         )
 
         # Needs admin code review, so wouldn't show up for regular reviewers.
         addon_admin_only = addon_factory(created=self.days_ago(1))
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(addon=addon_admin_only),
             needs_human_review_by_mad=True,
         )
@@ -8641,19 +8647,19 @@ class TestMadQueue(QueueTest):
 
         # Mixed listed and unlisted versions. Should not show up in queue.
         mixed_addon = addon_factory(created=self.days_ago(5))
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=mixed_addon, channel=amo.RELEASE_CHANNEL_UNLISTED
             ),
             needs_human_review_by_mad=False,
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=mixed_addon, channel=amo.RELEASE_CHANNEL_LISTED
             ),
             needs_human_review_by_mad=True,
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=mixed_addon, channel=amo.RELEASE_CHANNEL_LISTED
             ),
@@ -8662,19 +8668,19 @@ class TestMadQueue(QueueTest):
 
         # Mixed listed and unlisted versions. Only the unlisted should show up.
         mixed_addon2 = addon_factory(created=self.days_ago(4))
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=mixed_addon2, channel=amo.RELEASE_CHANNEL_UNLISTED
             ),
             needs_human_review_by_mad=True,
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=mixed_addon2, channel=amo.RELEASE_CHANNEL_LISTED
             ),
             needs_human_review_by_mad=True,
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=mixed_addon2, channel=amo.RELEASE_CHANNEL_LISTED
             ),
@@ -8683,13 +8689,13 @@ class TestMadQueue(QueueTest):
 
         # Mixed listed and unlisted versions. Both channels should show up.
         mixed_addon_both = addon_factory(created=self.days_ago(2))
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=mixed_addon_both, channel=amo.RELEASE_CHANNEL_UNLISTED
             ),
             needs_human_review_by_mad=True,
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version_factory(
                 addon=mixed_addon_both, channel=amo.RELEASE_CHANNEL_LISTED
             ),

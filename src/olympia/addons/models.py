@@ -812,7 +812,8 @@ class Addon(OnChangeMixin, ModelBase):
 
             self.versions.all().update(deleted=True)
             VersionReviewerFlags.objects.filter(version__addon=self).update(
-                pending_rejection=None
+                pending_rejection=None,
+                pending_rejection_by=None,
             )
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk, str(self.guid), self)

@@ -21,6 +21,7 @@ from olympia.amo.tests import (
     license_factory,
     user_factory,
     version_factory,
+    version_review_flags_factory,
 )
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
@@ -311,15 +312,19 @@ class TestVersion(TestCase):
         assert qs[1].user == user
 
     def test_version_delete_clear_pending_rejection(self):
+        user = user_factory()
         version = Version.objects.get(pk=81551)
-        VersionReviewerFlags.objects.create(
-            version=version, pending_rejection=datetime.now() + timedelta(days=1)
+        version_review_flags_factory(
+            version=version,
+            pending_rejection=datetime.now() + timedelta(days=1),
+            pending_rejection_by=user,
         )
         flags = VersionReviewerFlags.objects.get(version=version)
         assert flags.pending_rejection
         version.delete()
         flags.reload()
         assert not flags.pending_rejection
+        assert not flags.pending_rejection_by
 
     def test_version_disable_and_reenable(self):
         version = Version.objects.get(pk=81551)
@@ -912,7 +917,7 @@ class TestVersion(TestCase):
         # No flags: None
         assert version.pending_rejection is None
         # Flag present, value is None (default): None.
-        flags = VersionReviewerFlags.objects.create(version=version)
+        flags = version_review_flags_factory(version=version)
         assert flags.pending_rejection is None
         assert version.pending_rejection is None
         # Flag present, value is a date.
@@ -927,7 +932,7 @@ class TestVersion(TestCase):
         # No flags: None
         assert version.pending_rejection_by is None
         # Flag present, value is None (default): None.
-        flags = VersionReviewerFlags.objects.create(version=version)
+        flags = version_review_flags_factory(version=version)
         assert flags.pending_rejection_by is None
         assert version.pending_rejection_by is None
         # Flag present, value is a user.
@@ -938,7 +943,7 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         user = user_factory()
-        flags = VersionReviewerFlags.objects.create(
+        flags = version_review_flags_factory(
             version=version,
             pending_rejection=self.days_ago(1),
             pending_rejection_by=user,
@@ -963,7 +968,7 @@ class TestVersion(TestCase):
         # No flags: False
         assert not version.needs_human_review_by_mad
         # Flag present, value is None (default): False.
-        flags = VersionReviewerFlags.objects.create(version=version)
+        flags = version_review_flags_factory(version=version)
         assert not version.needs_human_review_by_mad
         # Flag present.
         flags.update(needs_human_review_by_mad=True)
