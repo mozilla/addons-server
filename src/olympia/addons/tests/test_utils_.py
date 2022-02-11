@@ -408,8 +408,16 @@ class TestSitePermissionVersionCreator(TestCase):
             site_permissions=['midi-sysex'],
         )
         manifest_data = creator._create_manifest('1.0')
+        guid = (
+            manifest_data.get('browser_specific_settings', {})
+            .get('gecko', {})
+            .get('id')
+        )
+        assert guid
         assert manifest_data == {
-            'browser_specific_settings': {'gecko': {'strict_min_version': '97.0'}},
+            'browser_specific_settings': {
+                'gecko': {'id': guid, 'strict_min_version': '97.0'}
+            },
             'install_origins': ['https://example.com'],
             'manifest_version': 2,
             'name': 'Site permissions for example.com',
@@ -425,13 +433,46 @@ class TestSitePermissionVersionCreator(TestCase):
             site_permissions=['midi-sysex', 'webblah'],
         )
         manifest_data = creator._create_manifest('2.0')
+        guid = (
+            manifest_data.get('browser_specific_settings', {})
+            .get('gecko', {})
+            .get('id')
+        )
+        assert guid
         assert manifest_data == {
-            'browser_specific_settings': {'gecko': {'strict_min_version': '97.0'}},
+            'browser_specific_settings': {
+                'gecko': {'id': guid, 'strict_min_version': '97.0'}
+            },
             'install_origins': ['https://example.com', 'https://foo.com'],
             'manifest_version': 2,
             'name': 'Site permissions for example.com, foo.com',
             'site_permissions': ['midi-sysex', 'webblah'],
             'version': '2.0',
+        }
+
+    def test_create_manifest_with_guid(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com'],
+            site_permissions=['midi-sysex'],
+        )
+        manifest_data = creator._create_manifest('1.0', 'some@guid')
+        guid = (
+            manifest_data.get('browser_specific_settings', {})
+            .get('gecko', {})
+            .get('id')
+        )
+        assert guid == 'some@guid'
+        assert manifest_data == {
+            'browser_specific_settings': {
+                'gecko': {'id': guid, 'strict_min_version': '97.0'}
+            },
+            'install_origins': ['https://example.com'],
+            'manifest_version': 2,
+            'name': 'Site permissions for example.com',
+            'site_permissions': ['midi-sysex'],
+            'version': '1.0',
         }
 
     def test_create_zipfile(self):
@@ -475,6 +516,7 @@ class TestSitePermissionVersionCreator(TestCase):
             'https://foo.com',
         ]
         assert addon.pk
+        assert addon.guid
         assert addon.status == amo.STATUS_NULL
         assert addon.type == amo.ADDON_SITE_PERMISSION
         assert list(addon.authors.all()) == [creator.user]

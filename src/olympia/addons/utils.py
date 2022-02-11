@@ -273,11 +273,13 @@ class SitePermissionVersionCreator:
         self.install_origins = sorted(install_origins or [])
         self.site_permissions = site_permissions
 
-    def _create_manifest(self, version_number):
+    def _create_manifest(self, version_number, guid=None):
 
         hostnames = ', '.join(
             [urlparse(origin).netloc for origin in self.install_origins]
         )
+        if guid is None:
+            guid = generate_addon_guid()
         # FIXME: https://github.com/mozilla/addons-server/issues/18421 to
         # generate translations for the name (we'll need __MSG_extensionName__
         # and _locales/ folder etc). At the moment the gettext() call is just
@@ -293,7 +295,10 @@ class SitePermissionVersionCreator:
                 'install_origins': self.install_origins,
                 'site_permissions': self.site_permissions,
                 'browser_specific_settings': {
-                    'gecko': {'strict_min_version': SITE_PERMISSION_MIN_VERSION}
+                    'gecko': {
+                        'id': guid,
+                        'strict_min_version': SITE_PERMISSION_MIN_VERSION,
+                    }
                 },
             }
         return manifest_data
@@ -318,6 +323,7 @@ class SitePermissionVersionCreator:
         from olympia.versions.utils import get_next_version_number
 
         version_number = '1.0'
+        guid = None
 
         # If passing an existing add-on, we need to bump the version number
         # to avoid clashes, and also perform a few checks.
@@ -348,11 +354,12 @@ class SitePermissionVersionCreator:
                 )
 
             version_number = get_next_version_number(addon)
+            guid = addon.guid
 
         # Create the manifest, with more user-friendly name & description built
         # from install_origins/site_permissions, and then the zipfile with that
         # manifest inside.
-        manifest_data = self._create_manifest(version_number)
+        manifest_data = self._create_manifest(version_number, guid=guid)
         file_obj = self._create_zipfile(manifest_data)
 
         # Parse the zip we just created. The user needs to be the Mozilla User
