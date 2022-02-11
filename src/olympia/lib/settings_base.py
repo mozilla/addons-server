@@ -589,9 +589,8 @@ PUENTE = {
             ('static/js/**-all.js', 'ignore'),
             ('static/js/**-min.js', 'ignore'),
             ('static/js/*.js', 'javascript'),
-            ('static/js/amo2009/**.js', 'javascript'),
             ('static/js/common/**.js', 'javascript'),
-            ('static/js/impala/**.js', 'javascript'),
+            ('static/js/stats/**.js', 'javascript'),
             ('static/js/zamboni/**.js', 'javascript'),
         ],
     },
@@ -671,6 +670,7 @@ MINIFY_BUNDLES = {
             'js/zamboni/unicode.js',
             # Login tweaks
             'js/zamboni/users.js',
+            'js/common/lang_switcher.js',
         ),
         # Things to be loaded at the top of the page
         'preload': (
@@ -698,6 +698,8 @@ MINIFY_BUNDLES = {
             'js/node_lib/ui/sortable.js',
         ),
         'devhub/new-landing/js': (
+            # Note that new-landing (devhub/index.html) doesn't include
+            # zamboni/devhub or even common js bundles.
             'js/common/lang_switcher.js',
             'js/lib/basket-client.js',
         ),
@@ -711,16 +713,16 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/stats': (
             'js/lib/highcharts.src.js',
-            'js/impala/stats/csv_keys.js',
-            'js/impala/stats/helpers.js',
-            'js/impala/stats/dateutils.js',
-            'js/impala/stats/manager.js',
-            'js/impala/stats/controls.js',
-            'js/impala/stats/overview.js',
-            'js/impala/stats/topchart.js',
-            'js/impala/stats/chart.js',
-            'js/impala/stats/table.js',
-            'js/impala/stats/stats.js',
+            'js/stats/csv_keys.js',
+            'js/stats/helpers.js',
+            'js/stats/dateutils.js',
+            'js/stats/manager.js',
+            'js/stats/controls.js',
+            'js/stats/overview.js',
+            'js/stats/topchart.js',
+            'js/stats/chart.js',
+            'js/stats/table.js',
+            'js/stats/stats.js',
         ),
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
