@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-09 12:46+0000\n"
+"PO-Revision-Date: 2022-02-11 17:13+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2071,9 +2071,8 @@ msgstr "Αναζήτηση τεκμηρίωσης προγραμματιστή"
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "Άδεια ιστοτόπου"
+msgstr "Δημιουργία προσθέτου αδειών ιστοτόπου"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
 msgstr ""
@@ -3851,9 +3850,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για κλείσιμο καρτελών, πλοήγηση σε σελίδες και πολλά άλλα."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Απολαύστε μικρογραφίες ιστοτόπων δίπλα στα αποτελέσματα αναζήτησής σας."
+msgstr "Δείτε μικρογραφίες ιστοτόπων δίπλα στα αποτελέσματα αναζήτησής σας."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4668,14 +4666,12 @@ msgid "See more trending themes"
 msgstr "Περισσότερα δημοφιλή θέματα"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Δημοφιλή θέματα"
+msgstr "Πιο υψηλά βαθμολογημένα θέματα"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Περισσότερα δημοφιλή θέματα"
+msgstr "Περισσότερα υψηλά βαθμολογημένα θέματα"
 
 #. editorial content for the homepage shelves.
 msgid "Trending extensions"
@@ -6227,9 +6223,8 @@ msgstr "Κανένας χρήστης με αυτό το email."
 msgid "Firefox user {id}"
 msgstr "Χρήστης Firefox {id}"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Εισαγάγετε ένα έγκυρο εύρος δικτύου IPv6 ή IPv6 CIDR, π.χ. 127.0.0.1/28"
+msgstr "Εισαγάγετε ένα έγκυρο εύρος CIDR δικτύου IPv4 ή IPv6, π.χ. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Έχουν υποβληθεί πολλαπλά πρόσθετα που παραβιάζουν τις πολιτικές μας από την τοποθεσία σας. Η διεύθυνση IP έχει αποκλειστεί."
