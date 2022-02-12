@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-10 10:01+0000\n"
+"PO-Revision-Date: 2022-02-12 11:13+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -2513,8 +2513,8 @@ msgstr ""
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> vikulegt niðurhal"
+msgstr[1] "<strong>{0}</strong> vikuleg niðurhöl"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
@@ -3228,7 +3228,7 @@ msgid "Files"
 msgstr "Skrár"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Útgáfuskýringar"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
@@ -4701,7 +4701,7 @@ msgid "Inappropriate language/dialog"
 msgstr "Óviðeigandi umtal/málfar"
 
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Ekki rétt staðsett villutilkynning eða aðstoðarbeiðni"
 
 msgid "Other (please specify)"
 msgstr "Annað (tilgreindu nákvæmlega)"
@@ -4738,8 +4738,8 @@ msgstr ""
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} umsögn"
+msgstr[1] "{num} umsagnir"
 
 msgid "Not yet rated"
 msgstr "Engin einkunn ennþá"
@@ -4982,10 +4982,10 @@ msgid "Security Scanners"
 msgstr ""
 
 msgid "Flagged By Scanners"
-msgstr ""
+msgstr "Flaggað af skönnum"
 
 msgid "Flagged for Human Review"
-msgstr ""
+msgstr "Flaggað til mannlegrar yfirferðar"
 
 msgid "Auto-Approved Add-ons"
 msgstr ""
@@ -5088,7 +5088,7 @@ msgid "Internal AMO ID"
 msgstr ""
 
 msgid "Support Website"
-msgstr ""
+msgstr "Aðstoðarvefur"
 
 msgid "Visibility"
 msgstr "Sýnileiki"
@@ -5182,17 +5182,17 @@ msgid "Log details"
 msgstr "Ítarlegt í atvikaskrá"
 
 msgid "Review Author"
-msgstr ""
+msgstr "Höfundur yfirferðar"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "Titill viðbótar"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Yfirfara texta"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -5204,7 +5204,7 @@ msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr " – Yfirferðarverkfæri – Viðbætur fyrir Firefox"
 
 msgid "Back to review"
-msgstr ""
+msgstr "Til baka í yfirferð"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
@@ -5251,11 +5251,11 @@ msgid "Reviewer's Guide"
 msgstr "Leiðbeiningar yfirferðaraðila"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Viðbætur fyrir Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
-msgstr ""
+msgstr "Yfirferð á efni {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
@@ -5265,7 +5265,7 @@ msgid "Add-on important changes history"
 msgstr ""
 
 msgid "Add-on History"
-msgstr ""
+msgstr "Ferill viðbótar"
 
 msgid "You don't have permission to review it."
 msgstr ""
@@ -5376,7 +5376,7 @@ msgid "Admin Page"
 msgstr "Stjórnandasíða"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Yfirfara þessa viðbót"
 
 msgid "More Information"
 msgstr "Nánari upplýsingar"
@@ -5461,7 +5461,7 @@ msgid "{num} versions pending rejection on other pages."
 msgstr ""
 
 msgid "Recent Points"
-msgstr ""
+msgstr "Nýlegir punktar"
 
 msgid "No points awarded yet."
 msgstr ""
@@ -5512,7 +5512,7 @@ msgid "The developer has provided source code."
 msgstr ""
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "Illskustig:"
 
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
@@ -5546,7 +5546,7 @@ msgstr ""
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[staða:%s]"
 
 msgid "Other Pending Review"
 msgstr ""
@@ -5579,13 +5579,13 @@ msgid "version channel"
 msgstr ""
 
 msgid "add-on status"
-msgstr ""
+msgstr "staða viðbótar"
 
 msgid "add-on listing visibility"
 msgstr ""
 
 msgid "file status"
-msgstr ""
+msgstr "staða skrár"
 
 msgid "file signature"
 msgstr ""
