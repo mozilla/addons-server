@@ -5,6 +5,8 @@ from waffle import switch_is_active
 
 import olympia.core.logger
 
+from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.users.models import UserProfile
@@ -54,6 +56,7 @@ def primary_email_change_event(user, event_date, email):
 def delete_user_event(user, event_date):
     """Process the delete user event."""
     if switch_is_active('fxa-account-delete'):
+        ActivityLog.create(amo.LOG.USER_DELETED, user, user=user)
         user.delete(addon_msg='Deleted via FxA account deletion')
         log.info(f'Account pk [{user.id}] deleted from FxA on {event_date}')
     else:

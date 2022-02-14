@@ -397,6 +397,11 @@ class USER_EDITED(_LOG):
     format = _('Account updated.')
 
 
+class USER_DELETED(_LOG):
+    id = 61
+    format = _('Account {user} deleted.')
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'
