@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-12 11:13+0000\n"
+"PO-Revision-Date: 2022-02-14 22:33+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -673,7 +673,7 @@ msgid "{addon} is now licensed under {0}."
 msgstr "{addon} er nú með notkunarleyfi samkvæmt {0}."
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Stefna varðandi {addon} breyttist."
 
 msgid "{addon} icon changed."
 msgstr "Táknmynd {addon} breyttist."
@@ -715,25 +715,25 @@ msgid "Created: {0}."
 msgstr "Búið til: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Breytti gagnasviði: {2} sett á: {0}."
 
 msgid "Deleted: {1}."
 msgstr "Eytt: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Notandanum {user} breytt, ástæða: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Notandinn {user} gerður nafnlaus."
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Notandinn {user} takmarkaður."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Kerfisstjórinn {0} skoðaði virkniskráningu fyrir {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "{rating} fyrir {addon} uppfærð."
 
 msgid "{addon} reviewed."
 msgstr "{addon} yfirfarin."
@@ -742,19 +742,19 @@ msgid "User {user} banned."
 msgstr "Notandinn {user} bannaður."
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "Mynd notandans {user} eytt."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Notanda {0.name} bætt í {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Notandi {0.name} fjarlægður úr {group}."
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} afskráð."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} var undirrituð."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
@@ -764,7 +764,7 @@ msgid "{addon} migrated from preliminary."
 msgstr ""
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Svar frá forritara fyrir {addon} {version}."
 
 msgid "Developer Reply"
 msgstr "Svar þróunaraðila"
@@ -1970,7 +1970,7 @@ msgid "more add-ons..."
 msgstr "fleiri viðbætur..."
 
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Vinnustofa forritsauka"
 
 msgid "Documentation"
 msgstr "Hjálparskjöl"
@@ -3063,7 +3063,7 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 msgid "Visit the Firefox Extension Workshop"
-msgstr ""
+msgstr "Heimsæktu vinnustofu Firefox-forritsauka"
 
 msgid "Connect with us"
 msgstr "Tengstu við okkur"
@@ -4889,7 +4889,7 @@ msgid "Type"
 msgstr "Tegund"
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "Biðtími"
 
 msgid "Pending Rejection Deadline"
 msgstr ""
@@ -5364,7 +5364,7 @@ msgid "View Blocklist Submission"
 msgstr ""
 
 msgid "Block add-on"
-msgstr ""
+msgstr "Loka á viðbót"
 
 msgid "Update add-on block"
 msgstr ""
@@ -5506,7 +5506,7 @@ msgid "Additional sources:"
 msgstr ""
 
 msgid "Download files"
-msgstr ""
+msgstr "Sækja skrár"
 
 msgid "The developer has provided source code."
 msgstr ""
@@ -5643,10 +5643,10 @@ msgid "Maximum query length exceeded."
 msgstr ""
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "Gat ekki fundið viðbót með auðkennið \"{}\"."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Þú átt ekki þessa viðbót."
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
@@ -6030,7 +6030,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr ""
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Mynstur tölvupóstfanga"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
