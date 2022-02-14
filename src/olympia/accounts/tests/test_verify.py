@@ -219,7 +219,7 @@ class TestIdentify(TestCase):
         self.get_profile.assert_called_with('cafe')
 
 
-@override_settings(USE_FAKE_FXA_AUTH=False, DEBUG=True)
+@override_settings(USE_FAKE_FXA_AUTH=False, DEBUG=True, VERIFY_FXA_ACCESS_TOKEN=True)
 class TestCheckAndUpdateFxaAccessToken(TestCase):
     def setUp(self):
         super().setUp()

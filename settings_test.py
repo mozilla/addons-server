@@ -98,3 +98,5 @@ CELERY_TASK_ROUTES.update({
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 ADDONS_FRONTEND_PROXY_PORT = None
+
+VERIFY_FXA_ACCESS_TOKEN = False

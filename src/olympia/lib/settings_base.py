@@ -458,6 +458,7 @@ MIDDLEWARE = (
     # IP).
     'olympia.access.middleware.UserAndAddrMiddleware',
     'olympia.amo.middleware.RequestIdMiddleware',
+    'olympia.amo.middleware.TokenValidMiddleware',
 )
 
 # Auth
