@@ -1608,6 +1608,7 @@ class TestAccountViewSetDelete(TestCase):
         # For a user deleting their own account, they're just duplicates
         assert alog == UserLog.objects.filter(user=self.user).last().activity_log
         assert alog.arguments == [self.user]
+        assert alog.action == amo.LOG.USER_DELETED.id
 
     def test_no_auth(self):
         response = self.client.delete(self.url)
@@ -1639,6 +1640,7 @@ class TestAccountViewSetDelete(TestCase):
         # For admins deleting a user account, they're the same underlying log
         assert alog == UserLog.objects.get(user=self.user).activity_log
         assert alog.arguments == [random_user]
+        assert alog.action == amo.LOG.USER_DELETED.id
 
     def test_developers_can_delete(self):
         self.client.login_api(self.user)

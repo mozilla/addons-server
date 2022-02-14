@@ -87,6 +87,7 @@ class TestDeleteUserEvent(TestCase):
         # For a user deleting their own account, they're just duplicates
         assert alog == UserLog.objects.filter(user=self.user).last().activity_log
         assert alog.arguments == [self.user]
+        assert alog.action == amo.LOG.USER_DELETED.id
 
     @override_switch('fxa-account-delete', active=True)
     def test_success_addons(self):
