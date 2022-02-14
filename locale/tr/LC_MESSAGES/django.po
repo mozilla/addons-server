@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-09 17:18+0000\n"
+"PO-Revision-Date: 2022-02-14 11:32+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -3958,7 +3958,7 @@ msgstr "Tarayıcı önbelleğinizi tek bir tıklama veya tuşla temizleyin."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Web sayfalarındaki metinleri işaretleyip kaydedin ve onlara daha sonra erişin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3994,7 +3994,7 @@ msgstr "Parolaları güvenli bir şekilde saklayın ve bilinen web sitelerinde o
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Formları otomatik doldurun. Girdiğiniz verileri kaydedin, bir dahaki sefere otomatik doldurulsun."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
