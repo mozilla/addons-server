@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-14 11:32+0000\n"
+"PO-Revision-Date: 2022-02-14 11:34+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4024,7 +4024,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Gelişmiş sekme yönetiminin tadını çıkarın: Kopya sekmeleri kapatın, pencereleri birleştirin, sekme başlığını kopyalayın ve daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -4048,11 +4048,11 @@ msgstr "Açık sekmelere, yer imlerine ve geçmişe erişerek Firefox'ta kolayl�
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Çok fazla açık sekmeniz mi var? Klavye kısayolları ile arama yapın."
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Yeniden yönlendirmeleri durdurarak istediğiniz siteye daha hızlı erişin."
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
@@ -4136,7 +4136,7 @@ msgstr "Sitelerin coğrafi konumlarını öğrenin, bilinçli bir web gezgini ol
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Sinir bozucu sesleri düzeltin. Bir web sitesindeki ses çok mu kısık veya çok mu yüksek? SoundFixer yardımcı olabilir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4222,7 +4222,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Dikkat dağıtan web sitelerini engelleyin. Uzantının engellemesini istediğiniz listeye eklemeniz yeterli."
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
@@ -4315,7 +4315,7 @@ msgstr "YouTube videolarının sponsorlu kısımlarını atlayın."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Web sayfalarının sesli okunmasını sağlayın. 40'tan fazla dili destekler."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4379,7 +4379,7 @@ msgstr "Web'de ilginç bir görsel mi buldunuz? Kökenini keşfetmek için TinEy
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "ePUB dosyalarını doğrudan Firefox'ta okuyun: Yazı tipi boyutunu, sayfa boyutlarını artırın ve fazlasını yapın."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
