@@ -23,6 +23,8 @@ from django.utils.encoding import force_str
 from django.utils.jslex import JsLexer
 from django.utils.translation import gettext
 
+import waffle
+
 import olympia.core.logger
 
 from olympia import amo
@@ -857,7 +859,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         xpi_info['guid'] = guid = addon.guid
 
     if guid:
-        if user:
+        if user and waffle.switch_is_active('allow-deleted-guid-reuse'):
             deleted_guid_clashes = Addon.unfiltered.exclude(authors__id=user.id).filter(
                 guid=guid
             )
@@ -870,16 +872,15 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
                 'does not match the ID of your add-on on AMO (%s)'
             )
             raise forms.ValidationError(msg % (guid, addon.guid))
-        if (
-            not addon
+        if not addon and (
             # Non-deleted add-ons.
-            and (
-                Addon.objects.filter(guid=guid).exists()
-                # DeniedGuid objects for deletions for Mozilla disabled add-ons
-                or DeniedGuid.objects.filter(guid=guid).exists()
-                # Deleted add-ons that don't belong to the uploader.
-                or deleted_guid_clashes.exists()
-            )
+            Addon.objects.filter(guid=guid).exists()
+            # DeniedGuid objects for deletions for Mozilla disabled add-ons
+            or DeniedGuid.objects.filter(guid=guid).exists()
+            # Deleted add-ons that don't belong to the uploader (or deleted
+            # add-ons period if `allow-deleted-guid-reuse` waffle switch is
+            # inactive).
+            or deleted_guid_clashes.exists()
         ):
             raise forms.ValidationError(gettext('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:

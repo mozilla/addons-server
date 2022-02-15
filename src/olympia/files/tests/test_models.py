@@ -6,6 +6,9 @@ import tempfile
 import zipfile
 import shutil
 
+from unittest import mock
+from unittest.mock import patch
+
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -15,15 +18,18 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
 
-from unittest import mock
 import pytest
-
-from unittest.mock import patch
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, create_default_webext_appversion, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    create_default_webext_appversion,
+    user_factory,
+)
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
@@ -589,6 +595,20 @@ class TestParseXpi(TestCase):
 
     def test_guid_dupe_webextension_guid_given(self):
         Addon.objects.create(guid='@webextension-guid', type=1)
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse(filename='webextension.xpi')
+        assert e.exception.messages == ['Duplicate add-on ID found.']
+
+    @override_switch('allow-deleted-guid-reuse', active=True)
+    def test_guid_dupe_deleted_addon_allowed_if_same_author_and_switch_is_on(self):
+        addon = addon_factory(guid='@webextension-guid', users=[self.user])
+        addon.delete()
+        data = self.parse(filename='webextension.xpi')
+        assert data['guid'] == '@webextension-guid'
+
+    def test_guid_dupe_deleted_addon_not_allowed_if_same_author_and_switch_is_off(self):
+        addon = addon_factory(guid='@webextension-guid', users=[self.user])
+        addon.delete()
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(filename='webextension.xpi')
         assert e.exception.messages == ['Duplicate add-on ID found.']
