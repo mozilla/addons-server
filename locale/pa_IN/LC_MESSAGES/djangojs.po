@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2022-01-18 15:17+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ਤਾਰਾ"
-msgstr[1] "{0} ਤਾਰੇ"
 
 msgid "There was a problem contacting the server."
 msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਵੇਲੇ ਇੱਕ ਮੁਸ਼ਕਲ ਸੀ।"
@@ -130,36 +125,6 @@ msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇ
 
 msgid "Videos must be in WebM."
 msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "{0} ਦਾ ਤੁਹਾਡਾ ਵਰਜ਼ਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
-
-msgid "Flagged for review"
-msgstr "ਸਮੀਖਿਆ ਲਈ ਨਿਸ਼ਾਨਬੱਧ ਕੀਤਾ"
-
-msgid "Your input is required"
-msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
-
-msgid "Marked for deletion"
-msgstr "ਮਿਟਾਉਣ ਲਈ ਨਿਸ਼ਾਨੀ ਲਾਈ"
-
-msgid "Updating results&hellip;"
-msgstr "ਨਤੀਜੇ ਸੱਜਰੇ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ&hellip;"
-
-msgid "Category"
-msgstr "ਵਰਗ"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
-
-msgid "Use original"
-msgstr "ਅਸਲ ਵਰਤੋ"
 
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
@@ -636,41 +601,6 @@ msgstr "ਤਾਰੀਖ"
 msgid "Other"
 msgstr "ਹੋਰ"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "ਮੰਨੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
-
-msgid "Add to {0}"
-msgstr "{0} 'ਚ ਜੋੜੋ"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "ਕਿਵੇਂ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
-
-msgid "Download for {0} anyway"
-msgstr "ਕਿਵੇਂ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
-
-msgid "Not available for your platform"
-msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੀ {0} ਵਾਲੀ ਵਰਜ਼ਨ ਦੇ ਮੇਚ ਦਾ ਨਹੀਂ ਹੈI"
-
-msgid "View other versions"
-msgstr "ਹੋਰ ਵਰਜ਼ਨ ਵੇਖੋ"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
-
-msgid "Works with {app}"
-msgstr "{app} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "ਸਿਰਫ਼ ਫਾਇਰਫਾਕਸ ਨਾਲ — ਫਾਇਰਫਾਕਸ ਹੁਣੇ ਲਵੋ!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ਅਫ਼ਸੋਸ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ।"
-
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
@@ -690,12 +620,6 @@ msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ �
 
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਐਪਲੀਕੇਸ਼ਨ ਚੁੁਣੋ"
-
-msgid "No results found."
-msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
-
-msgid "Loading..."
-msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

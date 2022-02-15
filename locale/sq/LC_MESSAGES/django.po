@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:17+0000\n"
 "PO-Revision-Date: 2021-11-26 15:09+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "lloj"
 
@@ -314,26 +315,6 @@ msgstr "Kjo veçori është përkohësisht e çaktivizuar, teksa kryejmë mirëm
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Disa veçori në këtë faqe janë çaktivizuar përkohësisht, teksa bëjmë mirëmbajtjen e sajtit. Ju lutemi, riprovoni pas pak."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Faqja <a href=\"%(current_pg_url)s\">%(current_pg)s</a> nga <a href=\"%(last_pg_url)s\">%(last_pg)s</a> gjithsej"
-
-msgid "Jump to first page"
-msgstr "Shko te faqja e parë"
-
-msgid "Previous"
-msgstr "E mëparshmja"
-
-msgid "Jump to last page"
-msgstr "Shko te faqja e fundit"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Po shfaqen <b>%(begin)s</b>&ndash;<b>%(end)s</b> nga <b>%(count)s</b> gjithsej"
 
 # %1$s is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -722,6 +703,10 @@ msgid "Approved but waiting"
 msgstr "E miratuar por në pritje"
 
 msgid "Account updated."
+msgstr "Llogaria u përditësua."
+
+#, fuzzy
+msgid "Account {user} deleted."
 msgstr "Llogaria u përditësua."
 
 msgid "Created: {0}."
@@ -2512,15 +2497,23 @@ msgstr "Fshihi mesazhet e pranishëm në versione të mëparshëm dhe të shpër
 msgid "Top"
 msgstr "Krye"
 
-msgid "Delete Add-on"
-msgstr "Fshije Shtesë"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Fshirja e shtesës tuaj do të fshijë përgjithnjë krejt versionet dhe kartelat që keni parashtruar për këtë shtesë, të paraqitur nga ne ose jo. ID-ja e shtesës do të vazhdojë të jetë e lidhur me "
 "llogarinë tuaj, ndaj persona të tjerë s’do të jenë në gjendje të parashtrojnë versione duke përdorur të njëjtën ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Fshirja e shtesës tuaj do të fshijë përgjithnjë krejt versionet dhe kartelat që keni parashtruar për këtë shtesë, të paraqitur nga ne ose jo. ID-ja e shtesës do të vazhdojë të jetë e lidhur me "
+"llogarinë tuaj, ndaj persona të tjerë s’do të jenë në gjendje të parashtrojnë versione duke përdorur të njëjtën ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Fshije Shtesë"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Jepni tekstin vijues që të ripohoni vendimin tuaj: {slug}"
@@ -4522,19 +4515,19 @@ msgid "See all extensions"
 msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Tema në modë"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Shihni tërë zgjerimet"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
+msgid "Translation tools"
 msgstr "Mjete përkthimi"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Bllokues reklamash elitarë"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4590,10 +4583,6 @@ msgid "See more password manager staff picks"
 msgstr "Shihni më tepër zgjerime përgjegjës fjalëkalimesh të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Mjete përkthimi"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Shihni më tepër mjete përkthimi të zgjedhura nga stafi"
 
@@ -4622,12 +4611,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Shihni më tepër zgjerime të etiketuara me \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Bllokues reklamash elitarë"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Shihni më tepër bllokues reklamash të zgjedhur nga stafi"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4736,120 +4725,6 @@ msgstr "Gabim i papritur."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Lloji (%s) nuk përputhet me llojin e shtesës tuaj te (%s)"
-
-msgid "Review Guidelines"
-msgstr "Udhëzues Shqyrtimesh"
-
-msgid "Sections"
-msgstr "Ndarje"
-
-msgid "Some tips for writing a great review"
-msgstr "Pak ndihmëza për të shkruar një shqyrtim të goditur"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Pyetje të Bëra Shpesh rreth Shqyrtimeve"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Shqyrtimet e shtesave janë një rrugë që t’u bëni të ditur të tjerëve mendimin tuaj mbi shtesat që instaloni dhe përdorni. Ekipi ynë i moderimit të shqyrtimeve të shtesave ruan të drejtën të hedhë "
-"poshtë ose heqë çfarëdo shqyrtimi që s’përputhet me këto udhëzime."
-
-msgid "Do:"
-msgstr "Po:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Shkruani sikur t’i tregonit një miku rreth përvojës tuaj me shtesën."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Kujdesuni që shqyrtimet të jenë të përpikta dhe të lehta për t’u kuptuar."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Jepni hollësi të dobishme dhe specifike. Për shembull:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "A funksionoi shtesa siç e prisnit?"
-
-msgid "What features did you like or dislike?"
-msgstr "Cilat anë ju pëlqyen ose s’ju pëlqyen?"
-
-msgid "Was it useful?"
-msgstr "Qe e dobishme?"
-
-msgid "Was it easy to use?"
-msgstr "Qe e lehtë për ta përdorur?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Do të vazhdoni ta përdorni këtë shtesë?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Ndaluni një çast dhe lexojeni shqyrtimin tuaj, përpara se ta parashtroni, për ndreqje gabimesh shkrimi."
-
-msgid "Don’t:"
-msgstr "Jo:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Parashtroni shqyrtime njëfjalëshe, të tilla si “E fuqishme!”, “e mrekullueshme”, ose “e keqe”."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Postoni probleme teknike, kërkesa për asistencë, ose sugjerime për veçori të reja. Përdorni mundësitë e gatshme për asistencë për çdo shtesë, në pastë. Mund t’i gjeni në anë të shtyllës në krah të "
-"ndarjes Mbi këtë Shtesë."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Shkruani shqyrtime për shtesa të cilat s’i keni përdorur ju vetë."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Mos përdorni fjalë të ndyra, gjuhë seksuale apo gjuhë që mund të merret si bartëse urrejtjeje."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Përfshini HTML, lidhje, kod burim ose copëza kodi. Shqyrtimet pritet të jenë vetëm tekst."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Mos bëni pohime të rreme, mos përçmoni autorë shtesash ose mos i fyeni ata personalisht."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Përfshini email-in, numër telefoni apo të dhëna të tjera personale, tuajat apo të kujtdo tjetër."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Mos postoni shqyrtime për një shtesë që e shkruat apo e përfaqësoni ju apo enti juaj."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Të kritikojë një shtesë mbi diçka për të cilën shtesa është krijuar të bëjë. Për shembull, lënia e një shqyrtimi negativ për një shtesë që shfaq reklama ose që lyp grumbullim të dhënash, në një "
-"kohë që shtesa për këtë është hartuar. ose shtesa lyp grumbullim të dhënash që të funksionojë."
-
-msgid "How can I report a problematic review?"
-msgstr "Si të njoftoj për një shqyrtim problematik?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Ju lutemi, raportoni ose i vini shenjë cilitdo shqyrtim problematik, duke klikuar mbi “Raportojeni këtë shqyrtim”\" dhe ai do të parashtrohet te sajti, për moderim. Ekipi ynë i moderimeve do të "
-"përdorë Udhëzime Mbi Shqyrtimet për të peshuar nëse duhet fshirë apo jo shqyrtimi, ose për kthimin e tij te sajti."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Jam autor shtese, a mundem t’u përgjigjem shqyrtimeve?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "Po, autorët e shtesave mund të t’i japin vetëm një përgjigje një shqyrtimi. Për diskutime shtesë apo vazhdim, mund të hapni një temë diskutimesh te <a href=\"%(forum_url)s\">forumi ynë</a>."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Jam autor shtese, a mund të fshij shqyrtime apo vlerësime të pafavorshme?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"Në përgjithësi jo. Por nëse shqyrtimi s’pajtohet me udhëzimet mbi shqyrtimet, të përvijuara më sipër, mund të klikoni mbi “Raportojeni këtë shqyrtim” që ai të moderohet. Nëse një shqyrtim "
-"përfshinte një ankesë e cila s’ka më vend, për shkak të një versioni të ri të shtesës, mund të shohim mundësinë e fshirjes së shqyrtimit."
 
 msgid "User"
 msgstr "Përdorues"
@@ -5950,6 +5825,9 @@ msgstr "Po ngarkohen të dhënat më të reja&hellip;"
 msgid "No data available."
 msgstr "Pa të dhëna të passhme."
 
+msgid "Previous"
+msgstr "E mëparshmja"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Ky pult është <b>privat</b>."
 
@@ -6093,9 +5971,6 @@ msgstr "Shko"
 # %1$s is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Kthehuni te faqja hyrëse e Shtesave {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "Shtesa për <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "Add-ons"
 msgstr "Shtesa"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2020-12-07 11:10+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ster"
-msgstr[1] "{0} sterren"
 
 msgid "There was a problem contacting the server."
 msgstr "Er is een probleem opgetreden bij het verbinden met de server."
@@ -131,36 +126,6 @@ msgstr "Afbeeldingen dienen van het type PNG of JPG te zijn."
 
 msgid "Videos must be in WebM."
 msgstr "Video’s dienen in WebM te zijn."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Dit thema is niet compatibel met uw versie van {0}"
-
-msgid "Flagged for review"
-msgstr "Gemarkeerd voor beoordeling"
-
-msgid "Your input is required"
-msgstr "Uw bijdrage is vereist"
-
-msgid "Marked for deletion"
-msgstr "Gemarkeerd voor verwijdering"
-
-msgid "Updating results&hellip;"
-msgstr "Resultaten bijwerken…"
-
-msgid "Category"
-msgstr "Categorie"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Thema’s zoeken op <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Apps doorzoeken op <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Add-ons doorzoeken op <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Oorspronkelijke gebruiken"
 
 msgid "Week of {0}"
 msgstr "Week van {0}"
@@ -634,41 +599,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Overig"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Accepteren en installeren"
-
-msgid "Add to {0}"
-msgstr "Toevoegen aan {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Toch installeren voor {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Toch downloaden voor {0}"
-
-msgid "Not available for your platform"
-msgstr "Niet beschikbaar voor uw platform"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Deze add-on is niet compatibel met uw versie van {0}."
-
-msgid "View other versions"
-msgstr "Overige versies bekijken"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Werkt met {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Werkt met {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Alleen bij Firefox – Download Firefox nu!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Sorry, u hebt een op Mozilla gebaseerde browser (zoals Firefox) nodig om een zoekplug-in te kunnen installeren."
-
 msgid "Changes Saved"
 msgstr "Wijzigingen opgeslagen"
 
@@ -688,12 +618,6 @@ msgstr "Afbeeldingswijzigingen worden verwerkt"
 
 msgid "Select an application first"
 msgstr "Selecteer eerst een toepassing"
-
-msgid "No results found."
-msgstr "Geen resultaten."
-
-msgid "Loading..."
-msgstr "Laden…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

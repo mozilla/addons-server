@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2021-12-03 13:28+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjerne"
-msgstr[1] "{0} stjerner"
 
 msgid "There was a problem contacting the server."
 msgstr "Der opstod et problem med at kontakte serveren."
@@ -129,36 +124,6 @@ msgstr "Billeder skal enten være i formatet PNG eller JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoer skal være i formatet WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Dette tema er ikke kompatibelt med din version af {0}"
-
-msgid "Flagged for review"
-msgstr "Markeret til gennemgang"
-
-msgid "Your input is required"
-msgstr "Dit input er påkrævet"
-
-msgid "Marked for deletion"
-msgstr "Markeret til sletning"
-
-msgid "Updating results&hellip;"
-msgstr "Opdaterer resultater&hellip;"
-
-msgid "Category"
-msgstr "Kategori"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Søg i temaer efter <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Søg i apps efter <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Søg i tilføjelser efter <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Brug original"
 
 msgid "Week of {0}"
 msgstr "Uge {0}"
@@ -636,41 +601,6 @@ msgstr "Dato"
 msgid "Other"
 msgstr "Andre"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Accepter og installer"
-
-msgid "Add to {0}"
-msgstr "Føj til {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Installer til {0} alligevel"
-
-msgid "Download for {0} anyway"
-msgstr "Hent til {0} alligevel"
-
-msgid "Not available for your platform"
-msgstr "Er ikke tilgængelig til din platform"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Denne tilføjelse er ikke kompatibel med din version af {0}."
-
-msgid "View other versions"
-msgstr "Vis andre versioner"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Virker med {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Virker med {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Kun med Firefox — Hent Firefox nu!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at installere et søge-plugin."
-
 msgid "Changes Saved"
 msgstr "Ændringer gemt"
 
@@ -690,12 +620,6 @@ msgstr ""
 
 msgid "Select an application first"
 msgstr "Vælg et program først"
-
-msgid "No results found."
-msgstr "Ingen resultater fundet."
-
-msgid "Loading..."
-msgstr "Indlæser..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

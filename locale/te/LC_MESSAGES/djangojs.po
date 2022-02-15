@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2022-01-03 14:36+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} నక్షత్రము"
-msgstr[1] "{0} నక్షత్రాలు"
 
 msgid "There was a problem contacting the server."
 msgstr "సర్వర్‌ని సంప్రదించడంలో సమస్య ఉంది."
@@ -127,36 +122,6 @@ msgstr "చిత్రాలు తప్పనిసరిగా PNG లేద
 
 msgid "Videos must be in WebM."
 msgstr "వీడియోలు తప్పనిసరిగా WebM లో ఉండాలి."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "ఈ అలంకారం మీ {0} వెర్షనుతో అనుగుణ్యంగా లేదు"
-
-msgid "Flagged for review"
-msgstr "సమీక్ష కోసం గుర్తించబడింది"
-
-msgid "Your input is required"
-msgstr "మీ ఇన్‌పుట్ అవసరం"
-
-msgid "Marked for deletion"
-msgstr "తొలగింపు కోసం గుర్తించబడింది"
-
-msgid "Updating results&hellip;"
-msgstr "ఫలితాలను నవీకరిస్తోంది&hellip;"
-
-msgid "Category"
-msgstr "వర్గం"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "అలంకారాల కోసం శోధించండి <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "అనువర్తనల కోసం శోధించండి <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "పొడిగింతల కోసం శోధించండి<b>{0}</b>"
-
-msgid "Use original"
-msgstr "అసలుది వాడు"
 
 msgid "Week of {0}"
 msgstr "వారం {0}"
@@ -628,41 +593,6 @@ msgstr "తేదీ"
 msgid "Other"
 msgstr "ఇతర"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "ఆంగీకరించి స్థాపించు"
-
-msgid "Add to {0}"
-msgstr "{0} కు జోడించండి"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "ఏమైనప్పటికీ {0} కోసం స్థాపన చేయండి"
-
-msgid "Download for {0} anyway"
-msgstr "ఏమైనప్పటికి {0} కోసం దింపుకోళ్ళు చేయండి"
-
-msgid "Not available for your platform"
-msgstr "మీ వేదికకు అందుబాటులో లేదు"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "ఈ పొడిగింత {0} యొక్క మీ వెర్షన్కు అనుకూలంగా లేదు."
-
-msgid "View other versions"
-msgstr "ఇతర వెర్షన్లను వీక్షించండి"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} తో పనిచేస్తుంది"
-
-msgid "Works with {app}"
-msgstr "{app} తో పనిచేస్తుంది"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Firefox తో మాత్రమే — ఇప్పుడు Firefox పొందండి!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "క్షమించండి, వెతుకుడు ప్లగిన్ను స్థాపించుకోడానికి మీకు ఒక మొజిల్లా-ఆధారిత విహారిణి (Firefox వంటిది) అవసరం."
-
 msgid "Changes Saved"
 msgstr "మార్పులు భద్రపరచండి"
 
@@ -682,12 +612,6 @@ msgstr "బొమ్మ మార్పులు ప్రాసెస్ అవ
 
 msgid "Select an application first"
 msgstr "మొదట అనువర్తనాన్ని ఎంచుకోండి"
-
-msgid "No results found."
-msgstr "ఎటువంటి ఫలితాలు లభించలేదు."
-
-msgid "Loading..."
-msgstr "లోడవుతున్నది..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

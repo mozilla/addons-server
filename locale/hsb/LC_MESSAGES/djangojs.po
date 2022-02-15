@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2020-12-07 12:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,13 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} hwěžka"
-msgstr[1] "{0} hwěžce"
-msgstr[2] "{0} hwěžki"
-msgstr[3] "{0} hwěžkow"
 
 msgid "There was a problem contacting the server."
 msgstr "Při kontaktowanju serwera je problem wustupił."
@@ -140,36 +133,6 @@ msgstr "Wobrazy dyrbja pak PNG pak JPG być."
 
 msgid "Videos must be in WebM."
 msgstr "Wideja dyrbja we formaće WebM być."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Tuta drasta z wašej wersiju {0} kompatibelna njeje"
-
-msgid "Flagged for review"
-msgstr "Za přepruwowanje woznamjenjeny"
-
-msgid "Your input is required"
-msgstr "Waše zapodaće je trěbne"
-
-msgid "Marked for deletion"
-msgstr "Za zhašenje markěrowany"
-
-msgid "Updating results&hellip;"
-msgstr "Wuslědki so aktualizuja&hellip;"
-
-msgid "Category"
-msgstr "Kategorija"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Drasty za <b>{0}</b> pytać"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Nałoženja za <b>{0}</b> pytać"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Přidatki za <b>{0}</b> pytać"
-
-msgid "Use original"
-msgstr "Original wužiwać"
 
 msgid "Week of {0}"
 msgstr "Tydźeń {0}"
@@ -657,41 +620,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Druhe"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Akceptować a instalować"
-
-msgid "Add to {0}"
-msgstr "K {0} přidać"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Najebać toho za {0} instalować"
-
-msgid "Download for {0} anyway"
-msgstr "Najebać toho za {0} sćahnyć"
-
-msgid "Not available for your platform"
-msgstr "Njeje za wašu platformu k dispoziciji"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Tutón přidatk z wašej wersiju {0} kompatibelna njeje."
-
-msgid "View other versions"
-msgstr "Druhe wersije pokazać"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funguje z {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funguje z {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Jenož z Firefox – Wobstarajće sej nětko Firefox!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Bohužel trjebaće wobhladowak Mozilla (na přikład Firefox), zo byšće pytanski tykač instalował."
-
 msgid "Changes Saved"
 msgstr "Změny su so składowali"
 
@@ -713,12 +641,6 @@ msgstr "Wobrazowe změny so předźěłuja"
 
 msgid "Select an application first"
 msgstr "Wubjerće najprjedy nałoženje"
-
-msgid "No results found."
-msgstr "Žane wusědki namakane."
-
-msgid "Loading..."
-msgstr "Začituje so..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

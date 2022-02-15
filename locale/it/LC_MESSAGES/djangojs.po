@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2020-12-08 17:08+0000\n"
 "Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stella"
-msgstr[1] "{0} stelle"
 
 msgid "There was a problem contacting the server."
 msgstr "Si è verificato un problema con la connessione al server."
@@ -132,36 +127,6 @@ msgstr "Le icone devono essere in formato PNG o JPG."
 
 msgid "Videos must be in WebM."
 msgstr "I video devono essere in formato WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Questo tema non è compatibile con la versione di {0} in uso"
-
-msgid "Flagged for review"
-msgstr "Segnalato per revisione"
-
-msgid "Your input is required"
-msgstr "È richiesto un inserimento"
-
-msgid "Marked for deletion"
-msgstr "Segnalato per eliminazione"
-
-msgid "Updating results&hellip;"
-msgstr "Aggiornamento risultati&hellip;"
-
-msgid "Category"
-msgstr "Categoria"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Cerca temi per <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Cerca app per <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Cerca componenti aggiuntivi per <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Utilizza originale"
 
 msgid "Week of {0}"
 msgstr "Settimana del {0}"
@@ -636,41 +601,6 @@ msgstr "Data"
 msgid "Other"
 msgstr "Altro"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Accetta e installa"
-
-msgid "Add to {0}"
-msgstr "Aggiungi a {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Installa comunque per {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Scarica comunque per {0}"
-
-msgid "Not available for your platform"
-msgstr "Non disponibile per la tua piattaforma"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Questo componente aggiuntivo non è compatibile con la versione di {0} in uso"
-
-msgid "View other versions"
-msgstr "Mostra altre versioni"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Compatibile con {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Compatibile con {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Solo con Firefox — Scaricalo subito!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Bisogna utilizzare un browser, come Firefox, basato su Mozilla per installare un plugin di ricerca."
-
 msgid "Changes Saved"
 msgstr "Modifiche salvate"
 
@@ -690,12 +620,6 @@ msgstr "Elaborazione in corso delle modifiche alle immagini"
 
 msgid "Select an application first"
 msgstr "Selezionare un’applicazione"
-
-msgid "No results found."
-msgstr "Nessun risultato trovato."
-
-msgid "Loading..."
-msgstr "Caricamento…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

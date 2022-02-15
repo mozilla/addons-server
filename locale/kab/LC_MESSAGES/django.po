@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:17+0000\n"
 "PO-Revision-Date: 2021-12-08 05:51+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Generated-By: Babel 2.3.4\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "anaw"
 
@@ -310,26 +311,6 @@ msgstr "Tamahilt-agi taskudant ur termid ara di lawan anida nteddu deg useggem n
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Kra n tmahilin deg usebter-agi ttwasensent akka tura makken nettseggim asmel web. Ma ulac aɣlif,uɣal-d ticki."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Asebter <a href=\"%(current_pg_url)s\">%(current_pg)s</a> si <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Uɣal ɣer usebter amezwaru"
-
-msgid "Previous"
-msgstr "Ɣer deffir"
-
-msgid "Jump to last page"
-msgstr "Ddu ɣer usebter aneggaur"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Askan <b>%(begin)s</b>&ndash;<b>%(end)s</b> si <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr "Izegrar i {0}"
@@ -710,6 +691,10 @@ msgid "Approved but waiting"
 msgstr "Yettwaqbel acukan yettṛagu"
 
 msgid "Account updated."
+msgstr "Amiḍa yettusnifel."
+
+#, fuzzy
+msgid "Account {user} deleted."
 msgstr "Amiḍa yettusnifel."
 
 msgid "Created: {0}."
@@ -2486,15 +2471,23 @@ msgstr "Ffer iznan yellan deg ileman yezrin yettwazeglen"
 msgid "Top"
 msgstr "Afella n usebter"
 
-msgid "Delete Add-on"
-msgstr "Kkes azegrir"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Tukksa n uzegrir inek ad yekkes ilebda akk ileqman akked ifuyla n uzegrir-agi, ama ttwabedren-d neɣ ala. Asulay ID n uzegrir ad yeqqim icudd ar umiḍan inek, ihi wiyaḍ ur ttizmiren ara ad sqedcen "
 "asulay-agisi i yileqman nniḍen."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Tukksa n uzegrir inek ad yekkes ilebda akk ileqman akked ifuyla n uzegrir-agi, ama ttwabedren-d neɣ ala. Asulay ID n uzegrir ad yeqqim icudd ar umiḍan inek, ihi wiyaḍ ur ttizmiren ara ad sqedcen "
+"asulay-agisi i yileqman nniḍen."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Kkes azegrir"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Sekcem aḍris-agi akken ad tsentmeḍ ayen tebɣiḍ: {slug}"
@@ -4469,19 +4462,19 @@ msgid "See all extensions"
 msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Isental yettwassnen"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Wali meṛṛa isiɣzaf"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
+msgid "Translation tools"
 msgstr "Ifecka n usuqel"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Ẓreg amsewḥel n yizegrar"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4536,10 +4529,6 @@ msgid "See more password manager staff picks"
 msgstr "Wali ugar n yisiɣzaf i usefrek n wawalen uffiren sɣur terbaεt"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Ifecka n usuqel"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Wali ugar n yifecka n usuqel yettwafernen sɣur terbaεt"
 
@@ -4568,12 +4557,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Wali ugar n yisiɣzaf d-yettwabedren \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Ẓreg amsewḥel n yizegrar"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Wali ugar n yisiɣzaf i usewḥel n udellel yettwafernen sɣur terbaεt"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4682,112 +4671,6 @@ msgstr "Tuccḍa tarussint."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Anaw (%s) ur imṣada ara d wanaw n uzegrir-ik deg AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Amnir n ucegger"
-
-msgid "Sections"
-msgstr "Tigezmiyin"
-
-msgid "Some tips for writing a great review"
-msgstr "Tixbula i tira n uceggir yelhan"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Isteqsiyen d-ittuɣalen s waṭas ɣef iceggiren"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr "Asenqed n izegrar d abrid akken ad tebḍuḍ tamuɣli-inekɣef izegrar i tesqedceḍ. Tarbaεt-nneγ tesεa azref ad tekkes asenqed ur ittqadaṛen ara tiwtilin-nneγ."
-
-msgid "Do:"
-msgstr "Eg:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Aru am wakken tettmeslayeḍ i umeddakkel-ik ɣef tirmit-inek d uzegrir."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Ḍmen d akken asenqed-ik ad yeqqim meẓẓi daɣen fessus i wugzay."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Mudd-d ttfaṣil ilaqen s telqey. D amedya:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Azegrir iteddu akken i terǧiḍ?"
-
-msgid "What features did you like or dislike?"
-msgstr "Anta timihailin i tḥemled neɣ i tkerheḍ?"
-
-msgid "Was it useful?"
-msgstr "D acu iwulmen?"
-
-msgid "Was it easy to use?"
-msgstr "Fessus i useqdac?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Ad tettekkiḍ deg useqdec n uzegrir-agi?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Γer s leεqel-ik alɣu-inek uqbel ad t-tazneḍ akken ur ṭuqqutent ara tuccḍiwin."
-
-msgid "Don’t:"
-msgstr "Ur teg ara:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Efk-d tamuɣli-k s yiwen n wawal kan am \"Gedha!\", \"Igerrez\" neɣ \"diri-t\"."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr "Azen-d uguren itiknikanen, suter tallelt neɣ sumer timahilin. Seqdec timahilin yettwagen deg yal azegrir, ma llant. Ad ten-tafeḍ deg tgejdit tadisant, deg tgezmi Ɣez uzegrir."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Aru asenqed ɣef izegrar i  tesqedceḍ yakan."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Iseqdac rregmat, awalen n tuzzuft neɣ awalen n karuh."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Tzemred ad tessedduḍ HTML, iseɣwan, tangalt aɣbalu neq kran n yeḥricen n tengalt. Iwenniten ttwasnen d akken d aḍris kan."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Ittawi-d talɣut n tkerkas, isefcal tazmert n ineflayen neɣ ireggem-iten."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Mmel-d tansa yin-k imayl neɣ tin n win nniḍen, uṭṭun n tiliɣri neq talɣut nniḍen tudmawant."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Azen aceggir ɣef uzegrir i terirniḍ neɣ win terna tkebbaniy-ik."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Asenqed n izegrar ittwaxdem akken ad nexdem kra. Amedya, tuzna n usenqed n uzegrir ɣef uskan n udellel neɣ alqaḍ n yisefka, ticki d iswi-is, neɣ ma yella azegrir ilaq-as ulqaḍ n yisefka akken ad "
-"yeddu."
-
-msgid "How can I report a problematic review?"
-msgstr "Amek ara d-mleɣ acegger ur nemɛin ara?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr "Ttxil-k azen-d asteqsi neɣ asuter s usenqed s utekki ɣef \"Mmel-d awennit-a\" sakin ad aɣ-d-yawweḍ. Tarbaεt-nneɣ ad twali asenqed sakin ad nẓer ma ad ten-kkes neɣ ad t-id-nner ɣer usmel."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Nek d ameskar n uzegrir, zemreɣ ad erreɣ i ucegger?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "Ih, bab n uzegrir izmer ad d-imudd yiwet n tiririt ɣef usenqed. Tzemred ad tesbaduḍ adiwenni deg <a href=\"%(forum_url)s\">unmager</a> akken ad nsenker awal-nniḍen neɣ ad t-neḍfeṛ."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Nek d ameskar n uzegrir, zemreɣ ad kkseɣ iwenniten neɣ tizmilin ur yeddan ara akked uzegrir?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr "S wudem amatu, ala. Maca asenqed ur isεi ara tiwtilin n usawen, tzemreḍ ad tsiteḍ ɣef \"Cegger asenqed-a\" sakin qεed-it. Ma yella asenqed deg-s acetki ur ɣezzifet ara, nezmer ad t-nekkes."
 
 msgid "User"
 msgstr "Aseqdac"
@@ -5888,6 +5771,9 @@ msgstr "Asali n isefka ineggura &hellip;"
 msgid "No data available."
 msgstr "Ulac isefka."
 
+msgid "Previous"
+msgstr "Ɣer deffir"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Tafelwit-agi n usenqded d <b>tusligt</b>."
 
@@ -6030,9 +5916,6 @@ msgstr "Bdu"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Uɣal ar usebter n uzegrir n {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Izegrar"
 
 msgid "Add-ons"
 msgstr "Izegrar"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2020-11-28 07:08+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ستاره"
-msgstr[1] "{0} ستاره ها"
 
 msgid "There was a problem contacting the server."
 msgstr "اشکالی در تماس با سرویس‌دهنده به‌وجود آمده است."
@@ -128,36 +123,6 @@ msgstr "تصاویر بایستی یکی از موارد PNG یا JPG باشد."
 
 msgid "Videos must be in WebM."
 msgstr "فیلم بایستی WebM باشد."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr ""
-
-msgid "Flagged for review"
-msgstr "برای بازبینی پرچم گذاری شد"
-
-msgid "Your input is required"
-msgstr "ورودی شما لازم است"
-
-msgid "Marked for deletion"
-msgstr "علامت گذاری شده برای حذف"
-
-msgid "Updating results&hellip;"
-msgstr "نتایج به روز رسانی&hellip;"
-
-msgid "Category"
-msgstr "دسته‌بندی"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-msgid "Search apps for <b>{0}</b>"
-msgstr ""
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
-
-msgid "Use original"
-msgstr ""
 
 msgid "Week of {0}"
 msgstr ""
@@ -636,41 +601,6 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "قبول و نصب"
-
-msgid "Add to {0}"
-msgstr "افزودن به {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr ""
-
-msgid "Download for {0} anyway"
-msgstr ""
-
-msgid "Not available for your platform"
-msgstr "برای سیستم عامل شما موجود نیست"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
-
-msgid "View other versions"
-msgstr "نمایش سایر نسخه‌ها"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "با {app} {min} - {max} کار می‌کند"
-
-msgid "Works with {app}"
-msgstr "سازگار با {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-
 msgid "Changes Saved"
 msgstr "تغییرات ذخیره شد"
 
@@ -689,12 +619,6 @@ msgid "Image changes being processed"
 msgstr ""
 
 msgid "Select an application first"
-msgstr ""
-
-msgid "No results found."
-msgstr ""
-
-msgid "Loading..."
 msgstr ""
 
 msgid "<b>{0}</b> character"

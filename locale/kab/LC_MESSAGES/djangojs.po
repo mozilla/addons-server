@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2020-12-14 19:42+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.3.4\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} itri"
-msgstr[1] "{0} itran"
 
 msgid "There was a problem contacting the server."
 msgstr "Teḍra-d tuccḍa deg unermes n uqeddac."
@@ -130,36 +125,6 @@ msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Yessefk tividyutin ad ilint s WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Asentel-a ur imṣada ara akked lqem-inek n {0}"
-
-msgid "Flagged for review"
-msgstr "Yettwacreḍ i uɛawed n tmuɣli"
-
-msgid "Your input is required"
-msgstr "Asekcem-ik yettwasra"
-
-msgid "Marked for deletion"
-msgstr "Yettwacreḍ i tukksa"
-
-msgid "Updating results&hellip;"
-msgstr "Aleqqem n yigmaḍ &hellip;"
-
-msgid "Category"
-msgstr "Taggayt"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Anadi n yisental i <b> {0} </b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Anadi n yisnasen i <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Anadi n yizegrar i <b>{0}</b>"
-
-msgid "Use original"
-msgstr "seqdec aneẓli"
 
 msgid "Week of {0}"
 msgstr "Imalas n {0}"
@@ -631,41 +596,6 @@ msgstr "Azemz"
 msgid "Other"
 msgstr "Ayen-nniḍen"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Qbel udiɣ sebded"
-
-msgid "Add to {0}"
-msgstr "Rnu ɣer {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Sebded i {0} akken yebɣu yili"
-
-msgid "Download for {0} anyway"
-msgstr "Sader {0} akken yebɣu yili"
-
-msgid "Not available for your platform"
-msgstr "Ulac i twennaṭ-inek"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Azegrir-a ur imṣada ara akked lqem-inek n {0}."
-
-msgid "View other versions"
-msgstr "Wali ileqman-nniḍen"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Itteddu s {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Itteddu s {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Anagar s Firefox — Awi-d Firefox tura!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Suref-aɣ, tesriḍ iminig yebnan ɣef Mozilla (am Firfefox) akken ad tesbeddeḍ azegrir n unadi."
-
 msgid "Changes Saved"
 msgstr "Isnifal ttwakelsen"
 
@@ -685,12 +615,6 @@ msgstr "Asnifel n tugniwin itteddu"
 
 msgid "Select an application first"
 msgstr "Fren asnas seg tazwara"
-
-msgid "No results found."
-msgstr "Ulac igmaḍ yettwafen."
-
-msgid "Loading..."
-msgstr "Asali..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2021-02-19 11:26+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjerne"
-msgstr[1] "{0} stjerner"
 
 msgid "There was a problem contacting the server."
 msgstr "Et problem oppstod ved forsøk på å kontakte serveren."
@@ -130,36 +125,6 @@ msgstr "Bilder må være enten PNG eller JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoer må være i WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Dette temaet er inkompatibelt med din versjon av {0}"
-
-msgid "Flagged for review"
-msgstr "Flagget for gjennomgang"
-
-msgid "Your input is required"
-msgstr "Inndata er påkrevd"
-
-msgid "Marked for deletion"
-msgstr "Markert for sletting"
-
-msgid "Updating results&hellip;"
-msgstr "Oppdaterer resultater &hellip;"
-
-msgid "Category"
-msgstr "Kategori"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Søk i temaer etter <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Søk i apps etter <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Søk i utvidelser etter <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Bruk original"
 
 msgid "Week of {0}"
 msgstr "Uke {0}"
@@ -631,41 +596,6 @@ msgstr "Dato"
 msgid "Other"
 msgstr "Annet"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Godta og installer"
-
-msgid "Add to {0}"
-msgstr "Legg til {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Installer for {0} likevel"
-
-msgid "Download for {0} anyway"
-msgstr "Last ned for {0} likevel"
-
-msgid "Not available for your platform"
-msgstr "Ikke tilgjengelig for plattformen din"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Denne utvidelsen er ikke kompatibel med versjonen din av {0}."
-
-msgid "View other versions"
-msgstr "Vis andre versjoner"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Virker med {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Fungerer med {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Kun for Firefox — Last ned Firefox nå!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Beklager, du trenger en Mozilla-basert nettleser (som Firefox) for å installere et søketillegg."
-
 msgid "Changes Saved"
 msgstr "Endringer lagret"
 
@@ -685,12 +615,6 @@ msgstr "Endringer på bilde blir behandlet"
 
 msgid "Select an application first"
 msgstr "Velg en applikasjon først"
-
-msgid "No results found."
-msgstr "Ingen resultater funnet."
-
-msgid "Loading..."
-msgstr "Laster ..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
