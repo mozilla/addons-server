@@ -117,6 +117,11 @@ def check_and_update_fxa_access_token(request):
         and settings.VERIFY_FXA_ACCESS_TOKEN
         and (request.session.get('fxa_access_token_expiry') or 0) < time.time()
     ):
+        if not request.session.get('fxa_refresh_token'):
+            raise IdentificationError(
+                'Could not get access token because refresh token missing from session'
+            )
+
         config_name = (
             request.session['fxa_config_name']
             if request.session.get('fxa_config_name') in settings.ALLOWED_FXA_CONFIGS

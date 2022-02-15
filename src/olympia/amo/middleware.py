@@ -5,6 +5,7 @@ import uuid
 from urllib.parse import quote
 
 from django.conf import settings
+from django.contrib.auth import SESSION_KEY
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
@@ -395,9 +396,13 @@ class TokenValidMiddleware:
     def __call__(self, request):
         # API requests are validated in SessionIDAuthentication
         if not getattr(request, 'is_api', False):
-            try:
-                check_and_update_fxa_access_token(request)
-            except IdentificationError:
-                log.info(f'Failed refreshing access_token for {request.user.id}')
-                return redirect_for_login(request)
+            if SESSION_KEY not in request.session:
+                # Without SESSION_KEY the session is definately anonymous so assume that
+                request.user = AnonymousUser()
+            else:
+                try:
+                    check_and_update_fxa_access_token(request)
+                except IdentificationError:
+                    log.info(f'Failed refreshing access_token for {request.user.id}')
+                    return redirect_for_login(request)
         return self.get_response(request)
