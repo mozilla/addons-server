@@ -248,27 +248,6 @@ class TestActivityLog(TestCase):
         entry = ActivityLog.objects.get()
         assert str(entry) == 'hi there'
 
-    def test_user_log(self):
-        request = self.request
-        ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi there')
-        entries = ActivityLog.objects.for_user(request.user)
-        assert len(entries) == 1
-
-    def test_user_log_as_argument(self):
-        """
-        Tests that a user that has something done to them gets into the user
-        log.
-        """
-        user = UserProfile(username='Marlboro Manatee')
-        user.save()
-        ActivityLog.create(
-            amo.LOG.ADD_USER_WITH_ROLE, user, 'developer', Addon.objects.get()
-        )
-        entries = ActivityLog.objects.for_user(self.request.user)
-        assert len(entries) == 1
-        entries = ActivityLog.objects.for_user(user)
-        assert len(entries) == 1
-
     def test_to_string_num_queries_model_depending_on_addon(self):
         addon = Addon.objects.get()
         addon2 = addon_factory()
