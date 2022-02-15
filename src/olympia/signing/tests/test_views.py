@@ -1258,11 +1258,9 @@ class TestTestUploadVersionWebextensionTransactions(
             )
             assert response.status_code == 429, response.content
         # We should have recorded an ActivityLog.
-        assert (
-            ActivityLog.objects.for_user(self.user)
-            .filter(action=amo.LOG.THROTTLED.id)
-            .exists()
-        )
+        assert ActivityLog.objects.filter(
+            user=self.user, action=amo.LOG.THROTTLED.id
+        ).exists()
 
     def test_user_restriction_history_saved_on_permission_denied(self):
         EmailUserRestriction.objects.create(email_pattern=self.user.email)

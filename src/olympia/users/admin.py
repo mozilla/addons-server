@@ -22,7 +22,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.activity.models import ActivityLog, IPLog, UserLog
+from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import CommaSearchInAdminMixin
 from olympia.api.models import APIKey, APIKeyConfirmation
@@ -465,7 +465,9 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # We sort by -created by default, so first() gives us the last one, or
         # None.
         user_log = (
-            UserLog.objects.filter(user=obj).values_list('created', flat=True).first()
+            ActivityLog.objects.filter(user=obj)
+            .values_list('created', flat=True)
+            .first()
         )
         return display_for_value(user_log, '')
 

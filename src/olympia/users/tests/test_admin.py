@@ -703,11 +703,9 @@ class TestUserAdmin(TestCase):
         expected_date = self.days_ago(1)
         activity = ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
         activity.update(created=self.days_ago(2))
-        activity.userlog_set.update(created=self.days_ago(2))
 
         activity = ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
         activity.update(created=expected_date)
-        activity.userlog_set.update(created=expected_date)
 
         assert activity.reload().created == expected_date
 

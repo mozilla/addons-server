@@ -10,7 +10,7 @@ from olympia.accounts.tasks import (
     primary_email_change_event,
 )
 from olympia.accounts.tests.test_utils import totimestamp
-from olympia.activity.models import UserLog
+from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
@@ -81,13 +81,8 @@ class TestDeleteUserEvent(TestCase):
         assert not Collection.objects.filter(id=collection.id).exists()
         assert not another_addon.ratings.all().exists()
         delete_picture_mock.assert_called()
-        # Two UserLog instances get created - one for request.user, one for the instance
-        assert UserLog.objects.filter(user=self.user).count() == 2
-        alog = UserLog.objects.filter(user=self.user).first().activity_log
-        # For a user deleting their own account, they're just duplicates
-        assert alog == UserLog.objects.filter(user=self.user).last().activity_log
+        alog = ActivityLog.objects.get(user=self.user, action=amo.LOG.USER_DELETED.id)
         assert alog.arguments == [self.user]
-        assert alog.action == amo.LOG.USER_DELETED.id
 
     @override_switch('fxa-account-delete', active=True)
     def test_success_addons(self):

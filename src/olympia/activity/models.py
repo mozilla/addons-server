@@ -175,20 +175,6 @@ class ReviewActionReasonLog(ModelBase):
         ordering = ('-created',)
 
 
-class UserLog(ModelBase):
-    """
-    This table is for indexing the activity log by user.
-    Note: This includes activity performed unto the user.
-    """
-
-    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'log_activity_user'
-        ordering = ('-created',)
-
-
 class GroupLog(ModelBase):
     """
     This table is for indexing the activity log by access group.
@@ -289,9 +275,6 @@ class ActivityLogManager(ManagerBase):
             groups = (groups,)
 
         return self.filter(grouplog__group__in=groups)
-
-    def for_user(self, user):
-        return self.filter(userlog__user=user)
 
     def for_block(self, block):
         return self.filter(blocklog__block=block)
@@ -742,8 +725,6 @@ class ActivityLog(ModelBase):
                 AddonLog.objects.create(addon_id=id_, **create_kwargs)
             elif class_ == Version:
                 VersionLog.objects.create(version_id=id_, **create_kwargs)
-            elif class_ == UserProfile:
-                UserLog.objects.create(user_id=id_, **create_kwargs)
             elif class_ == Group:
                 GroupLog.objects.create(group_id=id_, **create_kwargs)
             elif class_ == Block:
@@ -761,8 +742,4 @@ class ActivityLog(ModelBase):
                 created=kw.get('created', timezone.now()),
             )
 
-        # Index by every user
-        UserLog.objects.create(
-            activity_log=al, user=user, created=kw.get('created', timezone.now())
-        )
         return al
