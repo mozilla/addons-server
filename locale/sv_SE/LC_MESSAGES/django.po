@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:17+0000\n"
 "PO-Revision-Date: 2022-02-09 00:42+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "typ"
 
@@ -243,7 +244,8 @@ msgstr ""
 "säkerställa att din webbläsare inte kapas av tredje part."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr "Om du har konfigurerat din webbläsare för att inaktivera \"Referer headers\", aktivera dem, åtminstone för den här webbplatsen eller för HTTPS-anslutningar eller för \"same-origin\" förfrågningar."
+msgstr ""
+"Om du har konfigurerat din webbläsare för att inaktivera \"Referer headers\", aktivera dem, åtminstone för den här webbplatsen eller för HTTPS-anslutningar eller för \"same-origin\" förfrågningar."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -258,10 +260,10 @@ msgstr "Hittades inte"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Tyvärr, men vi kan inte hitta det du letar efter.</h1> <p> Sidan eller filen du ville nå hittades inte på vår webbplats. Det är möjligt att du klickade på en gammal länk eller skrev in adressen "
 "fel.</p> <ul> <li>Om du skrev in adressen, dubbelkolla stavningen.</li> <li>Om du följde en länk hit, vänligen %(open_bug_link)sanmäl det här%(close_bug_link)s. Berätta var du kom ifrån och vad du "
@@ -277,8 +279,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Hoppsan! Något gick fel.</h1> <p>Vi kommer att fixa det snart.</p> <p>Du kan prova att uppdatera sidan eller gå tillbaka till <a href=\"%(home)s\">tilläggets hemsida</a>. Du kan också hjälpa oss"
-" att fixa detta genom att <a href=\"https://github.com/mozilla/addons/issues/new\">rapportera ett problem</a> med information om hur du kom till den här sidan.</p>"
+"<h1>Hoppsan! Något gick fel.</h1> <p>Vi kommer att fixa det snart.</p> <p>Du kan prova att uppdatera sidan eller gå tillbaka till <a href=\"%(home)s\">tilläggets hemsida</a>. Du kan också hjälpa "
+"oss att fixa detta genom att <a href=\"https://github.com/mozilla/addons/issues/new\">rapportera ett problem</a> med information om hur du kom till den här sidan.</p>"
 
 msgid "Register or Log in"
 msgstr "Registrera dig eller logga in"
@@ -308,26 +310,6 @@ msgstr "Denna funktion är tillfälligt avstängd medan vi utför underhåll på
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Vissa funktioner på denna sida är för tillfället inaktiva eftersom vi utför underhåll av webbplatsen. Försök igen lite senare."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Sida <a href=\"%(current_pg_url)s\">%(current_pg)s</a> av <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Gå till första sidan"
-
-msgid "Previous"
-msgstr "Föregående"
-
-msgid "Jump to last page"
-msgstr "Hoppa till sista sidan"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr "Tillägg för {0}"
@@ -421,11 +403,11 @@ msgstr "Versioner"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Om din applikation som stöds inte kräver en manifest-fil behöver du fortfarande inkludera en av följande egenskaper enligt "
-"specifikationen%(amo_manifests_mdn_link_open)shär%(amo_manifests_mdn_link_close)s."
+"Om din applikation som stöds inte kräver en manifest-fil behöver du fortfarande inkludera en av följande egenskaper enligt specifikationen%(amo_manifests_mdn_link_open)shär"
+"%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denna anpassade URL används redan av en av dina samlingar."
@@ -710,6 +692,10 @@ msgid "Approved but waiting"
 msgstr "Godkänd men väntande"
 
 msgid "Account updated."
+msgstr "Konto uppdaterad."
+
+#, fuzzy
+msgid "Account {user} deleted."
 msgstr "Konto uppdaterad."
 
 msgid "Created: {0}."
@@ -2074,7 +2060,9 @@ msgstr ""
 "version av detta tillägg."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uppdatera kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Ladda upp ny version</a> or <a href=\"#\" "
 "class=\"close\">Ignorera</a>"
@@ -2245,8 +2233,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
-"Sammanfattningen ska förklara vad din utökning gör, tydligt och koncist. Både namn och sammanfattning kommer att visas på din produktsida och sökresultat. De har en kombinerad max längd på 70 tecken"
-" och en minsta längd på 2 tecken för varje."
+"Sammanfattningen ska förklara vad din utökning gör, tydligt och koncist. Både namn och sammanfattning kommer att visas på din produktsida och sökresultat. De har en kombinerad max längd på 70 "
+"tecken och en minsta längd på 2 tecken för varje."
 
 msgid "Summary"
 msgstr "Sammanfattning"
@@ -2303,8 +2291,8 @@ msgid "Email"
 msgstr "E-postadress"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Om du vill visa en e-postadress för supportfrågor,\n"
 "                          skriv den här. Om du har olika adresser\n"
@@ -2495,15 +2483,23 @@ msgstr "Dölj meddelanden som finns i tidigare version och ignoreras"
 msgid "Top"
 msgstr "Överst"
 
-msgid "Delete Add-on"
-msgstr "Ta bort tillägg"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Att ta bort ditt tillägg kommer att permanent ta bort alla versioner och filer som du har skickat in för detta tillägg, listad eller inte. Tilläggets ID kommer att fortsätta att vara kopplat till "
 "ditt konto, så att andra inte kommer att kunna skicka in versioner med samma ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Att ta bort ditt tillägg kommer att permanent ta bort alla versioner och filer som du har skickat in för detta tillägg, listad eller inte. Tilläggets ID kommer att fortsätta att vara kopplat till "
+"ditt konto, så att andra inte kommer att kunna skicka in versioner med samma ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Ta bort tillägg"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Ange följande text för att bekräfta ditt beslut: {slug}"
@@ -2652,8 +2648,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Om du skickade in källkod, som inte innehåller instruktioner, måste du ange dem här. Ange bygginstruktioner steg-för-steg för att skapa en exakt kopia av tilläggskoden, "
-"per%(policy_requirements_open)spolicy krav%(policy_requirements_close)s."
+"Om du skickade in källkod, som inte innehåller instruktioner, måste du ange dem här. Ange bygginstruktioner steg-för-steg för att skapa en exakt kopia av tilläggskoden, per"
+"%(policy_requirements_open)spolicy krav%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dessa anteckningar visas endast för dig och våra granskare."
@@ -2775,7 +2771,8 @@ msgid "Operating system and build environment requirements."
 msgstr "Operativsystem och krav på byggmiljön."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr "Den nödvändiga versionen och installationsinstruktionerna för alla program som används i byggprocessen (t.ex. <span class=\"tech-emphasis\">node</span> och <span class=\"tech-emphasis\">npm</span>)."
+msgstr ""
+"Den nödvändiga versionen och installationsinstruktionerna för alla program som används i byggprocessen (t.ex. <span class=\"tech-emphasis\">node</span> och <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Källfiler (förutom tredjepartsbibliotek med öppen källkod) kan inte transponeras, sammanfogas, minifieras eller på annat sätt maskingenereras."
@@ -2883,11 +2880,11 @@ msgstr "JWT-hemlighet"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a "
-"href=\"%(docs_url)s\">API-dokumentationen</a>."
+"För att göra API förfrågningar, skicka en <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> som authorization header. Du måste skapa en JWT för varje begäran enligt beskrivningen i <a href="
+"\"%(docs_url)s\">API-dokumentationen</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -2986,7 +2983,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2996,7 +2994,8 @@ msgstr ""
 "Vi märkte att dina hemliga AMO API-referenser inkluderades i ett tillägg som skickades till addons.mozilla.org. För att skydda ditt konto och dina tillägg, återkallade vi läckta referenser.\n"
 "Du kan skapa nya API-referenser på %(api_keys_url)s\n"
 "\n"
-"Se till att du aldrig delar dina referenser med någon. Inkludera dem aldrig i ett offentligt arkiv, tillägg eller någon annan offentlig plats. Vi uppmuntrar dig att granska dina kodförråd och dina tillägg för att ta bort alla referenser till dina AMO-referenser.\n"
+"Se till att du aldrig delar dina referenser med någon. Inkludera dem aldrig i ett offentligt arkiv, tillägg eller någon annan offentlig plats. Vi uppmuntrar dig att granska dina kodförråd och dina "
+"tillägg för att ta bort alla referenser till dina AMO-referenser.\n"
 "\n"
 "Tack,\n"
 "Mozilla tilläggsteam"
@@ -3473,8 +3472,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Den senaste godkända versionen av detta%(promoted_group_name)s-tillägg kan inte raderas eller inaktiveras eftersom den tidigare versionen inte godkändes för %(promoted_group_name)s-kampanj. Kontakta"
-" AMO admins om du behöver hjälp med detta."
+"Den senaste godkända versionen av detta%(promoted_group_name)s-tillägg kan inte raderas eller inaktiveras eftersom den tidigare versionen inte godkändes för %(promoted_group_name)s-kampanj. "
+"Kontakta AMO admins om du behöver hjälp med detta."
 
 msgid "Hide Add-on"
 msgstr "Dölj tillägg"
@@ -4484,17 +4483,19 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Populära tillägg"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-anpassning"
+msgid "Translation tools"
+msgstr "Översättningsverktyg"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Bildsökningstillägg"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Skrivverktyg"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Kraftfulla annonsblockerare"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4549,10 +4550,6 @@ msgid "See more password manager staff picks"
 msgstr "Se fler utvalda lösenordshanterare som valts av anställda"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Översättningsverktyg"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Se fler översättningsverktyg som valts av anställda"
 
@@ -4581,12 +4578,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Se fler tillägg taggade \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Kraftfulla annonsblockerare"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Se fler utvalda annonsblockerare som valts av anställda"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-anpassning"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4691,122 +4688,6 @@ msgstr "Oväntat fel."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Typen (%s) matchar inte typen av ditt tillägg på AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Recensionsriktlinjer"
-
-msgid "Sections"
-msgstr "Avdelningar"
-
-msgid "Some tips for writing a great review"
-msgstr "Några tips för att skriva en bra recension"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Vanliga frågor om granskning"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr ""
-"Ett tilläggs recensioner är ett sätt för dig att dela med dig av dina åsikter om tillägg som du har installerat och använt. Vår moderationsgrupp förbehåller sig rätten att vägra eller ta bort "
-"recension som inte överensstämmer med dessa riktlinjer."
-
-msgid "Do:"
-msgstr "Att göra:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Skriv som om du berättar för en vän om dina erfarenheter med tillägget."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Håll recensioner koncisa och lätt att förstå."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Ge konkreta och användbara detaljer. Till exempel:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Fungerade tillägget som du förväntat det skulle?"
-
-msgid "What features did you like or dislike?"
-msgstr "Vilka funktioner gillar eller ogillar du?"
-
-msgid "Was it useful?"
-msgstr "Var det användbart?"
-
-msgid "Was it easy to use?"
-msgstr "Var det lätt att använda?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Kommer du fortsätta att använda detta tillägg?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Ta en stund och läs igenom din recension innan du skickar in den för att minimera stavfel."
-
-msgid "Don’t:"
-msgstr "Att inte göra:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Skicka inte in recensioner med ett ord, som \"Bra!\", \"underbar\" eller \"dålig\"."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Posta tekniska frågor, supportfrågor eller funktionsförslag. Använd de tillgängliga supportalternativen för varje tillägg, om sådana finns. Du hittar dem i sidokolumnen bredvid avsnittet Om detta "
-"tillägg."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Skriv omdömen om tillägg som du inte personligen har använt."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Använd svordomar, sexuellt språk eller språk som kan uppfattas som hatiskt."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Inkludera HTML, länkar, källkod eller kodavsnitt. Omdömen är avsedda att vara enbart text."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Gör felaktiga uppgifter, nedvärdera tilläggs upphovsmän eller personligen förolämpa dem."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Inkludera din egen eller någon annans e-post, telefonnummer eller andra personliga detaljer."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Posta recensioner för ett tillägg som du eller din organisation har skrivit eller representerar."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Kritisera ett tillägg för något det är avsett att göra. Till exempel, lämna en negativ recension av ett tillägg för att de visar annonser eller kräver datainsamling, när detta är det avsedda "
-"ändamålet med tillägget eller tillägget kräver att samla in data för att fungera."
-
-msgid "How can I report a problematic review?"
-msgstr "Hur kan jag rapportera en problematisk recension?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Vänligen rapportera eller flagga alla tvivelaktig recensioner genom att klicka på \"rapportera denna recension\" och det kommer att överlämnas till platsen för moderering. Vår modereringsgrupp "
-"använder recensionsriktlinjerna för att utvärdera om de ska ta bort recensionen eller återställa det tillbaka till webbplatsen eller inte."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Jag är upphovsman för ett tillägg, kan jag svara på recensioner?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Ja, upphovsmän till tillägg kan ge ett enda svar på en recension. Du kan ställa in ett diskussionsämne i vårt <a href=\"%(forum_url)s\">forum</a> för att engagera dig i ytterligare diskussion eller "
-"uppföljning."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Jag är upphovsman för tillägg, kan jag ta bort negativa recensioner eller betyg?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"I allmänhet, nej. Men om recensionen inte uppfyllde riktlinjerna ovan, kan du klicka på \"Rapportera denna recension\" och få den modererad. Om ett klagomål ingår i recensionen som inte längre är "
-"giltig på grund av en ny version av ditt tillägg, kan vi överväga att ta bort recensionen."
 
 msgid "User"
 msgstr "Användare"
@@ -5907,6 +5788,9 @@ msgstr "Laddar in det senaste datat&hellip;"
 msgid "No data available."
 msgstr "Ingen data tillgänglig."
 
+msgid "Previous"
+msgstr "Föregående"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Den här översikten är <b>privat</b>."
 
@@ -6050,9 +5934,6 @@ msgstr "Gå till"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Återgå till hemsidan för tillägget {0}"
 
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Tillägg"
-
 msgid "Add-ons"
 msgstr "Tillägg"
 
@@ -6156,8 +6037,8 @@ msgstr "E-postmönster"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
-"Ange fullständig e-post som ska blockeras eller använd unix-stil jokertecken, t.ex. \"*@exempel.com\". Om du behöver blockera en domän inkl underdomäner, lägg till en andra post, t.ex. "
-"\"*@*.exempel.com\"."
+"Ange fullständig e-post som ska blockeras eller använd unix-stil jokertecken, t.ex. \"*@exempel.com\". Om du behöver blockera en domän inkl underdomäner, lägg till en andra post, t.ex. \"*@*."
+"exempel.com\"."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Den e-postadress du använde för ditt konto kan inte användas för att skicka in tillägg."
@@ -6170,8 +6051,8 @@ msgstr ""
 "\"Användarbegränsningar för e-post\"."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Innan du börjar, läs och acceptera vårt distributionsavtal för Firefox-tillägg samt våra granskningsprinciper och regler. Distributionsavtalet för Firefox-tillägg länkar också till vår "
 "sekretesspolicy som förklarar hur vi hanterar din information."
@@ -6233,7 +6114,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6246,7 +6128,8 @@ msgid ""
 msgstr ""
 "Hälsningar %(author_name)s,\n"
 "\n"
-"Du har blivit inbjuden att bli författare till %(addon_name)s på %(domain)s Att acceptera inbjudan ger dig tillgång till redigering av tillägget och kan visa ditt namn i författarlistan på webbplatsen.\n"
+"Du har blivit inbjuden att bli författare till %(addon_name)s på %(domain)s Att acceptera inbjudan ger dig tillgång till redigering av tillägget och kan visa ditt namn i författarlistan på "
+"webbplatsen.\n"
 "\n"
 "Klicka på länken nedan för att svara om du vill läggas till som författare för %(addon_name)s.\n"
 "\n"

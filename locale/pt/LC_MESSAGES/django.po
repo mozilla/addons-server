@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:17+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,6 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr ""
 
@@ -315,26 +316,6 @@ msgstr "Esta funcionalidade está temporariamente desativada enquanto efetuamos 
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Algumas funcionalidades nesta página estão temporariamente desativadas enquanto efetuamos uma manutenção ao site. Por favor volte a tentar mais tarde."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Página <a href=\"%(current_pg_url)s\">%(current_pg)s</a> de <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Saltar para a primeira página"
-
-msgid "Previous"
-msgstr "Anterior"
-
-msgid "Jump to last page"
-msgstr "Saltar para a última página"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "A mostrar <b>%(begin)s</b>&ndash;<b>%(end)s</b> de <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr "Extras para {0} "
@@ -736,6 +717,10 @@ msgid "Approved but waiting"
 msgstr "Aprovado mas em espera"
 
 msgid "Account updated."
+msgstr "Conta atualizada."
+
+#, fuzzy
+msgid "Account {user} deleted."
 msgstr "Conta atualizada."
 
 msgid "Created: {0}."
@@ -2645,13 +2630,17 @@ msgstr "Ocultar mensagens presentes na versão anterior e ignoradas"
 msgid "Top"
 msgstr "Topo"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr ""
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
 msgid "Delete Add-on"
 msgstr "Eliminar extra"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
@@ -4683,19 +4672,19 @@ msgid "See all extensions"
 msgstr "Navegar em todos os extras"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "comentado"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Navegar em todos os extras"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
-msgstr "Idiomas existentes"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4759,10 +4748,6 @@ msgid "See more password manager staff picks"
 msgstr "Navegar em todos os extras"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "por Versão do extra"
@@ -4795,13 +4780,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Navegar em todos os extras"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Navegar em todos os extras"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4914,121 +4899,6 @@ msgstr ""
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
-
-msgid "Review Guidelines"
-msgstr "Orientações para comentários"
-
-msgid "Sections"
-msgstr "Secções"
-
-msgid "Some tips for writing a great review"
-msgstr "Algumas dicas para escrever um excelente comentário"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Questões frequentes sobre análises"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Análises de extras são uma forma de você partilhar as suas opiniões sobre os extras que instalou e utilizou. A nossa equipa de moderação reserva o direito de recusar ou de remover qualquer análise "
-"que não cumpra com estas diretrizes."
-
-msgid "Do:"
-msgstr "Faça o seguinte:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Escreva como se estivesse a partilhar com um amigo a sua experiência com o extra."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Mantenha suas análises sucintas e fáceis de entender."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Dê detalhes úteis e específicos. Por exemplo:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "O extra funcionou como esperava?"
-
-msgid "What features did you like or dislike?"
-msgstr "Que funcionalidades gostou ou não gostou?"
-
-msgid "Was it useful?"
-msgstr "Foi útil?"
-
-msgid "Was it easy to use?"
-msgstr "Foi fácil de utilizar?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Você continuará a utilizar este extra?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Leia novamente a sua análise antes de a enviar para minimizar erros ortográficos."
-
-msgid "Don’t:"
-msgstr "O que não fazer:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Submeter análises com uma palavra, tais como \"Ótimo!\", \"maravilhoso\", ou \"mau\"."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Colocar problemas técnico, pedidos de apoio ou sugestões de funcionalidades. Utilize as opções de apoio disponíveis para cada extra, se disponíveis. Pode encontrá-las na coluna lateral perto da "
-"secção Sobre este extra."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Escrever comentários para extras que não utilizou."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Utilizar linguagem inadequada, de conteúdo sexual ou que possa ser considerada odiosa."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Incluir HTML, ligações, código fonte ou pedaços de código. As análises devem ser apenas de texto."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Fazer afirmações falsas, criticar os autores de extras ou insultá-los pessoalmente."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Incluir o seu e-mail, número de telefone ou quaisquer outros dados ou os de qualquer outra pessoa."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Publicar comentários para um extra que você ou a sua organização escreveu ou representa."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Criticar um extra por algo que é suposto fazer. Por exemplo, deixar uma análise negativa de um extra por mostrar extras ou necessitar de recolher dados, quando este é o objetivo do extra, ou se o "
-"extra necessita de recolher dados para funcionar."
-
-msgid "How can I report a problematic review?"
-msgstr "Como posso denunciar um comentário problemático?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Por favor denuncie ou reporte quaisquer análises questionáveis clicando em \"Reportar esta análise\" e esta será submetida para o site para moderação. A nossa equipa de moderação irá utilizar as "
-"linhas orientadoras da revisão para avaliar se análise deve ser eliminada ou reposta no site."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Eu sou um autor de extras, posso responder a comentários?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "Sim, os autores de um extra podem fornecer uma única reposta a uma análise. Pode definir o tópico de discussão no nosso <a href=\"%(forum_url)s\">fórum</a> para continuar a discussão."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Eu sou um autor de um extra, posso eliminar análises ou classificações desfavoráveis?"
-
-#, fuzzy
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"No geral, não. Ma se análise não cumprir com as linhas orientadoras da revisão descritas em cima, pode clicar em \"reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma "
-"reclamação que já não seja válida devido ao lançamento de uma nova versão do extra, podemos considerar eliminar a análise. Submeta o seu pedido detalhado para amo-editors@mozilla.org."
 
 #, fuzzy
 msgid "User"
@@ -6252,6 +6122,9 @@ msgstr "A carregar os últimos dados&hellip;"
 msgid "No data available."
 msgstr "Sem dados disponíveis."
 
+msgid "Previous"
+msgstr "Anterior"
+
 #, fuzzy
 msgid "This dashboard is <b>private</b>."
 msgstr "Este painel está atualmente <b>privado</b>."
@@ -6405,9 +6278,6 @@ msgstr "Ir"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Voltar à página inicial dos extras de {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Extras"
 
 msgid "Add-ons"
 msgstr "Extras"

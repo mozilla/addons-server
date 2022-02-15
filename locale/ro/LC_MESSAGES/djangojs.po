@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:18+0000\n"
 "PO-Revision-Date: 2018-12-13 01:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stea"
-msgstr[1] "{0} stele"
-msgstr[2] "{0} de stele"
 
 msgid "There was a problem contacting the server."
 msgstr "A apărut o problemă la contactarea serverului."
@@ -135,36 +129,6 @@ msgstr "Imaginile trebuie să fie PNG sau JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoclipurile trebuie să fie WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema este incompatibilă cu versiunea de {0}"
-
-msgid "Flagged for review"
-msgstr "Marcat pentru recenzie"
-
-msgid "Your input is required"
-msgstr "Avem nevoie de opinia ta"
-
-msgid "Marked for deletion"
-msgstr "Marcat pentru ștergere"
-
-msgid "Updating results&hellip;"
-msgstr "Se actualizează rezultatele&hellip;"
-
-msgid "Category"
-msgstr "Categorie"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Caută teme pentru <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Caută aplicații pentru <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Caută suplimente pentru <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Folosește originalul"
 
 msgid "Week of {0}"
 msgstr "Săptămâna a {0}"
@@ -644,41 +608,6 @@ msgstr "Dată"
 msgid "Other"
 msgstr "Altele"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Acceptă și instalează"
-
-msgid "Add to {0}"
-msgstr "Adaugă în {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Instalează pentru {0} oricum"
-
-msgid "Download for {0} anyway"
-msgstr "Descarcă pentru {0} oricum"
-
-msgid "Not available for your platform"
-msgstr "Indisponibil pentru platforma ta"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Suplimentul nu este compatibil cu versiunea ta de {0}."
-
-msgid "View other versions"
-msgstr "Vezi alte versiuni"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funcționează cu {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funcționează cu {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Numai cu Firefox — Descarcă Firefox acum!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Ne pare rău, dar ai nevoie de un browser bazat pe Mozilla (cum ar fi Firefox) pentru a instala un plugin de căutare."
-
 msgid "Changes Saved"
 msgstr "Modificări salvate"
 
@@ -699,12 +628,6 @@ msgstr "Se procesează schimbările imaginii"
 
 msgid "Select an application first"
 msgstr "Selectează o aplicație mai întâi"
-
-msgid "No results found."
-msgstr "Nu s-au găsit rezultate."
-
-msgid "Loading..."
-msgstr "Se încarcă..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

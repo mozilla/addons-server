@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:17+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Generated-By: Babel 2.5.1\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "ruwäch"
 
@@ -312,26 +313,6 @@ msgstr "Chupül re b'anikil re' k'a niqab'än na ruk'ojlem re ajk'amaya'l ruxaq.
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "E chupül jujun taq b'anikil k'a niqab'än na ruk'ojlem re ajk'amaya'l ruxaq. Tatojtob'ej chik pa jun ti mej."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Ruxaq <a href=\"%(current_pg_url)s\">%(current_pg)s</a> richin <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Tib'iyin pa nab'ey ruxaq"
-
-msgid "Previous"
-msgstr "Chuwäch"
-
-msgid "Jump to last page"
-msgstr "Tib'iyin pa ruk'isib'äl ruxaq"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Nik'ut <b>%(begin)s</b>&ndash;<b>%(end)s</b> richin <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr "Kitz'aqat {0}"
@@ -712,6 +693,10 @@ msgid "Approved but waiting"
 msgstr "Juch'un chik xa xe noyob'en"
 
 msgid "Account updated."
+msgstr "Xk'ex rub'i' taqoya'l."
+
+#, fuzzy
+msgid "Account {user} deleted."
 msgstr "Xk'ex rub'i' taqoya'l."
 
 msgid "Created: {0}."
@@ -2530,15 +2515,23 @@ msgstr "Ke'ewäx rutzijol e k'o erepun pa ri ruk'isib'äl ruwäch"
 msgid "Top"
 msgstr "Ajsik"
 
-msgid "Delete Add-on"
-msgstr "Tiyuj Tz'aqat"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Toq nayüj ri tz'aqat xkeyuj el konojel ri taq ruwäch chuqa' taq yakb'äl xe'atäq richin re tz'aqat re', echolajin o manäq. Ri tz'aqat ID k'a xtixim na rik'in ri rub'i' ataqoya'l, richin chi ri "
 "ch'aqa' chik man yetikïr ta yekitäq taq ruwäch rik'in rokisaxik ri junam ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Toq nayüj ri tz'aqat xkeyuj el konojel ri taq ruwäch chuqa' taq yakb'äl xe'atäq richin re tz'aqat re', echolajin o manäq. Ri tz'aqat ID k'a xtixim na rik'in ri rub'i' ataqoya'l, richin chi ri "
+"ch'aqa' chik man yetikïr ta yekitäq taq ruwäch rik'in rokisaxik ri junam ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Tiyuj Tz'aqat"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Tajikib'a' ri ana'ojib'al rik'in natz'ib'aj re cholan tzij re': {slug}"
@@ -4543,19 +4536,19 @@ msgid "See all extensions"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Xchilab'ëx"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Ketz'et ronojel ri taq k'amal"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
-msgstr "Ch'ab'äl e K'o"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4619,10 +4612,6 @@ msgid "See more password manager staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "chi Ruwäch Tz'aqat"
@@ -4656,13 +4645,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4778,122 +4767,6 @@ msgstr "Man oyob'en ta re sachoj."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> pa ri ayakb'al install.rdf (%s) man nuk'äm ta ri' rik'in ri rucha'onem atz'aqat pa AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Kib'eyal Yesamajïx taq Nik'oxïk"
-
-msgid "Sections"
-msgstr "Taq peraj"
-
-msgid "Some tips for writing a great review"
-msgstr "Jujun taq na'oj richin ütz yetz'ib'äx taq ejqalem"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Junelïk taq K'utunïk pa kiwi' taq Tzijoxïk"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Ri kejqalem taq tz'aqat jun rub'anikil richin ye'akomonij ri taq ana'oj chi kij ri taq tz'aqat e'ayakon chuqa' e'awokisan. Pa kiq'a' ri qamolaj k'o richin yekipäj ri taq ejqalem richin yekixutuj o "
-"nikiyüj xab'achike ejqalem man rojqan ta xab'achike chi ke re taq rucholajil re'."
-
-msgid "Do:"
-msgstr "Tib'an:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Tatz'ib'aj achi'el yatzijon rik'in jun awachib'il pa ruwi' ri awetamab'al rik'in ri tz'aqat."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Ke'atz'ib'aj ri taq ejqalem richin ütz chuqa' anin niq'ax pan awi'."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Ke'aya' jikïl chuqa' utziläj taq b'anikil. Achi'el:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "¿La xsamäj re tz'aqat re' achi'el awoyob'en?"
-
-msgid "What features did you like or dislike?"
-msgstr "¿Achike taq rub'anikil ütz o itzel xe'atz'ët?"
-
-msgid "Was it useful?"
-msgstr "¿La xk'atzin?"
-
-msgid "Was it easy to use?"
-msgstr "¿La man k'ayew ta xokisäx?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "¿La k'a xtawokisaj na re tz'aqat re'?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Taya' jun ach'utiramaj richin nasik'ij ri atzijoxik chuwäch nitaq richin yech'utinisäx sachoj taq tz'ib'."
-
-msgid "Don’t:"
-msgstr "Mani:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Yetaq taq tzijoxïk kik'wan xa xe jun tzij achi'el \"Jeb'ël\", \"utziläj,\" o \"itzel\"."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Telesäx kitzijol samajel taq k'ayewal, ruchilab'enik tob'äl, o kichilab'exik samaj. Ke'okisäx ri taq rucha'oj tob'äl e k'o pa jujun taq tz'aqat, we e k'o. Ye'awïl pa ri ajxikin tem chuchi' ri peraj "
-"Chi rij re Tz'aqat re'."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Natz'ib'aj taq tzijoxïk chik ri taq tz'aqat man e'awokisan ta."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Nokisäx xajan, naqonïk tzij o tzij nina'ojïx chi nitzelan."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Yetz'aqatisäx HTML, taq ximonel, ruxe'el b'itz'ib' o taq snipet. Ri taq tzijoxïk k'o chi xa xe tz'ib'anïk."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Yeb'an taq itzel taq ch'ojinem, yoq'oj o ch'owen chi kij ri e b'anel taq tz'aqat."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Natz'aqatisaj rochochib'al ataqoya'l o richin jun chik winäq, rajilab'al awoyonib'al o jun chik awetamab'al."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Taq tzijoxïk chi rij jun tz'aqat ri rat o amoloj xe'itz'ük o ïx pa'äl pa ruwi'."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Yach'o chi rij jun tz'aqat ruma jun samaj ri k'o chi nub'än. Achi'el, naya' kan itzel rejqalem jun tz'aqat ruma nuk'üt eltzijol o nuk'utuj chi yerumöl taq tzij, toq ja rusamaj ri' ri jun tz'aqat, o "
-"toq ri tz'aqat rajowaxik yerumöl taq tzij richin nitikïr nisamäj."
-
-msgid "How can I report a problematic review?"
-msgstr "¿Achike rub'eyal ninya' rutzijol jun k'ayew tzijoxïk?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Taya' rutzijol chi rij xab'achike man ruk'amon ta rejqalem rik'in napïtz pa \"Tiya' rutzijol re rejqalem re'\" richin nitaq pa ri ruxaq k'amaya'l richin nitzijöx rij. Ri qamolaj richin ch'ob'oj "
-"xtrokisaj ri Retal ejqalem richin nupäj rij we nuyüj o manäq ejqalem, o nik'ex pa ruxaq k'amaya'l."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "In b'anel jun tz'aqat, ¿la yitikïr nintzolij tzij chi ke ri taq tzijoxïk?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Ja', ri b'anonela' taq tz'aqat yetikïr nikiya' xa jun tzolin tzij chi re jun nik'oxïk. Yatikïr najäq jun na'oj richin nitzijöx rij pa <a href=\"%(forum_url)s\">ch'ob'omoloj</a> richin natikirisaj "
-"jun chik tzijonem o nawojqaj ri ximonel."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "In b'anel jun tz'aqat, ¿la yitikïr yenyüj el taq tzijoxïk o itzel taq nik'oxïk?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"Ronojel, mani. We ri ejqalem man rojqan ta ronojel ri taq retal nik'oxïk etzijon kan, yatikïr napïtz pa \"Tiya' rutzijol re ejqalem re'\" richin nisol rij. We jun ejqalem k'o rusujunik ri man okel "
-"ta chik ruma xa jun chik ruwäch ri atz'aqat, yojtikïr niqana'ojij niqayüj el."
 
 msgid "User"
 msgstr "Okisanel"
@@ -6064,6 +5937,9 @@ msgstr "Yesamajib'ëx ri ruk'isib'äl taq tzij&hellip;"
 msgid "No data available."
 msgstr "Majun tzij wachel"
 
+msgid "Previous"
+msgstr "Chuwäch"
+
 #, fuzzy
 msgid "This dashboard is <b>private</b>."
 msgstr "Wakami re pas re' <b>ichinan</b>."
@@ -6212,9 +6088,6 @@ msgstr "Jo'"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Titzolin pa ri ruxaq {0} Tz'aqat"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Taq Tz'aqat"
 
 msgid "Add-ons"
 msgstr "Taq tz'aqat"

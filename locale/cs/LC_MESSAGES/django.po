@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:17+0000\n"
 "PO-Revision-Date: 2021-12-04 17:44+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -20,6 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "typ"
 
@@ -315,26 +316,6 @@ msgstr "Tato funkce je z důvodu údržby webu dočasně nedostupná. Použijte 
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Některé funkce této stránky jsou během údržby webu dočasně nedostupné. Zkuste to prosím později."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Stránka <a href=\"%(current_pg_url)s\">%(current_pg)s</a> z <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Přejít na první stránku"
-
-msgid "Previous"
-msgstr "Předchozí"
-
-msgid "Jump to last page"
-msgstr "Jít na poslední stranu"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Zobrazení <b>%(begin)s</b>&ndash;<b>%(end)s</b> z <b>%(count)s</b>"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -717,6 +698,10 @@ msgid "Approved but waiting"
 msgstr "Schváleno, ale čeká"
 
 msgid "Account updated."
+msgstr "Účet byl aktualizován."
+
+#, fuzzy
+msgid "Account {user} deleted."
 msgstr "Účet byl aktualizován."
 
 msgid "Created: {0}."
@@ -2507,15 +2492,23 @@ msgstr "Skrýt zprávy ignorované v minulých verzích"
 msgid "Top"
 msgstr "Nahoru"
 
-msgid "Delete Add-on"
-msgstr "Smazat doplněk"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, které jste kdy v souvislosti s tímto doplňkem odeslali, ať už veřejně nebo ne. ID doplňku bude stále spojeno s vaším účtem, takže "
 "nikdo jiný nebude moci odeslat doplněk se stejným ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, které jste kdy v souvislosti s tímto doplňkem odeslali, ať už veřejně nebo ne. ID doplňku bude stále spojeno s vaším účtem, takže "
+"nikdo jiný nebude moci odeslat doplněk se stejným ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Smazat doplněk"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Pro potvrzení svého rozhodnutí zadejte následující text: {slug}"
@@ -4502,19 +4495,19 @@ msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Právě populární motivy vzhledu"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Zobrazit všechna rozšíření"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
+msgid "Translation tools"
 msgstr "Jazykové překladače"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Výkonné blokátory reklam"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4570,10 +4563,6 @@ msgid "See more password manager staff picks"
 msgstr "Další vybraná rozšíření pro správu hesel"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Jazykové překladače"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Další vybrané jazykové překladače"
 
@@ -4602,12 +4591,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Zobrazit další rozšíření se štítkem „{tag}“"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Výkonné blokátory reklam"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Další vybraná rozšíření pro blokování reklam"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4716,119 +4705,6 @@ msgstr "Neočekávaná chyba."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Typ (%s) neodpovídá typu doplňku zde na AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Příručka recenzenta"
-
-msgid "Sections"
-msgstr "Sekce"
-
-msgid "Some tips for writing a great review"
-msgstr "Několik tipů pro psaní skvělých recenzí"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Často kladené otázky k recenzím"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Recenze doplňků jsou způsob, jak sdílet váš názor na doplněk, který jste si nainstalovali a vyzkoušeli. Náš tým kontrolující recenze si vyhrazuje právo recenze odmítnout nebo smazat, pokud "
-"neodpovídají těmto pokynům."
-
-msgid "Do:"
-msgstr "Pište:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Popište své zkušenosti s doplňkem tak, jako byste jej popisovali svému příteli."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Pište recenze stručně a srozumitelně."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Popište konkrétní a užitečné detaily. Například:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Funguje doplněk podle očekávání?"
-
-msgid "What features did you like or dislike?"
-msgstr "Které funkce se vám líbí a které naopak ne?"
-
-msgid "Was it useful?"
-msgstr "Je užitečný?"
-
-msgid "Was it easy to use?"
-msgstr "Používá se snadno?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Budete doplněk i nadále používat?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Před odesláním své recenze si prosím znovu přečtěte a opravte případné překlepy."
-
-msgid "Don’t:"
-msgstr "Nepište:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Nepište pouze jednoslovné recenze jako \"Úžasné!\", \"Vynikající\" nebo \"Nefunguje\"."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Nepište technické problémy, požadavky na podporu nebo návrhy na nové funkce. Pro ně můžete použít kontakty, které jsou pro daný doplněk dostupné. Najdete je v postranním sloupci v sekci O doplňku."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Nepište recenze k doplňkům, které osobně nepoužíváte."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Nepoužívejte hrubý, sexuálně orientovaný či jinak nevhodný jazyk."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Nevkládejte HTML kód, odkazy, zdrojový kód nebo jeho části. Recenze jsou určeny pouze pro psaní textu."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Nepiště nepravdivé informace, nezlehčujte práci autorů doplňků ani je osobně neurážejte."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Nevkládejte svou ani cizí e-mailovou adresu, telefonní číslo ani jiné osobní informace."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Nepřidávejte recenze ke svému doplňku či organizaci, kterou reprezentujete."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Nekritizujte doplněk za něco, k čemu je určen. Např. nepište negativní recenze kvůli zobrazování reklam nebo sběru dat, pokud je to právě účel fungování daného doplňku, nebo doplněk sběr dat pro "
-"své fungování potřebuje."
-
-msgid "How can I report a problematic review?"
-msgstr "Jak mohu nahlásit problematickou recenzi?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Sporné recenze prosím nahlaste nebo označte klepnutím na odkaz \"Nahlásit recenzi\". Bude tak přidána na seznam ke kontrole a případné úpravě. Náš tým zkontrolujte, jestli recenze odpovídá Příručce "
-"recenzenta a zda ji případně smazat nebo naopak vrátit zpět k zobrazení."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Jsem autor doplňku, mohu odpovídat na recenze?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "Ano, autor doplňku může odeslat k recenzi odpověď. Pro delší diskuzi můžete založit téma na <a href=\"%(forum_url)s\">fóru</a>."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Jsem autor doplňku, mohu odstranit záporné recenze či hodnocení?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"V obecném případě ne. Ale pokud recenze nesplňuje pravidla uvedená výše, můžete klepnout na \"Nahlásit recenzi\" pro její moderování. Pokud recenze obsahuje stížnost, která již není relevantní s "
-"ohledem na vydání nové verze doplňku, můžeme zvážit její smazání."
 
 msgid "User"
 msgstr "Uživatel"
@@ -5932,6 +5808,9 @@ msgstr "Načítají se poslední data&hellip;"
 msgid "No data available."
 msgstr "Nejsou dostupná žádná data."
 
+msgid "Previous"
+msgstr "Předchozí"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Tato nástěnka je <b>soukromá</b>."
 
@@ -6075,9 +5954,6 @@ msgstr "Přejít"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Návrat na titulní stránku doplňků aplikace {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Doplňky"
 
 msgid "Add-ons"
 msgstr "Doplňky"

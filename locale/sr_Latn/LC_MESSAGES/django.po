@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:17+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr ""
 
@@ -370,30 +371,6 @@ msgid ""
 msgstr ""
 "Neke mogućnosti na ovoj stranici su na određeno vreme onemogućene dok vršimo "
 "održavanje veb sajta. Molimo Vas, pokušajte kasnije."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid ""
-"Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href="
-"\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
-"Stranica <a href=\"%(current_pg_url)s\">%(current_pg)s</a> od <a href="
-"\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Prebacite se na prvu stranicu"
-
-msgid "Previous"
-msgstr "Prethodno"
-
-msgid "Jump to last page"
-msgstr ""
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Prikazano <b>%(begin)s</b>&ndash;<b>%(end)s</b> od <b>%(count)s</b>"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -810,6 +787,10 @@ msgid "Approved but waiting"
 msgstr "Odobren ali na čekanju"
 
 msgid "Account updated."
+msgstr "Nalog ažuriran."
+
+#, fuzzy
+msgid "Account {user} deleted."
 msgstr "Nalog ažuriran."
 
 msgid "Created: {0}."
@@ -2955,15 +2936,22 @@ msgstr ""
 msgid "Top"
 msgstr "Vrh"
 
-msgid "Delete Add-on"
-msgstr "Izbriši dodatak"
-
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have "
-"submitted for this add-on, listed or not. The add-on ID will continue to be "
-"linked to your account, so others won't be able to submit versions using the "
-"same ID."
+"submitted for this add-on, listed or not."
 msgstr ""
+
+msgid ""
+"The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
+msgstr ""
+
+msgid ""
+"The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Izbriši dodatak"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
@@ -5333,19 +5321,19 @@ msgid "See all extensions"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Komentariši"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Pogledajte sve dodatke"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
-msgstr "Postojeći lokali"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5410,10 +5398,6 @@ msgid "See more password manager staff picks"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "po verziji dodatka"
@@ -5446,13 +5430,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Pogledajte sve dodatke"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5576,135 +5560,6 @@ msgstr ""
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
-
-msgid "Review Guidelines"
-msgstr "Smernice za recenziranje"
-
-msgid "Sections"
-msgstr "Sekcije"
-
-msgid "Some tips for writing a great review"
-msgstr "Neki saveti za pisanje dobrih recenzija"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Često postavljena pitanja o recenzijama"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons "
-"you’ve installed and used. Our review moderation team reserves the right to "
-"refuse or remove any review that does not comply with these guidelines."
-msgstr ""
-
-msgid "Do:"
-msgstr "Za uraditi:"
-
-msgid ""
-"Write like you are telling a friend about your experience with the add-on."
-msgstr "Napišite o svom iskustvu sa dodatkom kao da govorite prijateljima."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Držite kritike sažetim i lakim za razumevanje."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Dajte konkretne i korisne detalje. Na primer:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Da li je dodatak radio kao što se očekivali?"
-
-msgid "What features did you like or dislike?"
-msgstr "Koje mogućnosti Vam se dopadaju a koje ne?"
-
-msgid "Was it useful?"
-msgstr "Da li je bilo korisno?"
-
-msgid "Was it easy to use?"
-msgstr "Da li je bilo lako za korišćenje?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Hoćete li nastaviti da koristite ovaj dodatak?"
-
-msgid ""
-"Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
-
-msgid "Don’t:"
-msgstr "Nemojte:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the "
-"available support options for each add-on, if available. You can find them "
-"in the side column next to the About this Add-on section."
-msgstr ""
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Napišete recenzije za dodatake koje niste lično koristili."
-
-msgid ""
-"Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
-"Da koristite psovke, seksualni jezik ili jezik koji se može protumačiti kao "
-"mržnja."
-
-msgid ""
-"Include HTML, links, source code or code snippets. Reviews are meant to be "
-"text only."
-msgstr ""
-
-msgid ""
-"Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
-"Napravite lažne izjave, ponižavate autora dodatka ili da ih lično vređate."
-
-msgid ""
-"Include your own or anyone else’s email, phone number, or other personal "
-"details."
-msgstr ""
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
-"Postavite kritike za dodatak koji ste Vi ili Vaša organizacija napravili ili "
-"ga predstavljate."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving "
-"a negative review of an add-on for displaying ads or requiring data "
-"gathering, when that is the intended purpose of the add-on, or the add-on "
-"requires gathering data to function."
-msgstr ""
-
-msgid "How can I report a problematic review?"
-msgstr "Kako da prijavim problematičnu recenziju?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this "
-"review\" and it will be submitted to the site for moderation. Our moderation "
-"team will use the Review Guidelines to evaluate whether or not to delete the "
-"review or restore it back to the site."
-msgstr ""
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Ja sam autor dodatka, da li mogu odgovoriti na kritike?"
-
-#, python-format
-msgid ""
-"Yes, add-on authors can provide a single response to a review. You can set "
-"up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage "
-"in additional discussion or follow-up."
-msgstr ""
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
-"Ja sam autor dodatka, da li mogu da izbrišem nepovoljne kritike ili ocene?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines "
-"outlined above, you can click \"Report this review\" and have it moderated. "
-"If a review included a complaint that is no longer valid due to a new "
-"release of your add-on, we may consider deleting the review."
 msgstr ""
 
 #, fuzzy
@@ -6987,6 +6842,9 @@ msgstr "Učitavam najnovije podatke&hellip;"
 msgid "No data available."
 msgstr "Nema dostupnih podataka."
 
+msgid "Previous"
+msgstr "Prethodno"
+
 #, fuzzy
 msgid "This dashboard is <b>private</b>."
 msgstr "Ova kontrolna tabla je trenutno <b>privatna</b>."
@@ -7150,9 +7008,6 @@ msgstr "Kreni"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Vratite se na početnu stranicu {0} dodataka"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> dodaci"
 
 msgid "Add-ons"
 msgstr "Dodaci"

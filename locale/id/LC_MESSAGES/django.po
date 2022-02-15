@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-15 18:17+0000\n"
 "PO-Revision-Date: 2021-06-08 15:09+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "tipe"
 
@@ -318,26 +319,6 @@ msgstr "Fitur ini dimatikan sementara kami melakukan pemeliharaan situs. Gunakan
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Sejumlah fitur pada laman ini dimatikan sementara saat kami melakukan pemeliharaan. Silakan coba lagi nanti."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Laman <a href=\"%(current_pg_url)s\">%(current_pg)s</a> dari <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Menuju laman pertama"
-
-msgid "Previous"
-msgstr "Sebelumnya"
-
-msgid "Jump to last page"
-msgstr "Menuju laman terakhir"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Menampilkan <b>%(begin)s</b>&ndash;<b>%(end)s</b> dari <b>%(count)s</b>"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -725,6 +706,10 @@ msgid "Approved but waiting"
 msgstr "Disetujui tapi menunggu"
 
 msgid "Account updated."
+msgstr "Akun diperbarui."
+
+#, fuzzy
+msgid "Account {user} deleted."
 msgstr "Akun diperbarui."
 
 msgid "Created: {0}."
@@ -2541,15 +2526,23 @@ msgstr "Menyembunyikan pesan ada di versi sebelumnya dan tidak diindahkan"
 msgid "Top"
 msgstr "Teratas"
 
-msgid "Delete Add-on"
-msgstr "Hapus Pengaya"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Anda akan secara permanen menghapus semua versi pengaya dan berkas yang telah Anda kirimkan untuk pengaya ini, terdaftar maupun tidak. ID pengaya akan terus dikaitkan dengan akun anda, sehingga "
 "orang lain tidak akan dapat mengirimkan versi mereka menggunakan ID yang sama."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Anda akan secara permanen menghapus semua versi pengaya dan berkas yang telah Anda kirimkan untuk pengaya ini, terdaftar maupun tidak. ID pengaya akan terus dikaitkan dengan akun anda, sehingga "
+"orang lain tidak akan dapat mengirimkan versi mereka menggunakan ID yang sama."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Hapus Pengaya"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Masukkan teks berikut ini untuk mengkonfirmasi keputusan Anda: {slug}"
@@ -4530,19 +4523,19 @@ msgid "See all extensions"
 msgstr "Lihat semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Disarankan"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Lihat semua ekstensi"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
-msgstr "Pelokalan Yang Sudah Ada"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4607,10 +4600,6 @@ msgid "See more password manager staff picks"
 msgstr "Lihat semua ekstensi"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "berdasarkan Versi Pengaya"
@@ -4644,13 +4633,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Lihat semua ekstensi"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Lihat semua ekstensi"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4764,122 +4753,6 @@ msgstr "Kesalahan tak terduga."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Jenis (%s) tidak cocok dengan jenis pengaya Anda pada AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Panduan Penulisan Ulasan"
-
-msgid "Sections"
-msgstr "Bagian"
-
-msgid "Some tips for writing a great review"
-msgstr "Sejumlah kiat untuk menulis ulasan yang bagus"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Pertanyaan yang Sering Ditanyakan mengenai Ulasan"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Ulasan pengaya adalah cara anda untuk berbagai pendapat mengenai pengaya yang anda pasang dan gunakan. Tim moderasi ulasan kami memiliki hak untuk menolak atau menghapus ulasan apapun yang tidak "
-"sesuai dengan panduan ini."
-
-msgid "Do:"
-msgstr "Lakukan:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Menulislah seperti sedang menyampaikan pada teman mengenai pengalaman dengan pengaya."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Jaga supaya ulasan ringkas dan mudah dipahami."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Berikan rincian yang spesifik dan membantu. Misalnya:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Apakah pengaya bekerja seperti yang anda harapkan?"
-
-msgid "What features did you like or dislike?"
-msgstr "Fitur apa yang anda suka atau tidak sukai?"
-
-msgid "Was it useful?"
-msgstr "Apakah berguna?"
-
-msgid "Was it easy to use?"
-msgstr "Apakah mudah dibuat?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Apakah anda akan terus menggunakan pengaya ini?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Luangkan waktu untuk membaca ulasan anda sebelum memasukkannya untuk meminimalkan kesalahan ketik."
-
-msgid "Don’t:"
-msgstr "Jangan:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Mengirim ulasan satu kata seperti \"Hebat!\", \"luar biasa,\" atau \"jelek.\""
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Kirimkan isu teknis, permintaan dukungan, atau saran fitur. Gunakan pilihan dukungan yang tersedia untuk tiap pengaya, jika tersedia. Anda bisa menemukannya di bagian samping kolom di sebelah "
-"bagian Tentang Pengaya ini."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Tulis ulasan untuk pengaya yang belum pernah anda gunakan sendiri."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Menggunakan bahasa kasar, seksual atau bahasa yang bisa ditafsirkan sebagai kebencian."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Memasukkan HTML, tautan, kode sumber atau potongan kode. Ulasan dimaksudkan berupa teks saja."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Membuat pernyataan yang salah, meremehkan penulis pengaya atau secara pribadi menghina mereka."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Masukkan alamat surel anda atau orang lain, nomor telepon, atau rincian pribadi lainnya."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Kirimkan ulasan untuk pengaya milik anda atau organisasi yang anda tulis atau wakili."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Beri masukan pada pengaya sesuai dengan apa yang dilakukannya. Sebagai contoh, meninggalkan ulasan negatif untuk sebuah pengaya karena menampilkan iklan atau meminta pengumpulan data, sementara itu "
-"adalah tujuan keberadaan pengaya itu, atau pengaya meminta pengumpulan data agar bisa berfungsi."
-
-msgid "How can I report a problematic review?"
-msgstr "Bagaimana saya bisa melaporkan ulasan yang problematis?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Harap melaporkan atau menandai ulasan apa saja yang patut dipertanyakan dengan mengklik \"Laporkan ulasan ini\" dan akan dikirimkan kembali ke situs untuk dimoderasi. Tim moderasi kami akan "
-"menggunakan Panduan Ulasan untuk mengevaluasi apakah perlu menghapus atau tidak ulasan itu atau mengembalikannya ke situs."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Saya adalah penulis pengaya, bisakah saya merespon ulasan?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Ya, penulis pengaya bisa menyediakan satu respon untuk ulasan anda. Anda bisa menyetel topik diskusi dalam <a href=\"%(forum_url)s\">forum</a> anda untuk berhubungan dengan diskusi tambahan atau "
-"tindak lanjut."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Saya adalah penulis pengaya, bisakah saya menghapus ulasan atau peringkat yang kurang bagus?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"Secara umum, tidak. Namun jika tinjauan tidak memenuhi panduan di atas, Anda bisa mengklik \"Melaporkan tinjauan ini\" agar dimoderasi. Jika sebuah tinjauan menyertakan keluhan yang tidak lagi "
-"benar disebabkan rilisan baru pengaya Anda, kami akan mempertimbangkan untuk menghapus tinjauan itu."
 
 msgid "User"
 msgstr "Pengguna"
@@ -6051,6 +5924,9 @@ msgstr "Memuat data terbaru&hellip;"
 msgid "No data available."
 msgstr "Tidak ada data tersedia."
 
+msgid "Previous"
+msgstr "Sebelumnya"
+
 #, fuzzy
 msgid "This dashboard is <b>private</b>."
 msgstr "Papan saat ini dalam keadaan <b>privat</b>."
@@ -6200,9 +6076,6 @@ msgstr "Buka"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Kembali ke Beranda Pengaya {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Pengaya"
 
 msgid "Add-ons"
 msgstr "Pengaya"
