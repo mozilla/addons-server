@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-15 21:09+0000\n"
+"PO-Revision-Date: 2022-02-15 21:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2479,20 +2479,14 @@ msgstr "Powěsće w předchadnej wersiji a ignorowane schować"
 msgid "Top"
 msgstr "Horje"
 
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Hdyž swój přidatk zhašeće, so wšě wersije a dataje zhašeja, kotrež sće za tutón přidatk zapodał, nalistowane abo njenalistowane. ID přidatka wostanje dale z wašim kontom zwjazany, zo njebychu móhli "
-"druzy wersije zapodać, kotrež samsny ID wužiwaja."
+msgstr "Hdyž swój přidatk zhašeće, so wšě wersije a dataje na přeco zhašeja, kotrež sće za tutón přidatk zapodał, nalistowane abo njenalistowane."
 
-#, fuzzy
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Hdyž swój přidatk zhašeće, so wšě wersije a dataje zhašeja, kotrež sće za tutón přidatk zapodał, nalistowane abo njenalistowane. ID přidatka wostanje dale z wašim kontom zwjazany, zo njebychu móhli "
-"druzy wersije zapodać, kotrež samsny ID wužiwaja."
+msgstr "ID přidatka wostanje dale z wašim kontom zwjazany, zo njebychu móhli druzy wersije zapodać, kotrež samsny ID wužiwaja."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "ID přidatka njeda so wobnowić a njeda so na přeco za zapodaće wužiwać."
 
 msgid "Delete Add-on"
 msgstr "Přidatk zhašeć"
@@ -4484,9 +4478,8 @@ msgid "See all extensions"
 msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "Woblubowane rozšěrjenja"
+msgstr "Woblubowane rozšěrjenja přećiwo slědowanju"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
