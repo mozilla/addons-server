@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
+from django.contrib.auth import SESSION_KEY
 from django.test.utils import override_settings
 
 import pytest
@@ -225,10 +226,20 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
         super().setUp()
         self.get_fxa_token_mock = self.patch('olympia.accounts.verify.get_fxa_token')
 
-    def test_use_fake_fxa_auth(self):
-        yesterday = datetime.now() - timedelta(days=1)
+    def get_request(self, expiry_timestamp=None):
+        expiry_timestamp = (
+            expiry_timestamp or (datetime.now() - timedelta(days=1)).timestamp()
+        )
         request = mock.Mock()
-        request.session = {'fxa_access_token_expiry': yesterday.timestamp()}
+        request.session = {
+            SESSION_KEY: '1',
+            'fxa_access_token_expiry': expiry_timestamp,
+            'fxa_refresh_token': 'refreshing!',
+        }
+        return request
+
+    def test_use_fake_fxa_auth(self):
+        request = self.get_request()
         with override_settings(USE_FAKE_FXA_AUTH=True):
             verify.check_and_update_fxa_access_token(request)
             self.get_fxa_token_mock.assert_not_called()
@@ -237,9 +248,7 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
         self.get_fxa_token_mock.assert_called()
 
     def test_verify_access_token_setting_false(self):
-        yesterday = datetime.now() - timedelta(days=1)
-        request = mock.Mock()
-        request.session = {'fxa_access_token_expiry': yesterday.timestamp()}
+        request = self.get_request()
         with override_settings(VERIFY_FXA_ACCESS_TOKEN=False):
             verify.check_and_update_fxa_access_token(request)
             self.get_fxa_token_mock.assert_not_called()
@@ -248,22 +257,16 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
         self.get_fxa_token_mock.assert_called()
 
     def test_session_access_token_expiry_okay(self):
-        tomorrow = datetime.now() + timedelta(days=1)
-        request = mock.Mock()
-        request.session = {'fxa_access_token_expiry': tomorrow.timestamp()}
+        tomorrow = (datetime.now() + timedelta(days=1)).timestamp()
+        request = self.get_request(tomorrow)
 
         verify.check_and_update_fxa_access_token(request)
         self.get_fxa_token_mock.assert_not_called()
-        assert request.session['fxa_access_token_expiry'] == tomorrow.timestamp()
+        assert request.session['fxa_access_token_expiry'] == tomorrow
 
     @freeze_time()
     def test_refresh_success(self):
-        yesterday = datetime.now() - timedelta(days=1)
-        request = mock.Mock()
-        request.session = {
-            'fxa_access_token_expiry': yesterday.timestamp(),
-            'fxa_refresh_token': 'refreshing!',
-        }
+        request = self.get_request()
 
         # successfull refresh:
         self.get_fxa_token_mock.return_value = {
@@ -283,12 +286,8 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
 
     @freeze_time()
     def test_refresh_fail(self):
-        yesterday = datetime.now() - timedelta(days=1)
-        request = mock.Mock()
-        request.session = {
-            'fxa_access_token_expiry': yesterday.timestamp(),
-            'fxa_refresh_token': 'refreshing!',
-        }
+        yesterday = (datetime.now() - timedelta(days=1)).timestamp()
+        request = self.get_request(yesterday)
 
         self.get_fxa_token_mock.side_effect = verify.IdentificationError()
         with self.assertRaises(verify.IdentificationError):
@@ -297,4 +296,13 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
             refresh_token='refreshing!', config=settings.FXA_CONFIG['default']
         )
         # i.e. it's still expired
-        assert request.session['fxa_access_token_expiry'] == yesterday.timestamp()
+        assert request.session['fxa_access_token_expiry'] == yesterday
+
+    @freeze_time()
+    def test_refresh_token_missing(self):
+        request = self.get_request()
+        del request.session['fxa_refresh_token']
+
+        with self.assertRaises(verify.IdentificationError):
+            verify.check_and_update_fxa_access_token(request)
+        self.get_fxa_token_mock.assert_not_called()

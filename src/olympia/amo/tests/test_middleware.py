@@ -1,5 +1,6 @@
 from django import test
 from django.conf import settings
+from django.contrib.auth import SESSION_KEY
 from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponse, HttpResponseRedirect
 from django.test.client import RequestFactory
@@ -333,7 +334,7 @@ class TestTokenValidMiddleware(TestCase):
     def get_request(self, session=None):
         request = RequestFactory().get('/')
         request.user = self.user
-        request.session = session or {}
+        request.session = {SESSION_KEY: str(self.user.id), **(session or {})}
         return request
 
     def test_check_token_returns(self):
@@ -352,3 +353,9 @@ class TestTokenValidMiddleware(TestCase):
             next_path=path_with_query(request),
             action='signin',
         )
+
+    def test_anonymous_user(self):
+        request = RequestFactory().get('/')
+        request.session = {}
+        assert self.middleware(request) == self.response
+        self.update_token_mock.assert_not_called()
