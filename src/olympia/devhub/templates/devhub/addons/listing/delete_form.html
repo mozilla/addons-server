@@ -8,12 +8,7 @@
   {% if addon.is_soft_deleteable() %}
     <p class="warning">
       <b>
-          {% trans %}
-          Deleting your add-on will permanently delete all versions and files you
-          have submitted for this add-on, listed or not. The add-on ID will
-          continue to be linked to your account, so others won't be able to submit
-          versions using the same ID.
-          {% endtrans %}
+          {% include 'devhub/addons/listing/_delete_warning.html' %}
       </b>
     </p>
   {% endif %}
