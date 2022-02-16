@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-16 22:10+0000\n"
+"PO-Revision-Date: 2022-02-16 22:12+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4471,7 +4471,7 @@ msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "Top anti-tracking extensions"
-msgstr ""
+msgstr "Högt rankade tillägg mot spårning"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
