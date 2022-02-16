@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-16 06:21+0000\n"
+"PO-Revision-Date: 2022-02-16 06:24+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2458,7 +2458,7 @@ msgid "The add-on ID will continue to be linked to your account, so others won't
 msgstr "附加元件 ID 仍將連結至您的帳號，其他人無法以相同 ID 送出附加元件。"
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "附加元件 ID 無法恢復，也無法再用於新元件上架。"
 
 msgid "Delete Add-on"
 msgstr "刪除附加元件"
@@ -4385,23 +4385,23 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "把 emoji 隨身帶著走。"
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "限制會分散您的注意力、浪費時間的網站。"
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "清除 Twitter 上的雜亂內容。"
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "自訂 YouTube 以符合您的需求。"
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "直接從瀏覽器工具列刪除上網資料。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4416,9 +4416,8 @@ msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "熱門擴充套件"
+msgstr "熱門反追蹤擴充套件"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
