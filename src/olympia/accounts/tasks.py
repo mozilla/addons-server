@@ -56,7 +56,7 @@ def primary_email_change_event(user, event_date, email):
 def delete_user_event(user, event_date):
     """Process the delete user event."""
     if switch_is_active('fxa-account-delete'):
-        ActivityLog.create(amo.LOG.USER_DELETED, user, user=user)
+        ActivityLog.create(amo.LOG.USER_AUTO_DELETED, user, user=user)
         user.delete(addon_msg='Deleted via FxA account deletion')
         log.info(f'Account pk [{user.id}] deleted from FxA on {event_date}')
     else:

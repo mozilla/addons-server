@@ -81,7 +81,9 @@ class TestDeleteUserEvent(TestCase):
         assert not Collection.objects.filter(id=collection.id).exists()
         assert not another_addon.ratings.all().exists()
         delete_picture_mock.assert_called()
-        alog = ActivityLog.objects.get(user=self.user, action=amo.LOG.USER_DELETED.id)
+        alog = ActivityLog.objects.get(
+            user=self.user, action=amo.LOG.USER_AUTO_DELETED.id
+        )
         assert alog.arguments == [self.user]
 
     @override_switch('fxa-account-delete', active=True)
