@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-16 01:10+0000\n"
+"PO-Revision-Date: 2022-02-16 01:11+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2490,7 +2490,7 @@ msgid "The add-on ID will continue to be linked to your account, so others won't
 msgstr "ID додатка й надалі буде пов'язано з вашим обліковим записом, отже інші не зможуть відправляти версії використовуючи цей ID."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "ID додатка неможливо відновити, Він назавжди стане непридатним для відправлення."
 
 msgid "Delete Add-on"
 msgstr "Вилучити додаток"
