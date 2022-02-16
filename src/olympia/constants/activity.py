@@ -402,6 +402,11 @@ class USER_DELETED(_LOG):
     format = _('Account {user} deleted.')
 
 
+class USER_AUTO_DELETED(_LOG):
+    id = 62
+    format = _('Account {user} deleted, from Firefox Accounts event.')
+
+
 class CUSTOM_TEXT(_LOG):
     id = 98
     format = '{0}'
