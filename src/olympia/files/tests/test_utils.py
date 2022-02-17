@@ -58,24 +58,21 @@ class AppVersionsMixin:
         cls.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
 
 
-class TestExtractor(AppVersionsMixin, TestCase):
-    def test_no_manifest(self):
+class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
+    def test_parse_xpi_no_manifest(self):
         fake_zip = utils.make_xpi({'dummy': 'dummy'})
 
-        with self.assertRaises(utils.NoManifestFound) as exc:
-            utils.Extractor.parse(fake_zip)
+        with mock.patch(
+            'olympia.files.utils.get_file'
+        ) as get_file_mock, self.assertRaises(utils.NoManifestFound) as exc:
+            get_file_mock.return_value = fake_zip
+            utils.parse_xpi(None)
         assert isinstance(exc.exception, forms.ValidationError)
         assert exc.exception.message == ('No manifest.json found')
 
-    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    def test_parse_manifest_json(self, manifest_json_extractor):
-        fake_zip = utils.make_xpi({'manifest.json': ''})
-        utils.Extractor.parse(fake_zip)
-        assert manifest_json_extractor.called
-
     def test_static_theme_max_size(self):
         xpi_file = mock.Mock(size=settings.MAX_STATICTHEME_SIZE - 1)
-        manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
+        manifest = utils.ManifestJSONExtractor('{"theme": {}}').parse()
 
         # Calling to check it doesn't raise.
         assert utils.check_xpi_info(manifest, xpi_file=xpi_file)
@@ -88,21 +85,11 @@ class TestExtractor(AppVersionsMixin, TestCase):
         assert exc.value.message == 'Maximum size for WebExtension themes is 7.0 MB.'
 
         # dpuble check only static themes are limited
-        manifest = utils.ManifestJSONExtractor('/fake_path', '{}').parse()
+        manifest = utils.ManifestJSONExtractor('{}').parse()
         assert utils.check_xpi_info(manifest, xpi_file=xpi_file)
 
-
-class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
     def parse(self, base_data):
-        return utils.ManifestJSONExtractor('/fake_path', json.dumps(base_data)).parse()
-
-    def test_instanciate_without_data(self):
-        """Without data, we load the data from the file path."""
-        data = {'id': 'some-id'}
-        fake_zip = utils.make_xpi({'manifest.json': json.dumps(data)})
-
-        extractor = utils.ManifestJSONExtractor(zipfile.ZipFile(fake_zip))
-        assert extractor.data == data
+        return utils.ManifestJSONExtractor(json.dumps(base_data)).parse()
 
     def test_guid_from_applications(self):
         """Use applications>gecko>id for the guid."""
@@ -334,7 +321,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_static_theme(self):
-        manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
+        manifest = utils.ManifestJSONExtractor('{"theme": {}}').parse()
         utils.check_xpi_info(manifest)
         assert self.parse({'theme': {}})['type'] == amo.ADDON_STATICTHEME
 
@@ -389,7 +376,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_handle_utf_bom(self):
         manifest = b'\xef\xbb\xbf{"manifest_version": 2, "name": "..."}'
-        parsed = utils.ManifestJSONExtractor(None, manifest).parse()
+        parsed = utils.ManifestJSONExtractor(manifest).parse()
         assert parsed['name'] == '...'
 
     def test_raise_error_if_no_optional_id_support(self):
@@ -424,7 +411,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             "description": "A plain text description"
         }
         """
-        manifest = utils.ManifestJSONExtractor('/fake_path', json_string).parse()
+        manifest = utils.ManifestJSONExtractor(json_string).parse()
 
         assert manifest.get('name') == 'My Extension'
 
@@ -464,7 +451,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                     "devtools_page": "devtools/my-page.html"
                 }
                 """
-        parsed_data = utils.ManifestJSONExtractor('/fake_path', json_string).parse()
+        parsed_data = utils.ManifestJSONExtractor(json_string).parse()
 
         assert parsed_data['devtools_page'] == 'devtools/my-page.html'
 
@@ -537,9 +524,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
             'langpack_id': 'foo',
         }
 
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)
-        ).parse()
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
 
@@ -552,9 +537,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_langpack_not_targeting_versions_explicitly(self):
         data = {'applications': {'gecko': {'id': '@langp'}}, 'langpack_id': 'foo'}
 
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)
-        ).parse()
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
 
@@ -573,9 +556,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
             'dictionaries': {'en-US': '/path/to/en-US.dic'},
         }
 
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)
-        ).parse()
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
         assert parsed_data['type'] == amo.ADDON_DICT
         assert parsed_data['strict_compatibility'] is False
         assert parsed_data['target_locale'] == 'en-US'
@@ -589,7 +570,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_broken_dictionary(self):
         data = {'dictionaries': {}}
         with self.assertRaises(forms.ValidationError):
-            utils.ManifestJSONExtractor('/fake_path', json.dumps(data)).parse()
+            utils.ManifestJSONExtractor(json.dumps(data)).parse()
 
     def test_check_xpi_info_langpack_submission_restrictions(self):
         user = user_factory()
@@ -606,9 +587,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
             },
             'langpack_id': 'foo',
         }
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path.xpi', json.dumps(data)
-        ).parse()
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
 
         with self.assertRaises(ValidationError):
             # Regular users aren't allowed to submit langpacks.
@@ -622,9 +601,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
 
 class TestSitePermission(AppVersionsMixin, TestCase):
     def parse(self):
-        return utils.ManifestJSONExtractor(
-            '/fake_path', '{"site_permissions": ["webmidi"]}'
-        ).parse()
+        return utils.ManifestJSONExtractor('{"site_permissions": ["webmidi"]}').parse()
 
     def test_allow_regular_submission_of_site_permissions_addons_with_permission(self):
         user = user_factory()
