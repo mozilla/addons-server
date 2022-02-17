@@ -381,6 +381,7 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
         # loudly in sentry.
         if parsed_data is None:
             parsed_data = parse_addon(upload, addon, user=upload.user)
+        new_addon = not Version.unfiltered.filter(addon=addon).exists()
         version = Version.from_upload(
             upload,
             addon,
@@ -388,7 +389,6 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
             selected_apps=[x[0] for x in amo.APPS_CHOICES],
             parsed_data=parsed_data,
         )
-        new_addon = not Version.unfiltered.filter(addon=addon).exists()
         channel_name = amo.CHANNEL_CHOICES_API[channel]
         # This function is only called via the signing api flow
         statsd.incr(
