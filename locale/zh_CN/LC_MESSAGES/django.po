@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-15 22:53+0000\n"
+"PO-Revision-Date: 2022-02-19 23:48+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2434,13 +2434,11 @@ msgstr "隐藏存在于上一版本并且已忽略的消息"
 msgid "Top"
 msgstr "回到顶部"
 
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr "删除您的附加组件将永久删除您已提交的该附加组件的所有版本和文件，无论其是否已上架。该附加组件 ID 将继续链接到您的账号，其他人不能使用同一 ID 提交版本。"
+msgstr "删除附加组件的话，将会永久删除您为此附加组件提交的所有版本和文件，不论上架与否。"
 
-#, fuzzy
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr "删除您的附加组件将永久删除您已提交的该附加组件的所有版本和文件，无论其是否已上架。该附加组件 ID 将继续链接到您的账号，其他人不能使用同一 ID 提交版本。"
+msgstr "附加组件 ID 仍将链接至您的账户，其他人无法使用相同 ID 提交附加组件。"
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
