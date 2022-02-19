@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-16 14:08+0000\n"
+"PO-Revision-Date: 2022-02-16 14:20+0000\n"
 "Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4554,7 +4554,7 @@ msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
 msgid "Top anti-tracking extensions"
-msgstr ""
+msgstr "Le migliori estensioni antitracciamento"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
