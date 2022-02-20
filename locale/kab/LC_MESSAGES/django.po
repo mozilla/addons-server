@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-20 12:20+0000\n"
+"PO-Revision-Date: 2022-02-20 12:31+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1304,13 +1304,11 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Turagt"
+msgstr "Turagt n MIT"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Turagt"
+msgstr "Turagt n BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr ""
@@ -1734,11 +1732,9 @@ msgstr ""
 msgid "Display Name"
 msgstr "Sken-d Isem"
 
-#, fuzzy
 msgid "Origin"
 msgstr "Aɣbalu:"
 
-#, fuzzy
 msgid "Permissions"
 msgstr "Tisirag:"
 
@@ -1999,9 +1995,8 @@ msgstr "Nadi tasemlit n tneflit"
 msgid "Search"
 msgstr "Nadi"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "Tisirag:"
+msgstr "Sirew azegrir n tsiregt n usmel"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
 msgstr ""
