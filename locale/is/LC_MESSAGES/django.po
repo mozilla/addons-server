@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-17 09:43+0000\n"
+"PO-Revision-Date: 2022-02-20 15:37+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -4528,7 +4528,7 @@ msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Ógild safnskrá."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4946,7 +4946,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Meðferð persónuupplýsinga"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Misnotkunarskýrslur – {addon} – Viðbætur fyrir Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
