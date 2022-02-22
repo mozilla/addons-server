@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-20 08:03+0000\n"
+"PO-Revision-Date: 2022-02-22 07:45+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -707,9 +707,8 @@ msgstr "Goedgekeurd maar wacht"
 msgid "Account updated."
 msgstr "Rekening bijgewerkt."
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "Rekening bijgewerkt."
+msgstr "Account {user} verwijderd."
 
 msgid "Created: {0}."
 msgstr "Gemaakt: {0}."
@@ -2489,17 +2488,11 @@ msgstr "Berichten van eerdere versie en genegeerd verbergen"
 msgid "Top"
 msgstr "Bovenzijde"
 
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Door uw add-on te verwijderen, worden alle versies en bestanden die u voor deze add-on hebt ingediend voorgoed verwijderd, vermeld of niet. De add-on-ID blijft nog wel aan uw account gekoppeld, "
-"zodat anderen geen versies via dezelfde ID kunnen indienen."
+msgstr "Door uw add-on te verwijderen, worden alle versies en bestanden die u voor deze add-on hebt ingediend voorgoed verwijderd, vermeld of niet."
 
-#, fuzzy
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Door uw add-on te verwijderen, worden alle versies en bestanden die u voor deze add-on hebt ingediend voorgoed verwijderd, vermeld of niet. De add-on-ID blijft nog wel aan uw account gekoppeld, "
-"zodat anderen geen versies via dezelfde ID kunnen indienen."
+msgstr "De add-on-ID blijft nog wel aan uw account gekoppeld, zodat anderen geen versies via dezelfde ID kunnen indienen."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr "De add-on-ID kan niet worden hersteld en kan nooit meer worden gebruikt voor indienen."
@@ -4496,9 +4489,8 @@ msgid "See all extensions"
 msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "Populaire extensies"
+msgstr "Beste anti-trackingextensies"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
