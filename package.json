@@ -9,7 +9,7 @@
     "@claviska/jquery-minicolors": "2.3.6",
     "addons-linter": "4.11.0",
     "clean-css": "5.2.4",
-    "clean-css-cli": "5.5.0",
+    "clean-css-cli": "5.5.2",
     "jqmodal": "1.4.2",
     "jquery": "3.6.0",
     "jquery-pjax": "2.0.1",
