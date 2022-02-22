@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-20 14:41+0000\n"
-"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
+"PO-Revision-Date: 2022-02-21 14:38+0000\n"
+"Last-Translator: hoangsonnguyen97 <hoangsonnguyen97@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,7 @@ msgstr "Công cụ đánh giá"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Đã khởi tạo giải nén Git cho \"%(addons)s\"."
 
 msgid "- Add-on not on AMO -"
 msgstr "- Tiện ích không có trên AMO -"
@@ -1233,7 +1233,7 @@ msgid "Download Firefox themes with movies and television. This category include
 msgstr "Tải các chủ đề Firefox về phim và điện ảnh. Thể loại này bao gồm các anime như Uchiha Madara, các bộ phim như The Matrix, các shows (Games of Thrones), v.v."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Tải các chủ đề Firefox cùng với chủ đề trình duyệt Firefox. Thể loại này bao gồm các phiên bản màu sắc đa dạng của logo Firefox, bao gồm nhiều chủ đề fox chung."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
@@ -1606,7 +1606,7 @@ msgid "Scheduled"
 msgstr "Đã lên lịch"
 
 msgid "Core"
-msgstr ""
+msgstr "Cốt lõi"
 
 #, python-format
 msgid "Recent Changes for %s"
