@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-15 18:17+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -709,6 +709,9 @@ msgid "Account updated."
 msgstr ""
 
 msgid "Account {user} deleted."
+msgstr ""
+
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr ""
 
 msgid "Created: {0}."

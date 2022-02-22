@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-15 18:17+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,11 +125,11 @@ msgstr ""
 msgid "You could not be logged in. Please try again."
 msgstr ""
 
-#: src/olympia/accounts/views.py:206
+#: src/olympia/accounts/views.py:203
 msgid "Need help?"
 msgstr ""
 
-#: src/olympia/accounts/views.py:794
+#: src/olympia/accounts/views.py:791
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr ""
@@ -979,275 +979,279 @@ msgstr ""
 msgid "Account {user} deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:417
+#: src/olympia/constants/activity.py:407
+msgid "Account {user} deleted, from Firefox Accounts event."
+msgstr ""
+
+#: src/olympia/constants/activity.py:422
 msgid "Created: {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:423
+#: src/olympia/constants/activity.py:428
 msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:429
+#: src/olympia/constants/activity.py:434
 msgid "Deleted: {1}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:435
+#: src/olympia/constants/activity.py:440
 msgid "User {user} edited, reason: {1}"
 msgstr ""
 
-#: src/olympia/constants/activity.py:441
+#: src/olympia/constants/activity.py:446
 msgid "User {user} anonymized."
 msgstr ""
 
-#: src/olympia/constants/activity.py:448
+#: src/olympia/constants/activity.py:453
 msgid "User {user} restricted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:455
+#: src/olympia/constants/activity.py:460
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:462
+#: src/olympia/constants/activity.py:467
 msgid "{rating} for {addon} updated."
 msgstr ""
 
-#: src/olympia/constants/activity.py:469
+#: src/olympia/constants/activity.py:474
 msgid "{addon} reviewed."
 msgstr ""
 
-#: src/olympia/constants/activity.py:475
+#: src/olympia/constants/activity.py:480
 msgid "User {user} banned."
 msgstr ""
 
-#: src/olympia/constants/activity.py:482
+#: src/olympia/constants/activity.py:487
 msgid "User {user} picture deleted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:489
+#: src/olympia/constants/activity.py:494
 msgid "User {0.name} added to {group}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:497
+#: src/olympia/constants/activity.py:502
 msgid "User {0.name} removed from {group}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:504
+#: src/olympia/constants/activity.py:509
 msgid "{addon} unlisted."
 msgstr ""
 
-#: src/olympia/constants/activity.py:510 src/olympia/constants/activity.py:517
-#: src/olympia/constants/activity.py:532 src/olympia/constants/activity.py:538
-#: src/olympia/constants/activity.py:545 src/olympia/constants/activity.py:553
-#: src/olympia/constants/activity.py:561
+#: src/olympia/constants/activity.py:515 src/olympia/constants/activity.py:522
+#: src/olympia/constants/activity.py:537 src/olympia/constants/activity.py:543
+#: src/olympia/constants/activity.py:550 src/olympia/constants/activity.py:558
+#: src/olympia/constants/activity.py:566
 msgid "{file} was signed."
 msgstr ""
 
 #. L10n: {0} is the add-on GUID.
-#: src/olympia/constants/activity.py:525
+#: src/olympia/constants/activity.py:530
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#: src/olympia/constants/activity.py:567
+#: src/olympia/constants/activity.py:572
 msgid "{addon} migrated from preliminary."
 msgstr ""
 
-#: src/olympia/constants/activity.py:574
+#: src/olympia/constants/activity.py:579
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:575
+#: src/olympia/constants/activity.py:580
 msgid "Developer Reply"
 msgstr ""
 
-#: src/olympia/constants/activity.py:583
+#: src/olympia/constants/activity.py:588
 msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:584
+#: src/olympia/constants/activity.py:589
 msgid "Reviewer Reply"
 msgstr ""
 
-#: src/olympia/constants/activity.py:591
+#: src/olympia/constants/activity.py:596
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:592
+#: src/olympia/constants/activity.py:597
 msgid "Approval notes changed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:600
+#: src/olympia/constants/activity.py:605
 msgid "Source code uploaded for {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:601
+#: src/olympia/constants/activity.py:606
 msgid "Source code uploaded"
 msgstr ""
 
-#: src/olympia/constants/activity.py:609
+#: src/olympia/constants/activity.py:614
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:610
+#: src/olympia/constants/activity.py:615
 msgid "Auto-Approval confirmed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:619
+#: src/olympia/constants/activity.py:624
 msgid "{addon} {version} re-enabled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:625
+#: src/olympia/constants/activity.py:630
 msgid "{addon} {version} disabled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:631
+#: src/olympia/constants/activity.py:636
 msgid "{addon} {version} content approved."
 msgstr ""
 
-#: src/olympia/constants/activity.py:632
+#: src/olympia/constants/activity.py:637
 msgid "Content approved"
 msgstr ""
 
-#: src/olympia/constants/activity.py:642
+#: src/olympia/constants/activity.py:647
 msgid "{addon} {version} content rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:643
+#: src/olympia/constants/activity.py:648
 msgid "Content rejected"
 msgstr ""
 
-#: src/olympia/constants/activity.py:652
+#: src/olympia/constants/activity.py:657
 msgid "{addon} information request altered or removed by admin."
 msgstr ""
 
-#: src/olympia/constants/activity.py:653
+#: src/olympia/constants/activity.py:658
 msgid "Information request altered"
 msgstr ""
 
-#: src/olympia/constants/activity.py:661
+#: src/olympia/constants/activity.py:666
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:662
+#: src/olympia/constants/activity.py:667
 msgid "Information request removed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:669
+#: src/olympia/constants/activity.py:674
 msgid "{addon} {version} admin add-on-review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:670
+#: src/olympia/constants/activity.py:675
 msgid "Admin add-on-review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:679
+#: src/olympia/constants/activity.py:684
 msgid "{addon} {version} admin content-review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:680
+#: src/olympia/constants/activity.py:685
 msgid "Admin content-review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:689
+#: src/olympia/constants/activity.py:694
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
 
-#: src/olympia/constants/activity.py:690
+#: src/olympia/constants/activity.py:695
 msgid "Admin theme-review requested"
 msgstr ""
 
-#: src/olympia/constants/activity.py:700
+#: src/olympia/constants/activity.py:705
 msgid "{addon} was migrated from a lightweight theme."
 msgstr ""
 
-#: src/olympia/constants/activity.py:706
+#: src/olympia/constants/activity.py:711
 msgid "User {user} api key reset."
 msgstr ""
 
-#: src/olympia/constants/activity.py:715
+#: src/olympia/constants/activity.py:720
 msgid "Block for {0} added to Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:716
+#: src/olympia/constants/activity.py:721
 msgid "Block added"
 msgstr ""
 
-#: src/olympia/constants/activity.py:724
+#: src/olympia/constants/activity.py:729
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:725
+#: src/olympia/constants/activity.py:730
 msgid "Block edited"
 msgstr ""
 
-#: src/olympia/constants/activity.py:733
+#: src/olympia/constants/activity.py:738
 msgid "Block for {0} deleted from Blocklist."
 msgstr ""
 
-#: src/olympia/constants/activity.py:734
+#: src/olympia/constants/activity.py:739
 msgid "Block deleted"
 msgstr ""
 
-#: src/olympia/constants/activity.py:742
+#: src/olympia/constants/activity.py:747
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
 
-#: src/olympia/constants/activity.py:750
+#: src/olympia/constants/activity.py:755
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr ""
 
-#: src/olympia/constants/activity.py:757
+#: src/olympia/constants/activity.py:762
 msgid "Block {1} action for {0} signed off."
 msgstr ""
 
-#: src/olympia/constants/activity.py:758
+#: src/olympia/constants/activity.py:763
 msgid "Block action signoff"
 msgstr ""
 
-#: src/olympia/constants/activity.py:763
+#: src/olympia/constants/activity.py:768
 msgid "User {user} session(s) reset."
 msgstr ""
 
-#: src/olympia/constants/activity.py:769
+#: src/olympia/constants/activity.py:774
 msgid "User {user} throttled for scope \"{0}\""
 msgstr ""
 
-#: src/olympia/constants/activity.py:776
+#: src/olympia/constants/activity.py:781
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:777
+#: src/olympia/constants/activity.py:782
 msgid "Content reject scheduled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:788
+#: src/olympia/constants/activity.py:793
 msgid "{addon} {version} reject scheduled."
 msgstr ""
 
-#: src/olympia/constants/activity.py:789
+#: src/olympia/constants/activity.py:794
 msgid "Rejection scheduled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:799
+#: src/olympia/constants/activity.py:804
 msgid "{addon} {version} re-signed (previously {0})."
 msgstr ""
 
-#: src/olympia/constants/activity.py:800
+#: src/olympia/constants/activity.py:805
 msgid "Version re-signed"
 msgstr ""
 
-#: src/olympia/constants/activity.py:811
+#: src/olympia/constants/activity.py:816
 msgid "{user} force-disabled {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:812
+#: src/olympia/constants/activity.py:817
 msgid "Force disabled"
 msgstr ""
 
-#: src/olympia/constants/activity.py:820
+#: src/olympia/constants/activity.py:825
 msgid "{user} force-enabled {addon}."
 msgstr ""
 
-#: src/olympia/constants/activity.py:821
+#: src/olympia/constants/activity.py:826
 msgid "Force enabled"
 msgstr ""
 
@@ -2386,7 +2390,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:775 src/olympia/files/utils.py:743
+#: src/olympia/devhub/forms.py:775 src/olympia/files/utils.py:719
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -6646,111 +6650,111 @@ msgstr ""
 msgid "See more trending extensions"
 msgstr ""
 
-#: src/olympia/files/utils.py:217 src/olympia/files/utils.py:837
-#: src/olympia/files/utils.py:841
+#: src/olympia/files/utils.py:193 src/olympia/files/utils.py:827
+#: src/olympia/files/utils.py:831
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:337
+#: src/olympia/files/utils.py:313
 msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:347
+#: src/olympia/files/utils.py:323
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:375
+#: src/olympia/files/utils.py:351
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:389
+#: src/olympia/files/utils.py:365
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:548
+#: src/olympia/files/utils.py:524
 msgid "Unsupported archive type."
 msgstr ""
 
-#: src/olympia/files/utils.py:556
+#: src/olympia/files/utils.py:532
 msgid ""
 "Invalid file name in archive. Please make sure all filenames are utf-8 or "
 "latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:571
+#: src/olympia/files/utils.py:547
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:577
+#: src/olympia/files/utils.py:553
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:609
+#: src/olympia/files/utils.py:585
 msgid "Uncompressed size is too large"
 msgstr ""
 
-#: src/olympia/files/utils.py:655
+#: src/olympia/files/utils.py:631
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:870
+#: src/olympia/files/utils.py:860
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json (%s) does not match the ID of your add-on"
 " on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:885
+#: src/olympia/files/utils.py:875
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:888
+#: src/olympia/files/utils.py:878
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:892
+#: src/olympia/files/utils.py:882
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:902
+#: src/olympia/files/utils.py:892
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:915 src/olympia/files/utils.py:944
+#: src/olympia/files/utils.py:905 src/olympia/files/utils.py:934
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:919
+#: src/olympia/files/utils.py:909
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
-#: src/olympia/files/utils.py:924
+#: src/olympia/files/utils.py:914
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:934
+#: src/olympia/files/utils.py:924
 msgid ""
 "Add-ons using an ID ending with this suffix need to be signed with privileged"
 " certificate before being submitted"
 msgstr ""
 
-#: src/olympia/files/utils.py:941
+#: src/olympia/files/utils.py:931
 msgid "You cannot submit a language pack"
 msgstr ""
 
-#: src/olympia/files/utils.py:976
+#: src/olympia/files/utils.py:966
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
-#: src/olympia/files/utils.py:984
+#: src/olympia/files/utils.py:974
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:988
+#: src/olympia/files/utils.py:978
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
