@@ -48,7 +48,7 @@ from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED, SPONSORE
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
-from olympia.files.utils import Extractor, parse_addon
+from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
@@ -2455,7 +2455,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.addCleanup(translation.deactivate)
 
         def _app(application):
-            return Extractor.App(
+            return ManifestJSONExtractor.App(
                 appdata=application,
                 id=application.id,
                 min=AppVersion.objects.get(

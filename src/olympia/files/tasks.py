@@ -54,10 +54,8 @@ def repack_fileupload(results, upload_pk):
                             xpi_data = parse_xpi(upload.path, minimal=True)
 
                             if not xpi_data.get('is_mozilla_signed_extension', False):
-                                # We don't need a `zip_file` because we are only
-                                # interested in the extracted data.
                                 json_data = ManifestJSONExtractor(
-                                    zip_file=None, data=manifest.read_bytes()
+                                    manifest.read_bytes()
                                 ).data
                                 manifest.write_text(json.dumps(json_data, indent=2))
                         except Exception:

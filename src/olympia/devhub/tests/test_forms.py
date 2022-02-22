@@ -231,14 +231,16 @@ class TestNewUploadForm(TestCase):
             form = forms.NewUploadForm(data, request=request)
             assert form.is_valid()
 
-    # Those three patches are so files.utils.parse_addon doesn't fail on a
+    # Those five patches are so files.utils.parse_addon doesn't fail on a
     # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('olympia.files.utils.Extractor.parse')
+    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
+    @mock.patch('olympia.files.utils.SafeZip', lambda zip: mock.Mock())
+    @mock.patch('olympia.files.utils.SigningCertificateInformation', lambda cert: None)
     @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
     @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
     # This is the one we want to test.
     @mock.patch('olympia.files.utils.check_xpi_info')
-    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
+    def test_check_xpi_called(self, mock_check_xpi_info, manifest_extractor_parse):
         """Make sure the check_xpi_info helper is called.
 
         There's some important checks made in check_xpi_info, if we ever
@@ -246,7 +248,7 @@ class TestNewUploadForm(TestCase):
         checks are run at some point.
         """
         user = user_factory()
-        mock_parse.return_value = None
+        manifest_extractor_parse.parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
         upload = FileUpload.objects.create(
             valid=True,

@@ -40,7 +40,7 @@ from olympia.files.models import (
     nfd_str,
     track_file_status_change,
 )
-from olympia.files.utils import Extractor, check_xpi_info, parse_addon
+from olympia.files.utils import check_xpi_info, ManifestJSONExtractor, parse_addon
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -549,13 +549,13 @@ class TestParseXpi(TestCase):
 
     def test_parse_apps(self):
         expected = [
-            Extractor.App(
+            ManifestJSONExtractor.App(
                 amo.FIREFOX,
                 amo.FIREFOX.id,
                 AppVersion.objects.get(application=amo.FIREFOX.id, version='42.0'),
                 AppVersion.objects.get(application=amo.FIREFOX.id, version='*'),
             ),
-            Extractor.App(
+            ManifestJSONExtractor.App(
                 amo.ANDROID,
                 amo.ANDROID.id,
                 AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'),
