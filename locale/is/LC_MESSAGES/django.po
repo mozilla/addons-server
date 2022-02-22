@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-20 15:37+0000\n"
+"PO-Revision-Date: 2022-02-22 14:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -692,9 +692,8 @@ msgstr "Samþykkt en bíður"
 msgid "Account updated."
 msgstr "Aðgangur uppfærður."
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "Aðgangur uppfærður."
+msgstr "Reikningnum {user} eytt."
 
 msgid "Created: {0}."
 msgstr "Búið til: {0}."
@@ -1007,7 +1006,7 @@ msgid "Plugins"
 msgstr "Viðbætur"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "Úreltir LWT"
 
 msgid "Themes (Static)"
 msgstr "Þemu (föst - static)"
@@ -4365,9 +4364,8 @@ msgid "See all extensions"
 msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "Þemu á uppleið"
+msgstr "Vinsælustu viðbætur gegn rekjurum"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -5800,7 +5798,7 @@ msgid "Focus Browser"
 msgstr "Focus vafra"
 
 msgid "Desktop Browser"
-msgstr "Borðtölvuvafra"
+msgstr "Vinnutölvuvafra"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr "Beta-prófunar, daglegar, þróunarútgáfur"
