@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-15 18:17+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -720,6 +720,9 @@ msgid "Account updated."
 msgstr ""
 
 msgid "Account {user} deleted."
+msgstr ""
+
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr ""
 
 msgid "Created: {0}."

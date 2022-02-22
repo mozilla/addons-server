@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-15 18:17+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -681,6 +681,9 @@ msgid "Account updated."
 msgstr ""
 
 msgid "Account {user} deleted."
+msgstr ""
+
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr ""
 
 msgid "Created: {0}."

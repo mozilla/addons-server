@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-15 18:17+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -721,6 +721,10 @@ msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
 
 #, fuzzy
 msgid "Account {user} deleted."
+msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹੋਇਆ।"
 
 msgid "Created: {0}."

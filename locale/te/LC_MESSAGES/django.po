@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-15 18:17+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2022-01-03 14:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -681,6 +681,10 @@ msgstr "ఖాతా నవీకరించబడింది."
 
 #, fuzzy
 msgid "Account {user} deleted."
+msgstr "ఖాతా నవీకరించబడింది."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "ఖాతా నవీకరించబడింది."
 
 msgid "Created: {0}."

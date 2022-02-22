@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-15 18:17+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2021-05-26 05:01+0000\n"
 "Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -695,6 +695,10 @@ msgstr "อัปเดตบัญชีแล้ว"
 
 #, fuzzy
 msgid "Account {user} deleted."
+msgstr "อัปเดตบัญชีแล้ว"
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "อัปเดตบัญชีแล้ว"
 
 msgid "Created: {0}."
