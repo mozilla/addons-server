@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-15 18:17+0000\n"
-"PO-Revision-Date: 2022-02-19 12:43+0000\n"
-"Last-Translator: Daremo <kokorosan@free.fr>\n"
+"PO-Revision-Date: 2022-02-22 09:33+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2533,13 +2533,13 @@ msgid "Top"
 msgstr "Haut de page"
 
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
+msgstr "Supprimer votre module complémentaire détruira définitivement toutes les versions et fichiers soumis pour ce module complémentaire, qu’ils soient répertoriés ou non."
 
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
+msgstr "L’identifiant du module complémentaire (son ID) continuera d’être attaché à votre compte, personne ne pourra donc soumettre de versions utilisant ce même ID."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "L’ID du module complémentaire ne peut être restauré et sera à jamais inutilisable pour une soumission."
 
 msgid "Delete Add-on"
 msgstr "Supprimer le module"
@@ -4549,7 +4549,7 @@ msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Top anti-tracking extensions"
-msgstr ""
+msgstr "Extensions populaires contre le pistage"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
