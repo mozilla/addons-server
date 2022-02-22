@@ -144,12 +144,9 @@ def find_user(identity):
         return user
     except UserProfile.DoesNotExist:
         return None
-    except UserProfile.MultipleObjectsReturned:
-        # This shouldn't happen, so let it raise.
-        log.error(
-            'Found multiple users for %s and %s', identity['email'], identity['uid']
-        )
-        raise
+    # UserProfile.MultipleObjectsReturned might be raised here. This is
+    # expected, we don't know what to do in this case so we let the exception
+    # happen loudly.
 
 
 def register_user(identity):
