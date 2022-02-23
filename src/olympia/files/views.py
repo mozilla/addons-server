@@ -15,7 +15,6 @@ from olympia.amo.utils import HttpResponseXSendFile
 from olympia.api.authentication import (
     JWTKeyAuthentication,
     SessionIDAuthentication,
-    WebTokenAuthentication,
 )
 from olympia.api.permissions import AllowOwner, APIGatePermission
 from olympia.api.throttling import file_upload_throttles
@@ -65,7 +64,6 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
     ]
     authentication_classes = [
         JWTKeyAuthentication,
-        WebTokenAuthentication,
         SessionIDAuthentication,
     ]
     lookup_field = 'uuid'

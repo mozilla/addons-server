@@ -6,7 +6,7 @@ from django.urls.exceptions import NoReverseMatch
 from olympia import amo
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.amo.tests import (
-    APITestClientWebToken,
+    APITestClientSessionID,
     TestCase,
     addon_factory,
     reverse_ns,
@@ -30,7 +30,7 @@ from olympia.scanners.serializers import ScannerResultSerializer
 
 @pytest.mark.internal_routes_allowed
 class TestScannerResultViewInternal(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()

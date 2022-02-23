@@ -6,10 +6,8 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
-from django.core import signing
 from django.test import RequestFactory
 from django.urls import reverse
-from django.utils.encoding import force_bytes
 
 import jwt
 
@@ -23,8 +21,8 @@ from olympia import core
 from olympia.accounts.verify import IdentificationError
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClientWebToken,
     APITestClientSessionID,
+    APITestClientJWT,
     TestCase,
     WithDynamicEndpoints,
     user_factory,
@@ -32,7 +30,6 @@ from olympia.amo.tests import (
 from olympia.api.authentication import (
     JWTKeyAuthentication,
     SessionIDAuthentication,
-    WebTokenAuthentication,
 )
 from olympia.api.tests import JWTAuthKeyTester
 
@@ -54,7 +51,7 @@ class JWTKeyAuthTestView(APIView):
 
 
 class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientJWT
 
     def setUp(self):
         super().setUp()
@@ -181,7 +178,7 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
 
 
 class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientJWT
 
     def setUp(self):
         super().setUp()
@@ -218,167 +215,6 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCa
         token = self.create_auth_token(api_key.user, api_key.key, api_key.secret)
         res = self.jwt_request(token, 'post', {})
         assert res.status_code == 401, res.content
-
-
-class TestWebTokenAuthentication(TestCase):
-    client_class = APITestClientWebToken
-
-    def setUp(self):
-        super().setUp()
-        self.auth = WebTokenAuthentication()
-        self.factory = RequestFactory()
-        self.user = user_factory(read_dev_agreement=datetime.now())
-
-    def _authenticate(self, token):
-        url = absolutify('/api/v4/whatever/')
-        prefix = WebTokenAuthentication.auth_header_prefix
-        request = self.factory.post(
-            url,
-            HTTP_HOST='testserver',
-            HTTP_AUTHORIZATION=f'{prefix} {token}',
-        )
-
-        return self.auth.authenticate(request)
-
-    def test_success(self):
-        token = self.client.generate_api_token(self.user)
-        user, _ = self._authenticate(token)
-        assert user == self.user
-
-    def test_authenticate_header(self):
-        request = self.factory.post('/api/v4/whatever/')
-        assert (
-            self.auth.authenticate_header(request)
-            == 'Bearer realm="Access to addons.mozilla.org internal API"'
-        )
-
-    def test_wrong_header_only_prefix(self):
-        request = self.factory.post(
-            '/api/v4/whatever/',
-            HTTP_AUTHORIZATION=WebTokenAuthentication.auth_header_prefix,
-        )
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self.auth.authenticate(request)
-        assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
-        assert exp.exception.detail['detail'] == (
-            'Invalid Authorization header. No credentials provided.'
-        )
-
-    def test_wrong_header_too_many_spaces(self):
-        request = self.factory.post(
-            '/api/v4/whatever/',
-            HTTP_AUTHORIZATION='{} foo bar'.format(
-                WebTokenAuthentication.auth_header_prefix
-            ),
-        )
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self.auth.authenticate(request)
-        assert exp.exception.detail['code'] == 'ERROR_INVALID_HEADER'
-        assert exp.exception.detail['detail'] == (
-            'Invalid Authorization header. '
-            'Credentials string should not contain spaces.'
-        )
-
-    def test_no_token(self):
-        request = self.factory.post('/api/v4/whatever/')
-        self.auth.authenticate(request) is None
-
-    def test_expired_token(self):
-        old_date = datetime.now() - timedelta(seconds=settings.SESSION_COOKIE_AGE + 1)
-        with freeze_time(old_date):
-            token = self.client.generate_api_token(self.user)
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_SIGNATURE_EXPIRED'
-        assert exp.exception.detail['detail'] == 'Signature has expired.'
-
-    def test_still_valid_token(self):
-        not_so_old_date = datetime.now() - timedelta(
-            seconds=settings.SESSION_COOKIE_AGE - 30
-        )
-        with freeze_time(not_so_old_date):
-            token = self.client.generate_api_token(self.user)
-        assert self._authenticate(token)[0] == self.user
-
-    def test_bad_token(self):
-        token = 'garbage'
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_DECODING_SIGNATURE'
-        assert exp.exception.detail['detail'] == 'Error decoding signature.'
-
-    def test_user_id_is_none(self):
-        token = self.client.generate_api_token(self.user, user_id=None)
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert 'code' not in exp.exception.detail
-
-    def test_no_user_id_in_payload(self):
-        data = {
-            'auth_hash': self.user.get_session_auth_hash(),
-        }
-        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert 'code' not in exp.exception.detail
-
-    def test_no_auth_hash_in_payload(self):
-        data = {
-            'user_id': self.user.pk,
-        }
-        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
-        assert (
-            exp.exception.detail['detail']
-            == 'Auth hash mismatch. Session is likely expired.'
-        )
-
-    def test_user_deleted(self):
-        self.user.delete()
-        token = self.client.generate_api_token(self.user)
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert 'code' not in exp.exception.detail
-
-    def test_invalid_user_not_found(self):
-        token = self.client.generate_api_token(self.user, user_id=-1)
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert 'code' not in exp.exception.detail
-
-    def test_invalid_user_other_user(self):
-        user2 = user_factory(read_dev_agreement=datetime.now())
-        token = self.client.generate_api_token(self.user, user_id=user2.pk)
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
-        assert (
-            exp.exception.detail['detail']
-            == 'Auth hash mismatch. Session is likely expired.'
-        )
-
-    def test_wrong_auth_id(self):
-        token = self.client.generate_api_token(self.user)
-        self.user.update(auth_id=self.user.auth_id + 42)
-        with self.assertRaises(AuthenticationFailed) as exp:
-            self._authenticate(token)
-        assert exp.exception.detail['code'] == 'ERROR_AUTHENTICATION_EXPIRED'
-        assert (
-            exp.exception.detail['detail']
-            == 'Auth hash mismatch. Session is likely expired.'
-        )
-
-    def test_make_sure_token_is_decodable(self):
-        token = self.client.generate_api_token(self.user)
-        # A token is really a string containing the json dict,
-        # a timestamp and a signature, separated by ':'. The base64 encoding
-        # lacks padding, which is why we need to use signing.b64_decode() which
-        # handles that for us.
-        data = json.loads(signing.b64_decode(force_bytes(token.split(':')[0])))
-        assert data['user_id'] == self.user.pk
-        assert data['auth_hash'] == self.user.get_session_auth_hash()
 
 
 class TestSessionIDAuthentication(TestCase):

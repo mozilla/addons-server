@@ -217,7 +217,7 @@
 {% endif %}
 
 {% if not addon.is_deleted or is_admin %}
-<form class="more-actions" id="extra-review-actions" data-api-token="{{ api_token }}">
+<form class="more-actions" id="extra-review-actions" data-session-id="{{ session_id }}">
   <p><strong>{{ _('More Actions') }}</strong></p>
   <div class="more-actions-inner">
     <ul>

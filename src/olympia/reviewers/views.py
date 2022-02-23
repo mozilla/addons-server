@@ -39,7 +39,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
 from olympia.addons.models import (
     Addon,
@@ -825,7 +824,6 @@ def review(request, addon, channel=None):
         actions_reasons=actions_reasons,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
-        api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info,
         auto_approval_info=auto_approval_info,
         base_version=base_version,
@@ -851,6 +849,7 @@ def review(request, addon, channel=None):
         num_pages=num_pages,
         pager=pager,
         reports=reports,
+        session_id=request.session.session_key,
         subscribed_listed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_LISTED
         ).exists(),

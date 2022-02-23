@@ -1432,7 +1432,6 @@ REST_FRAMEWORK = {
     # We can't use the default because we don't use django timezone support.
     'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'olympia.api.authentication.WebTokenAuthentication',
         'olympia.api.authentication.SessionIDAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': ('olympia.api.pagination.CustomPageNumberPagination'),
@@ -1614,3 +1613,5 @@ BIGQUERY_AMO_DATASET = 'amo_dev'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 SITEMAP_DEBUG_AVAILABLE = False
+
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)

@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 from olympia import amo
 from olympia.amo.tests import (
-    APITestClientWebToken,
+    APITestClientSessionID,
     TestCase,
     addon_factory,
     collection_factory,
@@ -24,7 +24,7 @@ from olympia.bandwagon.models import Collection, CollectionAddon
 
 
 class TestCollectionViewSetList(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -114,7 +114,7 @@ class TestCollectionViewSetList(TestCase):
 
 
 class TestCollectionViewSetDetail(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -310,7 +310,7 @@ class TestCollectionViewSetDetail(TestCase):
 
 
 class CollectionViewSetDataMixin:
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
     data = {
         'name': {'fr': 'lé $túff', 'en-US': '$tuff'},
         'description': {'fr': 'Un dis une dát', 'en-US': 'dis n dat'},
@@ -642,7 +642,7 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
 
 
 class TestCollectionViewSetDelete(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -776,7 +776,7 @@ class CollectionAddonViewSetMixin:
 
 
 class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -1209,7 +1209,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -1247,7 +1247,7 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
 
 
 class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -1355,7 +1355,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
 
 
 class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -1417,7 +1417,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
 
 
 class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()

@@ -9,7 +9,6 @@ from urllib.parse import quote_plus
 from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.signals import user_logged_in
-from django.core import signing
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
@@ -62,7 +61,6 @@ from olympia.api.authentication import (
     JWTKeyAuthentication,
     SessionIDAuthentication,
     UnsubscribeTokenAuthentication,
-    WebTokenAuthentication,
 )
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users.models import UserNotification, UserProfile
@@ -101,13 +99,6 @@ LOGIN_ERROR_MESSAGES = {
     ERROR_NO_PROFILE: _('Your Firefox Account could not be found. Please try again.'),
     ERROR_STATE_MISMATCH: _('You could not be logged in. Please try again.'),
 }
-
-# Name of the cookie that contains the auth token for the API. It used to be
-# "api_auth_token" but we had to change it because it wasn't set on the right
-# domain, and we couldn't clear both the old and new versions at the same time,
-# since sending multiple Set-Cookie headers with the same name is not allowed
-# by the spec, even if they have a distinct domain attribute.
-API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
 def safe_redirect(request, url, action):
@@ -254,17 +245,7 @@ def with_user(f):
             )
             return safe_redirect(request, next_path, ERROR_STATE_MISMATCH)
         elif request.user.is_authenticated:
-            response = safe_redirect(request, next_path, ERROR_AUTHENTICATED)
-            # If the api token cookie is missing but we're still
-            # authenticated using the session, add it back.
-            if API_TOKEN_COOKIE not in request.COOKIES:
-                log.info(
-                    'User %s was already authenticated but did not '
-                    'have an API token cookie, adding one.',
-                    request.user.pk,
-                )
-                response = add_api_token_to_response(response, request.user)
-            return response
+            return safe_redirect(request, next_path, ERROR_AUTHENTICATED)
         try:
             if use_fake_fxa() and 'fake_fxa_email' in data:
                 # Bypassing real authentication, we take the email provided
@@ -337,33 +318,6 @@ def with_user(f):
     return inner
 
 
-def generate_api_token(user):
-    """Generate a new API token for a given user."""
-    data = {
-        'auth_hash': user.get_session_auth_hash(),
-        'user_id': user.pk,
-    }
-    return signing.dumps(data, salt=WebTokenAuthentication.salt)
-
-
-def add_api_token_to_response(response, user):
-    """Generate API token and add it in a session cookie named API_TOKEN_COOKIE."""
-    token = generate_api_token(user)
-    # Include the API token in a session cookie, so that it is
-    # available for universal frontend apps.
-    response.set_cookie(
-        API_TOKEN_COOKIE,
-        token,
-        domain=settings.SESSION_COOKIE_DOMAIN,
-        max_age=settings.SESSION_COOKIE_AGE,
-        secure=settings.SESSION_COOKIE_SECURE,
-        httponly=settings.SESSION_COOKIE_HTTPONLY,
-        samesite=settings.SESSION_COOKIE_SAMESITE,
-    )
-
-    return response
-
-
 class FxAConfigMixin:
     DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
     ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
@@ -433,9 +387,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
             action = 'login'
 
         login_user(self.__class__, request, user, identity, token_data)
-        response = safe_redirect(request, next_path, action)
-        add_api_token_to_response(response, user)
-        return response
+        return safe_redirect(request, next_path, action)
 
 
 def logout_user(request, response):
@@ -444,11 +396,6 @@ def logout_user(request, response):
         # generated during the next login.
         request.user.update(auth_id=None)
     logout(request)
-    response.delete_cookie(
-        API_TOKEN_COOKIE,
-        domain=settings.SESSION_COOKIE_DOMAIN,
-        samesite=settings.SESSION_COOKIE_SAMESITE,
-    )
 
 
 # This view is not covered by the CORS middleware, see:
@@ -593,7 +540,6 @@ class AccountViewSet(
 class ProfileView(APIView):
     authentication_classes = [
         JWTKeyAuthentication,
-        WebTokenAuthentication,
         SessionIDAuthentication,
     ]
     permission_classes = [IsAuthenticated]

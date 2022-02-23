@@ -31,7 +31,6 @@ from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.authentication import (
     JWTKeyAuthentication,
     SessionIDAuthentication,
-    WebTokenAuthentication,
 )
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
@@ -212,7 +211,6 @@ class AddonViewSet(
     ]
     authentication_classes = [
         JWTKeyAuthentication,
-        WebTokenAuthentication,
         SessionIDAuthentication,
     ]
     georestriction_classes = [
@@ -378,7 +376,6 @@ class AddonVersionViewSet(
     permission_classes = []
     authentication_classes = [
         JWTKeyAuthentication,
-        WebTokenAuthentication,
         SessionIDAuthentication,
     ]
     throttle_classes = addon_submission_throttles

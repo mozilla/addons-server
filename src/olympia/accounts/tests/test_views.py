@@ -32,7 +32,7 @@ from olympia.accounts.views import FxaNotificationView
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClientWebToken,
+    APITestClientSessionID,
     InitializeSessionMixin,
     TestCase,
     WithDynamicEndpoints,
@@ -43,7 +43,6 @@ from olympia.amo.tests import (
     user_factory,
 )
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
@@ -488,8 +487,7 @@ class TestWithUser(TestCase):
         assert not self.find_user.called
         assert not self.fxa_identify.called
 
-    @mock.patch.object(views, 'generate_api_token')
-    def test_logged_in_disallows_login(self, generate_api_token_mock):
+    def test_logged_in_disallows_login(self):
         self.request.data = {
             'code': 'foo',
             'state': 'some-blob:{}'.format(
@@ -499,37 +497,10 @@ class TestWithUser(TestCase):
         self.user = UserProfile()
         self.request.user = self.user
         assert self.user.is_authenticated
-        self.request.COOKIES = {views.API_TOKEN_COOKIE: 'foobar'}
         response = self.fn(self.request)
         self.assertRedirects(response, '/next', fetch_redirect_response=False)
         assert not response.cookies
         assert not self.find_user.called
-        assert generate_api_token_mock.call_count == 0
-
-    @override_settings(SESSION_COOKIE_SECURE=True, SESSION_COOKIE_DOMAIN='example.com')
-    @mock.patch.object(views, 'generate_api_token', lambda u: 'fake-api-token')
-    def test_already_logged_in_add_api_token_cookie_if_missing(self):
-        self.request.data = {
-            'code': 'foo',
-            'state': 'some-blob:{}'.format(
-                force_str(base64.urlsafe_b64encode(b'/next'))
-            ),
-        }
-        self.user = UserProfile()
-        self.request.user = self.user
-        assert self.user.is_authenticated
-        self.request.COOKIES = {}
-        response = self.fn(self.request)
-        self.assertRedirects(response, '/next', fetch_redirect_response=False)
-        assert not self.find_user.called
-        cookie = response.cookies.get(views.API_TOKEN_COOKIE)
-        assert len(response.cookies) == 1
-        assert cookie.value == 'fake-api-token'
-        assert cookie['domain'] == settings.SESSION_COOKIE_DOMAIN
-        assert cookie['max-age'] == settings.SESSION_COOKIE_AGE
-        assert cookie['secure'] == settings.SESSION_COOKIE_SECURE
-        assert cookie['httponly'] == settings.SESSION_COOKIE_HTTPONLY
-        assert cookie['samesite'] == settings.SESSION_COOKIE_SAMESITE
 
     def test_state_does_not_match(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
@@ -849,9 +820,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert self.login_user.called
         assert not self.register_user.called
         self.reregister_user.assert_called_with(user)
-        token = response.cookies['frontend_auth_token'].value
-        verify = WebTokenAuthentication().authenticate_token(token)
-        assert verify[0] == UserProfile.objects.get(fxa_id='10')
 
     def test_success_deleted_account_reregisters_with_force_2fa_waffle(self):
         self.create_switch('2fa-for-developers', active=True)
@@ -877,9 +845,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert self.login_user.called
         self.register_user.assert_called_with(identity)
         assert not self.reregister_user.called
-        token = response.cookies['frontend_auth_token'].value
-        verify = WebTokenAuthentication().authenticate_token(token)
-        assert verify[0] == UserProfile.objects.get(username='foo')
 
     def test_success_no_account_registers_with_force_2fa_waffle(self):
         self.create_switch('2fa-for-developers', active=True)
@@ -1058,9 +1023,6 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
                 response['Cache-Control']
                 == 'max-age=0, no-cache, no-store, must-revalidate, private'
             )
-        token = response.cookies['frontend_auth_token'].value
-        verify = WebTokenAuthentication().authenticate_token(token)
-        assert verify[0] == user
         self.login_user.assert_called_with(
             views.AuthenticateView, mock.ANY, user, identity, self.token_data
         )
@@ -1257,7 +1219,7 @@ class TestAuthenticateViewV3(TestAuthenticateView):
 
 
 class TestAccountViewSet(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -1384,7 +1346,7 @@ class TestProfileViewWithJWT(APIKeyAuthTestMixin, TestCase):
 
 
 class TestAccountViewSetUpdate(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
     update_data = {
         'display_name': 'Bob Loblaw',
         'biography': 'You don`t need double talk; you need Bob Loblaw',
@@ -1569,7 +1531,7 @@ class TestAccountViewSetUpdate(TestCase):
 
 
 class TestAccountViewSetDelete(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -1581,16 +1543,10 @@ class TestAccountViewSetDelete(TestCase):
         # Also add api token and session cookies: they should be cleared when
         # the user deletes their own account.
         self.client.cookies[settings.SESSION_COOKIE_NAME] = 'something'
-        self.client.cookies[views.API_TOKEN_COOKIE] = 'somethingelse'
         # Also add cookies that should be kept.
         self.client.cookies['dontremoveme'] = 'keepme'
         response = self.client.delete(self.url)
         assert response.status_code == 204
-        assert response.cookies[views.API_TOKEN_COOKIE].value == ''
-        assert (
-            response.cookies[views.API_TOKEN_COOKIE].get('samesite')
-            == settings.SESSION_COOKIE_SAMESITE
-        )
         assert response.cookies[settings.SESSION_COOKIE_NAME].value == ''
         assert (
             response.cookies[settings.SESSION_COOKIE_NAME].get('samesite')
@@ -1598,7 +1554,6 @@ class TestAccountViewSetDelete(TestCase):
         )
         assert response['Cache-Control'] == 's-maxage=0'
         assert 'dontremoveme' not in response.cookies
-        assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
         assert self.client.cookies[settings.SESSION_COOKIE_NAME].value == ''
         assert self.client.cookies['dontremoveme'].value == 'keepme'
         assert self.user.reload().deleted
@@ -1618,16 +1573,12 @@ class TestAccountViewSetDelete(TestCase):
     def test_admin_delete(self):
         self.grant_permission(self.user, 'Users:Edit')
         self.client.login_api(self.user)
-        # Also add api token and session cookies: they should be *not* cleared
-        # when the admin deletes someone else's account.
-        self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
+
         random_user = user_factory()
         url = reverse_ns('account-detail', kwargs={'pk': random_user.pk})
         response = self.client.delete(url)
         assert response.status_code == 204
         assert random_user.reload().deleted
-        assert views.API_TOKEN_COOKIE not in response.cookies
-        assert self.client.cookies[views.API_TOKEN_COOKIE].value == 'something'
         alog = ActivityLog.objects.get(user=self.user, action=amo.LOG.USER_DELETED.id)
         assert alog.arguments == [random_user]
 
@@ -1636,17 +1587,10 @@ class TestAccountViewSetDelete(TestCase):
         addon = addon_factory(users=[self.user])
         assert self.user.is_developer and self.user.is_addon_developer
 
-        # Also add api token and session cookies: they should be *not* cleared
-        # when the account has not been deleted.
-        self.client.cookies[views.API_TOKEN_COOKIE] = 'something'
-
         response = self.client.delete(self.url)
         assert response.status_code == 204
         assert self.user.reload().deleted
         assert addon.reload().is_deleted
-        # Account was deleted so the cookies should have been cleared
-        assert response.cookies[views.API_TOKEN_COOKIE].value == ''
-        assert self.client.cookies[views.API_TOKEN_COOKIE].value == ''
 
     def test_theme_developers_can_delete(self):
         self.client.login_api(self.user)
@@ -1827,7 +1771,7 @@ class TestSessionView(TestCase):
             'olympia.accounts.views.verify.fxa_identify',
             lambda code, config: (identity, self.token_data),
         ):
-            response = self.client.get(
+            self.client.get(
                 '{url}?code={code}&state={state}'.format(
                     url=reverse_ns(
                         'accounts.authenticate', api_version=self.api_version
@@ -1836,22 +1780,17 @@ class TestSessionView(TestCase):
                     code='thecode',
                 )
             )
-            token = response.cookies[views.API_TOKEN_COOKIE].value
-            assert token
-            verify = WebTokenAuthentication().authenticate_token(token)
-            assert verify[0] == user
             assert self.client.session['_auth_user_id'] == str(user.id)
-            return token
 
     def test_delete_when_authenticated(self):
         user = user_factory(fxa_id='123123412')
-        token = self.login_user(user)
-        authorization = f'Bearer {token}'
+        self.login_user(user)
+        authorization = f'Session {self.client.session.session_key}'
         assert user.auth_id
         response = self.client.delete(
             reverse_ns('accounts.session'), HTTP_AUTHORIZATION=authorization
         )
-        assert not response.cookies[views.API_TOKEN_COOKIE].value
+        assert response.status_code == 200, response.content
         assert not self.client.session.get('_auth_user_id')
         user.reload()
         assert not user.auth_id  # Cleared at logout.
@@ -1862,21 +1801,22 @@ class TestSessionView(TestCase):
 
     def test_cors_headers_are_exposed(self):
         user = user_factory(fxa_id='123123412')
-        token = self.login_user(user)
-        authorization = f'Bearer {token}'
+        self.login_user(user)
+        authorization = f'Session {self.client.session.session_key}'
         origin = 'http://example.org'
         response = self.client.delete(
             reverse_ns('accounts.session'),
             HTTP_AUTHORIZATION=authorization,
             HTTP_ORIGIN=origin,
         )
+        assert response.status_code == 200, response.content
         assert response['Access-Control-Allow-Origin'] == origin
         assert response['Access-Control-Allow-Credentials'] == 'true'
 
     def test_delete_omits_cors_headers_when_there_is_no_origin(self):
         user = user_factory(fxa_id='123123412')
-        token = self.login_user(user)
-        authorization = f'Bearer {token}'
+        self.login_user(user)
+        authorization = f'Session {self.client.session.session_key}'
         response = self.client.delete(
             reverse_ns('accounts.session'),
             HTTP_AUTHORIZATION=authorization,
@@ -1912,7 +1852,7 @@ class TestSessionViewV3(TestSessionView):
 
 
 class TestAccountNotificationViewSetList(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -2070,7 +2010,7 @@ class TestAccountNotificationViewSetList(TestCase):
 
 
 class TestAccountNotificationViewSetUpdate(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
@@ -2210,7 +2150,7 @@ class TestAccountNotificationViewSetUpdate(TestCase):
 
 
 class TestAccountNotificationUnsubscribe(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         self.user = user_factory()
