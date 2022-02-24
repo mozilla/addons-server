@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-24 15:48+0000\n"
+"PO-Revision-Date: 2022-02-24 17:22+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -695,9 +695,8 @@ msgstr "Aðgangur uppfærður."
 msgid "Account {user} deleted."
 msgstr "Reikningnum {user} eytt."
 
-#, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Reikningnum {user} eytt."
+msgstr "Reikningnum {user} eytt, með atburði í Firefox Accounts reikningaumsýslunni."
 
 msgid "Created: {0}."
 msgstr "Búið til: {0}."
@@ -1022,7 +1021,7 @@ msgid "Alerts & Updates"
 msgstr "Aðvaranir og uppfærslur"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka sem gera þér auðveldara með að haldast uppfærðum, fylgjast með verkefnum og auka afköst. Finndu forritsauka sem endurhlaða flipa, sýsla með framleiðni og fleira."
 
 msgid "Appearance"
 msgstr "Útlit"
@@ -1040,7 +1039,7 @@ msgid "Download Management"
 msgstr "Umsýsla niðurhals"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka sem hjálpa til við að sækja vefefni, tónlist og myndskeið. Þú finnur líka forritsauka sem sjá um niðurhal, deila skrám og fleira."
 
 msgid "Feeds, News & Blogging"
 msgstr "Streymi, fréttaveitur og blogg"
@@ -1058,7 +1057,7 @@ msgid "Language Support"
 msgstr "Tungumálastuðningur"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka sem bjóða aukinn stuðning við tungumál, yfirfara stafsetningu, fletta upp orðum, þýða texta, umbreyta texta-í-tal og fleira."
 
 msgid "Photos, Music & Videos"
 msgstr "Ljósmyndir, tónlist og myndskeið"
