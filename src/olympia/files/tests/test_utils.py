@@ -1139,14 +1139,28 @@ class TestGetBackgroundImages(TestCase):
     'value, expected',
     [
         (1, '1/1/1'),
-        (1, '1/1/1'),
         (12, '2/12/12'),
         (123, '3/23/123'),
+        (1234, '4/34/1234'),
         (123456789, '9/89/123456789'),
     ],
 )
 def test_id_to_path(value, expected):
     assert utils.id_to_path(value) == expected
+
+
+@pytest.mark.parametrize(
+    'value, expected',
+    [
+        (1, '1/1/1/1'),
+        (12, '2/12/12/12'),
+        (123, '3/23/123/123'),
+        (1234, '4/34/234/1234'),
+        (123456789, '9/89/789/123456789'),
+    ],
+)
+def test_id_to_path_depth(value, expected):
+    assert utils.id_to_path(value, depth=3) == expected
 
 
 class TestSafeZip(TestCase):
