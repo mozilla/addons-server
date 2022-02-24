@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-29 18:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2022-02-23 03:42+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "類型"
 
@@ -72,9 +73,6 @@ msgstr "不允許加入鏈結。"
 msgid "This display name cannot be used."
 msgstr "無法使用此顯示名稱。"
 
-msgid "This reviewer name cannot be used."
-msgstr "無法使用此審核者名稱。"
-
 msgid "The homepage field can only be used to link to external websites."
 msgstr "首頁欄位僅能用於鏈結到外部網站。"
 
@@ -106,6 +104,9 @@ msgstr "需要幫助嗎？"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "通知 [%s] 不存在"
+
+msgid "Add-ons Review Team"
+msgstr "附加元件審核團隊"
 
 msgid "Review"
 msgstr "評論"
@@ -151,11 +152,8 @@ msgstr "附加元件及收藏集的路徑結尾，必須為「/」"
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加元件名稱中，不得包含 Mozilla 或 Firefox 商標。"
 
-msgid "Sort by:"
-msgstr "排序依照:"
-
-msgid "More"
-msgstr "更多"
+msgid "Site permissions for {hostnames}"
+msgstr "{hostnames} 的網站權限"
 
 msgid "My Add-ons"
 msgstr "我的附加元件"
@@ -305,26 +303,6 @@ msgstr "我們正在進行網站維護，這個功能暫時無法使用。請您
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "我們正在進行網站維護，本頁面中部分功能暫時無法使用。請稍後再試。"
 
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "第 <a href=\"%(current_pg_url)s\">%(current_pg)s</a> 頁，共有 <a href=\"%(last_pg_url)s\">%(last_pg)s</a> 頁"
-
-msgid "Jump to first page"
-msgstr "跳至第一頁"
-
-msgid "Previous"
-msgstr "上一頁"
-
-msgid "Jump to last page"
-msgstr "跳到最後一頁"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "顯示第 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 筆，共 <b>%(count)s</b> 筆"
-
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox, Sunbird
 msgid "Add-ons for {0}"
@@ -358,6 +336,15 @@ msgstr "簽章已過期。"
 msgid "Error decoding signature."
 msgstr "解碼簽章時發生錯誤。"
 
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr "驗證雜湊值不符，使用階段可能已過期。"
+
+msgid "Valid user session not found matching the provided session key."
+msgstr "找不到符合所提供 session key 的有效使用者階段。"
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr "重新整理存取 token 失敗，使用者需重新登入 FxA。"
+
 msgid "Wrong type for one or more keys in payload"
 msgstr "Payload 中的一或多組金鑰類型錯誤"
 
@@ -372,9 +359,6 @@ msgstr "找不到電子郵件信箱。"
 
 msgid "Unavailable for legal reasons."
 msgstr "由於法律因素無法使用。"
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "此欄位內容必須至少有 {num} 字元長。"
 
 msgid "The language code {lang_code} is invalid."
 msgstr "語言代碼 {lang_code} 無效。"
@@ -420,9 +404,6 @@ msgstr "就算您支援的應用程式不需要安裝資訊檔，您還是要依
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "這個自訂網址已被您其他的收藏集使用。"
 
-msgid "Name cannot be empty."
-msgstr "名稱不得為空白。"
-
 msgid "This name cannot be used."
 msgstr "無法使用此名稱。"
 
@@ -441,10 +422,6 @@ msgstr "確認狀態"
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s 仍在準備送出中"
-
-#, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "GUID %(guid)s 的區塊唯讀，必須透過傳統 blocklist collection 進行編輯"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -473,12 +450,6 @@ msgstr "審核上架項目"
 msgid "Review Unlisted"
 msgstr "審核未上架項目"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "此封鎖項目是從傳統的 regex Block 匯入的。"
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "任何變更不會套用到傳統封鎖清單，您必須回到 kinto 的管理介面手動更新。"
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "刪除多個 %(name)s"
@@ -493,9 +464,6 @@ msgstr "有 %(count)s 筆附加元件 GUID 已經針對 %(v_min)s~%(v_max)s 版�
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "找不到 %(count)s 筆附加元件 GUID"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "已從傳統的 regex Block 匯入下列封鎖項目。"
 
 msgid "Save"
 msgstr "儲存"
@@ -534,9 +502,6 @@ msgstr "編輯封鎖項目"
 
 msgid "versions"
 msgstr "版本"
-
-msgid "Included in legacy blocklist."
-msgstr "包含於傳統封鎖清單中。"
 
 msgid "{addon} was created."
 msgstr "{addon} 已建立。"
@@ -721,6 +686,12 @@ msgstr "已通過審核，等待發佈中"
 
 msgid "Account updated."
 msgstr "帳號已更新。"
+
+msgid "Account {user} deleted."
+msgstr "帳號 {user} 已刪除。"
+
+msgid "Account {user} deleted, from Firefox Accounts event."
+msgstr "帳號 {user} 已從 Firefox 帳號事件中刪除。"
 
 msgid "Created: {0}."
 msgstr "已建立： {0}。"
@@ -972,8 +943,14 @@ msgstr "已刪除"
 msgid "Unlisted"
 msgstr "未上架"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr "Signing API"
+
+msgid "Addon API"
+msgstr "Addon API"
+
+msgid "Automatically generated by AMO"
+msgstr "由 AMO 自動產生"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1012,6 +989,9 @@ msgstr "已棄用的 LWT"
 msgid "Theme (Static)"
 msgstr "主題（靜態）"
 
+msgid "Site Permission"
+msgstr "網站權限"
+
 # Plural in this context means many of the add-on type
 msgid "Extensions"
 msgstr "擴充套件"
@@ -1041,6 +1021,9 @@ msgstr "已棄用的 LWTs"
 
 msgid "Themes (Static)"
 msgstr "主題（靜態）"
+
+msgid "Site Permissions"
+msgstr "網站權限"
 
 msgid "Alerts & Updates"
 msgstr "警示與更新"
@@ -1123,7 +1106,6 @@ msgstr "網頁開發"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "其它"
 
@@ -1315,6 +1297,30 @@ msgstr "旅遊"
 
 msgid "Video"
 msgstr "影片"
+
+msgid "Mozilla Public License 2.0"
+msgstr "Mozilla Public License 2.0"
+
+msgid "GNU General Public License v2.0"
+msgstr "GNU General Public License v2.0"
+
+msgid "GNU General Public License v3.0"
+msgstr "GNU General Public License v3.0"
+
+msgid "GNU Library General Public License v2.1"
+msgstr "GNU Library General Public License v2.1"
+
+msgid "GNU Library General Public License v3.0"
+msgstr "GNU Library General Public License v3.0"
+
+msgid "The MIT License"
+msgstr "The MIT License"
+
+msgid "The BSD License"
+msgstr "The BSD License"
+
+msgid "Mozilla Public License 1.1"
+msgstr "Mozilla Public License 1.1"
 
 msgid "All Rights Reserved"
 msgstr "保留所有權利"
@@ -1680,6 +1686,9 @@ msgstr "無效的版本號碼範圍。"
 msgid "Need at least one compatible application."
 msgstr "至少需要一個相容的應用程式。"
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "您最近上傳了太多項目，請稍候再試。"
+
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上傳過程發生錯誤，請再試一次。"
 
@@ -1688,9 +1697,6 @@ msgstr "無視驗證失敗"
 
 msgid "Need to select at least one application."
 msgstr "至少需要一套相容的應用程式。"
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "您最近上傳了太多項目，請稍候再試。"
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "版本 {version} 與此附加元件 {block_link} 相符。若需更多資訊，請聯絡 {amo_admins}。"
@@ -1722,16 +1728,28 @@ msgstr "上傳了原始碼檔案，但您標明無須原始碼。"
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "請確認名稱與描述加總未超過 {limit_value} 個字元（目前有 {show_value} 個字）。"
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
-msgstr "在本站。<span class=\"helptext\">您送出的元件通過審查後將公開上架到這個網站，以及 Firefox 附加元件管理員讓數以百萬計的使用者使用。本網站將處理元件的自動更新。此附加元件可參與 Mozilla 的行銷與競賽活動，您仍可自行散佈已通過審核的安裝檔案。</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
+msgstr "在此網站。<span class=\"helptext\">您上架的內容將於 {site_domain} 公開提供使用。</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
-msgstr "您自行處理。<span class=\"helptext\">將立即簽署此版本讓您可自行發布，您需透過 updateURL 或更新外部應用程式來提供此附加元件的更新。</span>"
+msgid ""
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
+msgstr "由您自己託管。<span class=\"helptext\">當您送出的內容由 Mozilla 簽署後，可於開發者交流中心下載 .xpi 檔案，並且自行發布給您的使用者。請確保附加元件中指定了 <a {a_attrs}>update_url</a>，使用者的 Firefox 會定期連線到此網址尋找是否有更新版的附加元件，並自動更新。</span>"
 
 msgid "Display Name"
 msgstr "顯示名稱"
+
+msgid "Origin"
+msgstr "來源"
+
+msgid "Permissions"
+msgstr "權限"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "無效或毀損的附加元件檔案。"
@@ -1749,8 +1767,8 @@ msgstr "Mozilla 安全性通知: 已註銷您的 AMO API"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "驗證過程中產生太多錯誤或警告訊息，所以已審略了 %s 比訊息。在處理完這些訊息所提到的問題後，您將可以看到其他的錯誤或警告訊息。"
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr "目前不支援上傳 Manifest v3。您可以[{start_href}在此{end_href}]了解詳細的支援時間範圍。"
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "目前不支援上傳 Manifest v3。{start_href}在此了解支援時間範圍{end_href}。"
 
 msgid "Updated"
 msgstr "更新日期"
@@ -1930,24 +1948,6 @@ msgstr "我的附加元件不屬於任一分類"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox 附加元件發行同意書"
 
-msgid "Review Policies and Rules"
-msgstr "審核政策與規則"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "我已閱讀並接受此同意書、規則及政策條款"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "您需要先設定顯示名稱，使用者才知道附加元件是從哪裡來的。請在下方輸入您的名稱。"
-
-msgid "Accept"
-msgstr "接受"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "或<a href=\"{0}\">取消</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "關於開發者帳號的更多資訊"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} 附加元件"
@@ -2001,6 +2001,15 @@ msgstr "搜尋開發者文件"
 
 msgid "Search"
 msgstr "搜尋"
+
+msgid "Generate Site Permission Add-on"
+msgstr "產生網站權限附加元件"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "利用下面的欄位上傳您的附加元件封裝。"
@@ -2136,6 +2145,9 @@ msgstr "接受邀請函後，可讓您編輯此附加元件，並可能會在附
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "請點擊下方的「接受」按鈕，即可將您加入為 {addon_name} 的作者。"
 
+msgid "Accept"
+msgstr "接受"
+
 msgid "Decline"
 msgstr "拒絕"
 
@@ -2169,7 +2181,7 @@ msgid "Tags"
 msgstr "標籤"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "使用標籤，可幫助使用者找到您的附加元件。您可以設定最多 {0} 組標籤。請只輸入與您的附加元件相關的標籤名稱。"
 
 msgid "Limit {0} tags."
 msgstr "最多 {0} 個標籤。"
@@ -2442,13 +2454,17 @@ msgstr "隱藏先前版本已有且忽略的訊息"
 msgid "Top"
 msgstr "回頂端"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr "刪除附加元件的話，將會永久刪除所有您曾為此附加元件送出的版本與檔案，不論是否公開上架。"
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr "附加元件 ID 仍將連結至您的帳號，其他人無法以相同 ID 送出附加元件。"
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr "附加元件 ID 無法恢復，也無法再用於新元件上架。"
+
 msgid "Delete Add-on"
 msgstr "刪除附加元件"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr "刪除附加元件的話，將會永久刪除所有您曾為此附加元件送出的版本與檔案，不論是否公開上架。附加元件 ID 仍將連結至您的帳號，其他人無法以相同 ID 送出附加元件。"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "請輸入下列文字作為確認: {slug}"
@@ -2482,6 +2498,9 @@ msgstr "下載數與使用者的每日統計資訊"
 
 msgid "Statistics"
 msgstr "統計資訊"
+
+msgid "More"
+msgstr "更多"
 
 msgid "Manage Status & Versions"
 msgstr "管理狀態與版本"
@@ -2610,14 +2629,22 @@ msgstr "這些文字將顯示於詳細資訊頁面。"
 msgid "How to Distribute this Version"
 msgstr "如何散布此版本"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "關於附加元件發行與簽署的更多資訊"
+msgid "To get started, select how you would like to distribute this version."
+msgstr "要開始上架，請先選擇您要如何發布此版本。"
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr "請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Add-on Distribution and Signing</a> 一文來更加了解這些選項間的差異。"
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr "所有附加元件必須遵守 <a %(a_attrs)s>Mozilla 的附加元件政策</a>，上架後隨時皆有可能被要求進行人工審核。"
 
 msgid "Submission Complete"
 msgstr "送出完成"
 
-msgid "Version Submitted for Review"
-msgstr "已送出進行審查的版本"
+msgid "Version Submitted"
+msgstr "送出的版本"
 
 msgid "Preview of the version submitted"
 msgstr "送出版本預覽"
@@ -2625,20 +2652,19 @@ msgstr "送出版本預覽"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "搞定！此版本通過審核後就會在網站上出現。您將會在套件接受審核後收到通知。"
 
-msgid "Version Submitted"
-msgstr "送出的版本"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "搞定！此版本很快就會在網站上出現。"
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "搞定了！已將此版本送出審核。審核完成後，或審核者有任何問題時您會收到通知。"
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr "完成了！✨此版本於 %(site_domain)s 發布後，您將會收到確認郵件。請注意：可能需要 24 小時才能正式發布；此附加元件需進行人工審核的話，則可能需要更多時間。若您沒有在 24 小時內收到確認信的話，請到您信箱的垃圾信件匣確認。"
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "加上詳細的描述可讓您的上架項目更加成功。準備好上架資訊後即可公開:"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "加上詳細的描述與畫面擷圖可讓您的附加元件更成功。讓您的附加元件準備就緒後即可公開:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr "可在上架資訊中加入更多描述與畫面擷圖來吸引更多使用者。若需更多幫助，請參考 Firefox Extension Workshop 的 <a %(a_attrs)s>creating an appealing listing</a>一文。"
 
 msgid "Manage Listing"
 msgstr "管理上架資訊"
@@ -2649,11 +2675,8 @@ msgstr "您也可以編輯這個版本，加入版本註記，或若包含最小
 msgid "Edit version {0}"
 msgstr "編輯版本 {0}"
 
-msgid "Version Signature Pending"
-msgstr "等待版本簽名"
-
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "搞定！此版本很快就會簽署完成，讓您自行發布。簽署好的檔案可供下載時會發信通知您。"
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr "再次提醒：我們得隨時要求您的附加元件進行人工審核。"
 
 msgid "Go to My Submissions"
 msgstr "前往我上架的項目"
@@ -2664,15 +2687,11 @@ msgstr "上傳原始碼"
 msgid "Do You Need to Submit Source Code?"
 msgstr "您需要上傳原始碼嗎？"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "您可能需要上傳原始碼。若您應上傳原始碼而未上傳，可能會造成附加元件被下架！"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr "需要讓 Mozilla 的附加元件審核者閱讀並重現您擴充套件的程式碼。若他們沒辦法這麼做的話，您的擴充套件可能會被拒絕。"
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "請參考<a %(a_attrs)s>原始碼提交政策</a>。"
-
-msgid "Do you use any of the following?"
-msgstr "您使用了下列任何工具嗎？"
+msgid "Do you use any of the following in your extension?"
+msgstr "您的擴充套件中有使用了下列任何項目嗎？"
 
 msgid "Code generators or minifiers"
 msgstr "程式碼產生器或 minifier"
@@ -2683,21 +2702,20 @@ msgstr "將多個檔案合併為一的工具，例如 <span class=\"tech-emphasi
 msgid "Web template engines, both for HTML and CSS"
 msgstr "網頁排版引擎，包含 HTML 與 CSS"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr "任何在附加元件中透過對程式碼或檔案進行額外處理，並再產生程式碼或檔案的工具"
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
+msgstr "任何在擴充套件中透過對程式碼或檔案進行額外處理，並再產生程式碼或檔案的工具"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "您不需要送出原始碼，可以直接前進下一步。"
 
-msgid "Your Submission Requires Source Code."
-msgstr "您需要送出原始碼才能上架。"
+msgid "You must submit your extension's source code."
+msgstr "您必須提供擴充套件的原始碼。"
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "原始碼必須符合<a %(a_attrs)s>政策的要求</a>，包含下列項目:"
+msgid "Your source code must include:"
+msgstr "原始碼當中必須包含："
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr "能夠產生相同附加元件程式碼的逐步建構步驟。"
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
+msgstr "您可以在原始碼裡面的 README 檔案包含逐步的編譯方式資訊，或是在下一步的審核者說明當中加入。"
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "會執行所有必須的技術指令的編譯指令碼或腳本。"
@@ -2705,22 +2723,15 @@ msgstr "會執行所有必須的技術指令的編譯指令碼或腳本。"
 msgid "Operating system and build environment requirements."
 msgstr "作業系統與編譯環境需求。"
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
-msgstr "編譯過程中會使用到的任何程式的詳細資訊（包含需要使用的版本與安裝步驟，舉例來說: <span class=\"tech-emphasis\">node</span> 與 <span class=\"tech-emphasis\">npm</span> 的版本）。"
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
+msgstr "編譯過程中使用到的任何程式的詳細資訊（包含版本與安裝步驟，例如：<span class=\"tech-emphasis\">node</span> 與 <span class=\"tech-emphasis\">npm</span> 的版本）。"
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
-msgstr "<span class=\"instruction-emphasis\">註：</span>請勿轉譯（transpile）、串接（concatenate）、最小化（minify）或使用機器產生的原始碼。"
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
+msgstr "除了開源的第三方程式庫之外，請勿轉譯（transpile）、串接（concatenate）、最小化（minify）或使用機器產生的原始碼。"
 
-msgid "How to Submit:"
-msgstr "如何上傳:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "在原始碼中的 README 檔案包含步驟教學，"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "或是紀錄在下一頁給審核者的留言中（若可行）。"
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
+msgstr "若需更多資訊，請閱讀 Firefox Extension Workshop 的 <a %(a_attrs)s>Source Code Submission</a> 一文。"
 
 msgid "Upload source code:"
 msgstr "上傳原始碼:"
@@ -2754,9 +2765,6 @@ msgstr "建立佈景主題版本"
 
 msgid "Create a Theme"
 msgstr "建立新的佈景主題"
-
-msgid "Sign Add-on"
-msgstr "簽署附加元件"
 
 msgid "Theme generate"
 msgstr "產生佈景主題"
@@ -3012,17 +3020,41 @@ msgstr "管理員管理"
 msgid "View Statistics Dashboard"
 msgstr "檢視統計資訊儀錶板"
 
+msgid "Review Policies and Rules"
+msgstr "審核政策與規則"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "我已閱讀並接受此同意書、規則及政策條款"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "您需要先設定顯示名稱，使用者才知道附加元件是從哪裡來的。請在下方輸入您的名稱。"
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "或<a href=\"{0}\">取消</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "關於開發者帳號的更多資訊"
+
 msgid "Developer News"
 msgstr "開發者新聞"
 
 msgid "View the blog &#9658;"
 msgstr "瀏覽部落格 &#9658;"
 
+msgid "Version Signature Pending"
+msgstr "等待版本簽名"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr "完成了！✨當簽署好的檔案可於開發者交流中心下載時，您將會收到確認郵件。請注意：若您沒有在 24 小時內收到確認信的話，請到您信箱的垃圾信件匣確認。"
+
 msgid "License"
 msgstr "授權"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "請選擇您的原始碼要使用哪個條款釋出，此欄位僅與公開上架的附加元件有關。"
+
+msgid "Sort by:"
+msgstr "排序依照:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3276,9 +3308,6 @@ msgstr "狀態 & 版本"
 
 msgid "Edit this version"
 msgstr "編輯這個版本"
-
-msgid "0 files"
-msgstr "0 個檔案"
 
 msgid "Re-enable Version"
 msgstr "重新啟用版本"
@@ -3536,7 +3565,6 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "收集學術智慧。免費取用超過 1000 萬篇研究論文。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
 
@@ -3604,7 +3632,8 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr "根據設定的時間，自動重新載入分頁。"
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+#. editorial content for the primary hero shelves.
+msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3613,7 +3642,6 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "透過追蹤保護功能，為您上網額外增加一層防護。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "在 Firefox 中直接開啟閱讀 ePub 檔案—有放大文字、頁面大小等功能。"
 
@@ -3690,14 +3718,12 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "防止在點擊 Google 和 Yandex 搜尋結果時的廣告追蹤。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "使用滑鼠手勢關閉分頁、切換頁面與更多功能。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "在搜尋結果中顯示網站畫面擷圖。"
+msgid "See thumbnail images alongside your search returns."
+msgstr "在搜尋結果中顯示畫面擷圖。"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4258,10 +4284,6 @@ msgid "Blues & Yellows"
 msgstr "藍色與黃色"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "森林系佈景主題"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -4295,6 +4317,15 @@ msgstr ""
 msgid "Goodbye, annoying cookie warnings!"
 msgstr "去去 Cookie 警告走！"
 
+#. editorial content for the discovery pane.
+msgid "All your emoji needs—always just a click away."
+msgstr "顏文字大補包 — 讓您點一下即可快速輸入。"
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些網站無法在 Android 上正常播放影片，此套件可修正此問題。"
@@ -4304,8 +4335,20 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "在網路上看到有趣的圖片？使用 TinEye 來尋找圖片來源。"
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr ""
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr "在 Firefox 中直接開啟閱讀 ePUB 檔案—有放大文字、頁面大小等功能。"
+
+#. editorial content for the primary hero shelves.
+msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
+
+#. editorial content for the primary hero shelves.
+msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr "使用滑鼠手勢關閉分頁、切換頁面與更多功能。"
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "在搜尋結果中顯示網站畫面擷圖。"
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4335,6 +4378,34 @@ msgstr "去去 Cookie 警告走！"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "返樸歸真——讓您的搜尋結果不再充斥著廣告（相容 Google 及 Bing 搜尋引擎）。"
 
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr "把 emoji 隨身帶著走。"
+
+#. editorial content for the primary hero shelves.
+msgid "Put restrictions on distracting, time-wasting websites."
+msgstr "限制會分散您的注意力、浪費時間的網站。"
+
+#. editorial content for the primary hero shelves.
+msgid "Remove clutter from your Twitter."
+msgstr "清除 Twitter 上的雜亂內容。"
+
+#. editorial content for the primary hero shelves.
+msgid "Customize YouTube to taste."
+msgstr "自訂 YouTube 以符合您的需求。"
+
+#. editorial content for the primary hero shelves.
+msgid "Delete browsing data directly from the browser toolbar."
+msgstr "直接從瀏覽器工具列刪除上網資料。"
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "擴充套件就像是在 Firefox 中安裝應用程式。"
@@ -4348,25 +4419,22 @@ msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "分頁管理器與工具"
+msgid "Top anti-tracking extensions"
+msgstr "熱門反追蹤擴充套件"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "瀏覽器擴充套件外的隱私保護"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "翻譯工具"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Firefox 媒體內容加強器"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "菁英級廣告封鎖工具"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Explore extensions"
-msgstr "探索擴充套件"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "更多資訊"
+msgid "See staff picks"
+msgstr "看看員工精選"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4389,8 +4457,8 @@ msgid "Enhanced privacy extensions"
 msgstr "加強隱私保護擴充套件"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "看更多加強隱私保護擴充套件"
+msgid "See more recommended privacy extensions"
+msgstr "看更多推薦的隱私保護擴充套件"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4410,28 +4478,76 @@ msgid "See more recommended themes"
 msgstr "看更多推薦佈景主題"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
-msgstr "推薦的密碼管理員"
+msgid "Strong password managers"
+msgstr "強大的密碼管理員"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "看更多推薦密碼管理員"
+msgid "See more password manager staff picks"
+msgstr "看更多員工精選的密碼管理套件"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "翻譯工具"
-
-#. editorial content for the homepage shelves.
-msgid "See more translation tools"
-msgstr "看更多翻譯工具"
+msgid "See more translation tool staff picks"
+msgstr "看員工精選的更多翻譯工具"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "社交串流"
 
 #. editorial content for the homepage shelves.
-msgid "See more social streaming extensions"
-msgstr "看看更多社交串流擴充套件"
+msgid "See more social streaming staff picks"
+msgstr "看更多看員工精選的社交串流套件"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "分頁管理員"
+
+#. editorial content for the homepage shelves.
+msgid "See more tab management staff picks"
+msgstr "看更多員工精選的分頁管理套件"
+
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "含有「{tag}」標籤的擴充套件"
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "看看更多含有「{tag}」標籤的擴充套件"
+
+#. editorial content for the homepage shelves.
+msgid "See more ad blocker staff picks"
+msgstr "看更多員工精選的廣告封鎖工具"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "自訂 YouTube"
+
+#. editorial content for the homepage shelves.
+msgid "See more YouTube extension staff picks"
+msgstr "看員工精選的更多 YouTube 擴充套件"
+
+#. editorial content for the homepage shelves.
+msgid "Trending themes"
+msgstr "熱門佈景主題"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending themes"
+msgstr "看更多熱門佈景主題"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "分數最高的佈景主題"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "看更多高分的佈景主題"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "熱門擴充套件"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "看更多熱門擴充套件"
 
 msgid "Could not parse the manifest file."
 msgstr "無法剖析安裝資訊檔。"
@@ -4468,9 +4584,6 @@ msgstr "未壓縮大小過大"
 msgid "Invalid archive."
 msgstr "無效的封存。"
 
-msgid "Could not find an add-on ID."
-msgstr "無法找到附加元件 ID。"
-
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "您的 manifest.json 當中的附加元件 ID (%s) 與您在 AMO 上架的附加元件 ID (%s) 不符"
@@ -4496,6 +4609,9 @@ msgstr "您不得送出 ID 以此結尾的附加元件"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能上傳已由 Mozilla 簽署過的擴充套件"
 
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr "ID 為此結尾的附加元件，需先使用特許憑證簽署，才可送出上架"
+
 msgid "You cannot submit a language pack"
 msgstr "您不能上傳語言套件"
 
@@ -4508,110 +4624,6 @@ msgstr "未預期的錯誤。"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "類型（%s）與您的附加元件在 AMO 上架的類型（%s）不符"
-
-msgid "Review Guidelines"
-msgstr "評論撰寫指南"
-
-msgid "Sections"
-msgstr "章節"
-
-msgid "Some tips for writing a great review"
-msgstr "撰寫優良評論的一些小秘訣"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "關於評論的常見問題"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr "附加元件評論是一個能讓您對已安裝使用過的附加元件表達意見的方式。我們的評論審查團隊保留拒絕或移除任何不符合以下標準的評論內容。"
-
-msgid "Do:"
-msgstr "請做："
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "寫得像您在和朋友分享附加元件的經驗。"
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "保持評論準確，容易理解。"
-
-msgid "Give specific and helpful details. For example:"
-msgstr "提供清楚並有幫助的資訊。例如:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "附加元件如您所預期的執行嗎？"
-
-msgid "What features did you like or dislike?"
-msgstr "您喜歡或不喜歡那些功能？"
-
-msgid "Was it useful?"
-msgstr "該附加元件有用嗎？"
-
-msgid "Was it easy to use?"
-msgstr "該附加元件容易使用嗎？"
-
-msgid "Will you continue to use this add-on?"
-msgstr "您會繼續使用該附加元件嗎？"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "送出前花一點時間閱讀一下您的評論內容，避免打錯字。"
-
-msgid "Don’t:"
-msgstr "不要這樣做:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "送出太短的評論，例如「讚！」、「酷！」、「Good!」。"
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr "張貼技術問題、支援或功能請求。請透過「關於此附加元件」段落中，側邊欄內的技術支援功能來請求支援。"
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "還沒有使用過附加元件，就直接寫評論。"
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "使用褻瀆、性暗示或者帶有恨意的言語。"
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "包含 HTML、超連結、程式碼等。評論內容請只留下純文字。"
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "否定附加元件、貶低附加元件作者或者羞辱個人。"
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "包含您自己或別人的電子郵件地址、電話號碼或其他任何個資。"
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "為您自己或者您的組織開發的附加元件撰寫評論。"
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr "批評某套附加元件原有的功能。舉例來說，假設某套附加元件必須要收集某些資料或顯示廣告才能正常使用，就請不要對資料收集留下負面評論。"
-
-msgid "How can I report a problematic review?"
-msgstr "請使用「回報此評論」功能來回報或標示有問題的評論，這些評論將會被送交審查。我們的審查團隊將會依照評論指南上所列的規範來判斷是否該刪除該留言，或將其還原。"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr "請回報或點擊「回報此評論」來標示任何有問題的評論，這些評論將被送回給我們的管理團隊，依照評論指南上的方式來處理，並決定要刪除該評論或將其還原至網站上。"
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "我是附加元件作者，我可以回應審核評論嗎？"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "可以，附加元件作者可以對評論提供一次回應。您可以到 <a href=\"%(forum_url)s\">討論區</a> 設定討論主題，來讓使用者做其他討論。"
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "我是附加元件作者，我可以刪除對我不利的評論和評分嗎？"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr "一般來說，不行。但若該評論並未符合上述的評論指南所描述的內容，您可以點擊「回報此評論」交給我們審查。若該評論所抱怨的問題在您新版的附加元件中已不存在，我們可能會刪除該評論。"
 
 msgid "User"
 msgstr "使用者"
@@ -4652,9 +4664,8 @@ msgstr "您不能評論自己的附加元件。"
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "您不能對同一套附加元件的相同版本評論超過一次。"
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr "無效的旗標 [%s]，必須是 [%s] 其中的一種"
+msgid "Invalid flag [{}] - must be one of [{}]"
+msgstr "無效的旗標 [{}]，必須是 [{}] 的其中一種"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "沒有評價內容，無法標記此評價。"
@@ -4705,33 +4716,6 @@ msgstr "結束日期"
 msgid "add-on, reviewer or comment"
 msgstr "附加元件、審核者或意見"
 
-msgid "Search by add-on name / author email"
-msgstr "以附加元件名稱或作者電子郵件搜尋"
-
-msgid "Needs Admin Code Review"
-msgstr "需要管理員進行程式碼審查"
-
-msgid "yes"
-msgstr "是"
-
-msgid "no"
-msgstr "否"
-
-msgid "Add-on Types"
-msgstr "附加元件類型"
-
-msgid "Any"
-msgstr "不限"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "透過元件名稱、作者電郵地址、GUID 搜尋"
-
-msgid "Max. Version"
-msgstr "最新版本"
-
-msgid "Select an application first"
-msgstr "先選擇一個應用程式"
-
 msgid "Comments:"
 msgstr "評論:"
 
@@ -4750,6 +4734,9 @@ msgstr "立即拒絕。僅在發現嚴重安全性問題時使用。"
 msgid "days"
 msgstr "天"
 
+msgid "Choose one or more reasons:"
+msgstr "選擇一個或多個原因:"
+
 msgid "Choose a canned response..."
 msgstr "選擇一個制式回覆…"
 
@@ -4765,20 +4752,17 @@ msgstr "先略過"
 msgid "Delete review"
 msgstr "刪除評論"
 
+msgid "Needs Admin Code Review"
+msgstr "需要管理員進行程式碼審查"
+
 msgid "Needs Admin Content Review"
 msgstr "需要管理員內容審查"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "需要管理員進行靜態佈景主題審查"
 
-msgid "Requires Restart"
-msgstr "需要重新啟動"
-
 msgid "Sources provided"
 msgstr "已提供來源"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "已暫時延後自動審核通過"
@@ -4804,6 +4788,9 @@ msgstr "版本字串與 GUID，與封鎖清單中的 Block 項目相符"
 msgid "Weight breakdown not available."
 msgstr "無法取得權重明細。"
 
+msgid "Is available to be used in reviews"
+msgstr "可用於評論"
+
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "若定義了「canned_response」就不能送出評論。"
 
@@ -4813,35 +4800,11 @@ msgstr "您送出的註解不能空白。"
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "您不能單純送出行號，但不指出檔案名稱。"
 
-msgid "Type"
-msgstr "類型"
-
-msgid "Waiting Time"
-msgstr "等待時間"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "旗標"
-
-msgid "moments ago"
-msgstr "不久前"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} 分鐘"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} 小時"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} 天"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "最後評論"
@@ -4857,6 +4820,12 @@ msgstr "總權重"
 
 msgid "Maliciousness Score"
 msgstr "惡意程度評分"
+
+msgid "Type"
+msgstr "類型"
+
+msgid "Waiting Time"
+msgstr "等待時間"
 
 msgid "Pending Rejection Deadline"
 msgstr "待拒絕期限"
@@ -5045,6 +5014,12 @@ msgstr "{0} 的附加元件資訊"
 msgid "Add-on ID"
 msgstr "附加元件 ID"
 
+msgid "Original Add-on ID"
+msgstr "原始附加元件 ID"
+
+msgid "Add-on(s) sharing same ID"
+msgstr "使用相同 ID 的附加元件"
+
 msgid "Internal AMO ID"
 msgstr "AMO 內部 ID"
 
@@ -5161,57 +5136,6 @@ msgstr "刪除前已被標示審核。"
 msgid "Undelete"
 msgstr "反刪除"
 
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "審核者效率 – Firefox 附加元件站"
-
-msgid "Add-on Reviewer Performance"
-msgstr "附加元件審核者效率"
-
-msgid "View statistics for user"
-msgstr "檢視使用者的統計數據"
-
-msgid "Range"
-msgstr "範圍"
-
-msgid "Your Reviews"
-msgstr "您的審核"
-
-msgid "By {user_name}"
-msgstr "由 {user_name}"
-
-msgid "Total Reviews"
-msgstr "總審核數量"
-
-msgid "Active Contributors"
-msgstr "活躍的貢獻者"
-
-msgid "This Month"
-msgstr "這個月"
-
-msgid "This Year"
-msgstr "今年"
-
-msgid "Monthly Performance"
-msgstr "每個月績效"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "點數總排名（按類型）"
-
-msgid "Add-ons"
-msgstr "附加元件"
-
-msgid "Total"
-msgstr "共計"
-
-msgid "Month"
-msgstr "月"
-
-msgid "Year"
-msgstr "年"
-
-msgid "All-Time"
-msgstr "全部時間"
-
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "- 審核者工具 – Firefox 附加元件站"
 
@@ -5232,12 +5156,6 @@ msgstr "未公開上架的附加元件 – Firefox 附加元件站"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "待拒絕 – Firefox 附加元件站"
-
-msgid "Advanced Search"
-msgstr "進階搜尋"
-
-msgid "clear search"
-msgstr "清除搜尋"
 
 msgid "Process Reviews"
 msgstr "審核處理"
@@ -5284,9 +5202,6 @@ msgstr "附加元件重要變更紀錄"
 
 msgid "Add-on History"
 msgstr "附加元件歷史"
-
-msgid "Previously deleted entries"
-msgstr "先前刪除的項目"
 
 msgid "You don't have permission to review it."
 msgstr "您沒有任何審核權限。"
@@ -5594,8 +5509,8 @@ msgstr "存在符合的規則"
 msgid "result state"
 msgstr "結果狀態"
 
-msgid "all but results matching only this rule"
-msgstr "全部，但只符合這條規則的結果"
+msgid "Excluding results solely matching these rules"
+msgstr "排除只符合下列規則的結果"
 
 msgid "presence of a version"
 msgstr "版本存在"
@@ -5686,9 +5601,6 @@ msgstr "版本號碼與安裝資訊檔不符。"
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "版本已存在，最新版本為: %s。"
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "僅 WebExtension 可忽略附加元件 ID"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "若附加元件 ID 超過 64 字元，請在安裝資訊檔中指定。"
@@ -5816,6 +5728,9 @@ msgstr "讀取最新資料&hellip;"
 msgid "No data available."
 msgstr "無資料。"
 
+msgid "Previous"
+msgstr "上一頁"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "這個儀錶板是<b>不公開的</b>。"
 
@@ -5908,12 +5823,6 @@ msgstr "法律聲明"
 msgid "Report Trademark Abuse"
 msgstr "回報商標濫用"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "新網站支援行動裝置與桌機使用者"
-
-msgid "View the new site"
-msgstr "檢視新網站"
-
 msgid "Site Status"
 msgstr "網站狀態"
 
@@ -5962,8 +5871,8 @@ msgstr "衝"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "回到 {0} 附加元件首頁"
 
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> 附加元件"
+msgid "Add-ons"
+msgstr "附加元件"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6054,8 +5963,8 @@ msgstr "無使用者使用此信箱。"
 msgid "Firefox user {id}"
 msgstr "Firefox 使用者 {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "請輸入有效的 IPv6 或 IPv6 CIDR 網段，例如 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "請輸入有效的 IPv4 或 IPv6 CIDR 網段，例如 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "您的所在位置有多套違反我們使用政策的附加元件。此 IP 已遭封鎖。"
@@ -6063,10 +5972,8 @@ msgstr "您的所在位置有多套違反我們使用政策的附加元件。此
 msgid "Email Pattern"
 msgstr "郵件模式"
 
-msgid ""
-"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
-" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
-msgstr "請輸入要封鎖的完整網域，或是使用 glob 風格的萬用字元來比對其他模式，例如「@*.mail.com」請注意，我們不會在比對時加入「@」，所以您應該在比對模式中加入此符號。"
+msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
+msgstr "請輸入要封鎖的完整電子郵件地址，或使用 unix 格式的萬用字元（例如「*@example.com」）。若您要封鎖包含所有子網域的完整網域，請另外針對子網域加入一筆「*@*.example.com」。"
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "您的帳號不允許用來上架附加元件。"
@@ -6209,3 +6116,6 @@ msgstr "其他"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新版"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "不允許使用 {origin} 此安裝來源。"

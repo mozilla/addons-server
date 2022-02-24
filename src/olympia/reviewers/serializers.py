@@ -1,3 +1,4 @@
+import hashlib
 import io
 import os
 import mimetypes
@@ -14,7 +15,7 @@ from rest_framework.reverse import reverse as drf_reverse
 from django.core.cache import cache
 from django.urls import reverse
 from django.utils.functional import cached_property
-from django.utils.encoding import force_str
+from django.utils.encoding import force_bytes, force_str
 from django.utils.translation import gettext
 
 from olympia import amo
@@ -34,7 +35,6 @@ from olympia.files.models import File, FileValidation
 from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.git.utils import AddonGitRepository, get_mime_type_for_blob
-from olympia.lib.cache import make_key
 from olympia.lib import unicodehelper
 
 
@@ -141,10 +141,13 @@ class FileEntriesMixin:
 
         # Normalize the key as we want to avoid that we exceed max
         # key lengh because of selected_file.
-        cache_key = make_key(
-            f'reviewers:fileentriesserializer:hashes' f':{commit.hex}:{selected_file}',
-            with_locale=False,
-            normalize=True,
+        cache_key = force_str(
+            hashlib.sha256(
+                force_bytes(
+                    'reviewers:fileentriesserializer:hashes'
+                    f':{commit.hex}:{selected_file}',
+                )
+            ).hexdigest()
         )
 
         def _calculate_hash():
@@ -378,7 +381,7 @@ class MinimalVersionSerializerWithChannel(MinimalVersionSerializer):
 
 
 class AddonBrowseVersionSerializerFileOnly(MinimalVersionSerializerWithChannel):
-    file = FileInfoSerializer(source='current_file')
+    file = FileInfoSerializer()
 
     class Meta:
         model = Version
@@ -431,17 +434,17 @@ class AddonBrowseVersionSerializer(
             drf_reverse(
                 'reviewers-addon-json-file-validation',
                 request=self.context.get('request'),
-                args=[obj.addon.pk, obj.current_file.id],
+                args=[obj.addon.pk, obj.file.id],
             )
         )
 
     def get_validation_url(self, obj):
         return absolutify(
-            reverse('devhub.file_validation', args=[obj.addon.pk, obj.current_file.id])
+            reverse('devhub.file_validation', args=[obj.addon.pk, obj.file.id])
         )
 
     def get_has_been_validated(self, obj):
-        return obj.current_file.has_been_validated
+        return obj.file.has_been_validated
 
 
 class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
@@ -498,7 +501,7 @@ class FileInfoDiffSerializer(FileInfoSerializer, FileEntriesDiffMixin):
         parent = self.context['parent_version']
         selected_file = self._get_selected_file()
 
-        for file in [parent.current_file, obj]:
+        for file in [parent.file, obj]:
             try:
                 data = json.loads(file.validation.validation)
             except FileValidation.DoesNotExist:
@@ -513,12 +516,12 @@ class FileInfoDiffSerializer(FileInfoSerializer, FileEntriesDiffMixin):
     def get_base_file(self, obj):
         # We can't directly use `source=` in the file definitions above
         # because the parent version gets passed through the `context`
-        base_file = self.context['parent_version'].current_file
+        base_file = self.context['parent_version'].file
         return MinimalBaseFileSerializer(instance=base_file).data
 
 
 class AddonCompareVersionSerializerFileOnly(AddonBrowseVersionSerializer):
-    file = FileInfoDiffSerializer(source='current_file')
+    file = FileInfoDiffSerializer()
 
     class Meta:
         model = Version

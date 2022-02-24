@@ -53,7 +53,7 @@ class Command(BaseCommand):
         rejected for a given add-on and that are worth notifying the
         developers about (public/awaiting review)."""
         return (
-            addon.versions.filter(files__status__in=amo.VALID_FILE_STATUSES)
+            addon.versions.filter(file__status__in=amo.VALID_FILE_STATUSES)
             .filter(reviewerflags__pending_rejection__lt=deadline)
             .order_by('id')
         )

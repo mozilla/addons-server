@@ -15,7 +15,11 @@ class Shelf(ModelBase):
     )
     ENDPOINT_CHOICES = tuple((endpoint, endpoint) for endpoint in Endpoints)
 
-    title = models.CharField(max_length=70, help_text='Will be translated.')
+    title = models.CharField(
+        max_length=70,
+        help_text='Will be translated. `random-tag` shelves can use {tag} in the text, '
+        'which will be substituted for the random tag selected.',
+    )
     endpoint = models.CharField(
         max_length=20, choices=ENDPOINT_CHOICES, db_column='shelf_type'
     )
@@ -27,12 +31,15 @@ class Shelf(ModelBase):
     footer_text = models.CharField(
         max_length=70,
         blank=True,
-        help_text='e.g., See more recommended extensions. Will be translated.',
+        help_text='e.g., See more recommended extensions. Will be translated. '
+        '`random-tag` shelves can use {tag} in the text, which will be substituted for '
+        'the random tag selected.',
     )
     footer_pathname = models.CharField(
         max_length=255,
         blank=True,
-        help_text='e.g., collections/4757633/privacy-matters',
+        help_text='Can be set to override the default generated footer url/path to see '
+        'more of the add-ons shown on the shelf. Leave blank otherwise',
     )
     addon_count = models.PositiveSmallIntegerField(
         default=0,
@@ -60,11 +67,12 @@ class Shelf(ModelBase):
 
     @cached_property
     def tag(self):
-        return (
-            Tag.objects.order_by('?').first().tag_text
-            if self.endpoint == self.Endpoints.RANDOM_TAG
-            else None
+        tag_qs = (
+            Tag.objects.filter(enable_for_random_shelf=True)
+            .order_by('?')
+            .values_list('tag_text', flat=True)
         )
+        return tag_qs.first() if self.endpoint == self.Endpoints.RANDOM_TAG else None
 
     def get_param_dict(self):
         params = dict(parse.parse_qsl(self.criteria.strip('?')))

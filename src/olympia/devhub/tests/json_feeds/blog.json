@@ -1,0 +1,1063 @@
+[
+    {
+        "id": 9022,
+        "date": "2021-08-05T11:05:49",
+        "date_gmt": "2021-08-05T18:05:49",
+        "guid": {
+            "rendered": "https:\/\/blog.mozilla.org\/addons\/?p=9022"
+        },
+        "modified": "2021-08-06T11:07:11",
+        "modified_gmt": "2021-08-06T18:07:11",
+        "slug": "thank-you-recommended-extensions-community-board",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/",
+        "title": {
+            "rendered": "Thank you, Recommended Extensions Community Board!"
+        },
+        "content": {
+            "rendered": "<p>Given the broad visibility of <a href=\"https:\/\/blog.mozilla.org\/en\/products\/firefox\/firefox-recommended-extensions\/\" target=\"_blank\" rel=\"noopener\">Recommended extensions<\/a> across <em>addons.mozilla.org<\/em> (AMO), the Firefox Add-ons Manager, and other places we promote extensions, we believe our curatorial process should include a wide range of perspectives from our global community of contributors. That\u2019s why we have the <a href=\"https:\/\/wiki.mozilla.org\/AMO\/Featured_Board_Process\" target=\"_blank\" rel=\"noopener\">Recommended Extensions Advisory Board<\/a>\u2014an ongoing project that involves a rotating group of contributors to help identify and evaluate new extension candidates for the program. <\/p>\n<p>Our most recent community board just completed their six-month project and I\u2019d like to take a moment to thank <a href=\"https:\/\/people.mozilla.org\/p\/spoji\" target=\"_blank\" rel=\"noopener\">Sylvain Giroux<\/a>, <a href=\"https:\/\/people.mozilla.org\/p\/jenal\" target=\"_blank\" rel=\"noopener\">Jyotsna Gupta<\/a>, <a href=\"https:\/\/people.mozilla.org\/p\/im_chandan\" target=\"_blank\" rel=\"noopener\">Chandan Baba<\/a>, <a href=\"https:\/\/people.mozilla.org\/p\/juraj\" target=\"_blank\" rel=\"noopener\">Juraj M\u00e4siar<\/a>, and Pranjal Vyas for sharing their time, passion, and knowledge of extensions. Their insights helped usher a wave of new extensions into the Recommended program, including really compelling content like <a href=\"https:\/\/addons.mozilla.org\/firefox\/addon\/i-dont-care-about-cookies\/\" target=\"_blank\" rel=\"noopener\">I Don\u2019t Care About Cookies<\/a> (A+ cookie manager), <a href=\"https:\/\/addons.mozilla.org\/firefox\/addon\/tab-stash\/\" target=\"_blank\" rel=\"noopener\">Tab Stash<\/a> (highly original take on tab management), <a href=\"https:\/\/addons.mozilla.org\/firefox\/addon\/custom-scrollbars\/\" target=\"_blank\" rel=\"noopener\">Custom Scrollbars<\/a> (neon colored scrollbar? Yes please!), <a href=\"https:\/\/addons.mozilla.org\/firefox\/addon\/youtube-subscription-groups\/\" target=\"_blank\" rel=\"noopener\">PocketTube<\/a> (great way to organize a bunch of YouTube subscriptions), and many more.\u00a0<\/p>\n<p>On behalf of the entire Add-ons staff, thank you and all! <\/p>\n<p>Now we\u2019ll turn our attention to forming the next community board for another six-month project dedicated to evaluating new Recommended candidates. If you have a passion for browser extensions and you think you could make an impact contributing your insights to our curatorial process, we\u2019d love to hear from you by <strong>Monday, 30 August<\/strong>. Just drop us an email at <strong>amo-featured [at] mozilla.org<\/strong> along with a brief note letting us know a bit about your experience with extensions\u2014whether as a developer, user, or both\u2014and why you\u2019d like to participate on the next Recommended Extensions Community Advisory Board. <\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Given the broad visibility of Recommended extensions across addons.mozilla.org (AMO), the Firefox Add-ons Manager, and other places we promote extensions, we believe our curatorial process should include a wide range of perspectives from our global community of contributors. That\u2019s why &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 648,
+        "featured_media": 8108,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            176604,
+            278884,
+            121
+        ],
+        "tags": [],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<link rel=\"canonical\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"1 minute\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2017\/03\/addons-puzzle-fox.png\",\"width\":220,\"height\":220,\"caption\":\"Add-ons logo\"},{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/#webpage\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/\",\"name\":\"Thank you, Recommended Extensions Community Board! - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/#primaryimage\"},\"datePublished\":\"2021-08-05T18:05:49+00:00\",\"dateModified\":\"2021-08-05T18:07:11+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/ddef9beeb756a1c0ba23491d305e67b0\"},\"breadcrumb\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/08\/05\/thank-you-recommended-extensions-community-board\/\",\"name\":\"Thank you, Recommended Extensions Community Board!\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/ddef9beeb756a1c0ba23491d305e67b0\",\"name\":\"Scott DeVaney\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/dc38a62432c7d12585390805c2bc58e2?s=96&r=g\",\"caption\":\"Scott DeVaney\"}}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/9022"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/648"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=9022"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/9022\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8108"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=9022"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=9022"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=9022"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 9018,
+        "date": "2021-07-29T09:00:31",
+        "date_gmt": "2021-07-29T16:00:31",
+        "guid": {
+            "rendered": "https:\/\/blog.mozilla.org\/addons\/?p=9018"
+        },
+        "modified": "2021-07-28T13:17:37",
+        "modified_gmt": "2021-07-28T20:17:37",
+        "slug": "new-tagging-feature-for-add-ons-on-amo",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/",
+        "title": {
+            "rendered": "New tagging feature for add-ons on AMO"
+        },
+        "content": {
+            "rendered": "<p>There are multiple ways to find great add-ons on <a href=\"https:\/\/addons.mozilla.org\/?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_campaign=2021-07-tags\">addons.mozilla.org<\/a> (AMO). You can browse the content featured on the homepage, use the top navigation to drill down into add-on types and categories, or search for specific add-ons or functionality. Now, we\u2019re adding another layer of classification and opportunities for discovery by bringing back a feature called tags.<\/p>\n<p><a href=\"https:\/\/blog.mozilla.org\/addons\/2009\/07\/24\/tagging-for-add-ons\/\">We introduced tagging long ago<\/a>, but ended up discontinuing it because the way we implemented it wasn\u2019t as useful as we thought. Part of the problem was that it was too open-ended, and anyone could tag any add-on however they wanted. This led to spamming, over-tagging, and general inconsistencies that made it hard for users to get helpful results.<\/p>\n<p>Now we\u2019re bringing tags back, but in a different form. Instead of free-form tags, we\u2019ll provide a set of predefined tags that developers can pick from. We\u2019re starting with a small set of tags based on what we\u2019ve noticed users looking for, so it\u2019s possible many add-ons don\u2019t match any of them. We will expand the list of tags if this feature performs well.<\/p>\n<p>The tags will be displayed on the listing page of the add-on. We also plan to display tagged add-ons in the AMO homepage.<\/p>\n<div id=\"attachment_9019\" style=\"width: 610px\" class=\"wp-caption aligncenter\"><img aria-describedby=\"caption-attachment-9019\" loading=\"lazy\" class=\"size-large wp-image-9019\" src=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/07\/tag-shelf-600x88.png\" alt=\"Example of a tag shelf in the AMO homepage\" width=\"600\" height=\"88\" srcset=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/07\/tag-shelf-600x88.png 600w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/07\/tag-shelf-252x37.png 252w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/07\/tag-shelf-768x112.png 768w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/07\/tag-shelf.png 1248w\" sizes=\"(max-width: 600px) 100vw, 600px\" \/><p id=\"caption-attachment-9019\" class=\"wp-caption-text\">Example of a tag shelf in the AMO homepage<\/p><\/div>\n<p>We\u2019re only just starting to roll this feature out, so we might be making some changes to it as we learn more about how it\u2019s used. For now, add-on developers should visit the <a href=\"https:\/\/addons.mozilla.org\/developers\/?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_campaign=2021-07-tags\">Developer Hub<\/a> and set any relevant tags for their add-ons. Any tags that had been set prior to July 22, 2021 were removed when the feature was retooled.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>There are multiple ways to find great add-ons on addons.mozilla.org (AMO). You can browse the content featured on the homepage, use the top navigation to drill down into add-on types and categories, or search for specific add-ons or functionality. Now, &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 173,
+        "featured_media": 8915,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            44,
+            121
+        ],
+        "tags": [
+            17,
+            278873,
+            322941
+        ],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<link rel=\"canonical\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"2 minutes\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2020\/09\/nightly.png\",\"width\":915,\"height\":915},{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/#webpage\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/\",\"name\":\"New tagging feature for add-ons on AMO - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/#primaryimage\"},\"datePublished\":\"2021-07-29T16:00:31+00:00\",\"dateModified\":\"2021-07-28T20:17:37+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/dcefb239ff60e87b41cc97acb5cf8ca7\"},\"breadcrumb\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/07\/29\/new-tagging-feature-for-add-ons-on-amo\/\",\"name\":\"New tagging feature for add-ons on AMO\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/dcefb239ff60e87b41cc97acb5cf8ca7\",\"name\":\"Jorge Villalobos\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/6d1966118f16e4b99a6e3ad07883be33?s=96&r=g\",\"caption\":\"Jorge Villalobos\"},\"description\":\"Jorge is the Product Manager for addons.mozilla.org\"}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/9018"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/173"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=9018"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/9018\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8915"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=9018"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=9018"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=9018"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 9012,
+        "date": "2021-06-24T09:00:54",
+        "date_gmt": "2021-06-24T16:00:54",
+        "guid": {
+            "rendered": "https:\/\/blog.mozilla.org\/addons\/?p=9012"
+        },
+        "modified": "2021-06-23T14:18:41",
+        "modified_gmt": "2021-06-23T21:18:41",
+        "slug": "review-articles-amo-new-blog-name",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/",
+        "title": {
+            "rendered": "Review Articles on AMO and New Blog Name"
+        },
+        "content": {
+            "rendered": "<p>I\u2019m very happy to announce a new feature that we\u2019ve released on AMO (<a href=\"https:\/\/addons.mozilla.org\/?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_campaign=new-editorial-announcement-2021\">addons.mozilla.org<\/a>). It\u2019s a series of posts that review some of the best add-ons we have available on AMO. So far we have published three articles:<\/p>\n<ul>\n<li aria-level=\"1\"><a href=\"https:\/\/addons.mozilla.org\/blog\/translate-the-web-easily-with-a-browser-extension\/?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_campaign=new-editorial-announcement-2021\">Translate the web easily with a browser extension<\/a><\/li>\n<li aria-level=\"1\"><a href=\"https:\/\/addons.mozilla.org\/blog\/whats-the-best-ad-blocker-for-you\/?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_campaign=new-editorial-announcement-2021\">What\u2019s the best ad blocker for you?<\/a><\/li>\n<li aria-level=\"1\"><a href=\"https:\/\/addons.mozilla.org\/blog\/watch-videos-with-friends-anywhere-how-to-social-stream-with-browser-extensions\/?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_campaign=new-editorial-announcement-2021\">Watch videos with friends anywhere\u2014how to social stream with browser extensions<\/a><\/li>\n<\/ul>\n<p>Our goal with this new channel is to provide user-friendly guides into the add-ons world, focused on topics that are at the top of Firefox users\u2019 minds. And, because we\u2019re publishing directly on AMO, you can install the add-ons directly from the article pages.<\/p>\n<div id=\"attachment_9013\" style=\"width: 610px\" class=\"wp-caption aligncenter\"><img aria-describedby=\"caption-attachment-9013\" loading=\"lazy\" class=\"size-large wp-image-9013\" src=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/06\/Screenshot-2021-06-23-at-15-13-24-Translate-the-web-easily-with-a-browser-extension-Firefox-Add-on-Reviews-600x700.png\" alt=\"Screenshot of article\" width=\"600\" height=\"700\" srcset=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/06\/Screenshot-2021-06-23-at-15-13-24-Translate-the-web-easily-with-a-browser-extension-Firefox-Add-on-Reviews-600x700.png 600w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/06\/Screenshot-2021-06-23-at-15-13-24-Translate-the-web-easily-with-a-browser-extension-Firefox-Add-on-Reviews-252x294.png 252w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/06\/Screenshot-2021-06-23-at-15-13-24-Translate-the-web-easily-with-a-browser-extension-Firefox-Add-on-Reviews-768x895.png 768w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/06\/Screenshot-2021-06-23-at-15-13-24-Translate-the-web-easily-with-a-browser-extension-Firefox-Add-on-Reviews.png 1000w\" sizes=\"(max-width: 600px) 100vw, 600px\" \/><p id=\"caption-attachment-9013\" class=\"wp-caption-text\">A taste of the new look and feel<\/p><\/div>\n<p>All add-ons that are featured in these articles have been reviewed and should be safe to use. If you have any feedback on these articles or the add-ons we\u2019ve included in them, please let us know in the <a href=\"https:\/\/discourse.mozilla.org\/c\/add-ons\/announcements\/107?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_campaign=new-editorial-announcement-2021\">Discourse forum<\/a>. I\u2019ll be creating new threads for each article we publish.<\/p>\n<h2>New blog name<\/h2>\n<p>These posts are being published in a new section on AMO called \u201cFirefox Add-on Reviews\u201d. So, while we\u2019re not calling it a \u201cblog\u201d, it could still cause some confusion with this blog.<\/p>\n<p>In order to reduce confusion, we\u2019ve decided to rename this blog from \u201cAdd-ons Blog\u201d to \u201cAdd-ons Community Blog\u201d, which we think better represents its charter and content. Nothing else will change: the URL will remain the same and this will continue to be the destination for add-on developer and add-on community news.<\/p>\n<p>I hope you like the new content we\u2019re making available for you. Please share it around and <a href=\"https:\/\/discourse.mozilla.org\/c\/add-ons\/announcements\/107?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_campaign=new-editorial-announcement-2021\">let us know<\/a> what you think!<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>I\u2019m very happy to announce a new feature that we\u2019ve released on AMO (addons.mozilla.org). It\u2019s a series of posts that review some of the best add-ons we have available on AMO. So far we have published three articles: Translate the &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 173,
+        "featured_media": 9013,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            44,
+            121
+        ],
+        "tags": [
+            17,
+            930,
+            322940,
+            58
+        ],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<link rel=\"canonical\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"2 minutes\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/06\/Screenshot-2021-06-23-at-15-13-24-Translate-the-web-easily-with-a-browser-extension-Firefox-Add-on-Reviews.png\",\"width\":1000,\"height\":1166,\"caption\":\"A taste of the new look and feel\"},{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/#webpage\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/\",\"name\":\"Review Articles on AMO and New Blog Name - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/#primaryimage\"},\"datePublished\":\"2021-06-24T16:00:54+00:00\",\"dateModified\":\"2021-06-23T21:18:41+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/dcefb239ff60e87b41cc97acb5cf8ca7\"},\"breadcrumb\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/06\/24\/review-articles-amo-new-blog-name\/\",\"name\":\"Review Articles on AMO and New Blog Name\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/dcefb239ff60e87b41cc97acb5cf8ca7\",\"name\":\"Jorge Villalobos\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/6d1966118f16e4b99a6e3ad07883be33?s=96&r=g\",\"caption\":\"Jorge Villalobos\"},\"description\":\"Jorge is the Product Manager for addons.mozilla.org\"}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/9012"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/173"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=9012"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/9012\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/9013"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=9012"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=9012"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=9012"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 9007,
+        "date": "2021-05-27T08:02:05",
+        "date_gmt": "2021-05-27T15:02:05",
+        "guid": {
+            "rendered": "https:\/\/blog.mozilla.org\/addons\/?p=9007"
+        },
+        "modified": "2021-05-27T08:02:05",
+        "modified_gmt": "2021-05-27T15:02:05",
+        "slug": "manifest-v3-update",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/",
+        "title": {
+            "rendered": "Manifest v3 update"
+        },
+        "content": {
+            "rendered": "<p>Two years ago, Google proposed <a href=\"https:\/\/developer.chrome.com\/docs\/extensions\/mv3\/intro\/\">Manifest v3<\/a>, a number of foundational changes to the Chrome extension framework. Many of these changes introduce new incompatibilities between Firefox and Chrome. As we <a href=\"https:\/\/blog.mozilla.org\/addons\/2019\/09\/03\/mozillas-manifest-v3-faq\/\">previously wrote<\/a>, we want to maintain a high degree of compatibility to support cross-browser development.\u00a0 We will introduce Manifest v3 support for Firefox extensions. However, we will diverge from Chrome\u2019s implementation where we think it matters and our values point to a different solution.<\/p>\n<p>For the last few months, we have consulted with extension developers and Firefox\u2019s engineering leadership about our approach to Manifest v3. The following is an overview of our plan to move forward, which is based on those conversations.<\/p>\n<h2>High level changes<\/h2>\n<ul>\n<li aria-level=\"1\">\n<p>In our <a href=\"https:\/\/blog.mozilla.org\/addons\/2019\/09\/03\/mozillas-manifest-v3-faq\/\">initial response<\/a> to the Manifest v3 proposal, we committed to implementing <b>cross-origin protections. <\/b>Some of this work is underway as part of <a href=\"https:\/\/blog.mozilla.org\/security\/2021\/05\/18\/introducing-site-isolation-in-firefox\/\">Site Isolation<\/a>, a larger reworking of Firefox\u2019s architecture to isolate sites from each other. You can test how your extension performs in site isolation on the Nightly pre-release channel by going to about:preferences#experimental and enabling Fission (Site Isolation). This feature will be gradually enabled by default on<a href=\"https:\/\/www.mozilla.org\/firefox\/channel\/desktop\/#beta\"> Firefox Beta<\/a> in the upcoming months and will start rolling out a small percentage of release users in Q3 2021.<\/p>\n<p>Cross-origin requests in content scripts already encounter restrictions by advances of the web platform (e.g. <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Headers\/Set-Cookie\/SameSite\">SameSite cookies<\/a>, <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTTP\/Cross-Origin_Resource_Policy_(CORP)\">CORP<\/a>) and privacy features of Firefox (e.g. <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/Privacy\/State_Partitioning\">state partitioning<\/a>). To support extensions, we are allowing extension scripts with sufficient host permissions to be exempted from these policies. Content scripts won\u2019t benefit from these improvements, and will eventually have the same kind of permissions as regular web pages (<a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1578405\">bug 1578405<\/a>). We will continue to develop APIs to enable extensions to perform cross-origin requests that respect the user&#8217;s privacy choices (e.g. <a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1670278\">bug 1670278<\/a>, <a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1698863\">bug 1698863<\/a>).<\/li>\n<\/ul>\n<ul>\n<li aria-level=\"1\"><b>Background pages will be replaced by<\/b> <b>background service workers <\/b>(<a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1578286\">bug 1578286)<\/a><b>. <\/b>This is a substantial change and will continue to be developed over the next few months. We will make a new announcement once we have something that can be tested in Nightly.<\/li>\n<\/ul>\n<ul>\n<li aria-level=\"1\"><b>Promise-based APIs:<\/b> Our APIs have been Promise-based since their inception using the browser.* namespace and we published a <a href=\"https:\/\/github.com\/mozilla\/webextension-polyfill\">polyfill<\/a> to offer consistent behavior across browsers that only support the chrome.* namespace. For Manifest v3, we will enable Promise-based APIs in the chrome.* namespace as well.<\/li>\n<\/ul>\n<ul>\n<li aria-level=\"1\"><b>Host permission controls <\/b>(bug <a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1711787\">1711787<\/a>)<b>: <\/b>Chrome has shipped a feature that gives users control over which sites extensions are allowed to run on. We&#8217;re working on our own design that puts users in control, including early work by our Outreachy intern Richa Sharma on a project to give users the ability to decide if extensions will run in different container tabs (<a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1683056\">bug 1683056<\/a>). Stay tuned for more information about that project!<\/li>\n<\/ul>\n<ul>\n<li aria-level=\"1\"><b>Code execution<\/b>: Dynamic code execution in privileged extension contexts will be restricted by default (<a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1687763\">bug 1687763<\/a>). A content security policy for content scripts will be introduced (<a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1581608\">bug 1581608<\/a>). The existing userScripts and contentScripts APIs will be reworked to support service worker-based extensions (<a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1687761\">bug 1687761<\/a>).<\/li>\n<\/ul>\n<h2>declarativeNetRequest<\/h2>\n<p>Google has introduced <a href=\"https:\/\/developer.chrome.com\/docs\/extensions\/reference\/declarativeNetRequest\/\">declarativeNetRequest<\/a> (DNR) to replace the <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/webRequest\/BlockingResponse\">blocking webRequest<\/a> API. This impacts the capabilities of extensions that process network requests (including but not limited to content blockers) by limiting the number of rules an extension can use, as well as available filters and actions.<\/p>\n<p>After discussing this with several content blocking extension developers, we have decided to implement DNR <i>and<\/i> continue maintaining support for blocking webRequest. Our initial goal for implementing DNR is to provide compatibility with Chrome so developers do not have to support multiple code bases if they do not want to. With both APIs supported in Firefox, developers can choose the approach that works best for them and their users.<\/p>\n<p>We will support blocking webRequest until there&#8217;s a better solution which covers all use cases we consider important, since DNR as currently implemented by Chrome does not yet meet the needs of extension developers.<\/p>\n<p>You can follow our progress on implementing DNR in <a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1687755\">bug 1687755<\/a>.<\/p>\n<h2>Implementation timeline<\/h2>\n<p>Manifest v3 is a large platform project, and some parts of it will take longer than others to implement. As of this writing, we are hoping to complete enough work on this project to support developer testing in Q4 2021 and start accepting v3 submissions in early 2022. This schedule may be pushed back or delayed due to unforeseeable circumstances.<\/p>\n<p>We\u2019d like to note that it\u2019s still very early to be talking about migrating extensions to Manifest v3. We have not yet set a deprecation date for Manifest v2 but expect it to be supported for at least one year after Manifest v3 becomes stable in the release channel.<\/p>\n<h2>Get involved<\/h2>\n<p>We understand that extension developers will need to adapt their extensions to be compatible with Manifest v3, and we would like to make this process as smooth as possible. Please let us know about any pain points you might have encountered when migrating Chrome extensions to Manifest v3, and any suggested mitigations, on our <a href=\"https:\/\/discourse.mozilla.org\/c\/add-ons\/development\/108\">community forum<\/a> or in relevant issues on <a href=\"https:\/\/bugzilla.mozilla.org\/home\">Bugzilla.<\/a><\/p>\n<p>We are also interested in hearing about specific use cases we should keep in mind so that your extension will be compatible with Chrome for Manifest V3.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Two years ago, Google proposed Manifest v3, a number of foundational changes to the Chrome extension framework. Many of these changes introduce new incompatibilities between Firefox and Chrome. As we previously wrote, we want to maintain a high degree of &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 1853,
+        "featured_media": 8205,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            44,
+            121,
+            322922,
+            278886
+        ],
+        "tags": [],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<meta name=\"description\" content=\"Manifest v3 support for Firefox extensions is coming in late 2021. See a high-level summary of changes to the platform.\" \/>\n<link rel=\"canonical\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"4 minutes\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2017\/07\/addons-octopus-1.png\",\"width\":787,\"height\":637,\"caption\":\"add-ons octopus\"},{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/#webpage\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/\",\"name\":\"Manifest v3 update - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/#primaryimage\"},\"datePublished\":\"2021-05-27T15:02:05+00:00\",\"dateModified\":\"2021-05-27T15:02:05+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/455fd07de0e3d225900c88d55b53de21\"},\"description\":\"Manifest v3 support for Firefox extensions is coming in late 2021. See a high-level summary of changes to the platform.\",\"breadcrumb\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/05\/27\/manifest-v3-update\/\",\"name\":\"Manifest v3 update\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/455fd07de0e3d225900c88d55b53de21\",\"name\":\"Rob Wu\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/30e26944b9b786ea16fce8b18394c6e4?s=96&r=g\",\"caption\":\"Rob Wu\"},\"description\":\"Firefox engineer on the add-ons team at Mozilla.\"}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/9007"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/1853"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=9007"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/9007\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8205"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=9007"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=9007"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=9007"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 8996,
+        "date": "2021-04-19T08:08:49",
+        "date_gmt": "2021-04-19T15:08:49",
+        "guid": {
+            "rendered": "http:\/\/blog.mozilla.org\/addons\/?p=8996"
+        },
+        "modified": "2021-04-19T08:08:49",
+        "modified_gmt": "2021-04-19T15:08:49",
+        "slug": "changes-to-themeable-areas-of-firefox-in-version-89",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/",
+        "title": {
+            "rendered": "Changes to themeable areas of Firefox in version 89"
+        },
+        "content": {
+            "rendered": "<p>Firefox\u2019s visual appearance will be updated in version 89 to provide a cleaner, modernized interface. Since some of the changes will affect themeable areas of the browser, we wanted to give theme artists a preview of what to expect as the appearance of their themes may change when applied to version 89.<\/p>\n<h2>Tabs appearance<\/h2>\n<ul>\n<li aria-level=\"1\">The property <code>tab_background_separator<\/code>, which controls the appearance of the vertical lines that separate tabs, will no longer be supported.<\/li>\n<li aria-level=\"1\">Currently, the <code>tab_line<\/code> property can set the color of an active tab\u2019s thick top border. In Firefox 89, this property will set a color for all borders of an active tab, and the borders will be thinner.<\/li>\n<\/ul>\n<p><a href=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/tab_line-Firefox-89.png\"><img loading=\"lazy\" class=\"alignnone wp-image-8999 size-large\" src=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/tab_line-Firefox-89-e1618591796324-600x264.png\" alt=\"\" width=\"600\" height=\"264\" srcset=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/tab_line-Firefox-89-e1618591796324-600x264.png 600w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/tab_line-Firefox-89-e1618591796324-252x111.png 252w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/tab_line-Firefox-89-e1618591796324-768x337.png 768w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/tab_line-Firefox-89-e1618591796324.png 1152w\" sizes=\"(max-width: 600px) 100vw, 600px\" \/><\/a><\/p>\n<h2>URL and toolbar<\/h2>\n<ul>\n<li>The property <code>toolbar_field_separator<\/code>, which controls the color of the vertical line that separates the URL bar from the three-dot \u201cmeatball menu,\u201d will no longer be supported.<\/li>\n<\/ul>\n<p><a href=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_vertical_seperator-Firefox-89.png\"><img loading=\"lazy\" class=\"alignnone wp-image-9001 size-large\" src=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_vertical_seperator-Firefox-89-e1618591855664-600x277.png\" alt=\"\" width=\"600\" height=\"277\" srcset=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_vertical_seperator-Firefox-89-e1618591855664-600x277.png 600w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_vertical_seperator-Firefox-89-e1618591855664-252x116.png 252w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_vertical_seperator-Firefox-89-e1618591855664.png 719w\" sizes=\"(max-width: 600px) 100vw, 600px\" \/><\/a><\/p>\n<ul>\n<li>The property <code>toolbar_vertical_separator<\/code>, which controls the vertical lines near the three-line \u201chamburger menu\u201d and the line separating items in the bookmarks toolbar, will no longer appear next to the hamburger menu. You can still use this property to control the separators in the bookmarks toolbar.\u00a0 <i>(Note: users will need to enable the separator by right clicking on the bookmarks toolbar and selecting \u201cAdd Separator.\u201d)<\/i><\/li>\n<\/ul>\n<p><a href=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_field_seperator.png\"><img loading=\"lazy\" class=\"alignnone wp-image-9000 size-large\" src=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_field_seperator-e1618591978744-600x279.png\" alt=\"\" width=\"600\" height=\"279\" srcset=\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_field_seperator-e1618591978744-600x279.png 600w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_field_seperator-e1618591978744-252x117.png 252w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_field_seperator-e1618591978744-768x357.png 768w, https:\/\/blog.mozilla.org\/addons\/files\/2021\/04\/toolbar_field_seperator-e1618591978744.png 1152w\" sizes=\"(max-width: 600px) 100vw, 600px\" \/><\/a><\/p>\n<p>You can use the <a href=\"https:\/\/www.mozilla.org\/firefox\/channel\/desktop\/#nightly\">Nightly<\/a> pre-release channel to start testing how your themes will look with Firefox 89. If you\u2019d like to get more involved testing other changes planned for this release, please check out our <a href=\"https:\/\/community.mozilla.org\/campaigns\/firefox-foxfooding-campaign\/\">foxfooding campaign<\/a>, which runs until May 3, 2021.<\/p>\n<p>Firefox 89 is currently set available on the <a href=\"https:\/\/www.mozilla.org\/firefox\/channel\/desktop\/#beta\">Beta<\/a> pre-release channel by April 23, 2021, and released on June 1, 2021.<\/p>\n<p>As always, please post on our <a href=\"https:\/\/discourse.mozilla.org\/c\/add-ons\/35\">community forum<\/a> if there are any questions.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Firefox\u2019s visual appearance will be updated in version 89 to provide a cleaner, modernized interface. Since some of the changes will affect themeable areas of the browser, we wanted to give theme artists a preview of what to expect as &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 1405,
+        "featured_media": 8631,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            121,
+            227,
+            551
+        ],
+        "tags": [],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<meta name=\"description\" content=\"Firefox\u2019s visual appearance will be updated in version 89 to provide a cleaner, modernized interface. Here&#039;s a preview of how these changes will affect themes.\" \/>\n<link rel=\"canonical\" href=\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"2 minutes\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2019\/02\/pexels-photo-9985871.jpeg\",\"width\":1280,\"height\":853},{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/#webpage\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/\",\"name\":\"Changes to themeable areas of Firefox in version 89 - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/#primaryimage\"},\"datePublished\":\"2021-04-19T15:08:49+00:00\",\"dateModified\":\"2021-04-19T15:08:49+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\"},\"description\":\"Firefox\\u2019s visual appearance will be updated in version 89 to provide a cleaner, modernized interface. Here's a preview of how these changes will affect themes.\",\"breadcrumb\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/19\/changes-to-themeable-areas-of-firefox-in-version-89\/\",\"name\":\"Changes to themeable areas of Firefox in version 89\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\",\"name\":\"Caitlin Neiman\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/022ba856a87c8f40739b7ef2fdcdf33c?s=96&r=g\",\"caption\":\"Caitlin Neiman\"},\"description\":\"Add-ons Community Manager at Mozilla.\"}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8996"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/1405"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=8996"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8996\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8631"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=8996"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=8996"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=8996"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 8995,
+        "date": "2021-04-15T14:01:09",
+        "date_gmt": "2021-04-15T21:01:09",
+        "guid": {
+            "rendered": "http:\/\/blog.mozilla.org\/addons\/?p=8995"
+        },
+        "modified": "2021-04-15T14:01:09",
+        "modified_gmt": "2021-04-15T21:01:09",
+        "slug": "built-in-ftp-implementation-to-be-removed-in-firefox-90",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/",
+        "title": {
+            "rendered": "Built-in FTP implementation to be removed in Firefox 90"
+        },
+        "content": {
+            "rendered": "<p>Last year, the Firefox platform development team <a href=\"https:\/\/blog.mozilla.org\/addons\/2020\/04\/13\/what-to-expect-for-the-upcoming-deprecation-of-ftp-in-firefox\/\">announced<\/a> plans to remove the built-in <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Glossary\/FTP\">FTP<\/a> implementation from the browser. FTP is a protocol for transferring files from one host to another.<\/p>\n<p>The implementation is currently disabled in the <a href=\"https:\/\/www.mozilla.org\/firefox\/channel\/desktop\/#nightly\">Firefox Nightly<\/a> and <a href=\"https:\/\/www.mozilla.org\/firefox\/channel\/desktop\/#beta\">Beta<\/a> pre-release channels and will be disabled when Firefox 88 is released on April 19, 2021. The implementation will be removed in Firefox 90.\u00a0 After FTP is disabled in Firefox, the browser will delegate <code>ftp:\/\/<\/code> links to external applications in the same manner as other protocol handlers.<\/p>\n<p>With the deprecation, <code><a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/browserSettings\/ftpProtocolEnabled\">browserSettings.ftpProtocolEnabled<\/a><\/code> will become read-only. Attempts to set this value will have no effect.<\/p>\n<p>Most places where an extension may pass &#8220;ftp&#8221; such as filters for <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/proxy\">proxy<\/a> or <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/webRequest\">webRequest<\/a> should not result in an error, but the APIs will no longer handle requests of those types.<\/p>\n<p>To help offset this removal, <code>ftp<\/code>\u00a0 has been added to the list of supported <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/manifest.json\/protocol_handlers\">protocol_handlers<\/a> for browser extensions. This means that extensions will be able to prompt users to launch a FTP application to handle certain links.<\/p>\n<p>Please let us if you have any questions on our <a href=\"https:\/\/discourse.mozilla.org\/c\/add-ons\/development\/108\">developer community forum<\/a>.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Last year, the Firefox platform development team announced plans to remove the built-in FTP implementation from the browser. FTP is a protocol for transferring files from one host to another. The implementation is currently disabled in the Firefox Nightly and &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 1405,
+        "featured_media": 8750,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            44,
+            227,
+            278886
+        ],
+        "tags": [],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<meta name=\"description\" content=\"Firefox&#039;s built-in FTP implementation will be removed in Firefox 90. To offset this removal, &#039;ftp&#039; has been added as a supported protocol handler for extensions.\" \/>\n<link rel=\"canonical\" href=\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"1 minute\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2019\/10\/Fx-Browser-icon-fullColor.png\",\"width\":2048,\"height\":2048,\"caption\":\"Firefox logo\"},{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/#webpage\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/\",\"name\":\"Built-in FTP implementation to be removed in Firefox 90 - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/#primaryimage\"},\"datePublished\":\"2021-04-15T21:01:09+00:00\",\"dateModified\":\"2021-04-15T21:01:09+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\"},\"description\":\"Firefox's built-in FTP implementation will be removed in Firefox 90. To offset this removal, 'ftp' has been added as a supported protocol handler for extensions.\",\"breadcrumb\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/04\/15\/built-in-ftp-implementation-to-be-removed-in-firefox-90\/\",\"name\":\"Built-in FTP implementation to be removed in Firefox 90\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\",\"name\":\"Caitlin Neiman\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/022ba856a87c8f40739b7ef2fdcdf33c?s=96&r=g\",\"caption\":\"Caitlin Neiman\"},\"description\":\"Add-ons Community Manager at Mozilla.\"}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8995"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/1405"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=8995"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8995\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8750"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=8995"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=8995"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=8995"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 8987,
+        "date": "2021-03-25T08:00:49",
+        "date_gmt": "2021-03-25T15:00:49",
+        "guid": {
+            "rendered": "http:\/\/blog.mozilla.org\/addons\/?p=8987"
+        },
+        "modified": "2021-03-29T09:52:45",
+        "modified_gmt": "2021-03-29T16:52:45",
+        "slug": "friend-of-add-ons-melanie-chauvel",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/",
+        "title": {
+            "rendered": "Friend of Add-ons: M\u00e9lanie Chauvel"
+        },
+        "content": {
+            "rendered": "<p>I\u2019m pleased to announce our newest Friend of Add-ons, <a href=\"https:\/\/addons.mozilla.org\/firefox\/user\/13785952\/\">M\u00e9lanie Chauvel<\/a>! After becoming interested in free and open source software in 2012, M\u00e9lanie started contributing code to Tab Center Redux, a Firefox extension that displays tabs vertically on the sidebar. When the developer stopped maintaining it, she forked a version and released it as Tab Center Reborn.<\/p>\n<p>As she worked on Tab Center Reborn, M\u00e9lanie became thoroughly acquainted with the <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/Working_with_the_Tabs_API\">tabs API<\/a>. After running into a number of issues where the API didn\u2019t behave as expected, or didn\u2019t provide the functionality her extension needed, she started filing bugs and proposing new features for the WebExtensions API.<\/p>\n<p>Changing code in Firefox can be scary to new contributors because of the size and complexity of the codebase. As she started looking into her pain points, M\u00e9lanie realized that she could make some of the changes she wanted to see. \u201cWebExtensions APIs are implemented in JavaScript and are relatively isolated from the rest of the codebase,\u201d she says. \u201cI saw that I could fix some of the issues that bothered me and took a stab at it.\u201d<\/p>\n<p>M\u00e9lanie added two new APIs: <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/sidebarAction\/toggle\">sidebarAction.toggle<\/a>, which can toggle the visibility of the sidebar if it belongs to an extension, and <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/tabs\/warmup\">tabs.warmup<\/a>, which can reduce the amount of time it takes for an inactive tab to load. She also made several improvements to the <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/tabs\/duplicate\">tabs.duplicate<\/a> API. Thanks to her contributions, new duplicated tabs are activated as soon as they are opened, extensions can choose where a duplicate tab should be opened, and duplicating a pinned tab no longer causes unexpected visual glitches.<\/p>\n<p>M\u00e9lanie is also excited to see and help others contribute to open source projects. One of her most meaningful experiences at Mozilla has been filing an issue and seeing a new contributor fix it a few weeks later. \u201cIt made me happy to be part of the path of someone else contributing to important projects like Firefox. We often feel powerless in our lives, and I\u2019m glad I was able to help others participate in something bigger than them,\u201d M\u00e9lanie says.<\/p>\n<p>These days, M\u00e9lanie is working on translating Tab Center Reborn into French and Esperanto and contributing code to other open-source projects including <a href=\"https:\/\/joinmastodon.org\/\">Mastodon<\/a>, <a href=\"https:\/\/tusky.app\/\">Tusky<\/a>, <a href=\"https:\/\/www.rust-lang.org\/\">Rust<\/a>, <a href=\"https:\/\/the.exa.website\/\">Exa<\/a>, and <a href=\"https:\/\/kde.org\/\">KDE<\/a>. She also enjoys playing puzzle games, exploring vegan cooking and baking, and watching TV shows and movies with friends.<\/p>\n<p>Thank you for all of your contributions, M\u00e9lanie! If you\u2019re a fan of M\u00e9lanie\u2019s work and wish to offer support, you can <a href=\"https:\/\/www.buymeacoffee.com\/ariasuni\">buy her a coffee<\/a> or contribute on <a href=\"https:\/\/liberapay.com\/ariasuni\/\">Liberapay<\/a>.<\/p>\n<p>If you are interested in contributing to the add-ons ecosystem, please visit our <a href=\"https:\/\/wiki.mozilla.org\/Add-ons\/Contribute\">Contribution wiki<\/a>.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>I\u2019m pleased to announce our newest Friend of Add-ons, M\u00e9lanie Chauvel! After becoming interested in free and open source software in 2012, M\u00e9lanie started contributing code to Tab Center Redux, a Firefox extension that displays tabs vertically on the sidebar. &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 1405,
+        "featured_media": 8988,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            278890,
+            121
+        ],
+        "tags": [
+            288928
+        ],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<meta name=\"description\" content=\"Please meet M\u00e9lanie Chauvel, our newest Friend of Add-ons! M\u00e9lanie is an extension developer and Firefox code contributor.\" \/>\n<link rel=\"canonical\" href=\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"2 minutes\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2021\/03\/Melanie.jpg\",\"width\":2500,\"height\":2500},{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/#webpage\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/\",\"name\":\"Friend of Add-ons: M\\u00e9lanie Chauvel - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/#primaryimage\"},\"datePublished\":\"2021-03-25T15:00:49+00:00\",\"dateModified\":\"2021-03-29T16:52:45+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\"},\"description\":\"Please meet M\\u00e9lanie Chauvel, our newest Friend of Add-ons! M\\u00e9lanie is an extension developer and Firefox code contributor.\",\"breadcrumb\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/25\/friend-of-add-ons-melanie-chauvel\/\",\"name\":\"Friend of Add-ons: M\\u00e9lanie Chauvel\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\",\"name\":\"Caitlin Neiman\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/022ba856a87c8f40739b7ef2fdcdf33c?s=96&r=g\",\"caption\":\"Caitlin Neiman\"},\"description\":\"Add-ons Community Manager at Mozilla.\"}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8987"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/1405"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=8987"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8987\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8988"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=8987"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=8987"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=8987"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 8985,
+        "date": "2021-03-11T11:46:37",
+        "date_gmt": "2021-03-11T19:46:37",
+        "guid": {
+            "rendered": "http:\/\/blog.mozilla.org\/addons\/?p=8985"
+        },
+        "modified": "2021-04-21T08:39:11",
+        "modified_gmt": "2021-04-21T15:39:11",
+        "slug": "two-factor-authentication-required-for-extension-developers",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/",
+        "title": {
+            "rendered": "Two-factor authentication required for extension developers"
+        },
+        "content": {
+            "rendered": "<p>At the end of 2019, we <a href=\"https:\/\/blog.mozilla.org\/addons\/2019\/12\/09\/secure-your-addons-mozilla-org-account-with-two-factor-authentication\/\">announced<\/a> an upcoming requirement for extension developers to enable two-factor authentication (2FA) for their Firefox Accounts, which are used to log into addons.mozilla.org (AMO). This requirement is intended to protect add-on developers and\u00a0 users from malicious actors if they somehow get a hold of your login credentials, and it will go into effect starting <b>March 15, 2021<\/b>.<\/p>\n<p>If you are an extension developer and\u00a0 have not enabled 2FA by this date, you will be directed to your Firefox Account settings to turn it on the next time you log into AMO.<\/p>\n<p>Instructions for enabling 2FA for your Firefox Account can be found on<a href=\"https:\/\/support.mozilla.org\/kb\/secure-firefox-account-two-step-authentication?utm_source=transactional&amp;utm_medium=email&amp;utm_campaign=2021-2fa-enforcement\"> support.mozilla.org<\/a>. <b>Once you\u2019ve finished the set-up process, be sure to download or print your recovery codes and keep them in a safe place.<\/b> If you ever lose access to your 2FA devices and get locked out of your account, you will need to provide one of your recovery codes to regain access. Misplacing these codes can lead to permanent loss of access to your account and your add-ons on AMO. Mozilla cannot restore your account if you have lost access to it.<\/p>\n<p>If you only upload using the<a href=\"https:\/\/addons-server.readthedocs.io\/en\/latest\/topics\/api\/index.html\"> AMO external API<\/a>, you can continue using your API keys and you will not be asked to provide the second factor.<\/p>\n<p><em>March 24, 2021 update: If your authenticator offers you an 8 character token, check its settings to see if it can provide a 6 character token. Firefox Accounts will not accept 8 character tokens. <\/em><\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>At the end of 2019, we announced an upcoming requirement for extension developers to enable two-factor authentication (2FA) for their Firefox Accounts, which are used to log into addons.mozilla.org (AMO). This requirement is intended to protect add-on developers and\u00a0 users &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 1405,
+        "featured_media": 8205,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            44,
+            121
+        ],
+        "tags": [
+            322923
+        ],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<meta name=\"description\" content=\"Starting March 15, 2021, two-factor authentication will be required for extension developers when logging into addons.mozilla.org.\" \/>\n<link rel=\"canonical\" href=\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"2 minutes\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2017\/07\/addons-octopus-1.png\",\"width\":787,\"height\":637,\"caption\":\"add-ons octopus\"},{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/#webpage\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/\",\"name\":\"Two-factor authentication required for extension developers - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/#primaryimage\"},\"datePublished\":\"2021-03-11T19:46:37+00:00\",\"dateModified\":\"2021-04-21T15:39:11+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\"},\"description\":\"Starting March 15, 2021, two-factor authentication will be required for extension developers when logging into addons.mozilla.org.\",\"breadcrumb\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/03\/11\/two-factor-authentication-required-for-extension-developers\/\",\"name\":\"Two-factor authentication required for extension developers\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\",\"name\":\"Caitlin Neiman\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/022ba856a87c8f40739b7ef2fdcdf33c?s=96&r=g\",\"caption\":\"Caitlin Neiman\"},\"description\":\"Add-ons Community Manager at Mozilla.\"}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8985"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/1405"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=8985"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8985\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8205"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=8985"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=8985"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=8985"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 8978,
+        "date": "2021-02-09T09:17:26",
+        "date_gmt": "2021-02-09T17:17:26",
+        "guid": {
+            "rendered": "http:\/\/blog.mozilla.org\/addons\/?p=8978"
+        },
+        "modified": "2021-02-14T11:49:57",
+        "modified_gmt": "2021-02-14T19:49:57",
+        "slug": "extensions-in-firefox-86",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/",
+        "title": {
+            "rendered": "Extensions in Firefox 86"
+        },
+        "content": {
+            "rendered": "<p>Firefox 86 will be released on February 23, 2021. We\u2019d like to call out two highlights and several bug fixes for the WebExtensions API that will ship with this release.<\/p>\n<h2>Highlights<\/h2>\n<ul>\n<li aria-level=\"1\">Extensions that have <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/manifest.json\/permissions#host_permissions\">host permissions<\/a> for tabs no longer need to request the broader \u201ctabs\u201d permission to have access to the tab URL, title, and favicon URL.<\/li>\n<li aria-level=\"1\">As part of our work on Manifest V3, we have landed an experimental base content security policy (CSP) behind a preference in Firefox 86.\u00a0 The new CSP disallows remote code execution. This restriction only applies to extensions using <code><a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/manifest.json\/manifest_version\">manifest_version 3<\/a><\/code>, which is not currently supported in Firefox (currently, only <code>manifest_version 2<\/code> is supported). If you would like to test the new CSP for extension pages and content scripts, you must change your extension\u2019s <code>manifest_version<\/code> to 3 and set <code>extensions.manifestv3.enabled<\/code> to <code>true<\/code> in <code>about:config<\/code>. Because this is a highly experimental and evolving feature, we want developers to be aware that extensions that work with the new CSP may break tomorrow as more changes are implemented. <\/li>\n<\/ul>\n<h2>Bug fixes<\/h2>\n<ul>\n<li aria-level=\"1\">Redirected URIs can now be set to a loopback address in the <code><a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/identity\/launchWebAuthFlow\">identity.launchWebAuthFlow<\/a><\/code> API. This fix makes it possible for extensions to successfully integrate with OAuth authentication for some common web services like Google and Facebook. This will also be uplifted to <a href=\"https:\/\/www.mozilla.org\/firefox\/enterprise\/\">Firefox Extended Support Release<\/a> (ESR) 78.<\/li>\n<li aria-level=\"1\">Firefox 76 introduced a regression where <a href=\"https:\/\/developer.mozilla.org\/en-US\/docs\/Mozilla\/Add-ons\/WebExtensions\/API\/webRequest\/StreamFilter\">webRequest.StreamFilter<\/a> did not disconnect after an API, causing the loading icon on tabs to run persistently. We\u2019ve also fixed <a href=\"https:\/\/bugzilla.mozilla.org\/show_bug.cgi?id=1678734\">a bug<\/a> that caused crashes when using view-source requests.<\/li>\n<li aria-level=\"1\">The zoom levels for the extensions options pages embedded in the Firefox Add-ons Manager (about:addons) tabs should work as expected.<\/li>\n<li aria-level=\"1\">Now that the tabs hiding API is enabled by default, the <code>extensions.webextensions.tabhide.enabled<\/code> preference is no longer displayed and references to it have been removed.<\/li>\n<\/ul>\n<p>As a quick note, going forward we\u2019ll be publishing release updates in the <a href=\"https:\/\/developer.mozilla.org\/docs\/Mozilla\/Firefox\/Releases\">Firefox developer release notes<\/a> on <a href=\"https:\/\/developer.mozilla.org\/\">MDN.<\/a> We will still announce major changes to the WebExtensions API, like new APIs, significant enhancements, and deprecation notices, on this blog as they become available.<\/p>\n<h2>Thanks<\/h2>\n<p>Many thanks to community members Sonia Singla, Tilden Windsor, robbendebiene, and Brenda Natalia for their contributions to this release!<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Firefox 86 will be released on February 23, 2021. We\u2019d like to call out two highlights and several bug fixes for the WebExtensions API that will ship with this release. Highlights Extensions that have host permissions for tabs no longer &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 1405,
+        "featured_media": 8750,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            44,
+            121,
+            227
+        ],
+        "tags": [],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<meta name=\"description\" content=\"Extension developers can expect these changes to the WebExtensions API in Firefox 86, to be released on February 23, 2021.\" \/>\n<link rel=\"canonical\" href=\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"2 minutes\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2019\/10\/Fx-Browser-icon-fullColor.png\",\"width\":2048,\"height\":2048,\"caption\":\"Firefox logo\"},{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/#webpage\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/\",\"name\":\"Extensions in Firefox 86 - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/#primaryimage\"},\"datePublished\":\"2021-02-09T17:17:26+00:00\",\"dateModified\":\"2021-02-14T19:49:57+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\"},\"description\":\"Extension developers can expect these changes to the WebExtensions API in Firefox 86, to be released on February 23, 2021.\",\"breadcrumb\":{\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/\",\"url\":\"http:\/\/blog.mozilla.org\/addons\/2021\/02\/09\/extensions-in-firefox-86\/\",\"name\":\"Extensions in Firefox 86\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/9587fc0ae8675b323aaf042e61ce362c\",\"name\":\"Caitlin Neiman\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/022ba856a87c8f40739b7ef2fdcdf33c?s=96&r=g\",\"caption\":\"Caitlin Neiman\"},\"description\":\"Add-ons Community Manager at Mozilla.\"}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8978"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/1405"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=8978"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8978\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8750"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=8978"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=8978"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=8978"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 8974,
+        "date": "2021-02-01T08:05:58",
+        "date_gmt": "2021-02-01T16:05:58",
+        "guid": {
+            "rendered": "http:\/\/blog.mozilla.org\/addons\/?p=8974"
+        },
+        "modified": "2021-01-29T10:06:45",
+        "modified_gmt": "2021-01-29T18:06:45",
+        "slug": "addons-mozilla-org-api-v3-deprecation",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/",
+        "title": {
+            "rendered": "addons.mozilla.org API v3 Deprecation"
+        },
+        "content": {
+            "rendered": "<p>The <a href=\"https:\/\/addons.mozilla.org?utm_source=blog.mozilla.org&amp;utm_medium=post&amp;utm_content=amo-api-v3-deprecation\">addons.mozilla.org<\/a> (AMO) <a href=\"https:\/\/addons-server.readthedocs.io\/en\/latest\/topics\/api\/index.html\">external API<\/a> can be used by users and developers to get information about add-ons available on AMO, and to submit new add-on versions for signing.\u00a0 It\u2019s also used by Firefox for recommendations, among other things, by the <a href=\"https:\/\/github.com\/mozilla\/web-ext\/\">web-ext<\/a> tool, and internally within the addons.mozilla.org website.<\/p>\n<p>We plan to shut down <a href=\"https:\/\/addons-server.readthedocs.io\/en\/latest\/topics\/api\/v3_legacy\/index.html\">Version 3<\/a> (v3) of the AMO API on December 31, 2021. If you have any personal scripts that rely on v3 of the API, or if you interact with the API through other means, we recommend that you switch to the stable <a href=\"https:\/\/addons-server.readthedocs.io\/en\/latest\/topics\/api\/v4_frozen\/index.html#v4-api-index\">v4<\/a>. You don\u2019t need to take any action if you don\u2019t use the AMO API directly. The AMO API v3 is <b>entirely unconnected<\/b> to <a href=\"https:\/\/blog.mozilla.org\/addons\/2019\/09\/03\/mozillas-manifest-v3-faq\/\">manifest v3 for the WebExtensions <\/a>API, which is the umbrella project for major changes to the extensions platform itself.<\/p>\n<p>Roughly five years ago, we introduced v3 of the AMO API for add-on signing. Since then, we have continued developing additional versions of the API to fulfill new requirements, but have maintained v3 to preserve backwards compatibility. However, having to maintain multiple different versions has become a burden. This is why we\u2019re planning to update dependent projects to use v4 of the API soon and shut down v3 at the end of the year.<\/p>\n<p>You can find more information about <a href=\"https:\/\/addons-server.readthedocs.io\/en\/latest\/topics\/api\/v3_legacy\/index.html\">v3<\/a> and <a href=\"https:\/\/addons-server.readthedocs.io\/en\/latest\/topics\/api\/v4_frozen\/index.html#v4-api-index\">v4<\/a> on our <a href=\"https:\/\/addons-server.readthedocs.io\/en\/latest\/topics\/api\/overview.html#api-versions\">API documentation site<\/a>.\u00a0 When updating your scripts, we suggest just making the change from \u201c\/v3\/\u201d to \u201c\/v4\u201d and seeing if everything still works &#8211; in most cases it will.<\/p>\n<p>Feel free to <a href=\"https:\/\/wiki.mozilla.org\/Add-ons#Get_in_touch\">contact us<\/a> if you have any difficulties.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>The addons.mozilla.org (AMO) external API can be used by users and developers to get information about add-ons available on AMO, and to submit new add-on versions for signing.\u00a0 It\u2019s also used by Firefox for recommendations, among other things, by the &hellip; <a class=\"go\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/\">Continue reading<\/a><\/p>\n",
+            "protected": false
+        },
+        "author": 1304,
+        "featured_media": 8108,
+        "comment_status": "open",
+        "ping_status": "closed",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            44,
+            121
+        ],
+        "tags": [
+            17
+        ],
+        "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v16.0.2 - https:\/\/yoast.com\/wordpress\/plugins\/seo\/ -->\n<meta name=\"description\" content=\"The AMO API v3 is deprecated and will be shut down by the end of 2021. We recommend updating to the stable v4.\" \/>\n<link rel=\"canonical\" href=\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/\" \/>\n<meta name=\"twitter:label1\" content=\"Est. reading time\">\n\t<meta name=\"twitter:data1\" content=\"1 minute\">\n<script type=\"application\/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\/\/schema.org\",\"@graph\":[{\"@type\":\"WebSite\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Mozilla Add-ons Community Blog\",\"description\":\"\",\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":\"https:\/\/blog.mozilla.org\/addons\/?s={search_term_string}\",\"query-input\":\"required name=search_term_string\"}],\"inLanguage\":\"en-US\"},{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/#primaryimage\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/files\/2017\/03\/addons-puzzle-fox.png\",\"width\":220,\"height\":220,\"caption\":\"Add-ons logo\"},{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/#webpage\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/\",\"name\":\"addons.mozilla.org API v3 Deprecation - Mozilla Add-ons Community Blog\",\"isPartOf\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/#primaryimage\"},\"datePublished\":\"2021-02-01T16:05:58+00:00\",\"dateModified\":\"2021-01-29T18:06:45+00:00\",\"author\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/e47c59d2108e798a1fa79aa1b46527d1\"},\"description\":\"The AMO API v3 is deprecated and will be shut down by the end of 2021. We recommend updating to the stable v4.\",\"breadcrumb\":{\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/#breadcrumb\"},\"inLanguage\":\"en-US\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/\"]}]},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/\",\"name\":\"Home\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@type\":\"WebPage\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/\",\"url\":\"https:\/\/blog.mozilla.org\/addons\/2021\/02\/01\/addons-mozilla-org-api-v3-deprecation\/\",\"name\":\"addons.mozilla.org API v3 Deprecation\"}}]},{\"@type\":\"Person\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#\/schema\/person\/e47c59d2108e798a1fa79aa1b46527d1\",\"name\":\"Andrew Williamson\",\"image\":{\"@type\":\"ImageObject\",\"@id\":\"https:\/\/blog.mozilla.org\/addons\/#personlogo\",\"inLanguage\":\"en-US\",\"url\":\"https:\/\/secure.gravatar.com\/avatar\/6b19e02916b6a9f236d054f78f0abd95?s=96&r=g\",\"caption\":\"Andrew Williamson\"}}]}<\/script>\n<!-- \/ Yoast SEO plugin. -->",
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8974"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/users\/1304"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/comments?post=8974"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 0,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/posts\/8974\/revisions"
+                }
+            ],
+            "wp:featuredmedia": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media\/8108"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/media?parent=8974"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/categories?post=8974"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/blog.mozilla.org\/addons\/wp-json\/wp\/v2\/tags?post=8974"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    }
+]

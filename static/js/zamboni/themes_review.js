@@ -21,6 +21,11 @@
   };
 })(jQuery);
 
+function fieldFocused(e) {
+  var tags = /input|keygen|meter|option|output|progress|select|textarea/i;
+  return tags.test(e.target.nodeName);
+}
+
 (function ($) {
   var win = $(window);
   var doc = $(document);

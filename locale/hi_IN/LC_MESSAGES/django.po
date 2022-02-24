@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-06-17 13:45+0000\n"
-"Last-Translator: Ritesh Raj <ritesh07raj@gmail.com>\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2021-11-24 10:53+0000\n"
+"Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "प्रकार"
 
@@ -41,7 +42,7 @@ msgid "Reporter's country"
 msgstr "संवाददाता का देश"
 
 msgid "Message excerpt"
-msgstr ""
+msgstr "संदेश का अंश"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
@@ -55,7 +56,7 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr ""
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "कृपया सुनिश्चित करें कि इस स्थान पर {max_length} से अधिक अक्षर ना हों।"
 
 msgid "Modified on:"
 msgstr "रूपांतरि‌त:"
@@ -72,9 +73,6 @@ msgstr "कोई भी लिंक की अनुमति नहीं ह
 
 msgid "This display name cannot be used."
 msgstr "इस डिस्प्ले नाम का उपयोग नहीं किया जा सकता है।"
-
-msgid "This reviewer name cannot be used."
-msgstr "इस समीक्षक नाम का उपयोग नहीं किया जा सकता है।"
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "होमपेज फ़ील्ड का उपयोग केवल बाहरी वेबसाइटों से जोड़ने के लिए किया जा सकता है।"
@@ -108,6 +106,10 @@ msgstr "मदद चाहिए?"
 msgid "Notification [%s] does not exist"
 msgstr "अधिसूचना [%s] मौजूद नहीं है"
 
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "ऐड-ऑन रिव्यू गाइड"
+
 msgid "Review"
 msgstr "समीक्षा"
 
@@ -126,17 +128,14 @@ msgstr "लेखक"
 msgid "Ratings"
 msgstr "रेटिंग"
 
-#, fuzzy
 msgid "Reviewer Tools (listed)"
-msgstr "समीक्षक के उपकरण"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools (unlisted)"
-msgstr "समीक्षक के उपकरण"
+msgstr ""
 
-#, fuzzy
 msgid "Reviewer links"
-msgstr "समीक्षक के उपकरण"
+msgstr "समीक्षक के लिंक"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
@@ -154,11 +153,8 @@ msgstr "ऐड-ऑन और संग्रह पथ \"/\" के साथ �
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ऐड-ऑन नामों में Mozilla या Firefox ट्रेडमार्कों को शामिल नहीं किया जा सकता है."
 
-msgid "Sort by:"
-msgstr "इसके अनुसार:"
-
-msgid "More"
-msgstr "अधिक"
+msgid "Site permissions for {hostnames}"
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "मेरे ऐड-ऑन्स"
@@ -291,7 +287,7 @@ msgid "Email:"
 msgstr "ई-मेल"
 
 msgid "OK"
-msgstr ""
+msgstr "ठीक"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -308,30 +304,10 @@ msgid "Maintenance in progress"
 msgstr "रखरखाव प्रगति पर है"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "यह सुविधा वेबसाईट के रख-रखाव के चलते अस्थायी रूप से अक्षम है| कृपया अपने ब्राउज़र के बैक बटन को दबाए और कुछ देर बाद फिर से प्रयास करें।"
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "वेबसाइट की देखरेख के समय कुछ विशेषताओं को अस्थायी तौर पर अक्षम कर दिया गया है। कृपया कुछ समय बाद पुनः प्रयास करें।"
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
-
-msgid "Jump to first page"
-msgstr "पहले पृष्ठ पर जाएं"
-
-msgid "Previous"
-msgstr "पिछला"
-
-msgid "Jump to last page"
-msgstr "अंतिम पृष्ठ पर जायें"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "<b>%(count)s</b> का <b>%(begin)s</b>&ndash;<b>%(end)s</b> दिखा रहा है"
 
 msgid "Add-ons for {0}"
 msgstr "{0} के लिए ऐड-ऑन"
@@ -364,6 +340,15 @@ msgstr "हस्ताक्षर की अवधी समाप्त ह�
 msgid "Error decoding signature."
 msgstr "हस्ताक्षर डीकोड करने में त्रुटि।"
 
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
+
 msgid "Wrong type for one or more keys in payload"
 msgstr "पेलोड में एक या अधिक कुंजी के लिए गलत प्रकार"
 
@@ -378,10 +363,7 @@ msgid "Email address not found."
 msgstr "ईमेल पता नहीं मिला।"
 
 msgid "Unavailable for legal reasons."
-msgstr ""
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "इस क्षेत्र में कम से कम एक {num} वर्णों की लंबाई होना चाहिए।"
+msgstr "कानूनी कारणों से अनुपलब्ध।"
 
 msgid "The language code {lang_code} is invalid."
 msgstr "{lang_code} भाषा कोड अमान्य है।"
@@ -429,9 +411,6 @@ msgstr ""
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "यह कस्टम URL पहले से ही आपके संग्रह में से किसी एक द्वारा उपयोग में है।"
 
-msgid "Name cannot be empty."
-msgstr "नाम रिक्त नहीं हो सकता।"
-
 msgid "This name cannot be used."
 msgstr "इस नाम का उपयोग नहीं किया जा सकता है।"
 
@@ -449,10 +428,6 @@ msgstr ""
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
-
-#, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
 msgstr ""
 
 #, python-format
@@ -485,12 +460,6 @@ msgstr "समीक्षा अनुरोधित"
 msgid "Review Unlisted"
 msgstr "समीक्षा नोट"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr ""
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr ""
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "एकाधिक %(name)s को हटाएं"
@@ -505,9 +474,6 @@ msgstr ""
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
-
-msgid "The following block(s) were imported from a regex based legacy Block."
 msgstr ""
 
 msgid "Save"
@@ -551,9 +517,6 @@ msgstr ""
 #, fuzzy
 msgid "versions"
 msgstr "संस्करण"
-
-msgid "Included in legacy blocklist."
-msgstr ""
 
 msgid "{addon} was created."
 msgstr "{addon} का निर्माण किया गया था।"
@@ -613,7 +576,7 @@ msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} को प्रारंभिक समीक्षा दी गई है।"
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "प्रारंभिक रूप से स्वीकृत"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} अस्वीकृत।"
@@ -622,7 +585,7 @@ msgid "Rejected"
 msgstr "खारिज"
 
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} बनाए रखा।"
 
 msgid "Retained"
 msgstr "बनाए रखा"
@@ -640,13 +603,13 @@ msgid "Review requested"
 msgstr "समीक्षा अनुरोधित"
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "{addon} {version} अधिक जानकारी का अनुरोध किया। "
 
 msgid "More information requested"
 msgstr "अधिक जानकारी अनुरोधित"
 
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "{addon} {version} सुपर समीक्षा का अनुरोध किया। "
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
@@ -664,47 +627,47 @@ msgid "{tag} removed from {addon}."
 msgstr "{addon} से {tag} हटाया गया।"
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} को {collection} में जोड़ा गया। "
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} को {collection} से हटा दिया गया।"
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{addon} के लिए {rating} लिखा गया।"
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{0} में {addon} प्रदर्शित किया गया।"
 
 #. L10n: {0} is a category name.
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} अब {0} में प्रदर्शित नहीं किया गया।"
 
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} अब प्रदर्शित किया गया।"
 
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} अब प्रदर्शित नहीं है।"
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} जोड़ा गया।"
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "{addon} के लिए {0.name} भूमिका बदलकर {1} हो गई।"
 
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} अब {0} के तहत लाइसेंस प्राप्त है।"
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} नीति बदल गई।"
 
 msgid "{addon} icon changed."
 msgstr "{addon} आइकन बदला गया है।"
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "{addon} के लिए {rating} स्वीकृत।"
 
 msgid "{user} approved {rating} for {addon}."
 msgstr ""
@@ -734,6 +697,14 @@ msgid "Approved but waiting"
 msgstr "स्वीकृत लेकिन प्रतीक्षा कर रहा है"
 
 msgid "Account updated."
+msgstr "खाते का अद्यतन किया गया."
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "खाते का अद्यतन किया गया."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "खाते का अद्यतन किया गया."
 
 msgid "Created: {0}."
@@ -792,10 +763,10 @@ msgid "Reply by developer on {addon} {version}."
 msgstr ""
 
 msgid "Developer Reply"
-msgstr ""
+msgstr "डेवलपर का जवाब"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "{addon} {version} पर समीक्षक का जवाब।"
 
 msgid "Reviewer Reply"
 msgstr "समीक्षक का उत्तर"
@@ -989,8 +960,14 @@ msgstr "हटाए गए"
 msgid "Unlisted"
 msgstr "असूचीबद्ध"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+msgid "Addon API"
+msgstr "ऐड-ऑन API"
+
+msgid "Automatically generated by AMO"
+msgstr ""
 
 msgid "Owner"
 msgstr "मालिक"
@@ -1030,6 +1007,10 @@ msgstr ""
 msgid "Theme (Static)"
 msgstr "थीम (स्थैतिक)"
 
+#, fuzzy
+msgid "Site Permission"
+msgstr "अनुमति‌:"
+
 msgid "Extensions"
 msgstr "एक्स्टेंशन"
 
@@ -1057,6 +1038,10 @@ msgstr ""
 
 msgid "Themes (Static)"
 msgstr "थीम (स्थैतिक)"
+
+#, fuzzy
+msgid "Site Permissions"
+msgstr "अनुमति‌:"
 
 msgid "Alerts & Updates"
 msgstr "चेतावनी व अद्यतन"
@@ -1139,7 +1124,6 @@ msgstr "वेब डेवलपमेंट"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "अन्य"
 
@@ -1332,6 +1316,32 @@ msgstr "यात्रा"
 msgid "Video"
 msgstr "वीडियो"
 
+msgid "Mozilla Public License 2.0"
+msgstr ""
+
+msgid "GNU General Public License v2.0"
+msgstr ""
+
+msgid "GNU General Public License v3.0"
+msgstr ""
+
+msgid "GNU Library General Public License v2.1"
+msgstr ""
+
+msgid "GNU Library General Public License v3.0"
+msgstr ""
+
+#, fuzzy
+msgid "The MIT License"
+msgstr "लाइसेंस"
+
+#, fuzzy
+msgid "The BSD License"
+msgstr "लाइसेंस"
+
+msgid "Mozilla Public License 1.1"
+msgstr ""
+
 msgid "All Rights Reserved"
 msgstr "सर्वाधिकार सुरक्षित"
 
@@ -1365,7 +1375,7 @@ msgid "Sponsored"
 msgstr ""
 
 msgid "Verified"
-msgstr ""
+msgstr "सत्‍यापित किया गया"
 
 #, fuzzy
 msgid "By Firefox"
@@ -1585,7 +1595,7 @@ msgid "New"
 msgstr "नया"
 
 msgid "Running"
-msgstr ""
+msgstr "चल रहा है"
 
 msgid "Aborted"
 msgstr ""
@@ -1705,6 +1715,9 @@ msgstr "अमान्य संस्करण विस्तार।"
 msgid "Need at least one compatible application."
 msgstr "कम से कम एक संगत अनुप्रयोग की आवश्यकता है।"
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr ""
+
 msgid "There was an error with your upload. Please try again."
 msgstr "आपके अपलोड में कोई त्रुटि थी। कृपया पुन: प्रयास करें।"
 
@@ -1713,9 +1726,6 @@ msgstr ""
 
 msgid "Need to select at least one application."
 msgstr "कम से कम एक अनुप्रयोग की चयन करने की आवश्यकता है।"
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -1747,17 +1757,29 @@ msgstr "स्रोत फ़ाइल अपलोड की गई लेक�
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 
 msgid "Display Name"
 msgstr "प्रदर्शित होने वाले नाम"
+
+msgid "Origin"
+msgstr ""
+
+#, fuzzy
+msgid "Permissions"
+msgstr "अनुमति‌:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1776,7 +1798,7 @@ msgstr "Mozilla सुरक्षा नोटिस: आपके AMO API क�
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -1958,24 +1980,6 @@ msgstr "मेरे ऐड-ऑन इन श्रेणियों में 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox ऐड-ऑन वितरण समझौता"
 
-msgid "Review Policies and Rules"
-msgstr "नीतियों और नियमों की समीक्षा करें"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
-
-msgid "Accept"
-msgstr "स्वीकार करें"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "या <a href=\"{0}\">रद्द करें</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "डेवलपर खातों पर अधिक जानकारी"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} ऐड-ऑन्स"
@@ -2029,6 +2033,16 @@ msgstr "डेवलपर दस्तावेज़ खोजें"
 
 msgid "Search"
 msgstr "खोजें"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "अनुमति‌:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "अपना ऐड-ऑन पैकेज अपलोड करने के लिए नीचे दिए गए फ़ील्ड का उपयोग करें।"
@@ -2135,7 +2149,7 @@ msgid "%(ago)s by %(user)s"
 msgstr "%(user)s द्वारा %(ago)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "मेरे ऐड-ऑन के लिए पुरानी गतिविधि"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2144,7 +2158,7 @@ msgstr[0] "<b>{0}</b> थीम"
 msgstr[1] "<b>{0}</b> थीम"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "उत्पाद पृष्ठ संपादित करें"
 
 msgid "None"
 msgstr "कुछ नहीं"
@@ -2156,7 +2170,7 @@ msgid "Preview of listed version"
 msgstr "सूचीबद्ध संस्करण का पूर्वावलोकन"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "पूर्वावलोकन अभी भी उत्पन्न किया जा रहा है - बाद में वापस आएं या पेज को रीफ्रेश करें।"
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr "आपको {addon_name} का लेखक बनने के लिए आमंत्रित किया गया है।"
@@ -2166,6 +2180,9 @@ msgstr ""
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
+
+msgid "Accept"
+msgstr "स्वीकार करें"
 
 msgid "Decline"
 msgstr ""
@@ -2193,9 +2210,8 @@ msgstr "अतिरिक्त जानकारियां"
 msgid "Edit"
 msgstr "संपादन"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "{0} के लिए ऐड-ऑन विवरण"
+msgstr "{0} के लिए अतिरिक्त विवरण"
 
 msgid "Tags"
 msgstr "टैग"
@@ -2227,12 +2243,11 @@ msgid ""
 msgstr ""
 
 msgid "Describe Add-on"
-msgstr ""
+msgstr "ऐड-ऑन का वर्णन करें"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "संस्करण {0}"
+msgstr "वर्णन {0}"
 
 msgid "Name and Summary"
 msgstr "नाम और सारांश"
@@ -2416,16 +2431,16 @@ msgid "Continue"
 msgstr "जारी रखें"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "जब तक आपको क्रेडिट दिया जाता है, तब तक अन्य लोग आपके ऐड-ऑन साझा कर सकते हैं?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "क्या अन्य आपके ऐड-ऑन का वाणिज्यिक उपयोग कर सकते हैं?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "क्या अन्य आपके ऐड-ऑन से व्युत्पन्न कार्य बना सकते हैं?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "हाँ, जब तक वे एक जैसे साझा करते हैं"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
@@ -2469,13 +2484,17 @@ msgstr "पिछले संस्करण में मौजूद सं�
 msgid "Top"
 msgstr "सर्वोच्च"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr ""
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
 msgid "Delete Add-on"
 msgstr "ऐड-ऑन हटाएं"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
@@ -2490,7 +2509,7 @@ msgid "Resume the submission process for this add-on"
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "फिर बहाल करें"
 
 msgid "Delete this add-on."
 msgstr "इस ऐड-ऑन को मिटाएं।"
@@ -2509,6 +2528,9 @@ msgstr ""
 
 msgid "Statistics"
 msgstr "आंकड़े"
+
+msgid "More"
+msgstr "अधिक"
 
 msgid "Manage Status & Versions"
 msgstr "स्थिति और संस्करण प्रबंधित करें"
@@ -2578,9 +2600,8 @@ msgstr ""
 msgid "Summary:"
 msgstr "सारांश:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "वर्णन"
+msgstr "वर्णन:"
 
 msgid "This add-on is experimental"
 msgstr "यह ऐड-ऑन प्रयोगात्मक है"
@@ -2589,7 +2610,7 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 msgid "Select a category for this add-on:"
-msgstr ""
+msgstr "इस ऐड-ऑन के लिए एक श्रेणी का चयन करें:"
 
 msgid "Support email:"
 msgstr "समर्थन ईमेल:"
@@ -2642,14 +2663,22 @@ msgstr ""
 msgid "How to Distribute this Version"
 msgstr "इस संस्करण को कैसे वितरित करें"
 
-msgid "More information on Add-on Distribution and Signing"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
 msgstr ""
 
 msgid "Submission Complete"
 msgstr ""
 
-msgid "Version Submitted for Review"
-msgstr "समीक्षा के लिए सबमिट किया गया संस्करण"
+msgid "Version Submitted"
+msgstr "संस्करण सबमिट किया गया"
 
 msgid "Preview of the version submitted"
 msgstr "सबमिट किए गए संस्करण का पूर्वावलोकन"
@@ -2657,19 +2686,18 @@ msgstr "सबमिट किए गए संस्करण का पूर�
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
 
-msgid "Version Submitted"
-msgstr "संस्करण सबमिट किया गया"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
 
 msgid "Manage Listing"
@@ -2681,15 +2709,11 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "संस्करण {0} संपादित करें"
 
-#, fuzzy
-msgid "Version Signature Pending"
-msgstr "संस्करण हस्ताक्षरित"
-
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
+msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
 msgid "Go to My Submissions"
-msgstr ""
+msgstr "मेरे सबमिशन पर जाएं"
 
 msgid "Source Code Upload"
 msgstr ""
@@ -2697,15 +2721,11 @@ msgstr ""
 msgid "Do You Need to Submit Source Code?"
 msgstr "क्या आपको सोर्स कोड जमा करने की आवश्यकता है?"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
 msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
-
-msgid "Do you use any of the following?"
-msgstr "क्या आप निम्न में से किसी एक का उपयोग करते हैं?"
+msgid "Do you use any of the following in your extension?"
+msgstr "क्या आप अपने एक्सटेंशन में निम्न में से किसी का उपयोग करते हैं?"
 
 msgid "Code generators or minifiers"
 msgstr ""
@@ -2716,20 +2736,20 @@ msgstr ""
 msgid "Web template engines, both for HTML and CSS"
 msgstr ""
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr ""
 
-msgid "Your Submission Requires Source Code."
-msgstr "आपके सबमिशन के लिए सोर्स कोड की आवश्यकता होती है।"
-
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgid "You must submit your extension's source code."
 msgstr ""
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "स्रोत कोड अपलोड किया गया"
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
@@ -2738,34 +2758,27 @@ msgstr ""
 msgid "Operating system and build environment requirements."
 msgstr ""
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 
-msgid "How to Submit:"
-msgstr "सबमिट कैसे करें:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr ""
-
-msgid "or in reviewer notes on the next page (if applicable)."
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
 
 msgid "Upload source code:"
 msgstr "स्रोत कोड अपलोड करें:"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "ऐड-ऑन वितरण अनुबंध"
 
 msgid "Upload Add-on"
 msgstr "ऐड-ऑन अपलोड करें"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "संस्करण होस्ट कहाँ करें"
 
 msgid "Change"
 msgstr "परिवर्तित करें"
@@ -2787,9 +2800,6 @@ msgstr "एक थीम संस्करण बनाएँ"
 
 msgid "Create a Theme"
 msgstr "एक थीम बनाएं"
-
-msgid "Sign Add-on"
-msgstr "ऐड-ऑन साइन करें"
 
 msgid "Theme generate"
 msgstr "थीम उत्पन्न करें"
@@ -3009,10 +3019,32 @@ msgstr "व्यवस्थापक प्रबंधन"
 msgid "View Statistics Dashboard"
 msgstr ""
 
+msgid "Review Policies and Rules"
+msgstr "नीतियों और नियमों की समीक्षा करें"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr ""
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr ""
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "या <a href=\"{0}\">रद्द करें</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "डेवलपर खातों पर अधिक जानकारी"
+
 msgid "Developer News"
 msgstr "डेवलेपर समाचार"
 
 msgid "View the blog &#9658;"
+msgstr ""
+
+#, fuzzy
+msgid "Version Signature Pending"
+msgstr "संस्करण हस्ताक्षरित"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
 
 msgid "License"
@@ -3020,6 +3052,9 @@ msgstr "लाइसेंस"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Sort by:"
+msgstr "इसके अनुसार:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3071,7 +3106,7 @@ msgid "Visit the Firefox Extension Workshop"
 msgstr "एक्स्टेंशन"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "हमारे साथ जुड़ें"
 
 msgid "Twitter"
 msgstr "Twitter"
@@ -3282,9 +3317,6 @@ msgstr "स्थिति और संस्करण"
 msgid "Edit this version"
 msgstr "इस संस्करण को संपादित करें"
 
-msgid "0 files"
-msgstr "0 फ़ाइल्स"
-
 msgid "Re-enable Version"
 msgstr "संस्करण पुन: सक्षम करें"
 
@@ -3341,7 +3373,7 @@ msgid "Validation"
 msgstr "मान्यीकरण"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "हटाएं/अक्षम करें"
 
 msgid "Next version of this add-on"
 msgstr "इस ऐड-ऑन का अगला संस्करण"
@@ -3366,10 +3398,10 @@ msgid ""
 msgstr ""
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "इस संस्करण को हटाना स्थाई रूप से हटा देगा:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>महत्वपूर्ण:</strong> एक बार संस्करण हटा दिए जाने के बाद, आप एक ही संस्करण संख्या के साथ एक नया संस्करण अपलोड नहीं कर सकते हैं।"
 
 msgid "Are you sure you wish to delete this version?"
 msgstr "क्या आप वाकई इस संस्करण को हटाना चाहते हैं?"
@@ -3540,7 +3572,6 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr ""
 
@@ -3605,10 +3636,11 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "आपके द्वारा सेट किए गए समय अंतराल के आधार पर स्वचालित रूप से टैब पुनः लोड करें।"
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+#. editorial content for the primary hero shelves.
+msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3617,7 +3649,6 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
@@ -3694,13 +3725,11 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgid "See thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3833,7 +3862,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "अपने पसंदीदा RSS फ़ीड को एक ही पृष्ठ में देखें।"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3850,7 +3879,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "अनावश्यक स्वरूपण को दूर करें और केवल सादे पाठ की कॉपी करें।"
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -3879,7 +3908,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "बाद में समीक्षा करने के लिए सामान्य और वेबसाइट-विशिष्ट नोट्स बनाएं।"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3921,7 +3950,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "विज्ञापनों को अपने खोज परिणामों में दिखने से रोकें।"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -3946,7 +3975,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "एक विशिष्ट डोमेन के अंदर आप जो खोज रहे हैं उसे ढूंढें।"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -4007,7 +4036,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "एक साधारण विज्ञापन अवरोधक केवल इच्छित सामग्री को प्रदर्शित करने पर केंद्रित है।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
@@ -4085,7 +4114,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "अत्यधिक स्पष्टता के साथ ब्राउज़र ऑडियो सेटिंग्स समायोजित करें।"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4262,11 +4291,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Forest Theme"
-msgstr "एक थीम बनाएं"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -4300,6 +4324,15 @@ msgstr ""
 msgid "Goodbye, annoying cookie warnings!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "All your emoji needs—always just a click away."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4309,7 +4342,19 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4340,6 +4385,34 @@ msgstr ""
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Put restrictions on distracting, time-wasting websites."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove clutter from your Twitter."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize YouTube to taste."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Delete browsing data directly from the browser toolbar."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4354,25 +4427,23 @@ msgid "See all extensions"
 msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Explore extensions"
-msgstr "एक्स्टेंशन"
+msgid "Top anti-tracking extensions"
+msgstr "टिप्पणी की गई"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "अधिक जानें"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4399,8 +4470,9 @@ msgid "Enhanced privacy extensions"
 msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr ""
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4422,20 +4494,17 @@ msgid "See more recommended themes"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more translation tools"
+msgid "See more password manager staff picks"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "ऐड-ऑन संस्करण द्वारा"
 
 #. editorial content for the homepage shelves.
@@ -4445,7 +4514,69 @@ msgstr "सोशल नेटवर्किंग"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management staff picks"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more extensions tagged \"{tag}\""
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "ऐड-ऑन संस्करण द्वारा"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "टिप्पणी की गई"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "अपनी थीम के लिए रंगों का चयन करें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "टिप्पणी की गई"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "अपनी थीम के लिए रंगों का चयन करें"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "टिप्पणी की गई"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
 msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 msgid "Could not parse the manifest file."
@@ -4455,7 +4586,7 @@ msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "सबसे कम समर्थित \"strict_min_version\" 42.0 है।"
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
@@ -4483,15 +4614,12 @@ msgstr ""
 msgid "Invalid archive."
 msgstr ""
 
-msgid "Could not find an add-on ID."
-msgstr ""
-
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "डुप्लिकेट ऐड-ऑन आईडी मिला।"
 
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
@@ -4500,15 +4628,18 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr ""
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "WebExtension थीम के लिए {0} अधिकतम आकार है।"
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "आप इस प्रकार के ऐड-ऑन सबमिट नहीं कर सकते हैं"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
+msgstr "आप एक Mozilla हस्ताक्षरित एक्सटेंशन जमा नहीं कर सकते हैं"
+
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
 msgstr ""
 
 msgid "You cannot submit a language pack"
@@ -4522,110 +4653,6 @@ msgstr ""
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
-
-msgid "Review Guidelines"
-msgstr "निर्देशों की समीक्षा करें"
-
-msgid "Sections"
-msgstr "वर्गों"
-
-msgid "Some tips for writing a great review"
-msgstr ""
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr ""
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-
-msgid "Do:"
-msgstr ""
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
-
-msgid "Keep reviews concise and easy to understand."
-msgstr ""
-
-msgid "Give specific and helpful details. For example:"
-msgstr ""
-
-msgid "Did the add-on work as you expected it to?"
-msgstr ""
-
-msgid "What features did you like or dislike?"
-msgstr ""
-
-msgid "Was it useful?"
-msgstr ""
-
-msgid "Was it easy to use?"
-msgstr ""
-
-msgid "Will you continue to use this add-on?"
-msgstr ""
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
-
-msgid "Don’t:"
-msgstr ""
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-
-msgid "How can I report a problematic review?"
-msgstr ""
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 
 msgid "User"
@@ -4667,8 +4694,7 @@ msgstr ""
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4693,7 +4719,7 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "स्वीकृत समीक्षाएं"
 
 msgid "Deleted reviews"
 msgstr ""
@@ -4721,33 +4747,6 @@ msgstr "समाप्त"
 msgid "add-on, reviewer or comment"
 msgstr ""
 
-msgid "Search by add-on name / author email"
-msgstr ""
-
-msgid "Needs Admin Code Review"
-msgstr ""
-
-msgid "yes"
-msgstr "हाँ"
-
-msgid "no"
-msgstr "नहीं"
-
-msgid "Add-on Types"
-msgstr "ऐड-ऑन प्रकार"
-
-msgid "Any"
-msgstr "कोई"
-
-msgid "Search by add-on name / author email / guid"
-msgstr ""
-
-msgid "Max. Version"
-msgstr ""
-
-msgid "Select an application first"
-msgstr "पहले एक अनुप्रयोग का चयन करें"
-
 msgid "Comments:"
 msgstr "टिप्पणियां:"
 
@@ -4766,6 +4765,9 @@ msgstr ""
 msgid "days"
 msgstr "दिन"
 
+msgid "Choose one or more reasons:"
+msgstr ""
+
 msgid "Choose a canned response..."
 msgstr ""
 
@@ -4781,20 +4783,17 @@ msgstr ""
 msgid "Delete review"
 msgstr "समीक्षा हटायें"
 
+msgid "Needs Admin Code Review"
+msgstr ""
+
 msgid "Needs Admin Content Review"
 msgstr ""
 
 msgid "Needs Admin Static Theme Review"
 msgstr ""
 
-msgid "Requires Restart"
-msgstr "पुनः प्रारंभ की आवश्यकता है"
-
 msgid "Sources provided"
 msgstr ""
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr ""
@@ -4820,6 +4819,9 @@ msgstr ""
 msgid "Weight breakdown not available."
 msgstr ""
 
+msgid "Is available to be used in reviews"
+msgstr ""
+
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
@@ -4829,39 +4831,12 @@ msgstr ""
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
-msgid "Type"
-msgstr ""
-
-msgid "Waiting Time"
-msgstr ""
-
-msgid "Flags"
-msgstr ""
-
-msgid "moments ago"
-msgstr ""
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} मिनट"
-msgstr[1] "{0} मिनट"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} घंटा"
-msgstr[1] "{0} घंटे"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} दिन"
-msgstr[1] "{0} दिन"
-
 #, fuzzy
 msgid "ID"
 msgstr "CIDR"
+
+msgid "Flags"
+msgstr ""
 
 msgid "Last Review"
 msgstr "पिछली समीक्षा"
@@ -4878,6 +4853,12 @@ msgid "Total Weight"
 msgstr "वजन"
 
 msgid "Maliciousness Score"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Waiting Time"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -4940,7 +4921,7 @@ msgid "This will confirm approval of the selected versions without notifying the
 msgstr ""
 
 msgid "Reviewer reply"
-msgstr ""
+msgstr "समीक्षक का जवाब"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
@@ -5082,6 +5063,13 @@ msgstr "{0} के लिए ऐड-ऑन जानकारी"
 msgid "Add-on ID"
 msgstr "ऐड-ऑन"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "ऐड-ऑन साइन करें"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr ""
 
@@ -5171,10 +5159,10 @@ msgid "Date"
 msgstr "दिनांक"
 
 msgid "Event"
-msgstr ""
+msgstr "इवेंट"
 
 msgid "More details."
-msgstr ""
+msgstr "विवरण देखें।"
 
 msgid "No events found for this period."
 msgstr "इस अवधि के लिए कोई घटना नहीं मिली।"
@@ -5201,62 +5189,11 @@ msgstr ""
 msgid "Undelete"
 msgstr ""
 
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr ""
-
-msgid "Add-on Reviewer Performance"
-msgstr ""
-
-msgid "View statistics for user"
-msgstr ""
-
-msgid "Range"
-msgstr "रेंज"
-
-msgid "Your Reviews"
-msgstr "आपकी समीक्षा"
-
-msgid "By {user_name}"
-msgstr "{user_name} द्वारा"
-
-msgid "Total Reviews"
-msgstr "कुल समीक्षा"
-
-msgid "Active Contributors"
-msgstr "सक्रिय योगदानकर्ता"
-
-msgid "This Month"
-msgstr "इस महीने"
-
-msgid "This Year"
-msgstr "इस साल"
-
-msgid "Monthly Performance"
-msgstr "मासिक प्रदर्शन"
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "ऐड-ऑन्स"
-
-msgid "Total"
-msgstr "कुल"
-
-msgid "Month"
-msgstr "महीना"
-
-msgid "Year"
-msgstr "वर्ष"
-
-msgid "All-Time"
-msgstr "हमेशा"
-
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
 msgid "Back to review"
-msgstr ""
+msgstr "समीक्षा पर वापस जाएं"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
@@ -5274,12 +5211,6 @@ msgstr ""
 #, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "ऑटो-स्वीकृत ऐड-ऑन"
-
-msgid "Advanced Search"
-msgstr "उन्नत खोज"
-
-msgid "clear search"
-msgstr "स्पष्ट खोज"
 
 msgid "Process Reviews"
 msgstr ""
@@ -5326,9 +5257,6 @@ msgstr ""
 
 msgid "Add-on History"
 msgstr "ऐड-ऑन इतिहास"
-
-msgid "Previously deleted entries"
-msgstr ""
 
 #, fuzzy
 msgid "You don't have permission to review it."
@@ -5661,7 +5589,7 @@ msgstr ""
 msgid "result state"
 msgstr "शुरू करें"
 
-msgid "all but results matching only this rule"
+msgid "Excluding results solely matching these rules"
 msgstr ""
 
 #, fuzzy
@@ -5757,9 +5685,6 @@ msgstr ""
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
 msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
@@ -5888,6 +5813,9 @@ msgstr ""
 msgid "No data available."
 msgstr ""
 
+msgid "Previous"
+msgstr "पिछला"
+
 msgid "This dashboard is <b>private</b>."
 msgstr ""
 
@@ -5982,12 +5910,6 @@ msgstr "वैध सूचना"
 msgid "Report Trademark Abuse"
 msgstr "व्यापरमार्क के कुप्रयोग का विवरण"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr ""
-
-msgid "View the new site"
-msgstr "नई साइट देखें"
-
 msgid "Site Status"
 msgstr "साइट की स्थिति"
 
@@ -6035,8 +5957,8 @@ msgstr "जाएँ"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} ऐड-ऑन मुखपृष्ठ पर वापस लौटें"
 
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgid "Add-ons"
+msgstr "ऐड-ऑन्स"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6129,8 +6051,9 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr "Firefox उपयोगकर्ता {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr ""
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "एक मान्य IP4 या IP6 नेटवर्क दर्ज करें।"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
@@ -6138,9 +6061,7 @@ msgstr ""
 msgid "Email Pattern"
 msgstr ""
 
-msgid ""
-"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
-" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
@@ -6257,3 +6178,6 @@ msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} और बाद में"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

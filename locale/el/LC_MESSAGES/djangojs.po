@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2021-05-01 09:28+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2021-12-16 13:34+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} αστέρι"
-msgstr[1] "{0} αστέρια"
 
 msgid "There was a problem contacting the server."
 msgstr "Προέκυψε πρόβλημα επικοινωνίας με το διακομιστή."
@@ -47,7 +42,7 @@ msgid "Error with {0}"
 msgstr "Σφάλμα με το {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr "Παρακαλούμε βεβαιωθείτε ότι έχετε αναφέρει τυχόν ζητήματα σχετικά με το linting στο GitHub"
+msgstr "Παρακαλούμε αναφέρετε τυχόν ζητήματα σχετικά με το linting στο GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -69,7 +64,7 @@ msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Το πρόσθετό σας ξεπερνά το μέγιστο μέγεθος των {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Η απάντηση του εξυπηρετητή ήταν κενή; κατάσταση: {0}"
+msgstr "Ελήφθη κενή απάντηση από τον διακομιστή· κατάσταση: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr "Απρόσμενο σφάλμα διακομιστή κατά την επικύρωση."
@@ -93,33 +88,19 @@ msgstr[1] "Το πρόσθετό σας επαληθεύτηκε χωρίς σφ
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Το πρόσθετό σας επαληθεύτηκε χωρίς σφάλματα ή προειδοποιήσεις."
 
-msgid "Your submission will be automatically signed."
-msgstr "Η υποβολή σας θα υπογραφεί αυτόματα."
-
-msgid "WebExtension upgrade"
-msgstr "Αναβάθμιση επέκτασης ιστού"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Επιτρέπουμε και ενθαρρύνουμε να κάνετε μια αναβάθμιση, αλλά δεν μπορείτε να αναστρέψετε τη διαδικασία. Μόλις οι χρήστες σας αποκτήσουν το WebExtension, δεν θα μπορούν να εγκαταστήσουν ένα παλιό "
-"πρόσθετο."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Διαδικασία port ενός παλιού προσθέτου Firefox στο MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Συμπεριλάβετε λεπτομερή σημειώματα της έκδοσης (αυτό μπορεί να γίνει στο επόμενο βήμα)."
+msgstr "Συμπεριλάβετε λεπτομερείς σημειώσεις της έκδοσης (αυτό μπορεί να γίνει στο επόμενο βήμα)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Αν το πρόσθετό σας απαιτεί λογαριασμό σε ιστοσελίδα με σκοπό να δοκιμαστεί πλήρως, παραθέστε ένα όνομα χρήστη και κωδικό πρόσβασης για δοκιμή, στις σημειώσεις ελεγκτή (αυτό μπορεί να γίνει στο "
+"Αν το πρόσθετό σας απαιτεί λογαριασμό σε κάποιο ιστότοπο με σκοπό να δοκιμαστεί πλήρως, παραθέστε ένα όνομα χρήστη και κωδικό πρόσβασης για δοκιμή, στις σημειώσεις ελεγκτή (αυτό μπορεί να γίνει στο "
 "επόμενο βήμα)."
 
 msgid "Add-on submission checklist"
-msgstr "Λίστα καταχωρήσεων προσθέτων"
+msgstr "Λίστα ελέγχου υποβολής προσθέτων"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Παρακαλούμε επιβεβαιώστε τα παρακάτω σημεία πριν την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει τυχόν καθυστερήσεις ή ασάφειες κατά τη διαδικασία της αξιολόγησης:"
+msgstr "Παρακαλούμε επιβεβαιώστε τα παρακάτω σημεία πριν από την ολοκλήρωση της υποβολής σας. Αυτό θα μειώσει τυχόν καθυστερήσεις ή ασάφειες κατά τη διαδικασία της αξιολόγησης:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -129,52 +110,22 @@ msgstr ""
 "χρησιμοποιείτε το πεδίο μεταφόρτωσης πηγαίου κώδικα για να αποφύγετε την απόρριψη της υποβολής σας."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη."
+msgstr "Η διαδικασία επικύρωσης βρήκε προβλήματα που μπορούν να οδηγήσουν σε απόρριψη:"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr "Δεν αναγνωρίζεται η μορφή αρχείου που αποστείλατε."
+msgstr "Ο τύπος αρχείου που μεταφορτώσατε δεν αναγνωρίζεται."
 
 msgid "Your file exceeds the maximum size of {0}."
 msgstr "Το αρχείο σας ξεπερνά το μέγιστο μέγεθος των {0}."
 
 msgid "You cancelled the upload."
-msgstr "Ακυρώσατε την μεταφόρτωση."
+msgstr "Ακυρώσατε τη μεταφόρτωση."
 
 msgid "Images must be either PNG or JPG."
-msgstr "Οι εικόνες πρέπει να είναι είτε PNG είτε JPG"
+msgstr "Οι εικόνες πρέπει να είναι είτε PNG είτε JPG."
 
 msgid "Videos must be in WebM."
-msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Δεν είναι συμβατό αυτό το θέμα με την έκδοση του {0} που έχετε"
-
-msgid "Flagged for review"
-msgstr "Επισημάνθηκε για αξιολόγηση"
-
-msgid "Your input is required"
-msgstr "Απαιτείται η εισαγωγή"
-
-msgid "Marked for deletion"
-msgstr "Επισημάνθηκε για διαγραφή"
-
-msgid "Updating results&hellip;"
-msgstr "Ενημέρωση αποτελεσμάτων&hellip;"
-
-msgid "Category"
-msgstr "Κατηγορία"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Αναζήτηση θεμάτων για <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Αναζήτηση εφαρμογών για <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Αναζήτηση προσθέτων για <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Χρήση αρχικού"
+msgstr "Τα βίντεο πρέπει να είναι σε μορφή WebM."
 
 msgid "Week of {0}"
 msgstr "Εβδομάδα {0}"
@@ -263,7 +214,7 @@ msgid "Subscribers"
 msgstr "Συνδρομητές"
 
 msgid "Ratings"
-msgstr "Αξιολογήσεις"
+msgstr "Βαθμολογίες"
 
 msgid "Sales"
 msgstr "Πωλήσεις"
@@ -293,16 +244,16 @@ msgid "Search Results"
 msgstr "Αποτελέσματα αναζήτησης"
 
 msgid "Homepage Promo"
-msgstr "Promo Αρχικής Σελίδας"
+msgstr "Προωθητική ενέργεια αρχικής σελίδας"
 
 msgid "Homepage Featured"
-msgstr "Προβεβλημένη Αρχική Σελίδα"
+msgstr "Προτεινόμενα πρόσθετα αρχικής σελίδας"
 
 msgid "Homepage Up and Coming"
-msgstr "Προσεχής Αρχική Σελίδα"
+msgstr "Προσεχή πρόσθετα αρχικής σελίδας"
 
 msgid "Homepage Most Popular"
-msgstr "Δημοφιλέστερη Αρχική Σελίδα"
+msgstr "Δημοφιλέστερο αρχικής σελίδας"
 
 msgid "Detail Page"
 msgstr "Σελίδα λεπτομερειών"
@@ -311,13 +262,13 @@ msgid "Detail Page (bottom)"
 msgstr "Σελίδα λεπτομερειών (κάτω μέρος)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "Σελίδα λεπτομερειών (Κανάλι Ανάπτυξης)"
+msgstr "Σελίδα λεπτομερειών (Κανάλι ανάπτυξης)"
 
 msgid "Often Used With"
 msgstr "Χρησιμοποιείται συχνά μαζί με"
 
 msgid "Others By Author"
-msgstr "Άλλα από τον ίδιο"
+msgstr "Από τον ίδιο δημιουργό"
 
 msgid "Dependencies"
 msgstr "Εξαρτήσεις"
@@ -344,40 +295,40 @@ msgid "Collections"
 msgstr "Συλλογές"
 
 msgid "Category Landing Featured Carousel"
-msgstr "Κατηγορία Προβεβλημένο Καρουζέλ"
+msgstr "Κατηγορία προτεινόμενης συλλογής"
 
 msgid "Category Landing Top Rated"
-msgstr "Κατηγορία Υψηλότερη Βαθμολογία"
+msgstr "Κατηγορία υψηλότερης βαθμολογίας"
 
 msgid "Category Landing Most Popular"
-msgstr "Κατηγορία Δημοφιλέστερα"
+msgstr "Κατηγορία δημοφιλέστερων"
 
 msgid "Category Landing Recently Added"
-msgstr "Κατηγορία Προστέθηκαν πρόσφατα"
+msgstr "Κατηγορία πρόσφατων προσθηκών"
 
 msgid "Browse Listing Featured Sort"
-msgstr "Αναζήτηση Λίστας Προβεβλημένων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά προβεβλημένα"
 
 msgid "Browse Listing Users Sort"
-msgstr "Αναζήτηση Λίστας Χρηστών Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά χρήστη"
 
 msgid "Browse Listing Rating Sort"
-msgstr "Αναζήτηση Λίστας Αξιολογήσεων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά βαθμολογία"
 
 msgid "Browse Listing Created Sort"
-msgstr "Αναζήτηση Λίστας Δημιουργηθέντων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά δημιουργία"
 
 msgid "Browse Listing Name Sort"
-msgstr "Αναζήτηση Λίστας Ονομάτων Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά όνομα"
 
 msgid "Browse Listing Popular Sort"
-msgstr "Αναζήτηση Λίστας Δημοφιλών Ταξινόμηση"
+msgstr "Ταξινόμηση λίστας κατά δημοφιλή"
 
 msgid "Browse Listing Updated Sort"
-msgstr "Αναζήτηση Λίστας Ανανεωμένων"
+msgstr "Ταξινόμηση λίστας κατά ενημερώσεις"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr "Αναζήτηση Λίστας Προσεχών"
+msgstr "Ταξινόμηση λίστας κατά επερχόμενα"
 
 msgid "Total Amount Contributed"
 msgstr "Σύνολο συνεισφορών"
@@ -531,11 +482,11 @@ msgstr "Συνεισφορές από {0} έως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Μετρήσεις ιστοσελίδας, τελευταίες {0} ημέρες"
+msgstr "Δείκτες ιστοτόπου, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Μετρήσεις ιστοσελίδας από {0} έως {1}"
+msgstr "Δείκτες ιστοτόπου από {0} έως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -646,41 +597,6 @@ msgstr "Ημερομηνία"
 msgid "Other"
 msgstr "Άλλο"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Αποδοχή και εγκατάσταση"
-
-msgid "Add to {0}"
-msgstr "Προσθήκη στο {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Εγκατάσταση για {0} ούτως ή άλλως"
-
-msgid "Download for {0} anyway"
-msgstr "Λήψη για {0} ούτως ή άλλως"
-
-msgid "Not available for your platform"
-msgstr "Δεν διατίθεται για την πλατφόρμα σας"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Αυτό το πρόσθετο δεν είναι συμβατό με την έκδοση του {0} σας."
-
-msgid "View other versions"
-msgstr "Προβολή άλλων εκδόσεων"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Συμβατό με {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Λειτουργεί με {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Μόνο με το Firefox — Λήψη του Firefox τώρα!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Λυπούμαστε, θα χρειαστείτε ένα πρόγραμμα περιήγησης με βάση τα προϊόντα Mozilla (όπως το Firefox) για να εγκαταστήσετε αρθρώματα αναζήτησης."
-
 msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"
 
@@ -688,7 +604,7 @@ msgid "Enter a new author's email address"
 msgstr "Εισαγάγετε τη διεύθυνση email νέου δημιουργού"
 
 msgid "There was an error uploading your file."
-msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
+msgstr "Προέκυψε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -696,16 +612,10 @@ msgstr[0] "{files} αρχείο"
 msgstr[1] "{files} αρχεία"
 
 msgid "Image changes being processed"
-msgstr "Επεξεργάζονται οι αλλαγές εικόνων"
+msgstr "Οι αλλαγές εικόνων βρίσκονται υπό επεξεργασία"
 
 msgid "Select an application first"
 msgstr "Επιλέξτε πρώτα εφαρμογή"
-
-msgid "No results found."
-msgstr "Δεν βρέθηκαν αποτελέσματα."
-
-msgid "Loading..."
-msgstr "Φόρτωση..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -718,19 +628,19 @@ msgstr[0] "Απομένει <b>{0}</b> χαρακτήρας"
 msgstr[1] "Απομένουν <b>{0}</b> χαρακτήρες"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Αυτό το χαρακτηριστικό έχει απενεργοποιηθεί προς το παρόν λόγω εκτέλεσης εργασιών συντήρησης. Παρακαλούμε προσπαθήστε ξανά αργότερα."
+msgstr "Αυτή η λειτουργία έχει απενεργοποιηθεί προσωρινά λόγω εκτέλεσης εργασιών συντήρησης στον ιστότοπο. Παρακαλούμε δοκιμάστε ξανά αργότερα."
 
 msgid "Remove this localization"
-msgstr "Αφαίρεση αυτής της μετάφρασης"
+msgstr "Αφαίρεση μετάφρασης"
 
 msgid "{name} was viewing this page first."
-msgstr "Ο/Η {name} είχε φορτώσει τη σελίδα πριν από εσάς."
+msgstr "Ο/Η {name} έβλεπε τη σελίδα πριν από εσάς."
 
 msgid "{name} was viewing this add-on first."
-msgstr "Ο χρήστης {name} είδε αυτό το πρόσθετο πρώτος."
+msgstr "Ο/Η {name} είδε αυτό το πρόσθετο πρώτα."
 
 msgid "Loading&hellip;"
-msgstr "Γίνεται φόρτωση&hellip;"
+msgstr "Φόρτωση&hellip;"
 
 msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
@@ -746,12 +656,6 @@ msgstr "Κείμενο αξιολόγησης"
 
 msgid "Review notes found"
 msgstr "Βρέθηκαν σημειώσεις αξιολόγησης"
-
-msgid "Average Reviews"
-msgstr "Μέσες αξιολογήσεις"
-
-msgid "Number of Reviews"
-msgstr "Αριθμός αξιολογήσεων"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Το μέγιστο μέγεθος μεταφόρτωσης είναι {0} - επιλέξτε μια μικρότερη εικόνα φόντου."
@@ -805,7 +709,7 @@ msgid "{0} line {1}"
 msgstr "{0} γραμμή {1}"
 
 msgid "Add-on failed validation."
-msgstr "Το πρόσθετο απέτυχε να επικυρωθεί."
+msgstr "Αποτυχία επικύρωσης προσθέτου."
 
 msgid "Add-on passed validation."
 msgstr "Το πρόσθετο επικυρώθηκε."
@@ -822,8 +726,8 @@ msgstr[1] "{0} προειδοποιήσεις"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] "{0} σημείωμα"
-msgstr[1] "{0} σημειώματα"
+msgstr[0] "{0} σημείωση"
+msgstr[1] "{0} σημειώσεις"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr "Δεν ολοκληρώθηκε η επικύρωση ή ολοκληρώθηκε με σφάλματα"

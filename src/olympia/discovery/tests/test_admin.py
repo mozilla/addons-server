@@ -7,10 +7,9 @@ import responses
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.storage_utils import copy_stored_file
+from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.amo.reverse import django_reverse
 from django.conf import settings
 from django.core.files.images import get_image_dimensions
 
@@ -432,7 +431,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         dest = os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs', 'transparent.jpg'
         )
-        copy_stored_file(src, dest)
+        self.root_storage.copy_stored_file(src, dest)
         delete_url = reverse(
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
         )
@@ -538,7 +537,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         dest = os.path.join(
             settings.MEDIA_ROOT, 'hero-featured-image', 'thumbs', 'transparent.jpg'
         )
-        copy_stored_file(src, dest)
+        self.root_storage.copy_stored_file(src, dest)
         delete_url = reverse(
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
         )

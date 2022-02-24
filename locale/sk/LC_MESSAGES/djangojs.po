@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-04-27 11:40+0000\n"
 "Last-Translator: Vlado Valaštiak <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -14,12 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} hviezdička"
-msgstr[1] "{0} hviezdičky"
-msgstr[2] "{0} hviezdičiek"
 
 msgid "There was a problem contacting the server."
 msgstr "Pri kontaktovaní servera sa vyskytla chyba."
@@ -98,20 +92,6 @@ msgstr[2] "Váš doplnok bol overený bez chýb a s {0} správami."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Váš doplnok bol overený bez chýb alebo varovaní."
 
-msgid "Your submission will be automatically signed."
-msgstr "Vaše doplnky odoslané na kontrolu budú automaticky podpísané."
-
-msgid "WebExtension upgrade"
-msgstr "Prechod na WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Povoľujeme a odporúčame prechod na novšiu verziu, ale tento proces nie je možne vrátiť. Keď si používatelia nainštalujú WebExtension verziu, nebudú si môcť nainštalovať predchádzajúce verzie vášho "
-"doplnku."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Prenos zastaraných doplnkov Firefoxu na MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnúť podrobné poznámky k verzii (možno nastaviť v ďalšom kroku)."
 
@@ -146,36 +126,6 @@ msgstr "Obrázky musia mať formát PNG alebo JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videá musia byť vo formáte WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Táto téma nie je kompatibilná s vašou verziou aplikácie {0}"
-
-msgid "Flagged for review"
-msgstr "Označené na kontrolu"
-
-msgid "Your input is required"
-msgstr "Vyžaduje sa zadanie údajov"
-
-msgid "Marked for deletion"
-msgstr "Označené na odstránenie"
-
-msgid "Updating results&hellip;"
-msgstr "Prebieha aktualizácia výsledkov&hellip;"
-
-msgid "Category"
-msgstr "Kategória"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Vyhľadávanie tém podľa <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Vyhľadávanie aplikácií pre <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Vyhľadávanie doplnkov pre <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Použiť originál"
 
 msgid "Week of {0}"
 msgstr "Týždeň {0}"
@@ -661,41 +611,6 @@ msgstr "Dátum"
 msgid "Other"
 msgstr "Iný"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Prijať a nainštalovať"
-
-msgid "Add to {0}"
-msgstr "Pridať do programu {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Napriek tomu nainštalovať pre {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Napriek tomu prevziať pre {0}"
-
-msgid "Not available for your platform"
-msgstr "Nie je dostupné pre vašu platformu."
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Tento doplnok nie je kompatibilný s vašou verziou aplikácie {0}."
-
-msgid "View other versions"
-msgstr "Zobraziť ďalšie verzie"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funguje s {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funguje s {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Len pre Firefox — získajte Firefox teraz!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Ak chcete nainštalovať vyhľadávací modul, potrebujete prehliadač založený na kóde Mozilla (napríklad Firefox)."
-
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
 
@@ -716,12 +631,6 @@ msgstr "Zmeny obrázkov sa práve spracovávajú"
 
 msgid "Select an application first"
 msgstr "Najskôr zvoľte aplikáciu"
-
-msgid "No results found."
-msgstr "Neboli nájdené žiadne výsledky."
-
-msgid "Loading..."
-msgstr "Načítava sa..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -764,12 +673,6 @@ msgstr "Text hodnotenia"
 
 msgid "Review notes found"
 msgstr "Poznámky k hodnoteniu"
-
-msgid "Average Reviews"
-msgstr "Priemerné hodnotenie"
-
-msgid "Number of Reviews"
-msgstr "Počet hodnotení"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maximálna povolená veľkosť je {0} - vyberte menší obrázok pozadia."

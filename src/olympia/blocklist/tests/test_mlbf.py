@@ -26,14 +26,14 @@ class TestMLBF(TestCase):
             addon_factory()
         # one version, 0 - *
         Block.objects.create(
-            addon=addon_factory(file_kw={'is_signed': True, 'is_webextension': True}),
+            addon=addon_factory(file_kw={'is_signed': True}),
             updated_by=user,
         )
         # one version, 0 - 9999
         Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '11.7'},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user,
             max_version='9999',
@@ -42,7 +42,7 @@ class TestMLBF(TestCase):
         Block.objects.create(
             addon=addon_factory(
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user,
         )
@@ -50,7 +50,7 @@ class TestMLBF(TestCase):
         self.five_ver_block = Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '123.40'},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user,
             max_version='123.45',
@@ -60,29 +60,29 @@ class TestMLBF(TestCase):
             addon=self.five_ver_block.addon,
             version='123.5',
             deleted=True,
-            file_kw={'is_signed': True, 'is_webextension': True},
+            file_kw={'is_signed': True},
         )
         self.five_ver_123_45_1 = version_factory(
             addon=self.five_ver_block.addon,
             version='123.45.1',
-            file_kw={'is_signed': True, 'is_webextension': True},
+            file_kw={'is_signed': True},
         )
-        # these two would be included if they were signed and webextensions
+        # these two would be included if they were signed
         self.not_signed_version = version_factory(
             addon=self.five_ver_block.addon,
             version='123.5.1',
-            file_kw={'is_signed': False, 'is_webextension': True},
+            file_kw={'is_signed': False},
         )
-        self.not_webext_version = version_factory(
+        self.not_signed_version2 = version_factory(
             addon=self.five_ver_block.addon,
             version='123.5.2',
-            file_kw={'is_signed': True, 'is_webextension': False},
+            file_kw={'is_signed': False},
         )
         # no matching versions (edge cases)
         self.over = Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '0.1'},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user,
             max_version='0',
@@ -90,7 +90,7 @@ class TestMLBF(TestCase):
         self.under = Block.objects.create(
             addon=addon_factory(
                 version_kw={'version': '9998.0'},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user,
             min_version='9999',
@@ -101,31 +101,31 @@ class TestMLBF(TestCase):
             # this a previous, superceeded, addon that should be included
             status=amo.STATUS_DELETED,  # they should all be deleted
             version_kw={'version': '2.1'},
-            file_kw={'is_signed': True, 'is_webextension': True},
+            file_kw={'is_signed': True},
         )
         self.addon_deleted_before_2_1_ver = reused_2_1_addon.versions.all()[0]
         reused_2_5_addon = addon_factory(
             # And this is an earlier addon that should also be included
             status=amo.STATUS_DELETED,  # they should all be deleted
             version_kw={'version': '2.5'},
-            file_kw={'is_signed': True, 'is_webextension': True},
+            file_kw={'is_signed': True},
         )
         self.addon_deleted_before_2_5_ver = reused_2_5_addon.versions.all()[0]
         current_addon = addon_factory(
             version_kw={'version': '2'},
-            file_kw={'is_signed': True, 'is_webextension': True},
+            file_kw={'is_signed': True},
         )
         self.addon_deleted_before_unblocked_ver = current_addon.current_version
         self.addon_deleted_before_unsigned_ver = version_factory(
             addon=current_addon,
             version='2.1',
             # not signed, but shouldn't override the signed 2.1 version
-            file_kw={'is_signed': False, 'is_webextension': True},
+            file_kw={'is_signed': False},
         )
         version_factory(
             addon=current_addon,
             version='3.0',
-            file_kw={'is_signed': True, 'is_webextension': True},
+            file_kw={'is_signed': True},
         )
         reused_2_1_addon.update(guid=GUID_REUSE_FORMAT.format(current_addon.id))
         reused_2_5_addon.update(guid=GUID_REUSE_FORMAT.format(reused_2_1_addon.id))
@@ -195,7 +195,7 @@ class TestMLBF(TestCase):
         assert self.five_ver_123_5.id in blocked_versions
         assert self.five_ver_123_45_1.id not in blocked_versions
         assert self.not_signed_version.id not in blocked_versions
-        assert self.not_webext_version.id not in blocked_versions
+        assert self.not_signed_version2.id not in blocked_versions
         assert self.over.addon.current_version.id not in blocked_versions
         assert self.under.addon.current_version.id not in blocked_versions
 
@@ -208,8 +208,8 @@ class TestMLBF(TestCase):
         assert self.addon_deleted_before_2_5_ver.id in (blocked_versions)
 
         # doublecheck if the versions were signed & webextensions they'd be in.
-        self.not_signed_version.all_files[0].update(is_signed=True)
-        self.not_webext_version.all_files[0].update(is_webextension=True)
+        self.not_signed_version.file.update(is_signed=True)
+        self.not_signed_version2.file.update(is_signed=True)
         assert len(fetch_blocked_from_db()) == 10
 
     def test_hash_filter_inputs(self):
@@ -353,7 +353,7 @@ class TestMLBF(TestCase):
             addon=addon_factory(
                 guid='fooo@baaaa',
                 version_kw={'version': '999'},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user_factory(),
         )
@@ -389,7 +389,7 @@ class TestMLBF(TestCase):
             addon=addon_factory(
                 guid='fooo@baaaa',
                 version_kw={'version': '999'},
-                file_kw={'is_signed': True, 'is_webextension': True},
+                file_kw={'is_signed': True},
             ),
             updated_by=user_factory(),
         )

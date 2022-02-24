@@ -20,10 +20,10 @@ HOME=/tmp
 55 * * * * %(z_cron)s unhide_disabled_files
 
 # Four times per day
-35 23,17,11,5 * * * %(z_cron)s auto_import_blocklist
 35 18,12,6,0 * * * %(z_cron)s upload_mlbf_to_remote_settings
 
 # Once per day
+1 3 * * * %(django)s clearsessions
 1 6 * * * %(django)s clear_old_user_data
 30 6 * * * %(z_cron)s update_addon_hotness
 30 9 * * * %(z_cron)s update_user_ratings

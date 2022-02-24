@@ -20,6 +20,7 @@ class CREATE_ADDON(_LOG):
     action_class = 'add'
     format = _('{addon} was created.')
     keep = True
+    show_user_to_developer = True
 
 
 class EDIT_PROPERTIES(_LOG):
@@ -28,18 +29,21 @@ class EDIT_PROPERTIES(_LOG):
     id = 2
     action_class = 'edit'
     format = _('{addon} properties edited.')
+    show_user_to_developer = True
 
 
 class EDIT_DESCRIPTIONS(_LOG):
     id = 3
     action_class = 'edit'
     format = _('{addon} description edited.')
+    show_user_to_developer = True
 
 
 class EDIT_CATEGORIES(_LOG):
     id = 4
     action_class = 'edit'
     format = _('Categories edited for {addon}.')
+    show_user_to_developer = True
 
 
 class ADD_USER_WITH_ROLE(_LOG):
@@ -47,6 +51,7 @@ class ADD_USER_WITH_ROLE(_LOG):
     action_class = 'add'
     format = _('{0.name} ({1}) added to {addon}.')
     keep = True
+    show_user_to_developer = True
 
 
 class REMOVE_USER_WITH_ROLE(_LOG):
@@ -55,6 +60,7 @@ class REMOVE_USER_WITH_ROLE(_LOG):
     # L10n: {0} is the user being removed, {1} is their role.
     format = _('{0.name} ({1}) removed from {addon}.')
     keep = True
+    show_user_to_developer = True
 
 
 class EDIT_CONTRIBUTIONS(_LOG):
@@ -67,12 +73,14 @@ class USER_DISABLE(_LOG):
     id = 8
     format = _('{addon} disabled.')
     keep = True
+    show_user_to_developer = True
 
 
 class USER_ENABLE(_LOG):
     id = 9
     format = _('{addon} enabled.')
     keep = True
+    show_user_to_developer = True
 
 
 class CHANGE_STATUS(_LOG):
@@ -88,12 +96,14 @@ class ADD_VERSION(_LOG):
     format = _('{version} added to {addon}.')
     keep = True
     store_ip = True
+    show_user_to_developer = True
 
 
 class EDIT_VERSION(_LOG):
     id = 17
     action_class = 'edit'
     format = _('{version} edited for {addon}.')
+    show_user_to_developer = True
 
 
 class DELETE_VERSION(_LOG):
@@ -103,6 +113,7 @@ class DELETE_VERSION(_LOG):
     # L10n: {0} is the version number
     format = _('Version {0} deleted from {addon}.')
     keep = True
+    show_user_to_developer = True
 
 
 class ADD_FILE_TO_VERSION(_LOG):
@@ -232,30 +243,35 @@ class ADD_TAG(_LOG):
     id = 25
     action_class = 'tag'
     format = _('{tag} added to {addon}.')
+    show_user_to_developer = True
 
 
 class REMOVE_TAG(_LOG):
     id = 26
     action_class = 'tag'
     format = _('{tag} removed from {addon}.')
+    show_user_to_developer = True
 
 
 class ADD_TO_COLLECTION(_LOG):
     id = 27
     action_class = 'collection'
     format = _('{addon} added to {collection}.')
+    show_user_to_developer = True
 
 
 class REMOVE_FROM_COLLECTION(_LOG):
     id = 28
     action_class = 'collection'
     format = _('{addon} removed from {collection}.')
+    show_user_to_developer = True
 
 
 class ADD_RATING(_LOG):
     id = 29
     action_class = 'review'
     format = _('{rating} for {addon} written.')
+    show_user_to_developer = True
 
 
 # TODO(davedash): Add these when we do the admin site
@@ -299,6 +315,7 @@ class CHANGE_USER_WITH_ROLE(_LOG):
     # L10n: {0} is a user, {1} is their role
     format = _('{0.name} role changed to {1} for {addon}.')
     keep = True
+    show_user_to_developer = True
 
 
 class CHANGE_LICENSE(_LOG):
@@ -307,18 +324,21 @@ class CHANGE_LICENSE(_LOG):
     id = 37
     action_class = 'edit'
     format = _('{addon} is now licensed under {0}.')
+    show_user_to_developer = True
 
 
 class CHANGE_POLICY(_LOG):
     id = 38
     action_class = 'edit'
     format = _('{addon} policy changed.')
+    show_user_to_developer = True
 
 
 class CHANGE_ICON(_LOG):
     id = 39
     action_class = 'edit'
     format = _('{addon} icon changed.')
+    show_user_to_developer = True
 
 
 class APPROVE_RATING(_LOG):
@@ -344,6 +364,7 @@ class DELETE_RATING(_LOG):
 class MAX_APPVERSION_UPDATED(_LOG):
     id = 46
     format = _('Application max version for {version} updated.')
+    show_user_to_developer = True
 
 
 class BULK_VALIDATION_EMAILED(_LOG):
@@ -374,6 +395,16 @@ class APPROVE_VERSION_WAITING(_LOG):
 class USER_EDITED(_LOG):
     id = 60
     format = _('Account updated.')
+
+
+class USER_DELETED(_LOG):
+    id = 61
+    format = _('Account {user} deleted.')
+
+
+class USER_AUTO_DELETED(_LOG):
+    id = 62
+    format = _('Account {user} deleted, from Firefox Accounts event.')
 
 
 class CUSTOM_TEXT(_LOG):
@@ -434,6 +465,7 @@ class EDIT_RATING(_LOG):
     id = 107
     action_class = 'review'
     format = _('{rating} for {addon} updated.')
+    show_user_to_developer = True
 
 
 class THEME_REVIEW(_LOG):
@@ -497,6 +529,7 @@ class DELETE_ADDON(_LOG):
     # L10n: {0} is the add-on GUID.
     format = _('Addon id {0} with GUID {1} has been deleted')
     keep = True
+    show_user_to_developer = True
 
 
 class EXPERIMENT_SIGNED(_LOG):
@@ -547,6 +580,7 @@ class DEVELOPER_REPLY_VERSION(_LOG):
     short = _('Developer Reply')
     keep = True
     review_queue = True
+    show_user_to_developer = True
 
 
 class REVIEWER_REPLY_VERSION(_LOG):
@@ -563,6 +597,7 @@ class APPROVAL_NOTES_CHANGED(_LOG):
     short = _('Approval notes changed')
     keep = True
     review_queue = True
+    show_user_to_developer = True
 
 
 class SOURCE_CODE_UPLOADED(_LOG):
@@ -571,6 +606,7 @@ class SOURCE_CODE_UPLOADED(_LOG):
     short = _('Source code uploaded')
     keep = True
     review_queue = True
+    show_user_to_developer = True
 
 
 class CONFIRM_AUTO_APPROVED(_LOG):
@@ -586,11 +622,13 @@ class CONFIRM_AUTO_APPROVED(_LOG):
 class ENABLE_VERSION(_LOG):
     id = 145
     format = _('{addon} {version} re-enabled.')
+    show_user_to_developer = True
 
 
 class DISABLE_VERSION(_LOG):
     id = 146
     format = _('{addon} {version} disabled.')
+    show_user_to_developer = True
 
 
 class APPROVE_CONTENT(_LOG):
@@ -812,3 +850,10 @@ LOG_HIDE_DEVELOPER = [
 ]
 # Review Queue logs to show to developer (i.e. hiding admin/private)
 LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) - set(LOG_HIDE_DEVELOPER))
+
+# Actions for which the user name can be shown to developers.
+# This is used by transformer_anonymize_user_for_developer to determine
+# whether to anonymize the user for an activity.
+LOG_SHOW_USER_TO_DEVELOPER = [
+    log.id for log in LOGS if hasattr(log, 'show_user_to_developer')
+]

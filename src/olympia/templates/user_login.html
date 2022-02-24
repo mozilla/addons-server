@@ -1,0 +1,45 @@
+{% if user.is_authenticated %}
+  <li class="account">
+    <a href="{{ user.get_url_path() }}" class="user" title="{{ user.email }}">
+      {{ user.welcome_name }}</a>
+    <ul>
+      {% if account_links %}
+        {% for link in account_links %}
+          {% if not loop.last %}
+            <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      <li class="nomenu logout">
+         {% if devhub_backlink %}
+           <a href="{{ url('devhub.logout') }}?to={{ url('devhub.index') }}">{{ _('Log out') }}</a>
+         {% else %}
+           <a href="{{ url('devhub.logout') }}">{{ _('Log out') }}</a>
+         {% endif %}
+      </li>
+    </ul>
+  </li>
+{% elif request.session %}
+  <li class="account anonymous nomenu login legacy">
+    {% trans reg=login_link(), login=login_link() %}
+        <a href="{{ reg }}">Register</a> or <a href="{{ login }}">Log in</a>
+    {% endtrans %}
+  </li>
+{% endif %}
+
+{% if user.is_authenticated %}
+  {% if tools_links|count > 1 %}
+    <li class="tools">
+      <a href="#">{{ tools_title }}</a>
+      <ul>
+        {% for link in tools_links %}
+          <li><a href="{{ link.href }}">{{ link.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% elif tools_links %}
+    <li class="context tools nomenu">
+      <a href="{{ tools_links[0].href }}">{{ tools_links[0].text }}</a>
+    </li>
+  {% endif %}
+{% endif %}

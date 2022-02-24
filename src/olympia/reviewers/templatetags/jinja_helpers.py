@@ -9,7 +9,7 @@ from django_jinja import library
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.templatetags.jinja_helpers import new_context
+from olympia.amo.templatetags.jinja_helpers import new_context
 from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import ReviewerScore
 from olympia.reviewers.templatetags import code_manager
@@ -31,7 +31,9 @@ def file_review_status(addon, file):
 def version_status(addon, version):
     if version.deleted:
         return gettext('Deleted')
-    return ','.join(str(s) for s in version.status)
+    return version.file.STATUS_CHOICES.get(
+        version.file.status, gettext('[status:%s]') % version.file.status
+    )
 
 
 @library.global_function
@@ -130,11 +132,11 @@ def reviewers_score_bar(context, types=None, addon_type=None):
 @library.global_function
 @library.render_with('reviewers/includes/files_view.html')
 @jinja2.pass_context
-def all_files(context, version):
+def file_view(context, version):
     return new_context(
         dict(
             # We don't need the hashes in the template.
-            all_files=version.all_files,
+            file=version.file,
             amo=context.get('amo'),
             addon=context.get('addon'),
             latest_not_disabled_version=context.get('latest_not_disabled_version'),

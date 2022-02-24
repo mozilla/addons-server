@@ -9,7 +9,6 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 
 from unittest import mock
 import pytest
@@ -20,7 +19,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser, Preview
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, root_storage
 from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
 from olympia.amo.utils import image_size, utc_millesecs_from_epoch
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
@@ -29,8 +28,7 @@ from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks
 from olympia.files.models import File
 from olympia.files.utils import NoManifestFound
-from olympia.files.tests.test_models import UploadTest
-from olympia.versions.models import Version
+from olympia.files.tests.test_models import UploadMixin
 
 
 pytestmark = pytest.mark.django_db
@@ -125,17 +123,17 @@ def test_recreate_previews(pngcrush_image_mock):
     addon = addon_factory()
     # Set up the preview so it has files in the right places.
     preview_no_original = Preview.objects.create(addon=addon)
-    with storage.open(preview_no_original.image_path, 'wb') as dest:
+    with root_storage.open(preview_no_original.image_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('preview_landscape.jpg'), 'rb'), dest)
-    with storage.open(preview_no_original.thumbnail_path, 'wb') as dest:
+    with root_storage.open(preview_no_original.thumbnail_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('mozilla.png'), 'rb'), dest)
     # And again but this time with an "original" image.
     preview_has_original = Preview.objects.create(addon=addon)
-    with storage.open(preview_has_original.image_path, 'wb') as dest:
+    with root_storage.open(preview_has_original.image_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('preview_landscape.jpg'), 'rb'), dest)
-    with storage.open(preview_has_original.thumbnail_path, 'wb') as dest:
+    with root_storage.open(preview_has_original.thumbnail_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('mozilla.png'), 'rb'), dest)
-    with storage.open(preview_has_original.original_path, 'wb') as dest:
+    with root_storage.open(preview_has_original.original_path, 'wb') as dest:
         shutil.copyfileobj(open(get_image_path('teamaddons.jpg'), 'rb'), dest)
 
     tasks.recreate_previews([addon.id])
@@ -146,13 +144,13 @@ def test_recreate_previews(pngcrush_image_mock):
         'thumbnail_format': 'jpg',
     }
     # Check no resize for full size, but resize happened for thumbnail
-    assert storage.size(preview_no_original.image_path) == storage.size(
+    assert root_storage.size(preview_no_original.image_path) == root_storage.size(
         get_image_path('preview_landscape.jpg')
     )
-    assert storage.size(preview_no_original.thumbnail_path) != storage.size(
+    assert root_storage.size(preview_no_original.thumbnail_path) != root_storage.size(
         get_image_path('mozilla.png')
     )
-    assert storage.size(preview_no_original.thumbnail_path) > 0
+    assert root_storage.size(preview_no_original.thumbnail_path) > 0
 
     assert preview_has_original.reload().sizes == {
         'image': [2400, 1600],
@@ -161,14 +159,14 @@ def test_recreate_previews(pngcrush_image_mock):
         'thumbnail_format': 'jpg',
     }
     # Check both full and thumbnail changed, but original didn't.
-    assert storage.size(preview_has_original.image_path) != storage.size(
+    assert root_storage.size(preview_has_original.image_path) != root_storage.size(
         get_image_path('preview_landscape.jpg')
     )
-    assert storage.size(preview_has_original.thumbnail_path) != storage.size(
+    assert root_storage.size(preview_has_original.thumbnail_path) != root_storage.size(
         get_image_path('mozilla.png')
     )
-    assert storage.size(preview_has_original.thumbnail_path) > 0
-    assert storage.size(preview_has_original.original_path) == storage.size(
+    assert root_storage.size(preview_has_original.thumbnail_path) > 0
+    assert root_storage.size(preview_has_original.original_path) == root_storage.size(
         get_image_path('teamaddons.jpg')
     )
 
@@ -196,7 +194,7 @@ class ValidatorTestCase(TestCase):
         return AppVersion.objects.create(application=amo.APPS[name].id, version=version)
 
 
-class TestMeasureValidationTime(UploadTest, TestCase):
+class TestMeasureValidationTime(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         # Set created time back (just for sanity) otherwise the delta
@@ -316,7 +314,7 @@ class TestTrackValidatorStats(TestCase):
     def result(self, **overrides):
         result = VALIDATOR_SKELETON_RESULTS.copy()
         result.update(overrides)
-        return json.dumps(result)
+        return result
 
     def test_count_all_successes(self):
         tasks.track_validation_stats(self.result(errors=0))
@@ -335,31 +333,29 @@ class TestTrackValidatorStats(TestCase):
         self.mock_incr.assert_any_call('devhub.linter.results.unlisted.success')
 
 
-class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
-    mock_sign_addon_warning = json.dumps(
-        {
-            'warnings': 1,
-            'errors': 0,
-            'messages': [
-                {
-                    'context': None,
-                    'editors_only': False,
-                    'description': 'Add-ons which are already signed will be '
-                    're-signed when published on AMO. This will '
-                    'replace any existing signatures on the add-on.',
-                    'column': None,
-                    'type': 'warning',
-                    'id': ['testcases_content', 'signed_xpi'],
-                    'file': '',
-                    'tier': 2,
-                    'message': 'Package already signed',
-                    'uid': '87326f8f699f447e90b3d5a66a78513e',
-                    'line': None,
-                    'compatibility_type': None,
-                },
-            ],
-        }
-    )
+class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
+    mock_sign_addon_warning = {
+        'warnings': 1,
+        'errors': 0,
+        'messages': [
+            {
+                'context': None,
+                'editors_only': False,
+                'description': 'Add-ons which are already signed will be '
+                're-signed when published on AMO. This will '
+                'replace any existing signatures on the add-on.',
+                'column': None,
+                'type': 'warning',
+                'id': ['testcases_content', 'signed_xpi'],
+                'file': '',
+                'tier': 2,
+                'message': 'Package already signed',
+                'uid': '87326f8f699f447e90b3d5a66a78513e',
+                'line': None,
+                'compatibility_type': None,
+            },
+        ],
+    }
 
     def setUp(self):
         super().setUp()
@@ -369,14 +365,14 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_pass_validation(self, _mock):
-        _mock.return_value = '{"errors": 0}'
+        _mock.return_value = {'errors': 0}
         upload = self.get_upload(abspath=self.valid_path, with_validation=False)
         tasks.validate(upload, listed=True)
         assert upload.reload().valid
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_fail_validation(self, _mock):
-        _mock.return_value = '{"errors": 2}'
+        _mock.return_value = {'errors': 2}
         upload = self.get_upload(abspath=self.valid_path, with_validation=False)
         tasks.validate(upload, listed=True)
         assert not upload.reload().valid
@@ -417,7 +413,7 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
     def test_handle_file_validation_result_task_result_is_serializable(self):
         addon = addon_factory()
-        self.file = addon.current_version.all_files[0]
+        self.file = addon.current_version.file
         assert not self.file.has_been_validated
         file_validation_id = tasks.validate(self.file).get()
         assert json.dumps(file_validation_id)
@@ -425,31 +421,9 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
         self.file = File.objects.get(pk=self.file.pk)
         assert self.file.has_been_validated
 
-    def test_binary_flag_set_on_addon_for_binary_extensions(self):
-        results = {
-            'errors': 0,
-            'success': True,
-            'warnings': 0,
-            'notices': 0,
-            'message_tree': {},
-            'messages': [],
-            'metadata': {
-                'contains_binary_extension': True,
-                'version': '1.0',
-                'name': 'gK0Bes Bot',
-                'id': 'gkobes@gkobes',
-            },
-        }
-        self.addon = addon_factory()
-        self.file = self.addon.current_version.all_files[0]
-        assert not self.addon.binary
-        tasks.handle_file_validation_result(results, self.file.pk)
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        assert self.addon.binary
-
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_calls_run_linter(self, run_addons_linter_mock):
-        run_addons_linter_mock.return_value = '{"errors": 0}'
+        run_addons_linter_mock.return_value = {'errors': 0}
         upload = self.get_upload(abspath=self.valid_path, with_validation=False)
         assert not upload.valid
         tasks.validate(upload, listed=True)
@@ -478,11 +452,9 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
             # This is a relatively small add-on but we are making sure that
             # we're using a temporary file for all our linter output.
-            result = json.loads(
-                tasks.run_addons_linter(
-                    get_addon_file('webextension_containing_binary_files.xpi'),
-                    amo.RELEASE_CHANNEL_LISTED,
-                )
+            result = tasks.run_addons_linter(
+                get_addon_file('webextension_containing_binary_files.xpi'),
+                amo.RELEASE_CHANNEL_LISTED,
             )
 
             assert tmpf.call_count == 2
@@ -552,7 +524,7 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
         mv3_path = get_addon_file('webextension_mv3.xpi')
         result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
-        assert json.loads(result or '{}').get('errors') == 1
+        assert result.get('errors') == 1
 
     @override_switch('enable-mv3-submissions', active=True)
     def test_mv3_submission_enabled(self):
@@ -568,16 +540,22 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 
         mv3_path = get_addon_file('webextension_mv3.xpi')
         result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
-        assert json.loads(result or '{}').get('errors') == 0
+        assert result.get('errors') == 0
 
         # double check v2 manifests still work
         result = tasks.run_addons_linter(
             self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
         )
-        assert json.loads(result or '{}').get('errors') == 0
+        assert result.get('errors') == 0
 
 
 class TestValidateFilePath(ValidatorTestCase):
+    def setUp(self):
+        super().setUp()
+        patcher = mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
+        self.addCleanup(patcher.stop)
+        patcher.start()
+
     def test_success(self):
         result = json.loads(
             tasks.validate_file_path(
@@ -615,6 +593,7 @@ class TestValidateFilePath(ValidatorTestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_manifest_not_found_error(self, run_addons_linter_mock, parse_addon_mock):
         parse_addon_mock.side_effect = NoManifestFound(message='Fôo')
+        run_addons_linter_mock.return_value = {}
         # When parse_addon() raises a NoManifestFound error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
@@ -628,6 +607,7 @@ class TestValidateFilePath(ValidatorTestCase):
         self, run_addons_linter_mock, parse_addon_mock
     ):
         parse_addon_mock.side_effect = NoManifestFound(message='Fôo')
+        run_addons_linter_mock.return_value = {}
         # When parse_addon() raises a InvalidManifest error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
@@ -635,6 +615,25 @@ class TestValidateFilePath(ValidatorTestCase):
             channel=amo.RELEASE_CHANNEL_LISTED,
         )
         assert run_addons_linter_mock.call_count == 1
+
+    @mock.patch('olympia.devhub.tasks.annotations.annotate_validation_results')
+    @mock.patch('olympia.devhub.tasks.parse_addon')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_validate_file_path_mocks(
+        self, run_addons_linter_mock, parse_addon_mock, annotate_validation_results_mock
+    ):
+        parse_addon_mock.return_value = mock.Mock()
+        run_addons_linter_mock.return_value = {'fake_results': True}
+        tasks.validate_file_path(
+            get_addon_file('webextension.xpi'),
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
+        assert parse_addon_mock.call_count == 1
+        assert run_addons_linter_mock.call_count == 1
+        assert annotate_validation_results_mock.call_count == 1
+        annotate_validation_results_mock.assert_called_with(
+            run_addons_linter_mock.return_value, parse_addon_mock.return_value
+        )
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
@@ -652,13 +651,13 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
     )
 
 
-class TestSubmitFile(UploadTest, TestCase):
+class TestSubmitFile(UploadMixin, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
         super().setUp()
         self.addon = Addon.objects.get(pk=3615)
-        patcher = mock.patch('olympia.devhub.tasks.create_version_for_upload')
+        patcher = mock.patch('olympia.devhub.utils.create_version_for_upload')
         self.create_version_for_upload = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -679,127 +678,7 @@ class TestSubmitFile(UploadTest, TestCase):
         assert not self.create_version_for_upload.called
 
 
-class TestCreateVersionForUpload(UploadTest, TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super().setUp()
-        self.addon = Addon.objects.get(pk=3615)
-        self.mocks = {}
-        for key in ['Version.from_upload', 'parse_addon']:
-            patcher = mock.patch('olympia.devhub.tasks.%s' % key)
-            self.mocks[key] = patcher.start()
-            self.addCleanup(patcher.stop)
-        self.user = user_factory()
-
-    def test_file_passed_all_validations_not_most_recent(self):
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version='1.0'
-        )
-        newer_upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version='1.0'
-        )
-        newer_upload.update(created=datetime.today() + timedelta(hours=1))
-
-        # Check that the older file won't turn into a Version.
-        tasks.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
-        assert not self.mocks['Version.from_upload'].called
-
-        # But the newer one will.
-        tasks.create_version_for_upload(
-            self.addon, newer_upload, amo.RELEASE_CHANNEL_LISTED
-        )
-        self.mocks['Version.from_upload'].assert_called_with(
-            newer_upload,
-            self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=self.mocks['parse_addon'].return_value,
-        )
-
-    def test_file_passed_all_validations_version_exists(self):
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version='1.0'
-        )
-        Version.objects.create(addon=upload.addon, version=upload.version)
-
-        # Check that the older file won't turn into a Version.
-        tasks.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
-        assert not self.mocks['Version.from_upload'].called
-
-    def test_file_passed_all_validations_most_recent_failed(self):
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version='1.0'
-        )
-        newer_upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version='1.0'
-        )
-        newer_upload.update(
-            created=datetime.today() + timedelta(hours=1),
-            valid=False,
-            validation=json.dumps({'errors': 5}),
-        )
-
-        tasks.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
-        assert not self.mocks['Version.from_upload'].called
-
-    def test_file_passed_all_validations_most_recent(self):
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version='1.0'
-        )
-        newer_upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version='0.5'
-        )
-        newer_upload.update(created=datetime.today() + timedelta(hours=1))
-
-        # The Version is created because the newer upload is for a different
-        # version_string.
-        tasks.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
-        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
-        self.mocks['Version.from_upload'].assert_called_with(
-            upload,
-            self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=self.mocks['parse_addon'].return_value,
-        )
-
-    def test_file_passed_all_validations_beta_string(self):
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version='1.0beta1'
-        )
-        tasks.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
-        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
-        self.mocks['Version.from_upload'].assert_called_with(
-            upload,
-            self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=self.mocks['parse_addon'].return_value,
-        )
-
-    def test_file_passed_all_validations_no_version(self):
-        file_ = get_addon_file('valid_webextension.xpi')
-        upload = self.get_upload(
-            abspath=file_, user=self.user, addon=self.addon, version=None
-        )
-        tasks.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
-        self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
-        self.mocks['Version.from_upload'].assert_called_with(
-            upload,
-            self.addon,
-            [amo.FIREFOX.id, amo.ANDROID.id],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=self.mocks['parse_addon'].return_value,
-        )
-
-
-class TestAPIKeyInSubmission(UploadTest, TestCase):
+class TestAPIKeyInSubmission(UploadMixin, TestCase):
     def setUp(self):
         self.user = user_factory()
 
@@ -810,7 +689,6 @@ class TestAPIKeyInSubmission(UploadTest, TestCase):
         self.addon = addon_factory(
             users=[self.user],
             version_kw={'version': '0.1'},
-            file_kw={'is_webextension': True},
         )
         self.file = get_addon_file('webextension_containing_api_key.xpi')
 
@@ -1013,3 +891,27 @@ class TestForwardLinterResults(TestCase):
         results = {'errors': 1}
         returned_results = tasks.forward_linter_results(results, 123)
         assert results == returned_results
+
+
+class TestCreateSitePermissionVersion(TestCase):
+    @mock.patch('olympia.devhub.tasks.SitePermissionVersionCreator')
+    def test_pass_down_to_creator_util(self, SitePermissionVersionCreator_mock):
+        user = user_factory()
+        tasks.create_site_permission_version(
+            user_pk=user.pk,
+            remote_addr='127.0.0.42',
+            install_origins=['https://example.com'],
+            site_permissions=['foo'],
+        )
+        assert SitePermissionVersionCreator_mock.call_count == 1
+        assert SitePermissionVersionCreator_mock.call_args[0] == ()
+        assert SitePermissionVersionCreator_mock.call_args[1] == {
+            'user': user,
+            'remote_addr': '127.0.0.42',
+            'install_origins': ['https://example.com'],
+            'site_permissions': ['foo'],
+        }
+        assert (
+            SitePermissionVersionCreator_mock.return_value.create_version.call_count
+            == 1
+        )

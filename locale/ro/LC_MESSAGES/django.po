@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2017-12-25 01:31+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "tip"
 
@@ -72,9 +73,6 @@ msgstr "Nu se permit linkuri."
 msgid "This display name cannot be used."
 msgstr "Acest nume afișat nu poate fi folosit."
 
-msgid "This reviewer name cannot be used."
-msgstr "Acest nume de recenzent nu poate fi folosit."
-
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Câmpul pentru pagina de start poate fi utilizat numai pentru linkuri către site-uri web externe."
 
@@ -106,6 +104,10 @@ msgstr "Ai nevoie de ajutor?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Notificarea [%s] nu există"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Ghid de recenzare pentru suplimente"
 
 msgid "Review"
 msgstr "Scrie o recenzie"
@@ -150,11 +152,8 @@ msgstr "Căile către suplimente și colecții trebuie să se termine în „/�
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Denumirile suplimentelor nu pot conține mărci comerciale Mozilla sau Firefox."
 
-msgid "Sort by:"
-msgstr "Sortează după:"
-
-msgid "More"
-msgstr "Mai multe"
+msgid "Site permissions for {hostnames}"
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Suplimentele mele"
@@ -292,7 +291,7 @@ msgid "Email:"
 msgstr "E-mail"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -313,26 +312,6 @@ msgstr "Această funcționalitate este dezactivată temporar cât realizăm ment
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Unele funcționalități de pe această pagină sunt dezactivate temporar, cât efectuăm mentenanța pe site. Te rugăm încerci din nou puțin mai târziu."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Pagina <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Sari la prima pagină"
-
-msgid "Previous"
-msgstr "Înapoi"
-
-msgid "Jump to last page"
-msgstr "Sari la ultima pagină"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Se afișează <b>%(begin)s</b>&ndash;<b>%(end)s</b> din <b>%(count)s</b>"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -368,6 +347,15 @@ msgstr "Semnătura a expirat."
 msgid "Error decoding signature."
 msgstr "Eroare la decodarea semnăturii."
 
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr ""
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
+
 msgid "Wrong type for one or more keys in payload"
 msgstr "Tip greșit al uneia sau al mai multor chei din sarcina utilă"
 
@@ -382,9 +370,6 @@ msgstr "Nu s-a găsit adresa de e-mail."
 
 msgid "Unavailable for legal reasons."
 msgstr ""
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "Câmpul trebuie să aibă o lungime de cel puțin {num} (de) caractere."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Codul limbii {lang_code} este nevalid."
@@ -434,9 +419,6 @@ msgstr ""
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Acest URL personalizat este deja utilizat de una dintre celelalte colecții ale tale."
 
-msgid "Name cannot be empty."
-msgstr "Numele nu poate fi gol."
-
 msgid "This name cannot be used."
 msgstr "Această denumire nu poate fi utilizată."
 
@@ -455,10 +437,6 @@ msgstr "Starea aprobării"
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s este o propunere în așteptare"
-
-#, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "Blocajul pentru %(guid)s este numai cu posibilitate de citire - trebuie editat prin intermediul colecției moștenite de liste de blocare."
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -487,12 +465,6 @@ msgstr "Recenzie listată"
 msgid "Review Unlisted"
 msgstr "Recenzie nelistată"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "Acest blocaj a fost importat dintr-un blocaj moștenit pe bază de regex."
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "Orice modificare realizată NU se va actualiza în lista de blocări moștenite - trebuie să faci o modificare manuală în interfața web de administrare kinto."
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "Șterge mai multe %(name)s"
@@ -507,9 +479,6 @@ msgstr "%(count)s GUID-urile de suplimente sunt deja blocate de la %(v_min)s pâ
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID-uri de suplimente negăsite"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Următorul/Următoarele blocaj(e) a(u) fost importat(e) dintr-un blocaj moștenit pe bază de regex."
 
 msgid "Save"
 msgstr "Salvează"
@@ -548,9 +517,6 @@ msgstr "Editează blocajul"
 
 msgid "versions"
 msgstr "versiuni"
-
-msgid "Included in legacy blocklist."
-msgstr "Inclus în lista de blocări moștenite."
 
 msgid "{addon} was created."
 msgstr "{addon} a fost creat."
@@ -733,6 +699,14 @@ msgid "Approved but waiting"
 msgstr "Aprobat, însă în așteptare"
 
 msgid "Account updated."
+msgstr "Cont actualizat."
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "Cont actualizat."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "Cont actualizat."
 
 msgid "Created: {0}."
@@ -982,8 +956,15 @@ msgstr "Șters"
 msgid "Unlisted"
 msgstr "Nelistat"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+#, fuzzy
+msgid "Addon API"
+msgstr "Suplimente"
+
+msgid "Automatically generated by AMO"
+msgstr ""
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1022,6 +1003,10 @@ msgstr "LWT perimat"
 msgid "Theme (Static)"
 msgstr "Temă (statică)"
 
+#, fuzzy
+msgid "Site Permission"
+msgstr "Permisiuni:"
+
 # Plural in this context means many of the add-on type
 msgid "Extensions"
 msgstr "Extensii"
@@ -1051,6 +1036,10 @@ msgstr "LWT perimate"
 
 msgid "Themes (Static)"
 msgstr "Teme (Statice)"
+
+#, fuzzy
+msgid "Site Permissions"
+msgstr "Permisiuni:"
 
 msgid "Alerts & Updates"
 msgstr "Alerte și actualizări"
@@ -1142,7 +1131,6 @@ msgstr "Dezvoltare web"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Descarcă extensii Firefox care includ unelte de dezvoltare web. Această categorie include extensii pentru GitHub, comutarea agentului utilizator, gestionarea cookie-urilor și multe altele."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Altele"
 
@@ -1340,6 +1328,32 @@ msgstr "Călătorii"
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Mozilla Public License 2.0"
+msgstr ""
+
+msgid "GNU General Public License v2.0"
+msgstr ""
+
+msgid "GNU General Public License v3.0"
+msgstr ""
+
+msgid "GNU Library General Public License v2.1"
+msgstr ""
+
+msgid "GNU Library General Public License v3.0"
+msgstr ""
+
+#, fuzzy
+msgid "The MIT License"
+msgstr "Licență"
+
+#, fuzzy
+msgid "The BSD License"
+msgstr "Licență"
+
+msgid "Mozilla Public License 1.1"
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Toate drepturile rezervate"
@@ -1714,6 +1728,9 @@ msgstr "Domeniu de versiune nevalid."
 msgid "Need at least one compatible application."
 msgstr "Necesită cel puțin o aplicație compatibilă."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Ai realizat prea multe încărcări în ultimul timp. Te rugăm să încerci din nou mai târziu."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "A apărut o eroare la încărcare. Te rugăm să încerci din nou."
 
@@ -1722,9 +1739,6 @@ msgstr "Înlocuire forțată validare eșuată"
 
 msgid "Need to select at least one application."
 msgstr "Necesită selectarea cel puțin a unei aplicații."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Ai realizat prea multe încărcări în ultimul timp. Te rugăm să încerci din nou mai târziu."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Versiunea {version} corespunde cu {block_link} pentru acest supliment. Contactează {amo_admins} pentru informații suplimentare."
@@ -1756,22 +1770,30 @@ msgstr "Fișier sursă încărcat, dar ai indicat că nu este necesară nicio su
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Asigură-te că denumirea și rezumatul au împreună cel mult {limit_value} de caractere (au {show_value})."
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
-"Pe acest site. <span class=\"helptext\">Propunerea ta va fi listată pe acest site și în Managerul de suplimente Firefox pentru milioane de utilizatori, după ce trece examinarea codului. "
-"Actualizările automate sunt gestionate de acest site. Acest supliment va fi, de asemenea, luat în considerare pentru promoțiile și concursurile Mozilla. Este posibilă și distribuirea automată a "
-"fișierelor examinate.</span>"
 
 msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Pe cont propriu. <span class=\"helptext\">Propunerea ta va fi imediat semnată pentru autodistribuire. Trebuie să gestionezi actualizările printr-un updateURL sau prin actualizări externe ale "
-"aplicației.</span>"
 
 msgid "Display Name"
 msgstr "Nume afișat"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Origine:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Permisiuni:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Fișier de supliment nevalid sau corupt."
@@ -1789,7 +1811,7 @@ msgstr "Notificare de securitate Mozilla: Datele tale de autentificare AMO API a
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validarea a generat prea multe erori/avertismente, așa că %s (de) mesaje au fost trunchiate. După corectarea mesajelor vizibile, vei putea să le vezi și pe celelalte."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -1972,24 +1994,6 @@ msgstr "Suplimentul meu nu se încadrează în niciuna dintre categorii"
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Acord de distribuție pentru suplimente Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Politici și norme de recenzare"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Am citit și accept acest Acord și Regulile și politicile"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Trebuie să setezi un nume de afișat pentru ca utilizatorii să știe de unde vine suplimentul. Te rugăm să introduci unul mai jos."
-
-msgid "Accept"
-msgstr "Acceptă"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "sau <a href=\"{0}\">Anulează</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Mai multe informații despre conturile de dezvoltatori"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Suplimente pentru {0}"
@@ -2043,6 +2047,16 @@ msgstr "Caută documente pentru dezvoltatori"
 
 msgid "Search"
 msgstr "Caută"
+
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Permisiuni:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Folosește câmpul de mai jos ca să încarci pachetul suplimentului tău."
@@ -2187,6 +2201,9 @@ msgstr "Acceptarea invitației îți va da acces pentru editarea suplimentului �
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Dă clic pe butonul de acceptare de mai jos pentru confirmarea că vrei să fii adăugat(ă) ca autor pentru {addon_name}."
+
+msgid "Accept"
+msgstr "Acceptă"
 
 msgid "Decline"
 msgstr "Refuză"
@@ -2507,15 +2524,23 @@ msgstr "Ascunde mesajele prezente și ignorate din versiunea anterioară"
 msgid "Top"
 msgstr "Sus"
 
-msgid "Delete Add-on"
-msgstr "Șterge suplimentul"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Ștergerea suplimentului va șterge definitiv toate versiunile și fișierele pe care le-ai depus pentru acest supliment, listat sau nu. ID-ul suplimentului va fi în continuare atașat la contul tău, "
 "așa că ceilalți nu vor putea să trimită versiuni folosind același ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Ștergerea suplimentului va șterge definitiv toate versiunile și fișierele pe care le-ai depus pentru acest supliment, listat sau nu. ID-ul suplimentului va fi în continuare atașat la contul tău, "
+"așa că ceilalți nu vor putea să trimită versiuni folosind același ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Șterge suplimentul"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Introdu următorul text pentru a confirma decizia: {slug}"
@@ -2549,6 +2574,9 @@ msgstr "Statistici zilnice pentru descărcări și utilizatori"
 
 msgid "Statistics"
 msgstr "Statistici"
+
+msgid "More"
+msgstr "Mai multe"
 
 msgid "Manage Status & Versions"
 msgstr "Gestionează starea și versiunile"
@@ -2689,14 +2717,22 @@ msgstr "Aceste note vor apărea pe pagina de detalii."
 msgid "How to Distribute this Version"
 msgstr "Cum să fie distribuită această versiune"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "Informații suplimentare despre distribuirea și semnarea suplimentelor"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "Trimitere finalizată"
 
-msgid "Version Submitted for Review"
-msgstr "Versiune trimisă pentru recenzie"
+msgid "Version Submitted"
+msgstr "Versiune trimisă"
 
 msgid "Preview of the version submitted"
 msgstr "Previzualizarea versiunii trimise"
@@ -2704,21 +2740,19 @@ msgstr "Previzualizarea versiunii trimise"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Ai terminat! Această versiune va fi disponibilă după ce trece de recenzie. Vei fi anunțat când s-a finalizat recenzia."
 
-msgid "Version Submitted"
-msgstr "Versiune trimisă"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "Ai terminat! Această versiune va fi în scurt timp disponibilă pe site-ul nostru."
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Ai terminat! Această versiune a fost trimisă pentru recenzare. Vei fi notificat(ă) la finalizarea recenziei sau dacă recenzenții noștri au să-ți adreseze orice întrebări legate de propunerea depusă."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Listarea ta va avea un succes mai mare dacă adaugi o descriere detaliată. Pregătește-ți listarea pentru publicare:"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "Listarea ta va avea un succes mai mare dacă adaugi o descriere detaliată și capturi de ecran. Pregătește-ți listarea pentru publicare:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "Gestionează listarea"
@@ -2729,11 +2763,8 @@ msgstr "Poți edita această versiune și pentru a adăuga note privind versiune
 msgid "Edit version {0}"
 msgstr "Editează versiunea {0}"
 
-msgid "Version Signature Pending"
-msgstr "În așteptarea semnării versiunii"
-
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Ai terminat! Această versiune va primi în curând aprobare pentru distribuție automată. Vei fi anunțat(ă) pe e-mail când fișierul semnat este gata pentru descărcare."
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "Mergi la Propunerile mele"
@@ -2744,14 +2775,11 @@ msgstr "Încărcare a codului sursă"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Trebuie să depui codul sursă?"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Este posibil să trebuiască să depui și codul sursă. Dacă nu o faci, suplimentul tău poate fi eliminat de pe site!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Te rugăm să consulți <a %(a_attrs)s>politica pentru depunerea de cod sursă</a>."
-
-msgid "Do you use any of the following?"
+#, fuzzy
+msgid "Do you use any of the following in your extension?"
 msgstr "Folosești vreuna dintre uneltele următoare?"
 
 msgid "Code generators or minifiers"
@@ -2763,20 +2791,22 @@ msgstr "Unelte care combină mai multe fișiere într-unul singur, precum <span 
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Motoare de șabloane web, atât pentru HTML, cât și pentru CSS"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+#, fuzzy
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr "Orice altă unealtă care ia cod sau fișiere, aplică procesarea și generează un cod sau fișier(e) de inclus în supliment"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Nu este nevoie să depui codul sursă și ești gata pentru pasul următor."
 
-msgid "Your Submission Requires Source Code."
-msgstr "Propunerea ta impune trimiterea codului sursă."
+msgid "You must submit your extension's source code."
+msgstr ""
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Codul sursă trebuie să întrunească <a %(a_attrs)s>cerințele politicii</a>, care includ:"
+#, fuzzy
+msgid "Your source code must include:"
+msgstr "Cod sursă încărcat"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+#, fuzzy
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr "Instrucțiuni de compilare pas cu pas pentru crearea unei copii exacte a codului suplimentului."
 
 msgid "A build script that executes all necessary technical steps."
@@ -2785,26 +2815,21 @@ msgstr "Un script de versiune care execută toți pașii tehnici necesari."
 msgid "Operating system and build environment requirements."
 msgstr "Cerințe pentru sistemul de operare și mediul de compilare."
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+#, fuzzy
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 "Detaliile (inclusiv versiunea necesară și instrucțiuni de instalare) oricăror programe utilizate în procesul de compilare (de exemplu: <span class=\"tech-emphasis\">nod</span> și versiunea <span "
 "class=\"tech-emphasis\">npm</span> utilizată)."
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+#, fuzzy
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 "<span class=\"instruction-emphasis\">Notă:</span> Fișierele sursă (în afara bibliotecilor de la terți cu sursă deschisă) nu pot fi transcompilate, legate în lanț, minificate sau generate altminteri "
 "de mașini."
 
-msgid "How to Submit:"
-msgstr "Cum se transmit propunerile:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Include instrucțiuni într-un fișier README la interiorul codului sursă,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "sau în notele recenzentului de pe pagina următoare (dacă este cazul)."
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Upload source code:"
 msgstr "Încarcă codul sursă:"
@@ -2838,9 +2863,6 @@ msgstr "Creează o versiune de temă"
 
 msgid "Create a Theme"
 msgstr "Creează o temă"
-
-msgid "Sign Add-on"
-msgstr "Semnează suplimentul"
 
 msgid "Theme generate"
 msgstr "Generează tema"
@@ -3102,17 +3124,41 @@ msgstr "Setări admin"
 msgid "View Statistics Dashboard"
 msgstr "Vezi tabloul de bord pentru statistici"
 
+msgid "Review Policies and Rules"
+msgstr "Politici și norme de recenzare"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Am citit și accept acest Acord și Regulile și politicile"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Trebuie să setezi un nume de afișat pentru ca utilizatorii să știe de unde vine suplimentul. Te rugăm să introduci unul mai jos."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "sau <a href=\"{0}\">Anulează</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Mai multe informații despre conturile de dezvoltatori"
+
 msgid "Developer News"
 msgstr "Știri pentru dezvoltatori"
 
 msgid "View the blog &#9658;"
 msgstr "Vezi blogul &#9658;"
 
+msgid "Version Signature Pending"
+msgstr "În așteptarea semnării versiunii"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
 msgid "License"
 msgstr "Licență"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Te rugăm să alegi o licență corespunzătoare drepturilor pe care le acorzi asupra codului tău sursă. Are relevanță numai pentru suplimentele listate."
+
+msgid "Sort by:"
+msgstr "Sortează după:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3379,9 +3425,6 @@ msgstr "Stare și versiuni"
 msgid "Edit this version"
 msgstr "Editează această versiune"
 
-msgid "0 files"
-msgstr "0 fișiere"
-
 msgid "Re-enable Version"
 msgstr "Reactivează versiunea"
 
@@ -3647,7 +3690,6 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "Accesează cunoașterea academică. Accesează peste 10 milioane de lucrări de cercetare, gratuit."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Personalizează gesturile din mouse. Descoperă un mod nou de navigare cu peste 50 de configurații."
 
@@ -3715,8 +3757,9 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Reîncarcă automat filele în baza intervalelor de timp setate de tine."
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Separă-ți viețile online. Distinge în privat variatele tale identități online —muncă, personală etc.— folosind file codate pe culori care îți divizează urmele digitale de cookie-uri."
+#. editorial content for the primary hero shelves.
+msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3724,7 +3767,6 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Obține un strat suplimentar de protecție împotriva urmăririi în timp ce navighezi pe web."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Citește fișiere ePub direct în Firefox—poți mări fonturile, dimensiunile paginilor și multe altele."
 
@@ -3801,13 +3843,12 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "Oprește elementele de urmărire din reclame când dai clic pe rezultatele căutărilor în Google și Yandex."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Bucură-te de imagini miniaturale ale site-urilor web alături de rezultatele căutărilor tale."
 
 #. editorial content for the discovery pane.
@@ -4374,11 +4415,6 @@ msgid "Blues & Yellows"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
-msgid "Forest Theme"
-msgstr "Creează o temă"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr ""
@@ -4412,6 +4448,16 @@ msgstr ""
 msgid "Goodbye, annoying cookie warnings!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "All your emoji needs—always just a click away."
+msgstr "Excelează în jocul emojiurilor. Zeci de emojiuri pentru orice ocazie—mereu la un clic distanță."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4423,8 +4469,22 @@ msgstr "Ai găsit o imagine interesantă pe web? Folosește TinEye ca să descop
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Pentru acele momente când simți nevoia să tragi cu laserul dintr-o pisică."
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr "Citește fișiere ePub direct în Firefox—poți mări fonturile, dimensiunile paginilor și multe altele."
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr "Personalizează gesturile din mouse. Descoperă un mod nou de navigare cu peste 50 de configurații."
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr "Folosește gesturile din mouse pentru închiderea filelor, navigarea prin pagini și multe altele."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Bucură-te de imagini miniaturale ale site-urilor web alături de rezultatele căutărilor tale."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4456,6 +4516,34 @@ msgstr ""
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Put restrictions on distracting, time-wasting websites."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove clutter from your Twitter."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize YouTube to taste."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Delete browsing data directly from the browser toolbar."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensiile sunt ca un fel de aplicații pentru Firefox."
@@ -4469,25 +4557,23 @@ msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Instrumente și organizatoare de file"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Teme recomandate"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Confidențialitate dincolo de extensiile browserului"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Instrumente de traducere"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Îmbogățește-ți experiența multimedia pe Firefox"
-
-# Plural in this context means many of the add-on type
-#. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Explorează extensiile"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Blocatoare de reclame de elită"
 
 #. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Află mai multe"
+msgid "See staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4510,8 +4596,9 @@ msgid "Enhanced privacy extensions"
 msgstr "Extensii care sporesc confidențialitatea"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Vezi mai multe extensii care sporesc confidențialitatea"
+#, fuzzy
+msgid "See more recommended privacy extensions"
+msgstr "Vezi mai multe extensii recomandate"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4531,19 +4618,18 @@ msgid "See more recommended themes"
 msgstr "Vezi mai multe teme recomandate"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
+#, fuzzy
+msgid "Strong password managers"
 msgstr "Managere de parole recomandate"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Vezi mai multe managere de parole recomandate"
+#, fuzzy
+msgid "See more password manager staff picks"
+msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Instrumente de traducere"
-
-#. editorial content for the homepage shelves.
-msgid "See more translation tools"
+#, fuzzy
+msgid "See more translation tool staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
 
 #. editorial content for the homepage shelves.
@@ -4553,8 +4639,69 @@ msgstr "Rețele sociale"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "See more social streaming extensions"
+msgid "See more social streaming staff picks"
 msgstr "Vezi mai multe extensii populare"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more tab management staff picks"
+msgstr "Vezi mai multe extensii recomandate"
+
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "Extensii etichetate „{tag}”"
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Vezi mai multe extensii etichetate „{tag}”"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more ad blocker staff picks"
+msgstr "Vezi mai multe extensii recomandate"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more YouTube extension staff picks"
+msgstr "Vezi mai multe instrumente de traducere"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending themes"
+msgstr "Teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending themes"
+msgstr "Vezi mai multe teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Vezi mai multe teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Vezi mai multe extensii recomandate"
 
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
@@ -4592,9 +4739,6 @@ msgstr "Dimensiunea necomprimată este prea mare"
 msgid "Invalid archive."
 msgstr "Arhivă nevalidă."
 
-msgid "Could not find an add-on ID."
-msgstr "Nu s-a găsit un ID al suplimentului."
-
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID-ul suplimentului din manifest.json sau install.rdf (%s) nu corespunde ID-ului dat suplimentului pe AMO (%s)"
@@ -4621,6 +4765,9 @@ msgstr "Nu poți trimite un supliment cu un ID care se termină în %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nu poți trimite o extensie semnată de Mozilla"
 
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
+
 msgid "You cannot submit a language pack"
 msgstr "Nu poți trimite un pachet lingvistic"
 
@@ -4633,122 +4780,6 @@ msgstr "Eroare neașteptată."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Tipul (%s) nu se potrivește cu tipul suplimentului înregistrat pe AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Ghid de recenzare"
-
-msgid "Sections"
-msgstr "Secțiuni"
-
-msgid "Some tips for writing a great review"
-msgstr "Câteva sfaturi pentru recenzii bune"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Întrebări frecvente despre recenzii"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Recenziile la suplimente sunt o modalitate de a-ți împărtăși opiniile despre suplimentele pe care le-ai instalat și utilizat. Echipa noastră de moderatori pentru recenzii își rezervă dreptul să "
-"respingă sau să elimine orice recenzie care nu se conformează la aceste reguli."
-
-msgid "Do:"
-msgstr "Așa da:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Scrie ca și când i-ai povesti unui prieten experiența ta cu suplimentul respectiv."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Fii concis(ă) și scrie recenzii ușor de înțeles."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Dă detalii specifice și utile. De exemplu:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Suplimentul a funcționat așa cum te așteptai?"
-
-msgid "What features did you like or dislike?"
-msgstr "Ce funcționalități ți-au plăcut sau nu ți-au plăcut?"
-
-msgid "Was it useful?"
-msgstr "A fost util?"
-
-msgid "Was it easy to use?"
-msgstr "A fost ușor de utilizat?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Vei continua să utilizezi acest supliment?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Acordă-ți timp să recitești recenzia înainte de a o transmite ca să minimalizezi erorile ortografice și gramaticale."
-
-msgid "Don’t:"
-msgstr "Așa nu:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Nu trimite recenzii constând numai dintr-un cuvânt, de genul „Grozav!”, „Minunat” sau „Prost”."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Nu posta probleme tehnice, cereri de asistență sau sugestii de funcționalități. Folosește opțiunile disponibile de asistență pentru fiecare supliment în parte, dacă sunt disponibile. Le găsești în "
-"coloana laterală, în dreptul secțiunii Despre acest supliment."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Nu scrie recenzii pentru suplimente pe care nu le-ai folosit personal."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Nu folosi vulgarități, obscenități sau un limbaj care ar putea fi interpretat ca răuvoitor."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Nu include HTML, linkuri, cod sursă sau fragmente de cod. Recenziile trebuie să fie numai text."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Nu face afirmații false, nu denigra autorii suplimentelor și nu îi insulta."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Nu include adrese de e-mail, numere de telefon sau alte detalii personale (ale tale sau ale altora)."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Nu posta recenzii la suplimente scrise sau reprezentate de tine sau de organizația ta."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Nu critica un supliment pentru ce a fost conceput să facă. De exemplu, nu lăsa recenzii negative pentru un supliment care afișează reclame sau necesită colectare de date când de fapt aceasta este "
-"destinația utilizării suplimentului sau dacă suplimentul necesită colectarea de date ca să poată funcționa."
-
-msgid "How can I report a problematic review?"
-msgstr "Cum pot raporta o recenzie problematică?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Te rugăm să ne raportezi sau să ne semnalezi orice recenzii îndoielnice prin clic pe „Raportează recenzia” și va fi înaintată spre moderare. Echipa noastră de moderatori va face uz de Ghidul pentru "
-"recenzii în evaluarea faptului dacă recenzia va fi ștearsă sau reintrodusă pe site."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Sunt autorul unui supliment. Pot răspunde la recenzii?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Da, autorii de suplimente pot da un singur răspuns per recenzie. Poți crea un subiect de discuție pe <a href=\"%(forum_url)s\">forumurile</a>noastre dacă vrei să te angajezi în discuții mai "
-"dezvoltate sau de urmărire a subiectului."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Sunt autorul unui supliment. Pot șterge recenzii sau evaluări defavorabile?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"În general, nu. Dar dacă recenzia nu a întrunit regulile din ghidul pentru recenzii prezentate mai sus, dă clic pe „Raportează recenzia” și supune-o atenției echipei de moderatori. Dacă recenzia "
-"include o reclamație care nu mai este de actualitate datorită lansării unei versiuni noi a suplimentului tău, este posibil să luăm în calcul ștergerea recenziei."
 
 msgid "User"
 msgstr "Utilizator"
@@ -4789,8 +4820,8 @@ msgstr "Nu poți posta o recenzie la propriul tău supliment."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Nu poți posta mai mult de o recenzie pentru aceeași versiune a unui supliment."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+#, fuzzy
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr "Marcaj nevalid [%s] - trebuie să fie unul dintre [%s]"
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4844,33 +4875,6 @@ msgstr "sfârșit"
 msgid "add-on, reviewer or comment"
 msgstr "supliment, recenzent sau comentariu"
 
-msgid "Search by add-on name / author email"
-msgstr "Caută după denumirea suplimentului / e-mailul autorului"
-
-msgid "Needs Admin Code Review"
-msgstr "Necesită recenzia codului de către un administrator"
-
-msgid "yes"
-msgstr "da"
-
-msgid "no"
-msgstr "nu"
-
-msgid "Add-on Types"
-msgstr "Tipuri de suplimente"
-
-msgid "Any"
-msgstr "Oricare"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Caută după denumirea suplimentului / e-mailul autorului / guid"
-
-msgid "Max. Version"
-msgstr "Versiune max."
-
-msgid "Select an application first"
-msgstr "Selectează o aplicație mai întâi"
-
 msgid "Comments:"
 msgstr "Comentarii:"
 
@@ -4889,6 +4893,9 @@ msgstr "Respinge imediat. De folosit numai în caz de probleme grave de securita
 msgid "days"
 msgstr "zile"
 
+msgid "Choose one or more reasons:"
+msgstr ""
+
 msgid "Choose a canned response..."
 msgstr "Alege un răspuns predefinit..."
 
@@ -4904,20 +4911,17 @@ msgstr "Treci peste deocamdată"
 msgid "Delete review"
 msgstr "Șterge recenzia"
 
+msgid "Needs Admin Code Review"
+msgstr "Necesită recenzia codului de către un administrator"
+
 msgid "Needs Admin Content Review"
 msgstr "Necesită recenzia conținutului de către un administrator"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "Necestită recenzia temei statice de către un administrator"
 
-msgid "Requires Restart"
-msgstr "Necesită repornire"
-
 msgid "Sources provided"
 msgstr "Surse furnizate"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "Aprobare automată întârziată temporar"
@@ -4944,6 +4948,9 @@ msgstr "Șirul și GUID-ul versiunii corespund unui blocaj din lista de blocaje"
 msgid "Weight breakdown not available."
 msgstr "Analiza riscurilor nu este disponibilă."
 
+msgid "Is available to be used in reviews"
+msgstr ""
+
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Nu poți trimite un comentariu dacă este definit`canned_response`."
 
@@ -4953,41 +4960,11 @@ msgstr "Nu poți trimite un comentariu gol."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Nu poți trimite un număr de linie fără să îl asociezi la o denumire de fișier."
 
-msgid "Type"
-msgstr "Tip"
-
-msgid "Waiting Time"
-msgstr "Timp de așteptare"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Semnalizări"
-
-msgid "moments ago"
-msgstr "momente în urmă"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} minut"
-msgstr[1] "{0} minute"
-msgstr[2] "{0} de minute"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} oră"
-msgstr[1] "{0} ore"
-msgstr[2] "{0} de ore"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} zi"
-msgstr[1] "{0} zile"
-msgstr[2] "{0} de zile"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Ultima recenzie"
@@ -5005,6 +4982,12 @@ msgstr "Greutate"
 
 msgid "Maliciousness Score"
 msgstr ""
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Waiting Time"
+msgstr "Timp de așteptare"
 
 msgid "Pending Rejection Deadline"
 msgstr "În termenul-limită pentru respingere"
@@ -5206,6 +5189,13 @@ msgstr "Informații supliment pentru {0}"
 msgid "Add-on ID"
 msgstr "ID supliment"
 
+#, fuzzy
+msgid "Original Add-on ID"
+msgstr "Semnează suplimentul"
+
+msgid "Add-on(s) sharing same ID"
+msgstr ""
+
 msgid "Internal AMO ID"
 msgstr "ID AMO intern"
 
@@ -5323,57 +5313,6 @@ msgstr "Recenzia a fost marcată înainte de ștergere."
 msgid "Undelete"
 msgstr "Anulează ștergerea"
 
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Performanța recenzenților – Suplimente pentru Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Performanța recenzorilor de suplimente"
-
-msgid "View statistics for user"
-msgstr "Vezi statisticile utilizatorului"
-
-msgid "Range"
-msgstr "Domeniu"
-
-msgid "Your Reviews"
-msgstr "Recenziile tale"
-
-msgid "By {user_name}"
-msgstr "De {user_name}"
-
-msgid "Total Reviews"
-msgstr "Total recenzii"
-
-msgid "Active Contributors"
-msgstr "Colaboratori activi"
-
-msgid "This Month"
-msgstr "Luna curentă"
-
-msgid "This Year"
-msgstr "Anul curent"
-
-msgid "Monthly Performance"
-msgstr "Performanță lunară"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Desfășurător punctaje totale după tip"
-
-msgid "Add-ons"
-msgstr "Suplimente"
-
-msgid "Total"
-msgstr "Total"
-
-msgid "Month"
-msgstr "Lună"
-
-msgid "Year"
-msgstr "An"
-
-msgid "All-Time"
-msgstr "Dintotdeauna"
-
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "– Unelte pentru recenzenți – Suplimente pentru Firefox"
 
@@ -5394,12 +5333,6 @@ msgstr "Suplimente nelistate – Suplimente pentru Firefox"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "În așteptarea respingerii – Suplimente pentru Firefox"
-
-msgid "Advanced Search"
-msgstr "Căutare avansată"
-
-msgid "clear search"
-msgstr "șterge căutarea"
 
 msgid "Process Reviews"
 msgstr "Prelucrează recenziile"
@@ -5447,9 +5380,6 @@ msgstr "Istoricul modificărilor suplimentului de către utilizatori"
 
 msgid "Add-on History"
 msgstr "Istoricul suplimentului"
-
-msgid "Previously deleted entries"
-msgstr "Intrări șterse anterior"
 
 msgid "You don't have permission to review it."
 msgstr "Nu ai permisiune de recenzare."
@@ -5770,7 +5700,8 @@ msgstr "există reguli corelate"
 msgid "result state"
 msgstr "stare rezultată"
 
-msgid "all but results matching only this rule"
+#, fuzzy
+msgid "Excluding results solely matching these rules"
 msgstr "toate, în afară de rezultatele numai pentru această regulă"
 
 msgid "presence of a version"
@@ -5862,9 +5793,6 @@ msgstr "Versiunea nu corespunde cu fișierul manifest."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Versiunea deja există. Ultima versiune este: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Numai WebExtensions pot omite ID-ul de supliment"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Te rugăm să specifici ID-ul suplimentului în manifest dacă are mai mult de 64 de caractere."
@@ -5991,6 +5919,9 @@ msgstr "Se încarcă cele mai recente date&hellip;"
 msgid "No data available."
 msgstr "Nu există date disponibile."
 
+msgid "Previous"
+msgstr "Înapoi"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Acest tablou de bord este <b>privat</b>."
 
@@ -6085,12 +6016,6 @@ msgstr "Mențiuni legale"
 msgid "Report Trademark Abuse"
 msgstr "Raportează abuzul mărcilor înregistrate"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Noul site web are suport pentru clienți dispozitive mobile și desktop"
-
-msgid "View the new site"
-msgstr "Vezi noul site"
-
 msgid "Site Status"
 msgstr "Starea site-ului"
 
@@ -6141,8 +6066,8 @@ msgstr "Mergi la"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Înapoi la pagina de start a suplimentelor {0}"
 
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Suplimente"
+msgid "Add-ons"
+msgstr "Suplimente"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6233,7 +6158,8 @@ msgstr "Nu există niciun utilizator cu acea adresă de e-mail."
 msgid "Firefox user {id}"
 msgstr "Utilizator Firefox {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Introdu un interval valid de rețea CIDR IPv6 sau IPv6, de ex. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
@@ -6242,12 +6168,8 @@ msgstr "Din locația ta au fost trimise mai multe suplimente care încalcă poli
 msgid "Email Pattern"
 msgstr "Model de e-mail"
 
-msgid ""
-"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
-" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
-"Introdu un domeniu sau o adresă de e-mail completă care să fie blocat(ă) sau folosește caractere de specificare globală cu sintaxă glob pentru corelare la alte modele. De ex. „@*.mail.com”\n"
-" Reține că nu includem caracterul „@” în corespondente, așa că  trebuie să îl incluzi tu în model."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Adresa de e-mail pe care ai folosit-o pentru contul tău nu are permisiunea să trimită suplimente."
@@ -6396,3 +6318,6 @@ msgstr "altele"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} și versiunile ulterioare"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

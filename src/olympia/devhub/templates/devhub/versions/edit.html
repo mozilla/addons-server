@@ -50,7 +50,7 @@
                     {% endfor %}
                   </tbody>
                 </table>
-                {% if check_addon_ownership(request, addon, dev=True) %}
+                {% if check_addon_ownership(request, addon, allow_developer=True) %}
                   <p class="add-app{% if not compat_form.extra_forms %} hide{% endif %}">
                     <a href="#">{{ _('Add Another Application&hellip;') }}</a>
                   </p>
@@ -93,11 +93,9 @@
             <th>{{ _('Approval Status') }}</th>
             <td id="approval_status">
               <ul>
-                {% for file in version.all_files %}
                 <li>
-                  {{ file_status_message(file) }}
+                  {{ file_status_message(version.file) }}
                 </li>
-                {% endfor %}
               </ul>
             </td>
           </tr>

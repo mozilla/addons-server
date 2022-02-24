@@ -20,10 +20,13 @@ from olympia.addons.serializers import (
     AddonDeveloperSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
+    DeveloperVersionSerializer,
+    DeveloperListVersionSerializer,
     ESAddonAutoCompleteSerializer,
     ESAddonSerializer,
     LanguageToolsSerializer,
     LicenseSerializer,
+    ListVersionSerializer,
     ReplacementAddonSerializer,
     SimpleVersionSerializer,
     VersionSerializer,
@@ -93,6 +96,7 @@ class AddonSerializerOutputTestMixin:
             # License text is not present in version serializer used from
             # AddonSerializer.
             'url': 'http://license.example.com/',
+            'slug': None,
         }
 
     def _test_version(self, version, data):
@@ -106,18 +110,14 @@ class AddonSerializerOutputTestMixin:
                 'max': compat.max.version,
             }
         assert data['is_strict_compatibility_enabled'] is False
-        assert data['files']
-        assert len(data['files']) == 1
 
-        result_file = data['files'][0]
-        file_ = version.files.latest('pk')
+        result_file = data['file']
+        file_ = version.file
         assert result_file['id'] == file_.pk
         assert result_file['created'] == (
             file_.created.replace(microsecond=0).isoformat() + 'Z'
         )
         assert result_file['hash'] == file_.hash
-        assert result_file['is_restart_required'] == file_.is_restart_required
-        assert result_file['is_webextension'] == file_.is_webextension
         assert (
             result_file['is_mozilla_signed_extension']
             == file_.is_mozilla_signed_extension
@@ -156,8 +156,6 @@ class AddonSerializerOutputTestMixin:
             developer_comments='Dévelopers Addôn comments',
             file_kw={
                 'hash': 'fakehash',
-                'is_restart_required': False,
-                'is_webextension': True,
                 'size': 42,
             },
             guid=generate_addon_guid(),
@@ -483,25 +481,6 @@ class AddonSerializerOutputTestMixin:
         assert result['id'] == self.addon.pk
         assert result['current_version'] is None
 
-    def test_no_current_version_files(self):
-        self.addon = addon_factory(name='lol')
-        # Just removing the last file deletes the version, so we have to be
-        # creative and replace the version manually with one that has no files.
-        self.addon.current_version.delete()
-        version = self.addon.versions.create(version='0.42')
-        self.addon._current_version = version
-        self.addon.save()
-        result = self.serialize()
-
-        assert result['id'] == self.addon.pk
-        assert result['current_version']
-        result_version = result['current_version']
-        assert result_version['reviewed'] == version.reviewed
-        assert result_version['version'] == version.version
-        assert result_version['files'] == []
-        assert result_version['is_strict_compatibility_enabled'] is False
-        assert result_version['compatibility'] == {}
-
     def test_deleted(self):
         self.addon = addon_factory(name='My Deleted Addôn')
         self.addon.delete()
@@ -630,12 +609,12 @@ class AddonSerializerOutputTestMixin:
         )
 
     def test_webextension(self):
-        self.addon = addon_factory(file_kw={'is_webextension': True})
+        self.addon = addon_factory()
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
-            file=self.addon.current_version.all_files[0],
+            file=self.addon.current_version.file,
             permissions=permissions,
             optional_permissions=optional_permissions,
         )
@@ -644,17 +623,37 @@ class AddonSerializerOutputTestMixin:
 
         self._test_version(self.addon.current_version, result['current_version'])
         # Double check the permissions got correctly set.
-        assert result['current_version']['files'][0]['permissions'] == permissions
+        assert result['current_version']['file']['permissions'] == permissions
         assert (
-            result['current_version']['files'][0]['optional_permissions']
+            result['current_version']['file']['optional_permissions']
             == optional_permissions
         )
 
     def test_is_restart_required(self):
-        self.addon = addon_factory(file_kw={'is_restart_required': True})
+        self.addon = addon_factory()
         result = self.serialize()
+        file_data = result['current_version']['file']
+        assert 'is_restart_required' not in file_data
 
-        self._test_version(self.addon.current_version, result['current_version'])
+        # Test with shim
+        gates = {self.request.version: ('is-restart-required-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+        file_data = result['current_version']['file']
+        assert file_data['is_restart_required'] is False
+
+    def test_is_webextension(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+        file_data = result['current_version']['file']
+        assert 'is_webextension' not in file_data
+
+        # Test with shim
+        gates = {self.request.version: ('is-webextension-shim',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+        file_data = result['current_version']['file']
+        assert file_data['is_webextension'] is True
 
     def test_special_compatibility_cases(self):
         # Test an add-on with strict compatibility enabled.
@@ -666,7 +665,7 @@ class AddonSerializerOutputTestMixin:
         assert result_version['is_strict_compatibility_enabled'] is True
 
         # Test with no compatibility info.
-        file_ = self.addon.current_version.all_files[0]
+        file_ = self.addon.current_version.file
         file_.update(strict_compatibility=False)
         ApplicationsVersions.objects.filter(version=self.addon.current_version).delete()
 
@@ -963,6 +962,13 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
             self.addon.latest_unlisted_version, result['latest_unlisted_version']
         )
 
+    def test_readonly_fields(self):
+        serializer = self.serializer_class()
+        fields_read_only = {
+            name for name, field in serializer.get_fields().items() if field.read_only
+        }
+        assert fields_read_only == set(serializer.Meta.read_only_fields)
+
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     serializer_class = ESAddonSerializer
@@ -1028,13 +1034,15 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
 
 class TestVersionSerializerOutput(TestCase):
+    serializer_class = VersionSerializer
+
     def setUp(self):
         super().setUp()
         self.request = APIRequestFactory().get('/')
         self.request.version = 'v5'
 
     def serialize(self):
-        serializer = VersionSerializer(context={'request': self.request})
+        serializer = self.serializer_class(context={'request': self.request})
         return serializer.to_representation(self.version)
 
     def test_basic(self):
@@ -1052,7 +1060,6 @@ class TestVersionSerializerOutput(TestCase):
         addon = addon_factory(
             file_kw={
                 'hash': 'fakehash',
-                'is_webextension': True,
                 'is_mozilla_signed_extension': True,
                 'size': 42,
             },
@@ -1069,28 +1076,24 @@ class TestVersionSerializerOutput(TestCase):
         )
 
         self.version = addon.current_version
-        current_file = self.version.current_file
+        current_file = self.version.file
 
         result = self.serialize()
         assert result['id'] == self.version.pk
 
         assert result['compatibility'] == {'firefox': {'max': '*', 'min': '50.0'}}
 
-        assert result['files']
-        assert len(result['files']) == 1
-
-        assert result['files'][0]['id'] == current_file.pk
-        assert result['files'][0]['created'] == (
+        assert result['file']['id'] == current_file.pk
+        assert result['file']['created'] == (
             current_file.created.replace(microsecond=0).isoformat() + 'Z'
         )
-        assert result['files'][0]['hash'] == current_file.hash
-        assert result['files'][0]['is_webextension'] == (current_file.is_webextension)
-        assert result['files'][0]['is_mozilla_signed_extension'] == (
+        assert result['file']['hash'] == current_file.hash
+        assert result['file']['is_mozilla_signed_extension'] == (
             current_file.is_mozilla_signed_extension
         )
-        assert result['files'][0]['size'] == current_file.size
-        assert result['files'][0]['status'] == 'public'
-        assert result['files'][0]['url'] == current_file.get_absolute_url()
+        assert result['file']['size'] == current_file.size
+        assert result['file']['status'] == 'public'
+        assert result['file']['url'] == current_file.get_absolute_url()
 
         assert result['channel'] == 'listed'
         assert result['edit_url'] == absolutify(
@@ -1109,20 +1112,21 @@ class TestVersionSerializerOutput(TestCase):
                 'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
             'url': 'http://license.example.com/',
+            'slug': None,
         }
         assert result['reviewed'] == (now.replace(microsecond=0).isoformat() + 'Z')
 
     def test_platform(self):
         self.version = addon_factory().current_version
         result = self.serialize()
-        file_data = result['files'][0]
+        file_data = result['file']
         assert 'platform' not in file_data
 
         # Test with shim
         gates = {self.request.version: ('platform-shim',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
-        file_data = result['files'][0]
+        file_data = result['file']
         assert file_data['platform'] == 'all'
 
     def test_unlisted(self):
@@ -1206,6 +1210,8 @@ class TestVersionSerializerOutput(TestCase):
         )
         assert result['id'] == license.pk
         assert result['is_custom'] is False
+        assert result['slug']
+        assert result['slug'] == license.slug
         # A request with no ?lang gets you the site default l10n in a dict to
         # match how non-constant values are returned.
         assert result['name'] == {'en-US': builtin_license_name_english}
@@ -1235,47 +1241,95 @@ class TestVersionSerializerOutput(TestCase):
         )
         assert result['name'] == {'fr': builtin_license_name_french}
 
+        # Make sure the license slug is not present in v3/v4
+        gates = {self.request.version: ('del-version-license-slug',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = LicenseSerializer(
+                context={'request': self.request}
+            ).to_representation(license)
+            assert 'slug' not in result
+
     def test_file_webext_permissions(self):
         self.version = addon_factory().current_version
         result = self.serialize()
         # No permissions.
-        assert result['files'][0]['permissions'] == []
+        assert result['file']['permissions'] == []
 
-        self.version = addon_factory(file_kw={'is_webextension': True}).current_version
+        self.version = addon_factory().current_version
         permissions = ['dangerdanger', 'high', 'voltage']
-        WebextPermission.objects.create(
-            permissions=permissions, file=self.version.all_files[0]
-        )
+        WebextPermission.objects.create(permissions=permissions, file=self.version.file)
         result = self.serialize()
-        assert result['files'][0]['permissions'] == permissions
+        assert result['file']['permissions'] == permissions
 
     def test_file_optional_permissions(self):
         self.version = addon_factory().current_version
         result = self.serialize()
         # No permissions.
-        assert result['files'][0]['optional_permissions'] == []
+        assert result['file']['optional_permissions'] == []
 
-        self.version = addon_factory(file_kw={'is_webextension': True}).current_version
+        self.version = addon_factory().current_version
         optional_permissions = ['dangerdanger', 'high', 'voltage']
         WebextPermission.objects.create(
-            optional_permissions=optional_permissions, file=self.version.all_files[0]
+            optional_permissions=optional_permissions, file=self.version.file
         )
         result = self.serialize()
-        assert result['files'][0]['optional_permissions'] == (optional_permissions)
+        assert result['file']['optional_permissions'] == (optional_permissions)
+
+    def test_version_files_or_file(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        # default case, file
+        assert 'file' in result
+        assert 'files' not in result
+        default_file_result = result['file']
+
+        with override_settings(DRF_API_GATES={self.request.version: ['version-files']}):
+            result = self.serialize()
+            assert 'file' not in result
+            assert 'files' in result
+            assert result['files'] == [default_file_result]
 
 
-class TestVersionListSerializerOutput(TestCase):
+class TestDeveloperVersionSerializerOutput(TestVersionSerializerOutput):
+    serializer_class = DeveloperVersionSerializer
+
+    def test_readonly_fields(self):
+        serializer = self.serializer_class()
+        fields_read_only = {
+            name for name, field in serializer.get_fields().items() if field.read_only
+        }
+        assert fields_read_only == set(serializer.Meta.read_only_fields)
+
+    def test_source(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        assert result['source'] is None
+
+        self.version.update(source='whatever.zip')
+        result = self.serialize()
+        assert result['source'] == absolutify(
+            reverse('downloads.source', args=(self.version.id,))
+        )
+
+
+class TestListVersionSerializerOutput(TestCase):
+    serializer_class = ListVersionSerializer
+
     def setUp(self):
         self.request = APIRequestFactory().get('/')
 
     def serialize(self):
-        serializer = SimpleVersionSerializer(context={'request': self.request})
+        serializer = self.serializer_class(context={'request': self.request})
         return serializer.to_representation(self.version)
 
     def test_basic(self):
         self.version = addon_factory().current_version
         result = self.serialize()
         assert 'text' not in result['license']
+
+
+class TestDeveloperListVersionSerializerOutput(TestListVersionSerializerOutput):
+    serializer_class = DeveloperListVersionSerializer
 
 
 class TestSimpleVersionSerializerOutput(TestCase):
@@ -1374,10 +1428,21 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert result['current_compatible_version'] is not None
         assert set(result['current_compatible_version'].keys()) == {
             'id',
-            'files',
+            'file',
             'reviewed',
             'version',
         }
+        version_file = result['current_compatible_version']['file']
+
+        with override_settings(DRF_API_GATES={None: ('version-files',)}):
+            result = self.serialize()
+            assert set(result['current_compatible_version'].keys()) == {
+                'id',
+                'files',
+                'reviewed',
+                'version',
+            }
+            assert result['current_compatible_version']['files'] == [version_file]
 
         self.addon.compatible_versions = None
         result = self.serialize()

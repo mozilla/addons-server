@@ -9,7 +9,7 @@ import pytest
 
 from olympia.amo.tests import get_temp_filename, TestCase
 from olympia.amo.utils import (
-    LocalFileStorage,
+    SafeStorage,
     cache_ns_key,
     escape_all,
     find_language,
@@ -82,6 +82,7 @@ def test_resize_image_from_svg():
             os.remove(tmp_file_name)
 
 
+@mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
 def test_resize_transparency():
     src = os.path.join(
         settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', 'transparent.png'
@@ -98,6 +99,7 @@ def test_resize_transparency():
             os.remove(dest)
 
 
+@mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
 def test_resize_transparency_for_P_mode_bug_1181221():
     # We had a monkeypatch that was added in
     # https://github.com/jbalogh/zamboni/commit/10340af6d1a64a16f4b9cade9faa69976b5b6da5  # noqa
@@ -118,6 +120,7 @@ def test_resize_transparency_for_P_mode_bug_1181221():
             os.remove(dest)
 
 
+@mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
 def test_resize_transparency_to_jpeg_has_white_background():
     src = os.path.join(
         settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', 'transparent.png'
@@ -171,11 +174,11 @@ def test_find_language(test_input, expected):
     assert find_language(test_input) == expected
 
 
-class TestLocalFileStorage(TestCase):
+class TestSafeStorage(TestCase):
     def setUp(self):
         super().setUp()
         self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
-        self.stor = LocalFileStorage()
+        self.stor = SafeStorage()
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)

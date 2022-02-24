@@ -8,13 +8,10 @@
         {% else %}
             {{ log.created|date:"Y-m-d" }}.
         {% endif %}
-        {{ log.log.short }} by {{ log.author_name }}:
+        {{ log.log.short }} by {{ log.user.name }}:
         {% if log.details %}{{ log.details.guid }}{% else %}{{ log.arguments.1 }}{% endif %}{% if 'min_version' in log.details %}
             , {% trans 'versions' %} {{ log.details.min_version }} - {{ log.details.max_version }}.
         {% else %}.
-        {% endif %}
-        {% if log.details.include_in_legacy %}
-            {% trans 'Included in legacy blocklist.' %}
         {% endif %}
         <ul>
             <li>{{ log.details.reason }}</li>

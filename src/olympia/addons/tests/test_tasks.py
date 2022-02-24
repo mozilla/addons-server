@@ -13,8 +13,7 @@ from olympia.addons.tasks import (
     update_addon_hotness,
     update_addon_weekly_downloads,
 )
-from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import addon_factory
+from olympia.amo.tests import addon_factory, root_storage
 from olympia.versions.models import VersionPreview
 
 
@@ -25,12 +24,12 @@ def test_recreate_theme_previews():
     )
 
     addon_without_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    copy_stored_file(
-        xpi_path, addon_without_previews.current_version.all_files[0].file_path
+    root_storage.copy_stored_file(
+        xpi_path, addon_without_previews.current_version.file.file_path
     )
     addon_with_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    copy_stored_file(
-        xpi_path, addon_with_previews.current_version.all_files[0].file_path
+    root_storage.copy_stored_file(
+        xpi_path, addon_with_previews.current_version.file.file_path
     )
     VersionPreview.objects.create(
         version=addon_with_previews.current_version,

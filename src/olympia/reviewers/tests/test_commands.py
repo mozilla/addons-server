@@ -14,9 +14,9 @@ from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
-    file_factory,
     user_factory,
     version_factory,
+    version_review_flags_factory,
 )
 from olympia.amo.utils import days_ago
 from olympia.constants.promoted import RECOMMENDED
@@ -31,7 +31,6 @@ from olympia.reviewers.management.commands import (
     notify_about_auto_approve_delay,
 )
 from olympia.reviewers.models import (
-    AutoApprovalNotEnoughFilesError,
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     get_reviewing_cache,
@@ -65,11 +64,11 @@ class AutoApproveTestsMixin:
         self.addon = addon_factory(name='Basic Addøn', average_daily_users=666)
         self.version = version_factory(
             addon=self.addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        self.file = self.version.all_files[0]
+        self.file = self.version.file
         self.file_validation = FileValidation.objects.create(
-            file=self.version.all_files[0], validation='{}'
+            file=self.version.file, validation='{}'
         )
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
@@ -78,12 +77,6 @@ class AutoApproveTestsMixin:
         # be considered. Make sure its nomination and creation date is in the
         # past to test ordering.
         self.version.update(created=self.days_ago(1), nomination=self.days_ago(1))
-        # Add a second file to self.version to test the distinct().
-        file_factory(
-            version=self.version,
-            status=amo.STATUS_AWAITING_REVIEW,
-            is_webextension=True,
-        )
         # Add reviewer flags disabling auto-approval for this add-on. It would
         # still be fetched as a candidate, just rejected later on when
         # calculating the verdict.
@@ -93,7 +86,7 @@ class AutoApproveTestsMixin:
         new_addon = addon_factory(
             name='New Addon',
             status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         new_addon_version = new_addon.versions.all()[0]
         new_addon_version.update(created=self.days_ago(2), nomination=self.days_ago(2))
@@ -105,7 +98,7 @@ class AutoApproveTestsMixin:
             name='Langpack',
             type=amo.ADDON_LPAPP,
             status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         langpack_version = langpack.versions.all()[0]
         langpack_version.update(created=self.days_ago(3), nomination=self.days_ago(3))
@@ -115,7 +108,7 @@ class AutoApproveTestsMixin:
             name='Dictionary',
             type=amo.ADDON_DICT,
             status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         dictionary_version = dictionary.versions.all()[0]
         dictionary_version.update(created=self.days_ago(4), nomination=self.days_ago(4))
@@ -132,7 +125,7 @@ class AutoApproveTestsMixin:
                 'nomination': self.days_ago(6),
                 'created': self.days_ago(6),
             },
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         recommended_addon = addon_factory(
@@ -145,44 +138,22 @@ class AutoApproveTestsMixin:
             promotion_approved=True,
             nomination=self.days_ago(7),
             created=self.days_ago(7),
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
-        # Add-on with 3 versions:
-        # - one webext, listed, public.
-        # - one non-listed webext version awaiting review.
-        # - one listed non-webext awaiting review (should be ignored)
-        complex_addon = addon_factory(
-            name='Complex Addon', file_kw={'is_webextension': True}
-        )
+        # Add-on with 2 versions:
+        # - one listed, public.
+        # - one non-listed version awaiting review.
+        complex_addon = addon_factory(name='Complex Addon')
         complex_addon_version = version_factory(
             nomination=self.days_ago(8),
             created=self.days_ago(8),
             addon=complex_addon,
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        version_factory(
-            nomination=self.days_ago(9),
-            created=self.days_ago(9),
-            addon=complex_addon,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
-        # Add-on with an already public version and an unlisted webext
-        # awaiting review.
-        complex_addon_2 = addon_factory(
-            name='Second Complex Addon', file_kw={'is_webextension': True}
-        )
-        complex_addon_2_version = version_factory(
-            addon=complex_addon_2,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
-            nomination=self.days_ago(10),
-            created=self.days_ago(10),
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
-        )
-
-        # Disabled version with a webext waiting review (Still has to be
+        # Disabled version with a file waiting review (Still has to be
         # considered because unlisted doesn't care about disabled by user
         # state.
         user_disabled_addon = addon_factory(
@@ -193,7 +164,7 @@ class AutoApproveTestsMixin:
             created=self.days_ago(11),
             channel=amo.RELEASE_CHANNEL_UNLISTED,
             addon=user_disabled_addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # Pure unlisted upload. Addon status is "incomplete" as a result, but
@@ -206,7 +177,7 @@ class AutoApproveTestsMixin:
                 'nomination': self.days_ago(12),
                 'created': self.days_ago(12),
             },
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             status=amo.STATUS_NULL,
         )
         pure_unlisted_version = pure_unlisted.versions.get()
@@ -219,7 +190,7 @@ class AutoApproveTestsMixin:
                 'nomination': self.days_ago(13),
                 'created': self.days_ago(13),
             },
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             status=amo.STATUS_NULL,
             type=amo.ADDON_STATICTHEME,
         )
@@ -228,7 +199,7 @@ class AutoApproveTestsMixin:
         # ---------------------------------------------------------------------
         # Add a bunch of add-ons in various states that should not be returned.
         # Public add-on with no updates.
-        addon_factory(name='Already Public', file_kw={'is_webextension': True})
+        addon_factory(name='Already Public')
 
         # Mozilla Disabled add-on with updates.
         disabled_addon = addon_factory(
@@ -237,7 +208,7 @@ class AutoApproveTestsMixin:
         )
         version_factory(
             addon=disabled_addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # Add-on with deleted version.
@@ -246,15 +217,9 @@ class AutoApproveTestsMixin:
         )
         deleted_version = version_factory(
             addon=addon_with_deleted_version,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         deleted_version.delete()
-
-        # Add-on with a non-webextension update.
-        non_webext_addon = addon_factory(name='Non Webext waiting review')
-        version_factory(
-            addon=non_webext_addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        )
 
         # Somehow deleted add-on with a file still waiting for review.
         deleted_addon = addon_factory(
@@ -263,27 +228,27 @@ class AutoApproveTestsMixin:
         )
         version_factory(
             addon=deleted_addon,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # listed version belonging to an add-on disabled by user
         addon_factory(
             name='Listed Disabled by user',
             disabled_by_user=True,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # Incomplete listed addon
         addon_factory(
             name='Incomplete listed',
             status=amo.STATUS_NULL,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         # Listed static theme
         addon_factory(
             name='Listed theme',
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
         )
@@ -294,7 +259,6 @@ class AutoApproveTestsMixin:
                 unlisted_theme_version,
                 pure_unlisted_version,
                 user_disabled_addon_version,
-                complex_addon_2_version,
                 complex_addon_version,
                 recommended_addon_version,
                 recommendable_addon_nominated.current_version,
@@ -438,14 +402,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert create_summary_for_version_mock.call_count == 1
         assert set_reviewing_cache_mock.call_count == 0
         assert clear_reviewing_cache_mock.call_count == 0
-
-    @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
-    def test_not_enough_files_error(self, create_summary_for_version_mock):
-        create_summary_for_version_mock.side_effect = AutoApprovalNotEnoughFilesError
-        call_command('auto_approve')
-        assert get_reviewing_cache(self.addon.pk) is None
-        assert create_summary_for_version_mock.call_count == 1
-        self._check_stats({'total': 1, 'error': 1})
 
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_no_validation_result(self, create_summary_for_version_mock):
@@ -615,24 +571,20 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         self.versions = [
             version_factory(
                 addon=self.addons[0],
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
             version_factory(
                 addon=self.addons[1],
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
         ]
         self.files = [
-            self.versions[0].all_files[0],
-            self.versions[1].all_files[0],
+            self.versions[0].file,
+            self.versions[1].file,
         ]
         self.versions[0].update(nomination=days_ago(1))
-        FileValidation.objects.create(
-            file=self.versions[0].all_files[0], validation='{}'
-        )
-        FileValidation.objects.create(
-            file=self.versions[1].all_files[0], validation='{}'
-        )
+        FileValidation.objects.create(file=self.versions[0].file, validation='{}')
+        FileValidation.objects.create(file=self.versions[1].file, validation='{}')
         super().setUp()
 
     @mock.patch('olympia.reviewers.utils.sign_file')
@@ -711,7 +663,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(days=2)
             )
             ActivityLog.create(
@@ -729,7 +681,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -759,7 +711,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -769,9 +721,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 details={'comments': 'fôo'},
                 user=self.user,
             )
-            # Disable files: we should be left with no versions to notify the
+            # Disable file: we should be left with no versions to notify the
             # developers about, since they have already been disabled.
-            version.files.update(status=amo.STATUS_DISABLED)
+            version.file.update(status=amo.STATUS_DISABLED)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
 
@@ -780,7 +732,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -801,7 +753,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -827,7 +779,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         )
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -845,7 +797,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author], version_kw={'version': '42.0'})
         version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -876,7 +828,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             addon=addon, version='42.1', file_kw={'status': amo.STATUS_DISABLED}
         )
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -901,7 +853,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -930,7 +882,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -958,7 +910,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -969,7 +921,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 user=self.user,
             )
         more_recent_version = version_factory(addon=addon, version='43.0')
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=more_recent_version,
             pending_rejection=datetime.now() + timedelta(days=3),
         )
@@ -993,7 +945,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version21 = addon2.current_version
         version22 = version_factory(addon=addon2, version='22.1')
         for version in Version.objects.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -1027,7 +979,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             # The ActivityLog doesn't match a pending rejection, so we should
@@ -1047,7 +999,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             # The ActivityLog doesn't have details, so we should
@@ -1063,7 +1015,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             # The ActivityLog doesn't have comments, so we should
@@ -1084,7 +1036,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon = addon_factory(users=[author1, author2])
         version_factory(addon=addon)
         for version in addon.versions.all():
-            VersionReviewerFlags.objects.create(
+            version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
             ActivityLog.create(
@@ -1095,7 +1047,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
                 user=self.user,
             )
         more_recent_version = version_factory(addon=addon)
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=more_recent_version,
             pending_rejection=datetime.now() + timedelta(days=3),
         )
@@ -1163,7 +1115,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         new_version = version_factory(
             addon=self.addon,
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_webextension': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
         command = notify_about_auto_approve_delay.Command()
@@ -1181,7 +1133,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         # If the new version is approved but not the old one, then the old one
         # is returned, the new version no longer prevents the old one from
         # being considered.
-        new_version.files.update(status=amo.STATUS_APPROVED)
+        new_version.file.update(status=amo.STATUS_APPROVED)
         command = notify_about_auto_approve_delay.Command()
         qs = command.fetch_versions_waiting_for_approval_for_too_long()
         assert qs.count() == 1
@@ -1197,19 +1149,18 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
 
     def test_notify_authors(self):
         # Not awaiting review.
-        addon_factory(
-            file_kw={'is_webextension': True}, version_kw={'created': self.days_ago(1)}
-        ).authors.add(user_factory())
+        addon_factory(version_kw={'created': self.days_ago(1)}).authors.add(
+            user_factory()
+        )
         # Not awaiting review for long enough.
         addon_factory(
             file_kw={
-                'is_webextension': True,
                 'status': amo.STATUS_AWAITING_REVIEW,
             }
         ).authors.add(user_factory())
         # Valid.
         addon = addon_factory(
-            file_kw={'is_webextension': True, 'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             version_kw={'created': self.days_ago(1)},
         )
         users = [user_factory(), user_factory()]
@@ -1256,10 +1207,13 @@ class TestAutoReject(TestCase):
             version_kw={'version': '1.0', 'created': self.days_ago(2)}
         )
         self.version = self.addon.current_version
-        self.file = self.version.all_files[0]
+        self.file = self.version.file
         self.yesterday = self.days_ago(1)
-        VersionReviewerFlags.objects.create(
-            version=self.version, pending_rejection=self.yesterday
+        self.user = user_factory()
+        version_review_flags_factory(
+            version=self.version,
+            pending_rejection=self.yesterday,
+            pending_rejection_by=self.user,
         )
 
     def test_prevent_multiple_runs_in_parallel(self):
@@ -1278,15 +1232,13 @@ class TestAutoReject(TestCase):
         version = version_factory(
             addon=self.addon, version='0.9', created=self.days_ago(42)
         )
-        VersionReviewerFlags.objects.create(
-            version=version, pending_rejection=self.yesterday
-        )
+        version_review_flags_factory(version=version, pending_rejection=self.yesterday)
         qs = auto_reject.Command().fetch_addon_candidates(now=datetime.now())
         assert list(qs) == [self.addon]
 
     def test_fetch_addon_candidates(self):
         pending_future_rejection = addon_factory()
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=pending_future_rejection.current_version,
             pending_rejection=datetime.now() + timedelta(days=7),
         )
@@ -1295,7 +1247,7 @@ class TestAutoReject(TestCase):
             version_kw={'version': '10.0'}
         )
         version_factory(addon=other_addon_with_pending_rejection, version='11.0')
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=other_addon_with_pending_rejection.current_version,
             pending_rejection=self.yesterday,
         )
@@ -1310,13 +1262,13 @@ class TestAutoReject(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             version='2.0',
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=awaiting_review_pending_rejection, pending_rejection=self.yesterday
         )
         # One that is pending rejection in the future (it shouldn't be picked
         # up).
         future_pending_rejection = version_factory(addon=self.addon, version='3.0')
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=future_pending_rejection,
             pending_rejection=datetime.now() + timedelta(days=7),
         )
@@ -1372,8 +1324,10 @@ class TestAutoReject(TestCase):
 
     def test_reject_versions(self):
         another_pending_rejection = version_factory(addon=self.addon, version='2.0')
-        VersionReviewerFlags.objects.create(
-            version=another_pending_rejection, pending_rejection=self.yesterday
+        version_review_flags_factory(
+            version=another_pending_rejection,
+            pending_rejection=self.yesterday,
+            pending_rejection_by=self.user,
         )
         ActivityLog.objects.for_addons(self.addon).delete()
 
@@ -1408,6 +1362,10 @@ class TestAutoReject(TestCase):
         # in this test).
         assert not VersionReviewerFlags.objects.filter(
             pending_rejection__isnull=False
+        ).exists()
+        # The pending_rejection_by should also have been cleared.
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection_by__isnull=False
         ).exists()
 
         # No mail should have gone out.
@@ -1458,15 +1416,13 @@ class TestAutoReject(TestCase):
         version = version_factory(
             addon=all_pending_rejection, version='0.9', created=self.days_ago(42)
         )
-        VersionReviewerFlags.objects.create(
-            version=version, pending_rejection=self.yesterday
-        )
+        version_review_flags_factory(version=version, pending_rejection=self.yesterday)
         # Add-on with an old version pending rejection, but a newer one
         # approved: only the old one should be rejected.
         old_pending_rejection = addon_factory(
             version_kw={'version': '10.0', 'created': self.days_ago(2)}
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=old_pending_rejection.current_version,
             pending_rejection=self.yesterday,
         )
@@ -1481,13 +1437,13 @@ class TestAutoReject(TestCase):
         new_pending_rejection_new_version = version_factory(
             addon=new_pending_rejection, version='21.0', created=self.days_ago(2)
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=new_pending_rejection_new_version, pending_rejection=self.yesterday
         )
         # Add-on with a version pending rejection in the future, it shouldn't
         # be touched yet.
         future_pending_rejection = addon_factory()
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=future_pending_rejection.current_version,
             pending_rejection=datetime.now() + timedelta(days=2),
         )
@@ -1518,6 +1474,7 @@ class TestAutoReject(TestCase):
 
         # Third one should still be public, only its newer version rejected.
         new_pending_rejection.refresh_from_db()
+        new_pending_rejection_new_version.refresh_from_db()
         assert new_pending_rejection.is_public()
         assert (
             new_pending_rejection.current_version != new_pending_rejection_new_version

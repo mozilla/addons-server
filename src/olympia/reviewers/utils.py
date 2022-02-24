@@ -10,12 +10,12 @@ from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
-from django.utils.translation import gettext_lazy as _, ngettext
+from django.utils.translation import gettext_lazy as _
 
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.activity.utils import log_and_notify, send_activity_mail
+from olympia.activity.utils import notify_about_activity_log, send_activity_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import to_language
@@ -25,12 +25,9 @@ from olympia.reviewers.models import (
     AutoApprovalSummary,
     ReviewerScore,
     ReviewerSubscription,
-    ViewUnlistedAllList,
     get_flags,
-    get_flags_for_row,
 )
 from olympia.reviewers.templatetags.jinja_helpers import format_score
-from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
 
@@ -52,140 +49,45 @@ def safe_substitute(string, *args):
     return string % tuple(markupsafe.escape(arg) for arg in args)
 
 
-class ReviewerQueueTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_('Add-on'))
-    addon_type_id = tables.Column(verbose_name=_('Type'))
-    waiting_time_min = tables.Column(verbose_name=_('Waiting Time'))
-    flags = tables.Column(verbose_name=_('Flags'), orderable=False)
-
-    class Meta:
-        orderable = True
-
-    @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return cls.Meta.model.objects.all()
-
-    def render_addon_name(self, record):
-        url = reverse('reviewers.review', args=[record.addon_slug])
-        self.increment_item()
-        return markupsafe.Markup(
-            '<a href="%s">%s <em>%s</em></a>'
-            % (
-                url,
-                markupsafe.escape(record.addon_name),
-                markupsafe.escape(record.latest_version),
-            )
-        )
-
-    def render_addon_type_id(self, record):
-        return amo.ADDON_TYPE[record.addon_type_id]
-
-    def render_flags(self, record):
-        if not hasattr(record, 'flags'):
-            record.flags = get_flags_for_row(record)
-        return markupsafe.Markup(
-            ''.join(
-                '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
-                for flag in record.flags
-            )
-        )
-
-    @classmethod
-    def translate_sort_cols(cls, colname):
-        legacy_sorts = {
-            'name': 'addon_name',
-            'age': 'waiting_time_min',
-            'type': 'addon_type_id',
-        }
-        return legacy_sorts.get(colname, colname)
-
-    def render_waiting_time_min(self, record):
-        if record.waiting_time_min == 0:
-            r = _('moments ago')
-        elif record.waiting_time_hours == 0:
-            # L10n: first argument is number of minutes
-            r = ngettext('{0} minute', '{0} minutes', record.waiting_time_min).format(
-                record.waiting_time_min
-            )
-        elif record.waiting_time_days == 0:
-            # L10n: first argument is number of hours
-            r = ngettext('{0} hour', '{0} hours', record.waiting_time_hours).format(
-                record.waiting_time_hours
-            )
-        else:
-            # L10n: first argument is number of days
-            r = ngettext('{0} day', '{0} days', record.waiting_time_days).format(
-                record.waiting_time_days
-            )
-        return markupsafe.escape(r)
-
-    @classmethod
-    def default_order_by(cls):
-        return '-waiting_time_min'
-
-
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
     id = tables.Column(verbose_name=_('ID'))
-    addon_name = tables.Column(verbose_name=_('Add-on'))
+    addon_name = tables.Column(
+        verbose_name=_('Add-on'), accessor='name', orderable=False
+    )
     guid = tables.Column(verbose_name=_('GUID'))
-    authors = tables.Column(verbose_name=_('Authors'), orderable=False)
+    show_count_in_dashboard = False
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return ViewUnlistedAllList.objects.all()
+        return Addon.unfiltered.get_addons_with_unlisted_versions_queue(
+            admin_reviewer=True
+        )
 
     def render_addon_name(self, record):
         url = reverse(
             'reviewers.review',
             args=[
                 'unlisted',
-                record.addon_slug if record.addon_slug is not None else record.id,
+                record.id,
             ],
         )
         self.increment_item()
         return markupsafe.Markup(
-            safe_substitute('<a href="%s">%s</a>', url, record.addon_name)
+            safe_substitute('<a href="%s">%s</a>', url, record.name)
         )
 
     def render_guid(self, record):
         return markupsafe.Markup(safe_substitute('%s', record.guid))
-
-    def render_authors(self, record):
-        authors = record.authors
-        if not len(authors):
-            return ''
-        more = ' '.join(safe_substitute('%s', uname) for (_, uname) in authors)
-        author_links = ' '.join(
-            safe_substitute(
-                '<a href="%s">%s</a>', UserProfile.create_user_url(id_), uname
-            )
-            for (id_, uname) in authors[0:3]
-        )
-        return markupsafe.Markup(
-            '<span title="%s">%s%s</span>'
-            % (
-                more,
-                author_links,
-                ' ...' if len(authors) > 3 else '',
-            )
-        )
 
     @classmethod
     def default_order_by(cls):
         return '-id'
 
 
-def view_table_factory(viewqueue):
-    class ViewQueueTable(ReviewerQueueTable):
-        @classmethod
-        def get_queryset(cls, admin_reviewer=False):
-            return viewqueue.objects.all()
-
-    return ViewQueueTable
-
-
-class ModernAddonQueueTable(ReviewerQueueTable):
-    addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
+class AddonQueueTable(tables.Table, ItemStateTable):
+    addon_name = tables.Column(
+        verbose_name=_('Add-on'), accessor='name', orderable=False
+    )
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
     flags = tables.Column(verbose_name=_('Flags'), empty_values=(), orderable=False)
@@ -209,8 +111,9 @@ class ModernAddonQueueTable(ReviewerQueueTable):
         verbose_name=_('Maliciousness Score'),
         accessor='_current_version__autoapprovalsummary__score',
     )
+    show_count_in_dashboard = True
 
-    class Meta(ReviewerQueueTable.Meta):
+    class Meta:
         fields = (
             'addon_name',
             'flags',
@@ -220,20 +123,20 @@ class ModernAddonQueueTable(ReviewerQueueTable):
             'weight',
             'score',
         )
-        # Exclude base fields ReviewerQueueTable has that we don't want.
-        exclude = (
-            'addon_type_id',
-            'waiting_time_min',
-        )
         orderable = False
 
     def render_flags(self, record):
         if not hasattr(record, 'flags'):
             record.flags = get_flags(record, record.current_version)
-        return super().render_flags(record)
+        return markupsafe.Markup(
+            ''.join(
+                '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
+                for flag in record.flags
+            )
+        )
 
     def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=[record.slug])
+        return reverse('reviewers.review', args=[record.id])
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
@@ -266,52 +169,135 @@ class ModernAddonQueueTable(ReviewerQueueTable):
     render_last_content_review = render_last_human_review
 
 
-class UnlistedPendingManualApprovalQueueTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(verbose_name=_('Add-on'), accessor='name')
+class PendingManualApprovalQueueTable(AddonQueueTable):
+    addon_type = tables.Column(verbose_name=_('Type'), accessor='type', orderable=False)
     waiting_time = tables.Column(
-        verbose_name=_('Waiting Time'), accessor='first_version_created'
+        verbose_name=_('Waiting Time'), accessor='first_version_nominated'
     )
-    score = tables.Column(verbose_name=_('Maliciousness Score'), accessor='worst_score')
 
     class Meta:
-        fields = (
-            'addon_name',
-            'waiting_time',
+        fields = ('addon_name', 'addon_type', 'waiting_time', 'flags')
+        exclude = (
+            'last_human_review',
+            'code_weight',
+            'metadata_weight',
+            'weight',
             'score',
         )
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_unlisted_pending_manual_approval_queue()
+        return Addon.objects.get_listed_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer
+        )
 
-    def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=['unlisted', record.slug])
+    def _get_waiting_time(self, record):
+        return record.first_version_nominated
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
+        self.increment_item()
         return markupsafe.Markup(
-            '<a href="%s">%s</a>'
+            '<a href="%s">%s <em>%s</em></a>'
             % (
                 url,
                 markupsafe.escape(record.name),
+                markupsafe.escape(getattr(record, 'latest_version', '')),
             )
         )
 
+    def render_addon_type(self, record):
+        return record.get_type_display()
+
     def render_waiting_time(self, record):
-        return markupsafe.escape(naturaltime(record.first_version_created))
+        return markupsafe.Markup(
+            f'<span title="{markupsafe.escape(self._get_waiting_time(record))}">'
+            f'{markupsafe.escape(naturaltime(self._get_waiting_time(record)))}</span>'
+        )
+
+    @classmethod
+    def default_order_by(cls):
+        # waiting_time column is actually the date from the minimum version
+        # creation/nomination date. We want to display the add-ons which have
+        # waited the longest at the top by default, so we return waiting_time
+        # in ascending order.
+        return 'waiting_time'
+
+
+class RecommendedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_listed_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer, recommendable=True
+        )
+
+
+class NewThemesQueueTable(PendingManualApprovalQueueTable):
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_listed_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer,
+            statuses=(amo.STATUS_NOMINATED,),
+            types=amo.GROUP_TYPE_THEME,
+        )
+
+
+class UpdatedThemesQueueTable(NewThemesQueueTable):
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_listed_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer,
+            statuses=(amo.STATUS_APPROVED,),
+            types=amo.GROUP_TYPE_THEME,
+        )
+
+
+class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
+    waiting_time = tables.Column(
+        verbose_name=_('Waiting Time'), accessor='first_version_created'
+    )
+    score = tables.Column(verbose_name=_('Maliciousness Score'), accessor='worst_score')
+    show_count_in_dashboard = False
+
+    class Meta(PendingManualApprovalQueueTable.Meta):
+        fields = (
+            'addon_name',
+            'addon_type',
+            'waiting_time',
+            'score',
+        )
+        exclude = (
+            'last_human_review',
+            'code_weight',
+            'metadata_weight',
+            'weight',
+            'flags',
+        )
+
+    def _get_addon_name_url(self, record):
+        return reverse('reviewers.review', args=['unlisted', record.id])
+
+    def _get_waiting_time(self, record):
+        return record.first_version_created
+
+    @classmethod
+    def get_queryset(cls, admin_reviewer=False):
+        return Addon.objects.get_unlisted_pending_manual_approval_queue(
+            admin_reviewer=admin_reviewer
+        )
 
     @classmethod
     def default_order_by(cls):
         return '-score'
 
 
-class PendingRejectionTable(ModernAddonQueueTable):
+class PendingRejectionTable(AddonQueueTable):
     deadline = tables.Column(
         verbose_name=_('Pending Rejection Deadline'),
         accessor='_current_version__reviewerflags__pending_rejection',
     )
 
-    class Meta(ModernAddonQueueTable.Meta):
+    class Meta(PendingManualApprovalQueueTable.Meta):
         fields = (
             'addon_name',
             'flags',
@@ -322,6 +308,7 @@ class PendingRejectionTable(ModernAddonQueueTable):
             'weight',
             'score',
         )
+        exclude = ('waiting_time',)
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
@@ -331,7 +318,7 @@ class PendingRejectionTable(ModernAddonQueueTable):
         return naturaltime(value) if value else ''
 
 
-class AutoApprovedTable(ModernAddonQueueTable):
+class AutoApprovedTable(AddonQueueTable):
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
         return Addon.objects.get_auto_approved_queue(admin_reviewer=admin_reviewer)
@@ -340,13 +327,11 @@ class AutoApprovedTable(ModernAddonQueueTable):
 class ContentReviewTable(AutoApprovedTable):
     last_updated = tables.DateTimeColumn(verbose_name=_('Last Updated'))
 
-    class Meta(ReviewerQueueTable.Meta):
+    class Meta(AutoApprovedTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
-        # Exclude base fields ReviewerQueueTable has that we don't want.
+        # Exclude base fields AutoApprovedTable has that we don't want.
         exclude = (
-            'addon_type_id',
             'last_human_review',
-            'waiting_time_min',
             'code_weight',
             'metadata_weight',
             'weight',
@@ -361,12 +346,13 @@ class ContentReviewTable(AutoApprovedTable):
         return naturaltime(value) if value else ''
 
     def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=['content', record.slug])
+        return reverse('reviewers.review', args=['content', record.id])
 
 
 class ScannersReviewTable(AutoApprovedTable):
     listed_text = _('Listed versions needing human review ({0})')
     unlisted_text = _('Unlisted versions needing human review ({0})')
+    show_count_in_dashboard = False
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
@@ -391,7 +377,7 @@ class ScannersReviewTable(AutoApprovedTable):
         rval = [markupsafe.escape(record.name)]
 
         if record.listed_versions_that_need_human_review:
-            url = reverse('reviewers.review', args=[record.slug])
+            url = reverse('reviewers.review', args=[record.id])
             rval.append(
                 '<a href="%s">%s</a>'
                 % (
@@ -403,7 +389,7 @@ class ScannersReviewTable(AutoApprovedTable):
             )
 
         if record.unlisted_versions_that_need_human_review:
-            url = reverse('reviewers.review', args=['unlisted', record.slug])
+            url = reverse('reviewers.review', args=['unlisted', record.id])
             rval.append(
                 '<a href="%s">%s</a>'
                 % (
@@ -420,6 +406,7 @@ class ScannersReviewTable(AutoApprovedTable):
 class MadReviewTable(ScannersReviewTable):
     listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
+    show_count_in_dashboard = False
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
@@ -504,6 +491,7 @@ class ReviewHelper:
             self.version and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
         )
         promoted_group = self.addon.promoted_group(currently_approved=False)
+        is_static_theme = self.addon.type == amo.ADDON_STATICTHEME
 
         # Default permissions / admin needed values if it's just a regular
         # code review, nothing fancy.
@@ -527,7 +515,7 @@ class ReviewHelper:
         elif self.content_review:
             is_admin_needed = self.addon.needs_admin_content_review
             permission = amo.permissions.ADDONS_CONTENT_REVIEW
-        elif self.addon.type == amo.ADDON_STATICTHEME:
+        elif is_static_theme:
             is_admin_needed = self.addon.needs_admin_theme_review
             permission = amo.permissions.STATIC_THEMES_REVIEW
             permission_post_review = permission
@@ -584,11 +572,7 @@ class ReviewHelper:
         # Special logic for availability of reject multiple action:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
-        elif (
-            self.content_review
-            or promoted_group.pre_review
-            or self.addon.type == amo.ADDON_STATICTHEME
-        ):
+        elif self.content_review or promoted_group.pre_review or is_static_theme:
             can_reject_multiple = (
                 addon_is_valid_and_version_is_listed and is_appropriate_reviewer
             )
@@ -618,6 +602,8 @@ class ReviewHelper:
                 and is_appropriate_reviewer
                 and not version_is_blocked
             ),
+            'allows_reasons': not is_static_theme,
+            'requires_reasons': False,
         }
         actions['reject'] = {
             'method': self.handler.reject_latest_version,
@@ -637,6 +623,8 @@ class ReviewHelper:
                 and version_is_unreviewed
                 and is_appropriate_reviewer
             ),
+            'allows_reasons': not is_static_theme,
+            'requires_reasons': not is_static_theme,
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
@@ -683,6 +671,8 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': (can_reject_multiple),
+            'allows_reasons': not is_static_theme,
+            'requires_reasons': not is_static_theme,
         }
         actions['block_multiple_versions'] = {
             'method': self.handler.block_multiple_versions,
@@ -696,9 +686,7 @@ class ReviewHelper:
                 'admin page.'
             ),
             'available': (
-                self.addon.type != amo.ADDON_STATICTHEME
-                and version_is_unlisted
-                and is_appropriate_reviewer
+                not is_static_theme and version_is_unlisted and is_appropriate_reviewer
             ),
         }
         actions['confirm_multiple_versions'] = {
@@ -712,9 +700,7 @@ class ReviewHelper:
             ),
             'comments': False,
             'available': (
-                self.addon.type != amo.ADDON_STATICTHEME
-                and version_is_unlisted
-                and is_appropriate_reviewer
+                not is_static_theme and version_is_unlisted and is_appropriate_reviewer
             ),
         }
         actions['reply'] = {
@@ -730,6 +716,8 @@ class ReviewHelper:
                 and is_reviewer
                 and (not promoted_group.admin_review or is_appropriate_reviewer)
             ),
+            'allows_reasons': not is_static_theme,
+            'requires_reasons': not is_static_theme,
         }
         actions['super'] = {
             'method': self.handler.process_super_review,
@@ -783,7 +771,11 @@ class ReviewBase:
         self.review_type = (
             'theme_%s' if addon.type == amo.ADDON_STATICTHEME else 'extension_%s'
         ) % review_type
-        self.files = self.version.unreviewed_files if self.version else []
+        self.file = (
+            self.version.file
+            if self.version and self.version.file.status == amo.STATUS_AWAITING_REVIEW
+            else None
+        )
         self.content_review = content_review
         self.redirect_url = None
 
@@ -795,15 +787,14 @@ class ReviewBase:
     def set_data(self, data):
         self.data = data
 
-    def set_files(self, status, files, hide_disabled_file=False):
-        """Change the files to be the new status."""
-        for file in files:
-            file.datestatuschanged = datetime.now()
-            file.reviewed = datetime.now()
-            if hide_disabled_file:
-                file.hide_disabled_file()
-            file.status = status
-            file.save()
+    def set_file(self, status, file, hide_disabled_file=False):
+        """Change the file to be the new status."""
+        file.datestatuschanged = datetime.now()
+        file.reviewed = datetime.now()
+        if hide_disabled_file:
+            file.hide_disabled_file()
+        file.status = status
+        file.save()
 
     def set_promoted(self):
         group = self.addon.promoted_group(currently_approved=False)
@@ -840,15 +831,15 @@ class ReviewBase:
         if version.needs_human_review_by_mad:
             version.reviewerflags.update(needs_human_review_by_mad=False)
 
-    def log_action(self, action, version=None, files=None, timestamp=None):
+    def log_action(self, action, version=None, file=None, timestamp=None, user=None):
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
         }
-        if files is None and self.files:
-            files = self.files
-        if files is not None:
-            details['files'] = [f.id for f in files]
+        if file is None and self.file:
+            file = self.file
+        if file is not None:
+            details['files'] = [file.id]
         if version is None and self.version:
             version = self.version
         if version is not None:
@@ -859,7 +850,9 @@ class ReviewBase:
         if timestamp is None:
             timestamp = datetime.now()
 
-        kwargs = {'user': self.user, 'created': timestamp, 'details': details}
+        args = (*args, *self.data.get('reasons', []))
+
+        kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.create(action, *args, **kwargs)
 
     def notify_email(
@@ -919,7 +912,6 @@ class ReviewBase:
         return {
             'name': addon.name,
             'number': self.version.version if self.version else '',
-            'reviewer': self.user.reviewer_name or self.user.name,
             'addon_url': absolutify(addon_url),
             'dev_versions_url': absolutify(dev_ver_url),
             'review_url': absolutify(
@@ -943,21 +935,17 @@ class ReviewBase:
             'Sending reviewer reply for %s to authors and other'
             'recipients' % self.addon
         )
-        log_and_notify(
-            action,
-            self.data['comments'],
-            self.user,
-            self.version,
-            perm_setting='individual_contact',
-            detail_kwargs={'reviewtype': self.review_type.split('_')[1]},
+        self.log_action(action)
+        notify_about_activity_log(
+            self.addon, self.version, self.log_entry, perm_setting='individual_contact'
         )
 
-    def sign_files(self):
+    def sign_file(self):
         assert not (self.version and self.version.is_blocked)
-        for file_ in self.files:
-            if file_.is_experiment:
-                ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, file_, user=self.user)
-            sign_file(file_)
+        if self.file:
+            if self.file.is_experiment:
+                ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, self.file, user=self.user)
+            sign_file(self.file)
 
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
@@ -981,14 +969,14 @@ class ReviewBase:
         assert not self.content_review
 
         # Sign addon.
-        self.sign_files()
+        self.sign_file()
 
         # Hold onto the status before we change it.
         status = self.addon.status
 
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
-        self.set_files(amo.STATUS_APPROVED, self.files)
+        self.set_file(amo.STATUS_APPROVED, self.file)
         self.set_promoted()
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
@@ -1000,7 +988,7 @@ class ReviewBase:
             # Clear pending rejection since we approved that version.
             VersionReviewerFlags.objects.filter(
                 version=self.version,
-            ).update(pending_rejection=None)
+            ).update(pending_rejection=None, pending_rejection_by=None)
 
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
@@ -1046,7 +1034,7 @@ class ReviewBase:
 
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_NULL)
-        self.set_files(amo.STATUS_DISABLED, self.files, hide_disabled_file=True)
+        self.set_file(amo.STATUS_DISABLED, self.file, hide_disabled_file=True)
 
         if self.human_review:
             # Clear needs human review flags, but only on the latest version:
@@ -1166,7 +1154,7 @@ class ReviewBase:
             VersionReviewerFlags.objects.filter(
                 version__addon=self.addon,
                 version__channel=channel,
-            ).update(pending_rejection=None)
+            ).update(pending_rejection=None, pending_rejection_by=None)
 
             # Assign reviewer incentive scores.
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
@@ -1183,14 +1171,14 @@ class ReviewBase:
         """Reject a list of versions.
         Note: this is used in blocklist.utils.disable_addon_for_block for both
         listed and unlisted versions (human_review=False)."""
-        # self.version and self.files won't point to the versions we want to
+        # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
         status = self.addon.status
         latest_version = self.version
         channel = self.version.channel if self.version else None
         self.version = None
-        self.files = None
+        self.file = None
         now = datetime.now()
         if self.data.get('delayed_rejection'):
             pending_rejection_deadline = now + timedelta(
@@ -1220,10 +1208,16 @@ class ReviewBase:
             )
 
         for version in self.data['versions']:
-            files = version.files.all()
+            file = version.file
             if not pending_rejection_deadline:
-                self.set_files(amo.STATUS_DISABLED, files, hide_disabled_file=True)
-            self.log_action(action_id, version=version, files=files, timestamp=now)
+                self.set_file(amo.STATUS_DISABLED, file, hide_disabled_file=True)
+            self.log_action(
+                action_id,
+                version=version,
+                file=file,
+                timestamp=now,
+                user=version.pending_rejection_by,
+            )
             if self.human_review:
                 # Clear needs human review flags on rejected versions, we
                 # consider that the reviewer looked at them before rejecting.
@@ -1232,7 +1226,12 @@ class ReviewBase:
                 # immediate rejection.
                 VersionReviewerFlags.objects.update_or_create(
                     version=version,
-                    defaults={'pending_rejection': pending_rejection_deadline},
+                    defaults={
+                        'pending_rejection': pending_rejection_deadline,
+                        'pending_rejection_by': self.user
+                        if pending_rejection_deadline
+                        else None,
+                    },
                 )
 
         # A rejection (delayed or not) implies the next version should be
@@ -1335,13 +1334,13 @@ class ReviewFiles(ReviewBase):
     def log_public_message(self):
         log.info(
             'Making %s files %s public'
-            % (self.addon, ', '.join([f.filename for f in self.files]))
+            % (self.addon, self.file.filename if self.file else '')
         )
 
     def log_sandbox_message(self):
         log.info(
             'Making %s files %s disabled'
-            % (self.addon, ', '.join([f.filename for f in self.files]))
+            % (self.addon, self.file.filename if self.file else '')
         )
 
 
@@ -1351,11 +1350,11 @@ class ReviewUnlisted(ReviewBase):
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
         # Sign addon.
-        self.sign_files()
-        for file_ in self.files:
-            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, file_, user=self.user)
+        self.sign_file()
+        if self.file:
+            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, self.file, user=self.user)
 
-        self.set_files(amo.STATUS_APPROVED, self.files)
+        self.set_file(amo.STATUS_APPROVED, self.file)
 
         template = 'unlisted_to_reviewed_auto'
         subject = 'Mozilla Add-ons: %s %s signed and ready to download'
@@ -1374,7 +1373,7 @@ class ReviewUnlisted(ReviewBase):
 
         log.info(
             'Making %s files %s public'
-            % (self.addon, ', '.join([f.filename for f in self.files]))
+            % (self.addon, self.file.filename if self.file else '')
         )
         log.info('Sending email for %s' % (self.addon))
 

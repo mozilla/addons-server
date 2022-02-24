@@ -1,6 +1,5 @@
 import json
 
-from collections import OrderedDict
 from datetime import date, datetime, timedelta
 
 from django.conf import settings
@@ -22,15 +21,8 @@ from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.constants.base import _ADDON_SEARCH
-from olympia.constants.promoted import (
-    NOT_PROMOTED,
-    PROMOTED_GROUPS_BY_ID,
-    RECOMMENDED,
-    PRE_REVIEW_GROUPS,
-)
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
-from olympia.reviewers.sql_model import RawSQLModel
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -56,9 +48,7 @@ VIEW_QUEUE_FLAGS = (
         'needs-admin-theme-review',
         _('Needs Admin Static Theme Review'),
     ),
-    ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
-    ('is_webextension', 'webextension', _('WebExtension')),
     (
         'auto_approval_delayed_temporarily',
         'auto-approval-delayed-temporarily',
@@ -126,310 +116,6 @@ def get_flags(addon, version):
     if promoted := addon.promoted_group(currently_approved=False):
         flags.append((f'promoted-{promoted.api_name}', promoted.name))
     return flags
-
-
-def get_flags_for_row(record):
-    """Like get_flags(), but for the queue pages, using fields directly
-    returned by the queues SQL query."""
-    flags = [
-        (cls, title) for (prop, cls, title) in VIEW_QUEUE_FLAGS if getattr(record, prop)
-    ]
-    # add in the promoted group flag and return
-    if promoted := record.promoted:
-        flags.append((f'promoted-{promoted.api_name}', promoted.name))
-    return flags
-
-
-class ViewQueue(RawSQLModel):
-    id = models.IntegerField()
-    addon_name = models.CharField(max_length=255)
-    addon_slug = models.CharField(max_length=30)
-    addon_status = models.IntegerField()
-    addon_type_id = models.IntegerField()
-    auto_approval_delayed_temporarily = models.BooleanField(null=True)
-    auto_approval_delayed_indefinitely = models.BooleanField(null=True)
-    is_restart_required = models.BooleanField()
-    is_webextension = models.BooleanField()
-    latest_version = models.CharField(max_length=255)
-    needs_admin_code_review = models.BooleanField(null=True)
-    needs_admin_content_review = models.BooleanField(null=True)
-    needs_admin_theme_review = models.BooleanField(null=True)
-    promoted_group_id = models.IntegerField()
-    source = models.CharField(max_length=100)
-    waiting_time_days = models.IntegerField()
-    waiting_time_hours = models.IntegerField()
-    waiting_time_min = models.IntegerField()
-
-    recommendable_addons = False
-
-    def base_query(self):
-        return {
-            'select': OrderedDict(
-                [
-                    ('id', 'addons.id'),
-                    ('addon_name', 'tr.localized_string'),
-                    ('addon_status', 'addons.status'),
-                    ('addon_type_id', 'addons.addontype_id'),
-                    ('addon_slug', 'addons.slug'),
-                    (
-                        'auto_approval_delayed_temporarily',
-                        (
-                            'TIMEDIFF(addons_addonreviewerflags.'
-                            'auto_approval_delayed_until, NOW()) > 0 AND '
-                            'EXTRACT(YEAR FROM addons_addonreviewerflags.'
-                            'auto_approval_delayed_until) != 9999'
-                        ),
-                    ),
-                    (
-                        'auto_approval_delayed_indefinitely',
-                        (
-                            'TIMEDIFF(addons_addonreviewerflags.'
-                            'auto_approval_delayed_until, NOW()) > 0 AND '
-                            'EXTRACT(YEAR FROM addons_addonreviewerflags.'
-                            'auto_approval_delayed_until) = 9999'
-                        ),
-                    ),
-                    ('is_restart_required', 'MAX(files.is_restart_required)'),
-                    ('is_webextension', 'MAX(files.is_webextension)'),
-                    ('latest_version', 'versions.version'),
-                    (
-                        'needs_admin_code_review',
-                        'addons_addonreviewerflags.needs_admin_code_review',
-                    ),
-                    (
-                        'needs_admin_content_review',
-                        'addons_addonreviewerflags.needs_admin_content_review',
-                    ),
-                    (
-                        'needs_admin_theme_review',
-                        'addons_addonreviewerflags.needs_admin_theme_review',
-                    ),
-                    ('promoted_group_id', 'promoted.group_id'),
-                    ('source', 'versions.source'),
-                    (
-                        'waiting_time_days',
-                        'TIMESTAMPDIFF(DAY, MAX(versions.nomination), NOW())',
-                    ),
-                    (
-                        'waiting_time_hours',
-                        'TIMESTAMPDIFF(HOUR, MAX(versions.nomination), NOW())',
-                    ),
-                    (
-                        'waiting_time_min',
-                        'TIMESTAMPDIFF(MINUTE, MAX(versions.nomination), NOW())',
-                    ),
-                ]
-            ),
-            'from': [
-                'addons',
-                """
-                LEFT JOIN addons_addonreviewerflags ON (
-                    addons.id = addons_addonreviewerflags.addon_id)
-                LEFT JOIN versions ON (addons.id = versions.addon_id)
-                LEFT JOIN versions_versionreviewerflags ON (
-                    versions.id = versions_versionreviewerflags.version_id)
-                LEFT JOIN files ON (files.version_id = versions.id)
-                LEFT JOIN promoted_promotedaddon AS promoted ON (
-                    addons.id = promoted.addon_id)
-
-                JOIN translations AS tr ON (
-                    tr.id = addons.name
-                    AND tr.locale = addons.defaultlocale)
-                """,
-            ],
-            'where': [
-                'NOT addons.inactive',  # disabled_by_user
-                'versions.channel = %s' % amo.RELEASE_CHANNEL_LISTED,
-                'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
-                'versions_versionreviewerflags.pending_rejection IS NULL',
-                ('NOT ' if not self.recommendable_addons else '')
-                + '(promoted.group_id = %s AND promoted.group_id IS NOT NULL)'
-                % RECOMMENDED.id,
-            ],
-            'group_by': 'id',
-        }
-
-    @property
-    def sources_provided(self):
-        return bool(self.source)
-
-    @property
-    def promoted(self):
-        return PROMOTED_GROUPS_BY_ID.get(self.promoted_group_id, NOT_PROMOTED)
-
-    @property
-    def flags(self):
-        return get_flags_for_row(self)
-
-
-def _int_join(list_of_ints):
-    return ','.join(str(int(int_)) for int_ in list_of_ints)
-
-
-class FullReviewQueueMixin:
-    def base_query(self):
-        query = super().base_query()
-        query['where'].append('addons.status = %s' % amo.STATUS_NOMINATED)
-        return query
-
-
-class PendingQueueMixin:
-    def base_query(self):
-        query = super().base_query()
-        query['where'].append('addons.status = %s' % amo.STATUS_APPROVED)
-        return query
-
-
-class CombinedReviewQueueMixin:
-    def base_query(self):
-        query = super().base_query()
-        query['where'].append(
-            f'addons.status IN ({_int_join(amo.VALID_ADDON_STATUSES)})'
-        )
-        return query
-
-
-class ExtensionQueueMixin:
-    def base_query(self):
-        query = super().base_query()
-        types = _int_join(set(amo.GROUP_TYPE_ADDON))
-        flags_table = 'addons_addonreviewerflags'
-        promoted_groups = _int_join(group.id for group in PRE_REVIEW_GROUPS)
-        query['where'].append(
-            f'((addons.addontype_id IN ({types}) '
-            'AND files.is_webextension = 0) '
-            f'OR {flags_table}.auto_approval_disabled = 1 '
-            f'OR {flags_table}.auto_approval_disabled_until_next_approval = 1 '
-            f'OR {flags_table}.auto_approval_delayed_until > NOW() '
-            f'OR promoted.group_id IN ({promoted_groups})'
-            ')'
-        )
-        return query
-
-
-class ThemeQueueMixin:
-    def base_query(self):
-        query = super().base_query()
-        query['where'].append('addons.addontype_id = %s' % amo.ADDON_STATICTHEME)
-        return query
-
-
-class ViewExtensionQueue(ExtensionQueueMixin, CombinedReviewQueueMixin, ViewQueue):
-    pass
-
-
-class ViewRecommendedQueue(CombinedReviewQueueMixin, ViewQueue):
-    recommendable_addons = True
-
-
-class ViewThemeFullReviewQueue(ThemeQueueMixin, FullReviewQueueMixin, ViewQueue):
-    pass
-
-
-class ViewThemePendingQueue(ThemeQueueMixin, PendingQueueMixin, ViewQueue):
-    pass
-
-
-class ViewUnlistedAllList(RawSQLModel):
-    id = models.IntegerField()
-    addon_name = models.CharField(max_length=255)
-    addon_slug = models.CharField(max_length=30)
-    guid = models.CharField(max_length=255)
-    _author_ids = models.CharField(max_length=255)
-    _author_usernames = models.CharField()
-    addon_status = models.IntegerField()
-    needs_admin_code_review = models.BooleanField(null=True)
-    needs_admin_content_review = models.BooleanField(null=True)
-    needs_admin_theme_review = models.BooleanField(null=True)
-    is_deleted = models.BooleanField()
-
-    def base_query(self):
-        return {
-            'select': OrderedDict(
-                [
-                    ('id', 'addons.id'),
-                    ('addon_name', 'tr.localized_string'),
-                    ('addon_status', 'addons.status'),
-                    ('addon_slug', 'addons.slug'),
-                    ('guid', 'addons.guid'),
-                    ('_author_ids', 'GROUP_CONCAT(authors.user_id)'),
-                    ('_author_usernames', 'GROUP_CONCAT(users.username)'),
-                    (
-                        'needs_admin_code_review',
-                        'addons_addonreviewerflags.needs_admin_code_review',
-                    ),
-                    (
-                        'needs_admin_content_review',
-                        'addons_addonreviewerflags.needs_admin_content_review',
-                    ),
-                    (
-                        'needs_admin_theme_review',
-                        'addons_addonreviewerflags.needs_admin_theme_review',
-                    ),
-                    ('is_deleted', 'IF (addons.status=11, true, false)'),
-                ]
-            ),
-            'from': [
-                'addons',
-                """
-                LEFT JOIN addons_addonreviewerflags ON (
-                    addons.id = addons_addonreviewerflags.addon_id)
-                LEFT JOIN versions
-                    ON (versions.addon_id = addons.id)
-                JOIN translations AS tr ON (
-                    tr.id = addons.name AND
-                    tr.locale = addons.defaultlocale)
-                LEFT JOIN addons_users AS authors
-                    ON addons.id = authors.addon_id
-                LEFT JOIN users as users ON users.id = authors.user_id
-                """,
-            ],
-            'where': [
-                'NOT addons.inactive',  # disabled_by_user
-                'versions.channel = %s' % amo.RELEASE_CHANNEL_UNLISTED,
-                'addons.status <> %s' % amo.STATUS_DISABLED,
-            ],
-            'group_by': 'id',
-        }
-
-    @property
-    def authors(self):
-        ids = self._explode_concat(self._author_ids)
-        usernames = self._explode_concat(self._author_usernames, cast=str)
-        return list(set(zip(ids, usernames)))
-
-
-class PerformanceGraph(RawSQLModel):
-    id = models.IntegerField()
-    yearmonth = models.CharField(max_length=7)
-    approval_created = models.DateTimeField()
-    user_id = models.IntegerField()
-    total = models.IntegerField()
-
-    def base_query(self):
-        request_ver = amo.LOG.REQUEST_VERSION.id
-        review_ids = [
-            str(r) for r in amo.LOG_REVIEWER_REVIEW_ACTION if r != request_ver
-        ]
-
-        return {
-            'select': OrderedDict(
-                [
-                    ('yearmonth', "DATE_FORMAT(`log_activity`.`created`, '%%Y-%%m')"),
-                    ('approval_created', '`log_activity`.`created`'),
-                    ('user_id', '`log_activity`.`user_id`'),
-                    ('total', 'COUNT(*)'),
-                ]
-            ),
-            'from': [
-                'log_activity',
-            ],
-            'where': [
-                'log_activity.action in (%s)' % ','.join(review_ids),
-                'user_id <> %s' % settings.TASK_USER_ID,  # No auto-approvals.
-            ],
-            'group_by': 'yearmonth, user_id',
-        }
 
 
 class ReviewerSubscription(ModelBase):
@@ -665,7 +351,7 @@ class ReviewerScore(ModelBase):
         # still a webextension and should treated as such, regardless of
         # auto-approval being disabled or not.
         # As a hack, we set 'post_review' to True.
-        if version and version.is_webextension and addon.type in amo.GROUP_TYPE_ADDON:
+        if addon.type in amo.GROUP_TYPE_ADDON:
             post_review = True
 
         user_log.info(
@@ -961,10 +647,6 @@ class ReviewerScore(ModelBase):
         return scores
 
 
-class AutoApprovalNotEnoughFilesError(Exception):
-    pass
-
-
 class AutoApprovalNoValidationResultError(Exception):
     pass
 
@@ -1085,12 +767,10 @@ class AutoApprovalSummary(ModelBase):
             'past_rejection_history': min(
                 Version.objects.filter(
                     addon=addon,
-                    files__reviewed__gte=one_year_ago,
-                    files__original_status=amo.STATUS_NULL,
-                    files__status=amo.STATUS_DISABLED,
-                )
-                .distinct()
-                .count()
+                    file__reviewed__gte=one_year_ago,
+                    file__original_status=amo.STATUS_NULL,
+                    file__status=amo.STATUS_DISABLED,
+                ).count()
                 * 10,
                 100,
             ),
@@ -1199,16 +879,9 @@ class AutoApprovalSummary(ModelBase):
         approved and the previous public one."""
 
         def find_code_size(version):
-            # There could be multiple files: if that's the case, take the
-            # total for all files and divide it by the number of files.
-            number_of_files = len(version.all_files) or 1
-            total_code_size = 0
-            for file_ in version.all_files:
-                data = json.loads(file_.validation.validation)
-                total_code_size += data.get('metadata', {}).get(
-                    'totalScannedFileSize', 0
-                )
-            return total_code_size // number_of_files
+            data = json.loads(version.file.validation.validation)
+            total_code_size = data.get('metadata', {}).get('totalScannedFileSize', 0)
+            return total_code_size
 
         try:
             old_version = self.find_previous_confirmed_version()
@@ -1260,32 +933,23 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def _count_linter_flag(cls, version, flag):
-        def _count_linter_flag_in_file(file_):
-            try:
-                validation = file_.validation
-            except FileValidation.DoesNotExist:
-                raise AutoApprovalNoValidationResultError()
-            validation_data = json.loads(validation.validation)
-            return sum(
-                flag in message['id'] for message in validation_data.get('messages', [])
-            )
-
-        return max(_count_linter_flag_in_file(file_) for file_ in version.all_files)
+        try:
+            validation = version.file.validation
+        except FileValidation.DoesNotExist:
+            raise AutoApprovalNoValidationResultError()
+        validation_data = json.loads(validation.validation)
+        return sum(
+            flag in message['id'] for message in validation_data.get('messages', [])
+        )
 
     @classmethod
     def _count_metadata_property(cls, version, prop):
-        def _count_property_in_linter_metadata_in_file(file_):
-            try:
-                validation = file_.validation
-            except FileValidation.DoesNotExist:
-                raise AutoApprovalNoValidationResultError()
-            validation_data = json.loads(validation.validation)
-            return len(validation_data.get('metadata', {}).get(prop, []))
-
-        return max(
-            _count_property_in_linter_metadata_in_file(file_)
-            for file_ in version.all_files
-        )
+        try:
+            validation = version.file.validation
+        except FileValidation.DoesNotExist:
+            raise AutoApprovalNoValidationResultError()
+        validation_data = json.loads(validation.validation)
+        return len(validation_data.get('metadata', {}).get(prop, []))
 
     @classmethod
     def count_uses_unknown_minified_code(cls, version):
@@ -1323,9 +987,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_uses_native_messaging(cls, version):
-        return any(
-            'nativeMessaging' in file_.permissions for file_ in version.all_files
-        )
+        return 'nativeMessaging' in version.file.permissions
 
     @classmethod
     def check_is_locked(cls, version):
@@ -1427,9 +1089,6 @@ class AutoApprovalSummary(ModelBase):
         If not using dry_run it's the caller responsability to approve the
         version to make sure the AutoApprovalSummary is not overwritten later
         when the auto-approval process fires again."""
-        if len(version.all_files) == 0:
-            raise AutoApprovalNotEnoughFilesError()
-
         data = {
             field: getattr(cls, f'check_{field}')(version)
             for field in cls.auto_approval_verdict_fields
@@ -1465,3 +1124,19 @@ class Whiteboard(ModelBase):
             self.private,
             self.public,
         )
+
+
+class ReviewActionReason(ModelBase):
+    is_active = models.BooleanField(
+        default=True, help_text=_('Is available to be used in reviews')
+    )
+    name = models.CharField(max_length=255)
+
+    def labelled_name(self):
+        return '(** inactive **) ' + self.name if not self.is_active else self.name
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return str(self.name)

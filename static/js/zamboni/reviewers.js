@@ -22,10 +22,6 @@
   $('a.show').click(show_comments);
   $('a.hide').click(hide_comments);
 
-  if ($('.queue-search').length) {
-    initQueueSearch($('.queue-search'));
-  }
-
   if ($('#review-actions').length > 0) {
     initReviewActions();
   }
@@ -36,10 +32,6 @@
 
   if ($('.all-backgrounds').length) {
     initBackgroundImagesForTheme();
-  }
-
-  if ($('#monthly.highcharts-container').length) {
-    initPerformanceStats();
   }
 
   if (
@@ -455,39 +447,6 @@ function initQueue() {
   });
 }
 
-function initQueueSearch(doc) {
-  $('.toggle-queue-search').click(
-    _pd(function () {
-      $('.advanced-search').slideToggle();
-    }),
-  );
-
-  $('#id_application_id', doc).change(function (e) {
-    var maxVer = $('#id_max_version', doc),
-      sel = $(e.target),
-      appId = $('option:selected', sel).val();
-
-    if (!appId) {
-      $('option', maxVer).remove();
-      maxVer.append(
-        format('<option value="{0}">{1}</option>', [
-          '',
-          gettext('Select an application first'),
-        ]),
-      );
-      return;
-    }
-    $.get(sel.attr('data-url'), { application_id: appId }, function (d) {
-      $('option', maxVer).remove();
-      $.each(d.choices, function (i, ch) {
-        maxVer.append(
-          format('<option value="{0}">{1}</option>', [ch[0], ch[1]]),
-        );
-      });
-    });
-  });
-}
-
 function initScrollingSidebar() {
   var $window = $(window),
     $sb = $('#scroll_sidebar'),
@@ -505,89 +464,4 @@ function initScrollingSidebar() {
       setSticky(window.scrollY > addon_top);
     }, 20),
   );
-}
-
-function initPerformanceStats() {
-  var container = $('#monthly'),
-    groups = {
-      usercount: $('#reviews_user').text(),
-      teamavg: gettext('Average Reviews'),
-    };
-
-  /* View Other User Stats */
-  $('#select_user').change(function () {
-    var $this = $(this),
-      user = $this.val();
-
-    if (user !== '') {
-      window.location.href = $this.attr('data-url') + user;
-    }
-  });
-
-  /* Create Charts */
-
-  createChart(container, groups, JSON.parse(container.attr('data-chart')));
-
-  function createChart(container, groups, data) {
-    var labels = [],
-      data_points = {},
-      chart_series = [];
-
-    $.each(groups, function (key, name) {
-      data_points[key] = { name: name, data: [] };
-    });
-
-    $.each(data, function (k, vals) {
-      labels.push(vals.label);
-      $.each(vals, function (group, amount) {
-        if (groups[group]) {
-          data_points[group].data.push(parseFloat(amount));
-        }
-      });
-    });
-
-    $.each(data_points, function (k, vals) {
-      chart_series.push(vals);
-    });
-
-    new Highcharts.Chart({
-      chart: {
-        renderTo: container[0],
-        defaultSeriesType: 'line',
-        marginRight: 130,
-        marginBottom: 25,
-      },
-      title: {
-        text: ' ',
-        x: 0, //center
-      },
-      xAxis: {
-        categories: labels,
-      },
-      yAxis: {
-        title: { text: gettext('Number of Reviews') },
-        plotLines: [{ value: 0, width: 1, color: '#808080' }],
-        min: 0,
-      },
-      tooltip: {
-        formatter: function () {
-          return (
-            '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y
-          );
-        },
-      },
-      legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -10,
-        y: 100,
-        borderWidth: 0,
-      },
-      series: chart_series,
-      credits: {
-        enabled: false,
-      },
-    });
-  }
 }

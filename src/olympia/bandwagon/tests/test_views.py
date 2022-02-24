@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 from olympia import amo
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     addon_factory,
     collection_factory,
@@ -24,7 +24,7 @@ from olympia.bandwagon.models import Collection, CollectionAddon
 
 
 class TestCollectionViewSetList(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.user = user_factory()
@@ -114,7 +114,7 @@ class TestCollectionViewSetList(TestCase):
 
 
 class TestCollectionViewSetDetail(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.user = user_factory()
@@ -256,7 +256,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
         # see TestCollectionAddonViewSetList.test_basic for the query breakdown
-        with self.assertNumQueries(29):
+        with self.assertNumQueries(30):
             response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
         patched_drf_setting = dict(settings.REST_FRAMEWORK)
@@ -310,11 +310,11 @@ class TestCollectionViewSetDetail(TestCase):
 
 
 class CollectionViewSetDataMixin:
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     data = {
         'name': {'fr': 'lé $túff', 'en-US': '$tuff'},
         'description': {'fr': 'Un dis une dát', 'en-US': 'dis n dat'},
-        'slug': 'stuff',
+        'slug': 'Stuff',
         'public': True,
         'default_locale': 'fr',
     }
@@ -343,7 +343,7 @@ class CollectionViewSetDataMixin:
             collection = collection.reload()
             assert collection.name == data['name']['fr']
             assert collection.description == data['description']['fr']
-            assert collection.slug == data['slug']
+            assert collection.slug == data['slug'] == 'Stuff'
             assert collection.listed == data['public']
             assert collection.default_locale == data['default_locale']
 
@@ -366,7 +366,9 @@ class CollectionViewSetDataMixin:
         data.update(name={'en-US': '   '})
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {
+            'name': ['This field may not be blank.']
+        }
 
     @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_update_name_invalid_flat_input(self):
@@ -375,13 +377,17 @@ class CollectionViewSetDataMixin:
         data.update(name='   ')
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {
+            'name': ['This field may not be blank.']
+        }
 
         # Passing a dict of localised values
         data.update(name={'en-US': '   '})
         response = self.send(data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {'name': ['Name cannot be empty.']}
+        assert json.loads(response.content) == {
+            'name': ['This field may not be blank.']
+        }
 
     def test_description_no_links(self):
         self.client.login_api(self.user)
@@ -483,6 +489,20 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         assert json.loads(response.content) == {
             'name': ['You must provide an object of {lang-code:value}.']
         }
+
+    def test_create_blank_description(self):
+        self.client.login_api(self.user)
+        data = {
+            'description': {'en-US': ''},
+            'name': {'en-US': 'this'},
+            'slug': 'minimal',
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        assert collection.description == data['description']['en-US']
+        assert collection.name == data['name']['en-US']
+        assert collection.slug == data['slug']
 
     @override_settings(DRF_API_GATES={'v5': ('l10n_flat_input_output',)})
     def test_create_minimal_flat_input(self):
@@ -622,7 +642,7 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
 
 
 class TestCollectionViewSetDelete(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.user = user_factory()
@@ -756,7 +776,7 @@ class CollectionAddonViewSetMixin:
 
 
 class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.user = user_factory()
@@ -789,7 +809,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # Set up our filtered-out-by-default addons
         self.addon_disabled.update(disabled_by_user=True)
         self.addon_deleted.delete()
-        self.addon_pending.current_version.all_files[0].update(
+        self.addon_pending.current_version.file.update(
             status=amo.STATUS_AWAITING_REVIEW
         )
 
@@ -996,7 +1016,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_no_caching(expected_num_queries=26)
+        self._test_no_caching(expected_num_queries=27)
 
     def test_no_caching_authenticated_by_username(self):
         self.user.update(username='notmozilla')
@@ -1009,7 +1029,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_no_caching(expected_num_queries=26)
+        self._test_no_caching(expected_num_queries=27)
 
     def test_no_caching_anonymous_not_mozilla_collection(self):
         # No caching done by addons-server, but we get the Cache-Control set
@@ -1047,7 +1067,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self._test_caching()
 
-    def _test_no_caching(self, expected_num_queries=25, expected_max_age=None):
+    def _test_no_caching(self, expected_num_queries=26, expected_max_age=None):
         with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
         # We aren't caching so we should be swapping DRF's Response with HttpResponse.
@@ -1080,7 +1100,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # See test_basic() below for the queries breakdown. What matters here
         # is that when we're being served a cached response we aren't doing
         # any queries besides the 2 savepoints.
-        with self.assertNumQueries(25):
+        with self.assertNumQueries(26):
             response = self.client.get(self.url)
         # For this API we're returning a HttpResponse directly, not a Response,
         # to improve pickled size to help caching.
@@ -1102,7 +1122,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
         # Any URL parameter added creates a separate cache key as well, so we
         # see the updated results with a new URL.
-        with self.assertNumQueries(25):
+        with self.assertNumQueries(26):
             response = self.client.get(self.url, {'foo': 'bar'})
         assert isinstance(response, HttpResponse)
         assert response['Content-Type'] == 'application/json'
@@ -1120,7 +1140,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response['Cache-Control'] == 'max-age=3600'
 
     def test_basic(self):
-        with self.assertNumQueries(25):
+        with self.assertNumQueries(26):
             # 1 start savepoint
             # 2 get user
             # 3 get collections of user
@@ -1145,7 +1165,8 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             # 22 user tags
             # 23 l10n for addons in all locales
             # 24 l10n for licenses in all locales
-            # 25 end savepoint
+            # 25 webext permissions for files
+            # 26 end savepoint
             super().test_basic()
 
     def test_transforms(self):
@@ -1188,7 +1209,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
 
 class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.user = user_factory()
@@ -1226,7 +1247,7 @@ class TestCollectionAddonViewSetDetail(CollectionAddonViewSetMixin, TestCase):
 
 
 class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.user = user_factory()
@@ -1295,7 +1316,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
 
     def test_fail_when_no_addon(self):
         self.client.login_api(self.user)
-        response = self.send(self.url, data={'notes': {'en-US': ''}})
+        response = self.send(self.url, data={'notes': {'en-US': 'a'}})
         assert response.status_code == 400
         assert json.loads(response.content) == {'addon': ['This field is required.']}
 
@@ -1334,7 +1355,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
 
 
 class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.user = user_factory()
@@ -1396,7 +1417,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
 
 
 class TestCollectionAddonViewSetDelete(CollectionAddonViewSetMixin, TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.user = user_factory()

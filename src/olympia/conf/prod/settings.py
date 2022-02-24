@@ -16,7 +16,6 @@ ENV = env('ENV')
 
 API_THROTTLING = True
 
-CDN_HOST = 'https://addons.cdn.mozilla.net'
 DOMAIN = env('DOMAIN', default='addons.mozilla.org')
 SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
@@ -24,8 +23,12 @@ INTERNAL_SITE_URL = env('INTERNAL_SITE_URL', default='https://addons.mozilla.org
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons.mozilla.org')
 SERVICES_URL = env('SERVICES_URL', default='https://services.addons.mozilla.org')
 CODE_MANAGER_URL = env('CODE_MANAGER_URL', default='https://code.addons.mozilla.org')
-STATIC_URL = '%s/static/' % CDN_HOST
-MEDIA_URL = '%s/user-media/' % CDN_HOST
+CDN_HOST = 'https://addons.cdn.mozilla.net'
+STATIC_URL = PROD_STATIC_URL
+MEDIA_URL = PROD_MEDIA_URL
+# user_media_url('addons') will use ADDONS_URL setting if present to build URLs
+# to xpi files. We want those on the dedicated CDN domain.
+ADDONS_URL = '%s/user-media/addons/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN
 
@@ -41,14 +44,6 @@ SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
 
 REPLICA_DATABASES = ['replica']
 
-CACHES = {}
-CACHES['default'] = env.cache('CACHES_DEFAULT')
-CACHES['default']['TIMEOUT'] = 500
-CACHES['default'][
-    'BACKEND'
-] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
-CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
-
 # Celery
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
 
@@ -62,11 +57,6 @@ CEF_PRODUCT = STATSD_PREFIX
 NEW_FEATURES = True
 
 ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
-
-NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
-
-if NEWRELIC_ENABLE:
-    NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
 
 FXA_CONFIG = {
     'default': {

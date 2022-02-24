@@ -58,7 +58,7 @@ class Update:
 
         data['app_id'] = app.id
 
-        sql = """SELECT `id`, `status`, `addontype_id`, `guid` FROM `addons`
+        sql = """SELECT `id`, `status`, `guid` FROM `addons`
                  WHERE `guid` = %(guid)s AND
                        `inactive` = 0 AND
                        `status` NOT IN (%(STATUS_DELETED)s, %(STATUS_DISABLED)s)
@@ -75,7 +75,7 @@ class Update:
         if result is None:
             return False
 
-        data['id'], data['addon_status'], data['type'], data['guid'] = result
+        data['id'], data['addon_status'], data['guid'] = result
         data['version_int'] = version_int(data['appVersion'])
         return True
 
@@ -88,17 +88,13 @@ class Update:
         sql = [
             """
             SELECT
+                `addons`.`id` AS `addon_id`,
                 `addons`.`guid` AS `guid`,
-                `addons`.`addontype_id` AS `type`,
-                `addons`.`inactive` AS `disabled_by_user`,
                 `appmin`.`version` AS `min`,
                 `appmax`.`version` AS `max`,
-                `files`.`id` AS `file_id`,
-                `files`.`status` AS `file_status`,
                 `files`.`hash`,
                 `files`.`filename`,
                 `versions`.`id` AS `version_id`,
-                `files`.`datestatuschanged` AS `datestatuschanged`,
                 `files`.`strict_compatibility` AS strict_compat,
                 `versions`.`releasenotes`,
                 `versions`.`version` AS `version`
@@ -136,22 +132,14 @@ class Update:
             pass  # no further SQL modification required.
 
         elif self.compat_mode == 'normal':
-            # When file has strict_compatibility enabled, or file has binary
-            # components, default to compatible is disabled.
+            # When file has strict_compatibility enabled, default to compatible
+            # is disabled.
             sql.append(
                 """AND
-                CASE WHEN `files`.`strict_compatibility` = 1 OR
-                          `files`.`binary_components` = 1
+                CASE WHEN `files`.`strict_compatibility` = 1
                 THEN `appmax`.`version_int` >= %(version_int)s ELSE 1 END
             """
             )
-            # Filter out versions that don't have the minimum maxVersion
-            # requirement to qualify for default-to-compatible.
-            d2c_min = applications.D2C_MIN_VERSIONS.get(data['app_id'])
-            if d2c_min:
-                data['d2c_min_version'] = version_int(d2c_min)
-                sql.append('AND `appmax`.`version_int` >= %(d2c_min_version)s ')
-
         else:  # Not defined or 'strict'.
             sql.append('AND `appmax`.`version_int` >= %(version_int)s ')
 
@@ -160,20 +148,16 @@ class Update:
         result = self.cursor.fetchone()
 
         if result:
-            row = dict(
+            data['row'] = dict(
                 zip(
                     [
+                        'addon_id',
                         'guid',
-                        'type',
-                        'disabled_by_user',
                         'min',
                         'max',
-                        'file_id',
-                        'file_status',
                         'hash',
                         'filename',
                         'version_id',
-                        'datestatuschanged',
                         'strict_compat',
                         'releasenotes',
                         'version',
@@ -181,10 +165,6 @@ class Update:
                     list(result),
                 )
             )
-            row['type'] = base.ADDON_SLUGS_UPDATE[row['type']]
-            row['url'] = get_cdn_url(data['id'], row)
-            row['appguid'] = applications.APPS_ALL[data['app_id']].guid
-            data['row'] = row
             return True
 
         return False
@@ -212,7 +192,9 @@ class Update:
         data = self.data['row']
         update = {
             'version': data['version'],
-            'update_link': data['url'],
+            'update_link': get_cdn_url(
+                data['addon_id'], filename=data['filename'], filehash=data['hash']
+            ),
             'applications': {'gecko': {'strict_min_version': data['min']}},
         }
         if data['strict_compat']:

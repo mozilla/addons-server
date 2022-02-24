@@ -6,8 +6,8 @@
     <div class="addon-previews">
       {% if addon.current_previews %}
         {% with preview=addon.current_previews[0] %}
-          <a class="screenshot thumbnail" rel="jquery-lightbox"
-            href="{{ preview.image_url }}" title="{{ preview.caption }}">
+          <a class="screenshot thumbnail" target="_blank" rel="noopener noreferrer"
+             href="{{ preview.image_url }}" title="{{ preview.caption }}">
               <img alt="" src="{{ preview.thumbnail_url }}" />
           </a>
         {% endwith %}
@@ -20,12 +20,6 @@
 
     <div class="addon-info object-lead">
       <p{{ addon.summary|locale_html }}>{{ addon.summary|nl2br }}</p>
-      {% if version and version.is_restart_required %}
-        <div>
-          <span>{{ _('Requires Restart') }}</span>
-        </div>
-      {% endif %}
-
       <table itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
         {% with addon_name='<span itemprop="itemreviewed">{0}</span>'|format_html(addon.name) %}
           {# L10n: This is a caption for a table. {0} is an add-on name. #}
@@ -62,7 +56,7 @@
           <tr class="addon-status">
             <th>{{ _('Status') }}</th>
             <td>
-                <strong>{{ addon.STATUS_CHOICES[addon.status] }}</strong>
+                <strong>{{ addon.get_status_display() }}</strong>
             </td>
           </tr>
           {% endif %}
@@ -149,7 +143,7 @@
           <tr class="meta-abuse">
             <th>{{ _('Abuse Reports') }}</th>
             <td>
-                <a href="{{ url('reviewers.abuse_reports', addon.slug)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
+                <a href="{{ url('reviewers.abuse_reports', addon.pk)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
                   <strong>{{ reports.paginator.count|numberfmt }}</strong>
                 </a>
             </td>
@@ -159,7 +153,7 @@
             <tr>
               <th>{{ _('Privacy Policy') }}</th>
               <td>
-                <a href="{{ url('reviewers.privacy', addon.slug)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
+                <a href="{{ url('reviewers.privacy', addon.pk)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
                   {{ _('View Privacy Policy') }}</a>
               </td>
             </tr>
@@ -174,7 +168,7 @@
             <tr>
               <th>{{ _('EULA') }}</th>
               <td>
-                <a href="{{ url('reviewers.eula', addon.slug)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
+                <a href="{{ url('reviewers.eula', addon.pk)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
                   {{ _('View End-User License Agreement') }}</a>
               </td>
             </tr>
@@ -193,12 +187,12 @@
 
   <div class="reports-and-ratings">
     {% if reports %}
-      <h3><a href="{{ url('reviewers.abuse_reports', addon.slug)|absolutify }}">{{_('Abuse Reports ({num})')|format_html(num=reports.paginator.count|numberfmt) }}</a></h3>
+      <h3><a href="{{ url('reviewers.abuse_reports', addon.pk)|absolutify }}">{{_('Abuse Reports ({num})')|format_html(num=reports.paginator.count|numberfmt) }}</a></h3>
       {% include "reviewers/includes/abuse_reports_list.html" %}
     {% endif %}
 
     {% if user_ratings %}
-      <h3><a href="{{ url('addons.ratings.list', addon.slug)|absolutify }}">{{_('Bad User Ratings ({num})')|format_html(num=user_ratings.paginator.count|numberfmt) }}</a></h3>
+      <h3><a href="{{ url('addons.ratings.list', addon.pk)|absolutify }}">{{_('Bad User Ratings ({num})')|format_html(num=user_ratings.paginator.count|numberfmt) }}</a></h3>
       {% include "reviewers/includes/user_ratings_list.html" %}
     {% endif %}
   </div>
@@ -224,8 +218,8 @@
       {% if addon.current_previews|length > 1 %}
         <h4>{{ _('Image Gallery') }}</h4>
         {% for preview in addon.current_previews[1:] %}
-        <a class="screenshot thumbnail" rel="jquery-lightbox"
-          href="{{ preview.image_url }}" title="{{ preview.caption }}">
+        <a class="screenshot thumbnail" target="_blank" rel="noopener noreferrer"
+           href="{{ preview.image_url }}" title="{{ preview.caption }}">
             <img src="{{ preview.thumbnail_url }}" alt="" />
         </a>
         {% endfor %}

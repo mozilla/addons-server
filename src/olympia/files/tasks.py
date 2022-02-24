@@ -5,13 +5,15 @@ import tempfile
 
 from pathlib import Path
 
+from django.conf import settings
+from django.core.files.storage import default_storage as storage
+
 import waffle
 
 import olympia.core.logger
 
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import File, FileUpload
@@ -52,10 +54,8 @@ def repack_fileupload(results, upload_pk):
                             xpi_data = parse_xpi(upload.path, minimal=True)
 
                             if not xpi_data.get('is_mozilla_signed_extension', False):
-                                # We don't need a `zip_file` because we are only
-                                # interested in the extracted data.
                                 json_data = ManifestJSONExtractor(
-                                    zip_file=None, data=manifest.read_bytes()
+                                    manifest.read_bytes()
                                 ).data
                                 manifest.write_text(json.dumps(json_data, indent=2))
                         except Exception:
@@ -78,13 +78,15 @@ def repack_fileupload(results, upload_pk):
             log.info('Zip from upload %s extracted, repackaging', upload_pk)
             # We'll move the file to its final location below with move_stored_file(),
             # so don't let tempfile delete it.
-            file_ = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
+            file_ = tempfile.NamedTemporaryFile(
+                dir=settings.TMP_PATH, suffix='.zip', delete=False
+            )
             shutil.make_archive(os.path.splitext(file_.name)[0], 'zip', tempdir)
         with open(file_.name, 'rb') as f:
             upload.hash = 'sha256:%s' % get_sha256(f)
         timer.log_interval('2.repackaged')
         log.info('Zip from upload %s repackaged, moving file back', upload_pk)
-        move_stored_file(file_.name, upload.path)
+        storage.move_stored_file(file_.name, upload.path)
         timer.log_interval('3.moved')
         upload.save()
         timer.log_interval('4.end')

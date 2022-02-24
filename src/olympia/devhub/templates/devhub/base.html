@@ -2,14 +2,14 @@
 
 {% block user_login_include %}
   {% with devhub_backlink="True" %}
-    {% include "impala/user_login.html" %}
+    {% include "user_login.html" %}
   {% endwith %}
 {% endblock %}
 
 {% if addon %}
-  {% set editable_body_class = "no-edit" if not check_addon_ownership(request, addon, dev=True) %}
+  {% set default_body_class = "no-edit" if not check_addon_ownership(request, addon, allow_developer=True) %}
 {% endif %}
-{% block bodyclass %}developer-hub {{ editable_body_class }}{% endblock %}
+{% block bodyclass %}developer-hub {{ editable_body_class|default(default_body_class) }}{% endblock %}
 
 {# Don't show the amo header on devhub pages #}
 {% set hide_header = True %}
@@ -32,7 +32,6 @@
   {{ js('zamboni/devhub') }}
 {% endblock %}
 
-{% set hide_mobile_link=True %}
 {% block footer_extras %}
   <img class="footerlogo" src="{{ static('img/developers/hub-logo-footer.png') }}" alt="">
 {% endblock %}

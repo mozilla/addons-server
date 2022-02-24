@@ -7,8 +7,6 @@ from django.utils.encoding import force_bytes, force_str
 
 import olympia.core.logger
 
-from olympia.users.models import UserProfile
-
 
 log = olympia.core.logger.getLogger('z.users')
 
@@ -50,4 +48,6 @@ def get_task_user():
     Returns a user object. This user is suitable for assigning to
     cron jobs or long running tasks.
     """
+    from olympia.users.models import UserProfile
+
     return UserProfile.objects.get(pk=settings.TASK_USER_ID)

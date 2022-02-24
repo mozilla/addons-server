@@ -96,12 +96,6 @@ def dj_paginator(pager, autoescape=True):
     return mark_safe(PaginationRenderer(pager).render())
 
 
-@library.filter
-def impala_paginator(pager):
-    t = loader.get_template('amo/impala/paginator.html')
-    return markupsafe.Markup(t.render({'pager': pager}))
-
-
 class PaginationRenderer:
     def __init__(self, pager):
         self.pager = pager
@@ -305,3 +299,9 @@ class Spaceless(Extension):
 
     def _strip_spaces(self, *, caller):
         return strip_spaces_between_tags(caller().strip())
+
+
+def new_context(context, **kw):
+    c = dict(context.items())
+    c.update(kw)
+    return c

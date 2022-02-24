@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2018-12-13 01:24+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stea"
-msgstr[1] "{0} stele"
-msgstr[2] "{0} de stele"
 
 msgid "There was a problem contacting the server."
 msgstr "A apărut o problemă la contactarea serverului."
@@ -99,18 +93,6 @@ msgstr[2] "Suplimentul tău a fost validat fără nicio eroare și cu {0} de mes
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Suplimentul a fost validat fără erori sau avertismente."
 
-msgid "Your submission will be automatically signed."
-msgstr "Propunerea ta va fi semnată automat."
-
-msgid "WebExtension upgrade"
-msgstr "Actualizare WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Acceptăm și încurajăm actualizările, dar procesul este ireversibil. Odată ce utilizatorii au instalat WebExtension, nu vor mai putea instala un supliment perimat."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Se portează pe MDN un supliment Firefox perimat"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Include note detaliate despre versiune (se poate face la pasul următor)."
 
@@ -147,36 +129,6 @@ msgstr "Imaginile trebuie să fie PNG sau JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoclipurile trebuie să fie WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema este incompatibilă cu versiunea de {0}"
-
-msgid "Flagged for review"
-msgstr "Marcat pentru recenzie"
-
-msgid "Your input is required"
-msgstr "Avem nevoie de opinia ta"
-
-msgid "Marked for deletion"
-msgstr "Marcat pentru ștergere"
-
-msgid "Updating results&hellip;"
-msgstr "Se actualizează rezultatele&hellip;"
-
-msgid "Category"
-msgstr "Categorie"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Caută teme pentru <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Caută aplicații pentru <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Caută suplimente pentru <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Folosește originalul"
 
 msgid "Week of {0}"
 msgstr "Săptămâna a {0}"
@@ -656,41 +608,6 @@ msgstr "Dată"
 msgid "Other"
 msgstr "Altele"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Acceptă și instalează"
-
-msgid "Add to {0}"
-msgstr "Adaugă în {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Instalează pentru {0} oricum"
-
-msgid "Download for {0} anyway"
-msgstr "Descarcă pentru {0} oricum"
-
-msgid "Not available for your platform"
-msgstr "Indisponibil pentru platforma ta"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Suplimentul nu este compatibil cu versiunea ta de {0}."
-
-msgid "View other versions"
-msgstr "Vezi alte versiuni"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funcționează cu {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funcționează cu {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Numai cu Firefox — Descarcă Firefox acum!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Ne pare rău, dar ai nevoie de un browser bazat pe Mozilla (cum ar fi Firefox) pentru a instala un plugin de căutare."
-
 msgid "Changes Saved"
 msgstr "Modificări salvate"
 
@@ -711,12 +628,6 @@ msgstr "Se procesează schimbările imaginii"
 
 msgid "Select an application first"
 msgstr "Selectează o aplicație mai întâi"
-
-msgid "No results found."
-msgstr "Nu s-au găsit rezultate."
-
-msgid "Loading..."
-msgstr "Se încarcă..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -759,12 +670,6 @@ msgstr "Recenzează textul"
 
 msgid "Review notes found"
 msgstr "Note de recenzie găsite"
-
-msgid "Average Reviews"
-msgstr "Număr mediu de recenzii"
-
-msgid "Number of Reviews"
-msgstr "Număr de recenzii"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Mărimea maximă de încărcare este {0} - alege o imagine de fundal mai mică."

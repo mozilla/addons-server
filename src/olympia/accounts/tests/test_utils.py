@@ -6,18 +6,16 @@ from datetime import datetime
 from urllib.parse import parse_qs, urlparse
 from unittest import mock
 
-from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
-from django.utils.encoding import force_bytes, force_str
+from django.utils.encoding import force_str
 
 from waffle.testutils import override_switch
 
 from olympia.accounts import utils
 from olympia.accounts.utils import process_fxa_event
 from olympia.amo.tests import TestCase, user_factory
-from olympia.users.models import UserProfile
 
 
 FXA_CONFIG = {
@@ -26,81 +24,6 @@ FXA_CONFIG = {
         'client_secret': 'bar',
     },
 }
-
-
-@override_settings(FXA_CONFIG=FXA_CONFIG)
-def test_fxa_config_anonymous():
-    request = RequestFactory().get('/en-US/firefox/addons')
-    request.session = {'fxa_state': 'thestate!'}
-    request.user = AnonymousUser()
-    assert utils.fxa_config(request) == {
-        'clientId': 'foo',
-        'state': 'thestate!',
-        'oauthHost': 'https://oauth-stable.dev.lcip.org/v1',
-        'contentHost': 'https://stable.dev.lcip.org',
-        'profileHost': 'https://stable.dev.lcip.org/profile/v1',
-        'scope': 'profile openid',
-    }
-
-
-@override_settings(FXA_CONFIG=FXA_CONFIG)
-def test_fxa_config_logged_in():
-    request = RequestFactory().get('/en-US/firefox/addons')
-    request.session = {'fxa_state': 'thestate!'}
-    request.user = UserProfile(email='me@mozilla.org')
-    assert utils.fxa_config(request) == {
-        'clientId': 'foo',
-        'state': 'thestate!',
-        'email': 'me@mozilla.org',
-        'oauthHost': 'https://oauth-stable.dev.lcip.org/v1',
-        'contentHost': 'https://stable.dev.lcip.org',
-        'profileHost': 'https://stable.dev.lcip.org/profile/v1',
-        'scope': 'profile openid',
-    }
-
-
-@override_settings(FXA_CONFIG=FXA_CONFIG)
-@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
-def test_default_fxa_login_url_with_state():
-    path = '/en-US/addons/abp/?source=ddg'
-    request = RequestFactory().get(path)
-    request.session = {'fxa_state': 'myfxastate'}
-    raw_url = utils.default_fxa_login_url(request)
-    url = urlparse(raw_url)
-    base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path
-    )
-    assert base == 'https://accounts.firefox.com/oauth/authorization'
-    query = parse_qs(url.query)
-    next_path = urlsafe_b64encode(force_bytes(path)).rstrip(b'=')
-    assert query == {
-        'action': ['signin'],
-        'client_id': ['foo'],
-        'scope': ['profile openid'],
-        'state': [f'myfxastate:{force_str(next_path)}'],
-    }
-
-
-@override_settings(FXA_CONFIG=FXA_CONFIG)
-@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
-def test_default_fxa_register_url_with_state():
-    path = '/en-US/addons/abp/?source=ddg'
-    request = RequestFactory().get(path)
-    request.session = {'fxa_state': 'myfxastate'}
-    raw_url = utils.default_fxa_register_url(request)
-    url = urlparse(raw_url)
-    base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path
-    )
-    assert base == 'https://accounts.firefox.com/oauth/authorization'
-    query = parse_qs(url.query)
-    next_path = urlsafe_b64encode(force_bytes(path)).rstrip(b'=')
-    assert query == {
-        'action': ['signup'],
-        'client_id': ['foo'],
-        'scope': ['profile openid'],
-        'state': [f'myfxastate:{force_str(next_path)}'],
-    }
 
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
@@ -130,6 +53,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
     }
 
 
@@ -161,6 +85,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
     }
 
 
@@ -195,27 +120,36 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
         'prompt': ['none'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
     }
 
 
 def test_unicode_next_path():
     path = '/en-US/føø/bãr'
     request = RequestFactory().get(path)
-    request.session = {}
-    url = utils.default_fxa_login_url(request)
+    request.session = {'fxa_state': 'fake-state'}
+    url = utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path=utils.path_with_query(request),
+        action='signin',
+    )
     state = parse_qs(urlparse(url).query)['state'][0]
     next_path = urlsafe_b64decode(state.split(':')[1] + '===')
     assert next_path.decode('utf-8') == path
 
 
-@mock.patch('olympia.accounts.utils.default_fxa_login_url')
-def test_redirect_for_login(default_fxa_login_url):
-    login_url = 'https://example.com/login'
-    default_fxa_login_url.return_value = login_url
-    request = mock.MagicMock()
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_redirect_for_login():
+    request = RequestFactory().get('/somewhere')
+    request.session = {'fxa_state': 'fake-state'}
     response = utils.redirect_for_login(request)
-    default_fxa_login_url.assert_called_with(request)
-    assert response['location'] == login_url
+    assert response['location'] == utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path='/somewhere',
+        action='signin',
+    )
 
 
 @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
@@ -240,6 +174,7 @@ def test_fxa_login_url_when_faking_fxa_auth():
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
     }
 
 
@@ -405,3 +340,40 @@ class TestProcessFxAEventDelete(TestCase):
         delete_user_event_mock.assert_called_with(
             self.fxa_id, totimestamp(self.email_changed_date)
         )
+
+
+class TestProcessFxAEventResetTestCase(TestCase):
+    fxa_id = 'ABCDEF012345689'
+    event = 'reset'
+
+    def setUp(self):
+        self.event_date = self.days_ago(42)
+        self.body = json.dumps(
+            {
+                'Message': json.dumps(
+                    {
+                        'event': self.event,
+                        'uid': self.fxa_id,
+                        'ts': totimestamp(self.event_date),
+                    }
+                )
+            }
+        )
+
+    def test_success_integration(self):
+        user = user_factory(fxa_id=self.fxa_id)
+        process_fxa_event(self.body)
+        user.reload()
+        assert user.auth_id is None
+
+    @mock.patch('olympia.accounts.utils.clear_sessions_event.delay')
+    def test_success(self, clear_sessions_event_mock):
+        process_fxa_event(self.body)
+        clear_sessions_event_mock.assert_called()
+        clear_sessions_event_mock.assert_called_with(
+            self.fxa_id, totimestamp(self.event_date), self.event
+        )
+
+
+class TestProcessFxAEventPasswordChangeTestCase(TestProcessFxAEventResetTestCase):
+    event = 'passwordChange'

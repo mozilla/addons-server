@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2020-11-19 16:10+0000\n"
-"Last-Translator: ralph.seaborn <ralph.seaborn@gmx.com>\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2022-01-19 10:15+0000\n"
+"Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
@@ -16,812 +16,720 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 "X-Generator: Pontoon\n"
 
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjarna"
-msgstr[1] ""
-
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Vandamál kom upp við að hafa samband við netþjóninn."
 
 msgid "Select a file..."
-msgstr ""
+msgstr "Veldu skrá..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr ""
+msgstr "Nafn viðbótar ætti að enda á .zip, .xpi or .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% lokið"
 
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{0} af {1}"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Hætta við"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "Sendi inn {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Villa með {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "Endilega tilkynntu um vandamál tengd 'linting' á GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Viðbótin þín féll á fullgildingu með {0} villu."
+msgstr[1] "Viðbótin þín féll á fullgildingu með {0} villum."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;og {0} í viðbót"
+msgstr[1] "&hellip;og {0} í viðbót"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Sjá alla fullgildingarskýrsluna"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "Fullgilda {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Viðbótin þín fer yfir hámarksstærðina {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Fékk autt svar frá netþjóninum; staða: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Upp kom óvænt villa í netþjóni við fullgildingu."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Lauk við að fullgilda {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Fullgilding viðbótarinnar þinnar féll á tímamörkum, það þarf að yfirfara hana handvirkt."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Viðbótin þín var fullgilt með engum villum og {0} aðvörun."
+msgstr[1] "Viðbótin þín var fullgilt með engum villum og {0} aðvörunum."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Viðbótin þín var fullgilt með engum villum og {0} skilaboðum."
+msgstr[1] "Viðbótin þín var fullgilt með engum villum og {0} skilaboðum."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
-
-msgid "Your submission will be automatically signed."
-msgstr ""
-
-msgid "WebExtension upgrade"
-msgstr ""
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Viðbótin þín var fullgilt með engum villum eða aðvörunum."
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Láttu ítarlegar athugasemdir við útgáfuna fylgja (þetta er hægt að gera í næsta skrefi)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Ef viðbótin þín krefst innskráningar á vefsíðu til að prófa að fullu, láttu þá notandanafn og lykilorð í prófinu fylgja athugasemdunum til umsagnaraðila (það er hægt að gera í næsta skrefi)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Gátlisti við innsendingu viðbóta"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Staðfestu eftirfarandi atriði áður en þú lýkur við skilin. Þetta mun lágmarka tafir eða misskilning meðan á yfirferðarferlinu stendur:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Samþjappaðar, samtengdar eða á annan hátt vélbúnar skriftur (að undanskildum þekktum aðgerðasöfnum) þurfa að hafa frumkóða sinn lagðann fram sérstaklega til yfirferðar. Gakktu úr skugga um að þú "
+"notir reitinn til að senda inn frumkóðann til að forðast að innsendingu þinni verði hafnað."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Fullgildingarferlið fann þessi vandamál sem geta leitt til höfnunar:"
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Skráartegundin sem þú sendir inn er ekki þekkt."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Skráin þín fer yfir hámarksstærðina {0}."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Þú hættir við innsendinguna."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Myndir verða að vera annað hvort PNG eða JPG."
 
 msgid "Videos must be in WebM."
-msgstr ""
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr ""
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Your input is required"
-msgstr ""
-
-msgid "Marked for deletion"
-msgstr ""
-
-msgid "Updating results&hellip;"
-msgstr ""
-
-msgid "Category"
-msgstr ""
-
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-msgid "Search apps for <b>{0}</b>"
-msgstr ""
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
-
-msgid "Use original"
-msgstr ""
+msgstr "Myndskeið verða að vera í WebM."
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Vika {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} niðurhal"
+msgstr[1] "{0} niðurhöl"
 
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} notandi"
+msgstr[1] "{0} notendur"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} viðbót"
+msgstr[1] "{0} viðbætur"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} safn"
+msgstr[1] "{0} söfn"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} umsögn"
+msgstr[1] "{0} umsagnir"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} sala"
+msgstr[1] "{0} sölur"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} endurgreiðsla"
+msgstr[1] "{0} endurgreiðslur"
 
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} uppsetning"
+msgstr[1] "{0} uppsetningar"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Sótt gögn"
 
 msgid "Daily Users"
-msgstr ""
+msgstr "Daglegir notendur"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Upphæð, í USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Fjöldi framlaga"
 
 msgid "More Info..."
-msgstr ""
+msgstr "Nánari upplýsingar..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr ""
+msgstr "Upplýsingar um {0}"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Söfn búin til"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Viðbætur í notkun"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Viðbætur búnar til"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Viðbætur sóttar"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Viðbætur uppfærðar"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Umsagnir skrifaðar"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Nýskráningar notenda"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Áskrifendur"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Einkunnir"
 
 msgid "Sales"
-msgstr ""
+msgstr "Sala"
 
 msgid "Installs"
-msgstr ""
+msgstr "Uppsetningar"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Óþekkt"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Viðbótastjóri"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Kynningarefni í viðbótastjóra"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Sérvalið í viðbótastjóra"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Frekari upplýsingar um viðbótastjóra"
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Tillögur í leit"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Leitarniðurstöður"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Heimasíða kynningarefni"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Heimasíða úrvalsefni"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Nýtt og væntanlegt á heimasíðu"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Vinsælast á heimasíðu"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "Ítarleg síða"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Ítarleg síða (neðst)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Ítarleg síða (þróunarrás)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Oft notað með"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Annað frá höfundinum"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "Kerfiskröfur"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Selja dýrara"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Kynnstu höfundinum"
 
 msgid "User Profile"
-msgstr ""
+msgstr "Notandasnið"
 
 msgid "Version History"
-msgstr ""
+msgstr "Útgáfuferill"
 
 msgid "Sharing"
-msgstr ""
+msgstr "Deiling"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Flokkasíður"
 
 msgid "Collections"
-msgstr ""
+msgstr "Söfn"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Flokkur í úrvalshringekju á fyrstu síðu"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Flokkur í hæstu einkunn á fyrstu síðu"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Flokkur í vinsælasta á fyrstu síðu"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Flokkur í nýlega bætt við á fyrstu síðu"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Röðun eftir úrvalsefni við skoðun lista"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Röðun eftir notendum við skoðun lista"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Röðun eftir einkunn við skoðun lista"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Röðun eftir hvenær bíð til við skoðun lista"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Röðun eftir nafni við skoðun lista"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Röðun eftir vinsældum við skoðun lista"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Röðun eftir uppfærslu við skoðun lista"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Röðun eftir væntanlegu við skoðun lista"
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Samtals framlagt"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "Meðalframlag"
 
 msgid "Usage"
-msgstr ""
+msgstr "Notkun"
 
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 msgid "Fennec"
-msgstr ""
+msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "Niðurhal og daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal og daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "Uppsetningar og daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Uppsetningar og daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "Niðurhal, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal frá {0} í {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "Daglegir notendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "Daglegir notendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "Forrit, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Forrit frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Countries, last {0} days"
-msgstr ""
+msgstr "Lönd, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Countries from {0} to {1}"
-msgstr ""
+msgstr "Lönd frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Stýrikerfi, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Stýrikerfi frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Tungumál, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Tungumál frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Útgáfur viðbótar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Útgáfur viðbótar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Staða viðbótar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Staða viðbótar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Niðurhal grunnkóða, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal grunnkóða frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr ""
+msgstr "Niðurhal gagnamiðla, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal gagnamiðla frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
-msgstr ""
+msgstr "Niðurhal á efni, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
-msgstr ""
+msgstr "Niðurhal á efni frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
-msgstr ""
+msgstr "Niðurhalsherferðir, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Campaigns from {0} to {1}"
-msgstr ""
+msgstr "Niðurhalsherferðir frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Framlög, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Framlög frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "Vefmælingar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "Vefmælingar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "Viðbætur í notkun, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "Viðbætur í notkun frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Viðbætur sóttar, síðustu {0} dagar"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Viðbætur sóttar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "Viðbætur búnar til, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "Viðbætur búnar til frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "Viðbætur uppfærðar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "Viðbætur uppfærðar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr ""
+msgstr "Umsagnir skrifaðar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr ""
+msgstr "Umsagnir skrifaðar frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "Nýskráningar notenda, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "Nýskráningar notenda frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "Söfn búin til, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "Söfn búin til frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr ""
+msgstr "Áskrifendur, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr ""
+msgstr "Áskrifendur frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr ""
+msgstr "Einkunnir, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr ""
+msgstr "Einkunnir frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Sala, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Sala frá {0} til {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Uppsetningar, síðustu {0} daga"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Uppsetningar frá {0} til {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> síðustu {1} daga"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "<b>{0}</b> frá {1} til {2}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> meðaltal síðustu {1} daga"
 
 msgid "No data available."
-msgstr ""
+msgstr "Engin gögn tiltæk."
 
 msgid "Date"
-msgstr ""
+msgstr "Dagsetning"
 
 msgid "Other"
-msgstr ""
-
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr ""
-
-msgid "Add to {0}"
-msgstr ""
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr ""
-
-msgid "Download for {0} anyway"
-msgstr ""
-
-msgid "Not available for your platform"
-msgstr ""
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
-
-msgid "View other versions"
-msgstr ""
-
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-msgid "Works with {app}"
-msgstr ""
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
+msgstr "Annað"
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "Breytingar vistaðar"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Settu inn tölvupóstfang nýs höfundar"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Villa kom upp við að senda inn skrána þína."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} skrá"
+msgstr[1] "{files} skrár"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Myndbreytingar eru í vinnslu"
 
 msgid "Select an application first"
-msgstr ""
-
-msgid "No results found."
-msgstr ""
-
-msgid "Loading..."
-msgstr ""
+msgstr "Veldu fyrst forrit"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> stafur"
+msgstr[1] "<b>{0}</b> stafir"
 
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> stafur eftir"
+msgstr[1] "<b>{0}</b> stafir eftir"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "Þessi eiginleiki er tímabundið óvirkur meðan við sinnum viðhaldi á vefsvæðinu. Athugaðu aftur aðeins síðar."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "Fjarlægja þessa staðfærslu"
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} skoðaði þessa síðu fyrst."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} var að skoða þessa viðbót fyrst."
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Hleð inn&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Útgáfuskýringar"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Athugasemdir fyrir umsagnaraðila"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "Engar útgáfuskýringar fundust"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Yfirfara texta"
 
 msgid "Review notes found"
-msgstr ""
-
-msgid "Average Reviews"
-msgstr ""
-
-msgid "Number of Reviews"
-msgstr ""
+msgstr "Yfirferðarskýringar fundust"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Hámarksstærð innsendinga er {0} - veldu minni bakgrunnsmynd."
 
 msgid "Requested Info"
-msgstr ""
+msgstr "Umbeðnar upplýsingar"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Flaggað"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Tvítaka"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Hafnað"
 
 msgid "Approved"
-msgstr ""
+msgstr "Samþykkt"
 
 msgid "No results found"
-msgstr ""
+msgstr "Engar niðurstöður fundust"
 
 msgid "Theme"
-msgstr ""
+msgstr "Þema"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Höfundur umsagnar"
 
 msgid "Status"
-msgstr ""
+msgstr "Staða"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Stóðst öll próf."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Þessi próf voru ekki keyrð."
 
 msgid "Tests"
-msgstr ""
+msgstr "Prófanir"
 
 msgid "Error"
-msgstr ""
+msgstr "Villa"
 
 msgid "Warning"
-msgstr ""
+msgstr "Aðvörun"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} lína {1} dálkur {2}"
 
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} lína {1}"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Viðbót féll á fullgildingu."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Viðbót stóðst fullgildingu."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Villa"
+msgstr[1] ", %n villur."
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} aðvörun"
+msgstr[1] "{0} aðvaranir"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} tilkynning"
+msgstr[1] "{0} tilkynningar"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Fullgildingarferlinu var ekki hægt að ljúka eða að því lauk með villumeldingum"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Innri villa í netþjóni"

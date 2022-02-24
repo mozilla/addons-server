@@ -3,11 +3,16 @@ import os
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
 
-import pytest
 from django import forms
 from django.conf import settings
 from django.core import mail
+from django.db import IntegrityError
 from django.utils import translation
+
+import pytest
+
+from waffle.testutils import override_switch
+
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
@@ -27,7 +32,13 @@ from olympia.addons.models import (
     AddonGUID,
     track_addon_status_change,
 )
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    user_factory,
+    version_factory,
+    version_review_flags_factory,
+)
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -36,8 +47,8 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED, SPONSORED
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
-from olympia.files.tests.test_models import UploadTest
-from olympia.files.utils import Extractor, parse_addon
+from olympia.files.tests.test_models import UploadMixin
+from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
@@ -623,11 +634,14 @@ class TestAddonModels(TestCase):
 
     def test_delete_clear_pending_rejection(self):
         addon = addon_factory()
+        user = user_factory()
         version_factory(addon=addon)
         other_addon = addon_factory()
         for version in Version.objects.all():
-            VersionReviewerFlags.objects.create(
-                version=version, pending_rejection=datetime.now() + timedelta(days=1)
+            version_review_flags_factory(
+                version=version,
+                pending_rejection=datetime.now() + timedelta(days=1),
+                pending_rejection_by=user,
             )
         assert VersionReviewerFlags.objects.filter(version__addon=addon).exists()
         addon.delete()
@@ -642,7 +656,17 @@ class TestAddonModels(TestCase):
         assert VersionReviewerFlags.objects.filter(
             version__addon=other_addon,
             pending_rejection__isnull=False,
+            pending_rejection_by=user,
         ).exists()
+        # pending_rejection_by should have been cleared for those not pending
+        # rejection.
+        assert (
+            VersionReviewerFlags.objects.filter(
+                version__addon=other_addon,
+                pending_rejection_by=user,
+            ).count()
+            == 1
+        )
 
     def test_delete_reason(self):
         """Test deleting with a reason gives the reason in the mail."""
@@ -803,16 +827,30 @@ class TestAddonModels(TestCase):
 
         addon = Addon.objects.get(pk=3615)
         addon.icon_type = None
-        assert addon.get_icon_url(32).endswith('icons/default-32.png?v=20210601')
+        assert (
+            addon.get_icon_url(32)
+            == 'http://testserver/static/img/addon-icons/default-32.png'
+        )
 
     def test_icon_url_default(self):
-        a = Addon.objects.get(pk=3615)
-        a.update(icon_type='')
-        default = 'icons/default-32.png?v=20210601'
-        assert a.get_icon_url(32).endswith(default)
-        assert a.get_icon_url(32).endswith(default)
-        assert a.get_icon_url(32, use_default=True).endswith(default)
-        assert a.get_icon_url(32, use_default=False) is None
+        addon = Addon.objects.get(pk=3615)
+        addon.update(icon_type='')
+        # In prod there would be some cachebusting because we're using
+        # staticfiles's storage url() method, but in tests where we don't run
+        # collectstatic first that is not the case.
+        assert (
+            addon.get_icon_url(32)
+            == 'http://testserver/static/img/addon-icons/default-32.png'
+        )
+        assert (
+            addon.get_icon_url(64)
+            == 'http://testserver/static/img/addon-icons/default-64.png'
+        )
+        assert (
+            addon.get_icon_url(32, use_default=True)
+            == 'http://testserver/static/img/addon-icons/default-32.png'
+        )
+        assert addon.get_icon_url(32, use_default=False) is None
 
     def test_thumbnail_url(self):
         """
@@ -822,9 +860,7 @@ class TestAddonModels(TestCase):
         a = Addon.objects.get(pk=4664)
         a.thumbnail_url.index('/previews/thumbs/20/20397.jpg?modified=')
         a = Addon.objects.get(pk=5299)
-        assert a.thumbnail_url.endswith('/icons/no-preview.png'), (
-            'No match for %s' % a.thumbnail_url
-        )
+        assert a.thumbnail_url == 'http://testserver/static/img/icons/no-preview.png'
 
     def test_is_unreviewed(self):
         """Test if add-on is unreviewed or not"""
@@ -844,19 +880,6 @@ class TestAddonModels(TestCase):
         # Should be public by status, but since it's disabled add-on it's not.
         addon.disabled_by_user = True
         assert not addon.is_public()
-
-    def test_is_restart_required(self):
-        addon = Addon.objects.get(pk=3615)
-        file_ = addon.current_version.all_files[0]
-        assert not file_.is_restart_required
-        assert not addon.is_restart_required
-
-        file_.update(is_restart_required=True)
-        assert Addon.objects.get(pk=3615).is_restart_required
-
-        addon.versions.all().delete()
-        addon._current_version = None
-        assert not addon.is_restart_required
 
     def newlines_helper(self, string_before):
         addon = Addon.objects.get(pk=3615)
@@ -1317,15 +1340,12 @@ class TestAddonModels(TestCase):
         version.save()
         assert addon.status == amo.STATUS_NOMINATED
 
-    def test_can_request_review_no_files(self):
-        addon = Addon.objects.get(pk=3615)
-        addon.versions.all()[0].files.all().delete()
-        assert addon.can_request_review() is False
-
     def test_can_request_review_rejected(self):
         addon = Addon.objects.get(pk=3615)
         latest_version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
-        latest_version.files.update(status=amo.STATUS_DISABLED)
+        latest_version.file.update(
+            status=amo.STATUS_DISABLED, reviewed=datetime.today()
+        )
         assert addon.can_request_review() is False
 
     def check_can_request_review(self, status, expected, extra_update_kw=None):
@@ -1441,18 +1461,6 @@ class TestAddonModels(TestCase):
 
         appname = getattr(amo.APP_IDS.get(amo.FIREFOX.id), 'short', '')
         assert addon.app_categories.get(appname)[0].name in names
-
-    def test_binary_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary=True)
-        assert addon.binary
-
-    def test_binary_components_property(self):
-        addon = Addon.objects.get(id=3615)
-        file = addon.current_version.files.all()[0]
-        file.update(binary_components=True)
-        assert addon.binary_components
 
     def test_listed_has_complete_metadata_no_categories(self):
         addon = Addon.objects.get(id=3615)
@@ -1744,7 +1752,7 @@ class TestAddonModels(TestCase):
         assert addon.promoted_group() == SPONSORED
 
         # check it doesn't error if there's no current_version
-        addon.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
+        addon.current_version.file.update(status=amo.STATUS_DISABLED)
         addon.update_version()
         assert not addon.current_version
         assert not addon.promoted_group()
@@ -2043,9 +2051,8 @@ class TestShouldRedirectToSubmitFlow(TestCase):
         addon.update(status=amo.STATUS_NULL)
         assert addon.should_redirect_to_submit_flow()
 
-        for ver in addon.versions.all():
-            for file_ in ver.all_files:
-                file_.update(status=amo.STATUS_DISABLED)
+        for version in addon.versions.all():
+            version.file.update(status=amo.STATUS_DISABLED)
         assert not addon.should_redirect_to_submit_flow()
 
     def test_only_null_redirects(self):
@@ -2425,7 +2432,7 @@ class TestListedAddonTwoVersions(TestCase):
         Addon.objects.get(id=2795)  # bug 563967
 
 
-class TestAddonFromUpload(UploadTest):
+class TestAddonFromUpload(UploadMixin, TestCase):
     fixtures = ['base/users']
 
     @classmethod
@@ -2444,10 +2451,11 @@ class TestAddonFromUpload(UploadTest):
         super().setUp()
         self.selected_app = amo.FIREFOX.id
         self.user = UserProfile.objects.get(pk=999)
+        self.user.update(last_login_ip='127.0.0.10')
         self.addCleanup(translation.deactivate)
 
         def _app(application):
-            return Extractor.App(
+            return ManifestJSONExtractor.App(
                 appdata=application,
                 id=application.id,
                 min=AppVersion.objects.get(
@@ -2481,7 +2489,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         deleted.update(status=amo.STATUS_APPROVED)
         deleted.delete()
@@ -2493,12 +2501,13 @@ class TestAddonFromUpload(UploadTest):
             parse_addon(self.upload, user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
+    @override_switch('allow-deleted-guid-reuse', active=True)
     def test_existing_guid_same_author(self):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         deleted = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         assert AddonGUID.objects.filter(guid='@webextension-guid').count() == 1
         # Claim the add-on.
@@ -2512,7 +2521,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         deleted.reload()
         assert addon.guid == '@webextension-guid'
@@ -2522,34 +2531,37 @@ class TestAddonFromUpload(UploadTest):
             deleted
         )
 
-    def test_old_soft_deleted_addons_and_upload_non_extension(self):
-        """We used to just null out GUIDs on soft deleted addons. This test
-        makes sure we don't fail badly when uploading an add-on which isn't an
-        extension (has no GUID).
-        See https://github.com/mozilla/addons-server/issues/1659."""
-        # Upload a couple of addons so we can pretend they were soft deleted.
-        deleted1 = Addon.from_upload(
-            self.get_upload('webextension.xpi'),
-            [self.selected_app],
-            parsed_data=self.dummy_parsed_data,
+    def test_existing_guid_same_author_but_switch_allowing_reuse_is_off(self):
+        # Upload addon so we can delete it.
+        self.upload = self.get_upload('webextension.xpi')
+        parsed_data = parse_addon(self.upload, user=self.user)
+        deleted = Addon.from_upload(
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
-        deleted2 = Addon.from_upload(
-            self.get_upload('webextension_no_id.xpi'),
-            [self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        AddonUser(addon=deleted1, user=self.user).save()
-        AddonUser(addon=deleted2, user=self.user).save()
+        assert AddonGUID.objects.filter(guid='@webextension-guid').count() == 1
+        # Claim the add-on.
+        AddonUser(addon=deleted, user=self.user).save()
+        deleted.update(status=amo.STATUS_APPROVED)
+        deleted.delete()
+        assert deleted.guid == '@webextension-guid'
 
-        # Soft delete them like they were before, by nullifying their GUIDs.
-        deleted1.update(status=amo.STATUS_APPROVED, guid=None)
-        deleted2.update(status=amo.STATUS_APPROVED, guid=None)
+        # Now upload the same add-on again (so same guid). ValidationError
+        # would be raised if we didn't override the switch, we're bypassing
+        # it because we're interested in the error coming after that.
+        with override_switch('allow-deleted-guid-reuse', active=True):
+            self.upload = self.get_upload('webextension.xpi')
+            parsed_data = parse_addon(self.upload, user=self.user)
+
+        with self.assertRaises(IntegrityError):
+            Addon.from_upload(
+                self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+            )
 
     def test_xpi_attributes(self):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         assert addon.name == 'My WebExtension Addon'
         assert addon.guid == '@webextension-guid'
@@ -2563,28 +2575,30 @@ class TestAddonFromUpload(UploadTest):
     def test_xpi_version(self):
         addon = Addon.from_upload(
             self.get_upload('webextension.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         version = addon.versions.get()
         assert version.version == '0.0.1'
         assert len(version.compatible_apps.keys()) == 1
         assert list(version.compatible_apps.keys())[0].id == self.selected_app
-        assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
 
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.
+        self.dummy_parsed_data.pop('guid')
         addon = Addon.from_upload(
-            self.get_upload('webextension.xpi'),
-            [self.selected_app],
+            self.get_upload('webextension_no_id.xpi'),
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert addon.default_locale == 'en-US'
 
         translation.activate('es')
+        self.dummy_parsed_data.pop('guid')
         addon = Addon.from_upload(
-            self.get_upload('webextension.xpi'),
-            [self.selected_app],
+            self.get_upload('webextension_no_id.xpi'),
+            selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert addon.default_locale == 'es'
@@ -2593,7 +2607,9 @@ class TestAddonFromUpload(UploadTest):
         upload = self.get_upload('webextension.xpi')
         assert not upload.validation_timeout
         addon = Addon.from_upload(
-            upload, [self.selected_app], parsed_data=self.dummy_parsed_data
+            upload,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
         assert not addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
@@ -2608,7 +2624,9 @@ class TestAddonFromUpload(UploadTest):
         upload.validation = json.dumps(validation)
         assert upload.validation_timeout
         addon = Addon.from_upload(
-            upload, [self.selected_app], parsed_data=self.dummy_parsed_data
+            upload,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
         assert addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
@@ -2618,7 +2636,9 @@ class TestAddonFromUpload(UploadTest):
         assert not upload.validation_timeout
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         addon = Addon.from_upload(
-            upload, [self.selected_app], parsed_data=self.dummy_parsed_data
+            upload,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
         assert addon.needs_admin_code_review
         assert addon.auto_approval_disabled
@@ -2629,7 +2649,9 @@ class TestAddonFromUpload(UploadTest):
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         self.dummy_parsed_data['type'] = amo.ADDON_LPAPP
         addon = Addon.from_upload(
-            upload, [self.selected_app], parsed_data=self.dummy_parsed_data
+            upload,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
         assert not addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
@@ -2638,7 +2660,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('webextension_no_id.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
 
         assert addon.guid is not None
@@ -2649,7 +2671,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('webextension_no_id.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         new_addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
         assert new_addon.guid is not None
         assert new_addon.guid != addon.guid
@@ -2660,7 +2682,7 @@ class TestAddonFromUpload(UploadTest):
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
 
         assert addon.guid == '@webextension-guid'
@@ -2669,14 +2691,16 @@ class TestAddonFromUpload(UploadTest):
         with self.assertRaises(forms.ValidationError) as e:
             self.upload = self.get_upload('webextension.xpi')
             parsed_data = parse_addon(self.upload, user=self.user)
-            Addon.from_upload(self.upload, [self.selected_app], parsed_data=parsed_data)
+            Addon.from_upload(
+                self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+            )
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_webextension_resolve_translations(self):
         self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
 
         # Normalized from `en` to `en-US`
@@ -2698,7 +2722,6 @@ class TestAddonFromUpload(UploadTest):
             'default_locale': 'sv',
             'guid': 'notify-link-clicks-i18n@notzilla.org',
             'name': '__MSG_extensionName__',
-            'is_webextension': True,
             'type': 1,
             'apps': [],
             'summary': '__MSG_extensionDescription__',
@@ -2708,7 +2731,7 @@ class TestAddonFromUpload(UploadTest):
 
         addon = Addon.from_upload(
             self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
 
@@ -2723,7 +2746,6 @@ class TestAddonFromUpload(UploadTest):
             'default_locale': 'xxx',
             'guid': 'notify-link-clicks-i18n@notzilla.org',
             'name': '__MSG_extensionName__',
-            'is_webextension': True,
             'type': 1,
             'apps': [],
             'summary': '__MSG_extensionDescription__',
@@ -2733,12 +2755,36 @@ class TestAddonFromUpload(UploadTest):
 
         addon = Addon.from_upload(
             self.get_upload('notify-link-clicks-i18n.xpi'),
-            [self.selected_app],
+            selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
 
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
+
+    def test_activity_log(self):
+        # Set current user as the task user, but use an upload that belongs to
+        # another, making sure the activity log belongs to them and not the
+        # task user.
+        core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
+        self.upload = self.get_upload('webextension.xpi', user=self.user)
+        parsed_data = parse_addon(self.upload, user=self.user)
+        addon = Addon.from_upload(
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+        )
+        assert addon
+        assert (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.CREATE_ADDON.id)
+            .count()
+            == 1
+        )
+        log = (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.CREATE_ADDON.id)
+            .get()
+        )
+        assert log.user == self.user
 
 
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
@@ -3016,13 +3062,11 @@ class TestGetMadQueue(TestCase):
     def test_returns_addons_with_versions_flagged_by_mad(self):
         flagged_addon = addon_factory()
         version = version_factory(addon=flagged_addon)
-        VersionReviewerFlags.objects.create(
-            version=version, needs_human_review_by_mad=True
-        )
+        version_review_flags_factory(version=version, needs_human_review_by_mad=True)
         other_addon = addon_factory()
         version = version_factory(addon=other_addon)
         addon_pending_rejection = addon_factory()
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=addon_pending_rejection.current_version,
             needs_human_review_by_mad=True,
             pending_rejection=datetime.now(),
@@ -3153,6 +3197,146 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         assert result == addon
         assert result.worst_score == 66
         assert result.first_version_created == expected_first_created_date
+
+
+class TestListedPendingManualApprovalQueue(TestCase):
+    def test_basic(self):
+        # Shouldn't be in the queue:
+        addon_factory()
+        addon_factory(
+            type=amo.ADDON_STATICTHEME,
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        addon_factory(
+            status=amo.STATUS_NULL,
+            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version_factory(
+            addon=addon_factory(),
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        addon_factory(
+            status=amo.STATUS_NOMINATED, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        ),
+        version_factory(
+            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+        version_review_flags_factory(
+            version=version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ),
+            pending_rejection=datetime.now() + timedelta(days=1),
+        )
+        PromotedAddon.objects.create(
+            addon=version_factory(
+                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            ).addon,
+            group_id=RECOMMENDED.id,
+        ).addon
+        AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ),
+            auto_approval_delayed_until=datetime.now() - timedelta(days=1),
+        )
+
+        # Should be in the queue:
+        expected = [
+            AddonReviewerFlags.objects.create(
+                addon=addon_factory(
+                    status=amo.STATUS_NOMINATED,
+                    file_kw={
+                        'status': amo.STATUS_AWAITING_REVIEW,
+                    },
+                ),
+                auto_approval_disabled=True,
+            ).addon,
+            AddonReviewerFlags.objects.create(
+                addon=addon_factory(
+                    status=amo.STATUS_NOMINATED,
+                    file_kw={
+                        'status': amo.STATUS_AWAITING_REVIEW,
+                    },
+                ),
+                auto_approval_disabled_until_next_approval=True,
+            ).addon,
+            AddonReviewerFlags.objects.create(
+                addon=addon_factory(
+                    status=amo.STATUS_NOMINATED,
+                    file_kw={
+                        'status': amo.STATUS_AWAITING_REVIEW,
+                    },
+                ),
+                auto_approval_delayed_until=datetime.now() + timedelta(days=1),
+            ).addon,
+        ]
+
+        qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')
+        assert list(qs) == expected
+
+    def test_versions_annotations(self):
+        nomination_1 = self.days_ago(2)
+        AddonReviewerFlags.objects.create(
+            addon=addon_factory(
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                version_kw={'nomination': nomination_1},
+            ),
+            auto_approval_disabled=True,
+        )
+        nomination_2 = self.days_ago(1)
+        AddonReviewerFlags.objects.create(
+            addon=version_factory(
+                addon=addon_factory(version_kw={'nomination': self.days_ago(4)}),
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                nomination=nomination_2,
+            ).addon,
+            auto_approval_disabled=True,
+        )
+        expected = [nomination_1, nomination_2]
+        qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')
+        result = [addon.first_version_nominated for addon in qs]
+        assert result == expected
+
+    def test_staticthemes(self):
+        expected = [
+            addon_factory(
+                type=amo.ADDON_STATICTHEME,
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            )
+        ]
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        qs = Addon.objects.get_listed_pending_manual_approval_queue(
+            types=amo.GROUP_TYPE_THEME
+        ).order_by('pk')
+        assert list(qs) == expected
+
+    def test_with_recommended(self):
+        expected = [
+            PromotedAddon.objects.create(
+                addon=version_factory(
+                    addon=addon_factory(),
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                ).addon,
+                group_id=RECOMMENDED.id,
+            ).addon
+        ]
+        qs = Addon.objects.get_listed_pending_manual_approval_queue(
+            recommendable=True
+        ).order_by('pk')
+        assert list(qs) == expected
+
+    def test_query_only_group_by_on_addon_id(self):
+        sql = str(Addon.objects.get_listed_pending_manual_approval_queue().query)
+        assert sql.endswith('GROUP BY `addons`.`id` ORDER BY NULL')
 
 
 class TestAddonGUID(TestCase):

@@ -6,12 +6,15 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core
 from olympia.activity.models import (
+    GENERIC_USER_NAME,
     MAX_TOKEN_USE_COUNT,
     ActivityLog,
     ActivityLogToken,
     AddonLog,
     DraftComment,
+    GenericMozillaUser,
     IPLog,
+    ReviewActionReasonLog,
 )
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
@@ -22,7 +25,7 @@ from olympia.amo.tests import (
 )
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import CannedResponse
+from olympia.reviewers.models import CannedResponse, ReviewActionReason
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -89,8 +92,7 @@ class TestActivityLogToken(TestCase):
         assert self.token.is_valid()
 
     def test_rejected_version_still_valid(self):
-        for file_ in self.version.all_files:
-            file_.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         # Being a rejected version shouldn't mean you can't reply
         assert self.token.is_valid()
 
@@ -246,27 +248,6 @@ class TestActivityLog(TestCase):
         entry = ActivityLog.objects.get()
         assert str(entry) == 'hi there'
 
-    def test_user_log(self):
-        request = self.request
-        ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi there')
-        entries = ActivityLog.objects.for_user(request.user)
-        assert len(entries) == 1
-
-    def test_user_log_as_argument(self):
-        """
-        Tests that a user that has something done to them gets into the user
-        log.
-        """
-        user = UserProfile(username='Marlboro Manatee')
-        user.save()
-        ActivityLog.create(
-            amo.LOG.ADD_USER_WITH_ROLE, user, 'developer', Addon.objects.get()
-        )
-        entries = ActivityLog.objects.for_user(self.request.user)
-        assert len(entries) == 1
-        entries = ActivityLog.objects.for_user(user)
-        assert len(entries) == 1
-
     def test_to_string_num_queries_model_depending_on_addon(self):
         addon = Addon.objects.get()
         addon2 = addon_factory()
@@ -330,6 +311,43 @@ class TestActivityLog(TestCase):
         assert ip_log.activity_log == activity
         assert ip_log.ip_address == '15.16.23.42'
 
+    def test_review_action_reason_log(self):
+        addon = Addon.objects.get()
+        assert ReviewActionReasonLog.objects.count() == 0
+        # Creating an activity log without any `reason` arguments doesn't
+        # create a ReviewActionReasonLog.
+        action = amo.LOG.REJECT_VERSION
+        ActivityLog.create(
+            action,
+            addon,
+            addon.current_version,
+            user=self.request.user,
+        )
+        assert ReviewActionReasonLog.objects.count() == 0
+        # Creating an activity log with one or more`reason` arguments does
+        # create ReviewActionReasonLogs.
+        reason_1 = ReviewActionReason.objects.create(
+            name='a reason',
+            is_active=True,
+        )
+        reason_2 = ReviewActionReason.objects.create(
+            name='reason 2',
+            is_active=True,
+        )
+        ActivityLog.create(
+            action,
+            addon,
+            addon.current_version,
+            reason_1,
+            reason_2,
+            user=self.request.user,
+        )
+        assert ReviewActionReasonLog.objects.count() == 2
+        reason_ids_from_logs = [
+            log.reason_id for log in ReviewActionReasonLog.objects.all()
+        ]
+        assert sorted(reason_ids_from_logs) == sorted([reason_1.id, reason_2.id])
+
     def test_version_log(self):
         version = Version.objects.all()[0]
         ActivityLog.create(
@@ -369,8 +387,9 @@ class TestActivityLog(TestCase):
             amo.LOG.REJECT_VERSION, addon, version, user=self.request.user
         )
 
-        version_two = Version(addon=addon, license=version.license, version='1.2.3')
-        version_two.save()
+        version_two = version_factory(
+            addon=addon, license=version.license, version='1.2.3'
+        )
 
         ActivityLog.create(
             amo.LOG.REJECT_VERSION, addon, version_two, user=self.request.user
@@ -384,6 +403,23 @@ class TestActivityLog(TestCase):
 
         assert len(versions[0].all_activity) == 1
         assert len(versions[1].all_activity) == 1
+
+    def test_anonymize_user_for_developer_transformer(self):
+        addon = Addon.objects.get()
+        # This action's user can be shown.
+        ActivityLog.create(amo.LOG.CREATE_ADDON, addon, user=self.request.user)
+        # This action's user should not be shown.
+        ActivityLog.create(amo.LOG.FORCE_DISABLE, addon, user=self.request.user)
+
+        logs = ActivityLog.objects.all().transform(
+            ActivityLog.transformer_anonymize_user_for_developer
+        )
+
+        assert logs[0].action == amo.LOG.FORCE_DISABLE.id
+        assert isinstance(logs[0].user, GenericMozillaUser)
+        assert logs[0].user.name == GENERIC_USER_NAME
+        assert logs[1].action == amo.LOG.CREATE_ADDON.id
+        assert logs[1].user == self.request.user
 
     def test_xss_arguments_and_escaping(self):
         addon = Addon.objects.get()
@@ -455,9 +491,7 @@ class TestActivityLog(TestCase):
 
     def test_str_activity_file(self):
         addon = Addon.objects.get()
-        log = ActivityLog.create(
-            amo.LOG.UNLISTED_SIGNED, addon.current_version.current_file
-        )
+        log = ActivityLog.create(amo.LOG.UNLISTED_SIGNED, addon.current_version.file)
         assert str(log) == (
             '<a href="http://testserver/firefox/downloads/file/67442/'
             'delicious_bookmarks-2.1.072-fx.xpi">'

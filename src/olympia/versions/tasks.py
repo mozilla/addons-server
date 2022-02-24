@@ -6,7 +6,6 @@ from io import BytesIO
 
 from django.db import transaction
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.template import loader
 
 from PIL import Image
@@ -16,7 +15,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import extract_colors_from_image, pngcrush_image
+from olympia.amo.utils import extract_colors_from_image, pngcrush_image, SafeStorage
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
@@ -131,6 +130,7 @@ def render_to_svg(template, context, preview, thumbnail_dimensions, theme_manife
     finished_svg = template.render(with_ui_context).encode('utf-8')
 
     # and write that svg to preview.image_path
+    storage = SafeStorage(user_media=VersionPreview.media_folder)
     with storage.open(preview.image_path, 'wb') as image_path:
         image_path.write(finished_svg)
 

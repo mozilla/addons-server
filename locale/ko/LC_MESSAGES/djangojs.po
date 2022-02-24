@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2020-11-08 13:13+0000\n"
-"Last-Translator: tjddn0197 <tjddn0197@gmail.com>\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2022-01-29 19:35+0000\n"
+"Last-Translator: Jiye Back <jiye080202@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -15,19 +15,14 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "별점 {0}점"
-
 msgid "There was a problem contacting the server."
-msgstr "서버와 연결 도중 문제가 발생했습니다."
+msgstr "서버와 연결 중 문제가 발생했습니다."
 
 msgid "Select a file..."
 msgstr "파일 선택..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "부가 기능의 확장자는 .zip, .xpi, .crx 또는 .xml을 사용해야 합니다"
+msgstr "부가 기능의 확장자는 .zip, .xpi 또는 .crx를 사용해야 합니다."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -55,7 +50,7 @@ msgstr[0] "부가 기능이 {0}개의 오류와 함께 검사를 통과하지 �
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] "&hellip;추가 오류 {0}개"
+msgstr[0] "&hellip;{0}개 더"
 
 msgid "See full validation report"
 msgstr "전체 검사 보고서 보기"
@@ -67,10 +62,10 @@ msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "부가 기능 최대 크기인 {0}을 초과했습니다."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "서버로부터 공백의 응답을 받았습니다; 상태: {0}"
+msgstr "서버로부터 빈 응답을 받았습니다; 상태: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "검사 도중 예상치 못한 오류가 발생했습니다."
+msgstr "유효성 검사 도중 예상치 못한 오류가 발생했습니다."
 
 msgid "Finished validating {0}"
 msgstr "{0} 검사 완료"
@@ -88,18 +83,6 @@ msgstr[0] "부가 기능이 오류 없이 {0}개의 메시지로 검증되었습
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "부가 기능이 오류와 경고 없이 검증되었습니다."
-
-msgid "Your submission will be automatically signed."
-msgstr "제출은 자동으로 서명됩니다."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension 업그레이드"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "업그레이드를 허용하고 장려하지만 이 순서를 거꾸로 할 수는 없습니다. WebExtension을 설치한 사용자는 이전의 부가 기능을 설치할 수 없습니다."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "오래된 Firefox 추가 기능을 MDN에 포팅"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "자세한 버전 정보를 포함합니다(다음 단계에서 할 수 있습니다)."
@@ -131,40 +114,10 @@ msgid "You cancelled the upload."
 msgstr "업로드를 취소했습니다."
 
 msgid "Images must be either PNG or JPG."
-msgstr "이미지는 PNG나 JPG를 써야 합니다."
+msgstr "이미지는 PNG 또는 JPG여야 합니다."
 
 msgid "Videos must be in WebM."
 msgstr "동영상은 WebM으로 된 것만 사용 가능합니다."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "이 테마는 현재 {0} 버전과 호환되지 않습니다"
-
-msgid "Flagged for review"
-msgstr "검토를 위해 표시됨"
-
-msgid "Your input is required"
-msgstr "글을 입력해야 합니다"
-
-msgid "Marked for deletion"
-msgstr "삭제 표시"
-
-msgid "Updating results&hellip;"
-msgstr "결과 갱신중&hellip;"
-
-msgid "Category"
-msgstr "분류"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b>의 테마 검색"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> 앱 검색"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> 부가 기능 검색"
-
-msgid "Use original"
-msgstr "원본 사용"
 
 msgid "Week of {0}"
 msgstr "{0}번째 주"
@@ -480,33 +433,28 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0}부터 {1} 까지 다운로드 출처"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "최근 {0}일간 다운로드 횟수"
+msgstr "최근 {0}일간 매체 다운로드"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "{0}부터 {1} 까지 다운로드 횟수"
+msgstr "{0}부터 {1}까지 매체 다운로드"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "최근 {0}일간 다운로드 출처"
+msgstr "최근 {0}일간 다운로드 내용"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
 msgstr "{0}에서 {1}까지 콘텐츠 다운로드"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "최근 {0}일간 다운로드 횟수"
+msgstr "최근 {0}일간 캠페인 다운로드"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "{0}부터 {1} 까지 다운로드 횟수"
+msgstr "{0}부터 {1}까지 캠페인 다운로드"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -633,41 +581,6 @@ msgstr "날짜"
 msgid "Other"
 msgstr "기타"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "동의 및 설치"
-
-msgid "Add to {0}"
-msgstr "{0}에 추가"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "{0}용 강제 설치"
-
-msgid "Download for {0} anyway"
-msgstr "{0}용 강제 다운로드"
-
-msgid "Not available for your platform"
-msgstr "현재 플랫폼에서 사용 불가"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "이 부가 기능은 현재 {0}버전과 호환되지 않습니다."
-
-msgid "View other versions"
-msgstr "다른 버전 보기"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max}에서 작동"
-
-msgid "Works with {app}"
-msgstr "{app}과 작동"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "오직 Firefox에서만 — 지금 Firefox를 받으세요!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "죄송합니다. 검색 플러그인을 설치하려면 Mozilla 기반 브라우저(Firefox 같은)가 필요합니다."
-
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
@@ -686,12 +599,6 @@ msgstr "이미지 변경이 처리되었습니다"
 
 msgid "Select an application first"
 msgstr "먼저 애플리케이션을 선택하세요"
-
-msgid "No results found."
-msgstr "검색한 결과가 없습니다."
-
-msgid "Loading..."
-msgstr "읽는 중..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -730,12 +637,6 @@ msgstr "검토 내용"
 
 msgid "Review notes found"
 msgstr "검토 메모가 발견됨"
-
-msgid "Average Reviews"
-msgstr "평균 검토 횟수"
-
-msgid "Number of Reviews"
-msgstr "검토 횟수"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "사용 가능한 최대 업로드 크키는 {0}입니다. - 더 작은 배경 이미지를 선택해주세요."

@@ -13,6 +13,7 @@ class Tag(ModelBase):
         'addons.Addon', through='AddonTag', related_name='tags'
     )
     num_addons = models.IntegerField(default=0)
+    enable_for_random_shelf = models.BooleanField(default=True, db_index=True)
 
     class Meta:
         db_table = 'tags'
@@ -21,10 +22,6 @@ class Tag(ModelBase):
 
     def __str__(self):
         return self.tag_text
-
-    @property
-    def popularity(self):
-        return self.num_addons
 
     def can_reverse(self):
         try:
@@ -61,7 +58,7 @@ class AddonTag(ModelBase):
         db_table = 'users_tags_addons'
         indexes = [
             models.Index(fields=('tag',), name='tag_id'),
-            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('addon',), name='users_tags_addons_addon_idx'),
         ]
         constraints = [
             models.UniqueConstraint(fields=('tag', 'addon'), name='tag_id_2'),

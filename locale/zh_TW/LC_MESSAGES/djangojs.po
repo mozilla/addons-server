@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-12-07 11:05+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -14,10 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} 顆星"
 
 msgid "There was a problem contacting the server."
 msgstr "連線到伺服器時發生問題。"
@@ -88,18 +84,6 @@ msgstr[0] "已驗證您的附加元件，無錯誤，有 {0} 條訊息。"
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "已驗證您的附加元件，無錯誤或警告。"
 
-msgid "Your submission will be automatically signed."
-msgstr "已自動簽署您送出的項目。"
-
-msgid "WebExtension upgrade"
-msgstr "升級 WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "我們允許，也鼓勵您升級，但升級後就不能回頭了。當您的使用者安裝 WebExtension 後，就無法再安裝傳統的附加元件。"
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "至 MDN 了解如何移植傳統 Firefox 附加元件"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包含詳細的版本資訊（可以在下一步完成）。"
 
@@ -134,36 +118,6 @@ msgstr "圖片必須是 PNG 或 JPG 格式。"
 
 msgid "Videos must be in WebM."
 msgstr "影片必須為 WebM 格式。"
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "這個佈景主題與您所使用的 {0} 版本不相容"
-
-msgid "Flagged for review"
-msgstr "評論已被標記"
-
-msgid "Your input is required"
-msgstr "必填"
-
-msgid "Marked for deletion"
-msgstr "標示刪除"
-
-msgid "Updating results&hellip;"
-msgstr "正在更新搜尋結果&hellip;"
-
-msgid "Category"
-msgstr "分類"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "搜尋符合<b>{0}</b>的佈景主題"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "搜尋含有 <b>{0}</b>的應用程式"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "搜尋含有 <b>{0}</b> 的附加元件"
-
-msgid "Use original"
-msgstr "使用原始的"
 
 msgid "Week of {0}"
 msgstr "第 {0} 週"
@@ -627,41 +581,6 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "接受並安裝"
-
-msgid "Add to {0}"
-msgstr "新增至 {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "繼續安裝 {0} 版本"
-
-msgid "Download for {0} anyway"
-msgstr "仍然下載 {0}"
-
-msgid "Not available for your platform"
-msgstr "與您的作業系統不相容"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "這個附加元件與您所使用的 {0} 版本不相容。"
-
-msgid "View other versions"
-msgstr "檢視其他版本"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "可於 {app} {min} - {max} 使用"
-
-msgid "Works with {app}"
-msgstr "可於 {app} 使用"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "只在 Firefox 上才有，快來安裝！"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"
-
 msgid "Changes Saved"
 msgstr "修改已儲存"
 
@@ -680,12 +599,6 @@ msgstr "正在處理圖片更改"
 
 msgid "Select an application first"
 msgstr "請先選擇一份申請書"
-
-msgid "No results found."
-msgstr "找不到結果。"
-
-msgid "Loading..."
-msgstr "載入中…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -724,12 +637,6 @@ msgstr "評論文字"
 
 msgid "Review notes found"
 msgstr "找到評論筆記"
-
-msgid "Average Reviews"
-msgstr "平均評等"
-
-msgid "Number of Reviews"
-msgstr "留言數量"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "最大上傳大小為 {0} - 請縮小背景圖片。"

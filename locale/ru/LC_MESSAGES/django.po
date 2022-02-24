@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-08 13:05+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2022-02-01 15:54+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -21,6 +21,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "тип"
 
@@ -78,9 +79,6 @@ msgstr "Ссылки не разрешены."
 msgid "This display name cannot be used."
 msgstr "Это отображаемое имя не может быть использовано."
 
-msgid "This reviewer name cannot be used."
-msgstr "Это имя проверяющего не может быть использовано."
-
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Поле «домашняя страница» можно использовать только для ссылок на внешние веб-сайты."
 
@@ -112,6 +110,10 @@ msgstr "Нужна помощь?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Уведомление [%s] не существует"
+
+#, fuzzy
+msgid "Add-ons Review Team"
+msgstr "Руководство по проверке дополнений"
 
 msgid "Review"
 msgstr "Отзыв"
@@ -157,11 +159,8 @@ msgstr "Пути дополнений и подборок должны зака�
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Имена дополнений не могут содержать товарных марок Mozilla или Firefox."
 
-msgid "Sort by:"
-msgstr "Сортировать по:"
-
-msgid "More"
-msgstr "Ещё"
+msgid "Site permissions for {hostnames}"
+msgstr "Разрешения на сайты для {hostnames}"
 
 msgid "My Add-ons"
 msgstr "Мои дополнения"
@@ -266,10 +265,10 @@ msgstr "Не найдено"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Извините, но мы не можем найти то, что вы ищете.</h1> <p>Страница или файл, который вы запросили, не найдены на нашем сайте. Вполне возможно, что вы щёлкнули по ссылке, которая устарела, или "
 "неправильно набрали адрес.</p><ul><li> Если вы набрали адрес, пожалуйста, проверьте правильность его написания.</li> <li> Если вы откуда-либо проследовали по ссылке, пожалуйста, "
@@ -318,26 +317,6 @@ msgstr "Эта функция временно отключена, пока мы
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Некоторые функции на этой странице временно отключены, пока мы проводим техническое обслуживание сайта. Пожалуйста, повторите попытку позже."
 
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Страница <a href=\"%(current_pg_url)s\">%(current_pg)s</a> из <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Перейти на первую страницу"
-
-msgid "Previous"
-msgstr "Предыдущее"
-
-msgid "Jump to last page"
-msgstr "Перейти на последнюю страницу"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Показано <b>%(begin)s</b>&ndash;<b>%(end)s</b> из <b>%(count)s</b>"
-
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
@@ -372,6 +351,15 @@ msgstr "Подпись просрочена."
 msgid "Error decoding signature."
 msgstr "Ошибка декодирования подписи."
 
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr "Несоответствие хэша аутентификации. Скорее всего сессия просрочена."
+
+msgid "Valid user session not found matching the provided session key."
+msgstr ""
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr ""
+
 msgid "Wrong type for one or more keys in payload"
 msgstr "Неверный тип для одного или нескольких ключей в полезной нагрузке"
 
@@ -386,9 +374,6 @@ msgstr "Адрес электронной почты не найден."
 
 msgid "Unavailable for legal reasons."
 msgstr "Недоступно по юридическим причинам."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "Поле должно иметь длину не менее {num} символов."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Код языка {lang_code} неверен."
@@ -429,17 +414,14 @@ msgstr "Версии"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 "Даже если поддерживаемое вами приложение не требует файл манифеста, вы всё же должны включить его с указанными %(amo_manifests_mdn_link_open)sздесь%(amo_manifests_mdn_link_close)s требуемыми "
 "свойствами."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Этот пользовательский URL уже используется в одной из ваших подборок."
-
-msgid "Name cannot be empty."
-msgstr "Имя не может быть пустым."
 
 msgid "This name cannot be used."
 msgstr "Это имя не может быть использовано."
@@ -459,10 +441,6 @@ msgstr "Состояние выхода"
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s находится в ожидании Представления"
-
-#, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "Блокировка GUID %(guid)s доступна только для чтения — её необходимо редактировать с помощью устаревшей коллекции списков блокировки"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -491,12 +469,6 @@ msgstr "Отзыв размещён"
 msgid "Review Unlisted"
 msgstr "Отзыв удалён"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "Эта блокировка была импортирована из устаревшего списка блокировки на основе регулярных выражений."
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "Любые сделанные изменения НЕ будут произведены в устаревшем списке блокировки — вы должны внести изменения вручную через kinto admin webui."
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "Удалить несколько %(name)s"
@@ -511,9 +483,6 @@ msgstr "%(count)s GUID дополнения уже заблокированы д
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID дополнения не найдены"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Следующие блоки были импортированы из устаревшего блока на основе регулярных выражений."
 
 msgid "Save"
 msgstr "Сохранить"
@@ -552,9 +521,6 @@ msgstr "Редактировать блокировку"
 
 msgid "versions"
 msgstr "версии"
-
-msgid "Included in legacy blocklist."
-msgstr "Включено в устаревший чёрный список."
 
 msgid "{addon} was created."
 msgstr "Был создан {addon}."
@@ -735,6 +701,14 @@ msgid "Approved but waiting"
 msgstr "Одобрено, но ожидает"
 
 msgid "Account updated."
+msgstr "Аккаунт обновлён."
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "Аккаунт обновлён."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "Аккаунт обновлён."
 
 msgid "Created: {0}."
@@ -978,8 +952,14 @@ msgstr "Удалено"
 msgid "Unlisted"
 msgstr "Скрытое"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr "API подписи"
+
+msgid "Addon API"
+msgstr "API дополнения"
+
+msgid "Automatically generated by AMO"
+msgstr ""
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1018,6 +998,10 @@ msgstr "Устаревшая LWT"
 msgid "Theme (Static)"
 msgstr "Тема (статическая)"
 
+#, fuzzy
+msgid "Site Permission"
+msgstr "Разрешения:"
+
 # Plural in this context means many of the add-on type
 msgid "Extensions"
 msgstr "Расширения"
@@ -1047,6 +1031,10 @@ msgstr "Устаревшие LWT"
 
 msgid "Themes (Static)"
 msgstr "Темы (статические)"
+
+#, fuzzy
+msgid "Site Permissions"
+msgstr "Разрешения:"
 
 msgid "Alerts & Updates"
 msgstr "Оповещения и обновления"
@@ -1137,7 +1125,6 @@ msgstr "Веб-разработка"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Загрузите расширения Firefox для веб-разработки. В эту категорию входят расширения для GitHub, изменения user agent, управления куками и многого другого."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Другое"
 
@@ -1332,6 +1319,30 @@ msgstr "Путешествия"
 
 msgid "Video"
 msgstr "Видео"
+
+msgid "Mozilla Public License 2.0"
+msgstr "Публичная лицензия Mozilla 2.0"
+
+msgid "GNU General Public License v2.0"
+msgstr "Стандартная общественная лицензия GNU v2.0"
+
+msgid "GNU General Public License v3.0"
+msgstr "Стандартная общественная лицензия GNU v3.0"
+
+msgid "GNU Library General Public License v2.1"
+msgstr ""
+
+msgid "GNU Library General Public License v3.0"
+msgstr ""
+
+msgid "The MIT License"
+msgstr "Лицензия MIT"
+
+msgid "The BSD License"
+msgstr "Лицензия BSD"
+
+msgid "Mozilla Public License 1.1"
+msgstr "Публичная лицензия Mozilla 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Все права защищены"
@@ -1701,6 +1712,9 @@ msgstr "Неверный диапазон версий."
 msgid "Need at least one compatible application."
 msgstr "Нужна по крайней мере одно совместимое приложение."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "За последнее время вы совершили слишком много загрузок. Пожалуйста, попробуйте ещё раз через некоторое время."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "В процессе вашей загрузки произошла ошибка. Пожалуйста, попробуйте снова."
 
@@ -1709,9 +1723,6 @@ msgstr "Игнорировать неудавшуюся валидацию"
 
 msgid "Need to select at least one application."
 msgstr "Нужно выбрать хотя бы одно приложение."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "За последнее время вы совершили слишком много загрузок. Пожалуйста, попробуйте ещё раз через некоторое время."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Версия {version} соответствует {block_link} для этого дополнения. Вы можете связаться с {amo_admins} для получения дополнительной информации."
@@ -1743,20 +1754,30 @@ msgstr "Загружен файл с исходным кодом, но вы со
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Имя вместе с описанием не могут содержать более {limit_value} символов (сейчас {show_value})."
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
-"На этом сайте. <span class=\"helptext\">Ваше представление будет отображаться на этом сайте и в менеджере дополнений Firefox для миллионов пользователей, после того, как пройдёт проверку. "
-"Автоматические обновления будут обрабатываться этим сайтом. Это дополнение будет участвовать в акциях и конкурсах Mozilla. Возможно самостоятельное распространение проверенных файлов.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Самостоятельно. <span class=\"helptext\">Ваше представление будет немедленно подписано для самостоятельного распространения. Обновления должны будут распространяться вами через updateURL или через "
-"обновления внешнего приложения.</span>"
 
 msgid "Display Name"
 msgstr "Отображаемое имя"
+
+#, fuzzy
+msgid "Origin"
+msgstr "Источник:"
+
+#, fuzzy
+msgid "Permissions"
+msgstr "Разрешения:"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Некорректный или повреждённый файл дополнения."
@@ -1774,8 +1795,8 @@ msgstr "Оповещение безопасности Mozilla: Ваши полн
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Валидация сгенерировала слишком много ошибок и предупреждений, поэтому %s сообщений было не отображено. После устранения видимых сообщений вы сможете увидеть другие."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr ""
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "Манифест V3 в настоящее время не поддерживается для загрузки. {start_href} Подробнее о сроках поддержки {end_href}."
 
 msgid "Updated"
 msgstr "Обновлено"
@@ -1957,24 +1978,6 @@ msgstr "Моё дополнение не подходит ни под одну �
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Соглашение распространения дополнения Firefox"
 
-msgid "Review Policies and Rules"
-msgstr "Политики проверки и правила"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Я прочитал и принимаю это соглашение, а также правила и политики"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Ваш аккаунт должен иметь отображаемое имя, чтобы пользователи знали, чьё дополнение они загружают. Пожалуйста, введите его ниже."
-
-msgid "Accept"
-msgstr "Принять"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "или<a href=\"{0}\">Отменить</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Больше информации об Аккаунте разработчика"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "{0} Дополнения"
@@ -2029,6 +2032,16 @@ msgstr "Поиск документации для разработчиков"
 msgid "Search"
 msgstr "Поиск"
 
+#, fuzzy
+msgid "Generate Site Permission Add-on"
+msgstr "Разрешения:"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr "Используйте расположенное ниже поле, чтобы загрузить свой пакет дополнения."
 
@@ -2076,11 +2089,13 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Это дополнение несовместимо с <b>%(app_name)s %(app_version)s</b>, последней версией %(app_name)s. Просьба рассмотреть вопрос об обновлении информации о совместимости вашего дополнения, или загрузки"
-" новой версии этого дополнения."
+"Это дополнение несовместимо с <b>%(app_name)s %(app_version)s</b>, последней версией %(app_name)s. Просьба рассмотреть вопрос об обновлении информации о совместимости вашего дополнения, или "
+"загрузки новой версии этого дополнения."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Обновить совместимость</a> <a href=\"%(version_url)s\" class=\"button\">Загрузить новую версию</a> или <a href=\"#\" "
 "class=\"close\">Игнорировать</a>"
@@ -2171,6 +2186,9 @@ msgstr "Принятие приглашения даст вам доступ к 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Нажмите кнопку «Принять» ниже, чтобы подтвердить, что вы хотите быть добавлены в качестве автора для {addon_name}."
 
+msgid "Accept"
+msgstr "Принять"
+
 msgid "Decline"
 msgstr "Отклонить"
 
@@ -2206,7 +2224,7 @@ msgid "Tags"
 msgstr "Метки"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Метки помогают пользователям найти ваше дополнение. У вас может быть максимум {0} меток. Выбирайте только те метки, которые имеют отношение к вашему дополнению."
 
 msgid "Limit {0} tags."
 msgstr "Не более {0} меток."
@@ -2252,8 +2270,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
-"Описание должно объяснять, что делает ваше дополнение, чётко и кратко. И имя, и описание появятся на странице вашего продукта и в результатах поиска. Они имеют общую максимальную длину 70 символов и"
-" минимальную длину 2 символа по отдельности."
+"Описание должно объяснять, что делает ваше дополнение, чётко и кратко. И имя, и описание появятся на странице вашего продукта и в результатах поиска. Они имеют общую максимальную длину 70 символов "
+"и минимальную длину 2 символа по отдельности."
 
 msgid "Summary"
 msgstr "Сводка"
@@ -2310,8 +2328,8 @@ msgid "Email"
 msgstr "Адрес эл. почты"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Если вы хотите отобразить адрес электронной почты для поддержки,\n"
 "                          введите его здесь. Если у вас есть различные адреса\n"
@@ -2499,15 +2517,23 @@ msgstr "Скрыть сообщения, присутствовавшие в п�
 msgid "Top"
 msgstr "Наверх"
 
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr ""
+"При удалении вашего дополнения будут навсегда удалены все версии и файлы, которые вы для него загружали, и опубликованные и нет. ID дополнения останется привязанным к вашему аккаунту, так что "
+"другие не смогут отправить новые версии, используя тот же ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"При удалении вашего дополнения будут навсегда удалены все версии и файлы, которые вы для него загружали, и опубликованные и нет. ID дополнения останется привязанным к вашему аккаунту, так что "
+"другие не смогут отправить новые версии, используя тот же ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
 msgid "Delete Add-on"
 msgstr "Удалить дополнение"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr ""
-"При удалении вашего дополнения будут навсегда удалены все версии и файлы, которые вы для него загружали, и опубликованные и нет. ID дополнения останется привязанным к вашему аккаунту, так что другие"
-" не смогут отправить новые версии, используя тот же ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Введите следующий текст, чтобы подтвердить ваше решение: {slug}"
@@ -2541,6 +2567,9 @@ msgstr "Ежедневная статистика по загрузкам и п�
 
 msgid "Statistics"
 msgstr "Статистика"
+
+msgid "More"
+msgstr "Ещё"
 
 msgid "Manage Status & Versions"
 msgstr "Управление статусом и версиями"
@@ -2679,14 +2708,22 @@ msgstr "Эти примечания появятся на странице оп�
 msgid "How to Distribute this Version"
 msgstr "Как распространять эту версию"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "Больше информации о дистрибуции и подписи дополнений"
+msgid "To get started, select how you would like to distribute this version."
+msgstr "Для начала выберите способ распространения этой версии."
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr ""
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "Отправка завершена"
 
-msgid "Version Submitted for Review"
-msgstr "Версия, отправленная на проверку"
+msgid "Version Submitted"
+msgstr "Версия представлена"
 
 msgid "Preview of the version submitted"
 msgstr "Просмотр представленной версии"
@@ -2694,20 +2731,21 @@ msgstr "Просмотр представленной версии"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Готово! Эта версия будет доступна после прохождения проверки. Вы будете уведомлены, когда это случится."
 
-msgid "Version Submitted"
-msgstr "Версия представлена"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "Готово! Эта версия скоро появится на нашем сайте."
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Вы сделали это! Эта версия загружена для проверки. Вы будете оповещены, когда проверка будет завершена, или проверяющие зададут вопросы о вашем представлении."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Готово! ✨ Вы получите электронное письмо с подтверждением, когда эта версия будет опубликована на %(site_domain)s. Обратите внимание, что публикация может занять до 24 часов, или дольше, если "
+"дополнение выбрано для ручной проверки. Если вы не увидите письмо через 24 часа, проверьте папку со спамом."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Ваше дополнение будет успешнее, если вы добавите детальное описание. Подготовьте вашу информацию для публикации:"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "Ваше дополнение будет успешнее, если вы добавите детальное описание и скриншоты. Подготовьте вашу информацию для публикации:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
 
 msgid "Manage Listing"
 msgstr "Управление отображением"
@@ -2720,11 +2758,8 @@ msgstr ""
 msgid "Edit version {0}"
 msgstr "Изменить версию {0}"
 
-msgid "Version Signature Pending"
-msgstr "Ожидание подписи версии"
-
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Готово! В ближайшее время эта версия будет подписана для самостоятельного распространения. Вы будете уведомлены по электронной почте, когда подписанный файл будет готов к загрузке."
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr ""
 
 msgid "Go to My Submissions"
 msgstr "Перейти в мои представления"
@@ -2735,15 +2770,11 @@ msgstr "Выгрузка исходного кода"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Нужно ли отправлять исходный код?"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Вам, возможно, придётся представить исходный код. Если вы этого не сделаете, ваше дополнение может быть удалено с сайта!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Пожалуйста, ознакомьтесь с <a %(a_attrs)s>политикой представления исходных кодов</a>."
-
-msgid "Do you use any of the following?"
-msgstr "Используете ли вы что-либо из следующего?"
+msgid "Do you use any of the following in your extension?"
+msgstr "Используете ли вы что-либо из следующего в своём расширении?"
 
 msgid "Code generators or minifiers"
 msgstr "Генераторы или минификаторы кода"
@@ -2754,21 +2785,20 @@ msgstr "Инструменты, которые объединяют нескол
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Движки веб-шаблонов для HTML или CSS"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr "Любые другие инструменты, берущие код или файлы, производящие их обработку, и генерирующие код или файл(ы) для включения в дополнение"
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
+msgstr "Любые другие инструменты, берущие код или файлы, производящие их обработку, и генерирующие код или файл(ы) для включения в расширение"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Вам не нужно представлять исходный код, и вы готовы к следующему шагу."
 
-msgid "Your Submission Requires Source Code."
-msgstr "Требуется включить исходный код для вашего представления."
+msgid "You must submit your extension's source code."
+msgstr "Вы должны отправить исходный код вашего расширения."
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Исходный код должен соответствовать <a %(a_attrs)s>требованиям политики</a>, которые включают в себя необходимость предоставить:"
+msgid "Your source code must include:"
+msgstr "Ваш исходный код должен включать:"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr "Пошаговые инструкции о том, как создать точную копию кода дополнения."
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
+msgstr "Пошаговые инструкции о том, как создать точную копию кода дополнения в файле README в исходном коде или в примечаниях для рецензента на следующей странице."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Скрипт сборки, который выполняет все необходимые технические действия."
@@ -2776,26 +2806,15 @@ msgstr "Скрипт сборки, который выполняет все не
 msgid "Operating system and build environment requirements."
 msgstr "Требования к операционной системе и среде сборки."
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
+msgstr "Требуемая версия и инструкции по установке любых программ, используемых в процессе сборки (таких как <span class=\"tech-emphasis\">node</span> и <span class=\"tech-emphasis\">npm</span>)."
+
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
+msgstr "Исходные файлы (кроме сторонних библиотек с открытым исходных кодом) не могут быть транспайлированы, объединены, минифицированы или каким-либо другим образом сгенерированы машиной."
+
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
-"Сведения (включая требуемые версии и инструкции по установке) о любых программных продуктах, используемых в процессе сборки (например, используемые версии <span class=\"tech-emphasis\">node</span> и"
-" <span class=\"tech-emphasis\">npm</span>)."
-
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
-msgstr ""
-"<span class=\"instruction-emphasis\">Примечание:</span> Исходные файлы (кроме сторонних библиотек с открытым исходных кодом) не могут быть транспайлированы, объединены, минифицированы или каким-либо"
-" другим образом сгенерированы машиной."
-
-msgid "How to Submit:"
-msgstr "Как отправить:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Включите инструкции в файл README в исходном коде"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "или в примечаниях для проверяющих на следующей странице (если возможно)."
 
 msgid "Upload source code:"
 msgstr "Выгрузить исходный код:"
@@ -2829,9 +2848,6 @@ msgstr "Создать версию темы"
 
 msgid "Create a Theme"
 msgstr "Создать тему"
-
-msgid "Sign Add-on"
-msgstr "Подписать дополнение"
 
 msgid "Theme generate"
 msgstr "Сгенерировать тему"
@@ -2899,11 +2915,11 @@ msgstr "Секрет JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Чтобы делать запросы к API, отправьте <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> как авторизационный заголовок. Вам нужно будет сгенерировать JWT для каждого запроса, как в <a "
-"href=\"%(docs_url)s\">документации по API</a>."
+"Чтобы делать запросы к API, отправьте <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> как авторизационный заголовок. Вам нужно будет сгенерировать JWT для каждого запроса, как в <a href="
+"\"%(docs_url)s\">документации по API</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -3002,17 +3018,20 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
 "Уважаемый разработчик дополнений,\n"
 "\n"
-"Мы заметили, что ваши секретные учётные данные AMO API содержатся в дополнении, отправленном на addons.mozilla.org. Чтобы защитить вашу учётную запись и дополнения, мы отозвали утёкшие учётные данные.\n"
+"Мы заметили, что ваши секретные учётные данные AMO API содержатся в дополнении, отправленном на addons.mozilla.org. Чтобы защитить вашу учётную запись и дополнения, мы отозвали утёкшие учётные "
+"данные.\n"
 "Вы можете сгенерировать новые учётные данные API на %(api_keys_url)s\n"
 "\n"
-"Убедитесь, что вы никогда никому не сообщали свои учётные данные. Никогда не включайте их в общедоступное хранилище, дополнение или любое другое общедоступное место. Мы рекомендуем вам просмотреть свои репозитории кода и расширения, чтобы удалить любые ссылки на ваши учётные данные AMO.\n"
+"Убедитесь, что вы никогда никому не сообщали свои учётные данные. Никогда не включайте их в общедоступное хранилище, дополнение или любое другое общедоступное место. Мы рекомендуем вам просмотреть "
+"свои репозитории кода и расширения, чтобы удалить любые ссылки на ваши учётные данные AMO.\n"
 "\n"
 "Спасибо,\n"
 "Команда дополнений Mozilla"
@@ -3091,17 +3110,41 @@ msgstr "Управление администраторами"
 msgid "View Statistics Dashboard"
 msgstr "Просмотреть панель статистики"
 
+msgid "Review Policies and Rules"
+msgstr "Политики проверки и правила"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Я прочитал и принимаю это соглашение, а также правила и политики"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Ваш аккаунт должен иметь отображаемое имя, чтобы пользователи знали, чьё дополнение они загружают. Пожалуйста, введите его ниже."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "или<a href=\"{0}\">Отменить</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Больше информации об Аккаунте разработчика"
+
 msgid "Developer News"
 msgstr "Новости разработчиков"
 
 msgid "View the blog &#9658;"
 msgstr "Прочесть блог &#9658;"
 
+msgid "Version Signature Pending"
+msgstr "Ожидание подписи версии"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr "Готово! ✨ Вы получите уведомление по электронной почте, когда подписанный файл будет готов к загрузке из Центра разработки. Если вы не увидите письмо через 24 часа, проверьте папку со спамом."
+
 msgid "License"
 msgstr "Лицензия"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Пожалуйста, выберите лицензию, подходящую для прав, предоставляемых вами на ваш исходный код. Это относится только к опубликованным дополнениям."
+
+msgid "Sort by:"
+msgstr "Сортировать по:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3315,8 +3358,8 @@ msgstr "Зарегистрируйте аккаунт разработчика �
 msgid "Manage Version {0}"
 msgstr "Управление версией {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Управлять {0}"
 
@@ -3364,9 +3407,6 @@ msgstr "Статус и версии"
 
 msgid "Edit this version"
 msgstr "Изменить эту версию"
-
-msgid "0 files"
-msgstr "0 файлов"
 
 msgid "Re-enable Version"
 msgstr "Включить версию снова"
@@ -3494,16 +3534,16 @@ msgstr "Отмена вашего запроса на проверку поме�
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Вы уверены, что хотите отменить свой запрос на отзыв?"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ошибка"
 msgstr[1] "{0} ошибки"
 msgstr[2] "{0} ошибок"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} предупреждение"
@@ -3634,7 +3674,6 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "Прикоснитесь к академической мудрости. Получите бесплатный доступ к 10 с лишним миллионам научных статей."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Настройте жесты мыши. Откройте для себя новый способ навигации с более чем 50 конфигурациями."
 
@@ -3702,10 +3741,9 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Автоматическая перезагрузка вкладок по установленному вами графику."
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+#. editorial content for the primary hero shelves.
+msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
-"Разделите свою жизнь в Интернете. Если вы используете в сети различные аккаунты — для работы, личных дел и так далее — незаметно пометьте их цветными вкладками, чтобы спутать цифровые следы, "
-"оставляемые вами через куки."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3713,7 +3751,6 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Добавьте еще уровень защиты от отслеживания ваших действий в сети."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Читайте ePub-файлы прямо в Firefox — увеличивайте шрифт, размеры страницы и многое другое."
 
@@ -3790,13 +3827,12 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "Получайте результаты поиска в Google и Яндексе в тайне от рекламных трекеров."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Используйте жесты мышью для закрытия вкладок, перемещения по страницам и других действий."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
+#, fuzzy
+msgid "See thumbnail images alongside your search returns."
 msgstr "Наслаждайтесь эскизами веб-сайтов в результатах поиска."
 
 #. editorial content for the discovery pane.
@@ -4359,10 +4395,6 @@ msgid "Blues & Yellows"
 msgstr "Синие и желтые"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "Лесная тема"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Сохраняйте группы вкладок в виде удобных закладок."
@@ -4396,6 +4428,15 @@ msgstr "Сохранение и восстановление вкладок. В�
 msgid "Goodbye, annoying cookie warnings!"
 msgstr "Пока пока, надоедливые предупреждения о куках!"
 
+#. editorial content for the discovery pane.
+msgid "All your emoji needs—always just a click away."
+msgstr "Все эмодзи для любого случая — всегда на расстоянии одного щелчка."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео на Android. Вот как это исправить."
@@ -4405,8 +4446,23 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Нашли в Интернете интересную картинку? Проследите ее происхождение с помощью TinEye."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "В такие моменты нужно стрелять лазерами из кошачьих глаз."
+#, fuzzy
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr "Читайте ePub-файлы прямо в Firefox — увеличивайте шрифт, размеры страницы и многое другое."
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr "Настройте жесты мыши. Откройте для себя новый способ навигации с более чем 50 конфигурациями."
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr "Используйте жесты мышью для закрытия вкладок, перемещения по страницам и других действий."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Наслаждайтесь эскизами веб-сайтов в результатах поиска."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4436,6 +4492,34 @@ msgstr "Сгиньте, надоедливые предупреждения о �
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Вернитесь к более простым временам — когда первые результаты поиска стояли выше рекламы (совместимо с поисковыми системами Google и Bing)."
 
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr "Используйте смайлики везде в интернете."
+
+#. editorial content for the primary hero shelves.
+msgid "Put restrictions on distracting, time-wasting websites."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove clutter from your Twitter."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize YouTube to taste."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Delete browsing data directly from the browser toolbar."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Расширения — это как приложения для Firefox."
@@ -4449,25 +4533,23 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Управление вкладками"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Популярные темы"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Приватность за пределами расширений браузера"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Инструменты перевода"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Улучшатели медиа для Firefox"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Элитные блокировщики рекламы"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Explore extensions"
-msgstr "Откройте для себя расширения"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Подробнее"
+msgid "See staff picks"
+msgstr "Посмотреть выбор наших сотрудников"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4490,11 +4572,11 @@ msgid "Enhanced privacy extensions"
 msgstr "Расширения для повышения приватности"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Больше расширений для повышения приватности"
+msgid "See more recommended privacy extensions"
+msgstr "Больше рекомендуемых расширений для повышения приватности"
 
-#. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
 msgid "Popular extensions"
 msgstr "Популярные расширения"
 
@@ -4511,28 +4593,80 @@ msgid "See more recommended themes"
 msgstr "Больше рекомендуемых тем"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
-msgstr "Рекомендуемые менеджеры паролей"
+msgid "Strong password managers"
+msgstr "Надежные менеджеры паролей"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Больше рекомендуемых менеджеров паролей"
+msgid "See more password manager staff picks"
+msgstr "Больше менеджеров паролей отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Инструменты перевода"
-
-#. editorial content for the homepage shelves.
-msgid "See more translation tools"
-msgstr "Больше инструментов перевода"
+msgid "See more translation tool staff picks"
+msgstr "Больше инструментов перевода отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Вещание в социальных сетях"
 
 #. editorial content for the homepage shelves.
-msgid "See more social streaming extensions"
-msgstr "Больше расширений для вещания в социальных сетях"
+msgid "See more social streaming staff picks"
+msgstr "Больше средств вещания в социальных сетях отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Менеджеры вкладок"
+
+#. editorial content for the homepage shelves.
+msgid "See more tab management staff picks"
+msgstr "Больше расширений для управления вкладками отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "Расширения с тегами “{tag}”"
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Больше расширений с тегом \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "See more ad blocker staff picks"
+msgstr "Больше средств блокировки рекламы отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Настройка YouTube"
+
+#. editorial content for the homepage shelves.
+msgid "See more YouTube extension staff picks"
+msgstr "Больше расширений для YouTube отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "Trending themes"
+msgstr "Популярные темы"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending themes"
+msgstr "Больше набирающих популярность тем"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Top rated themes"
+msgstr "Популярные темы"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more top rated themes"
+msgstr "Больше набирающих популярность тем"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Trending extensions"
+msgstr "Популярные темы"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more trending extensions"
+msgstr "Больше рекомендуемых расширений"
 
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."
@@ -4569,9 +4703,6 @@ msgstr "Несжатый размер слишком велик"
 msgid "Invalid archive."
 msgstr "Некорректный архив."
 
-msgid "Could not find an add-on ID."
-msgstr "Не удалось найти ID дополнения."
-
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID дополнения в вашем manifest.json (%s) не соответствует ID вашего дополнения на AMO (%s)"
@@ -4597,6 +4728,9 @@ msgstr "Вы не можете отправить дополнение, испо
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
 
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
+
 msgid "You cannot submit a language pack"
 msgstr "Вы не можете представить языковой пакет"
 
@@ -4609,122 +4743,6 @@ msgstr "Неожиданная ошибка."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Тип (%s) не соответствует типу вашего дополнения на AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Чем следует руководствоваться при написании отзывов"
-
-msgid "Sections"
-msgstr "Секции"
-
-msgid "Some tips for writing a great review"
-msgstr "Некоторые советы по написанию хороших отзывов"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Часто задаваемые вопросы об отзывах"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr ""
-"Отзывы на дополнения являются для вас способом поделиться своим мнением о дополнениях, которые вы установили и использовали. Наша команда модерации отзывов оставляет за собой право отказать или "
-"удалить любой отзыв, который не соответствует этим принципам."
-
-msgid "Do:"
-msgstr "Вам следует:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Писать так, как будто вы рассказываете другу о своем опыте работы с дополнением."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Оставлять сжатые и легкие для понимания отзывы."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Приводить конкретные и полезные детали. Например:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Дополнение работало так как вы ожидали?"
-
-msgid "What features did you like or dislike?"
-msgstr "Какие возможности вам нравятся или не нравятся?"
-
-msgid "Was it useful?"
-msgstr "Было ли оно полезно?"
-
-msgid "Was it easy to use?"
-msgstr "Было ли легко его использовать?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Будете ли вы продолжать использовать это дополнение?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Найдите немного времени, чтобы прочитать свой отзыв перед отправкой, чтобы минимизировать опечатки."
-
-msgid "Don’t:"
-msgstr "Вам не следует:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Отправлять односложные отзывы такие, как «Отлично!», «замечательно» или «плохо»."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Задавать технические вопросы, вопросы поддержки или предлагать новые функции. Используйте доступные варианты поддержки для каждого дополнения, если они есть. Вы можете найти их в боковом столбце "
-"рядом с разделом «Об этом дополнении» на странице дополнения."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Писать отзывы на дополнения, которые вы лично не использовали."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Использовать ненормативную лексику, непристойные выражения или слова, которые могут быть истолкованы как ненависть."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Включать HTML, ссылки, исходный код или фрагменты кода. Отзывы должны содержать только текст."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Делать ложные заявления, унижать или лично оскорблять авторов дополнений."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Включать ваши собственные или чьи-либо еще адреса эл. почты, номера телефонов или другие персональные данные."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Размещать отзывы на дополнение, написанное или представленное вами или вашей организацией."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Критиковать дополнение за что-то, что оно предназначено делать. Например, оставлять отрицательный отзыв на дополнение за показ рекламы или требование сбора данных, когда это является целью этого "
-"дополнения, или дополнению необходим сбор данных для его работы."
-
-msgid "How can I report a problematic review?"
-msgstr "Как мне сообщить о некорректном отзыве?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Пожалуйста, сообщайте или отмечайте флагом любые сомнительные отзывы, щёлкнув по \"Сообщить об этом отзыве\" и он будет отправлен на сайт для модерации. Наша команда модераторов будет использовать "
-"Руководство по отзывам, чтобы решить, удалить ли отзыв или восстановить его на сайте."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Я автор дополнения, могу ли я отвечать на отзывы?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Да, авторы дополнений могут написать один ответ на отзыв. Вы можете создать тему для обсуждения на нашем <a href=\"%(forum_url)s\">форуме</a>, чтобы принять участие в дополнительной или последующей "
-"дискуссии."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Я автор дополнения, могу ли я удалять нелицеприятные отзывы или рейтинги?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"В общем случае, нет. Но если отзыв не соответствует изложенным выше требованиям к отзывам, вы можете щёлкнуть по ссылке \"Сообщить об этом отзыве\" и он будет отмодерирован. Если отзыв содержит "
-"жалобу, которая более не является актуальной в связи с выходом новой версии вашего дополнения, мы можем рассмотреть возможность удаления отзыва."
 
 msgid "User"
 msgstr "Пользователь"
@@ -4765,9 +4783,8 @@ msgstr "Нельзя оставить отзыв на свое дополнен�
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Нельзя оставить более одного отзыва для одной версии дополнения."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr "Некорректный флаг [%s] - должен быть одним из [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
+msgstr "Некорректный флаг [{}] - должен быть одним из [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Этот рейтинг невозможно отметить, потому что у него нет текста отзыва."
@@ -4820,33 +4837,6 @@ msgstr "конечная"
 msgid "add-on, reviewer or comment"
 msgstr "дополнение, проверяющий или комментарий"
 
-msgid "Search by add-on name / author email"
-msgstr "Поиск по имени дополнения/адресу автора"
-
-msgid "Needs Admin Code Review"
-msgstr "Требуется проверка кода админом"
-
-msgid "yes"
-msgstr "да"
-
-msgid "no"
-msgstr "нет"
-
-msgid "Add-on Types"
-msgstr "Типы дополнений"
-
-msgid "Any"
-msgstr "Любая"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Поиск по имени дополнения / адресу автора / guid"
-
-msgid "Max. Version"
-msgstr "Макс. версия"
-
-msgid "Select an application first"
-msgstr "Сначала выберите приложение"
-
 msgid "Comments:"
 msgstr "Комментарии:"
 
@@ -4865,6 +4855,9 @@ msgstr "Отклоните немедленно. Используйте толь
 msgid "days"
 msgstr "дней"
 
+msgid "Choose one or more reasons:"
+msgstr "Выберите одну или несколько причин:"
+
 msgid "Choose a canned response..."
 msgstr "Выберите стандартный ответ..."
 
@@ -4880,20 +4873,17 @@ msgstr "Пока пропустить"
 msgid "Delete review"
 msgstr "Удалить отзыв"
 
+msgid "Needs Admin Code Review"
+msgstr "Требуется проверка кода админом"
+
 msgid "Needs Admin Content Review"
 msgstr "Требуется проверка содержимого админом"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "Требуется проверка статической темы администратором"
 
-msgid "Requires Restart"
-msgstr "Требуется перезапуск"
-
 msgid "Sources provided"
 msgstr "Предоставленные исходники"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "Автоодобрение временно отложено"
@@ -4919,6 +4909,9 @@ msgstr "Строка версии и guid соответствуют списк�
 msgid "Weight breakdown not available."
 msgstr "Распределение по весу недоступно."
 
+msgid "Is available to be used in reviews"
+msgstr ""
+
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Вы не можете оставить комментарий, если определено `canned_response`."
 
@@ -4928,41 +4921,11 @@ msgstr "Вы не можете отправить пустой коммента�
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Вы не можете отправить номер строки, не связав его с именем файла."
 
-msgid "Type"
-msgstr "Тип"
-
-msgid "Waiting Time"
-msgstr "Время ожидания"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Флаги"
-
-msgid "moments ago"
-msgstr "мгновения назад "
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} минута"
-msgstr[1] "{0} минуты"
-msgstr[2] "{0} минут"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} час"
-msgstr[1] "{0} часа"
-msgstr[2] "{0} часов"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} день"
-msgstr[1] "{0} дня"
-msgstr[2] "{0} дней"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Последняя проверка"
@@ -4978,6 +4941,12 @@ msgstr "Общий вес"
 
 msgid "Maliciousness Score"
 msgstr "Оценка вредоносности"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Waiting Time"
+msgstr "Время ожидания"
 
 msgid "Pending Rejection Deadline"
 msgstr "Ожидания срока отклонения"
@@ -5166,6 +5135,12 @@ msgstr "Информация о дополнении для {0}"
 msgid "Add-on ID"
 msgstr "ID дополнения"
 
+msgid "Original Add-on ID"
+msgstr "Исходный идентификатор дополнения"
+
+msgid "Add-on(s) sharing same ID"
+msgstr "Дополнения с одинаковым идентификатором"
+
 msgid "Internal AMO ID"
 msgstr "Внутренний ID AMO"
 
@@ -5282,57 +5257,6 @@ msgstr "Отзыв был отмечен до удаления."
 msgid "Undelete"
 msgstr "Восстановить"
 
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Эффективность рецензента — Дополнения для Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Производительность Редактора дополнений"
-
-msgid "View statistics for user"
-msgstr "Просмотр статистики пользователя"
-
-msgid "Range"
-msgstr "Диапазон"
-
-msgid "Your Reviews"
-msgstr "Ваши отзывы"
-
-msgid "By {user_name}"
-msgstr "От {user_name}"
-
-msgid "Total Reviews"
-msgstr "Всего проверок"
-
-msgid "Active Contributors"
-msgstr "Активные участники"
-
-msgid "This Month"
-msgstr "Этот месяц"
-
-msgid "This Year"
-msgstr "Этот год"
-
-msgid "Monthly Performance"
-msgstr "Месячная производительность"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Разбиение точками по типу за всё время"
-
-msgid "Add-ons"
-msgstr "Дополнения"
-
-msgid "Total"
-msgstr "Всего"
-
-msgid "Month"
-msgstr "Месяц"
-
-msgid "Year"
-msgstr "Год"
-
-msgid "All-Time"
-msgstr "Всё время"
-
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "– Инструменты проверяющего – Дополнения для Firefox"
 
@@ -5353,12 +5277,6 @@ msgstr "Скрытые дополнения - дополнения для Firefo
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Ожидающие отклонения - Дополнения для Firefox"
-
-msgid "Advanced Search"
-msgstr "Продвинутый поиск"
-
-msgid "clear search"
-msgstr "очистить поиск"
 
 msgid "Process Reviews"
 msgstr "Обработать рецензии"
@@ -5405,9 +5323,6 @@ msgstr "История важных изменений дополнения"
 
 msgid "Add-on History"
 msgstr "История дополнения"
-
-msgid "Previously deleted entries"
-msgstr "Ранее удалённые записи"
 
 msgid "You don't have permission to review it."
 msgstr "У вас нет разрешения на его рецензирование."
@@ -5711,8 +5626,8 @@ msgstr "наличие совпадающих правил"
 msgid "result state"
 msgstr "результат состояния"
 
-msgid "all but results matching only this rule"
-msgstr "все, кроме результатов, соответствующих только этому правилу"
+msgid "Excluding results solely matching these rules"
+msgstr "Кроме результатов, соответствующих только этим правилам"
 
 msgid "presence of a version"
 msgstr "наличие версии"
@@ -5803,9 +5718,6 @@ msgstr "Версия не соответствует манифесту."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Версия уже существует. Последняя версия: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Только WebExtensions разрешено не указывать идентификатор дополнения"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Пожалуйста, укажите идентификатор вашего дополнения в манифесте, если он длиннее 64 символов."
@@ -5932,6 +5844,9 @@ msgstr "Загрузка последних данных&hellip;"
 msgid "No data available."
 msgstr "Данные отсутствуют"
 
+msgid "Previous"
+msgstr "Предыдущее"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Эта панель — <b>приватная</b>."
 
@@ -6026,12 +5941,6 @@ msgstr "Правовое обеспечение"
 msgid "Report Trademark Abuse"
 msgstr "Сообщить о злоупотреблении торговой маркой"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Новый веб-сайт поддерживает мобильные и компьютерные версии браузеров"
-
-msgid "View the new site"
-msgstr "Посетить новый сайт"
-
 msgid "Site Status"
 msgstr "Статус сайта "
 
@@ -6042,8 +5951,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"За исключением случаев, <a href=\"https://www.mozilla.org/about/legal/\">описанных здесь</a>, содержимое этого сайта лицензировано на условиях <br /> <a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">лицензии Creative Commons «Атрибуция — На тех же условиях» версии 3.0</a> или любой более поздней версии."
+"За исключением случаев, <a href=\"https://www.mozilla.org/about/legal/\">описанных здесь</a>, содержимое этого сайта лицензировано на условиях <br /> <a href=\"https://creativecommons.org/licenses/"
+"by-sa/3.0/\">лицензии Creative Commons «Атрибуция — На тех же условиях» версии 3.0</a> или любой более поздней версии."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "узнайте о <b>дополнениях</b>"
@@ -6082,8 +5991,8 @@ msgstr "Перейти"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Вернуться на домашнюю страницу дополнений {0}"
 
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "Дополнения для <img alt=\"Firefox\" src=\"{0}\">"
+msgid "Add-ons"
+msgstr "Дополнения"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6174,7 +6083,8 @@ msgstr "Нет пользователя с таким почтовым адре�
 msgid "Firefox user {id}"
 msgstr "Пользователь Firefox {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+#, fuzzy
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Введите корректную IPv6 или IPv6 CIDR подсеть, например, 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
@@ -6183,12 +6093,8 @@ msgstr "Несколько дополнений, нарушающих наши �
 msgid "Email Pattern"
 msgstr "Шаблон адреса электронной почты"
 
-msgid ""
-"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
-" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
-"Введите полный домен или адрес электронной почты, который должен быть заблокирован, или используйте  звёздочки (glob-style wildcards) для задания шаблонов. Например, «@*.mail.com»\n"
-" Пожалуйста заметьте, что «@» не включается в совпадения, так что вам  необходимо делать это в шаблоне."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Адрес электронной почты, используемый вами в аккаунте, не может быть использован для представления дополнений."
@@ -6201,8 +6107,8 @@ msgstr ""
 "используйте «Ограничение пользовательских адресов электронной почты»."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Перед началом, пожалуйста прочтите и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и Правила проверки. Соглашение по распространению дополнений Firefox также "
 "ссылается на Уведомление об использовании конфиденциальной информации, которое объясняет, как мы обрабатываем вашу информацию."
@@ -6263,7 +6169,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6335,3 +6242,6 @@ msgstr "другие"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} и выше"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

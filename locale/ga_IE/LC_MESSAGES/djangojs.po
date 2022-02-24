@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -14,14 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} réiltín"
-msgstr[1] "{0} réiltín"
-msgstr[2] "{0} réiltín"
-msgstr[3] "{0} réiltín"
-msgstr[4] "{0} réiltín"
 
 msgid "There was a problem contacting the server."
 msgstr "Tharla earráid agus dul i dteagmháil leis an bhfreastalaí."
@@ -109,18 +101,6 @@ msgstr[4] "D'éirigh le do bhreiseán sa bhailíochtú gan earráid ar bith agus
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "D'éirigh le do bhreiseán sa bhailíochtú gan earráidí gan rabhaidh."
 
-msgid "Your submission will be automatically signed."
-msgstr "Síneofar do bhreiseán go huathoibríoch."
-
-msgid "WebExtension upgrade"
-msgstr "Uasghrádú WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Breiseán sean-nóis a uasghrádú, ar MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Cuir nótaí eisiúna mionsonraithe leis (is féidir é seo a dhéanamh sa chéad chéim eile)."
 
@@ -155,36 +135,6 @@ msgstr "Ní mór d'íomhánna a bheith PNG nó JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Níl cead agat ach físeán WebM a úsáid."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Your input is required"
-msgstr ""
-
-msgid "Marked for deletion"
-msgstr "Marcáilte le bheith scriosta"
-
-msgid "Updating results&hellip;"
-msgstr "Torthaí á nuashonrú&hellip;"
-
-msgid "Category"
-msgstr "Catagóir"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-msgid "Search apps for <b>{0}</b>"
-msgstr ""
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
-
-msgid "Use original"
-msgstr ""
 
 msgid "Week of {0}"
 msgstr ""
@@ -694,42 +644,6 @@ msgstr "Dáta"
 msgid "Other"
 msgstr "Eile"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Glac Leis agus Suiteáil"
-
-msgid "Add to {0}"
-msgstr "Cuir le {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Suiteáil ar {0} mar sin féin"
-
-msgid "Download for {0} anyway"
-msgstr "Íoslódáil le haghaidh {0} mar sin féin"
-
-msgid "Not available for your platform"
-msgstr "Níl sé ar fáil ar d'ardán"
-
-#, fuzzy
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Níl an téama seo comhoiriúnach do do leagan de {0}"
-
-msgid "View other versions"
-msgstr "Féach ar leaganacha eile"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Feidhmíonn sé le {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Feidhmíonn sé le {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Tá brabhsálaí de chuid Mozilla (mar shampla Firefox) de dhíth ort chun breiseán cuardaigh a shuiteáil."
-
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"
 
@@ -752,12 +666,6 @@ msgstr ""
 
 msgid "Select an application first"
 msgstr "Roghnaigh feidhmchlár i dtosach báire"
-
-msgid "No results found."
-msgstr ""
-
-msgid "Loading..."
-msgstr "Á Lódáil..."
 
 #, fuzzy
 msgid "<b>{0}</b> character"
@@ -805,12 +713,6 @@ msgid "Review Text"
 msgstr ""
 
 msgid "Review notes found"
-msgstr ""
-
-msgid "Average Reviews"
-msgstr ""
-
-msgid "Number of Reviews"
 msgstr ""
 
 msgid "Maximum upload size is {0} - choose a smaller background image."

@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.core.files.storage import default_storage
 from django.utils.translation import gettext
 
 from rest_framework import serializers
@@ -14,6 +13,7 @@ from olympia.amo.utils import (
     clean_nl,
     has_links,
     ImageCheck,
+    SafeStorage,
     subscribe_newsletter,
     unsubscribe_newsletter,
     urlparams,
@@ -91,12 +91,6 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
     permissions = serializers.SerializerMethodField()
     fxa_edit_email_url = serializers.SerializerMethodField()
-    reviewer_name = serializers.CharField(
-        min_length=2,
-        max_length=50,
-        allow_blank=True,
-        validators=[OneOrMorePrintableCharacterAPIValidator()],
-    )
     # Just Need to specify any field for the source - '*' is the entire obj.
     site_status = SiteStatusSerializer(source='*')
 
@@ -111,7 +105,6 @@ class UserProfileSerializer(PublicUserProfileSerializer):
             'permissions',
             'picture_upload',
             'read_dev_agreement',
-            'reviewer_name',
             'site_status',
             'username',
         )
@@ -122,14 +115,8 @@ class UserProfileSerializer(PublicUserProfileSerializer):
             'location',
             'occupation',
             'picture_upload',
-            'reviewer_name',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        if not self.instance or not acl.is_user_any_kind_of_reviewer(self.instance):
-            self.fields.pop('reviewer_name', None)
 
     def get_fxa_edit_email_url(self, user):
         base_url = f'{settings.FXA_CONTENT_HOST}/settings'
@@ -147,13 +134,6 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
                 gettext('This display name cannot be used.')
-            )
-        return value
-
-    def validate_reviewer_name(self, value):
-        if DeniedName.blocked(value):
-            raise serializers.ValidationError(
-                gettext('This reviewer name cannot be used.')
             )
         return value
 
@@ -192,14 +172,15 @@ class UserProfileSerializer(PublicUserProfileSerializer):
 
         photo = validated_data.get('picture_upload')
         if photo:
-            tmp_destination = instance.picture_path_original
+            original = instance.picture_path_original
 
-            with default_storage.open(tmp_destination, 'wb') as temp_file:
+            storage = SafeStorage(user_media='userpics')
+            with storage.open(original, 'wb') as original_file:
                 for chunk in photo.chunks():
-                    temp_file.write(chunk)
+                    original_file.write(chunk)
             instance.update(picture_type=photo.content_type)
             resize_photo.delay(
-                tmp_destination,
+                original,
                 instance.picture_path,
                 set_modified_on=instance.serializable_reference(),
             )

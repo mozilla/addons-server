@@ -10,6 +10,7 @@ from django.urls import reverse
 from unittest import mock
 
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.accounts.views import API_TOKEN_COOKIE
@@ -27,7 +28,6 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
-from olympia.files.models import File
 from olympia.users.models import Group, UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -42,7 +42,6 @@ class TestVersion(TestCase):
         self.addon = self.get_addon()
         self.version = Version.objects.get(id=81551)
         self.url = self.addon.get_dev_url('versions')
-
         self.disable_url = self.addon.get_dev_url('disable')
         self.enable_url = self.addon.get_dev_url('enable')
         self.delete_url = reverse('devhub.versions.delete', args=['a3615'])
@@ -106,15 +105,12 @@ class TestVersion(TestCase):
         assert doc('#modal-delete p').eq(0).text() == (
             'Deleting your add-on will permanently delete all versions and '
             'files you have submitted for this add-on, listed or not. '
-            'The add-on ID will continue to be linked to your account, so '
-            "others won't be able to submit versions using the same ID."
+            'The add-on ID cannot be restored and will forever be unusable '
+            'for submission.'
         )
 
-    def test_delete_message_if_bits_are_messy(self):
-        """Make sure we warn krupas of the pain they will feel."""
-        self.addon.status = amo.STATUS_NOMINATED
-        self.addon.save()
-
+    @override_switch('allow-deleted-guid-reuse', active=True)
+    def test_delete_message_if_allow_deleted_guid_reuse_is_on(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('#modal-delete p').eq(0).text() == (
@@ -273,7 +269,7 @@ class TestVersion(TestCase):
         )
 
     def test_reenable_version(self):
-        Version.objects.get(pk=81551).all_files[0].update(
+        Version.objects.get(pk=81551).file.update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
         )
         self.reenable_url = reverse('devhub.versions.reenable', args=['a3615'])
@@ -292,14 +288,13 @@ class TestVersion(TestCase):
     def _extra_version_and_file(self, status):
         version = Version.objects.get(id=81551)
 
-        version_two = Version(
-            addon=self.addon, license=version.license, version='1.2.3'
+        version_two = version_factory(
+            addon=self.addon,
+            license=version.license,
+            version='1.2.3',
+            file_kw={'status': status},
         )
-        version_two.save()
-
-        file_two = File(status=status, version=version_two)
-        file_two.save()
-        return version_two, file_two
+        return version_two, version_two.file
 
     def test_version_delete_status(self):
         self._extra_version_and_file(amo.STATUS_APPROVED)
@@ -330,7 +325,7 @@ class TestVersion(TestCase):
         assert hide_mock.called
 
         # Check we didn't change the status of the files.
-        assert version.files.all()[0].status == amo.STATUS_APPROVED
+        assert version.file.status == amo.STATUS_APPROVED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
@@ -354,7 +349,8 @@ class TestVersion(TestCase):
         assert hide_mock.called
 
         # Check we disabled the file pending review.
-        assert new_version.all_files[0].status == amo.STATUS_DISABLED
+        new_version.file.reload()
+        assert new_version.file.status == amo.STATUS_DISABLED
         # latest version should be reset when the file/version was disabled.
         assert (
             self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
@@ -369,7 +365,7 @@ class TestVersion(TestCase):
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_disabling_addon_awaiting_review_disables_version(self, hide_mock):
         self.addon.update(status=amo.STATUS_AWAITING_REVIEW, disabled_by_user=False)
-        self.version.all_files[0].update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         res = self.client.post(self.disable_url)
         assert res.status_code == 302
@@ -380,7 +376,7 @@ class TestVersion(TestCase):
 
         # Check we disabled the file pending review.
         self.version = Version.objects.get(id=self.version.id)
-        assert self.version.all_files[0].status == amo.STATUS_DISABLED
+        assert self.version.file.status == amo.STATUS_DISABLED
 
     def test_user_get(self):
         assert self.client.get(self.enable_url).status_code == 405
@@ -486,11 +482,11 @@ class TestVersion(TestCase):
         assert not doc('.disable-addon').attr('disabled')
 
     def test_cancel_get(self):
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         assert self.client.get(cancel_url).status_code == 405
 
     def test_cancel_wrong_status(self):
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         for status in Addon.STATUS_CHOICES:
             if status in (amo.STATUS_NOMINATED, amo.STATUS_DELETED):
                 continue
@@ -500,14 +496,52 @@ class TestVersion(TestCase):
             assert Addon.objects.get(id=3615).status == status
 
     def test_cancel(self):
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.client.post(cancel_url)
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
+    def test_cancel_obey_channel_listed(self):
+        addon = Addon.objects.get(id=3615)
+        file_ = addon.current_version.file
+        file_.update(status=amo.STATUS_AWAITING_REVIEW)
+        unlisted_file = version_factory(
+            addon=addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        ).file
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
+        self.client.post(cancel_url)
+        file_.reload()
+        assert file_.status == amo.STATUS_DISABLED
+        unlisted_file.reload()
+        assert unlisted_file.status == amo.STATUS_AWAITING_REVIEW
+        addon.reload()
+        assert addon.status == amo.STATUS_NULL
+
+    def test_cancel_obey_channel_unlisted(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        file_ = version.file
+        file_.update(status=amo.STATUS_AWAITING_REVIEW)
+        listed_file = version_factory(
+            addon=addon,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        ).file
+        addon.update(status=amo.STATUS_NOMINATED)
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'unlisted'])
+        self.client.post(cancel_url)
+        file_.reload()
+        assert file_.status == amo.STATUS_DISABLED
+        listed_file.reload()
+        assert listed_file.status == amo.STATUS_AWAITING_REVIEW
+        addon.reload()
+        assert addon.status == amo.STATUS_NOMINATED
+
     def test_not_cancel(self):
         self.client.logout()
-        cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
+        cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
         assert self.addon.status == amo.STATUS_APPROVED
         response = self.client.post(cancel_url)
         assert response.status_code == 302
@@ -546,8 +580,7 @@ class TestVersion(TestCase):
         latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        for file_ in latest_version.files.all():
-            file_.update(status=amo.STATUS_DISABLED)
+        latest_version.file.update(status=amo.STATUS_DISABLED)
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button')
@@ -560,8 +593,9 @@ class TestVersion(TestCase):
         latest_version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_LISTED
         )
-        for file_ in latest_version.files.all():
-            file_.update(reviewed=datetime.datetime.now(), status=amo.STATUS_DISABLED)
+        latest_version.file.update(
+            reviewed=datetime.datetime.now(), status=amo.STATUS_DISABLED
+        )
         version_factory(
             addon=self.addon,
             file_kw={
@@ -679,7 +713,7 @@ class TestVersion(TestCase):
 
         # Make one of the versions listed.
         v2.update(channel=amo.RELEASE_CHANNEL_LISTED)
-        v2.all_files[0].update(status=amo.STATUS_AWAITING_REVIEW)
+        v2.file.update(status=amo.STATUS_AWAITING_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -690,6 +724,21 @@ class TestVersion(TestCase):
         assert file_status_tds('span.distribution-tag-unlisted').length == 1
         # Extra tags in the headers too
         assert doc('h3 span.distribution-tag-listed').length == 2
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+
+        # Authors can see the versions page of a site permission add-on.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # They can't delete/disable/enable versions though.
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 403
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 403
+        response = self.client.post(self.delete_url, self.delete_data)
+        assert response.status_code == 403
 
 
 class TestVersionEditBase(TestCase):
@@ -756,11 +805,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         doc = pq(response.content)
         assert not doc('a.add-file')
 
-        self.version.files.all().delete()
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert not doc('a.add-file')
-
     def test_add(self):
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -785,7 +829,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             suffix='.zip', dir=temp.gettempdir()
         ) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             self.version.source.save(
                 os.path.basename(source_file.name), DjangoFile(source_file)
@@ -806,7 +850,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             suffix='.zip', dir=temp.gettempdir()
         ) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -823,6 +867,82 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log.user == self.user
         assert log.details is None
         assert log.arguments == [self.addon, self.version]
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_logging(self, log_mock):
+        with temp.NamedTemporaryFile(
+            suffix='.zip', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2**21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert log_mock.info.call_count == 4
+        assert log_mock.info.call_args_list[0][0] == (
+            'version_edit, form populated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[1][0] == (
+            'version_edit, form validated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[2][0] == (
+            'version_edit, form saved, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[3][0] == (
+            'version_edit, redirecting to next view, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_on_initial_display(self, log_mock):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert log_mock.info.call_count == 0
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_no_logging_without_source(self, log_mock):
+        data = self.formset(release_notes='xx')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert log_mock.info.call_count == 0
+
+    @mock.patch('olympia.devhub.views.log')
+    def test_logging_failed_validation(self, log_mock):
+        with temp.NamedTemporaryFile(
+            suffix='.exe', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2**21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert response.context['version_form'].errors == {
+            'source': [
+                'Unsupported file type, please upload an archive file '
+                + '(.zip, .tar.gz, .tgz, .tar.bz2).'
+            ]
+        }
+        assert log_mock.info.call_count == 2
+        assert log_mock.info.call_args_list[0][0] == (
+            'version_edit, form populated, addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
+        assert log_mock.info.call_args_list[1][0] == (
+            'version_edit, validation failed, re-displaying the template, '
+            + 'addon.slug: %s, version.id: %s',
+            self.addon.slug,
+            self.version.id,
+        )
 
     def test_email_is_sent_to_relevant_people_for_source_code_upload(self):
         # Have a reviewer review a version.
@@ -863,7 +983,7 @@ class TestVersionEditDetails(TestVersionEditBase):
             suffix='.exe', dir=temp.gettempdir()
         ) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -875,7 +995,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         tmp_file = temp.NamedTemporaryFile
         with tmp_file(suffix='.zip', dir=tdir) as source_file:
             with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2 ** 21))
+                zip_file.writestr('foo', 'a' * (2**21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -895,6 +1015,16 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert not version.addon.needs_admin_code_review
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        # Authors can see a version page of a site permission add-on.
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # They can't edit it though.
+        response = self.client.post(self.url, self.formset())
+        assert response.status_code == 403
 
 
 class TestVersionEditStaticTheme(TestVersionEditBase):

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-10-09 05:46+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -14,15 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "لا نجوم"
-msgstr[1] "نجمة واحدة"
-msgstr[2] "نجمتان اثنتان"
-msgstr[3] "{0} نجوم"
-msgstr[4] "{0} نجمة"
-msgstr[5] "{0} نجمة"
 
 msgid "There was a problem contacting the server."
 msgstr "هناك مشكلة ما في الاتصال بالخادوم."
@@ -114,18 +105,6 @@ msgstr[5] "اكتمل التثبّت من إضافتك بدون أي أخطاء�
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
 
-msgid "Your submission will be automatically signed."
-msgstr "سيُوقّع ما تُرسله تلقائيًا."
-
-msgid "WebExtension upgrade"
-msgstr "الترقية إلى WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "نتيح ونشجّع على إجراء ترقية إلا أنك لا تستطيع عكس العملية. ما إن يُثبّت المستخدمون WebExtension، لن يقدروا على تثبيت إضافة عتيقة بعد الآن."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "”نقل إضافة فَيَرفُكس عتيقة“ على MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "فيه ملاحظات الإصدارة المفصّلة (يمكنك تأجيل هذا للخطوة القادمة)."
 
@@ -160,36 +139,6 @@ msgstr "يجب أن تكون الصور إما PNG أو JPG."
 
 msgid "Videos must be in WebM."
 msgstr "يجب أن تكون الڤديوهات بنسق WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "هذه السِمة غير متوافقة مع إصدارتك من {0}"
-
-msgid "Flagged for review"
-msgstr "عليه علامة لمراجعته"
-
-msgid "Your input is required"
-msgstr "التفاعل مطلوب"
-
-msgid "Marked for deletion"
-msgstr "عليه علامة لحذفه"
-
-msgid "Updating results&hellip;"
-msgstr "يُحدّث النتائج&hellip;"
-
-msgid "Category"
-msgstr "الفئة"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "ابحث في السمات عن <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "ابحث في التطبيقات عن <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "ابحث في الإضافات عن <b>{0}</b>"
-
-msgid "Use original"
-msgstr "استخدم الأصلية"
 
 msgid "Week of {0}"
 msgstr "أسبوع {0}"
@@ -701,41 +650,6 @@ msgstr "التاريخ"
 msgid "Other"
 msgstr "أخرى"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "اقبل وثبّت"
-
-msgid "Add to {0}"
-msgstr "أضِف إلى {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "ثبّت على {0} بأي حال"
-
-msgid "Download for {0} anyway"
-msgstr "نزّل على {0} بأي حال"
-
-msgid "Not available for your platform"
-msgstr "غير متوفّر لمنصتك"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "هذه الإضافة غير متوافقة مع إصدارة {0} الحالية."
-
-msgid "View other versions"
-msgstr "اعرض الإصدارات الأخرى"
-
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-msgid "Works with {app}"
-msgstr "تعمل مع {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "فقط في فَيَرفُكس — نزّله الآن!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "نأسف، تحتاجُ متفصحًا من موزيلا (مثل متصفح فَيَرفُكس) لتثبيت ملحقات البحث."
-
 msgid "Changes Saved"
 msgstr "حُفظت التغييرات"
 
@@ -759,12 +673,6 @@ msgstr "يُعالج التغييرات على الصورة"
 
 msgid "Select an application first"
 msgstr "اختر تطبيقًا أولًا"
-
-msgid "No results found."
-msgstr "لم يُعثر على نتائج."
-
-msgid "Loading..."
-msgstr "يُحمّل…"
 
 #, fuzzy
 msgid "<b>{0}</b> character"
@@ -815,12 +723,6 @@ msgstr "نصّ المراجعة"
 
 msgid "Review notes found"
 msgstr "وجدنا على ملاحظات مراجعة"
-
-msgid "Average Reviews"
-msgstr "معدّل المراجعات"
-
-msgid "Number of Reviews"
-msgstr "عدد المراجعات"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "أقصى حجم للرفع هو {0}. اختر صورة خلفية أصغر من هذه."

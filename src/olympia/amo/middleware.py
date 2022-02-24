@@ -1,38 +1,54 @@
 import contextlib
 import re
-import socket
 import uuid
 
 from urllib.parse import quote
 
 from django.conf import settings
+from django.contrib.auth import SESSION_KEY
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
+from django.core.exceptions import ImproperlyConfigured
 from django.db import transaction
-from django.urls import is_valid_path
 from django.http import (
+    HttpResponse,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
     JsonResponse,
 )
 from django.middleware import common
-from django.utils.cache import patch_cache_control, patch_vary_headers
+from django.template.response import TemplateResponse
+from django.utils.cache import (
+    add_never_cache_headers,
+    get_max_age,
+    patch_cache_control,
+    patch_vary_headers,
+)
+from django.utils.crypto import constant_time_compare
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_str, iri_to_uri
 from django.utils.translation import activate, gettext_lazy as _
+from django.urls import is_valid_path
 
 from rest_framework import permissions
 
 import MySQLdb as mysql
 
+import olympia.core.logger
 from olympia import amo
-from olympia.amo.utils import render
+from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.verify import (
+    check_and_update_fxa_access_token,
+    IdentificationError,
+)
 
 from . import urlresolvers
 from .reverse import set_url_prefix
 from .templatetags.jinja_helpers import urlparams
 
+
+log = olympia.core.logger.getLogger('amo.middleware')
 
 auth_path = re.compile('%saccounts/authenticate/?$' % settings.DRF_API_REGEX)
 
@@ -229,6 +245,17 @@ class ReadOnlyMiddleware(MiddlewareMixin):
         'full capacity shortly.'
     )
 
+    def render_html_error(self, request):
+        response = TemplateResponse(request, 'amo/read-only.html', status=503)
+        # render() is normally called behind the scenes by django's base
+        # handler inside get_response(), but here we might be bypassing that,
+        # so we need to force the rendering ourselves.
+        response.render()
+        return response
+
+    def render_readonly_api_error(self, request):
+        return JsonResponse({'error': self.ERROR_MSG}, status=503)
+
     def process_request(self, request):
         if not settings.READ_ONLY:
             return
@@ -236,9 +263,9 @@ class ReadOnlyMiddleware(MiddlewareMixin):
         if request.is_api:
             writable_method = request.method not in permissions.SAFE_METHODS
             if writable_method:
-                return JsonResponse({'error': self.ERROR_MSG}, status=503)
+                return self.render_readonly_api_error(request)
         elif request.method == 'POST':
-            return render(request, 'amo/read-only.html', status=503)
+            return self.render_html_error(request)
 
     def process_exception(self, request, exception):
         if not settings.READ_ONLY:
@@ -246,45 +273,44 @@ class ReadOnlyMiddleware(MiddlewareMixin):
 
         if isinstance(exception, mysql.OperationalError):
             if request.is_api:
-                return self._render_api_error()
-            return render(request, 'amo/read-only.html', status=503)
+                return self.render_readonly_api_error(request)
+            return self.render_html_error(request)
 
 
 class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     """
-    Set request.META['REMOTE_ADDR'] from request.META['HTTP_X_FORWARDED_FOR'].
+    Set REMOTE_ADDR from HTTP_X_FORWARDED_FOR if the request came from the CDN.
 
-    Our application servers should always be behind a load balancer that sets
-    this header correctly.
+    If the request came from the CDN, the client IP will always be in
+    HTTP_X_FORWARDED_FOR in second to last position (CDN puts it last, but the
+    load balancer then appends the IP from where it saw the request come from,
+    which is the CDN server that forwarded the request). In addition, the CDN
+    will set HTTP_X_REQUEST_VIA_CDN to a secret value known to us so we can
+    verify the request did originate from the CDN.
+
+    If the request didn't come from the CDN and is a direct origin request, the
+    client IP will be in last position in HTTP_X_FORWARDED_FOR but in this case
+    nginx already sets REMOTE_ADDR so we don't need to use it.
     """
 
-    def is_valid_ip(self, ip):
-        for af in (socket.AF_INET, socket.AF_INET6):
-            try:
-                socket.inet_pton(af, ip)
-                return True
-            except OSError:
-                pass
-        return False
+    def is_request_from_cdn(self, request):
+        return settings.SECRET_CDN_TOKEN and constant_time_compare(
+            request.META.get('HTTP_X_REQUEST_VIA_CDN'), settings.SECRET_CDN_TOKEN
+        )
 
     def process_request(self, request):
-        ips = []
-
-        if 'HTTP_X_FORWARDED_FOR' in request.META:
-            xff = [i.strip() for i in request.META['HTTP_X_FORWARDED_FOR'].split(',')]
-            ips = [ip for ip in xff if self.is_valid_ip(ip)]
-        else:
-            return
-
-        ips.append(request.META['REMOTE_ADDR'])
-
-        known = getattr(settings, 'KNOWN_PROXIES', [])
-        ips.reverse()
-
-        for ip in ips:
-            request.META['REMOTE_ADDR'] = ip
-            if ip not in known:
-                break
+        x_forwarded_for_header = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for_header and self.is_request_from_cdn(request):
+            # We only have to split twice from the right to find what we're looking for.
+            try:
+                value = x_forwarded_for_header.rsplit(sep=',', maxsplit=2)[-2].strip()
+                if not value:
+                    raise IndexError
+                request.META['REMOTE_ADDR'] = value
+            except IndexError:
+                # Shouldn't happen, must be a misconfiguration, raise an error
+                # rather than potentially use/record incorrect IPs.
+                raise ImproperlyConfigured('Invalid HTTP_X_FORWARDED_FOR')
 
 
 class RequestIdMiddleware(MiddlewareMixin):
@@ -306,3 +332,77 @@ class RequestIdMiddleware(MiddlewareMixin):
             response['X-AMO-Request-ID'] = request.request_id
 
         return response
+
+
+class CacheControlMiddleware:
+    """Middleware to add Cache-Control: max-age=xxx header to responses that
+    should be cached, Cache-Control: s-maxage:0 to responses that should not.
+
+    The only responses that should be cached are API, unauthenticated responses
+    from "safe" HTTP verbs, or responses that already had a max-age set before
+    being processed by this middleware. In that last case, the Cache-Control
+    header already present is left intact.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        max_age_from_response = get_max_age(response)
+        request_conditions = (
+            request.is_api
+            and request.method in ('GET', 'HEAD')
+            and 'HTTP_AUTHORIZATION' not in request.META
+            and 'disable_caching' not in request.GET
+        )
+        response_conditions = (
+            not response.cookies
+            and response.status_code >= 200
+            and response.status_code < 400
+            and not max_age_from_response
+        )
+        if request_conditions and response_conditions:
+            patch_cache_control(response, max_age=settings.API_CACHE_DURATION)
+        elif max_age_from_response is None:
+            patch_cache_control(response, s_maxage=0)
+        return response
+
+
+class LBHeartbeatMiddleware:
+    """Middleware to capture request to /__lbheartbeat__ and return a 200.
+    Must be placed above CommonMiddleware to work with ELB.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path == '/__lbheartbeat__':
+            response = HttpResponse(status=200)
+            add_never_cache_headers(response)
+            return response
+        return self.get_response(request)
+
+
+class TokenValidMiddleware:
+    """Middleware to check the FxA auth tokens haven't expired, and refresh if
+    necessary.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # API requests are validated in SessionIDAuthentication
+        if not getattr(request, 'is_api', False):
+            if SESSION_KEY not in request.session:
+                # Without SESSION_KEY the session is definately anonymous so assume that
+                request.user = AnonymousUser()
+            else:
+                try:
+                    check_and_update_fxa_access_token(request)
+                except IdentificationError:
+                    log.info(f'Failed refreshing access_token for {request.user.id}')
+                    return redirect_for_login(request)
+        return self.get_response(request)

@@ -29,6 +29,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.addons.models import Addon, Preview
+from olympia.addons.utils import SitePermissionVersionCreator
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.utils import (
@@ -40,6 +41,7 @@ from olympia.amo.utils import (
     utc_millesecs_from_epoch,
 )
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
+from olympia.devhub import file_validation_annotations as annotations
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
     InvalidManifest,
@@ -47,9 +49,9 @@ from olympia.files.utils import (
     parse_addon,
     SafeZip,
     UnsupportedFileType,
+    InvalidZipFile,
 )
-from olympia.versions.models import Version
-from olympia.devhub import file_validation_annotations as annotations
+from olympia.users.models import UserProfile
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
@@ -93,6 +95,8 @@ def validate_and_submit(addon, file_, channel):
 @task
 @use_primary_db
 def submit_file(addon_pk, upload_pk, channel):
+    from olympia.devhub.utils import create_version_for_upload
+
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
@@ -102,42 +106,6 @@ def submit_file(addon_pk, upload_pk, channel):
             'Skipping version creation for {upload_uuid} that failed '
             'validation'.format(upload_uuid=upload.uuid)
         )
-
-
-@transaction.atomic
-def create_version_for_upload(addon, upload, channel):
-    fileupload_exists = addon.fileupload_set.filter(
-        created__gt=upload.created, version=upload.version
-    ).exists()
-    version_exists = Version.unfiltered.filter(
-        addon=addon, version=upload.version
-    ).exists()
-    if fileupload_exists or version_exists:
-        log.info(
-            'Skipping Version creation for {upload_uuid} that would '
-            ' cause duplicate version'.format(upload_uuid=upload.uuid)
-        )
-    else:
-        log.info(
-            'Creating version for {upload_uuid} that passed '
-            'validation'.format(upload_uuid=upload.uuid)
-        )
-        # Note: if we somehow managed to get here with an invalid add-on,
-        # parse_addon() will raise ValidationError and the task will fail
-        # loudly in sentry.
-        parsed_data = parse_addon(upload, addon, user=upload.user)
-        Version.from_upload(
-            upload,
-            addon,
-            [x[0] for x in amo.APPS_CHOICES],
-            channel,
-            parsed_data=parsed_data,
-        )
-        # The add-on's status will be STATUS_NULL when its first version is
-        # created because the version has no files when it gets added and it
-        # gets flagged as invalid. We need to manually set the status.
-        if addon.status == amo.STATUS_NULL and channel == amo.RELEASE_CHANNEL_LISTED:
-            addon.update(status=amo.STATUS_NOMINATED)
 
 
 @task
@@ -201,6 +169,15 @@ def validation_task(fn):
                 type_='error',
                 message=exc.message,
                 msg_id='unsupported_filetype',
+            )
+            return results
+        except InvalidZipFile as exc:
+            results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+            annotations.insert_validation_message(
+                results,
+                type_='error',
+                message=exc.message,
+                msg_id='invalid_zip_file',
             )
             return results
         except BadZipFile:
@@ -268,9 +245,9 @@ def validate_file_path(path, channel):
         )
         return json.dumps(results)
 
-    # Annotate results with potential legacy add-ons restrictions.
+    parsed_data = {}
     try:
-        parse_addon(path, minimal=True)
+        parsed_data = parse_addon(path, minimal=True)
     except NoManifestFound:
         # If no manifest is found the linter will pick it up and
         # will know what message to return to the developer.
@@ -281,7 +258,9 @@ def validate_file_path(path, channel):
         pass
 
     log.info('Running linter on %s', path)
-    return run_addons_linter(path, channel=channel)
+    results = run_addons_linter(path, channel=channel)
+    annotations.annotate_validation_results(results, parsed_data)
+    return json.dumps(results)
 
 
 @validation_task
@@ -297,9 +276,8 @@ def forward_linter_results(results, upload_pk):
 @task
 @use_primary_db
 def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_signed):
-    """Annotate a set of validation results and save them to the given
-    FileUpload instance.
-    """
+    """Save a set of validation results to a FileUpload instance corresponding
+    to the given upload_pk."""
     upload = FileUpload.objects.get(pk=upload_pk)
     upload.validation = json.dumps(results)
     upload.save()  # We want to hit the custom save().
@@ -360,8 +338,8 @@ def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_sign
 @task(ignore_result=False)
 @use_primary_db
 def handle_file_validation_result(results, file_id, *args):
-    """Annotate a set of validation results and save them to the given File
-    instance."""
+    """Save a set of validation results to a FileValidation instance
+    corresponding to the given file_id."""
 
     file_ = File.objects.get(pk=file_id)
     return FileValidation.from_json(file_, results).pk
@@ -507,21 +485,20 @@ def run_addons_linter(path, channel):
 
     parsed_data = json.loads(force_str(output))
 
-    result = json.dumps(fix_addons_linter_output(parsed_data, channel))
-    track_validation_stats(result)
+    results = fix_addons_linter_output(parsed_data, channel)
+    track_validation_stats(results)
 
-    return result
+    return results
 
 
-def track_validation_stats(json_result):
+def track_validation_stats(results):
     """
-    Given a raw JSON string of validator results, log some stats.
+    Given a dict of validator results, log some stats.
     """
-    result = json.loads(force_str(json_result))
-    result_kind = 'success' if result['errors'] == 0 else 'failure'
+    result_kind = 'success' if results['errors'] == 0 else 'failure'
     statsd.incr(f'devhub.linter.results.all.{result_kind}')
 
-    listed_tag = 'listed' if result['metadata']['listed'] else 'unlisted'
+    listed_tag = 'listed' if results['metadata']['listed'] else 'unlisted'
 
     # Track listed/unlisted success/fail.
     statsd.incr(f'devhub.linter.results.{listed_tag}.{result_kind}')
@@ -767,3 +744,20 @@ def send_api_key_revocation_email(emails):
         use_deny_list=False,
         perm_setting='individual_contact',
     )
+
+
+@task
+@use_primary_db
+def create_site_permission_version(
+    *, user_pk, remote_addr, install_origins, site_permissions, **kwargs
+):
+    # Can raise if the user does not exist, but that's ok, we don't want to go
+    # any further if that's the case.
+    user = UserProfile.objects.filter(deleted=False).get(pk=user_pk)
+    generator = SitePermissionVersionCreator(
+        user=user,
+        remote_addr=remote_addr,
+        install_origins=install_origins,
+        site_permissions=site_permissions,
+    )
+    generator.create_version()

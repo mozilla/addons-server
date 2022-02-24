@@ -3,6 +3,7 @@ from unittest import mock
 
 import pytest
 
+from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.scanners import (
     CUSTOMS,
@@ -80,6 +81,7 @@ class TestActions(TestCase):
             user=user3,
             version=addon.current_version.version,
             ip_address='1.2.3.4',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         version = addon.current_version
         assert not version.needs_human_review
@@ -129,6 +131,7 @@ class TestActions(TestCase):
             user=user3,
             version=addon.current_version.version,
             ip_address='1.2.3.4',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         version = addon.current_version
         assert not version.needs_human_review
@@ -180,6 +183,7 @@ class TestActions(TestCase):
             user=user3,
             version=addon.current_version.version,
             ip_address='1.2.3.4',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         version = addon.current_version
         assert not version.needs_human_review
@@ -242,6 +246,7 @@ class TestActions(TestCase):
             user=user3,
             version=addon.current_version.version,
             ip_address='1.2.3.4',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         version = addon.current_version
         assert not version.needs_human_review

@@ -7,8 +7,6 @@ Add-ons
     These APIs are not frozen and can change at any time without warning.
     See :ref:`the API versions available<api-versions-list>` for alternatives
     if you need stability.
-    The only authentication method available at
-    the moment is :ref:`the internal one<api-auth-internal>`.
 
 
 ------
@@ -35,7 +33,7 @@ This endpoint allows you to search through public add-ons.
     :query string promoted: Filter to add-ons in a specific :ref:`promoted category <addon-detail-promoted-category>`.  Can be combined with `app`.   Multiple promoted categories can be specified, separated by comma(s), in which case any add-ons in any of the promotions will be returned.
     :query string ratings: Filter to add-ons that have average ratings of a :ref:`threshold value <addon-threshold-param>`.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
-    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
+    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned. See :ref:`available tags <tag-list>`
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.  Multiple types can be specified, separated by comma(s), in which case add-ons that are any of the matching types are returned.
     :query string users: Filter to add-ons that have average daily users of a :ref:`threshold value <addon-threshold-param>`.
     :>json int count: The number of results for this query.
@@ -115,7 +113,7 @@ for autocomplete though, there are a couple key differences:
     :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
-    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
+    :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned. See :ref:`available tags <tag-list>`
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
 
@@ -164,7 +162,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from both the search and detail endpoints.
     :>json string default_locale: The add-on default locale for translations.
     :>json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field might contain some HTML tags.
-    :>json object|null developer comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <api-overview-translations>`).
+    :>json object|null developer_comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <api-overview-translations>`).
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json boolean has_eula: The add-on has an End-User License Agreement that the user needs to agree with before installing (See :ref:`add-on EULA and privacy policy <addon-eula-policy>`).
@@ -187,7 +185,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object|null promoted: Object holding promotion information about the add-on. Null if the add-on is not currently promoted.
     :>json string promoted.category: The name of the :ref:`promoted category <addon-detail-promoted-category>` for the add-on.
     :>json array promoted.apps[]: Array of the :ref:`applications <addon-detail-application>` for which the add-on is promoted.
-    :>json boolean public_stats: Boolean indicating whether the add-on stats are public or not.
     :>json object ratings: Object holding ratings summary information about the add-on.
     :>json int ratings.count: The total number of user ratings for the add-on.
     :>json int ratings.text_count: The number of user ratings with review text for the add-on.
@@ -207,7 +204,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`). This field supports "linkification" and therefore might contain HTML hyperlinks.
     :>json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
-    :>json array tags: List containing the text of the tags set on the add-on.
+    :>json array tags: List containing the tag names set on the add-on.
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
     :>json string versions_url: The URL to the version history page for the add-on.
@@ -289,11 +286,71 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
                     Currently equal to ``line&recommended&sponsored&verified``.
     ==============  ==========================================================
 
------------------------------
-Add-on and Version Submission
------------------------------
 
-See :ref:`Uploading a version <upload-version>`.
+------
+Create
+------
+
+.. _addon-create:
+
+This endpoint allows a submission of an upload to create a new add-on and setting other AMO metadata.
+
+To create an add-on with a listed version from an upload (an :ref:`upload <upload-create>`
+that has channel == ``listed``) certain metadata must be defined - a version ``license``, an
+add-on ``name``, an add-on ``summary``, and add-on categories for each app the version
+is compatible with.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:post:: /api/v5/addons/addon/
+
+    .. _addon-create-request:
+
+    :<json object categories: Object holding the categories the add-on belongs to.
+    :<json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`.
+    :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some HTML tags.
+    :<json object|null developer_comments: Additional information about the add-on. (See :ref:`translated fields <api-overview-translations>`).
+    :<json object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
+    :<json boolean is_disabled: Whether the add-on is disabled or not.
+    :<json boolean is_experimental: Whether the add-on should be marked as experimental or not.
+    :<json object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
+    :<json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
+    :<json string slug: The add-on slug.  Valid slugs must only contain letters, numbers (`categories L and N <http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table>`_), ``-``, ``_``, ``~``, and can't be all numeric.
+    :<json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
+    :<json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
+    :<json array tags: List containing the tag names to set on the add-on - see :ref:`available tags <tag-list>`.
+    :<json object version: Object containing the :ref:`version <version-create-request>` to create this addon with.
+
+----
+Edit
+----
+
+.. _addon-edit:
+
+This endpoint allows an add-on's AMO metadata to be edited.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:patch:: /api/v5/addons/addon/(int:id|string:slug|string:guid)/
+
+    .. _addon-edit-request:
+
+    :<json object categories: Object holding the categories the add-on belongs to.
+    :<json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`.
+    :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some HTML tags.
+    :<json object|null developer_comments: Additional information about the add-on. (See :ref:`translated fields <api-overview-translations>`).
+    :<json object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
+    :<json boolean is_disabled: Whether the add-on is disabled or not.  Note: if the add-on status is :ref:`disabled <addon-detail-status>` the response will always be ``disabled=true`` regardless.
+    :<json boolean is_experimental: Whether the add-on should be marked as experimental or not.
+    :<json object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
+    :<json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
+    :<json string slug: The add-on slug.  Valid slugs must only contain letters, numbers (`categories L and N <http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table>`_), ``-``, ``_``, ``~``, and can't be all numeric.
+    :<json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
+    :<json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
+    :<json array tags: List containing the tag names to set on the add-on - see :ref:`available tags <tag-list>`.
+
 
 -------------
 Versions List
@@ -376,35 +433,252 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
                   }
                 }
 
-    :>json object compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
-    :>json object compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
+    :>json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
+    :>json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
     :>json string edit_url: The URL to the developer edit page for the version.
-    :>json array files: Array holding information about the files for the version.
-    :>json int files[].id: The id for a file.
-    :>json string files[].created: The creation date for a file.
-    :>json string files[].hash: The hash for a file.
-    :>json boolean files[].is_mozilla_signed_extension: Whether the file was signed with a Mozilla internal certificate or not.
-    :>json boolean files[].is_restart_required: Whether the file requires a browser restart to work once installed or not.
-    :>json boolean files[].is_webextension: Whether the file is a WebExtension or not.
-    :>json array files[].optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
-    :>json array files[].permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
-    :>json int files[].size: The size for a file, in bytes.
-    :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
-    :>json string files[].url: The (absolute) URL to download a file.
+    :>json int file.id: The id for the file.
+    :>json string file.created: The creation date for the file.
+    :>json string file.hash: The hash for the file.
+    :>json boolean file.is_mozilla_signed_extension: Whether the file was signed with a Mozilla internal certificate or not.
+    :>json array file.optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
+    :>json array file.permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
+    :>json int file.size: The size for the file, in bytes.
+    :>json int file.status: The :ref:`status <addon-detail-status>` for the file.
+    :>json string file.url: The (absolute) URL to download the file.
     :>json object license: Object holding information about the license for the version.
     :>json boolean license.is_custom: Whether the license text has been provided by the developer, or not.  (When ``false`` the license is one of the common, predefined, licenses).
     :>json object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is only present in version detail detail endpoint: all other endpoints omit it.
     :>json string|null license.url: The URL of the full text of license.
+    :>json string|null license.slug: The license :ref:`slug <license-list>`, for non-custom (predefined) licenses.
     :>json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
+    :>json string|null source: The (absolute) URL to download the submitted source for this version. This field is only present for authenticated users, for their own add-ons.
     :>json string version: The version number string for the version.
 
 
-------------------------------
-Add-on EULA and Privacy Policy
-------------------------------
+--------------
+Version Create
+--------------
+
+.. _version-create:
+
+This endpoint allows a submission of an upload to an existing add-on to create a new version,
+and setting other AMO metadata.
+
+To create a listed version from an upload (an :ref:`upload <upload-create>` that
+has channel == ``listed``) certain metadata must be defined - a version ``license``, an
+add-on ``name``, an add-on ``summary``, and add-on categories for each app the version
+is compatible with.  Add-on properties cannot be set with version create so an
+:ref:`add-on update <addon-edit>` must be made beforehand if the properties are not
+already defined.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
+
+    .. _version-create-request:
+
+    :<json object|array compatibility:
+        Either an object detailing which :ref:`applications <addon-detail-application>`
+        and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`,
+        where min/max versions from the manifest, or defaults, will be used.  See :ref:`examples <version-compatibility-examples>`.
+    :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
+    :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
+    :<json string license: The :ref:`slug of a non-custom license <license-list>`. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.  If neither are provided, and there was a license defined for the previous version, it will inherit the previous version's license.
+    :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
+    :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
+    :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
+    :<json string upload: The uuid for the xpi upload to create this version with.
+    :<json string|null source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Version compatibility examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _version-compatibility-examples:
+
+Full example:
+
+.. code-block:: json
+
+    {
+        "compatibility": {
+            "android": {
+                "min": "58.0a1",
+                "max": "73.0"
+            },
+            "firefox": {
+                "min": "58.0a1",
+                "max": "73.0"
+            }
+        }
+    }
+
+With some versions omitted:
+
+.. code-block:: javascript
+
+    {
+        "compatibility": {
+            "android": {
+                "min": "58.0a1"
+                // "max" is undefined, so the manifest max or default will be used.
+            },
+            "firefox": {
+                // the object is empty - both "min" and "max" are undefined so the manifest min/max
+                // or defaults will be used.
+            }
+        }
+    }
+
+Shorthand, for when you only want to define compatible apps, but use the min/max versions from the manifest, or use all defaults:
+
+.. code-block:: json
+
+    {
+        "compatibility": [
+            "android",
+            "firefox"
+        ]
+    }
+
+
+~~~~~~~~~~~~~~~
+Version Sources
+~~~~~~~~~~~~~~~
+
+.. _version-sources:
+
+Version source files cannot be uploaded as JSON - the request must be sent as multipart form-data instead.
+If desired, ``license`` can be set set/updated at the same time as ``source``, but fields that
+contain complex data structure (list or object) such as ``compatability``, ``release_notes``,
+or ``custom_license`` can not, so seperate API calls are needed.
+
+Note: as form-data can not be nested as objects it's not possible to set ``source`` as part of the
+``version`` object defined during an :ref:`Add-on create <addon-create>`.
+
+.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
+
+    .. _version-sources-request-create:
+
+    :form source: The add-on file being uploaded.
+    :form upload: The uuid for the xpi upload to create this version with.
+    :form license: The :ref:`slug of a non-custom license <license-list>` (optional).
+    :reqheader Content-Type: multipart/form-data
+
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+
+    .. _version-sources-request-edit:
+
+    :form source: The add-on file being uploaded.
+    :form license: The :ref:`slug of a non-custom license <license-list>` (optional).
+    :reqheader Content-Type: multipart/form-data
+
+------------
+Version Edit
+------------
+
+.. _version-edit:
+
+This endpoint allows the metadata for an existing version to be edited.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+
+    .. _version-edit-request:
+
+    :<json object|array compatibility: Either an object detailing which :ref:`applications <addon-detail-application>` and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`, where default min/max versions will be used if not already defined.  See :ref:`examples <version-compatibility-examples>`.
+    :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
+    :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
+    :<json string license: The :ref:`slug of a non-custom license <license-list>`. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
+    :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
+    :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
+    :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
+    :<json string|null source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
+
+
+-------------
+Upload Create
+-------------
+
+.. _upload-create:
+
+This endpoint is for uploading an addon file, to then be submitted to create a new addon or version.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:post:: /api/v5/addons/upload/
+
+    .. _upload-create-request:
+
+    :form upload: The add-on file being uploaded.
+    :form channel: The channel this version should be uploaded to, which determines its visibility on the site. It can be either ``unlisted`` or ``listed``.
+    :reqheader Content-Type: multipart/form-data
+
+
+After the file has uploaded the :ref:`upload response <upload-detail-object>` will be
+returned immediately, and the addon submitted for validation.
+The :ref:`upload detail endpoint <upload-detail>` should be queried for validation status
+to determine when/if the upload can be used to create an add-on/version.
+
+
+-----------
+Upload List
+-----------
+
+.. _upload-list:
+
+This endpoint is for listing your previous uploads.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:get:: /api/v5/addons/upload/
+
+    :query int page: 1-based page number. Defaults to 1.
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
+    :>json int count: The number of uploads this user has submitted.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of :ref:`uploads <upload-detail-object>`.
+
+
+-------------
+Upload Detail
+-------------
+
+.. _upload-detail:
+
+This endpoint is for fetching a single previous upload by uuid.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:get:: /api/v5/addons/upload/<string:uuid>/
+
+    .. _upload-detail-object:
+
+    :>json string uuid: The upload id.
+    :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
+    :>json boolean processed: If the version has been processed by the validator.
+    :>json boolean submitted: If this upload has been submitted as a new add-on or version already. An upload can only be submitted once.
+    :>json string url: URL to check the status of this upload.
+    :>json boolean valid: If the version passed validation.
+    :>json object validation: the validation results JSON blob.
+    :>json string version: The version number parsed from the manifest.
+
+
+-----------------------
+EULA and Privacy Policy
+-----------------------
 
 .. _addon-eula-policy:
 
@@ -451,7 +725,7 @@ on AMO.
     :query string type: Mandatory when ``appversion`` is present. Filter by :ref:`add-on type <addon-detail-type>`. The default is to return both Language Packs or Dictionaries.
     :>json array results: An array of language tools.
     :>json int results[].id: The add-on id on AMO.
-    :>json object results[].current_compatible_version: Object holding the latest publicly available :ref:`version <version-detail-object>` of the add-on compatible with the ``appversion`` parameter used. Only present when ``appversion`` is passed and valid. For performance reasons, only the following version properties are returned on the object: ``id``, ``files``, ``reviewed``, and ``version``.
+    :>json object results[].current_compatible_version: Object holding the latest publicly available :ref:`version <version-detail-object>` of the add-on compatible with the ``appversion`` parameter used. Only present when ``appversion`` is passed and valid. For performance reasons, only the following version properties are returned on the object: ``id``, ``file``, ``reviewed``, and ``version``.
     :>json string results[].default_locale: The add-on default locale for translations.
     :>json object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string results[].guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
@@ -494,6 +768,7 @@ Four recommendations are fetched, but only valid, publicly available addons are 
 
 .. http:get:: /api/v5/addons/recommendations/
 
+    :query string app: Set the :ref:`add-on application <addon-detail-application>` for that query. This won't filter the results. Defaults to ``firefox``.
     :query string guid: Fetch recommendations for this add-on guid.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query boolean recommended: Fetch recommendations from the recommendation service, or return a curated fallback list instead.

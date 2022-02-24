@@ -17,17 +17,13 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.api.throttling import (
-    GranularIPRateThrottle,
-    GranularUserRateThrottle,
-    ThrottleOnlyUnsafeMethodsMixin,
-)
+from olympia.api.throttling import addon_submission_throttles
 from olympia.blocklist.models import Block
 from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
-from olympia.signing.serializers import FileUploadSerializer
+from olympia.signing.serializers import SigningFileUploadSerializer
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 
@@ -81,51 +77,10 @@ def with_addon(allow_missing=False):
     return wrapper
 
 
-class BurstUserAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
-):
-    scope = 'burst_user_addon_upload'
-    rate = '3/minute'
-
-
-class HourlyUserAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
-):
-    scope = 'hourly_user_addon_upload'
-    rate = '10/hour'
-
-
-class DailyUserAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
-):
-    scope = 'daily_user_addon_upload'
-    rate = '24/day'
-
-
-class BurstIPAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
-):
-    scope = 'burst_ip_addon_upload'
-    rate = '6/minute'
-
-
-class HourlyIPAddonUploadThrottle(
-    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
-):
-    scope = 'hourly_ip_addon_upload'
-    rate = '50/hour'
-
-
 class VersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
-    throttle_classes = (
-        BurstUserAddonUploadThrottle,
-        HourlyUserAddonUploadThrottle,
-        DailyUserAddonUploadThrottle,
-        BurstIPAddonUploadThrottle,
-        HourlyIPAddonUploadThrottle,
-    )
+    throttle_classes = addon_submission_throttles
 
     def check_throttles(self, request):
         # Let users with LanguagePack:Submit permission bypass throttles.
@@ -145,7 +100,9 @@ class VersionView(APIView):
                 {'error': exc.message}, status=exc.code or status.HTTP_400_BAD_REQUEST
             )
 
-        serializer = FileUploadSerializer(file_upload, context={'request': request})
+        serializer = SigningFileUploadSerializer(
+            file_upload, context={'request': request}
+        )
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @with_addon(allow_missing=True)
@@ -161,7 +118,9 @@ class VersionView(APIView):
 
         status_code = status.HTTP_201_CREATED if created else status.HTTP_202_ACCEPTED
 
-        serializer = FileUploadSerializer(file_upload, context={'request': request})
+        serializer = SigningFileUploadSerializer(
+            file_upload, context={'request': request}
+        )
         return Response(serializer.data, status=status_code)
 
     @use_primary_db
@@ -204,18 +163,6 @@ class VersionView(APIView):
             raise forms.ValidationError(msg, status.HTTP_409_CONFLICT)
 
         package_guid = parsed_data.get('guid', None)
-
-        dont_allow_no_guid = (
-            not addon
-            and not package_guid
-            and not parsed_data.get('is_webextension', False)
-        )
-
-        if dont_allow_no_guid:
-            raise forms.ValidationError(
-                gettext('Only WebExtensions are allowed to omit the Add-on ID'),
-                status.HTTP_400_BAD_REQUEST,
-            )
 
         if guid is not None and not addon and not package_guid:
             # No guid was present in the package, but one was provided in the
@@ -304,7 +251,7 @@ class VersionView(APIView):
             addon=addon,
             submit=True,
             channel=channel,
-            source=amo.UPLOAD_SOURCE_API,
+            source=amo.UPLOAD_SOURCE_SIGNING_API,
         )
 
         return file_upload, created
@@ -343,7 +290,7 @@ class VersionView(APIView):
         except Version.DoesNotExist:
             version = None
 
-        serializer = FileUploadSerializer(
+        serializer = SigningFileUploadSerializer(
             file_upload, version=version, context={'request': request}
         )
         return Response(serializer.data)

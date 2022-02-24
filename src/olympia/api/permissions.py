@@ -1,9 +1,12 @@
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import SAFE_METHODS, BasePermission
 
+from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import AddonRegionalRestrictions
 from olympia.amo import permissions
+
+from .utils import is_gate_active
 
 
 # Most of these classes come from zamboni, check out
@@ -110,6 +113,35 @@ class AllowAddonAuthor(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return obj.authors.filter(pk=request.user.pk).exists()
+
+
+class AllowIfNotMozillaDisabled(BasePermission):
+    """Allow access unless disabled by mozilla.
+
+    Typically this permission should be used together with AllowAddonAuthor,
+    to allow write access to authors unless the add-on was disabled by Mozilla.
+    For public-facing API, see AllowReadOnlyIfPublic."""
+
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return obj.status != amo.STATUS_DISABLED
+
+
+class AllowIfNotSitePermission(BasePermission):
+    """Allow access unless the add-on is a site permission.
+
+    Typically this permission should be used together with AllowAddonAuthor,
+    to allow write access to authors unless the add-on was a site permission
+    add-on.
+    For public-facing API, see AllowReadOnlyIfPublic."""
+
+    def has_permission(self, request, view):
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return obj.type != amo.ADDON_SITE_PERMISSION
 
 
 class AllowOwner(BasePermission):
@@ -351,6 +383,20 @@ class RegionalRestriction(BasePermission):
             addon=obj, excluded_regions__contains=region_code.upper()
         )
         return not (region_code and qs.exists())
+
+    def __call__(self, *a):
+        return self
+
+
+class APIGatePermission(BasePermission):
+    def __init__(self, gate):
+        self.gate = gate
+
+    def has_permission(self, request, view):
+        return is_gate_active(request, self.gate)
+
+    def has_object_permission(self, request, view, obj):
+        return self.has_permission(request, view)
 
     def __call__(self, *a):
         return self

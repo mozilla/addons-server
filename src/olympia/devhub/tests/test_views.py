@@ -2,7 +2,7 @@ import json
 import os
 
 from datetime import datetime, timedelta
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 
 from django.conf import settings
 from django.core import mail
@@ -21,15 +21,20 @@ from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.accounts.views import API_TOKEN_COOKIE
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import GENERIC_USER_NAME, ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonUser
-from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     format_date,
     url as url_reverse,
     urlparams,
 )
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    fxa_login_link,
+    user_factory,
+    version_factory,
+)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
@@ -37,8 +42,8 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
-from olympia.files.models import FileUpload
-from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.files.models import FileSitePermission, FileUpload
+from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
@@ -121,7 +126,7 @@ class TestDashboard(HubTest):
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 10
         assert len(doc('.item .info.extension')) == 10
-        assert doc('nav.paginator').length == 0
+        assert doc('ol.pagination').length == 0
         for addon in addons:
             assert addon.get_icon_url(64) in doc('.item .info h3 a').html()
 
@@ -132,7 +137,7 @@ class TestDashboard(HubTest):
         response = self.client.get(self.url, {'page': 2})
         doc = pq(response.content)
         assert len(doc('.item .item-info')) == 5
-        assert doc('nav.paginator').length == 1
+        assert doc('ol.pagination').length == 1
 
     def test_themes(self):
         """Check themes show on dashboard."""
@@ -299,7 +304,7 @@ class TestUpdateCompatibility(TestCase):
         cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
         assert not cu
 
-        addon.current_version.files.update(strict_compatibility=True)
+        addon.current_version.file.update(strict_compatibility=True)
         response = self.client.get(self.url)
         doc = pq(response.content)
         cu = doc('.item[data-addonid="3615"] .tooltip.compat-update')
@@ -318,7 +323,7 @@ class TestUpdateCompatibility(TestCase):
 
     def test_incompat_firefox(self):
         addon = Addon.objects.get(pk=3615)
-        addon.current_version.files.update(strict_compatibility=True)
+        addon.current_version.file.update(strict_compatibility=True)
         versions = ApplicationsVersions.objects.all()[0]
         versions.max = AppVersion.objects.get(version='2.0')
         versions.save()
@@ -327,7 +332,7 @@ class TestUpdateCompatibility(TestCase):
 
     def test_incompat_android(self):
         addon = Addon.objects.get(pk=3615)
-        addon.current_version.files.update(strict_compatibility=True)
+        addon.current_version.file.update(strict_compatibility=True)
         appver = AppVersion.objects.get(version='2.0')
         appver.update(application=amo.ANDROID.id)
         av = ApplicationsVersions.objects.all()[0]
@@ -346,7 +351,7 @@ class TestDevRequired(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.edit_page_url = self.addon.get_dev_url('edit')
         self.get_url = self.addon.get_dev_url('versions')
-        self.post_url = self.addon.get_dev_url('delete')
+        self.delete_url = self.addon.get_dev_url('delete')
         assert self.client.login(email='del@icio.us')
         self.au = self.addon.addonuser_set.get(user__email='del@icio.us')
         assert self.au.role == amo.AUTHOR_ROLE_OWNER
@@ -359,20 +364,46 @@ class TestDevRequired(TestCase):
         )
 
     def test_dev_get(self):
-        assert self.client.get(self.get_url).status_code == 200
-        assert self.client.get(self.edit_page_url).status_code == 200
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' not in doc('body')[0].attrib['class']
+        response = self.client.get(self.edit_page_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' not in doc('body')[0].attrib['class']
+
+    def test_site_permission(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' in doc('body')[0].attrib['class']
+        response = self.client.get(self.edit_page_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' in doc('body')[0].attrib['class']
+        self.assert3xx(self.client.post(self.delete_url), self.get_url)
 
     def test_dev_post(self):
-        self.assert3xx(self.client.post(self.post_url), self.get_url)
+        self.assert3xx(self.client.post(self.delete_url), self.get_url)
 
-    def test_disabled_post_dev(self):
+    def test_disabled_post_owner(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert self.client.post(self.get_url).status_code == 403
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' in doc('body')[0].attrib['class']
+        assert self.client.post(self.delete_url).status_code == 403
 
     def test_disabled_post_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.login(email='admin@mozilla.com')
-        self.assert3xx(self.client.post(self.post_url), self.get_url)
+        response = self.client.get(self.get_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'no-edit' not in doc('body')[0].attrib['class']
+        self.assert3xx(self.client.post(self.delete_url), self.get_url)
 
 
 class TestVersionStats(TestCase):
@@ -466,6 +497,20 @@ class TestDelete(TestCase):
         assert Addon.objects.filter(id=theme.id).exists()
         self.assert3xx(response, theme.get_dev_url('versions'))
 
+    def test_post_site_permission(self):
+        site_permission = addon_factory(
+            type=amo.ADDON_SITE_PERMISSION,
+            users=[self.user],
+        )
+        response = self.client.post(
+            site_permission.get_dev_url('delete'),
+            {'slug': site_permission.slug},
+            follow=True,
+        )
+        assert pq(response.content)('.notification-box').text() == ('Add-on deleted.')
+        assert not Addon.objects.filter(pk=site_permission.pk).exists()
+        self.assert3xx(response, reverse('devhub.addons'))
+
 
 class TestHome(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
@@ -517,7 +562,7 @@ class TestHome(TestCase):
         ]
 
         latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
-        latest_file = latest_version.files.all()[0]
+        latest_file = latest_version.file
 
         for addon_status, file_status, status_str in statuses:
             latest_file.update(status=file_status)
@@ -546,7 +591,7 @@ class TestHome(TestCase):
     def test_my_addons_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
-        latest_file = latest_version.files.all()[0]
+        latest_file = latest_version.file
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'Awaiting Review'),
             (
@@ -629,6 +674,13 @@ class TestActivityFeed(TestCase):
         doc = pq(response.content)
         assert doc('header h2').text() == ('Recent Activity for %s' % self.addon.name)
 
+    def test_feed_for_site_permission_addon(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('header h2').text() == ('Recent Activity for %s' % self.addon.name)
+
     def test_feed_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
@@ -693,54 +745,32 @@ class TestActivityFeed(TestCase):
         doc = pq(res.content)
         assert len(doc('#recent-activity .item')) == 2
 
-    def test_reviewer_name_is_used_for_reviewer_actions(self):
-        self.action_user.update(display_name='HîdeMe', reviewer_name='ShöwMe')
+    def test_names_for_action_users(self):
+        self.add_log(action=amo.LOG.CREATE_ADDON)
         self.add_log(action=amo.LOG.APPROVE_VERSION)
+
         response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(response.content)
-        assert len(doc('#recent-activity .item')) == 1
-
-        content = force_str(response.content)
-        assert self.action_user.reviewer_name in content
-        assert self.action_user.name not in content
-
-    def test_regular_name_is_used_for_non_reviewer_actions(self):
-        # Fields are inverted compared to the test above.
-        self.action_user.update(reviewer_name='HîdeMe', display_name='ShöwMe')
-        self.add_log(action=amo.LOG.ADD_RATING)  # not a reviewer action.
-        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
-        doc = pq(response.content)
-        assert len(doc('#recent-activity .item')) == 1
-
-        content = force_str(response.content)
-        # Assertions are inverted compared to the test above.
-        assert self.action_user.reviewer_name not in content
-        assert self.action_user.name in content
+        timestamp = doc('#recent-activity div.item p.timestamp')
+        assert len(timestamp) == 2
+        assert self.action_user.name
+        assert 'by %s' % GENERIC_USER_NAME in timestamp.eq(0).html()
+        assert 'by %s' % self.action_user.name in timestamp.eq(1).html()
 
     def test_addons_dashboard_name(self):
-        self.add_log()
-        res = self.client.get(reverse('devhub.addons'))
-        doc = pq(res.content)
-        timestamp = doc('.recent-activity li.item span.activity-timestamp')
-        assert len(timestamp) == 1
-        assert self.action_user.name
-        assert self.action_user.name in timestamp.html()
-        assert '<a href=' not in timestamp.html()
-
-    def test_addons_dashboard_reviewer_name(self):
-        self.action_user.update(reviewer_name='bob')
+        self.add_log(action=amo.LOG.CREATE_ADDON)
         self.add_log(action=amo.LOG.APPROVE_VERSION)
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
         timestamp = doc('.recent-activity li.item span.activity-timestamp')
-        assert len(timestamp) == 1
+        assert len(timestamp) == 2
         assert self.action_user.name
-        assert self.action_user.name not in timestamp.html()
-        assert self.action_user.reviewer_name in timestamp.html()
-        assert '<a href=' not in timestamp.html()
+        assert 'by %s' % GENERIC_USER_NAME in timestamp.eq(0).html()
+        assert 'by %s' % self.action_user.name in timestamp.eq(1).html()
+        assert '<a href=' not in timestamp.eq(0).html()
 
 
-class TestAPIAgreement(TestCase):
+class TestDeveloperAgreement(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
 
     def setUp(self):
@@ -751,12 +781,24 @@ class TestAPIAgreement(TestCase):
 
     def test_agreement_read(self):
         self.user.update(read_dev_agreement=self.days_ago(0))
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
+        self.assert3xx(response, reverse('devhub.index'))
+
+    def test_custom_redirect(self):
+        self.user.update(read_dev_agreement=self.days_ago(0))
+        response = self.client.get(
+            '%s%s%s'
+            % (
+                reverse('devhub.developer_agreement'),
+                '?to=',
+                quote(reverse('devhub.api_key')),
+            )
+        )
         self.assert3xx(response, reverse('devhub.api_key'))
 
     def test_agreement_unread_captcha_inactive(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
         form = response.context['agreement_form']
@@ -767,7 +809,7 @@ class TestAPIAgreement(TestCase):
     @override_switch('developer-agreement-captcha', active=True)
     def test_agreement_unread_captcha_active(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
         form = response.context['agreement_form']
@@ -778,21 +820,21 @@ class TestAPIAgreement(TestCase):
     def test_agreement_submit_success(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.post(
-            reverse('devhub.api_key_agreement'),
+            reverse('devhub.developer_agreement'),
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
         assert response.status_code == 302
-        assert response['Location'] == reverse('devhub.api_key')
+        assert response['Location'] == reverse('devhub.index')
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
     @override_switch('developer-agreement-captcha', active=True)
     def test_agreement_submit_captcha_active_error(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.post(reverse('devhub.api_key_agreement'))
+        response = self.client.post(reverse('devhub.developer_agreement'))
 
         # Captcha is properly rendered
         doc = pq(response.content)
@@ -818,7 +860,7 @@ class TestAPIAgreement(TestCase):
         )
 
         response = self.client.post(
-            reverse('devhub.api_key_agreement'),
+            reverse('devhub.developer_agreement'),
             data={
                 'g-recaptcha-response': 'test',
                 'distribution_agreement': 'on',
@@ -827,7 +869,7 @@ class TestAPIAgreement(TestCase):
         )
 
         assert response.status_code == 302
-        assert response['Location'] == reverse('devhub.api_key')
+        assert response['Location'] == reverse('devhub.index')
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
@@ -835,7 +877,7 @@ class TestAPIAgreement(TestCase):
         set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
         before_agreement_last_changed = datetime(2018, 1, 1, 12, 0) - timedelta(days=1)
         self.user.update(read_dev_agreement=before_agreement_last_changed)
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
@@ -844,7 +886,7 @@ class TestAPIAgreement(TestCase):
         is_submission_allowed_mock.return_value = False
         self.user.update(read_dev_agreement=None)
         response = self.client.post(
-            reverse('devhub.api_key_agreement'),
+            reverse('devhub.developer_agreement'),
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -870,7 +912,7 @@ class TestAPIAgreement(TestCase):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         self.user.update(read_dev_agreement=None)
         response = self.client.post(
-            reverse('devhub.api_key_agreement'),
+            reverse('devhub.developer_agreement'),
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -892,7 +934,7 @@ class TestAPIAgreement(TestCase):
         # api keys page.
         is_submission_allowed_mock.return_value = False
         self.user.update(read_dev_agreement=self.days_ago(0))
-        response = self.client.get(reverse('devhub.api_key_agreement'))
+        response = self.client.get(reverse('devhub.developer_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
@@ -910,12 +952,26 @@ class TestAPIKeyPage(TestCase):
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.api_key'))
-        self.assert3xx(response, reverse('devhub.api_key_agreement'))
+        self.assert3xx(
+            response,
+            '%s%s'
+            % (
+                reverse('devhub.developer_agreement'),
+                '?to=%2Fen-US%2Fdevelopers%2Faddon%2Fapi%2Fkey%2F',
+            ),
+        )
 
     def test_redirect_if_restricted(self):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         response = self.client.get(reverse('devhub.api_key'))
-        self.assert3xx(response, reverse('devhub.api_key_agreement'))
+        self.assert3xx(
+            response,
+            '%s%s'
+            % (
+                reverse('devhub.developer_agreement'),
+                '?to=%2Fen-US%2Fdevelopers%2Faddon%2Fapi%2Fkey%2F',
+            ),
+        )
 
     def test_view_without_credentials_not_confirmed_yet(self):
         response = self.client.get(self.url)
@@ -1139,7 +1195,7 @@ class TestAPIKeyPage(TestCase):
         assert 'revoked' in mail.outbox[0].body
 
 
-class TestUpload(BaseUploadTest):
+class TestUpload(UploadMixin, TestCase):
     fixtures = ['base/users']
 
     def setUp(self):
@@ -1215,7 +1271,7 @@ class TestUpload(BaseUploadTest):
         assert not validate_mock.call_args[1]['listed']
 
 
-class TestUploadDetail(BaseUploadTest):
+class TestUploadDetail(UploadMixin, TestCase):
     fixtures = ['base/appversion', 'base/users']
 
     @classmethod
@@ -1381,7 +1437,7 @@ class TestUploadDetail(BaseUploadTest):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_not_a_valid_xpi(self, run_addons_linter_mock):
-        run_addons_linter_mock.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('unopenable.xpi')
         # We never even reach the linter (we can't: because we're repacking
         # zip files, we should raise an error if the zip is invalid before
@@ -1404,10 +1460,32 @@ class TestUploadDetail(BaseUploadTest):
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_experiment_xpi_allowed(self, mock_validator):
+    def test_invalid_zip_file(self, run_addons_linter_mock):
+        run_addons_linter_mock.return_value = self.validation_ok()
+        self.upload_file(
+            '../../../files/fixtures/files/archive-with-invalid-chars-in-filenames.zip'
+        )
+        # We never even reach the linter (we can't: because we're repacking zip
+        # files, we should raise an error if the zip is invalid before calling
+        # the linter, even though the linter has a perfectly good error message
+        # for this kind of situation).
+        assert not run_addons_linter_mock.called
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
+        data = json.loads(force_str(response.content))
+        message = [
+            (m['message'], m.get('fatal', False))
+            for m in data['validation']['messages']
+        ]
+        assert message == [('Invalid file name in archive: path\\to\\file.txt', False)]
+
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_experiment_xpi_allowed(self, run_addons_linter_mock):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Experiments:submit')
-        mock_validator.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file(
             '../../../files/fixtures/files/experiment_inside_webextension.xpi'
         )
@@ -1419,8 +1497,8 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_experiment_xpi_not_allowed(self, mock_validator):
-        mock_validator.return_value = json.dumps(self.validation_ok())
+    def test_experiment_xpi_not_allowed(self, run_addons_linter_mock):
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file(
             '../../../files/fixtures/files/experiment_inside_webextension.xpi'
         )
@@ -1439,12 +1517,14 @@ class TestUploadDetail(BaseUploadTest):
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_restricted_addon_allowed(self, mock_validator):
+    def test_restricted_guid_addon_allowed_because_signed_and_has_permission(
+        self, run_addons_linter_mock
+    ):
         user = user_factory()
         self.grant_permission(user, 'SystemAddon:Submit')
         assert self.client.login(email=user.email)
-        mock_validator.return_value = json.dumps(self.validation_ok())
-        self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
+        run_addons_linter_mock.return_value = self.validation_ok()
+        self.upload_file('../../../files/fixtures/files/mozilla_guid_signed.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
@@ -1453,10 +1533,36 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_restricted_addon_not_allowed(self, mock_validator):
-        user_factory(email='redpanda@mozilla.com')
-        assert self.client.login(email='redpanda@mozilla.com')
-        mock_validator.return_value = json.dumps(self.validation_ok())
+    def test_restricted_guid_addon_not_allowed_because_not_signed(
+        self, run_addons_linter_mock
+    ):
+        user = user_factory()
+        self.grant_permission(user, 'SystemAddon:Submit')
+        assert self.client.login(email=user.email)
+        run_addons_linter_mock.return_value = self.validation_ok()
+        self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        )
+        data = json.loads(force_str(response.content))
+        assert data['validation']['messages'] == [
+            {
+                'tier': 1,
+                'message': (
+                    'Add-ons using an ID ending with this suffix need to be signed '
+                    'with privileged certificate before being submitted'
+                ),
+                'fatal': True,
+                'type': 'error',
+            }
+        ]
+
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_restricted_guid_addon_not_allowed(self, run_addons_linter_mock):
+        user = user_factory()
+        assert self.client.login(email=user.email)
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(
@@ -1476,12 +1582,12 @@ class TestUploadDetail(BaseUploadTest):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
-    def test_mozilla_signed_allowed(self, mock_get_signature, mock_validator):
+    def test_mozilla_signed_allowed(self, get_signer_mock, run_addons_linter_mock):
         user = user_factory()
         assert self.client.login(email=user.email)
         self.grant_permission(user, 'SystemAddon:Submit')
-        mock_validator.return_value = json.dumps(self.validation_ok())
-        mock_get_signature.return_value = 'Mozilla Extensions'
+        run_addons_linter_mock.return_value = self.validation_ok()
+        get_signer_mock.return_value = 'Mozilla Extensions'
         self.upload_file(
             '../../../files/fixtures/files/webextension_signed_already.xpi'
         )
@@ -1493,10 +1599,10 @@ class TestUploadDetail(BaseUploadTest):
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
-    def test_mozilla_signed_not_allowed_not_allowed(self, mock_get_signature):
+    def test_mozilla_signed_not_allowed_not_allowed(self, get_signer_mock):
         user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
-        mock_get_signature.return_value = 'Mozilla Extensions'
+        get_signer_mock.return_value = 'Mozilla Extensions'
         self.upload_file(
             '../../../files/fixtures/files/webextension_signed_already.xpi'
         )
@@ -1515,13 +1621,13 @@ class TestUploadDetail(BaseUploadTest):
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_system_addon_update_allowed(self, mock_validator):
+    def test_system_addon_update_allowed(self, run_addons_linter_mock):
         """Updates to system addons are allowed from anyone."""
         user = user_factory(email='pinkpanda@notzilla.com')
         addon = addon_factory(guid='systemaddon@mozilla.org')
         AddonUser.objects.create(addon=addon, user=user)
         assert self.client.login(email='pinkpanda@notzilla.com')
-        mock_validator.return_value = json.dumps(self.validation_ok())
+        run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
         response = self.client.get(
@@ -1873,11 +1979,11 @@ class TestThemeBackgroundImage(TestCase):
         assert data == {}
 
     def test_header_image(self):
-        destination = self.addon.current_version.all_files[0].current_file_path
+        destination = self.addon.current_version.file.current_file_path
         zip_file = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        copy_stored_file(zip_file, destination)
+        self.root_storage.copy_stored_file(zip_file, destination)
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
@@ -1906,7 +2012,9 @@ class TestLogout(UserViewBase):
     def test_redirect(self):
         self.client.login(email='jbalogh@mozilla.com')
         self.client.get(reverse('devhub.index'), follow=True)
-        url = '/en-US/about'
+        # Just picking a random target URL that works without auth and won't redirect
+        # itself.
+        url = reverse('version.json')
         response = self.client.get(
             urlparams(reverse('devhub.logout'), to=url), follow=True
         )
@@ -1914,10 +2022,10 @@ class TestLogout(UserViewBase):
 
         # Test an invalid domain
         url = urlparams(
-            reverse('devhub.logout'), to='/en-US/about', domain='http://evil.com'
+            reverse('devhub.logout'), to='/__version__', domain='http://evil.com'
         )
         response = self.client.get(url, follow=False)
-        self.assert3xx(response, '/en-US/about', status_code=302)
+        self.assert3xx(response, '/__version__', status_code=302)
 
     def test_session_cookie_deleted_on_logout(self):
         self.client.login(email='jbalogh@mozilla.com')
@@ -1994,4 +2102,115 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
 
         assert reverse('stats.overview', args=[self.addon.slug]) in str(
             response.content
+        )
+
+
+class TestSitePermissionGenerator(TestCase):
+    def setUp(self):
+        self.url = reverse('devhub.site_permission_generator')
+        self.user = user_factory()
+        self.client.login(email=self.user.email)
+        self.user.update(last_login_ip='192.168.1.1')
+        set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
+
+    def test_not_logged_in(self):
+        self.client.logout()
+        response = self.client.get(self.url)
+        self.assert3xx(response, fxa_login_link(response=response, to=self.url))
+
+    def test_redirect_to_agreement_if_restricted(self):
+        assert self.user.read_dev_agreement is None
+        response = self.client.get(self.url)
+        self.assert3xx(
+            response,
+            '%s%s%s' % (reverse('devhub.developer_agreement'), '?to=', self.url),
+        )
+
+    def test_errors(self):
+        self.user.update(read_dev_agreement=self.days_ago(1))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = {
+            'origin': 'foo',  # wrong
+            'site_permissions': ['bar'],  # also wrong
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert not response.context['form'].is_valid()
+        doc = pq(response.content)
+        errors = doc('.errorlist')
+        assert len(errors) == 2
+        assert errors[0].text_content() == 'Enter a valid URL.'
+        assert (
+            errors[1].text_content()
+            == 'Select a valid choice. bar is not one of the available choices.'
+        )
+
+    @override_switch('record-install-origins', active=True)
+    def test_success(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version='97.0')
+        AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version='*')
+        AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='97.0')
+        AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='*')
+
+        self.user.update(read_dev_agreement=self.days_ago(1))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.devhub-form form')
+        data = {
+            'origin': 'https://foo.com',
+            'site_permissions': ['midi-sysex'],
+        }
+        response = self.client.post(self.url, data, REMOTE_ADDR='15.16.23.42')
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.devhub-form form')
+        assert 'Version Signature Pending' in response.content.decode('utf-8')
+        # Since we're in tests, tasks are executed synchronously so we can
+        # directly check the add-on has been created.
+        assert Addon.objects.count() == 1
+        addon = Addon.objects.get()
+        version = addon.versions.all()[0]
+        file_ = version.file
+        assert version.pk
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.version == '1.0'
+        assert sorted(
+            version.installorigin_set.all().values_list('origin', flat=True)
+        ) == [
+            'https://foo.com',
+        ]
+        assert addon.status == amo.STATUS_NULL
+        assert addon.type == amo.ADDON_SITE_PERMISSION
+        assert list(addon.authors.all()) == [self.user]
+        assert file_.status == amo.STATUS_AWAITING_REVIEW
+        assert file_._site_permissions
+        assert file_._site_permissions.permissions == ['midi-sysex']
+        activity = ActivityLog.objects.for_addons(addon).latest('pk')
+        assert activity.user == self.user
+        assert activity.iplog_set.all()[0].ip_address == '15.16.23.42'
+
+    def test_non_field_errors(self):
+        self.user.update(read_dev_agreement=self.days_ago(1))
+        # Generate a duplicate in order to get an error not attached to a
+        # particular form field.
+        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.user])
+        version = addon.versions.get()
+        FileSitePermission.objects.create(file=version.file, permissions=['midi-sysex'])
+        version.installorigin_set.create(origin='https://example.com')
+        data = {
+            'origin': 'https://example.com',
+            'site_permissions': ['midi-sysex'],
+        }
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        form = response.context['form']
+        assert not form.is_valid()
+        doc = pq(response.content)
+        form_element = doc('.site_permission_generator form')
+        assert (
+            'site permission add-on for the same origin and permissions'
+            in form_element.text()
         )

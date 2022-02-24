@@ -40,7 +40,10 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
 
         # Base queryset for editorial content.
         qs = (
-            DiscoveryItem.objects.prefetch_related('addon___current_version__previews')
+            DiscoveryItem.objects.prefetch_related(
+                'addon___current_version__previews',
+                'addon___current_version__file___webext_permissions',
+            )
             .filter(**{position_field + '__gt': 0})
             .order_by(position_field)
         )

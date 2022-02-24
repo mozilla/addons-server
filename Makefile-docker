@@ -26,40 +26,22 @@ NODE_LIBS_CSS := \
 @claviska/jquery-minicolors/jquery.minicolors.css \
 @claviska/jquery-minicolors/jquery.minicolors.png \
 
+# NODE_LIBS_JS and NODE_LIBS_JQUERY_UI are referenced in settings.MINIFY_BUNDLES - keep both lists in sync
 NODE_LIBS_JS := \
 less/dist/less.js \
-jqmodal/jqModal.js \
 jquery/dist/jquery.js \
 jquery.browser/dist/jquery.browser.js \
 jquery.cookie/jquery.cookie.js \
 @claviska/jquery-minicolors/jquery.minicolors.js \
-jquery-pjax/jquery.pjax.js \
 jszip/dist/jszip.js \
 timeago/jquery.timeago.js \
 underscore/underscore.js \
 
 NODE_LIBS_JQUERY_UI := \
-jquery-ui/ui/version.js \
 jquery-ui/ui/data.js \
-jquery-ui/ui/disable-selection.js \
-jquery-ui/ui/ie.js \
-jquery-ui/ui/keycode.js \
-jquery-ui/ui/escape-selector.js \
-jquery-ui/ui/labels.js \
-jquery-ui/ui/jquery-1-7.js \
-jquery-ui/ui/plugin.js \
-jquery-ui/ui/safe-active-element.js \
-jquery-ui/ui/safe-blur.js \
 jquery-ui/ui/scroll-parent.js \
-jquery-ui/ui/focusable.js \
-jquery-ui/ui/tabbable.js \
-jquery-ui/ui/unique-id.js \
-jquery-ui/ui/position.js \
 jquery-ui/ui/widget.js \
-jquery-ui/ui/widgets/menu.js \
 jquery-ui/ui/widgets/mouse.js \
-jquery-ui/ui/widgets/autocomplete.js \
-jquery-ui/ui/widgets/datepicker.js \
 jquery-ui/ui/widgets/sortable.js
 
 .PHONY: help_redirect

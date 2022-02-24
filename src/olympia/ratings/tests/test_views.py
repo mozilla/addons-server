@@ -14,9 +14,10 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     addon_factory,
+    get_random_ip,
     reverse_ns,
     user_factory,
     version_factory,
@@ -32,7 +33,7 @@ locmem_cache['default'][
 
 
 class TestRatingViewSetGet(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     list_url_name = 'rating-list'
     detail_url_name = 'rating-detail'
 
@@ -1181,7 +1182,7 @@ class TestRatingViewSetGet(TestCase):
 
 
 class TestRatingViewSetDelete(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     detail_url_name = 'rating-detail'
 
     def setUp(self):
@@ -1332,7 +1333,7 @@ class TestRatingViewSetDelete(TestCase):
 
 
 class TestRatingViewSetEdit(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     detail_url_name = 'rating-detail'
 
     def setUp(self):
@@ -1503,9 +1504,86 @@ class TestRatingViewSetEdit(TestCase):
             assert str(self.rating.body) == 'I did it'
             assert self.rating.rating == 1
 
+    @override_settings(CACHES=locmem_cache)
+    def test_no_throttling_with_relevant_permission(self):
+        self.client.login_api(self.user)
+
+        with freeze_time('2021-08-09') as frozen_time:
+            for x in range(1, 6):
+                response = self.client.patch(
+                    self.url,
+                    {'score': x, 'body': f'Blâh {x}'},
+                    REMOTE_ADDR='127.0.0.42',
+                    HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
+                )
+                assert response.status_code == 200
+                self.rating.reload()
+                assert str(self.rating.body) == f'Blâh {x}'
+                assert self.rating.rating == x
+
+            # Over the limit now...
+            response = self.client.patch(
+                self.url,
+                {'score': 1, 'body': 'Ooops'},
+                REMOTE_ADDR='127.0.0.42',
+                HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
+            )
+            assert response.status_code == 429
+            self.rating.reload()
+            assert str(self.rating.body) == 'Blâh 5'
+            assert self.rating.rating == 5
+
+            # Now with the permission we should be ok.
+            self.grant_permission(self.user, 'Ratings:BypassThrottling')
+            response = self.client.patch(
+                self.url,
+                {'score': 1, 'body': 'Eheheh'},
+                REMOTE_ADDR='127.0.0.42',
+                HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
+            )
+            assert response.status_code == 200
+            self.rating.reload()
+            assert str(self.rating.body) == 'Eheheh'
+            assert self.rating.rating == 1
+
+            # Someone else with the same IP would still be stuck.
+            new_user = user_factory()
+            new_rating = Rating.objects.create(
+                addon=self.addon,
+                version=self.addon.current_version,
+                body='Another',
+                rating=4,
+                user=new_user,
+            )
+            new_url = reverse_ns(self.detail_url_name, kwargs={'pk': new_rating.pk})
+            self.client.login_api(new_user)
+            response = self.client.patch(
+                new_url,
+                {'score': 2, 'body': 'Ooops'},
+                REMOTE_ADDR='127.0.0.42',
+                HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
+            )
+            assert response.status_code == 429
+            new_rating.reload()
+            assert str(new_rating.body) == 'Another'
+            assert new_rating.rating == 4
+
+            # Everything back to normal after waiting a minute.
+            frozen_time.tick(delta=timedelta(minutes=1))
+            response = self.client.patch(
+                new_url,
+                {'score': 1, 'body': 'I did it'},
+                REMOTE_ADDR='127.0.0.42',
+                HTTP_X_FORWARDED_FOR=f'127.0.0.42, {get_random_ip()}',
+            )
+            assert response.status_code == 200
+            new_rating.reload()
+            assert str(new_rating.body) == 'I did it'
+            assert new_rating.rating == 1
+
 
 class TestRatingViewSetPost(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     list_url_name = 'rating-list'
     detail_url_name = 'rating-detail'
     abuse_report_url_name = 'abusereportaddon-list'
@@ -1888,9 +1966,9 @@ class TestRatingViewSetPost(TestCase):
 
     def test_post_disabled_version(self):
         self.addon.current_version.update(created=self.days_ago(1))
-        new_version = version_factory(addon=self.addon)
         old_version = self.addon.current_version
-        old_version.files.update(status=amo.STATUS_DISABLED)
+        new_version = version_factory(addon=self.addon)
+        old_version.file.update(status=amo.STATUS_DISABLED)
         assert self.addon.current_version == new_version
         assert self.addon.status == amo.STATUS_APPROVED
 
@@ -2054,7 +2132,10 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': self.addon.current_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '4.8.15.16',
+                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
+                },
             )
             assert response.status_code == 201
 
@@ -2072,7 +2153,10 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': new_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '4.8.15.16',
+                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -2088,7 +2172,10 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': new_version.pk,
                 },
-                extra_kwargs={'REMOTE_ADDR': '4.8.15.16'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '4.8.15.16',
+                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
+                },
             )
             assert response.status_code == 201, response.content
 
@@ -2104,6 +2191,7 @@ class TestRatingViewSetPost(TestCase):
                 report_abuse_url,
                 data={'addon': str(self.addon.pk), 'message': 'lol!'},
                 REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
             )
             assert response.status_code == 201
 
@@ -2138,6 +2226,7 @@ class TestRatingViewSetPost(TestCase):
                 report_abuse_url,
                 data={'addon': str(self.addon.pk), 'message': 'again!'},
                 REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
             )
             assert response.status_code == 201
 
@@ -2165,7 +2254,7 @@ class TestRatingViewSetPost(TestCase):
 
 
 class TestRatingViewSetFlag(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     flag_url_name = 'rating-flag'
 
     def setUp(self):
@@ -2364,7 +2453,7 @@ class TestRatingViewSetFlag(TestCase):
 
 
 class TestRatingViewSetReply(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
     reply_url_name = 'rating-reply'
 
     def setUp(self):

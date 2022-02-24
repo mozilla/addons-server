@@ -73,14 +73,13 @@ class Command(BaseCommand):
             print('Skipping %s (version already exists' % data['version'])
             return
 
-        files_data = data['files'][0]
+        file_data = data['file']
         file_kw = {
-            'hash': files_data['hash'],
-            'filename': basename(urlparse(files_data['url']).path),
-            'status': amo.STATUS_CHOICES_API_LOOKUP[files_data['status']],
-            'size': files_data['size'],
-            'is_webextension': files_data['is_webextension'],
-            'is_mozilla_signed_extension': (files_data['is_mozilla_signed_extension']),
+            'hash': file_data['hash'],
+            'filename': basename(urlparse(file_data['url']).path),
+            'status': amo.STATUS_CHOICES_API_LOOKUP[file_data['status']],
+            'size': file_data['size'],
+            'is_mozilla_signed_extension': (file_data['is_mozilla_signed_extension']),
             'strict_compatibility': (data['is_strict_compatibility_enabled']),
         }
 
@@ -97,4 +96,4 @@ class Command(BaseCommand):
 
             # Download the file to the right path.
             print('Downloading file for version %s' % data['version'])
-            self._download_file(files_data['url'], version.files.all()[0])
+            self._download_file(file_data['url'], version.file)

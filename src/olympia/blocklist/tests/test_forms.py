@@ -2,38 +2,13 @@ from django.contrib import admin as admin_site
 from django.core.exceptions import ValidationError
 from django.test import RequestFactory
 
-from waffle.testutils import override_switch
-
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.blocklist.admin import BlocklistSubmissionAdmin
 from olympia.blocklist.forms import MultiAddForm, MultiDeleteForm
 from olympia.blocklist.models import Block, BlocklistSubmission
 
 
-class LegacySyncCheckMixin:
-    def test_v2_blocks_cant_be_edited(self):
-        data = {
-            'guids': 'any@thing\nsecond@thing',
-        }
-        anyblock = Block.objects.create(guid='any@thing', updated_by=user_factory())
-        Block.objects.create(guid='second@thing', updated_by=user_factory())
-
-        form = MultiDeleteForm(data=data)
-        form.is_valid()
-        form.clean()  # would raise
-
-        # Give any@thing a .legacy_id so its sync'd with legacy blocklist
-        anyblock.update(legacy_id='123456')
-        form.is_valid()
-        with self.assertRaises(ValidationError):
-            form.clean()
-
-        # except if the legacy submit waffle is enabled
-        with override_switch('blocklist_legacy_submit', active=True):
-            form.clean  # would raise
-
-
-class TestBlocklistSubmissionForm(LegacySyncCheckMixin, TestCase):
+class TestBlocklistSubmissionForm(TestCase):
     def setUp(self):
         self.new_addon = addon_factory(
             guid='any@new', average_daily_users=100, version_kw={'version': '5.56'}
@@ -153,7 +128,7 @@ class TestBlocklistSubmissionForm(LegacySyncCheckMixin, TestCase):
         form.clean()  # would raise
 
 
-class TestMultiDeleteForm(LegacySyncCheckMixin, TestCase):
+class TestMultiDeleteForm(TestCase):
     def test_guids_must_exist_for_block_deletion(self):
         data = {
             'guids': 'any@thing\nsecond@thing',
@@ -180,7 +155,7 @@ class TestMultiDeleteForm(LegacySyncCheckMixin, TestCase):
             form.clean()
 
 
-class TestMultiAddForm(LegacySyncCheckMixin, TestCase):
+class TestMultiAddForm(TestCase):
     def test_guid_must_exist_in_database(self):
         data = {
             'guids': 'any@thing',

@@ -5,7 +5,8 @@ from django.utils.encoding import smart_str
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.urls import reverse
-from django.utils.http import urlquote
+
+from urllib.parse import quote
 
 from unittest import mock
 
@@ -47,13 +48,6 @@ class TestViews(TestCase):
             'fr': "Quelque chose en français.\n\nQuelque chose d'autre.",
         }
         self.version.save()
-
-        file_ = self.version.files.all()[0]
-
-        # Copy the file to create a new one attached to the same version.
-        # This tests https://github.com/mozilla/addons-server/issues/8950
-        file_.pk = None
-        file_.save()
 
         response = self.client.get(
             reverse(
@@ -134,7 +128,7 @@ class TestDownloadsBase(TestCase):
         assert response.status_code == 302
         assert response.url == (
             urlparams(
-                f'{host}{self.addon.id}/{urlquote(file_.filename)}',
+                f'{host}{self.addon.id}/{quote(file_.filename)}',
                 filehash=file_.hash,
             )
         )
@@ -340,13 +334,13 @@ class TestDownloads(TestDownloadsBase):
         )
 
 
-class TestDisabledFileDownloads(TestDownloadsBase):
+class NonPublicFileDownloadsMixin:
     def test_admin_disabled_404(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.get(self.file_url).status_code == 404
 
     def test_user_disabled_404(self):
-        self.addon.update(disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_anon_404(self):
@@ -354,8 +348,8 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_unprivileged_404(self):
-        assert self.client.login(email='regular@mozilla.com')
         self.file.update(status=amo.STATUS_DISABLED)
+        assert self.client.login(email='regular@mozilla.com')
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_ok_for_author(self):
@@ -382,16 +376,18 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
         self.assert_served_internally(self.client.get(url), attachment=True)
 
-    def test_admin_disabled_ok_for_author(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
+    def test_ok_for_author(self):
+        # Addon should be disabled or the version unlisted at this point, so
+        # it should be served internally.
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
         self.assert_served_internally(self.client.get(url), attachment=True)
 
-    def test_admin_disabled_ok_for_admin(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
+    def test_ok_for_admin(self):
+        # Addon should be disabled or the version unlisted at this point, so
+        # it should be served internally.
         self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
@@ -399,7 +395,7 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_user_disabled_ok_for_author(self):
-        self.addon.update(disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
@@ -407,7 +403,7 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_user_disabled_ok_for_admin(self):
-        self.addon.update(disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
@@ -415,9 +411,67 @@ class TestDisabledFileDownloads(TestDownloadsBase):
         self.assert_served_internally(self.client.get(url), attachment=True)
 
 
-class TestUnlistedDisabledFileDownloads(TestDisabledFileDownloads):
+class DownloadsNonGuardedMixin:
+    def test_ok_for_author(self):
+        # Unlisted versions of non-disabled add-ons will be served internally
+        # but not from the guarded path.
+        assert self.client.login(email='g@gmail.com')
+        self.assert_served_internally(self.client.get(self.file_url), guarded=False)
+
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(
+            self.client.get(url), attachment=True, guarded=False
+        )
+
+    def test_ok_for_admin(self):
+        # Unlisted versions of non-disabled add-ons will be served internally
+        # but not from the guarded path.
+        self.client.login(email='admin@mozilla.com')
+        self.assert_served_internally(self.client.get(self.file_url), guarded=False)
+
+        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
+        self.assert_served_internally(
+            self.client.get(url), attachment=True, guarded=False
+        )
+
+
+class TestDisabledFileDownloads(NonPublicFileDownloadsMixin, TestDownloadsBase):
     def setUp(self):
-        super(TestDisabledFileDownloads, self).setUp()
+        super().setUp()
+        self.addon.update(status=amo.STATUS_DISABLED)
+
+
+class TestUnlistedFileDownloads(
+    DownloadsNonGuardedMixin, NonPublicFileDownloadsMixin, TestDownloadsBase
+):
+    def setUp(self):
+        super().setUp()
+        self.make_addon_unlisted(self.addon)
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'Addons:ReviewUnlisted',
+        )
+
+
+class TestUnlistedSitePermissionFileDownloads(
+    DownloadsNonGuardedMixin, NonPublicFileDownloadsMixin, TestDownloadsBase
+):
+    def setUp(self):
+        super().setUp()
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        self.make_addon_unlisted(self.addon)
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'Addons:ReviewUnlisted',
+        )
+
+
+class TestUnlistedDisabledSitePermissionFileDownloads(
+    NonPublicFileDownloadsMixin, TestDownloadsBase
+):
+    def setUp(self):
+        super().setUp()
+        self.addon.update(status=amo.STATUS_DISABLED, type=amo.ADDON_SITE_PERMISSION)
         self.make_addon_unlisted(self.addon)
         self.grant_permission(
             UserProfile.objects.get(email='reviewer@mozilla.com'),
@@ -438,7 +492,7 @@ class TestUnlistedDisabledAndDeletedFileDownloads(TestDisabledFileDownloads):
         assert self.client.login(email='g@gmail.com')
         assert self.client.get(self.file_url).status_code == 404
 
-    def test_admin_disabled_ok_for_author(self):
+    def test_ok_for_author(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.client.login(email='g@gmail.com')
         assert self.client.get(self.file_url).status_code == 404
@@ -447,6 +501,14 @@ class TestUnlistedDisabledAndDeletedFileDownloads(TestDisabledFileDownloads):
         self.file.update(status=amo.STATUS_DISABLED)
         assert self.client.login(email='g@gmail.com')
         assert self.client.get(self.file_url).status_code == 404
+
+
+class TestUnlistedDisabledAndDeletedSitePermissionFileDownloads(
+    TestUnlistedDisabledAndDeletedFileDownloads
+):
+    def setUp(self):
+        super().setUp()
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
 
 
 class TestDownloadsLatest(TestDownloadsBase):
@@ -501,7 +563,7 @@ class TestDownloadSource(TestCase):
         self.version = self.addon.current_version
         tdir = temp.gettempdir()
         self.source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)
-        self.source_file.write(b'a' * (2 ** 21))
+        self.source_file.write(b'a' * (2**21))
         self.source_file.seek(0)
         self.version.source.save(
             os.path.basename(self.source_file.name), DjangoFile(self.source_file)
@@ -610,7 +672,7 @@ class TestDownloadSource(TestCase):
         assert self.client.get(self.url).status_code == 200
 
         # Even disabled (bis).
-        self.version.files.all().update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_DISABLED)
         assert self.client.get(self.url).status_code == 200
 
         # Even disabled (ter).

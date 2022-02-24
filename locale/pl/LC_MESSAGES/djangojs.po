@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -15,12 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} gwiazdka"
-msgstr[1] "{0} gwiazdki"
-msgstr[2] "{0} gwiazdek"
 
 msgid "There was a problem contacting the server."
 msgstr "Wystąpił problem skontaktowania się z serwerem."
@@ -100,19 +94,6 @@ msgstr[2] "Dodatek przeszedł weryfikację bez błędów i z {0} wiadomościami.
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Dodatek przeszedł weryfikację bez błędów i ostrzeżeń."
 
-msgid "Your submission will be automatically signed."
-msgstr "Zgłoszenie zostanie automatycznie podpisany."
-
-msgid "WebExtension upgrade"
-msgstr "Aktualizacja rozszerzenia WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Zezwalamy na aktualizację i zachęcamy do niej, ale tego procesu nie można odwrócić. Kiedy użytkownicy zainstalują rozszerzenie WebExtension, nie będą mogli zainstalować przestarzałego dodatku."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portowanie przestarzałego dodatku Firefoksa na stronie MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Dołącz szczegółowe informacje o wersji dodatku (można zrobić to w kolejnym kroku)."
 
@@ -150,36 +131,6 @@ msgstr "Obrazy muszą być w formacie PNG lub JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Wideo musi być w formacie WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Ten motyw jest niekompatybilny z twoją wersją programu {0}"
-
-msgid "Flagged for review"
-msgstr "Oznaczona do sprawdzenia"
-
-msgid "Your input is required"
-msgstr "Wymagane jest wprowadzenie danych"
-
-msgid "Marked for deletion"
-msgstr "Oznaczona do usunięcia"
-
-msgid "Updating results&hellip;"
-msgstr "Aktualizowanie wyników&hellip;"
-
-msgid "Category"
-msgstr "Kategoria"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Szukaj motywów dla <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Szukaj aplikacji dla <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Szukaj dodatków dla <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Użyj oryginału"
 
 msgid "Week of {0}"
 msgstr "Tydzień: {0}"
@@ -675,41 +626,6 @@ msgstr "Data"
 msgid "Other"
 msgstr "Inny"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Akceptuję, zainstaluj"
-
-msgid "Add to {0}"
-msgstr "Zainstaluj"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Mimo wszystko zainstaluj dla systemu (0)"
-
-msgid "Download for {0} anyway"
-msgstr "Mimo wszystko pobierz dla (0)"
-
-msgid "Not available for your platform"
-msgstr "Niedostępny dla twojego systemu"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Ten dodatek jest niekompatybilny z Twoją wersją programu {0}."
-
-msgid "View other versions"
-msgstr "Zobacz inne wersje"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Działa z {app} {min} — {max}"
-
-msgid "Works with {app}"
-msgstr "Działa z programem {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Tylko w Firefoksie — pobierz Firefoksa teraz!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli — taka jak np. Firefox."
-
 msgid "Changes Saved"
 msgstr "Zmiany zostały zapisane"
 
@@ -730,12 +646,6 @@ msgstr "Przetwarzanie zmian obrazu…"
 
 msgid "Select an application first"
 msgstr "Wybierz najpierw program"
-
-msgid "No results found."
-msgstr "Nic nie znaleziono."
-
-msgid "Loading..."
-msgstr "Wczytywanie…"
 
 #, fuzzy
 msgid "<b>{0}</b> character"
@@ -780,12 +690,6 @@ msgstr "Treść opinii"
 
 msgid "Review notes found"
 msgstr "Znaleziono uwagi do opinii"
-
-msgid "Average Reviews"
-msgstr "Średnia opinia"
-
-msgid "Number of Reviews"
-msgstr "Liczba opinii"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""

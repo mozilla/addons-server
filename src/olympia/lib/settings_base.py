@@ -69,10 +69,6 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
-    # We have some non-unique constraint/index names.
-    # See https://github.com/mozilla/addons-server/issues/16497
-    'models.E030',
-    'models.E032',
 )
 
 # LESS CSS OPTIONS (Debug only).
@@ -204,6 +200,10 @@ HOSTNAME = socket.gethostname()
 # need the real domain.
 DOMAIN = HOSTNAME
 
+# The port used by the frontend when running frontend locally with
+# addons-server in docker. This will default it to None for dev/prod/stage.
+ADDONS_FRONTEND_PROXY_PORT = None
+
 # Full base URL for your main site including protocol.  No trailing slash.
 #   Example: https://addons.mozilla.org
 SITE_URL = 'http://%s' % DOMAIN
@@ -223,6 +223,11 @@ SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 # URL of the code-manager site, see:
 # https://github.com/mozilla/addons-code-manager
 CODE_MANAGER_URL = f'https://code.{DOMAIN}'
+
+# Static and media URL for prod are hardcoded here to allow them to be set in
+# the base CSP shared by all envs.
+PROD_STATIC_URL = 'https://addons.mozilla.org/static-server/'
+PROD_MEDIA_URL = 'https://addons.mozilla.org/user-media/'
 
 # Filter IP addresses of allowed clients that can post email through the API.
 ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
@@ -269,6 +274,8 @@ SUPPORTED_NONAPPS = (
     'sitemap.xml',
     'static',
     'user-media',
+    '__heartbeat__',
+    '__lbheartbeat__',
     '__version__',
 )
 DEFAULT_APP = 'firefox'
@@ -286,6 +293,8 @@ SUPPORTED_NONLOCALES = (
     'downloads',
     'static',
     'user-media',
+    '__heartbeat__',
+    '__lbheartbeat__',
     '__version__',
 )
 
@@ -293,6 +302,11 @@ SUPPORTED_NONLOCALES = (
 SECRET_KEY = env(
     'SECRET_KEY', default='this-is-a-dummy-key-and-its-overridden-for-prod-servers'
 )
+
+# This is a unique key shared between us and the CDN to prove that a request
+# came from the CDN. It will be passed as a HTTP_X_REQUEST_VIA_CDN header to
+# all requests from the CDN
+SECRET_CDN_TOKEN = env('SECRET_CDN_TOKEN', default=None)
 
 # Templates configuration.
 # List of path patterns for which we should be using Django Template Language.
@@ -337,7 +351,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'olympia.amo.context_processors.i18n',
                 'olympia.amo.context_processors.global_settings',
-                'olympia.amo.context_processors.static_url',
             ),
             'extensions': (
                 'jinja2.ext.do',
@@ -408,7 +421,7 @@ MIDDLEWARE = (
     # Test if it's an API request first so later middlewares don't need to.
     # Also add relevant Vary header to API responses.
     'olympia.api.middleware.APIRequestMiddleware',
-    'olympia.api.middleware.APICacheControlMiddleware',
+    'olympia.amo.middleware.CacheControlMiddleware',
     # Gzip middleware needs to be executed after every modification to the
     # response, so it's placed at the top of the list.
     'django.middleware.gzip.GZipMiddleware',
@@ -432,6 +445,7 @@ MIDDLEWARE = (
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
+    'olympia.amo.middleware.LBHeartbeatMiddleware',
     'olympia.amo.middleware.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
@@ -444,6 +458,7 @@ MIDDLEWARE = (
     # IP).
     'olympia.access.middleware.UserAndAddrMiddleware',
     'olympia.amo.middleware.RequestIdMiddleware',
+    'olympia.amo.middleware.TokenValidMiddleware',
 )
 
 # Auth
@@ -575,9 +590,8 @@ PUENTE = {
             ('static/js/**-all.js', 'ignore'),
             ('static/js/**-min.js', 'ignore'),
             ('static/js/*.js', 'javascript'),
-            ('static/js/amo2009/**.js', 'javascript'),
             ('static/js/common/**.js', 'javascript'),
-            ('static/js/impala/**.js', 'javascript'),
+            ('static/js/stats/**.js', 'javascript'),
             ('static/js/zamboni/**.js', 'javascript'),
         ],
     },
@@ -597,7 +611,6 @@ MINIFY_BUNDLES = {
         'zamboni/css': (
             'css/legacy/main.css',
             'css/legacy/main-mozilla.css',
-            'css/legacy/jquery-lightbox.css',
             'css/zamboni/zamboni.css',
             'css/zamboni/tags.css',
             'css/zamboni/tabs.css',
@@ -609,50 +622,7 @@ MINIFY_BUNDLES = {
             'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
         ),
-        'zamboni/impala': (
-            'css/impala/base.css',
-            'css/legacy/jquery-lightbox.css',
-            'css/impala/site.less',
-            'css/impala/typography.less',
-            'css/impala/forms.less',
-            'css/common/invisible-upload.less',
-            'css/impala/header.less',
-            'css/impala/footer.less',
-            'css/impala/moz-tab.css',
-            'css/impala/hovercards.less',
-            'css/impala/toplist.less',
-            'css/impala/carousel.less',
-            'css/impala/ratings.less',
-            'css/impala/buttons.less',
-            'css/impala/promos.less',
-            'css/impala/addon_details.less',
-            'css/impala/policy.less',
-            'css/impala/expando.less',
-            'css/impala/popups.less',
-            'css/impala/l10n.less',
-            'css/impala/lightbox.less',
-            'css/impala/prose.less',
-            'css/impala/abuse.less',
-            'css/impala/paginator.less',
-            'css/impala/listing.less',
-            'css/impala/versions.less',
-            'css/impala/users.less',
-            'css/impala/tooltips.less',
-            'css/impala/search.less',
-            'css/impala/suggestions.less',
-            'css/node_lib/jquery.minicolors.css',
-            'css/impala/login.less',
-            'css/impala/dictionaries.less',
-            'css/impala/apps.less',
-            'css/impala/formset.less',
-            'css/impala/tables.less',
-            'css/impala/compat.less',
-        ),
-        'zamboni/stats': ('css/impala/stats.less',),
-        'zamboni/discovery-pane': (
-            'css/impala/promos.less',
-            'css/legacy/jquery-lightbox.css',
-        ),
+        'zamboni/stats': ('css/zamboni/stats.less',),
         'zamboni/devhub': (
             'css/impala/tooltips.less',
             'css/zamboni/developers.css',
@@ -670,19 +640,8 @@ MINIFY_BUNDLES = {
             'css/devhub/in-app-config.less',
             'css/devhub/static-theme.less',
             'css/node_lib/jquery.minicolors.css',
-        ),
-        'zamboni/devhub_impala': (
-            'css/impala/developers.less',
-            'css/devhub/listing.less',
-            'css/devhub/popups.less',
-            'css/devhub/compat.less',
-            'css/devhub/dashboard.less',
-            'css/devhub/forms.less',
-            'css/common/invisible-upload.less',
-            'css/devhub/submission.less',
-            'css/devhub/search.less',
-            'css/devhub/refunds.less',
             'css/impala/devhub-api.less',
+            'css/devhub/dashboard.less',
         ),
         'zamboni/reviewers': (
             'css/zamboni/reviewers.less',
@@ -696,169 +655,29 @@ MINIFY_BUNDLES = {
     },
     'js': {
         # JS files common to the entire site, apart from dev-landing.
+        # js/node_lib/* files are copied in Makefile-docker - keep both lists in sync
         'common': (
             'js/node_lib/underscore.js',
-            'js/zamboni/browser.js',
-            'js/amo2009/addons.js',
             'js/zamboni/init.js',
-            'js/impala/capabilities.js',
+            'js/zamboni/capabilities.js',
             'js/lib/format.js',
             'js/node_lib/jquery.cookie.js',
             'js/zamboni/storage.js',
-            'js/zamboni/buttons.js',
-            'js/zamboni/tabs.js',
             'js/common/keys.js',
-            # jQuery UI
-            'js/node_lib/ui/version.js',
-            'js/node_lib/ui/data.js',
-            'js/node_lib/ui/disable-selection.js',
-            'js/node_lib/ui/ie.js',
-            'js/node_lib/ui/keycode.js',
-            'js/node_lib/ui/escape-selector.js',
-            'js/node_lib/ui/labels.js',
-            'js/node_lib/ui/jquery-1-7.js',
-            'js/node_lib/ui/plugin.js',
-            'js/node_lib/ui/safe-active-element.js',
-            'js/node_lib/ui/safe-blur.js',
-            'js/node_lib/ui/scroll-parent.js',
-            'js/node_lib/ui/focusable.js',
-            'js/node_lib/ui/tabbable.js',
-            'js/node_lib/ui/unique-id.js',
-            'js/node_lib/ui/position.js',
-            'js/node_lib/ui/widget.js',
-            'js/node_lib/ui/menu.js',
-            'js/node_lib/ui/mouse.js',
-            'js/node_lib/ui/autocomplete.js',
-            'js/node_lib/ui/datepicker.js',
-            'js/node_lib/ui/sortable.js',
             'js/zamboni/helpers.js',
-            'js/common/banners.js',
             'js/zamboni/global.js',
-            'js/amo2009/global.js',
-            'js/common/ratingwidget.js',
-            'js/node_lib/jqModal.js',
             'js/zamboni/l10n.js',
-            'js/zamboni/debouncer.js',
-            # Homepage
-            'js/zamboni/homepage.js',
-            # Add-ons details page
-            'js/lib/ui.lightbox.js',
-            'js/zamboni/addon_details.js',
-            'js/impala/abuse.js',
-            'js/zamboni/ratings.js',
-            'js/lib/jquery.hoverIntent.js',
             # Unicode letters for our makeslug function
             'js/zamboni/unicode.js',
-            # Users
+            # Login tweaks
             'js/zamboni/users.js',
-            # Search suggestions
-            'js/impala/forms.js',
-            'js/impala/ajaxcache.js',
-            'js/impala/suggestions.js',
-            'js/impala/site_suggestions.js',
+            'js/common/lang_switcher.js',
         ),
-        # Impala and Legacy: Things to be loaded at the top of the page
+        # Things to be loaded at the top of the page
         'preload': (
             'js/node_lib/jquery.js',
             'js/node_lib/jquery.browser.js',
-            'js/impala/preloaded.js',
             'js/zamboni/analytics.js',
-        ),
-        # Impala: Things to be loaded at the bottom
-        'impala': (
-            'js/lib/ngettext-overload.js',
-            'js/node_lib/underscore.js',
-            'js/impala/carousel.js',
-            'js/zamboni/browser.js',
-            'js/amo2009/addons.js',
-            'js/zamboni/init.js',
-            'js/impala/capabilities.js',
-            'js/lib/format.js',
-            'js/node_lib/jquery.cookie.js',
-            'js/zamboni/storage.js',
-            'js/zamboni/buttons.js',
-            'js/node_lib/jquery.pjax.js',
-            # jquery.pjax.js is missing a semicolon at the end which breaks
-            # our wonderful minification process... so add one.
-            'js/lib/semicolon.js',  # It's just a semicolon!
-            'js/impala/footer.js',
-            'js/common/keys.js',
-            # jQuery UI
-            'js/node_lib/ui/version.js',
-            'js/node_lib/ui/data.js',
-            'js/node_lib/ui/disable-selection.js',
-            'js/node_lib/ui/ie.js',
-            'js/node_lib/ui/keycode.js',
-            'js/node_lib/ui/escape-selector.js',
-            'js/node_lib/ui/labels.js',
-            'js/node_lib/ui/jquery-1-7.js',
-            'js/node_lib/ui/plugin.js',
-            'js/node_lib/ui/safe-active-element.js',
-            'js/node_lib/ui/safe-blur.js',
-            'js/node_lib/ui/scroll-parent.js',
-            'js/node_lib/ui/focusable.js',
-            'js/node_lib/ui/tabbable.js',
-            'js/node_lib/ui/unique-id.js',
-            'js/node_lib/ui/position.js',
-            'js/node_lib/ui/widget.js',
-            'js/node_lib/ui/mouse.js',
-            'js/node_lib/ui/menu.js',
-            'js/node_lib/ui/autocomplete.js',
-            'js/node_lib/ui/datepicker.js',
-            'js/node_lib/ui/sortable.js',
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
-            'js/impala/ajaxcache.js',
-            'js/zamboni/helpers.js',
-            'js/common/banners.js',
-            'js/zamboni/global.js',
-            'js/impala/global.js',
-            'js/common/ratingwidget.js',
-            'js/node_lib/jqModal.js',
-            'js/zamboni/l10n.js',
-            'js/impala/forms.js',
-            # Add-ons details page
-            'js/lib/ui.lightbox.js',
-            'js/impala/addon_details.js',
-            'js/impala/abuse.js',
-            'js/impala/ratings.js',
-            # Browse listing pages
-            'js/impala/listing.js',
-            'js/lib/jquery.hoverIntent.js',
-            'js/common/upload-image.js',
-            'js/node_lib/jquery.minicolors.js',
-            # Unicode letters for our makeslug function
-            'js/zamboni/unicode.js',
-            # Users
-            'js/zamboni/users.js',
-            'js/impala/users.js',
-            # Search
-            'js/impala/serializers.js',
-            'js/impala/search.js',
-            'js/impala/suggestions.js',
-            'js/impala/site_suggestions.js',
-            # Login
-            'js/impala/login.js',
-        ),
-        'zamboni/discovery': (
-            'js/node_lib/jquery.js',
-            'js/node_lib/jquery.browser.js',
-            'js/node_lib/underscore.js',
-            'js/zamboni/browser.js',
-            'js/zamboni/init.js',
-            'js/impala/capabilities.js',
-            'js/lib/format.js',
-            'js/impala/carousel.js',
-            'js/zamboni/analytics.js',
-            # Add-ons details
-            'js/node_lib/jquery.cookie.js',
-            'js/zamboni/storage.js',
-            'js/zamboni/buttons.js',
-            'js/lib/ui.lightbox.js',
-            'js/lib/jquery.hoverIntent.js',
-            'js/zamboni/debouncer.js',
-            'js/lib/truncate.js',
-            'js/zamboni/truncation.js',
         ),
         'zamboni/devhub': (
             'js/lib/truncate.js',
@@ -866,15 +685,22 @@ MINIFY_BUNDLES = {
             'js/common/upload-base.js',
             'js/common/upload-addon.js',
             'js/common/upload-image.js',
-            'js/impala/formset.js',
             'js/zamboni/devhub.js',
             'js/zamboni/validator.js',
             'js/node_lib/jquery.timeago.js',
             'js/zamboni/static_theme.js',
             'js/node_lib/jquery.minicolors.js',
             'js/node_lib/jszip.js',
+            # jQuery UI for sortable
+            'js/node_lib/ui/data.js',
+            'js/node_lib/ui/scroll-parent.js',
+            'js/node_lib/ui/widget.js',
+            'js/node_lib/ui/mouse.js',
+            'js/node_lib/ui/sortable.js',
         ),
         'devhub/new-landing/js': (
+            # Note that new-landing (devhub/index.html) doesn't include
+            # zamboni/devhub or even common js bundles.
             'js/common/lang_switcher.js',
             'js/lib/basket-client.js',
         ),
@@ -888,16 +714,16 @@ MINIFY_BUNDLES = {
         ),
         'zamboni/stats': (
             'js/lib/highcharts.src.js',
-            'js/impala/stats/csv_keys.js',
-            'js/impala/stats/helpers.js',
-            'js/impala/stats/dateutils.js',
-            'js/impala/stats/manager.js',
-            'js/impala/stats/controls.js',
-            'js/impala/stats/overview.js',
-            'js/impala/stats/topchart.js',
-            'js/impala/stats/chart.js',
-            'js/impala/stats/table.js',
-            'js/impala/stats/stats.js',
+            'js/stats/csv_keys.js',
+            'js/stats/helpers.js',
+            'js/stats/dateutils.js',
+            'js/stats/manager.js',
+            'js/stats/controls.js',
+            'js/stats/overview.js',
+            'js/stats/topchart.js',
+            'js/stats/chart.js',
+            'js/stats/table.js',
+            'js/stats/stats.js',
         ),
         # This is included when DEBUG is True.  Bundle in <head>.
         'debug': (
@@ -908,27 +734,16 @@ MINIFY_BUNDLES = {
     },
 }
 
+CACHES = {
+    'default': env.cache(
+        'CACHES_DEFAULT',
+        'memcache://%s' % os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
+    )
+}
+CACHES['default']['TIMEOUT'] = 500
+CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.PyMemcacheCache'
 # Prefix for cache keys (will prevent collisions when running parallel copies)
-# This value is being used by `conf/settings/{dev,stage,prod}.py
-CACHE_KEY_PREFIX = 'amo:%s:' % BUILD_ID
-
-CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_KEY_PREFIX
-FETCH_BY_ID = True
-
-# Number of seconds a count() query should be cached.  Keep it short because
-# it's not possible to invalidate these queries.
-CACHE_COUNT_TIMEOUT = 60
-
-# To enable pylibmc compression (in bytes)
-PYLIBMC_MIN_COMPRESS_LEN = 0  # disabled
-
-# External tools.
-JAVA_BIN = '/usr/bin/java'
-
-# URL paths
-# paths for images, e.g. mozcdn.com/amo or '/static'
-VAMO_URL = 'https://versioncheck.addons.mozilla.org'
-
+CACHES['default']['KEY_PREFIX'] = 'amo:%s:' % BUILD_ID
 
 # Outgoing URL bouncer
 REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
@@ -937,8 +752,7 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY', default='')
 # Allow URLs from these servers. Use full domain names.
 REDIRECT_URL_ALLOW_LIST = ['addons.mozilla.org']
 
-# Default to short expiration; check "remember me" to override
-SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 # See: https://github.com/mozilla/addons-server/issues/1789
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 # This value must be kept in sync with authTokenValidFor from addons-frontend:
@@ -1053,10 +867,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
     'olympia.blocklist.tasks.process_blocklistsubmission': {'queue': 'priority'},
-    'olympia.blocklist.tasks.import_block_from_blocklist': {'queue': 'priority'},
-    'olympia.blocklist.tasks.delete_imported_block_from_blocklist': {
-        'queue': 'priority'
-    },
     'olympia.blocklist.tasks.upload_filter': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {'queue': 'priority'},
     # Other queues we prioritize below.
@@ -1072,6 +882,7 @@ CELERY_TASK_ROUTES = {
     # AMO Devhub.
     'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {'queue': 'devhub'},
+    'olympia.devhub.tasks.create_site_permission_version': {'queue': 'devhub'},
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
@@ -1150,10 +961,11 @@ CELERY_TASK_ROUTES = {
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
     'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
     # Users
+    'olympia.accounts.tasks.clear_sessions_event': {'queue': 'users'},
+    'olympia.accounts.tasks.delete_user_event': {'queue': 'users'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'users'},
     'olympia.users.tasks.delete_photo': {'queue': 'users'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
-    'olympia.accounts.tasks.delete_user_event': {'queue': 'users'},
     # Zadmin
     'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
     'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {'queue': 'zadmin'},
@@ -1230,11 +1042,6 @@ LOGGING = {
             'level': logging.WARNING,
             'propagate': False,
         },
-        'newrelic': {
-            'handlers': ['mozlog'],
-            'level': logging.WARNING,
-            'propagate': False,
-        },
         'parso': {'handlers': ['null'], 'level': logging.INFO, 'propagate': False},
         'post_request_task': {
             'handlers': ['mozlog'],
@@ -1263,7 +1070,6 @@ LOGGING = {
 
 # CSP Settings
 
-PROD_CDN_HOST = 'https://addons.cdn.mozilla.net'
 ANALYTICS_HOST = 'https://www.google-analytics.com'
 
 CSP_REPORT_URI = '/__cspreport__'
@@ -1272,35 +1078,28 @@ CSP_EXCLUDE_URL_PREFIXES = ()
 
 # NOTE: CSP_DEFAULT_SRC MUST be set otherwise things not set
 # will default to being open to anything.
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_BASE_URI = (
-    "'self'",
-    # Required for the legacy discovery pane.
-    'https://addons.mozilla.org',
-)
+CSP_DEFAULT_SRC = ("'none'",)
 CSP_CONNECT_SRC = (
     "'self'",
     'https://sentry.prod.mozaws.net',
     ANALYTICS_HOST,
-    PROD_CDN_HOST,
 )
 CSP_FORM_ACTION = ("'self'",)
 CSP_FONT_SRC = (
     "'self'",
-    PROD_CDN_HOST,
+    PROD_STATIC_URL,
 )
 CSP_CHILD_SRC = (
-    "'self'",
     'https://www.google.com/recaptcha/',
     'https://www.recaptcha.net/recaptcha/',
 )
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
-    'data:',  # Used in inlined mobile css.
     'blob:',  # Needed for image uploads.
-    PROD_CDN_HOST,
-    'https://static.addons.mozilla.net',  # CDN origin server.
+    'data:',  # Needed for theme wizard.
+    PROD_STATIC_URL,
+    PROD_MEDIA_URL,
     'https://sentry.prod.mozaws.net',
 )
 CSP_MEDIA_SRC = ('https://videos.cdn.mozilla.net',)
@@ -1312,12 +1111,11 @@ CSP_SCRIPT_SRC = (
     'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     'https://www.gstatic.cn/recaptcha/',
-    PROD_CDN_HOST,
+    PROD_STATIC_URL,
 )
 CSP_STYLE_SRC = (
-    "'self'",
     "'unsafe-inline'",
-    PROD_CDN_HOST,
+    PROD_STATIC_URL,
 )
 
 RESTRICTED_DOWNLOAD_CSP = {
@@ -1443,11 +1241,8 @@ GRAPHITE_PREFIX = env('GRAPHITE_PREFIX', default='amo')
 GRAPHITE_PORT = 2003
 GRAPHITE_TIMEOUT = 1
 
-# IP addresses of servers we use as proxies.
-KNOWN_PROXIES = []
-
 # Blog URL
-DEVELOPER_BLOG_URL = 'http://blog.mozilla.com/addons/feed/'
+DEVELOPER_BLOG_URL = 'https://blog.mozilla.org/addons/wp-json/wp/v2/posts'
 
 LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
@@ -1456,7 +1251,7 @@ CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
 CSRF_USE_SESSIONS = True
 
 # Default file storage mechanism that holds media.
-DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'olympia.amo.utils.SafeStorage'
 
 # And how long we'll give the server to respond for monitoring.
 # We currently do not have any actual timeouts during the signing-process.
@@ -1503,9 +1298,10 @@ SIMULATE_NAV_PAY = False
 # When the dev. agreement gets updated, you need users to re-accept it and the
 # config 'last_dev_agreement_change_date' is not set, use this fallback.
 # You won't want to do this for minor format changes.
+# This value should be updated shortly after new agreement became effective.
 # The tuple is passed through to datetime.date, so please use a valid date
 # tuple.
-DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2019, 12, 2, 12, 00)
+DEV_AGREEMENT_CHANGE_FALLBACK = datetime(2021, 12, 1, 12, 00)
 
 # If you want to allow self-reviews for add-ons/apps, then enable this.
 # In production we do not want to allow this.
@@ -1600,6 +1396,10 @@ DRF_API_GATES = {
         'wrap-outgoing-parameter',
         'platform-shim',
         'keep-license-text-in-version-list',
+        'is-restart-required-shim',
+        'is-webextension-shim',
+        'version-files',
+        'del-version-license-slug',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1609,11 +1409,16 @@ DRF_API_GATES = {
         'wrap-outgoing-parameter',
         'platform-shim',
         'keep-license-text-in-version-list',
+        'is-restart-required-shim',
+        'is-webextension-shim',
+        'version-files',
+        'del-version-license-slug',
     ),
     'v5': (
         'addons-search-_score-field',
         'ratings-can_reply',
         'ratings-score-filter',
+        'addon-submission-api',
     ),
 }
 
@@ -1622,13 +1427,15 @@ DRF_API_GATES = {
 API_THROTTLING = True
 
 REST_FRAMEWORK = {
-    # Set this because the default is to also include:
-    #   'rest_framework.renderers.BrowsableAPIRenderer'
-    # Which it will try to use if the client accepts text/html.
-    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
+    'ALLOWED_VERSIONS': DRF_API_VERSIONS,
+    # Use http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
+    # We can't use the default because we don't use django timezone support.
+    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'olympia.api.authentication.WebTokenAuthentication',
+        'olympia.api.authentication.SessionIDAuthentication',
     ),
+    'DEFAULT_PAGINATION_CLASS': ('olympia.api.pagination.CustomPageNumberPagination'),
     # Set parser classes to include the fix for
     # https://github.com/tomchristie/django-rest-framework/issues/3951
     'DEFAULT_PARSER_CLASSES': (
@@ -1636,24 +1443,25 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'olympia.api.parsers.MultiPartParser',
     ),
-    'ALLOWED_VERSIONS': DRF_API_VERSIONS,
+    # Use json by default when using APIClient.
+    # Set this because the default is to also include:
+    #   'rest_framework.renderers.BrowsableAPIRenderer'
+    # Which it will try to use if the client accepts text/html.
+    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer',),
     'DEFAULT_VERSION': 'v5',
     'DEFAULT_VERSIONING_CLASS': ('rest_framework.versioning.NamespaceVersioning'),
     # Add our custom exception handler, that wraps all exceptions into
     # Responses and not just the ones that are api-related.
     'EXCEPTION_HANDLER': 'olympia.api.exceptions.custom_exception_handler',
+    # Explictly set the number of proxies
+    'NUM_PROXIES': 0,
+    # Set our default ordering parameter
+    'ORDERING_PARAM': 'sort',
     # Enable pagination
     'PAGE_SIZE': 25,
     # Use our pagination class by default, which allows clients to request a
     # different page size.
-    'DEFAULT_PAGINATION_CLASS': ('olympia.api.pagination.CustomPageNumberPagination'),
-    # Use json by default when using APIClient.
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
-    # Use http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15
-    # We can't use the default because we don't use django timezone support.
-    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%SZ',
-    # Set our default ordering parameter
-    'ORDERING_PARAM': 'sort',
 }
 
 
@@ -1688,15 +1496,50 @@ def get_sentry_release():
     return version
 
 
-# This is the DSN to the Sentry service.
+def scrub_sensitive_data(event, hint):
+    def _scrub_sensitive_data_recursively(data, name=None):
+        # This only works with lists or dicts but we shouldn't need anything else.
+        if isinstance(data, (list, dict)):
+            items = data.items() if isinstance(data, dict) else enumerate(data)
+            for key, value in items:
+                data[key] = _scrub_sensitive_data_recursively(value, name=key)
+        elif (
+            isinstance(data, str)
+            and isinstance(name, str)
+            and name.lower() in SENTRY_SENSITIVE_FIELDS
+        ):
+            data = '*** redacted ***'
+        return data
+
+    try:
+        event = _scrub_sensitive_data_recursively(event)
+    except Exception:
+        pass
+    return event
+
+
 SENTRY_CONFIG = {
+    # This is the DSN to the Sentry service.
     'dsn': env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN')),
     # Automatically configure the release based on git information.
     # This uses our `version.json` file if possible or tries to fetch
     # the current git-sha.
     'release': get_sentry_release(),
+    # 'send_default_pii: False (the default) is a little too aggressive for us,
+    # so we set it to True and do it ourselves - see SENTRY_SENSITIVE_FIELDS
+    # below.
     'send_default_pii': True,
+    'before_send': scrub_sensitive_data,
 }
+# List of fields to scrub in our custom scrub_sensitive_data() callback.
+# /!\ Each value needs to be in lowercase !
+SENTRY_SENSITIVE_FIELDS = (
+    'email',
+    'ip_address',
+    'remote_addr',
+    'remoteaddresschain',
+    'x-forwarded-for',
+)
 
 
 # We need to load this before sentry_sdk.init or our reverse replacement is too late.
@@ -1718,6 +1561,7 @@ FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default']
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
+VERIFY_FXA_ACCESS_TOKEN = True
 
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path
@@ -1730,7 +1574,6 @@ CRON_JOBS = {
     'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
     'write_sitemaps': 'olympia.amo.cron',
-    'auto_import_blocklist': 'olympia.blocklist.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
     'update_user_ratings': 'olympia.users.cron',
@@ -1752,9 +1595,6 @@ REPUTATION_SERVICE_URL = env('REPUTATION_SERVICE_URL', default=None)
 REPUTATION_SERVICE_TOKEN = env('REPUTATION_SERVICE_TOKEN', default=None)
 REPUTATION_SERVICE_TIMEOUT = env.float('REPUTATION_SERVICE_TIMEOUT', default=1)
 
-# This is the queue used for addons-dev, so it'll consume events (i.e. process
-# then delete) before you can locally.  If you really need to test get ops to
-# stop the 'monitor_fxa_sqs` command.
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/amo-account-change-dev'
 )

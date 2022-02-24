@@ -3,52 +3,19 @@ import json
 import os
 
 from base64 import urlsafe_b64encode
-from urllib.parse import urlencode, urlparse
+from urllib.parse import urlencode
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_str
-from django.utils.http import is_safe_url
 
 import boto3
 
-from olympia.accounts.tasks import delete_user_event, primary_email_change_event
-from olympia.amo.utils import use_fake_fxa
+from olympia.amo.utils import is_safe_url, use_fake_fxa
 from olympia.core.logger import getLogger
 
-
-def _is_safe_url(url, request):
-    """Override the Django `is_safe_url()` to pass a configured list of allowed
-    hosts and enforce HTTPS."""
-    allowed_hosts = (
-        settings.DOMAIN,
-        urlparse(settings.CODE_MANAGER_URL).netloc,
-    )
-    require_https = request.is_secure() if request else False
-    return is_safe_url(url, allowed_hosts=allowed_hosts, require_https=require_https)
-
-
-def fxa_config(request):
-    config = {
-        camel_case(key): value
-        for key, value in settings.FXA_CONFIG['default'].items()
-        if key != 'client_secret'
-    }
-    request.session.setdefault('fxa_state', generate_fxa_state())
-
-    config.update(
-        **{
-            'contentHost': settings.FXA_CONTENT_HOST,
-            'oauthHost': settings.FXA_OAUTH_HOST,
-            'profileHost': settings.FXA_PROFILE_HOST,
-            'scope': 'profile openid',
-            'state': request.session['fxa_state'],
-        }
-    )
-    if request.user.is_authenticated:
-        config['email'] = request.user.email
-    return config
+from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
 
 
 def fxa_login_url(
@@ -60,7 +27,7 @@ def fxa_login_url(
     request=None,
     id_token=None,
 ):
-    if next_path and _is_safe_url(next_path, request):
+    if next_path and is_safe_url(next_path, request):
         state += ':' + force_str(urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(
             '='
         )
@@ -68,6 +35,7 @@ def fxa_login_url(
         'client_id': config['client_id'],
         'scope': 'profile openid',
         'state': state,
+        'access_type': 'offline',
     }
     if action is not None:
         query['action'] = action
@@ -90,32 +58,19 @@ def fxa_login_url(
     return f'{base_url}?{urlencode(query)}'
 
 
-def default_fxa_register_url(request):
-    request.session.setdefault('fxa_state', generate_fxa_state())
-    return fxa_login_url(
-        config=settings.FXA_CONFIG['default'],
-        state=request.session['fxa_state'],
-        next_path=path_with_query(request),
-        action='signup',
-    )
-
-
-def default_fxa_login_url(request):
-    request.session.setdefault('fxa_state', generate_fxa_state())
-    return fxa_login_url(
-        config=settings.FXA_CONFIG['default'],
-        state=request.session['fxa_state'],
-        next_path=path_with_query(request),
-        action='signin',
-    )
-
-
 def generate_fxa_state():
     return force_str(binascii.hexlify(os.urandom(32)))
 
 
 def redirect_for_login(request):
-    return HttpResponseRedirect(default_fxa_login_url(request))
+    request.session.setdefault('fxa_state', generate_fxa_state())
+    url = fxa_login_url(
+        config=settings.FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path=path_with_query(request),
+        action='signin',
+    )
+    return HttpResponseRedirect(url)
 
 
 def path_with_query(request):
@@ -158,6 +113,8 @@ def process_fxa_event(raw_body):
                 primary_email_change_event.delay(uid, timestamp, email)
         elif event_type == 'delete':
             delete_user_event.delay(uid, timestamp)
+        elif event_type in ['passwordChange', 'reset']:
+            clear_sessions_event.delay(uid, timestamp, event_type)
         else:
             log.info('Dropping unknown event type %r', event_type)
 

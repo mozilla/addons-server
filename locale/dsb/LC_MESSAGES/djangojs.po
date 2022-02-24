@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-12-07 12:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,13 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} gwězdka"
-msgstr[1] "{0} gwězdce"
-msgstr[2] "{0} gwězdki"
-msgstr[3] "{0} gwězdkow"
 
 msgid "There was a problem contacting the server."
 msgstr "Pśi kontaktěrowanju serwera jo problem nastał."
@@ -104,18 +97,6 @@ msgstr[3] "Waš dodank jo pśeglědowanje bźeze zmólkow a z {0} powězeńkami 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Waš dodank jo pśeglědowanje bźeze zmólkow a bźez warnowanjow wobstał."
 
-msgid "Your submission will be automatically signed."
-msgstr "Wašo zapódaśe buźo se awtomatiski signěrowaś."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension - Aktualizacija"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Dowólujomy a pśiraźujomy aktualizaciju, ale njamóžośo toś ten proces pśewobrośiś. Gaž waše wužywarje su WebExtension zainstalěrowali, njamógu wěcej dodank starego typa instalěrowaś."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Dodank Firefox starego typa na MDN pśenosowaś"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Nadrobne wersijowe informacije zapśimjeś (to dajo se w pśiducem kšacu cyniś)."
 
@@ -152,36 +133,6 @@ msgstr "Wobraze muse pak PNG pak JPG byś."
 
 msgid "Videos must be in WebM."
 msgstr "Wideo muse we formaśe WebM byś."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Toś ta drastwa njejo kompatibelna z wašeju wersiju {0}"
-
-msgid "Flagged for review"
-msgstr "Za pśeglědowanje markěrowany"
-
-msgid "Your input is required"
-msgstr "Wašo zapódaśe jo trěbne"
-
-msgid "Marked for deletion"
-msgstr "Za wulašowanje markěrowany"
-
-msgid "Updating results&hellip;"
-msgstr "Wuslědki so aktualizěruju&hellip;"
-
-msgid "Category"
-msgstr "Kategorija"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Drastwy za <b>{0}</b> pytaś"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Nałoženja za <b>{0}</b> pytaś"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Dodanki za <b>{0}</b> pytaś"
-
-msgid "Use original"
-msgstr "Original wužywaś"
 
 msgid "Week of {0}"
 msgstr "Tyźeń {0}"
@@ -669,41 +620,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Druge"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Akceptěrowaś a instalěrowaś"
-
-msgid "Add to {0}"
-msgstr "K {0} pśidaś"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Weto za {0} instalěrowaś"
-
-msgid "Download for {0} anyway"
-msgstr "Weto za {0} ześěgnuś"
-
-msgid "Not available for your platform"
-msgstr "Njejo za wašu platformu k dispoziciji"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Toś ten dodank njejo kompatibelny z wašeju wersiju {0}."
-
-msgid "View other versions"
-msgstr "Druge wersije pokazaś"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funkcioněrujo z {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funkcioněrujo z {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Jano z Firefox – Wobstarajśo se něnto Firefox!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Bóžko trjebaśo wobglědowak Mozilla (na pśikład Firefox), aby pytański tykac instalěrował."
-
 msgid "Changes Saved"
 msgstr "Změny su se składli"
 
@@ -725,12 +641,6 @@ msgstr "Wobrazowe změny se pśeźěłuju"
 
 msgid "Select an application first"
 msgstr "Wubjeŕśo nejpjerwjej nałoženje"
-
-msgid "No results found."
-msgstr "Žedne wusědki namakane."
-
-msgid "Loading..."
-msgstr "Zacitujo se..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -775,12 +685,6 @@ msgstr "Tekst pśeglědowaś"
 
 msgid "Review notes found"
 msgstr "Namakane pśipiski pśeglědowaś"
-
-msgid "Average Reviews"
-msgstr "Pśerězne pógódnośenja"
-
-msgid "Number of Reviews"
-msgstr "Licba pógódnośenjow"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maksimalna nagraśowa wjelikosć jo {0} - wubjeŕśo mjeńšy slězynowy wobraz."

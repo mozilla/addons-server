@@ -198,7 +198,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     'ne-NP': {'english': 'Nepali', 'native': '\u0928\u0947\u092a\u093e\u0932\u0940'},
     'nr': {'english': 'Ndebele, South', 'native': 'isiNdebele'},
     'nso': {'english': 'Northern Sotho', 'native': 'Sepedi'},
-    'oc': {'english': 'Occitan (Lengadocian)', 'native': 'occitan (lengadocian)'},
+    'oc': {'english': 'Occitan', 'native': 'occitan'},
     'or': {'english': 'Odia', 'native': '\u0b13\u0b21\u0b3c\u0b3f\u0b06'},
     'pa': {'english': 'Punjabi', 'native': '\u0a2a\u0a70\u0a1c\u0a3e\u0a2c\u0a40'},
     'rm': {'english': 'Romansh', 'native': 'rumantsch'},

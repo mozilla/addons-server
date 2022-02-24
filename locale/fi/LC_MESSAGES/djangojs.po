@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-05-11 07:16+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} tähti"
-msgstr[1] "{0} tähteä"
 
 msgid "There was a problem contacting the server."
 msgstr "Yhteydessä palvelimeen oli ongelmia."
@@ -93,18 +88,6 @@ msgstr[1] "Lisäosasi tarkistus suoritettiin virheittä ja ilmeni {0} ilmoitusta
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Lisäosasi tarkistus suoritettiin ilman virheitä tai varoituksia."
 
-msgid "Your submission will be automatically signed."
-msgstr "Hakemuksesi allekirjoitetaan automaattisesti."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension-päivitys"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Vanhan Firefox-lisäosan siirtäminen MDN: ään"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
@@ -141,36 +124,6 @@ msgstr "Kuvien on oltava joko PNG tai JPG-muodossa."
 
 msgid "Videos must be in WebM."
 msgstr "Videoiden tulee olla WebM-muodossa."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Tämä teema ei ole yhteensopiva tämän {0} -version kanssa"
-
-msgid "Flagged for review"
-msgstr "Merkitty arvioitavaksi"
-
-msgid "Your input is required"
-msgstr "Syötteesi vaaditaan"
-
-msgid "Marked for deletion"
-msgstr "Merkitty poistettavaksi"
-
-msgid "Updating results&hellip;"
-msgstr "Päivitetään tuloksia&hellip;"
-
-msgid "Category"
-msgstr "Luokka"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-msgid "Search apps for <b>{0}</b>"
-msgstr ""
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
-
-msgid "Use original"
-msgstr "Käytä alkuperäistä"
 
 msgid "Week of {0}"
 msgstr "Viikko {0}"
@@ -648,41 +601,6 @@ msgstr "Päivä"
 msgid "Other"
 msgstr "Muu"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Hyväksy ja asenna"
-
-msgid "Add to {0}"
-msgstr "Lisää {0}iin"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Asenna silti {0}ille"
-
-msgid "Download for {0} anyway"
-msgstr "Lataa silti {0}ille"
-
-msgid "Not available for your platform"
-msgstr "Ei saatavilla alustallesi"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Tämä lisäosa ei ole yhteensopiva tämän {0}'-version kanssa."
-
-msgid "View other versions"
-msgstr "Näytä muut versiot"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Toimii {app} versioiden {min} - {max} kanssa"
-
-msgid "Works with {app}"
-msgstr "Toimii sovelluksen {app} kanssa"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Vain Firefoxissa — Hanki Firefox nyt!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Pahoittelut, voit asentaa hakulisäosan vain Mozilla-pohjaisiin selaimiin (kuten Firefox)."
-
 msgid "Changes Saved"
 msgstr "Muutokset tallennettiin"
 
@@ -702,12 +620,6 @@ msgstr ""
 
 msgid "Select an application first"
 msgstr "Valitse ensin sovellus"
-
-msgid "No results found."
-msgstr "Tuloksia ei löytynyt."
-
-msgid "Loading..."
-msgstr "Ladataan..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -748,12 +660,6 @@ msgstr ""
 
 msgid "Review notes found"
 msgstr ""
-
-msgid "Average Reviews"
-msgstr "Arvioita keskimäärin"
-
-msgid "Number of Reviews"
-msgstr "Arvioiden määrä"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Lähetyksen enimmäiskoko on {0} - valitse pienempi taustakuva."

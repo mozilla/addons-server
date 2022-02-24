@@ -30,7 +30,7 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.files.models import File
-from olympia.files.tests.test_models import UploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.scanners.models import (
     ScannerQueryResult,
     ScannerQueryRule,
@@ -51,7 +51,7 @@ from olympia.scanners.tasks import (
 from olympia.versions.models import Version
 
 
-class TestRunScanner(UploadTest, TestCase):
+class TestRunScanner(UploadMixin, TestCase):
     FAKE_SCANNER = 1
     MOCK_SCANNERS = {FAKE_SCANNER: 'fake-scanner'}
     API_URL = 'http://scanner.example.org'
@@ -63,7 +63,6 @@ class TestRunScanner(UploadTest, TestCase):
         self.upload = self.get_upload('webextension.xpi')
         self.results = {
             **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': True},
         }
 
     def create_response(self, status_code=200, data=None):
@@ -289,14 +288,13 @@ class TestRunWat(TestCase):
         assert returned_results == self.results
 
 
-class TestRunYara(UploadTest, TestCase):
+class TestRunYara(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
 
         self.upload = self.get_upload('webextension.xpi')
         self.results = {
             **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': True},
         }
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
@@ -335,6 +333,33 @@ class TestRunYara(UploadTest, TestCase):
                 mock.call('devhub.yara.success'),
             ]
         )
+        # The task should always return the results.
+        assert received_results == self.results
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_run_with_invalid_filename(self, incr_mock):
+        assert len(ScannerResult.objects.all()) == 0
+        # This rule will match for all files in the xpi.
+        rule = ScannerRule.objects.create(
+            name='always_true',
+            scanner=YARA,
+            definition='rule always_true { condition: true }',
+        )
+        self.upload = self.get_upload('archive-with-invalid-chars-in-filenames.zip')
+
+        received_results = run_yara(self.results, self.upload.pk)
+
+        yara_results = ScannerResult.objects.all()
+        assert len(yara_results) == 1
+        yara_result = yara_results[0]
+        assert yara_result.upload == self.upload
+        assert len(yara_result.results) == 1
+        print(yara_result.results[0])
+        assert yara_result.results[0] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': 'path\\to\\file.txt'},
+        }
         # The task should always return the results.
         assert received_results == self.results
 
@@ -500,7 +525,6 @@ class TestRunYara(UploadTest, TestCase):
         upload = self.get_upload('webextension_signed_already.xpi')
         results = {
             **amo.VALIDATOR_SKELETON_RESULTS,
-            'metadata': {'is_webextension': True},
         }
         # This rule will match for all files in the xpi.
         ScannerRule.objects.create(
@@ -612,8 +636,8 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
     def setUp(self):
         super().setUp()
 
-        self.version = addon_factory(file_kw={'is_webextension': True}).current_version
-        self.xpi_copy_over(self.version.all_files[0], 'webextension.xpi')
+        self.version = addon_factory().current_version
+        self.xpi_copy_over(self.version.file, 'webextension.xpi')
 
         # This rule will match for all files in the xpi.
         self.rule = ScannerQueryRule.objects.create(
@@ -633,7 +657,6 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # Similar to test_run_on_chunk() except it needs to find the versions
         # by itself.
         other_addon = addon_factory(
-            file_kw={'is_webextension': True},
             version_kw={'created': self.days_ago(1)},
         )
         other_addon_previous_current_version = other_addon.current_version
@@ -643,7 +666,6 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
             # Unlisted webextension version of this add-on.
             addon_factory(
                 disabled_by_user=True,  # Doesn't matter.
-                file_kw={'is_webextension': True},
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
             ).versions.get(),
             # Unlisted webextension version of an add-on that has multiple
@@ -652,23 +674,18 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
                 addon=other_addon,
                 created=self.days_ago(42),
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
-                file_kw={'is_webextension': True},
             ),
             # Listed webextension versions of an add-on that has multiple
             # versions.
             other_addon_previous_current_version,
-            version_factory(addon=other_addon, file_kw={'is_webextension': True}),
+            version_factory(addon=other_addon),
         ]
-        # Ignored versions:
+        # Ignored version:
         # Listed Webextension version belonging to mozilla disabled add-on.
-        addon_factory(
-            file_kw={'is_webextension': True}, status=amo.STATUS_DISABLED
-        ).current_version
-        # Non-Webextension
-        addon_factory(file_kw={'is_webextension': False}).current_version
+        addon_factory(status=amo.STATUS_DISABLED).current_version
 
         for version in Version.unfiltered.all():
-            self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
+            self.xpi_copy_over(version.file, 'webextension.xpi')
 
         # Run the task.
         run_yara_query_rule.delay(self.rule.pk)
@@ -794,9 +811,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # other path).
         # We avoid triggering the on_change callback that would move the file
         # when the status is updated by doing an update() on the queryset.
-        File.objects.filter(pk=self.version.all_files[0].pk).update(
-            status=amo.STATUS_DISABLED
-        )
+        File.objects.filter(pk=self.version.file.pk).update(status=amo.STATUS_DISABLED)
         self.test_run_on_chunk()
 
     def test_run_on_chunk_fallback_file_path_guarded(self):
@@ -804,7 +819,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # public File instance that somehow still has its file in the guarded
         # path (Would happen if the whole add-on was disabled then re-enabled
         # and the files haven't been moved back to the public location yet).
-        file_ = self.version.all_files[0]
+        file_ = self.version.file
         if not os.path.exists(os.path.dirname(file_.guarded_file_path)):
             os.makedirs(os.path.dirname(file_.guarded_file_path))
         shutil.move(file_.file_path, file_.guarded_file_path)
@@ -820,7 +835,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert self.rule.state == NEW  # Not touched by this task.
 
 
-class TestCallMadApi(UploadTest, TestCase):
+class TestCallMadApi(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
 
@@ -828,7 +843,6 @@ class TestCallMadApi(UploadTest, TestCase):
         self.results = [
             {
                 **amo.VALIDATOR_SKELETON_RESULTS,
-                'metadata': {'is_webextension': True},
             }
         ]
         self.customs_result = ScannerResult.objects.create(

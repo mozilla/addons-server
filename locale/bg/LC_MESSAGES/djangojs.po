@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2021-06-23 10:18+0000\n"
-"Last-Translator: :stoyan <stoyan@gmx.com>\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2021-08-29 13:39+0000\n"
+"Last-Translator: Пламен <plamen_mbx@yahoo.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} звезда"
-msgstr[1] "{0} звезди"
 
 msgid "There was a problem contacting the server."
 msgstr "Има проблем при свързване със сървъра."
@@ -93,19 +88,6 @@ msgstr[1] "Добавката е проверена без грешки и {0} �
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Добавката е проверена без грешки или предупреждения."
 
-msgid "Your submission will be automatically signed."
-msgstr "Вашето предложение ще бъде автоматично подписано."
-
-msgid "WebExtension upgrade"
-msgstr "Надстройка към WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Разрешаваме и насърчаваме надстройката, но този процес е еднопосочен. След като веднъж потребителите ви имат инсталирано изданието като WebExtension, те няма да могат да инсталират старата добавка."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Пренаписване на стари добавки за Firefox на MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Включете подробен отчет на промените (може и на следващата стъпка)."
 
@@ -143,36 +125,6 @@ msgstr "Изображенията трябва да са PNG или JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Видеото трябва да е във формат WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Тази тема е несъвместима с вашата версия на {0}"
-
-msgid "Flagged for review"
-msgstr "Сигнализирана за преглед"
-
-msgid "Your input is required"
-msgstr "Моля, въведете нещо тук"
-
-msgid "Marked for deletion"
-msgstr "Отбелязана за изтриване"
-
-msgid "Updating results&hellip;"
-msgstr "Обновяване на резултатите&hellip;"
-
-msgid "Category"
-msgstr "Категория"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Търсене на <b>{0}</b> в темите"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Търсене на приложения за <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Търсене на добавки за <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Използване на оригинала"
 
 msgid "Week of {0}"
 msgstr "Седмица от {0}"
@@ -448,14 +400,12 @@ msgid "Applications from {0} to {1}"
 msgstr "Приложения от {0} до {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "Принос за последните {0} дни"
+msgstr "Държави, последните {0} дни"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "Принос от {0} от {1}"
+msgstr "Държави от {0} до {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -513,9 +463,8 @@ msgid "Download Contents, last {0} days"
 msgstr "Източник на изтеглянето, последните {0} дена"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Изтегляния от {0} до {1}"
+msgstr "Изтегляне на съдържание от {0} до {1}"
 
 #. L10n: {0} is an integer.
 #, fuzzy
@@ -652,41 +601,6 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Друго"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Приемане и инсталиране"
-
-msgid "Add to {0}"
-msgstr "Добавяне към {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Инсталиране за {0} така или иначе"
-
-msgid "Download for {0} anyway"
-msgstr "Изтегляне за {0} въпреки това"
-
-msgid "Not available for your platform"
-msgstr "Не е налично за платформата ви"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Добавката е несъвместима с тази версия на {0}."
-
-msgid "View other versions"
-msgstr "Други версии"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Работи с {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Работи с {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Само с Firefox — Изтеглете Firefox сега!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "За съжаление, трябва да имате четец на основата на Mozilla (като Firefox), за да инсталирате търсеща добавка."
-
 msgid "Changes Saved"
 msgstr "Промените са запазени"
 
@@ -706,12 +620,6 @@ msgstr "Обработват се промените по изображение
 
 msgid "Select an application first"
 msgstr "Първо изберете приложение"
-
-msgid "No results found."
-msgstr "Няма резултати."
-
-msgid "Loading..."
-msgstr "Зареждане..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -752,12 +660,6 @@ msgstr "Текст на рецензията"
 
 msgid "Review notes found"
 msgstr "Има бележки към рецензията"
-
-msgid "Average Reviews"
-msgstr "Средна оценка"
-
-msgid "Number of Reviews"
-msgstr "Брой отзиви"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Максималният размер на качване е {0} - изберете по-малко фоново изображение."

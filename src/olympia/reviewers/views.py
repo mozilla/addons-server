@@ -1,9 +1,5 @@
-import functools
-import json
-import time
-
 from collections import OrderedDict
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 
 from django import http
 from django.conf import settings
@@ -14,12 +10,14 @@ from django.db.models import Prefetch, Q
 from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
+from django.template.response import TemplateResponse
 from django.urls import reverse
-from django.utils.http import urlquote
 from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
 
 import pygit2
+
+from urllib.parse import quote
 
 from csp.decorators import csp as set_csp
 from rest_framework import status
@@ -43,7 +41,6 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, CommentLog, DraftComment
-from olympia.addons.decorators import addon_view, owner_or_unlisted_viewer_or_reviewer
 from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
@@ -55,7 +52,7 @@ from olympia.amo.decorators import (
     permission_required,
     post_required,
 )
-from olympia.amo.utils import paginate, render
+from olympia.amo.utils import paginate
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
     AllowListedViewerOrReviewer,
@@ -69,10 +66,8 @@ from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
-    AllAddonSearchForm,
     MOTDForm,
     PublicWhiteboardForm,
-    QueueSearchForm,
     RatingFlagFormSet,
     RatingModerationLogForm,
     ReviewForm,
@@ -82,13 +77,8 @@ from olympia.reviewers.forms import (
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     CannedResponse,
-    PerformanceGraph,
     ReviewerScore,
     ReviewerSubscription,
-    ViewExtensionQueue,
-    ViewRecommendedQueue,
-    ViewThemeFullReviewQueue,
-    ViewThemePendingQueue,
     Whiteboard,
     clear_reviewing_cache,
     get_flags,
@@ -111,12 +101,15 @@ from olympia.reviewers.utils import (
     AutoApprovedTable,
     ContentReviewTable,
     MadReviewTable,
+    NewThemesQueueTable,
+    PendingManualApprovalQueueTable,
     PendingRejectionTable,
+    RecommendedPendingManualApprovalQueueTable,
     ReviewHelper,
     ScannersReviewTable,
-    ViewUnlistedAllListTable,
-    view_table_factory,
     UnlistedPendingManualApprovalQueueTable,
+    UpdatedThemesQueueTable,
+    ViewUnlistedAllListTable,
 )
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
@@ -128,14 +121,8 @@ from .decorators import (
     any_reviewer_required,
     permission_or_tools_listed_view_required,
     permission_or_tools_unlisted_view_required,
+    reviewer_addon_view_factory,
 )
-
-
-def reviewer_addon_view_factory(f):
-    decorator = functools.partial(
-        addon_view, qs=Addon.unfiltered.all, include_deleted_when_checking_versions=True
-    )
-    return decorator(f)
 
 
 def context(**kw):
@@ -161,7 +148,7 @@ def ratings_moderation_log(request):
 
     data = context(form=form, pager=pager)
 
-    return render(request, 'reviewers/moderationlog.html', data)
+    return TemplateResponse(request, 'reviewers/moderationlog.html', context=data)
 
 
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
@@ -193,7 +180,9 @@ def ratings_moderation_log_detail(request, id):
         return redirect('reviewers.ratings_moderation_log.detail', id)
 
     data = context(log=log, can_undelete=can_undelete)
-    return render(request, 'reviewers/moderationlog_detail.html', data)
+    return TemplateResponse(
+        request, 'reviewers/moderationlog_detail.html', context=data
+    )
 
 
 @any_reviewer_or_moderator_required
@@ -213,7 +202,9 @@ def dashboard(request):
 
     if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
         sections[gettext('Pre-Review Add-ons')] = []
-        if acl.action_allowed(request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
+        if view_all or acl.action_allowed(
+            request, amo.permissions.ADDONS_RECOMMENDED_REVIEW
+        ):
             sections[gettext('Pre-Review Add-ons')].append(
                 (
                     gettext('Recommended ({0})').format(queue_counts['recommended']),
@@ -228,7 +219,6 @@ def dashboard(request):
                     ),
                     reverse('reviewers.queue_extension'),
                 ),
-                (gettext('Performance'), reverse('reviewers.performance')),
                 (gettext('Review Log'), reverse('reviewers.reviewlog')),
                 (
                     gettext('Add-on Review Guide'),
@@ -254,7 +244,6 @@ def dashboard(request):
                 ),
                 reverse('reviewers.queue_auto_approved'),
             ),
-            (gettext('Performance'), reverse('reviewers.performance')),
             (gettext('Add-on Review Log'), reverse('reviewers.reviewlog')),
             (
                 gettext('Review Guide'),
@@ -267,7 +256,6 @@ def dashboard(request):
                 gettext('Content Review ({0})').format(queue_counts['content_review']),
                 reverse('reviewers.queue_content_review'),
             ),
-            (gettext('Performance'), reverse('reviewers.performance')),
         ]
     if view_all or acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
         sections[gettext('Themes')] = [
@@ -279,7 +267,6 @@ def dashboard(request):
                 gettext('Updates ({0})').format(queue_counts['theme_pending']),
                 reverse('reviewers.queue_theme_pending'),
             ),
-            (gettext('Performance'), reverse('reviewers.performance')),
             (gettext('Review Log'), reverse('reviewers.reviewlog')),
             (
                 gettext('Theme Review Guide'),
@@ -330,10 +317,10 @@ def dashboard(request):
                 reverse('reviewers.queue_pending_rejection'),
             )
         ]
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/dashboard.html',
-        context(
+        context=context(
             **{
                 # base_context includes motd.
                 'sections': sections
@@ -342,155 +329,12 @@ def dashboard(request):
     )
 
 
-@any_reviewer_required
-def performance(request, user_id=False):
-    user = request.user
-    reviewers = _recent_reviewers()
-
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
-
-    if is_admin and user_id:
-        try:
-            user = UserProfile.objects.get(pk=user_id)
-        except UserProfile.DoesNotExist:
-            pass  # Use request.user from above.
-
-    monthly_data = _performance_by_month(user.id)
-    performance_total = _performance_total(monthly_data)
-
-    # Incentive point breakdown.
-    today = date.today()
-    month_ago = today - timedelta(days=30)
-    year_ago = today - timedelta(days=365)
-    point_total = ReviewerScore.get_total(user)
-    totals = ReviewerScore.get_breakdown(user)
-    months = ReviewerScore.get_breakdown_since(user, month_ago)
-    years = ReviewerScore.get_breakdown_since(user, year_ago)
-
-    def _sum(iter, types, exclude=False):
-        """Sum the `total` property for items in `iter` that have an `atype`
-        that is included in `types` when `exclude` is False (default) or not in
-        `types` when `exclude` is True."""
-        return sum(s.total for s in iter if (s.atype in types) == (not exclude))
-
-    breakdown = {
-        'month': {
-            'addons': _sum(months, amo.GROUP_TYPE_ADDON),
-            'themes': _sum(months, amo.GROUP_TYPE_THEME),
-            'other': _sum(
-                months, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME, exclude=True
-            ),
-        },
-        'year': {
-            'addons': _sum(years, amo.GROUP_TYPE_ADDON),
-            'themes': _sum(years, amo.GROUP_TYPE_THEME),
-            'other': _sum(
-                years, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME, exclude=True
-            ),
-        },
-        'total': {
-            'addons': _sum(totals, amo.GROUP_TYPE_ADDON),
-            'themes': _sum(totals, amo.GROUP_TYPE_THEME),
-            'other': _sum(
-                totals, amo.GROUP_TYPE_ADDON + amo.GROUP_TYPE_THEME, exclude=True
-            ),
-        },
-    }
-
-    data = context(
-        monthly_data=json.dumps(monthly_data),
-        performance_month=performance_total['month'],
-        performance_year=performance_total['year'],
-        breakdown=breakdown,
-        point_total=point_total,
-        reviewers=reviewers,
-        current_user=user,
-        is_admin=is_admin,
-        is_user=(request.user.id == user.id),
-    )
-
-    return render(request, 'reviewers/performance.html', data)
-
-
-def _recent_reviewers(days=90):
-    since_date = datetime.now() - timedelta(days=days)
-    reviewers = (
-        UserProfile.objects.filter(
-            activitylog__action__in=amo.LOG_REVIEWER_REVIEW_ACTION,
-            activitylog__created__gt=since_date,
-        )
-        .exclude(id=settings.TASK_USER_ID)
-        .order_by('display_name')
-        .distinct()
-    )
-    return reviewers
-
-
-def _performance_total(data):
-    # TODO(gkoberger): Fix this so it's the past X, rather than this X to date.
-    # (ex: March 15-April 15, not April 1 - April 15)
-    total_yr = dict(usercount=0, teamamt=0, teamcount=0, teamavg=0)
-    total_month = dict(usercount=0, teamamt=0, teamcount=0, teamavg=0)
-    current_year = datetime.now().year
-
-    for k, val in data.items():
-        if k.startswith(str(current_year)):
-            total_yr['usercount'] = total_yr['usercount'] + val['usercount']
-            total_yr['teamamt'] = total_yr['teamamt'] + val['teamamt']
-            total_yr['teamcount'] = total_yr['teamcount'] + val['teamcount']
-
-    current_label_month = datetime.now().isoformat()[:7]
-    if current_label_month in data:
-        total_month = data[current_label_month]
-
-    return dict(month=total_month, year=total_yr)
-
-
-def _performance_by_month(user_id, months=12, end_month=None, end_year=None):
-    monthly_data = OrderedDict()
-
-    now = datetime.now()
-    if not end_month:
-        end_month = now.month
-    if not end_year:
-        end_year = now.year
-
-    end_time = time.mktime((end_year, end_month + 1, 1, 0, 0, 0, 0, 0, -1))
-    start_time = time.mktime((end_year, end_month + 1 - months, 1, 0, 0, 0, 0, 0, -1))
-
-    sql = PerformanceGraph.objects.filter_raw(
-        'log_activity.created >=', date.fromtimestamp(start_time).isoformat()
-    ).filter_raw('log_activity.created <', date.fromtimestamp(end_time).isoformat())
-
-    for row in sql.all():
-        label = row.approval_created.isoformat()[:7]
-
-        if label not in monthly_data:
-            xaxis = row.approval_created.strftime('%b %Y')
-            monthly_data[label] = dict(teamcount=0, usercount=0, teamamt=0, label=xaxis)
-
-        monthly_data[label]['teamamt'] = monthly_data[label]['teamamt'] + 1
-        monthly_data_count = monthly_data[label]['teamcount']
-        monthly_data[label]['teamcount'] = monthly_data_count + row.total
-
-        if row.user_id == user_id:
-            user_count = monthly_data[label]['usercount']
-            monthly_data[label]['usercount'] = user_count + row.total
-
-    # Calculate averages
-    for i, vals in monthly_data.items():
-        average = round(vals['teamcount'] / float(vals['teamamt']), 1)
-        monthly_data[i]['teamavg'] = str(average)  # floats aren't valid json
-
-    return monthly_data
-
-
 @permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
 def motd(request):
     form = None
     form = MOTDForm(initial={'motd': get_config('reviewers_review_motd')})
     data = context(form=form)
-    return render(request, 'reviewers/motd.html', data)
+    return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
 
 @permission_required(amo.permissions.ADDON_REVIEWER_MOTD_EDIT)
@@ -501,7 +345,7 @@ def save_motd(request):
         set_config('reviewers_review_motd', form.cleaned_data['motd'])
         return redirect(reverse('reviewers.motd'))
     data = context(form=form)
-    return render(request, 'reviewers/motd.html', data)
+    return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
 
 def is_admin_reviewer(request):
@@ -515,34 +359,26 @@ def filter_admin_review_for_legacy_queue(qs):
     )
 
 
-def _queue(request, TableObj, tab, unlisted=False, SearchForm=QueueSearchForm):
+def _queue(request, tab, unlisted=False):
     admin_reviewer = is_admin_reviewer(request)
+    TableObj = reviewer_tables_registry[tab]
     qs = TableObj.get_queryset(admin_reviewer=admin_reviewer)
-
-    if SearchForm:
-        if request.GET:
-            search_form = SearchForm(request.GET)
-            if search_form.is_valid():
-                qs = search_form.filter_qs(qs)
-        else:
-            search_form = SearchForm()
-        is_searching = search_form.data.get('searching')
-    else:
-        search_form = None
-        is_searching = False
 
     admin_reviewer = is_admin_reviewer(request)
 
     # Those restrictions will only work with our RawSQLModel, so we need to
     # make sure we're not dealing with a regular Django ORM queryset first.
     if hasattr(qs, 'sql_model'):
-        if not is_searching and not admin_reviewer:
+        if not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
 
-    order_by = request.GET.get('sort', TableObj.default_order_by())
-    if hasattr(TableObj, 'translate_sort_cols'):
-        order_by = TableObj.translate_sort_cols(order_by)
-    table = TableObj(data=qs, order_by=order_by)
+    params = {}
+    order_by = request.GET.get('sort')
+    if order_by is None and hasattr(TableObj, 'default_order_by'):
+        order_by = TableObj.default_order_by()
+    if order_by is not None:
+        params['order_by'] = order_by
+    table = TableObj(data=qs, **params)
     per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
     try:
         per_page = int(per_page)
@@ -553,82 +389,78 @@ def _queue(request, TableObj, tab, unlisted=False, SearchForm=QueueSearchForm):
     page = paginate(request, table.rows, per_page=per_page, count=qs.count())
     table.set_page(page)
 
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/queue.html',
-        context(
+        context=context(
             table=table,
             page=page,
             tab=tab,
-            search_form=search_form,
             point_types=amo.REVIEWED_AMO,
             unlisted=unlisted,
         ),
     )
 
 
+reviewer_tables_registry = {
+    'extension': PendingManualApprovalQueueTable,
+    'recommended': RecommendedPendingManualApprovalQueueTable,
+    'theme_pending': UpdatedThemesQueueTable,
+    'theme_nominated': NewThemesQueueTable,
+    'auto_approved': AutoApprovedTable,
+    'content_review': ContentReviewTable,
+    'mad': MadReviewTable,
+    'scanners': ScannersReviewTable,
+    'pending_rejection': PendingRejectionTable,
+    'unlisted_pending_manual_approval': UnlistedPendingManualApprovalQueueTable,
+    'unlisted': ViewUnlistedAllListTable,
+}
+
+
 def fetch_queue_counts(admin_reviewer):
-    def construct_count_queryset_from_sql_model(sqlmodel):
-        # FIXME: ideally here we'd prevent sqlmodel.objects from including
-        # all the columns in the query for the count like it's done below with
-        # actual querysets...
-        qs = sqlmodel.objects
-
-        if not admin_reviewer:
-            qs = filter_admin_review_for_legacy_queue(qs)
-        return qs.count
-
     def construct_count_queryset_from_queryset(qs):
-        # Our querysets can have distinct, which causes django to run the full
-        # select in a subquery and then count() on it. That's tracked in
-        # https://code.djangoproject.com/ticket/30685
+        # Some of our querysets can have distinct, which causes django to run
+        # the full select in a subquery and then count() on it. That's tracked
+        # in https://code.djangoproject.com/ticket/30685
         # We can't easily fix the fact that there is a subquery, but we can
         # avoid selecting all fields and ordering needlessly.
         return qs.values('pk').order_by().count
 
+    def count_from_registered_table(table, *, admin_reviewer):
+        return construct_count_queryset_from_queryset(
+            table.get_queryset(admin_reviewer=admin_reviewer)
+        )
+
     counts = {
-        'extension': construct_count_queryset_from_sql_model(ViewExtensionQueue),
-        'theme_pending': construct_count_queryset_from_sql_model(ViewThemePendingQueue),
-        'theme_nominated': construct_count_queryset_from_sql_model(
-            ViewThemeFullReviewQueue
-        ),
-        'recommended': construct_count_queryset_from_sql_model(ViewRecommendedQueue),
-        'moderated': construct_count_queryset_from_queryset(
-            Rating.objects.all().to_moderate()
-        ),
-        'auto_approved': construct_count_queryset_from_queryset(
-            Addon.objects.get_auto_approved_queue(admin_reviewer=admin_reviewer)
-        ),
-        'content_review': construct_count_queryset_from_queryset(
-            Addon.objects.get_content_review_queue(admin_reviewer=admin_reviewer)
-        ),
-        'pending_rejection': construct_count_queryset_from_queryset(
-            Addon.objects.get_pending_rejection_queue(admin_reviewer=admin_reviewer)
-        ),
+        key: count_from_registered_table(table, admin_reviewer=admin_reviewer)
+        for key, table in reviewer_tables_registry.items()
+        if table.show_count_in_dashboard
     }
+
+    counts['moderated'] = construct_count_queryset_from_queryset(
+        Rating.objects.all().to_moderate()
+    )
     return {queue: count() for (queue, count) in counts.items()}
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension(request):
-    return _queue(request, view_table_factory(ViewExtensionQueue), 'extension')
+    return _queue(request, 'extension')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
 def queue_recommended(request):
-    return _queue(request, view_table_factory(ViewRecommendedQueue), 'recommended')
+    return _queue(request, 'recommended')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_nominated(request):
-    return _queue(
-        request, view_table_factory(ViewThemeFullReviewQueue), 'theme_nominated'
-    )
+    return _queue(request, 'theme_nominated')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
 def queue_theme_pending(request):
-    return _queue(request, view_table_factory(ViewThemePendingQueue), 'theme_pending')
+    return _queue(request, 'theme_pending')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
@@ -655,51 +487,42 @@ def queue_moderated(request):
             )
         return redirect(reverse('reviewers.queue_moderated'))
 
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/queue.html',
-        context(
+        context=context(
             reviews_formset=reviews_formset,
             tab='moderated',
             page=page,
             flags=flags,
-            search_form=None,
             point_types=amo.REVIEWED_AMO,
         ),
     )
 
 
-@any_reviewer_required
-@json_view
-def application_versions_json(request):
-    app_id = request.GET.get('application_id', amo.FIREFOX.id)
-    form = QueueSearchForm()
-    return {'choices': form.version_choices_for_app_id(app_id)}
-
-
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
-    return _queue(request, ContentReviewTable, 'content_review', SearchForm=None)
+    return _queue(request, 'content_review')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_auto_approved(request):
-    return _queue(request, AutoApprovedTable, 'auto_approved', SearchForm=None)
+    return _queue(request, 'auto_approved')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_scanners(request):
-    return _queue(request, ScannersReviewTable, 'scanners', SearchForm=None)
+    return _queue(request, 'scanners')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_mad(request):
-    return _queue(request, MadReviewTable, 'mad', SearchForm=None)
+    return _queue(request, 'mad')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
 def queue_pending_rejection(request):
-    return _queue(request, PendingRejectionTable, 'pending_rejection', SearchForm=None)
+    return _queue(request, 'pending_rejection')
 
 
 def determine_channel(channel_as_text):
@@ -725,7 +548,7 @@ def determine_channel(channel_as_text):
 def review(request, addon, channel=None):
     whiteboard_url = reverse(
         'reviewers.whiteboard',
-        args=(channel or 'listed', addon.slug if addon.slug else addon.pk),
+        args=(channel or 'listed', addon.pk),
     )
     channel, content_review = determine_channel(channel)
 
@@ -785,6 +608,7 @@ def review(request, addon, channel=None):
                 queryset=ScannerResult.objects.defer('results'),
             )
         )
+        # FIXME: we want to prefetch file.webext_permission instances in here
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
         .transform(Version.transformer_activity)
@@ -846,9 +670,8 @@ def review(request, addon, channel=None):
     # them. But only if we're not running in eager mode, since that could mean
     # blocking page load for several minutes.
     if version and not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False):
-        for file_ in version.all_files:
-            if not file_.has_been_validated:
-                devhub_tasks.validate(file_)
+        if not version.file.has_been_validated:
+            devhub_tasks.validate(version.file)
 
     actions = form.helper.actions.items()
 
@@ -871,9 +694,9 @@ def review(request, addon, channel=None):
             )
             .filter(
                 channel=channel,
-                files__isnull=False,
+                file__isnull=False,
                 created__lt=version.created,
-                files__status=amo.STATUS_APPROVED,
+                file__status=amo.STATUS_APPROVED,
             )
             .latest()
         )
@@ -888,6 +711,8 @@ def review(request, addon, channel=None):
     actions_comments = []
     # The actions for which we should display the delayed rejection fields.
     actions_delayable = []
+    # The actions for which we should display the reason select field.
+    actions_reasons = []
 
     for key, action in actions:
         if not (is_static_theme or action.get('minimal')):
@@ -896,6 +721,8 @@ def review(request, addon, channel=None):
             actions_comments.append(key)
         if action.get('delayable', False):
             actions_delayable.append(key)
+        if action.get('allows_reasons', False):
+            actions_reasons.append(key)
 
     addons_sharing_same_guid = (
         Addon.unfiltered.all()
@@ -995,6 +822,7 @@ def review(request, addon, channel=None):
         actions_comments=actions_comments,
         actions_delayable=actions_delayable,
         actions_full=actions_full,
+        actions_reasons=actions_reasons,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
@@ -1038,7 +866,7 @@ def review(request, addon, channel=None):
         whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url,
     )
-    return render(request, 'reviewers/review.html', ctx)
+    return TemplateResponse(request, 'reviewers/review.html', context=ctx)
 
 
 @never_cache
@@ -1175,7 +1003,7 @@ def reviewlog(request):
 
     pager = amo.utils.paginate(request, approvals, 50)
     data = context(form=form, pager=pager)
-    return render(request, 'reviewers/reviewlog.html', data)
+    return TemplateResponse(request, 'reviewers/reviewlog.html', context=data)
 
 
 @any_reviewer_required
@@ -1183,15 +1011,15 @@ def reviewlog(request):
 def abuse_reports(request, addon):
     reports = amo.utils.paginate(request, AbuseReport.objects.for_addon(addon))
     data = context(addon=addon, reports=reports, version=addon.current_version)
-    return render(request, 'reviewers/abuse_reports.html', data)
+    return TemplateResponse(request, 'reviewers/abuse_reports.html', context=data)
 
 
 @any_reviewer_required
 def leaderboard(request):
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/leaderboard.html',
-        context(scores=ReviewerScore.all_users_by_score()),
+        context=context(scores=ReviewerScore.all_users_by_score()),
     )
 
 
@@ -1219,9 +1047,7 @@ def whiteboard(request, addon, channel):
         else:
             whiteboard.delete()
 
-        return redirect(
-            'reviewers.review', channel_as_text, addon.slug if addon.slug else addon.pk
-        )
+        return redirect('reviewers.review', channel_as_text, addon.pk)
     raise PermissionDenied
 
 
@@ -1229,10 +1055,8 @@ def whiteboard(request, addon, channel):
 def unlisted_list(request):
     return _queue(
         request,
-        ViewUnlistedAllListTable,
-        'all',
+        'unlisted',
         unlisted=True,
-        SearchForm=AllAddonSearchForm,
     )
 
 
@@ -1240,14 +1064,16 @@ def unlisted_list(request):
 def unlisted_pending_manual_approval(request):
     return _queue(
         request,
-        UnlistedPendingManualApprovalQueueTable,
-        'pending_manual_approval',
+        'unlisted_pending_manual_approval',
         unlisted=True,
-        SearchForm=None,
     )
 
 
 def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
+    unlisted_only = not addon.has_listed_versions(include_deleted=True)
+    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
+        raise PermissionDenied
+
     if not eula_or_privacy:
         raise http.Http404
     channel_text = request.GET.get('channel')
@@ -1255,12 +1081,12 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
 
     review_url = reverse(
         'reviewers.review',
-        args=(channel_text or 'listed', addon.slug if addon.slug else addon.pk),
+        args=(channel_text or 'listed', addon.pk),
     )
-    return render(
+    return TemplateResponse(
         request,
         'reviewers/policy_view.html',
-        {
+        context={
             'addon': addon,
             'review_url': review_url,
             'content': eula_or_privacy,
@@ -1313,14 +1139,14 @@ def download_git_stored_file(request, version_id, filename):
         raise http.Http404
 
     if version.channel == amo.RELEASE_CHANNEL_LISTED:
-        is_owner = acl.check_addon_ownership(request, addon, dev=True)
+        is_owner = acl.check_addon_ownership(request, addon, allow_developer=True)
         if not (acl.is_reviewer(request, addon) or is_owner):
             raise PermissionDenied
     else:
-        if not owner_or_unlisted_viewer_or_reviewer(request, addon):
+        if not acl.author_or_unlisted_viewer_or_reviewer(request, addon):
             raise http.Http404
 
-    file = version.current_file
+    file = version.file
 
     serializer = FileInfoSerializer(
         instance=file,
@@ -1350,7 +1176,7 @@ def download_git_stored_file(request, version_id, filename):
         selected_filename.encode('ascii')
         file_expr = f'filename="{selected_filename}"'
     except UnicodeEncodeError:
-        file_expr = f"filename*=utf-8''{urlquote(selected_filename)}"
+        file_expr = f"filename*=utf-8''{quote(selected_filename)}"
 
     response['Content-Disposition'] = f'attachment; {file_expr}'
     response['Content-Length'] = actual_blob.size
@@ -1489,7 +1315,7 @@ class AddonReviewerViewSet(GenericViewSet):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         status_code = status.HTTP_202_ACCEPTED
         VersionReviewerFlags.objects.filter(version__addon=addon).update(
-            pending_rejection=None
+            pending_rejection=None, pending_rejection_by=None
         )
         return Response(status=status_code)
 
@@ -1731,7 +1557,7 @@ class ReviewAddonVersionCompareViewSet(
     ReviewAddonVersionMixin, RetrieveModelMixin, GenericViewSet
 ):
     def filter_queryset(self, qs):
-        return qs.prefetch_related('files__validation')
+        return qs.select_related('file__validation')
 
     def get_objects(self):
         """Return a dict with both versions needed for the comparison,

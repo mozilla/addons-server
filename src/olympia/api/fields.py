@@ -1,9 +1,12 @@
+import re
+
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist, ValidationError
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.validators import RegexValidator
 from django.utils.encoding import smart_str
 from django.utils.translation import get_language, gettext, gettext_lazy as _, override
 
-from rest_framework import fields, serializers
+from rest_framework import exceptions, fields, serializers
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url
@@ -48,7 +51,7 @@ class ReverseChoiceField(fields.ChoiceField):
         return super().to_internal_value(value)
 
 
-class TranslationSerializerField(fields.Field):
+class TranslationSerializerField(fields.CharField):
     """
     Django-rest-framework custom serializer field for our TranslatedFields.
 
@@ -80,14 +83,13 @@ class TranslationSerializerField(fields.Field):
     """
 
     default_error_messages = {
-        'min_length': _('The field must have a length of at least {num} characters.'),
+        **fields.CharField.default_error_messages,
         'unknown_locale': _('The language code {lang_code} is invalid.'),
         'no_dict': _('You must provide an object of {lang-code:value}.'),
     }
 
     def __init__(self, *args, **kwargs):
-        self.min_length = kwargs.pop('min_length', None)
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, **{'allow_null': True, **kwargs})
 
     @property
     def flat(self):
@@ -150,46 +152,22 @@ class TranslationSerializerField(fields.Field):
     def to_representation(self, val):
         return val
 
-    def to_internal_value(self, data):
-        if isinstance(data, str):
-            self.validate(data)
-            return data.strip()
-        elif isinstance(data, dict):
-            self.validate(data)
-            for key, value in data.items():
-                data[key] = value and value.strip()
-            return data
-        return str(data)
+    def run_validation(self, data=fields.empty):
+        if data != fields.empty and not self.flat and not isinstance(data, dict):
+            raise exceptions.ValidationError(self.error_messages['no_dict'])
 
-    def validate(self, value):
-        if not self.flat and not isinstance(value, dict):
-            raise ValidationError(self.error_messages['no_dict'])
-
-        value_too_short = True
-
-        if isinstance(value, str):
-            if self.min_length and len(value.strip()) >= self.min_length:
-                value_too_short = False
-        else:
-            for locale, string in value.items():
+        if isinstance(data, dict):
+            for locale, value in data.items():
                 if locale.lower() not in settings.LANGUAGE_URL_MAP:
-                    raise ValidationError(
+                    raise exceptions.ValidationError(
                         self.error_messages['unknown_locale'].format(
                             lang_code=repr(locale)
                         )
                     )
-                if (
-                    self.min_length
-                    and string
-                    and (len(string.strip()) >= self.min_length)
-                ):
-                    value_too_short = False
-                    break
+                data[locale] = super().run_validation(value)
+            return data
 
-        if self.min_length and value_too_short:
-            raise ValidationError(
-                self.error_messages['min_length'].format(num=self.min_length)
-            )
+        return super().run_validation(data)
 
 
 class ESTranslationSerializerField(TranslationSerializerField):
@@ -347,13 +325,30 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
                 msg = _('Invalid pk or slug "%s" - object does not exist.') % smart_str(
                     data
                 )
-                raise ValidationError(msg)
+                raise exceptions.ValidationError(msg)
 
 
 class OutgoingSerializerMixin:
     """
     URL fields, but wrapped with our outgoing server.
     """
+
+    def __init__(self, **kwargs):
+        # By default prevent internal urls from being specified
+        allow_internal = kwargs.pop('allow_internal', False)
+        super().__init__(**kwargs)
+        if not allow_internal:
+            validator = RegexValidator(
+                regex=r'%s' % re.escape(settings.EXTERNAL_SITE_URL),
+                message=_(
+                    'This field can only be used to link to external websites.'
+                    ' URLs on %(domain)s are not allowed.',
+                )
+                % {'domain': settings.EXTERNAL_SITE_URL},
+                code='no_amo_url',
+                inverse_match=True,
+            )
+            self.validators.append(validator)
 
     def to_representation(self, value):
         data = super().to_representation(value)
@@ -387,19 +382,35 @@ class OutgoingSerializerMixin:
         return {'url': data, 'outgoing': outgoing}
 
 
+class URLTranslationField(serializers.URLField, TranslationSerializerField):
+    pass
+
+
+class EmailTranslationField(serializers.EmailField, TranslationSerializerField):
+    pass
+
+
 class OutgoingURLField(OutgoingSerializerMixin, serializers.URLField):
     pass
 
 
-class OutgoingTranslationField(OutgoingSerializerMixin, TranslationSerializerField):
+class OutgoingURLTranslationField(OutgoingSerializerMixin, URLTranslationField):
     pass
 
 
-class OutgoingESTranslationField(OutgoingSerializerMixin, ESTranslationSerializerField):
+class OutgoingURLESTranslationField(
+    OutgoingSerializerMixin, ESTranslationSerializerField
+):
     pass
 
 
 class AbsoluteOutgoingURLField(OutgoingURLField):
+    def __init__(self, **kwargs):
+        # Switch the default to allow_internal=True, because absolutify is only needed
+        # for internal urls so using this class means they're possible values.
+        kwargs['allow_internal'] = kwargs.get('allow_internal', True)
+        super().__init__(**kwargs)
+
     def to_representation(self, obj):
         return super().to_representation(absolutify(obj) if obj else obj)
 
@@ -563,3 +574,27 @@ class FallbackField(fields.Field):
             if rep:
                 return rep
         return rep
+
+
+class LazyChoiceField(fields.ChoiceField):
+    """Like ChoiceField but doesn't end up evaluating `choices` in __init__ so suitable
+    for using with queryset."""
+
+    def _get_choices(self):
+        return fields.flatten_choices_dict(self.grouped_choices)
+
+    def _set_choices(self, choices):
+        self._choices = choices
+
+    @property
+    def grouped_choices(self):
+        return fields.to_choices_dict(self._choices)
+
+    @property
+    def choice_strings_to_values(self):
+        # Map the string representation of choices to the underlying value.
+        # Allows us to deal with eg. integer choices while supporting either
+        # integer or string input, but still get the correct datatype out.
+        return {str(key): key for key in self.choices}
+
+    choices = property(_get_choices, _set_choices)

@@ -244,9 +244,7 @@ class AddonIndexer(BaseSearchIndexer):
                         'created': {'type': 'date', 'index': False},
                         'hash': {'type': 'keyword', 'index': False},
                         'filename': {'type': 'keyword', 'index': False},
-                        'is_webextension': {'type': 'boolean'},
                         'is_mozilla_signed_extension': {'type': 'boolean'},
-                        'is_restart_required': {'type': 'boolean', 'index': False},
                         'size': {'type': 'long', 'index': False},
                         'strict_compatibility': {'type': 'boolean', 'index': False},
                         'status': {'type': 'byte'},
@@ -399,22 +397,19 @@ class AddonIndexer(BaseSearchIndexer):
                 'compatible_apps': cls.extract_compatibility_info(obj, version_obj),
                 'files': [
                     {
-                        'id': file_.id,
-                        'created': file_.created,
-                        'filename': file_.filename,
-                        'hash': file_.hash,
-                        'is_webextension': file_.is_webextension,
+                        'id': version_obj.file.id,
+                        'created': version_obj.file.created,
+                        'filename': version_obj.file.filename,
+                        'hash': version_obj.file.hash,
                         'is_mozilla_signed_extension': (
-                            file_.is_mozilla_signed_extension
+                            version_obj.file.is_mozilla_signed_extension
                         ),
-                        'is_restart_required': file_.is_restart_required,
-                        'size': file_.size,
-                        'status': file_.status,
-                        'strict_compatibility': file_.strict_compatibility,
-                        'permissions': file_.permissions,
-                        'optional_permissions': file_.optional_permissions,
+                        'size': version_obj.file.size,
+                        'status': version_obj.file.status,
+                        'strict_compatibility': version_obj.file.strict_compatibility,
+                        'permissions': version_obj.file.permissions,
+                        'optional_permissions': version_obj.file.optional_permissions,
                     }
-                    for file_ in version_obj.all_files
                 ],
                 'reviewed': version_obj.reviewed,
                 'version': version_obj.version,
@@ -450,7 +445,7 @@ class AddonIndexer(BaseSearchIndexer):
             if appver:
                 min_, max_ = appver.min.version_int, appver.max.version_int
                 min_human, max_human = appver.min.version, appver.max.version
-                if not version_obj.files.filter(strict_compatibility=True).exists():
+                if not version_obj.file.strict_compatibility:
                     # The files attached to this version are not using strict
                     # compatibility, so the max version essentially needs to be
                     # ignored - let's fake a super high one. We leave max_human

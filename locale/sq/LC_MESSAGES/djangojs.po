@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-01-02 16:25+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -17,11 +17,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} yll"
-msgstr[1] "{0} yje"
 
 msgid "There was a problem contacting the server."
 msgstr "Pati një problem gjatë kontaktimit me shërbyesin."
@@ -96,19 +91,6 @@ msgstr[1] "Shtesa juaj e kaloi vleftësimin pa gabime dhe {0} mesazhe."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Shtesa juaj e kaloi vleftësimin pa gabime apo sinjalizime."
 
-msgid "Your submission will be automatically signed."
-msgstr "Parashtrimi juaj do të nënshkruhet vetvetiu."
-
-msgid "WebExtension upgrade"
-msgstr "Përmirësim WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"E lejojmë dhe e nxisim një përmirësim, por këtë proces nuk mund ta zhbëni. Pasi përdoruesit tuaj të kenë instaluar WebExtension, nuk do të jenë në gjendje të instalojnë shtesa nga të dikurshmet."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Kalimi i një shtese të dikurshme Firefox në MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Përfshini shënime të hollësishme versioni (kjo mund të kryhet në hapin pasues)."
 
@@ -146,36 +128,6 @@ msgstr "Figurat duhet të jenë ose PNG, ose JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videot duhet të jenë në formatin WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Kjo temë është e papërputhshme me versionin tuaj të {0}"
-
-msgid "Flagged for review"
-msgstr "Me shenjë për shqyrtim"
-
-msgid "Your input is required"
-msgstr "Lypset dora juaj"
-
-msgid "Marked for deletion"
-msgstr "Shënuar për fshirje"
-
-msgid "Updating results&hellip;"
-msgstr "Po përditësohen përfundimet&hellip;"
-
-msgid "Category"
-msgstr "Kategori"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Kërkoni tema për <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Kërkoni aplikacione për <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Kërkoni shtesa për <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Përdor origjinalen"
 
 msgid "Week of {0}"
 msgstr "Java e {0}"
@@ -647,41 +599,6 @@ msgstr "Datë"
 msgid "Other"
 msgstr "Tjetër"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Pranoje dhe Instaloje"
-
-msgid "Add to {0}"
-msgstr "Shtoje te {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Instaloje për {0} sido qoftë"
-
-msgid "Download for {0} anyway"
-msgstr "Shkarkoje për {0} sido qoftë"
-
-msgid "Not available for your platform"
-msgstr "Jo i passhëm për platformën tuaj"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Kjo shtesë s’është e përputhshme me versionin tuaj të {0}."
-
-msgid "View other versions"
-msgstr "Shihni versione të tjera"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funksionon me {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funksionon me {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Vetëm me Firefox  — Merreni Firefox-in Tani!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues me bazë Mozilla (si Firefox-i)."
-
 msgid "Changes Saved"
 msgstr "Ndryshimet u Ruajtën"
 
@@ -701,12 +618,6 @@ msgstr "Po përpunohen ndryshimet e figurës"
 
 msgid "Select an application first"
 msgstr "Përzgjidhni së pari një aplikacion"
-
-msgid "No results found."
-msgstr "S’u gjetën përfundime."
-
-msgid "Loading..."
-msgstr "Po ngarkohet…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -747,12 +658,6 @@ msgstr "Tekst Shqyrtimi"
 
 msgid "Review notes found"
 msgstr "U gjetën shënime shqyrtimi"
-
-msgid "Average Reviews"
-msgstr "Shqyrtime Mesatarisht"
-
-msgid "Number of Reviews"
-msgstr "Numër Shqyrtimesh"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Madhësia maksimum e ngarkimeve është {0} - zgjidhni një figurë më të vogël sfondi."

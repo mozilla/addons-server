@@ -16,10 +16,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.forms import ValidationError
 from django.test.utils import override_settings
 
-import lxml
 import pytest
-
-from defusedxml.common import NotSupportedError
 
 from olympia import amo
 from olympia.amo.tests import TestCase, user_factory
@@ -61,52 +58,38 @@ class AppVersionsMixin:
         cls.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
 
 
-class TestExtractor(AppVersionsMixin, TestCase):
-    def test_no_manifest(self):
+class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
+    def test_parse_xpi_no_manifest(self):
         fake_zip = utils.make_xpi({'dummy': 'dummy'})
 
-        with self.assertRaises(utils.NoManifestFound) as exc:
-            utils.Extractor.parse(fake_zip)
+        with mock.patch(
+            'olympia.files.utils.get_file'
+        ) as get_file_mock, self.assertRaises(utils.NoManifestFound) as exc:
+            get_file_mock.return_value = fake_zip
+            utils.parse_xpi(None)
         assert isinstance(exc.exception, forms.ValidationError)
         assert exc.exception.message == ('No manifest.json found')
 
-    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
-    def test_parse_manifest_json(self, manifest_json_extractor):
-        fake_zip = utils.make_xpi({'manifest.json': ''})
-        utils.Extractor.parse(fake_zip)
-        assert manifest_json_extractor.called
-
-    @mock.patch('olympia.files.utils.os.path.getsize')
-    def test_static_theme_max_size(self, getsize_mock):
-        getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE
-        manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
+    def test_static_theme_max_size(self):
+        xpi_file = mock.Mock(size=settings.MAX_STATICTHEME_SIZE - 1)
+        manifest = utils.ManifestJSONExtractor('{"theme": {}}').parse()
 
         # Calling to check it doesn't raise.
-        assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+        assert utils.check_xpi_info(manifest, xpi_file=xpi_file)
 
         # Increase the size though and it should raise an error.
-        getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE + 1
+        xpi_file.size = settings.MAX_STATICTHEME_SIZE + 1
         with pytest.raises(forms.ValidationError) as exc:
-            utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+            utils.check_xpi_info(manifest, xpi_file=xpi_file)
 
         assert exc.value.message == 'Maximum size for WebExtension themes is 7.0 MB.'
 
         # dpuble check only static themes are limited
-        manifest = utils.ManifestJSONExtractor('/fake_path', '{}').parse()
-        assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+        manifest = utils.ManifestJSONExtractor('{}').parse()
+        assert utils.check_xpi_info(manifest, xpi_file=xpi_file)
 
-
-class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
     def parse(self, base_data):
-        return utils.ManifestJSONExtractor('/fake_path', json.dumps(base_data)).parse()
-
-    def test_instanciate_without_data(self):
-        """Without data, we load the data from the file path."""
-        data = {'id': 'some-id'}
-        fake_zip = utils.make_xpi({'manifest.json': json.dumps(data)})
-
-        extractor = utils.ManifestJSONExtractor(zipfile.ZipFile(fake_zip))
-        assert extractor.data == data
+        return utils.ManifestJSONExtractor(json.dumps(base_data)).parse()
 
     def test_guid_from_applications(self):
         """Use applications>gecko>id for the guid."""
@@ -124,17 +107,24 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             == 'some-id'
         )
 
+    def test_non_string_guid(self):
+        """Test that guid is converted to a string (or None)"""
+        assert (
+            self.parse({'browser_specific_settings': {'gecko': {'id': 12345}}})['guid']
+            == '12345'
+        )
+        assert (
+            self.parse({'browser_specific_settings': {'gecko': {'id': None}}})['guid']
+            is None
+        )
+
     def test_name_for_guid_if_no_id(self):
         """Don't use the name for the guid if there is no id."""
         assert self.parse({'name': 'addon-name'})['guid'] is None
 
     def test_type(self):
-        """manifest.json addons are always ADDON_EXTENSION."""
+        """manifest.json addons with no specific properties present are extensions."""
         assert self.parse({})['type'] == amo.ADDON_EXTENSION
-
-    def test_is_restart_required(self):
-        """manifest.json addons never requires restart."""
-        assert self.parse({})['is_restart_required'] is False
 
     def test_name(self):
         """Use name for the name."""
@@ -146,9 +136,34 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_homepage(self):
         """Use homepage_url for the homepage."""
+        expected_homepage = 'http://my-addon.org'
         assert (
-            self.parse({'homepage_url': 'http://my-addon.org'})['homepage']
-            == 'http://my-addon.org'
+            self.parse({'homepage_url': expected_homepage})['homepage']
+            == expected_homepage
+        )
+
+    def test_homepage_with_developer_url(self):
+        expected_homepage = 'http://my-addon.org'
+        assert (
+            self.parse(
+                {
+                    'homepage_url': 'http://should-be-overridden',
+                    'developer': {'url': expected_homepage},
+                }
+            )['homepage']
+            == expected_homepage
+        )
+
+    def test_homepage_with_developer_and_no_url(self):
+        expected_homepage = 'http://my-addon.org'
+        assert (
+            self.parse(
+                {
+                    'homepage_url': expected_homepage,
+                    'developer': {'name': 'some name'},
+                }
+            )['homepage']
+            == expected_homepage
         )
 
     def test_summary(self):
@@ -305,14 +320,9 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
-    def test_is_webextension(self):
-        assert self.parse({})['is_webextension']
-
-    def test_allow_static_theme_waffle(self):
-        manifest = utils.ManifestJSONExtractor('/fake_path', '{"theme": {}}').parse()
-
+    def test_static_theme(self):
+        manifest = utils.ManifestJSONExtractor('{"theme": {}}').parse()
         utils.check_xpi_info(manifest)
-
         assert self.parse({'theme': {}})['type'] == amo.ADDON_STATICTHEME
 
     def test_extensions_dont_have_strict_compatibility(self):
@@ -323,7 +333,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         resolve_message.return_value = 'Notify Mozilla'
 
         addon = amo.tests.addon_factory()
-        file_obj = addon.current_version.all_files[0]
+        file_obj = addon.current_version.file
         fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
@@ -338,7 +348,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         resolve_message.return_value = 'Notify for Mozilla'
 
         addon = amo.tests.addon_factory()
-        file_obj = addon.current_version.all_files[0]
+        file_obj = addon.current_version.file
         fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
         with amo.tests.copy_file(fixture, file_obj.file_path):
@@ -366,7 +376,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_handle_utf_bom(self):
         manifest = b'\xef\xbb\xbf{"manifest_version": 2, "name": "..."}'
-        parsed = utils.ManifestJSONExtractor(None, manifest).parse()
+        parsed = utils.ManifestJSONExtractor(manifest).parse()
         assert parsed['name'] == '...'
 
     def test_raise_error_if_no_optional_id_support(self):
@@ -401,9 +411,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
             "description": "A plain text description"
         }
         """
-        manifest = utils.ManifestJSONExtractor('/fake_path', json_string).parse()
+        manifest = utils.ManifestJSONExtractor(json_string).parse()
 
-        assert manifest['is_webextension'] is True
         assert manifest.get('name') == 'My Extension'
 
     def test_dont_skip_apps_because_of_strict_version_incompatibility(self):
@@ -442,7 +451,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                     "devtools_page": "devtools/my-page.html"
                 }
                 """
-        parsed_data = utils.ManifestJSONExtractor('/fake_path', json_string).parse()
+        parsed_data = utils.ManifestJSONExtractor(json_string).parse()
 
         assert parsed_data['devtools_page'] == 'devtools/my-page.html'
 
@@ -466,6 +475,36 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         data = {'version': None}
         assert self.parse(data)['version'] == 'None'
 
+    def test_install_origins(self):
+        self.parse({})['install_origins'] == []
+        self.parse({'install_origins': ['https://fôo.com']})['install_origins'] == [
+            'https://fôo.com'
+        ]
+        self.parse({'install_origins': ['https://bâr.net', 'https://alice.org']})[
+            'install_origins'
+        ] == ['https://bâr.net', 'https://alice.org']
+
+    def test_install_origins_wrong_type_ignored(self):
+        self.parse({'install_origins': 42})['install_origins'] == []
+        self.parse({'install_origins': None})['install_origins'] == []
+        self.parse({'install_origins': {}})['install_origins'] == []
+
+    def test_install_origins_wrong_type_inside_list_ignored(self):
+        self.parse({'install_origins': [42]})['install_origins'] == []
+        self.parse({'install_origins': [None]})['install_origins'] == []
+        self.parse({'install_origins': [{}]})['install_origins'] == []
+        self.parse({'install_origins': [['https://inception.com']]})[
+            'install_origins'
+        ] == []
+        self.parse({'install_origins': [42, 'https://goo.com']})['install_origins'] == [
+            'https://goo.com'
+        ]
+
+        # 'flop' is not a valid origin, but the linter is responsible for that
+        # validation. We just care about it being a string so that we don't
+        # raise a TypeError later in the process.
+        self.parse({'install_origins': [42, 'flop']})['install_origins'] == ['flop']
+
 
 class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_langpack(self):
@@ -485,12 +524,9 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
             'langpack_id': 'foo',
         }
 
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)
-        ).parse()
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
-        assert parsed_data['is_webextension'] is True
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Langpacks are not compatible with android.
@@ -501,12 +537,9 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_langpack_not_targeting_versions_explicitly(self):
         data = {'applications': {'gecko': {'id': '@langp'}}, 'langpack_id': 'foo'}
 
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)
-        ).parse()
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
-        assert parsed_data['is_webextension'] is True
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Langpacks are not compatible with android.
@@ -523,12 +556,9 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
             'dictionaries': {'en-US': '/path/to/en-US.dic'},
         }
 
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path', json.dumps(data)
-        ).parse()
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
         assert parsed_data['type'] == amo.ADDON_DICT
         assert parsed_data['strict_compatibility'] is False
-        assert parsed_data['is_webextension'] is True
         assert parsed_data['target_locale'] == 'en-US'
 
         apps = parsed_data['apps']
@@ -540,7 +570,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
     def test_parse_broken_dictionary(self):
         data = {'dictionaries': {}}
         with self.assertRaises(forms.ValidationError):
-            utils.ManifestJSONExtractor('/fake_path', json.dumps(data)).parse()
+            utils.ManifestJSONExtractor(json.dumps(data)).parse()
 
     def test_check_xpi_info_langpack_submission_restrictions(self):
         user = user_factory()
@@ -557,9 +587,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
             },
             'langpack_id': 'foo',
         }
-        parsed_data = utils.ManifestJSONExtractor(
-            '/fake_path.xpi', json.dumps(data)
-        ).parse()
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
 
         with self.assertRaises(ValidationError):
             # Regular users aren't allowed to submit langpacks.
@@ -569,6 +597,37 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         self.grant_permission(user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
 
         utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
+
+
+class TestSitePermission(AppVersionsMixin, TestCase):
+    def parse(self):
+        return utils.ManifestJSONExtractor('{"site_permissions": ["webmidi"]}').parse()
+
+    def test_allow_regular_submission_of_site_permissions_addons_with_permission(self):
+        user = user_factory()
+        self.grant_permission(user, 'Addons:SubmitSitePermission')
+        parsed_data = self.parse()
+        assert parsed_data['type'] == amo.ADDON_SITE_PERMISSION
+        assert parsed_data['site_permissions'] == ['webmidi']
+        assert utils.check_xpi_info(parsed_data, user=user)
+
+    def test_allow_submission_of_site_permissions_addons_from_task_user(self):
+        user = user_factory(pk=settings.TASK_USER_ID)
+        parsed_data = self.parse()
+        assert parsed_data['type'] == amo.ADDON_SITE_PERMISSION
+        assert parsed_data['site_permissions'] == ['webmidi']
+        assert utils.check_xpi_info(parsed_data, user=user)
+
+    def test_disallow_regular_submission_of_site_permission_addons_no_user(self):
+        parsed_data = self.parse()
+        with self.assertRaises(ValidationError):
+            utils.check_xpi_info(parsed_data)
+
+    def test_disallow_regular_submission_of_site_permission_addons_normal_user(self):
+        user = user_factory()
+        parsed_data = self.parse()
+        with self.assertRaises(ValidationError):
+            utils.check_xpi_info(parsed_data, user=user)
 
 
 class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
@@ -781,7 +840,7 @@ def file_obj():
     addon = amo.tests.addon_factory()
     addon.update(guid='xxxxx')
     version = addon.current_version
-    return version.all_files[0]
+    return version.file
 
 
 @pytestmark
@@ -1003,24 +1062,6 @@ class TestResolvei18nMessage:
         assert result == '__MSG_foo__'
 
 
-class TestXMLVulnerabilities(TestCase):
-    """Test a few known vulnerabilities to make sure
-    our defusedxml patching is applied automatically.
-
-    This doesn't replicate all defusedxml tests.
-    """
-
-    def test_lxml_XMLParser_no_resolve_entities(self):
-        with pytest.raises(NotSupportedError):
-            lxml.etree.XMLParser(resolve_entities=True)
-
-        # not setting it works
-        lxml.etree.XMLParser()
-
-        # Setting it explicitly to `False` is fine too.
-        lxml.etree.XMLParser(resolve_entities=False)
-
-
 class TestGetBackgroundImages(TestCase):
     file_obj = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
@@ -1045,6 +1086,7 @@ class TestGetBackgroundImages(TestCase):
         assert len(images.items()) == 1
         assert len(images['weta.png']) == 126447
 
+    @mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
     def test_get_background_images_no_theme_data_provided(self):
         images = utils.get_background_images(self.file_obj, theme_data=None)
         assert 'weta.png' in images
@@ -1112,9 +1154,26 @@ class TestSafeZip(TestCase):
         with pytest.raises(zipfile.BadZipFile):
             utils.SafeZip(get_addon_file('invalid_webextension.xpi'))
 
+    def test_raises_error_for_archive_with_backslashes_in_filenames(self):
+        filename = (
+            'src/olympia/files/'
+            'fixtures/files/archive-with-invalid-chars-in-filenames.zip'
+        )
+        with pytest.raises(utils.InvalidZipFile):
+            utils.SafeZip(filename)
+
+    def test_ignores_error_for_archive_with_backslashes_in_filenames_with_argument(
+        self,
+    ):
+        filename = (
+            'src/olympia/files/'
+            'fixtures/files/archive-with-invalid-chars-in-filenames.zip'
+        )
+        utils.SafeZip(filename, ignore_filename_errors=True)
+
     def test_raises_validation_error_when_uncompressed_size_is_too_large(self):
         with override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000):
-            with pytest.raises(forms.ValidationError):
+            with pytest.raises(utils.InvalidZipFile):
                 # total uncompressed size of this xpi is 126kb
                 utils.SafeZip(get_addon_file('mozilla_static_theme.zip'))
 
@@ -1124,31 +1183,55 @@ class TestArchiveMemberValidator(TestCase):
     # `_validate_archive_member_name_and_size` instead.
 
     def test_raises_when_filename_is_none(self):
-        with pytest.raises(forms.ValidationError):
+        with pytest.raises(utils.InvalidZipFile):
             utils._validate_archive_member_name_and_size(None, 123)
 
     def test_raises_when_filesize_is_none(self):
-        with pytest.raises(forms.ValidationError):
+        with pytest.raises(utils.InvalidZipFile):
             utils._validate_archive_member_name_and_size('filename', None)
 
     def test_raises_when_filename_is_dot_dot_slash(self):
-        with pytest.raises(forms.ValidationError):
+        with pytest.raises(utils.InvalidZipFile):
             utils._validate_archive_member_name_and_size('../', 123)
 
     def test_raises_when_filename_starts_with_slash(self):
-        with pytest.raises(forms.ValidationError):
+        with pytest.raises(utils.InvalidZipFile):
             utils._validate_archive_member_name_and_size('/..', 123)
 
+    def test_raises_when_filename_contains_backslashes(self):
+        with pytest.raises(utils.InvalidZipFile):
+            utils._validate_archive_member_name_and_size('path\\to\\file.txt', 123)
+
     def test_raises_when_filename_is_dot_dot(self):
-        with pytest.raises(forms.ValidationError):
+        with pytest.raises(utils.InvalidZipFile):
             utils._validate_archive_member_name_and_size('..', 123)
+
+    def test_ignores_when_filename_is_dot_dot_slash_with_argument(self):
+        utils._validate_archive_member_name_and_size(
+            '../', 123, ignore_filename_errors=True
+        )
+
+    def test_ignores_when_filename_starts_with_slash_with_argument(self):
+        utils._validate_archive_member_name_and_size(
+            '/..', 123, ignore_filename_errors=True
+        )
+
+    def test_ignores_when_filename_contains_backslashes_with_argument(self):
+        utils._validate_archive_member_name_and_size(
+            'path\\to\\file.txt', 123, ignore_filename_errors=True
+        )
+
+    def test_ignores_when_filename_is_dot_dot_with_argument(self):
+        utils._validate_archive_member_name_and_size(
+            '..', 123, ignore_filename_errors=True
+        )
 
     def test_does_not_raise_when_filename_is_dot_dot_extension(self):
         utils._validate_archive_member_name_and_size('foo..svg', 123)
 
     @override_settings(FILE_UNZIP_SIZE_LIMIT=100)
     def test_raises_when_filesize_is_above_limit(self):
-        with pytest.raises(forms.ValidationError):
+        with pytest.raises(utils.InvalidZipFile):
             utils._validate_archive_member_name_and_size(
                 'filename', settings.FILE_UNZIP_SIZE_LIMIT + 100
             )

@@ -49,22 +49,22 @@
         data-appid="{{ amo.FIREFOX.id }}"
         data-anonymous="{{ (not user.is_authenticated)|json }}"
         data-readonly="{{ settings.READ_ONLY|json }}"
-        data-media-url="{{ MEDIA_URL }}"
-        data-static-url="{{ STATIC_URL }}"
         {% block bodyattrs %}{% endblock %}>
 
     <div id="main-wrapper">
-      {% set admin_message = get_config('site_notice') %}
-      {% if admin_message or settings.READ_ONLY %}
-        <div id="site-notice">
-          {% if admin_message %}
-            <p>{{ admin_message|safe }}</p>
-          {% endif %}
-          {% if settings.READ_ONLY %}
-            <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
-          {% endif %}
-        </div>
-      {% endif %}
+      {% block site_notice %}
+        {% set admin_message = get_config('site_notice') %}
+        {% if admin_message or settings.READ_ONLY %}
+          <div id="site-notice">
+            {% if admin_message %}
+              <p>{{ admin_message|safe }}</p>
+            {% endif %}
+            {% if settings.READ_ONLY %}
+              <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endblock %}
       <div class="section">
         {% block site_header %}
           <div class="header-bg">
@@ -74,7 +74,7 @@
                   <ul>
                     {% if not settings.READ_ONLY %}
                       {% block user_login_include %}
-                        {% include "impala/user_login.html" %}
+                        {% include "user_login.html" %}
                       {% endblock %}
                     {% endif %}
                     {% block aux_nav %}
@@ -86,7 +86,7 @@
                 </nav>
                 <div id="masthead">
                   {% block site_header_title %}
-                  {% include "impala/header_title.html" %}
+                  {% include "header_title.html" %}
                   {% endblock %}
                   {% block navbar %}{% endblock %}
                   {% block site_stats %}{% endblock %}

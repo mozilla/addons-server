@@ -58,7 +58,6 @@ If you have `Users:Edit` permission you will see these extra fields for all user
 
     :>json boolean deleted: Is the account deleted.
     :>json string|null display_name: The name chosen by the user.
-    :>json string|null reviewer_name: The reviewer name chosen by the user, if set. Only available for users with any kind of reviewer permission.
     :>json string email: Email address used by the user to login and create this account.
     :>json string fxa_edit_email_url: The configured URL for editing the user's email on FxA.
     :>json string last_login: The date of the last successful log in to the website.

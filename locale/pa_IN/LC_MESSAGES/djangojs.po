@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2020-08-31 08:36+0000\n"
-"Last-Translator: Satnam S Virdi <pika10singh@gmail.com>\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2022-01-18 15:17+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -15,20 +15,14 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ਤਾਰਾ"
-msgstr[1] "{0} ਤਾਰੇ"
-
 msgid "There was a problem contacting the server."
 msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਵੇਲੇ ਇੱਕ ਮੁਸ਼ਕਲ ਸੀ।"
 
 msgid "Select a file..."
 msgstr "...ਫਾਈਲ ਚੁਣੋ"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਅਖੀਰ ਵਿੱਚ .zip, .xpi, .crx, .jar ਜਾਂ .xml ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਅਖੀਰ ਵਿੱਚ .zip, .xpi, ਜਾਂ .crx ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -94,18 +88,6 @@ msgstr[1] "ਤੁਹਾਡੀ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗ਼�
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "ਤੁਹਾਡੀ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਗ਼ਲਤੀਆਂ ਜਾਂ ਚੇਤਾਵਨੀਆਂ ਦੇ ਪ੍ਰਮਾਣਿਤ ਹੋ ਗਈ ਹੈ।"
 
-msgid "Your submission will be automatically signed."
-msgstr "ਤੁਹਾਡੀ ਪੇਸ਼ਕਸ਼ ਉੱਤੇ ਆਪਣੇ-ਆਪ ਦਸਤਖ਼ਤ ਹੋ ਜਾਣਗੇ।"
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension ਅੱਪਗਰੇਡ ਕਰੋ"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "ਅਸੀਂ ਇੱਕ ਅੱਪਗਰੇਡ ਦੀ ਇਜ਼ਾਜ਼ਤ ਅਤੇ ਪ੍ਰੇਰਿਤ ਕਰਦੇ ਹਾਂ ਪਰ ਤੁਸੀਂ ਇਸ ਪ੍ਰਕਿਰਿਆ ਨੂੰ ਉਲਟਾ ਨਹੀਂ ਕਰ ਸਕਦੇ । ਇੱਕ ਵਾਰ ਤੁਹਾਡੇ ਵਰਤੋਂਕਾਰ ਕੋਲ ਵੈਬ ਇਕਸਟੈਨਸ਼ਨ ਹੋਵੇ, ਉਹ ਇੱਕ ਪੁਰਾਣੇ ਐਡ-ਆਨ ਸਥਾਪਿਤ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।"
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "MDN ਉੱਤੇ ਪੁਰਾਣੀ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਪੋਰਟ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "ਵਰਜ਼ਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
@@ -143,36 +125,6 @@ msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇ
 
 msgid "Videos must be in WebM."
 msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "{0} ਦਾ ਤੁਹਾਡਾ ਵਰਜ਼ਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
-
-msgid "Flagged for review"
-msgstr "ਸਮੀਖਿਆ ਲਈ ਨਿਸ਼ਾਨਬੱਧ ਕੀਤਾ"
-
-msgid "Your input is required"
-msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
-
-msgid "Marked for deletion"
-msgstr "ਮਿਟਾਉਣ ਲਈ ਨਿਸ਼ਾਨੀ ਲਾਈ"
-
-msgid "Updating results&hellip;"
-msgstr "ਨਤੀਜੇ ਸੱਜਰੇ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ&hellip;"
-
-msgid "Category"
-msgstr "ਵਰਗ"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
-
-msgid "Use original"
-msgstr "ਅਸਲ ਵਰਤੋ"
 
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
@@ -448,14 +400,12 @@ msgid "Applications from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Countries, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੋਗਦਾਨ"
+msgstr "ਦੇਸ਼, ਪਿਛਲੇ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Countries from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਦੇਸ਼"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -498,9 +448,8 @@ msgid "Download Sources from {0} to {1}"
 msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸੋਮੇ"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਠੀਕ-ਠਾਕ ਡਾਊਨਲੋਡ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #, fuzzy
@@ -652,41 +601,6 @@ msgstr "ਤਾਰੀਖ"
 msgid "Other"
 msgstr "ਹੋਰ"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "ਮੰਨੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
-
-msgid "Add to {0}"
-msgstr "{0} 'ਚ ਜੋੜੋ"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "ਕਿਵੇਂ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
-
-msgid "Download for {0} anyway"
-msgstr "ਕਿਵੇਂ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
-
-msgid "Not available for your platform"
-msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੀ {0} ਵਾਲੀ ਵਰਜ਼ਨ ਦੇ ਮੇਚ ਦਾ ਨਹੀਂ ਹੈI"
-
-msgid "View other versions"
-msgstr "ਹੋਰ ਵਰਜ਼ਨ ਵੇਖੋ"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
-
-msgid "Works with {app}"
-msgstr "{app} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "ਸਿਰਫ਼ ਫਾਇਰਫਾਕਸ ਨਾਲ — ਫਾਇਰਫਾਕਸ ਹੁਣੇ ਲਵੋ!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ਅਫ਼ਸੋਸ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ।"
-
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
@@ -706,12 +620,6 @@ msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ �
 
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਐਪਲੀਕੇਸ਼ਨ ਚੁੁਣੋ"
-
-msgid "No results found."
-msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
-
-msgid "Loading..."
-msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -752,12 +660,6 @@ msgstr "ਲਿਖਤ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 
 msgid "Review notes found"
 msgstr "ਪੜਤਾਲ ਨੋਟਿਸ ਮਿਲੇ"
-
-msgid "Average Reviews"
-msgstr "ਔਸਤ ਪੜਤਾਲਾਂ"
-
-msgid "Number of Reviews"
-msgstr "ਪੜਤਾਲਾਂ ਦੀ ਗਿਣਤੀ"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "ਅਧਿਕਤਮ ਅਪਲੋਡ ਅਕਾਰ ਹੈ {0} - ਛੋਟਾ ਬੈਕਗਰਾਊਂਡ ਚਿੱਤਰ ਚੁਣੋ।"

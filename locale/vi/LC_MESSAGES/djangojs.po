@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2021-06-24 05:52+0000\n"
-"Last-Translator: Đặng Duy Thanh <thanhdd.it@gmail.com>\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2021-08-27 02:59+0000\n"
+"Last-Translator: BunNotFound <ledangngocanh2010@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -14,10 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} sao"
 
 msgid "There was a problem contacting the server."
 msgstr "Kết nối tới máy chủ có vấn đề."
@@ -34,7 +30,7 @@ msgid "{0}% complete"
 msgstr "{0}% hoàn thành"
 
 msgid "{0} of {1}"
-msgstr "{0} của {1}"
+msgstr "{0} trong số {1}"
 
 msgid "Cancel"
 msgstr "Hủy bỏ"
@@ -88,18 +84,6 @@ msgstr[0] "Tiện ích của bạn đã được xác thực không có lỗi v�
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Tiện ích của bạn đã được xác thực không có lỗi hay cảnh báo nào."
 
-msgid "Your submission will be automatically signed."
-msgstr "Bản đệ trình của bạn sẽ được chứng thực tự động."
-
-msgid "WebExtension upgrade"
-msgstr "Nâng cấp WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Chuyển đổi tiện ích Firefox cũ trên MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Bao gồm các ghi chú chi tiết (điều này có thể hoàn tất trong bước tiếp theo)."
 
@@ -138,36 +122,6 @@ msgstr "Các hình ảnh phải dưới dạng PNG hoặc JPEG."
 
 msgid "Videos must be in WebM."
 msgstr "Các video phải dưới dạng WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Chủ đề này không tương thích với phiên bản {0} của bạn"
-
-msgid "Flagged for review"
-msgstr "Đã gắn cờ cho đánh giá"
-
-msgid "Your input is required"
-msgstr "Vui lòng điền thông tin"
-
-msgid "Marked for deletion"
-msgstr "Đánh dấu để xóa"
-
-msgid "Updating results&hellip;"
-msgstr "Cập nhật kết quả&hellip;"
-
-msgid "Category"
-msgstr "Phân mục"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Tìm <b>{0}</b> trong các giao diện"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Tìm <b>{0}</b> trong các ứng dụng"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Tìm <b>{0}</b> trong các tiện ích"
-
-msgid "Use original"
-msgstr "Sử dụng bản gốc"
 
 msgid "Week of {0}"
 msgstr "Tuần {0}"
@@ -635,41 +589,6 @@ msgstr "Ngày tháng"
 msgid "Other"
 msgstr "Khác"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Chấp nhận và cài đặt"
-
-msgid "Add to {0}"
-msgstr "Thêm vào {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Vẫn cứ cài đặt {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Vẫn tải xuống cho {0}"
-
-msgid "Not available for your platform"
-msgstr "Không có sẵn cho nền của bạn"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Phiên bản này của tiện ích {0} không tương thích với phiên bản Firefox của bạn."
-
-msgid "View other versions"
-msgstr "Xem các phiên bản khác"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Hoạt động trên {app} {min} – {max}"
-
-msgid "Works with {app}"
-msgstr "Hoạt động với {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Chỉ hoạt động với Firefox — Tải Firefox ngay!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Rất tiếc, bạn cần phải sử dụng một trình duyệt gốc Mozilla (ví dụ như Firefox) để cài đặt một công cụ tìm kiếm."
-
 msgid "Changes Saved"
 msgstr "Đã lưu các thay đổi"
 
@@ -688,12 +607,6 @@ msgstr "Thay đổi hình ảnh đang được xử lý"
 
 msgid "Select an application first"
 msgstr "Chọn một ứng dụng trước tiên"
-
-msgid "No results found."
-msgstr "Không tìm thấy kết quả."
-
-msgid "Loading..."
-msgstr "Đang tải..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -732,12 +645,6 @@ msgstr "Xem lại văn bản"
 
 msgid "Review notes found"
 msgstr "Xem lại ghi chú"
-
-msgid "Average Reviews"
-msgstr "Đánh giá trung bình"
-
-msgid "Number of Reviews"
-msgstr "Số lượng review"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Kích thước tải lên tối đa là {0} - chọn hình nền nhỏ hơn."

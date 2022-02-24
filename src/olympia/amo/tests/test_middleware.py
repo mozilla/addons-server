@@ -1,17 +1,27 @@
 from django import test
+from django.conf import settings
+from django.contrib.auth import SESSION_KEY
+from django.core.exceptions import ImproperlyConfigured
+from django.http import HttpResponse, HttpResponseRedirect
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
 
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 from pyquery import PyQuery as pq
 
+from olympia.accounts.utils import fxa_login_url, path_with_query
+from olympia.accounts.verify import IdentificationError
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI,
+    CacheControlMiddleware,
     RequestIdMiddleware,
+    SetRemoteAddrFromForwardedFor,
+    TokenValidMiddleware,
 )
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import reverse_ns, TestCase, user_factory
 from olympia.zadmin.models import Config
 
 
@@ -60,6 +70,18 @@ class TestMiddleware(TestCase):
         req.is_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.call_count == 3
+
+    def test_lbheartbeat_middleware(self):
+        # /__lbheartbeat__ should be return a 200 from middleware, bypassing later
+        # middleware and view code.
+
+        with self.assertNumQueries(0):
+            response = test.Client().get('/__lbheartbeat__', SERVER_NAME='elb-internal')
+        assert response.status_code == 200
+        assert response.content == b''
+        assert response['Cache-Control'] == (
+            'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
 
 
 def test_redirect_with_unicode_get():
@@ -124,3 +146,216 @@ def test_request_id_middleware(client):
     request = RequestFactory().get('/')
     RequestIdMiddleware().process_request(request)
     assert request.request_id
+
+
+class TestSetRemoteAddrFromForwardedFor(TestCase):
+    def setUp(self):
+        self.middleware = SetRemoteAddrFromForwardedFor()
+
+    def test_no_special_headers(self):
+        request = RequestFactory().get('/', REMOTE_ADDR='4.8.15.16')
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+    def test_request_not_from_cdn(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='4.8.15.16', HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16'
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+    @override_settings(SECRET_CDN_TOKEN=None)
+    def test_request_not_from_cdn_because_setting_is_none(self):
+        request = RequestFactory().get(
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN=None,
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    def test_request_not_from_cdn_because_header_secret_is_invalid(self):
+        request = RequestFactory().get(
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR='2.3.4.2,4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='not-foo',
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    def test_request_from_cdn_but_only_one_ip_in_x_forwarded_for(self):
+        request = RequestFactory().get(
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR='4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='foo',
+        )
+        assert self.middleware.is_request_from_cdn(request)
+        with self.assertRaises(ImproperlyConfigured):
+            self.middleware.process_request(request)
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    def test_request_from_cdn_but_empty_values_in_x_forwarded_for(self):
+        request = RequestFactory().get(
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR=',',
+            HTTP_X_REQUEST_VIA_CDN='foo',
+        )
+        assert self.middleware.is_request_from_cdn(request)
+        with self.assertRaises(ImproperlyConfigured):
+            self.middleware.process_request(request)
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    def test_request_from_cdn_pick_second_to_last_ip_in_x_forwarded_for(self):
+        request = RequestFactory().get(
+            '/',
+            REMOTE_ADDR='4.8.15.16',
+            HTTP_X_FORWARDED_FOR=',, 2.3.4.2,  4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='foo',
+        )
+        assert self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '2.3.4.2'
+
+
+class TestCacheControlMiddleware(TestCase):
+    def setUp(self):
+        self.request_factory = RequestFactory()
+
+    def test_not_api_should_not_cache(self):
+        request = self.request_factory.get('/bar')
+        request.is_api = False
+        response = HttpResponse()
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_authenticated_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        request.META = {'HTTP_AUTHORIZATION': 'foo'}
+        response = HttpResponse()
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_non_read_only_http_method_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        for method in ('POST', 'DELETE', 'PUT', 'PATCH'):
+            request.method = method
+            response = HttpResponse()
+            response = CacheControlMiddleware(lambda x: response)(request)
+            assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_disable_caching_arg_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        request.GET = {'disable_caching': '1'}
+        response = HttpResponse()
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_cookies_in_response_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        response.set_cookie('foo', 'bar')
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_cache_control_already_set_should_not_override(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        response['Cache-Control'] = 'max-age=3600'
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 'max-age=3600'
+
+    def test_cache_control_already_set_to_0_should_not_set_s_maxage(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        response['Cache-Control'] = 'max-age=0'
+        response = CacheControlMiddleware(lambda x: response)(request)
+        assert response['Cache-Control'] == 'max-age=0'
+
+    def test_non_success_status_code_should_not_cache(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        for status_code in (400, 401, 403, 404, 429, 500, 502, 503, 504):
+            response.status_code = status_code
+            response = CacheControlMiddleware(lambda x: response)(request)
+            assert response['Cache-Control'] == 's-maxage=0'
+
+    def test_everything_ok_should_cache_for_3_minutes(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        response = HttpResponse()
+        for status_code in (200, 201, 202, 204, 301, 302, 303, 304):
+            response.status_code = status_code
+            response = CacheControlMiddleware(lambda x: response)(request)
+            assert response['Cache-Control'] == 'max-age=180'
+
+    def test_functional_should_cache(self):
+        response = self.client.get(reverse_ns('amo-site-status'))
+        assert response.status_code == 200
+        assert 'Cache-Control' in response
+        assert response['Cache-Control'] == 'max-age=180'
+
+    def test_functional_should_not_cache(self):
+        response = self.client.get(
+            reverse_ns('amo-site-status'), HTTP_AUTHORIZATION='blah'
+        )
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 's-maxage=0'
+
+
+class TestTokenValidMiddleware(TestCase):
+    def setUp(self):
+        self.get_response_mock = Mock()
+        self.response = Mock()
+        self.response.data = {}
+        self.get_response_mock.return_value = self.response
+        self.middleware = TokenValidMiddleware(self.get_response_mock)
+        self.update_token_mock = self.patch(
+            'olympia.amo.middleware.check_and_update_fxa_access_token'
+        )
+        self.user = user_factory()
+
+    def get_request(self, session=None):
+        request = RequestFactory().get('/')
+        request.user = self.user
+        request.session = {SESSION_KEY: str(self.user.id), **(session or {})}
+        return request
+
+    def test_check_token_returns(self):
+        request = self.get_request(session={'access_token_expiry': 12345})
+        assert self.middleware(request) == self.response
+        self.update_token_mock.assert_called_with(request)
+
+    def test_redirect_because_check_token_raises(self):
+        self.update_token_mock.side_effect = IdentificationError()
+        request = self.get_request()
+        response = self.middleware(request)
+        assert isinstance(response, HttpResponseRedirect)
+        assert response['Location'] == fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=request.session['fxa_state'],
+            next_path=path_with_query(request),
+            action='signin',
+        )
+
+    def test_anonymous_user(self):
+        request = RequestFactory().get('/')
+        request.session = {}
+        assert self.middleware(request) == self.response
+        self.update_token_mock.assert_not_called()

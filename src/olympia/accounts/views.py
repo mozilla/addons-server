@@ -2,6 +2,7 @@ import base64
 import binascii
 import functools
 import os
+import time
 
 from urllib.parse import quote_plus
 
@@ -17,6 +18,8 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.cache import never_cache
 
+import jwt
+import requests
 import waffle
 
 from corsheaders.conf import conf as corsheaders_conf
@@ -28,10 +31,10 @@ from corsheaders.middleware import (
     ACCESS_CONTROL_MAX_AGE,
 )
 from django_statsd.clients import statsd
+from rest_framework import exceptions
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
-from rest_framework.exceptions import PermissionDenied
 from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import (
     DestroyModelMixin,
@@ -51,10 +54,13 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import fetch_subscribed_newsletters, use_fake_fxa
+from olympia.amo.reverse import get_url_prefix
+from olympia.amo.utils import fetch_subscribed_newsletters, is_safe_url, use_fake_fxa
 from olympia.api.authentication import (
     JWTKeyAuthentication,
+    SessionIDAuthentication,
     UnsubscribeTokenAuthentication,
     WebTokenAuthentication,
 )
@@ -72,7 +78,8 @@ from .serializers import (
     UserNotificationSerializer,
     UserProfileSerializer,
 )
-from .utils import _is_safe_url, fxa_login_url, generate_fxa_state
+from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
+from .utils import fxa_login_url, generate_fxa_state
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -104,7 +111,7 @@ API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
 def safe_redirect(request, url, action):
-    if not _is_safe_url(url, request):
+    if not is_safe_url(url, request):
         url = reverse('home')
     log.info(f'Redirecting after {action} to: {url}')
     return HttpResponseRedirect(url)
@@ -133,16 +140,13 @@ def find_user(identity):
             # Alternatively if someone tried to log in as the task user then
             # prevent that because that user "owns" a number of important
             # addons and collections, and it's actions are special cased.
-            raise PermissionDenied()
+            raise exceptions.PermissionDenied()
         return user
     except UserProfile.DoesNotExist:
         return None
-    except UserProfile.MultipleObjectsReturned:
-        # This shouldn't happen, so let it raise.
-        log.error(
-            'Found multiple users for %s and %s', identity['email'], identity['uid']
-        )
-        raise
+    # UserProfile.MultipleObjectsReturned might be raised here. This is
+    # expected, we don't know what to do in this case so we let the exception
+    # happen loudly.
 
 
 def register_user(identity):
@@ -181,11 +185,15 @@ def update_user(user, identity):
         user.update(auth_id=UserProfile._meta.get_field('auth_id').default())
 
 
-def login_user(sender, request, user, identity):
+def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
     log.info(f'Logging in user {user} from FxA')
     user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
+    if token_data:
+        request.session['fxa_access_token_expiry'] = token_data['access_token_expiry']
+        request.session['fxa_refresh_token'] = token_data['refresh_token']
+        request.session['fxa_config_name'] = token_data['config_name']
 
 
 def fxa_error_message(message, login_help_url):
@@ -213,7 +221,7 @@ def parse_next_path(state_parts, request=None):
         except (TypeError, ValueError):
             log.info(f'Error decoding next_path {encoded_path}')
             pass
-    if not _is_safe_url(next_path, request):
+    if not is_safe_url(next_path, request):
         next_path = None
     return next_path
 
@@ -266,11 +274,13 @@ def with_user(f):
                     'uid': 'fake_fxa_id-%s'
                     % force_str(binascii.b2a_hex(os.urandom(16))),
                 }
-                id_token = identity['email']
+                id_token, token_data = identity['email'], {}
             else:
-                identity, id_token = verify.fxa_identify(
+                identity, token_data = verify.fxa_identify(
                     data['code'], config=fxa_config
                 )
+                token_data['config_name'] = self.get_config_name(request)
+                id_token = token_data.get('id_token')
         except verify.IdentificationError:
             log.info('Profile not found. Code: {}'.format(data['code']))
             return safe_redirect(request, next_path, ERROR_NO_PROFILE)
@@ -315,7 +325,14 @@ def with_user(f):
                         id_token=id_token,
                     )
                 )
-            return f(self, request, user=user, identity=identity, next_path=next_path)
+            return f(
+                self,
+                request,
+                user=user,
+                identity=identity,
+                next_path=next_path,
+                token_data=token_data,
+            )
 
     return inner
 
@@ -330,13 +347,9 @@ def generate_api_token(user):
 
 
 def add_api_token_to_response(response, user):
-    """Generate API token and add it to the response (both as a `token` key in
-    the response if it was json and by setting a cookie named API_TOKEN_COOKIE.
-    """
+    """Generate API token and add it in a session cookie named API_TOKEN_COOKIE."""
     token = generate_api_token(user)
-    if hasattr(response, 'data'):
-        response.data['token'] = token
-    # Also include the API token in a session cookie, so that it is
+    # Include the API token in a session cookie, so that it is
     # available for universal frontend apps.
     response.set_cookie(
         API_TOKEN_COOKIE,
@@ -387,7 +400,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
     @never_cache
     @with_user
-    def get(self, request, user, identity, next_path):
+    def get(self, request, user, identity, next_path, token_data):
         # At this point @with_user guarantees that we have a valid fxa
         # identity. We are proceeding with either registering the user or
         # logging them on.
@@ -397,15 +410,29 @@ class AuthenticateView(FxAConfigMixin, APIView):
                 user = register_user(identity)
             else:
                 reregister_user(user)
+            if not is_safe_url(next_path, request):
+                next_path = None
+            # If we just reverse() directly, we'd use a prefixer instance
+            # initialized from the current view, which would not contain the
+            # app information since it's a generic callback, the same for
+            # everyone. To ensure the user stays on the app/locale they were
+            # on, we extract that information from the next_path if present
+            # and set locale/app on the prefixer instance that reverse() will
+            # use automatically.
+            if next_path:
+                if prefixer := get_url_prefix():
+                    splitted = prefixer.split_path(next_path)
+                    prefixer.locale = splitted[0]
+                    prefixer.app = splitted[1]
             edit_page = reverse('users.edit')
-            if _is_safe_url(next_path, request):
+            if next_path:
                 next_path = f'{edit_page}?to={quote_plus(next_path)}'
             else:
                 next_path = edit_page
         else:
             action = 'login'
 
-        login_user(self.__class__, request, user, identity)
+        login_user(self.__class__, request, user, identity, token_data)
         response = safe_redirect(request, next_path, action)
         add_api_token_to_response(response, user)
         return response
@@ -542,6 +569,7 @@ class AccountViewSet(
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
+        ActivityLog.create(amo.LOG.USER_DELETED, instance)
         self.perform_destroy(instance)
         response = Response(status=HTTP_204_NO_CONTENT)
         if instance == request.user:
@@ -563,7 +591,11 @@ class AccountViewSet(
 
 
 class ProfileView(APIView):
-    authentication_classes = [JWTKeyAuthentication, WebTokenAuthentication]
+    authentication_classes = [
+        JWTKeyAuthentication,
+        WebTokenAuthentication,
+        SessionIDAuthentication,
+    ]
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
@@ -759,3 +791,94 @@ class AccountNotificationUnsubscribeView(AccountNotificationMixin, GenericAPIVie
                 _('Notification [%s] does not exist') % notification_name
             )
         return Response(serializer.data)
+
+
+class FxaNotificationView(FxAConfigMixin, APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    FXA_PROFILE_CHANGE_EVENT = (
+        'https://schemas.accounts.firefox.com/event/profile-change'
+    )
+    FXA_DELETE_EVENT = 'https://schemas.accounts.firefox.com/event/delete-user'
+    FXA_PASSWORDCHANGE_EVENT = (
+        'https://schemas.accounts.firefox.com/event/password-change'
+    )
+
+    @classmethod
+    def get_fxa_verifying_keys(cls):
+        if not hasattr(cls, 'fxa_verifying_keys'):
+            response = requests.get(f'{settings.FXA_OAUTH_HOST}/jwks')
+            cls.fxa_verifying_keys = (
+                response.json().get('keys') if response.status_code == 200 else []
+            )
+
+        if not cls.fxa_verifying_keys:
+            raise exceptions.AuthenticationFailed(
+                'FXA verifying keys are not available.'
+            )
+
+        return cls.fxa_verifying_keys
+
+    def get_jwt_payload(self, request):
+        client_id = self.get_fxa_config(request)['client_id']
+        authenticated_jwt = None
+
+        auth_header_split = request.headers.get('Authorization', '').split('Bearer ')
+        if len(auth_header_split) == 2 and auth_header_split[1]:
+            for verifying_key in self.get_fxa_verifying_keys():
+                if verifying_key.get('alg') != 'RS256':
+                    # we only support RS256
+                    continue
+                request_jwt = auth_header_split[1]
+                try:
+                    algorithm = jwt.algorithms.RSAAlgorithm.from_jwk(verifying_key)
+                    authenticated_jwt = jwt.decode(
+                        request_jwt,
+                        algorithm,
+                        audience=client_id,
+                        algorithms=[verifying_key['alg']],
+                    )
+                except (ValueError, TypeError, jwt.exceptions.PyJWTError):
+                    pass  # We raise when `not authenticated_jwt` below
+                break
+
+        if not authenticated_jwt:
+            raise exceptions.AuthenticationFailed(
+                'Could not authenticate JWT with FXA key.'
+            )
+
+        return authenticated_jwt
+
+    def process_event(self, uid, event_key, event_data):
+        timestamp = (
+            change_time / 1000
+            if (change_time := event_data.get('changeTime'))
+            else time.time()
+        )
+        if event_key == self.FXA_PROFILE_CHANGE_EVENT:
+            log.info(f'Fxa Webhook: Got profile change event for {uid}')
+            new_email = event_data.get('email')
+            if not new_email:
+                log.info(
+                    'Email property missing/empty for "%s" event; ignoring' % event_key
+                )
+            else:
+                primary_email_change_event.delay(uid, timestamp, new_email)
+        elif event_key == self.FXA_DELETE_EVENT:
+            log.info(f'Fxa Webhook: Got delete event for {uid}')
+            delete_user_event.delay(uid, timestamp)
+        elif event_key == self.FXA_PASSWORDCHANGE_EVENT:
+            log.info(f'Fxa Webhook: Got password-change event for {uid}')
+            clear_sessions_event.delay(uid, timestamp, 'password-change')
+        else:
+            log.info('Fxa Webhook: Ignoring unknown event type %r', event_key)
+
+    def post(self, request):
+        payload = self.get_jwt_payload(request)
+        events = payload.get('events', {})
+        uid = payload.get('sub')
+        for event_key, event_data in events.items():
+            self.process_event(uid, event_key, event_data)
+
+        return Response('202 Accepted', status=202)

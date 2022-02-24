@@ -269,16 +269,17 @@ class AddonGuidQueryParam(AddonQueryMultiParam):
                 raise ValueError(
                     gettext('Invalid Return To AMO guid (not in base64url format?)')
                 )
-            # Filter on the now decoded guid param as normal, then add promoted
-            # filter on top to only return "safe" add-ons for return to AMO.
-            # We don't care about the app param - we just want to ensure the
-            # add-ons are "safe".
+            # Filter on the now decoded guid param as normal...
             filters = super().get_es_query([value])
-            filters.extend(
-                AddonPromotedQueryParam(
-                    {AddonPromotedQueryParam.query_param: BADGED_API_NAME}
-                ).get_es_query()
-            )
+            # If the switch to enable all listed add-ons for RTAMO is on, we
+            # don't need anthing else. If it's off, then we restrict to only
+            # promoted add-ons (which should all be reviewed).
+            if not switch_is_active('return-to-amo-for-all-listed'):
+                filters.extend(
+                    AddonPromotedQueryParam(
+                        {AddonPromotedQueryParam.query_param: BADGED_API_NAME}
+                    ).get_es_query()
+                )
             return filters
         else:
             return super().get_es_query()

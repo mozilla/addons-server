@@ -38,7 +38,8 @@ def insert_debug_toolbar_middleware(middlewares):
     for i, middleware in enumerate(ret_middleware):
         if 'GZipMiddleware' in middleware:
             ret_middleware.insert(
-                i + 1, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+                i + 1, 'debug_toolbar.middleware.DebugToolbarMiddleware'
+            )
             break
 
     return tuple(ret_middleware)
@@ -53,15 +54,6 @@ DEBUG_TOOLBAR_CONFIG = {
 
 FILESYSTEM_CACHE_ROOT = os.path.join(TMP_PATH, 'cache')
 
-# We are setting memcached here to make sure our local setup is as close
-# to our production system as possible.
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
-    },
-}
-
 # If you're not running on SSL you'll want this to be False.
 SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_DOMAIN = None
@@ -75,12 +67,14 @@ ES_DEFAULT_NUM_REPLICAS = 0
 
 SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
 DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
+ADDONS_FRONTEND_PROXY_PORT = '7000'
 SERVICES_URL = SITE_URL
 INTERNAL_SITE_URL = 'http://nginx'
 EXTERNAL_SITE_URL = SITE_URL
+STATIC_URL = '%s/static/' % EXTERNAL_SITE_URL
+MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
 
-CODE_MANAGER_URL = (
-    os.environ.get('CODE_MANAGER_URL') or 'http://olympia.test:5000')
+CODE_MANAGER_URL = os.environ.get('CODE_MANAGER_URL') or 'http://olympia.test:5000'
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN, 'nginx']
 
@@ -91,7 +85,8 @@ ALLOW_SELF_REVIEWS = True
 
 AES_KEYS = {
     'api_key:secret': os.path.join(
-        ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'),
+        ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'
+    ),
 }
 
 DATABASES = {
@@ -104,22 +99,25 @@ FXA_CONFIG = {
         'client_id': env('FXA_CLIENT_ID', default='a25796da7bc73ffa'),
         'client_secret': env(
             'FXA_CLIENT_SECRET',
-            default='4828af02f60a12738a79c7121b06d42b481f112dce1831440902a8412d2770c5'),  # noqa
+            default='4828af02f60a12738a79c7121b06d42b481f112dce1831440902a8412d2770c5',
+        ),
         # fxa redirects to http://olympia.test/api/auth/authenticate-callback/
     },
     'amo': {
         'client_id': env('FXA_CLIENT_ID', default='0f95f6474c24c1dc'),
         'client_secret': env(
             'FXA_CLIENT_SECRET',
-            default='ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38'),  # noqa
+            default='ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38',
+        ),
         # fxa redirects to http://localhost:3000/fxa-authenticate
     },
     'local': {
         'client_id': env('FXA_CLIENT_ID', default='4dce1adfa7901c08'),
         'client_secret': env(
             'FXA_CLIENT_SECRET',
-            default='d7d5f1148a35b12c067fb9eafafc29d35165a90f5d8b0032f1fcd37468ae49fe'),  # noqa
-        # noqa fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  #noqa
+            default='d7d5f1148a35b12c067fb9eafafc29d35165a90f5d8b0032f1fcd37468ae49fe',
+        ),
+        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  # noqa
     },
 }
 FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
@@ -136,10 +134,15 @@ USE_FAKE_FXA_AUTH = True
 CSP_REPORT_URI = '/csp-report'
 RESTRICTED_DOWNLOAD_CSP['REPORT_URI'] = CSP_REPORT_URI
 
-# Allow GA over http + www subdomain in local development.
+# Set CSP like we do for dev/stage/prod, but also allow GA over http + www subdomain
+# for local development.
 HTTP_GA_SRC = 'http://www.google-analytics.com'
-CSP_IMG_SRC += (HTTP_GA_SRC,)
-CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
+
+CSP_CONNECT_SRC += (SITE_URL,)
+CSP_FONT_SRC += (STATIC_URL,)
+CSP_IMG_SRC += (MEDIA_URL, STATIC_URL, HTTP_GA_SRC)
+CSP_SCRIPT_SRC += (STATIC_URL, HTTP_GA_SRC)
+CSP_STYLE_SRC += (STATIC_URL,)
 
 # Auth token required to authorize inbound email.
 INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
@@ -161,7 +164,8 @@ except ImportError:
     import warnings
     import traceback
 
-    warnings.warn('Could not import local_settings module. {}'.format(
-        traceback.format_exc()))
+    warnings.warn(
+        'Could not import local_settings module. {}'.format(traceback.format_exc())
+    )
 
 SITEMAP_DEBUG_AVAILABLE = True

@@ -22,19 +22,18 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import user_media_path, user_media_url
 from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_as_xpi
 
 
 log = olympia.core.logger.getLogger('z.files')
 
-# We should be able to drop the field default - so enforce it being required - once we
-# drop `is_webextension` and the fixtures and tests allow a File without manifest.json.
+# We should be able to drop the field default - so enforce it being required - now we've
+# dropped `is_webextension`, but the fixtures need updating to include it.
 DEFAULT_MANIFEST_VERSION = 2
 
 
@@ -42,9 +41,7 @@ class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
-    version = models.ForeignKey(
-        'versions.Version', related_name='files', on_delete=models.CASCADE
-    )
+    version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
     filename = models.CharField(max_length=255, default='')
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
@@ -55,25 +52,14 @@ class File(OnChangeMixin, ModelBase):
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW
     )
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
-    is_restart_required = models.BooleanField(default=False)
     strict_compatibility = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True, blank=True)
-    # The `binary` field is used to store the flags from amo-validator when it
-    # finds files with binary extensions or files that may contain binary
-    # content.
-    binary = models.BooleanField(default=False)
-    # The `binary_components` field is used to store the flag from
-    # amo-validator when it finds "binary-components" in the chrome manifest
-    # file, used for default to compatible.
-    binary_components = models.BooleanField(default=False)
     # Serial number of the certificate use for the signature.
     cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
     is_signed = models.BooleanField(default=False)
     # Is the file an experiment (see bug 1220097)?
     is_experiment = models.BooleanField(default=False)
-    # Is the file a WebExtension?
-    is_webextension = models.BooleanField(default=False)
     # Is the file a special "Mozilla Signed Extension"
     # see https://wiki.mozilla.org/Add-ons/InternalSigning
     is_mozilla_signed_extension = models.BooleanField(default=False)
@@ -87,7 +73,6 @@ class File(OnChangeMixin, ModelBase):
         db_table = 'files'
         indexes = [
             models.Index(fields=('created', 'version'), name='created_idx'),
-            models.Index(fields=('binary_components',), name='files_cedd2560'),
             models.Index(
                 fields=('datestatuschanged', 'version'), name='statuschanged_idx'
             ),
@@ -105,12 +90,6 @@ class File(OnChangeMixin, ModelBase):
             return False
         else:
             return True
-
-    @property
-    def automated_signing(self):
-        """True if this file is eligible for automated signing. This currently
-        means that either its version is unlisted."""
-        return self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
     def get_file_cdn_url(self, attachment=False):
         """Return the URL for the file corresponding to this instance
@@ -151,10 +130,8 @@ class File(OnChangeMixin, ModelBase):
         file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         file_.size = storage.size(upload_path)
-        file_.is_restart_required = parsed_data.get('is_restart_required', False)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
         file_.is_experiment = parsed_data.get('is_experiment', False)
-        file_.is_webextension = parsed_data.get('is_webextension', False)
         file_.is_mozilla_signed_extension = parsed_data.get(
             'is_mozilla_signed_extension', False
         )
@@ -166,29 +143,37 @@ class File(OnChangeMixin, ModelBase):
         )
         file_.save()
 
-        if file_.is_webextension:
-            permissions = list(parsed_data.get('permissions', []))
-            optional_permissions = list(parsed_data.get('optional_permissions', []))
+        permissions = list(parsed_data.get('permissions', []))
+        optional_permissions = list(parsed_data.get('optional_permissions', []))
 
-            # devtools_page isn't in permissions block but treated as one
-            # if a custom devtools page is added by an addon
-            if 'devtools_page' in parsed_data:
-                permissions.append('devtools')
+        # devtools_page isn't in permissions block but treated as one
+        # if a custom devtools page is added by an addon
+        if 'devtools_page' in parsed_data:
+            permissions.append('devtools')
 
-            # Add content_scripts host matches too.
-            for script in parsed_data.get('content_scripts', []):
-                permissions.extend(script.get('matches', []))
-            if permissions or optional_permissions:
-                WebextPermission.objects.create(
-                    permissions=permissions,
-                    optional_permissions=optional_permissions,
-                    file=file_,
-                )
+        # Add content_scripts host matches too.
+        for script in parsed_data.get('content_scripts', []):
+            permissions.extend(script.get('matches', []))
+        if permissions or optional_permissions:
+            WebextPermission.objects.create(
+                permissions=permissions,
+                optional_permissions=optional_permissions,
+                file=file_,
+            )
+        # site_permissions are not related to webext permissions (they are
+        # Web APIs a particular site can enable with a specially generated
+        # add-on) and thefore are stored separately.
+        if parsed_data.get('type') == amo.ADDON_SITE_PERMISSION:
+            site_permissions = list(parsed_data.get('site_permissions', []))
+            FileSitePermission.objects.create(
+                permissions=site_permissions,
+                file=file_,
+            )
 
         log.info(f'New file: {file_!r} from {upload!r}')
 
         # Move the uploaded file from the temp location.
-        copy_stored_file(upload_path, file_.current_file_path)
+        storage.copy_stored_file(upload_path, file_.current_file_path)
 
         if upload.validation:
             validation = json.loads(upload.validation)
@@ -308,7 +293,7 @@ class File(OnChangeMixin, ModelBase):
                 log.info(
                     log_message.format(source=source_path, destination=destination_path)
                 )
-                move_stored_file(source_path, destination_path)
+                storage.move_stored_file(source_path, destination_path)
                 # Now that the file has been deleted, remove the directory if
                 # it exists to prevent the main directory from growing too
                 # much (#11464)
@@ -335,8 +320,6 @@ class File(OnChangeMixin, ModelBase):
 
     @cached_property
     def permissions(self):
-        if not self.is_webextension:
-            return []
         try:
             # Filter out any errant non-strings included in the manifest JSON.
             # Remove any duplicate permissions.
@@ -353,8 +336,6 @@ class File(OnChangeMixin, ModelBase):
 
     @cached_property
     def optional_permissions(self):
-        if not self.is_webextension:
-            return []
         try:
             # Filter out any errant non-strings included in the manifest JSON.
             # Remove any duplicate optional permissions.
@@ -474,7 +455,7 @@ class FileUpload(ModelBase):
         max_length=255, default='', help_text="The user's original filename"
     )
     hash = models.CharField(max_length=255, default='')
-    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     automated_signing = models.BooleanField(default=False)
@@ -483,10 +464,8 @@ class FileUpload(ModelBase):
     version = models.CharField(max_length=255, null=True)
     addon = models.ForeignKey('addons.Addon', null=True, on_delete=models.CASCADE)
     access_token = models.CharField(max_length=40, null=True)
-    ip_address = models.CharField(max_length=45, null=True, default=None)
-    source = models.PositiveSmallIntegerField(
-        choices=amo.UPLOAD_SOURCE_CHOICES, default=None, null=True
-    )
+    ip_address = models.CharField(max_length=45)
+    source = models.PositiveSmallIntegerField(choices=amo.UPLOAD_SOURCE_CHOICES)
 
     objects = ManagerBase()
 
@@ -553,7 +532,7 @@ class FileUpload(ModelBase):
         log.info(
             f'UPLOAD: {self.name!r} ({size} bytes) to {self.path!r}',
             extra={
-                'email': (self.user.email if self.user and self.user.email else ''),
+                'email': (self.user.email or ''),
                 'upload_hash': self.hash,
             },
         )
@@ -576,9 +555,33 @@ class FileUpload(ModelBase):
         return f'{absolute_url}?access_token={self.access_token}'
 
     @classmethod
-    def from_post(cls, chunks, filename, size, **params):
-        upload = FileUpload(**params)
+    def from_post(
+        cls,
+        chunks,
+        *,
+        filename,
+        size,
+        user,
+        source,
+        channel,
+        addon=None,
+        version=None,
+    ):
+        max_ip_length = cls._meta.get_field('ip_address').max_length
+        ip_address = (core.get_remote_addr() or '')[:max_ip_length]
+        upload = FileUpload(
+            addon=addon,
+            user=user,
+            source=source,
+            automated_signing=channel == amo.RELEASE_CHANNEL_UNLISTED,
+            ip_address=ip_address,
+            version=version,
+        )
         upload.add_file(chunks, filename, size)
+
+        # The following log statement is used by foxsec-pipeline.
+        log.info('FileUpload created: %s' % upload.uuid.hex)
+
         return upload
 
     @property
@@ -586,10 +589,14 @@ class FileUpload(ModelBase):
         return bool(self.valid or self.validation)
 
     @property
+    def submitted(self):
+        return bool(self.addon)
+
+    @property
     def validation_timeout(self):
         if self.processed:
             validation = self.load_validation()
-            messages = validation['messages']
+            messages = validation.get('messages', [])
             timeout_id = ['validator', 'unexpected_exception', 'validation_timeout']
             return any(msg['id'] == timeout_id for msg in messages)
         else:
@@ -611,7 +618,7 @@ class FileUpload(ModelBase):
         return self.processed and self.valid
 
     def load_validation(self):
-        return json.loads(self.validation)
+        return json.loads(self.validation or '{}')
 
     @property
     def pretty_name(self):
@@ -619,6 +626,14 @@ class FileUpload(ModelBase):
         if len(parts) > 1:
             return parts[1]
         return self.name
+
+    @property
+    def channel(self):
+        return (
+            amo.RELEASE_CHANNEL_UNLISTED
+            if self.automated_signing
+            else amo.RELEASE_CHANNEL_LISTED
+        )
 
 
 class FileValidation(ModelBase):
@@ -639,15 +654,6 @@ class FileValidation(ModelBase):
     def from_json(cls, file, validation):
         if isinstance(validation, str):
             validation = json.loads(validation)
-
-        if 'metadata' in validation:
-            if validation['metadata'].get('contains_binary_extension') or validation[
-                'metadata'
-            ].get('contains_binary_content'):
-                file.update(binary=True)
-
-            if validation['metadata'].get('binary_components'):
-                file.update(binary_components=True)
 
         # Delete any past results.
         # We most often wind up with duplicate results when multiple requests
@@ -687,6 +693,16 @@ class WebextPermission(ModelBase):
 
     class Meta:
         db_table = 'webext_permissions'
+
+
+class FileSitePermission(ModelBase):
+    permissions = models.JSONField(default=list)
+    file = models.OneToOneField(
+        'File', related_name='_site_permissions', on_delete=models.CASCADE
+    )
+
+    class Meta:
+        db_table = 'site_permissions'
 
 
 def nfd_str(u):

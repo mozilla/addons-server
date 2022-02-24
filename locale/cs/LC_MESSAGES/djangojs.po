@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-01-16 21:15+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -14,12 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} hvězdička"
-msgstr[1] "{0} hvězdičky"
-msgstr[2] "{0} hvězdiček"
 
 msgid "There was a problem contacting the server."
 msgstr "Vyskytl se problém při kontaktování serveru."
@@ -98,20 +92,6 @@ msgstr[2] "Váš doplněk byl zkontrolován bez chyb a s {0} varováními."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Váš doplněk byl zkontrolován bez chyb či varování."
 
-msgid "Your submission will be automatically signed."
-msgstr "Odeslaný doplněk bude automaticky podepsán."
-
-msgid "WebExtension upgrade"
-msgstr "Povýšení na WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Dovolujeme a doporučujeme povýšení doplňku, ale tento proces již nebudete moci zvrátit. Jakmile budou mít uživatelé nainstalovánu WebExtension verzi, nebudou schopni nainstalovat předchozí verze "
-"vašeho doplňku."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portování zastaralých Firefox doplňků na MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnout podrobné poznámky k verzi (lze nastavit v příštím kroku)."
 
@@ -148,36 +128,6 @@ msgstr "Obrázky musí být v PNG či JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videa musí být ve formátu WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Motiv vzhledu je s touto verzí aplikace {0} nekompatibilní"
-
-msgid "Flagged for review"
-msgstr "Označeno na kontrolu"
-
-msgid "Your input is required"
-msgstr "Je vyžadována vaše akce"
-
-msgid "Marked for deletion"
-msgstr "Označeno pro smazání"
-
-msgid "Updating results&hellip;"
-msgstr "Probíhá aktualizace výsledků&hellip;"
-
-msgid "Category"
-msgstr "Kategorie"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Vyhledávání vzhledů podle <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Vyhledávání aplikací pro <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Vyhledávání doplňků pro <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Použít původní"
 
 msgid "Week of {0}"
 msgstr "Týden {0}"
@@ -657,41 +607,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Jiné"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Souhlasím a instalovat"
-
-msgid "Add to {0}"
-msgstr "Přidat do aplikace {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Přesto nainstalovat do aplikace {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Přesto stáhnout pro aplikaci {0}"
-
-msgid "Not available for your platform"
-msgstr "Není dostupné pro vaši platformu"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Tento doplněk není kompatibilní s vaší verzí aplikace {0}."
-
-msgid "View other versions"
-msgstr "Zobrazit ostatní verze"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funguje s aplikací {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funguje s aplikací {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Pouze pro Firefox – získejte Firefox nyní!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Omlouváme se, ale pro instalaci vyhledávacího modulu potřebujete prohlížeč postavený na Mozille (jako například Firefox)."
-
 msgid "Changes Saved"
 msgstr "Změny uloženy"
 
@@ -712,12 +627,6 @@ msgstr "Jsou prováděny změny obrázku"
 
 msgid "Select an application first"
 msgstr "Prvně zvolte aplikaci"
-
-msgid "No results found."
-msgstr "Nenalezeny žádné výsledky."
-
-msgid "Loading..."
-msgstr "Probíhá načítání..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -760,12 +669,6 @@ msgstr "Text recenze"
 
 msgid "Review notes found"
 msgstr "Nalezeny poznámky k recenzi"
-
-msgid "Average Reviews"
-msgstr "Průměrné hodnocení"
-
-msgid "Number of Reviews"
-msgstr "Počet hodnocení"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maximální povolená velikost pro nahrání je {0}. Vyberte menší obrázek pozadí."

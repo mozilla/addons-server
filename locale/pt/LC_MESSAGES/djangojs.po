@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2015-10-15 00:51+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,11 +11,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} estrela"
-msgstr[1] "{0} estrelas"
 
 msgid "There was a problem contacting the server."
 msgstr "Ocorreu um problema ao contactar o servidor."
@@ -91,18 +86,6 @@ msgstr[1] "O seu extra foi validado sem erros e {0} mensagens."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "O seu extra foi validado sem erros ou mensagens."
 
-msgid "Your submission will be automatically signed."
-msgstr ""
-
-msgid "WebExtension upgrade"
-msgstr ""
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Incluir notas detalhadas da versão (isto pode ser feito no próximo passo)."
 
@@ -140,37 +123,6 @@ msgstr "Imagens têm de ser PNG ou JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Vídeos têm de ser em WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Este tema é incompatível com a sua versão de {0}"
-
-msgid "Flagged for review"
-msgstr "Etiquetado para revisão"
-
-msgid "Your input is required"
-msgstr "A sua opinião é necessária"
-
-msgid "Marked for deletion"
-msgstr "Marcado para ser eliminado"
-
-msgid "Updating results&hellip;"
-msgstr "A atualizar resultados&hellip;"
-
-msgid "Category"
-msgstr "Categoria"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Procurar temas por <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Procurar aplicações por <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Procurar extras por <b>{0}</b>"
-
-#, fuzzy
-msgid "Use original"
-msgstr "utilizar original"
 
 msgid "Week of {0}"
 msgstr "Semana de {0}"
@@ -658,43 +610,6 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Aceitar e Instalar"
-
-msgid "Add to {0}"
-msgstr "Adicionar a {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Instalar para {0} mesmo assim"
-
-msgid "Download for {0} anyway"
-msgstr "Descarregar para {0} mesmo assim"
-
-msgid "Not available for your platform"
-msgstr "Não disponível para a sua plataforma"
-
-#, fuzzy
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Este tema é incompatível com a sua versão de {0}"
-
-msgid "View other versions"
-msgstr "Ver outras versões"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funciona com {app} {min} - {max}"
-
-#, fuzzy
-msgid "Works with {app}"
-msgstr "Funciona com {app} {min} - {max}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Apenas com o Firefox — Obter o Firefox agora!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Lamentamos, mas precisa de ter um navegador da Mozilla (como o Firefox) para instalar uma extensão de pesquisa."
-
 msgid "Changes Saved"
 msgstr "Alterações guardadas"
 
@@ -714,12 +629,6 @@ msgstr "As alterações à imagem estão a ser processadas"
 
 msgid "Select an application first"
 msgstr "Selecione primeiro uma aplicação"
-
-msgid "No results found."
-msgstr "Não foram encontrados resultados."
-
-msgid "Loading..."
-msgstr "A carregar..."
 
 #, fuzzy
 msgid "<b>{0}</b> character"
@@ -761,12 +670,6 @@ msgid "Review Text"
 msgstr ""
 
 msgid "Review notes found"
-msgstr ""
-
-msgid "Average Reviews"
-msgstr ""
-
-msgid "Number of Reviews"
 msgstr ""
 
 msgid "Maximum upload size is {0} - choose a smaller background image."

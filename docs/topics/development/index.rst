@@ -18,7 +18,6 @@ Development
    logging
    services
    translations
-   style
    search
    docs
    ../../../README.rst

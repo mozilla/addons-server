@@ -20,7 +20,7 @@ from olympia.users.models import DeniedName
 
 class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
-    description = TranslationSerializerField(required=False)
+    description = TranslationSerializerField(allow_blank=True, required=False)
     url = serializers.SerializerMethodField()
     author = BaseUserSerializer(default=serializers.CurrentUserDefault())
     public = serializers.BooleanField(source='listed', default=True)
@@ -64,8 +64,6 @@ class CollectionSerializer(serializers.ModelSerializer):
                 locale: self.validate_name(sub_value)
                 for locale, sub_value in value.items()
             }
-        if value.strip() == '':
-            raise serializers.ValidationError(gettext('Name cannot be empty.'))
         if DeniedName.blocked(value):
             raise serializers.ValidationError(gettext('This name cannot be used.'))
         return value
@@ -79,7 +77,6 @@ class CollectionSerializer(serializers.ModelSerializer):
     def validate_slug(self, value):
         slug_validator(
             value,
-            lower=False,
             message=gettext(
                 'The custom URL must consist of letters, '
                 'numbers, underscores or hyphens.'

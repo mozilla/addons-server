@@ -81,13 +81,16 @@ property will be present and will contain a constant corresponding to
 specific problems to help clients address the situation programmatically. The
 constants are as follows:
 
-    ========================  =========================================================
-                       Value  Description
-    ========================  =========================================================
-        ERROR_INVALID_HEADER  The ``Authorization`` header is invalid.
-     ERROR_SIGNATURE_EXPIRED  The signature of the token indicates it has expired.
-    ERROR_DECODING_SIGNATURE  The token was impossible to decode and probably invalid.
-    ========================  =========================================================
+    ============================  =====================================================
+                           Value  Description
+    ============================  =====================================================
+            ERROR_INVALID_HEADER  The ``Authorization`` header is invalid.
+         ERROR_SIGNATURE_EXPIRED  The signature of the token indicates it has expired.
+        ERROR_DECODING_SIGNATURE  The token was impossible to decode and probably
+                                  invalid.
+    ERROR_AUTHENTICATION_EXPIRED  The payload references an invalid session hash,
+                                  probably because the session has expired.
+    ============================  =====================================================
 
 
 .. _api-overview-maintainance:
@@ -424,7 +427,16 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-07-29: updated docs shelves footer url to be non-optional. https://github.com/mozilla/addons-server/issues/17544
 * 2021-08-05: added ``ratings`` and ``users`` query parameters to addon search api. https://github.com/mozilla/addons-server/issues/17497
 * 2021-08-05: removed ``criteria`` from shelves endpoint. https://github.com/mozilla/addons-server/issues/17498
-
+* 2021-08-12: removed ``is_restart_required`` from addons endpoints. https://github.com/mozilla/addons-server/issues/17390
+* 2021-09-23: flattened ``files`` in version detail from an array to a single ``file``. https://github.com/mozilla/addons-server/issues/17839
+* 2021-09-30: removed ``is_webextension`` from file objects (all addons have been webextensions for a while now) in all endpoints. https://github.com/mozilla/addons-server/issues/17658
+* 2021-11-18: added docs for the under-development addon submission & edit apis.
+* 2021-11-25: added ``custom_license`` to version create/update endpoints to allow non-predefined licenses to be created and updated. https://github.com/mozilla/addons-server/issues/18034
+* 2021-12-09: enabled setting ``tags`` via addon submission and edit apis. https://github.com/mozilla/addons-server/issues/18268
+* 2021-12-09: changed ``license`` in version create/update endpoints to accept a license slug rather than numeric ID, and documented supported licenses. https://github.com/mozilla/addons-server/issues/18361
+* 2022-01-27: added ``ERROR_AUTHENTICATION_EXPIRED`` error code for authentication failures. https://github.com/mozilla/addons-server/issues/18669
+* 2022-02-03: added ``source`` to version detail responses, for developer's own add-ons.  ``source`` can also be set via version create/update endpoints. https://github.com/mozilla/addons-server/issues/9913
+* 2022-02-10: added session id auth, for internal api authentication, replacing the existing internal auth based on tokens. https://github.com/mozilla/addons-server/issues/18743
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

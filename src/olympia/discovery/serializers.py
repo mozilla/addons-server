@@ -46,7 +46,7 @@ class DiscoveryVersionSerializer(VersionSerializer):
             'id',
             'compatibility',
             'is_strict_compatibility_enabled',
-            'files',
+            'file',
         )
         model = Version
 

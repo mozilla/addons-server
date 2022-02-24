@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,11 +12,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "There was a problem contacting the server."
 msgstr ""
@@ -91,18 +86,6 @@ msgstr[1] ""
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-msgid "Your submission will be automatically signed."
-msgstr ""
-
-msgid "WebExtension upgrade"
-msgstr ""
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
@@ -136,36 +119,6 @@ msgid "Images must be either PNG or JPG."
 msgstr ""
 
 msgid "Videos must be in WebM."
-msgstr ""
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr ""
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Your input is required"
-msgstr ""
-
-msgid "Marked for deletion"
-msgstr ""
-
-msgid "Updating results&hellip;"
-msgstr ""
-
-msgid "Category"
-msgstr ""
-
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-msgid "Search apps for <b>{0}</b>"
-msgstr ""
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
-
-msgid "Use original"
 msgstr ""
 
 msgid "Week of {0}"
@@ -638,41 +591,6 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr ""
-
-msgid "Add to {0}"
-msgstr ""
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr ""
-
-msgid "Download for {0} anyway"
-msgstr ""
-
-msgid "Not available for your platform"
-msgstr ""
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
-
-msgid "View other versions"
-msgstr ""
-
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-msgid "Works with {app}"
-msgstr ""
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-
 msgid "Changes Saved"
 msgstr ""
 
@@ -691,12 +609,6 @@ msgid "Image changes being processed"
 msgstr ""
 
 msgid "Select an application first"
-msgstr ""
-
-msgid "No results found."
-msgstr ""
-
-msgid "Loading..."
 msgstr ""
 
 msgid "<b>{0}</b> character"
@@ -737,12 +649,6 @@ msgid "Review Text"
 msgstr ""
 
 msgid "Review notes found"
-msgstr ""
-
-msgid "Average Reviews"
-msgstr ""
-
-msgid "Number of Reviews"
 msgstr ""
 
 msgid "Maximum upload size is {0} - choose a smaller background image."

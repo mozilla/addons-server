@@ -50,7 +50,7 @@ class TestSigning(TestCase):
         self.addon = amo.tests.addon_factory(file_kw={'filename': 'webextension.xpi'})
         self.addon.update(guid='xxxxx')
         self.version = self.addon.current_version
-        self.file_ = self.version.all_files[0]
+        self.file_ = self.version.file
 
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
@@ -81,7 +81,7 @@ class TestSigning(TestCase):
 
         # Old, and not default to compatible.
         max_appversion.update(version='4', version_int=version_int('4'))
-        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.file_.update(strict_compatibility=True)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -93,7 +93,7 @@ class TestSigning(TestCase):
         max_appversion.update(
             application=amo.ANDROID.id, version='4', version_int=version_int('4')
         )
-        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.file_.update(strict_compatibility=True)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -103,7 +103,7 @@ class TestSigning(TestCase):
 
         # Old, and default to compatible.
         max_appversion.update(version='4', version_int=version_int('4'))
-        self.file_.update(binary_components=False, strict_compatibility=False)
+        self.file_.update(strict_compatibility=False)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -115,7 +115,7 @@ class TestSigning(TestCase):
         max_appversion.update(
             application=amo.ANDROID.id, version='4', version_int=version_int('4')
         )
-        self.file_.update(binary_components=False, strict_compatibility=False)
+        self.file_.update(strict_compatibility=False)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -125,7 +125,7 @@ class TestSigning(TestCase):
 
         # Recent, default to compatible.
         max_appversion.update(version='37', version_int=version_int('37'))
-        self.file_.update(binary_components=False, strict_compatibility=False)
+        self.file_.update(strict_compatibility=False)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -137,7 +137,7 @@ class TestSigning(TestCase):
         max_appversion.update(
             application=amo.ANDROID.id, version='37', version_int=version_int('37')
         )
-        self.file_.update(binary_components=True, strict_compatibility=True)
+        self.file_.update(strict_compatibility=True)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
@@ -408,7 +408,6 @@ class TestTransactionRelatedSigning(TransactionTestCase):
         self.addon = amo.tests.addon_factory(
             file_kw={
                 'filename': 'webextension.xpi',
-                'is_webextension': True,
             }
         )
         self.version = self.addon.current_version
@@ -419,7 +418,7 @@ class TestTransactionRelatedSigning(TransactionTestCase):
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_creates_git_extraction_entry_after_signing(self, create_entry_mock):
         with transaction.atomic():
-            signing.sign_file(self.version.current_file)
+            signing.sign_file(self.version.file)
 
         create_entry_mock.assert_called_once_with(version=self.version)
 
@@ -427,7 +426,7 @@ class TestTransactionRelatedSigning(TransactionTestCase):
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_does_not_create_git_extraction_entry_on_error(self, create_entry_mock):
         def call_sign_file():
-            signing.sign_file(self.version.current_file)
+            signing.sign_file(self.version.file)
             # raise ValueError after the sign_file call so that
             # the extraction is queued via the on_commit hook
             # but the atomic block won't complete.
@@ -451,7 +450,7 @@ class TestTasks(TestCase):
         self.version = self.addon.current_version
         self.max_appversion = self.version.apps.first().max
         self.set_max_appversion('48')
-        self.file_ = self.version.all_files[0]
+        self.file_ = self.version.file
         self.file_.update(filename='webextension.xpi')
 
     def tearDown(self):
@@ -492,31 +491,16 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_bump_version_in_model(self, mock_sign_file):
-        # We want to make sure each file has been signed.
-        self.file2 = amo.tests.file_factory(version=self.version)
-        self.file2.update(filename='webextension-b.xpi')
-        backup_file2_path = f'{self.file2.file_path}.backup_signature'
-        try:
-            fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
-            with amo.tests.copy_file(fpath, self.file_.file_path):
-                with amo.tests.copy_file(
-                    'src/olympia/files/fixtures/files/webextension.xpi',
-                    self.file2.file_path,
-                ):
-                    file_hash = self.file_.generate_hash()
-                    file2_hash = self.file2.generate_hash()
-                    assert self.version.version == '0.0.1'
-                    tasks.sign_addons([self.addon.pk])
-                    assert mock_sign_file.call_count == 2
-                    self.version.reload()
-                    assert self.version.version == '0.0.1.1-signed'
-                    assert file_hash != self.file_.generate_hash()
-                    assert file2_hash != self.file2.generate_hash()
-                    self.assert_backup()
-                    assert os.path.exists(backup_file2_path)
-        finally:
-            if os.path.exists(backup_file2_path):
-                os.unlink(backup_file2_path)
+        fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
+        with amo.tests.copy_file(fpath, self.file_.file_path):
+            file_hash = self.file_.generate_hash()
+            assert self.version.version == '0.0.1'
+            tasks.sign_addons([self.addon.pk])
+            assert mock_sign_file.call_count == 1
+            self.version.reload()
+            assert self.version.version == '0.0.1.1-signed'
+            assert file_hash != self.file_.generate_hash()
+            self.assert_backup()
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_full(self, mock_sign_file):
@@ -644,7 +628,7 @@ class TestTasks(TestCase):
         new_current_version = amo.tests.version_factory(
             addon=self.addon, version='0.0.2'
         )
-        new_file = new_current_version.current_file
+        new_file = new_current_version.file
 
         with amo.tests.copy_file(fname, new_file.file_path):
             with amo.tests.copy_file(fname, self.file_.file_path):

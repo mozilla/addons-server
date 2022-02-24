@@ -1,20 +1,26 @@
-from django.core.exceptions import ValidationError
+from collections import OrderedDict
+
+from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
 from unittest.mock import Mock
-from rest_framework import serializers
+from rest_framework import exceptions, serializers
 from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
 
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
 from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.fields import (
+    AbsoluteOutgoingURLField,
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
     GetTextTranslationSerializerFieldFlat,
+    LazyChoiceField,
     FallbackField,
+    OutgoingURLField,
     ReverseChoiceField,
     SlugOrPrimaryKeyRelatedField,
     SplitField,
@@ -122,36 +128,50 @@ class TestTranslationSerializerField(TestCase):
         data = {'fr': 'Non mais Allô quoi !', 'en-US': 'No But Hello what!'}
         field = self.field_class()
         # Multiple translations
-        result = field.to_internal_value(data)
+        result = field.run_validation(data)
         assert result == data
         # Single translation
         data.pop('en-US')
         assert len(data) == 1
-        result = field.to_internal_value(data)
+        result = field.run_validation(data)
         assert result == data
         # A flat string value is forbidden now
-        with self.assertRaises(ValidationError) as exc:
-            field.to_internal_value(data['fr'])
-        assert exc.exception.message == (
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            field.run_validation(data['fr'])
+        assert exc.exception.detail == [
             'You must provide an object of {lang-code:value}.'
-        )
+        ]
 
     def test_to_internal_value_strip(self):
         data = {'fr': '  Non mais Allô quoi ! ', 'en-US': ''}
-        field = self.field_class()
-        result = field.to_internal_value(data)
+        field = self.field_class(allow_blank=True)
+        result = field.run_validation(data)
         assert result == {'fr': 'Non mais Allô quoi !', 'en-US': ''}
+
+    def test_to_allow_blank(self):
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            self.field_class().run_validation({'en-US': ''})
+        assert exc.exception.detail == ['This field may not be blank.']
+
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            self.field_class().run_validation({'fr': '  '})
+        assert exc.exception.detail == ['This field may not be blank.']
+
+        result = self.field_class(allow_blank=True).run_validation(
+            {'fr': '  ', 'en-US': ''}
+        )
+        assert result == {'fr': '', 'en-US': ''}
 
     def test_wrong_locale_code(self):
         data = {
             'unknown-locale': 'some name',
         }
         field = self.field_class()
-        with self.assertRaises(ValidationError) as exc:
-            field.to_internal_value(data)
-        assert exc.exception.message == (
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            field.run_validation(data)
+        assert exc.exception.detail == [
             "The language code 'unknown-locale' is invalid."
-        )
+        ]
 
     def test_none_type_locale_is_allowed(self):
         # None values are valid because they are used to nullify existing
@@ -160,8 +180,8 @@ class TestTranslationSerializerField(TestCase):
             'en-US': None,
         }
         field = self.field_class()
-        result = field.to_internal_value(data)
-        field.validate(result)
+        result = field.run_validation(data)
+        field.run_validation(result)
         assert result == data
 
     def test_get_attribute(self):
@@ -271,10 +291,10 @@ class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
         data = {'fr': 'Non mais Allô quoi !', 'en-US': 'No But Hello what!'}
         field = self.field_class()
         # Multiple translations
-        result = field.to_internal_value(data)
+        result = field.run_validation(data)
         assert result == data
         # Single translation
-        result = field.to_internal_value(data['fr'])
+        result = field.run_validation(data['fr'])
         assert result == data['fr']
 
 
@@ -705,3 +725,86 @@ class TestFallbackField(TestCase):
         assert addon.name == 'ho!'  # updated
         assert addon.description is None
         assert addon.summary is None
+
+
+class TestLazyChoiceField(TestCase):
+    def setUp(self) -> None:
+        super().setUp()
+        self.aa = addon_factory(slug='aa')
+        self.bb = addon_factory(slug='bb')
+
+    def test_init_doesnt_evaluate_choices(self):
+        with self.assertNumQueries(0):
+            # No queries for __init__
+            field = LazyChoiceField(choices=Addon.objects.values_list('id', flat=True))
+        # the queryset will be evaluated for this
+        assert field.choices
+        # queryset caching should prevent a further database call though
+        with self.assertNumQueries(0):
+            assert field.choices
+
+    def test_super_functionality(self):
+        """Check the normal functionality of ChoiceField works."""
+        field = LazyChoiceField(choices=Addon.objects.values_list('id', 'slug'))
+
+        assert field.to_representation(self.aa.id) == self.aa.id
+        assert field.to_representation(str(self.aa.id)) == self.aa.id
+        assert field.to_representation(12345) == 12345
+        assert field.to_internal_value(self.bb.id) == self.bb.id
+        assert field.to_internal_value(str(self.bb.id)) == self.bb.id
+        with self.assertRaises(exceptions.ValidationError):
+            # not a valid choice
+            field.to_internal_value(12345)
+        assert field.choice_strings_to_values == OrderedDict(
+            ((str(self.aa.id), self.aa.id), (str(self.bb.id), self.bb.id))
+        )
+        assert field.choices == {self.aa.id: 'aa', self.bb.id: 'bb'}
+
+
+@override_settings(EXTERNAL_SITE_URL='https://amazing.site')
+class TestOutgoingURLField(TestCase):
+    def test_adds_outgoing(self):
+        field = OutgoingURLField()
+        assert field.to_representation('/foo/baa/') == {
+            'url': '/foo/baa/',
+            'outgoing': '/',
+        }
+        assert field.to_representation('http://foo/baa/') == {
+            'url': 'http://foo/baa/',
+            'outgoing': get_outgoing_url('http://foo/baa/'),
+        }
+
+    def test_allow_internal(self):
+        user_input = f'{settings.EXTERNAL_SITE_URL}/foo/baa/'
+        with self.assertRaises(exceptions.ValidationError):
+            OutgoingURLField().run_validation(user_input)
+
+        with self.assertRaises(exceptions.ValidationError):
+            OutgoingURLField(allow_internal=False).run_validation(user_input)
+
+        OutgoingURLField(allow_internal=True).run_validation(user_input)
+
+
+@override_settings(EXTERNAL_SITE_URL='https://amazing.site')
+class TestAbsoluteOutgoingURLField(TestCase):
+    def test_absolutifys(self):
+        field = AbsoluteOutgoingURLField()
+        assert field.to_representation('/foo/baa/') == {
+            'url': f'{settings.EXTERNAL_SITE_URL}/foo/baa/',
+            'outgoing': f'{settings.EXTERNAL_SITE_URL}/foo/baa/',
+        }
+        assert field.to_representation('http://foo/baa/') == {
+            'url': 'http://foo/baa/',
+            'outgoing': get_outgoing_url('http://foo/baa/'),
+        }
+
+    def test_allow_internal(self):
+        user_input = f'{settings.EXTERNAL_SITE_URL}/foo/baa/'
+
+        # default is allow_internal=True so shouldn't raise
+        AbsoluteOutgoingURLField().run_validation(user_input)
+
+        with self.assertRaises(exceptions.ValidationError):
+            AbsoluteOutgoingURLField(allow_internal=False).run_validation(user_input)
+
+        AbsoluteOutgoingURLField(allow_internal=True).run_validation(user_input)

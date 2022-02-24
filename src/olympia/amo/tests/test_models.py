@@ -319,7 +319,7 @@ class TestModelBase(TestCase):
             assert addon.get_absolute_url() == ('https://example.com' + relative)
 
     def test_get_absolute_url_with_django_view(self):
-        file = Addon.objects.get(pk=3615).current_version.all_files[0]
+        file = Addon.objects.get(pk=3615).current_version.file
         relative = os.path.join(
             reverse('downloads.file', args=[file.id]), file.filename
         )

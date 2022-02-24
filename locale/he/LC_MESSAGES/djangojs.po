@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-12-07 12:57+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "כוכב אחד"
-msgstr[1] "{0} כוכבים"
 
 msgid "There was a problem contacting the server."
 msgstr "אירעה שגיאה בהתקשרות עם השרת."
@@ -93,18 +88,6 @@ msgstr[1] "התוספת שלך אומתה ללא שגיאות אך עם {0} הו
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "התוספת שלך אומתה ללא כל שגיאות או אזהרות."
 
-msgid "Your submission will be automatically signed."
-msgstr "ההגשה שלך תיחתם אוטומטית."
-
-msgid "WebExtension upgrade"
-msgstr "שדרוג WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "אנו מאפשרים ומעודדים שדרוג אבל תהליך זה אינו הפיך. לאחר שהמשתמשים שלך יתקינו את WebExtension, לא תהיה להם אפשרות להתקין תוספת מדור קודם."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "הסבת תוספת מדור קודם של Firefox ב־MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "יש להוסיף הערות גרסה מפורטות (ניתן לביצוע בשלב הבא)."
 
@@ -140,36 +123,6 @@ msgstr "תמונות יכולות להיות בתבנית PNG או JPG."
 
 msgid "Videos must be in WebM."
 msgstr "וידאו חייב להיות בתבנית WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "ערכת נושא זו אינה תואמת לגרסה של ה־{0} שלך"
-
-msgid "Flagged for review"
-msgstr "מסומן לסקירה"
-
-msgid "Your input is required"
-msgstr "נדרש משוב מצדך"
-
-msgid "Marked for deletion"
-msgstr "מסומן למחיקה"
-
-msgid "Updating results&hellip;"
-msgstr "עדכון תוצאות&hellip;"
-
-msgid "Category"
-msgstr "קטגוריה"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "חיפוש ערכות נושא עבור <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "חיפוש יישומים עבור <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "חיפוש תוספות עבור <b>{0}</b>"
-
-msgid "Use original"
-msgstr "שימוש במקור"
 
 msgid "Week of {0}"
 msgstr "שבוע {0}"
@@ -647,41 +600,6 @@ msgstr "תאריך"
 msgid "Other"
 msgstr "אחר"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "לקבל ולהתקין"
-
-msgid "Add to {0}"
-msgstr "הוספה אל {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "התקנה עבור {0} בכל זאת"
-
-msgid "Download for {0} anyway"
-msgstr "הורדה עבור {0} בכל זאת"
-
-msgid "Not available for your platform"
-msgstr "לא זמין לפלטפורמה שלך"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "תוספת זו אינה תואמת לגרסת ה־{0} שלך."
-
-msgid "View other versions"
-msgstr "צפייה בגרסאות אחרות"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "עובד עם {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "עובד עם {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "רק עם Firefox — קבלו את Firefox כעת!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "מצטערים, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."
-
 msgid "Changes Saved"
 msgstr "השינויים נשמרו"
 
@@ -701,12 +619,6 @@ msgstr "מתבצע עיבוד שינויים בתמונות"
 
 msgid "Select an application first"
 msgstr "תחילה יש לבחור יישום"
-
-msgid "No results found."
-msgstr "לא נמצאו תוצאות."
-
-msgid "Loading..."
-msgstr "בטעינה..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -747,12 +659,6 @@ msgstr "מלל סקירה"
 
 msgid "Review notes found"
 msgstr "נמצאו הערות לסוקר"
-
-msgid "Average Reviews"
-msgstr "ממוצע הסקירות"
-
-msgid "Number of Reviews"
-msgstr "מספר הסקירות"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "גודל ההעלאה המירבי הוא {0} - נא לבחור בתמונת רקע קטנה יותר."

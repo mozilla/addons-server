@@ -12,7 +12,7 @@ from django.utils.html import format_html
 from django.utils.http import urlencode
 
 from pyquery import PyQuery as pq
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -40,14 +40,13 @@ from olympia.constants.scanners import (
 from olympia.files.models import FileUpload
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
-    ExcludeMatchedRuleFilter,
+    ExcludeMatchedRulesFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
     ScannerResultAdmin,
     ScannerRuleAdmin,
     StateFilter,
     WithVersionFilter,
-    _is_safe_url,
 )
 from olympia.scanners.models import (
     ScannerQueryResult,
@@ -220,7 +219,7 @@ class TestScannerResultAdmin(TestCase):
         result.add_yara_result(rule=rule.name, meta={'filename': filename})
         result.save()
 
-        file_id = version.all_files[0].id
+        file_id = version.file.id
         assert file_id is not None
 
         expect_file_item = code_manager_url(
@@ -335,12 +334,20 @@ class TestScannerResultAdmin(TestCase):
             ('hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
             ('All', '?has_version=all'),
             (' With version only', '?'),
-            ('No excluded rule', '?'),
-            ('foo (customs)', f'?exclude_rule={rule_foo.pk}'),
-            ('bar (yara)', f'?exclude_rule={rule_bar.pk}'),
-            ('hello (yara)', f'?exclude_rule={rule_hello.pk}'),
         ]
         filters = [(x.text, x.attrib['href']) for x in doc('#changelist-filter a')]
+        assert filters == expected
+
+        # Exclude rules is a form, needs a separate check.
+        expected = [
+            ('foo (customs)', str(rule_foo.pk)),
+            ('bar (yara)', str(rule_bar.pk)),
+            ('hello (yara)', str(rule_hello.pk)),
+        ]
+        filters = [
+            (option.text, option.attrib['value'])
+            for option in doc('#changelist-filter option')
+        ]
         assert filters == expected
 
     def test_list_filter_matched_rules(self):
@@ -371,7 +378,7 @@ class TestScannerResultAdmin(TestCase):
             'bar (yara), hello (yara)'
         )
 
-    def test_exclude_matched_rule_filter(self):
+    def test_exclude_matched_rules_filter(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
         rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
         rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
@@ -381,22 +388,24 @@ class TestScannerResultAdmin(TestCase):
         with_bar_and_hello_matches.add_yara_result(rule=rule_hello.name)
         with_bar_and_hello_matches.save()
         with_bar_and_hello_matches.update(created=self.days_ago(3))
+
         with_foo_match = ScannerResult(
             scanner=CUSTOMS, results={'matchedRules': [rule_foo.name]}
         )
         with_foo_match.save()
         with_foo_match.update(created=self.days_ago(2))
+
         with_hello_match = ScannerResult(scanner=YARA)
         with_hello_match.add_yara_result(rule=rule_hello.name)
         with_hello_match.save()
         with_hello_match.update(created=self.days_ago(1))
 
-        # Exclude 'bar'. Because exclude excludes results that *only* match
-        # the target rule, we should still get 3 results.
+        # Exclude 'bar'. We should get 3 results, because they all match other
+        # rules as well, so they wouldn't be excluded.
         response = self.client.get(
             self.list_url,
             {
-                ExcludeMatchedRuleFilter.parameter_name: rule_bar.pk,
+                ExcludeMatchedRulesFilter.parameter_name: rule_bar.pk,
                 WithVersionFilter.parameter_name: 'all',
             },
         )
@@ -417,7 +426,7 @@ class TestScannerResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                ExcludeMatchedRuleFilter.parameter_name: rule_hello.pk,
+                ExcludeMatchedRulesFilter.parameter_name: rule_hello.pk,
                 WithVersionFilter.parameter_name: 'all',
             },
         )
@@ -432,11 +441,12 @@ class TestScannerResultAdmin(TestCase):
         assert ids == expected_ids
 
         # Exclude 'foo'. with_bar_and_hello_matches and with_hello_match should
-        # still be present.
+        # still be present, and with_foo only should be gone as it only matches
+        # an excluded rule.
         response = self.client.get(
             self.list_url,
             {
-                ExcludeMatchedRuleFilter.parameter_name: rule_foo.pk,
+                ExcludeMatchedRulesFilter.parameter_name: rule_foo.pk,
                 WithVersionFilter.parameter_name: 'all',
             },
         )
@@ -449,6 +459,126 @@ class TestScannerResultAdmin(TestCase):
         ]
         ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
         assert ids == expected_ids
+
+    def test_multiple_exclude_matched_rules_filter(self):
+        rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
+
+        with_bar_and_hello_matches = ScannerResult(scanner=YARA)
+        with_bar_and_hello_matches.add_yara_result(rule=rule_bar.name)
+        with_bar_and_hello_matches.add_yara_result(rule=rule_hello.name)
+        with_bar_and_hello_matches.save()
+        with_bar_and_hello_matches.update(created=self.days_ago(3))
+        with_foo_match = ScannerResult(
+            scanner=CUSTOMS,
+            results={'matchedRules': [rule_foo.name]},
+        )
+        with_foo_match.save()
+        with_foo_match.update(created=self.days_ago(2))
+        with_hello_match = ScannerResult(scanner=YARA)
+        with_hello_match.add_yara_result(rule=rule_hello.name)
+        with_hello_match.save()
+        with_hello_match.update(created=self.days_ago(1))
+
+        # Exclude 'bar' and 'hello'. One result should be left: with_hello
+        # and with_bar_and_hello both only matches rules that have been
+        # excluded.
+        response = self.client.get(
+            self.list_url,
+            {
+                ExcludeMatchedRulesFilter.parameter_name: [rule_bar.pk, rule_hello.pk],
+                WithVersionFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        expected_ids = [
+            with_foo_match.pk,
+        ]
+        ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
+        assert ids == expected_ids
+
+        # Repeat with another filter into the mix to test links.
+        # Set the state of all results to inconclusive first...
+        ScannerResult.objects.update(state=INCONCLUSIVE)
+        response = self.client.get(
+            self.list_url,
+            {
+                ExcludeMatchedRulesFilter.parameter_name: [rule_bar.pk, rule_hello.pk],
+                WithVersionFilter.parameter_name: 'all',
+                StateFilter.parameter_name: INCONCLUSIVE,
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+        expected_ids = [
+            with_foo_match.pk,
+        ]
+        ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
+        assert ids == expected_ids
+
+        # Check the links to other filters/form for the exclude rules filter
+        # are pre-populated with the current active filters correctly.
+        links = [x.attrib['href'] for x in doc('#changelist-filter a')]
+        expected = [
+            '?',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3&scanner__exact=1',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3&scanner__exact=2',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3&scanner__exact=3',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3&scanner__exact=4',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3&has_matched_rules=all',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=all',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=1',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=2',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            f'&state=3&matched_rules__id__exact={rule_foo.pk}',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            f'&state=3&matched_rules__id__exact={rule_bar.pk}',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            f'&state=3&matched_rules__id__exact={rule_hello.pk}',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&state=3',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&state=3',
+        ]
+        assert links == expected
+
+        # Check the existing filters are passed as hidden fields in the form...
+        hidden = [
+            (x.attrib['name'], x.attrib['value'])
+            for x in doc('#changelist-filter form input[type=hidden]')
+        ]
+        expected = [('has_version', 'all'), ('state', '3')]
+        assert hidden == expected
+
+        # And finally check that the correct options are selected.
+        options = [
+            x.attrib['value']
+            for x in doc(
+                '#changelist-filter form select[name=exclude_rule] option[selected]'
+            )
+        ]
+        expected = [str(rule_bar.pk), str(rule_hello.pk)]
+        assert options == expected
 
     def test_list_default(self):
         # Create one entry without matches, it will not be shown by default
@@ -799,7 +929,9 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 404
 
     def test_change_page(self):
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(
+            user=user_factory(), ip_address='1.2.3.4', source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         version = addon_factory().current_version
         result = ScannerResult.objects.create(
             scanner=YARA, upload=upload, version=version
@@ -1166,8 +1298,8 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         assert rule.state == SCHEDULED
 
     def test_run_action_functional(self):
-        version = addon_factory(file_kw={'is_webextension': True}).current_version
-        self.xpi_copy_over(version.all_files[0], 'webextension.xpi')
+        version = addon_factory().current_version
+        self.xpi_copy_over(version.file, 'webextension.xpi')
         rule = ScannerQueryRule.objects.create(
             name='always_true',
             scanner=YARA,
@@ -1350,13 +1482,11 @@ class TestScannerQueryResultAdmin(TestCase):
             ','.join(str(author.pk) for author in addon.authors.all())
         )
         assert expected_querystring in link_to_addons[1]
-        download_link = addon.current_version.current_file.get_absolute_url(
-            attachment=True
-        )
+        download_link = addon.current_version.file.get_absolute_url(attachment=True)
         assert html('.field-download a')[0].attrib['href'] == download_link
         assert '/icon-no.svg' in html('.field-is_file_signed img')[0].attrib['src']
 
-        addon.versions.all()[0].files.all()[0].update(is_signed=True)
+        addon.versions.all()[0].file.update(is_signed=True)
         response = self.client.get(self.list_url)
         html = pq(response.content)
         assert '/icon-yes.svg' in html('.field-is_file_signed img')[0].attrib['src']
@@ -1407,12 +1537,12 @@ class TestScannerQueryResultAdmin(TestCase):
             ('Invisible', '?version__addon__disabled_by_user__exact=1'),
             ('Visible', '?version__addon__disabled_by_user__exact=0'),
             ('All', '?'),
-            ('Awaiting Review', '?version__files__status__exact=1'),
-            ('Approved', '?version__files__status__exact=4'),
-            ('Disabled by Mozilla', '?version__files__status__exact=5'),
+            ('Awaiting Review', '?version__file__status__exact=1'),
+            ('Approved', '?version__file__status__exact=4'),
+            ('Disabled by Mozilla', '?version__file__status__exact=5'),
             ('All', '?'),
-            ('Yes', '?version__files__is_signed__exact=1'),
-            ('No', '?version__files__is_signed__exact=0'),
+            ('Yes', '?version__file__is_signed__exact=1'),
+            ('No', '?version__file__is_signed__exact=0'),
             ('All', '?'),
             ('Yes', '?was_blocked__exact=1'),
             ('No', '?was_blocked__exact=0'),
@@ -1552,7 +1682,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__files__status': '5',
+                'version__file__status': '5',
             },
         )
         assert response.status_code == 200
@@ -1563,7 +1693,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__files__status': '4',
+                'version__file__status': '4',
             },
         )
         assert response.status_code == 200
@@ -1584,7 +1714,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__files__is_signed': '1',
+                'version__file__is_signed': '1',
             },
         )
         assert response.status_code == 200
@@ -1595,7 +1725,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__files__is_signed': '0',
+                'version__file__is_signed': '0',
             },
         )
         assert response.status_code == 200
@@ -1706,7 +1836,7 @@ class TestScannerQueryResultAdmin(TestCase):
 
         rule_url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
 
-        file_id = version.all_files[0].id
+        file_id = version.file.id
         assert file_id is not None
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
@@ -1764,25 +1894,3 @@ class TestScannerQueryResultAdmin(TestCase):
             ),
         ]
         assert [link.attrib['href'] for link in links] == expected
-
-
-class TestIsSafeUrl(TestCase):
-    def test_enforces_https_when_request_is_secure(self):
-        request = RequestFactory().get('/', secure=True)
-        assert _is_safe_url(f'https://{settings.DOMAIN}', request)
-        assert not _is_safe_url(f'http://{settings.DOMAIN}', request)
-
-    def test_does_not_require_https_when_request_is_not_secure(self):
-        request = RequestFactory().get('/', secure=False)
-        assert _is_safe_url(f'https://{settings.DOMAIN}', request)
-        assert _is_safe_url(f'http://{settings.DOMAIN}', request)
-
-    def test_allows_domain(self):
-        request = RequestFactory().get('/', secure=True)
-        assert _is_safe_url(f'https://{settings.DOMAIN}/foo', request)
-        assert not _is_safe_url('https://not-olympia.dev', request)
-
-    def test_allows_external_site_url(self):
-        request = RequestFactory().get('/', secure=True)
-        external_domain = urlparse(settings.EXTERNAL_SITE_URL).netloc
-        assert _is_safe_url(f'https://{external_domain}/foo', request)

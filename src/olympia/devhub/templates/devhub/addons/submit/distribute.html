@@ -7,6 +7,7 @@
 <form method="post" class="item addon-submit-distribute">
   {% csrf_token %}
   <h3>{{ _('How to Distribute this Version') }}</h3>
+    <p>{{ _('To get started, select how you would like to distribute this version.') }}</p>
     {% if addon and addon.disabled_by_user %}
       {% include "devhub/addons/includes/invisible_channel_warning.html" %}
     {% endif %}
@@ -14,9 +15,16 @@
         {{ distribution_form.channel }}
     </div>
     <p>{{ distribution_form.channel.errors }}</p>
-    <p><a href="https://extensionworkshop.com/documentation/publish/signing-and-distribution-overview/"
-          target="_blank" rel="noopener noreferrer">
-        {{ _('More information on Add-on Distribution and Signing') }}</a></p>
+    <p>
+      {% trans a_attrs='target="_blank" rel="noopener noreferrer" href="%s/documentation/publish/signing-and-distribution-overview/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission"'|format(settings.EXTENSION_WORKSHOP_URL)|safe%}
+        You can learn more about these options by reading <a {{ a_attrs }}>Add-on Distribution and Signing</a> on Firefox Extension Workshop.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans a_attrs='target="_blank" rel="noopener noreferrer" href="%s/documentation/publish/add-on-policies/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission"'|format(settings.EXTENSION_WORKSHOP_URL)|safe %}
+        All add-ons must comply with <a {{ a_attrs }}>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission.
+      {% endtrans %}
+    </p>
     <div class="submission-buttons addon-submission-field">
       <button type="submit">
         {{ _('Continue') }}

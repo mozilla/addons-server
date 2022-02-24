@@ -1,6 +1,8 @@
 import os
 import json
 
+from copy import deepcopy
+
 import pytest
 
 from django.conf import settings
@@ -77,3 +79,54 @@ def test_sentry_release_config():
     if original:
         with open(version_json, 'w') as fobj:
             fobj.write(original)
+
+
+def test_sentry_data_scrubbing():
+    before_send = settings.SENTRY_CONFIG.get('before_send')
+    assert before_send
+    assert settings.SENTRY_CONFIG.get('send_default_pii') is True
+    event_raw = open(
+        os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/sentry_event.json')
+    ).read()
+    event = json.loads(event_raw)
+    assert '@bar.com' in event_raw
+    assert '172.18.0.1' in event_raw
+    assert '127.0.0.42' in event_raw
+    expected_request_data = deepcopy(event['payload']['request'])
+
+    expected_frame_data = deepcopy(
+        event['payload']['exception']['values'][0]['stacktrace']['frames'][3]
+    )
+
+    event = before_send(event, None)
+    event_raw = json.dumps(event)
+    assert '@bar.com' not in event_raw
+    assert '172.18.0.1' not in event_raw
+    assert '127.0.0.42' not in event_raw
+
+    # We keep cookies, user dict
+    assert event['payload']['request']['cookies']
+    assert event['payload']['user']['id']
+
+    # Email and ip_address are redacted though
+    assert event['payload']['user']['email'] == '*** redacted ***'
+    assert event['payload']['user']['ip_address'] == '*** redacted ***'
+
+    # Modify old_request_data according to what we should have done and see if
+    # it matches what before_send() did in reality.
+    expected_request_data['env']['REMOTE_ADDR'] = '*** redacted ***'
+    # Note special case for X-forwarded-for in the 'headers' dict, meant to
+    # test we don't care about case.
+    expected_request_data['headers']['X-forwarded-for'] = '*** redacted ***'
+    assert expected_request_data == event['payload']['request']
+
+    # Same for expected_frame_data.
+    expected_frame_data['vars']['email'] = '*** redacted ***'
+    expected_frame_data['vars']['some_dict']['email'] = '*** redacted ***'
+    expected_frame_data['vars']['some_dict']['second_level'][1][
+        'email'
+    ] = '*** redacted ***'
+    assert (
+        expected_frame_data
+        == event['payload']['exception']['values'][0]['stacktrace']['frames'][3]
+    )

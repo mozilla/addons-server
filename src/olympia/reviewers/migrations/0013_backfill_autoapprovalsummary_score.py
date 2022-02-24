@@ -49,6 +49,7 @@ class Migration(migrations.Migration):
         ('reviewers', '0012_autoapprovalsummary_score'),
         # Need a recent enough migration to have score and version in ScannerResult
         ('scanners', '0037_auto_20200717_1233'),
+        ('addons', '0002_addon_fk'),  # Need addon___current_version to exist
     ]
 
     operations = [

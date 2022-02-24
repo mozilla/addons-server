@@ -340,19 +340,18 @@ class AddonGitRepository:
             translation.activate('en-US')
 
             repo = cls(version.addon.id, package_type='addon')
-            file_obj = version.all_files[0] if version.all_files else None
             branch = repo.find_or_create_branch(BRANCHES[version.channel])
             note = f' ({note})' if note else ''
 
             commit = repo._commit_through_worktree(
-                file_obj=file_obj,
+                file_obj=version.file,
                 message=(
                     'Create new version {version} ({version_id}) for '
                     '{addon} from {file_obj}{note}'.format(
                         version=repr(version),
                         version_id=version.id,
                         addon=repr(version.addon),
-                        file_obj=repr(file_obj),
+                        file_obj=repr(version.file),
                         note=note,
                     )
                 ),
@@ -747,10 +746,7 @@ class AddonGitRepository:
 
 
 def skip_git_extraction(version):
-    return (
-        version.addon.type != amo.ADDON_EXTENSION
-        or not version.all_files[0].is_webextension
-    )
+    return version.addon.type != amo.ADDON_EXTENSION
 
 
 def create_git_extraction_entry(version):

@@ -9,21 +9,24 @@ from datetime import datetime
 from urllib.parse import urlsplit
 
 from django.conf import settings
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Min, Q, signals as dbsignals
+from django.db.models.expressions import Func
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, gettext_lazy as _
 
+import waffle
+
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 
 from olympia import activity, amo, core
-from olympia.access import acl
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
@@ -49,7 +52,7 @@ from olympia.amo.utils import (
     to_language,
 )
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
+from olympia.constants.promoted import NOT_PROMOTED, PRE_REVIEW_GROUPS, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -237,9 +240,10 @@ class AddonManager(ManagerBase):
     def get_base_queryset_for_queue(
         self,
         admin_reviewer=False,
-        admin_content_review=False,
-        show_pending_rejection=False,
-        listed=True,
+        content_review=False,
+        theme_review=False,
+        exclude_listed_pending_rejection=True,
+        select_related_fields_for_listed=True,
     ):
         qs = (
             self.get_queryset()
@@ -247,51 +251,132 @@ class AddonManager(ManagerBase):
             # crucially, it prevents the
             # select_related('_current_version__autoapprovalsummary') from
             # working, because it overrides the _current_version with the one
-            # it fetches. We want translations though.
-            .only_translations()
-            # We need those joins for the queue to work without making extra
-            # queries.
-            .select_related(
-                'addonapprovalscounter',
-                'reviewerflags',
+            # it fetches. We want translations though, but only for the name.
+            .only_translations().defer(
+                *[x.name for x in Addon._meta.translated_fields if x.name != 'name']
             )
         )
-        if listed:
-            # We need those joins for the listed queues to work without making
-            # extra queries.
-            qs = qs.select_related(
-                '_current_version',
-                '_current_version__autoapprovalsummary',
-                '_current_version__reviewerflags',
-                'promotedaddon',
-            ).prefetch_related(
-                '_current_version__files',
-            )
-        if not show_pending_rejection:
-            if not listed:
-                # Can't combine these, because the filter is on `_current_version`
-                # which doesn't make sense for unlisted. It needs to be manually added
-                # to the same filter/Q object that joins on `versions` for unlisted.
-                raise ImproperlyConfigured(
-                    'Can not combine show_pending_rejection=False with listed=False'
+        # Useful joins to avoid extra queries.
+        select_related_fields = [
+            'reviewerflags',
+            'addonapprovalscounter',
+        ]
+        if select_related_fields_for_listed:
+            # Most listed queues need these to avoid extra queries because
+            # they display the score, flags, promoted status, link to files
+            # etc.
+            select_related_fields.extend(
+                (
+                    '_current_version',
+                    '_current_version__autoapprovalsummary',
+                    '_current_version__file',
+                    '_current_version__reviewerflags',
+                    'promotedaddon',
                 )
+            )
+        qs = qs.select_related(*select_related_fields)
+
+        if exclude_listed_pending_rejection:
             qs = qs.filter(
                 _current_version__reviewerflags__pending_rejection__isnull=True
             )
         if not admin_reviewer:
-            if admin_content_review:
+            if content_review:
                 qs = qs.exclude(reviewerflags__needs_admin_content_review=True)
+            elif theme_review:
+                qs = qs.exclude(reviewerflags__needs_admin_theme_review=True)
             else:
                 qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
         return qs
 
+    def get_listed_pending_manual_approval_queue(
+        self,
+        admin_reviewer=False,
+        recommendable=False,
+        statuses=amo.VALID_ADDON_STATUSES,
+        types=amo.GROUP_TYPE_ADDON,
+    ):
+        if types not in (amo.GROUP_TYPE_ADDON, amo.GROUP_TYPE_THEME):
+            raise ImproperlyConfigured(
+                'types needs to be either GROUP_TYPE_ADDON or GROUP_TYPE_THEME'
+            )
+        theme_review = types == amo.GROUP_TYPE_THEME
+        qs = self.get_base_queryset_for_queue(
+            admin_reviewer=admin_reviewer,
+            # The select related needed to avoid extra queries in other queues
+            # typically depend on current_version, but we don't care here, as
+            # it's a pre-review queue. We'll make the select_related() calls we
+            # need ourselves.
+            select_related_fields_for_listed=False,
+            # We'll filter on pending_rejection below without limiting
+            # ourselves to the current_version.
+            exclude_listed_pending_rejection=False,
+            theme_review=theme_review,
+        )
+        filters = Q(
+            status__in=statuses,
+            type__in=types,
+            versions__channel=amo.RELEASE_CHANNEL_LISTED,
+            versions__file__status=amo.STATUS_AWAITING_REVIEW,
+            versions__reviewerflags__pending_rejection=None,
+        ) & ~Q(disabled_by_user=True)
+        if recommendable:
+            filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
+        elif not theme_review:
+            filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
+                Q(reviewerflags__auto_approval_disabled=True)
+                | Q(reviewerflags__auto_approval_disabled_until_next_approval=True)
+                | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
+                | Q(
+                    promotedaddon__group_id__in=(
+                        group.id for group in PRE_REVIEW_GROUPS
+                    )
+                )
+            )
+
+        return (
+            # We passed select_related_fields_for_listed=False but there are
+            # still base select_related() fields in that queryset that are
+            # applied in all cases that we don't want, so reset them away.
+            qs.select_related(None)
+            .filter(filters)
+            .select_related('reviewerflags')
+            .annotate(
+                first_version_nominated=Min('versions__nomination'),
+                # Because of the Min(), a GROUP BY addon.id is created.
+                # Unfortunately if we were to annotate with just
+                # F('versions__version') Django would add version.version to
+                # the GROUP BY, ruining it. To prevent that, we wrap it into
+                # a harmless Func() - we need a no-op function to do that,
+                # hence the LOWER().
+                latest_version=Func(F('versions__version'), function='LOWER'),
+            )
+        )
+
+    def get_addons_with_unlisted_versions_queue(self, admin_reviewer=False):
+        qs = self.get_base_queryset_for_queue(
+            select_related_fields_for_listed=False,
+            exclude_listed_pending_rejection=False,
+            admin_reviewer=admin_reviewer,
+        )
+        return (
+            qs.filter(versions__channel=amo.RELEASE_CHANNEL_UNLISTED).exclude(
+                status=amo.STATUS_DISABLED
+            )
+            # Reset select_related() made by get_base_queryset_for_queue(), we
+            # don't want them for the unlisted queue.
+            .select_related(None)
+        )
+
     def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
         qs = self.get_base_queryset_for_queue(
-            listed=False, show_pending_rejection=True, admin_reviewer=admin_reviewer
+            select_related_fields_for_listed=False,
+            exclude_listed_pending_rejection=False,
+            admin_reviewer=admin_reviewer,
         )
         filters = Q(
             versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
-            versions__files__status=amo.STATUS_AWAITING_REVIEW,
+            versions__file__status=amo.STATUS_AWAITING_REVIEW,
             type__in=amo.GROUP_TYPE_ADDON,
             versions__reviewerflags__pending_rejection__isnull=True,
         ) & (
@@ -329,7 +414,7 @@ class AddonManager(ManagerBase):
         """Return a queryset of Addon objects that need content review."""
         qs = (
             self.get_base_queryset_for_queue(
-                admin_reviewer=admin_reviewer, admin_content_review=True
+                admin_reviewer=admin_reviewer, content_review=True
             )
             .valid()
             .filter(
@@ -356,7 +441,7 @@ class AddonManager(ManagerBase):
             # returning incomplete ones is acceptable.
             .filter(
                 status__in=[amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL],
-                versions__files__status__in=[
+                versions__file__status__in=[
                     amo.STATUS_APPROVED,
                     amo.STATUS_AWAITING_REVIEW,
                 ],
@@ -384,7 +469,7 @@ class AddonManager(ManagerBase):
                     ]
                 ),
                 Q(
-                    versions__files__status__in=[
+                    versions__file__status__in=[
                         amo.STATUS_APPROVED,
                         amo.STATUS_AWAITING_REVIEW,
                     ]
@@ -413,7 +498,7 @@ class AddonManager(ManagerBase):
         return (
             self.get_base_queryset_for_queue(
                 admin_reviewer=admin_reviewer,
-                show_pending_rejection=True,
+                exclude_listed_pending_rejection=False,
             )
             .filter(**filter_kwargs)
             .order_by('_current_version__reviewerflags__pending_rejection')
@@ -530,13 +615,13 @@ class Addon(OnChangeMixin, ModelBase):
         base_manager_name = 'unfiltered'
         indexes = [
             models.Index(fields=('bayesian_rating',), name='bayesianrating'),
-            models.Index(fields=('created',), name='created_idx'),
+            models.Index(fields=('created',), name='addons_created_idx'),
             models.Index(fields=('_current_version',), name='current_version'),
             models.Index(fields=('disabled_by_user',), name='inactive'),
             models.Index(fields=('hotness',), name='hotness_idx'),
             models.Index(fields=('last_updated',), name='last_updated'),
             models.Index(fields=('modified',), name='modified_idx'),
-            models.Index(fields=('status',), name='status'),
+            models.Index(fields=('status',), name='addons_status_idx'),
             models.Index(fields=('target_locale',), name='target_locale'),
             models.Index(fields=('type',), name='addontype_id'),
             models.Index(fields=('weekly_downloads',), name='weeklydownloads_idx'),
@@ -729,7 +814,8 @@ class Addon(OnChangeMixin, ModelBase):
 
             self.versions.all().update(deleted=True)
             VersionReviewerFlags.objects.filter(version__addon=self).update(
-                pending_rejection=None
+                pending_rejection=None,
+                pending_rejection_by=None,
             )
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk, str(self.guid), self)
@@ -755,25 +841,22 @@ class Addon(OnChangeMixin, ModelBase):
         return True
 
     @classmethod
-    def initialize_addon_from_upload(cls, data, upload, channel, user):
+    def initialize_addon_from_upload(cls, *, data, upload, channel, user):
         timer = StopWatch('addons.models.initialize_addon_from_upload.')
         timer.start()
         fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
         old_guid_addon = None
         if guid:  # It's an extension.
-            # Reclaim GUID from deleted add-on.
-            try:
-                old_guid_addon = Addon.unfiltered.get(guid=guid)
-                old_guid_addon.update(guid=None)
-            except ObjectDoesNotExist:
-                pass
+            if waffle.switch_is_active('allow-deleted-guid-reuse'):
+                # Reclaim GUID from deleted add-on.
+                try:
+                    old_guid_addon = Addon.unfiltered.get(guid=guid)
+                    old_guid_addon.update(guid=None)
+                except ObjectDoesNotExist:
+                    pass
 
-        generate_guid = not data.get('guid', None) and data.get(
-            'is_webextension', False
-        )
-
-        if generate_guid:
+        if not data.get('guid'):
             data['guid'] = guid = generate_addon_guid()
         timer.log_interval('1.guids')
 
@@ -797,6 +880,13 @@ class Addon(OnChangeMixin, ModelBase):
             addon.default_locale = to_language(trans_real.get_language())
         timer.log_interval('5.default_locale')
 
+        # Note: if 'allow-deleted-guid-reuse' waffle switch check above is
+        # falsy (or there is a race condition with an add-on with the same guid
+        # added in the meantime), then trying to create an add-on with a guid
+        # that is already used will trigger an IntegrityError here, which is
+        # fine: we want to prevent the creation in that case and it's too late
+        # to handle the error elegantly as we'll likely be in a task - this
+        # should happen before, at validation.
         addon.save()
         timer.log_interval('6.addon_save')
 
@@ -808,8 +898,9 @@ class Addon(OnChangeMixin, ModelBase):
                 f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
                 f'by addon [{addon.pk}].'
             )
-        if user:
-            AddonUser(addon=addon, user=user).save()
+        AddonUser(addon=addon, user=user).save()
+        activity.log_create(amo.LOG.CREATE_ADDON, addon, user=user)
+        log.info(f'New addon {addon!r} from {upload!r}')
         timer.log_interval('7.end')
         return addon
 
@@ -817,10 +908,10 @@ class Addon(OnChangeMixin, ModelBase):
     def from_upload(
         cls,
         upload,
+        *,
         selected_apps,
+        parsed_data,
         channel=amo.RELEASE_CHANNEL_LISTED,
-        parsed_data=None,
-        user=None,
     ):
         """
         Create an Addon instance, a Version and corresponding File(s) from a
@@ -833,19 +924,16 @@ class Addon(OnChangeMixin, ModelBase):
         """
         assert parsed_data is not None
 
-        addon = cls.initialize_addon_from_upload(parsed_data, upload, channel, user)
-
+        addon = cls.initialize_addon_from_upload(
+            data=parsed_data, upload=upload, channel=channel, user=upload.user
+        )
         Version.from_upload(
             upload=upload,
             addon=addon,
-            selected_apps=selected_apps,
             channel=channel,
+            selected_apps=selected_apps,
             parsed_data=parsed_data,
         )
-
-        activity.log_create(amo.LOG.CREATE_ADDON, addon)
-        log.info(f'New addon {addon!r} from {upload!r}')
-
         return addon
 
     @classmethod
@@ -857,7 +945,7 @@ class Addon(OnChangeMixin, ModelBase):
         """
         default_locale = find_language(data.get('default_locale'))
 
-        if not data.get('is_webextension') or not default_locale:
+        if not default_locale:
             # Don't change anything if we don't meet the requirements
             return data
 
@@ -937,27 +1025,14 @@ class Addon(OnChangeMixin, ModelBase):
 
         If the add-on is not public, it can return a listed version awaiting
         review (since non-public add-ons should not have public versions)."""
-        try:
-            statuses = self.valid_file_statuses
-            status_list = ','.join(map(str, statuses))
-            fltr = {
-                'channel': amo.RELEASE_CHANNEL_LISTED,
-                'files__status__in': statuses,
-            }
-            return self.versions.filter(**fltr).extra(
-                where=[
-                    """
-                    NOT EXISTS (
-                        SELECT 1 FROM files AS f2
-                        WHERE f2.version_id = versions.id AND
-                              f2.status NOT IN (%s))
-                    """
-                    % status_list
-                ]
-            )[0]
-
-        except (IndexError, Version.DoesNotExist):
-            return None
+        return (
+            self.versions.filter(
+                channel=amo.RELEASE_CHANNEL_LISTED,
+                file__status__in=self.valid_file_statuses,
+            )
+            .order_by('created')
+            .last()
+        )
 
     def find_latest_version(self, channel, exclude=((amo.STATUS_DISABLED,))):
         """Retrieve the latest version of an add-on for the specified channel.
@@ -972,26 +1047,22 @@ class Addon(OnChangeMixin, ModelBase):
         # have a latest version.
         if not self.id or self.status == amo.STATUS_DELETED:
             return None
-        # We can't use .exclude(files__status=excluded_statuses) because that
-        # would exclude a version if *any* of its files match but if there is
-        # only one file that doesn't have one of the excluded statuses it
-        # should be enough for that version to be considered.
-        params = {
-            'files__status__in': (set(amo.STATUS_CHOICES_FILE.keys()) - set(exclude))
-        }
-        if channel is not None:
-            params['channel'] = channel
-        try:
-            # Avoid most transformers - keep translations because they don't
-            # get automatically fetched if you just access the field without
-            # having made the query beforehand, and we don't know what callers
-            # will want ; but for the rest of them, since it's a single
-            # instance there is no reason to call the default transformers.
-            latest_qs = self.versions.filter(**params).only_translations()
-            latest = latest_qs.latest()
-        except Version.DoesNotExist:
-            latest = None
-        return latest
+
+        # Avoid most transformers - keep translations because they don't
+        # get automatically fetched if you just access the field without
+        # having made the query beforehand, and we don't know what callers
+        # will want ; but for the rest of them, since it's a single
+        # instance there is no reason to call the default transformers.
+        return (
+            self.versions.exclude(file__status__in=exclude)
+            .filter(
+                **{'channel': channel} if channel is not None else {},
+                file__isnull=False,
+            )
+            .only_translations()
+            .order_by('created')
+            .last()
+        )
 
     @use_primary_db
     def update_version(self, ignore=None, _signal=True):
@@ -1072,22 +1143,6 @@ class Addon(OnChangeMixin, ModelBase):
         channel=RELEASE_CHANNEL_UNLISTED)."""
         return self.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-    @cached_property
-    def binary(self):
-        """Returns if the current version has binary files."""
-        version = self.current_version
-        if version:
-            return version.files.filter(binary=True).exists()
-        return False
-
-    @cached_property
-    def binary_components(self):
-        """Returns if the current version has files with binary_components."""
-        version = self.current_version
-        if version:
-            return version.files.filter(binary_components=True).exists()
-        return False
-
     def get_icon_dir(self):
         return os.path.join(
             jinja_helpers.user_media_path('addon_icons'), '%s' % (self.id // 1000)
@@ -1127,11 +1182,7 @@ class Addon(OnChangeMixin, ModelBase):
             return jinja_helpers.user_media_url('addon_icons') + path
 
     def get_default_icon_url(self, size):
-        # We don't update the default icon very frequently so there is no
-        # automated query parameter for cachebusting...
-        return '{}img/addon-icons/{}-{}.png?v=20210601'.format(
-            settings.STATIC_URL, 'default', size
-        )
+        return staticfiles_storage.url(f'img/addon-icons/default-{size}.png')
 
     @use_primary_db
     def update_status(self, ignore_version=None):
@@ -1147,14 +1198,14 @@ class Addon(OnChangeMixin, ModelBase):
         if not versions.exists():
             status = amo.STATUS_NULL
             reason = 'no listed versions'
-        elif not versions.filter(files__status__in=amo.VALID_FILE_STATUSES).exists():
+        elif not versions.filter(file__status__in=amo.VALID_FILE_STATUSES).exists():
             status = amo.STATUS_NULL
             reason = 'no listed version with valid file'
         elif (
             self.status == amo.STATUS_APPROVED
-            and not versions.filter(files__status=amo.STATUS_APPROVED).exists()
+            and not versions.filter(file__status=amo.STATUS_APPROVED).exists()
         ):
-            if versions.filter(files__status=amo.STATUS_AWAITING_REVIEW).exists():
+            if versions.filter(file__status=amo.STATUS_AWAITING_REVIEW).exists():
                 status = amo.STATUS_NOMINATED
                 reason = 'only an unreviewed file'
             else:
@@ -1166,8 +1217,7 @@ class Addon(OnChangeMixin, ModelBase):
             )
             if (
                 latest_version
-                and latest_version.has_files
-                and (latest_version.all_files[0].status == amo.STATUS_AWAITING_REVIEW)
+                and latest_version.file.status == amo.STATUS_AWAITING_REVIEW
             ):
                 # Addon is public, but its latest file is not (it's the case on
                 # a new file upload). So, call update, to trigger watch_status,
@@ -1342,7 +1392,7 @@ class Addon(OnChangeMixin, ModelBase):
             preview = self._all_previews[0]
             return preview.thumbnail_url
         except IndexError:
-            return settings.STATIC_URL + '/img/icons/no-preview.png'
+            return staticfiles_storage.url('img/icons/no-preview.png')
 
     def can_request_review(self):
         """Return whether an add-on can request a review or not."""
@@ -1357,11 +1407,7 @@ class Addon(OnChangeMixin, ModelBase):
             amo.RELEASE_CHANNEL_LISTED, exclude=()
         )
 
-        return (
-            latest_version is not None
-            and latest_version.files.exists()
-            and not any(file.reviewed for file in latest_version.all_files)
-        )
+        return latest_version is not None and not latest_version.file.reviewed
 
     @property
     def is_disabled(self):
@@ -1436,12 +1482,6 @@ class Addon(OnChangeMixin, ModelBase):
         else:
             manager = self.versions
         return manager.filter(channel=amo.RELEASE_CHANNEL_UNLISTED).exists()
-
-    @property
-    def is_restart_required(self):
-        """Whether the add-on current version requires a browser restart to
-        work."""
-        return self.current_version and self.current_version.is_restart_required
 
     def _is_recommended_theme(self):
         from olympia.bandwagon.models import CollectionAddon
@@ -1524,10 +1564,10 @@ class Addon(OnChangeMixin, ModelBase):
         """
         Get the queries used to calculate addon.last_updated.
         """
-        status_change = Max('versions__files__datestatuschanged')
+        status_change = Max('versions__file__datestatuschanged')
         public = (
             Addon.objects.filter(
-                status=amo.STATUS_APPROVED, versions__files__status=amo.STATUS_APPROVED
+                status=amo.STATUS_APPROVED, versions__file__status=amo.STATUS_APPROVED
             )
             .values('id')
             .annotate(last_updated=status_change)
@@ -1536,9 +1576,9 @@ class Addon(OnChangeMixin, ModelBase):
         stati = amo.VALID_ADDON_STATUSES
         exp = (
             Addon.objects.exclude(status__in=stati)
-            .filter(versions__files__status__in=amo.VALID_FILE_STATUSES)
+            .filter(versions__file__status__in=amo.VALID_FILE_STATUSES)
             .values('id')
-            .annotate(last_updated=Max('versions__files__created'))
+            .annotate(last_updated=Max('versions__file__created'))
         )
 
         return {'public': public, 'exp': exp}
@@ -1546,6 +1586,21 @@ class Addon(OnChangeMixin, ModelBase):
     @cached_property
     def all_categories(self):
         return [addoncat.category for addoncat in self.addoncategory_set.all()]
+
+    def set_categories(self, categories):
+        # Add new categories.
+        for category in set(categories) - set(self.all_categories):
+            AddonCategory.objects.create(addon=self, category=category)
+
+        # Remove old categories.
+        for category in set(self.all_categories) - set(categories):
+            AddonCategory.objects.filter(addon=self, category_id=category.id).delete()
+
+        # Update categories cache on the model.
+        self.all_categories = categories
+
+        # Make sure the add-on is properly re-indexed
+        update_search_index(Addon, self)
 
     @cached_property
     def current_previews(self):
@@ -1583,36 +1638,13 @@ class Addon(OnChangeMixin, ModelBase):
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
 
-    def check_ownership(
-        self, request, require_owner, require_author, ignore_disabled, admin
-    ):
-        """
-        Used by acl.check_ownership to see if request.user has permissions for
-        the addon.
-        """
-        if require_author:
-            require_owner = False
-            ignore_disabled = True
-            admin = False
-        return acl.check_addon_ownership(
-            request,
-            self,
-            admin=admin,
-            dev=(not require_owner),
-            ignore_disabled=ignore_disabled,
-        )
-
     def should_show_permissions(self, version=None):
         version = version or self.current_version
         return (
             self.type == amo.ADDON_EXTENSION
             and version
-            and version.all_files[0]
-            and (
-                not version.all_files[0].is_webextension
-                or version.all_files[0].permissions
-                or version.all_files[0].optional_permissions
-            )
+            and version.file
+            and (version.file.permissions or version.file.optional_permissions)
         )
 
     # Aliases for reviewerflags below are not just useful in case
@@ -1747,6 +1779,23 @@ class Addon(OnChangeMixin, ModelBase):
 
         return GitExtractionEntry.objects.filter(addon=self, in_progress=True).exists()
 
+    @cached_property
+    def tag_list(self):
+        attach_tags([self])
+        return self.tag_list
+
+    def set_tag_list(self, new_tag_list):
+        tag_list_to_add = set(new_tag_list) - set(self.tag_list)
+        tag_list_to_drop = set(self.tag_list) - set(new_tag_list)
+        tags = Tag.objects.filter(tag_text__in=(*tag_list_to_add, *tag_list_to_drop))
+
+        for tag in tags:
+            if tag.tag_text in tag_list_to_add:
+                tag.add_tag(self)
+            elif tag.tag_text in tag_list_to_drop:
+                tag.remove_tag(self)
+        self.tag_list = new_tag_list
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
 
@@ -1804,7 +1853,7 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
     if old_status not in amo.UNREVIEWED_ADDON_STATUSES:
         # New: will (re)set nomination only if it's None.
         latest_version.reset_nomination_time()
-    elif latest_version.has_files:
+    else:
         # Updating: inherit nomination from last nominated version.
         # Calls `inherit_nomination` manually given that signals are
         # deactivated to avoid circular calls.
@@ -1970,7 +2019,10 @@ class AddonCategory(models.Model):
             models.Index(fields=('category_id', 'addon'), name='category_addon_idx'),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('addon', 'category_id'), name='addon_id'),
+            models.UniqueConstraint(
+                fields=('addon', 'category_id'),
+                name='addons_categories_addon_category_id',
+            ),
         ]
 
     def __init__(self, *args, **kwargs):
@@ -2020,14 +2072,19 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
         base_manager_name = 'unfiltered'
         db_table = 'addons_users'
         indexes = [
-            models.Index(fields=('listed',), name='listed'),
-            models.Index(
-                fields=('addon', 'user', 'listed'), name='addon_user_listed_idx'
+            models.Index(fields=('listed',), name='addons_users_listed_idx'),
+            LongNameIndex(
+                fields=('addon', 'user', 'listed'),
+                name='addons_users_addon_user_listed_idx',
             ),
-            models.Index(fields=('addon', 'listed'), name='addon_listed_idx'),
+            models.Index(
+                fields=('addon', 'listed'), name='addons_users_addon_listed_idx'
+            ),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('addon', 'user'), name='addon_id'),
+            models.UniqueConstraint(
+                fields=('addon', 'user'), name='addons_users_addon_user'
+            ),
         ]
 
     def delete(self):
@@ -2194,7 +2251,7 @@ class Preview(BasePreview, ModelBase):
         db_table = 'previews'
         ordering = ('position', 'created')
         indexes = [
-            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('addon',), name='previews_addon_idx'),
             models.Index(
                 fields=('addon', 'position', 'created'),
                 name='addon_position_created_idx',

@@ -2,6 +2,7 @@ import json
 
 from unittest import mock
 
+from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from pyquery import PyQuery as pq
@@ -59,10 +60,10 @@ class TestHomeAndIndex(TestCase):
         # but they don't see any modules.
         assert len(modules) == 0
 
-    @mock.patch('olympia.accounts.utils.default_fxa_login_url')
-    def test_django_login_page(self, default_fxa_login_url):
+    @mock.patch('olympia.zadmin.admin.redirect_for_login')
+    def test_django_login_page(self, redirect_for_login):
         login_url = 'https://example.com/fxalogin'
-        default_fxa_login_url.return_value = login_url
+        redirect_for_login.return_value = HttpResponseRedirect(login_url)
         # Check we can actually access the /login page - django admin uses it.
         url = reverse('admin:login')
         response = self.client.get(url)
@@ -85,10 +86,10 @@ class TestHomeAndIndex(TestCase):
         response = self.client.get(url)
         self.assert3xx(response, '/en-US/admin/models/')
 
-    @mock.patch('olympia.accounts.utils.default_fxa_login_url')
-    def test_django_login_page_with_next(self, default_fxa_login_url):
+    @mock.patch('olympia.zadmin.admin.redirect_for_login')
+    def test_django_login_page_with_next(self, redirect_for_login):
         login_url = 'https://example.com/fxalogin'
-        default_fxa_login_url.return_value = login_url
+        redirect_for_login.return_value = HttpResponseRedirect(login_url)
 
         # if django admin passes on a next param, check we use it.
         url = reverse('admin:login') + '?next=/en-US/admin/models/addon/'
@@ -120,6 +121,7 @@ class TestRecalculateHash(TestCase):
         'file_path',
         amo.tests.AMOPaths().file_fixture_path('https-everywhere.xpi'),
     )
+    @mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
     def test_regenerate_hash(self):
         version = Version.objects.create(addon_id=3615)
         file = File.objects.create(filename='https-everywhere.xpi', version=version)

@@ -1,11 +1,14 @@
 import uuid
 
+from django.conf import settings
+from django.db import transaction
+from django.forms import ValidationError
+from django.utils.translation import gettext
+
 import waffle
 
 from celery import chain, chord
-from django.conf import settings
-from django.forms import ValidationError
-from django.utils.translation import gettext
+from django_statsd.clients import statsd
 
 import olympia.core.logger
 
@@ -16,6 +19,7 @@ from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
 from olympia.translations.models import Translation
+from olympia.versions.models import Version
 from olympia.versions.utils import process_color_value
 
 from . import tasks
@@ -148,7 +152,6 @@ def fix_addons_linter_output(validation, channel):
     metadata = {
         'listed': channel == amo.RELEASE_CHANNEL_LISTED,
         'identified_files': identified_files,
-        'is_webextension': True,
     }
     # Add metadata already set by the linter.
     metadata.update(validation.get('metadata', {}))
@@ -280,11 +283,11 @@ class Validator:
 
 def extract_theme_properties(addon, channel):
     version = addon.find_latest_version(channel)
-    if not version or not version.all_files:
+    if not version:
         return {}
     try:
         parsed_data = parse_xpi(
-            version.all_files[0].file_path, addon=addon, user=core.get_user()
+            version.file.file_path, addon=addon, user=core.get_user()
         )
     except ValidationError:
         # If we can't parse the existing manifest safely return.
@@ -352,3 +355,48 @@ def add_manifest_version_error(validation):
                 'fatal': True,
             },
         )
+
+
+@transaction.atomic
+def create_version_for_upload(addon, upload, channel, parsed_data=None):
+    fileupload_exists = addon.fileupload_set.filter(
+        created__gt=upload.created, version=upload.version
+    ).exists()
+    version_exists = Version.unfiltered.filter(
+        addon=addon, version=upload.version
+    ).exists()
+    if fileupload_exists or version_exists:
+        log.info(
+            'Skipping Version creation for {upload_uuid} that would '
+            ' cause duplicate version'.format(upload_uuid=upload.uuid)
+        )
+        return None
+    else:
+        log.info(
+            'Creating version for {upload_uuid} that passed '
+            'validation'.format(upload_uuid=upload.uuid)
+        )
+        # Note: if we somehow managed to get here with an invalid add-on,
+        # parse_addon() will raise ValidationError and the task will fail
+        # loudly in sentry.
+        if parsed_data is None:
+            parsed_data = parse_addon(upload, addon, user=upload.user)
+        new_addon = not Version.unfiltered.filter(addon=addon).exists()
+        version = Version.from_upload(
+            upload,
+            addon,
+            channel,
+            selected_apps=[x[0] for x in amo.APPS_CHOICES],
+            parsed_data=parsed_data,
+        )
+        channel_name = amo.CHANNEL_CHOICES_API[channel]
+        # This function is only called via the signing api flow
+        statsd.incr(
+            f'signing.submission.{"addon" if new_addon else "version"}.{channel_name}'
+        )
+        # The add-on's status will be STATUS_NULL when its first version is
+        # created because the version has no files when it gets added and it
+        # gets flagged as invalid. We need to manually set the status.
+        if addon.status == amo.STATUS_NULL and channel == amo.RELEASE_CHANNEL_LISTED:
+            addon.update(status=amo.STATUS_NOMINATED)
+        return version

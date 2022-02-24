@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-08-08 10:55+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2022-02-14 11:34+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "tür"
 
@@ -75,9 +76,6 @@ msgstr "Bağlantılara izin verilmez."
 msgid "This display name cannot be used."
 msgstr "Bu görünen ad kullanılamaz."
 
-msgid "This reviewer name cannot be used."
-msgstr "Bu isim kullanılamaz."
-
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Ana sayfa alanı sadece harici web sitelerine bağlantı vermek için kullanılabilir."
 
@@ -109,6 +107,9 @@ msgstr "Yardım mı lazım?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Bildirim [%s] mevcut değil"
+
+msgid "Add-ons Review Team"
+msgstr "Eklenti İnceleme Ekibi"
 
 msgid "Review"
 msgstr "İnceleme"
@@ -155,11 +156,8 @@ msgstr "Eklenti ve koleksiyon yolları \"/\" ile bitmelidir"
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Eklenti adlarında Mozilla ve Firefox tescilli markaları kullanılamaz."
 
-msgid "Sort by:"
-msgstr "Sıralama:"
-
-msgid "More"
-msgstr "Daha fazla"
+msgid "Site permissions for {hostnames}"
+msgstr "{hostnames} site izinleri"
 
 msgid "My Add-ons"
 msgstr "Eklentilerim"
@@ -238,7 +236,7 @@ msgid "Not allowed"
 msgstr "İzin verilmiyor"
 
 msgid "Oops! Not allowed."
-msgstr "İzin verilmiyor"
+msgstr "İzin verilmiyor."
 
 msgid "You tried to do something that you weren't allowed to."
 msgstr "İzniniz olmayan bir şey yapmaya çalıştınız."
@@ -247,6 +245,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Bu HTTPS sitesi bir \"Referer üst bilgisi\" gerektirmesine rağmen tarayıcınız onu göndermediği için bu mesajı görüyorsunuz. Bu üst bilgi, tarayıcınızın üçüncü taraflarca ele geçirilmediğinden emin "
+"olmak olmayı sağlayan bir güvenlik önlemidir."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
@@ -266,16 +266,16 @@ msgstr "Bulunamadı"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Üzgünüz, aradığınız sayfayı bulamadık.</h1><p>Talep ettiğiniz sayfa veya dosya sitemizde bulunamadı. Eski bir bağlantıya tıklamış veya adresi yanlış yazmış olabilirsiniz.</p><ul><li>Adresi elle "
-"yazdıysanız lütfen tekrar kontrol edin.</li><li>Başka bir sayfadaki bağlantıya tıkladıysanız lütfen %(open_bug_link)ssorunu bildirin%(close_bug_link)s. Hangi sayfadan geldiğinizi ve neyi aradığınızı"
-" yazarsanız sorunu düzeltmek için elimizden geleni yaparız.</li></ul><p>İsterseniz, web sitemizdeki popüler sayfalara da göz atabilirsiniz.</p><ul><li><a href=\"%(rec)s\">Öne çıkan eklentiler</a> "
-"listesiyle mi ilgileniyorsunuz?</li><li><a href=\"%(search)s\">Eklenti araması</a> yapmak mı istiyorsunuz? <a href=\"%(search)s\">Arama sayfasına</a> gidebilir veya üstteki arama kutusunu "
-"kullanabilirsiniz.</li><li>Baştan başlamak isterseniz <a href=\"%(home)s\">eklenti ana sayfasına</a> gitmeniz yeterlidir.</li></ul>"
+"yazdıysanız lütfen tekrar kontrol edin.</li><li>Başka bir sayfadaki bağlantıya tıkladıysanız lütfen %(open_bug_link)ssorunu bildirin%(close_bug_link)s. Hangi sayfadan geldiğinizi ve neyi "
+"aradığınızı yazarsanız sorunu düzeltmek için elimizden geleni yaparız.</li></ul><p>İsterseniz, web sitemizdeki popüler sayfalara da göz atabilirsiniz.</p><ul><li><a href=\"%(rec)s\">Öne çıkan "
+"eklentiler</a> listesiyle mi ilgileniyorsunuz?</li><li><a href=\"%(search)s\">Eklenti araması</a> yapmak mı istiyorsunuz? <a href=\"%(search)s\">Arama sayfasına</a> gidebilir veya üstteki arama "
+"kutusunu kullanabilirsiniz.</li><li>Baştan başlamak isterseniz <a href=\"%(home)s\">eklenti ana sayfasına</a> gitmeniz yeterlidir.</li></ul>"
 
 msgid "Oops"
 msgstr "Hata"
@@ -285,8 +285,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Bir hata oluştu.</h1> <p>Yakında bu hatayı düzelteceğiz.</p> <p>Sayfayı yenilemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler Ana Sayfası</a>'na dönebilirsiniz. Ayrıca <a "
-"href=\"https://github.com/mozilla/addons/issues/new\">sorunu rapor edip</a> bu sayfaya nasıl geldiğiniz anlatarak sorunu gidermemize yardım edebilirsiniz.</p>"
+"<h1>Bir hata oluştu.</h1> <p>Yakında bu hatayı düzelteceğiz.</p> <p>Sayfayı yenilemeyi deneyebilir veya <a href=\"%(home)s\">Eklentiler Ana Sayfası</a>'na dönebilirsiniz. Ayrıca <a href=\"https://"
+"github.com/mozilla/addons/issues/new\">sorunu rapor edip</a> bu sayfaya nasıl geldiğiniz anlatarak sorunu gidermemize yardım edebilirsiniz.</p>"
 
 msgid "Register or Log in"
 msgstr "Kaydol veya giriş yap"
@@ -316,26 +316,6 @@ msgstr "Web sitemizde bakım çalışması yapıldığından şu anda bu özelli
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Web sitemizde bakım çalışması yapıldığından şu anda bu özellik devre dışıdır Lütfen biraz sonra tekrar deneyin."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Sayfa <a href=\"%(current_pg_url)s\">%(current_pg)s</a> / <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "İlk sayfaya git"
-
-msgid "Previous"
-msgstr "Önceki"
-
-msgid "Jump to last page"
-msgstr "Son sayfaya atla"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "<b>%(count)s</b> sonuçtan <b>%(begin)s</b>&ndash;<b>%(end)s</b> arasındakiler gösteriliyor"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -371,6 +351,15 @@ msgstr "İmza zaman aşımına uğramış."
 msgid "Error decoding signature."
 msgstr "İmza çözümleme hatası."
 
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr "Doğrulama hash'i eşleşmiyor. Oturum süresi dolmuş olabilir."
+
+msgid "Valid user session not found matching the provided session key."
+msgstr "Sağlanan oturum anahtarıyla eşleşen geçerli kullanıcı oturumu bulunamadı."
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr "Erişim token'ı yenilemesi başarısız oldu. Kullanıcının FxA'ya yeniden giriş yapması gerekiyor."
+
 msgid "Wrong type for one or more keys in payload"
 msgstr "Yükte bir veya daha fazla anahtar için yanlış tür"
 
@@ -385,9 +374,6 @@ msgstr "E-posta adresi bulunamadı."
 
 msgid "Unavailable for legal reasons."
 msgstr "Hukuki nedenlerden dolayı kullanılamıyor."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "Alan en az {num} karakter uzunluğunda olmalı."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "{lang_code} dil kodu geçersiz."
@@ -418,7 +404,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Lütfen WebExtensions'ın %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s'da \"*\" kabul etmeyeceğini unutmayın."
 
 msgid "GUID"
 msgstr "GUID"
@@ -428,17 +414,14 @@ msgstr "Sürümler"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 "Desteklenen uygulamanız manifest dosyası gerektirmese bile %(amo_manifests_mdn_link_open)sburada%(amo_manifests_mdn_link_close)s belirtildiği şekilde gerekli özelliklere sahip bir dosya "
 "eklemelisiniz."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu özel adres zaten koleksiyonlarınızdan biri tarafından kullanılıyor."
-
-msgid "Name cannot be empty."
-msgstr "İsim boş bırakılamaz."
 
 msgid "This name cannot be used."
 msgstr "Bu isim kullanılamaz."
@@ -458,10 +441,6 @@ msgstr "İmza Durumu"
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s bekleyen bir gönderide"
-
-#, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -490,12 +469,6 @@ msgstr "Listelenen inceleme"
 msgid "Review Unlisted"
 msgstr "İnceleme listeden kaldırıldı"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "Bu engel, regex temelli eski engelden içe aktarıldı."
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "Yapılan değişiklikler eski engelleme listesinde GÜNCELLENMEYECEKTİR: kinto admin webui aracılığıyla manuel değişiklik yapmanız gerekir."
-
 # 78%
 # 100%
 #, python-format
@@ -512,9 +485,6 @@ msgstr "%(count)s eklenti GUID'si %(v_min)s ila %(v_max)s için zaten engellendi
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s eklenti GUID'si bulunamadı"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Aşağıdaki blok(lar), regex temelli eski engelden içe aktarıldı."
 
 msgid "Save"
 msgstr "Kaydet"
@@ -553,9 +523,6 @@ msgstr "Engeli düzenle"
 
 msgid "versions"
 msgstr "sürümler"
-
-msgid "Included in legacy blocklist."
-msgstr "Eski engelleme listesine dahil edildi."
 
 msgid "{addon} was created."
 msgstr "{addon} oluşturuldu."
@@ -652,6 +619,7 @@ msgstr "{addon} {version} süper incelemesi talep edildi."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Bu eklenti Yönetici İncelemesi için işaretlendi.   Hâlâ inceleme sıramızda, ama yönetici incelemecilerimizden biri tarafından kontrol edilecek. Bu inceleme normalden biraz daha uzun sürebilir."
 
 msgid "Comment on {addon} {version}."
 msgstr "{addon} {version} için yorum yapın."
@@ -738,6 +706,14 @@ msgid "Approved but waiting"
 msgstr "Onaylandı ancak bekliyor"
 
 msgid "Account updated."
+msgstr "Hesap güncellendi."
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "Hesap güncellendi."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "Hesap güncellendi."
 
 msgid "Created: {0}."
@@ -981,8 +957,14 @@ msgstr "Silindi"
 msgid "Unlisted"
 msgstr "Listelenmemiş"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr ""
+
+msgid "Addon API"
+msgstr "Eklenti API'si"
+
+msgid "Automatically generated by AMO"
+msgstr "AMO tarafından otomatik olarak oluşturuldu"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1024,6 +1006,9 @@ msgstr "Kullanımdan kaldırılan LWT"
 msgid "Theme (Static)"
 msgstr "Tema (Sabit)"
 
+msgid "Site Permission"
+msgstr "Site izni"
+
 # Plural in this context means many of the add-on type
 msgid "Extensions"
 msgstr "Uzantılar"
@@ -1055,6 +1040,9 @@ msgstr "Kullanımdan kaldırılan LWT'ler"
 
 msgid "Themes (Static)"
 msgstr "Tema (Sabit)"
+
+msgid "Site Permissions"
+msgstr "Site izinleri"
 
 msgid "Alerts & Updates"
 msgstr "Uyarılar ve Güncellemeler"
@@ -1109,6 +1097,8 @@ msgstr "Gizlilik ve Güvenlik"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Web'de gizlice ve güvenle gezinmenizi sağlayacak Firefox uzantılarını indirin. Bu kategoride reklamları ve sinsi takipçileri engelleyen yönlendirmeleri yöneten ve daha fazlasını yapan uzantılar yer "
+"alıyor."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -1137,7 +1127,6 @@ msgstr "Web Geliştirme"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Diğer"
 
@@ -1331,6 +1320,30 @@ msgstr "Seyahat"
 
 msgid "Video"
 msgstr "Video"
+
+msgid "Mozilla Public License 2.0"
+msgstr "Mozilla Kamu Lisansı 2.0"
+
+msgid "GNU General Public License v2.0"
+msgstr "GNU Genel Kamu Lisansı v2.0"
+
+msgid "GNU General Public License v3.0"
+msgstr "GNU Genel Kamu Lisansı v3.0"
+
+msgid "GNU Library General Public License v2.1"
+msgstr ""
+
+msgid "GNU Library General Public License v3.0"
+msgstr ""
+
+msgid "The MIT License"
+msgstr "MIT Lisansı"
+
+msgid "The BSD License"
+msgstr "BSD Lisansı"
+
+msgid "Mozilla Public License 1.1"
+msgstr "Mozilla Kamu Lisansı 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Tüm hakları saklıdır"
@@ -1702,6 +1715,9 @@ msgstr "Geçersiz sürüm aralığı."
 msgid "Need at least one compatible application."
 msgstr "En az bir uyumlu uygulamaya ihtiyaç var."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Yakın zamanda çok fazla yükleme yaptınız. Lütfen bir süre sonra tekrar deneyin."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "Yüklemenizde bir sorun oluştu. Lütfen tekrar deneyin."
 
@@ -1710,9 +1726,6 @@ msgstr "Başarısız doğrulamayı geçersiz kıl"
 
 msgid "Need to select at least one application."
 msgstr "En az bir uygulamanın seçilmesi gerekiyor."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Yakın zamanda çok fazla yükleme yaptınız. Lütfen bir süre sonra tekrar deneyin."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "{version} sürümü, bu eklenti için {block_link} ile eşleşiyor. Ek bilgi için {amo_admins} ile iletişime geçebilirsiniz."
@@ -1744,16 +1757,28 @@ msgstr "Kaynak dosya yüklendi fakat hiçbir kaynağın gerekmediğini belirttin
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "İsim ve özetin toplamda en fazla {limit_value} karakter olduğundan emin olun (şu an {show_value})."
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 
 msgid "Display Name"
 msgstr "Görünen ad"
+
+msgid "Origin"
+msgstr "Köken"
+
+msgid "Permissions"
+msgstr "İzinler"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr ""
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Geçersiz ya da bozulmuş eklenti dosyası."
@@ -1771,7 +1796,7 @@ msgstr "Mozilla Güvenlik Bildirimi: AMO API kimlik bilgileriniz iptal edildi"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Doğrulama çok fazla hata/uyarı üretti, %s iletileri kesildi. Görünen iletileri ele aldıktan sonra, diğerlerini görebilirsiniz."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -1875,6 +1900,8 @@ msgstr "Ön izlemenizi yüklerken bir hata oluştu."
 #, python-format
 msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Bu %s eklentisinin en son onaylanmış sürümü silinemez veya devre dışı bırakılamaz çünkü önceki sürüm %s tanıtımı için onaylanmamış. Bu konuda ilgili yardıma ihtiyacınız varsa lütfen AMO "
+"yöneticileri ile iletişime geçin."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1913,7 +1940,7 @@ msgid "Toolbar area text and icons"
 msgstr "Araç çubuğu alanı metni ve simgeleri"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr ""
+msgstr "Araç çubuğundaki ve etkin sekmedeki metnin ve simgelerin rengi. Manifest alanı:  bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Araç çubuğu alanı arka planı"
@@ -1931,7 +1958,7 @@ msgid "Tab highlight"
 msgstr "Sekme vurgulama"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "Etkin sekmenin vurgu rengi. Firefox 89+'da sekmenin etrafında bir kenarlık ve eski Firefox'larda sekmenin üzerinde bir çizgi olarak uygulanır. Manifest alanı:  tab_line."
 
 msgid "Review requested."
 msgstr "İnceleme talep edildi."
@@ -1953,24 +1980,6 @@ msgstr "Eklentim bu kategorilerden hiçbirine uymuyor"
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Firefox Eklenti Dağıtım Sözleşmesi"
-
-msgid "Review Policies and Rules"
-msgstr "İnceleme İlkeleri ve Kuralları"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Bu sözleşmedeki kuralları ve politikaları okudum ve kabul ediyorum"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Hesabınıza görünen ad eklemeniz gerekir. Böylece kullanıcılar eklentinizin kimden geldiğini öğrenir. Lütfen aşağıya bir tane girin."
-
-msgid "Accept"
-msgstr "Kabul et"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "veya <a href=\"{0}\">vazgeç</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Geliştirici hesapları hakkında daha fazla bilgi"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -2033,6 +2042,15 @@ msgstr "Geliştirici Belgelerinde Ara"
 msgid "Search"
 msgstr "Arama"
 
+msgid "Generate Site Permission Add-on"
+msgstr "Site izni eklentisi oluştur"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr ""
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr "Eklenti paketinizi yüklemek için aşağıdaki alanı kullanın."
 
@@ -2084,10 +2102,12 @@ msgstr ""
 "yüklemeyi düşünün."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uyumluluğu güncelle</a> <a href=\"%(version_url)s\" class=\"button\">Yeni sürüm yükle</a> veya <a href=\"#\" "
-"class=\"close\">görmezden gel</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uyumluluğu güncelle</a> <a href=\"%(version_url)s\" class=\"button\">Yeni sürüm yükle</a> veya <a href=\"#\" class="
+"\"close\">görmezden gel</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Uygulama uygunluğu sınırlarına bak ve güncelle"
@@ -2173,6 +2193,9 @@ msgstr "Daveti kabul etmeniz size eklentiyi düzenleme erişimi verir ve adını
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "{addon_name} eklentisi için yazar olarak eklenmek istediğinizi onaylamak için aşağıdaki Kabul Et düğmesine tıklayın."
 
+msgid "Accept"
+msgstr "Kabul et"
+
 msgid "Decline"
 msgstr "Reddet"
 
@@ -2212,7 +2235,7 @@ msgid "Tags"
 msgstr "Etiketler"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Etiketler, kullanıcıların eklentinizi bulmasına yardımcı olur. En fazla {0} etiketiniz olabilir. Yalnızca eklentinizle alakalı etiketleri seçin."
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -2223,7 +2246,7 @@ msgid "Contributions URL"
 msgstr "Katkıda bulunanlar adresi"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Kullanıcılarınızdan parasal katkı talep etmek istiyorsanız bunu yapabilecekleri sayfayı belirtin."
 
 msgid "Default Locale"
 msgstr "Varsayılan dil"
@@ -2238,15 +2261,16 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Eklentinizin başka bir ana sayfası varsa adresini buraya girin. Web siteniz başka dillere çevirilmişse, bu alanın birden çok çevirisi eklenebilir. Yalnızca listelenen eklentiler için geçerlidir."
 
 # 75%
 # 100%
 msgid "Describe Add-on"
 msgstr "Eklentinizi tanımlayın"
 
-#. {0} is the addon name
 # 75%
 # 100%
+#. {0} is the addon name
 msgid "Describe {0}"
 msgstr "{0} eklentinizi tanımlayın"
 
@@ -2315,8 +2339,8 @@ msgid "Email"
 msgstr "E-posta"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Destek talepleri için bir e-posta adresi görüntülemek isterseniz buraya girin. Her dil için farklı adresleriniz varsa, bu alanın birden çok çevirisi eklenebilir. Yalnızca listelenen eklentiler için "
 "geçerlidir."
@@ -2403,7 +2427,7 @@ msgid "128x128px"
 msgstr "128x128 px"
 
 msgid "Will be the standard in future add-on detail pages."
-msgstr ""
+msgstr "Gelecekteki eklenti detay sayfalarında standart olacak."
 
 msgid "Upload a Custom Icon..."
 msgstr "Özel simge yükle..."
@@ -2469,7 +2493,7 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Eklentiniz şu anda \"Görünmez\" olarak ayarlanmış."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "Bu durumdayken dağıtım yöntemi olarak sadece \"Kendi başınıza\"yı kullanabilirsiniz."
 
 msgid "General Tests"
 msgstr "Genel testler"
@@ -2496,15 +2520,23 @@ msgstr "Önceki sürümde bulunan ve yoksayılan iletileri gizle"
 msgid "Top"
 msgstr ""
 
-msgid "Delete Add-on"
-msgstr "Eklentiyi sil"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Eklentinizi silmek, bu eklenti için gönderdiğiniz tüm sürümleri ve dosyaları listelenmiş olsun olmasın kalıcı olarak silecektir. Eklenti kimliği hesabınıza bağlı kalmaya devam edecek, böylece "
 "başkaları aynı kimliği kullanarak sürümleri gönderemeyecektir."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Eklentinizi silmek, bu eklenti için gönderdiğiniz tüm sürümleri ve dosyaları listelenmiş olsun olmasın kalıcı olarak silecektir. Eklenti kimliği hesabınıza bağlı kalmaya devam edecek, böylece "
+"başkaları aynı kimliği kullanarak sürümleri gönderemeyecektir."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Eklentiyi sil"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Kararınızı onaylamak için şu metni yazın: {slug}"
@@ -2539,6 +2571,9 @@ msgstr "İndirmeler ve kullanıcılarla ilgili günlük istatistikler"
 msgid "Statistics"
 msgstr "İstatistikler"
 
+msgid "More"
+msgstr "Daha fazla"
+
 msgid "Manage Status & Versions"
 msgstr "Durumu ve Sürümleri Yönet"
 
@@ -2546,7 +2581,7 @@ msgid "View Recent Changes"
 msgstr "Son Değişikliklere Bak"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Bu eklentide, yayımlanmak üzere gönderilmeden önce gerekli olan bazı bilgiler eksik."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Bu eklentinin hiç sürümü yok."
@@ -2670,14 +2705,22 @@ msgstr "Bu notlar ayrıntı sayfasında görünecektir."
 msgid "How to Distribute this Version"
 msgstr "Bu Sürüm Nasıl Dağıtılır?"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "Eklenti Dağıtımı ve İmzalama hakkında daha fazla bilgi"
+msgid "To get started, select how you would like to distribute this version."
+msgstr ""
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr "Bu seçenekler hakkında daha fazla bilgi almak için Firefox Uzantı Atölyesi'ndeki <a %(a_attrs)s>Eklenti Dağıtımı ve İmzalama</a> sayfasını okuyabilirsiniz."
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr ""
 
 msgid "Submission Complete"
 msgstr "Gönderim tamamlandı"
 
-msgid "Version Submitted for Review"
-msgstr "Sürüm incelemeye gönderildi"
+msgid "Version Submitted"
+msgstr "Sürüm gönderildi"
 
 msgid "Preview of the version submitted"
 msgstr "Gönderilen sürümün ön izlemesi"
@@ -2685,19 +2728,18 @@ msgstr "Gönderilen sürümün ön izlemesi"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Hepsi bu kadar! Bu sürüm, incelemeyi geçtikten sonra yayımlanacak. İncelendiğinde size bildirilecektir."
 
-msgid "Version Submitted"
-msgstr "Sürüm gönderildi"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "Hepsi bu kadar! Bu sürüm sitemizde kısa süre içerisinde kullanılabilir olacak."
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Teşekkürler! Bu sürüm incelenmek üzere gönderildi. İnceleme tamamlandığında veya inceleyicimizin herhangi bir sorusu olursa size bilgi vereceğiz."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
 
 msgid "Manage Listing"
@@ -2709,10 +2751,7 @@ msgstr "Eğer sürümünüz küçültülme, birleştirilme vs. şekilde makine t
 msgid "Edit version {0}"
 msgstr "{0} sürümünü düzenle"
 
-msgid "Version Signature Pending"
-msgstr "Sürüm imzası bekleniyor"
-
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
+msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
 msgid "Go to My Submissions"
@@ -2724,15 +2763,11 @@ msgstr "Kaynak kodu yükleme"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Kaynak kodu göndermeniz mi gerekiyor?"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Kaynak kodu göndermeniz gerekebilir. Bunu yapmazsanız, eklentiniz siteden kaldırılabilir!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr ""
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Lütfen <a %(a_attrs)s>kaynak kodu gönderim politikasını</a> inceleyin."
-
-msgid "Do you use any of the following?"
-msgstr "Aşağıdakilerden herhangi birini kullanıyor musunuz?"
+msgid "Do you use any of the following in your extension?"
+msgstr "Uzantınızda aşağıdakilerden herhangi birini kullanıyor musunuz?"
 
 msgid "Code generators or minifiers"
 msgstr "Kod üreteçleri veya küçültücüleri"
@@ -2743,20 +2778,19 @@ msgstr "Birden çok dosyayı tek bir dosyada birleştiren araçlar, örneğin <s
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Hem HTML hem de CSS için web şablonu motorları"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr ""
 
-msgid "Your Submission Requires Source Code."
-msgstr "Gönderiniz için kaynak kodu gerekiyor."
+msgid "You must submit your extension's source code."
+msgstr "Eklentinizin kaynak kodunu göndermelisiniz."
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Kaynak kodu, aşağıdakileri içeren <a %(a_attrs)s>politika gereksinimlerini</a> karşılamalıdır:"
+msgid "Your source code must include:"
+msgstr "Kaynak kodunuz şunları içermelidir:"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
@@ -2765,22 +2799,15 @@ msgstr "Gerekli tüm teknik adımları uygulayan bir derleme betiği."
 msgid "Operating system and build environment requirements."
 msgstr "İşletim sistemi ve yapı ortamı gereksinimleri."
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 
-msgid "How to Submit:"
-msgstr "Nasıl Gönderilir:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Talimatları kaynak kodunuzdaki bir README dosyasına ekleyin,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
+msgstr "Daha fazla bilgi için lütfen Firefox Eklenti Atölyesi'ndeki <a %(a_attrs)s>Kaynak Kodu Gönderme</a> sayfasını okuyun."
 
 msgid "Upload source code:"
 msgstr "Kaynak kodu yükle:"
@@ -2814,9 +2841,6 @@ msgstr "Tema sürümü oluştur"
 
 msgid "Create a Theme"
 msgstr "Tema oluştur"
-
-msgid "Sign Add-on"
-msgstr "Eklentiyi imzala"
 
 msgid "Theme generate"
 msgstr "Tema oluştur"
@@ -2884,8 +2908,8 @@ msgstr "JWT sırrı"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2957,7 +2981,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3035,17 +3060,41 @@ msgstr "Yönetici Yönetimi"
 msgid "View Statistics Dashboard"
 msgstr "İstatistik panosunu göster"
 
+msgid "Review Policies and Rules"
+msgstr "İnceleme İlkeleri ve Kuralları"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Bu sözleşmedeki kuralları ve politikaları okudum ve kabul ediyorum"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Hesabınıza görünen ad eklemeniz gerekir. Böylece kullanıcılar eklentinizin kimden geldiğini öğrenir. Lütfen aşağıya bir tane girin."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "veya <a href=\"{0}\">vazgeç</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Geliştirici hesapları hakkında daha fazla bilgi"
+
 msgid "Developer News"
 msgstr "Geliştirici Haberleri"
 
 msgid "View the blog &#9658;"
 msgstr "Blogu görüntüle ►"
 
+msgid "Version Signature Pending"
+msgstr "Sürüm imzası bekleniyor"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+
 msgid "License"
 msgstr "Lisans"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Lütfen kaynak kodunuzda verdiğiniz haklara uygun bir lisans seçin. Yalnızca listelenen eklentiler için geçerlidir."
+
+msgid "Sort by:"
+msgstr "Sıralama:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3301,9 +3350,6 @@ msgstr "Durum ve sürümler"
 # 100%
 msgid "Edit this version"
 msgstr "Bu sürümü düzenle"
-
-msgid "0 files"
-msgstr "0 dosya"
 
 msgid "Re-enable Version"
 msgstr "Sürümü yeniden etkinleştir"
@@ -3562,7 +3608,6 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "Akademik bilgelik. 10 milyondan fazla araştırma makalesine ücretsiz erişim."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Fare hareketlerini özelleştirin. 50'den fazla fare hareketiyle gezinmenin yeni yolunu keşfedin."
 
@@ -3593,12 +3638,12 @@ msgstr "Sekmeyi kapattıktan sonra çerezleri otomatik olarak silin."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "İstediğiniz sayfanın metin boyutunu ayarlamak ve sayfanın boyutunu büyütmek için basit bir yol."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Takipçileri durdurun ve onlar hakkında daha fazla bilgi edinin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3630,7 +3675,8 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Belirlediğiniz zaman aralığına göre sekmeler otomatik olarak tazelensin."
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+#. editorial content for the primary hero shelves.
+msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -3639,7 +3685,6 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Web'de gezinirken ek bir izlenme koruması katmanına kavuşun."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
@@ -3650,7 +3695,7 @@ msgstr "YouTube videolarını varsayılan olarak en yüksek kalitede oynatın, e
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Takipçileri zleyicileri takip edin. Sizi kimin izlediğine tek tıkla göz atın."
+msgstr "Takipçileri takip edin. Sizi kimin izlediğine tek tıkla göz atın."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
@@ -3709,25 +3754,23 @@ msgstr "Etkili indirme yönetimi. Durum çubuğu, indirme geçmişi sayfası ve 
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "İnternetten OneNote'a bilgi kaydedip düzenleyin, işaretleyin ve daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Google ve Yandex arama sonuçlarına tıkladığınızda devreye giren reklam takipçilerini durdurun."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Sekmeleri kapatmak, sayfalarda gezinmek ve daha fazlası için fare hareketlerini kullanın."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgid "See thumbnail images alongside your search returns."
+msgstr "Arama sonuçlarınızın yanında sitelerin küçük resimleri görünsün."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Ekranınızı karartarak gözlerinizi rahatlatın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3737,7 +3780,7 @@ msgstr "Varsayılan olarak tüm açılır pencereleri engelleyin, ardından hang
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "İstediğiniz web sayfasının görünümünü kişiselleştirin. Renkleri, sayfa arka planlarını ve daha fazlasını değiştirin."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
@@ -3745,15 +3788,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Parolalarınızı güvenle saklayın ve onlara tüm cihazlarınızdan erişin."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Web'de nereye gittiğinizi bilin. Ziyaret ettiğiniz web sitelerinin ülkelerini öğrenin. Bilinçli bir internet gezgini olun."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Okuma deneyiminizi geliştirin. Okuduğunuz metnin etrafındaki dağınıklığı kaldırarak onu daha okunaklı hale getirin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3762,7 +3805,7 @@ msgstr "Yeni sekmede açmak istediğiniz bağlantıları sağ tıklayıp sürük
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Araç çubuğunuzdaki simgeye sağ tıklayarak en son kapattığınız sekmelere erişin."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -3778,15 +3821,15 @@ msgstr "Zaman aralıklarına göre sekmeleri otomatik olarak tazeleyin."
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Bozuk ve kopya yer imlerini bulun ve sorunları giderin."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Cihazlar arasında eşitlenebilen yapılacaklar listesiyle işlerinizi halledin."
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Fiyat geçmişini izleyin, rakip ürünleri bulun, satıcı puanlarını öğrenin ve daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3799,11 +3842,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Wikipedia'ya yeni ve modern bir görünüm uygular."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Fare hareketlerini kullanarak daha hızlı işlem yapın."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -3811,11 +3854,11 @@ msgstr "Görüntülediğiniz web sitesinin bölümlerini gizleyin."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Web'de bulduğunuz görselleri indirin."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Uygunsuz veya istenmeyen içeriklere erişimi filtrelerle kısıtlayın."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
@@ -3823,11 +3866,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Spam'e hükmedin. Anonim kalmak ve gereksiz e-postalardan kaçınmak için geçici e-posta adresleri kullanın."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Firefox'taki gizlilik seçeneklerini özelleştirmenin doğrudan yolu."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
@@ -3855,7 +3898,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Favori RSS akışlarınızı tek bir sayfadan kontrol edin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3868,7 +3911,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Birden çok yer imi klasörü kullanananlar için yer imlerini kaydetmenin daha etkili bir yöntemi."
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
@@ -3876,7 +3919,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Tek bir tıklamayla bütün web sayfasını istediğiniz dile çevirin."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
@@ -3901,7 +3944,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Daha sonra incelemek için genel veya sitelere özel notlar oluşturun."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3911,21 +3954,21 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Tarayıcı önbelleğinizi tek bir tıklama veya tuşla temizleyin."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Web sayfalarındaki metinleri işaretleyip kaydedin ve onlara daha sonra erişin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Tüm dünyadan 30.000'den fazla radyo istasyonundan müziğin tadını çıkarın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "YouTube videolarının sadece sesini dinleyerek internet kotanızdan tasarruf edin."
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
@@ -3951,7 +3994,7 @@ msgstr "Parolaları güvenli bir şekilde saklayın ve bilinen web sitelerinde o
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Formları otomatik doldurun. Girdiğiniz verileri kaydedin, bir dahaki sefere otomatik doldurulsun."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
@@ -3981,7 +4024,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Gelişmiş sekme yönetiminin tadını çıkarın: Kopya sekmeleri kapatın, pencereleri birleştirin, sekme başlığını kopyalayın ve daha fazlasını yapın."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -4001,15 +4044,15 @@ msgstr "Olur da bir kediden lazer ateşlemeniz gerekirse."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Açık sekmelere, yer imlerine ve geçmişe erişerek Firefox'ta kolaylıkla arama yapın."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Çok fazla açık sekmeniz mi var? Klavye kısayolları ile arama yapın."
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Yeniden yönlendirmeleri durdurarak istediğiniz siteye daha hızlı erişin."
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
@@ -4017,19 +4060,19 @@ msgstr "Tüm parola alanlarına gösterme/gizleme özelliği ekler."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Video oynatıcı hariç her şeyi karanlık hale getirerek videoya odaklanın."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Kolay erişilebilir bir panel aracılığıyla yer imlerinizi düzenleyin."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Parolaları güvenle saklayın ve bilinen web sitelerine otomatik giriş yapın."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Sadece istediğiniz içeriği görüntülemeye odaklanmış basit bir reklam engelleyici."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
@@ -4050,7 +4093,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Sadece güvendiğiniz sitelerin web içeriklerine izin verin. Güvenle sörf yapın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4059,20 +4102,20 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Seçtiğiniz web sitelerinin tarayıcı geçmişini otomatik olarak silin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Kişisel yer imlerinizi parola ile koruyun."
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "VPN kullanıyor musunuz? IP adresiniz sızabilir. WebRTC'yi devre dışı bırakarak buna bir son verin."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Sinir bozucu açılır pencereleri basit bir tıklamayla kapatın."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
@@ -4089,11 +4132,11 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Sitelerin coğrafi konumlarını öğrenin, bilinçli bir web gezgini olun."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Sinir bozucu sesleri düzeltin. Bir web sitesindeki ses çok mu kısık veya çok mu yüksek? SoundFixer yardımcı olabilir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4107,12 +4150,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Tarayıcınızın ses ayarlarına ince ayar yapın."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "En sinsi takipçilere karşı kendinizi savunun."
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
@@ -4124,7 +4167,7 @@ msgstr "Sekmeleri basitleştirin. Açık sekmelerinizi düzenli bir kenar çubu�
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "İstenmeyen çerezleri otomatik olarak silin. Beyaz ve kara liste desteği mevcuttur."
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
@@ -4179,7 +4222,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Dikkat dağıtan web sitelerini engelleyin. Uzantının engellemesini istediğiniz listeye eklemeniz yeterli."
 
 #. editorial content for the discovery pane.
 msgid "Find archived, dead, or otherwise disappeared web pages."
@@ -4272,7 +4315,7 @@ msgstr "YouTube videolarının sponsorlu kısımlarını atlayın."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Web sayfalarının sesli okunmasını sağlayın. 40'tan fazla dili destekler."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4281,11 +4324,7 @@ msgstr "İstediğiniz kelimeye çift tıklayarak tanımını görün."
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "Orman Teması"
+msgstr "Maviler ve Sarılar"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4321,17 +4360,38 @@ msgstr "Sekmeleri kaydedin ve geri yükleyin. Otomatik kaydetme ve bulutla eşit
 msgid "Goodbye, annoying cookie warnings!"
 msgstr "Can sıkıcı çerez uyarılarına elveda!"
 
+#. editorial content for the discovery pane.
+msgid "All your emoji needs—always just a click away."
+msgstr "Tüm emoji ihtiyaçlarınız bir tık uzağınızda."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Sitelere e-posta adresinizi vermeyi bırakın. Firefox Relay, kimliğinizi korur ve istenmeyen e-postaları önler."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Bazı web siteleri Android'de video oynatmakta zorluk çekiyor. İşte bir düzeltme."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Web'de ilginç bir görsel mi buldunuz? Kökenini keşfetmek için TinEye'ı kullanın."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Olur da kedi gözlerinden lazer ateşlemeniz gerekirse."
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr "ePUB dosyalarını doğrudan Firefox'ta okuyun: Yazı tipi boyutunu, sayfa boyutlarını artırın ve fazlasını yapın."
+
+#. editorial content for the primary hero shelves.
+msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr "Fare hareketlerini özelleştirin. 50'den fazla fare hareketiyle gezinmenin yeni yollarını keşfedin."
+
+#. editorial content for the primary hero shelves.
+msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr "Sekmeleri kapatmak, sayfalarda gezinmek ve daha fazlası için fare hareketlerini kullanın."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Arama sonuçlarınızın yanında sitelerin küçük resimleri görünsün."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4361,6 +4421,34 @@ msgstr "Can sıkıcı çerez uyarılarına elveda!"
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr "Emojileri, web'de gittiğiniz her yere yanınızda götürün."
+
+#. editorial content for the primary hero shelves.
+msgid "Put restrictions on distracting, time-wasting websites."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove clutter from your Twitter."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize YouTube to taste."
+msgstr "YouTube'u zevkinize göre özelleştirin."
+
+#. editorial content for the primary hero shelves.
+msgid "Delete browsing data directly from the browser toolbar."
+msgstr "Gezinti verilerini doğrudan tarayıcı araç çubuğundan silin."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Uzantılar Firefox'ta çalışan uygulamalardır."
@@ -4369,32 +4457,30 @@ msgstr "Uzantılar Firefox'ta çalışan uygulamalardır."
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "Daha hızlı, daha güvenli ve daha eğlenceli gezintiler için Firefox’a yeni özellikler kazandırırlar."
 
-#. editorial content for the secondary hero shelves.
 # 95%
 # 100%
+#. editorial content for the secondary hero shelves.
 msgid "See all extensions"
 msgstr "Tüm uzantılara bak"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Sekme düzenleyicileri ve araçları"
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Gündemdeki uzantılar"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Tarayıcı uzantılarının ötesinde gizlilik"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Çeviri araçları"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Firefox için medya geliştiricileri"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Reklam engelleyiciler"
 
 #. editorial content for the secondary hero shelves.
-# Plural in this context means many of the add-on type
-msgid "Explore extensions"
-msgstr "Uzantıları keşfet"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Daha fazla bilgi"
+msgid "See staff picks"
+msgstr "Editörün seçtiklerini görün"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4412,24 +4498,24 @@ msgstr "Popüler temalar"
 msgid "See more popular themes"
 msgstr "Diğer popüler temalara bakın"
 
-#. editorial content for the homepage shelves.
 # 95%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
 msgstr "Gelişmiş gizlilik uzantıları"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Diğer gelişmiş gizlilik uzantılarına bakın"
+msgid "See more recommended privacy extensions"
+msgstr "Önerdiğimiz diğer gizlilik uzantılarına bakın"
 
-#. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
 msgid "Popular extensions"
 msgstr "Popüler uzantılar"
 
-#. editorial content for the homepage shelves.
 # 95%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "See more popular extensions"
 msgstr "Diğer popüler uzantılara bakın"
 
@@ -4442,30 +4528,80 @@ msgid "See more recommended themes"
 msgstr "Önerdiğimiz diğer temalara bakın"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
-msgstr "Önerilen parola yöneticileri"
+msgid "Strong password managers"
+msgstr "Güçlü parola yöneticileri"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Önerdiğimiz diğer parola yöneticilerine bakın"
+msgid "See more password manager staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Çeviri araçları"
-
-#. editorial content for the homepage shelves.
-msgid "See more translation tools"
-msgstr "Diğer çeviri araçlarına bakın"
+msgid "See more translation tool staff picks"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Sosyal akış"
 
-#. editorial content for the homepage shelves.
 # 95%
 # 100%
-msgid "See more social streaming extensions"
-msgstr "Diğer sosyal akış uzantılarına bakın"
+#. editorial content for the homepage shelves.
+msgid "See more social streaming staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Sekme yöneticileri"
+
+#. editorial content for the homepage shelves.
+msgid "See more tab management staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "“{tag}” etiketli uzantılar"
+
+# 95%
+# 100%
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "\"{tag}\" etiketli diğer uzantılara bakın"
+
+#. editorial content for the homepage shelves.
+msgid "See more ad blocker staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube özelleştirme"
+
+#. editorial content for the homepage shelves.
+msgid "See more YouTube extension staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Trending themes"
+msgstr "Gündemdeki temalar"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending themes"
+msgstr "Gündemdeki diğer temalara bakın"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "En yüksek puanlı temalar"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "En yüksek puanlı diğer temalara bakın"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Gündemdeki uzantılar"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "Gündemdeki diğer uzantılara bakın"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifest dosyası ayrıştırılamadı."
@@ -4502,9 +4638,6 @@ msgstr "Sıkıştırılmamış boyut çok büyük"
 msgid "Invalid archive."
 msgstr "Geçersiz arşiv."
 
-msgid "Could not find an add-on ID."
-msgstr "Eklenti kimliği bulunamadı."
-
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "manifest.json dosyanızdaki eklenti kimliği (%s), AMO'daki eklentinizin kimliğiyle (%s) eşleşmiyor"
@@ -4530,6 +4663,9 @@ msgstr "Bu son ek ile biten bir ID ile eklenti gönderemezsiniz"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Mozilla imzalı bir uzantı gönderemezsiniz"
 
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr ""
+
 msgid "You cannot submit a language pack"
 msgstr "Dil paketi gönderemezsiniz"
 
@@ -4542,112 +4678,6 @@ msgstr "Beklenmeyen hata."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Bu tür (%s), AMO'daki eklentinizin türüyle (%s) eşleşmiyor"
-
-msgid "Review Guidelines"
-msgstr "İnceleme Yönergesi"
-
-msgid "Sections"
-msgstr "Bölümler"
-
-msgid "Some tips for writing a great review"
-msgstr "Harika bir inceleme için bazı ipuçları"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "İncelemeler hakkında sıkça sorulan sorular"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr ""
-
-msgid "Do:"
-msgstr "Bunları yapın:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Eklentiyle ilgili deneyiminizi bir arkadaşınıza anlatıyormuş gibi yazın."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "İncelemeleriniz kısa ve anlaşılması kolay olsun."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Ayrıntılı ve başkalarının işine yarayacak detaylar verin. Örneğin:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Eklenti beklediğiniz gibi çalıştı mı?"
-
-msgid "What features did you like or dislike?"
-msgstr "Sevdiğiniz veya sevmediğiniz özellikler nelerdir?"
-
-msgid "Was it useful?"
-msgstr "Kullanışlı mıydı?"
-
-msgid "Was it easy to use?"
-msgstr "Kullanımı kolay mıydı?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Bu eklentiyi kullanmaya devam edecek misiniz?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Yazım hatalarını azaltmak amacıyla yorumunuzu göndermeden önce bir kez okuyun."
-
-msgid "Don’t:"
-msgstr "Bunları yapmayın:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "\"Harika!\", \"müthiş\" veya \"kötü\" gibi tek kelimelik bir inceleme göndermek."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Teknik konular, destek istekleriniz veya özellik önerileri göndermek. Varsa, her eklenti için mevcut destek seçeneklerini kullanın. Bu seçenekleri Bu Eklenti Hakkında bölümünün yanındaki sütunda "
-"bulabilirsiniz."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Bizzat kullanmadığınız eklentiler için yorumlar yazmak."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Küfür, cinsellikle ilgili veya nefret dolu olarak yorumlanabilecek bir dil kullanmak."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "HTML, bağlantı, kaynak kodu veya kod parçaları eklemeyin. İncelemeler düz metin olmalıdır."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Gerçek olmayan şeyleri yazmayın, eklenti geliştiricilerini küçümsemeyin ve onlara hakaret etmeyin."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Kendinizin veya başkasının e-posta adresini, telefon numarasını veya diğer kişisel bilgilerini yazmayın."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Kendinizin veya şirketinizin geliştirdiği veya temsil ettiği eklentiler için inceleme yazmayın."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-
-msgid "How can I report a problematic review?"
-msgstr "Sorunlu bir incelemeyi nasıl bildirebilirim?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Ben bir eklenti yazarıyım, incelemelere yanıt verebilir miyim?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Ben bir eklenti yazarıyım, olumsuz incelemeleri veya puanları silebilir miyim?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
 
 msgid "User"
 msgstr "Kullanıcı"
@@ -4688,8 +4718,7 @@ msgstr "Kendi eklentinizde yorum yazamazsınız."
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr ""
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
@@ -4745,33 +4774,6 @@ msgstr "bitiş"
 msgid "add-on, reviewer or comment"
 msgstr "eklenti, inceleyen veya yorum"
 
-msgid "Search by add-on name / author email"
-msgstr "Eklenti adıyla veya yazar e-postasıyla ara"
-
-msgid "Needs Admin Code Review"
-msgstr "Yönetici kod incelemesi gerekiyor"
-
-msgid "yes"
-msgstr "evet"
-
-msgid "no"
-msgstr "hayır"
-
-msgid "Add-on Types"
-msgstr "Eklenti türleri"
-
-msgid "Any"
-msgstr "Hepsi"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Eklenti adı / sahip e-posta adresi / guid ile ara"
-
-msgid "Max. Version"
-msgstr "En yüksek sürüm"
-
-msgid "Select an application first"
-msgstr "Önce bir uygulama seçin"
-
 # 87%
 # 100%
 msgid "Comments:"
@@ -4787,10 +4789,13 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr ""
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Derhal reddet. Bunu sadece ciddi güvenlik sorunları durumunda kullanın."
 
 msgid "days"
 msgstr "gün"
+
+msgid "Choose one or more reasons:"
+msgstr "Bir veya daha fazla neden seçin:"
 
 msgid "Choose a canned response..."
 msgstr "Hazır yanıtı seçin..."
@@ -4807,20 +4812,17 @@ msgstr "Şimdilik geç"
 msgid "Delete review"
 msgstr "İncelemeyi sil"
 
+msgid "Needs Admin Code Review"
+msgstr "Yönetici kod incelemesi gerekiyor"
+
 msgid "Needs Admin Content Review"
 msgstr "Yönetici içerik incelemesi gerekiyor"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "Yönetici statik tema incelemesi gerekiyor"
 
-msgid "Requires Restart"
-msgstr "Yeniden başlatma gerektirir"
-
 msgid "Sources provided"
 msgstr "Kaynaklar sağlandı"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "Otomatik onay geçici olarak ertelendi"
@@ -4846,8 +4848,11 @@ msgstr ""
 msgid "Weight breakdown not available."
 msgstr ""
 
-msgid "You can't submit a comment if `canned_response` is defined."
+msgid "Is available to be used in reviews"
 msgstr ""
+
+msgid "You can't submit a comment if `canned_response` is defined."
+msgstr "`canned_response` tanımlanmışsa yorum gönderemezsiniz."
 
 msgid "You can't submit an empty comment."
 msgstr "Boş bir yorum gönderemezsiniz."
@@ -4855,38 +4860,11 @@ msgstr "Boş bir yorum gönderemezsiniz."
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Bir satır numarasını bir dosya adıyla ilişkilendirmeden gönderemezsiniz."
 
-msgid "Type"
-msgstr "Türü"
-
-msgid "Waiting Time"
-msgstr "Bekleme süresi"
+msgid "ID"
+msgstr "İD"
 
 msgid "Flags"
 msgstr "Bayraklar"
-
-msgid "moments ago"
-msgstr "birkaç dakika önce"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} dakika"
-msgstr[1] "{0} dakika"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} saat"
-msgstr[1] "{0} saat"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} gün"
-msgstr[1] "{0} gün"
-
-msgid "ID"
-msgstr "İD"
 
 msgid "Last Review"
 msgstr "Son inceleme"
@@ -4901,7 +4879,13 @@ msgid "Total Weight"
 msgstr "Toplam ağırlık"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Zararlılık skoru"
+
+msgid "Type"
+msgstr "Türü"
+
+msgid "Waiting Time"
+msgstr "Bekleme süresi"
 
 msgid "Pending Rejection Deadline"
 msgstr ""
@@ -4990,7 +4974,7 @@ msgid "Recommended ({0})"
 msgstr "Önerilen ({0})"
 
 msgid "Other Pending Review ({0})"
-msgstr ""
+msgstr "Diğer inceleme bekleyen ({0})"
 
 msgid "Review Log"
 msgstr "İnceleme Günlüğü"
@@ -5099,6 +5083,12 @@ msgstr "{0} Eklenti Bilgileri"
 
 msgid "Add-on ID"
 msgstr "Eklenti ID'si"
+
+msgid "Original Add-on ID"
+msgstr "Orijinal uzantı kimliği"
+
+msgid "Add-on(s) sharing same ID"
+msgstr "Aynı kimliği paylaşan eklenti(ler)"
 
 msgid "Internal AMO ID"
 msgstr "Dahili AMO Kimliği"
@@ -5220,57 +5210,6 @@ msgstr ""
 msgid "Undelete"
 msgstr "Silmeyi geri al"
 
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "İnceleyici Performansı – Firefox Eklentileri"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Eklenti inceleme performansı"
-
-msgid "View statistics for user"
-msgstr "Kullanıcı istatistiklerini göster"
-
-msgid "Range"
-msgstr "Aralık"
-
-msgid "Your Reviews"
-msgstr "İncelemeleriniz"
-
-msgid "By {user_name}"
-msgstr "{user_name} tarafından"
-
-msgid "Total Reviews"
-msgstr "Toplam inceleme"
-
-msgid "Active Contributors"
-msgstr "Etkin Katkıda Bulunanlar"
-
-msgid "This Month"
-msgstr "Bu ay"
-
-msgid "This Year"
-msgstr "Bu yıl"
-
-msgid "Monthly Performance"
-msgstr "Aylık performans"
-
-msgid "All-time Point Breakdown by Type"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "Eklentiler"
-
-msgid "Total"
-msgstr "Toplam"
-
-msgid "Month"
-msgstr "Ay"
-
-msgid "Year"
-msgstr "Yıl"
-
-msgid "All-Time"
-msgstr "Tüm zamanlar"
-
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr " – İnceleyici Araçları – Firefox Eklentileri"
 
@@ -5287,16 +5226,10 @@ msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Listelenmemiş Eklentiler – Firefox Eklentileri"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr ""
-
-msgid "Advanced Search"
-msgstr "Gelişmiş arama"
-
-msgid "clear search"
-msgstr "aramayı temizle"
 
 msgid "Process Reviews"
 msgstr "İncelemeleri işle"
@@ -5343,9 +5276,6 @@ msgstr "Eklentinin önemli değişiklik geçmişi"
 
 msgid "Add-on History"
 msgstr "Eklenti geçmişi"
-
-msgid "Previously deleted entries"
-msgstr "Önceden silinen girdiler"
 
 msgid "You don't have permission to review it."
 msgstr "İnceleme izniniz yok."
@@ -5429,7 +5359,7 @@ msgid "Clear Auto-Approval Extra Delay"
 msgstr ""
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Bekleyen retleri temizle"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
@@ -5600,7 +5530,7 @@ msgid "The developer has provided source code."
 msgstr "Geliştirici, kaynak kodunu paylaştı."
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "Zararlılık skoru:"
 
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
@@ -5651,7 +5581,7 @@ msgid "Auto Approved"
 msgstr "Otomatik onaylandı"
 
 msgid "Pending Rejection"
-msgstr ""
+msgstr "Bekleyen ret"
 
 msgid "presence of matched rules"
 msgstr "eşleşen kuralların varlığı"
@@ -5659,8 +5589,8 @@ msgstr "eşleşen kuralların varlığı"
 msgid "result state"
 msgstr "sonuç durumu"
 
-msgid "all but results matching only this rule"
-msgstr "yalnızca bu kuralla eşleşen sonuçlar hariç tümü"
+msgid "Excluding results solely matching these rules"
+msgstr ""
 
 msgid "presence of a version"
 msgstr "bir sürümün varlığı"
@@ -5720,7 +5650,7 @@ msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr "\"%s\" ve \"%s\" parametrelerinin geçersiz kombinasyonu."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "AMO'ya dönüş şu an devre dışı"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
@@ -5751,9 +5681,6 @@ msgstr "Sürüm, manifest dosyasıyla eşleşmiyor."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Sürüm zaten mevut. En son sürüm: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "64 karakterden uzunsa lütfen manifest’te eklenti kimliğinizi belirtin."
@@ -5830,8 +5757,8 @@ msgstr "{0} :: İstatistik Panosu"
 msgid "Statistics Dashboard :: Add-ons for {0}"
 msgstr "İstatistik Panosu :: {0} eklentileri"
 
-#. {0} is an add-on name
 # %1 is an add-on name.
+#. {0} is an add-on name
 msgid "Statistics for {0}"
 msgstr "{0} İstatistikleri"
 
@@ -5884,6 +5811,9 @@ msgstr "Son veriler yükleniyor&hellip;"
 
 msgid "No data available."
 msgstr "Veri yok."
+
+msgid "Previous"
+msgstr "Önceki"
 
 msgid "This dashboard is <b>private</b>."
 msgstr "Bu pano <b>gizli</b>."
@@ -5983,12 +5913,6 @@ msgstr "Yasal uyarılar"
 msgid "Report Trademark Abuse"
 msgstr "Marka ihlali bildir"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Yeni web sitesi mobil ve masaüstü istemcileri destekliyor"
-
-msgid "View the new site"
-msgstr "Yeni siteye bak"
-
 msgid "Site Status"
 msgstr "Site durumu"
 
@@ -6039,8 +5963,8 @@ msgstr "Git"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} Eklentileri ana sayfasına dön"
 
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Eklentiler"
+msgid "Add-ons"
+msgstr "Eklentiler"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6135,8 +6059,8 @@ msgstr "Bu e-posta ile kayıtlı kullanıcı yok."
 msgid "Firefox user {id}"
 msgstr "Firefox kullanıcısı {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Geçerli bir IPv6 veya IPv6 CIDR ağ aralığı girin, örn. 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "Geçerli bir IPv4 veya IPv6 CIDR ağ aralığı girin. Örn. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Konumunuzdan politikalarımızı ihlal eden birden fazla eklenti gönderildi. IP adresi engellendi."
@@ -6144,9 +6068,7 @@ msgstr "Konumunuzdan politikalarımızı ihlal eden birden fazla eklenti gönder
 msgid "Email Pattern"
 msgstr "E-posta deseni"
 
-msgid ""
-"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
-" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
@@ -6158,12 +6080,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
+msgstr "Lütfen {url} adresini ziyaret ederek Firefox Eklenti Yayımlama Sözleşme'mizi ve İnceleme Politikaları ve Kuralları'mızı okuyup kabul edin"
 
 msgid "User Restriction History"
 msgstr "Kullanıcı kısıtlama geçmişi"
@@ -6220,7 +6142,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6271,3 +6194,6 @@ msgstr "diğerleri"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} ve sonrası"
+
+msgid "The install origin {origin} is not permitted."
+msgstr ""

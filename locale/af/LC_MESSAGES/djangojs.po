@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2015-11-27 17:56+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ster"
-msgstr[1] "{0} sterre"
 
 msgid "There was a problem contacting the server."
 msgstr ""
@@ -93,18 +88,6 @@ msgstr[1] ""
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-msgid "Your submission will be automatically signed."
-msgstr ""
-
-msgid "WebExtension upgrade"
-msgstr ""
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
@@ -138,36 +121,6 @@ msgid "Images must be either PNG or JPG."
 msgstr ""
 
 msgid "Videos must be in WebM."
-msgstr ""
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Dié tema is onversoenbaar met u weergawe van {0}"
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Your input is required"
-msgstr ""
-
-msgid "Marked for deletion"
-msgstr ""
-
-msgid "Updating results&hellip;"
-msgstr ""
-
-msgid "Category"
-msgstr "Kategorie"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Deursoek temas vir <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Deursoek webtoepassings vir <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Deursoek byvoegings vir <b>{0}</b>"
-
-msgid "Use original"
 msgstr ""
 
 msgid "Week of {0}"
@@ -644,42 +597,6 @@ msgstr ""
 msgid "Other"
 msgstr "Ander"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Aanvaar en installeer"
-
-msgid "Add to {0}"
-msgstr "Voeg by {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Installeer in elk geval vir {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Laai in elk geval af vir {0}"
-
-msgid "Not available for your platform"
-msgstr "Nie beskikbaar vir u platform nie"
-
-#, fuzzy
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Dié tema is onversoenbaar met u weergawe van {0}"
-
-msgid "View other versions"
-msgstr ""
-
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-msgid "Works with {app}"
-msgstr ""
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Jammer, u het 'n Mozilla-gebaseerde blaaier (soos Firefox) nodig om 'n soekinprop te installer."
-
 msgid "Changes Saved"
 msgstr ""
 
@@ -698,12 +615,6 @@ msgid "Image changes being processed"
 msgstr ""
 
 msgid "Select an application first"
-msgstr ""
-
-msgid "No results found."
-msgstr ""
-
-msgid "Loading..."
 msgstr ""
 
 #, fuzzy
@@ -746,12 +657,6 @@ msgid "Review Text"
 msgstr ""
 
 msgid "Review notes found"
-msgstr ""
-
-msgid "Average Reviews"
-msgstr ""
-
-msgid "Number of Reviews"
 msgstr ""
 
 msgid "Maximum upload size is {0} - choose a smaller background image."

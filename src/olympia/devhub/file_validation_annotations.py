@@ -1,4 +1,8 @@
+import waffle
+
 from django.utils.translation import gettext
+
+from olympia.versions.models import DeniedInstallOrigin
 
 
 def insert_validation_message(
@@ -63,3 +67,21 @@ def annotate_search_plugin_restriction(results, file_path, channel):
     insert_validation_message(
         results, type_='error', message=msg, msg_id='opensearch_unsupported'
     )
+
+
+def annotate_validation_results(results, parsed_data):
+    """Annotate validation results with potential add-on restrictions like
+    denied origins."""
+    if waffle.switch_is_active('record-install-origins'):
+        if install_origins := parsed_data.get('install_origins'):
+            denied_origins = sorted(
+                DeniedInstallOrigin.find_denied_origins(install_origins)
+            )
+            for origin in denied_origins:
+                insert_validation_message(
+                    results,
+                    message=str(DeniedInstallOrigin.ERROR_MESSAGE).format(
+                        origin=origin
+                    ),
+                )
+    return results

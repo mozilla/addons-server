@@ -9,7 +9,7 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory,
-    APITestClient,
+    APITestClientWebToken,
     collection_factory,
     ESTestCase,
     reverse_ns,
@@ -29,7 +29,7 @@ from olympia.users.models import UserProfile
 
 
 class TestShelfViewSet(ESTestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     @classmethod
     def setUpTestData(cls):
@@ -111,7 +111,7 @@ class TestShelfViewSet(ESTestCase):
             position=1,
         )
         self.shelf_d = Shelf.objects.create(
-            title='Random Tag',
+            title='Random {tag}',
             endpoint='random-tag',
             criteria='?',
             footer_text='something something tags!',
@@ -148,8 +148,8 @@ class TestShelfViewSet(ESTestCase):
         # don't enable shelf_c
         self.shelf_d.update(enabled=True)
 
-        # would be 26 but we mocked Shelf.tag that does a query.
-        with self.assertNumQueries(25):
+        # would be 27 but we mocked Shelf.tag that does a query.
+        with self.assertNumQueries(26):
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -195,7 +195,7 @@ class TestShelfViewSet(ESTestCase):
         )
         assert result['results'][1]['addons'][0]['type'] == 'extension'
 
-        assert result['results'][2]['title'] == {'en-US': 'Random Tag'}
+        assert result['results'][2]['title'] == {'en-US': f'Random {self.tag}'}
         assert result['results'][2]['url'] == (
             reverse_ns('addon-search', api_version='v5') + f'?tag={self.tag}'
         )
@@ -205,7 +205,7 @@ class TestShelfViewSet(ESTestCase):
         }
         assert (
             result['results'][2]['footer']['url']
-            == f'http://testserver/en-US/firefox/search/?tag={self.tag}'
+            == f'http://testserver/en-US/firefox/tag/{self.tag}/'
         )
         assert (
             result['results'][2]['footer']['outgoing']
@@ -235,10 +235,10 @@ class TestShelfViewSet(ESTestCase):
         request = APIRequestFactory().get('/')
         request.version = api_settings.DEFAULT_VERSION
 
-        with self.assertNumQueries(14):
-            # 14 queries:
+        with self.assertNumQueries(15):
+            # 15 queries:
             # - 1 to get the shelves
-            # - 11 as TestPrimaryHeroShelfViewSet.test_basic
+            # - 12 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
@@ -267,10 +267,10 @@ class TestShelfViewSet(ESTestCase):
 
         self.shelf_a.update(enabled=True)
 
-        with self.assertNumQueries(16):
-            # 16 queries:
+        with self.assertNumQueries(17):
+            # 17 queries:
             # - 3 to get the shelves
-            # - 11 as TestPrimaryHeroShelfViewSet.test_basic
+            # - 12 as TestPrimaryHeroShelfViewSet.test_basic
             # - 2 as TestSecondaryHeroShelfViewSet.test_basic
             response = self.client.get(self.url)
         assert response.status_code == 200
@@ -308,7 +308,7 @@ class TestShelfViewSet(ESTestCase):
 
 
 class TestEditorialShelfViewSet(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def test_basic(self):
         url = reverse_ns('shelves-editorial-list', api_version='v5')

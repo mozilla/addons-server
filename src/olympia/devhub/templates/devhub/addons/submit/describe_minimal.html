@@ -4,6 +4,7 @@
 {% block title %}{{ dev_page_title(_('Describe Add-on'), addon) }}{% endblock %}
 
 {% block primary %}
+  {% set channel_param = 'listed' if version.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted' %}
   <h3>{{ _('Describe Version') }}</h3>
   <form method="post" id="submit-describe" class="item">
     {% csrf_token %}
@@ -24,7 +25,7 @@
         {% if sources_provided %}
           <p>
             <span class="req">{{ _('Remember') }}</span>:
-            {% trans policy_requirements_open='<a href="https://extensionworkshop.com/documentation/publish/source-code-submission/">'|safe, policy_requirements_close='</a>'|safe %}
+            {% trans policy_requirements_open='<a href="https://extensionworkshop.com/documentation/publish/source-code-submission/?utm_source=addons.mozilla.org&utm_medium=devhub&utm_content=submission-flow">'|safe, policy_requirements_close='</a>'|safe %}
             If you submitted source code, but did not include instructions, you must provide them here.
             Enter step-by-step build instructions to create an exact copy of the add-on code, per
             {{ policy_requirements_open }}policy requirements{{ policy_requirements_close }}.
@@ -43,7 +44,7 @@
       <button class="button delete-button confirm-submission-cancel"
               formnovalidate
               type="button"
-              formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
+              formaction="{{ url('devhub.addons.cancel', addon.slug, channel_param) }}">
           {{ _('Cancel and Disable Version') }}
       </button>
     </div>

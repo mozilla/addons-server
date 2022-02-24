@@ -1,5 +1,6 @@
 import json
 from copy import deepcopy
+from datetime import datetime
 
 from django.core.files.storage import default_storage as storage
 from django.urls import reverse
@@ -11,29 +12,88 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.tests.test_models import UploadTest as BaseUploadTest
+from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import check_xpi_info, parse_addon
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.users.models import UserProfile
 
 
-class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
-    fixtures = ['base/users', 'devhub/invalid-id-uploaded-xpi.json']
+class TestUploadValidation(ValidatorTestCase, UploadMixin, TestCase):
+    fixtures = ['base/users']
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='regular@mozilla.com')
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        assert self.client.login(email=self.user.email)
+        self.validation = {
+            'errors': 1,
+            'detected_type': 'extension',
+            'success': False,
+            'warnings': 0,
+            'message_tree': {
+                'testcases_targetapplication': {
+                    '__warnings': 0,
+                    '__errors': 1,
+                    '__messages': [],
+                    '__infos': 0,
+                    'test_targetedapplications': {
+                        '__warnings': 0,
+                        '__errors': 1,
+                        '__messages': [],
+                        '__infos': 0,
+                        'invalid_min_version': {
+                            '__warnings': 0,
+                            '__errors': 1,
+                            '__messages': ['d67edb08018411e09b13c42c0301fe38'],
+                            '__infos': 0,
+                        },
+                    },
+                }
+            },
+            'infos': 0,
+            'messages': [
+                {
+                    'uid': 'd67edb08018411e09b13c42c0301fe38',
+                    'tier': 1,
+                    'id': [
+                        'testcases_targetapplication',
+                        'test_targetedapplications',
+                        'invalid_min_version',
+                    ],
+                    'file': 'install.rdf',
+                    'message': 'The value of <em:id> is invalid. See '
+                    '<a href="https://mozilla.org">mozilla.org</a> '
+                    'for more information',
+                    'context': ['<em:description>...', '<foo/>'],
+                    'type': 'error',
+                    'line': 0,
+                    'description': [
+                        '<iframe>',
+                        'Version "3.0b3" isn\'t compatible with '
+                        '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}.',
+                    ],
+                    'signing_help': ['<script>&amp;'],
+                }
+            ],
+            'rejected': False,
+        }
 
     def test_only_safe_html_in_messages(self):
-        upload = FileUpload.objects.get(name='invalid_webextension.xpi')
-        resp = self.client.get(
+        upload = self.get_upload(
+            abspath=get_addon_file('invalid_webextension.xpi'),
+            user=self.user,
+            with_validation=True,
+            validation=json.dumps(self.validation),
+        )
+        response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
-        assert resp.status_code == 200
-        data = json.loads(resp.content)
+        assert response.status_code == 200
+        data = json.loads(response.content)
         msg = data['validation']['messages'][0]
         assert msg['message'] == (
             'The value of &lt;em:id&gt; is invalid. '
@@ -44,16 +104,22 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
         assert msg['context'] == (['<em:description>...', '<foo/>'])
 
     def test_date_on_upload(self):
-        upload = FileUpload.objects.get(name='invalid_webextension.xpi')
-        resp = self.client.get(reverse('devhub.upload_detail', args=[upload.uuid.hex]))
-        assert resp.status_code == 200
-        doc = pq(resp.content)
+        upload = self.get_upload(
+            abspath=get_addon_file('invalid_webextension.xpi'),
+            user=self.user,
+            with_validation=True,
+            validation=json.dumps(self.validation),
+        )
+        upload.update(created=datetime.fromisoformat('2010-12-06 14:04:46'))
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex])
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
         assert doc('td').text() == 'Dec. 6, 2010'
 
     def test_upload_processed_validation_error(self):
-        addon_file = open(
-            'src/olympia/devhub/tests/addons/invalid_webextension.xpi', 'rb'
-        )
+        addon_file = open(get_addon_file('invalid_webextension.xpi'), 'rb')
         response = self.client.post(
             reverse('devhub.upload'), {'name': 'addon.xpi', 'upload': addon_file}
         )
@@ -66,24 +132,20 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
         ]
 
     def test_login_required(self):
-        upload = FileUpload.objects.get(name='invalid_webextension.xpi')
-        upload.user_id = 999
-        upload.save()
+        upload = self.get_upload(
+            abspath=get_addon_file('invalid_webextension.xpi'),
+            user=self.user,
+            with_validation=True,
+            validation=json.dumps(self.validation),
+        )
         url = reverse('devhub.upload_detail', args=[upload.uuid.hex])
         assert self.client.head(url).status_code == 200
 
         self.client.logout()
         assert self.client.head(url).status_code == 302
 
-    def test_no_login_required(self):
-        upload = FileUpload.objects.get(name='invalid_webextension.xpi')
-        self.client.logout()
 
-        url = reverse('devhub.upload_detail', args=[upload.uuid.hex])
-        assert self.client.head(url).status_code == 200
-
-
-class TestUploadErrors(BaseUploadTest):
+class TestUploadErrors(UploadMixin, TestCase):
     fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
@@ -98,7 +160,7 @@ class TestUploadErrors(BaseUploadTest):
         data = parse_addon(self.get_upload('webextension.xpi'), user=self.user)
         addon.update(guid=data['guid'])
 
-        dupe_xpi = self.get_upload('webextension.xpi')
+        dupe_xpi = self.get_upload('webextension.xpi', user=self.user)
         res = self.client.get(
             reverse('devhub.upload_detail', args=[dupe_xpi.uuid, 'json'])
         )
@@ -128,7 +190,12 @@ class TestUploadErrors(BaseUploadTest):
     def test_mv3_error_added(self):
         validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
         validation['metadata']['manifestVersion'] = 3
-        xpi = self.get_upload('webextension_mv3.xpi', validation=json.dumps(validation))
+        xpi = self.get_upload(
+            'webextension_mv3.xpi',
+            with_validation=True,
+            validation=json.dumps(validation),
+            user=self.user,
+        )
 
         res = self.client.get(reverse('devhub.upload_detail', args=[xpi.uuid, 'json']))
         assert b'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
@@ -431,7 +498,6 @@ class TestUploadURLs(TestCase):
         self.parse_addon.return_value = {
             'guid': self.addon.guid,
             'version': '1.0',
-            'is_webextension': False,
         }
 
     def patch(self, *args, **kw):

@@ -348,13 +348,13 @@ class TestAddonAdmin(TestCase):
             'files-INITIAL_FORMS': 1,
             'files-MIN_NUM_FORMS': 0,
             'files-MAX_NUM_FORMS': 0,
-            'files-0-id': addon.current_version.all_files[0].pk,
-            'files-0-status': addon.current_version.all_files[0].status,
+            'files-0-id': addon.current_version.file.pk,
+            'files-0-status': addon.current_version.file.status,
         }
 
     def test_can_edit_addonuser_and_files_if_has_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
-        file = addon.current_version.all_files[0]
+        file = addon.current_version.file
         addonuser = addon.addonuser_set.get()
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -383,7 +383,7 @@ class TestAddonAdmin(TestCase):
 
     def test_can_not_edit_addonuser_files_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
-        file = addon.current_version.all_files[0]
+        file = addon.current_version.file
         addonuser = addon.addonuser_set.get()
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -426,12 +426,8 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
         doc = pq(response.content)
-        assert doc('#id_files-0-id').attr('value') == str(
-            unlisted_version.all_files[0].id
-        )
-        assert doc('#id_files-1-id').attr('value') == str(
-            addon.current_version.all_files[0].id
-        )
+        assert doc('#id_files-0-id').attr('value') == str(unlisted_version.file.id)
+        assert doc('#id_files-1-id').attr('value') == str(addon.current_version.file.id)
 
         # pagination links aren't shown for less than page size (30) files.
         next_url = self.detail_url + '?page=2'
@@ -443,16 +439,16 @@ class TestAddonAdmin(TestCase):
                 'status': amo.STATUS_DISABLED,
                 'files-TOTAL_FORMS': 2,
                 'files-INITIAL_FORMS': 2,
-                'files-0-id': unlisted_version.all_files[0].pk,
+                'files-0-id': unlisted_version.file.pk,
                 'files-0-status': amo.STATUS_DISABLED,
-                'files-1-id': listed_version.all_files[0].pk,
+                'files-1-id': listed_version.file.pk,
                 'files-1-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
             }
         )
         # Confirm the original statuses so we know they're actually changing.
         assert addon.status != amo.STATUS_DISABLED
-        assert listed_version.all_files[0].status != amo.STATUS_AWAITING_REVIEW
-        assert unlisted_version.all_files[0].status != amo.STATUS_DISABLED
+        assert listed_version.file.status != amo.STATUS_AWAITING_REVIEW
+        assert unlisted_version.file.status != amo.STATUS_DISABLED
 
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
@@ -460,13 +456,13 @@ class TestAddonAdmin(TestCase):
         assert addon.status == amo.STATUS_DISABLED
         assert ActivityLog.objects.filter(action=amo.LOG.CHANGE_STATUS.id).exists()
         listed_version = addon.versions.get(id=listed_version.id)
-        assert listed_version.all_files[0].status == amo.STATUS_AWAITING_REVIEW
+        assert listed_version.file.status == amo.STATUS_AWAITING_REVIEW
         unlisted_version = addon.versions.get(id=unlisted_version.id)
-        assert unlisted_version.all_files[0].status == amo.STATUS_DISABLED
+        assert unlisted_version.file.status == amo.STATUS_DISABLED
 
     def test_status_cannot_change_for_deleted_version(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
-        file = addon.current_version.all_files[0]
+        file = addon.current_version.file
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -538,7 +534,7 @@ class TestAddonAdmin(TestCase):
 
     def test_version_pagination(self):
         addon = addon_factory(users=[user_factory()])
-        first_file = addon.current_version.all_files[0]
+        first_file = addon.current_version.file
         [version_factory(addon=addon, version=str(i)) for i in range(0, 30)]
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')

@@ -23,19 +23,15 @@ class DiscoveryTestMixin:
                 'max': compat.max.version,
             }
         assert data['is_strict_compatibility_enabled'] is False
-        assert data['files']
-        assert len(data['files']) == 1
         assert data['id'] == version.id
 
-        result_file = data['files'][0]
-        file_ = version.files.latest('pk')
+        result_file = data['file']
+        file_ = version.file
         assert result_file['id'] == file_.pk
         assert result_file['created'] == (
             file_.created.replace(microsecond=0).isoformat() + 'Z'
         )
         assert result_file['hash'] == file_.hash
-        assert result_file['is_restart_required'] == file_.is_restart_required
-        assert result_file['is_webextension'] == file_.is_webextension
         assert (
             result_file['is_mozilla_signed_extension']
             == file_.is_mozilla_signed_extension
@@ -56,8 +52,8 @@ class DiscoveryTestMixin:
         assert result['addon']['slug'] == addon.slug
         assert result['addon']['icon_url'] == absolutify(addon.get_icon_url(64))
         assert (
-            result['addon']['current_version']['files'][0]['id']
-            == addon.current_version.all_files[0].pk
+            result['addon']['current_version']['file']['id']
+            == addon.current_version.file.pk
         )
 
         description_text = (
@@ -118,8 +114,8 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
         # Precache waffle-switch to not rely on switch caching behavior
         switch_is_active('disco-recommendations')
 
-        with self.assertNumQueries(11):
-            # 11 queries:
+        with self.assertNumQueries(12):
+            # 12 queries:
             # - 1 to fetch the discovery items
             # - 1 to fetch the add-ons (can't be joined with the previous one
             #   because we want to hit the Addon transformer)
@@ -132,6 +128,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             # - 1 to fetch the add-ons authors
             # - 1 to fetch the add-ons version previews (for static themes)
             # - 1 to fetch the add-ons previews
+            # - 1 to fetch the permissions for the files
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 

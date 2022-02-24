@@ -41,6 +41,10 @@ ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
 STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 # Can review recommend(ed|able) add-ons
 ADDONS_RECOMMENDED_REVIEW = AclPermission('Addons', 'RecommendedReview')
+# Can submit Site Permission add-ons - typically used to submit add-ons needed
+# for Firefox testing, the automatic creation is handled by the task user which
+# is special cased to not require the permission.
+ADDONS_SUBMIT_SITE_PERMISSION = AclPermission('Addons', 'SubmitSitePermission')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
@@ -61,6 +65,9 @@ USERS_EDIT = AclPermission('Users', 'Edit')
 
 # Can moderate add-on ratings submitted by users.
 RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')
+
+# Can bypass ratings throttling
+RATINGS_BYPASS_THROTTLING = AclPermission('Ratings', 'BypassThrottling')
 
 # Can access advanced reviewer features meant for admins, such as disabling an
 # add-on or clearing needs admin review flags.
@@ -186,6 +193,9 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'scanners.change_scannerqueryresult': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.view_scannerqueryrule': ADMIN_SCANNERS_QUERY_VIEW,
         'scanners.view_scannerqueryresult': ADMIN_SCANNERS_QUERY_VIEW,
+        'tags.add_tag': DISCOVERY_EDIT,
+        'tags.change_tag': DISCOVERY_EDIT,
+        'tags.delete_tag': DISCOVERY_EDIT,
         'users.change_userprofile': USERS_EDIT,
         'users.delete_userprofile': ADMIN_ADVANCED,
         'users.add_disposableemaildomainrestriction,': ADMIN_ADVANCED,

@@ -6,23 +6,30 @@ import tempfile
 import zipfile
 import shutil
 
+from unittest import mock
+from unittest.mock import patch
+
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.forms import ValidationError
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
 
-from unittest import mock
 import pytest
+from waffle.testutils import override_switch
 
-from unittest.mock import patch
-
-from olympia import amo
+from olympia import amo, core
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    create_default_webext_appversion,
+    user_factory,
+)
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
@@ -33,33 +40,21 @@ from olympia.files.models import (
     nfd_str,
     track_file_status_change,
 )
-from olympia.files.utils import Extractor, check_xpi_info, parse_addon
+from olympia.files.utils import check_xpi_info, ManifestJSONExtractor, parse_addon
+from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
 
 
-class UploadTest(TestCase, amo.tests.AMOPaths):
+class UploadMixin(amo.tests.AMOPaths):
     """
-    Base for tests that mess with file uploads, safely using temp directories.
+    Mixin for tests that mess with file uploads, safely using temp directories.
     """
 
     def setUp(self):
-        versions = {
-            amo.DEFAULT_WEBEXT_MIN_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
-            amo.DEFAULT_WEBEXT_MAX_VERSION,
-            amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
-        }
-        for version in versions:
-            AppVersion.objects.get_or_create(
-                application=amo.FIREFOX.id, version=version
-            )
-            AppVersion.objects.get_or_create(
-                application=amo.ANDROID.id, version=version
-            )
+        create_default_webext_appversion()
 
     def file_path(self, *args, **kw):
         return self.file_fixture_path(*args, **kw)
@@ -73,19 +68,26 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
         user=None,
         version=None,
         with_validation=True,
+        source=amo.UPLOAD_SOURCE_DEVHUB,
+        channel=amo.RELEASE_CHANNEL_LISTED,
     ):
         if user is None:
             user = user_factory()
         with open(abspath if abspath else self.file_path(filename), 'rb') as f:
             xpi = f.read()
-        upload = FileUpload.from_post([xpi], filename=abspath or filename, size=1234)
-        upload.addon = addon
-        upload.user = user
-        upload.version = version
-        upload.ip_address = '127.0.0.42'
-        upload.source = amo.UPLOAD_SOURCE_DEVHUB
+        with core.override_remote_addr('127.0.0.62'):
+            upload = FileUpload.from_post(
+                [xpi],
+                filename=abspath or filename,
+                size=1234,
+                user=user,
+                addon=addon,
+                version=version,
+                source=source,
+                channel=channel,
+            )
         if with_validation:
-            # Simulate what fetch_manifest() does after uploading an app.
+            # Simulate what validation does after uploading an add-on.
             upload.validation = validation or json.dumps(
                 {
                     'errors': 0,
@@ -95,7 +97,7 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
                     'messages': [],
                 }
             )
-        upload.save()
+            upload.save()
         return upload
 
 
@@ -151,24 +153,24 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         """Test that version (soft)delete doesn't delete the file."""
         f = File.objects.get(pk=67442)
         try:
-            with storage.open(f.file_path, 'w') as fi:
+            with storage.open(f.current_file_path, 'w') as fi:
                 fi.write('sample data\n')
-            assert storage.exists(f.file_path)
+            assert storage.exists(f.current_file_path)
             f.version.delete()
-            assert storage.exists(f.file_path)
+            assert storage.exists(f.current_file_path)
         finally:
-            if storage.exists(f.file_path):
-                storage.delete(f.file_path)
+            if storage.exists(f.current_file_path):
+                storage.delete(f.current_file_path)
 
     def test_delete_file_path(self):
         f = File.objects.get(pk=67442)
-        self.check_delete(f, f.file_path)
+        self.check_delete(f, f.current_file_path)
 
     def test_delete_no_file(self):
         # test that the file object can be deleted without the file
         # being present
         file = File.objects.get(pk=74797)
-        filename = file.file_path
+        filename = file.current_file_path
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         file.delete()
 
@@ -243,7 +245,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename_many_apps(self):
         f = File.objects.get(id=67442)
-        f.version._compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
+        f.version.compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
         # After adding sorting for compatible_apps, above becomes
         # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
         # instead of 'fx+an'
@@ -253,7 +255,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_generate_filename_ja(self):
         f = File()
         f.version = Version(version='0.1.7')
-        f.version._compatible_apps = {amo.FIREFOX: None}
+        f.version.compatible_apps = {amo.FIREFOX: None}
         f.version.addon = Addon(name=' フォクすけ  といっしょ')
         assert f.generate_filename() == 'addon-0.1.7-fx.xpi'
 
@@ -286,7 +288,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_webext_permissions_list_string_only(self):
         file_ = File.objects.get(pk=67442)
-        file_.update(is_webextension=True)
         permissions = [
             'iamstring',
             'iamnutherstring',
@@ -306,7 +307,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_optional_permissions_list_string_only(self):
         file_ = File.objects.get(pk=67442)
-        file_.update(is_webextension=True)
         optional_permissions = [
             'iamstring',
             'iamnutherstring',
@@ -474,7 +474,8 @@ class TestParseXpi(TestCase):
         parse_addon_kwargs.update(**kwargs)
 
         with open(xpi, 'rb') as fobj:
-            return parse_addon(fobj, addon, **parse_addon_kwargs)
+            file_ = SimpleUploadedFile(filename, fobj.read())
+            return parse_addon(file_, addon, **parse_addon_kwargs)
 
     def test_parse_basics(self):
         # Basic test for key properties (more advanced testing is done in other
@@ -486,7 +487,6 @@ class TestParseXpi(TestCase):
             'version': '0.0.1',
             'homepage': None,
             'type': 1,
-            'is_webextension': True,
         }
         parsed = self.parse()
         for key, value in expected.items():
@@ -499,12 +499,12 @@ class TestParseXpi(TestCase):
             'guid': '@webextension-guid',
             'version': '0.0.1',
             'type': amo.ADDON_EXTENSION,
-            'is_webextension': True,
             'name': 'My WebExtension Addon',
             'summary': 'just a test addon with the manifest.json format',
             'default_locale': None,
             'homepage': None,
             'manifest_version': 2,
+            'install_origins': [],
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
@@ -520,12 +520,12 @@ class TestParseXpi(TestCase):
             'guid': '@webextension-guid',
             'version': '0.0.1',
             'type': amo.ADDON_EXTENSION,
-            'is_webextension': True,
             'name': 'My WebExtension Addon',
             'summary': 'just a test addon with the manifest.json format',
             'default_locale': None,
             'homepage': None,
             'manifest_version': 2,
+            'install_origins': [],
         }
         parsed = self.parse(minimal=True, user=None)
         assert parsed == expected
@@ -549,13 +549,13 @@ class TestParseXpi(TestCase):
 
     def test_parse_apps(self):
         expected = [
-            Extractor.App(
+            ManifestJSONExtractor.App(
                 amo.FIREFOX,
                 amo.FIREFOX.id,
                 AppVersion.objects.get(application=amo.FIREFOX.id, version='42.0'),
                 AppVersion.objects.get(application=amo.FIREFOX.id, version='*'),
             ),
-            Extractor.App(
+            ManifestJSONExtractor.App(
                 amo.ANDROID,
                 amo.ANDROID.id,
                 AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'),
@@ -599,6 +599,20 @@ class TestParseXpi(TestCase):
             self.parse(filename='webextension.xpi')
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
+    @override_switch('allow-deleted-guid-reuse', active=True)
+    def test_guid_dupe_deleted_addon_allowed_if_same_author_and_switch_is_on(self):
+        addon = addon_factory(guid='@webextension-guid', users=[self.user])
+        addon.delete()
+        data = self.parse(filename='webextension.xpi')
+        assert data['guid'] == '@webextension-guid'
+
+    def test_guid_dupe_deleted_addon_not_allowed_if_same_author_and_switch_is_off(self):
+        addon = addon_factory(guid='@webextension-guid', users=[self.user])
+        addon.delete()
+        with self.assertRaises(forms.ValidationError) as e:
+            self.parse(filename='webextension.xpi')
+        assert e.exception.messages == ['Duplicate add-on ID found.']
+
     def test_guid_nomatch_webextension(self):
         addon = Addon.objects.create(
             guid='e2c45b71-6cbb-452c-97a5-7e8039cc6535', type=1
@@ -631,29 +645,22 @@ class TestParseXpi(TestCase):
         # See #3315: webextension experiments (type 256) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
-        assert not parsed['is_restart_required']
 
     def test_match_type_extension_for_webextensions(self):
         parsed = self.parse(filename='webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_webextension']
-        assert not parsed['is_restart_required']
         assert not parsed['is_experiment']
 
     def test_experiment_inside_webextension(self):
         self.grant_permission(self.user, 'Experiments:submit')
         parsed = self.parse(filename='experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_webextension']
-        assert not parsed['is_restart_required']
         assert parsed['is_experiment']
 
     def test_theme_experiment_inside_webextension(self):
         self.grant_permission(self.user, 'Experiments:submit')
         parsed = self.parse(filename='theme_experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_STATICTHEME
-        assert parsed['is_webextension']
-        assert not parsed['is_restart_required']
         assert parsed['is_experiment']
 
     def test_match_mozilla_signed_extension(self):
@@ -676,7 +683,6 @@ class TestParseXpi(TestCase):
         self.grant_permission(self.user, 'LanguagePack:Submit')
         result = self.parse(filename='webextension_langpack.xpi')
         assert result['type'] == amo.ADDON_LPAPP
-        assert not result['is_restart_required']
         assert result['strict_compatibility']
 
     def test_good_version_number(self):
@@ -698,26 +704,30 @@ class TestParseXpi(TestCase):
     def test_manifest_version(self):
         parsed = self.parse(filename='webextension_mv3.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_webextension']
         assert parsed['manifest_version'] == 3
 
         parsed = self.parse(filename='webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_webextension']
         assert parsed['manifest_version'] == 2
 
 
-class TestFileUpload(UploadTest):
+class TestFileUpload(UploadMixin, TestCase):
     fixtures = ['base/appversion', 'base/addon_3615']
 
     def setUp(self):
         super().setUp()
         self.data = b'file contents'
+        self.user = UserProfile.objects.latest('pk')
 
     def upload(self, **params):
         # The data should be in chunks.
         data = [bytes(bytearray(s)) for s in chunked(self.data, 3)]
-        return FileUpload.from_post(data, 'filenamé.xpi', len(self.data), **params)
+        params.setdefault('user', self.user)
+        params.setdefault('source', amo.UPLOAD_SOURCE_DEVHUB)
+        params.setdefault('channel', amo.RELEASE_CHANNEL_UNLISTED)
+        return FileUpload.from_post(
+            data, filename='filenamé.xpi', size=len(self.data), **params
+        )
 
     def test_from_post_write_file(self):
         assert storage.open(self.upload().path, 'rb').read() == self.data
@@ -734,100 +744,97 @@ class TestFileUpload(UploadTest):
         hashdigest = hashlib.sha256(self.data).hexdigest()
         assert self.upload().hash == 'sha256:%s' % hashdigest
 
-    def test_from_post_extra_params(self):
-        upload = self.upload(automated_signing=True, addon_id=3615)
-        assert upload.addon_id == 3615
-        assert upload.automated_signing
-
     def test_from_post_is_one_query(self):
+        addon = Addon.objects.get(pk=3615)
         with self.assertNumQueries(1):
-            self.upload(automated_signing=True, addon_id=3615)
+            self.upload(addon=addon)
 
     def test_save_without_validation(self):
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(
+            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+        )
         assert not upload.valid
 
     def test_save_with_validation(self):
-        upload = FileUpload.objects.create(validation='{"errors": 0, "metadata": {}}')
+        upload = FileUpload.objects.create(
+            validation='{"errors": 0, "metadata": {}}',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.46',
+        )
         assert upload.valid
 
-        upload = FileUpload.objects.create(validation='{"errors": 1}')
+        upload = FileUpload.objects.create(
+            validation='{"errors": 1}',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.46',
+        )
         assert not upload.valid
 
         with self.assertRaises(ValueError):
-            upload = FileUpload.objects.create(validation='wtf')
+            upload = FileUpload.objects.create(
+                validation='wtf',
+                user=self.user,
+                source=amo.UPLOAD_SOURCE_DEVHUB,
+                ip_address='127.0.0.46',
+            )
 
     def test_update_with_validation(self):
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(
+            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+        )
         upload.validation = '{"errors": 0, "metadata": {}}'
         upload.save()
         assert upload.valid
 
     def test_update_without_validation(self):
-        upload = FileUpload.objects.create()
+        upload = FileUpload.objects.create(
+            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+        )
         upload.save()
         assert not upload.valid
 
     def test_ascii_names(self):
-        upload = FileUpload.from_post(b'', 'jétpack.xpi', 0)
-        assert 'xpi' in upload.name
-
-        upload = FileUpload.from_post(b'', 'мозила_србија-0.11-fx.xpi', 0)
-        assert 'xpi' in upload.name
-
-        upload = FileUpload.from_post(b'', 'フォクすけといっしょ.xpi', 0)
-        assert 'xpi' in upload.name
-
-        upload = FileUpload.from_post(b'', '\u05d0\u05d5\u05e1\u05e3.xpi', 0)
-        assert 'xpi' in upload.name
-
-    def test_validator_sets_binary_via_extensions(self):
-        validation = json.dumps(
-            {
-                'errors': 0,
-                'success': True,
-                'warnings': 0,
-                'notices': 0,
-                'message_tree': {},
-                'messages': [],
-                'metadata': {
-                    'contains_binary_extension': True,
-                    'version': '1.0',
-                    'name': 'gK0Bes Bot',
-                    'id': 'gkobes@gkobes',
-                },
-            }
+        upload = FileUpload.from_post(
+            b'',
+            filename='jétpack.xpi',
+            size=0,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
-        upload = self.get_upload(filename='webextension.xpi', validation=validation)
-        addon = Addon.objects.get(pk=3615)
-        addon.update(guid='@webextension-guid')
-        parsed_data = parse_addon(upload, addon=addon, user=user_factory())
-        file_ = File.from_upload(upload, addon.current_version, parsed_data=parsed_data)
-        assert file_.binary
+        assert 'xpi' in upload.name
 
-    def test_validator_sets_binary_via_content(self):
-        validation = json.dumps(
-            {
-                'errors': 0,
-                'success': True,
-                'warnings': 0,
-                'notices': 0,
-                'message_tree': {},
-                'messages': [],
-                'metadata': {
-                    'contains_binary_content': True,
-                    'version': '1.0',
-                    'name': 'gK0Bes Bot',
-                    'id': 'gkobes@gkobes',
-                },
-            }
+        upload = FileUpload.from_post(
+            b'',
+            filename='мозила_србија-0.11-fx.xpi',
+            size=0,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
-        upload = self.get_upload(filename='webextension.xpi', validation=validation)
-        addon = Addon.objects.get(pk=3615)
-        addon.update(guid='@webextension-guid')
-        parsed_data = parse_addon(upload, addon=addon, user=user_factory())
-        file_ = File.from_upload(upload, addon.current_version, parsed_data=parsed_data)
-        assert file_.binary
+        assert 'xpi' in upload.name
+
+        upload = FileUpload.from_post(
+            b'',
+            filename='フォクすけといっしょ.xpi',
+            size=0,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
+        assert 'xpi' in upload.name
+
+        upload = FileUpload.from_post(
+            b'',
+            filename='\u05d0\u05d5\u05e1\u05e3.xpi',
+            size=0,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
+        assert 'xpi' in upload.name
 
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):
@@ -1016,7 +1023,14 @@ class TestFileUpload(UploadTest):
         """Test to ensure we raise an explicit exception when a .crx file isn't
         a true crx (doesn't have to be caught, showing a 500 error is fine)."""
         data = b'Cr42\x02\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
-        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        upload = FileUpload.from_post(
+            [data],
+            filename='test.crx',
+            size=1234,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         # We couldn't convert it as it's an invalid or unsupported crx, so
         # re storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
@@ -1027,7 +1041,14 @@ class TestFileUpload(UploadTest):
         explicit exception otherwise (doesn't have to be caught, showing a 500
         error is fine)."""
         data = b'Cr24\x04\x00\x00\x00&\x01\x00\x00\x00\x01\x00\x00'
-        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        upload = FileUpload.from_post(
+            [data],
+            filename='test.crx',
+            size=1234,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         # We couldn't convert it as it's an invalid or unsupported crx, so
         # re storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
@@ -1037,7 +1058,14 @@ class TestFileUpload(UploadTest):
         """Test to ensure we raise an explicit exception when we can't unpack
         a crx (doesn't have to be caught, showing a 500 error is fine)."""
         data = b'Cr24\x02\x00\x00\x00&\x00\x00\x00\x01\x00\x00'
-        upload = FileUpload.from_post([data], filename='test.crx', size=1234)
+        upload = FileUpload.from_post(
+            [data],
+            filename='test.crx',
+            size=1234,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
         # We're storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
         storage.delete(upload.path)
@@ -1049,14 +1077,21 @@ class TestFileUpload(UploadTest):
         storage.delete(upload.path)
 
     def test_generate_access_token_on_save(self):
-        upload = FileUpload()
+        upload = FileUpload(
+            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+        )
         assert not upload.access_token
         upload.save()
         assert upload.access_token
 
     def test_access_token_is_not_changed_if_already_set(self):
         access_token = 'some-access-token'
-        upload = FileUpload.objects.create(access_token=access_token)
+        upload = FileUpload.objects.create(
+            access_token=access_token,
+            user=UserProfile.objects.latest('pk'),
+            ip_address='127.0.0.45',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+        )
         assert upload.access_token == access_token
 
     def test_generate_access_token(self):
@@ -1065,7 +1100,12 @@ class TestFileUpload(UploadTest):
 
     def test_get_authenticated_download_url(self):
         access_token = 'some-access-token'
-        upload = FileUpload.objects.create(access_token=access_token)
+        upload = FileUpload.objects.create(
+            access_token=access_token,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.48',
+        )
         site_url = 'https://example.com'
         relative_url = reverse(
             'files.serve_file_upload', kwargs={'uuid': upload.uuid.hex}
@@ -1096,7 +1136,7 @@ def test_file_upload_passed_all_validations_invalid():
     assert not upload.passed_all_validations
 
 
-class TestFileFromUpload(UploadTest):
+class TestFileFromUpload(UploadMixin, TestCase):
     @classmethod
     def setUpTestData(cls):
         versions = {
@@ -1119,6 +1159,9 @@ class TestFileFromUpload(UploadTest):
             guid='@webextension-guid', type=amo.ADDON_EXTENSION, name='xxx'
         )
         self.version = Version.objects.create(addon=self.addon)
+        patcher = mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
+        self.addCleanup(patcher.stop)
+        patcher.start()
 
     def upload(self, name):
         validation_data = json.dumps(
@@ -1130,14 +1173,17 @@ class TestFileFromUpload(UploadTest):
             }
         )
         fname = nfd_str(self.xpi_path(name))
-        if not storage.exists(fname):
-            with storage.open(fname, 'w') as fs:
+        if not self.root_storage.exists(fname):
+            with self.root_storage.open(fname, 'w') as fs:
                 shutil.copyfileobj(open(fname), fs)
         data = {
             'path': force_str(fname),
             'name': force_str(name),
             'hash': 'sha256:%s' % name,
             'validation': validation_data,
+            'source': amo.UPLOAD_SOURCE_DEVHUB,
+            'ip_address': '127.0.0.50',
+            'user': user_factory(),
         }
         return FileUpload.objects.create(**data)
 
@@ -1169,19 +1215,13 @@ class TestFileFromUpload(UploadTest):
         assert file_.hash.startswith('sha256:')
         assert len(file_.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
 
-    def test_does_not_require_a_restart(self):
-        upload = self.upload('webextension.xpi')
-        parsed_data = parse_addon(upload.path, addon=self.addon, user=user_factory())
-        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
-        assert not file_.is_restart_required
-
     def test_utf8(self):
         upload = self.upload('wébextension.xpi')
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'jets-0.1.xpi'
 
-    @mock.patch('olympia.files.models.copy_stored_file')
+    @mock.patch('olympia.amo.utils.SafeStorage.copy_stored_file')
     def test_dont_send_both_bytes_and_str_to_copy_stored_file(
         self, copy_stored_file_mock
     ):
@@ -1223,7 +1263,6 @@ class TestFileFromUpload(UploadTest):
         upload = self.upload('webextension_langpack.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename.endswith('.xpi')
-        assert not file_.is_restart_required
 
     def test_experiment(self):
         upload = self.upload('experiment_inside_webextension')
@@ -1259,10 +1298,7 @@ class TestFileFromUpload(UploadTest):
 
     def test_webextension_mv2(self):
         upload = self.upload('webextension')
-        file_ = File.from_upload(
-            upload, self.version, parsed_data={'is_webextension': True}
-        )
-        assert file_.is_webextension
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.manifest_version == 2
 
     def test_webextension_mv3(self):
@@ -1274,7 +1310,8 @@ class TestFileFromUpload(UploadTest):
 
     def test_permissions(self):
         upload = self.upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(upload, user=user_factory())
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
         # 5 permissions; 2 content_scripts entries.
         assert len(parsed_data['permissions']) == 5
         assert len(parsed_data['content_scripts']) == 2
@@ -1306,7 +1343,8 @@ class TestFileFromUpload(UploadTest):
 
     def test_optional_permissions(self):
         upload = self.upload('webextension_no_id.xpi')
-        parsed_data = parse_addon(upload, user=user_factory())
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
         assert len(parsed_data['optional_permissions']) == 2
         file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
         permissions_list = file_.optional_permissions
@@ -1315,9 +1353,7 @@ class TestFileFromUpload(UploadTest):
 
     def test_file_is_copied_to_current_path_at_upload(self):
         upload = self.upload('webextension')
-        file_ = File.from_upload(
-            upload, self.version, parsed_data={'is_webextension': True}
-        )
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert os.path.exists(file_.file_path)
         assert not os.path.exists(file_.guarded_file_path)
         assert os.path.exists(file_.current_file_path)
@@ -1325,12 +1361,24 @@ class TestFileFromUpload(UploadTest):
     def test_file_is_copied_to_current_path_at_upload_if_disabled(self):
         self.addon.update(disabled_by_user=True)
         upload = self.upload('webextension')
-        file_ = File.from_upload(
-            upload, self.version, parsed_data={'is_webextension': True}
-        )
+        file_ = File.from_upload(upload, self.version, parsed_data={})
         assert not os.path.exists(file_.file_path)
         assert os.path.exists(file_.guarded_file_path)
         assert os.path.exists(file_.current_file_path)
+
+    def test_permission_enabler_site_permissions(self):
+        upload = self.upload('webextension.xpi')
+        file_ = File.from_upload(
+            upload,
+            self.version,
+            parsed_data={
+                'type': amo.ADDON_SITE_PERMISSION,
+                'site_permissions': ['one', 'two'],
+            },
+        )
+        site_permissions = file_._site_permissions
+        assert site_permissions.pk
+        assert site_permissions.permissions == ['one', 'two']
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):

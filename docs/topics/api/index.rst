@@ -41,8 +41,10 @@ using the API.
    categories
    collections
    discovery
+   licenses
    ratings
    reviewers
    scanners
    shelves
    signing
+   tags

@@ -2,15 +2,13 @@ import os
 from base64 import b64encode
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_str
 
 from unittest import mock
 import pytest
 
 from olympia import amo
-from olympia.amo.storage_utils import copy_stored_file
-from olympia.amo.tests import addon_factory, version_factory
+from olympia.amo.tests import addon_factory, root_storage, version_factory
 from olympia.versions.models import Version, VersionPreview
 from olympia.versions.tasks import (
     generate_static_theme_preview,
@@ -55,7 +53,7 @@ def check_render(
     assert image_tag in svg_content, svg_content
     # and image content is included and was encoded
     if valid_img:
-        with storage.open(HEADER_ROOT + header_url, 'rb') as header_file:
+        with root_storage.open(HEADER_ROOT + header_url, 'rb') as header_file:
             header_blob = header_file.read()
             base_64_uri = 'data:{};base64,{}'.format(
                 mimetype,
@@ -102,7 +100,7 @@ def check_preview(
 
 
 def write_empty_png(svg_content, out):
-    copy_stored_file(os.path.join(HEADER_ROOT, 'empty.png'), out)
+    root_storage.copy_stored_file(os.path.join(HEADER_ROOT, 'empty.png'), out)
     return True
 
 
@@ -165,9 +163,9 @@ def test_generate_static_theme_preview(
     if header_url is not None:
         theme_manifest['images']['theme_frame'] = header_url
     addon = addon_factory()
-    destination = addon.current_version.all_files[0].current_file_path
+    destination = addon.current_version.file.current_file_path
     zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
-    copy_stored_file(zip_file, destination)
+    root_storage.copy_stored_file(zip_file, destination)
     # existing previews should be deleted if they exist
     existing_preview = VersionPreview.objects.create(version=addon.current_version)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
@@ -355,9 +353,9 @@ def test_generate_static_theme_preview_with_alternative_properties(
         'colors': manifest_colors,
     }
     addon = addon_factory()
-    destination = addon.current_version.all_files[0].current_file_path
+    destination = addon.current_version.file.current_file_path
     zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
-    copy_stored_file(zip_file, destination)
+    root_storage.copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg
@@ -473,7 +471,7 @@ def check_render_additional(svg_content, inner_svg_width, colors):
     assert rect_tag in svg_content, svg_content
     # and image content is included and was encoded
     additional = os.path.join(HEADER_ROOT, 'weta_for_tiling.png')
-    with storage.open(additional, 'rb') as header_file:
+    with root_storage.open(additional, 'rb') as header_file:
         header_blob = header_file.read()
     base_64_uri = 'data:{};base64,{}'.format(
         'image/png',
@@ -521,11 +519,11 @@ def test_generate_preview_with_additional_backgrounds(
         },
     }
     addon = addon_factory()
-    destination = addon.current_version.all_files[0].current_file_path
+    destination = addon.current_version.file.current_file_path
     zip_file = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
     )
-    copy_stored_file(zip_file, destination)
+    root_storage.copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg

@@ -2,8 +2,11 @@ import collections
 import datetime
 import os.path
 import tempfile
+from urllib.parse import urlparse
 
 from django.conf import settings
+from django.test import RequestFactory
+from django.test.utils import override_settings
 from django.utils.functional import cached_property
 from django.utils.http import quote_etag
 
@@ -21,6 +24,7 @@ from olympia.amo.utils import (
     attach_trans_dict,
     extract_colors_from_image,
     get_locale_from_lang,
+    is_safe_url,
     pngcrush_image,
     utc_millesecs_from_epoch,
     walkfiles,
@@ -337,3 +341,47 @@ def test_images_are_small():
             if os.path.getsize(os.path.join(root, name)) > IMAGE_FILESIZE_MAX
         ]
     assert not large_images
+
+
+class TestIsSafeUrl(TestCase):
+    def test_enforces_https_when_request_is_secure(self):
+        request = RequestFactory().get('/', secure=True)
+        assert is_safe_url(f'https://{settings.DOMAIN}', request)
+        assert not is_safe_url(f'http://{settings.DOMAIN}', request)
+
+    def test_does_not_require_https_when_request_is_not_secure(self):
+        request = RequestFactory().get('/', secure=False)
+        assert is_safe_url(f'https://{settings.DOMAIN}', request)
+        assert is_safe_url(f'http://{settings.DOMAIN}', request)
+
+    def test_allows_domain(self):
+        request = RequestFactory().get('/', secure=True)
+        assert is_safe_url(f'https://{settings.DOMAIN}/foo', request)
+        assert not is_safe_url('https://not-olympia.dev', request)
+
+    def test_allows_code_manager_site_url(self):
+        request = RequestFactory().get('/', secure=True)
+        external_domain = urlparse(settings.CODE_MANAGER_URL).netloc
+        assert is_safe_url(f'https://{external_domain}/foo', request)
+
+    def test_allows_with_allowed_hosts(self):
+        request = RequestFactory().get('/', secure=True)
+        foobaa_domain = 'foobaa.com'
+        assert is_safe_url(
+            f'https://{foobaa_domain}/foo', request, allowed_hosts=[foobaa_domain]
+        )
+        assert not is_safe_url(
+            f'https://{settings.DOMAIN}', request, allowed_hosts=[foobaa_domain]
+        )
+
+    @override_settings(DOMAIN='mozilla.com', ADDONS_FRONTEND_PROXY_PORT='1234')
+    def test_includes_host_for_proxy_when_proxy_port_setting_exists(self):
+        request = RequestFactory().get('/')
+        assert is_safe_url('https://mozilla.com:1234', request)
+        assert not is_safe_url('https://mozilla.com:9876', request)
+
+    @override_settings(DOMAIN='mozilla.com')
+    def test_proxy_port_defaults_to_none(self):
+        request = RequestFactory().get('/')
+        assert is_safe_url('https://mozilla.com', request)
+        assert not is_safe_url('https://mozilla.com:7000', request)

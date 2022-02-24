@@ -11,6 +11,7 @@ from django.utils import translation
 import pytest
 from freezegun import freeze_time
 
+from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo, core
@@ -26,24 +27,31 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.devhub import forms
-from olympia.files.models import FileUpload
+from olympia.files.models import FileSitePermission, FileUpload
 from olympia.signing.views import VersionView
 from olympia.tags.models import AddonTag, Tag
-from olympia.versions.models import ApplicationsVersions
+from olympia.versions.models import ApplicationsVersions, DeniedInstallOrigin
 
 
 class TestNewUploadForm(TestCase):
     def test_firefox_default_selected(self):
-        upload = FileUpload.objects.create(valid=False)
+        user = user_factory()
+        upload = FileUpload.objects.create(
+            valid=False,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         form = forms.NewUploadForm(data, request=request)
         assert form.fields['compatible_apps'].initial == [amo.FIREFOX.id]
 
     def test_previous_compatible_apps_initially_selected(self):
         addon = addon_factory()
-
+        user = user_factory()
         appversion = AppVersion.objects.create(
             application=amo.ANDROID.id, version='1.0'
         )
@@ -54,10 +62,16 @@ class TestNewUploadForm(TestCase):
             max=appversion,
         )
 
-        upload = FileUpload.objects.create(valid=False)
+        upload = FileUpload.objects.create(
+            valid=False,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
 
         # Without an add-on, we only pre-select the default which is Firefox
         form = forms.NewUploadForm(data, request=request)
@@ -76,10 +90,17 @@ class TestNewUploadForm(TestCase):
         of the compatibility apps multi-select to correctly render
         images.
         """
-        upload = FileUpload.objects.create(valid=False)
+        user = user_factory()
+        upload = FileUpload.objects.create(
+            valid=False,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         form = forms.NewUploadForm(data, request=request)
         result = form.fields['compatible_apps'].widget.render(
             name='compatible_apps', value=amo.FIREFOX.id
@@ -91,12 +112,26 @@ class TestNewUploadForm(TestCase):
         )
         assert 'class="app android"' in result
 
-    def test_only_valid_uploads(self):
-        upload = FileUpload.objects.create(valid=False)
-        upload = FileUpload.objects.create(valid=False)
+    @mock.patch('olympia.devhub.forms.parse_addon')
+    def test_only_valid_uploads(self, parse_addon_mock):
+        user = user_factory()
+        upload = FileUpload.objects.create(
+            valid=False,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
+        upload = FileUpload.objects.create(
+            valid=False,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         form = forms.NewUploadForm(data, request=request)
         assert (
             'There was an error with your upload. Please try again.'
@@ -109,9 +144,14 @@ class TestNewUploadForm(TestCase):
             acl.return_value = True
             data['admin_override_validation'] = True
             form = forms.NewUploadForm(data, request=request)
+            assert form.is_valid()
+
+            # Regular users can't override
+            acl.return_value = False
+            form = forms.NewUploadForm(data, request=request)
             assert (
-                'There was an error with your upload. Please try'
-                not in form.errors.get('__all__')
+                'There was an error with your upload. Please try again.'
+                in form.errors.get('__all__')
             ), form.errors
 
         upload.validation = '{"errors": 0}'
@@ -119,17 +159,57 @@ class TestNewUploadForm(TestCase):
         addon = Addon.objects.create()
         data.pop('admin_override_validation')
         form = forms.NewUploadForm(data, request=request, addon=addon)
-        assert (
-            'There was an error with your upload. Please try again.'
-            not in form.errors.get('__all__')
-        ), form.errors
+        assert form.is_valid()
 
     @mock.patch('olympia.devhub.forms.parse_addon')
-    def test_throttling(self, parse_addon_mock):
-        upload = FileUpload.objects.create(valid=True, name='foo.xpi')
+    def test_valid_upload_from_different_user(self, parse_addon_mock):
+        upload = FileUpload.objects.create(
+            valid=True,
+            name='foo.xpi',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
         request.user = user_factory()
+        form = forms.NewUploadForm(data, request=request)
+        assert not form.is_valid()
+        assert (
+            'There was an error with your upload. Please try again.'
+            in form.errors.get('__all__')
+        ), (form.errors)
+
+        # Admin override can bypass
+        with mock.patch('olympia.access.acl.action_allowed_user') as acl:
+            # For the 'Addons:Edit' permission check.
+            acl.return_value = True
+            data['admin_override_validation'] = True
+            form = forms.NewUploadForm(data, request=request)
+            assert form.is_valid()
+
+            # Regular users can't override
+            acl.return_value = False
+            form = forms.NewUploadForm(data, request=request)
+            assert not form.is_valid()
+            assert (
+                'There was an error with your upload. Please try again.'
+                in form.errors.get('__all__')
+            ), form.errors
+
+    @mock.patch('olympia.devhub.forms.parse_addon')
+    def test_throttling(self, parse_addon_mock):
+        user = user_factory()
+        upload = FileUpload.objects.create(
+            valid=True,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
+        data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user
         request.META['REMOTE_ADDR'] = '5.6.7.8'
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for x in range(0, 6):
@@ -151,27 +231,36 @@ class TestNewUploadForm(TestCase):
             form = forms.NewUploadForm(data, request=request)
             assert form.is_valid()
 
-    # Those three patches are so files.utils.parse_addon doesn't fail on a
+    # Those five patches are so files.utils.parse_addon doesn't fail on a
     # non-existent file even before having a chance to call check_xpi_info.
-    @mock.patch('olympia.files.utils.Extractor.parse')
+    @mock.patch('olympia.files.utils.ManifestJSONExtractor')
+    @mock.patch('olympia.files.utils.SafeZip', lambda zip: mock.Mock())
+    @mock.patch('olympia.files.utils.SigningCertificateInformation', lambda cert: None)
     @mock.patch('olympia.files.utils.extract_xpi', lambda xpi, path: None)
     @mock.patch('olympia.files.utils.get_file', lambda xpi: None)
     # This is the one we want to test.
     @mock.patch('olympia.files.utils.check_xpi_info')
-    def test_check_xpi_called(self, mock_check_xpi_info, mock_parse):
+    def test_check_xpi_called(self, mock_check_xpi_info, manifest_extractor_parse):
         """Make sure the check_xpi_info helper is called.
 
         There's some important checks made in check_xpi_info, if we ever
         refactor the form to not call it anymore, we need to make sure those
         checks are run at some point.
         """
-        mock_parse.return_value = None
+        user = user_factory()
+        manifest_extractor_parse.parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        upload = FileUpload.objects.create(valid=True, name='foo.xpi')
+        upload = FileUpload.objects.create(
+            valid=True,
+            name='foo.xpi',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.64',
+        )
         addon = Addon.objects.create()
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
-        request.user = user_factory()
+        request.user = user
         form = forms.NewUploadForm(data, addon=addon, request=request)
         form.clean()
         assert mock_check_xpi_info.called
@@ -233,79 +322,21 @@ class TestCompatForm(TestCase):
 
     def test_form_choices(self):
         version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(is_webextension=True)
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
     def test_form_choices_no_compat(self):
         version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(is_webextension=False)
         version.addon.update(type=amo.ADDON_DICT)
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
     def test_form_choices_language_pack(self):
         version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(is_webextension=False)
         version.addon.update(type=amo.ADDON_LPAPP)
-        del version.all_files
-        self._test_form_choices_expect_all_versions(version)
-
-    def test_form_choices_legacy(self):
-        version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(is_webextension=False)
-        del version.all_files
-
-        firefox_57 = AppVersion.objects.get(application=amo.FIREFOX.id, version='57.0')
-        firefox_57_s = AppVersion.objects.get(
-            application=amo.FIREFOX.id, version='57.*'
-        )
-
-        expected_min_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
-            .exclude(version__contains='*')
-            .exclude(pk__in=(firefox_57.pk, firefox_57_s.pk))
-            .values_list('pk', 'version')
-            .order_by('version_int')
-        )
-        expected_max_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
-            .exclude(pk__in=(firefox_57.pk, firefox_57_s.pk))
-            .values_list('pk', 'version')
-            .order_by('version_int')
-        )
-
-        formset = forms.CompatFormSet(
-            None, queryset=version.apps.all(), form_kwargs={'version': version}
-        )
-        form = formset.forms[0]
-        assert form.app == amo.FIREFOX
-        assert list(form.fields['min'].choices) == expected_min_choices
-        assert list(form.fields['max'].choices) == expected_max_choices
-
-        expected_an_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.ANDROID.id)
-            .values_list('pk', 'version')
-            .order_by('version_int')
-        )
-        form = formset.forms[1]
-        assert form.app == amo.ANDROID
-        assert list(form.fields['min'].choices) == expected_an_choices
-        assert list(form.fields['max'].choices) == expected_an_choices
-
-    def test_form_choices_mozilla_signed_legacy(self):
-        version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(
-            is_webextension=False, is_mozilla_signed_extension=True
-        )
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
     def test_static_theme(self):
         version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(is_webextension=True)
         version.addon.update(type=amo.ADDON_STATICTHEME)
-        del version.all_files
         self._test_form_choices_expect_all_versions(version)
 
         formset = forms.CompatFormSet(
@@ -400,11 +431,11 @@ class TestDistributionChoiceForm(TestCase):
             label = str(label)
             assert label.startswith(expected)
 
-        with translation.override('de'):
+        with translation.override('fr'):
             form = forms.DistributionChoiceForm()
             label = form.fields['channel'].choices[0][1]
 
-            expected = 'Auf dieser Website.'
+            expected = 'Gestion via le site.'
             label = str(label)
             assert label.startswith(expected)
 
@@ -906,9 +937,21 @@ class TestIconForm(TestCase):
         rm_local_tmp_dir(self.temp_dir)
         super().tearDown()
 
-    def get_icon_paths(self):
-        path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
-        return [f'{path}-{size}.png' for size in amo.ADDON_ICON_SIZES]
+    def test_default_icons(self):
+        form = forms.AddonFormMedia(request=self.request, instance=self.addon)
+        content = str(form['icon_type'])
+        doc = pq(content)
+        imgs = doc('img')
+        assert len(imgs) == 1  # Only one default icon available atm
+        assert imgs[0].attrib == {
+            'alt': '',
+            # In dev/stage/prod where STATICFILES_STORAGE is ManifestStaticFilesStorage,
+            # we'd get some hashed file names, but in tests this is deactivated so that
+            # we don't need to run collectstatic to run tests.
+            'src': 'http://testserver/static/img/addon-icons/default-32.png',
+            'data-src-64': 'http://testserver/static/img/addon-icons/default-64.png',
+            'data-src-128': 'http://testserver/static/img/addon-icons/default-128.png',
+        }
 
     @mock.patch('olympia.amo.models.ModelBase.update')
     def test_icon_modified(self, update_mock):
@@ -932,3 +975,225 @@ class TestCategoryForm(TestCase):
         form = forms.CategoryFormSet(addon=addon, request=request)
         apps = [f.app for f in form.forms]
         assert apps == [amo.FIREFOX]
+
+
+_DEFAULT_SITE_PERMISSIONS = [
+    forms.SitePermissionGeneratorForm.declared_fields['site_permissions'].choices[0][0]
+]
+
+
+@pytest.mark.parametrize(
+    'origin',
+    [
+        'https://foo.com/testing',  # path
+        'file:/foo/bar',  # invalid scheme
+        'file:///foo/bar',  # invalid scheme
+        'ftp://somewhere.com',  # invalid scheme
+        'https://foo.bar.栃木.jp/',  # trailing slash
+        '',  # empty string
+        [],  # array (doh!)
+        {},  # dict (doh!)
+        'https://*.wildcard.com',  # wildcard
+        'example.com',  # no scheme
+        'https://',  # no hostname
+        None,  # null
+        42,  # int
+    ],
+)
+@pytest.mark.django_db
+def test_site_permission_generator_origin_invalid(origin):
+    request = req_factory_factory('/', user=user_factory())
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin},
+        request=request,
+    )
+    assert not form.is_valid()
+
+
+@pytest.mark.parametrize(
+    'origin',
+    [
+        'https://example.com',
+        'https://foo.example.com',
+        'https://xn--fo-9ja.com',
+        'https://foo.bar.栃木.jp',
+        'https://example.com:8888',
+    ],
+)
+@pytest.mark.django_db
+def test_site_permission_generator_origin_valid(origin):
+    request = req_factory_factory('/', user=user_factory())
+    form = forms.SitePermissionGeneratorForm(
+        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin},
+        request=request,
+    )
+    assert form.is_valid()
+    assert form.cleaned_data['origin'] == origin
+
+
+class SitePermissionGeneratorTests(TestCase):
+    def setUp(self):
+        self.request = req_factory_factory('/', post=True, user=user_factory())
+
+    def test_site_permission_generator_origin_denied(self):
+
+        DeniedInstallOrigin.objects.create(hostname_pattern='*.tld')
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.tld',
+            },
+            request=self.request,
+        )
+        assert not form.is_valid()
+        assert form.errors['origin'] == [
+            'The install origin https://foo.tld is not permitted.'
+        ]
+
+    def test_site_permission_generator_duplicates(self):
+        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
+        version = addon.versions.get()
+        FileSitePermission.objects.create(file=version.file, permissions=['something'])
+        version.installorigin_set.create(origin='https://example.com')
+
+        # User already has a site permission, but for a different origin/permissions.
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+        # User already has a site permission, but for different permissions
+        version.installorigin_set.get().update(origin='https://foo.com')
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+        # Duplicate.
+        version.file._site_permissions.update(permissions=_DEFAULT_SITE_PERMISSIONS)
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert not form.is_valid()
+
+    def test_site_permission_generator_deleted_duplicates(self):
+        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
+        version = addon.versions.get()
+        FileSitePermission.objects.create(
+            file=version.file, permissions=_DEFAULT_SITE_PERMISSIONS
+        )
+        version.installorigin_set.create(origin='https://foo.com')
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert not form.is_valid()
+
+        # Deleting the duplicate should make submission possible again.
+        addon.delete()
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+    def test_site_permission_generator_duplicates_same_permission(self):
+        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
+        version = addon.versions.get()
+        FileSitePermission.objects.create(
+            file=version.file, permissions=_DEFAULT_SITE_PERMISSIONS
+        )
+        version.installorigin_set.create(origin='https://example.com')
+
+        # User already has a site permission, for the same set of permissions, but
+        # for a different origin.
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+        # Duplicate.
+        version.installorigin_set.create(origin='https://foo.com')
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert not form.is_valid()
+
+        # Deleting the duplicate should make submission possible again.
+        addon.delete()
+        form = forms.SitePermissionGeneratorForm(
+            {
+                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                'origin': 'https://foo.com',
+            },
+            request=self.request,
+        )
+        assert form.is_valid()
+
+    def test_rate_limiting(self):
+        self.request.META['REMOTE_ADDR'] = '5.6.7.8'
+        with freeze_time('2021-01-08 15:16:23.42') as frozen_time:
+            for x in range(0, 6):
+                self._add_fake_throttling_action(
+                    view_class=VersionView,
+                    url='/',
+                    user=self.request.user,
+                    remote_addr=get_random_ip(),
+                )
+
+            form = forms.SitePermissionGeneratorForm(
+                {
+                    'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                    'origin': 'https://foo.com',
+                },
+                request=self.request,
+            )
+            assert not form.is_valid()
+            assert form.errors.get('__all__') == [
+                'You have submitted too many uploads recently. '
+                'Please try again after some time.'
+            ]
+
+            frozen_time.tick(delta=timedelta(seconds=61))
+            form = forms.SitePermissionGeneratorForm(
+                {
+                    'site_permissions': _DEFAULT_SITE_PERMISSIONS,
+                    'origin': 'https://foo.com',
+                },
+                request=self.request,
+            )
+            assert form.is_valid()

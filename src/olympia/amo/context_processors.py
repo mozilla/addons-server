@@ -1,15 +1,12 @@
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
-from django.utils.http import urlquote
 from django.urls import reverse
 from django.utils.translation import get_language, get_language_bidi, gettext
 
 from olympia import amo
 from olympia.access import acl
 
-
-def static_url(request):
-    return {'CDN_HOST': settings.CDN_HOST, 'STATIC_URL': settings.STATIC_URL}
+from urllib.parse import quote
 
 
 def i18n(request):
@@ -52,7 +49,7 @@ def global_settings(request):
         account_links.append(
             {
                 'text': gettext('Log out'),
-                'href': reverse('devhub.logout') + '?to=' + urlquote(request.path),
+                'href': reverse('devhub.logout') + '?to=' + quote(request.path),
             }
         )
 

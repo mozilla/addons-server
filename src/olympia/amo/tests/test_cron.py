@@ -1,4 +1,5 @@
 import os
+import subprocess
 from unittest import mock
 
 from django.conf import settings
@@ -7,7 +8,7 @@ from django.core import mail
 from olympia import amo
 from olympia.amo.cron import gc, write_sitemaps
 from olympia.amo.sitemap import get_sitemaps
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.scanners import YARA
 from olympia.addons.models import Addon
@@ -19,9 +20,22 @@ from olympia.amo.models import FakeEmail
 @mock.patch('olympia.amo.cron.storage')
 class TestGC(TestCase):
     def test_file_uploads_deletion(self, storage_mock):
-        fu_new = FileUpload.objects.create(path='/tmp/new', name='new')
+        user = user_factory()
+        fu_new = FileUpload.objects.create(
+            path='/tmp/new',
+            name='new',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.8',
+        )
         fu_new.update(created=self.days_ago(6))
-        fu_old = FileUpload.objects.create(path='/tmp/old', name='old')
+        fu_old = FileUpload.objects.create(
+            path='/tmp/old',
+            name='old',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.8',
+        )
         fu_old.update(created=self.days_ago(16))
 
         gc()
@@ -31,7 +45,14 @@ class TestGC(TestCase):
         assert storage_mock.delete.call_args[0][0] == fu_old.path
 
     def test_file_uploads_deletion_no_path_somehow(self, storage_mock):
-        fu_old = FileUpload.objects.create(path='', name='foo')
+        user = user_factory()
+        fu_old = FileUpload.objects.create(
+            path='',
+            name='foo',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.8',
+        )
         fu_old.update(created=self.days_ago(16))
 
         gc()
@@ -40,9 +61,22 @@ class TestGC(TestCase):
         assert storage_mock.delete.call_count == 0  # No path to delete.
 
     def test_file_uploads_deletion_oserror(self, storage_mock):
-        fu_older = FileUpload.objects.create(path='/tmp/older', name='older')
+        user = user_factory()
+        fu_older = FileUpload.objects.create(
+            path='/tmp/older',
+            name='older',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.8',
+        )
         fu_older.update(created=self.days_ago(300))
-        fu_old = FileUpload.objects.create(path='/tmp/old', name='old')
+        fu_old = FileUpload.objects.create(
+            path='/tmp/old',
+            name='old',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.8',
+        )
         fu_old.update(created=self.days_ago(16))
 
         storage_mock.delete.side_effect = OSError
@@ -69,10 +103,23 @@ class TestGC(TestCase):
         assert FakeEmail.objects.filter(pk=fe_new.pk).count() == 1
 
     def test_scanner_results_deletion(self, storage_mock):
-        old_upload = FileUpload.objects.create(path='/tmp/old', name='old')
+        user = user_factory()
+        old_upload = FileUpload.objects.create(
+            path='/tmp/old',
+            name='old',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.8',
+        )
         old_upload.update(created=self.days_ago(16))
 
-        new_upload = FileUpload.objects.create(path='/tmp/new', name='new')
+        new_upload = FileUpload.objects.create(
+            path='/tmp/new',
+            name='new',
+            user=user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.8',
+        )
         new_upload.update(created=self.days_ago(6))
 
         version = version_factory(addon=addon_factory())
@@ -210,6 +257,22 @@ class TestWriteSitemaps(TestCase):
 
         # but it does work on its own, to generate all relevant sitemaps
         write_sitemaps(app_name='android')
-        assert len(os.listdir(sitemaps_dir)) == 2
+        assert len(os.listdir(sitemaps_dir)) == 3
         assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-addons-android.xml'))
         assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-users-android.xml'))
+        assert os.path.exists(os.path.join(sitemaps_dir, 'sitemap-tags-android.xml'))
+
+
+def test_gen_cron():
+    args = [
+        'scripts/crontab/gen-cron.py',
+        '-z ./',
+        '-u root',
+    ]
+    output = subprocess.check_output(args)
+
+    assert b'MAILTO=amo-crons@mozilla.com' in output
+    # check some known jobs are rendered as expected in the output
+    prefix = b'root cd  ./; /usr/bin/python -W ignore::DeprecationWarning manage.py'
+    assert (b'*/5 * * * * %s auto_approve' % prefix) in output
+    assert (b'10 * * * * %s cron update_blog_posts' % prefix) in output

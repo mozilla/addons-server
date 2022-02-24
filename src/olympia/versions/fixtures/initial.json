@@ -7,9 +7,7 @@
     "created": "2009-04-30T23:48:48",
     "url": "http://www.gnu.org/licenses/gpl-3.0.html",
     "text": null,
-    "icons": null,
     "modified": "2010-10-14T16:14:13",
-    "some_rights": false,
     "builtin": 3,
     "on_form": true
   }
@@ -22,9 +20,7 @@
     "created": "2009-05-01T04:53:42",
     "url": "http://www.gnu.org/licenses/lgpl-3.0.html",
     "text": null,
-    "icons": null,
     "modified": "2010-10-14T16:14:13",
-    "some_rights": false,
     "builtin": 5,
     "on_form": true
   }
@@ -37,9 +33,7 @@
     "created": "2009-05-01T05:00:44",
     "url": "http://www.gnu.org/licenses/gpl-2.0.html",
     "text": null,
-    "icons": null,
     "modified": "2010-10-14T16:14:14",
-    "some_rights": false,
     "builtin": 2,
     "on_form": true
   }
@@ -52,9 +46,7 @@
     "created": "2009-05-01T08:02:14",
     "url": "http://www.gnu.org/licenses/lgpl-2.1.html",
     "text": null,
-    "icons": null,
     "modified": "2010-10-14T16:14:14",
-    "some_rights": false,
     "builtin": 4,
     "on_form": true
   }
@@ -67,9 +59,7 @@
     "created": "2009-05-01T08:36:09",
     "url": "http://www.opensource.org/licenses/bsd-license.php",
     "text": null,
-    "icons": null,
     "modified": "2010-10-14T16:14:15",
-    "some_rights": false,
     "builtin": 7,
     "on_form": true
   }
@@ -82,9 +72,7 @@
     "created": "2009-05-01T17:29:25",
     "url": "http://www.opensource.org/licenses/mit-license.php",
     "text": null,
-    "icons": null,
     "modified": "2010-10-14T16:14:15",
-    "some_rights": false,
     "builtin": 6,
     "on_form": true
   }
@@ -97,9 +85,7 @@
     "created": "2013-04-16T14:12:38",
     "url": "http://www.mozilla.org/MPL/2.0/",
     "text": null,
-    "icons": " ",
     "modified": "2013-04-16T14:12:38",
-    "some_rights": false,
     "builtin": 1,
     "on_form": true
   }
@@ -112,12 +98,9 @@
     "created": "2018-01-01T00:00:00",
     "url": null,
     "text": null,
-    "icons": "copyr",
     "modified": "2018-01-01T00:00:00",
-    "some_rights": true,
     "builtin": 11,
-    "on_form": true,
-    "creative_commons": true
+    "on_form": true
   }
 },
 {
@@ -128,12 +111,9 @@
     "created": "2018-01-01T00:00:00",
     "url": "http://creativecommons.org/licenses/by/3.0/",
     "text": null,
-    "icons": "cc-attrib",
     "modified": "2018-01-01T00:00:00",
-    "some_rights": false,
     "builtin": 12,
-    "on_form": true,
-    "creative_commons": true
+    "on_form": true
   }
 },
 {
@@ -144,12 +124,9 @@
     "created": "2018-01-01T00:00:00",
     "url": "http://creativecommons.org/licenses/by-nc/3.0/",
     "text": null,
-    "icons": "cc-attrib cc-noncom",
     "modified": "2018-01-01T00:00:00",
-    "some_rights": false,
     "builtin": 13,
-    "on_form": true,
-    "creative_commons": true
+    "on_form": true
   }
 },
 {
@@ -160,12 +137,9 @@
     "created": "2018-01-01T00:00:00",
     "url": "http://creativecommons.org/licenses/by-nc-nd/3.0/",
     "text": null,
-    "icons": "cc-attrib cc-noncom cc-noderiv",
     "modified": "2018-01-01T00:00:00",
-    "some_rights": false,
     "builtin": 14,
-    "on_form": true,
-    "creative_commons": true
+    "on_form": true
   }
 },
 {
@@ -176,12 +150,9 @@
     "created": "2018-01-01T00:00:00",
     "url": "http://creativecommons.org/licenses/by-nc-sa/3.0/",
     "text": null,
-    "icons": "cc-attrib cc-noncom cc-share",
     "modified": "2018-01-01T00:00:00",
-    "some_rights": false,
     "builtin": 15,
-    "on_form": true,
-    "creative_commons": true
+    "on_form": true
   }
 },
 {
@@ -192,12 +163,9 @@
     "created": "2018-01-01T00:00:00",
     "url": "http://creativecommons.org/licenses/by-nd/3.0/",
     "text": null,
-    "icons": "cc-attrib cc-noderiv",
     "modified": "2018-01-01T00:00:00",
-    "some_rights": false,
     "builtin": 16,
-    "on_form": true,
-    "creative_commons": true
+    "on_form": true
   }
 },
 {
@@ -208,12 +176,9 @@
     "created": "2018-01-01T00:00:00",
     "url": "http://creativecommons.org/licenses/by-sa/3.0/",
     "text": null,
-    "icons": "cc-attrib cc-share",
     "modified": "2018-01-01T00:00:00",
-    "some_rights": false,
     "builtin": 17,
-    "on_form": true,
-    "creative_commons": true
+    "on_form": true
   }
 },
 {

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-05-22 16:38+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.5.3\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} તારો"
-msgstr[1] "{0} તારાઓ"
 
 msgid "There was a problem contacting the server."
 msgstr "સર્વરનો સંપર્ક કરવામાં એક સમસ્યા આવી હતી."
@@ -95,18 +90,6 @@ msgstr[1] "તમારા ઍડ-ઑનને કોઈ ભૂલો અને 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "તમારા ઍડ-ઑનને કોઈ ભૂલો અથવા ચેતવણીઓ વગર માન્ય કરવામાં આવી હતી."
 
-msgid "Your submission will be automatically signed."
-msgstr "તમારું સબમિશન આપમેળે સાઇન થશે."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension સુધારો"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "અમે અપગ્રેડ કરવાની મંજૂરી આપીએ છીએ, પરંતુ તમે આ પ્રક્રિયાને ઉલટાવી શકતા નથી. એકવાર તમારા વપરાશકર્તાઓ પાસે WebExtension ઇન્સ્ટોલ કરેલું હોય, તો તેઓ કોઈ લીગસી એડ-ઓન ઇન્સ્ટોલ કરી શકશે નહીં."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "MDN પર લેગસી Firefox ઍડ-ઑનને પોર્ટેંગ કરવું"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "વિગતવાર આવૃત્તિ નોંધો શામેલ કરો(આ આગળના પગલામાં કરી શકાય છે)."
 
@@ -144,36 +127,6 @@ msgstr "છબીઓ ક્યાં તો PNG અથવા JPG હોવી �
 
 msgid "Videos must be in WebM."
 msgstr "વિડિઓઝ WebM માં હોવી આવશ્યક છે."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "આ થીમ તમારા {0} આવૃત્તિ સાથે અસંગત છે"
-
-msgid "Flagged for review"
-msgstr "સમીક્ષા માટે ફ્લેગ કરેલું"
-
-msgid "Your input is required"
-msgstr "તમારી ઉમેરાની જરૂરી છે"
-
-msgid "Marked for deletion"
-msgstr "કાઢી નાખવા માટે ચિહ્નિત"
-
-msgid "Updating results&hellip;"
-msgstr "પરિણામો સુધારી રહ્યાં છે&hellip;"
-
-msgid "Category"
-msgstr "વર્ગ"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b> માટે થીમ્સ શોધો"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> માટે એપ્લિકેશન્સ શોધો"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> માટે ઍડ-ઑન્સ શોધો"
-
-msgid "Use original"
-msgstr "મૂળ ઉપયોગ કરો"
 
 msgid "Week of {0}"
 msgstr "{0} નું અઠવાડિયું"
@@ -653,41 +606,6 @@ msgstr "તારીખ"
 msgid "Other"
 msgstr "અન્ય"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "સ્વીકારો અને સ્થાપિત કરો"
-
-msgid "Add to {0}"
-msgstr "{0} માં ઉમેરો"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "કોઈપણ રીતે {0} માટે સ્થાપિત કરો"
-
-msgid "Download for {0} anyway"
-msgstr "{0} માટે કોઇપણ રીતે ડાઉનલોડ કરો"
-
-msgid "Not available for your platform"
-msgstr "તમારા પ્લેટફોર્મ માટે ઉપલબ્ધ નથી"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "આ ઍડ-ઑન {0}તમારી આવૃત્તિ સાથે સુસંગત નથી."
-
-msgid "View other versions"
-msgstr "અન્ય આવૃત્તિઓ જુઓ"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} ની સાથે કામ કરે છે"
-
-msgid "Works with {app}"
-msgstr "{app} ની સાથે કામ કરે છે"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "માફ કરશો, શોધ પ્લગઇન સ્થાપિત કરવા માટે તમને Mozilla-આધારિત બ્રાઉઝર (જેમ કે Firefox) ની જરૂર છે."
-
 msgid "Changes Saved"
 msgstr "ફેરફારો સાચવ્યાં"
 
@@ -707,12 +625,6 @@ msgstr "છબી ફેરફારની પ્રક્રિયા થઈ �
 
 msgid "Select an application first"
 msgstr "પ્રથમ એપ્લિકેશન પસંદ કરો"
-
-msgid "No results found."
-msgstr "કોઈ પરિણામો મળ્યા નથી."
-
-msgid "Loading..."
-msgstr "લોડ કરી રહ્યું છે..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -753,12 +665,6 @@ msgstr "લખાણની સમીક્ષા કરો"
 
 msgid "Review notes found"
 msgstr "સમીક્ષાની નોંધો મળી"
-
-msgid "Average Reviews"
-msgstr "સરેરાશ સમીક્ષાઓ"
-
-msgid "Number of Reviews"
-msgstr "સમીક્ષાઓની સંખ્યા"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""

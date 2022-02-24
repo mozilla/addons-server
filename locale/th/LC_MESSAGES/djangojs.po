@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-01-19 01:42+0000\n"
 "Last-Translator: Jabont <jabont@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,10 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ดาว"
 
 msgid "There was a problem contacting the server."
 msgstr "มีปัญหาในการติดต่อกับเซิร์ฟเวอร์"
@@ -88,18 +84,6 @@ msgstr[0] "ส่วนเสริมของคุณผ่านการต
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "ส่วนเสริมของคุณผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดหรือคำเตือนใด"
 
-msgid "Your submission will be automatically signed."
-msgstr "การส่งข้อมูลของคุณจะได้รับการลงทะเบียนไว้โดยอัตโนมัติ"
-
-msgid "WebExtension upgrade"
-msgstr "การอัปเกรด WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "เราอนุญาตและสนับสนุนให้อัปเกรด แต่คุณจะไม่สามารถย้อนกลับไปได้อีก เมื่อคุณติดตั้ง WebExtension คุณจะไม่สามารถติดตั้งส่วนเสริมแบบเดิมได้อีก"
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "การโอนย้ายส่วนเสริม Firefox แบบเก่าบน MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "รวมหมายเหตุรายละเอียดรุ่น (สามารถยกไปทำในขั้นตอนถัดไปได้)"
 
@@ -135,36 +119,6 @@ msgstr "ภาพจะต้องเป็น PNG หรือ JPG"
 
 msgid "Videos must be in WebM."
 msgstr "วิดีโอต้องเป็นแบบ WebM"
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "ชุดตกแต่งนี้เข้ากันไม่ได้กับรุ่น {0} ของคุณ"
-
-msgid "Flagged for review"
-msgstr "ปักธงสำหรับการวิจารณ์"
-
-msgid "Your input is required"
-msgstr "คุณต้องป้อนข้อมูล"
-
-msgid "Marked for deletion"
-msgstr "ทำเครื่องหมายสำหรับการลบ"
-
-msgid "Updating results&hellip;"
-msgstr "กำลังอัปเดตผลลัพธ์&hellip;"
-
-msgid "Category"
-msgstr "หมวดหมู่"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "ค้นหาชุดตกแต่งสำหรับ <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "ค้นหาแอปสำหรับ <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
-
-msgid "Use original"
-msgstr "ใช้ต้นฉบับ"
 
 msgid "Week of {0}"
 msgstr "สัปดาห์ที่ {0}"
@@ -636,41 +590,6 @@ msgstr "วันที่"
 msgid "Other"
 msgstr "อื่น ๆ"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "ยอมรับและติดตั้ง"
-
-msgid "Add to {0}"
-msgstr "เพิ่มไปยัง {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "ติดตั้ง {0} ต่อไป"
-
-msgid "Download for {0} anyway"
-msgstr "ดาวน์โหลด {0} ต่อไป"
-
-msgid "Not available for your platform"
-msgstr "ไม่พร้อมใช้งานสำหรับแพลตฟอร์มของคุณ"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "ส่วนเสริมนี้เข้ากันไม่ได้กับ {0} รุ่นของคุณ"
-
-msgid "View other versions"
-msgstr "ดูรุ่นอื่น"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "ทำงานได้กับ {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "ทำงานได้กับ {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "ใช้ได้กับ Firefox เท่านั้น — ดาวน์โหลด Firefox เลย!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งปลั๊กอินการค้นหา"
-
 msgid "Changes Saved"
 msgstr "บันทึกการเปลี่ยนแปลงแล้ว"
 
@@ -689,12 +608,6 @@ msgstr "ภาพที่เปลี่ยนกำลังดำเนิน
 
 msgid "Select an application first"
 msgstr "เลือกแอปพลิเคชันก่อน"
-
-msgid "No results found."
-msgstr "ไม่พบผลลัพธ์"
-
-msgid "Loading..."
-msgstr "กำลังโหลด…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -733,12 +646,6 @@ msgstr "ข้อความการตรวจทาน"
 
 msgid "Review notes found"
 msgstr "พบบันทึกการตรวจทาน"
-
-msgid "Average Reviews"
-msgstr "คำวิจารณ์เฉลี่ย"
-
-msgid "Number of Reviews"
-msgstr "จำนวนบทวิจารณ์"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "ขนาดการอัปโหลดสูงสุดคือ {0} - เลือกภาพพื้นหลังที่เล็กกว่า"

@@ -25,7 +25,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser, get_random_slug
 from olympia.amo.sitemap import get_sitemap_path
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     WithDynamicEndpointsAndTransactions,
     check_links,
@@ -90,24 +90,31 @@ class Test404(TestCase):
         data = json.loads(response.content)
         assert data['detail'] == 'Not found.'
 
+    def test_404_legacy_api(self):
+        response = self.client.get('/en-US/firefox/api/1.0/search')
+        assert response.status_code == 404
+        self.assertTemplateNotUsed(response, 'amo/404.html')
+        assert response['Cache-Control'] == 'max-age=172800'
+
 
 class Test500(TestCase):
-    def test_500_logged_in(self):
-        self.client.login(email=user_factory().email)
-        response = self.client.get('/services/500')
-        assert response.status_code == 500
-        self.assertTemplateUsed(response, 'amo/500.html')
-        content = response.content.decode('utf-8')
-        assert 'data-anonymous="false"' in content
-        assert 'Log in' not in content
-
-    def test_500_logged_out(self):
-        response = self.client.get('/services/500')
+    def test_500_renders_correctly_with_no_queries_or_auth(self):
+        with self.assertNumQueries(0):
+            response = self.client.get('/services/500')
         assert response.status_code == 500
         self.assertTemplateUsed(response, 'amo/500.html')
         content = response.content.decode('utf-8')
         assert 'data-anonymous="true"' in content
-        assert 'Log in' in content
+        # We don't even want to show the log in link.
+        assert 'Log in' not in content
+        return content
+
+    def test_500_renders_correctly_with_no_queries_or_auth_even_when_logged_in(self):
+        # Being logged in shouldn't matter for the 500 page.
+        user = user_factory()
+        self.client.login(email=user.email)
+        content = self.test_500_renders_correctly_with_no_queries_or_auth()
+        assert user.email not in content
 
     def test_500_api(self):
         # Simulate an early API 500 not caught by DRF
@@ -290,40 +297,45 @@ class TestOtherStuff(TestCase):
 
         title_eq('/firefox/', 'Firefox', 'Add-ons')
 
-    @patch(
-        'olympia.accounts.utils.default_fxa_login_url',
-        lambda request: 'https://login.com',
-    )
     def test_login_link(self):
-        r = self.client.get(reverse('apps.appversions'), follow=True)
-        doc = pq(r.content)
-        assert 'https://login.com' == (doc('.account.anonymous a')[1].attrib['href'])
+        response = self.client.get(reverse('apps.appversions'), follow=True)
+        doc = pq(response.content)
+        expected_link = (
+            'http://testserver/api/v5/accounts/login/start/'
+            '?to=%2Fen-US%2Ffirefox%2Fpages%2Fappversions%2F'
+        )
+        assert doc('.account.anonymous a')[1].attrib['href'] == expected_link
 
     def test_tools_loggedout(self):
-        r = self.client.get(reverse('apps.appversions'), follow=True)
-        assert pq(r.content)('#aux-nav .tools').length == 0
+        response = self.client.get(reverse('apps.appversions'), follow=True)
+        assert pq(response.content)('#aux-nav .tools').length == 0
 
     def test_language_selector(self):
         doc = pq(test.Client().get('/en-US/firefox/pages/appversions/').content)
         assert doc('form.languages option[selected]').attr('value') == 'en-us'
 
     def test_language_selector_variables(self):
-        r = self.client.get('/en-US/firefox/pages/appversions/?foo=fooval&bar=barval')
-        doc = pq(r.content)('form.languages')
+        response = self.client.get(
+            '/en-US/firefox/pages/appversions/?foo=fooval&bar=barval'
+        )
+        doc = pq(response.content)('form.languages')
 
         assert doc('input[type=hidden][name=foo]').attr('value') == 'fooval'
         assert doc('input[type=hidden][name=bar]').attr('value') == 'barval'
 
-    @patch.object(settings, 'KNOWN_PROXIES', ['127.0.0.1'])
+    @override_settings(SECRET_CDN_TOKEN='foo')
     @patch.object(core, 'set_remote_addr')
-    def test_remote_addr(self, set_remote_addr_mock):
-        """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
+    def test_remote_addr_from_cdn(self, set_remote_addr_mock):
+        """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR correctly
+        if request came from the CDN."""
         client = test.Client()
-        # Send X-Forwarded-For as it shows up in a wsgi request.
+        # Send X-Forwarded-For and X-Request-Via-CDN as it shows up in a wsgi
+        # request.
         client.get(
             '/en-US/developers/',
             follow=True,
-            HTTP_X_FORWARDED_FOR='1.1.1.1',
+            HTTP_X_FORWARDED_FOR='1.1.1.1,2.2.2.2',
+            HTTP_X_REQUEST_VIA_CDN=settings.SECRET_CDN_TOKEN,
             REMOTE_ADDR='127.0.0.1',
         )
         assert set_remote_addr_mock.call_count == 2
@@ -519,16 +531,19 @@ class TestVersion(TestCase):
         result = self.client.get('/__version__')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/json'
+        assert result.get('Access-Control-Allow-Origin') == '*'
         content = result.json()
         assert content['python'] == '{}.{}'.format(
             sys.version_info.major,
             sys.version_info.minor,
         )
         assert content['django'] == f'{django.VERSION[0]}.{django.VERSION[1]}'
+        assert 'addons-linter' in content
+        assert '.' in content['addons-linter']
 
 
 class TestSiteStatusAPI(TestCase):
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         super().setUp()
@@ -548,6 +563,37 @@ class TestSiteStatusAPI(TestCase):
         assert response.data == {
             'read_only': True,
             'notice': 'THIS is NOT Á TEST!',
+        }
+
+
+def test_client_info():
+    from django.test.client import Client
+
+    response = Client().get(reverse('amo.client_info'))
+    assert response.status_code == 403
+
+    with override_settings(ENV='dev'):
+        response = Client().get(reverse('amo.client_info'))
+        assert response.status_code == 200
+        assert response.json() == {
+            'HTTP_USER_AGENT': None,
+            'HTTP_X_COUNTRY_CODE': None,
+            'HTTP_X_FORWARDED_FOR': None,
+            'REMOTE_ADDR': '127.0.0.1',
+        }
+
+        response = Client().get(
+            reverse('amo.client_info'),
+            HTTP_USER_AGENT='Foo/5.0',
+            HTTP_X_FORWARDED_FOR='192.0.0.2,193.0.0.1',
+            HTTP_X_COUNTRY_CODE='FR',
+        )
+        assert response.status_code == 200
+        assert response.json() == {
+            'HTTP_USER_AGENT': 'Foo/5.0',
+            'HTTP_X_COUNTRY_CODE': 'FR',
+            'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
+            'REMOTE_ADDR': '127.0.0.1',
         }
 
 

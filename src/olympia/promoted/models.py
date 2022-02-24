@@ -112,7 +112,7 @@ class PromotedAddon(ModelBase):
         from olympia.lib.crypto.tasks import get_new_version_number
 
         version = self.addon.current_version
-        if version and version.has_files and not version.is_all_unreviewed:
+        if version and not version.is_unreviewed:
             return get_new_version_number(version.version)
         else:
             return None

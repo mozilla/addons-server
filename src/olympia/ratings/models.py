@@ -100,7 +100,7 @@ class Rating(ModelBase):
 
     rating = models.PositiveSmallIntegerField(null=True, choices=RATING_CHOICES)
     body = models.TextField(db_column='text_body', null=True)
-    ip_address = models.CharField(max_length=255, default='0.0.0.0')
+    ip_address = models.CharField(max_length=45, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
@@ -132,11 +132,12 @@ class Rating(ModelBase):
         indexes = [
             models.Index(fields=('version',), name='version_id'),
             models.Index(fields=('user',), name='reviews_ibfk_2'),
-            models.Index(fields=('addon',), name='addon_id'),
+            models.Index(fields=('addon',), name='reviews_addon_idx'),
             models.Index(
                 fields=('reply_to', 'is_latest', 'addon', 'created'),
                 name='latest_reviews',
             ),
+            models.Index(fields=('ip_address',), name='reviews_ip_address_057fddfa'),
         ]
         constraints = [
             models.UniqueConstraint(

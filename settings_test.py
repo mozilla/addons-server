@@ -42,7 +42,7 @@ MEDIA_URL = '%s/user-media/' % CDN_HOST
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Overrides whatever storage you might have put in local settings.
-DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
+DEFAULT_FILE_STORAGE = 'olympia.amo.utils.SafeStorage'
 
 TASK_USER_ID = 1337
 
@@ -93,3 +93,10 @@ CELERY_TASK_ROUTES.update({
     'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
     'olympia.lib.es.tests.test_commands.dummy_task': {'queue': 'amo'},
 })
+
+# switch cached_db out for just cache sessions to avoid extra db queries
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+ADDONS_FRONTEND_PROXY_PORT = None
+
+VERIFY_FXA_ACCESS_TOKEN = False

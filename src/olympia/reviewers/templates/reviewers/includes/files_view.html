@@ -1,6 +1,5 @@
 <div><strong>{{ _('Files in this version:') }}</strong></div>
 <ul>
-{% for file in all_files %}
 <li class="file-info">
   <span class="light">
     <strong><a href="{{ file.get_absolute_url(attachment=True) }}" class="reviewers-install"
@@ -10,7 +9,7 @@
     </div>
     <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation') }}</a>
     &middot;
-    <a 
+    <a
       href="{{ code_manager_url('browse', addon.pk, version.pk) }}"
       title="{{ _('Browse all files in this version') }}"
       >
@@ -26,11 +25,8 @@
       {{ _('Compare') }}
     </a>
     {% endif %}
-    {% if file.is_webextension %}
     <div class="file-permissions"><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file.permissions) or _('None') }}</div>
     <div class="file-permissions"><strong>{{ _('Optional permissions:') }}</strong> {{ ', '.join(file.optional_permissions) or _('None') }}</div>
-    {% endif %}
   </span>
 </li>
-{% endfor %}
 </ul>

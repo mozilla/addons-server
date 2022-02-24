@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,11 +11,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ਤਾਰਾ"
-msgstr[1] "{0} ਤਾਰੇ"
 
 msgid "There was a problem contacting the server."
 msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਵੇਲੇ ਇੱਕ ਮੁਸ਼ਕਲ ਸੀ।"
@@ -91,18 +86,6 @@ msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼�
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਬਿਨਾਂ ਕਿਸੇ ਖ਼ਾਮੀਆਂ ਜਾਂ ਚੇਤਾਵਨੀਆਂ ਦੇ ਵੈਧ ਹੋਇਆ ਸੀ।"
 
-msgid "Your submission will be automatically signed."
-msgstr ""
-
-msgid "WebExtension upgrade"
-msgstr ""
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "ਵਰਜਨ ਨੋਟਾਂ ਦਾ ਵੇਰਵਾ ਸ਼ਾਮਲ (ਇਹ ਅਗਲੇ ਕਦਮ ਵਿੱਚ ਕੀਤਾ ਜਾ ਸਕਦਾ)।"
 
@@ -140,37 +123,6 @@ msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਦੋਨਾਂ ਵਿੱਚ ਇ
 
 msgid "Videos must be in WebM."
 msgstr "ਵੀਡੀਓ WebM ਵਿੱਚ ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ ਹਨ।"
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
-
-msgid "Flagged for review"
-msgstr "ਸਮੀਖਿਆ ਲਈ ਫਲੈਗ ਕੀਤਾ"
-
-msgid "Your input is required"
-msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
-
-msgid "Marked for deletion"
-msgstr "ਹਟਾਉਣ ਲਈ ਮਾਰਕ ਕੀਤਾ"
-
-msgid "Updating results&hellip;"
-msgstr "ਅੱਪਡੇਟ ਨਤੀਜੇ&hellip;"
-
-msgid "Category"
-msgstr "ਕੈਟਾਗਿਰੀ"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
-
-#, fuzzy
-msgid "Use original"
-msgstr "ਅਸਲੀ ਵਰਤੋ"
 
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
@@ -658,43 +610,6 @@ msgstr "ਤਾਰੀਖ"
 msgid "Other"
 msgstr "ਦੂਜਾ"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "ਸਵੀਕਾਰ ਕਰੋ ਅਤੇ ਇੰਸਟਾਲ ਕਰੋ"
-
-msgid "Add to {0}"
-msgstr "ਸ਼ਾਮਲ ਕਰਨ ਲਈ {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਇੰਸਟਾਲ"
-
-msgid "Download for {0} anyway"
-msgstr "ਕਿਸੇ ਵੀ {0} ਲਈ ਡਾਊਨਲੋਡ"
-
-msgid "Not available for your platform"
-msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
-
-#, fuzzy
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
-
-msgid "View other versions"
-msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
-
-#, fuzzy
-msgid "Works with {app}"
-msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ਖਿਮਾ ਕਰੋ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ।"
-
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"
 
@@ -714,12 +629,6 @@ msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ �
 
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
-
-msgid "No results found."
-msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ।"
-
-msgid "Loading..."
-msgstr "ਲੋਡ ਹੋ ਰਿਹਾ ਹੈ..."
 
 #, fuzzy
 msgid "<b>{0}</b> character"
@@ -762,12 +671,6 @@ msgstr ""
 
 msgid "Review notes found"
 msgstr ""
-
-msgid "Average Reviews"
-msgstr "ਔਸਤ ਸਮੀਖਿਆ"
-
-msgid "Number of Reviews"
-msgstr "ਨੰਬਰ ਵਿੱਚੋਂ ਸਮੀਖਿਆ"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""

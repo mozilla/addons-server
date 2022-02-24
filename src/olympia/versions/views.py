@@ -3,6 +3,7 @@ import os
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.cache import patch_vary_headers
 
@@ -12,7 +13,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonRegionalRestrictions
-from olympia.amo.utils import HttpResponseXSendFile, render, urlparams
+from olympia.amo.utils import HttpResponseXSendFile, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version
 
@@ -31,15 +32,15 @@ def update_info(request, addon, version_num):
     version = Version.objects.filter(
         addon=addon,
         version=version_num,
-        files__status__in=amo.VALID_FILE_STATUSES,
+        file__status__in=amo.VALID_FILE_STATUSES,
         channel=amo.RELEASE_CHANNEL_LISTED,
     ).last()
     if not version:
         raise http.Http404()
-    return render(
+    return TemplateResponse(
         request,
         'versions/update_info.html',
-        {'version': version},
+        context={'version': version},
         content_type='application/xhtml+xml',
     )
 
@@ -98,7 +99,13 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
         use_cdn = False
         has_permission = is_appropriate_reviewer(
             addon, channel
-        ) or acl.check_addon_ownership(request, addon, dev=True, ignore_disabled=True)
+        ) or acl.check_addon_ownership(
+            request,
+            addon,
+            allow_developer=True,
+            allow_mozilla_disabled_addon=True,
+            allow_site_permission=True,
+        )
     else:
         # Everyone can see public things, and we can use the CDN in that case.
         use_cdn = True
@@ -166,7 +173,7 @@ def download_latest(request, addon, type='xpi', platform=None):
     Requires same permissions as download_file() does for this file.
     """
     try:
-        file_ = addon.current_version.current_file
+        file_ = addon.current_version.file
     except IndexError:
         raise http.Http404()
     return download_file(request, file_.id, type=type, file_=file_, addon=addon)
@@ -194,14 +201,12 @@ def download_source(request, version_id):
 
     if (
         addon.status != amo.STATUS_DISABLED
-        and not version.files.filter(status=amo.STATUS_DISABLED).exists()
+        and not version.file.status == amo.STATUS_DISABLED
         and not version.deleted
         and not addon.is_deleted
     ):
-        # Don't rely on 'admin' parameter for check_addon_ownership(), it
-        # doesn't check the permission we want to check.
         has_permission = has_permission or acl.check_addon_ownership(
-            request, addon, admin=False, dev=True
+            request, addon, allow_addons_edit_permission=False, allow_developer=True
         )
     if not has_permission:
         raise http.Http404()

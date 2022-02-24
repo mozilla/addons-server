@@ -7,7 +7,7 @@ from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon, Preview, attach_tags, attach_translations_dict
 from olympia.amo.models import SearchMixin
-from olympia.amo.tests import addon_factory, ESTestCase, TestCase, file_factory
+from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.promoted import RECOMMENDED
@@ -167,8 +167,6 @@ class TestAddonIndexer(TestCase):
             'created',
             'filename',
             'hash',
-            'is_webextension',
-            'is_restart_required',
             'is_mozilla_signed_extension',
             'size',
             'status',
@@ -233,7 +231,7 @@ class TestAddonIndexer(TestCase):
             assert extracted[field_name] == getattr(self.addon, field_name)
 
         assert extracted['app'] == [FIREFOX.id]
-        assert extracted['boost'] == self.addon.average_daily_users ** 0.2 * 4
+        assert extracted['boost'] == self.addon.average_daily_users**0.2 * 4
         assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['current_version']
         assert extracted['listed_authors'] == [
@@ -275,21 +273,16 @@ class TestAddonIndexer(TestCase):
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         version = self.addon.current_version
-        # Make the version a webextension and add a bunch of things to it to
-        # test different scenarios.
-        version.all_files[0].update(is_webextension=True)
-        file_factory(version=version, is_webextension=True)
-        del version.all_files
+        # Add a bunch of things to it to test different scenarios.
         version.license = License.objects.create(
             name='My licensé', url='http://example.com/', builtin=0
         )
         [
             WebextPermission.objects.create(
-                file=file_,
+                file=version.file,
                 permissions=permissions,
                 optional_permissions=optional_permissions,
             )
-            for file_ in version.all_files
         ]
         version.save()
 
@@ -323,25 +316,22 @@ class TestAddonIndexer(TestCase):
         ]
         assert extracted['current_version']['reviewed'] == version.reviewed
         assert extracted['current_version']['version'] == version.version
-        for index, file_ in enumerate(version.all_files):
-            extracted_file = extracted['current_version']['files'][index]
-            assert extracted_file['id'] == file_.pk
-            assert extracted_file['created'] == file_.created
-            assert extracted_file['filename'] == file_.filename
-            assert extracted_file['hash'] == file_.hash
-            assert extracted_file['is_webextension'] == file_.is_webextension
-            assert extracted_file['is_restart_required'] == (file_.is_restart_required)
-            assert extracted_file['is_mozilla_signed_extension'] == (
-                file_.is_mozilla_signed_extension
-            )
-            assert extracted_file['size'] == file_.size
-            assert extracted_file['status'] == file_.status
-            assert extracted_file['permissions'] == permissions
-            assert extracted_file['optional_permissions'] == optional_permissions
+        extracted_file = extracted['current_version']['files'][0]
+        assert extracted_file['id'] == version.file.pk
+        assert extracted_file['created'] == version.file.created
+        assert extracted_file['filename'] == version.file.filename
+        assert extracted_file['hash'] == version.file.hash
+        assert extracted_file['is_mozilla_signed_extension'] == (
+            version.file.is_mozilla_signed_extension
+        )
+        assert extracted_file['size'] == version.file.size
+        assert extracted_file['status'] == version.file.status
+        assert extracted_file['permissions'] == permissions
+        assert extracted_file['optional_permissions'] == optional_permissions
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version
-        file_factory(version=version, strict_compatibility=True)
+        version.file.update(strict_compatibility=True)
         extracted = self._extract()
 
         assert extracted['current_version']['compatible_apps'] == {

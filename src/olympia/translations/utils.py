@@ -49,7 +49,7 @@ def trim(tree, limit, killwords, end):
 def text_length(tree):
     """Find the length of the text content, excluding markup."""
     total = 0
-    for node in tree.getiterator():  # Traverse all the tree nodes.
+    for node in tree.iter():  # Traverse all the tree nodes.
         # In etree, a node has a text and tail attribute.
         # Eg: "<b>inner text</b> tail text <em>inner text</em>".
         if node.text:

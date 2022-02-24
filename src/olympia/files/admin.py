@@ -51,13 +51,9 @@ class FileAdmin(admin.ModelAdmin):
             'Flags',
             {
                 'fields': (
-                    'is_restart_required',
                     'strict_compatibility',
-                    'binary',
-                    'binary_components',
                     'is_signed',
                     'is_experiment',
-                    'is_webextension',
                     'is_mozilla_signed_extension',
                 )
             },

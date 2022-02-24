@@ -75,13 +75,10 @@ class TestPublicUserProfileSerializer(TestCase):
         'location': 'everywhere',
         'occupation': 'job',
     }
-    user_private_kwargs = {
-        'reviewer_name': 'batman',
-    }
 
     def setUp(self):
         self.request = APIRequestFactory().get('/')
-        self.user = user_factory(**self.user_kwargs, **self.user_private_kwargs)
+        self.user = user_factory(**self.user_kwargs)
 
     def serialize(self):
         return self.serializer(
@@ -103,8 +100,6 @@ class TestPublicUserProfileSerializer(TestCase):
         data = self.serialize()
         for prop, val in self.user_kwargs.items():
             assert data[prop] == str(val), prop
-        for prop, val in self.user_private_kwargs.items():
-            assert prop not in data
         return data
 
     def test_addons(self):
@@ -153,11 +148,6 @@ class TestPublicUserProfileSerializer(TestCase):
         data = self.serialize()
         assert data['has_anonymous_username'] is False
         assert data['has_anonymous_display_name'] is False
-
-    def test_is_reviewer(self):
-        self.grant_permission(self.user, 'Addons:Review')
-        # private data should still be absent, this is a public serializer
-        self.test_basic()
 
 
 class PermissionsTestMixin:
@@ -216,15 +206,6 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
         data = super().test_basic()
         assert data['last_login'] == (self.now.replace(microsecond=0).isoformat() + 'Z')
         assert data['read_dev_agreement'] == data['last_login']
-
-    def test_is_reviewer(self):
-        self.grant_permission(self.user, 'Addons:Review')
-        data = self.serialize()
-        for prop, val in self.user_kwargs.items():
-            assert data[prop] == str(val), prop
-        # We can also see private stuff, it's the same user.
-        for prop, val in self.user_private_kwargs.items():
-            assert data[prop] == str(val), prop
 
     def test_expose_fxa_edit_email_url(self):
         fxa_host = 'http://example.com'

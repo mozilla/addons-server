@@ -219,6 +219,12 @@ class TestShelvesSerializer(ESTestCase):
             'https://blog.mozilla.org/addons'
         )
 
+    def test_invalid_endpoint(self):
+        self.search_pop_thm.update(endpoint='invalid')
+        pop_data = self.serialize(self.search_pop_thm)
+        assert pop_data['url'] is None
+        assert pop_data['addons'] == []
+
     def test_footer_url(self):
         wrap_outgoing_settings_override = {
             'DRF_API_GATES': {
@@ -269,7 +275,7 @@ class TestShelvesSerializer(ESTestCase):
         # random-tag
         self.tag_shelf.update(footer_pathname='')
         data = self.serialize(self.tag_shelf)
-        url = 'http://testserver' + reverse('search.search') + '?tag=foo'
+        url = 'http://testserver' + reverse('tags.detail', args=('foo',))
         assert data['footer'] == {
             'url': url,
             'outgoing': url,
@@ -294,6 +300,38 @@ class TestShelvesSerializer(ESTestCase):
         assert len(data['addons']) == 2
         assert data['addons'][0]['name'] == {'en-US': 'test addon test04'}
         assert data['addons'][1]['name'] == {'en-US': 'test addon test01'}
+
+    def test_tag_token_substitution(self):
+        self.tag_shelf.update(title='Title for {tag}', footer_text='footer with {tag}')
+        data = self.serialize(self.tag_shelf)
+        assert data['title'] == {'en-US': 'Title for foo'}
+        assert data['footer']['text'] == {'en-US': 'footer with foo'}
+
+        # Check this works when we don't have the requested locale - i.e. value is None
+        self.request.GET = self.request.GET.copy()
+        self.request.GET['lang'] = 'baa'
+        data = self.serialize(self.tag_shelf)
+        assert data['title'] == {
+            '_default': 'en-US',
+            'en-US': 'Title for foo',
+            'baa': None,
+        }
+        assert data['footer']['text'] == {
+            '_default': 'en-US',
+            'en-US': 'footer with foo',
+            'baa': None,
+        }
+
+    def test_tag_token_substitution_not_tag_shelf(self):
+        # The is only a thing with the random-tag shelf though
+        self.tag_shelf.update(
+            title='Title for {tag}',
+            footer_text='footer with {tag}',
+            endpoint=Shelf.Endpoints.SEARCH,
+        )
+        data = self.serialize(self.tag_shelf)
+        assert data['title'] == {'en-US': 'Title for {tag}'}
+        assert data['footer']['text'] == {'en-US': 'footer with {tag}'}
 
     def test_addon_count(self):
         shelf = Shelf(

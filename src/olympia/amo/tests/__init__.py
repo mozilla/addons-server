@@ -15,6 +15,7 @@ from tempfile import NamedTemporaryFile
 
 from django import forms, test
 from django.conf import settings
+from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core import signing
@@ -36,7 +37,6 @@ from rest_framework.test import APIClient, APIRequestFactory
 from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
-from olympia.access.acl import check_ownership
 from olympia.api.authentication import WebTokenAuthentication
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
@@ -50,8 +50,9 @@ from olympia.addons.models import (
 )
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
 from olympia.amo.urlresolvers import Prefixer
-from olympia.amo.storage_utils import copy_stored_file
+from olympia.amo.utils import SafeStorage, use_fake_fxa
 from olympia.addons.tasks import compute_last_updated, unindex_addons
+from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
@@ -65,7 +66,12 @@ from olympia.promoted.models import (
 )
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import (
+    ApplicationsVersions,
+    License,
+    Version,
+    VersionReviewerFlags,
+)
 from olympia.users.models import UserProfile
 
 from . import dynamic_urls
@@ -88,6 +94,11 @@ ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES.key
 
 # django2.2 encodes with the decimal code; django3.2 with the hex code.
 SQUOTE_ESCAPED = escape("'")
+
+
+# A Storage instance for the filesystem root to be used during tests that read fixtures
+# and/or try to copy them under settings.STORAGE_ROOT.
+root_storage = SafeStorage(location='/')
 
 
 def get_es_index_name(key):
@@ -296,8 +307,8 @@ def initialize_session(request, session_data):
 
 
 class InitializeSessionMixin:
-    def initialize_session(self, session_data):
-        request = HttpRequest()
+    def initialize_session(self, session_data, request=None):
+        request = request or HttpRequest()
         initialize_session(request, session_data)
         # Set the cookie to represent the session.
         session_cookie = settings.SESSION_COOKIE_NAME
@@ -325,7 +336,7 @@ class TestClient(Client):
             raise AttributeError
 
 
-class APITestClient(APIClient):
+class APITestClientWebToken(APIClient):
     def generate_api_token(self, user, **payload_overrides):
         """
         Creates a jwt token for this user.
@@ -353,6 +364,65 @@ class APITestClient(APIClient):
         Removes the Authorization header from future requests.
         """
         self.defaults.pop('HTTP_AUTHORIZATION', None)
+
+
+class APITestClientSessionID(APIClient):
+    def create_session(self, user, **overrides):
+        """
+        Creates a session in the database for this user and returns the session key.
+        """
+        request = HttpRequest()
+        request.user = user
+        # this is pretty much what django.contrib.auth.login does to initialize session
+        fxa_details = (
+            {'fxa_access_token_expiry': time.time() + 1000}
+            if not use_fake_fxa()
+            else {}
+        )
+        initialize_session(
+            request,
+            {
+                auth.SESSION_KEY: user._meta.pk.value_to_string(user),
+                auth.BACKEND_SESSION_KEY: settings.AUTHENTICATION_BACKENDS[0],
+                auth.HASH_SESSION_KEY: user.get_session_auth_hash(),
+                **fxa_details,
+                **overrides,
+            },
+        )
+        return request.session.session_key
+
+    def login_api(self, user):
+        self.defaults['HTTP_AUTHORIZATION'] = f'Session {self.create_session(user)}'
+
+    def logout_api(self):
+        """
+        Removes the Authorization header from future requests.
+        """
+        self.defaults.pop('HTTP_AUTHORIZATION', None)
+
+
+class APITestClientJWT(JWTAuthKeyTester, APIClient):
+    api_key = None
+
+    @property
+    def _credentials(self):
+        if not self.api_key:
+            return {}
+        token = self.create_auth_token(
+            self.api_key.user, self.api_key.key, self.api_key.secret
+        )
+        return {'HTTP_AUTHORIZATION': f'JWT {token}'}
+
+    @_credentials.setter
+    def _credentials(self, value):
+        # ignore setting the value
+        pass
+
+    def login_api(self, user):
+        self.api_key = self.create_api_key(user, str(user.pk) + ':f')
+
+    def logout_api(self):
+        self.api_key = None
 
 
 def days_ago(days):
@@ -435,6 +505,8 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     """Base class for all amo tests."""
 
     client_class = TestClient
+
+    root_storage = root_storage
 
     def _pre_setup(self):
         super()._pre_setup()
@@ -576,7 +648,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         assert self.client.login(email=email)
 
     def enable_messages(self, request):
-        setattr(request, 'session', 'session')
+        setattr(request, 'session', {})
         messages = FallbackStorage(request)
         setattr(request, '_messages', messages)
         return request
@@ -622,6 +694,10 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         fake_request.META['REMOTE_ADDR'] = remote_addr
         for throttle_class in view_class.throttle_classes:
             throttle = throttle_class()
+            # generate a different value each time, emulating hitting different CDNs
+            fake_request.META[
+                'HTTP_X_FORWARDED_FOR'
+            ] = f'{remote_addr}, {get_random_ip()}'
             # allow_request() fetches the history, triggers a success/failure
             # and if it's a success it will add the request to the history and
             # set that in the cache. If it failed, we force a success anyway
@@ -836,7 +912,7 @@ def file_factory(**kw):
     )
 
     if os.path.exists(fixture_path):
-        copy_stored_file(fixture_path, file_.current_file_path)
+        root_storage.copy_stored_file(fixture_path, file_.current_file_path)
 
     return file_
 
@@ -854,7 +930,6 @@ def req_factory_factory(url, user=None, post=False, data=None, session=None):
         req.user = AnonymousUser()
     if session is not None:
         req.session = session
-    req.check_ownership = partial(check_ownership, req)
     return req
 
 
@@ -873,12 +948,30 @@ def developer_factory(**kw):
     return user_factory(**kw)
 
 
+def version_review_flags_factory(**kw):
+    if 'version' not in kw:
+        kw['version'] = version_factory(
+            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+    pending_rejection = kw.pop('pending_rejection', None)
+    pending_rejection_by = kw.pop(
+        'pending_rejection_by', user_factory() if pending_rejection else None
+    )
+    flags = VersionReviewerFlags.objects.create(
+        pending_rejection=pending_rejection,
+        pending_rejection_by=pending_rejection_by,
+        **kw,
+    )
+    return flags
+
+
 def create_default_webext_appversion():
     versions = {
         amo.DEFAULT_WEBEXT_MIN_VERSION,
         amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
         amo.DEFAULT_WEBEXT_MAX_VERSION,
+        amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
     }
     for version in versions:
         AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version=version)
@@ -887,6 +980,7 @@ def create_default_webext_appversion():
         amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
         amo.DEFAULT_WEBEXT_MAX_VERSION,
+        amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
     }
     for version in versions:
         AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)
@@ -909,15 +1003,14 @@ def version_factory(file_kw=None, **kw):
         ),
     )
     application = kw.pop('application', amo.FIREFOX.id)
+    license_kw = kw.pop('license_kw', {})
     if not kw.get('license') and not kw.get('license_id'):
         # Is there a built-in one we can use?
         builtins = License.objects.builtins()
         if builtins.exists():
             kw['license_id'] = builtins[0].id
         else:
-            license_kw = {'builtin': 99}
-            license_kw.update(kw.get('license_kw', {}))
-            kw['license'] = license_factory(**license_kw)
+            kw['license'] = license_factory(**{'builtin': 99, **license_kw})
     promotion_approved = kw.pop('promotion_approved', False)
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = _get_created(kw.pop('created', 'now'))

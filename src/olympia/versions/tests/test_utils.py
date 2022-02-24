@@ -3,16 +3,20 @@ import os
 import shutil
 import tempfile
 
+from base64 import b64encode
+
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
+from django.utils.encoding import force_str
 
 from unittest import mock
 import pytest
 from PIL import Image, ImageChops
 
 from olympia import amo
+from olympia.amo.tests import root_storage
 from olympia.versions.utils import (
     AdditionalBackground,
+    encode_header,
     process_color_value,
     write_svg_to_png,
 )
@@ -31,13 +35,13 @@ def test_write_svg_to_png(filename):
     svg_png = os.path.join(
         settings.ROOT, 'src/olympia/versions/tests/static_themes/%s.png' % filename
     )
-    with storage.open(svg_xml, 'rb') as svgfile:
+    with root_storage.open(svg_xml, 'rb') as svgfile:
         svg = svgfile.read()
     try:
-        out_dir = tempfile.mkdtemp()
+        out_dir = tempfile.mkdtemp(dir=settings.TMP_PATH)
         out = os.path.join(out_dir, 'a', 'b.png')
         write_svg_to_png(svg, out)
-        assert storage.exists(out)
+        assert root_storage.exists(out)
         # compare the image content. rms should be 0 but CI renders it
         # different... 3 is the magic difference.
         svg_png_img = Image.open(svg_png)
@@ -141,3 +145,29 @@ def test_process_color_value(
     assert (firefox_prop, css_color) == (
         process_color_value(manifest_property, manifest_color)
     )
+
+
+def test_encode_header():
+    svg_encoded = 'data:image/{};base64,{}'
+    svg_blob = b"""
+
+<svg id="preview-svg-root" width="680" height="92" xmlns="http://www.w3.org/2000/svg"
+    """
+    assert encode_header(svg_blob, '.svg') == (
+        svg_encoded.format('svg+xml', force_str(b64encode(svg_blob))),
+        680,
+        92,
+    )
+
+    svg_blob_rev = b'<svg id="preview-svg-root" height="92" width="680" xmlns="'
+    assert encode_header(svg_blob_rev, '.svg') == (
+        svg_encoded.format('svg+xml', force_str(b64encode(svg_blob_rev))),
+        680,
+        92,
+    )
+
+    svg_blob_missing_height = b'<svg id="preview-svg-root" width="680" xmlns="'
+    assert encode_header(svg_blob_missing_height, '.svg') == (None, 0, 0)
+
+    svg_blob_missing_width = b'<svg id="preview-svg-root" height="92" xmlns="'
+    assert encode_header(svg_blob_missing_width, '.svg') == (None, 0, 0)

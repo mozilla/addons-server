@@ -1,16 +1,22 @@
 from contextlib import ExitStack
 from unittest import mock
 import pytest
+import zipfile
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.forms import ValidationError
 from django.test.client import RequestFactory
 
+from waffle.testutils import override_switch
+
+from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.utils import (
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
+    SitePermissionVersionCreator,
     RestrictionChecker,
     TAAR_LITE_FALLBACK_REASON_EMPTY,
     TAAR_LITE_FALLBACK_REASON_TIMEOUT,
@@ -22,6 +28,8 @@ from olympia.addons.utils import (
     verify_mozilla_trademark,
 )
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.applications.models import AppVersion
+from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
 from olympia.files.models import FileUpload
 from olympia.users.models import (
     EmailUserRestriction,
@@ -281,7 +289,9 @@ class TestRestrictionChecker(TestCase):
         # Test with a submission restriction (the default): approval should be allowed.
         EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
         upload = FileUpload.objects.create(
-            user=self.request.user, ip_address='10.0.0.2'
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -298,7 +308,9 @@ class TestRestrictionChecker(TestCase):
             restriction_type=RESTRICTION_TYPES.APPROVAL,
         )
         upload = FileUpload.objects.create(
-            user=self.request.user, ip_address='10.0.0.2'
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -354,7 +366,9 @@ class TestRestrictionChecker(TestCase):
 
     def test_is_auto_approval_allowed_with_mocks(self, incr_mock):
         upload = FileUpload.objects.create(
-            user=self.request.user, ip_address='10.0.0.2'
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
         )
         checker = RestrictionChecker(upload=upload)
         with ExitStack() as stack:
@@ -371,3 +385,229 @@ class TestRestrictionChecker(TestCase):
             assert restriction_mock.call_count == 0
         for restriction_mock in allow_auto_approval_mocks:
             assert restriction_mock.call_count == 1
+
+
+class TestSitePermissionVersionCreator(TestCase):
+    def setUp(self):
+        self.task_user = user_factory(pk=settings.TASK_USER_ID)
+        for app in ['firefox', 'android']:
+            AppVersion.objects.get_or_create(
+                application=amo.APPS[app].id,
+                version=SITE_PERMISSION_MIN_VERSION,
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.APPS[app].id,
+                version='*',
+            )
+
+    def test_create_manifest_single_origin_single_permission(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com'],
+            site_permissions=['midi-sysex'],
+        )
+        manifest_data = creator._create_manifest('1.0')
+        guid = (
+            manifest_data.get('browser_specific_settings', {})
+            .get('gecko', {})
+            .get('id')
+        )
+        assert guid
+        assert manifest_data == {
+            'browser_specific_settings': {
+                'gecko': {'id': guid, 'strict_min_version': '97.0'}
+            },
+            'install_origins': ['https://example.com'],
+            'manifest_version': 2,
+            'name': 'Site permissions for example.com',
+            'site_permissions': ['midi-sysex'],
+            'version': '1.0',
+        }
+
+    def test_create_manifest_multiple_origins_and_permissions(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com', 'https://foo.com'],
+            site_permissions=['midi-sysex', 'webblah'],
+        )
+        manifest_data = creator._create_manifest('2.0')
+        guid = (
+            manifest_data.get('browser_specific_settings', {})
+            .get('gecko', {})
+            .get('id')
+        )
+        assert guid
+        assert manifest_data == {
+            'browser_specific_settings': {
+                'gecko': {'id': guid, 'strict_min_version': '97.0'}
+            },
+            'install_origins': ['https://example.com', 'https://foo.com'],
+            'manifest_version': 2,
+            'name': 'Site permissions for example.com, foo.com',
+            'site_permissions': ['midi-sysex', 'webblah'],
+            'version': '2.0',
+        }
+
+    def test_create_manifest_with_guid(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com'],
+            site_permissions=['midi-sysex'],
+        )
+        manifest_data = creator._create_manifest('1.0', 'some@guid')
+        guid = (
+            manifest_data.get('browser_specific_settings', {})
+            .get('gecko', {})
+            .get('id')
+        )
+        assert guid == 'some@guid'
+        assert manifest_data == {
+            'browser_specific_settings': {
+                'gecko': {'id': guid, 'strict_min_version': '97.0'}
+            },
+            'install_origins': ['https://example.com'],
+            'manifest_version': 2,
+            'name': 'Site permissions for example.com',
+            'site_permissions': ['midi-sysex'],
+            'version': '1.0',
+        }
+
+    def test_create_zipfile(self):
+        creator = SitePermissionVersionCreator(
+            user=None,
+            remote_addr=None,
+            install_origins=None,
+            site_permissions=None,
+        )
+        file_obj = creator._create_zipfile({'foo': 'bar'})
+        assert file_obj.name == 'automatic.xpi'
+        assert file_obj.size
+        zip_file = zipfile.ZipFile(file_obj)
+        assert zip_file.namelist() == ['manifest.json']
+        manifest_contents = zipfile.ZipFile(file_obj).read('manifest.json')
+        assert manifest_contents == b'{\n  "foo": "bar"\n}'
+
+    @override_switch('record-install-origins', active=True)
+    def test_create_version_no_addon(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com', 'https://foo.com'],
+            site_permissions=['midi-sysex', 'webblah'],
+        )
+        version = creator.create_version()
+        assert version
+        addon = version.addon
+        file_ = version.file
+        # Reload to ensure everything was saved in database correctly.
+        version.reload()
+        addon.reload()
+        file_.reload()
+        assert version.pk
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.version == '1.0'
+        assert sorted(
+            version.installorigin_set.all().values_list('origin', flat=True)
+        ) == [
+            'https://example.com',
+            'https://foo.com',
+        ]
+        assert addon.pk
+        assert addon.guid
+        assert addon.status == amo.STATUS_NULL
+        assert addon.type == amo.ADDON_SITE_PERMISSION
+        assert list(addon.authors.all()) == [creator.user]
+        assert file_.status == amo.STATUS_AWAITING_REVIEW
+        assert file_._site_permissions
+        assert file_._site_permissions.permissions == ['midi-sysex', 'webblah']
+        activity = ActivityLog.objects.for_addons(addon).latest('pk')
+        assert activity.user == creator.user
+        assert activity.iplog_set.all()[0].ip_address == '4.8.15.16'
+
+    @override_switch('record-install-origins', active=True)
+    def test_create_version_existing_addon_wrong_origins(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com', 'https://foo.com'],
+            site_permissions=['midi-sysex', 'webblah'],
+        )
+        addon = addon_factory(
+            version_kw={'version': '1.0'},
+            type=amo.ADDON_SITE_PERMISSION,
+            users=[creator.user],
+        )
+        initial_version = addon.versions.get()
+        self.make_addon_unlisted(addon)
+        with self.assertRaises(ImproperlyConfigured):
+            creator.create_version(addon=addon)
+
+        # Both need to match, not just one.
+        initial_version.installorigin_set.create(origin='https://example.com')
+        with self.assertRaises(ImproperlyConfigured):
+            creator.create_version(addon=addon)
+
+    @override_switch('record-install-origins', active=True)
+    def test_create_version_existing_addon(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com', 'https://foo.com'],
+            site_permissions=['midi-sysex', 'webblah'],
+        )
+        addon = addon_factory(
+            version_kw={'version': '1.0'},
+            type=amo.ADDON_SITE_PERMISSION,
+            users=[creator.user],
+        )
+        initial_version = addon.versions.get()
+        initial_version.installorigin_set.create(origin='https://foo.com')
+        initial_version.installorigin_set.create(origin='https://example.com')
+        self.make_addon_unlisted(addon)
+        version = creator.create_version(addon=addon)
+        assert version
+        assert version != initial_version
+        assert version.addon == addon
+        file_ = version.file
+        # Reload to ensure everything was saved in database correctly.
+        version.reload()
+        addon.reload()
+        file_.reload()
+        assert version.pk
+        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.version == '2.0'
+        assert sorted(
+            version.installorigin_set.all().values_list('origin', flat=True)
+        ) == [
+            'https://example.com',
+            'https://foo.com',
+        ]
+        assert addon.pk
+        assert addon.status == amo.STATUS_NULL
+        assert addon.type == amo.ADDON_SITE_PERMISSION
+        assert list(addon.authors.all()) == [creator.user]
+        assert file_.status == amo.STATUS_AWAITING_REVIEW
+        assert file_._site_permissions
+        assert file_._site_permissions.permissions == ['midi-sysex', 'webblah']
+        activity = ActivityLog.objects.for_addons(addon).latest('pk')
+        assert activity.user == creator.user
+        assert activity.iplog_set.all()[0].ip_address == '4.8.15.16'
+
+    def test_create_version_existing_addon_but_user_is_not_an_author(self):
+        creator = SitePermissionVersionCreator(
+            user=user_factory(),
+            remote_addr='4.8.15.16',
+            install_origins=['https://example.com', 'https://foo.com'],
+            site_permissions=['midi-sysex', 'webblah'],
+        )
+        addon = addon_factory(
+            version_kw={'version': '1.0'},
+            type=amo.ADDON_SITE_PERMISSION,
+            users=[user_factory()],
+        )
+        self.make_addon_unlisted(addon)
+        with self.assertRaises(ImproperlyConfigured):
+            creator.create_version(addon=addon)

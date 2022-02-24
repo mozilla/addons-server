@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth import get_user
 from django.contrib.auth.signals import user_logged_in
 from django.core import signing
 from django.utils.crypto import constant_time_compare
@@ -13,6 +14,10 @@ from rest_framework.authentication import BaseAuthentication, get_authorization_
 import olympia.core.logger
 
 from olympia import core
+from olympia.accounts.verify import (
+    check_and_update_fxa_access_token,
+    IdentificationError,
+)
 from olympia.api import jwt_auth
 from olympia.api.models import APIKey
 from olympia.users.models import UserProfile
@@ -78,7 +83,7 @@ class WebTokenAuthentication(BaseAuthentication):
 
     def authenticate(self, request):
         """
-        Returns a two-tuple of `User` and token if a valid tolen has been
+        Returns a two-tuple of `User` and token if a valid token has been
         supplied. Otherwise returns `None`.
 
         Raises AuthenticationFailed if a token was specified but it's invalid
@@ -142,11 +147,124 @@ class WebTokenAuthentication(BaseAuthentication):
                 'User tried to authenticate with invalid auth hash in'
                 'payload {}'.format(payload)
             )
-            raise exceptions.AuthenticationFailed()
+            msg = {
+                'detail': gettext('Auth hash mismatch. Session is likely expired.'),
+                'code': 'ERROR_AUTHENTICATION_EXPIRED',
+            }
+            raise exceptions.AuthenticationFailed(msg)
 
         # Set user in thread like UserAndAddrMiddleware does.
         core.set_user(user)
         return user
+
+
+class SessionIDAuthentication(BaseAuthentication):
+    """
+    DRF authentication class using the session id for django sessions (i.e. not
+    external clients using API keys - see JWTKeyAuthentication for that).
+
+    Clients should authenticate by passing the session id value in the "Authorization"
+    HTTP header, prepended with the "Session" prefix. For example:
+
+        Authorization: Session eyJhbGciOiAiSFMyNTYiLCAidHlwIj
+    """
+
+    www_authenticate_realm = (
+        'Access to addons.mozilla.org internal API with session key'
+    )
+    auth_header_prefix = 'Session'
+    salt = 'olympia.api.auth'
+
+    def authenticate_header(self, request):
+        """
+        Return a string to be used as the value of the `WWW-Authenticate`
+        header in a `401 Unauthenticated` response, or `None` if the
+        authentication scheme should return `403 Permission Denied` responses.
+        """
+        return '{} realm="{}"'.format(
+            self.auth_header_prefix, self.www_authenticate_realm
+        )
+
+    def get_token_value(self, request):
+        auth_header = get_authorization_header(request).split()
+        expected_header_prefix = self.auth_header_prefix.upper()
+
+        if not auth_header or (
+            smart_str(auth_header[0].upper()) != expected_header_prefix
+        ):
+            return None
+
+        if len(auth_header) == 1:
+            msg = {
+                'detail': gettext(
+                    'Invalid Authorization header. No credentials provided.'
+                ),
+                'code': 'ERROR_INVALID_HEADER',
+            }
+            raise exceptions.AuthenticationFailed(msg)
+        elif len(auth_header) > 2:
+            msg = {
+                'detail': gettext(
+                    'Invalid Authorization header. Credentials string should not '
+                    'contain spaces.'
+                ),
+                'code': 'ERROR_INVALID_HEADER',
+            }
+            raise exceptions.AuthenticationFailed(msg)
+
+        return auth_header[1]
+
+    def authenticate(self, request):
+        """
+        Returns a two-tuple of `User` and token if a valid token has been supplied.
+        Otherwise returns `None`.
+
+        Raises AuthenticationFailed if a token was specified but it's invalid
+        in some way (expired signature, invalid token, etc.)
+        """
+        token = self.get_token_value(request)
+        if token is None:
+            # No token specified, skip this authentication method.
+            return None
+        # Proceed.
+        return self.authenticate_credentials(request, force_str(token))
+
+    def authenticate_credentials(self, request, token):
+        # initialize session with the key from the token rather than the cookie like
+        # SessionMiddleware does.
+        del request.session._session_cache
+        request.session._session_key = token
+
+        # call get_user to validate the session information is good - it returns safely
+        user = get_user(request)
+        if not user or user.is_anonymous or user.deleted:
+            log.info('User or session not found.')
+            msg = {
+                'detail': gettext(
+                    'Valid user session not found matching the provided session key.'
+                ),
+                'code': 'ERROR_AUTHENTICATION_EXPIRED',
+            }
+            raise exceptions.AuthenticationFailed(msg)
+
+        try:
+            check_and_update_fxa_access_token(request)
+        except IdentificationError:
+            log.info(
+                'User access token refresh failed; user needs to login to FxA again'
+            )
+            msg = {
+                'detail': gettext(
+                    'Access token refresh failed; user needs to login to FxA again.'
+                ),
+                'code': 'ERROR_AUTHENTICATION_EXPIRED',
+            }
+            raise exceptions.AuthenticationFailed(msg)
+
+        # Set user in thread like UserAndAddrMiddleware does.
+        core.set_user(user)
+
+        return (user, token)
 
 
 class JWTKeyAuthentication(BaseAuthentication):

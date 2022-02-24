@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2020-12-18 16:20+0000\n"
-"Last-Translator: holgermogensen <holgermogensen@gmail.com>\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2021-12-03 13:28+0000\n"
+"Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjerne"
-msgstr[1] "{0} stjerner"
 
 msgid "There was a problem contacting the server."
 msgstr "Der opstod et problem med at kontakte serveren."
@@ -56,8 +51,8 @@ msgstr[1] "Validering af din tilføjelse mislykkedes, der var {0} fejl."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip; og {0} mere"
+msgstr[1] "&hellip; og {0} mere"
 
 msgid "See full validation report"
 msgstr "Se den fulde valideringsrapport"
@@ -93,37 +88,27 @@ msgstr[1] "Din tilføjelse blev valideret som fejlfri og med {0} meddelelser."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Din tilføjelse er valideret uden fejl eller advarsler."
 
-msgid "Your submission will be automatically signed."
-msgstr ""
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension-opgradering"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Vi tillader og opfordrer til en opgradering, men denne proces kan ikke fortrydes. Når dine brugere har WebExtension installeret, kan de ikke installere ældre tilføjelser."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
-
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Inkluder detaljerede versionsnoter (dette kan gøres i næste trin)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Hvis din tilføjelse kræver en konto til en hjemmeside for at blive fuldt testet, skal du inkludere et testbrugernavn og -adgangskode under noter til anmelderen (dette kan gøres i næste trin)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Tjekliste til indsendelse af tilføjelser"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Bekræft venligst følgende punkter, inden du afslutter din indsendelse. Dette minimerer forsinkelser og misforståelser under vurderingsprocessen:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Minificeret, konkateneret eller på andre måder maskin-genererede scripts (med undtagelse af kendte biblioteker) skal have deres kilder indsendt separat til vurdering. Sørg for, at du bruger feltet "
+"til at uploade kildekode for at undgå, at din indsendelse bliver afvist."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Valideringsprocessen fandt disse problemer, der kan føre til afvisning:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Filtypen, du uploadede, blev ikke genkendt."
@@ -132,43 +117,13 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr "Din fil overskrider maksimumstørrelsen på {0}."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Du annullerede uploadet."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Billeder skal enten være i formatet PNG eller JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoer skal være i formatet WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Dette tema er ikke kompatibelt med din version af {0}"
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Your input is required"
-msgstr "Dit input er påkrævet"
-
-msgid "Marked for deletion"
-msgstr "Markeret til sletning"
-
-msgid "Updating results&hellip;"
-msgstr "Opdaterer resultater&hellip;"
-
-msgid "Category"
-msgstr "Kategori"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Søg i temaer efter <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Søg i apps efter <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Søg i tilføjelser efter <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Brug original"
 
 msgid "Week of {0}"
 msgstr "Uge {0}"
@@ -646,41 +601,6 @@ msgstr "Dato"
 msgid "Other"
 msgstr "Andre"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Accepter og installer"
-
-msgid "Add to {0}"
-msgstr "Føj til {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Installer til {0} alligevel"
-
-msgid "Download for {0} anyway"
-msgstr "Hent til {0} alligevel"
-
-msgid "Not available for your platform"
-msgstr "Er ikke tilgængelig til din platform"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Denne tilføjelse er ikke kompatibel med din version af {0}."
-
-msgid "View other versions"
-msgstr "Vis andre versioner"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Virker med {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Virker med {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Kun med Firefox — Hent Firefox nu!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at installere et søge-plugin."
-
 msgid "Changes Saved"
 msgstr "Ændringer gemt"
 
@@ -700,12 +620,6 @@ msgstr ""
 
 msgid "Select an application first"
 msgstr "Vælg et program først"
-
-msgid "No results found."
-msgstr "Ingen resultater fundet."
-
-msgid "Loading..."
-msgstr "Indlæser..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -745,12 +659,6 @@ msgid "Review Text"
 msgstr "Anmeldelsestekst"
 
 msgid "Review notes found"
-msgstr ""
-
-msgid "Average Reviews"
-msgstr ""
-
-msgid "Number of Reviews"
 msgstr ""
 
 msgid "Maximum upload size is {0} - choose a smaller background image."

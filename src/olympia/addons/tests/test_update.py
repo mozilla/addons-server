@@ -140,7 +140,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
     def change_status(self, version, status):
         version = Version.objects.get(pk=version)
-        file = version.files.all()[0]
+        file = version.file
         file.status = status
         file.save()
         return version
@@ -263,24 +263,6 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         assert version == self.version_1_2_1
 
-    def test_public_pending_no_file_beta(self):
-        """
-        If the addon status is public and you are asking
-        for a beta version we look up a version based on the
-        file version at that point. If there are no files,
-        find a public version.
-        """
-        self.change_version(self.version_1_2_0, '1.2beta')
-        Version.objects.get(pk=self.version_1_2_0).files.all().delete()
-
-        version, file = self.get_update_instance(
-            '1.2beta', self.version_int, self.app, self.platform
-        )
-        dest = Version.objects.get(pk=self.version_1_2_2)
-        assert dest.addon.status == amo.STATUS_APPROVED
-        assert dest.files.all()[0].status == amo.STATUS_APPROVED
-        assert version == dest.pk
-
     def test_not_public(self):
         """
         If the addon status is not public, then the update only
@@ -315,7 +297,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         self.addon = Addon.objects.get(id=337203)
         self.platform = None
         self.app = amo.APP_IDS[1]
-        self.app_version_int_3_0 = 3000000200100
         self.app_version_int_4_0 = 4000000200100
         self.app_version_int_5_0 = 5000000200100
         self.app_version_int_6_0 = 6000000200100
@@ -327,9 +308,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         self.ver_1_3 = 1268884
 
         self.expected = {
-            '3.0-strict': None,
-            '3.0-normal': None,
-            '3.0-ignore': None,
             '4.0-strict': self.ver_1_0,
             '4.0-normal': self.ver_1_0,
             '4.0-ignore': self.ver_1_0,
@@ -349,8 +327,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
 
     def update_files(self, **kw):
         for version in self.addon.versions.all():
-            for file in version.files.all():
-                file.update(**kw)
+            version.file.update(**kw)
 
     def get_update_instance(self, **kw):
         instance = super().get_update_instance(
@@ -369,10 +346,10 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
 
     def check(self, expected):
         """
-        Checks Firefox versions 3.0 to 8.0 in each compat mode and compares it
+        Checks Firefox versions 4.0 to 8.0 in each compat mode and compares it
         to the expected version.
         """
-        versions = ['3.0', '4.0', '5.0', '6.0', '7.0', '8.0']
+        versions = ['4.0', '5.0', '6.0', '7.0', '8.0']
         modes = ['strict', 'normal', 'ignore']
 
         for version in versions:
@@ -383,17 +360,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
                 )
 
     def test_baseline(self):
-        # Tests simple add-on (non-binary-components, non-strict).
-        self.check(self.expected)
-
-    def test_binary_components(self):
-        # Tests add-on with binary_components flag.
-        self.update_files(binary_components=True)
-        self.expected.update(
-            {
-                '8.0-normal': None,
-            }
-        )
+        # Tests simple add-on (non-strict_compatibility).
         self.check(self.expected)
 
     def test_strict_opt_in(self):
@@ -402,27 +369,6 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         self.expected.update(
             {
                 '8.0-normal': None,
-            }
-        )
-        self.check(self.expected)
-
-    def test_min_max_version(self):
-        # Tests the minimum requirement of the app maxVersion.
-        av = self.addon.current_version.apps.all()[0]
-        av.min_id = 233  # Firefox 3.0.
-        av.max_id = 268  # Firefox 3.5.
-        av.save()
-        self.expected.update(
-            {
-                '3.0-strict': self.ver_1_3,
-                '3.0-ignore': self.ver_1_3,
-                '4.0-ignore': self.ver_1_3,
-                '5.0-ignore': self.ver_1_3,
-                '6.0-strict': self.ver_1_2,
-                '6.0-normal': self.ver_1_2,
-                '7.0-strict': self.ver_1_2,
-                '7.0-normal': self.ver_1_2,
-                '8.0-normal': self.ver_1_2,
             }
         )
         self.check(self.expected)
@@ -505,15 +451,19 @@ class TestResponse(VersionCheckMixin, TestCase):
 
     def test_url(self):
         instance = self.get_update_instance(self.data)
-        instance.get_output()
-        assert instance.data['row']['url'] == self.get_file_url()
+        content = instance.get_output()
+        data = json.loads(content)
+        guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
+        assert data['addons'][guid]['updates'][0]['update_link'] == self.get_file_url()
 
     def test_url_local_recent(self):
         a_bit_ago = datetime.now() - timedelta(seconds=60)
         File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
         instance = self.get_update_instance(self.data)
-        instance.get_output()
-        assert instance.data['row']['url'] == self.get_file_url()
+        content = instance.get_output()
+        data = json.loads(content)
+        guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
+        assert data['addons'][guid]['updates'][0]['update_link'] == self.get_file_url()
 
     def test_hash(self):
         content = self.get_update_instance(self.data).get_output()

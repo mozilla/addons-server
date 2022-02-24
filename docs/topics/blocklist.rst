@@ -25,8 +25,9 @@ The blocklists are all served via Firefox Remote Settings (the current implement
 .. note::
     v2/v1 are referred to as "legacy" blocklist in these docs.
 
-AMO holds the addon blocklist records and generates the bloomfilters as needed, which are then uploaded to Remote Settings.
-The records are managed via the admin tools on addons-server, where updates can also be made to the legacy blocklists (:ref:`in most cases <blocklist-doc-regex>`).
+AMO holds the addon blocklist records and generates the bloomfilters as needed, which are then uploaded to Remote Settings. The records are managed via the admin tools on addons-server.
+
+If any changes are needed to the contents of the v1/v2 blocklist it must be made via the Firefox Remote Settings web admin tool - there is no longer any way to import or export changes between the v1/v2 blocklist and the v3 blocklist.
 
 
 ==========
@@ -39,7 +40,6 @@ Admin Tool
 If the add-ons that the Block affects are used by a significant number of users (see `DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD` setting - currently 100k) then the BlockSubmission must be signed off (approved) by another admin user first.
 
 Once the submission is approved - or immediately after saving if the average daily user counts are under the threshold - a task is started to asynchronously create, update, or delete, Block records.
-If the Block records are marked as legacy then they will be uploaded to the legacy blocklist collection too in this task.
 
 
 ======================
@@ -169,25 +169,6 @@ Legacy Blocklist
 
 .. _blocklist-doc-legacy:
 
-To populate the blocklist on AMO the legacy blocklist on Remote Settings was imported; all guids that matched addons on AMO (and that had at least one webextension version) were added; any guids that were :ref:`regular expressions<blocklist-doc-regex>` were "expanded" to individual records for each addon present in the AMO database.
+To populate the blocklist on AMO the legacy blocklist on Remote Settings was imported; all guids that matched addons on AMO (and that had at least one webextension version) were added; any guids that were regular expressions were "expanded" to individual records for each addon present in the AMO database.
 
-If the `In legacy blocklist` checkbox is selected in AMO's admin tool the block will also be saved to the legacy blocklist.
-Edits to Blocks will propagate to the legacy blocklist too (apart from :ref:`regular expression based blocks<blocklist-doc-regex>`).
-An existing Block in the legacy blocklist can be removed (while keeping it in the current v3 blocklist) by deselecting the `In legacy blocklist` checkbox; or added to the legacy blocklist too by enabling the `In legacy blocklist` checkbox.
-
-
-------------------
-Regex-based Blocks
-------------------
-
-.. _blocklist-doc-regex:
-
-The legacy blocklist records can contain regular expressions in the `guid` field, which are interpreted by Firefox to match addon guids.
-
-AMO's blocklist implementation, by design, does not generate or change regular expressions in legacy blocklist records.
-So Blocks imported from a regular expression in the legacy blocklist can be viewed and updated on AMO, and are included in the v3 bloomfilter blocklist, but changes to those records cannot be propagated back to the legacy blocklist because the regular expression would need to be amended.
-
-A warning message is displayed and the user must manually make the changes to the legacy blocklist via the kinto admin tool.
-
-.. note::
-    Blocks with a `legacy_id` property starting with `*` were imported from regular expression based Remote Setting records.
+Support for importing the legacy blocklist into AMO, and exporting changes from AMO into the legacy blocklist, has now been removed; it is no longer possible to propagate changes made to the v2 blocklist via the remote-settings web admin tool to the v3 blocklist held on AMO, or visa versa.

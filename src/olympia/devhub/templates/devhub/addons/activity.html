@@ -30,7 +30,7 @@
             {{ item }}
           </p>
           <p class="timestamp">
-          {% trans user=item.author_name,
+          {% trans user=item.user.name,
                    ago=item.created|timesince,
                    iso=item.created|isotime,
                    pretty=item.created|datetime %}

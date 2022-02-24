@@ -14,7 +14,7 @@ def stars(num, large=False):
         return gettext('Not yet rated')
     else:
         num = min(5, int(round(num)))
-        t = get_template('ratings/impala/reviews_rating.html')
+        t = get_template('ratings/reviews_rating.html')
         # These are getting renamed for contextual sense in the template.
         return markupsafe.Markup(t.render({'rating': num, 'detailpage': large}))
 
@@ -22,14 +22,6 @@ def stars(num, large=False):
 @library.global_function
 def reviews_link(addon, collection_uuid=None):
     t = get_template('ratings/reviews_link.html')
-    return markupsafe.Markup(
-        t.render({'addon': addon, 'collection_uuid': collection_uuid})
-    )
-
-
-@library.global_function
-def impala_reviews_link(addon, collection_uuid=None):
-    t = get_template('ratings/impala/reviews_link.html')
     return markupsafe.Markup(
         t.render({'addon': addon, 'collection_uuid': collection_uuid})
     )

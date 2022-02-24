@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2018-10-19 21:53+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,10 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} bintang"
 
 msgid "There was a problem contacting the server."
 msgstr "Ada masalah menghubungi pelayan."
@@ -90,18 +86,6 @@ msgstr[0] "Add-on anda telah disahkan dengan tiada ralat dan {0} mesej."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Add-on anda telah disahkan dengan tiada ralat atau amaran."
 
-msgid "Your submission will be automatically signed."
-msgstr "Serahan anda akan ditandatangani secara automatik."
-
-msgid "WebExtension upgrade"
-msgstr "kemaskini WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Kami izin dan menggalakkan kemas kini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Pemindahan add-on Firefox legasi di MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Sertakan nota butiran versi (ini boleh dilakukan dalam langkah seterusnya)."
 
@@ -141,36 +125,6 @@ msgstr "Imej mesti samada PNG atau JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Video mesti dalam WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema ini tidak serasi dengan versi {0} anda"
-
-msgid "Flagged for review"
-msgstr "Ditanda untuk semakan"
-
-msgid "Your input is required"
-msgstr "Input anda diperlukan"
-
-msgid "Marked for deletion"
-msgstr "Ditandai untuk penghapusan"
-
-msgid "Updating results&hellip;"
-msgstr "Mengemaskini hasil&hellip;"
-
-msgid "Category"
-msgstr "Kategori"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Cari tema untuk <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Cari aplikasi untuk <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Cari add-ons untuk <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Guna asal"
 
 msgid "Week of {0}"
 msgstr "Minggu {0}"
@@ -642,41 +596,6 @@ msgstr "Tarikh"
 msgid "Other"
 msgstr "Lain-lain"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Terima dan Pasang"
-
-msgid "Add to {0}"
-msgstr "Tambah ke {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Teruskan sahaja pasang untuk {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Teruskan sahaja muat turun untuk {0}"
-
-msgid "Not available for your platform"
-msgstr "Tidak tersedia untuk platform anda"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Add-on ini tidak serasi dengan versi {0}."
-
-msgid "View other versions"
-msgstr "Papar versi lain"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Berfungsi dengan {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Berfungsi dengan {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Maaf, anda perlukan pelayar berasaskan-Mozilla (seperti Firefox) untuk memasang plugin carian."
-
 msgid "Changes Saved"
 msgstr "Perubahan Disimpan"
 
@@ -695,12 +614,6 @@ msgstr "Perubahan imej sedang diproses"
 
 msgid "Select an application first"
 msgstr "Pilih dulu aplikasi"
-
-msgid "No results found."
-msgstr "Tiada hasil ditemukan."
-
-msgid "Loading..."
-msgstr "Memuatkan..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -739,12 +652,6 @@ msgstr "Teks Semakan"
 
 msgid "Review notes found"
 msgstr "Nota semakan ditemui"
-
-msgid "Average Reviews"
-msgstr "Purata Ulasan"
-
-msgid "Number of Reviews"
-msgstr "Bilangan Ulasan"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Saiz maksimum muat naik {0} - pilih imej latar belakang yang lebih kecil."

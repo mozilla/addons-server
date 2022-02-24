@@ -13,6 +13,7 @@ from PIL import Image
 import olympia.core.logger
 
 from olympia.amo import search
+from olympia.amo.models import use_primary_db
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 
 
@@ -177,3 +178,24 @@ def signer():
         signer_results = False
 
     return status, signer_results
+
+
+def database():
+    # check database connection
+    from olympia.addons.models import Addon
+
+    status = ''
+    try:
+        Addon.unfiltered.exists()
+    except Exception as e:
+        status = f'Failed to connect to replica database: {e}'
+        monitor_log.critical(status)
+    else:
+        with use_primary_db():
+            try:
+                Addon.unfiltered.exists()
+            except Exception as e:
+                status = f'Failed to connect to primary database: {e}'
+                monitor_log.critical(status)
+
+    return status, None

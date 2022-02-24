@@ -23,6 +23,8 @@ from django.utils.encoding import force_str
 from django.utils.jslex import JsLexer
 from django.utils.translation import gettext
 
+import waffle
+
 import olympia.core.logger
 
 from olympia import amo
@@ -128,28 +130,10 @@ class InvalidManifest(forms.ValidationError):
     pass
 
 
-class Extractor:
-    """Extract add-on info from a manifest file."""
+class InvalidZipFile(forms.ValidationError):
+    """This error is raised when we attempt to open an invalid file with SafeZip."""
 
-    App = collections.namedtuple('App', 'appdata id min max')
-
-    @classmethod
-    def parse(cls, xpi_fobj, minimal=False):
-        zip_file = SafeZip(xpi_fobj)
-
-        certificate = os.path.join('META-INF', 'mozilla.rsa')
-        certificate_info = None
-
-        if zip_file.exists(certificate):
-            certificate_info = SigningCertificateInformation(zip_file.read(certificate))
-
-        if zip_file.exists('manifest.json'):
-            data = ManifestJSONExtractor(zip_file, certinfo=certificate_info).parse(
-                minimal=minimal
-            )
-        else:
-            raise NoManifestFound('No manifest.json found')
-        return data
+    pass
 
 
 def get_appversions(app, min_version, max_version):
@@ -177,15 +161,15 @@ def get_simple_version(version_string):
 
 
 class ManifestJSONExtractor:
-    def __init__(self, zip_file, data='', certinfo=None):
-        self.zip_file = zip_file
+    """Extract add-on info from a manifest file."""
+
+    App = collections.namedtuple('App', 'appdata id min max')
+
+    def __init__(self, manifest_data, *, certinfo=None):
         self.certinfo = certinfo
 
-        if not data:
-            data = zip_file.read('manifest.json')
-
         # Remove BOM if present.
-        data = unicodehelper.decode(data)
+        data = unicodehelper.decode(manifest_data)
 
         # Run through the JSON and remove all comments, then try to read
         # the manifest file.
@@ -212,6 +196,12 @@ class ManifestJSONExtractor:
         return self.data.get(key, default)
 
     @property
+    def homepage(self):
+        homepage_url = self.get('homepage_url')
+        # `developer.url` in the manifest overrides `homepage_url`.
+        return self.get('developer', {}).get('url', homepage_url)
+
+    @property
     def is_experiment(self):
         """Return whether or not the webextension uses
         experiments or theme experiments API.
@@ -232,7 +222,7 @@ class ManifestJSONExtractor:
 
     @property
     def guid(self):
-        return self.gecko.get('id', None)
+        return str(self.gecko.get('id', None) or '') or None
 
     @property
     def type(self):
@@ -243,6 +233,8 @@ class ManifestJSONExtractor:
             if 'theme' in self.data
             else amo.ADDON_DICT
             if 'dictionaries' in self.data
+            else amo.ADDON_SITE_PERMISSION
+            if 'site_permissions' in self.data
             else amo.ADDON_EXTENSION
         )
 
@@ -253,6 +245,18 @@ class ManifestJSONExtractor:
     @property
     def strict_min_version(self):
         return get_simple_version(self.gecko.get('strict_min_version'))
+
+    @property
+    def install_origins(self):
+        value = self.get('install_origins', [])
+        # We will be processing install_origins regardless of validation
+        # status, so it can be invalid. We need to ensure it's a list of
+        # strings at least, to prevent exceptions later.
+        return (
+            list(filter(lambda item: isinstance(item, str), value))
+            if isinstance(value, list)
+            else []
+        )
 
     def apps(self):
         """Get `AppVersion`s for the application."""
@@ -364,7 +368,7 @@ class ManifestJSONExtractor:
                 )
                 raise forms.ValidationError(msg)
 
-            yield Extractor.App(appdata=app, id=app.id, min=min_appver, max=max_appver)
+            yield self.App(appdata=app, id=app.id, min=min_appver, max=max_appver)
 
     def target_locale(self):
         """Guess target_locale for a dictionary from manifest contents."""
@@ -383,12 +387,12 @@ class ManifestJSONExtractor:
             'guid': self.guid,
             'type': self.type,
             'version': str(self.get('version', '')),
-            'is_webextension': True,
             'name': self.get('name'),
             'summary': self.get('description'),
-            'homepage': self.get('homepage_url'),
+            'homepage': self.homepage,
             'default_locale': self.get('default_locale'),
             'manifest_version': self.get('manifest_version'),
+            'install_origins': self.install_origins,
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -402,7 +406,6 @@ class ManifestJSONExtractor:
         if not minimal:
             data.update(
                 {
-                    'is_restart_required': False,
                     'apps': list(self.apps()),
                     # Langpacks have strict compatibility enabled, rest of
                     # webextensions don't.
@@ -422,9 +425,10 @@ class ManifestJSONExtractor:
 
                 if self.get('devtools_page'):
                     data.update({'devtools_page': self.get('devtools_page')})
-
             elif self.type == amo.ADDON_DICT:
                 data['target_locale'] = self.target_locale()
+            elif self.type == amo.ADDON_SITE_PERMISSION:
+                data['site_permissions'] = self.get('site_permissions', [])
         return data
 
 
@@ -506,16 +510,18 @@ class FSyncedTarFile(FSyncMixin, tarfile.TarFile):
     pass
 
 
-def archive_member_validator(archive, member):
+def archive_member_validator(archive, member, ignore_filename_errors=False):
     """Validate a member of an archive member (TarInfo or ZipInfo)."""
     filename = getattr(member, 'filename', getattr(member, 'name', None))
     filesize = getattr(member, 'file_size', getattr(member, 'size', None))
-    _validate_archive_member_name_and_size(filename, filesize)
+    _validate_archive_member_name_and_size(filename, filesize, ignore_filename_errors)
 
 
-def _validate_archive_member_name_and_size(filename, filesize):
+def _validate_archive_member_name_and_size(
+    filename, filesize, ignore_filename_errors=False
+):
     if filename is None or filesize is None:
-        raise forms.ValidationError(gettext('Unsupported archive type.'))
+        raise InvalidZipFile(gettext('Unsupported archive type.'))
 
     try:
         force_str(filename)
@@ -527,27 +533,36 @@ def _validate_archive_member_name_and_size(filename, filesize):
             'Invalid file name in archive. Please make sure '
             'all filenames are utf-8 or latin1 encoded.'
         )
-        raise forms.ValidationError(msg)
+        raise InvalidZipFile(msg)
 
-    if '../' in filename or '..' == filename or filename.startswith('/'):
-        log.error('Extraction error, invalid file name: %s' % (filename))
-        # L10n: {0} is the name of the invalid file.
-        msg = gettext('Invalid file name in archive: {0}')
-        raise forms.ValidationError(msg.format(filename))
+    if not ignore_filename_errors:
+        if (
+            '\\' in filename
+            or '../' in filename
+            or '..' == filename
+            or filename.startswith('/')
+        ):
+            log.error('Extraction error, invalid file name: %s' % (filename))
+            # L10n: {0} is the name of the invalid file.
+            msg = gettext('Invalid file name in archive: {0}')
+            raise InvalidZipFile(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
         log.error(f'Extraction error, file too big for file ({filename}): {filesize}')
         # L10n: {0} is the name of the invalid file.
         msg = gettext('File exceeding size limit in archive: {0}')
-        raise forms.ValidationError(msg.format(filename))
+        raise InvalidZipFile(msg.format(filename))
 
 
 class SafeZip:
-    def __init__(self, source, mode='r', force_fsync=False):
+    def __init__(
+        self, source, mode='r', force_fsync=False, ignore_filename_errors=False
+    ):
         self.source = source
         self.info_list = None
         self.mode = mode
         self.force_fsync = force_fsync
+        self.ignore_filename_errors = ignore_filename_errors
         self.initialize_and_validate()
 
     def initialize_and_validate(self):
@@ -564,10 +579,10 @@ class SafeZip:
         total_file_size = 0
         for info in info_list:
             total_file_size += info.file_size
-            archive_member_validator(self.source, info)
+            archive_member_validator(self.source, info, self.ignore_filename_errors)
 
         if total_file_size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
-            raise forms.ValidationError(gettext('Uncompressed size is too large'))
+            raise InvalidZipFile(gettext('Uncompressed size is too large'))
 
         self.info_list = info_list
         self.zip_file = zip_file
@@ -779,11 +794,25 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
     If minimal is True, it avoids validation as much as possible (still raising
     ValidationError for hard errors like I/O or invalid json) and returns
     only the minimal set of properties needed to decide what to do with the
-    add-on: guid, version and is_webextension.
+    add-on: guid and version.
     """
     try:
         xpi = get_file(xpi)
-        xpi_info = Extractor.parse(xpi, minimal=minimal)
+        zip_file = SafeZip(xpi)
+
+        certificate = os.path.join('META-INF', 'mozilla.rsa')
+        certificate_info = None
+
+        if zip_file.exists(certificate):
+            certificate_info = SigningCertificateInformation(zip_file.read(certificate))
+
+        if zip_file.exists('manifest.json'):
+            xpi_info = ManifestJSONExtractor(
+                zip_file.read('manifest.json'), certinfo=certificate_info
+            ).parse(minimal=minimal)
+        else:
+            raise NoManifestFound('No manifest.json found')
+
     except forms.ValidationError:
         raise
     except OSError as e:
@@ -810,20 +839,17 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     from olympia.addons.models import Addon, DeniedGuid
 
     guid = xpi_info['guid']
-    is_webextension = xpi_info.get('is_webextension', False)
 
     # If we allow the guid to be omitted we assume that one was generated
     # or existed before and use that one.
     # An example are WebExtensions that don't require a guid but we generate
     # one once they're uploaded. Now, if you update that WebExtension we
     # just use the original guid.
-    if addon and not guid and is_webextension:
+    if addon and not guid:
         xpi_info['guid'] = guid = addon.guid
-    if not guid and not is_webextension:
-        raise forms.ValidationError(gettext('Could not find an add-on ID.'))
 
     if guid:
-        if user:
+        if user and waffle.switch_is_active('allow-deleted-guid-reuse'):
             deleted_guid_clashes = Addon.unfiltered.exclude(authors__id=user.id).filter(
                 guid=guid
             )
@@ -836,16 +862,15 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
                 'does not match the ID of your add-on on AMO (%s)'
             )
             raise forms.ValidationError(msg % (guid, addon.guid))
-        if (
-            not addon
+        if not addon and (
             # Non-deleted add-ons.
-            and (
-                Addon.objects.filter(guid=guid).exists()
-                # DeniedGuid objects for deletions for Mozilla disabled add-ons
-                or DeniedGuid.objects.filter(guid=guid).exists()
-                # Deleted add-ons that don't belong to the uploader.
-                or deleted_guid_clashes.exists()
-            )
+            Addon.objects.filter(guid=guid).exists()
+            # DeniedGuid objects for deletions for Mozilla disabled add-ons
+            or DeniedGuid.objects.filter(guid=guid).exists()
+            # Deleted add-ons that don't belong to the uploader (or deleted
+            # add-ons period if `allow-deleted-guid-reuse` waffle switch is
+            # inactive).
+            or deleted_guid_clashes.exists()
         ):
             raise forms.ValidationError(gettext('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:
@@ -860,9 +885,9 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             )
         )
 
-    if is_webextension and xpi_info.get('type') == amo.ADDON_STATICTHEME:
+    if xpi_info.get('type') == amo.ADDON_STATICTHEME:
         max_size = settings.MAX_STATICTHEME_SIZE
-        if xpi_file and os.path.getsize(xpi_file.name) > max_size:
+        if xpi_file and xpi_file.size > max_size:
             raise forms.ValidationError(
                 gettext('Maximum size for WebExtension themes is {0}.').format(
                     filesizeformat(max_size)
@@ -889,8 +914,24 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             gettext('You cannot submit a Mozilla Signed Extension')
         )
 
+    if (
+        not addon
+        and guid
+        and guid.lower().endswith(amo.RESERVED_ADDON_GUIDS)
+        and not xpi_info.get('is_mozilla_signed_extension')
+    ):
+        raise forms.ValidationError(
+            gettext(
+                'Add-ons using an ID ending with this suffix need to be signed with '
+                'privileged certificate before being submitted'
+            )
+        )
+
     if not acl.langpack_submission_allowed(user, xpi_info):
         raise forms.ValidationError(gettext('You cannot submit a language pack'))
+
+    if not acl.site_permission_addons_submission_allowed(user, xpi_info):
+        raise forms.ValidationError(gettext('You cannot submit this type of add-on'))
 
     return xpi_info
 
@@ -912,7 +953,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     (still raising ValidationError for hard errors like I/O or invalid
     json) and returns only the minimal set of properties needed to decide
     what to do with the add-on (the exact set depends on the add-on type, but
-    it should always contain at least guid, type, version and is_webextension.
+    it should always contain at least guid, type and version.
     """
     name = getattr(pkg, 'name', pkg)
     if name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):

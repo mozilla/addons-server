@@ -31,7 +31,6 @@
 .ed-sprite-seamonkey { background-position: 0 -32px; }
 .ed-sprite-android { background-position: 0 -48px; }
 .ed-sprite-mobile { background-position: 0 -64px; }
-.ed-sprite-is_restart_required { background-position: 0 -96px; }
 .ed-sprite-notes { background-position: 0 -112px; }
 .ed-sprite-needs-admin-content-review { background-position: 0 -128px; }
 .ed-sprite-needs-admin-code-review { background-position: 0 -128px; }
@@ -926,8 +925,24 @@ form.review-form .data-toggle {
     height: 131px;
 }
 
-.review-actions-canned {
-    text-align: right;
+.review-actions-comments-reasons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.review-actions-comments {
+    width: 70%;
+}
+
+.review-actions-reasons {
+    width: 28%;
+}
+
+.review-actions-reasons select {
+    height: 200px;
+    margin: 1em 0;
+    width: 100%;
 }
 
 .review-actions-canned #id_canned_response optgroup[label=""] {

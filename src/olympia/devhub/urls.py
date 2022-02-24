@@ -20,7 +20,11 @@ detail_patterns = [
     re_path(r'^delete$', views.delete, name='devhub.addons.delete'),
     re_path(r'^disable$', views.disable, name='devhub.addons.disable'),
     re_path(r'^enable$', views.enable, name='devhub.addons.enable'),
-    re_path(r'^cancel$', views.cancel, name='devhub.addons.cancel'),
+    re_path(
+        r'^cancel-latest-(?P<channel>listed|unlisted)$',
+        views.cancel,
+        name='devhub.addons.cancel',
+    ),
     re_path(r'^ownership$', views.ownership, name='devhub.addons.owner'),
     re_path(r'^invitation$', views.invitation, name='devhub.addons.invitation'),
     re_path(
@@ -102,7 +106,7 @@ detail_patterns = [
         name='devhub.submit.version.wizard',
     ),
     re_path(
-        '^versions/submit/wizard-(?P<channel>listed|unlisted)/background$',
+        r'^versions/submit/wizard-(?P<channel>listed|unlisted)/background$',
         views.theme_background_image,
         name='devhub.submit.version.previous_background',
     ),
@@ -119,7 +123,11 @@ detail_patterns = [
     re_path(
         r'^submit/$', lambda r, addon_id: redirect('devhub.submit.finish', addon_id)
     ),
-    re_path(r'^submit/source$', views.submit_addon_source, name='devhub.submit.source'),
+    re_path(
+        r'^submit/source-(?P<channel>listed|unlisted)$',
+        views.submit_addon_source,
+        name='devhub.submit.source',
+    ),
     re_path(
         r'^submit/details$', views.submit_addon_details, name='devhub.submit.details'
     ),
@@ -198,8 +206,8 @@ urlpatterns = decorate(
         # Submission API
         re_path(
             r'^addon/agreement/$',
-            views.api_key_agreement,
-            name='devhub.api_key_agreement',
+            views.developer_agreement,
+            name='devhub.developer_agreement',
         ),
         re_path(r'^addon/api/key/$', views.api_key, name='devhub.api_key'),
         # Standalone validator:
@@ -241,6 +249,11 @@ urlpatterns = decorate(
             r'^standalone-upload/([^/]+)$',
             views.standalone_upload_detail,
             name='devhub.standalone_upload_detail',
+        ),
+        re_path(
+            r'^site_permission_generator/$',
+            views.site_permission_generator,
+            name='devhub.site_permission_generator',
         ),
         # URLs for a single add-on.
         re_path(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),

@@ -2,7 +2,7 @@ import os
 import tarfile
 import zipfile
 
-from urllib.parse import urlsplit
+from urllib.parse import urlparse, urlsplit
 
 from django import forms
 from django.conf import settings
@@ -12,6 +12,7 @@ from django.forms.formsets import BaseFormSet, formset_factory
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.urls import reverse
+from django.utils.functional import keep_lazy_text
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext, gettext_lazy as _, ngettext
@@ -61,6 +62,7 @@ from olympia.users.models import (
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
+    DeniedInstallOrigin,
     License,
     Version,
 )
@@ -68,8 +70,11 @@ from olympia.versions.models import (
 from . import tasks
 
 
+format_html_lazy = keep_lazy_text(format_html)
+
+
 def clean_addon_slug(slug, instance):
-    slug_validator(slug, lower=False)
+    slug_validator(slug)
 
     if slug != instance.slug:
         if Addon.objects.filter(slug=slug).exists():
@@ -826,7 +831,6 @@ class CompatForm(forms.ModelForm):
         # 'version' should always be passed as a kwarg to this form. If it's
         # absent, it probably means form_kwargs={'version': version} is missing
         # from the instantiation of the formset.
-        version = kwargs.pop('version')
         super().__init__(*args, **kwargs)
         if self.initial:
             app = self.initial['application']
@@ -835,17 +839,6 @@ class CompatForm(forms.ModelForm):
         self.app = amo.APPS_ALL[int(app)]
         qs = AppVersion.objects.filter(application=app).order_by('version_int')
 
-        # Legacy extensions can't set compatibility higher than 56.* for
-        # Firefox and Firefox for Android.
-        # This does not concern Mozilla Signed Legacy extensions which
-        # are shown the same version choice as WebExtensions.
-        if (
-            self.app in (amo.FIREFOX, amo.ANDROID)
-            and not version.is_webextension
-            and not version.is_mozilla_signed
-            and version.addon.type not in amo.NO_COMPAT + (amo.ADDON_LPAPP,)
-        ):
-            qs = qs.filter(version_int__lt=57000000000000)
         self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max'].queryset = qs.all()
 
@@ -862,7 +855,7 @@ class BaseCompatFormSet(BaseModelFormSet):
         super().__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
-        version = self.form_kwargs.get('version')
+        version = self.form_kwargs.pop('version')
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
         available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.
@@ -960,7 +953,29 @@ class CompatAppSelectWidget(forms.CheckboxSelectMultiple):
         return data
 
 
-class NewUploadForm(forms.Form):
+class CheckThrottlesMixin:
+    def check_throttles(self, request):
+        """
+        Check if request should be throttled by calling the signing API
+        throttling method.
+
+        Raises ValidationError if the request is throttled.
+        """
+        from olympia.signing.views import VersionView  # circular import
+
+        view = VersionView()
+        try:
+            view.check_throttles(request)
+        except Throttled:
+            raise forms.ValidationError(
+                _(
+                    'You have submitted too many uploads recently. '
+                    'Please try again after some time.'
+                )
+            )
+
+
+class NewUploadForm(CheckThrottlesMixin, forms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -1001,34 +1016,18 @@ class NewUploadForm(forms.Form):
             self.fields['compatible_apps'].initial = compat_apps
 
     def _clean_upload(self):
-        if not (
-            self.cleaned_data['upload'].valid
+        own_upload = self.cleaned_data['upload'].user == self.request.user
+
+        if (
+            not own_upload
+            or not self.cleaned_data['upload'].valid
             or self.cleaned_data['upload'].validation_timeout
-            or self.cleaned_data['admin_override_validation']
+        ) and not (
+            self.cleaned_data['admin_override_validation']
             and acl.action_allowed(self.request, amo.permissions.REVIEWS_ADMIN)
         ):
             raise forms.ValidationError(
                 gettext('There was an error with your upload. Please try again.')
-            )
-
-    def check_throttles(self, request):
-        """
-        Check if request should be throttled by calling the signing API
-        throttling method.
-
-        Raises ValidationError if the request is throttled.
-        """
-        from olympia.signing.views import VersionView  # circular import
-
-        view = VersionView()
-        try:
-            view.check_throttles(request)
-        except Throttled:
-            raise forms.ValidationError(
-                _(
-                    'You have submitted too many uploads recently. '
-                    'Please try again after some time.'
-                )
             )
 
     def check_blocklist(self, guid, version_string):
@@ -1066,7 +1065,7 @@ class NewUploadForm(forms.Form):
                 version = existing_versions[0]
                 if version.deleted:
                     msg = gettext('Version {version} was uploaded before and deleted.')
-                elif version.unreviewed_files:
+                elif version.file.status == amo.STATUS_AWAITING_REVIEW:
                     next_url = reverse(
                         'devhub.submit.version.details',
                         args=[self.addon.slug, version.pk],
@@ -1299,20 +1298,30 @@ PreviewFormSet = modelformset_factory(
 
 
 class DistributionChoiceForm(forms.Form):
-    LISTED_LABEL = _(
-        'On this site. <span class="helptext">'
-        'Your submission will be listed on this site and the Firefox '
-        'Add-ons Manager for millions of users, after it passes code '
-        'review. Automatic updates are handled by this site. This '
-        'add-on will also be considered for Mozilla promotions and '
-        'contests. Self-distribution of the reviewed files is also '
-        'possible.</span>'
+    # Gotta keep the format_html call lazy, otherwise these would be evaluated
+    # to a string right away and never translated.
+    LISTED_LABEL = format_html_lazy(
+        _(
+            'On this site. <span class="helptext">'
+            'Your submission is publicly listed on {site_domain}.</span>'
+        ),
+        site_domain=settings.DOMAIN,
     )
-    UNLISTED_LABEL = _(
-        'On your own. <span class="helptext">'
-        'Your submission will be immediately signed for '
-        'self-distribution. Updates should be handled by you via an '
-        'updateURL or external application updates.</span>'
+    UNLISTED_LABEL = format_html_lazy(
+        _(
+            'On your own. <span class="helptext">'
+            'After your submission is signed by Mozilla, you can download the .xpi '
+            'file from the Developer Hub and distribute it to your audience. Please '
+            'make sure the add-on manifest’s <a {a_attrs}>update_url</a> is provided, '
+            'as this is the URL where Firefox finds updates for automatic deployment '
+            'to your users.</span>'
+        ),
+        a_attrs=mark_safe(
+            'target="_blank" rel="noopener noreferrer"'
+            f'href="{settings.EXTENSION_WORKSHOP_URL}'
+            '/documentation/manage/updating-your-extension/'
+            '?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission"'
+        ),
     )
 
     channel = forms.ChoiceField(
@@ -1394,3 +1403,70 @@ class SingleCategoryForm(forms.Form):
                 AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
+
+
+class SitePermissionGeneratorForm(CheckThrottlesMixin, forms.Form):
+    origin = forms.URLField(
+        label=_('Origin'),
+        widget=forms.TextInput(attrs={'placeholder': 'https://example.com'}),
+    )
+    site_permissions = forms.MultipleChoiceField(
+        label=_('Permissions'), choices=(('midi-sysex', 'WebMIDI'),)
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        self.check_throttles(self.request)
+        origin = self.cleaned_data.get('origin')
+        site_permissions = self.cleaned_data.get('site_permissions')
+        already_exists = (
+            self.request.user.addons.all()
+            .filter(
+                type=amo.ADDON_SITE_PERMISSION,
+                versions__installorigin__origin=origin,
+                versions__file___site_permissions__permissions=site_permissions,
+            )
+            .exists()
+        )
+        if already_exists:
+            raise forms.ValidationError(
+                _(
+                    'You have generated a site permission add-on for the same origin '
+                    'and permissions.'
+                )
+            )
+
+    def clean_origin(self):
+        actual_value = str(self.data.get('origin'))
+        value = self.cleaned_data.get('origin')
+        # Note that URLField should already ensure it's an URL.
+        error_message = _(
+            'Origin should include only a scheme (protocol), a hostname (domain) and '
+            'an optional port'
+        )
+        try:
+            parsed = urlparse(value)
+        except ValueError:
+            raise forms.ValidationError(error_message)
+        if (
+            not parsed.scheme
+            or parsed.scheme not in ('https', 'http')
+            or not parsed.netloc
+            # Django's URLField adds a scheme if there wasn't one, translating
+            # "foo" into "http://foo". We want to make sure the scheme was
+            # explicitly present in the submitted value.
+            or not actual_value.startswith(parsed.scheme)
+            or parsed.path
+            or parsed.params
+            or parsed.query
+            or parsed.fragment
+        ):
+            raise forms.ValidationError(error_message)
+        if DeniedInstallOrigin.find_denied_origins([value]):
+            raise forms.ValidationError(
+                DeniedInstallOrigin.ERROR_MESSAGE.format(origin=value)
+            )
+        return value

@@ -1,18 +1,6 @@
 from olympia.lib.settings_base import *  # noqa
 
 
-# Allow addons-dev CDN for CSP.
-CSP_BASE_URI += (
-    # Required for the legacy discovery pane.
-    'https://addons-dev.allizom.org',
-)
-CDN_HOST = 'https://addons-dev-cdn.allizom.org'
-CSP_CONNECT_SRC += (CDN_HOST,)
-CSP_FONT_SRC += (CDN_HOST,)
-CSP_IMG_SRC += (CDN_HOST,)
-CSP_SCRIPT_SRC += (CDN_HOST,)
-CSP_STYLE_SRC += (CDN_HOST,)
-
 ENGAGE_ROBOTS = False
 
 EMAIL_URL = env.email_url('EMAIL_URL')
@@ -36,8 +24,19 @@ SERVICES_URL = env('SERVICES_URL', default='https://services.addons-dev.allizom.
 CODE_MANAGER_URL = env(
     'CODE_MANAGER_URL', default='https://code.addons-dev.allizom.org'
 )
-STATIC_URL = '%s/static/' % CDN_HOST
-MEDIA_URL = '%s/user-media/' % CDN_HOST
+CDN_HOST = 'https://addons-dev-cdn.allizom.org'
+STATIC_URL = '%s/static-server/' % EXTERNAL_SITE_URL
+MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
+# user_media_url('addons') will use ADDONS_URL setting if present to build URLs
+# to xpi files. We want those on the dedicated CDN domain.
+ADDONS_URL = '%s/user-media/addons/' % CDN_HOST
+
+CSP_FONT_SRC += (STATIC_URL,)
+# CSP_IMG_SRC already contains 'self', but we could be on reviewers or admin
+# domain and want to load things from the regular domain.
+CSP_IMG_SRC += (MEDIA_URL, STATIC_URL)
+CSP_SCRIPT_SRC += (STATIC_URL,)
+CSP_STYLE_SRC += (STATIC_URL,)
 
 SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN
 
@@ -52,14 +51,6 @@ DATABASES = {
 SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
 
 REPLICA_DATABASES = ['replica']
-
-CACHES = {}
-CACHES['default'] = env.cache('CACHES_DEFAULT')
-CACHES['default']['TIMEOUT'] = 500
-CACHES['default'][
-    'BACKEND'
-] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
-CACHES['default']['KEY_PREFIX'] = CACHE_KEY_PREFIX
 
 # Celery
 CELERY_WORKER_PREFETCH_MULTIPLIER = 1
@@ -84,11 +75,6 @@ ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
 ALLOW_SELF_REVIEWS = True
 
-NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
-
-if NEWRELIC_ENABLE:
-    NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
-
 FXA_CONFIG = {
     'default': {
         'client_id': env('FXA_CLIENT_ID'),
@@ -109,7 +95,7 @@ DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/927034868273/amo-account-change-dev'
+    'https://sqs.us-east-1.amazonaws.com/142069644989/amo-account-change-dev'
 )
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'

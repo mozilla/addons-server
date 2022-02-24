@@ -7,7 +7,6 @@ from django.db import models
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
@@ -21,6 +20,7 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
+from olympia.amo.utils import SafeStorage
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
@@ -42,6 +42,9 @@ from olympia.zadmin.models import set_config
 
 class TestUserProfile(TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'users/test_backends')
+
+    def setUp(self):
+        self.storage = SafeStorage(user_media='userpics')
 
     def test_is_addon_developer(self):
         user = user_factory()
@@ -85,14 +88,14 @@ class TestUserProfile(TestCase):
         user = UserProfile.objects.get(pk=4043307)
 
         # Create a photo so that we can test deletion.
-        with storage.open(user.picture_path, 'wb') as fobj:
+        with self.storage.open(user.picture_path, 'wb') as fobj:
             fobj.write(b'test data\n')
 
-        with storage.open(user.picture_path_original, 'wb') as fobj:
+        with self.storage.open(user.picture_path_original, 'wb') as fobj:
             fobj.write(b'original test data\n')
 
-        assert storage.exists(user.picture_path_original)
-        assert storage.exists(user.picture_path)
+        assert self.storage.exists(user.picture_path_original)
+        assert self.storage.exists(user.picture_path)
 
         assert not user.deleted
         assert user.email == 'jbalogh@mozilla.com'
@@ -112,7 +115,6 @@ class TestUserProfile(TestCase):
             location='some where',
             occupation='some job',
             read_dev_agreement=datetime.now(),
-            reviewer_name='QA',
         )
 
         old_auth_id = user.auth_id
@@ -135,9 +137,8 @@ class TestUserProfile(TestCase):
         assert user.location == ''
         assert user.occupation == ''
         assert user.read_dev_agreement is None
-        assert user.reviewer_name == ''
-        assert not storage.exists(user.picture_path)
-        assert not storage.exists(user.picture_path_original)
+        assert not self.storage.exists(user.picture_path)
+        assert not self.storage.exists(user.picture_path_original)
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
         assert email.to == [user.email]
@@ -215,10 +216,10 @@ class TestUserProfile(TestCase):
         assert not user_multi._ratings_all.exists()  # Even replies.
         assert not user_multi.collections.exists()
 
-        assert not storage.exists(user_sole.picture_path)
-        assert not storage.exists(user_sole.picture_path_original)
-        assert not storage.exists(user_multi.picture_path)
-        assert not storage.exists(user_multi.picture_path_original)
+        assert not self.storage.exists(user_sole.picture_path)
+        assert not self.storage.exists(user_sole.picture_path_original)
+        assert not self.storage.exists(user_multi.picture_path)
+        assert not self.storage.exists(user_multi.picture_path_original)
 
         assert user_sole.deleted
         self.assertCloseToNow(user_sole.banned)
@@ -268,10 +269,10 @@ class TestUserProfile(TestCase):
         user.update(picture_type='image/png')
 
         # Create a photo so that we can test deletion.
-        with storage.open(user.picture_path, 'wb') as fobj:
+        with self.storage.open(user.picture_path, 'wb') as fobj:
             fobj.write(b'test data\n')
 
-        with storage.open(user.picture_path_original, 'wb') as fobj:
+        with self.storage.open(user.picture_path_original, 'wb') as fobj:
             fobj.write(b'original test data\n')
 
         assert user.addons.count() == 1
@@ -304,8 +305,8 @@ class TestUserProfile(TestCase):
         assert not user._ratings_all.exists()  # Even replies.
         assert not user.collections.exists()
 
-        assert not storage.exists(user.picture_path)
-        assert not storage.exists(user.picture_path_original)
+        assert not self.storage.exists(user.picture_path)
+        assert not self.storage.exists(user.picture_path_original)
 
     def test_delete_with_just_addon_with_other_devs(self):
         from olympia.addons.models import update_search_index
@@ -330,10 +331,10 @@ class TestUserProfile(TestCase):
         user.update(picture_type='image/png')
 
         # Create a photo so that we can test deletion.
-        with storage.open(user.picture_path, 'wb') as fobj:
+        with self.storage.open(user.picture_path, 'wb') as fobj:
             fobj.write(b'test data\n')
 
-        with storage.open(user.picture_path_original, 'wb') as fobj:
+        with self.storage.open(user.picture_path_original, 'wb') as fobj:
             fobj.write(b'original test data\n')
 
         assert user.addons.count() == 1
@@ -353,26 +354,26 @@ class TestUserProfile(TestCase):
         assert not user._ratings_all.exists()  # Even replies.
         assert not user.collections.exists()
 
-        assert not storage.exists(user.picture_path)
-        assert not storage.exists(user.picture_path_original)
+        assert not self.storage.exists(user.picture_path)
+        assert not self.storage.exists(user.picture_path_original)
 
     def test_delete_picture(self):
         user = UserProfile.objects.get(pk=55021)
         user.update(picture_type='image/png')
 
         # Create a photo so that we can test deletion.
-        with storage.open(user.picture_path, 'wb') as fobj:
+        with self.storage.open(user.picture_path, 'wb') as fobj:
             fobj.write(b'test data\n')
 
-        with storage.open(user.picture_path_original, 'wb') as fobj:
+        with self.storage.open(user.picture_path_original, 'wb') as fobj:
             fobj.write(b'original test data\n')
 
         user.delete_picture()
 
         user.reload()
         assert user.picture_type is None
-        assert not storage.exists(user.picture_path)
-        assert not storage.exists(user.picture_path_original)
+        assert not self.storage.exists(user.picture_path)
+        assert not self.storage.exists(user.picture_path_original)
 
     def test_groups_list(self):
         user = UserProfile.objects.get(pk=55021)
@@ -804,7 +805,9 @@ class TestIPNetworkUserRestriction(TestCase):
         # Submission is not allowed.
         assert not IPNetworkUserRestriction.allow_submission(request)
         # Approval is.
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert IPNetworkUserRestriction.allow_auto_approval(upload)
 
     def test_blocked_approval_last_login_ip(self):
@@ -817,7 +820,9 @@ class TestIPNetworkUserRestriction(TestCase):
         assert IPNetworkUserRestriction.allow_submission(request)
         # Approval is blocked even though it was with a different ip, because
         # of the user last_login_ip.
-        upload = FileUpload.objects.create(ip_address='192.168.1.2', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.1.2', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert not IPNetworkUserRestriction.allow_auto_approval(upload)
 
     def test_blocked_approval_while_allowing_submission(self):
@@ -829,7 +834,9 @@ class TestIPNetworkUserRestriction(TestCase):
         # Submission remains allowed.
         assert IPNetworkUserRestriction.allow_submission(request)
         # Approval is blocked.
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert not IPNetworkUserRestriction.allow_auto_approval(upload)
 
 
@@ -860,7 +867,9 @@ class TestDisposableEmailDomainRestriction(TestCase):
         # Submission remains allowed.
         assert DisposableEmailDomainRestriction.allow_submission(request)
         # Approval is blocked.
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert not DisposableEmailDomainRestriction.allow_auto_approval(upload)
 
     def test_allowed_approval(self):
@@ -870,7 +879,9 @@ class TestDisposableEmailDomainRestriction(TestCase):
         # Submission is blocked.
         assert not DisposableEmailDomainRestriction.allow_submission(request)
         # Approval is allowed.
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert DisposableEmailDomainRestriction.allow_auto_approval(upload)
 
 
@@ -976,7 +987,9 @@ class TestEmailUserRestriction(TestCase):
         assert EmailUserRestriction.allow_email(
             request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
         )
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert not EmailUserRestriction.allow_auto_approval(upload)
 
     def test_allowed_approval(self):
@@ -987,7 +1000,9 @@ class TestEmailUserRestriction(TestCase):
         assert not EmailUserRestriction.allow_email(
             request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
         )
-        upload = FileUpload.objects.create(ip_address='192.168.0.1', user=request.user)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1', user=request.user, source=amo.UPLOAD_SOURCE_DEVHUB
+        )
         assert EmailUserRestriction.allow_auto_approval(upload)
 
 

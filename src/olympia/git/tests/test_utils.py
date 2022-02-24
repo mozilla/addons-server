@@ -9,10 +9,10 @@ from unittest.mock import MagicMock
 from pathlib import Path
 
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 
 from olympia import amo
 from olympia.addons.cron import hide_disabled_files
-from olympia.amo.storage_utils import move_stored_file
 from olympia.amo.tests import (
     addon_factory,
     version_factory,
@@ -100,7 +100,7 @@ def test_temporary_worktree(settings):
     repo = AddonGitRepository(1)
 
     output = _run_process('git worktree list', repo)
-    assert output.startswith(repo.git_repository.path)
+    assert output.startswith(repo.git_repository_path)
 
     with TemporaryWorktree(repo.git_repository) as worktree:
         assert worktree.temp_directory.startswith(settings.TMP_PATH)
@@ -199,7 +199,7 @@ def test_extract_and_commit_from_version(settings):
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -216,9 +216,9 @@ def test_extract_and_commit_from_version_fallback_file_path(settings):
     # path, just like it would happen if by misfortune we run the extraction
     # after the add-on/file status has changed but before the file has been
     # moved.
-    move_stored_file(
-        addon.current_version.current_file.current_file_path,
-        addon.current_version.current_file.fallback_file_path,
+    storage.move_stored_file(
+        addon.current_version.file.current_file_path,
+        addon.current_version.file.fallback_file_path,
     )
 
     # Everything should still be processed normally.
@@ -250,7 +250,7 @@ def test_extract_and_commit_from_version_fallback_file_path(settings):
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -373,7 +373,7 @@ def test_extract_and_commit_from_version_multiple_versions(settings):
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -452,7 +452,7 @@ def test_extract_and_commit_from_version_support_custom_note():
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -490,7 +490,7 @@ def test_extract_and_commit_from_version_valid_extensions(settings, filename):
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -534,20 +534,6 @@ def test_extract_and_commit_from_version_commits_files(settings, filename, expec
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_without_files():
-    addon = addon_factory()
-    # Simulate no files for the current version. We cannot delete the file
-    # because of the ON_DELETE constraint.
-    addon.current_version.all_files = []
-
-    repo = AddonGitRepository.extract_and_commit_from_version(addon.current_version)
-
-    output = _run_process('git rev-list --count listed', repo)
-    # 1 initial commit + 1 for the commit created above.
-    assert output == '2\n'
-
-
-@pytest.mark.django_db
 def test_extract_and_commit_from_version_reverts_active_locale():
     from django.utils.translation import get_language
 
@@ -564,7 +550,7 @@ def test_extract_and_commit_from_version_reverts_active_locale():
         repr(addon.current_version),
         addon.current_version.id,
         repr(addon),
-        repr(addon.current_version.all_files[0]),
+        repr(addon.current_version.file),
     )
     assert expected in output
 
@@ -1591,9 +1577,7 @@ def test_is_recent_with_oldish_repo(settings):
 @mock.patch('olympia.git.utils.statsd.timer')
 @mock.patch('olympia.git.utils.statsd.incr')
 def test_extract_version_to_git(incr_mock, timer_mock):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
     extract_version_to_git(addon.current_version.pk)
 
@@ -1609,9 +1593,7 @@ def test_extract_version_to_git(incr_mock, timer_mock):
 
 @pytest.mark.django_db
 def test_extract_version_to_git_deleted_version():
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
     version = addon.current_version
     version.delete()
@@ -1629,16 +1611,6 @@ def test_extract_version_to_git_deleted_version():
 
 
 @pytest.mark.django_db
-def test_extract_version_to_git_with_non_webextension():
-    addon = addon_factory(type=amo.ADDON_EXTENSION, file_kw={'is_webextension': False})
-
-    extract_version_to_git(addon.current_version.pk)
-
-    repo = AddonGitRepository(addon.pk)
-    assert not repo.is_extracted
-
-
-@pytest.mark.django_db
 def test_extract_version_to_git_with_not_extension_type():
     addon = addon_factory(type=amo.ADDON_STATICTHEME)
 
@@ -1652,9 +1624,7 @@ def test_extract_version_to_git_with_not_extension_type():
 @mock.patch('olympia.git.utils.AddonGitRepository.extract_and_commit_from_version')
 @mock.patch('olympia.git.utils.statsd.incr')
 def test_extract_version_to_git_with_error(incr_mock, extract_and_commit_mock):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_no_id.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
     extract_and_commit_mock.side_effect = Exception()
 
     with pytest.raises(Exception):
@@ -1665,9 +1635,7 @@ def test_extract_version_to_git_with_error(incr_mock, extract_and_commit_mock):
 
 @pytest.mark.django_db
 def test_extract_and_commit_no_dotgit_clash(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_dotgit.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_dotgit.xpi'})
 
     with mock.patch('olympia.git.utils.uuid.uuid4') as uuid4_mock:
         uuid4_mock.return_value = mock.Mock(hex='b236f5994773477bbcd2d1b75ab1458f')
@@ -1685,9 +1653,7 @@ def test_extract_and_commit_no_dotgit_clash(settings):
 
 @pytest.mark.django_db
 def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
-    addon = addon_factory(
-        file_kw={'filename': 'webextension_dotgit_2.xpi', 'is_webextension': True}
-    )
+    addon = addon_factory(file_kw={'filename': 'webextension_dotgit_2.xpi'})
 
     with mock.patch('olympia.git.utils.uuid.uuid4') as uuid4_mock:
         uuid4_mock.return_value = mock.Mock(hex='b236f5994773477bbcd2d1b75ab1458f')

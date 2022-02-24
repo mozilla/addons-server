@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-01-18 00:27+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.5.1\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ch'umil"
-msgstr[1] "{0} taq ch'umil"
 
 msgid "There was a problem contacting the server."
 msgstr "Xk'ulwachitäj jun k'ayewal toq nikanöx ri k'uxasamaj."
@@ -94,18 +89,6 @@ msgstr[1] "Ri atz'aqat xjikib'äx rik'in majun taq sachoj chuqa' {0} kitzijol."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Ri atz'aqat xjikib'äx rik'in majun taq sachoj o kitzijol k'ayewal."
 
-msgid "Your submission will be automatically signed."
-msgstr "Ruyonil xtijuch' ri ataqoj."
-
-msgid "WebExtension upgrade"
-msgstr "Ruk'exoj WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Tiq'axäx jun rutz'aqat choltz'ib'anem richin Firefox pa MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ruk'wan ruch'utitzijol ruwäch (re re' tikirel nib'an pa ri jun chik xak)."
 
@@ -145,36 +128,6 @@ msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."
 
 msgid "Videos must be in WebM."
 msgstr "Ri taq silowäch k'o chi e WebM kib'anikil."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Man nuk'äm ta ri' re wachinïk re' rik'in ri ruwäch {0}"
-
-msgid "Flagged for review"
-msgstr "Ya'on retal richin ninik'öx"
-
-msgid "Your input is required"
-msgstr "K'atzinel ri ato'ik"
-
-msgid "Marked for deletion"
-msgstr "Ya'on retal richin niyuj"
-
-msgid "Updating results&hellip;"
-msgstr "Yek'ex taq q'i'oj&hellip;"
-
-msgid "Category"
-msgstr "Ruwäch"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Kekanöx taq wachinïk richin <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Kekanöx taq chokoy richin <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Kekanöx taq tz'aqat richin <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Tokisäx qitzij"
 
 msgid "Week of {0}"
 msgstr "Ruwuqq'ij {0}"
@@ -646,41 +599,6 @@ msgstr "Q'ijul"
 msgid "Other"
 msgstr "Juley chik"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Ütz chuqa' Tiyak"
-
-msgid "Add to {0}"
-msgstr "Titz'aqatisäx chi re: {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Tiyak pa {0} chuqa'"
-
-msgid "Download for {0} anyway"
-msgstr "Tiqasäx pa {0} chuqa'"
-
-msgid "Not available for your platform"
-msgstr "Man wachel ta pa ri anuk'uche'el"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Man nuk'äm ta ri' re tz'aqat re' rik'in ri ruwäch {0}."
-
-msgid "View other versions"
-msgstr "Ketz'et ch'aqa' chik ruwäch"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Nisamäj rik'in {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Nisamäj rik'in {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Xa xe rik'in Firefox — ¡Tik'ul Firefox Wakami!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Nawajo' jun okik'amaya'l k'o ruxe'el pan Mozilla (achi'el Firefox) richin nayäk jun runak'ab'al kanoxïk."
-
 msgid "Changes Saved"
 msgstr "Xeyak taq Jaloj"
 
@@ -700,12 +618,6 @@ msgstr "Yesamajïx ri taq jaloj pa ri wachib'äl"
 
 msgid "Select an application first"
 msgstr "Nab'ey ticha' jun chokoy"
-
-msgid "No results found."
-msgstr "Majun achike xilitäj."
-
-msgid "Loading..."
-msgstr "Nisamajib'ëx..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -746,12 +658,6 @@ msgstr "Tinik'öx Cholan Rutzij"
 
 msgid "Review notes found"
 msgstr "Kenik'öx taq ch'utitzijol xe'ilitäj"
-
-msgid "Average Reviews"
-msgstr "Nik'aj taq Nik'oxïk"
-
-msgid "Number of Reviews"
-msgstr "Kajlab'al taq Nik'oxïk"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Ri nïm rupalem rusamajib'exik ja ri {0} - tacha' jun ko'öl ruwachib'al rupam."

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2020-12-07 13:06+0000\n"
-"Last-Translator: 你我皆凡人 <eloli@foxmail.com>\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2022-01-30 08:02+0000\n"
+"Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -15,10 +15,6 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} 星"
-
 msgid "There was a problem contacting the server."
 msgstr "连接服务器时发生错误。"
 
@@ -26,7 +22,7 @@ msgid "Select a file..."
 msgstr "选择文件..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "您的附加组件应以 .zip、.xpi、.jar 或 .crx 结尾"
+msgstr "您的附加组件应以 .zip、.xpi 或 .crx 作为后缀"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -63,7 +59,7 @@ msgid "Validating {0}"
 msgstr "正在验证 {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr "您的附加组件超出大小限制 {0}。"
+msgstr "您的附加组件超出大小限制：最大不能超过 {0}。"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "从服务器上接收到一个空的响应；状态：{0}"
@@ -87,18 +83,6 @@ msgstr[0] "您的附加组件已通过验证，无错误，有 {0} 条消息。"
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "您的附加组件已通过验证，没有错误或警告。"
-
-msgid "Your submission will be automatically signed."
-msgstr "您的提交将被自动签名。"
-
-msgid "WebExtension upgrade"
-msgstr "升级为 WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Mozilla 为您提供了升级的途径，也鼓励您升级，但您将无法撤销此过程。一旦您的用户安装了 WebExtension 版本，他们将无法再安装旧式附加组件。"
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "到 MDN 了解如何移植旧式 Firefox 附加组件"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包括详细的版本说明（这可以在下一步骤中完成）。"
@@ -134,36 +118,6 @@ msgstr "图像必须为 PNG 或 JPG 格式。"
 
 msgid "Videos must be in WebM."
 msgstr "视频必须为 WebM 格式。"
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "这个主题与您所使用的 {0} 版本不兼容"
-
-msgid "Flagged for review"
-msgstr "待审的评价"
-
-msgid "Your input is required"
-msgstr "必填"
-
-msgid "Marked for deletion"
-msgstr "已请求删除"
-
-msgid "Updating results&hellip;"
-msgstr "正在更新结果&hellip;"
-
-msgid "Category"
-msgstr "分类"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "搜索匹配 <b>{0}</b> 的主题"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "搜索包含关键字 <b>{0}</b> 的应用"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
-
-msgid "Use original"
-msgstr "使用原样"
 
 msgid "Week of {0}"
 msgstr "每周有 {0} 次"
@@ -627,41 +581,6 @@ msgstr "日期"
 msgid "Other"
 msgstr "其他"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "同意并安装"
-
-msgid "Add to {0}"
-msgstr "添加到 {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "继续安装 {0} 版本"
-
-msgid "Download for {0} anyway"
-msgstr "仍要下载 {0}"
-
-msgid "Not available for your platform"
-msgstr "不适用于您的操作系统"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "此附加组件不兼容您所使用的 {0} 版本。"
-
-msgid "View other versions"
-msgstr "查看其他版本"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "兼容于 {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "可用于 {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "只能用于 Firefox — 获取 Firefox！"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"
-
 msgid "Changes Saved"
 msgstr "更改已保存"
 
@@ -681,12 +600,6 @@ msgstr "正在处理图像更改"
 msgid "Select an application first"
 msgstr "首先选择一个应用程序"
 
-msgid "No results found."
-msgstr "找不到结果。"
-
-msgid "Loading..."
-msgstr "正在加载..."
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> 个字符"
@@ -696,7 +609,7 @@ msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "剩余 <b>{0}</b> 个字符"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "我们正在进行网站维护，此功能暂时无法使用。请您稍后再试。"
+msgstr "我们正在维护网站，此功能暂时无法使用。请您稍后再试。"
 
 msgid "Remove this localization"
 msgstr "移除此本地化"
@@ -724,12 +637,6 @@ msgstr "审核文本"
 
 msgid "Review notes found"
 msgstr "未找到审核记录"
-
-msgid "Average Reviews"
-msgstr "平均评价"
-
-msgid "Number of Reviews"
-msgstr "评价数量"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "最大上传大小为 {0} - 请选择较小的背景图片。"

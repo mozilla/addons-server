@@ -17,7 +17,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.template import loader
 from django.templatetags.static import static
@@ -34,7 +33,8 @@ from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField, CIDRField
-from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.models import LongNameIndex, ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.utils import SafeStorage
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -132,7 +132,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         'occupation',
         'picture_type',
         'read_dev_agreement',
-        'reviewer_name',
         'username',
     )
 
@@ -188,19 +187,14 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     bypass_upload_restrictions = models.BooleanField(default=False)
 
-    reviewer_name = models.CharField(
-        max_length=50,
-        default='',
-        null=True,
-        blank=True,
-        validators=[validators.MinLengthValidator(2)],
-    )
-
     class Meta:
         db_table = 'users'
         indexes = [
             models.Index(fields=('created',), name='created'),
             models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
+            LongNameIndex(
+                fields=('last_login_ip',), name='users_last_login_ip_2cfbbfbd'
+            ),
         ]
 
     def __init__(self, *args, **kw):
@@ -461,6 +455,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # Recursive import
         from olympia.users.tasks import delete_photo
 
+        storage = SafeStorage(user_media='userpics')
+
         if storage.exists(self.picture_path):
             delete_photo.delay(self.picture_path)
 
@@ -699,7 +695,7 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
     network = CIDRField(
         blank=True,
         null=True,
-        help_text=_('Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28'),
+        help_text=_('Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28'),
     )
 
     error_message = _(
@@ -798,11 +794,9 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         _('Email Pattern'),
         max_length=100,
         help_text=_(
-            'Either enter full domain or email that should be blocked or use '
-            ' glob-style wildcards to match other patterns.'
-            ' E.g "@*.mail.com"\n'
-            ' Please note that we do not include "@" in the match so you '
-            ' should do that in the pattern.'
+            'Enter full email that should be blocked or use unix-style wildcards, '
+            'e.g. "*@example.com". If you need to block a domain incl subdomains, '
+            'add a second entry, e.g. "*@*.example.com".'
         ),
     )
 
@@ -1073,6 +1067,16 @@ class UserRestrictionHistory(ModelBase):
 
     class Meta:
         verbose_name_plural = _('User Restriction History')
+        indexes = [
+            LongNameIndex(
+                fields=('ip_address',),
+                name='users_userrestrictionhistory_ip_address_4376df32',
+            ),
+            LongNameIndex(
+                fields=('last_login_ip',),
+                name='users_userrestrictionhistory_last_login_ip_d58d95ff',
+            ),
+        ]
 
 
 class UserHistory(ModelBase):

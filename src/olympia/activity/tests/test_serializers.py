@@ -20,7 +20,7 @@ class LogMixin:
 class TestReviewNotesSerializerOutput(TestCase, LogMixin):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
-        self.user = user_factory(reviewer_name='fôo')
+        self.user = user_factory()
         self.addon = addon_factory()
         self.now = self.days_ago(0)
         self.entry = self.log('Oh nøes!', amo.LOG.REJECT_VERSION, self.now)
@@ -40,11 +40,8 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['action'] == 'rejected'
         assert result['action_label'] == 'Rejected'
         assert result['comments'] == 'Oh nøes!'
-        # To allow reviewers to stay anonymous the user object only contains
-        # the author name, which can use the reviewer name alias if present
-        # depending on the action.
         assert result['user'] == {
-            'name': self.user.reviewer_name,
+            'name': self.user.name,
         }
 
     def test_basic_v3(self):
@@ -57,21 +54,11 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['action_label'] == 'Rejected'
         assert result['comments'] == 'Oh nøes!'
         # For backwards-compatibility in API v3 the id, url and username are
-        # present but empty - we still don't want to reveal the actual reviewer
-        # info.
+        # present but empty.
         assert result['user'] == {
             'id': None,
             'url': None,
             'username': None,
-            'name': self.user.reviewer_name,
-        }
-
-    def test_basic_somehow_not_a_reviewer_action(self):
-        """Like test_basic(), but somehow the action is not a reviewer action
-        and therefore shouldn't use the reviewer_name."""
-        self.entry.update(action=amo.LOG.ADD_RATING.id)
-        result = self.serialize()
-        assert result['user'] == {
             'name': self.user.name,
         }
 

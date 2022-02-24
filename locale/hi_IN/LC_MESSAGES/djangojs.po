@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
-"PO-Revision-Date: 2018-08-03 10:38+0000\n"
-"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
+"PO-Revision-Date: 2018-08-01 20:20+0000\n"
+"Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} स्टार"
-msgstr[1] "{0} स्टार"
 
 msgid "There was a problem contacting the server."
 msgstr "सर्वर से संपर्क करने में एक समस्या थी।"
@@ -95,18 +90,6 @@ msgstr[1] "आपके ऐड-ऑन को बिना किसी त्र
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "आपके ऐड-ऑन को बिना किसी त्रुटी या चेतावनी के मान्य कर दिया गया."
 
-msgid "Your submission will be automatically signed."
-msgstr "आपका सबमिशन अपने आप हस्ताक्षरित हो जाएगा।"
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension अपग्रेड"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "हम एक अपग्रेड कि अनुमति तथा प्रोत्साहन दे सकते हैं लेकिन आप इस प्रक्रिया को उलट नहीं सकते हैं. एक बार आपके उपयोगकर्ताओं के पास WebExtension स्थापित हो जाने बाद, वो कोई लीगेसी ऐड-ऑन इंस्टॉल नहीं कर पाएंगे."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "MDN पर एक पैतृक Firefox ऐड-ऑन पोर्ट कर रहें है"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "विस्तृत संस्करण नोट्स शामिल करें (यह अगले चरण में किया जा सकता है)."
 
@@ -144,36 +127,6 @@ msgstr "इमेज या तो PNG या JPG होने चाहिए .
 
 msgid "Videos must be in WebM."
 msgstr "वीडियोस WebM में होना चाहिए."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "यह थीम {0} के आपके संस्करण के साथ असंगत है"
-
-msgid "Flagged for review"
-msgstr "समीक्षा के लिए चिह्नित"
-
-msgid "Your input is required"
-msgstr "आपके इनपुट की आवश्यकता है"
-
-msgid "Marked for deletion"
-msgstr "हटाने के लिए चिह्नित"
-
-msgid "Updating results&hellip;"
-msgstr "परिणाम अपडेट कर रहे हैं&hellip;"
-
-msgid "Category"
-msgstr "श्रेणी"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b> के लिए थीम खोजें"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> के लिए एप्लिकेशन खोजें"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> के लिए ऐड-ऑन खोजें"
-
-msgid "Use original"
-msgstr ""
 
 msgid "Week of {0}"
 msgstr "{0} का सप्ताह"
@@ -388,7 +341,7 @@ msgid "Usage"
 msgstr "प्रयोगीक"
 
 msgid "Firefox"
-msgstr "Firefox"
+msgstr "फ़ायरफ़ॉक्स"
 
 msgid "Mozilla"
 msgstr "Mozilla"
@@ -653,41 +606,6 @@ msgstr "दिनांक"
 msgid "Other"
 msgstr "अन्य"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "स्वीकार करें और संस्थापित करें"
-
-msgid "Add to {0}"
-msgstr "{0} में जोड़ें"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "{0} के लिए किसी भी तौर पर इनस्टॉल करें"
-
-msgid "Download for {0} anyway"
-msgstr "{0} के लिए किसी भी तौर पर डाउनलोड करें"
-
-msgid "Not available for your platform"
-msgstr "अपने प्लेटफार्म के लिए उपलब्ध नहीं है"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "यह ऐड-ऑन {0} के आपके संस्करण के साथ अनुकूल नहीं है।"
-
-msgid "View other versions"
-msgstr "अन्य संस्करण देखें"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} के साथ काम करता है"
-
-msgid "Works with {app}"
-msgstr "{app} के साथ काम करता है"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "केवल Firefox के साथ - Firefox अभी प्राप्त करें!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "क्षमा करें, आपको एक खोज प्लगइन स्थापित करने के लिए Mozilla-आधारित ब्राउज़र (जैसे Firefox) की आवश्यकता है।"
-
 msgid "Changes Saved"
 msgstr "परिवर्तन सहेजे गए"
 
@@ -707,12 +625,6 @@ msgstr "छवि परिवर्तनो को संसाधित क�
 
 msgid "Select an application first"
 msgstr "पहले एक अनुप्रयोग का चयन करें"
-
-msgid "No results found."
-msgstr "कोई परिणाम नही मिला।"
-
-msgid "Loading..."
-msgstr "लोड हो रहा है..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -753,12 +665,6 @@ msgstr "समीक्षा पाठ"
 
 msgid "Review notes found"
 msgstr "समीक्षा नोट मिले"
-
-msgid "Average Reviews"
-msgstr "औसत समीक्षाएं"
-
-msgid "Number of Reviews"
-msgstr "समीक्षा की संख्या"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""

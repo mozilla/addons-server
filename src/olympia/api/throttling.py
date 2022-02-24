@@ -94,3 +94,81 @@ class ThrottleOnlyUnsafeMethodsMixin:
             return super().allow_request(request, view)
         else:
             return True
+
+
+class BurstUserAddonSubmissionThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
+    scope = 'burst_user_addon_submission'
+    rate = '3/minute'
+
+
+class HourlyUserAddonSubmissionThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
+    scope = 'hourly_user_addon_submission'
+    rate = '10/hour'
+
+
+class DailyUserAddonSubmissionThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle
+):
+    scope = 'daily_user_addon_submission'
+    rate = '24/day'
+
+
+class BurstIPAddonSubmissionThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
+):
+    scope = 'burst_ip_addon_submission'
+    rate = '6/minute'
+
+
+class HourlyIPAddonSubmissionThrottle(
+    ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle
+):
+    scope = 'hourly_ip_addon_submission'
+    rate = '50/hour'
+
+
+addon_submission_throttles = (
+    BurstUserAddonSubmissionThrottle,
+    HourlyUserAddonSubmissionThrottle,
+    DailyUserAddonSubmissionThrottle,
+    BurstIPAddonSubmissionThrottle,
+    HourlyIPAddonSubmissionThrottle,
+)
+
+
+class BurstUserFileUploadThrottle(BurstUserAddonSubmissionThrottle):
+    scope = 'burst_user_file_upload'
+    rate = '6/minute'
+
+
+class HourlyUserFileUploadThrottle(HourlyUserAddonSubmissionThrottle):
+    scope = 'hourly_user_file_upload'
+    rate = '20/hour'
+
+
+class DailyUserFileUploadThrottle(DailyUserAddonSubmissionThrottle):
+    scope = 'daily_user_file_upload'
+    rate = '48/day'
+
+
+class BurstIPFileUploadThrottle(BurstIPAddonSubmissionThrottle):
+    scope = 'burst_ip_file_upload'
+    rate = '6/minute'
+
+
+class HourlyIPFileUploadThrottle(HourlyIPAddonSubmissionThrottle):
+    scope = 'hourly_ip_file_upload'
+    rate = '50/hour'
+
+
+file_upload_throttles = (
+    BurstUserFileUploadThrottle,
+    HourlyUserFileUploadThrottle,
+    DailyUserFileUploadThrottle,
+    BurstIPFileUploadThrottle,
+    HourlyIPFileUploadThrottle,
+)

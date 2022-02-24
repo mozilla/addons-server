@@ -21,12 +21,13 @@ from olympia import amo, constants
 from olympia.access.models import Group
 from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, LongNameIndex, ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
 from olympia.files.models import File
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import CannedResponse
+from olympia.reviewers.models import CannedResponse, ReviewActionReason
+
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import user_link
@@ -37,6 +38,17 @@ log = olympia.core.logger.getLogger('z.amo.activity')
 
 # Number of times a token can be used.
 MAX_TOKEN_USE_COUNT = 100
+
+GENERIC_USER_NAME = gettext('Add-ons Review Team')
+
+
+class GenericMozillaUser(UserProfile):
+    class Meta:
+        proxy = True
+
+    @property
+    def name(self):
+        return GENERIC_USER_NAME
 
 
 class ActivityLogToken(ModelBase):
@@ -150,17 +162,16 @@ class VersionLog(ModelBase):
         ordering = ('-created',)
 
 
-class UserLog(ModelBase):
+class ReviewActionReasonLog(ModelBase):
     """
-    This table is for indexing the activity log by user.
-    Note: This includes activity performed unto the user.
+    This table allows ReviewActionReasons to be assigned to ActivityLog entries.
     """
 
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    reason = models.ForeignKey(ReviewActionReason, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'log_activity_user'
+        db_table = 'log_activity_review_action_reason'
         ordering = ('-created',)
 
 
@@ -205,6 +216,12 @@ class IPLog(ModelBase):
     class Meta:
         db_table = 'log_activity_ip'
         ordering = ('-created',)
+        indexes = [
+            LongNameIndex(
+                fields=('ip_address',),
+                name='log_activity_ip_ip_address_ba36172a',
+            ),
+        ]
 
 
 class DraftComment(ModelBase):
@@ -258,9 +275,6 @@ class ActivityLogManager(ManagerBase):
             groups = (groups,)
 
         return self.filter(grouplog__group__in=groups)
-
-    def for_user(self, user):
-        return self.filter(userlog__user=user)
 
     def for_block(self, block):
         return self.filter(blocklog__block=block)
@@ -391,13 +405,24 @@ class ActivityLog(ModelBase):
         ordering = ('-created',)
         indexes = [
             models.Index(fields=('action',), name='log_activity_1bd4707b'),
-            models.Index(fields=('created',), name='created_idx'),
+            models.Index(fields=('created',), name='log_activity_created_idx'),
         ]
 
     def f(self, *args, **kw):
         """Calls SafeFormatter.format and returns a Markup string."""
         # SafeFormatter escapes everything so this is safe.
         return markupsafe.Markup(self.formatter.format(*args, **kw))
+
+    @classmethod
+    def transformer_anonymize_user_for_developer(cls, logs):
+        """Replace the user with a generic user in actions where it shouldn't
+        be shown to a developer.
+        """
+        generic_user = GenericMozillaUser()
+
+        for log in logs:
+            if log.action not in constants.activity.LOG_SHOW_USER_TO_DEVELOPER:
+                log.user = generic_user
 
     @classmethod
     def arguments_builder(cls, activities):
@@ -651,17 +676,6 @@ class ActivityLog(ModelBase):
     def __html__(self):
         return self
 
-    @property
-    def author_name(self):
-        """Name of the user that triggered the activity.
-
-        If it's a reviewer action that will be shown to developers, the
-        `reviewer_name` property is used if present, otherwise `name` is
-        used."""
-        if self.action in constants.activity.LOG_REVIEW_QUEUE_DEVELOPER:
-            return self.user.reviewer_name or self.user.name
-        return self.user.name
-
     @classmethod
     def create(cls, action, *args, **kw):
         """
@@ -696,6 +710,10 @@ class ActivityLog(ModelBase):
             )
 
         for arg in args:
+            create_kwargs = {
+                'activity_log': al,
+                'created': kw.get('created', timezone.now()),
+            }
             if isinstance(arg, tuple):
                 class_ = arg[0]
                 id_ = arg[1]
@@ -704,36 +722,15 @@ class ActivityLog(ModelBase):
                 id_ = arg.id if isinstance(arg, ModelBase) else None
 
             if class_ == Addon:
-                AddonLog.objects.create(
-                    addon_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+                AddonLog.objects.create(addon_id=id_, **create_kwargs)
             elif class_ == Version:
-                VersionLog.objects.create(
-                    version_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
-            elif class_ == UserProfile:
-                UserLog.objects.create(
-                    user_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+                VersionLog.objects.create(version_id=id_, **create_kwargs)
             elif class_ == Group:
-                GroupLog.objects.create(
-                    group_id=id_,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+                GroupLog.objects.create(group_id=id_, **create_kwargs)
             elif class_ == Block:
-                BlockLog.objects.create(
-                    block_id=id_,
-                    activity_log=al,
-                    guid=arg.guid,
-                    created=kw.get('created', timezone.now()),
-                )
+                BlockLog.objects.create(block_id=id_, guid=arg.guid, **create_kwargs)
+            elif class_ == ReviewActionReason:
+                ReviewActionReasonLog.objects.create(reason_id=id_, **create_kwargs)
 
         if getattr(action, 'store_ip', False):
             # Index specific actions by their IP address. Note that the caller
@@ -745,8 +742,4 @@ class ActivityLog(ModelBase):
                 created=kw.get('created', timezone.now()),
             )
 
-        # Index by every user
-        UserLog.objects.create(
-            activity_log=al, user=user, created=kw.get('created', timezone.now())
-        )
         return al

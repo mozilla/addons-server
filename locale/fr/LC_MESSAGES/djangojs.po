@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-12-07 11:02+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -18,11 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} étoile"
-msgstr[1] "{0} étoiles"
 
 msgid "There was a problem contacting the server."
 msgstr "Un problème est survenu en essayant de joindre le serveur."
@@ -97,20 +92,6 @@ msgstr[1] "Votre module a été validé sans erreur et avec {0} messages."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "La validation de votre extension s’est déroulée sans erreur ni avertissement."
 
-msgid "Your submission will be automatically signed."
-msgstr "Votre envoi sera signé automatiquement."
-
-msgid "WebExtension upgrade"
-msgstr "Mise à niveau vers WebExtension"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Nous permettons et encourageons cette mise à niveau, mais le processus est irréversible. Une fois que vos utilisateurs auront installé la WebExtension, ils ne pourront plus installer les anciens "
-"modules."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Effectuer le portage d’anciens modules Firefox sur MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Ajouter des notes de version détaillées (cela peut être fait à l’étape suivante)."
 
@@ -149,36 +130,6 @@ msgstr "Les images doivent être au format PNG ou JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Les vidéos doivent être au format WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Ce thème est incompatible avec votre version de {0}"
-
-msgid "Flagged for review"
-msgstr "Étiqueter pour révision"
-
-msgid "Your input is required"
-msgstr "Votre avis est demandé"
-
-msgid "Marked for deletion"
-msgstr "Marqué pour suppression"
-
-msgid "Updating results&hellip;"
-msgstr "Mise à jour des résultats…"
-
-msgid "Category"
-msgstr "Catégorie"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Rechercher des thèmes pour <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Recherche d’applications pour <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Recherche de modules pour <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Utiliser l’original"
 
 msgid "Week of {0}"
 msgstr "Semaine de {0}"
@@ -650,41 +601,6 @@ msgstr "Date"
 msgid "Other"
 msgstr "Autre"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Accepter et installer"
-
-msgid "Add to {0}"
-msgstr "Ajouter à {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Installer tout de même pour {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Télécharger tout de même pour {0}"
-
-msgid "Not available for your platform"
-msgstr "Non disponible pour votre plateforme"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Ce module est incompatible avec votre version de {0}."
-
-msgid "View other versions"
-msgstr "Voir d’autres versions"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Fonctionne avec {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Fonctionne avec {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Uniquement disponible sur Firefox — Obtenez Firefox dès maintenant !"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Désolé, vous devez utiliser un navigateur Mozilla (tel que Firefox) pour installer un moteur de recherche."
-
 msgid "Changes Saved"
 msgstr "Changements enregistrés"
 
@@ -704,12 +620,6 @@ msgstr "Changements d’images en cours"
 
 msgid "Select an application first"
 msgstr "Sélectionnez d’abord une application"
-
-msgid "No results found."
-msgstr "Aucun résultat trouvé."
-
-msgid "Loading..."
-msgstr "Chargement…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -750,12 +660,6 @@ msgstr "Réviser le texte"
 
 msgid "Review notes found"
 msgstr "Notes de révision trouvées"
-
-msgid "Average Reviews"
-msgstr "Moyenne des évaluations"
-
-msgid "Number of Reviews"
-msgstr "Nombre de critiques"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "La taille d’envoi maximum est de {0}. Choisissez une image de fond plus petite."

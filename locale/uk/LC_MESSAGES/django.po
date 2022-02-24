@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:13+0000\n"
-"PO-Revision-Date: 2021-07-29 23:25+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2022-02-22 18:10+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -22,6 +22,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "тип"
 
@@ -79,9 +80,6 @@ msgstr "Посилання не дозволені."
 msgid "This display name cannot be used."
 msgstr "Це ім'я для показу не можна використати."
 
-msgid "This reviewer name cannot be used."
-msgstr "Це ім'я рецензента не можна використати."
-
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Поле домівки можна використовувати лише для посилань на сторонні вебсайти."
 
@@ -113,6 +111,9 @@ msgstr "Потрібна допомога?"
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Сповіщення [%s] не існує"
+
+msgid "Add-ons Review Team"
+msgstr "Команда перевірки додатків"
 
 msgid "Review"
 msgstr "Відгук"
@@ -157,11 +158,8 @@ msgstr "Адреси додатків і колекцій мають закін�
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Назва додатків не може містити торгові марки Mozilla чи Firefox."
 
-msgid "Sort by:"
-msgstr "Сортувати за:"
-
-msgid "More"
-msgstr "Більше"
+msgid "Site permissions for {hostnames}"
+msgstr "Дозволи сайту для {hostnames}"
 
 msgid "My Add-ons"
 msgstr "Мої додатки"
@@ -317,26 +315,6 @@ msgstr "Ця функція тимчасово відключена, поки м
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Деякі функції на цій сторінці тимчасово відключені, поки ми проводимо технічне обслуговування сайту. Будь ласка спробуйте знову трохи пізніше."
 
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Сторінка <a href=\"%(current_pg_url)s\">%(current_pg)s</a> із <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Перейти на першу сторінку"
-
-msgid "Previous"
-msgstr "Попередня"
-
-msgid "Jump to last page"
-msgstr "До останньої сторінки"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Показано <b>%(begin)s</b>&ndash;<b>%(end)s</b> із <b>%(count)s</b>"
-
 msgid "Add-ons for {0}"
 msgstr "Додатки для {0}"
 
@@ -368,6 +346,15 @@ msgstr "Підпис прострочений."
 msgid "Error decoding signature."
 msgstr "Помилка декодування підпису."
 
+msgid "Auth hash mismatch. Session is likely expired."
+msgstr "Невідповідність хешу авторизації. Швидше за все, сеанс завершився."
+
+msgid "Valid user session not found matching the provided session key."
+msgstr "Не знайдено дійсний сеанс користувача, який відповідає наданому ключу сеансу."
+
+msgid "Access token refresh failed; user needs to login to FxA again."
+msgstr "Не вдалося оновити токен доступу; користувач повинен знову увійти до FxA."
+
 msgid "Wrong type for one or more keys in payload"
 msgstr "Хибний тип для одного або декількох ключів корисного навантаження"
 
@@ -382,9 +369,6 @@ msgstr "Адресу електронної пошти не знайдено."
 
 msgid "Unavailable for legal reasons."
 msgstr "Недоступно з юридичних причин."
-
-msgid "The field must have a length of at least {num} characters."
-msgstr "Поле повинно містити не менше {num} символів."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "Код мови {lang_code} неправильний."
@@ -431,9 +415,6 @@ msgstr ""
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ця адреса URL вже використовується в одній з ваших збірок."
 
-msgid "Name cannot be empty."
-msgstr "Необхідно вказати назву."
-
 msgid "This name cannot be used."
 msgstr "Ця назва не може бути використана."
 
@@ -452,10 +433,6 @@ msgstr "Стан затвердження"
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s очікує на затвердження"
-
-#, python-format
-msgid "The block for GUID %(guid)s is readonly - it must be edited via the legacy blocklist collection"
-msgstr "Блокування GUID %(guid)s доступне лише для читання - його необхідно змінити за допомогою застарілої колекції списків блокування"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -484,12 +461,6 @@ msgstr "Перевірка оприлюдненого"
 msgid "Review Unlisted"
 msgstr "Перевірка не оприлюдненого"
 
-msgid "This block was imported from a regex based legacy Block."
-msgstr "Це блокування було імпортовано із застарілого списку блокування, створеного на основі регулярних виразів."
-
-msgid "Any change made will NOT be updated in the legacy blocklist - you must make a manual change via kinto admin webui."
-msgstr "Будь-які внесені зміни НЕ будуть оновлені у старому списку блокування - ви повинні внести зміни вручну через панель адміністрування Kinto."
-
 #, python-format
 msgid "Delete Multiple %(name)s"
 msgstr "Видалити кілька %(name)s"
@@ -504,9 +475,6 @@ msgstr "%(count)s GUID додатків уже заблоковано для в�
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
 msgstr "%(count)s GUID додатків не знайдено"
-
-msgid "The following block(s) were imported from a regex based legacy Block."
-msgstr "Ці блокування було імпортовано зі старого списку блокування, створеного на основі регулярних виразів."
 
 msgid "Save"
 msgstr "Зберегти"
@@ -545,9 +513,6 @@ msgstr "Керувати блокуванням"
 
 msgid "versions"
 msgstr "версії"
-
-msgid "Included in legacy blocklist."
-msgstr "Входить до застарілого переліку блокувань."
 
 msgid "{addon} was created."
 msgstr "{addon} було створено."
@@ -731,6 +696,12 @@ msgstr "Схвалено, але очікує"
 
 msgid "Account updated."
 msgstr "Обліковий запис оновлений."
+
+msgid "Account {user} deleted."
+msgstr "Обліковий запис {user} видалено."
+
+msgid "Account {user} deleted, from Firefox Accounts event."
+msgstr "Обліковий запис {user} видалено з події облікових записів Firefox."
 
 msgid "Created: {0}."
 msgstr "Створено: {0}."
@@ -973,8 +944,14 @@ msgstr "Видалено"
 msgid "Unlisted"
 msgstr "Не в списку"
 
-msgid "API"
-msgstr "API"
+msgid "Signing API"
+msgstr "API підпису"
+
+msgid "Addon API"
+msgstr "API додатка"
+
+msgid "Automatically generated by AMO"
+msgstr "Автоматично генерується AMO"
 
 msgid "Owner"
 msgstr "Власник"
@@ -1012,6 +989,9 @@ msgstr "Застарілий LWT"
 msgid "Theme (Static)"
 msgstr "Тема (Статична)"
 
+msgid "Site Permission"
+msgstr "Дозволи сайту"
+
 msgid "Extensions"
 msgstr "Розширення"
 
@@ -1038,6 +1018,9 @@ msgstr "Застарілі LWT"
 
 msgid "Themes (Static)"
 msgstr "Теми (Статичні)"
+
+msgid "Site Permissions"
+msgstr "Дозволи сайтів"
 
 msgid "Alerts & Updates"
 msgstr "Дані сторінок, повідомлення та віджети"
@@ -1092,7 +1075,7 @@ msgstr ""
 "Завантажте розширення для Firefox, які поліпшують роботу з фото, музикою та відео. Розширення в цій категорії можуть змінювати аудіо та відео, виконувати зворотний пошук по зображенню та інше."
 
 msgid "Privacy & Security"
-msgstr "Конфіденційність та безпека"
+msgstr "Приватність і безпека"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
@@ -1129,7 +1112,6 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr ""
 "Завантажте розширення для Firefox, призначені для розширення можливостей інструментів для розробки. В цій категорії містяться розширення для GitHub, перемикання user agent, керування куками та інші."
 
-#. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Інше"
 
@@ -1325,8 +1307,32 @@ msgstr "Подорожі"
 msgid "Video"
 msgstr "Відео"
 
+msgid "Mozilla Public License 2.0"
+msgstr "Публічна Ліцензія Mozilla 2.0"
+
+msgid "GNU General Public License v2.0"
+msgstr "Загальна публічна ліцензія GNU v2.0"
+
+msgid "GNU General Public License v3.0"
+msgstr "Загальна публічна ліцензія GNU v3.0"
+
+msgid "GNU Library General Public License v2.1"
+msgstr "Загальна громадська ліцензія GNU для бібліотек v2.1"
+
+msgid "GNU Library General Public License v3.0"
+msgstr "Загальна громадська ліцензія GNU для бібліотек v3.0"
+
+msgid "The MIT License"
+msgstr "Ліцензія MIT"
+
+msgid "The BSD License"
+msgstr "Ліцензія BSD"
+
+msgid "Mozilla Public License 1.1"
+msgstr "Публічна Ліцензія Mozilla 1.1"
+
 msgid "All Rights Reserved"
-msgstr "Всі права захищені"
+msgstr "Усі права захищені"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr "Creative Commons Attribution 3.0"
@@ -1693,6 +1699,9 @@ msgstr "Невірний діапазон версій."
 msgid "Need at least one compatible application."
 msgstr "Потрібен, принаймні, один сумісний додаток."
 
+msgid "You have submitted too many uploads recently. Please try again after some time."
+msgstr "Нещодавно ви відправили забагато вивантажень. Повторіть наступну спробу трохи згодом."
+
 msgid "There was an error with your upload. Please try again."
 msgstr "У процесі Вашого завантаження сталася помилка. Будь ласка, спробуйте знову."
 
@@ -1701,9 +1710,6 @@ msgstr "Ігнорувати невдалу валідацію"
 
 msgid "Need to select at least one application."
 msgstr "Необхідно обрати принаймні одну програму."
-
-msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr "Нещодавно ви відправили забагато вивантажень. Повторіть наступну спробу трохи згодом."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Версія {version} збігається з {block_link} для цього додатка. Для отримання додаткової інформації ви можете зв’язатися з {amo_admins}."
@@ -1735,20 +1741,30 @@ msgstr "Вихідний файл вивантажено, але ви зазна
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Переконайтеся, що назва та опис разом не перевищують {limit_value} символів (зараз {show_value})."
 
-msgid ""
-"On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
-"by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
-msgstr ""
-"На цьому сайті. <span class=\"helptext\">Після проходження перевірки коду, ваше подання буде опубліковано на цьому сайті та в менеджері додатків Firefox для мільйонів користувачів. Автоматичні "
-"оновлення проводяться цим сайтом. Цей додаток також буде розглядатися для поширення та конкурсів Mozilla. Також можливо розповсюджувати перевірені файли власними засобами.</span>"
+msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
+msgstr "На цьому сайті. <span class=\"helptext\">Ваше повідомлення розміщено загальнодоступним на {site_domain}.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
+"on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Власними засобами. <span class=\"helptext\">Ваше подання буде негайно підписано для розповсюдження власними засобами. Оновлення повинні проводитися вами вручну через updateURL або зовнішні "
-"оновлення.</span>"
+"На ваш погляд. <span class=\"helptext\">Після підписання вашого повідомлення Mozilla, ви можете завантажити файл .xpi з Центру розробників і розповсюдити його серед своєї аудиторії. Переконайтеся, "
+"що надано {a_attrs} update_url</a> маніфест додатка, оскільки це URL-адреса, за якою Firefox знаходить оновлення для автоматичного розгортання у ваших користувачів.</span>"
 
 msgid "Display Name"
 msgstr "Відображуване ім’я"
+
+msgid "Origin"
+msgstr "Джерело"
+
+msgid "Permissions"
+msgstr "Дозволи"
+
+msgid "You have generated a site permission add-on for the same origin and permissions."
+msgstr "Ви згенерували додаток дозволів вебсайту для однакового джерела й дозволів."
+
+msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
+msgstr "Джерело має включати лише схему (протокол), ім’я хосту (домен) і необов’язковий порт"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Недійсний або пошкоджений файл розширення."
@@ -1764,10 +1780,10 @@ msgstr "Застереження безпеки від Mozilla: Ваші обл�
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Валідація згенерувала занадто багато помилок та попереджень, тому %s повідомлень не було відображено. Після усунення видимих повідомлень, Ви зможете побачити інші."
+msgstr "Валідація згенерувала занадто багато помилок та попереджень, тому %s повідомлень не було показано. Після усунення видимих повідомлень, Ви зможете побачити інші."
 
-msgid "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
-msgstr "Вивантаження маніфесту v3 наразі не підтримується. Докладніше про час підтримки можна прочитати [{start_href}тут{end_href}]."
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "Вивантаження маніфесту V3 наразі не підтримується. {start_href}Докладніше про час підтримки{end_href}."
 
 msgid "Updated"
 msgstr "Оновлено"
@@ -1785,7 +1801,7 @@ msgid "Rating"
 msgstr "Оцінка"
 
 msgid "All My Add-ons"
-msgstr "Всі мої додатки"
+msgstr "Усі мої додатки"
 
 msgid "All Activity"
 msgstr "Вся активність"
@@ -1949,24 +1965,6 @@ msgstr "Мій додаток не підходить жодній з катег
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Угода Firefox про розповсюдження додатків"
 
-msgid "Review Policies and Rules"
-msgstr "Політика перевірки й правила"
-
-msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr "Я прочитав і приймаю цю угоду, а також правила і політики"
-
-msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr "Необхідно вказати ім'я для відображення, щоб користувачі знали чий це додаток. Будь ласка, введіть його внизу."
-
-msgid "Accept"
-msgstr "Схвалити"
-
-msgid "or <a href=\"{0}\">Cancel</a>"
-msgstr "чи<a href=\"{0}\">Скасувати</a>"
-
-msgid "More information on Developer Accounts"
-msgstr "Докладніше про обліковий запис розробника"
-
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
 msgstr "Додатки {0}"
@@ -2019,6 +2017,15 @@ msgstr "Пошук документації для розробників"
 
 msgid "Search"
 msgstr "Пошук"
+
+msgid "Generate Site Permission Add-on"
+msgstr "Додаток для генерування дозволів сайту"
+
+msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
+msgstr "Джерело (схема + ім’я хосту + необов’язковий порт), для якого потрібно ввімкнути дозвіл. Тут також потрібно розмістити додаток."
+
+msgid "The permission(s) the generated add-on will grant on the origin."
+msgstr "Дозволи, надані згенерованим додатком для джерела."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Використовуйте розташоване нижче поле, щоб завантажити свій пакунок додатка."
@@ -2160,6 +2167,9 @@ msgstr "Прийнявши запрошення, ви отримаєте дос�
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Натисніть кнопку Прийняти внизу, щоб підтвердити долучення до авторів {addon_name}."
 
+msgid "Accept"
+msgstr "Схвалити"
+
 msgid "Decline"
 msgstr "Відхилити"
 
@@ -2210,7 +2220,7 @@ msgid "Default Locale"
 msgstr "Типова Локаль"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Інформація про ваш додаток відображається цією мовою, якщо ви не заміните її перекладом іншою мовою. Це стосується тільки додатків, що знаходяться в списку."
+msgstr "Інформацію про ваш додаток показано цією мовою, якщо ви не заміните її перекладом іншою мовою. Це стосується лише перелічених додатків."
 
 msgid "Homepage"
 msgstr "Домашня сторінка"
@@ -2359,7 +2369,7 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Завантажте значок для вашого додатка або виберіть один з наших. Значок відображається майже скрізь, де є ваш додаток. Завантажені зображення повинні мати один з наступних типів: .png, .jpg. Це "
+"Вивантажте піктограму для вашого додатка або виберіть один з наших. Піктограму буде показано майже скрізь, де є ваш додаток. Вивантажені зображення повинні бути одного з цих типів: .png, .jpg. Це "
 "стосується тільки додатків, що знаходяться в списку."
 
 msgid "Select an icon for your add-on:"
@@ -2468,23 +2478,25 @@ msgid "Compatibility Tests"
 msgstr "Тести сумісності"
 
 msgid "Hide messages not required for automated signing"
-msgstr "Приховати повідомлення, які необов'язкові для автоматичного входу"
+msgstr "Сховати повідомлення, які необов'язкові для автоматичного входу"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr "Приховати повідомлення, які присутні у попередніх версіях та ігноруються"
+msgstr "Сховати повідомлення, які присутні у попередніх версіях та ігноруються"
 
 msgid "Top"
 msgstr "Нагору"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr "Видалення вашого додатка призведе до остаточного видалення всіх версій і файлів, які ви відправляли для нього, опублікованих чи не опублікованих."
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr "ID додатка й надалі буде пов'язано з вашим обліковим записом, отже інші не зможуть відправляти версії використовуючи цей ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr "ID додатка неможливо відновити, Він назавжди стане непридатним для відправлення."
+
 msgid "Delete Add-on"
 msgstr "Вилучити додаток"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr ""
-"Видалення вашого додатка призведе до остаточного видалення всіх версій і файлів, які ви відправляли для цього додатка, опублікованого чи ні. ID додатка й надалі буде пов'язаний з вашим обліковим "
-"записом, отже інші не зможуть відправляти версії з використанням цього ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Введіть наступний текст, щоб підтвердити ваше рішення: {slug}"
@@ -2518,6 +2530,9 @@ msgstr "Щоденна статистика завантажень і корис
 
 msgid "Statistics"
 msgstr "Статистика"
+
+msgid "More"
+msgstr "Більше"
 
 msgid "Manage Status & Versions"
 msgstr "Керування статусом і версіями"
@@ -2656,14 +2671,22 @@ msgstr "Ці примітки з'являться на сторінці з по�
 msgid "How to Distribute this Version"
 msgstr "Як розповсюджувати цю версію"
 
-msgid "More information on Add-on Distribution and Signing"
-msgstr "Більше інформації про розповсюдження та підписання додатків"
+msgid "To get started, select how you would like to distribute this version."
+msgstr "Для початку оберіть спосіб розповсюдження цієї версії."
+
+#, python-format
+msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
+msgstr "Ви можете дізнатися більше про ці параметри, прочитавши <a %(a_attrs)s>Розповсюдження та підпис додатка</a> у центрі розширень Firefox."
+
+#, python-format
+msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
+msgstr "Усі додатки повинні відповідати <a %(a_attrs)s>Політиці щодо додатків Mozilla</a> і підлягають перегляду вручну в будь-який час після надсилання."
 
 msgid "Submission Complete"
 msgstr "Відправлення завершене"
 
-msgid "Version Submitted for Review"
-msgstr "Версія подана для перевірки"
+msgid "Version Submitted"
+msgstr "Версія надіслана"
 
 msgid "Preview of the version submitted"
 msgstr "Перегляд поданої версії"
@@ -2671,20 +2694,23 @@ msgstr "Перегляд поданої версії"
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Готово! Ця версія стане доступною після проходження перевірки. Ви отримаєте сповіщення про це."
 
-msgid "Version Submitted"
-msgstr "Версія надіслана"
-
-msgid "You’re done! This version will be available on our site shortly."
-msgstr "Готово! Ця версія скоро з'явиться на нашому сайті."
-
-msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Готово! Ця версія була подана для перевірки. Ви отримаєте сповіщення при завершенні перевірки, або при виникненні будь-яких запитань щодо вашого подання."
+#, python-format
+msgid ""
+"You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
+"selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Усе готово! ✨ Коли ви оприлюдните цю версію на %(site_domain)s, ви отримаєте електронний лист із підтвердженням. Зауважте, що до публікації може минути 24 години, або більше, якщо ваш додаток "
+"вибрано для перегляду вручну. Якщо ви не бачите електронного листа через 24 години, перевірте теку зі спамом."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Сторінка вашого додатка буде більш успішною, якщо додати детальний опис. Зробіть її готовою до публікації:"
 
-msgid "Your listing will be more successful by adding a detailed description and screenshots. Get your listing ready for publication:"
-msgstr "Ваша публікація буде успішнішою, якщо додати детальний опис і знімки екрана. Зробіть її готовою до публікації:"
+#, python-format
+msgid ""
+"You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
+msgstr ""
+"Ви можете розширити користувацьку бузу свого розширення, додавши детальний опис та знімки екрана на свою сторінку. Отримайте допомогу <a %(a_attrs)s>створивши принадний список</a> у центрі розширень"
+" Firefox."
 
 msgid "Manage Listing"
 msgstr "Керування опублікованими"
@@ -2695,11 +2721,8 @@ msgstr "Ви також можете змінювати цю версію з д�
 msgid "Edit version {0}"
 msgstr "Змінити версію {0}"
 
-msgid "Version Signature Pending"
-msgstr "Очікується підписання версії"
-
-msgid "You’re done! This version will be signed for self-distribution shortly. You will be notified by email when the signed file is ready for download."
-msgstr "Готово! Цю версію буде підписано для саморозповсюдження найближчим часом. Ви отримаєте сповіщення електронною поштою, коли підписаний файл буде готовий до завантаження."
+msgid "As a reminder, your add-on is subject to manual review at any time."
+msgstr "Нагадуємо, що ваш додаток у будь-який час підлягає ручному огляду."
 
 msgid "Go to My Submissions"
 msgstr "Перейти в мої подання"
@@ -2710,15 +2733,11 @@ msgstr "Вивантаження програмного коду"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Вам необхідно відправити програмний код?"
 
-msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Вам, можливо, необхідно відправити програмний код. Якщо ви цього не зробите, ваш додаток може бути вилучено з сайту!"
+msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
+msgstr "Рецензенти додатків із Mozilla повинні мати змогу читати та відтворювати код вашого розширення. Якщо вони не матимуть такої змоги, ваше розширення може бути відхилено."
 
-#, python-format
-msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Будь ласка, погляньте на <a %(a_attrs)s>правила подання програмного коду</a>."
-
-msgid "Do you use any of the following?"
-msgstr "Чи використовуєте ви будь-що з такого?"
+msgid "Do you use any of the following in your extension?"
+msgstr "Чи використовуєте ви щось із наведеного у своєму розширенні?"
 
 msgid "Code generators or minifiers"
 msgstr "Генератори або мініфікатори коду"
@@ -2729,21 +2748,20 @@ msgstr "Засоби, що об'єднують багато файлів у од
 msgid "Web template engines, both for HTML and CSS"
 msgstr "Рушії вебшаблонів, обидва для HTML та CSS"
 
-msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr "Будь-який інший засіб, що використовує код чи файли, проводить обробку та генерує код чи файли для включення в додаток"
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
+msgstr "Будь-який інший засіб, що використовує код чи файли, виконує обробку та генерує код чи файли для включення в розширення"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr "Вам не треба відправляти програмний код і ви готові до наступного кроку."
 
-msgid "Your Submission Requires Source Code."
-msgstr "Ваше подання потребує програмного коду."
+msgid "You must submit your extension's source code."
+msgstr "Ви повинні надіслати джерельний код розширення."
 
-#, python-format
-msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Програмний код повинен задовольняти <a %(a_attrs)s>вимоги правил</a>, що включають:"
+msgid "Your source code must include:"
+msgstr "Ваш джерельний код повинен містити:"
 
-msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr "Покрокова інструкція зі створення точної копії коду додатка."
+msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
+msgstr "Покрокові настанови щодо створення точної копії коду додатка у файлі README у вашому джерельному коді або у примітках рецензента на наступній сторінці."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Вбудований скрипт, що виконує всі необхідні технічні кроки."
@@ -2751,26 +2769,17 @@ msgstr "Вбудований скрипт, що виконує всі необх
 msgid "Operating system and build environment requirements."
 msgstr "Вимоги до операційної системи й середовища компонування."
 
-msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
-"Подробиці (включно з необхідною версією та інструкціями з встановлення) про будь-яку програму, що використовується для процесу компонування (наприклад: використана версія <span class=\"tech-"
-"emphasis\">node</span> та <span class=\"tech-emphasis\">npm</span>)."
+"Необхідна версія та настанови з установлення будь-яких програм, що використовуються у процесі збирання (наприклад, <span class=\"tech-emphasis\">node</span> та <span class=\"tech-"
+"emphasis\">npm</span>)."
 
-msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified or otherwise machine-generated."
-msgstr ""
-"<span class=\"instruction-emphasis\">Примітка:</span> Вихідні файли (окрім сторонніх бібліотек з відкритим кодом) не можна переукладати, об'єднувати, мінімізувати або генерувати будь-яким машинним "
-"методом."
+msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
+msgstr "Початкові файли (окрім сторонніх бібліотек з відкритим джерельним кодом) не можна перетворювати, об'єднувати, зменшувати або іншим чином генерувати машиною."
 
-msgid "How to Submit:"
-msgstr "Як подавати:"
-
-msgid "Include instructions in a README file in the source code,"
-msgstr "Включити інструкції в файл README програмного коду,"
-
-msgid "or in reviewer notes on the next page (if applicable)."
-msgstr "або до приміток для редактора на наступній сторінці (при необхідності)."
+#, python-format
+msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
+msgstr "Для отримання додаткових відомостей прочитайте про <a %(a_attrs)s>Подання джерельного коду</a> у центрі розширень Firefox."
 
 msgid "Upload source code:"
 msgstr "Вивантажити програмний код:"
@@ -2804,9 +2813,6 @@ msgstr "Створити версію теми"
 
 msgid "Create a Theme"
 msgstr "Створити тему"
-
-msgid "Sign Add-on"
-msgstr "Підписати додаток"
 
 msgid "Theme generate"
 msgstr "Генерувати тему"
@@ -2999,11 +3005,11 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Будь ласка, завершіть ваш додаток, додаючи версію або відсутні метадані."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "По завершенні процесу перевірки ви отримаєте лист. Поки що ваш додаток не буде відображений в галереї, але буде доступний зі своєї сторінки. "
+msgstr "Після завершення процесу перевірки ви отримаєте лист. Поки що ваш додаток не буде показано в галереї, але він буде доступний зі своєї сторінки. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr ""
-"Ваш додаток відображається в нашій галереї та користувачі\n"
+"Ваш додаток показано в нашій галереї, а користувачі\n"
 "                             отримують автоматичні оновлення."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
@@ -3066,11 +3072,34 @@ msgstr "Керування адміністратором"
 msgid "View Statistics Dashboard"
 msgstr "Переглянути панель статистики"
 
+msgid "Review Policies and Rules"
+msgstr "Політика перевірки й правила"
+
+msgid "I have read and accept this Agreement and the Rules and Policies"
+msgstr "Я прочитав і приймаю цю угоду, а також правила і політики"
+
+msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
+msgstr "Необхідно вказати ім'я для відображення, щоб користувачі знали чий це додаток. Будь ласка, введіть його внизу."
+
+msgid "or <a href=\"{0}\">Cancel</a>"
+msgstr "чи<a href=\"{0}\">Скасувати</a>"
+
+msgid "More information on Developer Accounts"
+msgstr "Докладніше про обліковий запис розробника"
+
 msgid "Developer News"
 msgstr "Новини розробників"
 
 msgid "View the blog &#9658;"
 msgstr "Прочитати блог &#9658;"
+
+msgid "Version Signature Pending"
+msgstr "Очікується підписання версії"
+
+msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
+msgstr ""
+"Усе готово! ✨ Ви отримаєте сповіщення електронною поштою, коли підписаний файл буде готовий для завантаження з Центру розробників. Якщо ви не бачите електронного листа через 24 години, перевірте "
+"теку зі спамом."
 
 msgid "License"
 msgstr "Ліцензія"
@@ -3079,6 +3108,9 @@ msgid "Please choose a license appropriate for the rights you grant on your sour
 msgstr ""
 "Будь ласка, оберіть ліцензію у відповідності до прав, які ви обрали для свого\n"
 "                  програмного коду. Це стосується лише опублікованих додатків."
+
+msgid "Sort by:"
+msgstr "Сортувати за:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3334,9 +3366,6 @@ msgstr "Стан і версії"
 msgid "Edit this version"
 msgstr "Змінити цю версію"
 
-msgid "0 files"
-msgstr "0 файлів"
-
 msgid "Re-enable Version"
 msgstr "Активувати версію знову"
 
@@ -3441,7 +3470,7 @@ msgstr ""
 " з адміністраторами AMO, якщо вам необхідна допомога з цим."
 
 msgid "Hide Add-on"
-msgstr "Приховати додаток"
+msgstr "Сховати додаток"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr "Приховування вашого додатка дозволить запобігти його появі в будь-якому місці в нашій галереї і заборонить користувачам отримувати автоматичні оновлення."
@@ -3450,7 +3479,7 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr "Файли, що очікують на перевірку, будуть відключені і вам треба буде завантажити нові версії."
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr "Ви впевнені, що хочете приховати свій додаток?"
+msgstr "Ви впевнені, що хочете сховати свій додаток?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr "Скасування вашого запиту перевірки позначить ваш додаток, як незавершений, а будь-які версії, що очікують на перевірку, будуть вимкнені."
@@ -3585,7 +3614,7 @@ msgstr "Допомога з граматики всюди, де ви пишет�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr "Відображення світового часу в панелі стану Firefox."
+msgstr "Показ світового часу в панелі стану Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
@@ -3596,7 +3625,6 @@ msgid "Tap academic wisdom. Access 10+ million research papers for free."
 msgstr "Доторкніться до академічної мудрості. Отримайте доступ до понад 10 мільйонів дослідницьких видань."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
 msgstr "Налаштуйте рухи мишею. Ознайомтеся з новим способом навігації за допомогою понад 50 корисних налаштувань."
 
@@ -3664,8 +3692,9 @@ msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Автоматично перезавантажуйте вкладки за встановленим інтервалом."
 
 #. editorial content for the discovery pane.
-msgid "Separate your online lives. Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr "Відокремте свою діяльність в Інтернеті — роботу, особисте, інше — за допомогою кольорових груп вкладок, що розділяють ваші цифрові сліди та куки."
+#. editorial content for the primary hero shelves.
+msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
+msgstr "Розділяйте частини вашого онлайн-життя на забарвлені вкладки та вкладки з розділеними куками. Тепер інтегровано з Mozilla VPN для додаткового рівня приватності."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3673,7 +3702,6 @@ msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Встановіть додатковий рівень захисту від стеження під час перебування в інтернеті."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr "Читайте файли в форматі електронних книг ePub безпосередньо в Firefox—налаштовуйте розмір шрифту, сторінки та інші параметри."
 
@@ -3750,14 +3778,12 @@ msgid "Stop ad trackers when you click Google and Yandex search returns."
 msgstr "Блокуйте стеження при переході в результатах пошуку Google та та інших пошукових засобах."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Користуйтеся рухами мишею для закриття вкладок, переходів по сторінках та інших дій."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr "Переглядайте мініатюри зображень вебсайтів поруч з результатами пошуку."
+msgid "See thumbnail images alongside your search returns."
+msgstr "Переглядайте зображення мініатюр поруч з результатами пошуку."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -3775,7 +3801,7 @@ msgstr "Змінюйте вигляд будь-якого вебсайту. Зм
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr "Змініть сторінку нової вкладки для відображення бажаної кількості плиток, зображення тла та інших елементів."
+msgstr "Налаштуйте показ бажаної кількості плиток, зображення тла та інших елементів сторінки нової вкладки."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -4063,7 +4089,7 @@ msgstr "Надійно зберігайте паролі й автоматичн
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr "Простий блокувальник реклами, зосереджений на відображенні лише необхідного вам вмісту."
+msgstr "Простий блокувальник реклами, зосереджений на показі лише необхідного вам вмісту."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
@@ -4112,7 +4138,7 @@ msgstr "Закрийте дратівливі спливні вікна в од�
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr "Знайшли цікаве зображення в інтернеті? Хочете дізнатись більше про нього?"
+msgstr "Знайшли цікаве зображення в інтернеті? Хочете дізнатися більше про нього?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4320,10 +4346,6 @@ msgid "Blues & Yellows"
 msgstr "Сині та жовті"
 
 #. editorial content for the discovery pane.
-msgid "Forest Theme"
-msgstr "Лісова тема"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Зберігайте групи вкладок як зручні закладки."
@@ -4357,6 +4379,15 @@ msgstr "Збереження та відновлення вкладок. Вкл�
 msgid "Goodbye, annoying cookie warnings!"
 msgstr "Прощавайте, надокучливі попередження про куки!"
 
+#. editorial content for the discovery pane.
+msgid "All your emoji needs—always just a click away."
+msgstr "Усі ваші емоджі — завжди на віддалі одного натиску."
+
+#. editorial content for the discovery pane.
+#. editorial content for the primary hero shelves.
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Припиніть надавати сайтам свою електронну адресу. Firefox Relay захищає вашу особистість і запобігає небажаній пошті."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Деякі сайти мають труднощі з відтворенням відео на Android. Перед вами розв'язувок проблеми."
@@ -4366,8 +4397,20 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Знайшли цікаве зображення в інтернеті? Скористайтеся TinEye, щоб дізнатися його джерело."
 
 #. editorial content for the primary hero shelves.
-msgid "For those moments you need to fire lasers out of cat eyes."
-msgstr "Для випадків, коли вам треба спалити щось лазером з очей кота."
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr "Читайте файли у форматі електронних книг ePUB безпосередньо у Firefox — налаштовуйте розмір шрифту, сторінки та інші параметри."
+
+#. editorial content for the primary hero shelves.
+msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr "Налаштуйте рухи мишею. Ознайомтеся з новими способами навігації за допомогою понад 50 корисних налаштувань."
+
+#. editorial content for the primary hero shelves.
+msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr "Користуйтеся рухами мишею для закриття вкладок, переходів по сторінках та інших дій."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr "Переглядайте мініатюри зображень вебсайтів поруч з результатами пошуку."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4397,6 +4440,34 @@ msgstr "Приберіть надокучливі попередження пр�
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Поверніться в часи, коли ваші найкращі результати пошуку стояли над оголошеннями (сумісні з пошуковою системою Google і Bing)."
 
+#. editorial content for the primary hero shelves.
+msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgstr "Насолоджуйтесь автоматичною зміною кольорів Firefox узгодженою зі світловим днем."
+
+#. editorial content for the primary hero shelves.
+msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
+msgstr "Усуньте усе зайве на YouTube. Приберіть пов’язані та рекомендовані відео пропозиції, коментарі тощо."
+
+#. editorial content for the primary hero shelves.
+msgid "Take emojis with you everywhere on the web."
+msgstr "Візьміть емоджі з собою всюди в інтернеті."
+
+#. editorial content for the primary hero shelves.
+msgid "Put restrictions on distracting, time-wasting websites."
+msgstr "Обмежте вебсайти, які відвертають увагу й марнують час."
+
+#. editorial content for the primary hero shelves.
+msgid "Remove clutter from your Twitter."
+msgstr "Стиште гамір зі свого Twitter."
+
+#. editorial content for the primary hero shelves.
+msgid "Customize YouTube to taste."
+msgstr "Налаштуйте YouTube на свій смак."
+
+#. editorial content for the primary hero shelves.
+msgid "Delete browsing data directly from the browser toolbar."
+msgstr "Видаляйте дані вебперегляду безпосередньо з панелі інструментів браузера."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Розширення - це наче програми для вашого браузера."
@@ -4410,24 +4481,22 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
-msgid "Tab organizers and tools"
-msgstr "Впорядкування та керування вкладками"
+msgid "Top anti-tracking extensions"
+msgstr "Найпопулярніші розширення захисту від стеження"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy beyond browser extensions"
-msgstr "Приватність за межами браузерних розширень"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Засоби для перекладу"
 
 #. editorial content for the secondary hero shelves.
-msgid "Media enhancers for Firefox"
-msgstr "Медіа-поліпшувачі для Firefox"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Елітні блокувальники реклами"
 
 #. editorial content for the secondary hero shelves.
-msgid "Explore extensions"
-msgstr "Знайдіть більше розширень"
-
-#. editorial content for the secondary hero shelves.
-msgid "Learn More"
-msgstr "Дізнатись більше"
+msgid "See staff picks"
+msgstr "Переглянути розширення відібрані персоналом"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4450,8 +4519,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Розширення для поліпшення приватності"
 
 #. editorial content for the homepage shelves.
-msgid "See more enhanced privacy extensions"
-msgstr "Більше розширень для поліпшення приватності"
+msgid "See more recommended privacy extensions"
+msgstr "Переглянути інші рекомендовані розширення для приватності"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4470,28 +4539,76 @@ msgid "See more recommended themes"
 msgstr "Більше рекомендованих тем"
 
 #. editorial content for the homepage shelves.
-msgid "Recommended password managers"
-msgstr "Рекомендовані менеджери паролів"
+msgid "Strong password managers"
+msgstr "Надійні менеджери паролів"
 
 #. editorial content for the homepage shelves.
-msgid "See more recommended password managers"
-msgstr "Більше рекомендованих менеджерів паролів"
+msgid "See more password manager staff picks"
+msgstr "Переглянути більше менеджерів паролів відібраних персоналом"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Засоби для перекладу"
-
-#. editorial content for the homepage shelves.
-msgid "See more translation tools"
-msgstr "Більше засобів для перекладу"
+msgid "See more translation tool staff picks"
+msgstr "Переглянути більше засобів перекладу відібрані персоналом"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
 msgstr "Стрічки з суспільних мереж"
 
 #. editorial content for the homepage shelves.
-msgid "See more social streaming extensions"
-msgstr "Більше розширень для стрічок суспільних мереж"
+msgid "See more social streaming staff picks"
+msgstr "Переглянути більше розширень для стрічок суспільних мереж відібраних персоналом"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Менеджери вкладок"
+
+#. editorial content for the homepage shelves.
+msgid "See more tab management staff picks"
+msgstr "Переглянути більше розширень для керування вкладками відібраних персоналом"
+
+#. editorial content for the homepage shelves.
+msgid "“{tag}” tagged extensions"
+msgstr "Розширення з мітками “{tag}”"
+
+#. editorial content for the homepage shelves.
+msgid "See more extensions tagged \"{tag}\""
+msgstr "Переглянути інші розширення з міткою \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "See more ad blocker staff picks"
+msgstr "Переглянути більше відібраних персоналом блокувальників реклами"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Пристосування YouTube"
+
+#. editorial content for the homepage shelves.
+msgid "See more YouTube extension staff picks"
+msgstr "Переглянути більше розширень YouTube відібраних персоналом"
+
+#. editorial content for the homepage shelves.
+msgid "Trending themes"
+msgstr "Популярні теми"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending themes"
+msgstr "Більше популярних тем"
+
+#. editorial content for the homepage shelves.
+msgid "Top rated themes"
+msgstr "Найвище оцінені теми"
+
+#. editorial content for the homepage shelves.
+msgid "See more top rated themes"
+msgstr "Найвище оцінені теми"
+
+#. editorial content for the homepage shelves.
+msgid "Trending extensions"
+msgstr "Популярні розширення"
+
+#. editorial content for the homepage shelves.
+msgid "See more trending extensions"
+msgstr "Більше популярних розширень"
 
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
@@ -4528,9 +4645,6 @@ msgstr "Нестиснений розмір занадто великий"
 msgid "Invalid archive."
 msgstr "Некоректний архів."
 
-msgid "Could not find an add-on ID."
-msgstr "Не вдалося знайти ID додатка."
-
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "Ідентифікатор додатка в файлі manifest.json (%s) відрізняється від ідентифікатора вашого додатка на AMO (%s)"
@@ -4556,6 +4670,9 @@ msgstr "Ви не можете подати додаток з ID, що заве�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ви не можете надіслати розширення, підписане Mozilla"
 
+msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
+msgstr "Додатки, які використовують ID, що закінчується цим суфіксом, мають бути підписані привілейованим сертифікатом перед надсиланням"
+
 msgid "You cannot submit a language pack"
 msgstr "Ви не можете подати мовний пакунок"
 
@@ -4568,121 +4685,6 @@ msgstr "Неочікувана помилка."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Тип (%s) не відповідає типу вашого додатка на AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Щодо відгуків"
-
-msgid "Sections"
-msgstr "Секції"
-
-msgid "Some tips for writing a great review"
-msgstr "Деякі поради з написання хороших відгуків"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Поширені питання про відгуки"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr ""
-"Відгуки є способом поділитися своїми враженнями про використання додатку. Наша команда модераторів залишає за собою право відхиляти або видаляти будь-який відгук, який не відповідає цим критеріям."
-
-msgid "Do:"
-msgstr "Вам слід:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Напишіть про свій досвід використання додатку."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Робіть відгуки короткими і зрозумілими."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Додайте особливі та корисні деталі. Наприклад:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Чи працював додаток так, як ви очікували?"
-
-msgid "What features did you like or dislike?"
-msgstr "Які функції вам сподобались, а які ні?"
-
-msgid "Was it useful?"
-msgstr "Чи був він корисним?"
-
-msgid "Was it easy to use?"
-msgstr "Чи був він легким в користуванні?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Чи будете ви надалі користуватися цим додатком?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Перевірте свій відгук перед відправленням для мінімізації помилок."
-
-msgid "Don’t:"
-msgstr "Вам не слід:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Відправляти односкладові відгуки такі, як \"Відмінно!\", \"чудово\" чи \"погано\"."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Ставити технічні питання, питання підтримки або пропонувати нові функції. Використовуйте доступні варіанти підтримки для кожного додатка, якщо вони є. Ви можете знайти їх в бічному стовпчику поряд "
-"із розділом Про цей додаток."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Писати відгуки на додатки, які ви особисто не використали."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Використовувати ненормативну лексику, непристойні вирази або слова, які можуть бути витлумачені як ненависть."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Включати HTML, посилання, програмний код або фрагменти коду. Відгуки повинні містити тільки текст."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Робити неправдиві заяви, принижувати або особисто ображати авторів додатків."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Включати ваші власні або чиїсь ще адреси ел. пошти, номери телефонів або інші персональні дані."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Розміщувати відгуки на додаток, написаний чи представлений вами або вашою організацією."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Критикувати додаток за щось, що він й призначений робити. Наприклад, залишати негативний відгук на додаток за показ реклами або вимогу збору даних, коли це є метою цього додатка, або додатку "
-"необхідний збір даних для його роботи."
-
-msgid "How can I report a problematic review?"
-msgstr "Як мені повідомити про некоректний відгук?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Будь ласка, повідомляйте або відзначайте прапором будь-які сумнівні відгуки, клацнувши \"Повідомити про цей відгук\" і він буде відправлений на сайт для модерації. Наша команда модераторів буде "
-"використовувати Вказівки щодо відгуків, щоб вирішити, чи видалити відгук або відновити його на сайті."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Я автор додатка, чи можу я відповідати на відгуки?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Так, автори додатків можуть написати одну відповідь на відгук. Ви можете створити тему для обговорення на нашому <a href=\"%(forum_url)s\">форумі</a>, щоб взяти участь у додатковій або подальшої "
-"дискусії."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Я автор додатка, чи можу я видаляти несприятливі відгуки чи рейтинги?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"Загалом, ні. Але якщо відгук не відповідає викладеним вище вимогам до відгуків, ви можете клацнути на лінк \"Повідомити про цей додаток\" і він буде перевірений. Якщо відгук містить скаргу, яка "
-"більше не є актуальною у зв'язку з виходом нової версії вашого додатка, ми можемо розглянути можливість видалення відгуку."
 
 msgid "User"
 msgstr "Користувач"
@@ -4723,9 +4725,8 @@ msgstr "Ви не можете залишати відгук для власно
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Ви не можете залишати більше одного відгуку для однієї версії додатку."
 
-#, python-format
-msgid "Invalid flag [%s] - must be one of [%s]"
-msgstr "Недійсна позначка [%s] - повинна бути одна з [%s]"
+msgid "Invalid flag [{}] - must be one of [{}]"
+msgstr "Недійсний прапорець [{}] — повинен бути один з [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr "Цю оцінку неможливо позначити, тому що тут немає тексту відгуку."
@@ -4778,33 +4779,6 @@ msgstr "кінцева"
 msgid "add-on, reviewer or comment"
 msgstr "додаток, редактор чи коментар"
 
-msgid "Search by add-on name / author email"
-msgstr "Пошук за назвою додатку / електронною адресою автора"
-
-msgid "Needs Admin Code Review"
-msgstr "Потрібна перевірка коду адміном"
-
-msgid "yes"
-msgstr "так"
-
-msgid "no"
-msgstr "ні"
-
-msgid "Add-on Types"
-msgstr "Типи додатків"
-
-msgid "Any"
-msgstr "Будь-який"
-
-msgid "Search by add-on name / author email / guid"
-msgstr "Пошук за назвою додатку / електронною адресою автора / ідентифікатором GUID"
-
-msgid "Max. Version"
-msgstr "Найвища версія"
-
-msgid "Select an application first"
-msgstr "Спочатку оберіть програму"
-
 msgid "Comments:"
 msgstr "Коментарі:"
 
@@ -4823,6 +4797,9 @@ msgstr "Відхилити негайно. Застосовується лише
 msgid "days"
 msgstr "днів"
 
+msgid "Choose one or more reasons:"
+msgstr "Оберіть одну або кілька причин:"
+
 msgid "Choose a canned response..."
 msgstr "Оберіть стандартну відповідь..."
 
@@ -4838,20 +4815,17 @@ msgstr "Пропустити зараз"
 msgid "Delete review"
 msgstr "Видалити відгук"
 
+msgid "Needs Admin Code Review"
+msgstr "Потрібна перевірка коду адміном"
+
 msgid "Needs Admin Content Review"
 msgstr "Потрібна перевірка вмісту адміном"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "Потрібна перевірка статичної теми адміном"
 
-msgid "Requires Restart"
-msgstr "Потрібен перезапуск"
-
 msgid "Sources provided"
 msgstr "Надано джерела"
-
-msgid "WebExtension"
-msgstr "WebExtension"
 
 msgid "Auto-approval delayed temporarily"
 msgstr "Автоматичне затвердження тимчасово відкладено"
@@ -4877,6 +4851,9 @@ msgstr "Рядок версії та настанов збігаються з з
 msgid "Weight breakdown not available."
 msgstr "Розподіл ваги недоступний."
 
+msgid "Is available to be used in reviews"
+msgstr "Доступний для використання у відгуках"
+
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr "Ви не можете надіслати коментар, якщо визначено \"canned_response\"."
 
@@ -4886,41 +4863,11 @@ msgstr "Ви не можете надіслати порожній комент�
 msgid "You can't submit a line number without associating it to a filename."
 msgstr "Ви не можете надіслати номер рядка, без пов’язування його з назвою файлу."
 
-msgid "Type"
-msgstr "Тип"
-
-msgid "Waiting Time"
-msgstr "Час очікування"
+msgid "ID"
+msgstr "ID"
 
 msgid "Flags"
 msgstr "Позначки"
-
-msgid "moments ago"
-msgstr "щойно"
-
-#. L10n: first argument is number of minutes
-msgid "{0} minute"
-msgid_plural "{0} minutes"
-msgstr[0] "{0} хвилина"
-msgstr[1] "{0} хвилини"
-msgstr[2] "{0} хвилин"
-
-#. L10n: first argument is number of hours
-msgid "{0} hour"
-msgid_plural "{0} hours"
-msgstr[0] "{0} година"
-msgstr[1] "{0} години"
-msgstr[2] "{0} годин"
-
-#. L10n: first argument is number of days
-msgid "{0} day"
-msgid_plural "{0} days"
-msgstr[0] "{0} день"
-msgstr[1] "{0} дні"
-msgstr[2] "{0} днів"
-
-msgid "ID"
-msgstr "ID"
 
 msgid "Last Review"
 msgstr "Остання перевірка"
@@ -4936,6 +4883,12 @@ msgstr "Загальна вага"
 
 msgid "Maliciousness Score"
 msgstr "Оцінка зловмисності"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Waiting Time"
+msgstr "Час очікування"
 
 msgid "Pending Rejection Deadline"
 msgstr "Кінцевий термін очікування на відхилення"
@@ -5076,7 +5029,7 @@ msgid "Unlisted Add-ons"
 msgstr "Неопубліковані додатки"
 
 msgid "All Unlisted Add-ons"
-msgstr "Всі неопубліковані додатки"
+msgstr "Усі неопубліковані додатки"
 
 msgid "Unlisted Add-ons Pending Manual Approval"
 msgstr "Недоступні додатки, що очікують на затвердження вручну"
@@ -5123,6 +5076,12 @@ msgstr "Інформація додатка для {0}"
 
 msgid "Add-on ID"
 msgstr "ID додатка"
+
+msgid "Original Add-on ID"
+msgstr "Оригінальний ідентифікатор додатка"
+
+msgid "Add-on(s) sharing same ID"
+msgstr "Додатки, які мають однаковий ідентифікатор"
 
 msgid "Internal AMO ID"
 msgstr "Внутрішній ID AMO"
@@ -5240,57 +5199,6 @@ msgstr "Відгук було позначено для видалення."
 msgid "Undelete"
 msgstr "Відновити"
 
-msgid "Reviewer Performance – Add-ons for Firefox"
-msgstr "Продуктивність редактора – Додатки для Firefox"
-
-msgid "Add-on Reviewer Performance"
-msgstr "Продуктивність редактора додатків"
-
-msgid "View statistics for user"
-msgstr "Перегляд статистики для користувача"
-
-msgid "Range"
-msgstr "Діапазон"
-
-msgid "Your Reviews"
-msgstr "Ваші відгуки"
-
-msgid "By {user_name}"
-msgstr "Від {user_name}"
-
-msgid "Total Reviews"
-msgstr "Всього розглядів"
-
-msgid "Active Contributors"
-msgstr "Активні учасники"
-
-msgid "This Month"
-msgstr "Цього місяця"
-
-msgid "This Year"
-msgstr "Цього року"
-
-msgid "Monthly Performance"
-msgstr "Місячна продуктивність"
-
-msgid "All-time Point Breakdown by Type"
-msgstr "Розбиття за весь час за типом"
-
-msgid "Add-ons"
-msgstr "Додатки"
-
-msgid "Total"
-msgstr "Усього"
-
-msgid "Month"
-msgstr "Місяць"
-
-msgid "Year"
-msgstr "Рік"
-
-msgid "All-Time"
-msgstr "Весь час"
-
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr "– Інструменти редактора – Додатки для Firefox"
 
@@ -5312,12 +5220,6 @@ msgstr "Неопубліковані додатки – Додатки для Fi
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Очікують на відхилення – Додатки для Firefox"
 
-msgid "Advanced Search"
-msgstr "Розширений пошук"
-
-msgid "clear search"
-msgstr "очистити пошук"
-
 msgid "Process Reviews"
 msgstr "Обробити відгуки"
 
@@ -5333,7 +5235,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Позначено %(user)s %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr "Всі відгуки були промодеровані.  Гарна робота!"
+msgstr "Усі відгуки були промодеровані.  Гарна робота!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr "В даний момент немає додатків цього типу для перегляду."
@@ -5363,9 +5265,6 @@ msgstr "Історія важливих змін додатка"
 
 msgid "Add-on History"
 msgstr "Історія додатку"
-
-msgid "Previously deleted entries"
-msgstr "Попередньо видалені записи"
 
 msgid "You don't have permission to review it."
 msgstr "Ви не маєте дозволу перевіряти його."
@@ -5497,7 +5396,7 @@ msgid "Show Comments"
 msgstr "Показати коментарі"
 
 msgid "Hide Comments"
-msgstr "Приховати коментарі"
+msgstr "Сховати коментарі"
 
 msgid "No reviews found for this period."
 msgstr "Не знайдено відгуків для цього періоду."
@@ -5521,7 +5420,7 @@ msgid "Files in this version:"
 msgstr "Файли в цій версії:"
 
 msgid "All Platforms"
-msgstr "Всі платформи"
+msgstr "Усі платформи"
 
 msgid "Browse all files in this version"
 msgstr "Перегляд усіх файлів цієї версії"
@@ -5669,8 +5568,8 @@ msgstr "наявність відповідних правил"
 msgid "result state"
 msgstr "результат"
 
-msgid "all but results matching only this rule"
-msgstr "всі, крім результатів які відповідають лише цьому правилу"
+msgid "Excluding results solely matching these rules"
+msgstr "Виключити результати, які відповідають виключно цим правилам"
 
 msgid "presence of a version"
 msgstr "наявність версії"
@@ -5761,9 +5660,6 @@ msgstr "Версія не відповідає файлу маніфесту."
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr "Версія вже існує. Останньою версією є: %s."
-
-msgid "Only WebExtensions are allowed to omit the Add-on ID"
-msgstr "Лише додаткам типу WebExtensions дозволено не вказувати ID"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Будь ласка, вкажіть ID вашого Додатку в маніфесті, якщо він довший 64 символів."
@@ -5890,6 +5786,9 @@ msgstr "Завантаження останніх даних&hellip;"
 msgid "No data available."
 msgstr "Дані відсутні."
 
+msgid "Previous"
+msgstr "Попередня"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Ця панель є <b>приватною</b>."
 
@@ -5984,12 +5883,6 @@ msgstr "Правові положення"
 msgid "Report Trademark Abuse"
 msgstr "Повідомити про зловживання торговою маркою"
 
-msgid "The new website supports mobile and desktop clients"
-msgstr "Новий вебсайт підтримує мобільні та комп'ютерні версії браузерів"
-
-msgid "View the new site"
-msgstr "Відвідати новий сайт"
-
 msgid "Site Status"
 msgstr "Статус сайту"
 
@@ -6039,8 +5932,8 @@ msgstr "Перейти"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Повернутись на домашню сторінку додатків {0}"
 
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Додатки"
+msgid "Add-ons"
+msgstr "Додатки"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6131,8 +6024,8 @@ msgstr "Немає користувача з цією адресою ел. по�
 msgid "Firefox user {id}"
 msgstr "Користувач Firefox {id}"
 
-msgid "Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Введіть дійсний діапазон CIDR-мережі IPv6 або IPv6, наприклад, 127.0.0.1/28"
+msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
+msgstr "Введіть дійсний діапазон CIDR-мережі IPv4 або IPv6, наприклад, 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "З вашого розташування надіслано декілька додатків, що порушують ваші правила. IP-адресу було заблоковано."
@@ -6140,12 +6033,10 @@ msgstr "З вашого розташування надіслано декіль
 msgid "Email Pattern"
 msgstr "Шаблон електронної пошти"
 
-msgid ""
-"Either enter full domain or email that should be blocked or use  glob-style wildcards to match other patterns. E.g \"@*.mail.com\"\n"
-" Please note that we do not include \"@\" in the match so you  should do that in the pattern."
+msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
-"Введіть повний домен чи електронну пошту, які слід заблокувати, або використайте  замінники (зірочки) (glob-style wildcards) для відповідності іншим шаблонам. Наприклад, \"@*.mail.com\"\n"
-" Зверніть увагу, що ми не включаємо \"@\" для збігу, отже вам слід зробити це в шаблоні."
+"Введіть повну електронну адресу, яку потрібно заблокувати, або використовуйте символи підставлення у стилі Unix, напр. \"*@example.com\". Якщо вам потрібно заблокувати домен, включно з субдоменами, "
+"додайте другий запис, напр. \"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "Адреса електронної пошти, яку ви використовуєте в обліковому записі, не дозволена для подання додатків."
@@ -6292,3 +6183,6 @@ msgstr "інші"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} і вище"
+
+msgid "The install origin {origin} is not permitted."
+msgstr "Початок установлення {origin} не дозволяється."

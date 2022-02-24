@@ -59,7 +59,6 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         addon_factory(
             guid=self.guid,
-            file_kw={'is_webextension': True},
             version_kw={'version': '2.1.072'},
             users=[self.user],
         )
@@ -143,6 +142,12 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.CREATE_ADDON.id)
+            .count()
+            == 1
+        )
 
     def test_new_addon_random_slug_unlisted_channel(self):
         guid = '@create-webextension'
@@ -214,17 +219,17 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert 'processed' in response.data
 
         upload = FileUpload.objects.latest('pk')
-        assert upload.source == amo.UPLOAD_SOURCE_API
+        assert upload.source == amo.UPLOAD_SOURCE_SIGNING_API
         assert upload.user == self.user
         assert upload.ip_address == '127.0.2.1'
 
         version = qs.get()
         assert version.addon.guid == self.guid
         assert version.version == '3.0'
-        assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
-        assert not version.all_files[0].is_mozilla_signed_extension
+        assert not version.file.is_mozilla_signed_extension
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -241,9 +246,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self.create_version('3.0')
         version = Version.objects.get(addon__guid=self.guid, version='3.0')
         version.update(reviewed=datetime.today())
-        version.files.get().update(
-            reviewed=datetime.today(), status=amo.STATUS_DISABLED
-        )
+        version.file.update(reviewed=datetime.today(), status=amo.STATUS_DISABLED)
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
@@ -311,7 +314,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert latest_version.all_files[0].is_mozilla_signed_extension
+        assert latest_version.file.is_mozilla_signed_extension
 
     def test_mozilla_signed_not_allowed(self):
         guid = '@webextension-guid'
@@ -329,7 +332,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'You cannot submit a Mozilla Signed Extension'
         )
 
-    def test_system_addon_allowed(self):
+    def test_restricted_guid_addon_allowed_because_signed_and_has_permission(self):
         guid = 'systemaddon@mozilla.org'
         self.grant_permission(self.user, 'SystemAddon:Submit')
         qs = Addon.unfiltered.filter(guid=guid)
@@ -338,7 +341,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT',
             guid=guid,
             version='0.0.1',
-            filename='src/olympia/files/fixtures/files/mozilla_guid.xpi',
+            filename='src/olympia/files/fixtures/files/mozilla_guid_signed.xpi',
         )
         assert response.status_code == 201
         assert qs.exists()
@@ -349,7 +352,24 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert latest_version
         assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
-    def test_restricted_addon_not_allowed(self):
+    def test_restricted_guid_addon_not_allowed_because_not_signed(self):
+        guid = 'systemaddon@mozilla.org'
+        self.grant_permission(self.user, 'SystemAddon:Submit')
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT',
+            guid=guid,
+            version='0.0.1',
+            filename='src/olympia/files/fixtures/files/mozilla_guid.xpi',
+        )
+        assert response.status_code == 400
+        assert response.data['error'] == (
+            'Add-ons using an ID ending with this suffix need to be signed with '
+            'privileged certificate before being submitted'
+        )
+
+    def test_restricted_guid_addon_not_allowed_because_lacking_permission(self):
         guid = 'systemaddon@mozilla.com'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
@@ -364,7 +384,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'You cannot submit an add-on using an ID ending with this suffix'
         )
 
-    def test_restricted_addon_update_allowed(self):
+    def test_restricted_guid_addon_update_allowed(self):
         """Updates to restricted IDs are allowed from anyone."""
         guid = 'systemaddon@mozilla.org'
         self.user.update(email='pinkpanda@notzilla.com')
@@ -542,7 +562,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429, response.content
 
@@ -554,7 +577,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -585,7 +611,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -597,7 +626,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -609,7 +641,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '63.245.208.194'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '63.245.208.194',
+                    'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -632,7 +667,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -644,7 +682,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -668,7 +709,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -680,7 +724,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -691,7 +738,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -714,7 +764,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -726,7 +779,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -737,7 +793,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429
 
@@ -748,7 +807,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': get_random_ip()},
+                extra_kwargs={
+                    'REMOTE_ADDR': get_random_ip(),
+                    'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
+                },
             )
             assert response.status_code == expected_status
 
@@ -813,7 +875,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '1.2.3.4'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '1.2.3.4',
+                    'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',
+                },
             )
             assert response.status_code == 202
 
@@ -910,11 +975,9 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         upload = FileUpload.objects.latest('pk')
         assert upload.version == '1.0'
         assert upload.user == self.user
-        assert upload.source == amo.UPLOAD_SOURCE_API
+        assert upload.source == amo.UPLOAD_SOURCE_SIGNING_API
         assert upload.ip_address == '127.0.3.1'
 
-        version = Version.objects.get(addon__guid=guid, version='1.0')
-        assert version.files.all()[0].is_webextension is True
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1036,8 +1099,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         addon = Addon.unfiltered.get(guid=response.data['guid'])
         assert addon.guid == '@custom-guid-provided'
 
-        version = Version.objects.get(addon__guid=guid, version='1.0')
-        assert version.files.all()[0].is_webextension is True
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -1167,7 +1228,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
 
 
 class TestTestUploadVersionWebextensionTransactions(
-    BaseUploadVersionTestMixin, TransactionTestCase
+    BaseUploadVersionTestMixin, TestCase, TransactionTestCase
 ):
     # Tests to make sure transactions don't prevent
     # ActivityLog/UserRestrictionHistory objects to be saved.
@@ -1190,15 +1251,16 @@ class TestTestUploadVersionWebextensionTransactions(
                 url=url,
                 guid='@create-webextension',
                 version='1.0',
-                extra_kwargs={'REMOTE_ADDR': '1.2.3.4'},
+                extra_kwargs={
+                    'REMOTE_ADDR': '1.2.3.4',
+                    'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',
+                },
             )
             assert response.status_code == 429, response.content
         # We should have recorded an ActivityLog.
-        assert (
-            ActivityLog.objects.for_user(self.user)
-            .filter(action=amo.LOG.THROTTLED.id)
-            .exists()
-        )
+        assert ActivityLog.objects.filter(
+            user=self.user, action=amo.LOG.THROTTLED.id
+        ).exists()
 
     def test_user_restriction_history_saved_on_permission_denied(self):
         EmailUserRestriction.objects.create(email_pattern=self.user.email)
@@ -1208,7 +1270,10 @@ class TestTestUploadVersionWebextensionTransactions(
             url=url,
             guid='@create-webextension',
             version='1.0',
-            extra_kwargs={'REMOTE_ADDR': '1.2.3.4'},
+            extra_kwargs={
+                'REMOTE_ADDR': '1.2.3.4',
+                'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',
+            },
         )
         assert response.status_code == 403, response.content
         assert UserRestrictionHistory.objects.filter(user=self.user).exists()
@@ -1263,7 +1328,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_version_exists_with_pk(self):
         # Mock Version.from_upload so the Version won't be created.
-        with mock.patch('olympia.devhub.tasks.Version.from_upload'):
+        with mock.patch('olympia.devhub.utils.Version.from_upload'):
             self.create_version('3.0')
         upload = FileUpload.objects.latest()
         upload.update(created=datetime.today() - timedelta(hours=1))
@@ -1340,7 +1405,13 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_has_failed_upload(self):
         addon = Addon.objects.get(guid=self.guid)
-        FileUpload.objects.create(addon=addon, version='3.0')
+        FileUpload.objects.create(
+            addon=addon,
+            version='3.0',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_SIGNING_API,
+            ip_address='127.0.0.70',
+        )
         self.create_version('3.0')
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 200
@@ -1362,7 +1433,13 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
                 )
 
             # ... But it works, because it's just a GET, not a POST/PUT upload.
-            response = self.get(url, client_kwargs={'REMOTE_ADDR': '1.2.3.4'})
+            response = self.get(
+                url,
+                client_kwargs={
+                    'REMOTE_ADDR': '1.2.3.4',
+                    'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',
+                },
+            )
             assert response.status_code == 200
 
 
@@ -1380,7 +1457,7 @@ class TestSignedFile(SigningAPITestMixin, TestCase):
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
             users=[self.user],
         )
-        return addon.latest_unlisted_version.all_files[0]
+        return addon.latest_unlisted_version.file
 
     def test_can_download_once_authenticated(self):
         response = self.get(self.url())

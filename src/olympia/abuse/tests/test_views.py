@@ -6,16 +6,17 @@ from unittest import mock
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
-    APITestClient,
+    APITestClientWebToken,
     TestCase,
     addon_factory,
+    get_random_ip,
     reverse_ns,
     user_factory,
 )
 
 
 class AddonAbuseViewSetTestBase:
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.url = reverse_ns('abusereportaddon-list')
@@ -38,6 +39,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': str(addon.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 201
 
@@ -53,6 +55,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': addon.slug, 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 201
 
@@ -67,6 +70,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': addon.guid, 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 201
 
@@ -82,6 +86,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': guid, 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 201
 
@@ -103,6 +108,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': str(addon.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         # Fails: for non public add-ons, you have to use the guid.
         assert response.status_code == 404
@@ -113,6 +119,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': str(addon.guid), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 201
 
@@ -150,6 +157,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': str(addon.id), 'reason': 'broken'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 201
 
@@ -164,6 +172,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': str(addon.id), 'reason': 'broken', 'message': ''},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 201
 
@@ -195,6 +204,7 @@ class AddonAbuseViewSetTestBase:
                 self.url,
                 data={'addon': str(addon.id), 'message': 'abuse!'},
                 REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
             )
             assert response.status_code == 201, x
 
@@ -202,6 +212,7 @@ class AddonAbuseViewSetTestBase:
             self.url,
             data={'addon': str(addon.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 429
 
@@ -224,7 +235,12 @@ class AddonAbuseViewSetTestBase:
             'addon_install_method': 'url',
             'report_entry_point': None,
         }
-        response = self.client.post(self.url, data=data, REMOTE_ADDR='123.45.67.89')
+        response = self.client.post(
+            self.url,
+            data=data,
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
         assert response.status_code == 201, response.content
 
         assert AbuseReport.objects.filter(guid=data['addon']).exists()
@@ -275,7 +291,12 @@ class AddonAbuseViewSetTestBase:
             'addon_install_source_url': 'http://%s' % 'a' * 249,
             'report_entry_point': 'Something not in entrypoint choices',
         }
-        response = self.client.post(self.url, data=data, REMOTE_ADDR='123.45.67.89')
+        response = self.client.post(
+            self.url,
+            data=data,
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
         assert response.status_code == 400
         expected_max_length_message = (
             'Ensure this field has no more than %d characters.'
@@ -366,6 +387,7 @@ class TestAddonAbuseViewSetLoggedIn(AddonAbuseViewSetTestBase, TestCase):
                 self.url,
                 data={'addon': str(addon.id), 'message': 'abuse!'},
                 REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
             )
             assert response.status_code == 201, x
 
@@ -376,12 +398,13 @@ class TestAddonAbuseViewSetLoggedIn(AddonAbuseViewSetTestBase, TestCase):
             self.url,
             data={'addon': str(addon.id), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 429
 
 
 class UserAbuseViewSetTestBase:
-    client_class = APITestClient
+    client_class = APITestClientWebToken
 
     def setUp(self):
         self.url = reverse_ns('abusereportuser-list')
@@ -452,6 +475,7 @@ class UserAbuseViewSetTestBase:
                 self.url,
                 data={'user': str(user.username), 'message': 'abuse!'},
                 REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
             )
             assert response.status_code == 201, x
 
@@ -459,6 +483,7 @@ class UserAbuseViewSetTestBase:
             self.url,
             data={'user': str(user.username), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 429
 
@@ -486,6 +511,7 @@ class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
                 self.url,
                 data={'user': str(target_user.username), 'message': 'abuse!'},
                 REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
             )
             assert response.status_code == 201, x
 
@@ -496,5 +522,6 @@ class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
             self.url,
             data={'user': str(target_user.username), 'message': 'abuse!'},
             REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 429

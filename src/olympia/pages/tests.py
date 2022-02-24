@@ -9,11 +9,6 @@ class TestPages(TestCase):
         response = self.client.get(reverse(url))
         assert response.status_code == status
 
-    def test_status(self):
-        pages = ['pages.about', 'pages.review_guide']
-        for page in pages:
-            self._check(page, 200)
-
     def test_search_console(self):
         response = self.client.get('/google231a41e803e464e9.html')
         assert response.status_code == 200
@@ -34,19 +29,6 @@ class TestRedirects(TestCase):
             {
                 '/en-US/firefox/pages/validation': settings.VALIDATION_FAQ_URL,
             }
-        )
-
-    def test_nonapp_pages(self):
-        self._check(
-            {
-                '/en-US/pages/review_guide': reverse('pages.review_guide'),
-            }
-        )
-        response = self.client.get(
-            '/en-US/firefox/pages/developer_agreement', follow=False
-        )
-        self.assert3xx(
-            response, reverse('devhub.docs', args=['policies/agreement']), 301
         )
 
     def test_shield_studies(self):

@@ -1,0 +1,49 @@
+{% extends "devhub/base.html" %}
+
+{% from "devhub/includes/macros.html" import tip %}
+
+
+{% set title = _('Generate Site Permission Add-on') %}
+
+{% block title %}
+    {{ dev_page_title(title) }}
+{% endblock %}
+
+{% block content %}
+    <header>
+      <h2 class="is_addon">{{ title }}</h2>
+    </header>
+
+    <section class="site_permission_generator" role="main">
+        {% if success %}
+            {% include "devhub/includes/done_unlisted.html" %}
+        {% else %}
+            <div class="devhub-form">
+                <form method="post">
+                    <div class="item">
+                        <div class="item_wrapper">
+                            {% csrf_token %}
+                            {{ form.non_field_errors() }}
+                            <table>
+                                <tr>
+                                    <th><label for="{{ form.origin.auto_id }}">{{ form.origin.label }}
+                                          {{ tip(None, _("The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on.")) }}</label></th>
+                                    <td>{{ form.origin }}{{ form.origin.errors }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="{{ form.site_permissions.auto_id }}">{{ form.site_permissions.label }}
+                                    {{ tip(None, _("The permission(s) the generated add-on will grant on the origin.")) }}</label></th>
+                                    <td>{{ form.site_permissions }}{{ form.site_permissions.errors }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="listing-footer">
+                            <button type="submit">{{ _('Submit') }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {% endif %}
+    </section>
+{% endblock content %}
+

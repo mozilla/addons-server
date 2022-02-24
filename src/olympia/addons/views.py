@@ -9,10 +9,15 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 
 from elasticsearch_dsl import Q, query, Search
-from rest_framework import exceptions, serializers
+from rest_framework import exceptions, serializers, status
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.mixins import (
+    CreateModelMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+)
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
@@ -23,20 +28,30 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import get_outgoing_url
+from olympia.api.authentication import (
+    JWTKeyAuthentication,
+    SessionIDAuthentication,
+    WebTokenAuthentication,
+)
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
+    AllowIfNotMozillaDisabled,
+    AllowIfNotSitePermission,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
     AllowListedViewerOrReviewer,
     AllowUnlistedViewerOrReviewer,
     AnyOf,
+    APIGatePermission,
     GroupPermission,
     RegionalRestriction,
 )
+from olympia.api.throttling import addon_submission_throttles
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES_BY_ID
+from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.search.filters import (
     AddonAppQueryParam,
     AddonAppVersionQueryParam,
@@ -49,6 +64,7 @@ from olympia.search.filters import (
     SortingFilter,
 )
 from olympia.translations.query import order_by_translation
+from olympia.amo.utils import StopWatch
 from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
@@ -58,13 +74,15 @@ from .serializers import (
     AddonEulaPolicySerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
+    DeveloperVersionSerializer,
+    DeveloperListVersionSerializer,
     ESAddonAutoCompleteSerializer,
     ESAddonSerializer,
     LanguageToolsSerializer,
     ReplacementAddonSerializer,
     StaticCategorySerializer,
     VersionSerializer,
-    VersionListSerializer,
+    ListVersionSerializer,
 )
 from .utils import (
     get_addon_recommendations,
@@ -174,14 +192,28 @@ def find_replacement_addon(request):
     return redirect(replace_url, permanent=False)
 
 
-class AddonViewSet(RetrieveModelMixin, GenericViewSet):
+class AddonViewSet(
+    CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet
+):
+    write_permission_classes = [
+        APIGatePermission('addon-submission-api'),
+        AllowAddonAuthor,
+        AllowIfNotMozillaDisabled,
+        AllowIfNotSitePermission,
+        IsSubmissionAllowedFor,
+    ]
     permission_classes = [
         AnyOf(
             AllowReadOnlyIfPublic,
             AllowAddonAuthor,
             AllowListedViewerOrReviewer,
             AllowUnlistedViewerOrReviewer,
-        ),
+        )
+    ]
+    authentication_classes = [
+        JWTKeyAuthentication,
+        WebTokenAuthentication,
+        SessionIDAuthentication,
     ]
     georestriction_classes = [
         RegionalRestriction | GroupPermission(amo.permissions.ADDONS_EDIT)
@@ -189,6 +221,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
+    throttle_classes = addon_submission_throttles
 
     def get_queryset(self):
         """Return queryset to be used for the view."""
@@ -216,7 +249,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
     def get_serializer_class(self):
         # Override serializer to use serializer_class_with_unlisted_data if
         # we are allowed to access unlisted data.
-        obj = getattr(self, 'instance')
+        obj = getattr(self, 'instance', None)
         request = self.request
         if acl.check_unlisted_addons_viewer_or_reviewer(request) or (
             obj
@@ -240,7 +273,8 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         for restriction in self.get_georestrictions():
             if not restriction.has_permission(request, self):
                 raise UnavailableForLegalReasons()
-
+        if self.action in ('create', 'update', 'partial_update'):
+            self.permission_classes = self.write_permission_classes
         super().check_permissions(request)
 
     def check_object_permissions(self, request, obj):
@@ -257,6 +291,8 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             if not restriction.has_object_permission(request, self, obj):
                 raise UnavailableForLegalReasons()
 
+        if self.action in ('update', 'partial_update'):
+            self.permission_classes = self.write_permission_classes
         try:
             super().check_object_permissions(request, obj)
         except exceptions.APIException as exc:
@@ -297,7 +333,8 @@ class AddonChildMixin:
 
         `permission_classes` can be use passed to change which permission
         classes the parent viewset will be used when loading the Addon object,
-        otherwise AddonViewSet.permission_classes will be used.
+        otherwise AddonViewSet.permission_classes will be used for safe actions and
+        AddonViewSet.write_permission_classes for unsafe actions.
 
         `georestriction_classes` can be use passed to change which regional
         restriction classes the parent viewset will be used when loading the
@@ -307,7 +344,11 @@ class AddonChildMixin:
             return self.addon_object
 
         if permission_classes is None:
-            permission_classes = AddonViewSet.permission_classes
+            permission_classes = (
+                AddonViewSet.write_permission_classes
+                if self.action in ('create', 'update', 'partial_update')
+                else AddonViewSet.permission_classes
+            )
         if georestriction_classes is None:
             georestriction_classes = AddonViewSet.georestriction_classes
 
@@ -322,57 +363,88 @@ class AddonChildMixin:
 
 
 class AddonVersionViewSet(
-    AddonChildMixin, RetrieveModelMixin, ListModelMixin, GenericViewSet
+    AddonChildMixin,
+    CreateModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    ListModelMixin,
+    GenericViewSet,
 ):
     # Permissions are always checked against the parent add-on in
-    # get_addon_object() using AddonViewSet.permission_classes so we don't need
+    # get_addon_object() using AddonViewSet's permissions so we don't need
     # to set any here. Some extra permission classes are added dynamically
     # below in check_permissions() and check_object_permissions() depending on
     # what the client is requesting to see.
     permission_classes = []
+    authentication_classes = [
+        JWTKeyAuthentication,
+        WebTokenAuthentication,
+        SessionIDAuthentication,
+    ]
+    throttle_classes = addon_submission_throttles
 
     def get_serializer_class(self):
+        use_developer_serializer = getattr(
+            self.request, 'user', None
+        ) and acl.author_or_unlisted_viewer_or_reviewer(
+            self.request, self.get_addon_object()
+        )
+
         if (
             self.action == 'list'
             and self.request
             and not is_gate_active(self.request, 'keep-license-text-in-version-list')
         ):
-            serializer_class = VersionListSerializer
+            serializer_class = (
+                ListVersionSerializer
+                if not use_developer_serializer
+                else DeveloperListVersionSerializer
+            )
         else:
-            serializer_class = VersionSerializer
+            serializer_class = (
+                VersionSerializer
+                if not use_developer_serializer
+                else DeveloperVersionSerializer
+            )
         return serializer_class
+
+    def get_serializer(self, *args, **kwargs):
+        return super().get_serializer(
+            *args, **{**kwargs, 'addon': self.get_addon_object()}
+        )
 
     def check_permissions(self, request):
         requested = self.request.GET.get('filter')
-        if self.action == 'list':
-            if requested == 'all_with_deleted':
-                # To see deleted versions, you need Addons:ViewDeleted.
-                self.permission_classes = [
-                    GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)
-                ]
-            elif requested == 'all_with_unlisted':
-                # To see unlisted versions, you need to be add-on author or
-                # unlisted reviewer.
-                self.permission_classes = [
-                    AnyOf(AllowUnlistedViewerOrReviewer, AllowAddonAuthor)
-                ]
-            elif requested == 'all_without_unlisted':
-                # To see all listed versions (not just public ones) you need to
-                # be add-on author or reviewer.
-                self.permission_classes = [
-                    AnyOf(
-                        AllowListedViewerOrReviewer,
-                        AllowUnlistedViewerOrReviewer,
-                        AllowAddonAuthor,
-                    )
-                ]
-            # When listing, we can't use AllowRelatedObjectPermissions() with
-            # check_permissions(), because AllowAddonAuthor needs an author to
-            # do the actual permission check. To work around that, we call
-            # super + check_object_permission() ourselves, passing down the
-            # addon object directly.
-            return super().check_object_permissions(request, self.get_addon_object())
-        super().check_permissions(request)
+        if requested == 'all_with_deleted':
+            # To see deleted versions, you need Addons:ViewDeleted.
+            self.permission_classes = [
+                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)
+            ]
+        elif requested == 'all_with_unlisted':
+            # To see unlisted versions, you need to be add-on author or
+            # unlisted reviewer.
+            self.permission_classes = [
+                AnyOf(AllowUnlistedViewerOrReviewer, AllowAddonAuthor)
+            ]
+        elif requested == 'all_without_unlisted':
+            # To see all listed versions (not just public ones) you need to
+            # be add-on author or reviewer.
+            self.permission_classes = [
+                AnyOf(
+                    AllowListedViewerOrReviewer,
+                    AllowUnlistedViewerOrReviewer,
+                    AllowAddonAuthor,
+                )
+            ]
+        # When listing, we can't use AllowRelatedObjectPermissions() with
+        # check_permissions(), because AllowAddonAuthor needs an author to
+        # do the actual permission check. To work around that, we call
+        # super + check_object_permission() ourselves, passing down the
+        # addon object directly.
+        # Note that just calling get_addon_object() will trigger permission
+        # checks on its own using AddonViewSet permission classes, regardless
+        # of what permission classes are set on self.
+        return super().check_object_permissions(request, self.get_addon_object())
 
     def check_object_permissions(self, request, obj):
         # If the instance is marked as deleted and the client is not allowed to
@@ -398,6 +470,7 @@ class AddonVersionViewSet(
                     'addon', [AnyOf(AllowListedViewerOrReviewer, AllowAddonAuthor)]
                 )
             ]
+
         super().check_object_permissions(request, obj)
 
     def get_queryset(self):
@@ -435,8 +508,9 @@ class AddonVersionViewSet(
             queryset = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
         else:
             queryset = addon.versions.filter(
-                files__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
-            ).distinct()
+                file__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
+            )
+        # FIXME: we want to prefetch file.webext_permission instances in here
         if (
             self.action == 'list'
             and self.request
@@ -451,6 +525,96 @@ class AddonVersionViewSet(
             # doesn't scale as nicely in those versions.
             queryset = queryset.transform(Version.transformer_license)
         return queryset
+
+    def create(self, request, *args, **kwargs):
+        addon = self.get_addon_object()
+        has_source = request.data.get('source')
+        if has_source:
+            timer = StopWatch('addons.views.AddonVersionViewSet.create.')
+            timer.start()
+            log.info(
+                'create, source upload received, addon.slug: %s',
+                addon.slug,
+            )
+            timer.log_interval('1.source_received')
+
+        serializer = self.get_serializer(data=request.data)
+        if has_source:
+            log.info(
+                'create, serializer loaded, addon.slug: %s',
+                addon.slug,
+            )
+            timer.log_interval('2.serializer_loaded')
+
+        serializer.is_valid(raise_exception=True)
+        if has_source:
+            log.info(
+                'create, serializer validated, addon.slug: %s',
+                addon.slug,
+            )
+            timer.log_interval('3.serializer_validated')
+
+        self.perform_create(serializer)
+        if has_source:
+            log.info(
+                'create, data saved, addon.slug: %s',
+                addon.slug,
+            )
+            timer.log_interval('4.data_saved')
+
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=status.HTTP_201_CREATED, headers=headers
+        )
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        addon = self.get_addon_object()
+        has_source = request.data.get('source')
+        if has_source:
+            timer = StopWatch('addons.views.AddonVersionViewSet.update.')
+            timer.start()
+            log.info(
+                'update, source upload received, addon.slug: %s, version.id: %s',
+                addon.slug,
+                instance.id,
+            )
+            timer.log_interval('1.source_received')
+
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        if has_source:
+            log.info(
+                'update, serializer loaded, addon.slug: %s, version.id: %s',
+                addon.slug,
+                instance.id,
+            )
+            timer.log_interval('2.serializer_loaded')
+
+        serializer.is_valid(raise_exception=True)
+        if has_source:
+            log.info(
+                'update, serializer validated, addon.slug: %s, version.id: %s',
+                addon.slug,
+                instance.id,
+            )
+            timer.log_interval('3.serializer_validated')
+
+        self.perform_update(serializer)
+        if has_source:
+            log.info(
+                'update, data saved, addon.slug: %s, version.id: %s',
+                addon.slug,
+                instance.id,
+            )
+            timer.log_interval('4.data_saved')
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
 
 
 class AddonSearchView(ListAPIView):
@@ -696,6 +860,7 @@ class LanguageToolsView(ListAPIView):
             # we don't need, but some language packs or dictionaries have
             # custom names, so we can't use a generic one for them...
             .only_translations()
+            # FIXME: we want to prefetch file.webext_permission instances in here
             # Since we're fetching everything with no pagination, might as well
             # not order it.
             .order_by()
@@ -732,7 +897,7 @@ class LanguageToolsView(ListAPIView):
                 versions__apps__min__version_int__lte=appversions['min'],
                 versions__apps__max__version_int__gte=appversions['max'],
                 versions__channel=amo.RELEASE_CHANNEL_LISTED,
-                versions__files__status=amo.STATUS_APPROVED,
+                versions__file__status=amo.STATUS_APPROVED,
             )
             .distinct()
         )

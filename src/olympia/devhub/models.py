@@ -32,9 +32,12 @@ class RssKey(models.Model):
 
 class BlogPost(ModelBase):
     id = PositiveAutoField(primary_key=True)
+    post_id = models.IntegerField(null=True)
     title = models.CharField(max_length=255)
     date_posted = models.DateField(default=datetime.now)
+    date_modified = models.DateTimeField(default=datetime.now)
     permalink = models.CharField(max_length=255)
 
     class Meta:
         db_table = 'blogposts'
+        ordering = ('-date_posted',)

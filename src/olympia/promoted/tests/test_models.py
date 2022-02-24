@@ -105,7 +105,7 @@ class TestPromotedAddon(TestCase):
             addon=addon_factory(version_kw={'version': '0.123a'}),
             group_id=promoted.SPOTLIGHT.id,
         )
-        file_ = promo.addon.current_version.all_files[0]
+        file_ = promo.addon.current_version.file
         file_.update(filename='webextension.xpi')
         with amo.tests.copy_file(
             'src/olympia/files/fixtures/files/webextension.xpi', file_.file_path
@@ -146,7 +146,7 @@ class TestPromotedAddon(TestCase):
         assert addon.current_version is not None
         assert promo.get_resigned_version_number() is None
 
-        addon.current_version.current_file.update(status=amo.STATUS_APPROVED)
+        addon.current_version.file.update(status=amo.STATUS_APPROVED)
         assert promo.get_resigned_version_number() == '0.123a.1-signed'
 
         addon.current_version.update(version='123.4.1-signed')

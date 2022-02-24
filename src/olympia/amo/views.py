@@ -1,15 +1,17 @@
 import json
 import os
+import re
 import sys
 
 import django
-from django import http
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.contrib.sitemaps.views import x_robots_tag
-from django.core.exceptions import ViewDoesNotExist
+from django.core.exceptions import PermissionDenied, ViewDoesNotExist
 from django.core.paginator import EmptyPage, PageNotAnInteger
 from django.db.transaction import non_atomic_requests
-from django.http import Http404, HttpResponse, JsonResponse
+from django.http import Http404, HttpResponse, HttpResponseNotFound, JsonResponse
+from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
 
@@ -18,9 +20,8 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-import olympia
 from olympia import amo
-from olympia.amo.utils import HttpResponseXSendFile, render, use_fake_fxa
+from olympia.amo.utils import HttpResponseXSendFile, use_fake_fxa
 from olympia.api.exceptions import base_500_data
 from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
@@ -29,30 +30,47 @@ from . import monitors
 from .sitemap import get_sitemap_path, get_sitemaps, render_index_xml
 
 
-sitemap_log = olympia.core.logger.getLogger('z.monitor')
-
-
 @never_cache
 @non_atomic_requests
-def monitor(request):
+def heartbeat(request):
     # For each check, a boolean pass/fail status to show in the template
     status_summary = {}
-    results = {}
 
-    checks = ['memcache', 'libraries', 'elastic', 'path', 'rabbitmq', 'signer']
+    checks = [
+        'memcache',
+        'libraries',
+        'elastic',
+        'path',
+        'rabbitmq',
+        'signer',
+        'database',
+    ]
 
     for check in checks:
-        with statsd.timer('monitor.%s' % check) as timer:
-            status, result = getattr(monitors, check)()
+        with statsd.timer('monitor.%s' % check):
+            status, _ = getattr(monitors, check)()
         # state is a string. If it is empty, that means everything is fine.
         status_summary[check] = {'state': not status, 'status': status}
-        results['%s_results' % check] = result
-        results['%s_timer' % check] = timer.ms
 
     # If anything broke, send HTTP 500.
     status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
 
-    return http.HttpResponse(json.dumps(status_summary), status=status_code)
+    return JsonResponse(status_summary, status=status_code)
+
+
+@never_cache
+@non_atomic_requests
+def client_info(request):
+    if getattr(settings, 'ENV', None) != 'dev':
+        raise PermissionDenied
+    keys = (
+        'HTTP_USER_AGENT',
+        'HTTP_X_COUNTRY_CODE',
+        'HTTP_X_FORWARDED_FOR',
+        'REMOTE_ADDR',
+    )
+    data = {key: request.META.get(key) for key in keys}
+    return JsonResponse(data)
 
 
 @non_atomic_requests
@@ -60,16 +78,18 @@ def robots(request):
     """Generate a robots.txt"""
     _service = request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN
     if _service or not settings.ENGAGE_ROBOTS:
-        template = 'User-agent: *\nDisallow: /'
+        response = HttpResponse('User-agent: *\nDisallow: /', content_type='text/plain')
     else:
         ctx = {
             'apps': amo.APP_USAGE,
             'mozilla_user_id': settings.TASK_USER_ID,
             'mozilla_user_username': 'mozilla',
         }
-        template = render(request, 'amo/robots.html', ctx)
+        response = TemplateResponse(
+            request, 'amo/robots.html', context=ctx, content_type='text/plain'
+        )
 
-    return HttpResponse(template, content_type='text/plain')
+    return response
 
 
 @non_atomic_requests
@@ -80,19 +100,31 @@ def contribute(request):
 
 @non_atomic_requests
 def handler403(request, exception=None, **kwargs):
-    return render(request, 'amo/403.html', status=403)
+    return TemplateResponse(request, 'amo/403.html', status=403)
 
 
 @non_atomic_requests
 def handler404(request, exception=None, **kwargs):
     if getattr(request, 'is_api', False):
-        # It's a v3+ api request
+        # It's a v3+ api request (/api/vX/ or /api/auth/)
         return JsonResponse({'detail': str(NotFound.default_detail)}, status=404)
-    return render(request, 'amo/404.html', status=404)
+    elif re.match(r'^/api/\d\.\d/', getattr(request, 'path_info', '')):
+        # It's a legacy API request in the form of /api/X.Y/. We use path_info,
+        # which is set in LocaleAndAppURLMiddleware, because there might be a
+        # locale and app prefix we don't care about in the URL.
+        response = HttpResponseNotFound()
+        patch_cache_control(response, max_age=60 * 60 * 48)
+        return response
+    return TemplateResponse(request, 'amo/404.html', status=404)
 
 
 @non_atomic_requests
 def handler500(request, **kwargs):
+    # To avoid database queries, the handler500() cannot evaluate the user - so
+    # we need to avoid making log calls (our custom adapter would fetch the
+    # user from the current thread) and set request.user to anonymous to avoid
+    # its usage in context processors.
+    request.user = AnonymousUser()
     if getattr(request, 'is_api', False):
         # API exceptions happening in DRF code would be handled with by our
         # custom_exception_handler function in olympia.api.exceptions, but in
@@ -101,7 +133,7 @@ def handler500(request, **kwargs):
         return HttpResponse(
             json.dumps(base_500_data()), content_type='application/json', status=500
         )
-    return render(request, 'amo/500.html', status=500)
+    return TemplateResponse(request, 'amo/500.html', status=500)
 
 
 @non_atomic_requests
@@ -113,29 +145,31 @@ def csrf_failure(request, reason=''):
         'no_referer': reason == REASON_NO_REFERER,
         'no_cookie': reason == REASON_NO_CSRF_COOKIE,
     }
-    return render(request, 'amo/403.html', ctx, status=403)
-
-
-@non_atomic_requests
-def loaded(request):
-    return http.HttpResponse(
-        '%s' % request.META['wsgi.loaded'], content_type='text/plain'
-    )
+    return TemplateResponse(request, 'amo/403.html', context=ctx, status=403)
 
 
 @non_atomic_requests
 def version(request):
     path = os.path.join(settings.ROOT, 'version.json')
-    py_info = sys.version_info
     with open(path) as f:
         contents = json.loads(f.read())
+
+    py_info = sys.version_info
     contents['python'] = '{major}.{minor}'.format(
         major=py_info.major, minor=py_info.minor
     )
     contents['django'] = '{major}.{minor}'.format(
         major=django.VERSION[0], minor=django.VERSION[1]
     )
-    return HttpResponse(json.dumps(contents), content_type='application/json')
+
+    path = os.path.join(settings.ROOT, 'package.json')
+    with open(path) as f:
+        data = json.loads(f.read())
+        contents['addons-linter'] = data['dependencies']['addons-linter']
+
+    res = HttpResponse(json.dumps(contents), content_type='application/json')
+    res.headers['Access-Control-Allow-Origin'] = '*'
+    return res
 
 
 def _frontend_view(*args, **kwargs):
@@ -164,10 +198,10 @@ def fake_fxa_authorization(request):
     interesting_accounts = UserProfile.objects.exclude(groups=None).exclude(
         deleted=True
     )[:25]
-    return render(
+    return TemplateResponse(
         request,
         'amo/fake_fxa_authorization.html',
-        {'interesting_accounts': interesting_accounts},
+        context={'interesting_accounts': interesting_accounts},
     )
 
 

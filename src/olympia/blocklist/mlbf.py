@@ -4,13 +4,13 @@ import secrets
 from collections import defaultdict
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.utils.functional import cached_property
 
 from filtercascade import FilterCascade
 from filtercascade.fileformats import HashAlgorithm
 
 import olympia.core.logger
+from olympia.amo.utils import SafeStorage
 from olympia.constants.blocklist import BASE_REPLACE_THRESHOLD
 
 
@@ -58,7 +58,6 @@ def fetch_blocked_from_db():
         File.objects.filter(
             version__addon__addonguid__guid__in=blocks_guids,
             is_signed=True,
-            is_webextension=True,
         )
         .order_by('version_id')
         .values('version__addon__addonguid__guid', 'version__version', 'version_id')
@@ -100,6 +99,7 @@ class MLBF:
     def __init__(self, id_):
         # simplify later code by assuming always a string
         self.id = str(id_)
+        self.storage = SafeStorage(user_media='mlbf_storage')
 
     @classmethod
     def hash_filter_inputs(cls, input_list):
@@ -119,7 +119,7 @@ class MLBF:
 
     def write_blocked_items(self):
         blocked_path = self._blocked_path
-        with storage.open(blocked_path, 'w') as json_file:
+        with self.storage.open(blocked_path, 'w') as json_file:
             log.info(f'Writing to file {blocked_path}')
             json.dump(self.blocked_items, json_file)
 
@@ -133,7 +133,7 @@ class MLBF:
 
     def write_not_blocked_items(self):
         not_blocked_path = self._not_blocked_path
-        with storage.open(not_blocked_path, 'w') as json_file:
+        with self.storage.open(not_blocked_path, 'w') as json_file:
             log.info(f'Writing to file {not_blocked_path}')
             json.dump(self.not_blocked_items, json_file)
 
@@ -147,7 +147,7 @@ class MLBF:
 
     @cached_property
     def stash_json(self):
-        with storage.open(self._stash_path, 'r') as json_file:
+        with self.storage.open(self._stash_path, 'r') as json_file:
             return json.load(json_file)
 
     def generate_and_write_filter(self):
@@ -162,7 +162,7 @@ class MLBF:
 
         # write bloomfilter
         mlbf_path = self.filter_path
-        with storage.open(mlbf_path, 'wb') as filter_file:
+        with self.storage.open(mlbf_path, 'wb') as filter_file:
             log.info(f'Writing to file {mlbf_path}')
             bloomfilter.tofile(filter_file)
             stats['mlbf_filesize'] = os.stat(mlbf_path).st_size
@@ -191,7 +191,7 @@ class MLBF:
         }
         # write stash
         stash_path = self._stash_path
-        with storage.open(stash_path, 'w') as json_file:
+        with self.storage.open(stash_path, 'w') as json_file:
             log.info(f'Writing to file {stash_path}')
             json.dump(self.stash_json, json_file)
 
@@ -229,12 +229,12 @@ class MLBF:
 class StoredMLBF(MLBF):
     @cached_property
     def blocked_items(self):
-        with storage.open(self._blocked_path, 'r') as json_file:
+        with self.storage.open(self._blocked_path, 'r') as json_file:
             return json.load(json_file)
 
     @cached_property
     def not_blocked_items(self):
-        with storage.open(self._not_blocked_path, 'r') as json_file:
+        with self.storage.open(self._not_blocked_path, 'r') as json_file:
             return json.load(json_file)
 
 

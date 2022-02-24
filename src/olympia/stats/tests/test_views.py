@@ -7,7 +7,7 @@ from unittest import mock
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.urls import reverse
-from django.utils.encoding import force_str
+from django.utils.encoding import force_str, force_bytes
 
 from waffle.testutils import override_switch
 
@@ -182,6 +182,23 @@ class TestListedAddons(StatsTestCase):
         # Developers should see stats
         self.client.login(email=self.someuser.email)
         self._check_it(self.public_views_gen(format='json'), 200)
+
+        # Admins should see stats
+        self.login_as_admin()
+        self._check_it(self.public_views_gen(format='json'), 200)
+
+    def test_stats_for_deleted_addon(self):
+        self.addon_4.update(status=amo.STATUS_DELETED)
+
+        # Public users should not see stats
+        self.client.logout()
+        # It is a 404 (and not a 403) before the decorator first tries to
+        # retrieve the add-on.
+        self._check_it(self.public_views_gen(format='json'), 404)
+
+        # Developers should not see stats
+        self.client.login(email=self.someuser.email)
+        self._check_it(self.public_views_gen(format='json'), 404)
 
         # Admins should see stats
         self.login_as_admin()
@@ -1128,6 +1145,29 @@ class TestStatsWithBigQuery(TestCase):
         assert b'by Medium' in response.content
         assert b'by Content' in response.content
         assert b'by Campaign' in response.content
+        assert (
+            force_bytes(reverse('stats.downloads', args=[self.addon.id]))
+            not in response.content
+        )
+        assert (
+            force_bytes(reverse('stats.downloads', args=[self.addon.slug]))
+            in response.content
+        )
+
+    def test_links_for_deleted_addon(self):
+        self.addon.delete()
+        url = reverse('stats.overview', args=[self.addon.id])
+        # Login as privileged user to be able to access the stats for a deleted add-on.
+        self.client.logout()
+        self.grant_permission(self.user, '*:*')
+        self.client.login(email=self.user.email)
+
+        response = self.client.get(url)
+
+        assert (
+            force_bytes(reverse('stats.downloads', args=[self.addon.id]))
+            in response.content
+        )
 
     def test_no_download_stats_for_purely_unlisted_addons(self):
         self.make_addon_unlisted(self.addon)

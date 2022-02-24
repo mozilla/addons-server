@@ -31,12 +31,19 @@ class ShelfFooterField(serializers.Serializer):
 
         url = data.get('url')
         if not url:
-            if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
-                search_url = reverse('search.search')
+            if obj.endpoint == Shelf.Endpoints.SEARCH:
                 query_string = '&'.join(
                     f'{key}={value}' for key, value in obj.get_param_dict().items()
                 )
-                fallback = absolutify(f'{search_url}?{query_string}')
+                fallback = absolutify(f'{reverse("search.search")}?{query_string}')
+            elif obj.endpoint == Shelf.Endpoints.RANDOM_TAG:
+                tag_page_url = reverse('tags.detail', kwargs={'tag_name': obj.tag})
+                query_string = '&'.join(
+                    f'{key}={value}'
+                    for key, value in obj.get_param_dict().items()
+                    if key != 'tag'
+                )
+                fallback = absolutify(f'{tag_page_url}?{query_string}')
             elif obj.endpoint == Shelf.Endpoints.COLLECTIONS:
                 fallback = absolutify(
                     reverse(
@@ -86,6 +93,22 @@ class ShelfSerializer(serializers.ModelSerializer):
             'addons',
         ]
 
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        if obj.endpoint == Shelf.Endpoints.RANDOM_TAG:
+            # Replace {tag} token in title and footer text
+            data['title'] = {
+                locale: (value.replace('{tag}', obj.tag) if value is not None else None)
+                for locale, value in (data.get('title') or {}).items()
+            } or None
+            data['footer']['text'] = {
+                locale: (value.replace('{tag}', obj.tag) if value is not None else None)
+                for locale, value in (
+                    (data.get('footer') or {}).get('text') or {}
+                ).items()
+            } or None
+        return data
+
     def get_url(self, obj):
         if obj.endpoint in (Shelf.Endpoints.SEARCH, Shelf.Endpoints.RANDOM_TAG):
             api = drf_reverse('addon-search', request=self.context.get('request'))
@@ -128,16 +151,15 @@ class ShelfSerializer(serializers.ModelSerializer):
             ).get_data(obj.get_count())
             addons = [item['addon'] for item in collection_addons if 'addon' in item]
         else:
-            addons = None
+            addons = []
 
         real_request.GET = orginal_get
         return addons
 
 
-class ShelfEditorialSerializer(ShelfSerializer):
+class ShelfEditorialSerializer(serializers.ModelSerializer):
     title = serializers.CharField()
     footer_text = serializers.CharField()
-    addons = None  # we don't the results for this serializer
 
     class Meta:
         model = Shelf

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-07-29 17:14+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-04-09 00:33+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjerne"
-msgstr[1] "{0} stjerner"
 
 msgid "There was a problem contacting the server."
 msgstr "Det gjekk ikkje å kontakte tenaren."
@@ -94,18 +89,6 @@ msgstr[1] "Utvidinga di vart validert utan feil og {0} meldingar."
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Utvidinga di vart validert utan feil og meldingar."
 
-msgid "Your submission will be automatically signed."
-msgstr "Bidraget ditt vert automatisk signert."
-
-msgid "WebExtension upgrade"
-msgstr "WebExtension-oppgradering"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Vi tillèt og oppmuntrar ei oppgradering, men du kan ikkje angra denne prosessen. Når brukarane dine har WebExtension installert, vil dei ikkje kunna installera ei utviding med arv."
-
-msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Flyttar ei Firefox-utviding med arv på MDN"
-
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inkluder detaljerte versjonsmerknadar (dette kan gjerast i neste steg)."
 
@@ -142,36 +125,6 @@ msgstr "Bilde må vere anten PNG eller JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoar må vere i formatet WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Dette temaet er inkompatibelt med din versjon av {0}"
-
-msgid "Flagged for review"
-msgstr "Flagga for vurdering"
-
-msgid "Your input is required"
-msgstr "Inndata er påkravd"
-
-msgid "Marked for deletion"
-msgstr "Markert for sletting"
-
-msgid "Updating results&hellip;"
-msgstr "Oppdaterer resultat &hellip;"
-
-msgid "Category"
-msgstr "Kategori"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Søk i tema etter <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Søk i appar etter <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Søk i tillegg etter <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Bruk original"
 
 msgid "Week of {0}"
 msgstr "Veke {0}"
@@ -649,41 +602,6 @@ msgstr "Dato"
 msgid "Other"
 msgstr "Anna"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Godta og installer"
-
-msgid "Add to {0}"
-msgstr "Legg til i {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Installer for {0} likevel"
-
-msgid "Download for {0} anyway"
-msgstr "Last ned til {0} likevel"
-
-msgid "Not available for your platform"
-msgstr "Ikkje tilgjengeleg for di platform"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Denne utvidinga er ikkje kompatibel med versjonen din av {0}."
-
-msgid "View other versions"
-msgstr "Vis andre versjonar"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Verkar med {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Fungerar med {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Berre med Firefox — Last ned Firefox no!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Beklagar, du må ha ein Mozilla-basert nettlesar (som Firefox) for å installera eit søkjetillegg."
-
 msgid "Changes Saved"
 msgstr "Endringane lagra"
 
@@ -703,12 +621,6 @@ msgstr "Endringar i bildet vert behandla"
 
 msgid "Select an application first"
 msgstr "Vel ein applikasjon først"
-
-msgid "No results found."
-msgstr "Resultatlaust."
-
-msgid "Loading..."
-msgstr "Lastar …"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -749,12 +661,6 @@ msgstr "Evaluer tekst"
 
 msgid "Review notes found"
 msgstr "Fann ingen evalueringar"
-
-msgid "Average Reviews"
-msgstr "Gjennomsnittlege vurderingar"
-
-msgid "Number of Reviews"
-msgstr "Tal på vurderingar"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Maksimum opplastingsstorleik er {0} - vel eit mindre bakgrunnsbilde."
