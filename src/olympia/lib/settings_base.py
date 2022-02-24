@@ -1528,7 +1528,13 @@ SENTRY_CONFIG = {
     'before_send': scrub_sensitive_data,
 }
 # List of fields to scrub in our custom scrub_sensitive_data() callback.
-SENTRY_SENSITIVE_FIELDS = ('email', 'ip_address', 'REMOTE_ADDR')
+SENTRY_SENSITIVE_FIELDS = (
+    'email',
+    'ip_address',
+    'REMOTE_ADDR',
+    'remoteAddressChain',
+    'X-Forwarded-For',
+)
 
 
 # We need to load this before sentry_sdk.init or our reverse replacement is too late.
