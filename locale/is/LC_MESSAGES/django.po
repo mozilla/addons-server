@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-24 17:22+0000\n"
+"PO-Revision-Date: 2022-02-24 17:26+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1598,8 +1598,8 @@ msgstr ""
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Þú getur aðeins haft {0} flokk."
+msgstr[1] "Þú getur aðeins haft {0} flokka."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
@@ -1613,8 +1613,8 @@ msgstr ""
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Þú ert með {0} merki ofaukið."
+msgstr[1] "Þú ert með {0} of mörg merki."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -1672,7 +1672,7 @@ msgid "Invalid or broken archive."
 msgstr "Ógild eða skemmd safnskrá."
 
 msgid "View current"
-msgstr ""
+msgstr "Skoða núverandi"
 
 msgid "Invalid version range."
 msgstr ""
@@ -4884,10 +4884,10 @@ msgid "Review Guide"
 msgstr "Leiðbeiningar fyrir umsagnir"
 
 msgid "Content Review"
-msgstr ""
+msgstr "Yfirferð á efni"
 
 msgid "Content Review ({0})"
-msgstr ""
+msgstr "Yfirferð á efni ({0})"
 
 msgid "New ({0})"
 msgstr "Nýtt ({0})"
