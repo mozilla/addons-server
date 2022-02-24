@@ -1,10 +1,11 @@
+import collections
+import datetime
 import hashlib
+import io
+import json
 import os
 import shutil
 import zipfile
-import collections
-import datetime
-import json
 
 from django.db import transaction
 from django.conf import settings
@@ -23,7 +24,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import AddonUser
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase, version_factory
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import version_int
@@ -47,8 +48,9 @@ class TestSigning(TestCase):
         super().setUp()
 
         # Change addon file name
-        self.addon = amo.tests.addon_factory(file_kw={'filename': 'webextension.xpi'})
-        self.addon.update(guid='xxxxx')
+        self.addon = addon_factory(
+            guid='xxxxx', file_kw={'filename': 'webextension.xpi'}
+        )
         self.version = self.addon.current_version
         self.file_ = self.version.file
 
@@ -230,6 +232,99 @@ class TestSigning(TestCase):
             'Name: META-INF/cose.sig\n'
             'Digest-Algorithms: SHA1 SHA256\n'
         )
+
+    @override_switch('add-guid-to-manifest', active=True)
+    def test_call_signing_add_guid(self):
+        file_ = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'}
+        ).file
+        assert signing.sign_file(file_)
+
+        signature_info, manifest = _get_signature_details(file_.current_file_path)
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 4
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
+            'Manifest-Version: 1.0\n\n'
+            'Name: README.md\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: MAajMoNW9rYdgU0VwiTJxfh9TF0=\n'
+            'SHA256-Digest: Dj3HrJ4QDG5YPGff4YsjSqAVYKU99f3vz1ssno2Cloc=\n\n'
+            'Name: manifest.json\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: FD4jteOZK+FVFhvt/dqaLnI8Imo=\n'
+            'SHA256-Digest: 8+zdeEGRbJIsX6514drWJcSZZ4CYZgwssS3Ax1uZ/jM=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: XfaTP0MBSJPnG44lLvfsnsYjm4Y=\n'
+            'SHA256-Digest: e+Xj3yHytbNjxsAmmxCf/I3vEEyXrNKSznE0enPrG3A=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+        )
+
+    def _test_add_guid_existing_guid(self, file_):
+        with open(file_.current_file_path, 'rb') as fobj:
+            contents = fobj.read()
+        with override_switch('add-guid-to-manifest', active=False):
+            assert signing.add_guid(file_) == contents
+        with override_switch('add-guid-to-manifest', active=True):
+            assert signing.add_guid(file_) == contents
+
+    def test_add_guid_existing_guid_applications(self):
+        # self.file_ is "webextension.xpi", which already has a guid, as "applications"
+        self._test_add_guid_existing_guid(self.file_)
+
+    def test_add_guid_existing_guid_browser_specific_settings(self):
+        file_ = version_factory(
+            addon=self.addon,
+            file_kw={'filename': 'webextension_browser_specific_settings.xpi'},
+        ).file
+        self._test_add_guid_existing_guid(file_)
+
+    def test_add_guid_no_guid(self):
+        file_ = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'}
+        ).file
+        with open(file_.current_file_path, 'rb') as fobj:
+            contents = fobj.read()
+        # with the waffle off it's the same as with an existing guid
+        with override_switch('add-guid-to-manifest', active=False):
+            assert signing.add_guid(file_) == contents
+
+        # if it's on though, it's different
+        with override_switch('add-guid-to-manifest', active=True):
+            zip_blob = signing.add_guid(file_)
+            assert zip_blob != contents
+        # compare the zip contents
+        with (
+            zipfile.ZipFile(file_.current_file_path) as orig_zip,
+            zipfile.ZipFile(io.BytesIO(zip_blob)) as new_zip,
+        ):
+            for info in orig_zip.filelist:
+                if info.filename != 'manifest.json':
+                    # all other files should be the same
+                    orig_zip.open(info.filename).read() == new_zip.open(
+                        info.filename
+                    ).read()
+                else:
+                    # only manifest.json should have been updated
+                    orig_manifest = json.load(orig_zip.open(info.filename))
+                    new_manifest = json.load(new_zip.open(info.filename))
+                    assert orig_manifest != new_manifest
+                    assert new_manifest['browser_specific_settings']['gecko']['id'] == (
+                        self.file_.addon.guid
+                    )
+                    assert orig_manifest == {
+                        key: value
+                        for key, value in new_manifest.items()
+                        if key != 'browser_specific_settings'
+                    }
+            assert 'manifest.json' in (info.filename for info in orig_zip.filelist)
+            assert len(orig_zip.filelist) == len(new_zip.filelist)
 
     def test_call_signing_on_file_in_guarded_file_path(self):
         # We should be able to sign files even if the associated File instance

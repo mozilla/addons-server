@@ -1,4 +1,6 @@
 import hashlib
+import io
+import json
 import os
 import zipfile
 
@@ -60,6 +62,45 @@ def use_promoted_signer(file_obj, promo_group):
     )
 
 
+def add_guid(file_obj):
+    with storage.open(file_obj.current_file_path) as fobj:
+        # Get the file data and add the guid to the manifest if waffle switch is enabled
+        if waffle.switch_is_active('add-guid-to-manifest'):
+            with zipfile.ZipFile(fobj, mode='r') as existing_zip:
+                manifest_json = json.loads(existing_zip.read('manifest.json'))
+                if (
+                    'browser_specific_settings' not in manifest_json
+                    and manifest_json.get('applications', {}).get('gecko')
+                ):
+                    gecko_root = manifest_json['applications']['gecko']
+                else:
+                    if 'browser_specific_settings' not in manifest_json:
+                        manifest_json['browser_specific_settings'] = {}
+                    if 'gecko' not in manifest_json['browser_specific_settings']:
+                        manifest_json['browser_specific_settings']['gecko'] = {}
+                    gecko_root = manifest_json['browser_specific_settings']['gecko']
+
+                if 'id' not in gecko_root:
+                    gecko_root['id'] = file_obj.version.addon.guid
+                    new_zip_buffer = io.BytesIO()
+                    with zipfile.ZipFile(new_zip_buffer, mode='w') as new_zip:
+                        for info in existing_zip.filelist:
+                            if info.filename == 'manifest.json':
+                                new_zip.writestr(
+                                    'manifest.json',
+                                    json.dumps(manifest_json).encode('utf-8'),
+                                )
+                            else:
+                                with new_zip.open(info.filename, mode='w') as new_file:
+                                    new_file.write(existing_zip.read(info))
+                    return new_zip_buffer.getvalue()
+                else:
+                    # we don't need to add a guid, so just return fobj as normal
+                    fobj.seek(0)
+
+        return fobj.read()
+
+
 def call_signing(file_obj):
     """Sign `file_obj` via autographs /sign/file endpoint.
 
@@ -67,8 +108,7 @@ def call_signing(file_obj):
     """
     conf = settings.AUTOGRAPH_CONFIG
 
-    with storage.open(file_obj.current_file_path) as fobj:
-        input_data = force_str(b64encode(fobj.read()))
+    input_data = force_str(b64encode(add_guid(file_obj)))
 
     signing_data = {
         'input': input_data,
