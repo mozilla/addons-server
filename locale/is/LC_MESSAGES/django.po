@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-24 19:51+0000\n"
+"PO-Revision-Date: 2022-02-24 19:56+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -4188,12 +4188,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "Skipuleggðu auðveldlega heilt tonn af opnum flipum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "Búðu til og sérsníddu flipahópa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4244,12 +4244,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Þúsundir GIF-hreyfimynda innan seilingar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Auðveldasta leiðin til að stjórna YouTube-áskriftum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4526,7 +4526,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Óþjöppuð stærð er of mikil"
 
 msgid "Invalid archive."
 msgstr "Ógild safnskrá."
@@ -4539,16 +4539,16 @@ msgid "Duplicate add-on ID found."
 msgstr ""
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Útgáfunúmer ættu að vera styttri en 32 stafir."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Útgáfunúmer ættu aðeins að innihalda bókstafi, tölustafi og þessi greinarmerki: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Hámarksstærð á WebExtension þemum er {0}."
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Þú getur ekki sent inn þessa tegund af viðbótum"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
@@ -4800,13 +4800,13 @@ msgid "This will reject this version and remove it from the queue. The comments 
 msgstr ""
 
 msgid "Approve Content"
-msgstr ""
+msgstr "Samþykkja efni"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
 msgid "Confirm Approval"
-msgstr ""
+msgstr "Staðfesta samþykki"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
