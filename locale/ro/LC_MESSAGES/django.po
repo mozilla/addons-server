@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "tip"
 
@@ -311,26 +312,6 @@ msgstr "Această funcționalitate este dezactivată temporar cât realizăm ment
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Unele funcționalități de pe această pagină sunt dezactivate temporar, cât efectuăm mentenanța pe site. Te rugăm încerci din nou puțin mai târziu."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Pagina <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Sari la prima pagină"
-
-msgid "Previous"
-msgstr "Înapoi"
-
-msgid "Jump to last page"
-msgstr "Sari la ultima pagină"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Se afișează <b>%(begin)s</b>&ndash;<b>%(end)s</b> din <b>%(count)s</b>"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -718,6 +699,14 @@ msgid "Approved but waiting"
 msgstr "Aprobat, însă în așteptare"
 
 msgid "Account updated."
+msgstr "Cont actualizat."
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "Cont actualizat."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "Cont actualizat."
 
 msgid "Created: {0}."
@@ -2535,15 +2524,23 @@ msgstr "Ascunde mesajele prezente și ignorate din versiunea anterioară"
 msgid "Top"
 msgstr "Sus"
 
-msgid "Delete Add-on"
-msgstr "Șterge suplimentul"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Ștergerea suplimentului va șterge definitiv toate versiunile și fișierele pe care le-ai depus pentru acest supliment, listat sau nu. ID-ul suplimentului va fi în continuare atașat la contul tău, "
 "așa că ceilalți nu vor putea să trimită versiuni folosind același ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Ștergerea suplimentului va șterge definitiv toate versiunile și fișierele pe care le-ai depus pentru acest supliment, listat sau nu. ID-ul suplimentului va fi în continuare atașat la contul tău, "
+"așa că ceilalți nu vor putea să trimită versiuni folosind același ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Șterge suplimentul"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Introdu următorul text pentru a confirma decizia: {slug}"
@@ -4560,19 +4557,19 @@ msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Teme recomandate"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Vezi toate extensiile"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
+msgid "Translation tools"
 msgstr "Instrumente de traducere"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Blocatoare de reclame de elită"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4631,10 +4628,6 @@ msgid "See more password manager staff picks"
 msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Instrumente de traducere"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
@@ -4667,13 +4660,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Vezi mai multe extensii etichetate „{tag}”"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Blocatoare de reclame de elită"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Vezi mai multe extensii recomandate"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4787,122 +4780,6 @@ msgstr "Eroare neașteptată."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Tipul (%s) nu se potrivește cu tipul suplimentului înregistrat pe AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Ghid de recenzare"
-
-msgid "Sections"
-msgstr "Secțiuni"
-
-msgid "Some tips for writing a great review"
-msgstr "Câteva sfaturi pentru recenzii bune"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Întrebări frecvente despre recenzii"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Recenziile la suplimente sunt o modalitate de a-ți împărtăși opiniile despre suplimentele pe care le-ai instalat și utilizat. Echipa noastră de moderatori pentru recenzii își rezervă dreptul să "
-"respingă sau să elimine orice recenzie care nu se conformează la aceste reguli."
-
-msgid "Do:"
-msgstr "Așa da:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Scrie ca și când i-ai povesti unui prieten experiența ta cu suplimentul respectiv."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Fii concis(ă) și scrie recenzii ușor de înțeles."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Dă detalii specifice și utile. De exemplu:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Suplimentul a funcționat așa cum te așteptai?"
-
-msgid "What features did you like or dislike?"
-msgstr "Ce funcționalități ți-au plăcut sau nu ți-au plăcut?"
-
-msgid "Was it useful?"
-msgstr "A fost util?"
-
-msgid "Was it easy to use?"
-msgstr "A fost ușor de utilizat?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Vei continua să utilizezi acest supliment?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Acordă-ți timp să recitești recenzia înainte de a o transmite ca să minimalizezi erorile ortografice și gramaticale."
-
-msgid "Don’t:"
-msgstr "Așa nu:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Nu trimite recenzii constând numai dintr-un cuvânt, de genul „Grozav!”, „Minunat” sau „Prost”."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Nu posta probleme tehnice, cereri de asistență sau sugestii de funcționalități. Folosește opțiunile disponibile de asistență pentru fiecare supliment în parte, dacă sunt disponibile. Le găsești în "
-"coloana laterală, în dreptul secțiunii Despre acest supliment."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Nu scrie recenzii pentru suplimente pe care nu le-ai folosit personal."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Nu folosi vulgarități, obscenități sau un limbaj care ar putea fi interpretat ca răuvoitor."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Nu include HTML, linkuri, cod sursă sau fragmente de cod. Recenziile trebuie să fie numai text."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Nu face afirmații false, nu denigra autorii suplimentelor și nu îi insulta."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Nu include adrese de e-mail, numere de telefon sau alte detalii personale (ale tale sau ale altora)."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Nu posta recenzii la suplimente scrise sau reprezentate de tine sau de organizația ta."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Nu critica un supliment pentru ce a fost conceput să facă. De exemplu, nu lăsa recenzii negative pentru un supliment care afișează reclame sau necesită colectare de date când de fapt aceasta este "
-"destinația utilizării suplimentului sau dacă suplimentul necesită colectarea de date ca să poată funcționa."
-
-msgid "How can I report a problematic review?"
-msgstr "Cum pot raporta o recenzie problematică?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Te rugăm să ne raportezi sau să ne semnalezi orice recenzii îndoielnice prin clic pe „Raportează recenzia” și va fi înaintată spre moderare. Echipa noastră de moderatori va face uz de Ghidul pentru "
-"recenzii în evaluarea faptului dacă recenzia va fi ștearsă sau reintrodusă pe site."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Sunt autorul unui supliment. Pot răspunde la recenzii?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Da, autorii de suplimente pot da un singur răspuns per recenzie. Poți crea un subiect de discuție pe <a href=\"%(forum_url)s\">forumurile</a>noastre dacă vrei să te angajezi în discuții mai "
-"dezvoltate sau de urmărire a subiectului."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Sunt autorul unui supliment. Pot șterge recenzii sau evaluări defavorabile?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"În general, nu. Dar dacă recenzia nu a întrunit regulile din ghidul pentru recenzii prezentate mai sus, dă clic pe „Raportează recenzia” și supune-o atenției echipei de moderatori. Dacă recenzia "
-"include o reclamație care nu mai este de actualitate datorită lansării unei versiuni noi a suplimentului tău, este posibil să luăm în calcul ștergerea recenziei."
 
 msgid "User"
 msgstr "Utilizator"
@@ -6042,6 +5919,9 @@ msgstr "Se încarcă cele mai recente date&hellip;"
 msgid "No data available."
 msgstr "Nu există date disponibile."
 
+msgid "Previous"
+msgstr "Înapoi"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Acest tablou de bord este <b>privat</b>."
 
@@ -6185,9 +6065,6 @@ msgstr "Mergi la"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Înapoi la pagina de start a suplimentelor {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Suplimente"
 
 msgid "Add-ons"
 msgstr "Suplimente"

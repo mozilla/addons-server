@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2022-02-01 15:54+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -21,6 +21,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "тип"
 
@@ -315,26 +316,6 @@ msgstr "Эта функция временно отключена, пока мы
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Некоторые функции на этой странице временно отключены, пока мы проводим техническое обслуживание сайта. Пожалуйста, повторите попытку позже."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Страница <a href=\"%(current_pg_url)s\">%(current_pg)s</a> из <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Перейти на первую страницу"
-
-msgid "Previous"
-msgstr "Предыдущее"
-
-msgid "Jump to last page"
-msgstr "Перейти на последнюю страницу"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Показано <b>%(begin)s</b>&ndash;<b>%(end)s</b> из <b>%(count)s</b>"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -720,6 +701,14 @@ msgid "Approved but waiting"
 msgstr "Одобрено, но ожидает"
 
 msgid "Account updated."
+msgstr "Аккаунт обновлён."
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "Аккаунт обновлён."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "Аккаунт обновлён."
 
 msgid "Created: {0}."
@@ -2528,15 +2517,23 @@ msgstr "Скрыть сообщения, присутствовавшие в п�
 msgid "Top"
 msgstr "Наверх"
 
-msgid "Delete Add-on"
-msgstr "Удалить дополнение"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "При удалении вашего дополнения будут навсегда удалены все версии и файлы, которые вы для него загружали, и опубликованные и нет. ID дополнения останется привязанным к вашему аккаунту, так что "
 "другие не смогут отправить новые версии, используя тот же ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"При удалении вашего дополнения будут навсегда удалены все версии и файлы, которые вы для него загружали, и опубликованные и нет. ID дополнения останется привязанным к вашему аккаунту, так что "
+"другие не смогут отправить новые версии, используя тот же ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "Удалить дополнение"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Введите следующий текст, чтобы подтвердить ваше решение: {slug}"
@@ -4536,19 +4533,19 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Популярные темы"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Настройка YouTube"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "Посмотреть все расширения"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
+msgid "Translation tools"
 msgstr "Инструменты перевода"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Элитные блокировщики рекламы"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4604,10 +4601,6 @@ msgid "See more password manager staff picks"
 msgstr "Больше менеджеров паролей отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Инструменты перевода"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Больше инструментов перевода отобранных нашими сотрудниками"
 
@@ -4636,12 +4629,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Больше расширений с тегом \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Элитные блокировщики рекламы"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Больше средств блокировки рекламы отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Настройка YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4750,122 +4743,6 @@ msgstr "Неожиданная ошибка."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Тип (%s) не соответствует типу вашего дополнения на AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Чем следует руководствоваться при написании отзывов"
-
-msgid "Sections"
-msgstr "Секции"
-
-msgid "Some tips for writing a great review"
-msgstr "Некоторые советы по написанию хороших отзывов"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Часто задаваемые вопросы об отзывах"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Отзывы на дополнения являются для вас способом поделиться своим мнением о дополнениях, которые вы установили и использовали. Наша команда модерации отзывов оставляет за собой право отказать или "
-"удалить любой отзыв, который не соответствует этим принципам."
-
-msgid "Do:"
-msgstr "Вам следует:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Писать так, как будто вы рассказываете другу о своем опыте работы с дополнением."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Оставлять сжатые и легкие для понимания отзывы."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Приводить конкретные и полезные детали. Например:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Дополнение работало так как вы ожидали?"
-
-msgid "What features did you like or dislike?"
-msgstr "Какие возможности вам нравятся или не нравятся?"
-
-msgid "Was it useful?"
-msgstr "Было ли оно полезно?"
-
-msgid "Was it easy to use?"
-msgstr "Было ли легко его использовать?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Будете ли вы продолжать использовать это дополнение?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Найдите немного времени, чтобы прочитать свой отзыв перед отправкой, чтобы минимизировать опечатки."
-
-msgid "Don’t:"
-msgstr "Вам не следует:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Отправлять односложные отзывы такие, как «Отлично!», «замечательно» или «плохо»."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Задавать технические вопросы, вопросы поддержки или предлагать новые функции. Используйте доступные варианты поддержки для каждого дополнения, если они есть. Вы можете найти их в боковом столбце "
-"рядом с разделом «Об этом дополнении» на странице дополнения."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Писать отзывы на дополнения, которые вы лично не использовали."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Использовать ненормативную лексику, непристойные выражения или слова, которые могут быть истолкованы как ненависть."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Включать HTML, ссылки, исходный код или фрагменты кода. Отзывы должны содержать только текст."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Делать ложные заявления, унижать или лично оскорблять авторов дополнений."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Включать ваши собственные или чьи-либо еще адреса эл. почты, номера телефонов или другие персональные данные."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Размещать отзывы на дополнение, написанное или представленное вами или вашей организацией."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Критиковать дополнение за что-то, что оно предназначено делать. Например, оставлять отрицательный отзыв на дополнение за показ рекламы или требование сбора данных, когда это является целью этого "
-"дополнения, или дополнению необходим сбор данных для его работы."
-
-msgid "How can I report a problematic review?"
-msgstr "Как мне сообщить о некорректном отзыве?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Пожалуйста, сообщайте или отмечайте флагом любые сомнительные отзывы, щёлкнув по \"Сообщить об этом отзыве\" и он будет отправлен на сайт для модерации. Наша команда модераторов будет использовать "
-"Руководство по отзывам, чтобы решить, удалить ли отзыв или восстановить его на сайте."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Я автор дополнения, могу ли я отвечать на отзывы?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Да, авторы дополнений могут написать один ответ на отзыв. Вы можете создать тему для обсуждения на нашем <a href=\"%(forum_url)s\">форуме</a>, чтобы принять участие в дополнительной или последующей "
-"дискуссии."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Я автор дополнения, могу ли я удалять нелицеприятные отзывы или рейтинги?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"В общем случае, нет. Но если отзыв не соответствует изложенным выше требованиям к отзывам, вы можете щёлкнуть по ссылке \"Сообщить об этом отзыве\" и он будет отмодерирован. Если отзыв содержит "
-"жалобу, которая более не является актуальной в связи с выходом новой версии вашего дополнения, мы можем рассмотреть возможность удаления отзыва."
 
 msgid "User"
 msgstr "Пользователь"
@@ -5967,6 +5844,9 @@ msgstr "Загрузка последних данных&hellip;"
 msgid "No data available."
 msgstr "Данные отсутствуют"
 
+msgid "Previous"
+msgstr "Предыдущее"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Эта панель — <b>приватная</b>."
 
@@ -6110,9 +5990,6 @@ msgstr "Перейти"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Вернуться на домашнюю страницу дополнений {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "Дополнения для <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "Add-ons"
 msgstr "Дополнения"

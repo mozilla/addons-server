@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2022-01-22 23:24+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "סוג"
 
@@ -305,26 +306,6 @@ msgstr "תכונה זו מושבתת למשך פעילות תחזוקה באתר
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "חלק מהתכונות בדף זה מושבתות באופן זמני בזמן שאנו מבצעים עבודות התחזוקה על האתר. נא לנסות שוב בעוד זמן קצר."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "עמוד <a href=\"%(current_pg_url)s\">%(current_pg)s</a> מתוך <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "קפיצה לדף ראשון"
-
-msgid "Previous"
-msgstr "הקודם"
-
-msgid "Jump to last page"
-msgstr "קפיצה לדף אחרון"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "מוצגים <b>%(begin)s</b>&ndash;<b>%(end)s</b> מתוך <b>%(count)s</b>"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -712,6 +693,14 @@ msgid "Approved but waiting"
 msgstr "עבר אישור אך בהמתנה"
 
 msgid "Account updated."
+msgstr "החשבון עודכן."
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "החשבון עודכן."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "החשבון עודכן."
 
 msgid "Created: {0}."
@@ -2508,13 +2497,19 @@ msgstr "הסתרת הודעות שנמצאות בגרסה קודמת וזכו ל
 msgid "Top"
 msgstr "למעלה"
 
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr "מחיקת תוספת זו תמחק לצמיתות את כל הגרסאות והקבצים שהגשת עבור תוספת זו, בין אם הן מוצגות או לא. מזהה התוספת יוסיף להיות מקושר לחשבון שלך, כדי שאחרים לא יוכלו להגיש גרסאות באמצעות אותו המזהה."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr "מחיקת תוספת זו תמחק לצמיתות את כל הגרסאות והקבצים שהגשת עבור תוספת זו, בין אם הן מוצגות או לא. מזהה התוספת יוסיף להיות מקושר לחשבון שלך, כדי שאחרים לא יוכלו להגיש גרסאות באמצעות אותו המזהה."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
 msgid "Delete Add-on"
 msgstr "מחיקת תוספת"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr "מחיקת תוספת זו תמחק לצמיתות את כל הגרסאות והקבצים שהגשת עבור תוספת זו, בין אם הן מוצגות או לא. מזהה התוספת יוסיף להיות מקושר לחשבון שלך, כדי שאחרים לא יוכלו להגיש גרסאות באמצעות אותו המזהה."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "יש להקליד את הטקסט הבא כדי לאשר את החלטתך: {slug}"
@@ -4471,17 +4466,19 @@ msgid "See all extensions"
 msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "ההרחבות שמובילות לאחרונה"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "התאמה אישית של YouTube"
+msgid "Translation tools"
+msgstr "כלי תרגום"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "הרחבות לחיפוש תמונות"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "כלים לכתיבה"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4538,10 +4535,6 @@ msgid "See more password manager staff picks"
 msgstr "הצגת הרחבות מומלצות נוספות"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "כלי תרגום"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "תרגומים לשם התוספת"
@@ -4574,13 +4567,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "הצגת הרחבות נוספות המתויגות ב״{tag}״"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "הצגת הרחבות מומלצות נוספות"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "התאמה אישית של YouTube"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4686,112 +4679,6 @@ msgstr "שגיאה בלתי צפויה."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "הסוג (%s) אינו תואם את סוג התוספת שלך ב־AMO‏ (%s)"
-
-msgid "Review Guidelines"
-msgstr "כללי סקירה"
-
-msgid "Sections"
-msgstr "אגפים"
-
-msgid "Some tips for writing a great review"
-msgstr "מספר עצות לכתיבת סקירה מוצלחת"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "שאלות נפוצות על סקירות"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr "סקירות של תוספות הן הדרך שלך לשתף את דעתך בנוגע לתוספות שהתקנת והשתמשת בהן. צוות פיקוח הסקירות שומר לו את הזכות לסרב או להסיר כל סקירה שאינה עומדת בכללים אלה."
-
-msgid "Do:"
-msgstr "לעשות:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "לכתוב כאילו זאת הייתה הודעה לחבר בנוגע להתנסות שלך עם התוספת."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "לשמור על הסקירות מתומצתות וקלות להבנה."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "לספק פרטים ספציפיים ומועילים. למשל:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "האם התוספת עבדה כפי שציפית?"
-
-msgid "What features did you like or dislike?"
-msgstr "אילו תכונות אהבת או לא אהבת?"
-
-msgid "Was it useful?"
-msgstr "האם התוספת שימושית?"
-
-msgid "Was it easy to use?"
-msgstr "האם היא קלה לשימוש?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "האם תוספת זו תמשיך לשמש אותך?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "לקרוא את הסקירה לפני שליחתה למניעת טעויות כתיב."
-
-msgid "Don’t:"
-msgstr "לא לעשות:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "לפרסם סקירות באורך של מילה בודדה כמו „מצוין!”, „מעולה” או „גרוע”."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr "לפרסם נושאים טכניים, בקשות לתמיכה או הצעות לתכונות חדשות. יש להשתמש באפשרויות התמיכה הזמינות לכל תוספת. ניתן למצוא אותן בעמודה הצדדית ליד הסעיף על אודות התוספת."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "לכתוב סקירות לתוספות שלא השתמשת בהן באופן אישי."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "להשתמש בשפה בוטה, מינית או בשפה שעשויה להתפרש כפוגענית."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "לכלול HTML, קישורים, קוד מקור או קטעי קוד. סקירות אמורות להיות טקסט בלבד."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "לפרסם הצהרות שווא, לזלזל ביוצרי תוספות או להעליב אותם באופן אישי."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "לכלול פרטי זיהוי אישיים שלך או של כל אדם אחר כמו כתובת דוא״ל, מספר טלפון או כל פרט אישי אחר."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "לפרסם סקירות לתוספת שלך או של ארגון אליו יש לך קשר עסקי או ייצוג."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr "לבקר תוספת על משהו שאינה מיועדת לבצע. למשל, להשאיר סקירה שלילית על תוספת על כך שהיא מציגה פרסומות או דורשת איסוף מידע, כאשר זו המהות של התוספת או שהתוספת אוספת מידע כדי לתפקד."
-
-msgid "How can I report a problematic review?"
-msgstr "איך ניתן לדווח על סקירה בעייתית?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr "נא לדווח או לסמן בדגל סקירות מפוקפקות כלשהן על־ידי לחיצה על „דיווח על סקירה זו” והיא תישלח לאתר לפיקוח. צוות הפיקוח שלנו ישתמש בכללי הסקירה כדי להעריך אם למחוק את הסקירה או לשחזר אותה לאתר."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "אני יוצר תוספות, אוכל להגיב לסקירות?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "אני יוצר תוספות, אוכל למחוק סקירות או דירוגים שאינם מחמיאים?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"באופן כללי, לא. אבל אם הסקירה אינה עומדת בקווים המנחים שמופיעים לעיל, ניתן ללחוץ על „דיווח על סקירה זו” כדי שתיבדק. אם סקירה כוללת תלונה שאינה תקפה עוד עקב מהדורה חדשה של התוספת שלך, אנו נשקול "
-"להסיר את הסקירה."
 
 msgid "User"
 msgstr "משתמש"
@@ -5944,6 +5831,9 @@ msgstr "הנתונים האחרונים נטענים&hellip;"
 msgid "No data available."
 msgstr "אין נתונים זמינים."
 
+msgid "Previous"
+msgstr "הקודם"
+
 msgid "This dashboard is <b>private</b>."
 msgstr ""
 
@@ -6093,9 +5983,6 @@ msgstr "לך"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "חזרה לדף הבית של תוספות עבור {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "תוספות עבור <img alt=\"Firefox\" src=\"{0}\">"
 
 msgid "Add-ons"
 msgstr "תוספות"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -13,11 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "There was a problem contacting the server."
 msgstr "Errorea gertatu da zerbitzariarekin konektatzean."
@@ -127,36 +122,6 @@ msgstr ""
 
 msgid "Videos must be in WebM."
 msgstr "Bideoek WebM formatua izan behar dute."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Gai hau bateraezina da {0}(r)en zure bertsioarekin"
-
-msgid "Flagged for review"
-msgstr "Berrikusteko markatuta"
-
-msgid "Your input is required"
-msgstr "Zure sarrera beharrezkoa da"
-
-msgid "Marked for deletion"
-msgstr "Ezabatzeko markatuta"
-
-msgid "Updating results&hellip;"
-msgstr "Emaitzak eguneratzen&hellip;"
-
-msgid "Category"
-msgstr "Kategoria"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-msgid "Search apps for <b>{0}</b>"
-msgstr ""
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
-
-msgid "Use original"
-msgstr ""
 
 msgid "Week of {0}"
 msgstr ""
@@ -631,43 +596,6 @@ msgstr ""
 msgid "Other"
 msgstr "Bestelakoa"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Onartu eta instalatu"
-
-msgid "Add to {0}"
-msgstr "Gehitu {0}(e)ra"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Instalatu {0}(e)rako halare"
-
-msgid "Download for {0} anyway"
-msgstr "Deskargatu {0}(e)rako halere"
-
-msgid "Not available for your platform"
-msgstr "Ez dago eskuragarri zure plataformarako"
-
-#, fuzzy
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Gai hau bateraezina da {0}(r)en zure bertsioarekin"
-
-msgid "View other versions"
-msgstr ""
-
-msgid "Works with {app} {min} - {max}"
-msgstr ""
-
-#, fuzzy
-msgid "Works with {app}"
-msgstr "Errorea {0}(r)ekin"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Mozillan oinarritutako nabigatzailea behar duzu (Firefox, adibidez) bilaketa-motorra instalatzeko."
-
 msgid "Changes Saved"
 msgstr "Aldaketak gordeta"
 
@@ -687,12 +615,6 @@ msgstr "Irudi-aldaketak prozesatzen ari dira"
 
 msgid "Select an application first"
 msgstr "Hautatu aplikazioa lehenik"
-
-msgid "No results found."
-msgstr ""
-
-msgid "Loading..."
-msgstr "Kargatzen..."
 
 #, fuzzy
 msgid "<b>{0}</b> character"

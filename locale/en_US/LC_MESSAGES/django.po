@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "type"
 
@@ -328,26 +329,6 @@ msgstr "This feature is temporarily disabled while we perform website maintenanc
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Jump to first page"
-
-msgid "Previous"
-msgstr "Previous"
-
-msgid "Jump to last page"
-msgstr "Jump to last page"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -751,6 +732,14 @@ msgid "Approved but waiting"
 msgstr "Approved but waiting"
 
 msgid "Account updated."
+msgstr "Account updated."
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "Account updated."
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "Account updated."
 
 msgid "Created: {0}."
@@ -2694,15 +2683,23 @@ msgstr "Hide messages present in previous version and ignored"
 msgid "Top"
 msgstr "Top"
 
-msgid "Delete Add-on"
-msgstr "Delete Add-on"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
+"able to submit versions using the same ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr "The add-on ID cannot be restored and will forever be unusable for submission."
+
+msgid "Delete Add-on"
+msgstr "Delete Add-on"
 
 #, fuzzy
 msgid "Enter the following text to confirm your decision: {slug}"
@@ -4882,19 +4879,21 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "Recommended ({0})"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube customization"
-
-#. editorial content for the secondary hero shelves.
 #, fuzzy
-msgid "Image search extensions"
-msgstr "Browse all add-ons"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
+msgid "Translation tools"
 msgstr "Tab organizers and tools"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Update add-on block"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4961,11 +4960,6 @@ msgstr "Recommended Extensions program"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Translation tools"
-msgstr "Tab organizers and tools"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "by Add-on Version"
 
@@ -4999,13 +4993,12 @@ msgstr "Browse all add-ons"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Elite ad blockers"
-msgstr "Update add-on block"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Recommended Extensions program"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube customization"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5122,121 +5115,6 @@ msgstr "Unexpected error."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Review Guidelines"
-
-msgid "Sections"
-msgstr "Sections"
-
-msgid "Some tips for writing a great review"
-msgstr "Some tips for writing a great review"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Frequently Asked Questions about Reviews"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-
-msgid "Do:"
-msgstr "Do:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Write like you are telling a friend about your experience with the add-on."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Keep reviews concise and easy to understand."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Give specific and helpful details. For example:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Did the add-on work as you expected it to?"
-
-msgid "What features did you like or dislike?"
-msgstr "What features did you like or dislike?"
-
-msgid "Was it useful?"
-msgstr "Was it useful?"
-
-msgid "Was it easy to use?"
-msgstr "Was it easy to use?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Will you continue to use this add-on?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Take a moment to read your review before submitting it to minimize typos."
-
-msgid "Don’t:"
-msgstr "Don’t:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Write reviews for add-ons which you have not personally used."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Use profanity, sexual language or language that can be construed as hateful."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Make false statements, disparage add-on authors or personally insult them."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Include your own or anyone else’s email, phone number, or other personal details."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Post reviews for an add-on you or your organization wrote or represent."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-
-msgid "How can I report a problematic review?"
-msgstr "How can I report a problematic review?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "I’m an add-on author, can I respond to reviews?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-
-#, fuzzy
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review. Submit your detailed request to amo-editors@mozilla.org."
 
 #, fuzzy
 msgid "User"
@@ -6479,6 +6357,9 @@ msgstr "Loading the latest data&hellip;"
 msgid "No data available."
 msgstr "No data available."
 
+msgid "Previous"
+msgstr "Previous"
+
 #, fuzzy
 msgid "This dashboard is <b>private</b>."
 msgstr "This dashboard is currently <b>private</b>."
@@ -6633,9 +6514,6 @@ msgstr "Go"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Return to the {0} Add-ons homepage"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 
 msgid "Add-ons"
 msgstr "Add-ons"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2022-01-19 10:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "Generated-By: Babel 2.9.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjarna"
-msgstr[1] "{0} stjörnur"
 
 msgid "There was a problem contacting the server."
 msgstr "Vandamál kom upp við að hafa samband við netþjóninn."
@@ -130,36 +125,6 @@ msgstr "Myndir verða að vera annað hvort PNG eða JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Myndskeið verða að vera í WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Þetta þema er ósamhæft útgáfu þinni af {0}"
-
-msgid "Flagged for review"
-msgstr "Flaggað til yfirferðar"
-
-msgid "Your input is required"
-msgstr "Aðgerðar er krafist af þinni hálfu"
-
-msgid "Marked for deletion"
-msgstr "Merkt til eyðingar"
-
-msgid "Updating results&hellip;"
-msgstr "Uppfæri niðurstöður&hellip;"
-
-msgid "Category"
-msgstr "Flokkur"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Leita að þemum fyrir <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Leita að forritum fyrir <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Leita í viðbótum fyrir <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Nota upprunalegt"
 
 msgid "Week of {0}"
 msgstr "Vika {0}"
@@ -631,41 +596,6 @@ msgstr "Dagsetning"
 msgid "Other"
 msgstr "Annað"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Samþykkja og setja upp"
-
-msgid "Add to {0}"
-msgstr "Bæta við í {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Setja samt upp fyrir {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Sækja samt fyrir {0}"
-
-msgid "Not available for your platform"
-msgstr "Ekki í boði fyrir stýrikerfið þitt"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Þessi viðbót er ekki samhæfð útgáfu þinni af {0}."
-
-msgid "View other versions"
-msgstr "Skoða aðrar útgáfur"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Virkar með {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Virkar með {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Aðeins með Firefox — Fáðu þér Firefox núna!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Því miður þarftu vafra sem byggir á Mozilla (t.a.m. Firefox) til að setja upp leitarviðbót."
-
 msgid "Changes Saved"
 msgstr "Breytingar vistaðar"
 
@@ -685,12 +615,6 @@ msgstr "Myndbreytingar eru í vinnslu"
 
 msgid "Select an application first"
 msgstr "Veldu fyrst forrit"
-
-msgid "No results found."
-msgstr "Engar niðurstöður fundust."
-
-msgid "Loading..."
-msgstr "Hleð inn..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

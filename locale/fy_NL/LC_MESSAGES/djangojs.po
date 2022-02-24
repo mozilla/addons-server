@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-11-18 11:42+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjer"
-msgstr[1] "{0} stjerren"
 
 msgid "There was a problem contacting the server."
 msgstr "Der is in probleem bard by it ferbinen mei de server."
@@ -131,36 +126,6 @@ msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
 
 msgid "Videos must be in WebM."
 msgstr "Fideo’s moatte yn WebM wêze."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Dit tema is net kompatibel mei jo ferzje fan {0}"
-
-msgid "Flagged for review"
-msgstr "Markearre foar beoardieling"
-
-msgid "Your input is required"
-msgstr "Jo bydrage is fereaske"
-
-msgid "Marked for deletion"
-msgstr "Markearre foar fuortsmiten"
-
-msgid "Updating results&hellip;"
-msgstr "Resultaten bywurkje…"
-
-msgid "Category"
-msgstr "Kategory"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Tema’s sykje op <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Apps trochsykje op <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Add-ons trochsykje op <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Oarspronklike brûke"
 
 msgid "Week of {0}"
 msgstr "Wike fan {0}"
@@ -632,41 +597,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Oar"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Akseptearje en ynstallearje"
-
-msgid "Add to {0}"
-msgstr "Tafoegje oan {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Dochs ynstallearje foar {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Dochs downloade foar {0}"
-
-msgid "Not available for your platform"
-msgstr "Net beskikber foar jo platfoarm"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Dizze add-on is net kompatibel mei jo ferzje fan {0}."
-
-msgid "View other versions"
-msgstr "Oare ferzjes besjen"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Wurket mei {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Wurket mei {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Allinnich by Firefox – Download Firefox no!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Sorry, jo hawwe in op Mozilla basearre browser (lykas Firefox) nedich om in sykynstekker ynstallearje te kinnen."
-
 msgid "Changes Saved"
 msgstr "Wizigingen bewarje"
 
@@ -686,12 +616,6 @@ msgstr "Ofbyldingswizigingen wurde ferwurke"
 
 msgid "Select an application first"
 msgstr "Selektearje earst in tapassing"
-
-msgid "No results found."
-msgstr "Gjin resultaten."
-
-msgid "Loading..."
-msgstr "Lade…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

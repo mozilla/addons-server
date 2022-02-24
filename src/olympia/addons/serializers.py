@@ -477,7 +477,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         return data
 
     def _update_admin_review_flag_and_logging(self, version):
-        if version.source and not version.addon.needs_admin_code_review:
+        if version.source:
             AddonReviewerFlags.objects.update_or_create(
                 addon=version.addon, defaults={'needs_admin_code_review': True}
             )

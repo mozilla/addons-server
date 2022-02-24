@@ -1710,6 +1710,9 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
 
 class SubmitSourceMixin:
+    def _submit_source(self, filepath, error=False):
+        raise NotImplementedError
+
     def _generate_source_tar(self, suffix='.tar.gz', data=b't' * (2**21), mode=None):
         source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
         if mode is None:
@@ -1791,6 +1794,10 @@ class SubmitSourceMixin:
                 version.addon.slug,
             )
         )
+        log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+        assert log.user == self.user
+        assert log.details is None
+        assert log.arguments == [self.addon, version]
 
     def test_source_targz(self):
         _, version = self._submit_source(self.file_path('webextension_no_id.tar.gz'))
@@ -1830,6 +1837,9 @@ class SubmitSourceMixin:
         assert not version or not version.source
         self.addon.reload()
         assert not self.addon.needs_admin_code_review
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id
+        ).exists()
 
     def test_with_bad_source_broken_archive(self):
         source = self._generate_source_zip(
@@ -1851,6 +1861,9 @@ class SubmitSourceMixin:
         self.addon.reload()
         assert not version or not version.source
         assert not self.addon.needs_admin_code_review
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id
+        ).exists()
 
     def test_with_bad_source_broken_archive_compressed_tar(self):
         source = self._generate_source_tar()
@@ -1868,6 +1881,28 @@ class SubmitSourceMixin:
         self.addon.reload()
         assert not version or not version.source
         assert not self.addon.needs_admin_code_review
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id
+        ).exists()
+
+    def test_activity_log_each_time(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_code_review=True
+        )
+        assert self.addon.needs_admin_code_review
+        _, version = self._submit_source(
+            self.file_path('webextension_with_image.zip'),
+        )
+        assert version.source
+        assert str(version.source).endswith('.zip')
+        assert self.addon.needs_admin_code_review
+        mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
+        assert mode == '0100644'
+
+        log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+        assert log.user == self.user
+        assert log.details is None
+        assert log.arguments == [self.addon, version]
 
 
 class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):

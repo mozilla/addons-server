@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,11 +11,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} зведица"
-msgstr[1] "{0} зведице"
 
 msgid "There was a problem contacting the server."
 msgstr "Дошло је до проблема при контактирању сервера."
@@ -129,37 +124,6 @@ msgstr "Слике морају бити PNG или JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Видео снимци морају бити у WebM формату."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Ова тема није компатибилна са Вашом верзијом {0}"
-
-msgid "Flagged for review"
-msgstr "Назначено за преглед"
-
-msgid "Your input is required"
-msgstr "Ваш одзив је неопходан"
-
-msgid "Marked for deletion"
-msgstr "Обележено за брисање"
-
-msgid "Updating results&hellip;"
-msgstr "Ажурирам резултате&hellip;"
-
-msgid "Category"
-msgstr "Категорија"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Претражи теме за термин <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Претражи апликације за термин <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Претражи додатке за термин <b>{0}</b>"
-
-#, fuzzy
-msgid "Use original"
-msgstr "користи оригинал"
 
 msgid "Week of {0}"
 msgstr "Седмица од {0}"
@@ -647,43 +611,6 @@ msgstr "Датум"
 msgid "Other"
 msgstr "Остали"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Прихвати и инсталирај"
-
-msgid "Add to {0}"
-msgstr "Додај у {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Инсталирај за {0} у сваком случају"
-
-msgid "Download for {0} anyway"
-msgstr "Преузми за {0} у сваком случају"
-
-msgid "Not available for your platform"
-msgstr "Није доступно за Вашу платформу"
-
-#, fuzzy
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Ова тема није компатибилна са Вашом верзијом {0}"
-
-msgid "View other versions"
-msgstr "Погледај остале верзије"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Ради са {app} {min} - {max}"
-
-#, fuzzy
-msgid "Works with {app}"
-msgstr "Ради са {app} {min} - {max}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Жао нам је, треба Вам прегледач базиран на технологији Mozilla фондације (као што је Firefox) да бисте инсталирали прикључак за претраживање."
-
 msgid "Changes Saved"
 msgstr "Измене сачуване"
 
@@ -703,12 +630,6 @@ msgstr "Измене на слици се обрађују"
 
 msgid "Select an application first"
 msgstr "Прво изаберите апликацију"
-
-msgid "No results found."
-msgstr "Нема резултата."
-
-msgid "Loading..."
-msgstr "Учитавање..."
 
 #, fuzzy
 msgid "<b>{0}</b> character"

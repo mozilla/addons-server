@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-09-20 10:18+0000\n"
 "Last-Translator: cjdiniz <cjdiniz@gmail.com>\n"
 "Language-Team: \n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} estrela"
-msgstr[1] "{0} estrelas"
 
 msgid "There was a problem contacting the server."
 msgstr "Ocorreu um problema ao contactar o servidor."
@@ -130,36 +125,6 @@ msgstr "As imagens devem de ser PNG ou JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Os vídeos devem de estar no formato WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Este tema não é compatível com a sua versão do {0}"
-
-msgid "Flagged for review"
-msgstr "Marcada para revisão"
-
-msgid "Your input is required"
-msgstr "É necessária a sua entrada"
-
-msgid "Marked for deletion"
-msgstr "Marcado para eliminação"
-
-msgid "Updating results&hellip;"
-msgstr "A atualizar resultados&hellip;"
-
-msgid "Category"
-msgstr "Categoria"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Procurar temas para <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Pesquisar aplicações para o <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Pesquise extras para o <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Usar original"
 
 msgid "Week of {0}"
 msgstr "Semana de {0}"
@@ -631,41 +596,6 @@ msgstr "Data"
 msgid "Other"
 msgstr "Outro"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Aceitar e instalar"
-
-msgid "Add to {0}"
-msgstr "Adicionar ao {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Mesmo assim, instalar para o {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Mesmo assim, transferir para {0}"
-
-msgid "Not available for your platform"
-msgstr "Não está disponível para a sua plataforma"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Este extra não é compatível com a sua versão do {0}."
-
-msgid "View other versions"
-msgstr "Ver outras versões"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funciona com {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funciona com {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Apenas com o Firefox — Obter o Firefox agora!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) para instalar um plugin de pesquisa."
-
 msgid "Changes Saved"
 msgstr "Alterações guardadas"
 
@@ -685,12 +615,6 @@ msgstr "Alterações de imagens em processamento"
 
 msgid "Select an application first"
 msgstr "Primeiro selecione uma aplicação"
-
-msgid "No results found."
-msgstr "Nenhum resultado encontrado."
-
-msgid "Loading..."
-msgstr "A carregar..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

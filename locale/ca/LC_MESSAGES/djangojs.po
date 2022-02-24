@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} estrella"
-msgstr[1] "{0} estrelles"
 
 msgid "There was a problem contacting the server."
 msgstr "S'ha produït un problema en contactar amb el servidor."
@@ -127,36 +122,6 @@ msgstr "Les imatges han de ser PNG o JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Els vídeos han de ser en format WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Aquest tema és incompatible amb la vostra versió de {0}"
-
-msgid "Flagged for review"
-msgstr "Marcat per revisar"
-
-msgid "Your input is required"
-msgstr "Cal una entrada"
-
-msgid "Marked for deletion"
-msgstr "Marcat per eliminar"
-
-msgid "Updating results&hellip;"
-msgstr "S'estan actualitzant els resultats&hellip;"
-
-msgid "Category"
-msgstr "Categoria"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Cerca aplicacions que contenen <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Cerca complements que contenen <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Utilitza l'original"
 
 msgid "Week of {0}"
 msgstr "Setmana de {0}"
@@ -628,41 +593,6 @@ msgstr "Data"
 msgid "Other"
 msgstr "Altres"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Accepta i instal·la"
-
-msgid "Add to {0}"
-msgstr "Afegeix al {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Instal·la al {0} de totes maneres"
-
-msgid "Download for {0} anyway"
-msgstr "Baixa per al {0} de totes maneres"
-
-msgid "Not available for your platform"
-msgstr "No està disponible per a la vostra plataforma"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Aquest tema és incompatible amb la vostra versió de {0}."
-
-msgid "View other versions"
-msgstr "Vegeu altres versions"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funciona amb {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funciona amb {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Ho sentim, necessiteu un navegador basat en Mozilla (com ara el Firefox) per instal·lar un connector de cerca."
-
 msgid "Changes Saved"
 msgstr "S'han desat els canvis"
 
@@ -682,12 +612,6 @@ msgstr "S'estan processant els canvis a la imatge"
 
 msgid "Select an application first"
 msgstr "Primer cal que seleccioneu una aplicació"
-
-msgid "No results found."
-msgstr "No s'ha trobat cap resultat."
-
-msgid "Loading..."
-msgstr "S'està carregant..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

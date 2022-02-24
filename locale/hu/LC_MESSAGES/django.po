@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-09 08:46+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2022-02-23 13:38+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -23,6 +23,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "típus"
 
@@ -314,26 +315,6 @@ msgstr "Ez a funkció a karbantartás ideje alatt átmenetileg le van tiltva. Ha
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Néhány funkció a karbantartás ideje alatt átmenetileg le van tiltva. Használja a böngésző Vissza gombját és próbálja meg kicsit később."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "<a href=\"%(current_pg_url)s\">%(current_pg)s</a> / <a href=\"%(last_pg_url)s\">%(last_pg)s</a> oldal"
-
-msgid "Jump to first page"
-msgstr "Ugrás az első oldalra"
-
-msgid "Previous"
-msgstr "Előző"
-
-msgid "Jump to last page"
-msgstr "Ugrás az utolsó oldalra"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> / <b>%(count)s</b> megjelenítése"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -720,6 +701,12 @@ msgstr "Jóváhagyva, de vár"
 
 msgid "Account updated."
 msgstr "Felhasználói fiók frissítve."
+
+msgid "Account {user} deleted."
+msgstr "{user} fiókja törölve."
+
+msgid "Account {user} deleted, from Firefox Accounts event."
+msgstr "{user} fiókja törölve, a Firefox-fiókok eseményből."
 
 msgid "Created: {0}."
 msgstr "Létrehozva: {0}."
@@ -2520,15 +2507,17 @@ msgstr "A korábbi verzióban megtalálható és figyelmen kívül hagyott üzen
 msgid "Top"
 msgstr "Fel"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr "A kiegészítő törlése véglegesen törli az összes verziót, amelyet benyújtott ehhez a kiegészítőhöz, legyen az listázott, vagy sem."
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr "A kiegészítőazonosító továbbra is hozzá lesz kötve a fiókjához, így mások nem fognak tudni új verziókat beküldeni ugyanazzal az azonosítóval."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr "A bővítményazonosító nem állítható helyre, és örökre használhatatlan lesz a beküldésnél."
+
 msgid "Delete Add-on"
 msgstr "Kiegészítő törlése"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr ""
-"A kiegészítő törlése véglegesen törli az összes verziót, amelyet benyújtott ehhez a kiegészítőhöz, legyen az listázott, vagy sem. A kiegészítőazonosító továbbra is hozzá lesz kötve a fiókjához, így "
-"mások nem fognak tudni új verziókat beküldeni ugyanazzal az azonosítóval."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Írja be a következő szöveget, hogy megerősítse a döntését: {slug}"
@@ -4517,17 +4506,18 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
+msgid "Top anti-tracking extensions"
+msgstr "Legjobbra értékelt követés elleni kiegészítők"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube testreszabás"
+msgid "Translation tools"
+msgstr "Fordítási eszközök"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Képkereső kiegészítők"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Íróeszközök"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Elit reklámblokkolók"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4583,10 +4573,6 @@ msgid "See more password manager staff picks"
 msgstr "További, stáb által javasolt jelszókezelő kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Fordítási eszközök"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "További, stáb által javasolt fordítási eszközök megtekintése"
 
@@ -4615,12 +4601,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "További „{tag}” címkéjű kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Elit reklámblokkolók"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "További, stáb által javasolt reklámblokkoló kiegészítők megtekintése"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube testreszabás"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4725,120 +4711,6 @@ msgstr "Váratlan hiba."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "A típus (%s) nem egyezik meg a kiegészítő típusával az AMO-ban (%s)"
-
-msgid "Review Guidelines"
-msgstr "Értékelési útmutató"
-
-msgid "Sections"
-msgstr "Szakaszok"
-
-msgid "Some tips for writing a great review"
-msgstr "Néhány tipp nagyszerű értékelések írásához"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Gyakran ismételt kérdések az értékelésekről"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr ""
-"A kiegészítőértékelésekkel megoszthatja véleményét azokról a kiegészítőkről, amelyeket telepített és használt. Az értékelési moderátorcsapatunk fenntartja a jogot, hogy visszautasítson vagy "
-"eltávolítson minden olyan értékelést, amely nem tartja be ezeket az irányelveket."
-
-msgid "Do:"
-msgstr "Ezt tegye:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Írjon úgy, mintha egy barátjának mesélne a kiegészítővel szerzett tapasztalatairól."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Legyen az értékelések tömörek, és könnyen érthetőek."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Adjon meg konkrét és hasznos részleteket. Például:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Úgy működött a kiegészítő, ahogyan azt várta?"
-
-msgid "What features did you like or dislike?"
-msgstr "Milyen funkciók tetszettek és milyenek nem?"
-
-msgid "Was it useful?"
-msgstr "Hasznos volt?"
-
-msgid "Was it easy to use?"
-msgstr "Könnyen használható volt?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Használja majd ezután is ezt a kiegészítőt?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Szánjon rá egy kis időt értékelésének átolvasására, hogy csökkenjen a gépelési hibák száma."
-
-msgid "Don’t:"
-msgstr "Ne tegye:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Ne küldjön be egyszavas értékeléseket, mint „kiváló!”, „csodálatos”, vagy „rossz”."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Ne töltsön fel technikai kérdéseket, támogatási kérelmeket vagy funkció javaslatokat. Használja a kiegészítőhöz elérhető támogatási lehetőségeket, ha rendelkezésre állnak. Megtalálhatja őket az "
-"oldalsó hasábban az „Erről a kiegészítőről” szakasz mellett."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Ne írjon értékelést olyan kiegészítőről, melyet nem használt."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Ne káromkodjon, trágárkodjon, kerülje a gyűlölködőként értelmezhető megfogalmazásokat."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Ne fűzzön bele HTML kódot, hivatkozásokat, forráskódot vagy kódrészleteket. Az értékelés csak szöveg kell legyen."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Ne tegyen valótlan kijelentést, ne becsmérelje a kiegészítő szerzőit és ne sértegesse őket."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Ne fűzze hozzá saját vagy más e-mailcímét, telefonszámát vagy más személyes adatát."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Ne írjon értékelést olyan kiegészítőhöz, amelyet Ön vagy a szervezete írt, illetve azt képviseli."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Ne kritizálja a kiegészítőt azért mert azt teszi, ami a célja. Például, ne hagyjon negatív értékelést egy kiegészítőhöz, mert az reklámokat jelenít meg, vagy adatgyűjtést igényel, amikor az a "
-"kiegészítő kifejezett célja, vagy a kiegészítő működéséhez szükséges az adatgyűjtés."
-
-msgid "How can I report a problematic review?"
-msgstr "Hogyan jelenthetek be egy problémás értékelést?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Kérjük jelentsen vagy jelöljön meg minden kifogásolható értékelést az „Értékelés jelentése” gombra kattintva, és beküldésre kerül moderálásra. A moderátorcsapatunk az Értékelési irányelveket fogja "
-"használni ahhoz, hogy eldöntse töröljék-e az értékelést, vagy állítsák vissza az oldalra."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Én vagyok a kiegészítő szerzője, válaszolhatok az értékelésekre?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "Igen, a kiegészítő szerzője adhat egy választ egy értékelésre. A további megbeszéléshez vagy nyomon követéshez létrehozhat egy témát a <a href=\"%(forum_url)s\">fórumunkban</a>."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Én vagyok a kiegészítő szerzője, tudom törölni a kedvezőtlen értékeléseket vagy minősítéseket?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"Általánosságban nem. De ha az értékelés nem követi a fent vázolt értékelési irányelveket, akkor rákattinthat az „Értékelés jelentése” gombra, és moderáltathatja. Ha egy értékelés olyan panaszt "
-"tartalmaz, amely már nem érvényes a kiegészítő új kiadása miatt, akkor megfontolhatjuk az értékelés törlését."
 
 msgid "User"
 msgstr "Felhasználó"
@@ -5945,6 +5817,9 @@ msgstr "Legfrissebb adatok betöltése&hellip;"
 msgid "No data available."
 msgstr "Nincs elérhető adat."
 
+msgid "Previous"
+msgstr "Előző"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Az vezérlőpult <b>privát</b>."
 
@@ -6088,9 +5963,6 @@ msgstr "Ugrás"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Visszatérés a {0}-kiegészítők honlapjára"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Kiegészítők"
 
 msgid "Add-ons"
 msgstr "Kiegészítők"

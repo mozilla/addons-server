@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2017-09-28 10:22+0000\n"
 "Last-Translator: Shahriar Shanto <shahriar083@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} তারকা"
-msgstr[1] "{0} তারকা"
 
 msgid "There was a problem contacting the server."
 msgstr "সার্ভারের সঙ্গে যোগাযোগ করতে সমস্যা হচ্ছে।"
@@ -128,36 +123,6 @@ msgstr "চিত্রগুলি অবশ্যই PNG বা JPG হতে 
 
 msgid "Videos must be in WebM."
 msgstr "ভিডিও গুলো অবশ্যই WebM তে হতে হবে।"
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "এই থিমটি আপনার সংস্করণ {0} এর সাথে সামঞ্জস্যপূর্ণ নয়"
-
-msgid "Flagged for review"
-msgstr "পর্যালোচনার জন্য চিহ্নিত"
-
-msgid "Your input is required"
-msgstr "আপনার ইনপুট দরকার"
-
-msgid "Marked for deletion"
-msgstr "মুছে ফেলার জন্য চিহ্নিত করা হয়েছে"
-
-msgid "Updating results&hellip;"
-msgstr "ফলাফল আপডেট করা হচ্ছে &hellip;"
-
-msgid "Category"
-msgstr "ক্যাটাগরি"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b>এর জন্য বিষয়বস্তু খুঁজুন"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b> {0} </b> এর জন্য অ্যাপস খুঁজুন"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b> {0} </b> এর জন্য অ্যাড-অন খুঁজুন"
-
-msgid "Use original"
-msgstr "আসল ব্যবহার করুন"
 
 msgid "Week of {0}"
 msgstr "সপ্তাহের {0}"
@@ -637,41 +602,6 @@ msgstr "তারিখ"
 msgid "Other"
 msgstr "অন্যান্য"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "গ্রহণ করুন এবং ইন্সটল করুন"
-
-msgid "Add to {0}"
-msgstr "{0} এখানে যোগ করুন"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "{0} এর জন্য যেকোনভাবে ডাউনলোড করুন"
-
-msgid "Download for {0} anyway"
-msgstr "{0} এর জন্য যেকোনভাবে ডাউনলোড করুন"
-
-msgid "Not available for your platform"
-msgstr "আপনার প্লাটফরমের জন্য পাওয়া যায়নি"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr ""
-
-msgid "View other versions"
-msgstr "অন্যান্য ভার্সনগুলো দেখুন"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "{app} {min} - {max} এর সহিত কাজ করবে"
-
-msgid "Works with {app}"
-msgstr "{app} এর সাথে কাজ করুন"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "শুধুমাত্র Firefox দিয়ে — Firefox নিন এখনই!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-
 msgid "Changes Saved"
 msgstr "পরিবর্তন সংরক্ষণ করা হয়েছে"
 
@@ -691,12 +621,6 @@ msgstr "ছবির পরিবর্তন প্রক্রিয়াধী�
 
 msgid "Select an application first"
 msgstr "প্রথমে একটি অ্যাপ্লিকেশন নির্বাচন করুন"
-
-msgid "No results found."
-msgstr "কোন ফলাফল পাওয়া যায়নি।"
-
-msgid "Loading..."
-msgstr "লোডিং..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

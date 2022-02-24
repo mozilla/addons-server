@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-12-02 13:41+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -14,13 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} zvezdica"
-msgstr[1] "{0} zvezdici"
-msgstr[2] "{0} zvezdice"
-msgstr[3] "{0} zvezdic"
 
 msgid "There was a problem contacting the server."
 msgstr "Pri vzpostavljanju stika s strežnikom je prišlo do napake."
@@ -139,36 +132,6 @@ msgstr "Slike morajo biti PNG ali JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoposnetki morajo biti WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Ta tema ni združljiva z vašo različico {0}a"
-
-msgid "Flagged for review"
-msgstr "Označeno za pregled"
-
-msgid "Your input is required"
-msgstr "Zahtevan je vaš vnos"
-
-msgid "Marked for deletion"
-msgstr "Označeno za izbris"
-
-msgid "Updating results&hellip;"
-msgstr "Posodabljanje rezultatov&hellip;"
-
-msgid "Category"
-msgstr "Kategorija"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Iščite med temami za <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Iščite med aplikacijami za <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Iskanje po dodatkih za <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Uporabi izvirnik"
 
 msgid "Week of {0}"
 msgstr "Teden {0}"
@@ -662,41 +625,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Ostalo"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Sprejmi in namesti"
-
-msgid "Add to {0}"
-msgstr "Dodaj v {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Vseeno namesti za {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Vseeno prenesi za {0}"
-
-msgid "Not available for your platform"
-msgstr "Ni na voljo za vašo podlago"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Ta dodatek ni združljiv z vašo različico {0}a."
-
-msgid "View other versions"
-msgstr "Ogled drugih različic"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Deluje s {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Deluje s {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Samo pri Firefoxu – namestite ga!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Oprostite, za namestitev vtičnika za iskanje potrebujete brskalnik na osnovi Mozille (kot je Firefox)."
-
 msgid "Changes Saved"
 msgstr "Spremembe shranjene"
 
@@ -718,12 +646,6 @@ msgstr "Obdelovanje sprememb slike"
 
 msgid "Select an application first"
 msgstr "Najprej izberite program"
-
-msgid "No results found."
-msgstr "Ni najdenih rezultatov."
-
-msgid "Loading..."
-msgstr "Nalaganje..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

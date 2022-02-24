@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2021-11-20 10:34+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "種類"
 
@@ -313,26 +314,6 @@ msgstr "この機能はサイトメンテナンスのため一時的に無効に
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "このページ内の一部の機能はサイトメンテナンスのため一時的に無効になっています。しばらく後にもう一度試してください。"
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "ページ <a href=\"%(current_pg_url)s\">%(current_pg)s</a> / <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "最初のページへ移動"
-
-msgid "Previous"
-msgstr "前ページ"
-
-msgid "Jump to last page"
-msgstr "最後のページへ移動"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "<b>%(count)s</b> 件中 <b>%(begin)s</b> から <b>%(end)s</b> 件目までを表示しています"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -720,6 +701,14 @@ msgid "Approved but waiting"
 msgstr "承認済みの公開待ち"
 
 msgid "Account updated."
+msgstr "アカウントが更新されました。"
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "アカウントが更新されました。"
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "アカウントが更新されました。"
 
 msgid "Created: {0}."
@@ -2494,15 +2483,23 @@ msgstr "旧バージョンに存在し無視されたメッセージを表示し
 msgid "Top"
 msgstr "トップ"
 
-msgid "Delete Add-on"
-msgstr "アドオンを削除"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 "アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあな"
 "たのアカウントに紐付けられます。"
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+"アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあな"
+"たのアカウントに紐付けられます。"
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
+msgid "Delete Add-on"
+msgstr "アドオンを削除"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "次のテキストを入力してあなたの決定を確認してください: {slug}"
@@ -4499,19 +4496,19 @@ msgid "See all extensions"
 msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "おすすめのテーマ"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "すべての拡張機能を見る"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
+msgid "Translation tools"
 msgstr "翻訳ツール"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4570,10 +4567,6 @@ msgid "See more password manager staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "翻訳ツール"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "翻訳ツールをもっと見る"
@@ -4606,13 +4599,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "“{tag}” のタグが付いた拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4726,117 +4719,6 @@ msgstr "予期しないエラーが発生しました。"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "type (%s) が AMO 上のあなたのアドオンの type (%s) と一致しません"
-
-msgid "Review Guidelines"
-msgstr "レビューガイドライン"
-
-msgid "Sections"
-msgstr "セクション"
-
-msgid "Some tips for writing a great review"
-msgstr "良いレビューを書くためのヒント"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "レビューについてのよくある質問と答え"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"アドオンのレビューは、インストールして使用したアドオンに関する意見を共有する方法です。当社のレビュー管理チームが、これらのガイドラインに準じていないレビューを拒否または削除する権利を留保しています。"
-
-msgid "Do:"
-msgstr "良いレビュー:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "このアドオンを使った感想を友人に伝えるように書きましょう。"
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "簡潔で理解しやすいレビューを書きましょう。"
-
-msgid "Give specific and helpful details. For example:"
-msgstr "明確で役立つ情報を書きましょう。例えば:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "アドオンはあなたの期待通りに動作しましたか？"
-
-msgid "What features did you like or dislike?"
-msgstr "どの機能が気に入りましたか？ または気に入りませんでしたか？"
-
-msgid "Was it useful?"
-msgstr "アドオンは役に立ちましたか？"
-
-msgid "Was it easy to use?"
-msgstr "簡単に使えましたか？"
-
-msgid "Will you continue to use this add-on?"
-msgstr "このアドオンを使い続けますか？"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "投稿する前に、入力ミスがないか自分のレビューを読み直してください。"
-
-msgid "Don’t:"
-msgstr "悪いレビュー:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "「よかった！」「すばらしい」「よくなかった」 など、一言だけのレビュー。"
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr "技術的な問題、サポートのリクエスト、または機能の提案に関する投稿。可能な場合は、アドオンごとに用意されているサポートオプションを使用してください。「このアドオンについて」の横の欄にあります。"
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "自分で使ったのではないアドオンのレビューを書いてはいけません。"
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "冒涜、下品、性的な言葉や相手を傷つけるような言葉遣いをしてはいけません。"
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "HTML、リンク、ソースコード、コードスニペットを含める。レビューにはテキスト文章のみを入力してください。"
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "虚偽のレビューやアドオンの作者を貶す内容、個人的な辱める内容を書いてはいけません。"
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "自分または他人のメールアドレス、電話番号、その他の個人情報を含める。"
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "あなたまたはあなたが所属する組織が作成、提供するアドオンにレビューを投稿してはいけません。"
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr "アドオンが意図していることを批判。たとえば、広告表示がアドオンの意図された目的である場合、またはアドオンの実行にデータ収集が必要な場合に、広告表示やデータ収集に関して否定的なレビューを残す。"
-
-msgid "How can I report a problematic review?"
-msgstr "問題のあるレビューを報告するには？"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"「このレビューを報告」をクリックして、問題のあるレビューを報告またはフラグを付けてください。サイトに送信され、審査されます。管理チームはレビューガイドラインに基いて、レビューを削除するか、サイトに戻"
-"すかを評価します。"
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "私はアドオンの作者ですが、レビューに返答できますか？"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"はい、アドオンの作者は 1 件のレビューについて 1 回だけ回答できます。<a href=\"%(forum_url)s\">フォーラム</a>でディスカッショントピックを設定して、さらにディスカッションやフォローアップを行うこともで"
-"きます。"
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "私はアドオンの作者ですが、気に入らないレビューや評価は削除できますか？"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"一般的に言えばできません。ただし、レビューが上記のレビューガイドラインに準じていない場合は、「このレビューを報告」をクリックして、審査するようリクエストしてください。アドオンの新しいリリースによって"
-"該当しなくなった苦情がレビューに含まれている場合は、削除を検討する可能性があります。"
 
 msgid "User"
 msgstr "ユーザー"
@@ -5982,6 +5864,9 @@ msgstr "最新データを読み込み中&hellip;"
 msgid "No data available."
 msgstr "データがありません。"
 
+msgid "Previous"
+msgstr "前ページ"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "このダッシュボードは <b>非公開</b> です。"
 
@@ -6131,9 +6016,6 @@ msgstr "移動"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0}アドオンのホームページへ戻る"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\">アドオン"
 
 msgid "Add-ons"
 msgstr "アドオン"

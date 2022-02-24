@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-07-08 09:27+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,10 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} bintang"
 
 msgid "There was a problem contacting the server."
 msgstr "Ada masalah menghubungi server."
@@ -127,36 +123,6 @@ msgstr "Gambar harus dalam PNG atau JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Video harus dalam WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Tema ini tidak selaras dengan versi {0} Anda"
-
-msgid "Flagged for review"
-msgstr "Ditandai untuk ulasan"
-
-msgid "Your input is required"
-msgstr "Masukan Anda dibutuhkan"
-
-msgid "Marked for deletion"
-msgstr "Ditandai untuk dihapus"
-
-msgid "Updating results&hellip;"
-msgstr "Memperbarui hasil &hellip;"
-
-msgid "Category"
-msgstr "Kategori"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Cari tema untuk <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Cari aplikasi untuk <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Cari pengaya untuk <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Gunakan yang asli"
 
 msgid "Week of {0}"
 msgstr "Pekan ke {0}"
@@ -626,41 +592,6 @@ msgstr "Tanggal"
 msgid "Other"
 msgstr "Lainnya"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Terima dan Pasang"
-
-msgid "Add to {0}"
-msgstr "Tambahkan ke {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Pasang {0} saja"
-
-msgid "Download for {0} anyway"
-msgstr "Unduh {0} saja"
-
-msgid "Not available for your platform"
-msgstr "Tidak tersedia untuk platform Anda"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Pengaya ini tidak kompatibel dengan versi {0} Anda."
-
-msgid "View other versions"
-msgstr "Lihat versi lainnya"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Bekerja dengan {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Bekerja dengan {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Maaf, Anda membutuhkan peramban berbasis Mozilla (seperti Firefox) untuk memasang plugin pencari."
-
 msgid "Changes Saved"
 msgstr "Perubahan Disimpan"
 
@@ -679,12 +610,6 @@ msgstr "Perubahan gambar sedang diproses"
 
 msgid "Select an application first"
 msgstr "Pilih aplikasi terlebih dulu"
-
-msgid "No results found."
-msgstr "Tidak ditemukan hasil."
-
-msgid "Loading..."
-msgstr "Memuat..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-10-29 08:39+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} ვარსკვლავი"
-msgstr[1] "{0} ვარსკვლავი"
 
 msgid "There was a problem contacting the server."
 msgstr "სერვერთან დაკავშირება ვერ მოხერხდა."
@@ -132,36 +127,6 @@ msgstr "სურათი უნდა იყოს PNG ან JPG."
 
 msgid "Videos must be in WebM."
 msgstr "ვიდეო უნდა იყოს WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "ეს თემა {0}-ის თქვენს ვერსიასთან შეუთავსებელია"
-
-msgid "Flagged for review"
-msgstr "მონიშნულია განსახილველად"
-
-msgid "Your input is required"
-msgstr "საჭიროა მონაცემების შეყვანა"
-
-msgid "Marked for deletion"
-msgstr "წასაშლელად მონიშნული"
-
-msgid "Updating results&hellip;"
-msgstr "შედეგების განახლება&hellip;"
-
-msgid "Category"
-msgstr "კატეგორია"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}-ს</b> ძიება თემებში"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}-ს</b> ძიება აპებში"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}-ს</b> ძიება დამატებებში"
-
-msgid "Use original"
-msgstr "ორიგინალის გამოყენება"
 
 msgid "Week of {0}"
 msgstr "{0} კვირა"
@@ -633,41 +598,6 @@ msgstr "თარიღი "
 msgid "Other"
 msgstr "სხვა"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "მიღება და ინსტალაცია"
-
-msgid "Add to {0}"
-msgstr "{0}-ში ჩადგმა"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "მაინც დაყენდეს {0}-ისთვის"
-
-msgid "Download for {0} anyway"
-msgstr "მაინც ჩამოიტვირთოს {0}-ისთვის"
-
-msgid "Not available for your platform"
-msgstr "თქვენს პლატოფმრაზე ხელმისაწვდომი არაა"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "დამატება, {0}-ის თქვენს ვერსიასთან შეუთავსებელია."
-
-msgid "View other versions"
-msgstr "სხვა ვერსიების ნახვა"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "თავსებადია {app} ვერსიებთან: {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "თავსებადია {app}-თან"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "მხოლოდ Firefox-ზე – ჩამოტვირთეთ Firefox!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "ვწუხვართ, საძიებო მოდულის ჩასადგემლად გესაჭირეობათ Mozilla-ზე დაფუძნებული ბრაუზერი (მაგალითად, Firefox)."
-
 msgid "Changes Saved"
 msgstr "ცვლილებები შენახულია"
 
@@ -687,12 +617,6 @@ msgstr "სურათის ცვლილებები მუშავდ�
 
 msgid "Select an application first"
 msgstr "დასაწყისისთვის აირჩიეთ პროგრამა"
-
-msgid "No results found."
-msgstr "შედეგები ვერ მოიძებნა."
-
-msgid "Loading..."
-msgstr "იტვირთება...."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

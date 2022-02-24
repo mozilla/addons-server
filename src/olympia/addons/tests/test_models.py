@@ -3,11 +3,16 @@ import os
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
 
-import pytest
 from django import forms
 from django.conf import settings
 from django.core import mail
+from django.db import IntegrityError
 from django.utils import translation
+
+import pytest
+
+from waffle.testutils import override_switch
+
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
@@ -43,7 +48,7 @@ from olympia.constants.promoted import LINE, NOT_PROMOTED, RECOMMENDED, SPONSORE
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
-from olympia.files.utils import Extractor, parse_addon
+from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
@@ -2450,7 +2455,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         self.addCleanup(translation.deactivate)
 
         def _app(application):
-            return Extractor.App(
+            return ManifestJSONExtractor.App(
                 appdata=application,
                 id=application.id,
                 min=AppVersion.objects.get(
@@ -2496,6 +2501,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             parse_addon(self.upload, user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
+    @override_switch('allow-deleted-guid-reuse', active=True)
     def test_existing_guid_same_author(self):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('webextension.xpi')
@@ -2525,28 +2531,31 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             deleted
         )
 
-    def test_old_soft_deleted_addons_and_upload_non_extension(self):
-        """We used to just null out GUIDs on soft deleted addons. This test
-        makes sure we don't fail badly when uploading an add-on which isn't an
-        extension (has no GUID).
-        See https://github.com/mozilla/addons-server/issues/1659."""
-        # Upload a couple of addons so we can pretend they were soft deleted.
-        deleted1 = Addon.from_upload(
-            self.get_upload('webextension.xpi'),
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
+    def test_existing_guid_same_author_but_switch_allowing_reuse_is_off(self):
+        # Upload addon so we can delete it.
+        self.upload = self.get_upload('webextension.xpi')
+        parsed_data = parse_addon(self.upload, user=self.user)
+        deleted = Addon.from_upload(
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
         )
-        deleted2 = Addon.from_upload(
-            self.get_upload('webextension_no_id.xpi'),
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        AddonUser(addon=deleted1, user=self.user).save()
-        AddonUser(addon=deleted2, user=self.user).save()
+        assert AddonGUID.objects.filter(guid='@webextension-guid').count() == 1
+        # Claim the add-on.
+        AddonUser(addon=deleted, user=self.user).save()
+        deleted.update(status=amo.STATUS_APPROVED)
+        deleted.delete()
+        assert deleted.guid == '@webextension-guid'
 
-        # Soft delete them like they were before, by nullifying their GUIDs.
-        deleted1.update(status=amo.STATUS_APPROVED, guid=None)
-        deleted2.update(status=amo.STATUS_APPROVED, guid=None)
+        # Now upload the same add-on again (so same guid). ValidationError
+        # would be raised if we didn't override the switch, we're bypassing
+        # it because we're interested in the error coming after that.
+        with override_switch('allow-deleted-guid-reuse', active=True):
+            self.upload = self.get_upload('webextension.xpi')
+            parsed_data = parse_addon(self.upload, user=self.user)
+
+        with self.assertRaises(IntegrityError):
+            Addon.from_upload(
+                self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+            )
 
     def test_xpi_attributes(self):
         self.upload = self.get_upload('webextension.xpi')
@@ -2577,16 +2586,18 @@ class TestAddonFromUpload(UploadMixin, TestCase):
 
     def test_default_locale(self):
         # Make sure default_locale follows the active translation.
+        self.dummy_parsed_data.pop('guid')
         addon = Addon.from_upload(
-            self.get_upload('webextension.xpi'),
+            self.get_upload('webextension_no_id.xpi'),
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert addon.default_locale == 'en-US'
 
         translation.activate('es')
+        self.dummy_parsed_data.pop('guid')
         addon = Addon.from_upload(
-            self.get_upload('webextension.xpi'),
+            self.get_upload('webextension_no_id.xpi'),
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )

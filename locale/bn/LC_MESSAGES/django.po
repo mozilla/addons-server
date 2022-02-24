@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr ""
 
@@ -302,26 +303,6 @@ msgstr "ওয়েবসাইট মেইন্টেনেন্স এর দ
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "ওয়েবসাইট মেইন্টেনেন্স এর দরুন এই পেজের কিছু ফিচার সাময়িকভাবে বন্ধ আছে। দয়া করে কিছুক্ষন পর আবার চেষ্টা করুন।"
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "<a href=\"%(current_pg_url)s\">%(current_pg)s</a> এর <a href=\"%(last_pg_url)s\">%(last_pg)s</a> পাতা"
-
-msgid "Jump to first page"
-msgstr "প্রথম পাতায় যান"
-
-msgid "Previous"
-msgstr "পূর্বের"
-
-msgid "Jump to last page"
-msgstr "শেষ পাতায় ফিরে যান"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "প্রদর্শিত <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr "{0} জন্য অ্যাড-অন"
@@ -707,6 +688,14 @@ msgid "Approved but waiting"
 msgstr "অনুমোদিত হয়েছে তবে এখনও অপেক্ষমান রয়েছে"
 
 msgid "Account updated."
+msgstr "অ্যাকাউন্ট হালনাগাদ করা হয়েছে।"
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "অ্যাকাউন্ট হালনাগাদ করা হয়েছে।"
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "অ্যাকাউন্ট হালনাগাদ করা হয়েছে।"
 
 msgid "Created: {0}."
@@ -2483,13 +2472,17 @@ msgstr ""
 msgid "Top"
 msgstr "উপরে"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr ""
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr ""
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
 msgid "Delete Add-on"
 msgstr "অ্যাড-অন মুছে ফেলুন"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
@@ -4416,19 +4409,19 @@ msgid "See all extensions"
 msgstr "সকল এক্সটেনশন দেখুন"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "মন্তব্য করা হয়েছে"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "সকল এক্সটেনশন দেখুন"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
-msgstr "বিদ্যমান ভাষা সমূহ"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4492,10 +4485,6 @@ msgid "See more password manager staff picks"
 msgstr "সকল এক্সটেনশন দেখুন"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "এড-অন ভার্সন"
@@ -4529,13 +4518,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "সকল এক্সটেনশন দেখুন"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "সকল এক্সটেনশন দেখুন"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4646,110 +4635,6 @@ msgstr "অপ্রত্যাশিত ত্রুটি।"
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
-
-msgid "Review Guidelines"
-msgstr "পর্যালোচনা নির্দেশিকা"
-
-msgid "Sections"
-msgstr "সেকশন সমূহ"
-
-msgid "Some tips for writing a great review"
-msgstr "একটি ভালো পর্যালোচনা লেখার জন্য কিছু টিপস"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr ""
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-
-msgid "Do:"
-msgstr "কর:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
-
-msgid "Keep reviews concise and easy to understand."
-msgstr ""
-
-msgid "Give specific and helpful details. For example:"
-msgstr ""
-
-msgid "Did the add-on work as you expected it to?"
-msgstr ""
-
-msgid "What features did you like or dislike?"
-msgstr ""
-
-msgid "Was it useful?"
-msgstr "এটা কি দরকারী ছিল?"
-
-msgid "Was it easy to use?"
-msgstr "ব্যবহার করার সহজ উপায় কোনটি ছিল?"
-
-msgid "Will you continue to use this add-on?"
-msgstr ""
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
-
-msgid "Don’t:"
-msgstr "না:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-
-msgid "How can I report a problematic review?"
-msgstr ""
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 
 msgid "User"
@@ -5880,6 +5765,9 @@ msgstr ""
 msgid "No data available."
 msgstr "ডাটা নেই।"
 
+msgid "Previous"
+msgstr "পূর্বের"
+
 msgid "This dashboard is <b>private</b>."
 msgstr ""
 
@@ -6020,9 +5908,6 @@ msgstr "চলুন"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> অ্যাড-অন"
 
 msgid "Add-ons"
 msgstr "অ্যাড-অন"

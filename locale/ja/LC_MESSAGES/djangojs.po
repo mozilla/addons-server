@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-12-30 01:55+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -14,10 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "評価 {0}"
 
 msgid "There was a problem contacting the server."
 msgstr "サーバーへの接続中に問題が発生しました。"
@@ -124,36 +120,6 @@ msgstr "画像は PNG か JPEG 形式でなければなりません。"
 
 msgid "Videos must be in WebM."
 msgstr "動画は WebM 形式でなければなりません。"
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "このテーマはお使いの {0} のバージョンと互換性がありません"
-
-msgid "Flagged for review"
-msgstr "レビューフラグ付き"
-
-msgid "Your input is required"
-msgstr "入力が必要です"
-
-msgid "Marked for deletion"
-msgstr "削除マーク付き"
-
-msgid "Updating results&hellip;"
-msgstr "結果を更新しています..."
-
-msgid "Category"
-msgstr "カテゴリー"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "<b>{0}</b> 用のテーマを検索"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "<b>{0}</b> 用のアプリを検索"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "<b>{0}</b> のアドオンを検索"
-
-msgid "Use original"
-msgstr "オリジナルを使用"
 
 msgid "Week of {0}"
 msgstr "{0} の週"
@@ -617,41 +583,6 @@ msgstr "日付"
 msgid "Other"
 msgstr "その他"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "同意してインストール"
-
-msgid "Add to {0}"
-msgstr "{0} へ追加"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "{0} へ強制インストール"
-
-msgid "Download for {0} anyway"
-msgstr "{0} へ強制ダウンロード"
-
-msgid "Not available for your platform"
-msgstr "お使いの OS には対応していません"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "このアドオンはお使いのバージョンの {0} と互換性がありません。"
-
-msgid "View other versions"
-msgstr "他のバージョンを見る"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "動作環境: {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "{app} で動作します"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Firefox 限定 — 今すぐ Firefox をダウンロード！"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "申し訳ありませんが、検索プラグインをインストールするには (Firefox など) Mozilla ベースのブラウザーが必要です。"
-
 msgid "Changes Saved"
 msgstr "変更が保存されました"
 
@@ -670,12 +601,6 @@ msgstr "画像の変換処理を行っています"
 
 msgid "Select an application first"
 msgstr "まずアプリケーションを選択してください"
-
-msgid "No results found."
-msgstr "結果が見つかりませんでした。"
-
-msgid "Loading..."
-msgstr "読み込み中..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-10-13 17:52+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,12 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} зірка"
-msgstr[1] "{0} зірки"
-msgstr[2] "{0} зірок"
 
 msgid "There was a problem contacting the server."
 msgstr "Виникла проблема під час спроби зв'язатися з сервером."
@@ -134,36 +128,6 @@ msgstr "Зображення повинні бути в форматі PNG аб�
 
 msgid "Videos must be in WebM."
 msgstr "Відео повинні бути у форматі WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Ця тема несумісна з вашою версією {0}"
-
-msgid "Flagged for review"
-msgstr "Позначено для перевірки"
-
-msgid "Your input is required"
-msgstr "Потрібна ваша думка"
-
-msgid "Marked for deletion"
-msgstr "Позначено для вилучення"
-
-msgid "Updating results&hellip;"
-msgstr "Оновлення результатів&hellip;"
-
-msgid "Category"
-msgstr "Категорія"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Шукати теми для <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Шукати застосунки для <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Шукати додатки для <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Використовувати оригінальний"
 
 msgid "Week of {0}"
 msgstr "Тиждень {0}"
@@ -643,41 +607,6 @@ msgstr "Дата"
 msgid "Other"
 msgstr "Інше"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Погодитись і встановити"
-
-msgid "Add to {0}"
-msgstr "Додати до {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Все одно встановити для {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Все одно завантажити для {0}"
-
-msgid "Not available for your platform"
-msgstr "Недоступно для вашої платформи"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Цей додаток несумісний з вашою версією {0}."
-
-msgid "View other versions"
-msgstr "Дивитись інші версії"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Працює з {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Працює з {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Лише з Firefox — Отримайте Firefox зараз!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі Mozilla (наприклад, Firefox)."
-
 msgid "Changes Saved"
 msgstr "Зміни збережено"
 
@@ -698,12 +627,6 @@ msgstr "Обробка змін зображень"
 
 msgid "Select an application first"
 msgstr "Спочатку виберіть програму"
-
-msgid "No results found."
-msgstr "Не знайдено результатів."
-
-msgid "Loading..."
-msgstr "Завантажується..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

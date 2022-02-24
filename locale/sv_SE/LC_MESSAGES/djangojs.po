@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2020-12-07 22:46+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} stjärna"
-msgstr[1] "{0} stjärnor"
 
 msgid "There was a problem contacting the server."
 msgstr "Det gick inte att kontakta servern."
@@ -129,36 +124,6 @@ msgstr "Bilder måste vara antingen PNG eller JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videor måste vara i WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Detta tema är inte kompatibelt med din version av {0}"
-
-msgid "Flagged for review"
-msgstr "Flaggad för granskning"
-
-msgid "Your input is required"
-msgstr "Du måste ange något"
-
-msgid "Marked for deletion"
-msgstr "Markerad för borttagning"
-
-msgid "Updating results&hellip;"
-msgstr "Uppdaterar resultat&hellip;"
-
-msgid "Category"
-msgstr "Kategori"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Sök teman för <b>{0}</b>"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Sök appar för <b>{0}</b>"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Sök tillägg för <b>{0}</b>"
-
-msgid "Use original"
-msgstr "Använd original"
 
 msgid "Week of {0}"
 msgstr "Vecka för {0}"
@@ -630,41 +595,6 @@ msgstr "Datum"
 msgid "Other"
 msgstr "Andra"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Godkänn och installera"
-
-msgid "Add to {0}"
-msgstr "Lägg till i {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Installera för {0} ändå"
-
-msgid "Download for {0} anyway"
-msgstr "Hämta för {0} ändå"
-
-msgid "Not available for your platform"
-msgstr "Ej tillgänglig för din plattform"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Den här tillägget är inte kompatibel med din version av {0}."
-
-msgid "View other versions"
-msgstr "Visa andra versioner"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Fungerar med {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Fungerar med {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Endast med Firefox — Hämta Firefox nu!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Tyvärr, du behöver en Mozillabaserad webbläsare (som Firefox) för att installera ett söktillägg."
-
 msgid "Changes Saved"
 msgstr "Ändringar sparade"
 
@@ -684,12 +614,6 @@ msgstr "Bildändringar behandlas"
 
 msgid "Select an application first"
 msgstr "Välj en applikation först"
-
-msgid "No results found."
-msgstr "Inga träffar hittades."
-
-msgid "Loading..."
-msgstr "Laddar..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

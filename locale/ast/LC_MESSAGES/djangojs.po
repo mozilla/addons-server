@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-08-08 06:42+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} estrella"
-msgstr[1] "{0} estrelles"
 
 msgid "There was a problem contacting the server."
 msgstr ""
@@ -128,36 +123,6 @@ msgstr "Les imáxenes han ser PNG o JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Los vídeos han tar en WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Esti estilu ye incompatible cola to versión de {0}"
-
-msgid "Flagged for review"
-msgstr ""
-
-msgid "Your input is required"
-msgstr ""
-
-msgid "Marked for deletion"
-msgstr ""
-
-msgid "Updating results&hellip;"
-msgstr "Anovando los resultaos&hellip;"
-
-msgid "Category"
-msgstr "Estaya"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr ""
-
-msgid "Search apps for <b>{0}</b>"
-msgstr ""
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
-
-msgid "Use original"
-msgstr ""
 
 msgid "Week of {0}"
 msgstr ""
@@ -629,41 +594,6 @@ msgstr "Data"
 msgid "Other"
 msgstr ""
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr ""
-
-msgid "Add to {0}"
-msgstr ""
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr ""
-
-msgid "Download for {0} anyway"
-msgstr "Baxar pa {0} de toes toes"
-
-msgid "Not available for your platform"
-msgstr "Nun ta disponible pa la to plataforma"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Esti complementu nun ye compatible cola to versión de {0}."
-
-msgid "View other versions"
-msgstr "Ver otres versiones"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Funciona con {app} {min} - {max}"
-
-msgid "Works with {app}"
-msgstr "Funciona con {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Namás con Firefox — ¡Consigui Firefox agora!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-
 msgid "Changes Saved"
 msgstr ""
 
@@ -683,12 +613,6 @@ msgstr ""
 
 msgid "Select an application first"
 msgstr ""
-
-msgid "No results found."
-msgstr "Nun s'atoparon resultaos."
-
-msgid "Loading..."
-msgstr "Cargando…"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "ਕਿਸਮ"
 
@@ -305,26 +306,6 @@ msgstr "ਇਹ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਅਯੋਗ ਹੈ �
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "ਇਸ ਸਫ਼ੇ ਦੇ ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਅਯੋਗ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈਬਸਾਈਟ ਦੀ ਸਾਂਭ ਕਰ ਰਹੇ ਹਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਕੁੱਝ ਦੇਰ ਬਾਅਦ ਕੋਸ਼ਿਸ ਕਰੋ।"
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "<a href=\"%(last_pg_url)s\">%(last_pg)s</a> ਵਿੱਚੋਂ <a href=\"%(current_pg_url)s\">%(current_pg)s ਸਫ਼ਾ"
-
-msgid "Jump to first page"
-msgstr "ਪਹਿਲੇ ਸਫ਼ੇ ਤੇ ਜਾਓ"
-
-msgid "Previous"
-msgstr "ਪਿਛਲਾ"
-
-msgid "Jump to last page"
-msgstr "ਆਖਰੀ ਸਫ਼ੇ ਉੱਤੇ ਜਾਓ"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "<b>%(count)s</b>ਵਿੱਚ<b>%(begin)s</b>&ndash;<b>%(end)s</b>ਵਿਖਾ ਰਿਹਾ"
 
 msgid "Add-ons for {0}"
 msgstr "{0} ਲਈ ਐਡ-ਆਨ"
@@ -703,6 +684,14 @@ msgid "Approved but waiting"
 msgstr "ਸਵੀਕਾਰ ਹੋਇਆ ਪਰ ਉਡੀਕ ਕਰ ਰਿਹਾ"
 
 msgid "Account updated."
+msgstr "ਖਾਤਾ ਨਵਿਆਇਆ ਗਿਆ।"
+
+#, fuzzy
+msgid "Account {user} deleted."
+msgstr "ਖਾਤਾ ਨਵਿਆਇਆ ਗਿਆ।"
+
+#, fuzzy
+msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "ਖਾਤਾ ਨਵਿਆਇਆ ਗਿਆ।"
 
 msgid "Created: {0}."
@@ -2486,13 +2475,19 @@ msgstr "ਪਿਛਲੇ ਵਰਜਨ ਵਿੱਚ ਮੌਜੂਦ ਸੰਦੇ�
 msgid "Top"
 msgstr "ਚੋਟੀ ਦੇ"
 
+#, fuzzy
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
+
+#, fuzzy
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr ""
+
 msgid "Delete Add-on"
 msgstr "ਐਡ-ਆਨ ਹਟਾਓ"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "ਆਪਣੇ ਫੈਸਲੇ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਲਈ ਹੇਠਲਾ ਪਾਠ ਦਰਜ ਕਰੋ: {slug}"
@@ -4493,19 +4488,19 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
+#, fuzzy
+msgid "Top anti-tracking extensions"
+msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Image search extensions"
-msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
-
-#. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Writing tools"
-msgstr "ਮੌਜੂਦਾ ਲੋਕੇਲ"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4569,10 +4564,6 @@ msgid "See more password manager staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
@@ -4606,13 +4597,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4727,117 +4718,6 @@ msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "ਕਿਸਮ (%s) AMO (%s) ਤੇ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਿਸਮ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
-
-msgid "Review Guidelines"
-msgstr "ਹਿਦਾਇਤਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
-
-msgid "Sections"
-msgstr "ਭਾਗ"
-
-msgid "Some tips for writing a great review"
-msgstr "ਇੱਕ ਜਬਰਦਸਤ ਸਮੀਖਿਆ ਲਿਖਣ ਲਈ ਕੁੱਝ ਨੁਕਤੇ"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "ਸਮੀਖਿਆਵਾਂ ਬਾਰੇ ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
-msgstr ""
-"ਐਡ-ਆਨ ਸਮੀਖਿਆਵਾਂ ਤੁਹਾਡੇ ਲਈ ਤੁਹਾਡੇ ਵਲੋਂ ਇੰਸਟਾਲ ਕੀਤੇ ਅਤੇ ਵਰਤੇ ਐਡ-ਆਨਾਂ ਬਾਰੇ ਆਪਣੀ ਰਾਏ ਸਾਂਝੀ ਕਰਨ ਦਾ ਇੱਕ ਜਰੀਆ ਹਨ। ਸਾਡੀ ਸਮੀਖਿਆ ਸੂਤਰਧਾਰ ਟੀਮ ਕੋਲ ਕਿਸੇ ਵੀ ਸਮੀਖਿਆ ਨੂੰ ਇਨਕਾਰਨ ਜਾਂ ਹਟਾਉਣ ਦਾ ਅਧਿਕਾਰ ਹੈ ਜੋ ਸਾਡੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਪਾਲਣਾ ਨਹੀਂ ਕਰਦੀ।"
-
-msgid "Do:"
-msgstr "ਕਰੋ:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "ਇਸ ਤਰ੍ਹਾਂ ਲਿਖੋ ਜਿਵੇਂ ਤੁਸੀਂ ਆਪਣੇ ਇੱਕ ਮਿੱਤਰ ਨੂੰ ਐਡ-ਆਨ ਬਾਰੇ ਆਪਣਾ ਅਨੁਭਵ ਦੱਸ ਰਹੇ ਹੋਵੋ।"
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "ਸਮੀਖਿਆਵਾਂ ਨੂੰ ਸੰਖੇਪ ਅਤੇ ਸਮਝਣ ਵਿੱਚ ਅਸਾਨ ਰੱਖੋ।"
-
-msgid "Give specific and helpful details. For example:"
-msgstr "ਖਾਸ ਅਤੇ ਲਾਭਕਾਰੀ ਵੇਰਵੇ ਦਿਓ। ਮਿਸਾਲ ਲਈ:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "ਕੀ ਐਡ-ਆਨ ਤੁਹਾਡੀ ਉਮੀਦ ਅਨੁਸਾਰ ਕੰਮ ਕਰਦਾ?"
-
-msgid "What features did you like or dislike?"
-msgstr "ਤੁਹਾਨੂੰ ਕਿਹੜੇ ਗੁਣ ਪਸੰਦ ਜਾਂ ਨਾ-ਪਸੰਦ ਹਨ?"
-
-msgid "Was it useful?"
-msgstr "ਕੀ ਇਹ ਮਦਦਗਾਰ ਸੀ?"
-
-msgid "Was it easy to use?"
-msgstr "ਕੀ ਇਹ ਵਰਤੋਂ ਵਿੱਚ ਅਸਾਨ ਸੀ?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "ਕੀ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਨੂੰ ਵਰਤਣਾ ਜਾਰੀ ਰੱਖੋਗੇ?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "ਗਲਤੀਆਂ ਨੂੰ ਘੱਟ ਕਰਨ ਲਈ ਆਪਣੀ ਸਮੀਖਿਆ ਦਾਖਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਪੜਨ ਵਿੱਚ ਸਮਾਂ ਲਗਾਓ।"
-
-msgid "Don’t:"
-msgstr "ਨਾ ਕਰੋ:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "ਇੱਕ-ਅੱਖਰ ਸਮੀਖਿਆ ਦਾਖਲ ਕਰਨਾ ਜਿਵੇਂ \"ਮਹਾਨ!\", \"ਹੈਰਾਨੀਜਨਕ,\" ਜਾਂ \"ਬੁਰਾ।\""
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr "ਤਕਨੀਕੀ ਮਸਲੇ, ਸਹਿਯੋਗ ਬੇਨਤੀਆਂ, ਜਾਂ ਗੁਣ ਸੁਝਾਅ ਪੋਸਟ ਕਰੋ। ਹਰੇਕ ਐਡ-ਆਨ ਲਈ ਮੌਜੂਦਾ ਸਹਿਯੋਗ ਚੋਣਾਂ ਵਰਤੋਂ, ਜੇਕਰ ਉੱਪਲਬਧ ਹੋਣ। ਤੁਸੀਂ ਇਹਨਾਂ ਨੂੰ ਇਸ ਐਡ-ਆਨ ਬਾਰੇ ਭਾਗ ਦੇ ਅੱਗੇ ਨਾਲ ਵਾਲੇ ਕਾਲਮ ਵਿੱਚ ਲੱਭ ਸਕਦੇ ਹੋ।"
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆਵਾਂ ਲਿੱਖੋ ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਨਿੱਜੀ ਤੌਰ ਤੇ ਨਹੀਂ ਵਰਤਿਆ।"
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "ਗੰਦੀ, ਜਿਨਸੀ ਭਾਸ਼ਾ ਜਾਂ ਭਾਸ਼ਾ ਜਿਸ ਨੂੰ ਨਫ਼ਰਤ ਦੀ ਭਾਸ਼ਾ ਸਮਝਿਆ ਜਾਂਦਾ ਦੀ ਵਰਤੋਂ।"
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "HTML, ਲਿੰਕਾਂ, ਸੋਰਸ ਕੋਡ ਜਾਂ ਕੋਡ ਸਨਿੱਪਟਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ। ਸਮੀਖਿਆਵਾਂ ਦਾ ਭਾਵ ਕੇਵਲ ਟੈਕਸਟ ਤੋਂ ਹੈ।"
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "ਝੂਠੇ ਬਿਆਨ ਦੇਣਾ, ਐਡ-ਆਨ ਲੇਖਕਾਂ ਨੂੰ ਨਿੰਦਣਾ, ਜਾਂ ਉਸ ਨੂੰ ਨਿੱਜੀ ਤੌਰ ਤੇ ਬੇਇੱਜ਼ਤ ਕਰਨਾ।"
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "ਤੁੁਹਾਡਾ ਆਪਣਾ ਜਾਂ ਕਿਸੇ ਹੋਰ ਦੀ ਈਮੇਲ, ਫ਼ੋਨ ਨੰਬਰ, ਜਾਂ ਹੋਰ ਨਿੱਜੀ ਵੇਰਵੇ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ।"
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "ਐਡ-ਆਨ ਲਈ ਆਪਣੇ ਜਾਂ ਆਪਣੀ ਸੰਸਥਾਂ ਵੱਲੋਂ ਜਾਂ ਨੁਮਾਇੰਦਗੀ ਕਰਦੇ ਹੋਏ ਸਮੀਖਿਆਵਾਂ ਪੋਸਟ ਕਰੋ।"
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"ਐਡ-ਆਨ ਦੀ ਕਿਸੇ ਕੰਮ ਲਈ ਆਲੋਚਨਾ ਕਰਨਾ ਜੋ ਲਈ ਉਸ ਨੂੰ ਤਿਆਰ ਕੀਤਾ। ਮਿਸਾਲ ਲਈ, ਇਸ਼ਤਿਹਾਰ ਵਿਖਾਉਣ ਜਾਂ ਲੌੜੀਂਦਾ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਲਈ ਐਡ-ਆਨ ਨੂੰ ਨਕਾਰਆਤਮਕ ਸਮੀਖਿਆ ਦੇਣਾ, ਜਦੋਂ ਐਡ-ਆਨ ਇਸੇ ਕਾਰਜ ਲਈ ਬਣਿਆ ਹੋਵੇ, ਜਾਂ ਐਡ-ਆਨ ਨੂੰ ਕੰਮ ਕਰਨ ਲਈ ਡਾਟਾ ਇੱਕਠਾ ਕਰਨ ਦੀ "
-"ਲੋੜ ਹੋਵੇ।"
-
-msgid "How can I report a problematic review?"
-msgstr "ਮੈਂ ਸਮੱਸਿਆ ਵਾਲੀ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਦੇ ਸਕਦਾ?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"ਕਿਰਪਾ ਕਰਕੇ ਕਿਸੇ ਵੀ ਪ੍ਰਸ਼ਨਾਤਮਕ ਸਮੀਖਿਆ ਬਾਰੇ \"ਇਸ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ\" ਤੇ ਕਲਿੱਕ ਕਰਨ ਦੁਆਰਾ ਫ਼ਲੈਗ ਜਾਂ ਸੂਚਨਾ ਦਿਓ ਅਤੇ ਇਹ ਸਾਈਟ ਤੇ ਸੰਜਮ ਲਈ ਦਾਖਲ ਕਰ ਦਿੱਤੀ ਜਾਵੇਗੀ। ਇਸ ਸਮੀਖਿਆ ਨੂੰ ਸਾਈਟ ਤੇ ਵਾਪਸ ਰੱਖਣ ਜਾਂ ਹਟਾ ਦੇਣ ਬਾਰੇ ਫ਼ੈਸਲਾ ਲੈਣ ਸਾਡੀ ਸੰਜਮ ਟੀਮ "
-"ਸਮੀਖਿਆ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਵਰਤੋਂ ਕਰੇਗੀ।"
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "ਮੈਂ ਇੱਕ ਐਡ-ਆਨ ਲੇਖਕ ਹਾਂ, ਕੀ ਮੈਂ ਸਮੀਖਿਆਵਾਂ ਤੇ ਪ੍ਰਤਿਕਿਰਿਆ ਦੇ ਸਕਦਾ?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "ਹਾਂ, ਐਡ-ਆਨ ਲੇਖਕ ਇੱਕ ਸਮੀਖਿਆ ਲਈ ਇੱਕ ਇੱਕਲੀ ਪ੍ਰਤਿਕਿਰਿਆ ਦੇ ਸਕਦਾ। ਤੁਸੀਂ ਹੋਰ ਚਰਚਾ ਵਿੱਚ ਹਿੱਸਾ ਲੈਣ ਜਾਂ ਸਮਰਥਨ ਲਈ ਸਾਡੀ <a href=\"%(forum_url)s\">ਫ਼ੋਰਮ</a> ਵਿੱਚ ਇੱਕ ਚਰਚਾ ਦਾ ਵਿਸ਼ਾ ਸੈੱਟ ਕਰ ਸਕਦੇ ਹੋ।"
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "ਮੈਂ ਇੱਕ ਐਡ-ਆਨ ਲੇਖਕ ਹਾਂ, ਕੀ ਮੈਂ ਨਾਪਸੰਦ ਸਮੀਖਿਆਵਾਂ ਜਾਂ ਰੇਟਿੰਗਾਂ ਨੂੰ ਹਟਾ ਸਕਦਾ?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"ਆਮ ਤੌਰ ਤੇ, ਨਹੀਂ। ਪਰ ਜੇ ਸਮੀਖਿਆ ਉੱਤੇ ਉਪਰੋਕਤ ਸਮੀਖਿਆ ਦਿਸ਼ਾ ਨਿਰਦੇਸ਼ਾਂ ਦੀ ਪੂਰਤੀ ਨਹੀਂ ਕੀਤੀ ਗਈ ਸੀ, ਤਾਂ ਤੁਸੀਂ \"ਇਸ ਸਮੀਖਿਆ ਦੀ ਰਿਪੋਰਟ ਕਰੋ\" ਤੇ ਕਲਿਕ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਇਸਨੂੰ ਸੰਚਾਲਿਤ ਕਰ ਸਕਦੇ ਹੋ। ਜੇ ਕਿਸੇ ਸਮੀਖਿਆ ਵਿੱਚ ਇੱਕ ਸ਼ਿਕਾਇਤ ਸ਼ਾਮਲ ਕੀਤੀ ਗਈ ਹੈ ਜੋ ਹੁਣ "
-"ਤੁਹਾਡੇ ਐਡਆਨ ਦੀ ਨਵੀਂ ਰੀਲੀਜ਼ ਕਾਰਨ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹੈ, ਤਾਂ ਅਸੀਂ ਸਮੀਖਿਆ ਨੂੰ ਮਿਟਾਉਣ ਬਾਰੇ ਵਿਚਾਰ ਕਰ ਸਕਦੇ ਹਾਂ।"
 
 msgid "User"
 msgstr "ਯੂਜ਼ਰ"
@@ -6006,6 +5886,9 @@ msgstr "ਤਾਜ਼ਾ ਡਾਟਾ ਲੋਡ ਕਰ ਰਿਹਾ&hellip;"
 msgid "No data available."
 msgstr "ਕੋਈ ਡਾਟਾ ਮੌਜੂਦ ਨਹੀਂ।"
 
+msgid "Previous"
+msgstr "ਪਿਛਲਾ"
+
 #, fuzzy
 msgid "This dashboard is <b>private</b>."
 msgstr "ਇਹ ਡੈਸਬੋਰਡ ਮੌਜੂਦਾ ਤੌਰ ਤੇ <b>ਜਨਤਕ</b> ਹੈ।"
@@ -6154,9 +6037,6 @@ msgstr "ਜਾਓ"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ੇ ਤੇ ਵਾਪਸ ਜਾਓ"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> ਐਡ-ਆਨ"
 
 msgid "Add-ons"
 msgstr "ਐਡ-ਆਨ"

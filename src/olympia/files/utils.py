@@ -23,6 +23,8 @@ from django.utils.encoding import force_str
 from django.utils.jslex import JsLexer
 from django.utils.translation import gettext
 
+import waffle
+
 import olympia.core.logger
 
 from olympia import amo
@@ -134,30 +136,6 @@ class InvalidZipFile(forms.ValidationError):
     pass
 
 
-class Extractor:
-    """Extract add-on info from a manifest file."""
-
-    App = collections.namedtuple('App', 'appdata id min max')
-
-    @classmethod
-    def parse(cls, xpi_fobj, minimal=False):
-        zip_file = SafeZip(xpi_fobj)
-
-        certificate = os.path.join('META-INF', 'mozilla.rsa')
-        certificate_info = None
-
-        if zip_file.exists(certificate):
-            certificate_info = SigningCertificateInformation(zip_file.read(certificate))
-
-        if zip_file.exists('manifest.json'):
-            data = ManifestJSONExtractor(zip_file, certinfo=certificate_info).parse(
-                minimal=minimal
-            )
-        else:
-            raise NoManifestFound('No manifest.json found')
-        return data
-
-
 def get_appversions(app, min_version, max_version):
     """Return the `AppVersion`s that correspond to the given versions."""
     qs = AppVersion.objects.filter(application=app.id)
@@ -183,15 +161,15 @@ def get_simple_version(version_string):
 
 
 class ManifestJSONExtractor:
-    def __init__(self, zip_file, data='', certinfo=None):
-        self.zip_file = zip_file
+    """Extract add-on info from a manifest file."""
+
+    App = collections.namedtuple('App', 'appdata id min max')
+
+    def __init__(self, manifest_data, *, certinfo=None):
         self.certinfo = certinfo
 
-        if not data:
-            data = zip_file.read('manifest.json')
-
         # Remove BOM if present.
-        data = unicodehelper.decode(data)
+        data = unicodehelper.decode(manifest_data)
 
         # Run through the JSON and remove all comments, then try to read
         # the manifest file.
@@ -390,7 +368,7 @@ class ManifestJSONExtractor:
                 )
                 raise forms.ValidationError(msg)
 
-            yield Extractor.App(appdata=app, id=app.id, min=min_appver, max=max_appver)
+            yield self.App(appdata=app, id=app.id, min=min_appver, max=max_appver)
 
     def target_locale(self):
         """Guess target_locale for a dictionary from manifest contents."""
@@ -820,7 +798,21 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
     """
     try:
         xpi = get_file(xpi)
-        xpi_info = Extractor.parse(xpi, minimal=minimal)
+        zip_file = SafeZip(xpi)
+
+        certificate = os.path.join('META-INF', 'mozilla.rsa')
+        certificate_info = None
+
+        if zip_file.exists(certificate):
+            certificate_info = SigningCertificateInformation(zip_file.read(certificate))
+
+        if zip_file.exists('manifest.json'):
+            xpi_info = ManifestJSONExtractor(
+                zip_file.read('manifest.json'), certinfo=certificate_info
+            ).parse(minimal=minimal)
+        else:
+            raise NoManifestFound('No manifest.json found')
+
     except forms.ValidationError:
         raise
     except OSError as e:
@@ -857,7 +849,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         xpi_info['guid'] = guid = addon.guid
 
     if guid:
-        if user:
+        if user and waffle.switch_is_active('allow-deleted-guid-reuse'):
             deleted_guid_clashes = Addon.unfiltered.exclude(authors__id=user.id).filter(
                 guid=guid
             )
@@ -870,16 +862,15 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
                 'does not match the ID of your add-on on AMO (%s)'
             )
             raise forms.ValidationError(msg % (guid, addon.guid))
-        if (
-            not addon
+        if not addon and (
             # Non-deleted add-ons.
-            and (
-                Addon.objects.filter(guid=guid).exists()
-                # DeniedGuid objects for deletions for Mozilla disabled add-ons
-                or DeniedGuid.objects.filter(guid=guid).exists()
-                # Deleted add-ons that don't belong to the uploader.
-                or deleted_guid_clashes.exists()
-            )
+            Addon.objects.filter(guid=guid).exists()
+            # DeniedGuid objects for deletions for Mozilla disabled add-ons
+            or DeniedGuid.objects.filter(guid=guid).exists()
+            # Deleted add-ons that don't belong to the uploader (or deleted
+            # add-ons period if `allow-deleted-guid-reuse` waffle switch is
+            # inactive).
+            or deleted_guid_clashes.exists()
         ):
             raise forms.ValidationError(gettext('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:

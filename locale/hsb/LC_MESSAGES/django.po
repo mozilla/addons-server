@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-08 19:23+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2022-02-22 17:55+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "typ"
 
@@ -308,26 +309,6 @@ msgstr "Tuta funkcija je so nachwilu znjemóžniła, doniž wothladowanje websyd
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Někotre funkcije na tutej stronje su so nachwilu znjemóžnili, doniž wothladowanje websydła přewjedźemy. Prošu spytajće pozdźišo hišće raz."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Strona <a href=\"%(current_pg_url)s\">%(current_pg)s</a> z <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "K prěnjej stronje skočić"
-
-msgid "Previous"
-msgstr "Wróćo"
-
-msgid "Jump to last page"
-msgstr "K poslednjej stronje skočić"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> z <b>%(count)s</b> so pokazuja"
 
 msgid "Add-ons for {0}"
 msgstr "Přidatki za {0}"
@@ -710,6 +691,12 @@ msgstr "Schwaleny, ale čaka"
 
 msgid "Account updated."
 msgstr "Konto je so zaktualizowało."
+
+msgid "Account {user} deleted."
+msgstr "Konto {user} je so zhašało."
+
+msgid "Account {user} deleted, from Firefox Accounts event."
+msgstr "Konto {user} je so z podawka Firefox Accounts zhašało."
 
 msgid "Created: {0}."
 msgstr "Wutworjeny: {0}."
@@ -2495,15 +2482,17 @@ msgstr "Powěsće w předchadnej wersiji a ignorowane schować"
 msgid "Top"
 msgstr "Horje"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr "Hdyž swój přidatk zhašeće, so wšě wersije a dataje na přeco zhašeja, kotrež sće za tutón přidatk zapodał, nalistowane abo njenalistowane."
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr "ID přidatka wostanje dale z wašim kontom zwjazany, zo njebychu móhli druzy wersije zapodać, kotrež samsny ID wužiwaja."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr "ID přidatka njeda so wobnowić a njeda so na přeco za zapodaće wužiwać."
+
 msgid "Delete Add-on"
 msgstr "Přidatk zhašeć"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr ""
-"Hdyž swój přidatk zhašeće, so wšě wersije a dataje zhašeja, kotrež sće za tutón přidatk zapodał, nalistowane abo njenalistowane. ID přidatka wostanje dale z wašim kontom zwjazany, zo njebychu móhli "
-"druzy wersije zapodać, kotrež samsny ID wužiwaja."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Zapodajće slědowacy tekst, zo byšće swój rozsud wobkrućił: {slug}"
@@ -4492,17 +4481,18 @@ msgid "See all extensions"
 msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
+msgid "Top anti-tracking extensions"
+msgstr "Woblubowane rozšěrjenja přećiwo slědowanju"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Přiměrjenje YouTube"
+msgid "Translation tools"
+msgstr "Přełožowanske nastroje"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Rozšěrjenja za pytanje wobrazow"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Pisanske nastroje"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Wukonliwe blokowaki wabjenja"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4557,10 +4547,6 @@ msgid "See more password manager staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju hesłow pokazać"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Přełožowanske nastroje"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane přełožowanske nastroje pokazać"
 
@@ -4589,12 +4575,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Dalše rozšěrjenja ze značku „{tag}“"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Wukonliwe blokowaki wabjenja"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju blokowakow wabjenja pokazać"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Přiměrjenje YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4699,122 +4685,6 @@ msgstr "Njewočakowany zmylk."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Typ (%s) typej wašeho přidatka na AMO (%s) njewotpowěduje"
-
-msgid "Review Guidelines"
-msgstr "Pohódnoćenske směrnicy"
-
-msgid "Sections"
-msgstr "Wotrězki"
-
-msgid "Some tips for writing a great review"
-msgstr "Někotre pokiwy za pisanje dobreho pohódnoćenja"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Husto stajene prašenja wo pohódnoćenjach"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr ""
-"Pohódnoćenja wo přidatkach su móžnosć za was, waše měnjenja wo přidatkach zdźělić, kotrež sće instalował a wužiwał. Naš moderaciski team za pohódnoćenja sej prawa wuměnja, pohódnoćenja wotpokazać "
-"abo wotstronić, kotrež tutym směrnicam njewotpowěduja."
-
-msgid "Do:"
-msgstr "Dobre:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Pisajće, kaž byšće přećelej wo swojich nazhonjenjach z přidatkom powědał."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Dźeržće pohódnoćenja krótke a lochko zrozumliwe."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Podajće specifiske a wužitne podrobnosće. Na přikład:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Je přidatk fungował, kak sće wočakował?"
-
-msgid "What features did you like or dislike?"
-msgstr "Kotre funkcije so wam spodobaja abo njespodobaja?"
-
-msgid "Was it useful?"
-msgstr "Je to wužitne było?"
-
-msgid "Was it easy to use?"
-msgstr "Da so lochko wužiwać?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Budźeće tutón přidatk dale wužiwać?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Bjerće sej wokomik časa, zo byšće swoje pohódnoćenje přečitał, prjedy hač jo wotpósćeleće, zo byšće pisanske zmylki miniměrował."
-
-msgid "Don’t:"
-msgstr "Špatne:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "NJezapodajće jednosłowne pohódnoćenja kaž „Wulkotne!“, „Wuběrne“ abo „Špatne“."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Njepisajće wo techniskich problemach, njeprošće wo pomoc a njenamjetujće nowe funkcije. Wužiwajće k dispoziciji stejace móžnosće pomocy kóždeho přidatka. Móžeće je w špalce na prawej kromje pódla "
-"wotrězka „Wo tutym přidatku“ namakać."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Njepisajće pohódnoćenja za přidatki, kotrež njejsće sam wužił."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Njewužiwajće wulgarne, seksualne wurazy abo wurazy, kotrež maja za hidypołne."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Njewužiwajće HTML, wotkazy, žórłowy kod abo dźěle žórłoweho koda. Pohódnoćenja smědźa jenož luty tekst wobsahować."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Wopačne podaća činić, awtorow přidatkow ponižić abo jich wosobinsce skřiwdźić."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Njepodajće e-mejlowu adresu, telefonowe čisło abo druhe wosobinske daty, ani swójske ani te z druhich wosobow."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Njepisajće pohódnoćenja za přidatk, kotryž je so wot was abo wašeje organizacije wuwił abo so reprezentuje."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Njekritizujće přidatk za wotpohladanu funkciju. K tomu na přikład negatiwne pohódnoćenje za přidatk słuša, kotryž wabjenje pokazuje abo daty hromadźi, hdyž to je wotpohladany zaměr přidatka abo "
-"přidatk dyrbi daty hromadźić, zo by fungował."
-
-msgid "How can I report a problematic review?"
-msgstr "Kak móžu problematiske pohódnoćenje zdźělić?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Klikńće prošu na „Tute pohódnoćenje zdźělić“, zo byšće dwělomne pohódnoćenja zdźělił abo woznamjenił a zdźělenka budźe so za moderaciju na sydło słać. Naš moderaciski team budźe přepruwowanske "
-"směrnicy wužiwać, zo by posudźił, hač pohodnoćenja dyrbi so zhašeć abo nic, abo hač so na sydle wobnowja."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Sym awtor přidatka, móžu na pohódnoćenja wotmołwjeć?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Haj, přidatkowi awtorojo móža na pohódnoćenje jednu wotmołwu dać. Móžeće diskusijnu temu w našim <a href=\"%(forum_url)s\">forumje</a> započeć, zo byšće dalšu diskusiju abo wospjetne prašenja "
-"zmóžnił."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Sym awtor přidatka, móžu njepřijomne pohódnoćenja zhašeć?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"Powšitkownje nic. Ale jeli pohódnoćenje horjeka mjenowanym pohódnoćenskim směrnicam njewotpowěduje, móžeće na „Tute pohódnoćenje zdźělić“ kliknyć, zo by so moderěrowało. Jeli pohódnoćenje hóršenje "
-"wobsahowaše, kotrež noweje wersije wašeho přidatka dla hižo płaćiwe njeje, zhašamy snano pohódnoćenje."
 
 msgid "User"
 msgstr "Wužiwar"
@@ -5918,6 +5788,9 @@ msgstr "Najnowše daty so začituja&hellip;"
 msgid "No data available."
 msgstr "Žane daty k dispoziciji."
 
+msgid "Previous"
+msgstr "Wróćo"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Kontrolna deska je <b>priwatna</b>."
 
@@ -6060,9 +5933,6 @@ msgstr "Start"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Wróćo k startowej stronje přidatka {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Přidatki"
 
 msgid "Add-ons"
 msgstr "Přidatki"

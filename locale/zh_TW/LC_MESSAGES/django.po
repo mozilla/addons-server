@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-09 02:21+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2022-02-23 03:42+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -15,6 +15,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "類型"
 
@@ -301,26 +302,6 @@ msgstr "我們正在進行網站維護，這個功能暫時無法使用。請您
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "我們正在進行網站維護，本頁面中部分功能暫時無法使用。請稍後再試。"
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "第 <a href=\"%(current_pg_url)s\">%(current_pg)s</a> 頁，共有 <a href=\"%(last_pg_url)s\">%(last_pg)s</a> 頁"
-
-msgid "Jump to first page"
-msgstr "跳至第一頁"
-
-msgid "Previous"
-msgstr "上一頁"
-
-msgid "Jump to last page"
-msgstr "跳到最後一頁"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "顯示第 <b>%(begin)s</b>&ndash;<b>%(end)s</b> 筆，共 <b>%(count)s</b> 筆"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox, Sunbird
@@ -705,6 +686,12 @@ msgstr "已通過審核，等待發佈中"
 
 msgid "Account updated."
 msgstr "帳號已更新。"
+
+msgid "Account {user} deleted."
+msgstr "帳號 {user} 已刪除。"
+
+msgid "Account {user} deleted, from Firefox Accounts event."
+msgstr "帳號 {user} 已從 Firefox 帳號事件中刪除。"
 
 msgid "Created: {0}."
 msgstr "已建立： {0}。"
@@ -2467,13 +2454,17 @@ msgstr "隱藏先前版本已有且忽略的訊息"
 msgid "Top"
 msgstr "回頂端"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr "刪除附加元件的話，將會永久刪除所有您曾為此附加元件送出的版本與檔案，不論是否公開上架。"
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr "附加元件 ID 仍將連結至您的帳號，其他人無法以相同 ID 送出附加元件。"
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr "附加元件 ID 無法恢復，也無法再用於新元件上架。"
+
 msgid "Delete Add-on"
 msgstr "刪除附加元件"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr "刪除附加元件的話，將會永久刪除所有您曾為此附加元件送出的版本與檔案，不論是否公開上架。附加元件 ID 仍將連結至您的帳號，其他人無法以相同 ID 送出附加元件。"
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "請輸入下列文字作為確認: {slug}"
@@ -4397,23 +4388,23 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "把 emoji 隨身帶著走。"
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "限制會分散您的注意力、浪費時間的網站。"
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "清除 Twitter 上的雜亂內容。"
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "自訂 YouTube 以符合您的需求。"
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "直接從瀏覽器工具列刪除上網資料。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4428,17 +4419,18 @@ msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
+msgid "Top anti-tracking extensions"
+msgstr "熱門反追蹤擴充套件"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "自訂 YouTube"
+msgid "Translation tools"
+msgstr "翻譯工具"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "圖片搜尋擴充套件"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "寫作工具"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "菁英級廣告封鎖工具"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4494,10 +4486,6 @@ msgid "See more password manager staff picks"
 msgstr "看更多員工精選的密碼管理套件"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "翻譯工具"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "看員工精選的更多翻譯工具"
 
@@ -4526,12 +4514,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "看看更多含有「{tag}」標籤的擴充套件"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "菁英級廣告封鎖工具"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "看更多員工精選的廣告封鎖工具"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "自訂 YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4636,110 +4624,6 @@ msgstr "未預期的錯誤。"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "類型（%s）與您的附加元件在 AMO 上架的類型（%s）不符"
-
-msgid "Review Guidelines"
-msgstr "評論撰寫指南"
-
-msgid "Sections"
-msgstr "章節"
-
-msgid "Some tips for writing a great review"
-msgstr "撰寫優良評論的一些小秘訣"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "關於評論的常見問題"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr "附加元件評論是一個能讓您對已安裝使用過的附加元件表達意見的方式。我們的評論審查團隊保留拒絕或移除任何不符合以下標準的評論內容。"
-
-msgid "Do:"
-msgstr "請做："
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "寫得像您在和朋友分享附加元件的經驗。"
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "保持評論準確，容易理解。"
-
-msgid "Give specific and helpful details. For example:"
-msgstr "提供清楚並有幫助的資訊。例如:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "附加元件如您所預期的執行嗎？"
-
-msgid "What features did you like or dislike?"
-msgstr "您喜歡或不喜歡那些功能？"
-
-msgid "Was it useful?"
-msgstr "該附加元件有用嗎？"
-
-msgid "Was it easy to use?"
-msgstr "該附加元件容易使用嗎？"
-
-msgid "Will you continue to use this add-on?"
-msgstr "您會繼續使用該附加元件嗎？"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "送出前花一點時間閱讀一下您的評論內容，避免打錯字。"
-
-msgid "Don’t:"
-msgstr "不要這樣做:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "送出太短的評論，例如「讚！」、「酷！」、「Good!」。"
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr "張貼技術問題、支援或功能請求。請透過「關於此附加元件」段落中，側邊欄內的技術支援功能來請求支援。"
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "還沒有使用過附加元件，就直接寫評論。"
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "使用褻瀆、性暗示或者帶有恨意的言語。"
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "包含 HTML、超連結、程式碼等。評論內容請只留下純文字。"
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "否定附加元件、貶低附加元件作者或者羞辱個人。"
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "包含您自己或別人的電子郵件地址、電話號碼或其他任何個資。"
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "為您自己或者您的組織開發的附加元件撰寫評論。"
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr "批評某套附加元件原有的功能。舉例來說，假設某套附加元件必須要收集某些資料或顯示廣告才能正常使用，就請不要對資料收集留下負面評論。"
-
-msgid "How can I report a problematic review?"
-msgstr "請使用「回報此評論」功能來回報或標示有問題的評論，這些評論將會被送交審查。我們的審查團隊將會依照評論指南上所列的規範來判斷是否該刪除該留言，或將其還原。"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr "請回報或點擊「回報此評論」來標示任何有問題的評論，這些評論將被送回給我們的管理團隊，依照評論指南上的方式來處理，並決定要刪除該評論或將其還原至網站上。"
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "我是附加元件作者，我可以回應審核評論嗎？"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr "可以，附加元件作者可以對評論提供一次回應。您可以到 <a href=\"%(forum_url)s\">討論區</a> 設定討論主題，來讓使用者做其他討論。"
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "我是附加元件作者，我可以刪除對我不利的評論和評分嗎？"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr "一般來說，不行。但若該評論並未符合上述的評論指南所描述的內容，您可以點擊「回報此評論」交給我們審查。若該評論所抱怨的問題在您新版的附加元件中已不存在，我們可能會刪除該評論。"
 
 msgid "User"
 msgstr "使用者"
@@ -5844,6 +5728,9 @@ msgstr "讀取最新資料&hellip;"
 msgid "No data available."
 msgstr "無資料。"
 
+msgid "Previous"
+msgstr "上一頁"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "這個儀錶板是<b>不公開的</b>。"
 
@@ -5983,9 +5870,6 @@ msgstr "衝"
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "回到 {0} 附加元件首頁"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> 附加元件"
 
 msgid "Add-ons"
 msgstr "附加元件"

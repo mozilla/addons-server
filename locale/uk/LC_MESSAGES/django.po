@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
-"PO-Revision-Date: 2022-02-08 18:46+0000\n"
+"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"PO-Revision-Date: 2022-02-22 18:10+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -22,6 +22,7 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+#. L10n: label for the list of abuse report types: addons, users
 msgid "type"
 msgstr "тип"
 
@@ -313,26 +314,6 @@ msgstr "Ця функція тимчасово відключена, поки м
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "Деякі функції на цій сторінці тимчасово відключені, поки ми проводимо технічне обслуговування сайту. Будь ласка спробуйте знову трохи пізніше."
-
-#. This is a page range (e.g., Page 1 of 50).
-#, python-format
-msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr "Сторінка <a href=\"%(current_pg_url)s\">%(current_pg)s</a> із <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-
-msgid "Jump to first page"
-msgstr "Перейти на першу сторінку"
-
-msgid "Previous"
-msgstr "Попередня"
-
-msgid "Jump to last page"
-msgstr "До останньої сторінки"
-
-#. First and second arguments are the result range (e.g., 1-20);
-#. third argument is the number of total results (e.g., 1,000).
-#, python-format
-msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
-msgstr "Показано <b>%(begin)s</b>&ndash;<b>%(end)s</b> із <b>%(count)s</b>"
 
 msgid "Add-ons for {0}"
 msgstr "Додатки для {0}"
@@ -715,6 +696,12 @@ msgstr "Схвалено, але очікує"
 
 msgid "Account updated."
 msgstr "Обліковий запис оновлений."
+
+msgid "Account {user} deleted."
+msgstr "Обліковий запис {user} видалено."
+
+msgid "Account {user} deleted, from Firefox Accounts event."
+msgstr "Обліковий запис {user} видалено з події облікових записів Firefox."
 
 msgid "Created: {0}."
 msgstr "Створено: {0}."
@@ -2499,15 +2486,17 @@ msgstr "Сховати повідомлення, які присутні у по
 msgid "Top"
 msgstr "Нагору"
 
+msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
+msgstr "Видалення вашого додатка призведе до остаточного видалення всіх версій і файлів, які ви відправляли для нього, опублікованих чи не опублікованих."
+
+msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
+msgstr "ID додатка й надалі буде пов'язано з вашим обліковим записом, отже інші не зможуть відправляти версії використовуючи цей ID."
+
+msgid "The add-on ID cannot be restored and will forever be unusable for submission."
+msgstr "ID додатка неможливо відновити, Він назавжди стане непридатним для відправлення."
+
 msgid "Delete Add-on"
 msgstr "Вилучити додаток"
-
-msgid ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-msgstr ""
-"Видалення вашого додатка призведе до остаточного видалення всіх версій і файлів, які ви відправляли для цього додатка, опублікованого чи ні. ID додатка й надалі буде пов'язаний з вашим обліковим "
-"записом, отже інші не зможуть відправляти версії з використанням цього ID."
 
 msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Введіть наступний текст, щоб підтвердити ваше рішення: {slug}"
@@ -4492,17 +4481,18 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
+msgid "Top anti-tracking extensions"
+msgstr "Найпопулярніші розширення захисту від стеження"
+
+#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Пристосування YouTube"
+msgid "Translation tools"
+msgstr "Засоби для перекладу"
 
 #. editorial content for the secondary hero shelves.
-msgid "Image search extensions"
-msgstr "Розширення пошуку зображень"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Засоби написання"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Елітні блокувальники реклами"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4557,10 +4547,6 @@ msgid "See more password manager staff picks"
 msgstr "Переглянути більше менеджерів паролів відібраних персоналом"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Засоби для перекладу"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Переглянути більше засобів перекладу відібрані персоналом"
 
@@ -4589,12 +4575,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Переглянути інші розширення з міткою \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Елітні блокувальники реклами"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Переглянути більше відібраних персоналом блокувальників реклами"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Пристосування YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4699,121 +4685,6 @@ msgstr "Неочікувана помилка."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Тип (%s) не відповідає типу вашого додатка на AMO (%s)"
-
-msgid "Review Guidelines"
-msgstr "Щодо відгуків"
-
-msgid "Sections"
-msgstr "Секції"
-
-msgid "Some tips for writing a great review"
-msgstr "Деякі поради з написання хороших відгуків"
-
-msgid "Frequently Asked Questions about Reviews"
-msgstr "Поширені питання про відгуки"
-
-msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
-msgstr ""
-"Відгуки є способом поділитися своїми враженнями про використання додатку. Наша команда модераторів залишає за собою право відхиляти або видаляти будь-який відгук, який не відповідає цим критеріям."
-
-msgid "Do:"
-msgstr "Вам слід:"
-
-msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr "Напишіть про свій досвід використання додатку."
-
-msgid "Keep reviews concise and easy to understand."
-msgstr "Робіть відгуки короткими і зрозумілими."
-
-msgid "Give specific and helpful details. For example:"
-msgstr "Додайте особливі та корисні деталі. Наприклад:"
-
-msgid "Did the add-on work as you expected it to?"
-msgstr "Чи працював додаток так, як ви очікували?"
-
-msgid "What features did you like or dislike?"
-msgstr "Які функції вам сподобались, а які ні?"
-
-msgid "Was it useful?"
-msgstr "Чи був він корисним?"
-
-msgid "Was it easy to use?"
-msgstr "Чи був він легким в користуванні?"
-
-msgid "Will you continue to use this add-on?"
-msgstr "Чи будете ви надалі користуватися цим додатком?"
-
-msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr "Перевірте свій відгук перед відправленням для мінімізації помилок."
-
-msgid "Don’t:"
-msgstr "Вам не слід:"
-
-msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr "Відправляти односкладові відгуки такі, як \"Відмінно!\", \"чудово\" чи \"погано\"."
-
-msgid ""
-"Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
-"section."
-msgstr ""
-"Ставити технічні питання, питання підтримки або пропонувати нові функції. Використовуйте доступні варіанти підтримки для кожного додатка, якщо вони є. Ви можете знайти їх в бічному стовпчику поряд "
-"із розділом Про цей додаток."
-
-msgid "Write reviews for add-ons which you have not personally used."
-msgstr "Писати відгуки на додатки, які ви особисто не використали."
-
-msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr "Використовувати ненормативну лексику, непристойні вирази або слова, які можуть бути витлумачені як ненависть."
-
-msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Включати HTML, посилання, програмний код або фрагменти коду. Відгуки повинні містити тільки текст."
-
-msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr "Робити неправдиві заяви, принижувати або особисто ображати авторів додатків."
-
-msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr "Включати ваші власні або чиїсь ще адреси ел. пошти, номери телефонів або інші персональні дані."
-
-msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr "Розміщувати відгуки на додаток, написаний чи представлений вами або вашою організацією."
-
-msgid ""
-"Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
-"add-on, or the add-on requires gathering data to function."
-msgstr ""
-"Критикувати додаток за щось, що він й призначений робити. Наприклад, залишати негативний відгук на додаток за показ реклами або вимогу збору даних, коли це є метою цього додатка, або додатку "
-"необхідний збір даних для його роботи."
-
-msgid "How can I report a problematic review?"
-msgstr "Як мені повідомити про некоректний відгук?"
-
-msgid ""
-"Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
-"evaluate whether or not to delete the review or restore it back to the site."
-msgstr ""
-"Будь ласка, повідомляйте або відзначайте прапором будь-які сумнівні відгуки, клацнувши \"Повідомити про цей відгук\" і він буде відправлений на сайт для модерації. Наша команда модераторів буде "
-"використовувати Вказівки щодо відгуків, щоб вирішити, чи видалити відгук або відновити його на сайті."
-
-msgid "I’m an add-on author, can I respond to reviews?"
-msgstr "Я автор додатка, чи можу я відповідати на відгуки?"
-
-#, python-format
-msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
-msgstr ""
-"Так, автори додатків можуть написати одну відповідь на відгук. Ви можете створити тему для обговорення на нашому <a href=\"%(forum_url)s\">форумі</a>, щоб взяти участь у додатковій або подальшої "
-"дискусії."
-
-msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Я автор додатка, чи можу я видаляти несприятливі відгуки чи рейтинги?"
-
-msgid ""
-"In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
-"valid due to a new release of your add-on, we may consider deleting the review."
-msgstr ""
-"Загалом, ні. Але якщо відгук не відповідає викладеним вище вимогам до відгуків, ви можете клацнути на лінк \"Повідомити про цей додаток\" і він буде перевірений. Якщо відгук містить скаргу, яка "
-"більше не є актуальною у зв'язку з виходом нової версії вашого додатка, ми можемо розглянути можливість видалення відгуку."
 
 msgid "User"
 msgstr "Користувач"
@@ -5915,6 +5786,9 @@ msgstr "Завантаження останніх даних&hellip;"
 msgid "No data available."
 msgstr "Дані відсутні."
 
+msgid "Previous"
+msgstr "Попередня"
+
 msgid "This dashboard is <b>private</b>."
 msgstr "Ця панель є <b>приватною</b>."
 
@@ -6057,9 +5931,6 @@ msgstr "Перейти"
 
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Повернутись на домашню сторінку додатків {0}"
-
-msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Firefox\" src=\"{0}\"> Додатки"
 
 msgid "Add-ons"
 msgstr "Додатки"

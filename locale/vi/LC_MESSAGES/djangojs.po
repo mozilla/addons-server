@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-08 17:03+0000\n"
+"POT-Creation-Date: 2022-02-22 17:07+0000\n"
 "PO-Revision-Date: 2021-08-27 02:59+0000\n"
 "Last-Translator: BunNotFound <ledangngocanh2010@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,10 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
-
-msgid "{0} star"
-msgid_plural "{0} stars"
-msgstr[0] "{0} sao"
 
 msgid "There was a problem contacting the server."
 msgstr "Kết nối tới máy chủ có vấn đề."
@@ -126,36 +122,6 @@ msgstr "Các hình ảnh phải dưới dạng PNG hoặc JPEG."
 
 msgid "Videos must be in WebM."
 msgstr "Các video phải dưới dạng WebM."
-
-msgid "This theme is incompatible with your version of {0}"
-msgstr "Chủ đề này không tương thích với phiên bản {0} của bạn"
-
-msgid "Flagged for review"
-msgstr "Đã gắn cờ cho đánh giá"
-
-msgid "Your input is required"
-msgstr "Vui lòng điền thông tin"
-
-msgid "Marked for deletion"
-msgstr "Đánh dấu để xóa"
-
-msgid "Updating results&hellip;"
-msgstr "Cập nhật kết quả&hellip;"
-
-msgid "Category"
-msgstr "Phân mục"
-
-msgid "Search themes for <b>{0}</b>"
-msgstr "Tìm <b>{0}</b> trong các giao diện"
-
-msgid "Search apps for <b>{0}</b>"
-msgstr "Tìm <b>{0}</b> trong các ứng dụng"
-
-msgid "Search add-ons for <b>{0}</b>"
-msgstr "Tìm <b>{0}</b> trong các tiện ích"
-
-msgid "Use original"
-msgstr "Sử dụng bản gốc"
 
 msgid "Week of {0}"
 msgstr "Tuần {0}"
@@ -623,41 +589,6 @@ msgstr "Ngày tháng"
 msgid "Other"
 msgstr "Khác"
 
-#. L10n: {0} is an app name like Firefox.
-msgid "Accept and Install"
-msgstr "Chấp nhận và cài đặt"
-
-msgid "Add to {0}"
-msgstr "Thêm vào {0}"
-
-#. L10n: {0} is an platform like Windows or Linux.
-msgid "Install for {0} anyway"
-msgstr "Vẫn cứ cài đặt {0}"
-
-msgid "Download for {0} anyway"
-msgstr "Vẫn tải xuống cho {0}"
-
-msgid "Not available for your platform"
-msgstr "Không có sẵn cho nền của bạn"
-
-msgid "This add-on is not compatible with your version of {0}."
-msgstr "Phiên bản này của tiện ích {0} không tương thích với phiên bản Firefox của bạn."
-
-msgid "View other versions"
-msgstr "Xem các phiên bản khác"
-
-msgid "Works with {app} {min} - {max}"
-msgstr "Hoạt động trên {app} {min} – {max}"
-
-msgid "Works with {app}"
-msgstr "Hoạt động với {app}"
-
-msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Chỉ hoạt động với Firefox — Tải Firefox ngay!"
-
-msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Rất tiếc, bạn cần phải sử dụng một trình duyệt gốc Mozilla (ví dụ như Firefox) để cài đặt một công cụ tìm kiếm."
-
 msgid "Changes Saved"
 msgstr "Đã lưu các thay đổi"
 
@@ -676,12 +607,6 @@ msgstr "Thay đổi hình ảnh đang được xử lý"
 
 msgid "Select an application first"
 msgstr "Chọn một ứng dụng trước tiên"
-
-msgid "No results found."
-msgstr "Không tìm thấy kết quả."
-
-msgid "Loading..."
-msgstr "Đang tải..."
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
