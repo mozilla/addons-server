@@ -91,6 +91,7 @@ def test_sentry_data_scrubbing():
     event = json.loads(event_raw)
     assert '@bar.com' in event_raw
     assert '172.18.0.1' in event_raw
+    assert '127.0.0.42' in event_raw
     expected_request_data = deepcopy(event['payload']['request'])
 
     expected_frame_data = deepcopy(
@@ -101,6 +102,7 @@ def test_sentry_data_scrubbing():
     event_raw = json.dumps(event)
     assert '@bar.com' not in event_raw
     assert '172.18.0.1' not in event_raw
+    assert '127.0.0.42' not in event_raw
 
     # We keep cookies, user dict
     assert event['payload']['request']['cookies']
@@ -113,6 +115,9 @@ def test_sentry_data_scrubbing():
     # Modify old_request_data according to what we should have done and see if
     # it matches what before_send() did in reality.
     expected_request_data['env']['REMOTE_ADDR'] = '*** redacted ***'
+    # Note special case for X-forwarded-for in the 'headers' dict, meant to
+    # test we don't care about case.
+    expected_request_data['headers']['X-forwarded-for'] = '*** redacted ***'
     assert expected_request_data == event['payload']['request']
 
     # Same for expected_frame_data.

@@ -1503,7 +1503,11 @@ def scrub_sensitive_data(event, hint):
             items = data.items() if isinstance(data, dict) else enumerate(data)
             for key, value in items:
                 data[key] = _scrub_sensitive_data_recursively(value, name=key)
-        elif isinstance(data, str) and name in SENTRY_SENSITIVE_FIELDS:
+        elif (
+            isinstance(data, str)
+            and isinstance(name, str)
+            and name.lower() in SENTRY_SENSITIVE_FIELDS
+        ):
             data = '*** redacted ***'
         return data
 
@@ -1528,12 +1532,13 @@ SENTRY_CONFIG = {
     'before_send': scrub_sensitive_data,
 }
 # List of fields to scrub in our custom scrub_sensitive_data() callback.
+# /!\ Each value needs to be in lowercase !
 SENTRY_SENSITIVE_FIELDS = (
     'email',
     'ip_address',
-    'REMOTE_ADDR',
-    'remoteAddressChain',
-    'X-Forwarded-For',
+    'remote_addr',
+    'remoteaddresschain',
+    'x-forwarded-for',
 )
 
 
