@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-24 17:45+0000\n"
+"PO-Revision-Date: 2022-02-24 19:51+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -2177,7 +2177,7 @@ msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Onl
 msgstr ""
 
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "Takmarkað við {0} merki."
 
 msgid "Contributions URL"
 msgstr ""
@@ -2565,7 +2565,7 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 msgid "Select a category for this add-on:"
-msgstr ""
+msgstr "Veldu flokk fyrir þessa viðbót:"
 
 msgid "Support email:"
 msgstr "Aðstoð í tölvupósti:"
@@ -2577,7 +2577,7 @@ msgid "License:"
 msgstr "Notkunarleyfi:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Veldu notkunarleyfi sem hæfir þeim réttindum sem þú veitir."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr ""
@@ -3891,11 +3891,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Komdu í veg fyrir að auglýsingar birtist í leitarniðurstöðum þínum."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Geymdu lykilorð á öruggan hátt og skráðu þig sjálfkrafa inn á þekkt vefsvæði."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
