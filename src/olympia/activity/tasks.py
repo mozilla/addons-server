@@ -21,7 +21,9 @@ def process_email(message, spam_rating, **kwargs):
             if header.get('Name', '').lower() == 'message-id':
                 msg_id = header.get('Value')
     if not msg_id:
-        log.warning('No MessageId in message, aborting.', extra={'message_obj': message})
+        log.warning(
+            'No MessageId in message, aborting.', extra={'message_obj': message}
+        )
         return
     _, created = ActivityLogEmails.objects.get_or_create(messageid=msg_id)
     if not created:
