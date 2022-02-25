@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-25 12:19+0000\n"
+"PO-Revision-Date: 2022-02-25 13:50+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -156,7 +156,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Emrat e shtesave s’mund të përmbajnë shenjat tregtare Mozilla ose Firefox."
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
+msgstr "Leje sajti për {hostnames}"
 
 msgid "My Add-ons"
 msgstr "Shtesat e Mia"
@@ -2028,7 +2028,7 @@ msgid "The origin (scheme + hostname + optional port) you need the permission to
 msgstr "Origjina (skemë + strehëemër + portë opsionale) për të cilën ju duhet të aktivizoni lejen. Kjo do të jetë gjithashtu vendi ku duhet të strehoni shtesën."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "Leja(t) që shtesa e prodhuar do t’i akordojë origjinës."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Përdorni fushën më poshtë për të ngarkuar paketën e shtesës suaj."
@@ -2496,7 +2496,7 @@ msgid "The add-on ID will continue to be linked to your account, so others won't
 msgstr "ID-ja e shtesës do të vazhdojë të jetë e lidhur me llogarinë tuaj, ndaj persona të tjerë s’do të jenë në gjendje të parashtrojnë versione duke përdorur të njëjtën ID."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "ID-ja e shtesës s’mund të rikthehet dhe do të jetë përgjithmonë e papërdorshme për parashtrim."
 
 msgid "Delete Add-on"
 msgstr "Fshije Shtesë"
@@ -3706,7 +3706,7 @@ msgstr "Ringarkoni vetvetiu skeda bazuar në intervale kohorë që i caktoni ju.
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Mbani pjesë të jetës tuaj internetore të ndara në skeda me ngjyra dhe me cookie-t më vete. Tanimë e integruar me Mozilla VPN-në, për një shtresë më shumë privatësie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4467,11 +4467,11 @@ msgstr "Merrini emoji-t me ju, kudo në web."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Vini kufizime ndaj sajtesh të beszisshëm që ju hanë kohën."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Hiqni rrëmujën nga llogaria juaj Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
@@ -4621,9 +4621,8 @@ msgid "Trending extensions"
 msgstr "Zgjerime në modë"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Shihni më tepër zgjerime të rekomanduara"
+msgstr "Shihni më tepër zgjerime në modë"
 
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
@@ -6039,9 +6038,8 @@ msgstr "S’ka përdorues me këtë email."
 msgid "Firefox user {id}"
 msgstr "{id} përdoruesi Firefox-i"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Jepni një interval rrjeti IPv6 ose IPv6 CIDR të vlefshëm, p.sh., 127.0.0.1/28"
+msgstr "Jepni një interval rrjeti IPv4 ose IPv6 CIDR të vlefshëm, p.sh., 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Prej vendndodhjes tuaj janë parashtruar një numër shtesash që cenojnë rregullat tona. Adresa IP është bllokuar."
