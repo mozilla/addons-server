@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-23 16:13+0000\n"
-"Last-Translator: gabrielyt219 <gabrielyt219@gmail.com>\n"
+"PO-Revision-Date: 2022-02-25 12:35+0000\n"
+"Last-Translator: Pedro Coelho <pedrozc99@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -1034,9 +1034,8 @@ msgstr "LWTs descontinuados"
 msgid "Themes (Static)"
 msgstr "Temas (estáticos)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Permissões:"
+msgstr "Permissões do site"
 
 msgid "Alerts & Updates"
 msgstr "Alertas e atualizações"
@@ -1344,9 +1343,8 @@ msgstr ""
 msgid "The MIT License"
 msgstr "Licença"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Licença"
+msgstr "A licença BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr ""
@@ -1774,13 +1772,11 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nome a apresentar"
 
-#, fuzzy
 msgid "Origin"
-msgstr "Origem:"
+msgstr "Origem"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Permissões:"
+msgstr "Permissões"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
 msgstr ""
@@ -2516,11 +2512,8 @@ msgstr "Ocultar mensagens presentes na versão anterior e ignorada"
 msgid "Top"
 msgstr "Topo"
 
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Eliminar o seu extra irá eliminar permanentemente todas as versões e ficheiros que tenha submetido para este extra, listados ou não. O ID do extra irá continuar a estar associado à sua conta, para "
-"que outros não possam submeter versões utilizando o mesmo ID."
+msgstr "Eliminar o seu extra irá eliminar permanentemente todas as versões e ficheiros que tenha submetido para este extra, listados ou não."
 
 #, fuzzy
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
