@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-24 19:56+0000\n"
+"PO-Revision-Date: 2022-02-25 14:36+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1120,7 +1120,7 @@ msgid "Performance"
 msgstr "Afköst"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Sæktu forritsauka sem gefa Firefox aukin afköst. Finndu forritsauka sem hjálpa þér við að vera einbeittari og í friði fyrir truflandi auglýsingum og fleiru slíku."
 
 msgid "Photos & Media"
 msgstr "Ljósmyndir og margmiðlun"
@@ -1444,7 +1444,7 @@ msgid "Moderated Add-on Review"
 msgstr "Ritstýrð yfirferð viðbótar"
 
 msgid "Add-on Review Moderation Reverted"
-msgstr ""
+msgstr "Ritstýrð yfirferð viðbótar afturkölluð"
 
 msgid "Add-on Content Review"
 msgstr "Yfirferð á efni viðbótar"
@@ -3369,13 +3369,13 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr ""
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Ertu viss um að vilja fela viðbótina þína?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr ""
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Ertu viss um að þú viljir hætta við beiðni þína um yfirferð?"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
@@ -3392,7 +3392,7 @@ msgstr[1] "{0} aðvaranir"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Lokaðu á rekjara og njósnaauglýsingar sem fylgjast með ferðum þínum á vefnum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3402,22 +3402,22 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Áherslulitaðu einhvern texta, hægrismelltu og þýddu samstundis."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Framkvæmdu leit út frá myndum á fjöldanum öllum af leitarvélum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "Útilokun auglýsinga og verndun á friðhelgi einkalífs. Einföld uppsetning gerir þér kleift að stýra hvaða auglýsingar þú sér og hvernig sé fylgst með þér á internetinu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Ertu með heilt tonn af opnum flipum? Sýslaðu með þá á hreinlegu hliðarspjaldi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3427,16 +3427,16 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Einfaldaðu leit mða því að áherslulita texta á hvaða vefsíðu sem er og leita að viðkomandi texta á fjöldanum öllum af leitarvélum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Fáðu í einni svipan uppfærðar veðurspár úti um allan heim."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "Veldu síðuna sem þú sérð í hvert skipti sem þú opnar nýjan flipa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3476,11 +3476,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Bættu sjálfvirkt staðreyndum úr Britannica í leitarniðurstöðurnar þínar."
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Lokaðu á að pirrandi auglýsingar og athugasemdir birtist á YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
@@ -3502,15 +3502,15 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Birta klukkuna eins og hún er núna á ýmsum stöðum í heiminum í stöðustiku Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Einfaldar þýðingar. Áherslulitaðu einhvern texta á einhverri vefsíðu - eða veldu alla síðuna - og þýddu samstundis."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Tappaðu af akademískri þekkingu. Fáðu aðgang að meira en 10 milljón vísindagreinum án gjalds."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
@@ -3524,7 +3524,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia notar 80% af hagnaði sínum við rekstur leitarvélarinnar til að fjármagna trjáplöntunarverkefni víða í heiminum. Hafðu Ecosia með í leitarvélum Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
@@ -3538,7 +3538,7 @@ msgstr "Láttu bendilinn svífa yfir mynd til að stækka hana."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Eyddu vefkökum sjálfvirkt eftir að þú lokar flipum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4020,7 +4020,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Lokaðu á truflandi sprettglugga með einum smelli."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
@@ -4064,7 +4064,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Leita með bættum vörnum gegn rekjurum, snjallri dulritun og fleiri aðferðum til að vernda friðhelgi þína."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
@@ -4206,7 +4206,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Lokar á allar auglýsingar - myndskeið, sprettglugga, borða og fleira."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4263,7 +4263,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Bless, leiðinda aðvaranir útaf vefkökum!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
@@ -4320,7 +4320,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Farnar, búnar, bless, þessar leiðinda aðvaranir útaf vefkökum!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
@@ -4360,7 +4360,7 @@ msgstr "Forritsaukar eru eins og smáforrit fyrir Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Þær bæta við eiginleikum í Firefox til að gera vafur hraðara, öruggara eða bara skemmtilegra."
+msgstr "Þetta bætir við eiginleikum í Firefox til að gera vafur hraðara, öruggara eða bara skemmtilegra."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
