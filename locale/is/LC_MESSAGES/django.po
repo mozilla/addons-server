@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-25 14:36+0000\n"
+"PO-Revision-Date: 2022-02-25 14:48+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3468,7 +3468,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Áherslulitaðu einhvern texta og hægrismelltu til að leita í skyndi að myndum."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
@@ -3591,7 +3591,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Lestu ePub-rafbókaskrár beint inni í Firefox - stækkaðu letur, breyttu stærð á síðum, auk annars."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3625,7 +3625,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Taktu skjámyndir af vefsíðum, lagaðu þau til og deildu þeim síðan."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -3751,7 +3751,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Notaðu músarbendingar svo að hlutirnir gangi hraðar fyrir sig."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -3759,7 +3759,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Sæktu myndir sem þú finnur á vefnum."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -3903,7 +3903,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Leitaðu í laumi með bara einum smelli."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
