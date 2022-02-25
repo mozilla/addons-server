@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-25 14:48+0000\n"
+"PO-Revision-Date: 2022-02-25 15:05+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3998,12 +3998,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Leyfðu vefefni einungis að keyra frá vefsvæðum sem þú treystir. Vafraðu öruggt."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Vertu með fulla stjórn á þeim vefkökum sem þú hefur safnað á meðan vafri stendur."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
@@ -4012,7 +4012,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Verðu einkabókamerkin þín með lykilorði."
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -4068,7 +4068,7 @@ msgstr "Leita með bættum vörnum gegn rekjurum, snjallri dulritun og fleiri a�
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "Einfaldaðu flipana. Sýslaðu með opnu flipana þina á hreinlegu lóðréttu hliðarspjaldi."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
@@ -4081,7 +4081,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Hættu að eyða dýrmætu minni með óvirkum flipum."
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
@@ -4099,7 +4099,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Lokaðu á auglýsingar og fáðu betri varnir gegn spilliforritum og auglýsingarekjurum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4113,7 +4113,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Mældu vefsíður. Teiknaðu með stafrænni mælistiku á hverskyns vefsíður til að mæla hæð, breidd og hliðjöfnun síðuhluta."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -4179,7 +4179,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "Fjarlægðu rakningareinindi úr veftenglum."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
@@ -4220,7 +4220,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Láttu lesa upp af vefsíðum fyrir þig. Fleiri en 40 tungumál studd."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
