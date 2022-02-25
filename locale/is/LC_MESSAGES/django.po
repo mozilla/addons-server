@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-25 15:05+0000\n"
+"PO-Revision-Date: 2022-02-25 15:37+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -4170,7 +4170,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "Fáðu uppfært veður beint í Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4284,15 +4284,15 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "Lestu ePub-rafbókaskrár beint inni í Firefox - stækkaðu letur, breyttu stærð á síðum, auk annars."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr ""
+msgstr "Sérsníddu músarbendingar. Uppgötvaðu nýjar leiðir til að rata með meira en 50 uppsetningum."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr ""
+msgstr "Notaðu músarbendingar til að loka flipum, rata um vefsíður og fleira."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4300,7 +4300,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Lesið upphátt af vefsíðum. Fleiri en 40 tungumál studd."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
@@ -4308,7 +4308,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Fáðu veðrið beint úr Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4324,7 +4324,7 @@ msgstr "Farnar, búnar, bless, þessar leiðinda aðvaranir útaf vefkökum!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Farðu til baka í einfaldari tíma - þegar mikilvægustu leitarniðurstöðurnar komu fyrir ofan allar auglýsingar (samhæft við Google og Bing leitarvélarnar)."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
@@ -4344,11 +4344,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Fjarlægðu óþarfa úr Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Sérsníddu YouTube að þínum þörfum."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
