@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-02-22 17:06+0000\n"
-"PO-Revision-Date: 2022-02-26 19:31+0000\n"
+"PO-Revision-Date: 2022-02-26 19:34+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2493,11 +2493,8 @@ msgstr "ზემოთა"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr "თქვენი დამატების წაშლით სამუდამოდ წაიშლება ამ დამატებასთან დაკავშირებული ყველა ვერსია და ფაილი, მიუხედავად იმისა, გამოქვეყნებულია თუ არა."
 
-#, fuzzy
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"თქვენი დამატების წაშლით, სამუდამოდ წაიშლება ამ დამატებასთან დაკავშირებული ყველა ვერსია და ფაილი, მიუხედავად იმისა, გამოქვეყნებულია თუ არა. დამატების ID დარჩება თქვენს ანგარიშთან დაკავშირებული, ასე "
-"რომ სხვებს არ შეეძლებათ, ამ დამატების ID-ს გამოყენებით ვერსიების წარდგენა."
+msgstr "დამატების ID დარჩება თქვენს ანგარიშთან დაკავშირებული, ასე რომ სხვებს არ შეეძლებათ ვერსიების წარსადგენად გამოიყენონ იგივე ID."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr "დამატების ID ვერ აღდგება და წარდგენისთვის სამუდამოდ გამოუსადეგარი დარჩება."
@@ -4479,9 +4476,8 @@ msgid "See all extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Top anti-tracking extensions"
-msgstr "ფართოდ გავრცელებული გაფართოებები"
+msgstr "რჩეული გაფართოებები თვალთვალის წინააღმდეგ"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6022,9 +6018,8 @@ msgstr "ამ ელფოსტით მომხმარებელი ა
 msgid "Firefox user {id}"
 msgstr "Firefox-ის მომხმარებელი {id}"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "მიუთითეთ მართებული IPv6 ან IPv6-CIDR-ქსელის შუალედი, მაგ. 127.0.0.1/28"
+msgstr "მიუთითეთ მართებული IPv4 ან IPv6 CIDR-ქსელის შუალედი, მაგ. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "თქვენი მისამართიდან მრავალჯერ გადმოიგზავნა დამატება, რომელიც არღვევს ჩვენს დებულებას. აღნიშნული IP-მისამართი შეზღუდულია."
