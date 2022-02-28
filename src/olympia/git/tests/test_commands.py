@@ -322,13 +322,13 @@ class TestMigrateGitStorageToNewStructure(TestCase):
 
     def test_get_new_path(self):
         assert self.command.get_new_path(60).endswith(
-            'storage/new-git-storage/0/60/60/60'
+            'storage/new-git-storage/60/60/60'
         )
         assert self.command.get_new_path(623).endswith(
-            'storage/new-git-storage/3/23/623/623'
+            'storage/new-git-storage/23/623/623'
         )
         assert self.command.get_new_path(3452581).endswith(
-            'storage/new-git-storage/1/81/581/3452581'
+            'storage/new-git-storage/81/2581/3452581'
         )
 
     def test_create_new_directory_structure_fake(self):
@@ -344,40 +344,29 @@ class TestMigrateGitStorageToNewStructure(TestCase):
         self.command.stdout.seek(0)
         assert self.command.stderr.read() == ''
 
-        # 10 directories containing 10 directories containing 10 directories...
-        # plus one for the special '60' directory for the single < 3 digit
-        # addon_id we have...
-        assert makedirs_mock.call_count == 1001
+        # 109 directories containing 109 directories
+        assert makedirs_mock.call_count == 11881
 
         # Same number of writes to stdout
         stdout = self.command.stdout.read().strip('\n').split('\n')
-        assert len(stdout) == 1001
+        assert len(stdout) == 11881
 
         for call in makedirs_mock.call_args_list:
             assert call.kwargs == {'exist_ok': True}
 
-        # Spot check a few of them... The weird path with ../.. is caused by
-        # our settings...
+        # Spot check a few of them...
         assert (
-            makedirs_mock.call_args_list[56]
+            makedirs_mock.call_args_list[1056]
             .args[0]
-            .endswith('storage/new-git-storage/0/50/650')
+            .endswith('storage/new-git-storage/10/7610')
         )
-        assert stdout[56].endswith('storage/new-git-storage/0/50/650')
+        assert stdout[1056].endswith('storage/new-git-storage/10/7610')
         assert (
-            makedirs_mock.call_args_list[64]
+            makedirs_mock.call_args_list[3064]
             .args[0]
-            .endswith('storage/new-git-storage/0/60/460')
+            .endswith('storage/new-git-storage/29/1329')
         )
-        assert stdout[64].endswith('storage/new-git-storage/0/60/460')
-        # The infamous special '60' case, should be after all the other
-        # entries under 0/60/.
-        assert (
-            makedirs_mock.call_args_list[70]
-            .args[0]
-            .endswith('storage/new-git-storage/0/60/60')
-        )
-        assert stdout[70].endswith('storage/new-git-storage/0/60/60')
+        assert stdout[3064].endswith('storage/new-git-storage/29/1329')
 
     @mock.patch('os.scandir')
     @mock.patch('os.rename')
@@ -429,13 +418,13 @@ class TestMigrateGitStorageToNewStructure(TestCase):
         assert (
             rename_mock.call_args_list[24]
             .args[1]
-            .endswith('storage/new-git-storage/1/21/221/481516234221')
+            .endswith('storage/new-git-storage/21/4221/481516234221')
         )
         assert rename_mock.call_args_list[25].args[0].endswith('1/21/12345678921')
         assert (
             rename_mock.call_args_list[25]
             .args[1]
-            .endswith('storage/new-git-storage/1/21/921/12345678921')
+            .endswith('storage/new-git-storage/21/8921/12345678921')
         )
 
     def test_migrate_stdout(self):
@@ -513,13 +502,13 @@ class TestMigrateGitStorageToNewStructure(TestCase):
         assert (
             rename_mock.call_args_list[24]
             .args[1]
-            .endswith('storage/new-git-storage/1/31/231/481516234231')
+            .endswith('storage/new-git-storage/31/4231/481516234231')
         )
         assert rename_mock.call_args_list[25].args[0].endswith('1/31/12345678931')
         assert (
             rename_mock.call_args_list[25]
             .args[1]
-            .endswith('storage/new-git-storage/1/31/931/12345678931')
+            .endswith('storage/new-git-storage/31/8931/12345678931')
         )
 
     @mock.patch('os.scandir')
@@ -611,7 +600,7 @@ class TestMigrateGitStorageToNewStructure(TestCase):
         for addon_id in range(1000, 2001):
             # Pretend we have a bunch of add-ons in the 1000 -> 2001 id range.
             path = os.path.join(
-                settings.GIT_FILE_STORAGE_PATH, id_to_path(addon_id, depth=2), 'addon'
+                settings.GIT_FILE_STORAGE_PATH, id_to_path(addon_id, breadth=1), 'addon'
             )
             os.makedirs(path)
 
@@ -627,19 +616,16 @@ class TestMigrateGitStorageToNewStructure(TestCase):
         )
         stdout = io.StringIO()
         call_command('migrate_git_storage_to_new_structure', stdout=stdout)
-        assert len(os.listdir(settings.GIT_FILE_STORAGE_PATH)) == 10
-        assert len(os.listdir(os.path.join(settings.GIT_FILE_STORAGE_PATH, '1'))) == 10
+        assert len(os.listdir(settings.GIT_FILE_STORAGE_PATH)) == 109
+        assert len(os.listdir(os.path.join(settings.GIT_FILE_STORAGE_PATH, '1'))) == 109
         assert (
-            len(os.listdir(os.path.join(settings.GIT_FILE_STORAGE_PATH, '1', '21')))
-            == 10
+            len(os.listdir(os.path.join(settings.GIT_FILE_STORAGE_PATH, '78'))) == 109
         )
         assert not os.path.exists(
             os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
         )
         assert os.path.exists(
-            os.path.join(
-                settings.GIT_FILE_STORAGE_PATH, '9', '89', '789', '1789', 'addon'
-            )
+            os.path.join(settings.GIT_FILE_STORAGE_PATH, '89', '1789', '1789', 'addon')
         )
         # new/old temporary paths shouldn't have been left behind.
         assert not os.path.exists(
@@ -670,11 +656,12 @@ class TestMigrateGitStorageToNewStructure(TestCase):
         # New directory structure in temporary new storage path *should* have been
         # created though, because it's needed to proceed.
         assert os.path.exists(
-            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '9', '89', '789')
+            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '89', '1789')
         )
-        # We just shouldn't have used it to store anything (1789 is an add-on id).
+        # We just shouldn't have used it to store anything (the second 1789
+        # represents an add-on id).
         assert not os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '789', '1789')
+            os.path.join(settings.GIT_FILE_STORAGE_PATH, '89', '1789', '1789')
         )
         stdout.seek(0)
         assert stdout.read()
@@ -685,9 +672,7 @@ class TestMigrateGitStorageToNewStructure(TestCase):
             os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
         )
         assert not os.path.exists(
-            os.path.join(
-                settings.GIT_FILE_STORAGE_PATH, '9', '89', '789', '1789', 'addon'
-            )
+            os.path.join(settings.GIT_FILE_STORAGE_PATH, '89', '1789', '1789', 'addon')
         )
         stdout = io.StringIO()
         call_command(
@@ -698,13 +683,11 @@ class TestMigrateGitStorageToNewStructure(TestCase):
             os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
         )
         assert not os.path.exists(
-            os.path.join(
-                settings.GIT_FILE_STORAGE_PATH, '9', '89', '789', '1789', 'addon'
-            )
+            os.path.join(settings.GIT_FILE_STORAGE_PATH, '89', '1789', '1789', 'addon')
         )
         # But new directories should have been created in the temporary new directory.
         assert os.path.exists(
-            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '9', '89', '789')
+            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '89', '1789')
         )
         stdout.seek(0)
         assert stdout.read()
@@ -718,15 +701,14 @@ class TestMigrateGitStorageToNewStructure(TestCase):
         # We should have migrated add-ons to new temporary path, without having renamed
         # that temporary path to the final one.
         assert os.path.exists(
-            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '9', '89', '789')
+            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '89', '1789')
         )
         assert os.path.exists(
             os.path.join(
                 settings.STORAGE_ROOT,
                 'new-git-storage',
-                '9',
                 '89',
-                '789',
+                '1789',
                 '1789',
                 'addon',
             )

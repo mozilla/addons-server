@@ -134,11 +134,11 @@ def test_git_repository_path():
     )
 
 
-@override_switch('git-storage-deeper-structure', active=True)
+@override_switch('git-storage-broader-structure', active=True)
 def test_git_repository_path_new_structure_waffle_switch():
     repo = AddonGitRepository(1789)
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, '9/89/789/1789', 'addon'
+        settings.GIT_FILE_STORAGE_PATH, '89/1789/1789', 'addon'
     )
 
 
@@ -185,10 +185,10 @@ def test_git_repo_init_opens_existing_repo(settings):
     assert repo.git_repository.path == repo2.git_repository.path
 
 
-@override_switch('git-storage-deeper-structure', active=True)
-def test_git_repo_init_opens_existing_repo_deeper_structure_waffle_switch_on(settings):
+@override_switch('git-storage-broader-structure', active=True)
+def test_git_repo_init_opens_existing_repo_broader_structure_waffle_switch_on(settings):
     expected_path = os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, '2/42/342/4815162342', 'addon'
+        settings.GIT_FILE_STORAGE_PATH, '42/2342/4815162342', 'addon'
     )
 
     assert not os.path.exists(expected_path)

@@ -199,10 +199,10 @@ class AddonGitRepository:
             addon_or_id.pk if isinstance(addon_or_id, Addon) else addon_or_id
         )
 
-        depth = 3 if switch_is_active('git-storage-deeper-structure') else 2
+        breadth = 2 if switch_is_active('git-storage-broader-structure') else 1
         self.git_repository_path = os.path.join(
             settings.GIT_FILE_STORAGE_PATH,
-            id_to_path(self.addon_id, depth=depth),
+            id_to_path(self.addon_id, breadth=breadth),
             package_type,
         )
 

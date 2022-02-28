@@ -82,23 +82,31 @@ def get_filepath(fileorpath):
     return fileorpath
 
 
-def id_to_path(pk, depth=2):
+def id_to_path(pk, breadth=1):
     """
-    Generate a path from an id, to distribute folders in the file system.
+    Generate a path from a pk, to distribute folders in the file system. There
+    are 2 sublevels made from the last digits of the pk.
+
     1 => 1/1/1
     12 => 2/12/12
     123456 => 6/56/123456
 
-    depth can be specified through the corresponding parameter, defaults to 2,
-    levels deep, minimum is 1. depth=3 would return 6/56/456/123456 for 123456.
+    The breadth argument controls the number of digits used at each sublevel.
+    It defaults to 1, creating 10 * 10 * x directories. A value of 2 would
+    create 100 * 100 * x directories, resulting in:
+    1 => 1/1/1
+    12 => 12/12/12
+    123 => 23/123/123
+    1234 => 34/1234/1234
+    123456 => 56/3456/123456
+    123456789 => 89/6789/123456789
     """
     pk = str(pk)
-    path = [pk[-1]]
-    for level in range(2, depth + 1):
-        if len(pk) >= level:
-            path.append(pk[-level:])
-        else:
-            path.append(pk)
+    path = [pk[-breadth:]]
+    if len(pk) >= breadth * 2:
+        path.append(pk[-breadth * 2 :])
+    else:
+        path.append(pk)
     path.append(pk)
     return os.path.join(*path)
 

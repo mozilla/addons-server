@@ -6,10 +6,10 @@ from django.db import migrations
 def create_waffle_switch_if_it_doesnt_already_exist(apps, schema_editor):
     Switch = apps.get_model('waffle', 'Switch')
     Switch.objects.get_or_create(
-        name='git-storage-deeper-structure',
+        name='git-storage-broader-structure',
         defaults={
             'active': False,
-            'note': 'Enable deeper directory structure for git storage',
+            'note': 'Enable broader directory structure for git storage',
         },
     )
 

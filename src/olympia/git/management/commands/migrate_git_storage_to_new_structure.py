@@ -63,27 +63,30 @@ class Command(BaseCommand):
 
     def get_new_path(self, addon_id):
         return os.path.join(
-            self.get_new_temporary_file_storage_path(), id_to_path(addon_id, depth=3)
+            self.get_new_temporary_file_storage_path(), id_to_path(addon_id, breadth=2)
         )
 
     def create_new_directory_structure(self):
         new_file_storage_path = self.get_new_temporary_file_storage_path()
-        for x in range(0, 10):
-            for y in range(0, 10):
-                # We only have a single add-on with an id < 3 digits, and its
-                # id is 60, let's add it manually.
-                zrange = list(range(0, 10))
-                if x == 0 and y == 6:
-                    zrange.append(60)
-                for z in zrange:
-                    path = os.path.join(
-                        new_file_storage_path,
-                        f'{x}',
-                        f'{y}{x}',
-                        f'{z}{y}{x}' if z < 10 else f'{z}',
-                    )
-                    self.stdout.write(f'Creating {path}\n')
-                    os.makedirs(path, exist_ok=True)
+        # New structure is <last 2 digits of id>/<last 4 digits of id>/<id>,
+        # So at the first and second level there will be 109 directories (100
+        # each for the ids with 4 digits or more, 9 each for the ones with 3
+        # digits or less).
+        for x in (
+            *(str(i) for i in range(1, 100)),  # 1-99
+            *(str(i).zfill(2) for i in range(0, 10)),  # 00-09
+        ):
+            for y in (
+                *(str(i) for i in range(1, 100)),  # 1-99
+                *(str(i).zfill(2) for i in range(0, 10)),  # 00-09
+            ):
+                path = os.path.join(
+                    new_file_storage_path,
+                    f'{x}',
+                    f'{y}{x}',
+                )
+                self.stdout.write(f'Creating {path}\n')
+                os.makedirs(path, exist_ok=True)
 
     def migrate(self):
         n = 0

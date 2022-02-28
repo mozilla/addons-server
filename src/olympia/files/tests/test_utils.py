@@ -1152,15 +1152,16 @@ def test_id_to_path(value, expected):
 @pytest.mark.parametrize(
     'value, expected',
     [
-        (1, '1/1/1/1'),
-        (12, '2/12/12/12'),
-        (123, '3/23/123/123'),
-        (1234, '4/34/234/1234'),
-        (123456789, '9/89/789/123456789'),
+        (1, '1/1/1'),
+        (12, '12/12/12'),
+        (123, '23/123/123'),
+        (1234, '34/1234/1234'),
+        (123456, '56/3456/123456'),
+        (123456789, '89/6789/123456789'),
     ],
 )
 def test_id_to_path_depth(value, expected):
-    assert utils.id_to_path(value, depth=3) == expected
+    assert utils.id_to_path(value, breadth=2) == expected
 
 
 class TestSafeZip(TestCase):
