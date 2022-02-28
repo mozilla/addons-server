@@ -87,26 +87,38 @@ def id_to_path(pk, breadth=1):
     Generate a path from a pk, to distribute folders in the file system. There
     are 2 sublevels made from the last digits of the pk.
 
+    The breadth argument (defaults to 1) controls the number of digits used at
+    each sublevel. When breadth > 1, zero-padding applied to always have a
+    # fixed number of directories for each sublevel).
+
+    At breadth=1, there should be (10 * 10 + 9) * x directories since padding
+    is off, resulting in:
     1 => 1/1/1
     12 => 2/12/12
     123456 => 6/56/123456
 
-    The breadth argument controls the number of digits used at each sublevel.
-    It defaults to 1, creating 10 * 10 * x directories. A value of 2 would
-    create 100 * 100 * x directories, resulting in:
-    1 => 1/1/1
-    12 => 12/12/12
-    123 => 23/123/123
+
+    At breadth=2, there should be 100 * 100 * x directories, resulting in:
+    1 => 01/0001/1
+    12 => 12/0012/12
+    123 => 23/0123/0123
     1234 => 34/1234/1234
     123456 => 56/3456/123456
     123456789 => 89/6789/123456789
     """
     pk = str(pk)
-    path = [pk[-breadth:]]
-    if len(pk) >= breadth * 2:
-        path.append(pk[-breadth * 2 :])
+    if breadth == 1:
+        # 'Original' algorithm, unpadded, only last 2 digits are used.
+        path = [pk[-1]]
+        if len(pk) >= 2:
+            path.append(pk[-2:])
+        else:
+            path.append(pk)
     else:
-        path.append(pk)
+        # 'New' algorithm, padded, uses more digits depending on breadth.
+        padded_pk = pk.zfill(2 * breadth)
+        path = [padded_pk[-breadth:], padded_pk[-breadth * 2 :]]
+    # We always append the unpadded pk as the final directory.
     path.append(pk)
     return os.path.join(*path)
 

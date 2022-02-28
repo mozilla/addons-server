@@ -69,17 +69,9 @@ class Command(BaseCommand):
     def create_new_directory_structure(self):
         new_file_storage_path = self.get_new_temporary_file_storage_path()
         # New structure is <last 2 digits of id>/<last 4 digits of id>/<id>,
-        # So at the first and second level there will be 109 directories (100
-        # each for the ids with 4 digits or more, 9 each for the ones with 3
-        # digits).
-        for x in (
-            *(str(i) for i in range(1, 100)),  # 1-99
-            *(str(i).zfill(2) for i in range(0, 10)),  # 00-09
-        ):
-            for y in (
-                *(str(i) for i in range(1, 100)),  # 1-99
-                *(str(i).zfill(2) for i in range(0, 10)),  # 00-09
-            ):
+        # with zero padding to ensure we always have at least 4 digits.
+        for x in (str(i).zfill(2) for i in range(0, 100)):  # 00-99
+            for y in (str(i).zfill(2) for i in range(0, 100)):  # 00-99
                 path = os.path.join(
                     new_file_storage_path,
                     f'{x}',
@@ -90,6 +82,9 @@ class Command(BaseCommand):
 
     def migrate(self):
         n = 0
+        # Old structure is <last digit of id>/<last 2 digits of id>/<id>, so
+        # we have to go 2 levels deep iterating over 0-9. There are no 1 digit
+        # add-ons so no padding required.
         for x in range(0, 10):
             for y in range(0, 10):
                 path = os.path.join(
