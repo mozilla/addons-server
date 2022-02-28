@@ -597,8 +597,8 @@ class TestMigrateGitStorageToNewStructure(TestCase):
         assert rename_mock.call_count == 0
 
     def _create_old_directory_structure(self):
-        for addon_id in range(1000, 2001):
-            # Pretend we have a bunch of add-ons in the 1000 -> 2001 id range.
+        # Pretend we have a bunch of add-ons with various ids.
+        for addon_id in (160, 1789, 3000, 10202):
             path = os.path.join(
                 settings.GIT_FILE_STORAGE_PATH, id_to_path(addon_id, breadth=1), 'addon'
             )
@@ -606,89 +606,120 @@ class TestMigrateGitStorageToNewStructure(TestCase):
 
     def test_full_run(self):
         self._create_old_directory_structure()
-        assert os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
-        )
-        assert not os.path.exists(
-            os.path.join(
-                settings.GIT_FILE_STORAGE_PATH, '9', '89', '789', '1789', 'addon'
+        for addon_id in (160, 1789, 3000, 10202):
+            assert os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=1),
+                    'addon',
+                )
             )
-        )
+            assert not os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=2),
+                    'addon',
+                )
+            )
         stdout = io.StringIO()
         call_command('migrate_git_storage_to_new_structure', stdout=stdout)
-        assert len(os.listdir(settings.GIT_FILE_STORAGE_PATH)) == 109
-        assert len(os.listdir(os.path.join(settings.GIT_FILE_STORAGE_PATH, '1'))) == 109
-        assert (
-            len(os.listdir(os.path.join(settings.GIT_FILE_STORAGE_PATH, '78'))) == 109
-        )
-        assert not os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
-        )
-        assert os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '89', '1789', '1789', 'addon')
-        )
-        # new/old temporary paths shouldn't have been left behind.
-        assert not os.path.exists(
-            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '9', '89', '789')
-        )
-        assert not os.path.exists(
-            os.path.join(settings.STORAGE_ROOT, 'old-git-storage', '9', '89', '1789')
-        )
+        for addon_id in (160, 1789, 3000, 10202):
+            # Old paths should no longer exist
+            assert not os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=1),
+                )
+            )
+            # New ones should.
+            assert os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=2),
+                )
+            )
         stdout.seek(0)
         assert stdout.read()
 
     def test_full_run_fake(self):
         self._create_old_directory_structure()
-        assert os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
-        )
-        assert not os.path.exists(
-            os.path.join(
-                settings.GIT_FILE_STORAGE_PATH, '9', '89', '789', '1789', 'addon'
+        for addon_id in (160, 1789, 3000, 10202):
+            assert os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=1),
+                )
             )
-        )
+            assert not os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=2),
+                )
+            )
         stdout = io.StringIO()
         call_command('migrate_git_storage_to_new_structure', '--fake', stdout=stdout)
         # Nothing should have been migrated...
-        assert os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
-        )
-        # New directory structure in temporary new storage path *should* have been
-        # created though, because it's needed to proceed.
-        assert os.path.exists(
-            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '89', '1789')
-        )
-        # We just shouldn't have used it to store anything (the second 1789
-        # represents an add-on id).
-        assert not os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '89', '1789', '1789')
-        )
+        for addon_id in (160, 1789, 3000, 10202):
+            assert os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=1),
+                )
+            )
+            assert not os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=2),
+                )
+            )
+        # New directory structure in temporary new storage path *should* have
+        # been created though, because it's needed to proceed.
+        for dir_pairs in (('60', '160'), ('00', '3000'), ('02', '0202')):
+            assert os.path.exists(
+                os.path.join(settings.STORAGE_ROOT, 'new-git-storage', *dir_pairs)
+            )
         stdout.seek(0)
         assert stdout.read()
 
     def test_full_run_dont_migrate(self):
         self._create_old_directory_structure()
-        assert os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
-        )
-        assert not os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '89', '1789', '1789', 'addon')
-        )
+        for addon_id in (160, 1789, 3000, 10202):
+            assert os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=1),
+                )
+            )
+            assert not os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=2),
+                )
+            )
         stdout = io.StringIO()
         call_command(
             'migrate_git_storage_to_new_structure', '--dont-migrate', stdout=stdout
         )
         # Nothing should have been migrated...
-        assert os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '9', '89', '1789', 'addon')
-        )
-        assert not os.path.exists(
-            os.path.join(settings.GIT_FILE_STORAGE_PATH, '89', '1789', '1789', 'addon')
-        )
-        # But new directories should have been created in the temporary new directory.
-        assert os.path.exists(
-            os.path.join(settings.STORAGE_ROOT, 'new-git-storage', '89', '1789')
-        )
+        for addon_id in (160, 1789, 3000, 10202):
+            assert os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=1),
+                )
+            )
+            assert not os.path.exists(
+                os.path.join(
+                    settings.GIT_FILE_STORAGE_PATH,
+                    id_to_path(addon_id, breadth=2),
+                )
+            )
+        # New directory structure in temporary new storage path *should* have
+        # been created though, because it's needed to proceed.
+        for dir_pairs in (('60', '160'), ('00', '3000'), ('02', '0202')):
+            assert os.path.exists(
+                os.path.join(settings.STORAGE_ROOT, 'new-git-storage', *dir_pairs)
+            )
         stdout.seek(0)
         assert stdout.read()
 

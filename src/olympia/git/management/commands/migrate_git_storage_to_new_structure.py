@@ -71,7 +71,7 @@ class Command(BaseCommand):
         # New structure is <last 2 digits of id>/<last 4 digits of id>/<id>,
         # So at the first and second level there will be 109 directories (100
         # each for the ids with 4 digits or more, 9 each for the ones with 3
-        # digits or less).
+        # digits).
         for x in (
             *(str(i) for i in range(1, 100)),  # 1-99
             *(str(i).zfill(2) for i in range(0, 10)),  # 00-09
