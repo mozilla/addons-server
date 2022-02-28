@@ -1613,5 +1613,3 @@ BIGQUERY_AMO_DATASET = 'amo_dev'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 SITEMAP_DEBUG_AVAILABLE = False
-
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
