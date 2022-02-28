@@ -611,7 +611,7 @@ function initVersions() {
     if (replybox.length == 1) {
       replybox[0].scrollIntoView(false);
     }
-    var token = div.data('token');
+    var sessionId = div.data('session-id');
     var container = div.children('.history-container');
     container.children('.review-entry-loading').removeClass('hidden');
     container.children('.review-entry-failure').addClass('hidden');
@@ -650,7 +650,7 @@ function initVersions() {
       url: api_url,
       type: 'get',
       beforeSend: function (xhr) {
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+        xhr.setRequestHeader('Authorization', 'Session ' + sessionId);
       },
       complete: function (xhr) {
         container.children('.review-entry-loading').addClass('hidden');
@@ -700,8 +700,8 @@ function initVersions() {
       data: $replyForm.serialize(),
       beforeSend: function (xhr) {
         submitButton.prop('disabled', true);
-        var token = $replyForm.data('token');
-        xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+        var sessionId = $replyForm.data('session-id');
+        xhr.setRequestHeader('Authorization', 'Session ' + sessionId);
       },
       success: function (json) {
         var historyDiv = $($replyForm.data('history'));

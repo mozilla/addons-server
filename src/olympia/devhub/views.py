@@ -30,7 +30,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
-from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
+from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons.models import (
@@ -1333,9 +1333,12 @@ def version_list(request, addon_id, addon):
     versions = amo_utils.paginate(request, qs)
     is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
 
-    token = request.COOKIES.get(API_TOKEN_COOKIE, None)
-
-    data = {'addon': addon, 'versions': versions, 'token': token, 'is_admin': is_admin}
+    data = {
+        'addon': addon,
+        'versions': versions,
+        'session_id': request.session.session_key,
+        'is_admin': is_admin,
+    }
     return TemplateResponse(request, 'devhub/versions/list.html', context=data)
 
 

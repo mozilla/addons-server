@@ -153,7 +153,7 @@ Other :ref:`editable values <v3-account-edit-request>` can be set at the same ti
 
         curl "https://addons.mozilla.org/api/v3/accounts/account/12345/"
             -g -XPATCH --form "picture_upload=@photo.png"
-            -H "Authorization: Bearer <token>"
+            -H "Authorization: JWT <token>"
 
     :param user-id: The numeric user id.
     :form picture_upload: The user's picture to upload.
@@ -321,7 +321,7 @@ sessions.
     .. sourcecode:: bash
 
         curl "https://addons.mozilla.org/api/v3/accounts/session/"
-            -H "Authorization: Bearer <jwt-token>" -X DELETE
+            -H "Authorization: Session <sessionid>" -X DELETE
 
     **Response:**
 

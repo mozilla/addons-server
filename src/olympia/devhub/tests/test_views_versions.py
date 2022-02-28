@@ -13,7 +13,6 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import ACTIVITY_MAIL_GROUP
 from olympia.addons.models import Addon, AddonReviewerFlags
@@ -609,7 +608,6 @@ class TestVersion(TestCase):
         assert buttons.length == 0
 
     def test_version_history(self):
-        self.client.cookies[API_TOKEN_COOKIE] = 'magicbeans'
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
 
@@ -631,7 +629,9 @@ class TestVersion(TestCase):
 
         # Test review history
         review_history_td = doc('#%s-review-history' % v1.id)[0]
-        assert review_history_td.attrib['data-token'] == 'magicbeans'
+        assert review_history_td.attrib['data-session-id'] == (
+            self.client.session.session_key
+        )
         api_url = absolutify(
             reverse_ns(
                 'version-reviewnotes-list', args=[self.addon.id, self.version.id]
@@ -648,7 +648,7 @@ class TestVersion(TestCase):
         assert doc('.dev-review-reply-form').length == 1
         review_form = doc('.dev-review-reply-form')[0]
         review_form.attrib['action'] == api_url
-        review_form.attrib['data-token'] == 'magicbeans'
+        review_form.attrib['data-session-id'] == self.client.session.session_key
         review_form.attrib['data-history'] == '#%s-review-history' % v2.id
 
     def test_version_history_mixed_channels(self):

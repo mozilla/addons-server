@@ -110,7 +110,7 @@
   <tr>
       <td colspan="4" id="{{ version.id }}-review-history" class="review-history hidden"
             data-api-url="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
-            data-token="{{ token }}">
+            data-session-id="{{ session_id }}">
           <div class="history-container">
               <div class="review-entry-loading">{{ _('Loading Review History...') }}</div>
               <div class="review-entry-failure hidden">{{ _('We had a problem retrieving review notes') }}</div>
@@ -126,7 +126,7 @@
           {% if latest_version_in_channel_including_disabled == version %}
             <div class="dev-review-reply">
               <form class="dev-review-reply-form" action="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
-                    data-token="{{ token }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
+                    data-session-id="{{ session_id }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
                   <textarea name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
                   <button type="submit" class="submit" >{{ _('Reply') }}</button>
               </form>

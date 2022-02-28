@@ -8,7 +8,6 @@ from olympia import amo
 from olympia.api.authentication import (
     JWTKeyAuthentication,
     SessionIDAuthentication,
-    WebTokenAuthentication,
 )
 from olympia.constants.scanners import (
     LABEL_BAD,
@@ -25,7 +24,6 @@ from .serializers import ScannerResultSerializer
 class ScannerResultView(ListAPIView):
     authentication_classes = [
         JWTKeyAuthentication,
-        WebTokenAuthentication,
         SessionIDAuthentication,
     ]
 

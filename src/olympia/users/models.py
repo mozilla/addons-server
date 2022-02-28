@@ -287,8 +287,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             )
             return self.read_dev_agreement > settings.DEV_AGREEMENT_CHANGE_FALLBACK
 
-    backend = 'django.contrib.auth.backends.ModelBackend'
-
     def get_session_auth_hash(self):
         """Return a hash used to invalidate sessions of users when necessary.
 

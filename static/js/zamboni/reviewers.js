@@ -183,7 +183,7 @@ function initReviewActions() {
 }
 
 function callReviewersAPI(apiUrl, method, data, successCallback) {
-  var apiToken = $('form.more-actions').data('api-token');
+  var sessionId = $('form.more-actions').data('session-id');
   if (data) {
     data = JSON.stringify(data);
   }
@@ -192,7 +192,7 @@ function callReviewersAPI(apiUrl, method, data, successCallback) {
     data: data,
     type: method,
     beforeSend: function (xhr) {
-      xhr.setRequestHeader('Authorization', 'Bearer ' + apiToken);
+      xhr.setRequestHeader('Authorization', 'Session ' + sessionId);
     },
     processData: false,
     contentType: 'application/json',

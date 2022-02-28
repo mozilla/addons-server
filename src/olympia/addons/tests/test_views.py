@@ -29,7 +29,6 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonCategory, AddonReviewerFlags, DeniedSlug
 from olympia.amo.tests import (
-    APITestClientWebToken,
     ESTestCase,
     APITestClientJWT,
     APITestClientSessionID,
@@ -80,7 +79,7 @@ from ..views import (
 
 
 class TestStatus(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -497,7 +496,7 @@ class AddonAndVersionViewSetDetailMixin:
 
 
 class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -711,7 +710,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
 
 class TestAddonViewSetCreate(UploadMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -1186,12 +1185,8 @@ class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
     client_class = APITestClientJWT
 
 
-class TestAddonViewSetCreateSessionIDAuth(TestAddonViewSetCreate):
-    client_class = APITestClientSessionID
-
-
 class TestAddonViewSetUpdate(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -1536,7 +1531,7 @@ class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -1906,7 +1901,7 @@ class SubmitSourceMixin:
 
 
 class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     @classmethod
     def setUpTestData(cls):
@@ -2373,7 +2368,7 @@ class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
 
 
 class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     @classmethod
     def setUpTestData(cls):
@@ -2790,7 +2785,7 @@ class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):
 
 
 class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -3122,7 +3117,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
 
 class TestAddonViewSetEulaPolicy(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -3159,7 +3154,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
 
 
 class TestAddonSearchView(ESTestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     fixtures = ['base/users']
 
@@ -4126,7 +4121,7 @@ class TestAddonSearchView(ESTestCase):
 
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     fixtures = ['base/users']
 
@@ -4326,7 +4321,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
 
 class TestAddonFeaturedView(ESTestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     fixtures = ['base/users']
 
@@ -4391,7 +4386,7 @@ class TestAddonFeaturedView(ESTestCase):
 
 
 class TestStaticCategoryView(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -4465,7 +4460,7 @@ class TestStaticCategoryView(TestCase):
 
 
 class TestLanguageToolsView(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -4806,7 +4801,7 @@ class TestLanguageToolsView(TestCase):
 
 
 class TestReplacementAddonView(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def test_basic(self):
         # Add a single addon replacement
@@ -4848,7 +4843,7 @@ class TestCompatOverrideView(TestCase):
     But now we don't have any CompatOverrides we just return an empty response.
     """
 
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def test_response(self):
         response = self.client.get(
@@ -4862,7 +4857,7 @@ class TestCompatOverrideView(TestCase):
 
 
 class TestAddonRecommendationView(ESTestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     fixtures = ['base/users']
 

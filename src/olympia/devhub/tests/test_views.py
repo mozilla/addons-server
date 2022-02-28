@@ -20,7 +20,6 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo, core
-from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import GENERIC_USER_NAME, ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonUser
 from olympia.amo.templatetags.jinja_helpers import (
@@ -2029,16 +2028,12 @@ class TestLogout(UserViewBase):
 
     def test_session_cookie_deleted_on_logout(self):
         self.client.login(email='jbalogh@mozilla.com')
-        self.client.cookies[API_TOKEN_COOKIE] = 'some.token.value'
         response = self.client.get(reverse('devhub.logout'))
         cookie = response.cookies[settings.SESSION_COOKIE_NAME]
         cookie_date_string = 'Thu, 01 Jan 1970 00:00:00 GMT'
         assert cookie.value == ''
         # in django2.1+ changed to django.utils.http.http_date from cookie_date
         assert cookie['expires'].replace('-', ' ') == cookie_date_string
-        jwt_cookie = response.cookies[API_TOKEN_COOKIE]
-        assert jwt_cookie.value == ''
-        assert jwt_cookie['expires'].replace('-', ' ') == cookie_date_string
 
 
 class TestStatsLinksInManageMySubmissionsPage(TestCase):

@@ -18,7 +18,6 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
-from django.core import signing
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
@@ -37,7 +36,6 @@ from rest_framework.test import APIClient, APIRequestFactory
 from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
-from olympia.api.authentication import WebTokenAuthentication
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
@@ -334,36 +332,6 @@ class TestClient(Client):
             return partial(method, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         else:
             raise AttributeError
-
-
-class APITestClientWebToken(APIClient):
-    def generate_api_token(self, user, **payload_overrides):
-        """
-        Creates a jwt token for this user.
-        """
-        data = {
-            'auth_hash': user.get_session_auth_hash(),
-            'user_id': user.pk,
-        }
-        data.update(payload_overrides)
-        token = signing.dumps(data, salt=WebTokenAuthentication.salt)
-        return token
-
-    def login_api(self, user):
-        """
-        Creates a jwt token for this user as if they just logged in. This token
-        will be sent in an Authorization header with all future requests for
-        this client.
-        """
-        prefix = WebTokenAuthentication.auth_header_prefix
-        token = self.generate_api_token(user)
-        self.defaults['HTTP_AUTHORIZATION'] = f'{prefix} {token}'
-
-    def logout_api(self):
-        """
-        Removes the Authorization header from future requests.
-        """
-        self.defaults.pop('HTTP_AUTHORIZATION', None)
 
 
 class APITestClientSessionID(APIClient):

@@ -26,7 +26,6 @@ from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
-from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
@@ -42,7 +41,7 @@ from olympia.amo.templatetags.jinja_helpers import (
     format_datetime,
 )
 from olympia.amo.tests import (
-    APITestClientWebToken,
+    APITestClientSessionID,
     TestCase,
     addon_factory,
     check_links,
@@ -3597,12 +3596,11 @@ class TestReview(ReviewBase):
 
     def test_extra_actions_token(self):
         self.login_as_reviewer()
-        self.client.cookies[API_TOKEN_COOKIE] = 'youdidntsaythemagicword'
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        token = doc('#extra-review-actions').attr('data-api-token')
-        assert token == 'youdidntsaythemagicword'
+        token = doc('#extra-review-actions').attr('data-session-id')
+        assert token == self.client.session.session_key
 
     def test_extra_actions_not_for_reviewers(self):
         AddonReviewerFlags.objects.create(
@@ -6374,7 +6372,7 @@ class TestPolicyView(ReviewerTest):
 
 
 class TestAddonReviewerViewSet(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -6819,7 +6817,7 @@ class TestAddonReviewerViewSet(TestCase):
 
 
 class TestAddonReviewerViewSetJsonValidation(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
     fixtures = ['devhub/addon-validation-1']
 
     def setUp(self):
@@ -6967,7 +6965,7 @@ class AddonReviewerViewSetPermissionMixin:
 class TestReviewAddonVersionViewSetDetail(
     TestCase, AddonReviewerViewSetPermissionMixin
 ):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
     __test__ = True
 
     def setUp(self):
@@ -7185,7 +7183,7 @@ class TestReviewAddonVersionViewSetDetail(
 
 
 class TestReviewAddonVersionViewSetList(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -7314,7 +7312,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
 
 
 class TestDraftCommentViewSet(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
@@ -7958,7 +7956,7 @@ class TestDraftCommentViewSet(TestCase):
 class TestReviewAddonVersionCompareViewSet(
     TestCase, AddonReviewerViewSetPermissionMixin
 ):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
     __test__ = True
 
     def setUp(self):
@@ -8472,7 +8470,7 @@ class TestDownloadGitFileView(TestCase):
 
 
 class TestCannedResponseViewSet(TestCase):
-    client_class = APITestClientWebToken
+    client_class = APITestClientSessionID
 
     def setUp(self):
         super().setUp()
