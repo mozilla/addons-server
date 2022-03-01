@@ -88,12 +88,11 @@ def id_to_path(pk, breadth=1):
     are 2 sublevels made from the last digits of the pk.
 
     The breadth argument (defaults to 1) controls the number of digits used at
-    each sublevel. When breadth > 1, zero-padding applied to always have a
-    # fixed number of directories for each sublevel).
+    each sublevel. Zero-padding is applied to always have a fixed number of
+    directories for each sublevel.
 
-    At breadth=1, there should be (10 * 10 + 9) * x directories since padding
-    is off, resulting in:
-    1 => 1/1/1
+    At breadth=1, there should be 10 * 10 * x directories, resulting in:
+    1 => 1/01/1
     12 => 2/12/12
     123456 => 6/56/123456
 
@@ -107,17 +106,8 @@ def id_to_path(pk, breadth=1):
     123456789 => 89/6789/123456789
     """
     pk = str(pk)
-    if breadth == 1:
-        # 'Original' algorithm, unpadded, only last 2 digits are used.
-        path = [pk[-1]]
-        if len(pk) >= 2:
-            path.append(pk[-2:])
-        else:
-            path.append(pk)
-    else:
-        # 'New' algorithm, padded, uses more digits depending on breadth.
-        padded_pk = pk.zfill(2 * breadth)
-        path = [padded_pk[-breadth:], padded_pk[-breadth * 2 :]]
+    padded_pk = pk.zfill(2 * breadth)
+    path = [padded_pk[-breadth:], padded_pk[-breadth * 2 :]]
     # We always append the unpadded pk as the final directory.
     path.append(pk)
     return os.path.join(*path)

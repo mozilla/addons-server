@@ -1138,7 +1138,7 @@ class TestGetBackgroundImages(TestCase):
 @pytest.mark.parametrize(
     'value, expected',
     [
-        (1, '1/1/1'),
+        (1, '1/01/1'),
         (12, '2/12/12'),
         (123, '3/23/123'),
         (1234, '4/34/1234'),
