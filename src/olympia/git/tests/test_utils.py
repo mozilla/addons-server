@@ -7,6 +7,7 @@ import pygit2
 from unittest import mock
 from unittest.mock import MagicMock
 from pathlib import Path
+from waffle.testutils import override_switch
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -29,8 +30,6 @@ from olympia.git.utils import (
     get_mime_type_for_blob,
     extract_version_to_git,
 )
-from olympia.files.utils import id_to_path
-
 
 # Aliases for easier and shorter access
 _blob_type = pygit2.GIT_OBJ_BLOB
@@ -128,12 +127,24 @@ def test_enforce_pygit_global_search_path(settings):
     assert pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] == settings.ROOT
 
 
+def test_git_repository_path():
+    repo = AddonGitRepository(1789)
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, '9/89/1789', 'addon'
+    )
+
+
+@override_switch('git-storage-broader-structure', active=True)
+def test_git_repository_path_new_structure_waffle_switch():
+    repo = AddonGitRepository(1789)
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, '89/1789/1789', 'addon'
+    )
+
+
 def test_git_repo_init(settings):
     repo = AddonGitRepository(1)
-
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'addon'
-    )
+    assert repo.git_repository_path
 
     assert not os.path.exists(repo.git_repository_path)
 
@@ -154,17 +165,45 @@ def test_git_repo_init_with_missing_master_branch_raises_error(settings):
 
 
 def test_git_repo_init_opens_existing_repo(settings):
-    expected_path = os.path.join(settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'addon')
+    expected_path = os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, '2/42/4815162342', 'addon'
+    )
 
     assert not os.path.exists(expected_path)
-    repo = AddonGitRepository(1)
+
+    repo = AddonGitRepository(4815162342)
+    assert not os.path.exists(expected_path)
+
+    assert repo.git_repository_path
     assert not os.path.exists(expected_path)
 
     # accessing repo.git_repository creates the directory
     repo.git_repository
     assert os.path.exists(expected_path)
 
-    repo2 = AddonGitRepository(1)
+    repo2 = AddonGitRepository(4815162342)
+    assert repo.git_repository.path == repo2.git_repository.path
+
+
+@override_switch('git-storage-broader-structure', active=True)
+def test_git_repo_init_opens_existing_repo_broader_structure_waffle_switch_on(settings):
+    expected_path = os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, '42/2342/4815162342', 'addon'
+    )
+
+    assert not os.path.exists(expected_path)
+
+    repo = AddonGitRepository(4815162342)
+    assert not os.path.exists(expected_path)
+
+    assert repo.git_repository_path
+    assert not os.path.exists(expected_path)
+
+    # accessing repo.git_repository creates the directory
+    repo.git_repository
+    assert os.path.exists(expected_path)
+
+    repo2 = AddonGitRepository(4815162342)
     assert repo.git_repository.path == repo2.git_repository.path
 
 
@@ -174,9 +213,7 @@ def test_extract_and_commit_from_version(settings):
 
     repo = AddonGitRepository.extract_and_commit_from_version(addon.current_version)
 
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon'
-    )
+    assert repo.git_repository_path == AddonGitRepository(addon.id).git_repository_path
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -225,9 +262,7 @@ def test_extract_and_commit_from_version_fallback_file_path(settings):
 
     repo = AddonGitRepository.extract_and_commit_from_version(addon.current_version)
 
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon'
-    )
+    assert repo.git_repository_path == AddonGitRepository(addon.id).git_repository_path
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -358,9 +393,7 @@ def test_extract_and_commit_from_version_multiple_versions(settings):
 
     repo = AddonGitRepository.extract_and_commit_from_version(addon.current_version)
 
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon'
-    )
+    assert repo.git_repository_path == AddonGitRepository(addon.id).git_repository_path
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -474,9 +507,7 @@ def test_extract_and_commit_from_version_valid_extensions(settings, filename):
         # Make sure we are always calling fsync after extraction
         assert fsync_mock.called
 
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon'
-    )
+    assert repo.git_repository_path == AddonGitRepository(addon.id).git_repository_path
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -1583,9 +1614,6 @@ def test_extract_version_to_git(incr_mock, timer_mock):
 
     repo = AddonGitRepository(addon.pk)
 
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon'
-    )
     assert os.listdir(repo.git_repository_path) == ['.git']
     timer_mock.assert_any_call('git.extraction.version')
     incr_mock.assert_called_with('git.extraction.version.success')
@@ -1604,9 +1632,6 @@ def test_extract_version_to_git_deleted_version():
 
     repo = AddonGitRepository(addon.pk)
 
-    assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon'
-    )
     assert os.listdir(repo.git_repository_path) == ['.git']
 
 

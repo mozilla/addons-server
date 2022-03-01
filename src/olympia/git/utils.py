@@ -11,6 +11,7 @@ from collections import namedtuple
 import pygit2
 
 from django_statsd.clients import statsd
+from waffle import switch_is_active
 
 from django.conf import settings
 from django.utils import translation
@@ -198,8 +199,11 @@ class AddonGitRepository:
             addon_or_id.pk if isinstance(addon_or_id, Addon) else addon_or_id
         )
 
+        breadth = 2 if switch_is_active('git-storage-broader-structure') else 1
         self.git_repository_path = os.path.join(
-            settings.GIT_FILE_STORAGE_PATH, id_to_path(self.addon_id), package_type
+            settings.GIT_FILE_STORAGE_PATH,
+            id_to_path(self.addon_id, breadth=breadth),
+            package_type,
         )
 
     @property
