@@ -1514,6 +1514,8 @@ def scrub_sensitive_data(event, hint):
         event = _scrub_sensitive_data_recursively(event)
     except Exception:
         pass
+    if 'ip_address' in event.get('payload', {}).get('user', {}):
+        event['payload']['user'].pop('ip_address')
     return event
 
 

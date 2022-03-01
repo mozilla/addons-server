@@ -104,13 +104,15 @@ def test_sentry_data_scrubbing():
     assert '172.18.0.1' not in event_raw
     assert '127.0.0.42' not in event_raw
 
-    # We keep cookies, user dict
+    # We keep cookies, user dict.
     assert event['payload']['request']['cookies']
     assert event['payload']['user']['id']
 
-    # Email and ip_address are redacted though
+    # Email is redacted though.
     assert event['payload']['user']['email'] == '*** redacted ***'
-    assert event['payload']['user']['ip_address'] == '*** redacted ***'
+
+    # ip_adress is removed completely because sentry checks its format.
+    assert 'ip_address' not in event['payload']['user']
 
     # Modify old_request_data according to what we should have done and see if
     # it matches what before_send() did in reality.
