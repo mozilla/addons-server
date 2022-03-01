@@ -2344,7 +2344,7 @@ class TestFxaNotificationView(TestCase):
             )
         assert response.status_code == 202
 
-    @mock.patch('olympia.accounts.utils.primary_email_change_event.delay')
+    @mock.patch('olympia.accounts.views.primary_email_change_event.delay')
     def test_process_event_email_change(self, event_mock):
         with freezegun.freeze_time():
             FxaNotificationView().process_event(
@@ -2373,7 +2373,7 @@ class TestFxaNotificationView(TestCase):
         assert user.email == 'new-email@example.com'
         assert user.email_changed == now
 
-    @mock.patch('olympia.accounts.utils.delete_user_event.delay')
+    @mock.patch('olympia.accounts.views.delete_user_event.delay')
     def test_process_event_delete(self, event_mock):
         with freezegun.freeze_time():
             FxaNotificationView().process_event(
@@ -2396,7 +2396,7 @@ class TestFxaNotificationView(TestCase):
         assert user.deleted
         assert user.fxa_id is not None
 
-    @mock.patch('olympia.accounts.utils.clear_sessions_event.delay')
+    @mock.patch('olympia.accounts.views.clear_sessions_event.delay')
     def test_process_event_password_change(self, event_mock):
         FxaNotificationView().process_event(
             self.FXA_ID,

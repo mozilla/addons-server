@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 from unittest import mock
 
@@ -9,11 +10,14 @@ from olympia.accounts.tasks import (
     delete_user_event,
     primary_email_change_event,
 )
-from olympia.accounts.tests.test_utils import totimestamp
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
+
+
+def totimestamp(datetime_obj):
+    return time.mktime(datetime_obj.timetuple())
 
 
 class TestPrimaryEmailChangeEvent(TestCase):
