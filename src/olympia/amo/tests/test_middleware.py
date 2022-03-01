@@ -9,7 +9,7 @@ from django.urls import reverse
 
 import pytest
 
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, PropertyMock
 from pyquery import PyQuery as pq
 
 from olympia.accounts.utils import fxa_login_url, path_with_query
@@ -17,6 +17,7 @@ from olympia.accounts.verify import IdentificationError
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI,
     CacheControlMiddleware,
+    GraphiteMiddlewareNoAuth,
     RequestIdMiddleware,
     SetRemoteAddrFromForwardedFor,
     TokenValidMiddleware,
@@ -359,3 +360,51 @@ class TestTokenValidMiddleware(TestCase):
         request.session = {}
         assert self.middleware(request) == self.response
         self.update_token_mock.assert_not_called()
+
+
+@patch('olympia.amo.middleware.statsd')
+class TestGraphiteMiddlewareNoAuth(TestCase):
+    def setUp(self):
+        self.request = RequestFactory().get('/')
+        self.response = HttpResponse()
+
+    def test_graphite_response(self, statsd_mock):
+        gmw = GraphiteMiddlewareNoAuth()
+        gmw.process_response(self.request, self.response)
+        assert statsd_mock.incr.call_count == 1
+        assert statsd_mock.incr.call_args[0] == ('response.200',)
+
+    def test_graphite_response_authenticated(self, statsd_mock):
+        self.request.user = Mock()
+        is_authenticated_mock = PropertyMock(return_value=True)
+        type(self.request.user).is_authenticated = is_authenticated_mock
+        gmw = GraphiteMiddlewareNoAuth()
+        gmw.process_response(self.request, self.response)
+        assert is_authenticated_mock.call_count == 0
+        assert statsd_mock.incr.call_count == 1
+        assert statsd_mock.incr.call_args[0] == ('response.200',)
+
+    def test_graphite_exception(self, statsd_mock):
+        gmw = GraphiteMiddlewareNoAuth()
+        gmw.process_exception(self.request, None)
+        assert statsd_mock.incr.call_count == 1
+        assert statsd_mock.incr.call_args[0] == ('response.500',)
+
+    def test_graphite_exception_authenticated(self, statsd_mock):
+        self.request.user = Mock()
+        is_authenticated_mock = PropertyMock(return_value=True)
+        type(self.request.user).is_authenticated = is_authenticated_mock
+        gmw = GraphiteMiddlewareNoAuth()
+        gmw.process_exception(self.request, None)
+        assert is_authenticated_mock.call_count == 0
+        assert statsd_mock.incr.call_count == 1
+        assert statsd_mock.incr.call_args[0] == ('response.500',)
+
+    @override_settings(ENV='dev')
+    def test_functional_middleware_used(self, statsd_mock):
+        self.client.login(email=user_factory().email)
+        with self.assertNumQueries(0):
+            response = self.client.get(reverse_ns('amo.client_info'))
+        assert response.status_code == 200
+        assert statsd_mock.incr.call_count == 1
+        assert statsd_mock.incr.call_args[0] == ('response.200',)

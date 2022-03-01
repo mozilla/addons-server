@@ -429,7 +429,9 @@ MIDDLEWARE = (
     # must come before middlewares potentially using REMOTE_ADDR, so it's
     # also up there.
     'django_statsd.middleware.GraphiteRequestTimingMiddleware',
-    'django_statsd.middleware.GraphiteMiddleware',
+    # GraphiteMiddlewareNoAuth is a custom GraphiteMiddleware that doesn't
+    # handle response.auth, to avoid evaluating request.user.
+    'olympia.amo.middleware.GraphiteMiddlewareNoAuth',
     'olympia.amo.middleware.SetRemoteAddrFromForwardedFor',
     # AMO URL middleware is as high as possible to get locale/app aware URLs.
     'olympia.amo.middleware.LocaleAndAppURLMiddleware',

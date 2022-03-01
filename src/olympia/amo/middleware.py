@@ -12,6 +12,7 @@ from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.exceptions import ImproperlyConfigured
 from django.db import transaction
 from django.http import (
+    Http404,
     HttpResponse,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
@@ -31,6 +32,7 @@ from django.utils.encoding import force_str, iri_to_uri
 from django.utils.translation import activate, gettext_lazy as _
 from django.urls import is_valid_path
 
+from django_statsd.clients import statsd
 from rest_framework import permissions
 
 import MySQLdb as mysql
@@ -406,3 +408,16 @@ class TokenValidMiddleware:
                     log.info(f'Failed refreshing access_token for {request.user.id}')
                     return redirect_for_login(request)
         return self.get_response(request)
+
+
+class GraphiteMiddlewareNoAuth(MiddlewareMixin):
+    """Like django-statsd's GraphiteMiddleware, but without the request.auth.*
+    pings that would force us to evaluate request.user."""
+
+    def process_response(self, request, response):
+        statsd.incr('response.%s' % response.status_code)
+        return response
+
+    def process_exception(self, request, exception):
+        if not isinstance(exception, Http404):
+            statsd.incr('response.500')
