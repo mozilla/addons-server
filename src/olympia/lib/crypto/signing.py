@@ -88,7 +88,7 @@ def add_guid(file_obj):
                             if info.filename == 'manifest.json':
                                 new_zip.writestr(
                                     'manifest.json',
-                                    json.dumps(manifest_json).encode('utf-8'),
+                                    json.dumps(manifest_json, indent=2).encode('utf-8'),
                                 )
                             else:
                                 with new_zip.open(info.filename, mode='w') as new_file:
