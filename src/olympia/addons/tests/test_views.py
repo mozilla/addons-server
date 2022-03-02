@@ -2192,6 +2192,26 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
 
+    def test_compatibility_dict_100(self):
+        response = self.client.post(
+            self.url,
+            data={
+                **self.minimal_data,
+                # 100.0 is valid per setUpTestData()
+                'compatibility': {'firefox': {'min': '100.0'}},
+            },
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        assert data['compatibility'] == {
+            # firefox max wasn't specified, so is the default max app version
+            'firefox': {'max': '*', 'min': '100.0'},
+        }
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX]
+
     def test_compatibility_invalid_versions(self):
         response = self.client.post(
             self.url,
@@ -3665,6 +3685,25 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == an_addon.pk
+
+    def test_filter_by_appversion_100(self):
+        addon = addon_factory(
+            slug='my-addon',
+            name='My Addôn',
+            popularity=100,
+            version_kw={'min_app_version': '100.0', 'max_app_version': '*'},
+        )
+        addon_factory(
+            slug='my-second-addon',
+            name='My Sécond Addôn',
+            popularity=101,
+            version_kw={'min_app_version': '101.0', 'max_app_version': '*'},
+        )
+        self.refresh()
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '100.0'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
 
     def test_filter_by_category(self):
         category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates']

@@ -28,6 +28,10 @@ def test_version_int_compare():
     assert version_int('98.*') < version_int('*')
     assert version_int('5.*.0') == version_int('5.99')
     assert version_int('5.*') > version_int('5.0.*')
+    assert version_int('100.0') > version_int('99.0')
+    assert version_int('101.0') > version_int('100.0')
+    assert version_int('101.0') > version_int('100.0.1')
+    assert version_int('101.0') > version_int('100.1')
 
 
 class TestVersionString:
@@ -62,6 +66,8 @@ class TestVersionString:
         assert VersionString('3.6a5pre9') < VersionString('3.6b1')
         assert VersionString('3.6.*') > VersionString('3.6a5pre9')
         assert VersionString('99.99999999b1') > VersionString('99.99999998b1')
+        assert VersionString('100.0') > VersionString('99.0')
+        assert VersionString('100.1') > VersionString('100.0.1')
         assert VersionString('99999999.99b1') > VersionString('99999998.99b1')
         assert VersionString('*') > VersionString('99999998.99b1')
 
