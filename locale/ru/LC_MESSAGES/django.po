@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2022-02-01 15:54+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -345,15 +345,6 @@ msgstr "Некорректный заголовок авторизации. По
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Некорректный заголовок авторизации. Строка полномочий не должна содержать пробелов."
 
-msgid "Signature has expired."
-msgstr "Подпись просрочена."
-
-msgid "Error decoding signature."
-msgstr "Ошибка декодирования подписи."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr "Несоответствие хэша аутентификации. Скорее всего сессия просрочена."
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -362,6 +353,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Неверный тип для одного или нескольких ключей в полезной нагрузке"
+
+msgid "Signature has expired."
+msgstr "Подпись просрочена."
+
+msgid "Error decoding signature."
+msgstr "Ошибка декодирования подписи."
 
 msgid "Invalid JWT Token."
 msgstr "Некорректный JWT токен."
@@ -4533,9 +4530,14 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Популярные темы"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Элитные блокировщики рекламы"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Рекомендуемые расширения"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4543,17 +4545,8 @@ msgid "Translation tools"
 msgstr "Инструменты перевода"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Элитные блокировщики рекламы"
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "Посмотреть выбор наших сотрудников"
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Рекомендуемые расширения"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

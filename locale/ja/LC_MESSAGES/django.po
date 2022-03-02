@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2021-11-20 10:34+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -343,15 +343,6 @@ msgstr "認証ヘッダーが無効です。資格情報が提供されていま
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "認証ヘッダーが無効です。資格情報の文字列にはスペースを含めないでください。"
 
-msgid "Signature has expired."
-msgstr "署名の有効期限が切れています。"
-
-msgid "Error decoding signature."
-msgstr "署名の復号に失敗しました。"
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -360,6 +351,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "ペイロードの 1 つ以上のキーの種類が間違っています"
+
+msgid "Signature has expired."
+msgstr "署名の有効期限が切れています。"
+
+msgid "Error decoding signature."
+msgstr "署名の復号に失敗しました。"
 
 msgid "Invalid JWT Token."
 msgstr "JWT トークンが無効です。"
@@ -4496,9 +4493,14 @@ msgid "See all extensions"
 msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "おすすめのテーマ"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "おすすめの拡張機能"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4506,17 +4508,8 @@ msgid "Translation tools"
 msgstr "翻訳ツール"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "おすすめの拡張機能"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

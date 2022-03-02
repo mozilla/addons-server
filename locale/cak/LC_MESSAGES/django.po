@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,15 +339,6 @@ msgstr "Man okel ta ya'oj ruq'ij jub'i'aj. Man xek'ut ta wujil."
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Man okel ta Ya'oj ruq'ij jub'i'aj. K'atzinel chi man jun kikojol ri kicholajem wujil."
 
-msgid "Signature has expired."
-msgstr "Xik'o ruq'ijul juch'."
-
-msgid "Error decoding signature."
-msgstr "Xsach toq xumecholajisaj ri' ri juch'."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -356,6 +347,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Itzel ruwäch richin jun o ch'aqa' chik rupam"
+
+msgid "Signature has expired."
+msgstr "Xik'o ruq'ijul juch'."
+
+msgid "Error decoding signature."
+msgstr "Xsach toq xumecholajisaj ri' ri juch'."
 
 msgid "Invalid JWT Token."
 msgstr "Me'okel JWT Token."
@@ -4540,9 +4537,15 @@ msgid "See all extensions"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Xchilab'ëx"
+msgid "Recommended extensions"
+msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4550,18 +4553,8 @@ msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

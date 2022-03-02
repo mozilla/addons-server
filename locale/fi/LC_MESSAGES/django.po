@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2022-01-15 18:11+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -337,15 +337,6 @@ msgstr ""
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
-msgid "Signature has expired."
-msgstr "Allekirjoitus on vanhentunut."
-
-msgid "Error decoding signature."
-msgstr "Virhe allekirjoituksen purkamisessa."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -354,6 +345,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr ""
+
+msgid "Signature has expired."
+msgstr "Allekirjoitus on vanhentunut."
+
+msgid "Error decoding signature."
+msgstr "Virhe allekirjoituksen purkamisessa."
 
 msgid "Invalid JWT Token."
 msgstr "Virheellinen JWT-poletti."
@@ -4526,12 +4523,17 @@ msgstr "Ne lisäävät ominaisuuksia Firefoxiin tehden selaamisesta aiempaa nope
 msgid "See all extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
 # 87%
 # 100%
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Nousussa olevat teemat"
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Suositellut laajennukset"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4539,19 +4541,8 @@ msgid "Translation tools"
 msgstr "Kielityökalut"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "Katso henkilöstön valinnat"
-
-# 87%
-# 100%
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Suositellut laajennukset"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

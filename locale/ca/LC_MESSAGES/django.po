@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -354,15 +354,6 @@ msgstr ""
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
-msgid "Signature has expired."
-msgstr ""
-
-msgid "Error decoding signature."
-msgstr ""
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -370,6 +361,12 @@ msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
+msgstr ""
+
+msgid "Signature has expired."
+msgstr ""
+
+msgid "Error decoding signature."
 msgstr ""
 
 msgid "Invalid JWT Token."
@@ -4636,8 +4633,14 @@ msgid "See all extensions"
 msgstr "Mostra tots els complements"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
+msgid "Recommended extensions"
 msgstr "Comentari"
 
 #. editorial content for the secondary hero shelves.
@@ -4646,18 +4649,8 @@ msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Comentari"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

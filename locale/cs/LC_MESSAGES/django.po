@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2021-12-04 17:44+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -345,15 +345,6 @@ msgstr "Neplatná autentizační hlavička. Chybí údaje."
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Neplatná autentizační hlavička. Údaje nesmí obsahovat mezery."
 
-msgid "Signature has expired."
-msgstr "Platnost podpisu vypršela."
-
-msgid "Error decoding signature."
-msgstr "Chyba při čtení podpisu."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -362,6 +353,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Špatný typ pro jeden nebo více klíčů v datovém obsahu"
+
+msgid "Signature has expired."
+msgstr "Platnost podpisu vypršela."
+
+msgid "Error decoding signature."
+msgstr "Chyba při čtení podpisu."
 
 msgid "Invalid JWT Token."
 msgstr "Neplatný token JWT."
@@ -4499,9 +4496,14 @@ msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Právě populární motivy vzhledu"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Výkonné blokátory reklam"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Doporučená rozšíření"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4509,17 +4511,8 @@ msgid "Translation tools"
 msgstr "Jazykové překladače"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Výkonné blokátory reklam"
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "Zobrazit tipy zaměstnanců"
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Doporučená rozšíření"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

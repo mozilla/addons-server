@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2022-02-06 17:54+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -347,15 +347,6 @@ msgstr "Neispravno zaglavlje autorizacije. Nema vjerodajnica."
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Neispravno zaglavlje autorizacije. Znakovni niz vjerodajnica ne smije sadržati razmake."
 
-msgid "Signature has expired."
-msgstr "Potpis je istekao."
-
-msgid "Error decoding signature."
-msgstr "Greška u dešifriranju potpisa."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -364,6 +355,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Pogrešna vrsta jednog ili više ključeva u sadržaju"
+
+msgid "Signature has expired."
+msgstr "Potpis je istekao."
+
+msgid "Error decoding signature."
+msgstr "Greška u dešifriranju potpisa."
 
 msgid "Invalid JWT Token."
 msgstr "Neispravni JWT token."
@@ -4457,9 +4454,15 @@ msgid "See all extensions"
 msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Preporučene teme"
+msgid "Elite ad blockers"
+msgstr "Aktualiziraj blokadu dodataka"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Preporučena proširenja"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4467,18 +4470,8 @@ msgid "Translation tools"
 msgstr "Alati za prevođenje"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Aktualiziraj blokadu dodataka"
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Preporučena proširenja"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

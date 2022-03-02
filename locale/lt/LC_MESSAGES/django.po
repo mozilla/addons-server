@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -334,15 +334,6 @@ msgstr ""
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
-msgid "Signature has expired."
-msgstr ""
-
-msgid "Error decoding signature."
-msgstr ""
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -350,6 +341,12 @@ msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
+msgstr ""
+
+msgid "Signature has expired."
+msgstr ""
+
+msgid "Error decoding signature."
 msgstr ""
 
 msgid "Invalid JWT Token."
@@ -4484,8 +4481,14 @@ msgid "See all extensions"
 msgstr "Populiarūs plėtiniai"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
+msgid "Recommended extensions"
 msgstr "Komentuoti"
 
 #. editorial content for the secondary hero shelves.
@@ -4494,18 +4497,8 @@ msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Komentuoti"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
