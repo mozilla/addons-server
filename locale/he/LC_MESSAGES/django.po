@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2022-01-22 23:24+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -334,15 +334,6 @@ msgstr "כותרת אימות שגויה. לא סופקו פרטי גישה."
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "כותרת אימות שגויה. מחרוזת פרטי הגישה לא אמורה להכיל רווחים."
 
-msgid "Signature has expired."
-msgstr "החתימה פגה."
-
-msgid "Error decoding signature."
-msgstr "שגיאה בפענוח החתימה."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -351,6 +342,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "סוג שגוי עבור מקש אחד או יותר במטען"
+
+msgid "Signature has expired."
+msgstr "החתימה פגה."
+
+msgid "Error decoding signature."
+msgstr "שגיאה בפענוח החתימה."
 
 msgid "Invalid JWT Token."
 msgstr "אסימון JWT שגוי."
@@ -4466,9 +4463,14 @@ msgid "See all extensions"
 msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "ההרחבות שמובילות לאחרונה"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "הרחבות מומלצות"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4476,17 +4478,8 @@ msgid "Translation tools"
 msgstr "כלי תרגום"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "הרחבות מומלצות"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

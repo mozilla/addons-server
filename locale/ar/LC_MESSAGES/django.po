@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -339,15 +339,6 @@ msgstr "ترويسة الاستيثاق غير صالحة. لم تقدّم مع�
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "ترويسة الاستيثاق غير صالحة. يجب ألا يكون في معلومات الولوج أيّ مسافات."
 
-msgid "Signature has expired."
-msgstr "انقضى التوقيع."
-
-msgid "Error decoding signature."
-msgstr "حدث عُطل في فكّ ترميز التوقيع."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -356,6 +347,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "أحد مفاتيح الحمولة/payload (أو أكثر) نوعه خطأ."
+
+msgid "Signature has expired."
+msgstr "انقضى التوقيع."
+
+msgid "Error decoding signature."
+msgstr "حدث عُطل في فكّ ترميز التوقيع."
 
 msgid "Invalid JWT Token."
 msgstr "أمارة JWT غير صالحة."
@@ -4553,9 +4550,15 @@ msgid "See all extensions"
 msgstr "تصفح كل الإضافات"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "المُقترح ({0})"
+msgid "Recommended extensions"
+msgstr "برنامج الإمتدادات المُقترحة"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4564,18 +4567,8 @@ msgid "Translation tools"
 msgstr "أدوات التحكم في الألسنة وتنظيمها"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "برنامج الإمتدادات المُقترحة"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

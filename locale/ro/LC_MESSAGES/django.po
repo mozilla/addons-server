@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -341,15 +341,6 @@ msgstr "Antet de autorizare nevalid. Nu s-au furnizat date de autentificare."
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Antet de autorizare nevalid. Șirul datelor de autentificare nu trebuie să conțină spații."
 
-msgid "Signature has expired."
-msgstr "Semnătura a expirat."
-
-msgid "Error decoding signature."
-msgstr "Eroare la decodarea semnăturii."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -358,6 +349,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Tip greșit al uneia sau al mai multor chei din sarcina utilă"
+
+msgid "Signature has expired."
+msgstr "Semnătura a expirat."
+
+msgid "Error decoding signature."
+msgstr "Eroare la decodarea semnăturii."
 
 msgid "Invalid JWT Token."
 msgstr "Jeton JWT nevalid."
@@ -4557,9 +4554,14 @@ msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Teme recomandate"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Blocatoare de reclame de elită"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Extensii recomandate"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4567,17 +4569,8 @@ msgid "Translation tools"
 msgstr "Instrumente de traducere"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Blocatoare de reclame de elită"
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Extensii recomandate"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

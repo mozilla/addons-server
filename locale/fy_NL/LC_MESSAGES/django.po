@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2022-02-15 15:15+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -344,15 +344,6 @@ msgstr "Unjildige autorisaasjeheader. Gjin oanmeldgegevens opjûn."
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Unjildige autorisaasjeheader. De oanmeldingstekst mei gjin spaasjes befetsje."
 
-msgid "Signature has expired."
-msgstr "Undertekening is ferrûn."
-
-msgid "Error decoding signature."
-msgstr "Flater by dekodearjen ûndertekening."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr "Autentikaasjehash komt net oerien. Sesje is wierskynlik ferrûn."
-
 msgid "Valid user session not found matching the provided session key."
 msgstr "Der is gjin jildige brûkerssesje fûn dy’t oerienkomt mei de opjûne sesjekaai."
 
@@ -361,6 +352,12 @@ msgstr "Fernijen fan tagongstoken mislearre; brûker moat opnij oanmelde by FxA.
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Ien of mear kaaien yn de payload binne fan it ferkearde type"
+
+msgid "Signature has expired."
+msgstr "Undertekening is ferrûn."
+
+msgid "Error decoding signature."
+msgstr "Flater by dekodearjen ûndertekening."
 
 msgid "Invalid JWT Token."
 msgstr "Unjildich JWT-token."
@@ -4506,9 +4503,14 @@ msgid "See all extensions"
 msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Populêre útwreidingen"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "De bêste advertinsjeblokkearders"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Oanrekommandearre útwreidingen"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4516,17 +4518,8 @@ msgid "Translation tools"
 msgstr "Oersethelpmiddelen"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "De bêste advertinsjeblokkearders"
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "Karren fan de stêf besjen"
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Oanrekommandearre útwreidingen"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

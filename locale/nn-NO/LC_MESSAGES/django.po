@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2021-12-19 12:57+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -338,15 +338,6 @@ msgstr "Ugyldig autoriseringshovud. Ingen atoriseringsopplysningar spesifiserte.
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Ugyldig autorisasjonshovud. Autorisasjonsopplysningar skal ikkje innehalde mellomrom."
 
-msgid "Signature has expired."
-msgstr "Signaturen har gått ut."
-
-msgid "Error decoding signature."
-msgstr "Feil ved dekoding av signaturen."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -355,6 +346,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Feil type for ein eller fleire nøklar i pakkeinnhald"
+
+msgid "Signature has expired."
+msgstr "Signaturen har gått ut."
+
+msgid "Error decoding signature."
+msgstr "Feil ved dekoding av signaturen."
 
 msgid "Invalid JWT Token."
 msgstr "Ugylig JWT-token."
@@ -4442,9 +4439,14 @@ msgid "See all extensions"
 msgstr "Vis alle utvidingar"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Populære tema"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Tilrådde utvidingar"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4452,17 +4454,8 @@ msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

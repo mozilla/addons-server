@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2022-02-03 05:27+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -341,15 +341,6 @@ msgstr "유효하지 않은 인증 헤더입니다. 인증서가 제공되지 �
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "유효하지 않은 인증 헤더입니다. 인증 문자열은 공백을 포함하면 안됩니다."
 
-msgid "Signature has expired."
-msgstr "서명이 만료 되었습니다."
-
-msgid "Error decoding signature."
-msgstr "서명을 푸는데 오류가 발생하였습니다."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -358,6 +349,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "페이로드의 하나 이상의 키 유형이 잘못됨"
+
+msgid "Signature has expired."
+msgstr "서명이 만료 되었습니다."
+
+msgid "Error decoding signature."
+msgstr "서명을 푸는데 오류가 발생하였습니다."
 
 msgid "Invalid JWT Token."
 msgstr "유효하지 않은 JWT 토큰입니다."
@@ -4485,9 +4482,14 @@ msgid "See all extensions"
 msgstr "모든 확장기능 보기"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "추천 테마"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "추천 확장 기능"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4496,17 +4498,8 @@ msgid "Translation tools"
 msgstr "탭 관리 도구"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "추천 확장 기능"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

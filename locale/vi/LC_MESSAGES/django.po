@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2022-02-21 14:38+0000\n"
 "Last-Translator: hoangsonnguyen97 <hoangsonnguyen97@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -341,15 +341,6 @@ msgstr "Tiêu đề Authorization không hợp lệ. Không có thông tin xác 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Tiêu đề Authorization không hợp lệ. Chuỗi thông tin xác thực không được chứa khoảng trắng."
 
-msgid "Signature has expired."
-msgstr "Chữ ký đã hết hạn."
-
-msgid "Error decoding signature."
-msgstr "Lỗi khi giải mã chữ ký."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -358,6 +349,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Một hoặc nhiều khóa bị sai kiểu trong payload"
+
+msgid "Signature has expired."
+msgstr "Chữ ký đã hết hạn."
+
+msgid "Error decoding signature."
+msgstr "Lỗi khi giải mã chữ ký."
 
 msgid "Invalid JWT Token."
 msgstr "JWT Token không hợp lệ."
@@ -4477,9 +4474,14 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Chủ đề thịnh hành"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Tiện ích mở rộng được đề xuất"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4487,17 +4489,8 @@ msgid "Translation tools"
 msgstr "Công cụ dịch thuật"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Tiện ích mở rộng được đề xuất"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

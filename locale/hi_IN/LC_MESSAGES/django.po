@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -334,15 +334,6 @@ msgstr ""
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "अमान्य प्रमाणीकरण हेडर। क्रेडेंशियल्स स्ट्रिंग में रिक्त स्थान नहीं होना चाहिए।"
 
-msgid "Signature has expired."
-msgstr "हस्ताक्षर की अवधी समाप्त हो गई है।"
-
-msgid "Error decoding signature."
-msgstr "हस्ताक्षर डीकोड करने में त्रुटि।"
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -351,6 +342,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "पेलोड में एक या अधिक कुंजी के लिए गलत प्रकार"
+
+msgid "Signature has expired."
+msgstr "हस्ताक्षर की अवधी समाप्त हो गई है।"
+
+msgid "Error decoding signature."
+msgstr "हस्ताक्षर डीकोड करने में त्रुटि।"
 
 msgid "Invalid JWT Token."
 msgstr "अमान्य JWT टोकन।"
@@ -4427,8 +4424,14 @@ msgid "See all extensions"
 msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
+msgid "Recommended extensions"
 msgstr "टिप्पणी की गई"
 
 #. editorial content for the secondary hero shelves.
@@ -4437,18 +4440,8 @@ msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "टिप्पणी की गई"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

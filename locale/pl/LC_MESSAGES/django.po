@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -357,15 +357,6 @@ msgstr "Nieprawidłowy nagłówek autoryzacji. Nie podano poświadczeń."
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Nieprawidłowy nagłówek autoryzacji. Łańcuch poświadczeń nie może zawierać spacji."
 
-msgid "Signature has expired."
-msgstr "Podpis wygasł."
-
-msgid "Error decoding signature."
-msgstr "Błąd podczas dekodowania podpisu."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -374,6 +365,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr ""
+
+msgid "Signature has expired."
+msgstr "Podpis wygasł."
+
+msgid "Error decoding signature."
+msgstr "Błąd podczas dekodowania podpisu."
 
 msgid "Invalid JWT Token."
 msgstr "Nieprawidłowy token JWT."
@@ -4633,8 +4630,14 @@ msgid "See all extensions"
 msgstr "Przejrzyj wszystkie rozszerzenia"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
+msgid "Recommended extensions"
 msgstr "Skomentowano"
 
 #. editorial content for the secondary hero shelves.
@@ -4643,18 +4646,8 @@ msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Skomentowano"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

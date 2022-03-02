@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -351,15 +351,6 @@ msgstr "Autorización de encabezado no válida. No se proporcionaron credenciale
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Autorización de encabezado no válida. La cadena de credenciales no debe contener espacios."
 
-msgid "Signature has expired."
-msgstr "La firma ha expirado."
-
-msgid "Error decoding signature."
-msgstr "Error al descodificar la firma."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -368,6 +359,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Tipo incorrecto para una o más claves del contenido"
+
+msgid "Signature has expired."
+msgstr "La firma ha expirado."
+
+msgid "Error decoding signature."
+msgstr "Error al descodificar la firma."
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT no válido."
@@ -4609,9 +4606,15 @@ msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Temas recomendados"
+msgid "Elite ad blockers"
+msgstr "Actualizar bloqueadores de complementos"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Extensiones recomendadas"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4620,18 +4623,8 @@ msgid "Translation tools"
 msgstr "Organizadores de pestañas y herramientas"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Actualizar bloqueadores de complementos"
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

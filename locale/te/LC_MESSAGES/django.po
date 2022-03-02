@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2022-01-03 14:32+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -325,15 +325,6 @@ msgstr ""
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr ""
 
-msgid "Signature has expired."
-msgstr "సంతకం కాలంచెల్లింది."
-
-msgid "Error decoding signature."
-msgstr "సంతకం డీకోడు చేయడంలో పొరపాటు."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr ""
-
 msgid "Valid user session not found matching the provided session key."
 msgstr ""
 
@@ -342,6 +333,12 @@ msgstr ""
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "పేలోడ్లో ఒకటి లేదా మరిన్ని కీలు తప్పు రకంలో ఉన్నాయి"
+
+msgid "Signature has expired."
+msgstr "సంతకం కాలంచెల్లింది."
+
+msgid "Error decoding signature."
+msgstr "సంతకం డీకోడు చేయడంలో పొరపాటు."
 
 msgid "Invalid JWT Token."
 msgstr "చెల్లని JWT టోకేను."
@@ -4367,9 +4364,14 @@ msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "ట్రెండవుతూన్న అలంకారాలు"
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "సిఫార్సుచేయబడ్డ పొడగింతలు"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4377,17 +4379,8 @@ msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "సిఫార్సుచేయబడ్డ పొడగింతలు"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"

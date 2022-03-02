@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-22 17:06+0000\n"
+"POT-Creation-Date: 2022-03-02 12:06+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -357,15 +357,6 @@ msgstr "Invalid Authorization header. No credentials provided."
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
 msgstr "Invalid Authorization header. Credentials string should not contain spaces."
 
-msgid "Signature has expired."
-msgstr "Signature has expired."
-
-msgid "Error decoding signature."
-msgstr "Error decoding signature."
-
-msgid "Auth hash mismatch. Session is likely expired."
-msgstr "Auth hash mismatch. Session is likely expired."
-
 msgid "Valid user session not found matching the provided session key."
 msgstr "Valid user session not found matching the provided session key."
 
@@ -374,6 +365,12 @@ msgstr "Access token refresh failed; user needs to login to FxA again."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Wrong type for one or more keys in payload"
+
+msgid "Signature has expired."
+msgstr "Signature has expired."
+
+msgid "Error decoding signature."
+msgstr "Error decoding signature."
 
 msgid "Invalid JWT Token."
 msgstr "Invalid JWT Token."
@@ -4879,9 +4876,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Top anti-tracking extensions"
-msgstr "Recommended ({0})"
+msgid "Elite ad blockers"
+msgstr "Update add-on block"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Recommended Extensions program"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4890,19 +4894,8 @@ msgid "Translation tools"
 msgstr "Tab organizers and tools"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Update add-on block"
-
-#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "See staff picks"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Recommended Extensions program"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
