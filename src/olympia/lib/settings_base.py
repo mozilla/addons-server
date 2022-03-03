@@ -1598,11 +1598,6 @@ REPUTATION_SERVICE_URL = env('REPUTATION_SERVICE_URL', default=None)
 REPUTATION_SERVICE_TOKEN = env('REPUTATION_SERVICE_TOKEN', default=None)
 REPUTATION_SERVICE_TIMEOUT = env.float('REPUTATION_SERVICE_TIMEOUT', default=1)
 
-FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/927034868273/amo-account-change-dev'
-)
-FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
-
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.

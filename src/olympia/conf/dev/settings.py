@@ -94,10 +94,6 @@ FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'local']
 
-FXA_SQS_AWS_QUEUE_URL = (
-    'https://sqs.us-east-1.amazonaws.com/142069644989/amo-account-change-dev'
-)
-
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
 
 REMOTE_SETTINGS_IS_TEST_SERVER = True
