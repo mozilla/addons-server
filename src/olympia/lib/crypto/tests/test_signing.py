@@ -256,12 +256,12 @@ class TestSigning(TestCase):
             'SHA256-Digest: Dj3HrJ4QDG5YPGff4YsjSqAVYKU99f3vz1ssno2Cloc=\n\n'
             'Name: manifest.json\n'
             'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: FD4jteOZK+FVFhvt/dqaLnI8Imo=\n'
-            'SHA256-Digest: 8+zdeEGRbJIsX6514drWJcSZZ4CYZgwssS3Ax1uZ/jM=\n\n'
+            'SHA1-Digest: 77nz8cVnruIKyRPRqnIfao1uoHw=\n'
+            'SHA256-Digest: m0f3srI8vw15H8mYbQlb+adptxNt2QGXT69krfoq+T0=\n\n'
             'Name: META-INF/cose.manifest\n'
             'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: XfaTP0MBSJPnG44lLvfsnsYjm4Y=\n'
-            'SHA256-Digest: e+Xj3yHytbNjxsAmmxCf/I3vEEyXrNKSznE0enPrG3A=\n\n'
+            'SHA1-Digest: 6IHHewfjdgEaJGfD86oqWo1qel0=\n'
+            'SHA256-Digest: bExoReutlIoZMatxIQ4jtgAyujR1q193Ng0tjooB2Hc=\n\n'
             'Name: META-INF/cose.sig\n'
             'Digest-Algorithms: SHA1 SHA256\n'
         )
@@ -313,7 +313,8 @@ class TestSigning(TestCase):
                 else:
                     # only manifest.json should have been updated
                     orig_manifest = json.load(orig_zip.open(info.filename))
-                    new_manifest = json.load(new_zip.open(info.filename))
+                    new_manifest_blob = new_zip.open(info.filename).read()
+                    new_manifest = json.loads(new_manifest_blob)
                     assert orig_manifest != new_manifest
                     assert new_manifest['browser_specific_settings']['gecko']['id'] == (
                         self.file_.addon.guid
@@ -323,6 +324,8 @@ class TestSigning(TestCase):
                         for key, value in new_manifest.items()
                         if key != 'browser_specific_settings'
                     }
+                    # check the manifest is formatted well, with spacing and line breaks
+                    assert new_manifest_blob.decode('utf8').startswith('{\n  "manifest')
             assert 'manifest.json' in (info.filename for info in orig_zip.filelist)
             assert len(orig_zip.filelist) == len(new_zip.filelist)
 
