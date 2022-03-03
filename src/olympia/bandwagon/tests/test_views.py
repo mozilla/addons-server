@@ -1405,6 +1405,14 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
             response = self.send(self.url, data)
             self.check_response(response)
 
+    def test_blank_notes(self):
+        self.client.login_api(self.user)
+        data = {
+            'notes': {'en-US': ''},
+        }
+        response = self.send(self.url, data)
+        self.check_response(response, notes='')
+
     def test_cant_change_addon(self):
         self.client.login_api(self.user)
         new_addon = addon_factory()

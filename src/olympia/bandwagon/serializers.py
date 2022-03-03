@@ -106,7 +106,9 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
         SlugOrPrimaryKeyRelatedField(queryset=Addon.objects.public()),
         AddonSerializer(),
     )
-    notes = TranslationSerializerField(source='comments', required=False)
+    notes = TranslationSerializerField(
+        source='comments', required=False, allow_blank=True
+    )
     collection = serializers.HiddenField(default=ThisCollectionDefault())
 
     class Meta:
