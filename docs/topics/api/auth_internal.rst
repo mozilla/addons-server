@@ -11,7 +11,7 @@ your API keys, read the :ref:`documentation for external authentication
 <api-auth>` instead.
 
 When using this authentication mechanism, the server creates a session and stores the
-session id in the ``sessionid` cookie when the user logs in.
+session id in the ``sessionid`` cookie when the user logs in.
 The client must then include that session id in an ``Authorization`` header on requests
 that need authentication.
 The clients never generate tokens or sessions themselves.
