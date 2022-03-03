@@ -344,7 +344,8 @@ references:
             AUTOGRAPH_CONFIG: *autograph_config
 
   defaults-release: &defaults-release
-    machine: true
+    machine:
+      - image: ubuntu-2004:202201-02
     working_directory: &working-directory
 
 commands:
