@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-05 12:42+0000\n"
+"PO-Revision-Date: 2022-03-05 12:59+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -110,9 +110,8 @@ msgstr "Potřebujete pomoci?"
 msgid "Notification [%s] does not exist"
 msgstr "Upozornění [%s] neexistuje"
 
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "Příručka pro kontrolu doplňků"
+msgstr ""
 
 msgid "Review"
 msgstr "Recenze"
@@ -697,13 +696,11 @@ msgstr "Schváleno, ale čeká"
 msgid "Account updated."
 msgstr "Účet byl aktualizován."
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "Účet byl aktualizován."
+msgstr "Účet uživatele {user} byl smazán."
 
-#, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Účet byl aktualizován."
+msgstr ""
 
 msgid "Created: {0}."
 msgstr "Vytvořeno: {0}."
@@ -992,9 +989,8 @@ msgstr "Zastaralý odlehčený motiv vzhledu"
 msgid "Theme (Static)"
 msgstr "Vzhled (statický)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Oprávnění:"
+msgstr "Oprávnění serverů"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -1026,7 +1022,6 @@ msgstr "Zastaralé odlehčené motivy vzhledu"
 msgid "Themes (Static)"
 msgstr "Vzhledy (statické)"
 
-#, fuzzy
 msgid "Site Permissions"
 msgstr "Oprávnění:"
 
@@ -1322,13 +1317,11 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Licence"
+msgstr "Licence MIT"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Licence"
+msgstr "Licence BSD"
 
 msgid "Mozilla Public License 1.1"
 msgstr ""
@@ -1759,9 +1752,8 @@ msgstr "Zobrazované jméno"
 msgid "Origin"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Oprávnění:"
+msgstr "Oprávnění"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
 msgstr ""
@@ -2022,9 +2014,8 @@ msgstr "Prohledat dokumentaci"
 msgid "Search"
 msgstr "Hledat"
 
-#, fuzzy
 msgid "Generate Site Permission Add-on"
-msgstr "Oprávnění:"
+msgstr ""
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
 msgstr ""
@@ -2491,17 +2482,11 @@ msgstr "Skrýt zprávy ignorované v minulých verzích"
 msgid "Top"
 msgstr "Nahoru"
 
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, které jste kdy v souvislosti s tímto doplňkem odeslali, ať už veřejně nebo ne. ID doplňku bude stále spojeno s vaším účtem, takže "
-"nikdo jiný nebude moci odeslat doplněk se stejným ID."
+msgstr "Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, které jste kdy v souvislosti s tímto doplňkem odeslali, ať už veřejně nebo ne."
 
-#, fuzzy
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, které jste kdy v souvislosti s tímto doplňkem odeslali, ať už veřejně nebo ne. ID doplňku bude stále spojeno s vaším účtem, takže "
-"nikdo jiný nebude moci odeslat doplněk se stejným ID."
+msgstr "ID doplňku bude stále spojeno s vaším účtem, takže nikdo jiný nebude moci odeslat doplněk se stejným ID."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
@@ -3787,9 +3772,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Provádějte zavření panelů, procházení stránek a další činnosti pomocí gest myši."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Nechte si vedle výsledků vyhledávání zobrazovat náhledy daných stránek."
+msgstr "Zobrazit vedle výsledků vyhledávání náhledové obrázky."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4402,19 +4386,16 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Narazili jste na webu na zajímavý obrázek? S TinEye zjistíte, odkud pochází."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "Čtěte soubory ePub přímo ve Firefoxu – zvětšete velikost písma, rozměry stránky apod."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navigaci pomocí více než 50 konfigurací."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "Provádějte zavření panelů, procházení stránek a další činnosti pomocí gest myši."
+msgstr "Zavírejte panely, procházejte stránky a provádějte další činnosti pomocí gest myši."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4601,24 +4582,20 @@ msgid "See more trending themes"
 msgstr "Další populární vzhledy"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Právě populární motivy vzhledu"
+msgstr "Nejlépe hodnocené motivy vzhledu"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Další populární vzhledy"
+msgstr "Další dobře hodnocené motivy vzhledu"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Právě populární motivy vzhledu"
+msgstr "Právě populární rozšíření"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Další doporučená rozšíření"
+msgstr "Další právě populární rozšíření"
 
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
@@ -6037,9 +6014,8 @@ msgstr "Nebyl nalezen uživatel, který by měl tento e-mail."
 msgid "Firefox user {id}"
 msgstr "Uživatel Firefoxu - {id}"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Zadejte platný rozsah IPv6 adres nebo IPv6 CIDR, např. 127.0.0.1/28"
+msgstr "Zadejte platný rozsah sítě ve formátu IPv4 nebo IPv6 CIDR, např. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Z vašeho umístění bylo odesláno více doplňků, které porušují naše pravidla. IP adresa byla zablokována."
