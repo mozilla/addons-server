@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-06 01:12+0000\n"
+"PO-Revision-Date: 2022-03-06 01:15+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -4627,9 +4627,8 @@ msgstr "WebExtension テーマの最大サイズは {0} です。"
 msgid "You cannot submit this type of add-on"
 msgstr "この種類のアドオンを送信することはできません"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "%sで終わる GUID が設定されたアドオンを投稿することはできません"
+msgstr "このサフィックスで終わる ID が設定されたアドオンを投稿することはできません"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "あなたは Mozilla Signed Extension を登録できません"
@@ -4750,9 +4749,8 @@ msgstr "OS:"
 msgid "Applications:"
 msgstr "アプリケーション:"
 
-#, fuzzy
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "次の期限以内に開発者の応答が必要..."
+msgstr "拒否を遅らせるには、次の期限内に開発者の応答が必要です..."
 
 msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
@@ -4799,9 +4797,8 @@ msgstr ""
 msgid "Is locked by a reviewer"
 msgstr "審査担当者によってロックされています"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "自動承認無効フラグが設定されています"
+msgstr "自動承認無効または遅延フラグが設定されています"
 
 msgid "Is in a promoted addon group that requires pre-review"
 msgstr ""
@@ -4821,9 +4818,8 @@ msgstr ""
 msgid "You can't submit a comment if `canned_response` is defined."
 msgstr ""
 
-#, fuzzy
 msgid "You can't submit an empty comment."
-msgstr "あなたは言語パックを登録できません"
+msgstr "コメントを空にして送信することはできません。"
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
