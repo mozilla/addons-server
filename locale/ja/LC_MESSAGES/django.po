@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-06 01:09+0000\n"
+"PO-Revision-Date: 2022-03-06 01:12+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2442,13 +2442,11 @@ msgstr "旧バージョンに存在し無視されたメッセージを表示し
 msgid "Top"
 msgstr "トップ"
 
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr "アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあなたのアカウントに紐付けられます。"
+msgstr "アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。"
 
-#, fuzzy
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr "アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあなたのアカウントに紐付けられます。"
+msgstr "アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあなたのアカウントに紐付けられます。"
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
@@ -4552,41 +4550,34 @@ msgid "See more YouTube extension staff picks"
 msgstr "翻訳ツールをもっと見る"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "おすすめのテーマ"
+msgstr "流行のテーマ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "おすすめのテーマをもっと見る"
+msgstr "流行のテーマをもっと見る"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "おすすめのテーマ"
+msgstr "最も評価の高いテーマ"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "おすすめのテーマをもっと見る"
+msgstr "評価の高いテーマをもっと見る"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "おすすめのテーマ"
+msgstr "流行の拡張機能"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "おすすめの拡張機能をもっと見る"
+msgstr "流行の拡張機能をもっと見る"
 
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
 
-#, fuzzy
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr "Firefox 47 以前では GUID が必要です。"
+msgstr "Firefox 47 以前ではアドオン ID が必要です。"
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "対応下限「strict_min_version」は 42.0 です。"
@@ -4617,9 +4608,9 @@ msgstr "展開後のサイズが大きすぎます"
 msgid "Invalid archive."
 msgstr "不正なアーカイブです。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "manifest.json あるいは install.rdf 内のアドオン ID (%s) が AMO 上のあなたのアドオンの ID (%s) と一致しません"
+msgstr "manifest.json 内のアドオン ID (%s) が AMO 上のあなたのアドオンの ID (%s) と一致しません"
 
 msgid "Duplicate add-on ID found."
 msgstr "重複したアドオンの ID が見つかりました。"
