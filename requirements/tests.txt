@@ -62,9 +62,9 @@ freezegun==1.1.0 \
     --hash=sha256:177f9dd59861d871e27a484c3332f35a6e3f5d14626f2bf91be37891f18927f3
 cookies==2.2.1 \
     --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3
-responses==0.18.0 \
-    --hash=sha256:15c63ad16de13ee8e7182d99c9334f64fd81f1ee79f90748d527c28f7ca9dd51 \
-    --hash=sha256:380cad4c1c1dc942e5e8a8eaae0b4d4edf708f4f010db8b7bcfafad1fcd254ff
+responses==0.19.0 \
+    --hash=sha256:3fc29c3117e14136b833a0a6d4e7f1217c6301bf08b6086db468e12f1e3290e2 \
+    --hash=sha256:53354b5de163aa2074312c71d8ebccb8bd1ab336cff7053abb75e84dc5637abe
 PyYAML==6.0 \
     --hash=sha256:d4db7c7aef085872ef65a8fd7d6d09a14ae91f691dec3e87ee5ee0539d516f53 \
     --hash=sha256:9df7ed3b3d2e0ecfe09e14741b857df43adb5a3ddadc919a2d94fbdf78fea53c \
