@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-08 11:07+0000\n"
+"PO-Revision-Date: 2022-03-08 11:35+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -2012,13 +2012,13 @@ msgstr ""
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Niðurstöður fullgildingar fyrir {0}"
 
 msgid "Validation Results"
 msgstr "Niðurstöður fullgildingar"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Fullgilt þann:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nýleg virkni í mínum viðbótum"
@@ -3100,7 +3100,7 @@ msgid "WebExtensions API"
 msgstr "API-forritsviðmót WebExtensions"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: byggja og prófa forritsauka"
 
 msgid "Promote"
 msgstr "Hækka í tign"
@@ -3161,13 +3161,13 @@ msgid "This is where you view and manage your add-ons and themes. To publish you
 msgstr ""
 
 msgid "Submit Your First Add-on"
-msgstr ""
+msgstr "Sendu inn fyrstu viðbótina þína"
 
 msgid "Submit Your First Theme"
-msgstr "Senda inn fyrsta þemað þitt"
+msgstr "Sendu inn fyrsta þemað þitt"
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "Þróunarmiðstöð viðbóta (Developer Hub)"
 
 msgid "Support"
 msgstr "Aðstoð"
@@ -3188,25 +3188,25 @@ msgid "Profile"
 msgstr "Snið"
 
 msgid "Submit or Manage Extensions"
-msgstr ""
+msgstr "Senda inn eða sýsla með forritsauka"
 
 msgid "Customize Firefox"
-msgstr ""
+msgstr "Sérsníða Firefox"
 
 msgid "Learn how to make an extension"
-msgstr ""
+msgstr "Lærðu hvernig á að búa til forritsauka"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "Tilbúin/n að senda inn eða sýsla með forritsaukann þinn?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Skráðu þig inn í þróunarmiðstöðina til að senda inn og sýsla með forritsauka og þemu."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Skráðu þig fyrir þróunaraðgangi eða skráðu þig inn í Þróunarmiðstöðina"
 
 msgid "Manage Version {0}"
-msgstr ""
+msgstr "Sýsla með útgáfu {0}"
 
 #. {0} is an add-on name.
 msgid "Manage {0}"
@@ -5342,7 +5342,7 @@ msgid "Recent Points"
 msgstr "Nýlegir punktar"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Engir punktar gefnir ennþá."
 
 msgid "Top Reviewers (past 7 days)"
 msgstr "Efstu yfirferðaraðilar (síðustu 7 daga)"
@@ -5381,13 +5381,13 @@ msgid "Compatibility:"
 msgstr "Samhæfni:"
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "Aðrir upprunar:"
 
 msgid "Download files"
 msgstr "Sækja skrár"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Forritarinn hefur gefið upp upprunakóða."
 
 msgid "Maliciousness Score:"
 msgstr "Illskustig:"
@@ -5396,10 +5396,10 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr ""
 
 msgid "Code Weight:"
-msgstr ""
+msgstr "Vægi kóða:"
 
 msgid "Metadata Weight:"
-msgstr ""
+msgstr "Vægi lýsigagna:"
 
 msgid "Flagged by scanners"
 msgstr "Flaggað af skönnum"
@@ -5420,7 +5420,7 @@ msgid "This version has not been reviewed."
 msgstr ""
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Hafnað eða óyfirfarið"
 
 #, python-format
 msgid "[status:%s]"
@@ -5538,7 +5538,7 @@ msgstr ""
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
+msgstr "Útgáfan er þegar til. Nýjasta útgáfan er: %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
@@ -5681,7 +5681,7 @@ msgid "About tracking external sources..."
 msgstr ""
 
 msgid "Download contents by Date"
-msgstr ""
+msgstr "Niðurhal á efni eftir dagsetningum"
 
 msgid "User countries by Date"
 msgstr "Lönd notenda eftir dagsetningu"
@@ -5726,7 +5726,7 @@ msgid "See more platforms&hellip;"
 msgstr "Sjá fleiri stýrikerfi&hellip;"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Niðurhal grunnkóða eftir dagsetningum"
 
 msgid "Add-on Status by Date"
 msgstr "Staða viðbóta eftir dagsetningu"
@@ -5770,8 +5770,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annarsstaðar er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
+"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annað er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "náðu að kynnast <b>viðbótum</b>"
@@ -5846,22 +5846,22 @@ msgstr "Henda breytingum"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Ertu viss um að þú viljir fjarlægja allar þýðingar <b>{0}</b>? Ekki er hægt að afturkalla þetta."
 
 msgid "Delete Locale"
 msgstr "Eyða staðfærslu"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Notandinn \"%(user)s\" hefur verið bannaður."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Myndinni sem tilheyrir \"%(user)s\" hefur verið eytt."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Notendurnir \"%(users)s\" hafa verið bannaðir."
 
 msgid "Ban selected users"
 msgstr "Banna valda notendur"
@@ -5957,7 +5957,7 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla þarf að hafa samband við mig út af minni tilteknu viðbót"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Tilkynningar notanda"
 
 msgid "Ban"
 msgstr "Banna"
@@ -6026,4 +6026,4 @@ msgid "{app} {min} and later"
 msgstr "{app} {min} og nýrra"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Uppsetning frá staðsetningunni {origin} er ekki leyfileg."
