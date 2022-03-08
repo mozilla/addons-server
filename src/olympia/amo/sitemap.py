@@ -464,7 +464,7 @@ def get_sitemap_path(section, app, page=1):
         endpath = id_to_path(page)
     return os.path.join(
         settings.SITEMAP_STORAGE_PATH,
-        section if section else '',
-        app if app else '',
+        section or '',
+        app or '',
         f'{endpath}.xml',
     )
