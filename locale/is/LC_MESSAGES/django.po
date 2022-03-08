@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-08 14:15+0000\n"
+"PO-Revision-Date: 2022-03-08 15:06+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3584,7 +3584,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Fáðu viðbótar-varnarlag gegn njósnum á meðan þú vafrar um netið."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
@@ -3664,11 +3664,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "Notaðu músarbendingar til að loka flipum, rata um vefsíður og fleira."
 
 #. editorial content for the discovery pane.
 msgid "See thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Sjáðu smámyndir við hlið leitarniðurstaðna."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -3690,7 +3690,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Geymdu lykilorð á öruggan hátt og hafðu aðgang að þeim á mörgum tækjum."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
@@ -3707,7 +3707,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Fáðu aðgang að nýlokuðum flipum með því að hægrismella á táknmyndina í verkfæraslánni."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -3744,7 +3744,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Setur ferskt, nútímalegt útlit á Wikipedíu."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
@@ -3752,7 +3752,7 @@ msgstr "Notaðu músarbendingar svo að hlutirnir gangi hraðar fyrir sig."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Feldu hluta vefsvæðisins sem þú ert að skoða."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
@@ -3760,11 +3760,11 @@ msgstr "Sæktu myndir sem þú finnur á vefnum."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Takmarkaðu með síum aðgang að óviðeigandi eða særandi efni."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Opnar nýjan flipa strax til hægri á eftir núverandi flipa, ekki við enda fliparaðarinnar."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
@@ -3837,7 +3837,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Sækja Youtube-myndskeið og/eða hljóð."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3860,12 +3860,12 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Áherslulita texta á vefsíðum til að vista og lesa síðar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Njóttu tónlistar frá meira en 30.000 netútvarpsstöðvum út um allan heim."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
