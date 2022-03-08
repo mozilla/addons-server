@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-08 11:35+0000\n"
+"PO-Revision-Date: 2022-03-08 13:25+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -4226,12 +4226,12 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr ""
+msgstr "Bláir og gulir"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Vista marga flipa sem þægileg bókamerki."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4251,7 +4251,7 @@ msgstr "Auðveldasta leiðin til að stjórna YouTube-áskriftum."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Fáðu þér skrunstikuna sem þú hefur alltaf óskað þér fyrir músina - tilgreindu breidd og lit."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4264,12 +4264,12 @@ msgstr "Bless, leiðinda aðvaranir útaf vefkökum!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Allar emoji-táknmyndaþarfir þínar - með einum smelli."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Hættu að gefa vefsvæðum tölvupóstfangið þitt. Firefox Relay verndar persónuauðkennin þín og kemur í veg fyrir ruslpóstsendingar."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4277,7 +4277,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Fannstu áhugaverða mynd á vefnum? Notaðu TinEye til að finna hvaðan hún er upprunnin."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4686,7 +4686,7 @@ msgid "Private Whiteboard"
 msgstr ""
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Halda umsögn; fjarlægja flögg"
 
 msgid "Skip for now"
 msgstr "Sleppa í bili"
@@ -4752,13 +4752,13 @@ msgid "Last Review"
 msgstr "Síðasta yfirferð"
 
 msgid "Code Weight"
-msgstr ""
+msgstr "Vægi kóða"
 
 msgid "Metadata Weight"
-msgstr ""
+msgstr "Vægi lýsigagna"
 
 msgid "Total Weight"
-msgstr ""
+msgstr "Heildarvægi"
 
 msgid "Maliciousness Score"
 msgstr "Illskustig"
@@ -4854,10 +4854,10 @@ msgid "Review Log"
 msgstr "Yfirferðarskrá"
 
 msgid "Add-on Review Guide"
-msgstr ""
+msgstr "Leiðbeiningar fyrir umsagnir um viðbætur"
 
 msgid "Security Scanners"
-msgstr ""
+msgstr "Öryggisskannar"
 
 msgid "Flagged By Scanners"
 msgstr "Flaggað af skönnum"
@@ -4866,10 +4866,10 @@ msgid "Flagged for Human Review"
 msgstr "Flaggað til mannlegrar yfirferðar"
 
 msgid "Auto-Approved Add-ons"
-msgstr ""
+msgstr "Sjálfvirkt samþykktar viðbætur"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "Sjálfvirkt samþykktar viðbætur ({0})"
 
 msgid "Add-on Review Log"
 msgstr ""
@@ -4890,10 +4890,10 @@ msgid "Updates ({0})"
 msgstr "Uppfærslur ({0})"
 
 msgid "Theme Review Guide"
-msgstr ""
+msgstr "Leiðbeiningar fyrir umsagnir um þema"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Umsjón með einkunum notenda"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr ""
@@ -4905,31 +4905,31 @@ msgid "Moderation Guide"
 msgstr ""
 
 msgid "Unlisted Add-ons"
-msgstr ""
+msgstr "Óskráðar viðbætur"
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Allar óskráðar viðbætur"
 
 msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr ""
+msgstr "Óskráðar viðbætur sem bíða handvirks samþykkis"
 
 msgid "Announcement"
 msgstr "Tilkynning"
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "Uppfæra skilaboð dagsins"
 
 msgid "Add-ons Pending Rejection ({0})"
-msgstr ""
+msgstr "Viðbætur sem bíða höfnunar ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Óþekkt villa kom upp"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Yfirferð sjálfs sín eru ekki leyfðar."
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Yfirferð hefur verið meðhöndluð."
 
 msgid "Review lock limit reached"
 msgstr ""
@@ -4944,26 +4944,26 @@ msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr "Misnotkunarskýrslur – {addon} – Viðbætur fyrir Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Misnotkunarskýrslur fyrir {addon} og hönnuði hennar ({num})"
 
 msgid "Abuse Reports"
 msgstr "Misnotkunarskýrslur"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "Upplýsingar um viðbótina {0}"
 
 msgid "Add-on ID"
-msgstr ""
+msgstr "Auðkenni viðbótar"
 
 msgid "Original Add-on ID"
-msgstr ""
+msgstr "Upprunalegt auðkenni viðbótar"
 
 msgid "Add-on(s) sharing same ID"
-msgstr ""
+msgstr "Viðbætur sem deila sama auðkenni"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Innra AMO-auðkenni"
 
 msgid "Support Website"
 msgstr "Aðstoðarvefur"
@@ -5029,7 +5029,7 @@ msgid "Reviewer Leaderboard"
 msgstr ""
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Engir yfirferðarpunktar gefnir ennþá."
 
 msgid "Rank"
 msgstr "Sæti"
@@ -5038,7 +5038,7 @@ msgid "Score"
 msgstr "Einkunn"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Atvikaskrá ritstýrðra yfirferða – Viðbætur fyrir Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5064,7 +5064,7 @@ msgstr "Höfundur yfirferðar"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr "Titill viðbótar"
@@ -5085,25 +5085,25 @@ msgid "Back to review"
 msgstr "Til baka í yfirferð"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Yfirferð á efni – Viðbætur fyrir Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Sjálfvirkt samþykktar viðbætur – Viðbætur fyrir Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
+msgstr "Ritstýrð yfirferð – Viðbætur fyrir Firefox"
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Óskráðar viðbætur – Viðbætur fyrir Firefox"
 
 msgid "Pending Rejection – Add-ons for Firefox"
-msgstr ""
+msgstr "Höfnun í bið – Viðbætur fyrir Firefox"
 
 msgid "Process Reviews"
 msgstr ""
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Umsjónaraðgerðir:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
