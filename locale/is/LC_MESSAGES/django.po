@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-02-25 15:37+0000\n"
+"PO-Revision-Date: 2022-03-08 11:07+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -261,17 +261,17 @@ msgstr "Fannst ekki"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Því miður getum við ekki fundið það sem þú ert að leita að.</h1> <p>Síðan eða skjalið sem þú baðst um fannst ekki á vefsvæðinu okkar. Það er mögulegt að þú hafir smellt á tengil sem er úreltur "
 "eða sett inn rangt skrifað vistsfang.</p> <ul> <li>Ef þú skrifaðir inn vistfangið skaltu athuga vel stafsetninguna.</li> <li>Ef þú smelltir á tengil einhvers staðar ættirðu að %(open_bug_link)s "
 "tilkynna vandamálið %(close_bug_link)s. Segðu okkur hvaðan þú komst, að hverju þú leitaðir og við munum gera okkar besta til að laga þetta. </li> </ul> <p>Eða þú getur bara hoppað yfir á nokkrar af "
 "vinsælustu síðunum á vefsvæðinu okkar. </p> <ul> <li>Hefur þú áhuga á <a href=\"%(rec)s\">lista með úrvali viðbóta </a>? </li> <li> Viltu <a href=\"%(search)s\">leita að viðbótum </a>? Þú getur "
-"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. </"
-"li> </ul>"
+"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. "
+"</li> </ul>"
 
 msgid "Oops"
 msgstr "Úbbs"
@@ -281,8 +281,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur "
-"líka hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
+"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur líka"
+" hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
 
 msgid "Register or Log in"
 msgstr "Nýskráðu þig eða skráðu inn"
@@ -402,8 +402,8 @@ msgstr "Útgáfur"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -889,13 +889,13 @@ msgid "{user} force-disabled {addon}."
 msgstr ""
 
 msgid "Force disabled"
-msgstr ""
+msgstr "Þvingað óvirkt"
 
 msgid "{user} force-enabled {addon}."
 msgstr ""
 
 msgid "Force enabled"
-msgstr ""
+msgstr "Þvingað virkt"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1651,19 +1651,19 @@ msgid "License text is required when choosing Other."
 msgstr "Texta notkunarleyfis er krafist þegar valið er Annað."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Þessi viðbót er með EULA samning um notandaleyfi"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Tilgreindu EULA samning um notandaleyfi fyrir viðbótina þína:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Þessi viðbót er með stefnu um meðferð persónuupplýsinga"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Tilgreindu stefnu vegna meðferðar persónuupplýsinga fyrir viðbótina þína:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Óstudd skráartegund, sendu inn safnskrá {extensions}."
 
 msgid "Invalid or broken archive."
 msgstr "Ógild eða skemmd safnskrá."
@@ -1672,7 +1672,7 @@ msgid "View current"
 msgstr "Skoða núverandi"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "Ógilt bil útgáfa."
 
 msgid "Need at least one compatible application."
 msgstr ""
@@ -1922,10 +1922,10 @@ msgid "Review requested."
 msgstr "Beðið um yfirferð."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Þú verður að gefa upp nánari upplýsingar til að geta haldið áfram."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Eldri auðkennin þín voru afturkölluð og eru því ekki lengur gild."
 
 msgid "New API key created"
 msgstr "Nýr API-lykill búinn til"
@@ -1948,7 +1948,7 @@ msgstr "Fara til baka á heimasíðu DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Þróunarmiðstöð <small>viðbóta</small> (Developer Hub)"
 
 msgid "more add-ons..."
 msgstr "fleiri viðbætur..."
@@ -2050,9 +2050,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -2268,8 +2266,8 @@ msgid "Email"
 msgstr "Tölvupóstur"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2820,8 +2818,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2893,8 +2891,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -5110,7 +5107,7 @@ msgstr ""
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "eftir %(user)s þann %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -5469,7 +5466,7 @@ msgid "file status"
 msgstr "staða skrár"
 
 msgid "file signature"
-msgstr ""
+msgstr "undirritun skrár"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -5773,8 +5770,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annarsstaðar er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a href=\"https://creativecommons.org/"
-"licenses/by-sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
+"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annarsstaðar er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "náðu að kynnast <b>viðbótum</b>"
@@ -5925,8 +5922,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5945,7 +5942,7 @@ msgid "my add-on's compatibility is upgraded successfully"
 msgstr "hægt er að uppfæra samhæfni viðbótarinnar minnar"
 
 msgid "someone writes a review of my add-on"
-msgstr "einhver skrifar umsög um viðbótina mína"
+msgstr "einhver skrifar umsögn um viðbótina mína"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "fylgjast með fréttum og viðburðum fyrir þróunaraðila Firefox-viðbóta (þar með talið about:addons fréttabréfið)"
@@ -5982,8 +5979,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
