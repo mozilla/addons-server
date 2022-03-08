@@ -92,10 +92,10 @@ def test_sentry_data_scrubbing():
     assert '@bar.com' in event_raw
     assert '172.18.0.1' in event_raw
     assert '127.0.0.42' in event_raw
-    expected_request_data = deepcopy(event['payload']['request'])
+    expected_request_data = deepcopy(event['request'])
 
     expected_frame_data = deepcopy(
-        event['payload']['exception']['values'][0]['stacktrace']['frames'][3]
+        event['exception']['values'][0]['stacktrace']['frames'][3]
     )
 
     event = before_send(event, None)
@@ -105,14 +105,14 @@ def test_sentry_data_scrubbing():
     assert '127.0.0.42' not in event_raw
 
     # We keep cookies, user dict.
-    assert event['payload']['request']['cookies']
-    assert event['payload']['user']['id']
+    assert event['request']['cookies']
+    assert event['user']['id']
 
     # Email is redacted though.
-    assert event['payload']['user']['email'] == '*** redacted ***'
+    assert event['user']['email'] == '*** redacted ***'
 
     # ip_adress is removed completely because sentry checks its format.
-    assert 'ip_address' not in event['payload']['user']
+    assert 'ip_address' not in event['user']
 
     # Modify old_request_data according to what we should have done and see if
     # it matches what before_send() did in reality.
@@ -120,7 +120,7 @@ def test_sentry_data_scrubbing():
     # Note special case for X-forwarded-for in the 'headers' dict, meant to
     # test we don't care about case.
     expected_request_data['headers']['X-forwarded-for'] = '*** redacted ***'
-    assert expected_request_data == event['payload']['request']
+    assert expected_request_data == event['request']
 
     # Same for expected_frame_data.
     expected_frame_data['vars']['email'] = '*** redacted ***'
@@ -130,5 +130,5 @@ def test_sentry_data_scrubbing():
     ] = '*** redacted ***'
     assert (
         expected_frame_data
-        == event['payload']['exception']['values'][0]['stacktrace']['frames'][3]
+        == event['exception']['values'][0]['stacktrace']['frames'][3]
     )
