@@ -18,6 +18,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
 from olympia.bandwagon.models import Collection
+from olympia.files.utils import id_to_path
 from olympia.promoted.models import PromotedAddon
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
@@ -454,11 +455,16 @@ def render_index_xml(sitemaps):
 
 
 def get_sitemap_path(section, app, page=1):
+    if section is None or app is None:
+        # If we don't have a section or app, we don't need a complex directory
+        # structure and we can call the first page 'sitemap' for convenience
+        # (it's likely going to be the only page).
+        endpath = str(page) if page != 1 else 'sitemap'
+    else:
+        endpath = id_to_path(page)
     return os.path.join(
         settings.SITEMAP_STORAGE_PATH,
-        'sitemap'
-        + (f'-{section}' if section else '')
-        + (f'-{app}' if app else '')
-        + (f'-{page}' if page != 1 else '')
-        + '.xml',
+        section or '',
+        app or '',
+        f'{endpath}.xml',
     )

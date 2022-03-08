@@ -72,10 +72,10 @@ def gc(test_result=True):
 
 
 def write_sitemaps(section=None, app_name=None):
-    index_url = get_sitemap_path(None, None)
+    index_filename = get_sitemap_path(None, None)
     sitemaps = get_sitemaps()
     if (not section or section == 'index') and not app_name:
-        with storage.open(index_url, 'w') as index_file:
+        with storage.open(index_filename, 'w') as index_file:
             log.info('Writing sitemap index')
             index_file.write(render_index_xml(sitemaps))
     for _section, _app_name, _page in get_sitemap_section_pages(sitemaps):

@@ -744,11 +744,15 @@ def test_sitemap_render():
 
 
 def test_get_sitemap_path():
-    path = settings.SITEMAP_STORAGE_PATH
-    assert get_sitemap_path(None, None) == f'{path}/sitemap.xml'
-    assert get_sitemap_path('foo', None) == f'{path}/sitemap-foo.xml'
-    assert get_sitemap_path('foo', 'bar') == f'{path}/sitemap-foo-bar.xml'
-    assert get_sitemap_path('foo', None, 1) == f'{path}/sitemap-foo.xml'
-    assert get_sitemap_path('foo', None, 2) == f'{path}/sitemap-foo-2.xml'
-    assert get_sitemap_path('foo', 'bar', 1) == f'{path}/sitemap-foo-bar.xml'
-    assert get_sitemap_path('foo', 'bar', 2) == f'{path}/sitemap-foo-bar-2.xml'
+    basepath = settings.SITEMAP_STORAGE_PATH
+    assert get_sitemap_path(None, None) == f'{basepath}/sitemap.xml'
+    assert get_sitemap_path('foo', None) == f'{basepath}/foo/sitemap.xml'
+    assert get_sitemap_path('foo', 'bar') == f'{basepath}/foo/bar/1/01/1.xml'
+    assert get_sitemap_path('foo', None, 1) == f'{basepath}/foo/sitemap.xml'
+    assert get_sitemap_path('foo', None, 2) == f'{basepath}/foo/2.xml'
+    assert get_sitemap_path('foo', None, 89) == f'{basepath}/foo/89.xml'
+    assert get_sitemap_path('foo', None, 4321) == f'{basepath}/foo/4321.xml'
+    assert get_sitemap_path('foo', 'bar', 1) == f'{basepath}/foo/bar/1/01/1.xml'
+    assert get_sitemap_path('foo', 'bar', 2) == f'{basepath}/foo/bar/2/02/2.xml'
+    assert get_sitemap_path('foo', 'bar', 89) == f'{basepath}/foo/bar/9/89/89.xml'
+    assert get_sitemap_path('foo', 'bar', 4321) == f'{basepath}/foo/bar/1/21/4321.xml'
