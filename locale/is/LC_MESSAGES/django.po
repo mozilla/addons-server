@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-08 13:25+0000\n"
+"PO-Revision-Date: 2022-03-08 14:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3419,7 +3419,7 @@ msgstr "Ertu með heilt tonn af opnum flipum? Sýslaðu með þá á hreinlegu h
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Stöðvaðu njósnir Facebook-rekjaranna. Einangraðu Facebook-auðkennin yfir í sérstakan “gám” til að koma í veg fyrir að Facebook fylgist með þér út um mestallan veraldarvefinn."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3438,12 +3438,12 @@ msgstr "Veldu síðuna sem þú sérð í hvert skipti sem þú opnar nýjan fli
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Sástu áhugaverða mynd á vefnum og vilt vita meira um hana? Prófaðu þetta myndaleitarverkfæri."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Sæktu myndskeið á einfaldan hátt. Virkar með YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope og hundruðum annarra vefsvæða með myndskeiðum."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
@@ -3451,12 +3451,12 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Sýsl með lykilorð gert einfalt. Samstilltu allar innskráningarnar þínar á milli tækja með eitt aðallykilorð sem stýrir þeim öllum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Afkastamikill auglýsingabani sem er léttur í keyrslu. uBlock Origin keyrir í gegn þúsundir af efnissíum án þess að éta upp helling af minni."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3481,7 +3481,7 @@ msgstr "Lokaðu á að pirrandi auglýsingar og athugasemdir birtist á YouTube.
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Sendu fréttagreinar, sögur, bloggfærslur og fleira yfir á Kindle-tækið þitt."
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
@@ -3489,7 +3489,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Komdu í veg fyrir að illgjörn vefsvæði noti tölvuna þína til að grafa eftir rafmyntum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3511,12 +3511,12 @@ msgstr "Tappaðu af akademískri þekkingu. Fáðu aðgang að meira en 10 millj
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr ""
+msgstr "Sérsníddu músarbendingar. Uppgötvaðu nýjar leiðir til að rata með meira en 50 uppsetningum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Dekktu síðuna í kringum myndspilara til að hafa einbeitinguna í lagi."
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -3525,7 +3525,7 @@ msgstr "Ecosia notar 80% af hagnaði sínum við rekstur leitarvélarinnar til a
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Finnst ekki síðan sem þú ert að leita að? Leitaðu í útgáfum hennar í vefsöfnum eða skyndiminnisskrám."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
