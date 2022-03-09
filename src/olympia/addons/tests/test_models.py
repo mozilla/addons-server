@@ -2762,6 +2762,32 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
 
+    def test_webext_resolve_translations_localized_dict_overrides(self):
+        """If we have a dict passed as the field value it is already localised so don't
+        try to localize further."""
+        parsed_data = {
+            'default_locale': 'sv',
+            'guid': 'notify-link-clicks-i18n@notzilla.org',
+            'name': '__MSG_extensionName__',
+            'type': 1,
+            'apps': [],
+            'summary': {'en-US': 'some summary', 'fr': 'some óthér summary'},
+            'version': '1.0',
+            'homepage': '...',
+        }
+
+        addon = Addon.from_upload(
+            self.get_upload('notify-link-clicks-i18n.xpi'),
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+        )
+
+        # Normalized from `sv` to `sv-SE`
+        assert addon.summary == 'some summary'
+        with self.activate('fr'):
+            addon.reload()
+            assert addon.summary == 'some óthér summary'
+
     def test_activity_log(self):
         # Set current user as the task user, but use an upload that belongs to
         # another, making sure the activity log belongs to them and not the

@@ -956,6 +956,9 @@ class Addon(OnChangeMixin, ModelBase):
         messages = extract_translations(upload)
 
         for field in fields:
+            if isinstance(data[field], dict):
+                # if the field value is already a localized set of values don't override
+                continue
             data[field] = {
                 locale: resolve_i18n_message(
                     data[field],

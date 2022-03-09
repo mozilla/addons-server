@@ -1018,7 +1018,7 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
             'requires_payment': True,
             # 'name'  # don't update - should retain name from the manifest
             'slug': 'addon-Slug',
-            'summary': {'en-US': 'new summary'},
+            'summary': {'en-US': 'new summary', 'fr': 'lé summary'},
             'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
             'version': {'upload': self.upload.uuid, 'license': self.license.slug},
@@ -1049,13 +1049,53 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         assert addon.name == 'My WebExtension Addon'
         # addon.slug always gets slugified back to lowercase
         assert data['slug'] == 'addon-slug' == addon.slug
-        assert data['summary'] == {'en-US': 'new summary'}
+        assert data['summary'] == {'en-US': 'new summary', 'fr': 'lé summary'}
         assert addon.summary == 'new summary'
+        with self.activate(locale='fr'):
+            Addon.objects.get().summary == 'lé summary'
         assert data['support_email'] == {'en-US': 'email@me.me'}
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
         self.statsd_incr_mock.assert_any_call('addons.submission.addon.listed')
+
+    def test_override_manifest_localization(self):
+        upload = self.get_upload(
+            'notify-link-clicks-i18n.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
+        data = {
+            # 'name'  # don't update - should retain name from the manifest
+            'summary': {'en-US': 'new summary', 'fr': 'lé summary'},
+            'version': {'upload': upload.uuid, 'license': self.license.slug},
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+        )
+
+        assert response.status_code == 201, response.content
+        addon = Addon.objects.get()
+        data = response.data
+        assert data['name'] == {
+            'de': 'Meine Beispielerweiterung',
+            'en-US': 'Notify link clicks i18n',
+            'ja': 'リンクを通知する',
+            'nb-NO': 'Varsling ved trykk på lenke i18n',
+            'nl': 'Meld klikken op hyperlinks',
+            'ru': '__MSG_extensionName__',
+            'sv-SE': 'Meld klikken op hyperlinks',
+        }
+        assert addon.name == 'Notify link clicks i18n'
+        assert data['summary'] == {
+            'en-US': 'new summary',
+            'fr': 'lé summary',
+        }
+        assert addon.summary == 'new summary'
+        with self.activate(locale='fr'):
+            Addon.objects.get().summary == 'lé summary'
 
     def test_fields_max_length(self):
         data = {
