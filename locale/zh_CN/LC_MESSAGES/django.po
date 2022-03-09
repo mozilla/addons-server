@@ -1732,10 +1732,10 @@ msgid "Permissions"
 msgstr "权限"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "您已经为相同的来源和权限生成了网站权限附加组件。"
+msgstr ""
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "来源应该只包含一个规范（协议）、一个主机名（域名）和一个可选的端口号"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr "无效或损坏的附加组件文件。"
@@ -1992,7 +1992,7 @@ msgid "Generate Site Permission Add-on"
 msgstr "生成网站权限附加组件"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr "您需要权限启用来源（方案 + 主机名 + 可选端口号）。这也是您需要托管附加组件的地方。"
+msgstr ""
 
 msgid "The permission(s) the generated add-on will grant on the origin."
 msgstr ""
