@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-09 13:05+0000\n"
+"PO-Revision-Date: 2022-03-09 23:51+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1800,7 +1800,7 @@ msgid "You have generated a site permission add-on for the same origin and permi
 msgstr "Έχετε δημιουργήσει ένα πρόσθετο άδειας ιστοτόπου για την ίδια προέλευση και τα ίδια δικαιώματα."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
+msgstr "Η προέλευση πρέπει να περιλαμβάνει μόνο ένα σχήμα (πρωτόκολλο), ένα όνομα κεντρικού υπολογιστή (τομέα) και μια προαιρετική θύρα"
 
 msgid "Invalid or corrupt add-on file."
 msgstr "Άκυρο ή κατεστραμμένο αρχείο προσθέτου."
@@ -2059,10 +2059,10 @@ msgid "Generate Site Permission Add-on"
 msgstr "Δημιουργία προσθέτου αδειών ιστοτόπου"
 
 msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
+msgstr "Η προέλευση (σχήμα + όνομα κεντρικού υπολογιστή + προαιρετική θύρα) για την οποία πρέπει να είναι ενεργή η άδεια. Εδώ θα πρέπει επίσης να φιλοξενήσετε το πρόσθετο."
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "Οι άδειες που θα παραχωρεί το πρόσθετο στην προέλευση."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Χρησιμοποιήστε το πεδίο παρακάτω για να μεταφορτώσετε τη συσκευασία προσθέτου σας."
@@ -3748,7 +3748,7 @@ msgstr "Αυτόματη ανανέωση καρτελών βάσει των χ�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Διατηρήστε τμήματα της διαδικτυακής σας ζωής χωρισμένα σε χρωματιστές καρτέλες με διαχωρισμό των cookies. Πλέον με ενσωμάτωση του Mozilla VPN για ένα ακόμα επίπεδο απορρήτου."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
