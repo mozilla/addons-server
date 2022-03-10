@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'update_counts',
             },
-            bases=(models.Model),
+            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='DownloadCount',
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'download_counts',
             },
-            bases=(models.Model),
+            bases=(models.Model,),
         ),
         migrations.AddIndex(
             model_name='updatecount',
