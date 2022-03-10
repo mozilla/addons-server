@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-10 13:05+0000\n"
+"PO-Revision-Date: 2021-10-30 21:37+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4439,7 +4439,7 @@ msgstr "Όλες οι ανάγκες σας για emoji—πάντα με έν�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Σταματήστε να δίνετε στους ιστοτόπους τη διεύθυνση email σας. Το Firefox Relay προστατεύει την ταυτότητά σας και αποτρέπει την ανεπιθύμητη αλληλογραφία."
+msgstr "Σταματήστε να δίνετε στους ιστοτόπους τη διεύθυνση email σας. Το Firefox Relay προστατεύει την ταυτότητά σας και εμποδίζει την ανεπιθύμητη αλληλογραφία."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
