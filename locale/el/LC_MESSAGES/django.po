@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2021-10-30 21:37+0000\n"
+"PO-Revision-Date: 2022-03-10 13:25+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -144,7 +144,7 @@ msgstr "- Το πρόσθετο δεν είναι στο AMO -"
 
 # Column name in a table.
 msgid "Listed"
-msgstr "Δηλωμένοι"
+msgstr "Καταχωρημένο"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Οι διαδρομές των προσθέτων και των συλλογών πρέπει να τελειώνουν με «/»"
@@ -330,7 +330,7 @@ msgid "Title"
 msgstr "Τίτλος"
 
 msgid "Body"
-msgstr "Κύριο μέρος"
+msgstr "Σώμα"
 
 msgid "Another Title"
 msgstr "Άλλος τίτλος"
@@ -582,7 +582,7 @@ msgid "{addon} {version} rejected."
 msgstr "Απορρίφθηκε η έκδοση {version} του {addon}."
 
 msgid "Rejected"
-msgstr "Απορίφθηκε"
+msgstr "Απορρίφθηκε"
 
 msgid "{addon} {version} retained."
 msgstr "Διατηρήθηκε η έκδοση {version} του {addon}."
@@ -720,7 +720,7 @@ msgid "User {user} edited, reason: {1}"
 msgstr "Ο χρήστης {user} τροποποιήθηκε, αιτία: {1}"
 
 msgid "User {user} anonymized."
-msgstr "Ο χρήστης {user} είναι ανώνυμος."
+msgstr "Ο χρήστης {user} έγινε ανώνυμος."
 
 msgid "User {user} restricted."
 msgstr "Ο χρήστης {user} περιορίστηκε."
@@ -2095,7 +2095,7 @@ msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> από %(user)s"
 
 msgid "No results found."
-msgstr "Δε βρέθηκαν αποτελέσματα."
+msgstr "Δεν βρέθηκαν αποτελέσματα."
 
 msgid "Refine Activity"
 msgstr "Διευκρίνηση δραστηριότητας"
@@ -2616,7 +2616,7 @@ msgid "Name and Summary:"
 msgstr "Όνομα και περίληψη:"
 
 msgid "required"
-msgstr "απαιτείται "
+msgstr "απαιτείται"
 
 #, python-format
 msgid ""
@@ -2694,7 +2694,7 @@ msgid "Submit Version"
 msgstr "Υποβολή έκδοσης"
 
 msgid "Describe Version"
-msgstr "Περίγραφή έκδοσης"
+msgstr "Περιγραφή έκδοσης"
 
 msgid "Release Notes:"
 msgstr "Σημειώσεις έκδοσης:"
@@ -3336,7 +3336,7 @@ msgid "Sign Out"
 msgstr "Αποσύνδεση"
 
 msgid "No Photo"
-msgstr "Χωρίς φωτογραφία"
+msgstr "Καμία φωτογραφία"
 
 msgid "User Photo"
 msgstr "Φωτογραφία χρήστη"
@@ -3368,7 +3368,7 @@ msgstr "Διαχείριση της έκδοσης {0}"
 #. {0} is an add-on name.
 # {0} is the name of the collection
 msgid "Manage {0}"
-msgstr "Διαχείριση συλλογής {0}"
+msgstr "Διαχείριση {0}"
 
 msgid "Files"
 msgstr "Αρχεία"
