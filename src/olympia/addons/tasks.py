@@ -74,7 +74,7 @@ def index_addons(ids, **kw):
         ids,
         Addon,
         AddonIndexer.extract_document,
-        kw.pop('index', None),
+        kw.pop('index', AddonIndexer.get_index_alias()),
         transforms,
         Addon.unfiltered,
     )

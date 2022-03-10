@@ -24,9 +24,7 @@ unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
 get_indices = Reindexing.objects.get_indices
 
 
-def index_objects(ids, model, extract_func, index=None, transforms=None, objects=None):
-    if index is None:
-        index = model._get_index()
+def index_objects(ids, model, extract_func, *, index, transforms=None, objects=None):
     if objects is None:
         objects = model.objects
 
