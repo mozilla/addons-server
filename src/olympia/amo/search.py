@@ -14,7 +14,7 @@ DEFAULT_HOSTS = ['localhost:9200']
 DEFAULT_TIMEOUT = 5
 
 
-def get_es(hosts=None, timeout=None, **settings):
+def get_es(hosts=None, timeout=None):
     """Create an ES object and return it."""
     # Cheap way of de-None-ifying things
     hosts = hosts or getattr(dj_settings, 'ES_HOSTS', DEFAULT_HOSTS)
@@ -24,7 +24,7 @@ def get_es(hosts=None, timeout=None, **settings):
         else getattr(dj_settings, 'ES_TIMEOUT', DEFAULT_TIMEOUT)
     )
 
-    return Elasticsearch(hosts, timeout=timeout, **settings)
+    return Elasticsearch(hosts, timeout=timeout, send_get_body_as='POST')
 
 
 class ES:
