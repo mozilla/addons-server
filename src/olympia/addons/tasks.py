@@ -71,12 +71,11 @@ def index_addons(ids, **kw):
     log.info(f'Indexing addons {ids[0]}-{ids[-1]}. [{len(ids)}]')
     transforms = (attach_tags, attach_translations_dict)
     index_objects(
-        ids,
-        Addon,
-        AddonIndexer.extract_document,
-        kw.pop('index', AddonIndexer.get_index_alias()),
-        transforms,
-        Addon.unfiltered,
+        ids=ids,
+        indexer_class=AddonIndexer,
+        index=kw.pop('index', None),
+        transforms=transforms,
+        manager_name='unfiltered',
     )
 
 

@@ -24,28 +24,34 @@ unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
 get_indices = Reindexing.objects.get_indices
 
 
-def index_objects(ids, model, extract_func, *, index, transforms=None, objects=None):
-    if objects is None:
-        objects = model.objects
+def index_objects(
+    *, ids, indexer_class, index=None, transforms=None, manager_name=None
+):
+    if index is None:
+        index = indexer_class.get_index_alias()
+    if manager_name is None:
+        manager_name = 'objects'
+
+    manager = getattr(indexer_class.get_model(), manager_name)
 
     indices = Reindexing.objects.get_indices(index)
 
     if transforms is None:
         transforms = []
 
-    qs = objects.filter(id__in=ids)
-    for t in transforms:
-        qs = qs.transform(t)
+    qs = manager.filter(id__in=ids)
+    for transform in transforms:
+        qs = qs.transform(transform)
 
     bulk = []
-    for ob in qs:
-        data = extract_func(ob)
+    for obj in qs:
+        data = indexer_class.extract_document(obj)
         for index in indices:
             bulk.append(
                 {
                     '_source': data,
-                    '_id': ob.id,
-                    '_type': ob.get_mapping_type(),
+                    '_id': obj.id,
+                    '_type': indexer_class.get_doctype_name(),
                     '_index': index,
                 }
             )
