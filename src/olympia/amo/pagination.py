@@ -17,11 +17,6 @@ class ESPaginator(Paginator):
     The normal Paginator does a .count() query and then a slice. Since ES
     results contain the total number of results, we can take an optimistic
     slice and then adjust the count.
-
-    :param use_elasticsearch_dsl:
-        Used to activate support for our elasticsearch-dsl based pagination
-        implementation. elasticsearch-dsl is being used in the v3+ API while
-        we have our own wrapper implementation in :mod:`olympia.amo.search`.
     """
 
     # Maximum result position. Should match 'index.max_result_window' ES
@@ -29,10 +24,6 @@ class ESPaginator(Paginator):
     # all our extensions can be found if searching without a query and
     # paginating through all results.
     max_result_window = settings.ES_MAX_RESULT_WINDOW
-
-    def __init__(self, *args, **kwargs):
-        self.use_elasticsearch_dsl = kwargs.pop('use_elasticsearch_dsl', True)
-        Paginator.__init__(self, *args, **kwargs)
 
     @cached_property
     def num_pages(self):
@@ -75,20 +66,13 @@ class ESPaginator(Paginator):
         # Force the search to evaluate and then attach the count. We want to
         # avoid an extra useless query even if there are no results, so we
         # directly fetch the count from hits.
-        if self.use_elasticsearch_dsl:
-            result = self.object_list[bottom:top].execute()
+        result = self.object_list[bottom:top].execute()
 
-            # Overwrite `object_list` with the list of ES results.
-            page = Page(result.hits, number, self)
+        # Overwrite `object_list` with the list of ES results.
+        page = Page(result.hits, number, self)
 
-            # Overwrite the `count` with the total received from ES results.
-            self.count = int(page.object_list.total)
-        else:
-            page = Page(self.object_list[bottom:top], number, self)
-
-            # Force the search to evaluate and then attach the count.
-            list(page.object_list)
-            self.count = int(page.object_list.count())
+        # Overwrite the `count` with the total received from ES results.
+        self.count = int(page.object_list.total)
 
         # Now that we have the count validate that the page number isn't higher
         # than the possible number of pages and adjust accordingly.

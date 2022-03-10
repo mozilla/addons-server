@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'editors_autoapprovalsummary',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='CannedResponse',
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'cannedresponses',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Whiteboard',
@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'review_whiteboard',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ReviewerSubscription',
@@ -83,7 +83,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'editor_subscriptions',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ReviewerScore',
@@ -102,7 +102,7 @@ class Migration(migrations.Migration):
                 'db_table': 'reviewer_scores',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='reviewerscore',

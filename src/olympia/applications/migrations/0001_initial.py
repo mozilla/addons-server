@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 'db_table': 'appversions',
                 'ordering': ['-version_int'],
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='appversion',
