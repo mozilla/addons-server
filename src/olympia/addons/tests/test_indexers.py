@@ -6,7 +6,6 @@ from django.conf import settings
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon, Preview, attach_tags, attach_translations_dict
-from olympia.amo.models import SearchMixin
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
@@ -576,7 +575,7 @@ class TestAddonIndexerWithES(ESTestCase):
 
         indexer = AddonIndexer()
         doc_name = indexer.get_doctype_name()
-        real_index_name = self.get_index_name(SearchMixin.ES_ALIAS_KEY)
+        real_index_name = self.get_index_name('default')
         mappings = self.es.indices.get_mapping(indexer.get_index_alias())[
             real_index_name
         ]['mappings']
