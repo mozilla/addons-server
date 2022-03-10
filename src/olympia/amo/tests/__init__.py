@@ -1012,7 +1012,7 @@ class ESTestCaseMixin:
         # Stop the mock temporarily, the pytest fixture will start them
         # right before each test.
         stop_es_mocks()
-        cls.es = amo_search.get_es(timeout=settings.ES_TIMEOUT)
+        cls.es = amo_search.get_es()
         super().setUpClass()
 
     def setUp(self):
