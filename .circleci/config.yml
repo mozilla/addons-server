@@ -6,9 +6,10 @@
 version: 2.1
 
 orbs:
-  # This is needed to be able to install Node.js in the primary container,
-  # which provides python only.
-  node: circleci/node@4.7.0
+  # This is needed to be able to install Node.js 14 in the primary container,
+  # which provides python only (the convenience cimg/python:3.9-node provides
+  # node 16).
+  node: circleci/node@5.0.0
 
 references:
   # We declare the autograph configuration here to be able to fully leverage
@@ -281,14 +282,15 @@ references:
     - &working-directory "~/addons-server"
 
   docker-images:
-    # This is the python version we run in production.
+    # These versions should try to match what we run in production.
     - &python "cimg/python:3.9"
     - &redis "redis:2.8"
     - &memcached "memcached:1.4"
-    - &mysql "circleci/mysql:8.0.25"
+    - &mysql "mysql:8.0.21"
 
   mysql-config: &mysql-config
     environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_DATABASE: olympia
 
   defaults: &defaults
