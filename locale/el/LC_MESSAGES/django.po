@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-02 12:06+0000\n"
-"PO-Revision-Date: 2022-03-09 23:54+0000\n"
+"PO-Revision-Date: 2022-03-10 12:41+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1579,7 +1579,7 @@ msgid "Spam content"
 msgstr "Ανεπιθύμητο περιεχόμενο"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr "Χαμηλής ποιότητας, παραποιημένη, ή κενή εικόνα"
+msgstr "Χαμηλής ποιότητας, παραποιημένη ή κενή εικόνα"
 
 msgid "Header image alignment problem"
 msgstr "Πρόβλημα στοίχισης εικόνας κεφαλίδας"
@@ -3233,7 +3233,7 @@ msgstr "Διεύθυνση email"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr "Δεν με πειράζει η Mozilla να χειρίζεται τις πληροφορίες μου όπως εξηγούνται σε αυτή τη %(link_open)sΣημείωση απορρήτου%(link_close)s."
+msgstr "Δέχομαι την επεξεργασία των πληροφοριών μου από τη Mozilla, όπως εξηγεί η %(link_open)sΣημείωση απορρήτου%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Εγγραφή"
