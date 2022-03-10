@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-02 12:06+0000\n"
+"POT-Creation-Date: 2022-03-10 17:10+0000\n"
 "PO-Revision-Date: 2022-02-22 18:25+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
@@ -4456,7 +4456,6 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Tous les émojis dont vous avez besoin — toujours à portée de clic."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr "Arrêtez de donner votre adresse e-mail aux sites. Firefox Relay protège votre identité et empêche le courrier indésirable."
 
@@ -4513,8 +4512,17 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Revenez à une époque plus simple — lorsque les meilleurs résultats de recherche se trouvaient au-dessus des annonces (compatible avec les moteurs de recherche Google et Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
-msgstr "Profitez du changement automatique des couleurs de Firefox synchronisé avec la lumière du jour et l’obscurité de la nuit."
+#, fuzzy
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgstr "Arrêtez de donner votre adresse e-mail aux sites. Firefox Relay protège votre identité et empêche le courrier indésirable."
+
+#. editorial content for the primary hero shelves.
+msgid "Instantly translate any selected text on web pages."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Make Firefox change colors based on time of day."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."

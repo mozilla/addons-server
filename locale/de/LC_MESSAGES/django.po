@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-02 12:06+0000\n"
+"POT-Creation-Date: 2022-03-10 17:10+0000\n"
 "PO-Revision-Date: 2022-02-22 19:50+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4417,7 +4417,6 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Alle Emojis, die Sie brauchen – immer nur einen Klick entfernt."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr "Geben Sie Ihre E-Mail-Adresse nicht mehr auf Websites preis. Firefox Relay schützt Ihre Identität und verhindert Spam-E-Mails."
 
@@ -4474,8 +4473,17 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Zurück zu einfacheren Zeiten – als die wichtigsten Suchergebnisse noch über der Werbung standen (kompatibel mit den Google- und Bing-Suchmaschinen)."
 
 #. editorial content for the primary hero shelves.
-msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
-msgstr "Genießen Sie den automatischen Farbwechsel von Firefox synchron mit dem Tageslicht und der Dunkelheit der Nacht."
+#, fuzzy
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgstr "Geben Sie Ihre E-Mail-Adresse nicht mehr auf Websites preis. Firefox Relay schützt Ihre Identität und verhindert Spam-E-Mails."
+
+#. editorial content for the primary hero shelves.
+msgid "Instantly translate any selected text on web pages."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Make Firefox change colors based on time of day."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."

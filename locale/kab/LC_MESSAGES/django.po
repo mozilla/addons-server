@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-02 12:06+0000\n"
+"POT-Creation-Date: 2022-03-10 17:10+0000\n"
 "PO-Revision-Date: 2022-02-20 12:31+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4354,7 +4354,6 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Akk imujitin i teḥwaǧeḍ — yal tikkelt ɣef afus."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
@@ -4414,7 +4413,15 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Uɣal ɣer tallit tafessast — makken igmaḍ ufrinen n unadi ttbanen-d nnig n yiberriḥen (imṣada d yimseddayen n unadi Google akked Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Enjoy automatically changing colors of Firefox in sync with the light of day and darkness of night."
+msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Instantly translate any selected text on web pages."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Make Firefox change colors based on time of day."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
