@@ -19,7 +19,7 @@ download_patterns = [
     # .* at the end to match filenames.
     # /file/:id/type:attachment
     re_path(
-        r'^file/(?P<file_id>\d+)(?:/type:(?P<type>\w+))?(?:/.*)?',
+        r'^file/(?P<file_id>\d+)(?:/type:(?P<type_>\w+))?(?:/.*)?',
         views.download_file,
         name='downloads.file',
     ),
@@ -28,7 +28,7 @@ download_patterns = [
     ),
     # /latest/1865/type:xpi/platform:5
     re_path(
-        r'^latest/%s/(?:type:(?P<type>\w+)/)?'
+        r'^latest/%s/(?:type:(?P<type_>\w+)/)?'
         r'(?:platform:(?P<platform>\d+)/)?.*' % ADDON_ID,
         views.download_latest,
         name='downloads.latest',
