@@ -84,7 +84,10 @@ class VersionManager(ManagerBase):
         return qs.transform(Version.transformer)
 
     def valid(self):
-        return self.filter(file__status__in=amo.VALID_FILE_STATUSES).distinct()
+        return self.filter(file__status__in=amo.VALID_FILE_STATUSES)
+
+    def reviewed(self):
+        return self.filter(file__status__in=amo.REVIEWED_STATUSES)
 
     def latest_public_compatible_with(self, application, appversions):
         """Return a queryset filtering the versions so that they are public,

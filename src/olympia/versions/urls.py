@@ -13,6 +13,12 @@ urlpatterns = [
         views.update_info,
         name='addons.versions.update_info',
     ),
+    # Legacy redirect.
+    re_path(
+        r'^updateInfo/(?P<version_id>\d+)',
+        views.update_info_redirect,
+        name='addons.versions.update_info_redirect',
+    ),
 ]
 
 download_patterns = [

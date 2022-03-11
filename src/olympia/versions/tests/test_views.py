@@ -33,14 +33,40 @@ def decode_http_header_value(value):
     return value.encode('latin-1').decode('utf-8')
 
 
-class TestViews(TestCase):
+class UpdateInfoMixin:
     def setUp(self):
-        super().setUp()
         self.addon = addon_factory(
             slug='my-addôn', file_kw={'size': 1024}, version_kw={'version': '1.0'}
         )
         self.version = self.addon.current_version
         self.addon.current_version.update(created=self.days_ago(3))
+
+    def test_version_update_info_deleted(self):
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_version_update_info_non_public(self):
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_version_update_info_addon_non_public(self):
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_version_update_info_no_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+
+class TestUpdateInfo(UpdateInfoMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.url_args = (self.addon.slug, self.version.version)
+        self.url = reverse('addons.versions.update_info', args=self.url_args)
 
     def test_version_update_info(self):
         self.version.release_notes = {
@@ -48,13 +74,7 @@ class TestViews(TestCase):
             'fr': "Quelque chose en français.\n\nQuelque chose d'autre.",
         }
         self.version.save()
-
-        response = self.client.get(
-            reverse(
-                'addons.versions.update_info',
-                args=(self.addon.slug, self.version.version),
-            )
-        )
+        response = self.client.get(self.url)
         assert response.status_code == 200
         assert response['Content-Type'] == 'application/xhtml+xml'
 
@@ -67,12 +87,11 @@ class TestViews(TestCase):
 
         # Test update info in another language.
         with self.activate(locale='fr'):
-            response = self.client.get(
-                reverse(
-                    'addons.versions.update_info',
-                    args=(self.addon.slug, self.version.version),
-                )
-            )
+            self.url = self.url = reverse(
+                'addons.versions.update_info',
+                args=self.url_args,
+            )  # self.url contains lang, so we need to reverse it again.
+            response = self.client.get(self.url)
             assert response.status_code == 200
             assert response['Content-Type'] == 'application/xhtml+xml'
             assert (
@@ -84,32 +103,46 @@ class TestViews(TestCase):
                 "Quelque chose en français.<br/><br/>Quelque chose d'autre."
             )
 
-    def test_version_update_info_legacy_redirect(self):
-        response = self.client.get(
-            '/versions/updateInfo/%s' % self.version.id, follow=True
-        )
+    def test_with_addon_pk(self):
         url = reverse(
+            'addons.versions.update_info', args=(self.addon.pk, self.version.version)
+        )
+        response = self.client.get(url)
+        self.assert3xx(response, self.url, 301)
+
+    def test_addon_mismatch(self):
+        pass  # FIXME
+
+    def test_num_queries(self):
+        pass  # FIXME
+
+
+class TestUpdateInfoLegacyRedirect(UpdateInfoMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.url = reverse(
+            'addons.versions.update_info_redirect',
+            args=(self.version.pk,),
+        )
+
+    def test_version_update_info_legacy_redirect(self):
+        expected_legacy_url = f'/en-US/firefox/versions/updateInfo/{self.version.id}'
+        assert self.url == expected_legacy_url
+
+        expected_redirect_url = reverse(
             'addons.versions.update_info',
-            args=(self.version.addon.slug, self.version.version),
+            args=(self.addon.slug, self.version.version),
         )
-        self.assert3xx(response, url, 302)
 
-    def test_version_update_info_legacy_redirect_deleted(self):
-        self.version.delete()
-        response = self.client.get(
-            '/en-US/firefox/versions/updateInfo/%s' % self.version.id
-        )
-        assert response.status_code == 404
+        response = self.client.get(self.url)
+        self.assert3xx(response, expected_redirect_url, status_code=301)
 
-    def test_version_update_info_no_unlisted(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # It should also work without the locale+app prefix, but that does
+        # a 302 to the same url with locale+app prefix added first.
         response = self.client.get(
-            reverse(
-                'addons.versions.update_info',
-                args=(self.addon.slug, self.version.version),
-            )
+            f'/versions/updateInfo/{self.version.id}',
         )
-        assert response.status_code == 404
+        self.assert3xx(response, self.url, status_code=302)
 
 
 class TestDownloadsBase(TestCase):

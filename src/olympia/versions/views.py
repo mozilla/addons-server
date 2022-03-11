@@ -18,25 +18,15 @@ from olympia.files.models import File
 from olympia.versions.models import Version
 
 
-# The version detail page redirects to the version within pagination, so we
-# need to enforce the number of versions per page.
-PER_PAGE = 30
-addon_view = addon_view_factory(Addon.objects.valid)
-
 log = olympia.core.logger.getLogger('z.versions')
 
 
-@addon_view
+@addon_view_factory(Addon.objects.public)
 @non_atomic_requests
 def update_info(request, addon, version_num):
-    version = Version.objects.filter(
-        addon=addon,
-        version=version_num,
-        file__status__in=amo.VALID_FILE_STATUSES,
-        channel=amo.RELEASE_CHANNEL_LISTED,
-    ).last()
-    if not version:
-        raise http.Http404()
+    version = get_object_or_404(
+        addon.versions.reviewed().only_translations(), version=version_num
+    )
     return TemplateResponse(
         request,
         'versions/update_info.html',
@@ -47,10 +37,14 @@ def update_info(request, addon, version_num):
 
 @non_atomic_requests
 def update_info_redirect(request, version_id):
-    version = get_object_or_404(Version.objects, pk=version_id)
+    version = get_object_or_404(
+        Version.objects.reviewed().no_transforms(), pk=version_id
+    )
+    if not version.addon.is_public():
+        raise http.Http404()
     return redirect(
         reverse(
-            'addons.versions.update_info', args=(version.addon.id, version.version)
+            'addons.versions.update_info', args=(version.addon.slug, version.version)
         ),
         permanent=True,
     )
