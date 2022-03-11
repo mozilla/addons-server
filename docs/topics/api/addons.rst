@@ -309,6 +309,7 @@ is compatible with.
 
     :<json object categories: Object holding the categories the add-on belongs to.
     :<json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`.
+    :<json string contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions.  Only a limited number of services are `supported <https://github.com/mozilla/addons-server/blob/0b5db7d544a21f6b887e8e8032496778234ade33/src/olympia/constants/base.py#L214:L226>`_.
     :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some HTML tags.
     :<json object|null developer_comments: Additional information about the add-on. (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
@@ -339,6 +340,7 @@ This endpoint allows an add-on's AMO metadata to be edited.
 
     :<json object categories: Object holding the categories the add-on belongs to.
     :<json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`.
+    :<json string contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions.  Only a limited number of services are `supported <https://github.com/mozilla/addons-server/blob/0b5db7d544a21f6b887e8e8032496778234ade33/src/olympia/constants/base.py#L214:L226>`_.
     :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some HTML tags.
     :<json object|null developer_comments: Additional information about the add-on. (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).

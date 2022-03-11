@@ -673,7 +673,7 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     categories = CategoriesSerializerField(source='all_categories', required=False)
     contributions_url = ContributionSerializerField(
-        source='contributions', read_only=True
+        source='contributions', required=False
     )
     current_version = CurrentVersionSerializer(read_only=True)
     description = TranslationSerializerField(required=False)
@@ -761,6 +761,7 @@ class AddonSerializer(serializers.ModelSerializer):
         )
         writeable_fields = (
             'categories',
+            'contributions_url',
             'description',
             'developer_comments',
             'homepage',
