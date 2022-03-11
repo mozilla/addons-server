@@ -840,7 +840,6 @@ class Version(OnChangeMixin, ModelBase):
             .filter(channel=self.channel)
             .exclude(id=self.id)
             .no_transforms()
-            .values_list('id', flat=True)
             # .distinct() forces a nested subquery making the whole thing
             # possible in a single query
             .distinct()[:1]
