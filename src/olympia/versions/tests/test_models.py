@@ -489,7 +489,7 @@ class TestVersion(TestCase):
 
     def test_reviewed_versions(self):
         addon = Addon.objects.get(id=3615)
-        additional_version = version_factory(
+        version_factory(
             addon=addon, version='0.1', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
         version_factory(
