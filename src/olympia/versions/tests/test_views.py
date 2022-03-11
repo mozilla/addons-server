@@ -111,10 +111,21 @@ class TestUpdateInfo(UpdateInfoMixin, TestCase):
         self.assert3xx(response, self.url, 301)
 
     def test_addon_mismatch(self):
-        pass  # FIXME
+        another_addon = addon_factory(version_kw={'version': '42.42.42.42'})
+        url = reverse(
+            'addons.versions.update_info',
+            args=(another_addon.slug, self.version.version),
+        )
+        response = self.client.get(url)
+        assert response.status_code == 404
 
     def test_num_queries(self):
-        pass  # FIXME
+        with self.assertNumQueries(3):
+            # - addon
+            # - version
+            # - translations for release notes
+            response = self.client.get(self.url)
+            assert response.status_code == 200
 
 
 class TestUpdateInfoLegacyRedirect(UpdateInfoMixin, TestCase):
@@ -143,6 +154,12 @@ class TestUpdateInfoLegacyRedirect(UpdateInfoMixin, TestCase):
             f'/versions/updateInfo/{self.version.id}',
         )
         self.assert3xx(response, self.url, status_code=302)
+
+    def test_num_queries(self):
+        with self.assertNumQueries(1):
+            # version+addon (single query)
+            response = self.client.get(self.url)
+            assert response.status_code == 301
 
 
 class TestDownloadsBase(TestCase):

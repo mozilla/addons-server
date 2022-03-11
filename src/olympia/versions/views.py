@@ -21,7 +21,7 @@ from olympia.versions.models import Version
 log = olympia.core.logger.getLogger('z.versions')
 
 
-@addon_view_factory(Addon.objects.public)
+@addon_view_factory(lambda: Addon.objects.public().no_transforms())
 @non_atomic_requests
 def update_info(request, addon, version_num):
     version = get_object_or_404(
@@ -38,7 +38,8 @@ def update_info(request, addon, version_num):
 @non_atomic_requests
 def update_info_redirect(request, version_id):
     version = get_object_or_404(
-        Version.objects.reviewed().no_transforms(), pk=version_id
+        Version.objects.reviewed().no_transforms().select_related('addon'),
+        pk=version_id,
     )
     if not version.addon.is_public():
         raise http.Http404()
