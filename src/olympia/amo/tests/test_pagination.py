@@ -4,11 +4,9 @@ import pytest
 
 from unittest.mock import MagicMock, Mock
 
-from olympia.addons.models import Addon
 from olympia.amo.pagination import ESPaginator
 from olympia.amo.templatetags.jinja_helpers import PaginationRenderer
-from olympia.amo.tests import TestCase, ESTestCase, addon_factory
-from olympia.amo.utils import paginate
+from olympia.amo.tests import TestCase
 
 
 pytestmark = pytest.mark.django_db
@@ -125,30 +123,3 @@ class TestSearchPaginator(TestCase):
 
         page = paginator.page(5000)
         assert page.has_next() is False
-
-    def test_paginate_returns_this_paginator(self):
-        request = MagicMock()
-        request.GET.get.return_value = 1
-        request.GET.urlencode.return_value = ''
-        request.path = ''
-
-        qs = Addon.search()
-        pager = paginate(request, qs)
-        assert isinstance(pager.paginator, ESPaginator)
-
-
-class TestNonDSLMode(ESTestCase):
-    def test_count_non_dsl_mode(self):
-        addon_factory()
-        addon_factory()
-        addon_factory()
-
-        self.refresh()
-
-        p = ESPaginator(Addon.search(), 20, use_elasticsearch_dsl=False)
-
-        assert p.count == 3
-
-        p.page(1)
-        assert p.count == 3
-        assert p.count == Addon.search().count()

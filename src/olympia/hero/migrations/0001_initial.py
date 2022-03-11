@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='SecondaryHero',
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.hero.models.CTACheckMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.hero.models.CTACheckMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='SecondaryHeroModule',
@@ -70,7 +70,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.hero.models.CTACheckMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.hero.models.CTACheckMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='secondaryhero',

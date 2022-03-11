@@ -50,7 +50,6 @@ class Migration(migrations.Migration):
                 'unique_together': {('addon', 'in_progress')},
             },
             bases=(
-                olympia.amo.models.SearchMixin,
                 olympia.amo.models.SaveUpdateMixin,
                 models.Model,
             ),

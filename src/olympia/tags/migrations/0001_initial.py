@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'users_tags_addons',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Tag',
@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
                 'db_table': 'tags',
                 'ordering': ('tag_text',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddField(
             model_name='addontag',

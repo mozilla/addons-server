@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'users',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='DeniedName',
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'users_denied_name',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='DisposableEmailDomainRestriction',
@@ -79,7 +79,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'users_disposable_email_domain_restriction',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='EmailUserRestriction',
@@ -92,7 +92,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'users_user_email_restriction',
             },
-            bases=(olympia.users.models.NormalizeEmailMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.users.models.NormalizeEmailMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='IPNetworkUserRestriction',
@@ -105,7 +105,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'users_user_network_restriction',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='UserRestrictionHistory',
@@ -123,7 +123,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='UserNotification',
@@ -138,7 +138,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'users_notifications',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='UserHistory',
@@ -153,7 +153,7 @@ class Migration(migrations.Migration):
                 'db_table': 'users_history',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='userprofile',

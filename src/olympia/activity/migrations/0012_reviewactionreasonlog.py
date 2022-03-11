@@ -27,6 +27,6 @@ class Migration(migrations.Migration):
                 'db_table': 'log_activity_review_action_reason',
                 'ordering': ('-created',),
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]

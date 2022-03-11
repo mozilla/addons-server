@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='WebextPermission',
@@ -68,7 +68,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'webext_permissions',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='FileValidation',
@@ -86,7 +86,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'file_validation',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='FileUpload',
@@ -114,7 +114,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddIndex(
             model_name='fileupload',

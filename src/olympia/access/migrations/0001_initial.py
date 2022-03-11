@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'groups',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='GroupUser',

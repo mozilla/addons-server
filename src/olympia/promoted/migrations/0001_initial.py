@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('group_id', models.SmallIntegerField(choices=[(1, 'Recommended'), (2, 'Verified - Tier 1'), (3, 'Verified - Tier 2'), (4, 'Line'), (5, 'Spotlight'), (6, 'Strategic')], null=True)),
                 ('version', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='promoted_approvals', to='versions.Version')),
             ],
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='PromotedAddon',
@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.AddConstraint(
             model_name='promotedapproval',

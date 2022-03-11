@@ -26,6 +26,6 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name_plural': 'homepage shelves',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
     ]

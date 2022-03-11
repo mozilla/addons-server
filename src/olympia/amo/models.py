@@ -14,14 +14,11 @@ from django.urls.exceptions import Resolver404
 from django.utils import timezone, translation
 from django.utils.functional import cached_property
 
-import elasticsearch
 import multidb.pinning
 
 import olympia.core.logger
 
 from olympia.translations.hold import save_translations
-
-from . import search
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -325,45 +322,6 @@ class OnChangeMixin:
         return result
 
 
-class SearchMixin:
-
-    ES_ALIAS_KEY = 'default'
-
-    @classmethod
-    def _get_index(cls):
-        indexes = settings.ES_INDEXES
-        return indexes.get(cls.ES_ALIAS_KEY)
-
-    @classmethod
-    def index(cls, document, id=None, refresh=False, index=None):
-        """Wrapper around Elasticsearch.index."""
-        search.get_es().index(
-            body=document,
-            index=index or cls._get_index(),
-            doc_type=cls.get_mapping_type(),
-            id=id,
-            refresh=refresh,
-        )
-
-    @classmethod
-    def unindex(cls, id, index=None):
-        id = str(id)
-        es = search.get_es()
-        try:
-            es.delete(index or cls._get_index(), cls._meta.db_table, id)
-        except elasticsearch.TransportError:
-            # Item wasn't found, whatevs.
-            pass
-
-    @classmethod
-    def search(cls, index=None):
-        return search.ES(cls, index or cls._get_index())
-
-    @classmethod
-    def get_mapping_type(cls):
-        return cls._meta.db_table
-
-
 class SaveUpdateMixin:
     def reload(self):
         """Reloads the instance from the database."""
@@ -419,7 +377,7 @@ class SaveUpdateMixin:
         return super().save(**kwargs)
 
 
-class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
+class ModelBase(SaveUpdateMixin, models.Model):
     """
     Base class for AMO models to abstract some common features.
 

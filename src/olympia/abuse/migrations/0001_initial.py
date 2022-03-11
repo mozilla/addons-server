@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                 'db_table': 'abuse_reports',
                 'base_manager_name': 'unfiltered',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
             managers=[
                 ('unfiltered', django.db.models.manager.Manager()),
             ],

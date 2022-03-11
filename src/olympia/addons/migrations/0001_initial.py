@@ -57,7 +57,7 @@ class Migration(migrations.Migration):
                 'db_table': 'addons',
                 'base_manager_name': 'unfiltered',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
             managers=[
                 ('unfiltered', django.db.models.manager.Manager()),
             ],
@@ -86,7 +86,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'denied_guids',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='DeniedSlug',
@@ -99,7 +99,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'addons_denied_slug',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ReplacementAddon',
@@ -113,7 +113,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'replacement_addons',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AddonApprovalsCounter',
@@ -130,7 +130,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AddonReviewerFlags',
@@ -150,7 +150,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ReusedGUID',
@@ -166,7 +166,7 @@ class Migration(migrations.Migration):
                 'abstract': False,
                 'base_manager_name': 'objects',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Preview',
@@ -183,7 +183,7 @@ class Migration(migrations.Migration):
                 'db_table': 'previews',
                 'ordering': ('position', 'created'),
             },
-            bases=(olympia.amo.models.BasePreview, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.BasePreview, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='MigratedLWT',
@@ -198,7 +198,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'migrated_personas',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='FrozenAddon',
@@ -228,7 +228,7 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Categories',
                 'db_table': 'categories',
             },
-            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.OnChangeMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AppSupport',
@@ -244,7 +244,7 @@ class Migration(migrations.Migration):
             options={
                 'db_table': 'appsupport',
             },
-            bases=(olympia.amo.models.SearchMixin, olympia.amo.models.SaveUpdateMixin, models.Model),
+            bases=(olympia.amo.models.SaveUpdateMixin, models.Model),
         ),
         migrations.CreateModel(
             name='AddonUserPendingConfirmation',
