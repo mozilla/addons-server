@@ -17,7 +17,7 @@ from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonRegionalRestrictions
 from olympia.amo.templatetags.jinja_helpers import user_media_url
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.utils import urlencode, urlparams
 from olympia.files.models import File
 from olympia.users.models import UserProfile
@@ -57,6 +57,9 @@ class UpdateInfoMixin:
         assert response.status_code == 404
 
     def test_version_update_info_no_unlisted(self):
+        # Add another listed version before making the first one unlisted,
+        # ensuring the add-on would stay public.
+        version_factory(addon=self.addon)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 404
@@ -87,7 +90,7 @@ class TestUpdateInfo(UpdateInfoMixin, TestCase):
 
         # Test update info in another language.
         with self.activate(locale='fr'):
-            self.url = self.url = reverse(
+            self.url = reverse(
                 'addons.versions.update_info',
                 args=self.url_args,
             )  # self.url contains lang, so we need to reverse it again.

@@ -25,7 +25,10 @@ log = olympia.core.logger.getLogger('z.versions')
 @non_atomic_requests
 def update_info(request, addon, version_num):
     version = get_object_or_404(
-        addon.versions.reviewed().only_translations(), version=version_num
+        addon.versions.reviewed()
+        .filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        .only_translations(),
+        version=version_num,
     )
     return TemplateResponse(
         request,
@@ -38,7 +41,10 @@ def update_info(request, addon, version_num):
 @non_atomic_requests
 def update_info_redirect(request, version_id):
     version = get_object_or_404(
-        Version.objects.reviewed().no_transforms().select_related('addon'),
+        Version.objects.reviewed()
+        .filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        .no_transforms()
+        .select_related('addon'),
         pk=version_id,
     )
     if not version.addon.is_public():
