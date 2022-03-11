@@ -829,19 +829,11 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
 
     except forms.ValidationError:
         raise
-    except OSError as e:
-        if len(e.args) < 2:
-            err, strerror = None, e.args[0]
-        else:
-            err, strerror = e.args
-        log.error(f'I/O error({err}): {strerror}')
-        # Note: we don't really know what happened, so even though we return a
-        # generic message about the manifest, don't raise InvalidManifest. We
-        # want the validation to stop there.
-        raise forms.ValidationError(gettext('Could not parse the manifest file.'))
-    except Exception:
-        # As above, don't raise InvalidManifest here.
-        log.error('XPI parse error', exc_info=True)
+    except Exception as exception:
+        # We don't really know what happened, so even though we return a
+        # generic message about the manifest, don't raise InvalidManifest: it's
+        # not just invalid, it's worse... We want the validation to stop there.
+        log.exception(f'XPI parse error ({exception.__class__})')
         raise forms.ValidationError(gettext('Could not parse the manifest file.'))
 
     if minimal:
