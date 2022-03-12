@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-03-12 11:22+0000\n"
+"PO-Revision-Date: 2022-03-12 11:23+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4462,9 +4462,10 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Térjen vissza egy egyszerűbb időbe – amikor a keresési találatok a reklámok felett jelentek meg (a Google és a Bing keresővel kompatibilis)."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr "Ne adja meg az oldalaknak az e-mail-címét. A Firefox Relay védi személyazonosságát és megakadályozza a levélszemetet."
+msgstr ""
+"Ne adja meg az oldalaknak az e-mail-címét. A Firefox Relay védi személyazonosságát és megakadályozza a levélszemetet. Frissítsen a prémium verzióra a további előnyökért, mint a promóciós levelek "
+"blokkolása."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4472,7 +4473,7 @@ msgstr "Azonnal lefordíthat bármely kiválasztott szöveget a weboldalakon."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "A Firefox a napszaknak megfelelően változtatja a színeit."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
