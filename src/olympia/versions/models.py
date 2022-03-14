@@ -84,7 +84,10 @@ class VersionManager(ManagerBase):
         return qs.transform(Version.transformer)
 
     def valid(self):
-        return self.filter(file__status__in=amo.VALID_FILE_STATUSES).distinct()
+        return self.filter(file__status__in=amo.VALID_FILE_STATUSES)
+
+    def reviewed(self):
+        return self.filter(file__status__in=amo.REVIEWED_STATUSES)
 
     def latest_public_compatible_with(self, application, appversions):
         """Return a queryset filtering the versions so that they are public,
@@ -828,14 +831,21 @@ class Version(OnChangeMixin, ModelBase):
         ):
             return True
 
-        previous_ver = (
+        # We're trying to check if the current version of a promoted add-on can
+        # be disabled/deleted. We'll allow if if the previous valid version
+        # already had the promotion approval, so that we don't end up with a
+        # promoted add-on w/ a current version that hasn't had a manual review.
+        previous_version = (
             self.addon.versions.valid()
             .filter(channel=self.channel)
             .exclude(id=self.id)
-            .no_transforms()[:1]
+            .no_transforms()
+            # .distinct() forces a nested subquery making the whole thing
+            # possible in a single query
+            .distinct()[:1]
         )
         previous_approval = PromotedApproval.objects.filter(
-            group_id=group.id, version__in=previous_ver
+            group_id=group.id, version__in=previous_version
         )
         return previous_approval.exists()
 

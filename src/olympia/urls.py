@@ -76,9 +76,12 @@ urlpatterns = [
         r'^addons/versions/(\d+)/?$',
         lambda r, id: redirect('addons.versions', id, permanent=True),
     ),
-    # Legacy redirect. Requires a view to get extra data not provided in URL.
+    # Legacy redirect. Doesn't receive the addon id/slug so it can't live with
+    # the other version views that do.
     re_path(
-        r'^versions/updateInfo/(?P<version_id>\d+)', version_views.update_info_redirect
+        r'^versions/updateInfo/(?P<version_id>\d+)',
+        version_views.update_info_redirect,
+        name='addons.versions.update_info_redirect',
     ),
     re_path(
         r'^search-engines.*$',

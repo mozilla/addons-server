@@ -479,11 +479,23 @@ class TestVersion(TestCase):
 
     def test_valid_versions(self):
         addon = Addon.objects.get(id=3615)
-        additional_version = version_factory(addon=addon, version='0.1')
+        additional_version = version_factory(
+            addon=addon, version='0.1', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
         version_factory(
             addon=addon, version='0.2', file_kw={'status': amo.STATUS_DISABLED}
         )
         assert list(Version.objects.valid()) == [additional_version, self.version]
+
+    def test_reviewed_versions(self):
+        addon = Addon.objects.get(id=3615)
+        version_factory(
+            addon=addon, version='0.1', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+        version_factory(
+            addon=addon, version='0.2', file_kw={'status': amo.STATUS_DISABLED}
+        )
+        assert list(Version.objects.reviewed()) == [self.version]
 
     def test_unlisted_addon_get_url_path(self):
         self.make_addon_unlisted(self.version.addon)
