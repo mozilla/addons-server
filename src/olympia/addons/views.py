@@ -239,8 +239,10 @@ class AddonViewSet(
         if self.action == 'retrieve_from_related':
             # Avoid default transformers if we're fetching a single instance
             # from a related view: We're unlikely to need the preloading they
-            # bring, this would only cause extra useless queries.
-            qs = qs.no_transforms()
+            # bring, this would only cause extra useless queries. Still include
+            # translations because at least the addon name is likely to be
+            # needed in most cases.
+            qs = qs.only_translations()
         return qs
 
     def get_serializer_class(self):

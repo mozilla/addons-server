@@ -1750,9 +1750,10 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             'addon-version-release-notes',
             kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
-        with self.assertNumQueries(5):
+        with self.assertNumQueries(6):
             # - 2 savepoints
             # - 1 addon
+            # - 1 addon translations
             # - 1 version + file
             # - 1 translations for release notes
             response = self.client.get(url)
@@ -1776,9 +1777,10 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             'fr': "Quelque chose en français.\n\nQuelque chose d'autre.",
         }
         self.version.save()
-        with self.assertNumQueries(5):
+        with self.assertNumQueries(6):
             # - 2 savepoints
             # - 1 addon
+            # - 1 addon translations
             # - 1 version + file
             # - 1 translations for release notes
             response = self.client.get(url, {'lang': 'fr'})
@@ -1791,7 +1793,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             'xmlns="http://www.w3.org/1999/xhtml">'
         )
         assert (
-            '<p>Quelque chose en français.<br/><br/>Quelque chose d\'autre.</p>'
+            "<p>Quelque chose en français.<br/><br/>Quelque chose d'autre.</p>"
             in content
         )
 
