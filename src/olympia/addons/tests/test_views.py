@@ -1748,7 +1748,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.save()
         url = reverse_ns(
             'addon-version-release-notes',
-            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
         with self.assertNumQueries(5):
             # - 2 savepoints
@@ -1769,7 +1769,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def test_release_notes_translations(self):
         url = reverse_ns(
             'addon-version-release-notes',
-            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
         self.version.release_notes = {
             'en-US': 'Fix for an important bug',
@@ -1798,7 +1798,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def test_release_notes_empty(self):
         url = reverse_ns(
             'addon-version-release-notes',
-            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
         response = self.client.get(url)
         assert response.status_code == 200
@@ -1811,7 +1811,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         url = reverse_ns(
             'addon-version-release-notes',
-            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
         response = self.client.get(url)
         assert response.status_code == 401
@@ -1820,7 +1820,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.file.update(status=amo.STATUS_DISABLED)
         url = reverse_ns(
             'addon-version-release-notes',
-            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
         response = self.client.get(url)
         assert response.status_code == 401
@@ -1829,7 +1829,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.delete()
         url = reverse_ns(
             'addon-version-release-notes',
-            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
         response = self.client.get(url)
         assert response.status_code == 404
@@ -1838,7 +1838,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.addon.update(status=amo.STATUS_DISABLED)
         url = reverse_ns(
             'addon-version-release-notes',
-            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
         response = self.client.get(url)
         assert response.status_code == 401
@@ -1849,7 +1849,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         )
         url = reverse_ns(
             'addon-version-release-notes',
-            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk},
         )
         response = self.client.get(url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 451
