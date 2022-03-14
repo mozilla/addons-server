@@ -1,3 +1,5 @@
+import os
+
 from django import http
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
@@ -55,9 +57,8 @@ def update_info_redirect(request, version_id):
     )
 
 
-# Should accept junk at the end for filename goodness.
 @non_atomic_requests
-def download_file(request, file_id, type_=None):
+def download_file(request, file_id, type_=None, filename=None):
     """
     Download the file identified by `file_id` parameter.
 
@@ -77,7 +78,7 @@ def download_file(request, file_id, type_=None):
     file_ = get_object_or_404(File.objects, pk=file_id)
     # Include deleted add-ons in the queryset, we'll check for that below.
     addon = get_object_or_404(
-        Addon.unfiltered.all().no_transforms, pk=file_.version.addon_id
+        Addon.unfiltered.all().no_transforms(), pk=file_.version.addon_id
     )
     version = file_.version
     channel = version.channel
@@ -152,7 +153,7 @@ def download_file(request, file_id, type_=None):
 
 @addon_view_factory(Addon.objects.public)
 @non_atomic_requests
-def download_latest(request, addon, type_='xpi', platform=None):
+def download_latest(request, addon, type_=None, **kwargs):
     """
     Redirect to the URL to download the file from 'current'
     (latest public listed) version of an add-on.
@@ -161,8 +162,10 @@ def download_latest(request, addon, type_='xpi', platform=None):
     approved listed version.
     """
     file_ = addon.current_version.file
-    response = http.HttpResponseRedirect(file_.get_absolute_url())
-    patch_cache_control(response, max_age=60 * 60 * 24)
+    response = http.HttpResponseRedirect(
+        file_.get_absolute_url(attachment=type_ == 'attachment')
+    )
+    patch_cache_control(response, max_age=60 * 60 * 1)
     response['Access-Control-Allow-Origin'] = '*'
     return response
 

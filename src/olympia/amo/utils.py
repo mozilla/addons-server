@@ -770,8 +770,8 @@ class HttpResponseXSendFile(HttpResponse):
         attachment=False,
     ):
         super().__init__('', status=status, content_type=content_type)
-        # We normalize the path because if it contains dots, nginx will flag
-        # the URI as unsafe.
+        # We normalize the path because if it contains double dots, nginx will
+        # flag the URI as unsafe.
         self[settings.XSENDFILE_HEADER] = force_bytes(os.path.normpath(path))
         if etag:
             self['ETag'] = quote_etag(etag)

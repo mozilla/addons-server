@@ -5,6 +5,7 @@ from django.utils.encoding import smart_str
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.urls import reverse
+from django.utils.encoding import force_bytes, force_str
 
 from urllib.parse import quote
 
@@ -16,9 +17,9 @@ from olympia import amo
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonRegionalRestrictions
-from olympia.amo.templatetags.jinja_helpers import user_media_url
+from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import TestCase, addon_factory, version_factory
-from olympia.amo.utils import urlencode, urlparams
+from olympia.amo.utils import urlparams
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 
@@ -172,26 +173,20 @@ class TestDownloadsBase(TestCase):
         super().setUp()
         self.addon = Addon.objects.get(id=5299)
         self.file = File.objects.get(id=33046)
-        self.file_url = reverse('downloads.file', args=[self.file.id])
-        self.latest_url = reverse('downloads.latest', args=[self.addon.slug])
-
-    def assert_served_by_host(self, response, host, file_=None):
-        if not file_:
-            file_ = self.file
-        assert response.status_code == 302
-        assert response.url == (
-            urlparams(
-                f'{host}{self.addon.id}/{quote(file_.filename)}',
-                filehash=file_.hash,
-            )
+        self.file_url = reverse('downloads.file', kwargs={'file_id': self.file.id})
+        self.latest_url = reverse(
+            'downloads.latest', kwargs={'addon_id': self.addon.slug}
         )
-        assert response['X-Target-Digest'] == file_.hash
-        assert response['Access-Control-Allow-Origin'] == '*'
 
-    def assert_served_internally(self, response, guarded=True, attachment=False):
+    def assert_served_internally(self, response, *, guarded=False, attachment=False):
         assert response.status_code == 200
         file_path = self.file.guarded_file_path if guarded else self.file.file_path
-        assert response[settings.XSENDFILE_HEADER] == file_path
+        # Yes, we're forcing bytes (encoding in utf-8) and then encoding in latin-1.
+        # The latin-1 is done by Django automatically for each header in HttpResponse
+        # objects, the force_bytes is done by us.
+        assert response[settings.XSENDFILE_HEADER] == force_bytes(file_path).decode(
+            'latin-1'
+        )
         assert response['Access-Control-Allow-Origin'] == '*'
 
         if attachment:
@@ -199,20 +194,6 @@ class TestDownloadsBase(TestCase):
             assert response['Content-Disposition'] == 'attachment'
         else:
             assert not response.has_header('Content-Disposition')
-
-    def assert_served_locally(self, response, file_=None, attachment=False):
-        path = user_media_url('addons')
-        if attachment:
-            path += '_attachments/'
-        self.assert_served_by_host(response, path, file_)
-
-    def assert_served_by_redirecting_to_cdn(
-        self, response, file_=None, attachment=False
-    ):
-        assert response.url.startswith(settings.MEDIA_URL)
-        assert response.url.startswith('http')
-        assert response['Vary'] == 'X-Country-Code'
-        self.assert_served_locally(response, file_=file_, attachment=attachment)
 
 
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
@@ -241,16 +222,20 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
     @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_download_for_unlisted_addon_owner(self):
         """File downloading is allowed for addon owners."""
-        self.assert_served_internally(self.client.get(self.file_url), False)
+        self.assert_served_internally(self.client.get(self.file_url), guarded=False)
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
-        self.assert_served_internally(self.client.get(url), False, attachment=True)
+        self.assert_served_internally(
+            self.client.get(url), guarded=False, attachment=True
+        )
 
         # Even allowed to bypass georestrictions.
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
         )
         self.assert_served_internally(
-            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'), False, attachment=True
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
+            guarded=False,
+            attachment=True,
         )
 
         # Latest shouldn't work as it's only for latest public listed version.
@@ -269,16 +254,20 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
     @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers."""
-        self.assert_served_internally(self.client.get(self.file_url), False)
+        self.assert_served_internally(self.client.get(self.file_url), guarded=False)
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
-        self.assert_served_internally(self.client.get(url), False, attachment=True)
+        self.assert_served_internally(
+            self.client.get(url), guarded=False, attachment=True
+        )
 
         # Even allowed to bypass georestrictions.
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
         )
         self.assert_served_internally(
-            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'), False, attachment=True
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
+            guarded=False,
+            attachment=True,
         )
 
         # Latest shouldn't work as it's only for latest public listed version.
@@ -314,16 +303,20 @@ class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers, using guarded
         file path since the addon is deleted."""
-        self.assert_served_internally(self.client.get(self.file_url), True)
+        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
         url = reverse('downloads.file', args=[self.file.id, 'attachment'])
-        self.assert_served_internally(self.client.get(url), True, attachment=True)
+        self.assert_served_internally(
+            self.client.get(url), garded=True, attachment=True
+        )
 
         # Even allowed to bypass georestrictions.
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
         )
         self.assert_served_internally(
-            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'), True, attachment=True
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
+            guarded=True,
+            attachment=True,
         )
 
         # Latest shouldn't work as it's only for latest public listed version.
@@ -338,34 +331,36 @@ class TestDownloads(TestDownloadsBase):
     def test_public(self):
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        self.assert_served_by_redirecting_to_cdn(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_public_addon_unreviewed_file(self):
         self.file.status = amo.STATUS_AWAITING_REVIEW
         self.file.save()
-        self.assert_served_by_redirecting_to_cdn(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_unreviewed_addon(self):
         self.addon.status = amo.STATUS_NULL
         self.addon.save()
-        self.assert_served_by_redirecting_to_cdn(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_type_attachment(self):
-        self.assert_served_by_redirecting_to_cdn(self.client.get(self.file_url))
-        url = reverse('downloads.file', args=[self.file.id, 'attachment'])
-        self.assert_served_by_redirecting_to_cdn(self.client.get(url), attachment=True)
+        self.assert_served_internally(self.client.get(self.file_url))
+        url = reverse(
+            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_trailing_filename(self):
         url = self.file_url + self.file.filename
-        self.assert_served_by_redirecting_to_cdn(self.client.get(url))
+        self.assert_served_internally(self.client.get(url))
 
     def test_null_datestatuschanged(self):
         self.file.update(datestatuschanged=None)
-        self.assert_served_by_redirecting_to_cdn(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_unicode_url(self):
         self.file.update(filename='图像浏览器-0.5-fx.xpi')
-        self.assert_served_by_redirecting_to_cdn(self.client.get(self.file_url))
+        self.assert_served_internally(self.client.get(self.file_url))
 
     def test_deleted(self):
         self.addon.delete()
@@ -375,7 +370,7 @@ class TestDownloads(TestDownloadsBase):
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
         )
-        self.assert_served_by_redirecting_to_cdn(
+        self.assert_served_internally(
             self.client.get(self.file_url, HTTP_X_COUNTRY_CODE='uk')
         )
 
@@ -566,43 +561,134 @@ class TestUnlistedDisabledAndDeletedSitePermissionFileDownloads(
 
 class TestDownloadsLatest(TestDownloadsBase):
     def test_404(self):
-        url = reverse('downloads.latest', args=[123])
+        url = reverse('downloads.latest', kargs={'addon_id': 123})
         assert self.client.get(url).status_code == 404
 
-    def test_type_none(self):
+    def test_urls(self):
+        assert (
+            reverse(
+                'downloads.latest',
+                kwargs={'addon_id': self.addon.slug},
+            )
+            == '/firefox/downloads/latest/better-gcal-5299/'
+        )
+        assert (
+            reverse(
+                'downloads.latest',
+                kwargs={'addon_id': self.addon.slug, 'type_': 'attachment'},
+            )
+            == '/firefox/downloads/latest/better-gcal-5299/type:attachment/'
+        )
+        assert (
+            reverse(
+                'downloads.latest',
+                kwargs={
+                    'addon_id': self.addon.slug,
+                    'type_': 'attachment',
+                    'filename': 'foo-bar.xpi',
+                },
+            )
+            == '/firefox/downloads/latest/better-gcal-5299/type:attachment/foo-bar.xpi'
+        )
+
+    def test_no_type(self):
         response = self.client.get(self.latest_url)
-        assert response.status_code == 302
-        url = '{}?{}'.format(
-            self.file.filename, urlencode({'filehash': self.file.hash})
+        expected_redirect_url = absolutify(
+            reverse(
+                'downloads.file',
+                kwargs={'file_id': self.file.pk, 'filename': self.file.filename},
+            )
         )
-        assert response['Location'].endswith(url), response['Location']
+        self.assert3xx(response, expected_redirect_url, 302)
+        assert response['Cache-Control'] == 'max-age=3600'
+        assert response['Access-Control-Allow-Origin'] == '*'
 
-    def test_success(self):
-        assert self.addon.current_version
-        self.assert_served_by_redirecting_to_cdn(self.client.get(self.latest_url))
+    def test_type_random(self):
+        self.latest_url = reverse(
+            'downloads.latest', kwargs={'addon_id': self.addon.slug, 'type_': 'random'}
+        )
+        self.test_no_type()
 
-    def test_type(self):
-        url = reverse(
+    def test_type_attachment(self):
+        self.latest_url = reverse(
             'downloads.latest',
-            kwargs={'addon_id': self.addon.slug, 'type': 'attachment'},
+            kwargs={'addon_id': self.addon.slug, 'type_': 'attachment'},
         )
-        self.assert_served_locally(self.client.get(url), attachment=True)
+        expected_redirect_url = absolutify(
+            reverse(
+                'downloads.file',
+                kwargs={
+                    'file_id': self.file.pk,
+                    'type_': 'attachment',
+                    'filename': self.file.filename,
+                },
+            )
+        )
+        response = self.client.get(self.latest_url)
+        self.assert3xx(response, expected_redirect_url, 302)
+        assert response['Cache-Control'] == 'max-age=3600'
+        assert response['Access-Control-Allow-Origin'] == '*'
 
     def test_platform_and_type(self):
         # 'platform' should just be ignored nowadays.
-        url = reverse(
+        self.latest_url = reverse(
             'downloads.latest',
-            kwargs={'addon_id': self.addon.slug, 'platform': 5, 'type': 'attachment'},
+            kwargs={'addon_id': self.addon.slug, 'platform': 5, 'type_': 'attachment'},
         )
-        self.assert_served_locally(self.client.get(url), attachment=True)
+        expected_redirect_url = absolutify(
+            reverse(
+                'downloads.file',
+                kwargs={
+                    'file_id': self.file.pk,
+                    'type_': 'attachment',
+                    'filename': self.file.filename,
+                },
+            )
+        )
+        response = self.client.get(self.latest_url)
+        self.assert3xx(response, expected_redirect_url, 302)
+        assert response['Cache-Control'] == 'max-age=3600'
+        assert response['Access-Control-Allow-Origin'] == '*'
 
-    def test_trailing_filename(self):
-        url = reverse(
+    def test_type_and_filename(self):
+        self.latest_url = reverse(
             'downloads.latest',
-            kwargs={'addon_id': self.addon.slug, 'type': 'attachment'},
+            kwargs={
+                'addon_id': self.addon.slug,
+                'type_': 'attachment',
+                'filename': 'lol-ignore-me.xpi',
+            },
         )
-        url += self.file.filename
-        self.assert_served_locally(self.client.get(url), attachment=True)
+        expected_redirect_url = absolutify(
+            reverse(
+                'downloads.file',
+                kwargs={
+                    'file_id': self.file.pk,
+                    'type_': 'attachment',
+                    'filename': self.file.filename,
+                },
+            )
+        )
+        response = self.client.get(self.latest_url)
+        self.assert3xx(response, expected_redirect_url, 302)
+        assert response['Cache-Control'] == 'max-age=3600'
+        assert response['Access-Control-Allow-Origin'] == '*'
+
+    def test_filename(self):
+        self.latest_url = reverse(
+            'downloads.latest',
+            kwargs={'addon_id': self.addon.slug, 'filename': 'lol-ignore-me.xpi'},
+        )
+        expected_redirect_url = absolutify(
+            reverse(
+                'downloads.file',
+                kwargs={'file_id': self.file.pk, 'filename': self.file.filename},
+            )
+        )
+        response = self.client.get(self.latest_url)
+        self.assert3xx(response, expected_redirect_url, 302)
+        assert response['Cache-Control'] == 'max-age=3600'
+        assert response['Access-Control-Allow-Origin'] == '*'
 
 
 class TestDownloadSource(TestCase):

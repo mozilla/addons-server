@@ -16,20 +16,26 @@ urlpatterns = [
 ]
 
 download_patterns = [
-    # .* at the end to match filenames.
-    # /file/:id/type:attachment
+    # /file/<id>/type:attachment/lol.xpi - everything after the file id is
+    # ignored though.
     re_path(
-        r'^file/(?P<file_id>\d+)(?:/type:(?P<type_>\w+))?(?:/.*)?',
+        r'^file/(?P<file_id>\d+)/(?:type:(?P<type_>\w+)/)?(?:(?P<filename>[\w+.-]*))?$',
         views.download_file,
         name='downloads.file',
     ),
     re_path(
         r'^source/(?P<version_id>\d+)', views.download_source, name='downloads.source'
     ),
-    # /latest/1865/type:xpi/platform:5
+    # /latest/<id>/type:xpi/platform:5/lol.xpi - everything after the addon id
+    # is ignored though.
     re_path(
-        r'^latest/%s/(?:type:(?P<type_>\w+)/)?'
-        r'(?:platform:(?P<platform>\d+)/)?.*' % ADDON_ID,
+        (
+            r'^latest/%s/'
+            r'(?:type:(?P<type_>\w+)/)?'
+            r'(?:platform:(?P<platform>\d+)/)?'
+            r'(?:(?P<filename>[\w+.-]*))?$'
+        )
+        % ADDON_ID,
         views.download_latest,
         name='downloads.latest',
     ),
