@@ -4,6 +4,7 @@ from django import http
 from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
+from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
@@ -238,10 +239,8 @@ class AddonViewSet(
         if self.action == 'retrieve_from_related':
             # Avoid default transformers if we're fetching a single instance
             # from a related view: We're unlikely to need the preloading they
-            # bring, this would only cause extra useless queries. Still include
-            # translations because at least the addon name is likely to be
-            # needed in most cases.
-            qs = qs.only_translations()
+            # bring, this would only cause extra useless queries.
+            qs = qs.no_transforms()
         return qs
 
     def get_serializer_class(self):
@@ -521,6 +520,10 @@ class AddonVersionViewSet(
             # 'keep-license-text-in-version-list' gate is active, so that endpoint
             # doesn't scale as nicely in those versions.
             queryset = queryset.transform(Version.transformer_license)
+        elif self.action == 'release_notes':
+            # For release notes, we don't want defaut transformer, but we still
+            # need file (for is_public()) and translations.
+            queryset = queryset.only_translations().select_related('file')
         return queryset
 
     def create(self, request, *args, **kwargs):
@@ -612,6 +615,20 @@ class AddonVersionViewSet(
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
+
+    # release notes endpoint for Firefox to consume - it should get the URL
+    # from the update service.
+    @action(detail=True)
+    def release_notes(self, request, *args, **kwargs):
+        version = self.get_object()
+        response = TemplateResponse(
+            request,
+            'versions/update_info.html',
+            context={'version': version},
+            content_type='application/xhtml+xml',
+        )
+        patch_cache_control(response, max_age=60 * 60)
+        return response
 
 
 class AddonSearchView(ListAPIView):

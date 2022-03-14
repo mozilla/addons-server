@@ -457,6 +457,19 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string|null source: The (absolute) URL to download the submitted source for this version. This field is only present for authenticated users, for their own add-ons.
     :>json string version: The version number string for the version.
 
+---------------------
+Version Release Notes
+---------------------
+
+.. _version-release_notes:
+
+This endpoint allows you to fetch release notes for a version belonging to a specific add-on. The response will be an XHTML document. It is not meant for third-party consumption - use the version detail endpoint instead.
+
+.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/release_notes/
+
+    .. _version-detail-release_notes:
+
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
 
 --------------
 Version Create

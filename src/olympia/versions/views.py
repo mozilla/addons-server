@@ -1,11 +1,12 @@
 import os
 
 from django import http
+from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
-from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.cache import patch_vary_headers
+from django.utils.translation import get_language
 
 import olympia.core.logger
 
@@ -13,7 +14,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonRegionalRestrictions
-from olympia.amo.utils import HttpResponseXSendFile, urlparams
+from olympia.amo.utils import HttpResponseXSendFile, to_language, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version
 
@@ -30,31 +31,27 @@ def update_info(request, addon, version_num):
         .only_translations(),
         version=version_num,
     )
-    return TemplateResponse(
-        request,
-        'versions/update_info.html',
-        context={'version': version},
-        content_type='application/xhtml+xml',
-    )
+    return update_info_redirect(request, version.pk, version=version)
 
 
 @non_atomic_requests
-def update_info_redirect(request, version_id):
-    version = get_object_or_404(
-        Version.objects.reviewed()
-        .filter(channel=amo.RELEASE_CHANNEL_LISTED)
-        .no_transforms()
-        .select_related('addon'),
-        pk=version_id,
-    )
+def update_info_redirect(request, version_id, version=None):
+    if version is None:
+        version = get_object_or_404(
+            Version.objects.reviewed()
+            .filter(channel=amo.RELEASE_CHANNEL_LISTED)
+            .no_transforms()
+            .select_related('addon'),
+            pk=version_id,
+        )
     if not version.addon.is_public():
         raise http.Http404()
-    return redirect(
-        reverse(
-            'addons.versions.update_info', args=(version.addon.slug, version.version)
-        ),
-        permanent=True,
+    url = reverse(
+        'v4:addon-version-release-notes',
+        kwargs={'addon_pk': version.addon.pk, 'pk': version.pk},
     )
+    lang = to_language(get_language())
+    return redirect(f'{settings.SERVICES_URL}{url}?lang={lang}')
 
 
 # Should accept junk at the end for filename goodness.

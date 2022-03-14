@@ -4,13 +4,12 @@ from django.conf import settings
 from django.utils.encoding import smart_str
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
+from django.test import override_settings
 from django.urls import reverse
 
 from urllib.parse import quote
 
 from unittest import mock
-
-from pyquery import PyQuery
 
 from olympia import amo
 from olympia.access import acl
@@ -41,6 +40,22 @@ class UpdateInfoMixin:
         self.version = self.addon.current_version
         self.addon.current_version.update(created=self.days_ago(3))
 
+    def get_url(self):
+        return reverse(self.url_name, args=self.url_args)
+
+    def get_expected_url(self, lang='en-US'):
+        base_expected_url = reverse(
+            'v4:addon-version-release-notes',
+            kwargs={'addon_pk': self.version.addon.pk, 'pk': self.version.pk},
+        )
+        return f'{settings.SERVICES_URL}{base_expected_url}?lang={lang}'
+
+    def test_lang_passed(self):
+        with self.activate('fr'):
+            self.url = self.get_url()
+            response = self.client.get(self.url)
+        self.assert3xx(response, self.get_expected_url(lang='fr'), 302)
+
     def test_version_update_info_deleted(self):
         self.version.delete()
         response = self.client.get(self.url)
@@ -65,61 +80,37 @@ class UpdateInfoMixin:
         assert response.status_code == 404
 
 
+@override_settings(SERVICES_URL='https://services.example.com')
 class TestUpdateInfo(UpdateInfoMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.url_args = (self.addon.slug, self.version.version)
-        self.url = reverse('addons.versions.update_info', args=self.url_args)
+        self.url_name = 'addons.versions.update_info'
+        self.url = self.get_url()
 
-    def test_version_update_info(self):
-        self.version.release_notes = {
-            'en-US': 'Fix for an important bug',
-            'fr': "Quelque chose en français.\n\nQuelque chose d'autre.",
-        }
-        self.version.save()
+    def test_with_addon_slug(self):
         response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert response['Content-Type'] == 'application/xhtml+xml'
-
-        # pyquery is annoying to use with XML and namespaces. Use the HTML
-        # parser, but do check that xmlns attribute is present (required by
-        # Firefox for the notes to be shown properly).
-        doc = PyQuery(response.content, parser='html')
-        assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
-        assert doc('p').html() == 'Fix for an important bug'
-
-        # Test update info in another language.
-        with self.activate(locale='fr'):
-            self.url = reverse(
-                'addons.versions.update_info',
-                args=self.url_args,
-            )  # self.url contains lang, so we need to reverse it again.
-            response = self.client.get(self.url)
-            assert response.status_code == 200
-            assert response['Content-Type'] == 'application/xhtml+xml'
-            assert (
-                b'<br/>' in response.content
-            ), 'Should be using XHTML self-closing tags!'
-            doc = PyQuery(response.content, parser='html')
-            assert doc('html').attr('xmlns') == 'http://www.w3.org/1999/xhtml'
-            assert doc('p').html() == (
-                "Quelque chose en français.<br/><br/>Quelque chose d'autre."
-            )
+        self.assert3xx(response, self.get_expected_url(), 302)
 
     def test_with_addon_pk(self):
-        url = reverse(
-            'addons.versions.update_info', args=(self.addon.pk, self.version.version)
+        expected_url = self.get_url()
+        self.url_args = (self.addon.pk, self.version.version)
+        self.url = self.get_url()
+        response = self.client.get(self.url)
+        self.assert3xx(
+            # Quirk of using addon_view_factory: we'll get a 301 to the same
+            # url with a slug... even though the final redirect is a 302 to the
+            # API with a pk.
+            response,
+            expected_url,
+            301,
         )
-        response = self.client.get(url)
-        self.assert3xx(response, self.url, 301)
 
     def test_addon_mismatch(self):
         another_addon = addon_factory(version_kw={'version': '42.42.42.42'})
-        url = reverse(
-            'addons.versions.update_info',
-            args=(another_addon.slug, self.version.version),
-        )
-        response = self.client.get(url)
+        self.url_args = (another_addon.slug, self.version.version)
+        self.url = self.get_url()
+        response = self.client.get(self.url)
         assert response.status_code == 404
 
     def test_num_queries(self):
@@ -128,31 +119,26 @@ class TestUpdateInfo(UpdateInfoMixin, TestCase):
             # - version
             # - translations for release notes
             response = self.client.get(self.url)
-            assert response.status_code == 200
+            assert response.status_code == 302
 
 
+@override_settings(SERVICES_URL='https://services.example.com')
 class TestUpdateInfoLegacyRedirect(UpdateInfoMixin, TestCase):
     def setUp(self):
         super().setUp()
-        self.url = reverse(
-            'addons.versions.update_info_redirect',
-            args=(self.version.pk,),
-        )
+        self.url_name = 'addons.versions.update_info_redirect'
+        self.url_args = (self.version.pk,)
+        self.url = self.get_url()
 
     def test_version_update_info_legacy_redirect(self):
         expected_legacy_url = f'/en-US/firefox/versions/updateInfo/{self.version.id}'
         assert self.url == expected_legacy_url
 
-        expected_redirect_url = reverse(
-            'addons.versions.update_info',
-            args=(self.addon.slug, self.version.version),
-        )
-
         response = self.client.get(self.url)
-        self.assert3xx(response, expected_redirect_url, status_code=301)
+        self.assert3xx(response, self.get_expected_url(), status_code=302)
 
-        # It should also work without the locale+app prefix, but that does
-        # a 302 to the same url with locale+app prefix added first.
+        # Without the locale+app prefix, that does a 302 to the same url
+        # with locale+app prefix added first (which has been tested above).
         response = self.client.get(
             f'/versions/updateInfo/{self.version.id}',
         )
@@ -162,7 +148,7 @@ class TestUpdateInfoLegacyRedirect(UpdateInfoMixin, TestCase):
         with self.assertNumQueries(1):
             # version+addon (single query)
             response = self.client.get(self.url)
-            assert response.status_code == 301
+            assert response.status_code == 302
 
 
 class TestDownloadsBase(TestCase):

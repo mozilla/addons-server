@@ -394,6 +394,20 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
     :>json string version: The version number string for the version.
 
+---------------------
+Version Release Notes
+---------------------
+
+.. _v4-version-release_notes:
+
+This endpoint allows you to fetch release notes for a version belonging to a specific add-on. The response will be an XHTML document. It is not meant for third-party consumption - use the version detail endpoint instead.
+
+.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/release_notes/
+
+    .. _v4-version-detail-release_notes:
+
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+
 
 ------------------------------
 Add-on EULA and Privacy Policy

@@ -7,6 +7,8 @@ from email import utils
 from django.conf import settings
 from django.db import connection
 from django.test.testcases import TransactionTestCase
+from django.test.utils import override_settings
+from django.urls import reverse
 
 from services import update
 
@@ -481,11 +483,18 @@ class TestResponse(VersionCheckMixin, TestCase):
         data = json.loads(content)
         assert 'update_hash' not in data['addons'][guid]['updates'][0]
 
+    @override_settings(SERVICES_URL='https://services.example.com')
     def test_release_notes(self):
         content = self.get_update_instance(self.data).get_output()
         data = json.loads(content)
         guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
-        assert data['addons'][guid]['updates'][0]['update_info_url']
+        expected_url = reverse(
+            'v4:addon-version-release-notes', kwargs={'addon_pk': 3615, 'pk': 81551}
+        )
+        assert 'en-US' not in expected_url
+        assert data['addons'][guid]['updates'][0]['update_info_url'] == (
+            f'{settings.SERVICES_URL}{expected_url}?lang=%APP_LOCALE%'
+        )
 
         version = Version.objects.get(pk=81551)
         version.update(release_notes=None)

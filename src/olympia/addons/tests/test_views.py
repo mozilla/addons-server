@@ -1743,6 +1743,117 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         # the field is present when the user is an author of the add-on.
         assert 'source' in self.client.get(self.url).data
 
+    def test_release_notes(self):
+        self.version.release_notes = 'Some <b>notes</b>'
+        self.version.save()
+        url = reverse_ns(
+            'addon-version-release-notes',
+            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+        )
+        with self.assertNumQueries(5):
+            # - 2 savepoints
+            # - 1 addon
+            # - 1 version + file
+            # - 1 translations for release notes
+            response = self.client.get(url)
+        assert response.status_code == 200
+        assert response['Content-Type'] == 'application/xhtml+xml'
+        assert response['Cache-Control'] == 'max-age=3600'
+        content = response.content.decode('utf-8')
+        assert content.startswith(
+            '<!DOCTYPE html>\n<html lang="en-US" dir="ltr" '
+            'xmlns="http://www.w3.org/1999/xhtml">'
+        )
+        assert '<body>\n<p>Some <b>notes</b></p>\n</body>' in content
+
+    def test_release_notes_translations(self):
+        url = reverse_ns(
+            'addon-version-release-notes',
+            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+        )
+        self.version.release_notes = {
+            'en-US': 'Fix for an important bug',
+            'fr': "Quelque chose en français.\n\nQuelque chose d'autre.",
+        }
+        self.version.save()
+        with self.assertNumQueries(5):
+            # - 2 savepoints
+            # - 1 addon
+            # - 1 version + file
+            # - 1 translations for release notes
+            response = self.client.get(url, {'lang': 'fr'})
+        assert response.status_code == 200
+        assert response['Content-Type'] == 'application/xhtml+xml'
+        assert response['Cache-Control'] == 'max-age=3600'
+        content = response.content.decode('utf-8')
+        assert content.startswith(
+            '<!DOCTYPE html>\n<html lang="fr" dir="ltr" '
+            'xmlns="http://www.w3.org/1999/xhtml">'
+        )
+        assert (
+            '<p>Quelque chose en français.<br/><br/>Quelque chose d\'autre.</p>'
+            in content
+        )
+
+    def test_release_notes_empty(self):
+        url = reverse_ns(
+            'addon-version-release-notes',
+            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+        )
+        response = self.client.get(url)
+        assert response.status_code == 200
+        assert response['Content-Type'] == 'application/xhtml+xml'
+        assert response['Cache-Control'] == 'max-age=3600'
+        content = response.content.decode('utf-8')
+        assert '<body>\n<p></p>\n</body>' in content
+
+    def test_release_notes_unlisted(self):
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        url = reverse_ns(
+            'addon-version-release-notes',
+            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+        )
+        response = self.client.get(url)
+        assert response.status_code == 401
+
+    def test_release_notes_disabled(self):
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        url = reverse_ns(
+            'addon-version-release-notes',
+            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+        )
+        response = self.client.get(url)
+        assert response.status_code == 401
+
+    def test_release_notes_deleted(self):
+        self.version.delete()
+        url = reverse_ns(
+            'addon-version-release-notes',
+            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+        )
+        response = self.client.get(url)
+        assert response.status_code == 404
+
+    def test_release_notes_addon_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        url = reverse_ns(
+            'addon-version-release-notes',
+            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+        )
+        response = self.client.get(url)
+        assert response.status_code == 401
+
+    def test_release_notes_georestricted(self):
+        AddonRegionalRestrictions.objects.create(
+            addon=self.addon, excluded_regions=['FR']
+        )
+        url = reverse_ns(
+            'addon-version-release-notes',
+            kwargs={'addon_pk': self.addon.pk, "pk": self.version.pk},
+        )
+        response = self.client.get(url, HTTP_X_COUNTRY_CODE='fr')
+        assert response.status_code == 451
+
 
 class SubmitSourceMixin:
     def _submit_source(self, filepath, error=False):

@@ -202,10 +202,11 @@ class Update:
         if data['hash']:
             update['update_hash'] = data['hash']
         if data['releasenotes']:
-            update['update_info_url'] = '{}{}{}/%APP_LOCALE%/'.format(
-                settings.SITE_URL,
-                '/versions/updateInfo/',
-                data['version_id'],
+            update['update_info_url'] = (
+                f"{settings.SERVICES_URL}/api/v4/"
+                f"addons/addon/{data['addon_id']}/"
+                f"versions/{data['version_id']}/release_notes/"
+                f"?lang=%APP_LOCALE%"
             )
         return {'addons': {self.data['guid']: {'updates': [update]}}}
 
