@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-03-11 09:29+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2022-03-13 10:56+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4509,6 +4509,8 @@ msgstr "Revenez à une époque plus simple — lorsque les meilleurs résultats 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
 msgstr ""
+"Arrêtez de donner aux sites votre adresse électronique. Firefox Relay protège votre identité et empêche les messages indésirables. Passez à Relay Premium pour bénéficier d’avantages supplémentaires,"
+" comme le blocage d’e-mails publicitaires mieux ciblé."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
