@@ -1,5 +1,4 @@
 import json
-import os
 
 from django.urls import reverse as dj_reverse
 

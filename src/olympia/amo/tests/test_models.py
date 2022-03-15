@@ -321,7 +321,9 @@ class TestModelBase(TestCase):
     def test_get_absolute_url_with_django_view(self):
         file = Addon.objects.get(pk=3615).current_version.file
         relative = os.path.join(
-            reverse('downloads.file', args=[file.id, file.filename])
+            reverse(
+                'downloads.file', kwargs={'file_id': file.id, 'filename': file.filename}
+            )
         )
         with override_settings(EXTERNAL_SITE_URL=settings.SITE_URL):
             # The normal case
