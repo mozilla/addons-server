@@ -177,9 +177,6 @@ class TestDownloadsBase(TestCase):
     def assert_served_internally(self, response, *, guarded=False, attachment=False):
         assert response.status_code == 200
         file_path = self.file.guarded_file_path if guarded else self.file.file_path
-        # Yes, we're forcing bytes (encoding in utf-8) and then encoding in latin-1.
-        # The latin-1 is done by Django automatically for each header in HttpResponse
-        # objects, the force_bytes is done by us.
         assert (
             decode_http_header_value(response[settings.XSENDFILE_HEADER]) == file_path
         )
@@ -190,6 +187,8 @@ class TestDownloadsBase(TestCase):
             assert response['Content-Disposition'] == 'attachment'
         else:
             assert not response.has_header('Content-Disposition')
+        assert response['Cache-Control'] == 'max-age=86400'
+        assert response['Access-Control-Allow-Origin'] == '*'
         return response
 
 
