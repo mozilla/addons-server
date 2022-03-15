@@ -301,5 +301,5 @@ class SignedFile(APIView):
     permission_classes = [IsAuthenticated]
 
     @use_primary_db
-    def get(self, request, file_id, filename):
+    def get(self, request, file_id, filename=None):
         return version_views.download_file(request, file_id, filename=filename)
