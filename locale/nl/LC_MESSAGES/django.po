@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-03-11 07:51+0000\n"
+"PO-Revision-Date: 2022-03-15 09:14+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4455,7 +4455,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr "Vertaald direct elke geselecteerde tekst op webpagina’s."
+msgstr "Vertaal direct elke geselecteerde tekst op webpagina’s."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
