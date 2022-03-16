@@ -1227,8 +1227,6 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         )
         assert response.status_code == 400, response.content
         contribution_domains = ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
-        # import ipdb
-        # ipdb.set_trace()
         assert response.data == {
             'contributions_url': [
                 f'URL domain must be one of [{contribution_domains}], or a subdomain.'
