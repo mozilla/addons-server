@@ -2,6 +2,7 @@ from django import shortcuts
 from django.conf import settings
 from django.urls import resolve, reverse, set_script_prefix
 from django.test.client import Client, RequestFactory
+from django.test.utils import override_settings
 
 import pytest
 
@@ -19,7 +20,7 @@ class MiddlewareTest(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.rf = RequestFactory()
+        self.request_factory = RequestFactory()
         self.middleware = LocaleAndAppURLMiddleware()
 
     def test_redirection(self):
@@ -47,12 +48,12 @@ class MiddlewareTest(TestCase):
         }
 
         for path, location in redirections.items():
-            response = self.middleware.process_request(self.rf.get(path))
+            response = self.middleware.process_request(self.request_factory.get(path))
             assert response.status_code == 302
             assert response['Location'] == location
 
     def process(self, *args, **kwargs):
-        self.request = self.rf.get(*args, **kwargs)
+        self.request = self.request_factory.get(*args, **kwargs)
         return self.middleware.process_request(self.request)
 
     def test_no_redirect(self):
@@ -153,6 +154,33 @@ class MiddlewareTest(TestCase):
             '/fr/firefox/extensions/?foo=fooval&bar=barval',
         )
         check('/en-US/firefox?lang=es-PE', '/es/firefox/')
+
+    def test_ignore_multipart_errors(self):
+        # This results in a malformed request - MultiPartParserError: Invalid
+        # boundary in multipart: None but we should ignore that as it's too
+        # early.
+        self.request = self.request_factory.post(
+            '/', content_type='multipart/form-data', data='something wicked'
+        )
+        response = self.middleware.process_request(self.request)
+        assert response['Location'] == '/en-US/firefox/'
+
+    @override_settings(ENV='dev')
+    def test_ignore_multipart_errors_actual_view(self):
+        # Like test_ignore_multipart_errors() but with an actual view that uses
+        # request.POST. It should result in a 400 thrown by Django when the
+        # view accesses the post data.
+        response = self.client.post(
+            reverse('amo.client_info'),
+            content_type='multipart/form-data',
+            data='something wicked',
+        )
+        assert response.status_code == 400
+        assert response.content == (
+            b'\n<!doctype html>\n<html lang="en">\n<head>\n  '
+            b'<title>Bad Request (400)</title>\n</head>\n<body>\n  '
+            b'<h1>Bad Request (400)</h1><p></p>\n</body>\n</html>\n'
+        )
 
 
 class TestPrefixer(TestCase):

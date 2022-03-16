@@ -580,10 +580,13 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': None,
             'HTTP_X_FORWARDED_FOR': None,
             'REMOTE_ADDR': '127.0.0.1',
+            'GET': {},
+            'POST': {},
         }
 
         response = Client().get(
             reverse('amo.client_info'),
+            data={'foo': 'bar'},
             HTTP_USER_AGENT='Foo/5.0',
             HTTP_X_FORWARDED_FOR='192.0.0.2,193.0.0.1',
             HTTP_X_COUNTRY_CODE='FR',
@@ -594,6 +597,25 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': 'FR',
             'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
             'REMOTE_ADDR': '127.0.0.1',
+            'GET': {'foo': 'bar'},
+            'POST': {},
+        }
+
+        response = Client().post(
+            reverse('amo.client_info'),
+            data={'foo': 'bar'},
+            HTTP_USER_AGENT='Foo/5.0',
+            HTTP_X_FORWARDED_FOR='192.0.0.2,193.0.0.1',
+            HTTP_X_COUNTRY_CODE='FR',
+        )
+        assert response.status_code == 200
+        assert response.json() == {
+            'HTTP_USER_AGENT': 'Foo/5.0',
+            'HTTP_X_COUNTRY_CODE': 'FR',
+            'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
+            'REMOTE_ADDR': '127.0.0.1',
+            'GET': {},
+            'POST': {'foo': 'bar'},
         }
 
 

@@ -5,6 +5,7 @@ import re
 from urllib.parse import quote
 
 from django.conf import settings
+from django.http.multipartparser import MultiPartParserError
 from django.utils.encoding import force_bytes
 from django.utils.http import _urlparse as django_urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -77,11 +78,23 @@ class Prefixer:
 
     def get_language(self):
         """
-        Return a locale code that we support on the site using the
-        user's Accept Language header to determine which is best.  This
-        mostly follows the RFCs but read bug 439568 for details.
+        Return a locale code that we support on the site using `lang` from GET
+        or POST, falling back to the user's Accept Language header if
+        necessary (mostly following the RFCs but read bug 439568 for details).
         """
-        data = self.request.GET or self.request.POST
+        try:
+            data = self.request.GET or self.request.POST
+        except MultiPartParserError:
+            # The request is malformed, but we don't want this to raise as we
+            # could be in a middleware, which would cause the exception to be
+            # raised too early. Django will have already set _post and _files
+            # in _mark_post_parse_error() to avoid re-encountering the error,
+            # but we want that to happen later, so delete them.
+            del self.request._post
+            del self.request._files
+            # Proceed with no data.
+            data = {}
+
         if 'lang' in data:
             lang = data['lang'].lower()
             if lang in settings.LANGUAGE_URL_MAP:

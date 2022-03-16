@@ -70,6 +70,8 @@ def client_info(request):
         'REMOTE_ADDR',
     )
     data = {key: request.META.get(key) for key in keys}
+    data['POST'] = request.POST
+    data['GET'] = request.GET
     return JsonResponse(data)
 
 
