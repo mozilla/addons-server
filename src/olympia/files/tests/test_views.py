@@ -315,6 +315,25 @@ class TestFileUploadViewSet(TestCase):
             response = self._create_post(ip=get_random_ip())
             assert response.status_code == 201, response.content
 
+    def test_invalid_content_type(self):
+        # Invalid content type is just silently ignored, and therefore the
+        # error becomes just a generic error about not being able to find the
+        # data since we submitted nothing.
+        response = self.client.post(self.list_url, content_type='lol', data='')
+        assert response.status_code == 400
+        assert response.json() == ['Missing "upload" key in multipart file data.']
+
+    def test_invalid_multipart(self):
+        response = self.client.post(
+            self.list_url,
+            content_type='multipart/form-data',
+            data='something wicked',
+        )
+        assert response.status_code == 400
+        assert response.json() == {
+            'detail': 'Multipart form parse error - Invalid boundary in multipart: None'
+        }
+
 
 class TestFileUploadViewSetJWTAuth(TestFileUploadViewSet):
     client_class = APITestClientJWT

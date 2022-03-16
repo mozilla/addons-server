@@ -1437,13 +1437,6 @@ REST_FRAMEWORK = {
         'olympia.api.authentication.SessionIDAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': ('olympia.api.pagination.CustomPageNumberPagination'),
-    # Set parser classes to include the fix for
-    # https://github.com/tomchristie/django-rest-framework/issues/3951
-    'DEFAULT_PARSER_CLASSES': (
-        'rest_framework.parsers.JSONParser',
-        'rest_framework.parsers.FormParser',
-        'olympia.api.parsers.MultiPartParser',
-    ),
     # Use json by default when using APIClient.
     # Set this because the default is to also include:
     #   'rest_framework.renderers.BrowsableAPIRenderer'

@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 import django
 from django import test
 from django.conf import settings
-from django.test.client import RequestFactory
+from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
 
@@ -566,9 +566,25 @@ class TestSiteStatusAPI(TestCase):
         }
 
 
-def test_client_info():
-    from django.test.client import Client
+@override_settings(ENV='dev')
+def test_multipart_error():
+    # We should throw a 400 because of the malformed multipart request and not
+    # raise an exception. This ensures that we do with a fairly simple vie.
+    client = Client()
+    response = client.post(
+        reverse('amo.client_info'),
+        content_type='multipart/form-data',
+        data='something wicked',
+    )
+    assert response.status_code == 400
+    assert response.content == (
+        b'\n<!doctype html>\n<html lang="en">\n<head>\n  '
+        b'<title>Bad Request (400)</title>\n</head>\n<body>\n  '
+        b'<h1>Bad Request (400)</h1><p></p>\n</body>\n</html>\n'
+    )
 
+
+def test_client_info():
     response = Client().get(reverse('amo.client_info'))
     assert response.status_code == 403
 
@@ -580,10 +596,13 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': None,
             'HTTP_X_FORWARDED_FOR': None,
             'REMOTE_ADDR': '127.0.0.1',
+            'GET': {},
+            'POST': {},
         }
 
         response = Client().get(
             reverse('amo.client_info'),
+            data={'foo': 'bar'},
             HTTP_USER_AGENT='Foo/5.0',
             HTTP_X_FORWARDED_FOR='192.0.0.2,193.0.0.1',
             HTTP_X_COUNTRY_CODE='FR',
@@ -594,6 +613,25 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': 'FR',
             'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
             'REMOTE_ADDR': '127.0.0.1',
+            'GET': {'foo': 'bar'},
+            'POST': {},
+        }
+
+        response = Client().post(
+            reverse('amo.client_info'),
+            data={'foo': 'bar'},
+            HTTP_USER_AGENT='Foo/5.0',
+            HTTP_X_FORWARDED_FOR='192.0.0.2,193.0.0.1',
+            HTTP_X_COUNTRY_CODE='FR',
+        )
+        assert response.status_code == 200
+        assert response.json() == {
+            'HTTP_USER_AGENT': 'Foo/5.0',
+            'HTTP_X_COUNTRY_CODE': 'FR',
+            'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
+            'REMOTE_ADDR': '127.0.0.1',
+            'GET': {},
+            'POST': {'foo': 'bar'},
         }
 
 

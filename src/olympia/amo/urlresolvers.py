@@ -77,13 +77,12 @@ class Prefixer:
 
     def get_language(self):
         """
-        Return a locale code that we support on the site using the
-        user's Accept Language header to determine which is best.  This
-        mostly follows the RFCs but read bug 439568 for details.
+        Return a locale code that we support on the site using `lang` from GET,
+        falling back to the user's Accept Language header if necessary (mostly
+        following the RFCs but read bug 439568 for details).
         """
-        data = self.request.GET or self.request.POST
-        if 'lang' in data:
-            lang = data['lang'].lower()
+        if 'lang' in self.request.GET:
+            lang = self.request.GET['lang'].lower()
             if lang in settings.LANGUAGE_URL_MAP:
                 return settings.LANGUAGE_URL_MAP[lang]
             prefix = lang.split('-')[0]

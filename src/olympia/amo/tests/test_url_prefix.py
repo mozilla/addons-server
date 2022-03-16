@@ -19,7 +19,7 @@ class MiddlewareTest(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.rf = RequestFactory()
+        self.request_factory = RequestFactory()
         self.middleware = LocaleAndAppURLMiddleware()
 
     def test_redirection(self):
@@ -47,12 +47,12 @@ class MiddlewareTest(TestCase):
         }
 
         for path, location in redirections.items():
-            response = self.middleware.process_request(self.rf.get(path))
+            response = self.middleware.process_request(self.request_factory.get(path))
             assert response.status_code == 302
             assert response['Location'] == location
 
     def process(self, *args, **kwargs):
-        self.request = self.rf.get(*args, **kwargs)
+        self.request = self.request_factory.get(*args, **kwargs)
         return self.middleware.process_request(self.request)
 
     def test_no_redirect(self):
