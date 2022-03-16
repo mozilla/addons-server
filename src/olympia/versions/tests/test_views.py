@@ -220,7 +220,8 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         """File downloading is allowed for addon owners."""
         self.assert_served_internally(self.client.get(self.file_url))
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(self.client.get(url), attachment=True)
 
@@ -251,7 +252,8 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         """File downloading is allowed for unlisted reviewers."""
         self.assert_served_internally(self.client.get(self.file_url))
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(self.client.get(url), attachment=True)
 
@@ -299,7 +301,8 @@ class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
         file path since the addon is deleted."""
         self.assert_served_internally(self.client.get(self.file_url), guarded=True)
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(
             self.client.get(url), guarded=True, attachment=True
@@ -342,7 +345,8 @@ class TestDownloads(TestDownloadsBase):
     def test_type_attachment(self):
         self.assert_served_internally(self.client.get(self.file_url))
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(self.client.get(url), attachment=True)
 
@@ -402,7 +406,8 @@ class NonPublicFileDownloadsMixin:
         self.assert_served_internally(self.client.get(self.file_url), guarded=True)
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(
             self.client.get(url), guarded=True, attachment=True
@@ -414,7 +419,8 @@ class NonPublicFileDownloadsMixin:
         self.assert_served_internally(self.client.get(self.file_url), guarded=True)
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(
             self.client.get(url), guarded=True, attachment=True
@@ -426,7 +432,8 @@ class NonPublicFileDownloadsMixin:
         self.assert_served_internally(self.client.get(self.file_url), guarded=True)
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(
             self.client.get(url), guarded=True, attachment=True
@@ -439,7 +446,8 @@ class NonPublicFileDownloadsMixin:
         self.assert_served_internally(self.client.get(self.file_url), guarded=True)
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(
             self.client.get(url), guarded=True, attachment=True
@@ -452,7 +460,8 @@ class NonPublicFileDownloadsMixin:
         self.assert_served_internally(self.client.get(self.file_url), guarded=True)
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(
             self.client.get(url), guarded=True, attachment=True
@@ -464,7 +473,8 @@ class NonPublicFileDownloadsMixin:
         self.assert_served_internally(self.client.get(self.file_url), guarded=True)
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(
             self.client.get(url), guarded=True, attachment=True
@@ -476,7 +486,8 @@ class NonPublicFileDownloadsMixin:
         self.assert_served_internally(self.client.get(self.file_url), guarded=True)
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(
             self.client.get(url), guarded=True, attachment=True
@@ -491,7 +502,8 @@ class DownloadsNonGuardedMixin:
         self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(self.client.get(url), attachment=True)
 
@@ -502,7 +514,8 @@ class DownloadsNonGuardedMixin:
         self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
-            'downloads.file', kwargs={'file_id': self.file.id, 'type_': 'attachment'}
+            'downloads.file',
+            kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
         self.assert_served_internally(self.client.get(url), attachment=True)
 
@@ -599,7 +612,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         assert (
             reverse(
                 'downloads.latest',
-                kwargs={'addon_id': self.addon.slug, 'type_': 'attachment'},
+                kwargs={'addon_id': self.addon.slug, 'download_type': 'attachment'},
             )
             == '/firefox/downloads/latest/better-gcal-5299/type:attachment/'
         )
@@ -608,7 +621,7 @@ class TestDownloadsLatest(TestDownloadsBase):
                 'downloads.latest',
                 kwargs={
                     'addon_id': self.addon.slug,
-                    'type_': 'attachment',
+                    'download_type': 'attachment',
                     'filename': 'foo-bar.xpi',
                 },
             )
@@ -629,21 +642,22 @@ class TestDownloadsLatest(TestDownloadsBase):
 
     def test_type_random(self):
         self.latest_url = reverse(
-            'downloads.latest', kwargs={'addon_id': self.addon.slug, 'type_': 'random'}
+            'downloads.latest',
+            kwargs={'addon_id': self.addon.slug, 'download_type': 'random'},
         )
         self.test_no_type()
 
     def test_type_attachment(self):
         self.latest_url = reverse(
             'downloads.latest',
-            kwargs={'addon_id': self.addon.slug, 'type_': 'attachment'},
+            kwargs={'addon_id': self.addon.slug, 'download_type': 'attachment'},
         )
         expected_redirect_url = absolutify(
             reverse(
                 'downloads.file',
                 kwargs={
                     'file_id': self.file.pk,
-                    'type_': 'attachment',
+                    'download_type': 'attachment',
                     'filename': self.file.filename,
                 },
             )
@@ -657,14 +671,18 @@ class TestDownloadsLatest(TestDownloadsBase):
         # 'platform' should just be ignored nowadays.
         self.latest_url = reverse(
             'downloads.latest',
-            kwargs={'addon_id': self.addon.slug, 'platform': 5, 'type_': 'attachment'},
+            kwargs={
+                'addon_id': self.addon.slug,
+                'platform': 5,
+                'download_type': 'attachment',
+            },
         )
         expected_redirect_url = absolutify(
             reverse(
                 'downloads.file',
                 kwargs={
                     'file_id': self.file.pk,
-                    'type_': 'attachment',
+                    'download_type': 'attachment',
                     'filename': self.file.filename,
                 },
             )
@@ -679,7 +697,7 @@ class TestDownloadsLatest(TestDownloadsBase):
             'downloads.latest',
             kwargs={
                 'addon_id': self.addon.slug,
-                'type_': 'attachment',
+                'download_type': 'attachment',
                 'filename': 'lol-ignore-me.xpi',
             },
         )
@@ -688,7 +706,7 @@ class TestDownloadsLatest(TestDownloadsBase):
                 'downloads.file',
                 kwargs={
                     'file_id': self.file.pk,
-                    'type_': 'attachment',
+                    'download_type': 'attachment',
                     'filename': self.file.filename,
                 },
             )

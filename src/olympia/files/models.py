@@ -106,7 +106,7 @@ class File(OnChangeMixin, ModelBase):
     def get_url_path(self, attachment=False):
         kwargs = {'file_id': self.pk, 'filename': self.filename}
         if attachment:
-            kwargs['type_'] = 'attachment'
+            kwargs['download_type'] = 'attachment'
         return reverse('downloads.file', kwargs=kwargs)
 
     @classmethod
@@ -226,7 +226,7 @@ class File(OnChangeMixin, ModelBase):
             'filename': f'addon-{addon.pk}-latest{self.extension}',
         }
         if attachment:
-            kw['type_'] = 'attachment'
+            kw['download_type'] = 'attachment'
         return reverse('downloads.latest', kwargs=kw)
 
     @property

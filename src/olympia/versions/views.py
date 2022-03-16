@@ -58,7 +58,7 @@ def update_info_redirect(request, version_id):
 
 
 @non_atomic_requests
-def download_file(request, file_id, type_=None, filename=None):
+def download_file(request, file_id, download_type=None, **kwargs):
     """
     Download the file identified by `file_id` parameter.
 
@@ -115,7 +115,7 @@ def download_file(request, file_id, type_=None, filename=None):
     # Whether to set Content-Disposition: attachment header or not, to force
     # the file to be downloaded rather than installed (used by admin/reviewer
     # tools).
-    attachment = type_ == 'attachment'
+    attachment = download_type == 'attachment'
     if not has_permission:
         log.debug(
             'download file {file_id}: addon/version/file not public and '
@@ -153,7 +153,7 @@ def download_file(request, file_id, type_=None, filename=None):
 
 @addon_view_factory(Addon.objects.public)
 @non_atomic_requests
-def download_latest(request, addon, type_=None, **kwargs):
+def download_latest(request, addon, download_type=None, **kwargs):
     """
     Redirect to the URL to download the file from 'current'
     (latest public listed) version of an add-on.
@@ -162,9 +162,8 @@ def download_latest(request, addon, type_=None, **kwargs):
     approved listed version.
     """
     file_ = addon.current_version.file
-    response = http.HttpResponseRedirect(
-        file_.get_absolute_url(attachment=type_ == 'attachment')
-    )
+    attachment = download_type == 'attachment'
+    response = http.HttpResponseRedirect(file_.get_absolute_url(attachment=attachment))
     patch_cache_control(response, max_age=60 * 60 * 1)
     response['Access-Control-Allow-Origin'] = '*'
     return response

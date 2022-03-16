@@ -19,7 +19,10 @@ download_patterns = [
     # /file/<id>/type:attachment/lol.xpi - everything after the file id is
     # ignored though.
     re_path(
-        r'^file/(?P<file_id>\d+)/(?:type:(?P<type_>\w+)/)?(?:(?P<filename>[\w+.-]*))?$',
+        (
+            r'^file/(?P<file_id>\d+)/'
+            r'(?:type:(?P<download_type>\w+)/)?(?:(?P<filename>[\w+.-]*))?$'
+        ),
         views.download_file,
         name='downloads.file',
     ),
@@ -31,7 +34,7 @@ download_patterns = [
     re_path(
         (
             r'^latest/%s/'
-            r'(?:type:(?P<type_>\w+)/)?'
+            r'(?:type:(?P<download_type>\w+)/)?'
             r'(?:platform:(?P<platform>\d+)/)?'
             r'(?:(?P<filename>[\w+.-]*))?$'
         )
