@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 import django
 from django import test
 from django.conf import settings
-from django.test.client import RequestFactory
+from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
 
@@ -567,10 +567,11 @@ class TestSiteStatusAPI(TestCase):
 
 
 @override_settings(ENV='dev')
-def test_multipart_error(self):
+def test_multipart_error():
     # We should throw a 400 because of the malformed multipart request and not
-    # raise an exception. This ensures that we do with a fairly simple view.
-    response = self.client.post(
+    # raise an exception. This ensures that we do with a fairly simple vie.
+    client = Client()
+    response = client.post(
         reverse('amo.client_info'),
         content_type='multipart/form-data',
         data='something wicked',
@@ -584,8 +585,6 @@ def test_multipart_error(self):
 
 
 def test_client_info():
-    from django.test.client import Client
-
     response = Client().get(reverse('amo.client_info'))
     assert response.status_code == 403
 
