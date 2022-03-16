@@ -2,7 +2,6 @@ from django import shortcuts
 from django.conf import settings
 from django.urls import resolve, reverse, set_script_prefix
 from django.test.client import Client, RequestFactory
-from django.test.utils import override_settings
 
 import pytest
 
