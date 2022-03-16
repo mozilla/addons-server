@@ -34,8 +34,9 @@ services:
     command: supervisord -n -c /code/docker/supervisor.conf
 
   nginx:
-    image: addons/addons-nginx
+    image: nginx
     volumes:
+      - ./docker/nginx/addons.conf:/etc/nginx/conf.d/addons.conf
       - ./static:/srv/static
       - ./site-static:/srv/site-static
       - ./storage/shared_storage/uploads:/srv/user-media

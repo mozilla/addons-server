@@ -19,7 +19,7 @@ urlpatterns = [
     # .* at the end to match filenames.
     # /file/:id/some-file.xpi
     re_path(
-        r'^file/(?P<file_id>\d+)(?:/.*)?',
+        r'^file/(?P<file_id>\d+)(?:/(?P<filename>.*))?',
         views.SignedFile.as_view(),
         name='signing.file',
     ),

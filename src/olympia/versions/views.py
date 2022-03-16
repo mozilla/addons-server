@@ -5,7 +5,7 @@ from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
-from django.utils.cache import patch_vary_headers
+from django.utils.cache import patch_cache_control, patch_vary_headers
 
 import olympia.core.logger
 
@@ -13,7 +13,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonRegionalRestrictions
-from olympia.amo.utils import HttpResponseXSendFile, urlparams
+from olympia.amo.utils import HttpResponseXSendFile
 from olympia.files.models import File
 from olympia.versions.models import Version
 
@@ -57,13 +57,10 @@ def update_info_redirect(request, version_id):
     )
 
 
-# Should accept junk at the end for filename goodness.
 @non_atomic_requests
-def download_file(request, file_id, type=None, file_=None, addon=None):
+def download_file(request, file_id, download_type=None, **kwargs):
     """
-    Download given file.
-
-    `addon` and `file_` parameters can be passed to avoid the database query.
+    Download the file identified by `file_id` parameter.
 
     If the file is disabled or belongs to an unlisted version, requires an
     add-on developer or appropriate reviewer for the channel. If the file is
@@ -78,18 +75,18 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
             else acl.check_unlisted_addons_viewer_or_reviewer(request)
         )
 
-    if not file_:
-        file_ = get_object_or_404(File.objects, pk=file_id)
-    if not addon:
-        # Include deleted add-ons in the queryset, we'll check for that below.
-        addon = get_object_or_404(Addon.unfiltered, pk=file_.version.addon_id)
+    file_ = get_object_or_404(File.objects, pk=file_id)
+    # Include deleted add-ons in the queryset, we'll check for that below.
+    addon = get_object_or_404(
+        Addon.unfiltered.all().no_transforms(), pk=file_.version.addon_id
+    )
     version = file_.version
     channel = version.channel
 
     if version.deleted or addon.is_deleted:
         # Only the appropriate reviewer can see deleted things.
-        use_cdn = False
         has_permission = is_appropriate_reviewer(addon, channel)
+        apply_georestrictions = False
     elif (
         addon.is_disabled
         or file_.status == amo.STATUS_DISABLED
@@ -97,7 +94,6 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
     ):
         # Only the appropriate reviewer or developers of the add-on can see
         # disabled or unlisted things.
-        use_cdn = False
         has_permission = is_appropriate_reviewer(
             addon, channel
         ) or acl.check_addon_ownership(
@@ -107,11 +103,19 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
             allow_mozilla_disabled_addon=True,
             allow_site_permission=True,
         )
+        apply_georestrictions = False
     else:
-        # Everyone can see public things, and we can use the CDN in that case.
-        use_cdn = True
+        # Public case: we're either directly downloading the file or
+        # redirecting, but in any case we have permission in the general sense,
+        # though georestrictions are in effect.
         has_permission = True
+        apply_georestrictions = True
 
+    region_code = request.META.get('HTTP_X_COUNTRY_CODE', None)
+    # Whether to set Content-Disposition: attachment header or not, to force
+    # the file to be downloaded rather than installed (used by admin/reviewer
+    # tools).
+    attachment = download_type == 'attachment'
     if not has_permission:
         log.debug(
             'download file {file_id}: addon/version/file not public and '
@@ -119,36 +123,19 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
                 file_id=file_id, user_id=request.user.pk
             )
         )
-        raise http.Http404()  # Not owner or admin.
-
-    attachment = bool(type == 'attachment')
-    if use_cdn:
-        # When serving the file for the general public through the CDN, we need
-        # to obey regional restrictions
-        region_code = request.META.get('HTTP_X_COUNTRY_CODE', None)
-        if (
-            region_code
-            and AddonRegionalRestrictions.objects.filter(
-                addon=addon, excluded_regions__contains=region_code.upper()
-            ).exists()
-        ):
-            response = http.HttpResponse(status=451)
-            url = 'https://www.mozilla.org/about/policy/transparency/'
-            response['Link'] = f'<{url}>; rel="blocked-by"'
-        else:
-            # When using the CDN URL, we do a redirect, so we can't set
-            # Content-Disposition: attachment for attachments. To work around
-            # this, if attachment=True, get_file_cdn_url() changes the path to
-            # something we recognize in the nginx config.
-            loc = urlparams(
-                file_.get_file_cdn_url(attachment=attachment), filehash=file_.hash
-            )
-            response = http.HttpResponseRedirect(loc)
-            response['X-Target-Digest'] = file_.hash
-        # Always add a Vary header to deal with caching in different regions.
-        patch_vary_headers(response, ['X-Country-Code'])
+        response = http.HttpResponseNotFound()
+    elif (
+        apply_georestrictions
+        and region_code
+        and AddonRegionalRestrictions.objects.filter(
+            addon=addon, excluded_regions__contains=region_code.upper()
+        ).exists()
+    ):
+        response = http.HttpResponse(status=451)
+        url = 'https://www.mozilla.org/about/policy/transparency/'
+        response['Link'] = f'<{url}>; rel="blocked-by"'
     else:
-        # Here we're returning a X-Accel-Redirect, we can set
+        # We're returning a X-Accel-Redirect, we can set
         # Content-Disposition: attachment ourselves in HttpResponseXSendFile:
         # nginx won't override it if present.
         response = HttpResponseXSendFile(
@@ -157,27 +144,29 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
             content_type='application/x-xpinstall',
             attachment=attachment,
         )
+    # Always add a few headers to the response (even errors).
+    patch_cache_control(response, max_age=60 * 60 * 24)
+    patch_vary_headers(response, ['X-Country-Code'])
     response['Access-Control-Allow-Origin'] = '*'
     return response
 
 
-def guard():
-    return Addon.objects.filter(_current_version__isnull=False)
-
-
-@addon_view_factory(guard)
+@addon_view_factory(Addon.objects.public)
 @non_atomic_requests
-def download_latest(request, addon, type='xpi', platform=None):
+def download_latest(request, addon, download_type=None, **kwargs):
     """
-    Download file from 'current' (latest public listed) version for an add-on.
+    Redirect to the URL to download the file from 'current'
+    (latest public listed) version of an add-on.
 
-    Requires same permissions as download_file() does for this file.
+    Returns a 404 for add-ons that are deleted/disabled/non-public/without an
+    approved listed version.
     """
-    try:
-        file_ = addon.current_version.file
-    except IndexError:
-        raise http.Http404()
-    return download_file(request, file_.id, type=type, file_=file_, addon=addon)
+    file_ = addon.current_version.file
+    attachment = download_type == 'attachment'
+    response = http.HttpResponseRedirect(file_.get_absolute_url(attachment=attachment))
+    patch_cache_control(response, max_age=60 * 60 * 1)
+    response['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 @non_atomic_requests

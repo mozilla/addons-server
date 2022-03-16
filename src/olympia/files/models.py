@@ -104,14 +104,10 @@ class File(OnChangeMixin, ModelBase):
         )
 
     def get_url_path(self, attachment=False):
-        return self._make_download_url('downloads.file', attachment=attachment)
-
-    def _make_download_url(self, view_name, attachment=False):
-        kwargs = {'file_id': self.pk}
+        kwargs = {'file_id': self.pk, 'filename': self.filename}
         if attachment:
-            kwargs['type'] = 'attachment'
-        url = os.path.join(reverse(view_name, kwargs=kwargs), self.filename)
-        return url
+            kwargs['download_type'] = 'attachment'
+        return reverse('downloads.file', kwargs=kwargs)
 
     @classmethod
     def from_upload(cls, upload, version, parsed_data=None):
@@ -225,13 +221,13 @@ class File(OnChangeMixin, ModelBase):
 
     def latest_xpi_url(self, attachment=False):
         addon = self.version.addon
-        kw = {'addon_id': addon.slug}
+        kw = {
+            'addon_id': addon.slug,
+            'filename': f'addon-{addon.pk}-latest{self.extension}',
+        }
         if attachment:
-            kw['type'] = 'attachment'
-        return os.path.join(
-            reverse('downloads.latest', kwargs=kw),
-            f'addon-{addon.pk}-latest{self.extension}',
-        )
+            kw['download_type'] = 'attachment'
+        return reverse('downloads.latest', kwargs=kw)
 
     @property
     def file_path(self):
