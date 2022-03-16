@@ -21,7 +21,8 @@ download_patterns = [
     re_path(
         (
             r'^file/(?P<file_id>\d+)/'
-            r'(?:type:(?P<download_type>\w+)/)?(?:(?P<filename>[\w+.-]*))?$'
+            r'(?:type:(?P<download_type>\w+)/)?'
+            r'(?:(?P<filename>[\w+.-]*))?$'
         ),
         views.download_file,
         name='downloads.file',
