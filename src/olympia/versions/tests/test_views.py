@@ -76,6 +76,7 @@ class TestUpdateInfo(UpdateInfoMixin, TestCase):
         self.version.save()
         response = self.client.get(self.url)
         assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=3600'
         assert response['Content-Type'] == 'application/xhtml+xml'
 
         # pyquery is annoying to use with XML and namespaces. Use the HTML
@@ -146,6 +147,7 @@ class TestUpdateInfoLegacyRedirect(UpdateInfoMixin, TestCase):
         )
 
         response = self.client.get(self.url)
+        assert response['Cache-Control'] == 'max-age=3600'
         self.assert3xx(response, expected_redirect_url, status_code=301)
 
         # It should also work without the locale+app prefix, but that does
