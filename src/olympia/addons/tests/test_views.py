@@ -1220,6 +1220,51 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         addon = Addon.objects.get()
         assert [tag.tag_text for tag in addon.tags.all()] == ['music', 'zoom']
 
+    def test_set_contributions_url(self):
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'contributions_url': 'https://foo.baa/xxx'},
+        )
+        assert response.status_code == 400, response.content
+        contribution_domains = ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
+        assert response.data == {
+            'contributions_url': [
+                f'URL domain must be one of [{contribution_domains}], or a subdomain.'
+            ]
+        }
+
+        valid_url = 'https://flattr.com/xxx'
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'contributions_url': valid_url},
+        )
+        assert response.status_code == 201, response.content
+        assert response.data['contributions_url']['url'].startswith(valid_url)
+        addon = Addon.objects.get()
+        assert addon.contributions == valid_url
+
+    def test_set_contributions_url_github(self):
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'contributions_url': 'https://github.com/xxx'},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'contributions_url': [
+                'URL path for GitHub Sponsors must contain /sponsors/.'
+            ]
+        }
+
+        valid_url = 'https://github.com/sponsors/xxx'
+        response = self.client.post(
+            self.url,
+            data={**self.minimal_data, 'contributions_url': valid_url},
+        )
+        assert response.status_code == 201, response.content
+        assert response.data['contributions_url']['url'].startswith(valid_url)
+        addon = Addon.objects.get()
+        assert addon.contributions == valid_url
+
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
     client_class = APITestClientJWT
@@ -1564,6 +1609,51 @@ class TestAddonViewSetUpdate(TestCase):
         assert response.data['tags'] == ['zoom', 'music']
         self.addon.reload()
         assert [tag.tag_text for tag in self.addon.tags.all()] == ['music', 'zoom']
+
+    def test_set_contributions_url(self):
+        response = self.client.patch(
+            self.url,
+            data={'contributions_url': 'https://foo.baa/xxx'},
+        )
+        assert response.status_code == 400, response.content
+        contribution_domains = ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
+        assert response.data == {
+            'contributions_url': [
+                f'URL domain must be one of [{contribution_domains}], or a subdomain.'
+            ]
+        }
+
+        valid_url = 'https://flattr.com/xxx'
+        response = self.client.patch(
+            self.url,
+            data={'contributions_url': valid_url},
+        )
+        assert response.status_code == 200, response.content
+        assert response.data['contributions_url']['url'].startswith(valid_url)
+        addon = Addon.objects.get()
+        assert addon.contributions == valid_url
+
+    def test_set_contributions_url_github(self):
+        response = self.client.patch(
+            self.url,
+            data={'contributions_url': 'https://github.com/xxx'},
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'contributions_url': [
+                'URL path for GitHub Sponsors must contain /sponsors/.',
+            ]
+        }
+
+        valid_url = 'https://github.com/sponsors/xxx'
+        response = self.client.patch(
+            self.url,
+            data={'contributions_url': valid_url},
+        )
+        assert response.status_code == 200, response.content
+        assert response.data['contributions_url']['url'].startswith(valid_url)
+        addon = Addon.objects.get()
+        assert addon.contributions == valid_url
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):

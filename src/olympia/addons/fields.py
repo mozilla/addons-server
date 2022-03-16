@@ -91,6 +91,25 @@ class ContributionSerializerField(OutgoingURLField):
             )
         )
 
+    def to_internal_value(self, data):
+        data = super().to_internal_value(data)
+        parsed_url = urlsplit(data)
+
+        if not parsed_url.hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
+            raise exceptions.ValidationError(
+                'URL domain must be one of '
+                f'[{", ".join(amo.VALID_CONTRIBUTION_DOMAINS)}], or a subdomain.'
+            )
+        elif parsed_url.hostname == 'github.com' and not parsed_url.path.startswith(
+            '/sponsors/'
+        ):
+            # Issue 15497, validate path for GitHub Sponsors
+            raise exceptions.ValidationError(
+                'URL path for GitHub Sponsors must contain /sponsors/.'
+            )
+
+        return data
+
 
 class LicenseNameSerializerField(serializers.Field):
     """Field to handle license name translations.
