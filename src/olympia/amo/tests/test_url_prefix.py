@@ -155,33 +155,6 @@ class MiddlewareTest(TestCase):
         )
         check('/en-US/firefox?lang=es-PE', '/es/firefox/')
 
-    def test_ignore_multipart_errors(self):
-        # This results in a malformed request - MultiPartParserError: Invalid
-        # boundary in multipart: None but we should ignore that as it's too
-        # early.
-        self.request = self.request_factory.post(
-            '/', content_type='multipart/form-data', data='something wicked'
-        )
-        response = self.middleware.process_request(self.request)
-        assert response['Location'] == '/en-US/firefox/'
-
-    @override_settings(ENV='dev')
-    def test_ignore_multipart_errors_actual_view(self):
-        # Like test_ignore_multipart_errors() but with an actual view that uses
-        # request.POST. It should result in a 400 thrown by Django when the
-        # view accesses the post data.
-        response = self.client.post(
-            reverse('amo.client_info'),
-            content_type='multipart/form-data',
-            data='something wicked',
-        )
-        assert response.status_code == 400
-        assert response.content == (
-            b'\n<!doctype html>\n<html lang="en">\n<head>\n  '
-            b'<title>Bad Request (400)</title>\n</head>\n<body>\n  '
-            b'<h1>Bad Request (400)</h1><p></p>\n</body>\n</html>\n'
-        )
-
 
 class TestPrefixer(TestCase):
     def tearDown(self):

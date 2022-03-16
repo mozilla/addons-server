@@ -566,6 +566,23 @@ class TestSiteStatusAPI(TestCase):
         }
 
 
+@override_settings(ENV='dev')
+def test_multipart_error(self):
+    # We should throw a 400 because of the malformed multipart request and not
+    # raise an exception. This ensures that we do with a fairly simple view.
+    response = self.client.post(
+        reverse('amo.client_info'),
+        content_type='multipart/form-data',
+        data='something wicked',
+    )
+    assert response.status_code == 400
+    assert response.content == (
+        b'\n<!doctype html>\n<html lang="en">\n<head>\n  '
+        b'<title>Bad Request (400)</title>\n</head>\n<body>\n  '
+        b'<h1>Bad Request (400)</h1><p></p>\n</body>\n</html>\n'
+    )
+
+
 def test_client_info():
     from django.test.client import Client
 
