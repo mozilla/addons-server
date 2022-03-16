@@ -37,6 +37,7 @@ class Update:
         self.data['row'] = {}
         self.version_int = 0
         self.compat_mode = compat_mode
+        self.app = applications.APP_GUIDS.get(data.get('appID'))
 
     def is_valid(self):
         # If you accessing this from unit tests, then before calling
@@ -52,11 +53,10 @@ class Update:
             if field not in data:
                 return False
 
-        app = applications.APP_GUIDS.get(data['appID'])
-        if not app:
+        if not self.app:
             return False
 
-        data['app_id'] = app.id
+        data['app_id'] = self.app.id
 
         sql = """SELECT `id`, `status`, `guid` FROM `addons`
                  WHERE `guid` = %(guid)s AND
@@ -90,6 +90,7 @@ class Update:
             SELECT
                 `addons`.`id` AS `addon_id`,
                 `addons`.`guid` AS `guid`,
+                `addons`.`slug` AS `slug`,
                 `appmin`.`version` AS `min`,
                 `appmax`.`version` AS `max`,
                 `files`.`hash`,
@@ -153,6 +154,7 @@ class Update:
                     [
                         'addon_id',
                         'guid',
+                        'slug',
                         'min',
                         'max',
                         'hash',
@@ -202,10 +204,11 @@ class Update:
         if data['hash']:
             update['update_hash'] = data['hash']
         if data['releasenotes']:
-            update['update_info_url'] = '{}{}{}/%APP_LOCALE%/'.format(
-                settings.SITE_URL,
-                '/versions/updateInfo/',
-                data['version_id'],
+            slug = data['slug']
+            version = data['version']
+            update['update_info_url'] = (
+                f'{settings.SITE_URL}/%APP_LOCALE%/'
+                f'{self.app.short}/addon/{slug}/versions/{version}/updateinfo/'
             )
         return {'addons': {self.data['guid']: {'updates': [update]}}}
 

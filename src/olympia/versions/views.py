@@ -30,12 +30,14 @@ def update_info(request, addon, version_num):
         .only_translations(),
         version=version_num,
     )
-    return TemplateResponse(
+    response = TemplateResponse(
         request,
         'versions/update_info.html',
         context={'version': version},
         content_type='application/xhtml+xml',
     )
+    patch_cache_control(response, max_age=60 * 60)
+    return response
 
 
 @non_atomic_requests
@@ -49,12 +51,14 @@ def update_info_redirect(request, version_id):
     )
     if not version.addon.is_public():
         raise http.Http404()
-    return redirect(
+    response = redirect(
         reverse(
             'addons.versions.update_info', args=(version.addon.slug, version.version)
         ),
         permanent=True,
     )
+    patch_cache_control(response, max_age=60 * 60)
+    return response
 
 
 @non_atomic_requests

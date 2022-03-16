@@ -485,7 +485,11 @@ class TestResponse(VersionCheckMixin, TestCase):
         content = self.get_update_instance(self.data).get_output()
         data = json.loads(content)
         guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
-        assert data['addons'][guid]['updates'][0]['update_info_url']
+        expected_url = (
+            'http://testserver/%APP_LOCALE%/firefox/'
+            'addon/a3615/versions/2.1.072/updateinfo/'
+        )
+        assert data['addons'][guid]['updates'][0]['update_info_url'] == expected_url
 
         version = Version.objects.get(pk=81551)
         version.update(release_notes=None)
@@ -493,6 +497,21 @@ class TestResponse(VersionCheckMixin, TestCase):
         content = self.get_update_instance(self.data).get_output()
         data = json.loads(content)
         assert 'update_info_url' not in data['addons'][guid]['updates'][0]
+
+    def test_release_notes_android(self):
+        # Quick & dirty way to make the add-on compatible with android and
+        # force the update request to be from Android as well.
+        AppVersion.objects.update(application=amo.ANDROID.id)
+        self.data['appID'] = amo.ANDROID.guid
+
+        content = self.get_update_instance(self.data).get_output()
+        data = json.loads(content)
+        guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
+        expected_url = (
+            'http://testserver/%APP_LOCALE%/android/'
+            'addon/a3615/versions/2.1.072/updateinfo/'
+        )
+        assert data['addons'][guid]['updates'][0]['update_info_url'] == expected_url
 
     def test_no_updates_at_all(self):
         self.addon_one.versions.all().delete()
