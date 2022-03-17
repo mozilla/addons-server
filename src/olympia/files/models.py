@@ -508,7 +508,7 @@ class FileUpload(ModelBase):
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
             ext = '.xpi'
         self.path = os.path.join(
-            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
+            settings.MEDIA_ROOT, 'fileuploads', f'{uuid.uuid4().hex}{ext}'
         )
 
         hash_obj = None

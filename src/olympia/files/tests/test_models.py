@@ -738,7 +738,9 @@ class TestFileUpload(UploadMixin, TestCase):
         assert upload.name == f'{force_str(upload.uuid.hex)}_filenamé.xpi'
         # Actual path on filesystem is different, fully random
         assert upload.name not in upload.path
-        assert re.match(r'.*/temp/[a-f0-9]{32}\.xpi$', upload.path)
+        assert re.match(
+            r'%s/fileuploads/[a-f0-9]{32}\.xpi$' % settings.MEDIA_ROOT, upload.path
+        )
 
     def test_from_post_hash(self):
         hashdigest = hashlib.sha256(self.data).hexdigest()
