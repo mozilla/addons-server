@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-03-05 12:59+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2022-03-18 20:07+0000\n"
+"Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -3650,7 +3650,7 @@ msgstr "Jednoduchý způsob, jak upravit velikost textu libovolné stránky – 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr "Nenechte se sledovat a místo toho se dozvíte něco o těch, kdo vás sledovat pokouší."
+msgstr "Nenechte se sledovat a místo toho zjistěte něco o těch, kdo se vás sledovat pokouší."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
