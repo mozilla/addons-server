@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-03-18 16:40+0000\n"
+"PO-Revision-Date: 2022-03-18 16:44+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4432,9 +4432,10 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "დაიბრუნეთ ის დრო — როცა ძიების სასურველ შედეგებს, რეკლამები არ ფარავდა (საძიებოები Google და Bing თავსებადია)."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr "შეწყვიტეთ საიტებისთვის თქვენი ელფოსტის მისამართის გამჟღავნება. Firefox Relay იცავს თქვენს პირადულობასა და გარიდებთ უსარგებლო წერილებს."
+msgstr ""
+"შეწყვიტეთ საიტებისთვის თქვენი ელფოსტის გამხელა. Firefox Relay დაიცავს თქვენს პირადულობასა და აგარიდებთ უსარგებლო წერილებს. ფასიან მომსახურებას მეტი უპირატესობა ახლავს, როგორიცაა მითითებული სარეკლამო"
+" წერილების აკრძალვა."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4442,7 +4443,7 @@ msgstr "მყისიერად თარგმნეთ ნებისმ�
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "ნება მიეცით Firefox-ს, ცვალოს ფერები დღის მონაკვეთის მიხედვით."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
