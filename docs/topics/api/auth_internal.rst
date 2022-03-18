@@ -37,7 +37,6 @@ HTTP Authorization header prefixed with ``Session``, like this::
     Authorization: Session 1234567890
 
 
-========================
 FxA Notification Webhook
 ========================
 
