@@ -1151,15 +1151,14 @@ class Addon(OnChangeMixin, ModelBase):
             jinja_helpers.user_media_path('addon_icons'), '%s' % (self.id // 1000)
         )
 
-    def get_icon_url(self, size, use_default=True):
+    def get_icon_url(self, size):
         """
         Returns the addon's icon url according to icon_type.
 
         If it's a theme and there is no icon set, it will return the default
         theme icon.
 
-        If it's something else, it will return the default add-on icon, unless
-        use_default is False, in which case it will return None.
+        If it's something else, it will return the default add-on icon.
         """
         # Get the closest allowed size without going over
         if size not in amo.ADDON_ICON_SIZES and size >= amo.ADDON_ICON_SIZES[0]:
@@ -1169,7 +1168,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         # Figure out what to return for an image URL
         if not self.icon_type:
-            return self.get_default_icon_url(size) if use_default else None
+            return self.get_default_icon_url(size)
         else:
             # [1] is the whole ID, [2] is the directory
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))

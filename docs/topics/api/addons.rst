@@ -344,6 +344,7 @@ This endpoint allows an add-on's AMO metadata to be edited.
     :<json object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`). This field can contain some HTML tags.
     :<json object|null developer_comments: Additional information about the add-on. (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null homepage: The add-on homepage (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
+    :<json null icon: To clear the icon, i.e. revert to the default add-on icon, send ``null``.  See :ref:`addon icon <addon-icon>` to upload a new icon.
     :<json boolean is_disabled: Whether the add-on is disabled or not.  Note: if the add-on status is :ref:`disabled <addon-detail-status>` the response will always be ``disabled=true`` regardless.
     :<json boolean is_experimental: Whether the add-on should be marked as experimental or not.
     :<json object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
@@ -352,6 +353,30 @@ This endpoint allows an add-on's AMO metadata to be edited.
     :<json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
     :<json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :<json array tags: List containing the tag names to set on the add-on - see :ref:`available tags <tag-list>`.
+
+
+~~~~~~~~~~
+Addon Icon
+~~~~~~~~~~
+
+.. _addon-icon:
+
+A single add-on icon used on AMO can be uploaded to ``icon``,
+where it will be resized as 32, 64, and 128 pixels wide icons as ``icons``.
+The image must be square, in either JPEG or PNG format, and we recommend 128x128.
+
+The upload must be sent as multipart form-data rather then JSON.
+If desired, some other properties can be set/updated at the same time as ``icon``, but fields that contain complex data structure (list or object) can not, so seperate API calls are needed.
+
+Note: as form-data can not include objects, and creating an add-on requires the version to be specified as an object, it's not possible to set ``icons`` as during an :ref:`Add-on create <addon-create>`.
+
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/
+
+    .. _addon-icon-request-edit:
+
+    :form icon: The icon file being uploaded.
+    :reqheader Content-Type: multipart/form-data
 
 
 -------------

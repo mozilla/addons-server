@@ -258,7 +258,7 @@ class AddonFormMedia(AddonFormBase):
             destination = os.path.join(dirname, '%s' % addon.id)
 
             remove_icons(destination)
-            tasks.resize_icon.delay(
+            addons_tasks.resize_icon.delay(
                 upload_path,
                 destination,
                 amo.ADDON_ICON_SIZES,

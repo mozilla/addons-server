@@ -1,3 +1,4 @@
+import os
 import re
 
 from django.urls import reverse
@@ -12,7 +13,7 @@ from olympia.accounts.serializers import (
 )
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import slug_validator
+from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
 from olympia.api.fields import (
     EmailTranslationField,
     LazyChoiceField,
@@ -48,12 +49,14 @@ from .fields import (
     CategoriesSerializerField,
     ContributionSerializerField,
     ESLicenseNameSerializerField,
+    IconField,
     LicenseNameSerializerField,
     LicenseSlugSerializerField,
     SourceFileField,
     VersionCompatabilityField,
 )
 from .models import Addon, AddonReviewerFlags, DeniedSlug, Preview, ReplacementAddon
+from .tasks import resize_icon
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -684,6 +687,7 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = OutgoingURLTranslationField(required=False)
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
+    icon = IconField(required=False, allow_null=True, write_only=True)
     is_disabled = SplitField(
         serializers.BooleanField(source='disabled_by_user', required=False),
         serializers.BooleanField(),
@@ -735,6 +739,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'homepage',
             'icon_url',
             'icons',
+            'icon',
             'is_disabled',
             'is_experimental',
             'is_featured',
@@ -765,6 +770,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'description',
             'developer_comments',
             'homepage',
+            'icon',
             'is_disabled',
             'is_experimental',
             'name',
@@ -898,6 +904,30 @@ class AddonSerializer(serializers.ModelSerializer):
                 )
         return data
 
+    def _save_icon(self, uploaded_icon):
+        # This is only used during update. For create it's impossible to send the icon
+        # as formdata while also sending json for `version`.
+        destination = os.path.join(self.instance.get_icon_dir(), str(self.instance.id))
+        if uploaded_icon:
+            original = f'{destination}-original.png'
+
+            storage = SafeStorage(user_media='addon_icons')
+            with storage.open(original, 'wb') as original_file:
+                for chunk in uploaded_icon.chunks():
+                    original_file.write(chunk)
+
+            self.instance.update(icon_type=uploaded_icon.content_type)
+            # note: we're calling the task without .delay() to resize immediately
+            resize_icon(
+                original,
+                destination,
+                amo.ADDON_ICON_SIZES,
+                set_modified_on=self.instance.serializable_reference(),
+            )
+        else:
+            remove_icons(destination)
+            self.instance.update(icon_type='')
+
     def create(self, validated_data):
         upload = validated_data.get('version').get('upload')
 
@@ -925,6 +955,8 @@ class AddonSerializer(serializers.ModelSerializer):
         return addon
 
     def update(self, instance, validated_data):
+        if 'icon' in validated_data:
+            self._save_icon(validated_data.pop('icon'))
         instance = super().update(instance, validated_data)
         if 'all_categories' in validated_data:
             del instance.all_categories  # super.update will have set it.
