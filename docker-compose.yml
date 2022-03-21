@@ -78,7 +78,7 @@ services:
     mem_limit: 2g
 
   redis:
-    image: redis:2.8
+    image: redis:6.2
 
   rabbitmq:
     image: rabbitmq:3.8
