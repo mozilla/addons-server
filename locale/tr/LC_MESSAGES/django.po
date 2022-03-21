@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-03-15 15:27+0000\n"
+"PO-Revision-Date: 2022-03-21 17:07+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1096,7 +1096,7 @@ msgstr ""
 "alıyor."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Arama yapmaya yönelik Firefox uzantılarını indirin. Bu kategoride metinlerde arama yapmayı, IP adresi/alan adı sorgulamayı ve daha fazlasını sunan uzantılar bulunur."
 
 msgid "Shopping"
 msgstr "Alışveriş"
@@ -1120,13 +1120,13 @@ msgid "Web Development"
 msgstr "Web Geliştirme"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Web geliştirme araçlarını içeren Firefox uzantılarını indirin. Bu kategoride GitHub, user agent değiştirme, çerez yönetimi ve daha fazlasını içeren uzantılar bulacaksınız."
 
 msgid "Other"
 msgstr "Diğer"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Tahmin edilemez ve yaratıcı yönleriyle sizi şaşırtacak, sıradışı görevlerde size fayda sağlayabilecek Firefox uzantılarını indirin."
 
 # 80%
 # 100%
@@ -1230,13 +1230,13 @@ msgid "Download Firefox themes with movies and television. This category include
 msgstr "Filmler ve televizyonla ilgili Firefox temalarını indirin. Bu kategori Uchiha Madara gibi animeler, Matrix gibi filmler, diziler (Game of Thrones) ve daha fazlasını içerir."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Firefox konulu temaları indirin. Bu kategoride, tilkili genel temaları da içerecek şekilde, çeşitli renk ve biçimlerde Firefox logolarını bulacaksınız."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Japon tarayıcı maskotunu içeren Firefox temalarını indirin. Bu kategoride, farklı manzaralarda değişik pozlar veren sevimli figür Foxkeh'i bulacaksınız."
 
 msgid "Holiday"
 msgstr "Tatil"
@@ -1270,13 +1270,15 @@ msgid "Seasonal"
 msgstr "Dönemsel"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Dört mevsimden ilham alan Firefox temalarını indirin: sonbahar, kış, ilkbahar ve yaz. Güz yaprakları, karlı dağlar, güneşli yaz günleri ve bahar çiçekleri."
 
 msgid "Solid"
 msgstr "Katı"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
+"Tarayıcınızı düz ve geçişli renkler ile kişiselleştirmenize olanak tanıyan Firefox temalarını indirin. Bu kategoride, koyu kırmızılar, pastel tonlar ve yumuşak griler gibi birçok güzel rengi "
+"bulabilirsiniz."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Spordan ilham alan Firefox temalarını indirin. Bu kategoride, ülke bayrakları, spor takımları, futbol, hokey ve çok daha fazlasını bulacaksınız."
@@ -1330,10 +1332,10 @@ msgid "GNU General Public License v3.0"
 msgstr "GNU Genel Kamu Lisansı v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "GNU Kitaplığı Genel Kamu Lisansı v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "GNU Kitaplığı Genel Kamu Lisansı v3.0"
 
 msgid "The MIT License"
 msgstr "MIT Lisansı"
