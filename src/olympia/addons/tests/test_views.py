@@ -709,8 +709,56 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert data == {'detail': 'show_grouped_ratings parameter should be a boolean'}
 
 
-class TestAddonViewSetCreate(UploadMixin, TestCase):
+class AddonViewSetCreateUpdateMixin:
+    SUCCESS_STATUS_CODE = 200
+
+    def request(self, **kwargs):
+        raise NotImplementedError
+
+    def test_set_contributions_url(self):
+        response = self.request(contributions_url='https://foo.baa/xxx')
+        assert response.status_code == 400, response.content
+        domains = ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
+        assert response.data == {
+            'contributions_url': [f'URL domain must be one of [{domains}].']
+        }
+
+        response = self.request(contributions_url='http://sub.flattr.com/xxx')
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'contributions_url': [
+                f'URL domain must be one of [{domains}].',
+                'URLs must start with https://.',
+            ]
+        }
+
+        valid_url = 'https://flattr.com/xxx'
+        response = self.request(contributions_url=valid_url)
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        assert response.data['contributions_url']['url'].startswith(valid_url)
+        addon = Addon.objects.get()
+        assert addon.contributions == valid_url
+
+    def test_set_contributions_url_github(self):
+        response = self.request(contributions_url='https://github.com/xxx')
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'contributions_url': [
+                'URL path for GitHub Sponsors must contain /sponsors/.',
+            ]
+        }
+
+        valid_url = 'https://github.com/sponsors/xxx'
+        response = self.request(contributions_url=valid_url)
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        assert response.data['contributions_url']['url'].startswith(valid_url)
+        addon = Addon.objects.get()
+        assert addon.contributions == valid_url
+
+
+class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
+    SUCCESS_STATUS_CODE = 201
 
     def setUp(self):
         super().setUp()
@@ -726,6 +774,9 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         self.license = License.objects.create(builtin=1)
         self.minimal_data = {'version': {'upload': self.upload.uuid}}
         self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
+
+    def request(self, **kwargs):
+        return self.client.post(self.url, data={**self.minimal_data, **kwargs})
 
     def test_basic_unlisted(self):
         response = self.client.post(
@@ -1220,58 +1271,14 @@ class TestAddonViewSetCreate(UploadMixin, TestCase):
         addon = Addon.objects.get()
         assert [tag.tag_text for tag in addon.tags.all()] == ['music', 'zoom']
 
-    def test_set_contributions_url(self):
-        response = self.client.post(
-            self.url,
-            data={**self.minimal_data, 'contributions_url': 'https://foo.baa/xxx'},
-        )
-        assert response.status_code == 400, response.content
-        contribution_domains = ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
-        assert response.data == {
-            'contributions_url': [
-                f'URL domain must be one of [{contribution_domains}], or a subdomain.'
-            ]
-        }
-
-        valid_url = 'https://flattr.com/xxx'
-        response = self.client.post(
-            self.url,
-            data={**self.minimal_data, 'contributions_url': valid_url},
-        )
-        assert response.status_code == 201, response.content
-        assert response.data['contributions_url']['url'].startswith(valid_url)
-        addon = Addon.objects.get()
-        assert addon.contributions == valid_url
-
-    def test_set_contributions_url_github(self):
-        response = self.client.post(
-            self.url,
-            data={**self.minimal_data, 'contributions_url': 'https://github.com/xxx'},
-        )
-        assert response.status_code == 400, response.content
-        assert response.data == {
-            'contributions_url': [
-                'URL path for GitHub Sponsors must contain /sponsors/.'
-            ]
-        }
-
-        valid_url = 'https://github.com/sponsors/xxx'
-        response = self.client.post(
-            self.url,
-            data={**self.minimal_data, 'contributions_url': valid_url},
-        )
-        assert response.status_code == 201, response.content
-        assert response.data['contributions_url']['url'].startswith(valid_url)
-        addon = Addon.objects.get()
-        assert addon.contributions == valid_url
-
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
     client_class = APITestClientJWT
 
 
-class TestAddonViewSetUpdate(TestCase):
+class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
+    SUCCESS_STATUS_CODE = 200
 
     def setUp(self):
         super().setUp()
@@ -1281,6 +1288,9 @@ class TestAddonViewSetUpdate(TestCase):
             'addon-detail', kwargs={'pk': self.addon.pk}, api_version='v5'
         )
         self.client.login_api(self.user)
+
+    def request(self, **kwargs):
+        return self.client.patch(self.url, data={**kwargs})
 
     def test_basic(self):
         response = self.client.patch(
@@ -1609,51 +1619,6 @@ class TestAddonViewSetUpdate(TestCase):
         assert response.data['tags'] == ['zoom', 'music']
         self.addon.reload()
         assert [tag.tag_text for tag in self.addon.tags.all()] == ['music', 'zoom']
-
-    def test_set_contributions_url(self):
-        response = self.client.patch(
-            self.url,
-            data={'contributions_url': 'https://foo.baa/xxx'},
-        )
-        assert response.status_code == 400, response.content
-        contribution_domains = ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
-        assert response.data == {
-            'contributions_url': [
-                f'URL domain must be one of [{contribution_domains}], or a subdomain.'
-            ]
-        }
-
-        valid_url = 'https://flattr.com/xxx'
-        response = self.client.patch(
-            self.url,
-            data={'contributions_url': valid_url},
-        )
-        assert response.status_code == 200, response.content
-        assert response.data['contributions_url']['url'].startswith(valid_url)
-        addon = Addon.objects.get()
-        assert addon.contributions == valid_url
-
-    def test_set_contributions_url_github(self):
-        response = self.client.patch(
-            self.url,
-            data={'contributions_url': 'https://github.com/xxx'},
-        )
-        assert response.status_code == 400, response.content
-        assert response.data == {
-            'contributions_url': [
-                'URL path for GitHub Sponsors must contain /sponsors/.',
-            ]
-        }
-
-        valid_url = 'https://github.com/sponsors/xxx'
-        response = self.client.patch(
-            self.url,
-            data={'contributions_url': valid_url},
-        )
-        assert response.status_code == 200, response.content
-        assert response.data['contributions_url']['url'].startswith(valid_url)
-        addon = Addon.objects.get()
-        assert addon.contributions == valid_url
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):

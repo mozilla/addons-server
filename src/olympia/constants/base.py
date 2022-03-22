@@ -212,16 +212,16 @@ CONTRIBUTE_UTM_PARAMS = {
     'utm_source': 'addons.mozilla.org',
 }
 VALID_CONTRIBUTION_DOMAINS = (
-    'buymeacoffee.com',
+    'www.buymeacoffee.com',
     'donate.mozilla.org',
     'flattr.com',
     'github.com',
     'ko-fi.com',
     'liberapay.com',
-    'micropayment.de',
+    'www.micropayment.de',
     'opencollective.com',
-    'patreon.com',
-    'paypal.com',
+    'www.patreon.com',
+    'www.paypal.com',
     'paypal.me',
 )
 

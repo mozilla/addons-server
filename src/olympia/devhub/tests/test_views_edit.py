@@ -1288,14 +1288,14 @@ class ContributionsTestsMixin:
         self.assertFormError(response, 'form', 'contributions', 'Enter a valid URL.')
 
     def test_contributions_url_not_valid_domain(self):
-        data = self.get_dict(default_locale='en-US', contributions='http://foo.baa/')
+        data = self.get_dict(default_locale='en-US', contributions='https://foo.baa/')
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
             response,
             'form',
             'contributions',
-            'URL domain must be one of [%s], or a subdomain.'
+            'URL domain must be one of [%s].'
             % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS),
         )
 
@@ -1313,26 +1313,40 @@ class ContributionsTestsMixin:
             'URL path for GitHub Sponsors must contain /sponsors/.',
         )
 
-    def test_contributions_url_valid_domain(self):
+    def test_contributions_url_not_valid_domain_sub(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(
+            default_locale='en-US', contributions='https://sub.paypal.me/random/?path'
+        )
+        response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
+        self.assertFormError(
+            response,
+            'form',
+            'contributions',
+            'URL domain must be one of [%s].'
+            % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS),
+        )
+
+    def test_contributions_url_not_https_domain(self):
         assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
         data = self.get_dict(default_locale='en-US', contributions='http://paypal.me/')
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
-        self.assertNoFormErrors(response)
-        assert self.addon.reload().contributions == 'http://paypal.me/'
-
-    def test_contributions_url_valid_domain_sub(self):
-        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
-        assert 'sub,paypal.me' not in amo.VALID_CONTRIBUTION_DOMAINS
-        data = self.get_dict(
-            default_locale='en-US', contributions='http://sub.paypal.me/random/?path'
+        self.assertFormError(
+            response,
+            'form',
+            'contributions',
+            'URLs must start with https://.',
         )
+
+    def test_contributions_url_valid_domain(self):
+        assert 'paypal.me' in amo.VALID_CONTRIBUTION_DOMAINS
+        data = self.get_dict(default_locale='en-US', contributions='https://paypal.me/')
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertNoFormErrors(response)
-        assert self.addon.reload().contributions == (
-            'http://sub.paypal.me/random/?path'
-        )
+        assert self.addon.reload().contributions == 'https://paypal.me/'
 
     def test_contributions_url_valid_github_sponsors_path(self):
         assert 'github.com' in amo.VALID_CONTRIBUTION_DOMAINS
