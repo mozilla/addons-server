@@ -25,7 +25,7 @@ BROKEN_URLS = (
 )
 
 
-def fix_contribitions_url(url):
+def fix_contributions_url(url):
     if url in BROKEN_URLS:
         return ''
     try:

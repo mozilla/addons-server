@@ -307,7 +307,7 @@ class AdditionalDetailsForm(AddonFormBase):
                     gettext('URL path for GitHub Sponsors must contain /sponsors/.')
                 )
             elif parsed_url.scheme != 'https':
-                raise forms.ValidationError(gettext('URLs must start https://.'))
+                raise forms.ValidationError(gettext('URLs must start with https://.'))
         return self.cleaned_data['contributions']
 
     def clean_tags(self):

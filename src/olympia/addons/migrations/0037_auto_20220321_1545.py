@@ -5,7 +5,7 @@ from django.db.models import Q
 
 from olympia.addons.tasks import index_addons
 
-from . import fix_contribitions_url
+from . import fix_contributions_url
 
 
 def contributions_url_to_from_www(apps, schema_editor):
@@ -14,14 +14,15 @@ def contributions_url_to_from_www(apps, schema_editor):
 
     for addon in Addon.unfiltered.exclude(Q(contributions__isnull=True, contributions='')):
         try:
-            new_url = fix_contribitions_url(addon.contributions)
+            new_url = fix_contributions_url(addon.contributions)
             if new_url != addon.contributions:
                 addon.contributions = new_url
                 addon.save()
                 to_index.append(addon.id)
         except ValueError:
             pass
-    index_addons.delay(to_index)
+    if to_index:
+        index_addons.delay(to_index)
 
 
 class Migration(migrations.Migration):

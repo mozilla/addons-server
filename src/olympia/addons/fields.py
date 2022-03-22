@@ -107,7 +107,7 @@ class ContributionSerializerField(OutgoingURLField):
             # Issue 15497, validate path for GitHub Sponsors
             errors.append('URL path for GitHub Sponsors must contain /sponsors/.')
         if parsed_url.scheme != 'https':
-            errors.append('URLs must start https://.')
+            errors.append('URLs must start with https://.')
 
         if errors:
             raise exceptions.ValidationError(errors)

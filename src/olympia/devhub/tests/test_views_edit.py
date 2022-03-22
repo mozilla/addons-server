@@ -1337,7 +1337,7 @@ class ContributionsTestsMixin:
             response,
             'form',
             'contributions',
-            'URLs must start https://.',
+            'URLs must start with https://.',
         )
 
     def test_contributions_url_valid_domain(self):

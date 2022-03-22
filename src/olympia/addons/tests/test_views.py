@@ -728,7 +728,7 @@ class AddonViewSetCreateUpdateMixin:
         assert response.data == {
             'contributions_url': [
                 f'URL domain must be one of [{domains}].',
-                'URLs must start https://.',
+                'URLs must start with https://.',
             ]
         }
 
