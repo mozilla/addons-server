@@ -1311,6 +1311,10 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             context={'request': request}
         ).to_representation(self.addon)
         assert self.addon.summary == 'summary update!'
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.EDIT_PROPERTIES.id
+        assert alog.details == ['summary']
 
     def test_not_authenticated(self):
         self.client.logout_api()
@@ -1469,12 +1473,12 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
     def test_set_extra_data(self):
         self.addon.description = 'Existing description'
         self.addon.save()
-        data = {
-            'name': {'en-US': 'new name'},
+        patch_data = {
             'developer_comments': {'en-US': 'comments'},
             'homepage': {'en-US': 'https://my.home.page/'},
             # 'description'  # don't update - should retain existing
             'is_experimental': True,
+            'name': {'en-US': 'new name'},
             'requires_payment': True,
             'slug': 'addoN-slug',
             'summary': {'en-US': 'new summary'},
@@ -1483,7 +1487,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
         response = self.client.patch(
             self.url,
-            data=data,
+            data=patch_data,
         )
         addon = Addon.objects.get()
 
@@ -1509,6 +1513,10 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.EDIT_PROPERTIES.id
+        assert alog.details == list(patch_data.keys())
 
     def test_set_disabled(self):
         response = self.client.patch(
@@ -1522,7 +1530,12 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert data['is_disabled'] is True
         assert addon.is_disabled is True
         assert addon.disabled_by_user is True  # sets the user property
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.USER_DISABLE.id
 
+    def test_set_enabled(self):
+        addon = Addon.objects.get()
         # Confirm that a STATUS_DISABLED can't be overriden
         addon.update(status=amo.STATUS_DISABLED)
         response = self.client.patch(
@@ -1534,6 +1547,24 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert response.data['detail'] == (
             'You do not have permission to perform this action.'
         )
+
+        # But a user disabled addon can be re-enabled
+        addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
+        assert addon.is_disabled is True
+        response = self.client.patch(
+            self.url,
+            data={'is_disabled': False},
+        )
+        addon.reload()
+
+        assert response.status_code == 200, response.content
+        data = response.data
+        assert data['is_disabled'] is False
+        assert addon.is_disabled is False
+        assert addon.disabled_by_user is False  # sets the user property
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.USER_ENABLE.id
 
     def test_write_site_permission(self):
         addon = Addon.objects.get()
@@ -1620,6 +1651,10 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert response.data['tags'] == ['zoom', 'music']
         self.addon.reload()
         assert [tag.tag_text for tag in self.addon.tags.all()] == ['music', 'zoom']
+        alogs = ActivityLog.objects.all()
+        assert len(alogs) == 2, [(a.action, a.details) for a in alogs]
+        assert alogs[0].action == amo.LOG.REMOVE_TAG.id
+        assert alogs[1].action == amo.LOG.ADD_TAG.id
 
     def _get_upload(self, filename):
         return SimpleUploadedFile(
@@ -1673,6 +1708,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert os.path.exists(
             os.path.join(self.addon.get_icon_dir(), f'{self.addon.id}-original.png')
         )
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.CHANGE_MEDIA.id
 
     @mock.patch('olympia.addons.serializers.remove_icons')
     def test_delete_icon(self, remove_icons_mock):
@@ -1691,6 +1729,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
         assert self.addon.icon_type == ''
         remove_icons_mock.assert_called()
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.CHANGE_MEDIA.id
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):
@@ -2579,7 +2620,10 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
         self.addon = addon_factory(
             users=(self.user,),
             guid='@webextension-guid',
-            version_kw={'license_kw': {'builtin': 1}},
+            version_kw={
+                'license_kw': {'builtin': 1},
+                'max_app_version': amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            },
         )
         self.version = self.addon.current_version
         self.url = reverse_ns(
@@ -2703,6 +2747,8 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
         assert self.version.version == '123.b4'
 
     def test_compatibility_list(self):
+        assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX]
+
         response = self.client.patch(
             self.url,
             data={
@@ -2731,12 +2777,22 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             'firefox': {'max': '*', 'min': '42.0'},
         }
         assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        alogs = ActivityLog.objects.all()
+        assert len(alogs) == 2
+        assert alogs[0].action == alogs[1].action == amo.LOG.MAX_APPVERSION_UPDATED.id
+        assert alogs[0].details['application'] == amo.ANDROID.id
+        assert alogs[1].details['application'] == amo.FIREFOX.id
 
     def test_compatibility_dict(self):
+        assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX]
+        assert self.version.compatible_apps[amo.FIREFOX].max == AppVersion.objects.get(
+            version=amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            application=amo.FIREFOX.id,
+        )
         response = self.client.patch(
             self.url,
             data={
-                'compatibility': {'firefox': {'min': '65.0'}, 'foo': {}},
+                'compatibility': {'firefox': {'max': '65.0'}, 'foo': {}},
             },
         )
         assert response.data == {'compatibility': ['Invalid app specified']}
@@ -2745,7 +2801,7 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             self.url,
             data={
                 # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
-                'compatibility': {'firefox': {'min': '65.0'}, 'android': {}},
+                'compatibility': {'firefox': {'max': '65.0'}, 'android': {}},
             },
         )
 
@@ -2758,10 +2814,15 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
         assert data['compatibility'] == {
             # android was specified but with an empty dict, so gets the defaults
             'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
-            # firefox max wasn't specified, so is the default max app version
-            'firefox': {'max': '*', 'min': '65.0'},
+            # firefox min wasn't specified, so is the default min app version
+            'firefox': {'max': '65.0', 'min': '42.0'},
         }
         assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        alogs = ActivityLog.objects.all()
+        assert len(alogs) == 2
+        assert alogs[0].action == alogs[1].action == amo.LOG.MAX_APPVERSION_UPDATED.id
+        assert alogs[0].details['application'] == amo.ANDROID.id
+        assert alogs[1].details['application'] == amo.FIREFOX.id
 
     def test_compatibility_invalid_versions(self):
         response = self.client.patch(
@@ -2819,6 +2880,9 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             'url': 'http://testserver' + self.version.license_url(),
             'slug': None,
         }
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.CHANGE_LICENSE.id
 
         # And then check we can update an existing custom license
         num_licenses = License.objects.count()
@@ -2842,6 +2906,10 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
         }
         assert new_license.name == 'neú name'
         assert License.objects.count() == num_licenses
+
+        alog2 = ActivityLog.objects.exclude(id=alog.id).get()
+        assert alog2.user == self.user
+        assert alog2.action == amo.LOG.CHANGE_LICENSE.id
 
     def test_custom_license_from_builtin(self):
         assert self.version.license.builtin != License.OTHER
@@ -2869,6 +2937,9 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             'url': 'http://testserver' + self.version.license_url(),
             'slug': None,
         }
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.CHANGE_LICENSE.id
 
         # and check we can change back to a builtin from a custom license
         response = self.client.patch(
@@ -2884,6 +2955,9 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
         assert data['license']['name']['en-US'] == str(builtin_license)
         assert data['license']['is_custom'] is False
         assert data['license']['url'] == builtin_license.url
+        alog2 = ActivityLog.objects.exclude(id=alog.id).get()
+        assert alog2.user == self.user
+        assert alog2.action == amo.LOG.CHANGE_LICENSE.id
 
     def test_no_custom_license_for_themes(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)

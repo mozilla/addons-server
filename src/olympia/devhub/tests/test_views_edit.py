@@ -886,7 +886,7 @@ class TestEditMedia(BaseTestEdit):
         self.test_edit_media_uploadedicon()
         log = ActivityLog.objects.all()
         assert log.count() == 1
-        assert log[0].action == amo.LOG.CHANGE_ICON.id
+        assert log[0].action == amo.LOG.CHANGE_MEDIA.id
 
     def test_edit_media_uploadedicon_noresize(self):
         img = 'static/img/notifications/error.png'

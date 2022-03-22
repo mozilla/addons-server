@@ -1,3 +1,4 @@
+import copy
 import os
 import tarfile
 import zipfile
@@ -240,27 +241,27 @@ class VersionCompatabilityField(serializers.Field):
             if isinstance(data, dict):
                 version = self.parent.instance
                 existing = version.compatible_apps if version else {}
-                qs = AppVersion.objects
                 internal = {}
                 for app_name, min_max in data.items():
                     app = amo.APPS[app_name]
-                    apps_versions = existing.get(
-                        app, ApplicationsVersions(application=app.id)
-                    )
+                    # we need to copy() to avoid changing the instance before save
+                    apps_versions = (
+                        (ex := existing.get(app)) and copy.copy(ex)
+                    ) or ApplicationsVersions(application=app.id)
 
-                    app_qs = qs.filter(application=app.id)
+                    app_version_qs = AppVersion.objects.filter(application=app.id)
                     if 'max' in min_max:
-                        apps_versions.max = app_qs.get(version=min_max['max'])
+                        apps_versions.max = app_version_qs.get(version=min_max['max'])
                     elif version:
-                        apps_versions.max = app_qs.get(
+                        apps_versions.max = app_version_qs.get(
                             version=amo.DEFAULT_WEBEXT_MAX_VERSION
                         )
 
-                    app_qs = app_qs.exclude(version='*')
+                    app_version_qs = app_version_qs.exclude(version='*')
                     if 'min' in min_max:
-                        apps_versions.min = app_qs.get(version=min_max['min'])
+                        apps_versions.min = app_version_qs.get(version=min_max['min'])
                     elif version:
-                        apps_versions.min = app_qs.get(
+                        apps_versions.min = app_version_qs.get(
                             version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[app]
                         )
 
