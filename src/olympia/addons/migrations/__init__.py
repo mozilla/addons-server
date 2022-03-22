@@ -14,7 +14,7 @@ CONTRIBUTION_CHANGES = {
     'www.opencollective.com': 'opencollective.com',
     'patreon.com': 'www.patreon.com',
     'paypal.com': 'www.paypal.com',
-    'paypal.me': 'www.paypal.com',
+    'www.paypal.me': 'paypal.me',
 }
 
 BROKEN_URLS = (
