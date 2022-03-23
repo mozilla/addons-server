@@ -30,11 +30,11 @@ DEBUG = False
 # We won't actually send an email.
 SEND_REAL_EMAIL = True
 
-SITE_URL = CDN_HOST = EXTERNAL_SITE_URL = 'http://testserver'
+SITE_URL = EXTERNAL_SITE_URL = 'http://testserver'
 INTERNAL_SITE_URL = 'http://testserver'
 
-STATIC_URL = '%s/static/' % CDN_HOST
-MEDIA_URL = '%s/user-media/' % CDN_HOST
+STATIC_URL = '%s/static/' % SITE_URL
+MEDIA_URL = '%s/user-media/' % SITE_URL
 
 # Tests run with DEBUG=False but we don't want to have to run collectstatic
 # everytime, so reset STATICFILES_STORAGE to the default instead of

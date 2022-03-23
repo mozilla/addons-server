@@ -6,7 +6,6 @@ from urllib.parse import parse_qsl
 from time import time
 
 from services.utils import (
-    get_cdn_url,
     log_configure,
     mypool,
     settings,
@@ -15,12 +14,8 @@ from services.utils import (
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
 
-try:
-    from compare import version_int
-except ImportError:
-    from olympia.versions.compare import version_int
-
 from olympia.constants import applications, base
+from olympia.versions.compare import version_int
 import olympia.core.logger
 
 
@@ -88,15 +83,15 @@ class Update:
         sql = [
             """
             SELECT
-                `addons`.`id` AS `addon_id`,
                 `addons`.`guid` AS `guid`,
                 `addons`.`slug` AS `slug`,
                 `appmin`.`version` AS `min`,
                 `appmax`.`version` AS `max`,
                 `files`.`hash`,
                 `files`.`filename`,
+                `files`.`id` AS `file_id`,
                 `versions`.`id` AS `version_id`,
-                `files`.`strict_compatibility` AS strict_compat,
+                `files`.`strict_compatibility` AS `strict_compat`,
                 `versions`.`releasenotes`,
                 `versions`.`version` AS `version`
             FROM `versions`
@@ -152,13 +147,13 @@ class Update:
             data['row'] = dict(
                 zip(
                     [
-                        'addon_id',
                         'guid',
                         'slug',
                         'min',
                         'max',
                         'hash',
                         'filename',
+                        'file_id',
                         'version_id',
                         'strict_compat',
                         'releasenotes',
@@ -192,10 +187,20 @@ class Update:
 
     def get_success_output(self):
         data = self.data['row']
+        slug = data['slug']
+        version = data['version']
+        file_id = data['file_id']
+        filename = data['filename']
+        file_hash = data['hash']
         update = {
             'version': data['version'],
-            'update_link': get_cdn_url(
-                data['addon_id'], filename=data['filename'], filehash=data['hash']
+            # hash of the file is added to the update link to cachebust
+            # obsolete response from the CDN - see bug 1158738.
+            # This is essentially re-implementing File.get_absolute_url()
+            # without needing django.
+            'update_link': (
+                f'{settings.SITE_URL}/{self.app.short}/'
+                f'downloads/file/{file_id}/{filename}?filehash={file_hash}'
             ),
             'applications': {'gecko': {'strict_min_version': data['min']}},
         }
@@ -204,8 +209,6 @@ class Update:
         if data['hash']:
             update['update_hash'] = data['hash']
         if data['releasenotes']:
-            slug = data['slug']
-            version = data['version']
             update['update_info_url'] = (
                 f'{settings.SITE_URL}/%APP_LOCALE%/'
                 f'{self.app.short}/addon/{slug}/versions/{version}/updateinfo/'

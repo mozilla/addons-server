@@ -379,7 +379,7 @@ class TestResponse(VersionCheckMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.addon_one = Addon.objects.get(pk=3615)
+        self.addon = Addon.objects.get(pk=3615)
         self.data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
             'version': '2.0.58',
@@ -442,12 +442,7 @@ class TestResponse(VersionCheckMixin, TestCase):
 
     def get_file_url(self):
         """Return the file url with the hash as parameter."""
-        return (
-            'http://testserver/user-media/addons/3615/'
-            'delicious_bookmarks-2.1.072-fx.xpi?'
-            'filehash=sha256%3A3808b13ef8341378b9c8305ca648200954ee7dcd8dc'
-            'e09fef55f2673458bc31f'
-        )
+        return self.addon.current_version.file.get_absolute_url()
 
     def test_url(self):
         instance = self.get_update_instance(self.data)
@@ -514,7 +509,7 @@ class TestResponse(VersionCheckMixin, TestCase):
         assert data['addons'][guid]['updates'][0]['update_info_url'] == expected_url
 
     def test_no_updates_at_all(self):
-        self.addon_one.versions.all().delete()
+        self.addon.versions.all().delete()
         instance = self.get_update_instance(self.data)
         assert json.loads(instance.get_output()) == instance.get_no_updates_output()
 
