@@ -32,4 +32,3 @@ class Migration(migrations.Migration):
     ]
 
     operations = [migrations.RunPython(contributions_url_to_from_www)]
-19012-fix-migration-addons-0037
