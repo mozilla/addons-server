@@ -12,7 +12,7 @@ def contributions_url_to_from_www(apps, schema_editor):
     Addon = apps.get_model('addons', 'Addon')
     to_index = []
 
-    for addon in Addon.unfiltered.exclude(Q(contributions__isnull=True, contributions='')):
+    for addon in Addon.unfiltered.filter(~Q(contributions=''), contributions__isnull=False):
         try:
             new_url = fix_contributions_url(addon.contributions)
             if new_url != addon.contributions:
