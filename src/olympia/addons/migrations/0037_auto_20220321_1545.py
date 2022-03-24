@@ -12,7 +12,7 @@ def contributions_url_to_from_www(apps, schema_editor):
     Addon = apps.get_model('addons', 'Addon')
     to_index = []
 
-    for addon in Addon.unfiltered.exclude(Q(contributions__isnull=True, contributions='')):
+    for addon in Addon.unfiltered.filter(contributions__isnull=False, ~Q(contributions='')):
         try:
             new_url = fix_contributions_url(addon.contributions)
             if new_url != addon.contributions:
@@ -32,3 +32,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [migrations.RunPython(contributions_url_to_from_www)]
+19012-fix-migration-addons-0037
