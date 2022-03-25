@@ -667,7 +667,7 @@ class FileValidation(ModelBase):
     @property
     def processed_validation(self):
         """Return processed validation results as expected by the frontend."""
-        # Import loop.We're going with 5.
+        # Import loop.
         from olympia.devhub.utils import process_validation
 
         return process_validation(
