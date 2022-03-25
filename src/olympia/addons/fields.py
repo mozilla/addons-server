@@ -94,19 +94,23 @@ class ContributionSerializerField(OutgoingURLField):
     def to_internal_value(self, data):
         data = super().to_internal_value(data)
         parsed_url = urlsplit(data)
+        errors = []
 
-        if not parsed_url.hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
-            raise exceptions.ValidationError(
+        if parsed_url.hostname not in amo.VALID_CONTRIBUTION_DOMAINS:
+            errors.append(
                 'URL domain must be one of '
-                f'[{", ".join(amo.VALID_CONTRIBUTION_DOMAINS)}], or a subdomain.'
+                f'[{", ".join(amo.VALID_CONTRIBUTION_DOMAINS)}].'
             )
         elif parsed_url.hostname == 'github.com' and not parsed_url.path.startswith(
             '/sponsors/'
         ):
             # Issue 15497, validate path for GitHub Sponsors
-            raise exceptions.ValidationError(
-                'URL path for GitHub Sponsors must contain /sponsors/.'
-            )
+            errors.append('URL path for GitHub Sponsors must contain /sponsors/.')
+        if parsed_url.scheme != 'https':
+            errors.append('URLs must start with https://.')
+
+        if errors:
+            raise exceptions.ValidationError(errors)
 
         return data
 

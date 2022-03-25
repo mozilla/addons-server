@@ -296,9 +296,9 @@ class AdditionalDetailsForm(AddonFormBase):
             hostname = parsed_url.hostname
             path = parsed_url.path
 
-            if not hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
+            if hostname not in amo.VALID_CONTRIBUTION_DOMAINS:
                 raise forms.ValidationError(
-                    gettext('URL domain must be one of [%s], or a subdomain.')
+                    gettext('URL domain must be one of [%s].')
                     % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
                 )
             elif hostname == 'github.com' and not path.startswith('/sponsors/'):
@@ -306,7 +306,8 @@ class AdditionalDetailsForm(AddonFormBase):
                 raise forms.ValidationError(
                     gettext('URL path for GitHub Sponsors must contain /sponsors/.')
                 )
-
+            elif parsed_url.scheme != 'https':
+                raise forms.ValidationError(gettext('URLs must start with https://.'))
         return self.cleaned_data['contributions']
 
     def clean_tags(self):
