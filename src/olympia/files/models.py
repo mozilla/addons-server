@@ -12,11 +12,11 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
-from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.utils.crypto import get_random_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.functional import cached_property
+from django.utils.text import slugify
 
 from django_statsd.clients import statsd
 
@@ -122,8 +122,6 @@ class File(OnChangeMixin, ModelBase):
 
         file_ = cls(version=version)
         upload_path = force_str(nfd_str(upload.path))
-        ext = force_str(os.path.splitext(upload_path)[1])
-        file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         file_.size = storage.size(upload_path)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
@@ -131,6 +129,8 @@ class File(OnChangeMixin, ModelBase):
         file_.is_mozilla_signed_extension = parsed_data.get(
             'is_mozilla_signed_extension', False
         )
+        file_.is_signed = file_.is_mozilla_signed_extension
+        file_.filename = file_.generate_filename()
 
         file_.hash = file_.generate_hash(upload_path)
         file_.original_hash = file_.hash
@@ -182,18 +182,21 @@ class File(OnChangeMixin, ModelBase):
         with open(filename or self.current_file_path, 'rb') as fobj:
             return f'sha256:{get_sha256(fobj)}'
 
-    def generate_filename(self, extension=None):
+    def generate_filename(self):
         """
         Files are in the format of:
         {addon_name}-{version}-{apps}
         (-{platform} for some of the old ones from back when we had multiple
          platforms)
+
+        By convention, newly signed files after 2022-03-31 get a .xpi
+        extension, unsigned get .zip. This helps ensure CDN cache is busted
+        when we sign something.
         """
         parts = []
         addon = self.version.addon
         # slugify drops unicode so we may end up with an empty string.
         # Apache did not like serving unicode filenames (bug 626587).
-        extension = extension or '.xpi'
         name = slugify(addon.name).replace('-', '_') or 'addon'
         parts.append(name)
         parts.append(self.version.version)
@@ -202,8 +205,8 @@ class File(OnChangeMixin, ModelBase):
             apps = '+'.join(sorted(a.shortername for a in self.version.compatible_apps))
             parts.append(apps)
 
-        self.filename = '-'.join(parts) + extension
-        return self.filename
+        file_extension = '.xpi' if self.is_signed else '.zip'
+        return '-'.join(parts) + file_extension
 
     _pretty_filename = re.compile(r'(?P<slug>[a-z0-7_]+)(?P<suffix>.*)')
 
@@ -500,13 +503,13 @@ class FileUpload(ModelBase):
         self.name = force_str(f'{self.uuid.hex}_{filename}')
 
         # Final path on our filesystem. If it had a valid extension we change
-        # it to .xpi (CRX files are converted before validation, so they will
-        # be treated as normal .xpi for validation). If somehow this is
+        # it to .zip (CRX files are converted before validation, so they will
+        # be treated as normal .zip for validation). If somehow this is
         # not a valid archive or the extension is invalid parse_addon() will
         # eventually complain at validation time or before even reaching the
         # linter.
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
-            ext = '.xpi'
+            ext = '.zip'
         self.path = os.path.join(
             user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
         )

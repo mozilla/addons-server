@@ -104,6 +104,10 @@ def add_guid(file_obj):
 def call_signing(file_obj):
     """Sign `file_obj` via autographs /sign/file endpoint.
 
+    This writes the file to the filesystem (to a potentially new path, the
+    filename is regenerated) and modifies the file_obj instance, but does not
+    save it to the database.
+
     :returns: The certificates serial number.
     """
     conf = settings.AUTOGRAPH_CONFIG
@@ -161,7 +165,13 @@ def call_signing(file_obj):
         log.error(msg, extra={'reason': response.reason, 'text': response.text})
         raise SigningError(msg)
 
-    # Save the returned file in our storage.
+    # Prepare the new filename (file_obj isn't saved at this staged, but we
+    # need to modify the instance to get the new path)
+    file_obj.is_signed = True
+    file_obj.filename = file_obj.generate_filename()
+
+    # Save the returned file in our storage. The caller will save the file_obj
+    # instance in the database.
     with storage.open(file_obj.current_file_path, 'wb') as fobj:
         fobj.write(b64decode(response.json()[0]['signed_file']))
 
@@ -215,18 +225,27 @@ def sign_file(file_obj):
             )
         )
 
+    # Get the path before call_signing modifies it... We'll delete it after if
+    # signing was successful and we ended up changing it.
+    old_path = file_obj.current_file_path
+
     # Sign the file. If there's any exception, we skip the rest.
     cert_serial_num = str(call_signing(file_obj))
 
     size = storage.size(file_obj.current_file_path)
 
-    # Save the certificate serial number for revocation if needed, and re-hash
-    # the file now that it's been signed.
+    # Save the certificate serial number for revocation if needed, change the
+    # filename to use a .xpi extension (cachebusting anything that depends on
+    # the filename with the old .zip extension) and re-hash the file now that
+    # it's been signed.
     file_obj.update(
         cert_serial_num=cert_serial_num,
         hash=file_obj.generate_hash(),
-        is_signed=True,
         size=size,
+        # We-specify filename and is_signed that we already updated on the
+        # instance without saving, otherwise those wouldn't get updated.
+        filename=file_obj.filename,
+        is_signed=file_obj.is_signed,
     )
     log.info(f'Signing complete for file {file_obj.pk}')
 
@@ -235,6 +254,10 @@ def sign_file(file_obj):
         transaction.on_commit(
             lambda: create_git_extraction_entry(version=file_obj.version)
         )
+
+    # Remove old unsigned path if necessary.
+    if old_path != file_obj.current_file_path:
+        storage.delete(old_path)
 
     return file_obj
 

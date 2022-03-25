@@ -1423,7 +1423,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
-        assert version.file.filename == 'delicious_bookmarks-0.0.1-fx.xpi'
+        assert version.file.filename == 'delicious_bookmarks-0.0.1-fx.zip'
 
     def test_track_upload_time(self):
         # Set created time back (just for sanity) otherwise the delta

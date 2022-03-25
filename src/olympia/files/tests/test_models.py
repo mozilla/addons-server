@@ -229,35 +229,40 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         )
 
     def test_generate_filename(self):
-        f = File.objects.get(id=67442)
-        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
+        file_ = File.objects.get(id=67442)
+        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-fx.zip'
+        file_.is_signed = True
+        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
 
     def test_pretty_filename(self):
-        f = File.objects.get(id=67442)
-        f.generate_filename()
-        assert f.pretty_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
+        file_ = File.objects.get(id=67442)
+        file_.generate_filename()
+        assert file_.pretty_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
 
     def test_pretty_filename_short(self):
-        f = File.objects.get(id=67442)
-        f.version.addon.name = 'A Place Where The Sea Remembers Your Name'
-        f.generate_filename()
-        assert f.pretty_filename() == 'a_place_where_the...-2.1.072-fx.xpi'
+        file_ = File.objects.get(id=67442)
+        file_.is_signed = True
+        file_.version.addon.name = 'A Place Where The Sea Remembers Your Name'
+        file_.filename = file_.generate_filename()
+        assert file_.pretty_filename() == 'a_place_where_the...-2.1.072-fx.xpi'
 
     def test_generate_filename_many_apps(self):
-        f = File.objects.get(id=67442)
-        f.version.compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
+        file_ = File.objects.get(id=67442)
+        file_.version.compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
+        file_.is_signed = True
         # After adding sorting for compatible_apps, above becomes
         # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
         # instead of 'fx+an'
         # See: https://github.com/mozilla/addons-server/issues/3358
-        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-an+fx.xpi'
+        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-an+fx.xpi'
 
     def test_generate_filename_ja(self):
-        f = File()
-        f.version = Version(version='0.1.7')
-        f.version.compatible_apps = {amo.FIREFOX: None}
-        f.version.addon = Addon(name=' フォクすけ  といっしょ')
-        assert f.generate_filename() == 'addon-0.1.7-fx.xpi'
+        file_ = File()
+        file_.version = Version(version='0.1.7')
+        file_.version.compatible_apps = {amo.FIREFOX: None}
+        file_.version.addon = Addon(name=' フォクすけ  といっしょ')
+        file_.is_signed = True
+        assert file_.generate_filename() == 'addon-0.1.7-fx.xpi'
 
     def test_generate_hash(self):
         file_ = File()
@@ -277,11 +282,11 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
 
     def test_addon(self):
-        f = File.objects.get(pk=67442)
-        addon_id = f.version.addon_id
+        file_ = File.objects.get(pk=67442)
+        addon_id = file_.version.addon_id
         addon = Addon.objects.get(pk=addon_id)
         addon.update(status=amo.STATUS_DELETED)
-        assert f.addon.id == addon_id
+        assert file_.addon.id == addon_id
 
     def _cmp_permission(self, perm_a, perm_b):
         return perm_a.name == perm_b.name and perm_a.description == perm_b.description
@@ -738,7 +743,7 @@ class TestFileUpload(UploadMixin, TestCase):
         assert upload.name == f'{force_str(upload.uuid.hex)}_filenamé.xpi'
         # Actual path on filesystem is different, fully random
         assert upload.name not in upload.path
-        assert re.match(r'.*/temp/[a-f0-9]{32}\.xpi$', upload.path)
+        assert re.match(r'.*/temp/[a-f0-9]{32}\.zip$', upload.path)
 
     def test_from_post_hash(self):
         hashdigest = hashlib.sha256(self.data).hexdigest()
@@ -972,11 +977,9 @@ class TestFileUpload(UploadMixin, TestCase):
         assert validation['messages'][0]['type'] == 'error'
 
     def test_webextension_zip(self):
-        """Test to ensure we accept ZIP uploads, but convert them into XPI
-        files ASAP to keep things simple.
-        """
+        """Test to ensure we accept ZIP uploads"""
         upload = self.get_upload(filename='webextension_no_id.zip')
-        assert upload.path.endswith('.xpi')
+        assert upload.path.endswith('.zip')
         assert zipfile.is_zipfile(upload.path)
         assert upload.hash == (
             'sha256:7978b06704f4f80152f16a3ce7fe4e2590f950a99cefed15f9a8caa90fbafa23'
@@ -984,11 +987,11 @@ class TestFileUpload(UploadMixin, TestCase):
         storage.delete(upload.path)
 
     def test_webextension_crx(self):
-        """Test to ensure we accept CRX uploads, but convert them into XPI
+        """Test to ensure we accept CRX uploads, but convert them into zip
         files ASAP to keep things simple.
         """
         upload = self.get_upload('webextension.crx')
-        assert upload.path.endswith('.xpi')
+        assert upload.path.endswith('.zip')
         assert zipfile.is_zipfile(upload.path)
         assert upload.hash == (
             'sha256:6eec73112c9912e4ef63973d38ea490ccc18fa6f3cf4357fb3052a748f799f9a'
@@ -1000,7 +1003,7 @@ class TestFileUpload(UploadMixin, TestCase):
         write them to storage.
         """
         upload = self.get_upload('https-everywhere.crx')
-        assert upload.path.endswith('.xpi')
+        assert upload.path.endswith('.zip')
         assert zipfile.is_zipfile(upload.path)
         assert upload.hash == (
             'sha256:82b71db5e6378ae888b2bcbb92fc8a24f417ef079e909db7fa51b253b13b3409'
@@ -1009,10 +1012,10 @@ class TestFileUpload(UploadMixin, TestCase):
 
     def test_webextension_crx_version_3(self):
         """Test to ensure we accept CRX uploads (version 3), but convert them
-        into XPI files ASAP to keep things simple.
+        into zip files ASAP to keep things simple.
         """
         upload = self.get_upload('webextension_crx3.crx')
-        assert upload.path.endswith('.xpi')
+        assert upload.path.endswith('.zip')
         assert zipfile.is_zipfile(upload.path)
         assert upload.hash == (
             'sha256:8640cdcbd5e85403b0a08f1c42b9dff362ceca6a92bf61f424c9764189c58950'
@@ -1072,7 +1075,13 @@ class TestFileUpload(UploadMixin, TestCase):
 
     def test_extension_zip(self):
         upload = self.get_upload('recurse.zip')
-        assert upload.path.endswith('.xpi')
+        assert upload.path.endswith('.zip')
+        assert zipfile.is_zipfile(upload.path)
+        storage.delete(upload.path)
+
+    def test_extension_xpi(self):
+        upload = self.get_upload('webextension.xpi')
+        assert upload.path.endswith('.zip')
         assert zipfile.is_zipfile(upload.path)
         storage.delete(upload.path)
 
@@ -1190,14 +1199,14 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_filename(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'xxx-0.1.xpi'
+        assert file_.filename == 'xxx-0.1.zip'
 
     def test_filename_no_extension(self):
         upload = self.upload('webextension.xpi')
         # Remove the extension.
         upload.name = upload.name.rsplit('.', 1)[0]
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'xxx-0.1.xpi'
+        assert file_.filename == 'xxx-0.1.zip'
 
     def test_file_validation(self):
         upload = self.upload('webextension.xpi')
@@ -1219,7 +1228,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         upload = self.upload('wébextension.xpi')
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'jets-0.1.xpi'
+        assert file_.filename == 'jets-0.1.zip'
 
     @mock.patch('olympia.amo.utils.SafeStorage.copy_stored_file')
     def test_dont_send_both_bytes_and_str_to_copy_stored_file(
@@ -1228,7 +1237,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         upload = self.upload('wébextension.xpi')
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'jets-0.1.xpi'
+        assert file_.filename == 'jets-0.1.zip'
         expected_path_orig = force_str(upload.path)
         expected_path_dest = force_str(file_.current_file_path)
         assert copy_stored_file_mock.call_count == 1
@@ -1257,12 +1266,12 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_extension_extension(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename.endswith('.xpi')
+        assert file_.filename.endswith('.zip')
 
     def test_langpack_extension(self):
         upload = self.upload('webextension_langpack.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename.endswith('.xpi')
+        assert file_.filename.endswith('.zip')
 
     def test_experiment(self):
         upload = self.upload('experiment_inside_webextension')

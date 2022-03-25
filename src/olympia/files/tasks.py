@@ -33,11 +33,11 @@ def repack_fileupload(results, upload_pk):
     log.info('Starting task to repackage FileUpload %s', upload_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     # When a FileUpload is created and a file added to it, if it's a xpi/zip,
-    # it should be move to upload.path, and it should have a .xpi extension,
+    # it should be move to upload.path, and it should have a .zip extension,
     # so we only need to care about that extension here.
     # We don't trust upload.name: it's the original filename as used by the
     # developer, so it could be something else.
-    if upload.path.endswith('.xpi'):
+    if upload.path.endswith('.zip'):
         timer = StopWatch('files.tasks.repack_fileupload.')
         timer.start()
         # tempdir must *not* be on TMP_PATH, we want local fs instead. It will be
@@ -91,7 +91,7 @@ def repack_fileupload(results, upload_pk):
         upload.save()
         timer.log_interval('4.end')
     else:
-        log.info('Not repackaging upload %s, it is not a xpi file.', upload_pk)
+        log.info('Not repackaging upload %s, it is not a zip file.', upload_pk)
     return results
 
 
