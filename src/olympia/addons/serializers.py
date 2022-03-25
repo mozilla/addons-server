@@ -917,8 +917,7 @@ class AddonSerializer(serializers.ModelSerializer):
                     original_file.write(chunk)
 
             self.instance.update(icon_type=uploaded_icon.content_type)
-            # note: we're calling the task without .delay() to resize immediately
-            resize_icon(
+            resize_icon.delay(
                 original,
                 destination,
                 amo.ADDON_ICON_SIZES,

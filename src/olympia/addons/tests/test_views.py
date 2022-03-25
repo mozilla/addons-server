@@ -1611,51 +1611,6 @@ class TestAddonViewSetUpdate(TestCase):
         self.addon.reload()
         assert [tag.tag_text for tag in self.addon.tags.all()] == ['music', 'zoom']
 
-    def test_set_contributions_url(self):
-        response = self.client.patch(
-            self.url,
-            data={'contributions_url': 'https://foo.baa/xxx'},
-        )
-        assert response.status_code == 400, response.content
-        contribution_domains = ', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
-        assert response.data == {
-            'contributions_url': [
-                f'URL domain must be one of [{contribution_domains}], or a subdomain.'
-            ]
-        }
-
-        valid_url = 'https://flattr.com/xxx'
-        response = self.client.patch(
-            self.url,
-            data={'contributions_url': valid_url},
-        )
-        assert response.status_code == 200, response.content
-        assert response.data['contributions_url']['url'].startswith(valid_url)
-        addon = Addon.objects.get()
-        assert addon.contributions == valid_url
-
-    def test_set_contributions_url_github(self):
-        response = self.client.patch(
-            self.url,
-            data={'contributions_url': 'https://github.com/xxx'},
-        )
-        assert response.status_code == 400, response.content
-        assert response.data == {
-            'contributions_url': [
-                'URL path for GitHub Sponsors must contain /sponsors/.',
-            ]
-        }
-
-        valid_url = 'https://github.com/sponsors/xxx'
-        response = self.client.patch(
-            self.url,
-            data={'contributions_url': valid_url},
-        )
-        assert response.status_code == 200, response.content
-        assert response.data['contributions_url']['url'].startswith(valid_url)
-        addon = Addon.objects.get()
-        assert addon.contributions == valid_url
-
     def _get_upload(self, filename):
         return SimpleUploadedFile(
             filename,
@@ -1663,7 +1618,7 @@ class TestAddonViewSetUpdate(TestCase):
             content_type=mimetypes.guess_type(filename)[0],
         )
 
-    @mock.patch('olympia.addons.serializers.resize_icon')
+    @mock.patch('olympia.addons.serializers.resize_icon.delay')
     @override_settings(API_THROTTLING=False)
     # We're mocking resize_icon because the async update of icon_hash messes up urls
     def test_upload_icon(self, resize_icon_mock):

@@ -363,12 +363,13 @@ Addon Icon
 
 A single add-on icon used on AMO can be uploaded to ``icon``,
 where it will be resized as 32, 64, and 128 pixels wide icons as ``icons``.
+The resizing is carried out asynchronously  so the urls in the response may not be available immediately.
 The image must be square, in either JPEG or PNG format, and we recommend 128x128.
 
-The upload must be sent as multipart form-data rather then JSON.
-If desired, some other properties can be set/updated at the same time as ``icon``, but fields that contain complex data structure (list or object) can not, so seperate API calls are needed.
+The upload must be sent as multipart form-data rather than JSON.
+If desired, some other properties can be set/updated at the same time as ``icon``, but fields that contain complex data structure (list or object) can not, so separate API calls are needed.
 
-Note: as form-data can not include objects, and creating an add-on requires the version to be specified as an object, it's not possible to set ``icons`` as during an :ref:`Add-on create <addon-create>`.
+Note: as form-data can not include objects, and creating an add-on requires the version to be specified as an object, it's not possible to set ``icons`` during an :ref:`Add-on create <addon-create>`.
 
 
 .. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/
@@ -583,7 +584,7 @@ Version Sources
 Version source files cannot be uploaded as JSON - the request must be sent as multipart form-data instead.
 If desired, ``license`` can be set set/updated at the same time as ``source``, but fields that
 contain complex data structure (list or object) such as ``compatability``, ``release_notes``,
-or ``custom_license`` can not, so seperate API calls are needed.
+or ``custom_license`` can not, so separate API calls are needed.
 
 Note: as form-data can not be nested as objects it's not possible to set ``source`` as part of the
 ``version`` object defined during an :ref:`Add-on create <addon-create>`.
