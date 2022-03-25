@@ -271,11 +271,6 @@ SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 # to touch add-ons before removing anything from this list.
 VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.zip')
 
-# File extension to use for WebExtensions. This matches what Fenix expects
-# in our download URLs, and cannot be changed without changing Fenix too.
-# See File.get_url_path() comment for more details.
-WEBEXT_FILE_EXTENSION = '.xpi'
-
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
 NO_COMPAT = (ADDON_DICT,)
