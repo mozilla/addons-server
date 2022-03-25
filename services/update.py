@@ -191,16 +191,13 @@ class Update:
         version = data['version']
         file_id = data['file_id']
         filename = data['filename']
-        file_hash = data['hash']
         update = {
             'version': data['version'],
-            # hash of the file is added to the update link to cachebust
-            # obsolete response from the CDN - see bug 1158738.
             # This is essentially re-implementing File.get_absolute_url()
             # without needing django.
             'update_link': (
                 f'{settings.SITE_URL}/{self.app.short}/'
-                f'downloads/file/{file_id}/{filename}?filehash={file_hash}'
+                f'downloads/file/{file_id}/{filename}'
             ),
             'applications': {'gecko': {'strict_min_version': data['min']}},
         }

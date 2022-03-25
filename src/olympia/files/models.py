@@ -104,12 +104,6 @@ class File(OnChangeMixin, ModelBase):
             kwargs['download_type'] = 'attachment'
         return reverse('downloads.file', kwargs=kwargs)
 
-    def get_absolute_url(self, *args, **kwargs):
-        # hash of the file is added to the file download URL to cachebust
-        # obsolete response from the CDN - see bug 1155813.
-        url = super().get_absolute_url(*args, **kwargs)
-        return f'{url}?filehash={self.hash}'
-
     @classmethod
     def from_upload(cls, upload, version, parsed_data=None):
         """

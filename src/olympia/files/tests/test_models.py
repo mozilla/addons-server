@@ -113,18 +113,12 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         url = file_.get_absolute_url()
         # Important: Fenix relies on this URL pattern to decide when to trigger
         # the add-on install flow. Changing this URL would likely break Fenix.
-        expected = (
-            '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072-fx.xpi?filehash='
-            'sha256:3808b13ef8341378b9c8305ca648200954ee7dcd8dce09fef55f2673458bc31f'
-        )
+        expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072-fx.xpi'
         assert url.endswith(expected), url
 
     def test_get_url_path(self):
         file_ = File.objects.get(id=67442)
-        assert (
-            f'{absolutify(file_.get_url_path())}?filehash={file_.hash}'
-            == file_.get_absolute_url()
-        )
+        assert absolutify(file_.get_url_path()) == file_.get_absolute_url()
 
     def test_get_url_path_attachment(self):
         file_ = File.objects.get(id=67442)
@@ -139,8 +133,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         expected = (
             'http://testserver/firefox/downloads/file/67442'
             '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
-            '?filehash='
-            'sha256:3808b13ef8341378b9c8305ca648200954ee7dcd8dce09fef55f2673458bc31f'
         )
         assert file_.get_absolute_url(attachment=True) == expected
 
