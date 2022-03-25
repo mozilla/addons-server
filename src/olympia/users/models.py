@@ -514,7 +514,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         files_to_disable = File.objects.filter(version__addon__in=addons_sole)
         files_to_disable.update(status=amo.STATUS_DISABLED)
         if move_files:
-            # if necessary move the files out of the CDN (expensive operation)
+            # if necessary move the files on filesystem (expensive operation)
             for file_ in files_to_disable:
                 file_.hide_disabled_file()
 

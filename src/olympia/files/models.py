@@ -1,7 +1,6 @@
 import hashlib
 import json
 import os
-import posixpath
 import re
 import unicodedata
 import uuid
@@ -14,7 +13,7 @@ from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.crypto import get_random_string
-from django.utils.encoding import force_bytes, force_str
+from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 from django.utils.text import slugify
 
@@ -26,7 +25,7 @@ from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.templatetags.jinja_helpers import user_media_path, user_media_url
+from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_as_xpi
 
 
@@ -91,19 +90,15 @@ class File(OnChangeMixin, ModelBase):
         else:
             return True
 
-    def get_file_cdn_url(self, attachment=False):
-        """Return the URL for the file corresponding to this instance
-        on the CDN."""
-        if attachment:
-            host = posixpath.join(user_media_url('addons'), '_attachments')
-        else:
-            host = user_media_url('addons')
-
-        return posixpath.join(
-            *map(force_bytes, [host, self.version.addon.id, self.filename])
-        )
-
     def get_url_path(self, attachment=False):
+        # We allow requests to not specify a filename, but it's mandatory that
+        # we include it in our responses, because Fenix intercepts the
+        # downloads using a regex and expects the filename to be part of the
+        # URL - it even wants the filename to end with `.xpi` - though it
+        # doesn't care about what's after the path, so any query string is ok.
+        # See https://github.com/mozilla-mobile/fenix/blob/
+        # 07d43971c0767fc023996dc32eb73e3e37c6517a/app/src/main/java/org/mozilla/fenix/
+        # AppRequestInterceptor.kt#L173
         kwargs = {'file_id': self.pk, 'filename': self.filename}
         if attachment:
             kwargs['download_type'] = 'attachment'

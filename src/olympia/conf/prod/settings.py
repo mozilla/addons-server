@@ -23,12 +23,8 @@ INTERNAL_SITE_URL = env('INTERNAL_SITE_URL', default='https://addons.mozilla.org
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons.mozilla.org')
 SERVICES_URL = env('SERVICES_URL', default='https://services.addons.mozilla.org')
 CODE_MANAGER_URL = env('CODE_MANAGER_URL', default='https://code.addons.mozilla.org')
-CDN_HOST = 'https://addons.cdn.mozilla.net'
 STATIC_URL = PROD_STATIC_URL
 MEDIA_URL = PROD_MEDIA_URL
-# user_media_url('addons') will use ADDONS_URL setting if present to build URLs
-# to xpi files. We want those on the dedicated CDN domain.
-ADDONS_URL = '%s/user-media/addons/' % CDN_HOST
 
 SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN
 

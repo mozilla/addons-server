@@ -21,12 +21,8 @@ INTERNAL_SITE_URL = env('INTERNAL_SITE_URL', default='https://addons.allizom.org
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons.allizom.org')
 SERVICES_URL = env('SERVICES_URL', default='https://services.addons.allizom.org')
 CODE_MANAGER_URL = env('CODE_MANAGER_URL', default='https://code.addons.allizom.org')
-CDN_HOST = 'https://addons-stage-cdn.allizom.org'
 STATIC_URL = '%s/static-server/' % EXTERNAL_SITE_URL
 MEDIA_URL = '%s/user-media/' % EXTERNAL_SITE_URL
-# user_media_url('addons') will use ADDONS_URL setting if present to build URLs
-# to xpi files. We want those on the dedicated CDN domain.
-ADDONS_URL = '%s/user-media/addons/' % CDN_HOST
 
 CSP_FONT_SRC += (STATIC_URL,)
 # CSP_IMG_SRC already contains 'self', but we could be on reviewers or admin

@@ -16,8 +16,10 @@ urlpatterns = [
 ]
 
 download_patterns = [
-    # /file/<id>/type:attachment/lol.xpi - everything after the file id is
-    # ignored though.
+    # /<locale>/<app>/file/<id>/filename.xpi
+    # /<locale>/<app>/file/<id>/type:attachment/filename.xpi
+    # See comment in File.get_url_path(): do not change this without checking
+    # with Fenix first, the pattern is hardcoded in their code.
     re_path(
         (
             r'^file/(?P<file_id>\d+)/'
