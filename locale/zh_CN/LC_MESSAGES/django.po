@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-03-27 05:30+0000\n"
+"PO-Revision-Date: 2022-03-27 05:31+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1995,7 +1995,7 @@ msgid "The origin (scheme + hostname + optional port) you need the permission to
 msgstr "您需要启用权限的来源（方案 + 主机名 + 可选端口）。这也是您需要托管附加组件的地方。"
 
 msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
+msgstr "生成附加组件的权限将授予该来源。"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "使用下面的按钮上传您的附加组件包。"
