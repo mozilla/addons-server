@@ -542,7 +542,7 @@ def _validate_archive_member_name_and_size(
     except UnicodeDecodeError:
         # We can't log the filename unfortunately since it's encoding
         # is obviously broken :-/
-        log.error('Extraction error, invalid file name encoding')
+        log.warning('Extraction error, invalid file name encoding')
         msg = gettext(
             'Invalid file name in archive. Please make sure '
             'all filenames are utf-8 or latin1 encoded.'
@@ -556,13 +556,15 @@ def _validate_archive_member_name_and_size(
             or '..' == filename
             or filename.startswith('/')
         ):
-            log.error('Extraction error, invalid file name: %s' % (filename))
+            log.warning('Extraction error, invalid file name: %s', filename)
             # L10n: {0} is the name of the invalid file.
             msg = gettext('Invalid file name in archive: {0}')
             raise InvalidZipFile(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
-        log.error(f'Extraction error, file too big for file ({filename}): {filesize}')
+        log.warning(
+            'Extraction error, file too big for file (%s): %s', filename, filesize
+        )
         # L10n: {0} is the name of the invalid file.
         msg = gettext('File exceeding size limit in archive: {0}')
         raise InvalidZipFile(msg.format(filename))
@@ -638,9 +640,11 @@ class SafeZip:
             # Directories consistently report their size incorrectly.
             size = os.stat(dest)[stat.ST_SIZE]
             if size != info.file_size:
-                log.error(
-                    'Extraction error, uncompressed size: %s, %s not %s'
-                    % (self.source, size, info.file_size)
+                log.warning(
+                    'Extraction error, uncompressed size: %s, %s not %s',
+                    self.source,
+                    size,
+                    info.file_size,
                 )
                 raise forms.ValidationError(gettext('Invalid archive.'))
 
