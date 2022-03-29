@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:11+0000\n"
-"PO-Revision-Date: 2021-12-02 13:41+0000\n"
+"PO-Revision-Date: 2022-03-28 19:35+0000\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -112,8 +112,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Zmanjšani, skrajšani ali drugače strojno ustvarjeni skripti (razen znanih knjižnic) morajo biti za pregled oddani ločeno. Prepričajte se, da uporabite polje za nalaganje izvorne kode, da se "
-"izognete zavrnitvi svoje oddaje."
+"Zmanjšani, skrajšani ali drugače strojno ustvarjeni skripti (razen znanih knjižnic) morajo biti za pregled oddani ločeno. Prepričajte se, da uporabite polje za nalaganje izvorne kode, da se izognete"
+" zavrnitvi svoje oddaje."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Postopek preverjanja veljavnosti je odkril te težave, ki lahko vodi do zavrnitev:"
@@ -481,9 +481,8 @@ msgid "Download Mediums from {0} to {1}"
 msgstr "Prenosi od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Viri prenosa zadnjih {0} dni"
+msgstr "Prenosi vsebine zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #, fuzzy
