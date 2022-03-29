@@ -99,7 +99,12 @@ class UserManager(BaseUserManager, ManagerBase):
     def create_user(self, email, fxa_id=None, **kwargs):
         now = timezone.now()
         user = self.model(email=email, fxa_id=fxa_id, last_login=now, **kwargs)
-        log.info(f'Creating user with email {email} and username {user.username}')
+        log.info(
+            'Creating user with email %s and username %s',
+            email,
+            user.username,
+            extra={'sensitive': True},
+        )
         user.save(using=self._db)
         return user
 
@@ -282,8 +287,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         except (ValueError, TypeError):
             log.exception(
                 'last_developer_agreement_change misconfigured, '
-                '"%s" is not a '
-                'datetime' % last_agreement_change_config
+                '"%s" is not a datetime',
+                last_agreement_change_config,
             )
             return self.read_dev_agreement > settings.DEV_AGREEMENT_CHANGE_FALLBACK
 
@@ -404,10 +409,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             addon__status=amo.STATUS_APPROVED,
         ).exists()
         if is_public != pre:
-            log.info(f'Updating {self.pk}.is_public from {pre} to {is_public}')
+            log.info('Updating %s.is_public from %s to %s', self.pk, pre, is_public)
             self.update(is_public=is_public)
         else:
-            log.info(f'Not changing {self.pk}.is_public from {pre}')
+            log.info('Not changing %s.is_public from %s', self.pk, pre)
 
     @property
     def name(self):
@@ -471,7 +476,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             for field_name in cls.ANONYMIZED_FIELDS
         }
         for user in users:
-            log.info(f'Anonymizing username for {user.pk}')
+            log.info('Anonymizing username for %s', user.pk)
             for field_name, field in fields.items():
                 setattr(user, field_name, field.get_default())
             user.delete_picture()
@@ -532,7 +537,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # And then delete the users.
         ids = []
         for user in users:
-            log.info(f'User ({user}: <{user.email}>) is being anonymized and banned.')
+            log.info(
+                'User (%s: <%s>) is being anonymized and banned.',
+                user,
+                user.email,
+                extra={'sensitive': True},
+            )
             user.banned = user.modified = datetime.now()
             user.deleted = True
             ids.append(user.pk)
@@ -569,7 +579,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         send_delete_email = self.should_send_delete_email()
         self._delete_related_content(addon_msg=addon_msg)
-        log.info(f'User ({self}: <{self.email}>) is being anonymized.')
+        log.info('User (%s: <%s>) is being anonymized.', self, self.email)
         email = self._prepare_delete_email() if send_delete_email else None
         self.anonymize_users((self,))
         self.deleted = True
@@ -590,7 +600,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def user_logged_in(sender, request, user, **kwargs):
         """Log when a user logs in and records its IP address."""
         # The following log statement is used by foxsec-pipeline.
-        log.info('User (%s) logged in successfully' % user, extra={'email': user.email})
+        log.info('User (%s) logged in successfully', user, extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
 
 
@@ -765,6 +775,7 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
                     'last_login_ip',
                     user_last_login_ip,
                     'network=%s' % restriction.network,
+                    extra={'sensitive': True},
                 )
                 return False
 
@@ -782,7 +793,12 @@ class NormalizeEmailMixin:
         local_part = local_part.partition('+')[0].replace('.', '')
         normalized_email = f'{local_part}@{domain}'
         if normalized_email != email:
-            log.info('Normalized email from %s to %s', email, normalized_email)
+            log.info(
+                'Normalized email from %s to %s',
+                email,
+                normalized_email,
+                extra={'sensitive': True},
+            )
         return normalized_email
 
 
@@ -853,6 +869,7 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
                     'email',
                     email,
                     'email_pattern=%s' % restriction.email_pattern,
+                    extra={'sensitive': True},
                 )
                 return False
 
@@ -959,6 +976,7 @@ class ReputationRestrictionMixin:
                         reputation_type,
                         target,
                         'reputation=%s' % data['reputation'],
+                        extra={'sensitive': True},
                     )
                     return False
             except (ValueError, KeyError):
@@ -966,6 +984,7 @@ class ReputationRestrictionMixin:
                     'Exception calling reputation service for %s %s',
                     reputation_type,
                     target,
+                    extra={'sensitive': True},
                 )
         return True
 

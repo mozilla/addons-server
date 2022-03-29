@@ -4,29 +4,86 @@
       {
         "category": "query",
         "message": "connect",
-        "timestamp": "2022-02-23T14:30:06.365876Z",
+        "timestamp": "2022-03-29T14:30:06.365876Z",
         "type": "default"
       },
       {
         "category": "query",
         "data": {},
         "message": "\n                SELECT VERSION(),\n                       @@sql_mode,\n                       @@default_storage_engine,\n                       @@sql_auto_is_null,\n                       @@lower_case_table_names,\n                       CONVERT_TZ('2001-01-01 01:00:00', 'UTC', 'UTC') IS NOT NULL\n            ",
-        "timestamp": "2022-02-23T14:30:06.371047Z",
+        "timestamp": "2022-03-29T14:30:06.371047Z",
         "type": "default"
       },
       {
         "category": "query",
         "data": {},
         "message": "SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED",
-        "timestamp": "2022-02-23T14:30:06.371430Z",
+        "timestamp": "2022-03-29T14:30:06.371430Z",
         "type": "default"
       },
       {
         "category": "query",
         "data": {},
         "message": "SELECT `users`.`id`, `users`.`created`, `users`.`modified`, `users`.`password`, `users`.`last_login`, `users`.`username`, `users`.`display_name`, `users`.`email`, `users`.`averagerating`, `users`.`biography`, `users`.`deleted`, `users`.`display_collections`, `users`.`homepage`, `users`.`location`, `users`.`notes`, `users`.`occupation`, `users`.`picture_type`, `users`.`read_dev_agreement`, `users`.`last_login_ip`, `users`.`email_changed`, `users`.`banned`, `users`.`public`, `users`.`fxa_id`, `users`.`auth...",
-        "timestamp": "2022-02-23T14:30:06.371581Z",
+        "timestamp": "2022-03-29T14:30:06.371581Z",
         "type": "default"
+      },
+      {
+        "type": "http",
+        "category": "httplib",
+        "data": {
+          "method": "GET",
+          "url": "https://reputationservice.example.com/type/email/foo@bar.com",
+          "status_code": 404,
+          "reason": "Not Found"
+        },
+        "timestamp": "2022-03-29T14:30:06.424152Z"
+      },
+      {
+        "type": "http",
+        "category": "httplib",
+        "data": {
+          "method": "GET",
+          "url": "https://reputationservice.example.com/type/ip/4.8.15.16",
+          "status_code": 404,
+          "reason": "Not Found"
+        },
+        "timestamp": "2022-03-29T14:30:06.524152Z"
+      },
+      {
+        "type": "http",
+        "category": "httplib",
+        "data": {
+          "method": "GET",
+          "url": "https://reputationservice.example.com/type/unknown/foobar",
+          "status_code": 404,
+          "reason": "Not Found"
+        },
+        "timestamp": "2022-03-29T14:30:06.624152Z"
+      },
+      {
+        "type": "log",
+        "level": "info",
+        "category": "z.users",
+        "message": "Normalized email from foo.bar@bar.com to foobar@bar.com",
+        "timestamp": "2022-03-29T14:30:06.724152Z",
+        "data": {
+          "sensitive": true,
+          "REMOTE_ADDR": "127.0.0.43",
+          "USERNAME": "<anon>"
+        }
+      },
+      {
+        "type": "log",
+        "level": "info",
+        "category": "z.something",
+        "message": "Some logging",
+        "timestamp": "2022-03-29T14:30:06.824152Z",
+        "data": {
+          "email": "redactme@bar.com",
+          "REMOTE_ADDR": "127.0.0.43",
+          "USERNAME": "<anon>"
+        }
       }
     ]
   },
@@ -426,7 +483,7 @@
     "version": "1.5.2"
   },
   "server_name": "ffa920f6ddc0",
-  "timestamp": "2022-02-23T14:30:06.372551Z",
+  "timestamp": "2022-03-29T14:30:06.372551Z",
   "transaction": "/services/client_info",
   "user": {
     "email": "mozilla@bar.com",

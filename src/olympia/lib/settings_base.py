@@ -4,7 +4,9 @@ import environ
 import json
 import logging
 import os
+import re
 import socket
+import urllib.parse
 
 from datetime import datetime
 
@@ -1482,9 +1484,10 @@ def get_sentry_release():
     return version
 
 
-def scrub_sensitive_data(event, hint):
+def sentry_before_send(event, hint):
     def _scrub_sensitive_data_recursively(data, name=None):
-        # This only works with lists or dicts but we shouldn't need anything else.
+        # This only works with lists or dicts but we shouldn't need anything
+        # else.
         if isinstance(data, (list, dict)):
             items = data.items() if isinstance(data, dict) else enumerate(data)
             for key, value in items:
@@ -1506,6 +1509,36 @@ def scrub_sensitive_data(event, hint):
     return event
 
 
+def sentry_before_breadcrumb(crumb, hint):
+    try:
+        if 'data' not in crumb or 'category' not in crumb:
+            return crumb
+        # Breadcrumbs are useful, but they can contain sensitive information,
+        # and it's usually too late to redact the content because the message
+        # has already been formatted. We mark such log statements with an
+        # explicit sensitive key in the data and exclude them from breadcrumbs
+        # entirely (redacting them would likely be pointless since the message
+        # itself is likely the problem).
+        if crumb['data'].get('sensitive'):
+            return None
+        # httplib breadcrumbs are useful and we want to keep them, but
+        # sometimes the path of the request contains sensitive info. Instead of
+        # removing them as above, we match against the URL and redact only its
+        # path.
+        pattern = r'^.*\/type\/(?:email|ip)\/.*'
+        if crumb['category'] == 'httplib' and re.match(
+            pattern, crumb['data'].get('url', '')
+        ):
+            splitted = urllib.parse.urlsplit(crumb['data']['url'])
+            crumb['data']['url'] = urllib.parse.urlunsplit(
+                splitted._replace(path='/...redacted...')
+            )
+    except Exception:
+        pass
+
+    return crumb
+
+
 SENTRY_CONFIG = {
     # This is the DSN to the Sentry service.
     'dsn': env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN')),
@@ -1517,9 +1550,10 @@ SENTRY_CONFIG = {
     # so we set it to True and do it ourselves - see SENTRY_SENSITIVE_FIELDS
     # below.
     'send_default_pii': True,
-    'before_send': scrub_sensitive_data,
+    'before_send': sentry_before_send,
+    'before_breadcrumb': sentry_before_breadcrumb,
 }
-# List of fields to scrub in our custom scrub_sensitive_data() callback.
+# List of fields to scrub in our custom sentry_before_send() callback.
 # /!\ Each value needs to be in lowercase !
 SENTRY_SENSITIVE_FIELDS = (
     'email',
