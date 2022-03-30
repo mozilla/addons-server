@@ -548,9 +548,9 @@ class TestResponse(VersionCheckMixin, TestCase):
         # response.
         assert output == [expected_output]
 
-    @mock.patch('services.update.log')
+    @mock.patch('services.update.logging.config.dictConfig')
     @mock.patch('services.update.Update')
-    def test_exception_handling(self, UpdateMock, log_mock):
+    def test_exception_handling(self, UpdateMock, dictConfigMock):
         """Test ensuring exceptions are raised and logged properly."""
 
         class CustomException(Exception):
@@ -564,12 +564,17 @@ class TestResponse(VersionCheckMixin, TestCase):
             self.inspector_call_count += 1
 
         with self.assertRaises(CustomException):
-            update.application({'QUERY_STRING': ''}, inspector)
+            with self.assertLogs(level='ERROR') as logs:
+                update.application({'QUERY_STRING': ''}, inspector)
         assert self.inspector_call_count == 0
+        assert len(logs.records) == 1
+        assert logs.records[0].message == 'Boom!'
+        assert logs.records[0].exc_info[1] == update_instance.get_output.side_effect
 
-        # The log should be present.
-        assert log_mock.exception.call_count == 1
-        log_mock.exception.assert_called_with(update_instance.get_output.side_effect)
+        # Ensure we had set up logging correctly. We can't let the actual call
+        # go through, it would override the loggers assertLogs() set up.
+        assert dictConfigMock.call_count == 1
+        assert dictConfigMock.call_args[0] == (settings.LOGGING,)
 
 
 # This test needs to be a TransactionTestCase because we want to test the

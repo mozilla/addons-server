@@ -1,15 +1,13 @@
 import json
+import logging.config
 
 from django.utils.encoding import force_bytes
 from email.utils import formatdate
 from urllib.parse import parse_qsl
 from time import time
 
-from services.utils import (
-    log_configure,
-    mypool,
-    settings,
-)
+from services.utils import mypool
+from services.settings import settings
 
 # This has to be imported after the settings so statsd knows where to log to.
 from django_statsd.clients import statsd
@@ -17,12 +15,6 @@ from django_statsd.clients import statsd
 from olympia.constants import applications, base
 from olympia.versions.compare import version_int
 import olympia.core.logger
-
-
-# Go configure the log.
-log_configure()
-
-log = olympia.core.logger.getLogger('z.services')
 
 
 class Update:
@@ -227,6 +219,14 @@ class Update:
 
 
 def application(environ, start_response):
+    # Logging has to be configured before it can be used. In the django app
+    # this is done through settings.LOGGING but the update service is its own
+    # separate wsgi app.
+    logging.config.dictConfig(settings.LOGGING)
+
+    # Now we can get our logger instance.
+    log = olympia.core.logger.getLogger('z.services')
+
     status = '200 OK'
     with statsd.timer('services.update'):
         data = dict(parse_qsl(environ['QUERY_STRING']))
