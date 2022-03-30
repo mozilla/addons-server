@@ -1083,7 +1083,6 @@ CSP_EXCLUDE_URL_PREFIXES = ()
 CSP_DEFAULT_SRC = ("'none'",)
 CSP_CONNECT_SRC = (
     "'self'",
-    'https://sentry.prod.mozaws.net',
     ANALYTICS_HOST,
 )
 CSP_FORM_ACTION = ("'self'",)
@@ -1102,7 +1101,6 @@ CSP_IMG_SRC = (
     'data:',  # Needed for theme wizard.
     PROD_STATIC_URL,
     PROD_MEDIA_URL,
-    'https://sentry.prod.mozaws.net',
 )
 CSP_MEDIA_SRC = ('https://videos.cdn.mozilla.net',)
 CSP_OBJECT_SRC = ("'none'",)
