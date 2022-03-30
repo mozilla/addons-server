@@ -3,10 +3,11 @@ import logging.config
 
 from django.utils.encoding import force_bytes
 from email.utils import formatdate
+import MySQLdb as mysql
 from urllib.parse import parse_qsl
+import sqlalchemy.pool as pool
 from time import time
 
-from services.utils import mypool
 from services.settings import settings
 
 # This has to be imported after the settings so statsd knows where to log to.
@@ -17,9 +18,23 @@ from olympia.versions.compare import version_int
 import olympia.core.logger
 
 
+def get_connection():
+    db = settings.SERVICES_DATABASE
+    return mysql.connect(
+        host=db['HOST'],
+        user=db['USER'],
+        passwd=db['PASSWORD'],
+        db=db['NAME'],
+        charset=db['OPTIONS']['charset'],
+    )
+
+
+pool = pool.QueuePool(get_connection, max_overflow=10, pool_size=5, recycle=300)
+
+
 class Update:
     def __init__(self, data, compat_mode='strict'):
-        self.conn, self.cursor = None, None
+        self.connection, self.cursor = None, None
         self.data = data.copy()
         self.data['row'] = {}
         self.version_int = 0
@@ -30,8 +45,8 @@ class Update:
         # If you accessing this from unit tests, then before calling
         # is valid, you can assign your own cursor.
         if not self.cursor:
-            self.conn = mypool.connect()
-            self.cursor = self.conn.cursor()
+            self.connection = pool.connect()
+            self.cursor = self.connection.cursor()
 
         data = self.data
         # Version can be blank.
@@ -167,8 +182,8 @@ class Update:
         else:
             contents = self.get_error_output()
         self.cursor.close()
-        if self.conn:
-            self.conn.close()
+        if self.connection:
+            self.connection.close()
         return json.dumps(contents)
 
     def get_error_output(self):

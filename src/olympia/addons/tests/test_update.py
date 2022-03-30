@@ -588,22 +588,18 @@ class TestUpdateConnectionEncoding(TransactionTestCase):
         self.addon = addon_factory()
 
     def test_service_database_setting(self):
-        from services.utils import mypool
-
         expected_name = settings.DATABASES['default']['NAME']
         assert 'test' in expected_name
         assert settings.SERVICES_DATABASE['NAME'] == expected_name
 
-        connection = mypool.connect()
+        connection = update.pool.connect()
         cursor = connection.cursor()
         cursor.execute('SELECT DATABASE();')
         assert cursor.fetchone()[0] == expected_name
         connection.close()
 
-    def test_mypool_encoding(self):
-        from services.utils import mypool
-
-        connection = mypool.connect()
+    def test_connection_pool_encoding(self):
+        connection = update.pool.connect()
         assert connection.connection.encoding == 'utf8'
         connection.close()
 
@@ -615,7 +611,7 @@ class TestUpdateConnectionEncoding(TransactionTestCase):
         # - A database cursor instantiated from the update service, not by
         #   django tests.
         # Note that this test would hang before the fix to pass charset when
-        # connecting in services.utils.getconn().
+        # connecting in get_connection().
         data = {
             'id': self.addon.guid,
             'reqVersion': '2鎈',
