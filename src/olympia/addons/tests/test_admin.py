@@ -96,12 +96,6 @@ class TestAddonAdmin(TestCase):
         self.admin_home_url = reverse('admin:index')
         self.list_url = reverse('admin:addons_addon_changelist')
 
-    def _call_related_content_method(self, method, addon):
-        model_admin = AddonAdmin(Addon, admin.site)
-        result = getattr(model_admin, method)(addon)
-        link = pq(result)('a')[0]
-        return link.attrib['href'], link.text
-
     def test_can_see_addon_module_in_admin_with_addons_edit(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -628,13 +622,14 @@ class TestAddonAdmin(TestCase):
         unrelated_addon = addon_factory()
         ActivityLog.create(amo.LOG.EDIT_PROPERTIES, unrelated_addon)
 
-        url, text = self._call_related_content_method('activity', addon)
+        admin_page = AddonAdmin(Addon, admin.site).activity(addon)
+        link = pq(admin_page)('a')[0]
         expected_url = (
             reverse('admin:activity_activitylog_changelist')
             + '?addonlog__addon=%d' % addon.pk
         )
-        assert url == expected_url
-        assert text == '3'
+        assert link.attrib['href'] == expected_url
+        assert link.text == '3'
 
 
 class TestReplacementAddonList(TestCase):
