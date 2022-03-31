@@ -96,6 +96,12 @@ class TestAddonAdmin(TestCase):
         self.admin_home_url = reverse('admin:index')
         self.list_url = reverse('admin:addons_addon_changelist')
 
+    def _call_related_content_method(self, method, addon):
+        model_admin = AddonAdmin(Addon, admin.site)
+        result = getattr(model_admin, method)(addon)
+        link = pq(result)('a')[0]
+        return link.attrib['href'], link.text
+
     def test_can_see_addon_module_in_admin_with_addons_edit(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -516,7 +522,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
-        with self.assertNumQueries(20):
+        with self.assertNumQueries(21):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -525,7 +531,7 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
-        with self.assertNumQueries(20):
+        with self.assertNumQueries(21):
             # Confirm it scales
             # FIXME: explain each query
             response = self.client.get(self.detail_url, follow=True)
@@ -609,6 +615,26 @@ class TestAddonAdmin(TestCase):
 
         assert len(GitExtractionEntry.objects.all()) == 1
         assert GitExtractionEntry.objects.filter(addon=addon).exists()
+
+    def test_activity(self):
+        core.set_user(user_factory())
+
+        addon = addon_factory()
+        ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
+        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
+        ActivityLog.create(amo.LOG.DELETE_ADDON, addon)
+
+        # Create another activity attached to a different add-on.
+        unrelated_addon = addon_factory()
+        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, unrelated_addon)
+
+        url, text = self._call_related_content_method('activity', addon)
+        expected_url = (
+            reverse('admin:activity_activitylog_changelist')
+            + '?addonlog__addon=%d' % addon.pk
+        )
+        assert url == expected_url
+        assert text == '3'
 
 
 class TestReplacementAddonList(TestCase):
