@@ -169,6 +169,7 @@ class AddonAdmin(admin.ModelAdmin):
     readonly_fields = (
         'id',
         'created',
+        'activity',
         'average_rating',
         'bayesian_rating',
         'guid',
@@ -191,6 +192,7 @@ class AddonAdmin(admin.ModelAdmin):
                     'default_locale',
                     'type',
                     'status',
+                    'activity',
                 ),
             },
         ),
@@ -454,6 +456,11 @@ class AddonAdmin(admin.ModelAdmin):
         return HttpResponseRedirect(
             reverse('admin:addons_addon_change', args=(obj.pk,))
         )
+
+    def activity(self, obj):
+        return related_content_link(obj, ActivityLog, 'addonlog__addon')
+
+    activity.short_description = _('Activity Logs')
 
 
 class FrozenAddonAdmin(admin.ModelAdmin):

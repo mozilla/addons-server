@@ -25,6 +25,11 @@ class ActivityLogAdmin(admin.ModelAdmin):
     raw_id_fields = ('user',)
     view_on_site = False
 
+    def lookup_allowed(self, lookup, value):
+        if lookup == 'addonlog__addon':
+            return True
+        return super().lookup_allowed(lookup, value)
+
     def has_add_permission(self, request):
         return False
 

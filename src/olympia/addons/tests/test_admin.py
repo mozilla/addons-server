@@ -516,7 +516,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.login(email=user.email)
-        with self.assertNumQueries(20):
+        with self.assertNumQueries(21):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -525,7 +525,7 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
-        with self.assertNumQueries(20):
+        with self.assertNumQueries(21):
             # Confirm it scales
             # FIXME: explain each query
             response = self.client.get(self.detail_url, follow=True)
@@ -609,6 +609,27 @@ class TestAddonAdmin(TestCase):
 
         assert len(GitExtractionEntry.objects.all()) == 1
         assert GitExtractionEntry.objects.filter(addon=addon).exists()
+
+    def test_activity(self):
+        core.set_user(user_factory())
+
+        addon = addon_factory()
+        ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
+        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
+        ActivityLog.create(amo.LOG.DELETE_ADDON, addon)
+
+        # Create another activity attached to a different add-on.
+        unrelated_addon = addon_factory()
+        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, unrelated_addon)
+
+        admin_page = AddonAdmin(Addon, admin.site).activity(addon)
+        link = pq(admin_page)('a')[0]
+        expected_url = (
+            reverse('admin:activity_activitylog_changelist')
+            + '?addonlog__addon=%d' % addon.pk
+        )
+        assert link.attrib['href'] == expected_url
+        assert link.text == '3'
 
 
 class TestReplacementAddonList(TestCase):
