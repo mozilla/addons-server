@@ -846,11 +846,6 @@ class TestAddonModels(TestCase):
             addon.get_icon_url(64)
             == 'http://testserver/static/img/addon-icons/default-64.png'
         )
-        assert (
-            addon.get_icon_url(32, use_default=True)
-            == 'http://testserver/static/img/addon-icons/default-32.png'
-        )
-        assert addon.get_icon_url(32, use_default=False) is None
 
     def test_thumbnail_url(self):
         """

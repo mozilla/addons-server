@@ -39,6 +39,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
 from olympia.blocklist.models import Block
@@ -1619,6 +1620,77 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert response.data['tags'] == ['zoom', 'music']
         self.addon.reload()
         assert [tag.tag_text for tag in self.addon.tags.all()] == ['music', 'zoom']
+
+    def _get_upload(self, filename):
+        return SimpleUploadedFile(
+            filename,
+            open(get_image_path(filename), 'rb').read(),
+            content_type=mimetypes.guess_type(filename)[0],
+        )
+
+    @mock.patch('olympia.addons.serializers.resize_icon.delay')
+    @override_settings(API_THROTTLING=False)
+    # We're mocking resize_icon because the async update of icon_hash messes up urls
+    def test_upload_icon(self, resize_icon_mock):
+        def patch_with_error(filename):
+            response = self.client.patch(
+                self.url, data={'icon': self._get_upload(filename)}, format='multipart'
+            )
+            assert response.status_code == 400, response.content
+            return response.data['icon']
+
+        assert patch_with_error('non-animated.gif') == [
+            'Icons must be either PNG or JPG.'
+        ]
+        assert patch_with_error('animated.png') == ['Icons cannot be animated.']
+        with override_settings(MAX_ICON_UPLOAD_SIZE=100):
+            assert patch_with_error('preview.jpg') == [
+                'Please use images smaller than 0MB',
+                'Icon must be square (same width and height).',
+            ]
+
+        assert self.addon.icon_type == ''
+        response = self.client.patch(
+            self.url,
+            data={'icon': self._get_upload('mozilla-sq.png')},
+            format='multipart',
+        )
+        assert response.status_code == 200, response.content
+
+        self.addon.reload()
+        assert response.data['icons'] == {
+            '32': self.addon.get_icon_url(32),
+            '64': self.addon.get_icon_url(64),
+            '128': self.addon.get_icon_url(128),
+        }
+        assert self.addon.icon_type == 'image/png'
+        resize_icon_mock.assert_called_with(
+            f'{self.addon.get_icon_dir()}/{self.addon.id}-original.png',
+            f'{self.addon.get_icon_dir()}/{self.addon.id}',
+            amo.ADDON_ICON_SIZES,
+            set_modified_on=self.addon.serializable_reference(),
+        )
+        assert os.path.exists(
+            os.path.join(self.addon.get_icon_dir(), f'{self.addon.id}-original.png')
+        )
+
+    @mock.patch('olympia.addons.serializers.remove_icons')
+    def test_delete_icon(self, remove_icons_mock):
+        self.addon.update(icon_type='image/png')
+        response = self.client.patch(
+            self.url,
+            data={'icon': None},
+        )
+        assert response.status_code == 200, response.content
+
+        self.addon.reload()
+        assert response.data['icons'] == {
+            '32': self.addon.get_default_icon_url(32),
+            '64': self.addon.get_default_icon_url(64),
+            '128': self.addon.get_default_icon_url(128),
+        }
+        assert self.addon.icon_type == ''
+        remove_icons_mock.assert_called()
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):

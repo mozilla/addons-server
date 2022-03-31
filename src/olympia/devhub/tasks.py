@@ -1,5 +1,4 @@
 import datetime
-import hashlib
 import json
 import os
 import subprocess
@@ -541,34 +540,6 @@ def pngcrush_existing_preview(preview_id):
     # We don't need a hash, previews are cachebusted with their modified date,
     # which does not change often. @set_modified_on will do that for us
     # automatically if the task was called with set_modified_on_obj=[preview].
-
-
-@task
-@set_modified_on
-def resize_icon(source, dest_folder, target_sizes, **kw):
-    """Resizes addon icons."""
-    log.info('[1@None] Resizing icon: %s' % dest_folder)
-    try:
-        # Resize in every size we want.
-        dest_file = None
-        for size in target_sizes:
-            dest_file = f'{dest_folder}-{size}.png'
-            resize_image(source, dest_file, (size, size))
-
-        # Store the original hash, we'll return it to update the corresponding
-        # add-on. We only care about the first 8 chars of the md5, it's
-        # unlikely a new icon on the same add-on would get the same first 8
-        # chars, especially with icon changes being so rare in the first place.
-        with open(source, 'rb') as fd:
-            icon_hash = hashlib.md5(fd.read()).hexdigest()[:8]
-
-        # Keep a copy of the original image.
-        dest_file = '%s-original.png' % dest_folder
-        os.rename(source, dest_file)
-
-        return {'icon_hash': icon_hash}
-    except Exception as e:
-        log.error(f'Error saving addon icon ({dest_file}): {e}')
 
 
 @task

@@ -4,13 +4,14 @@ import zipfile
 
 from urllib.parse import urlsplit, urlunsplit
 
+from django.conf import settings
 from django.http.request import QueryDict
 from django.urls import reverse
 
 from rest_framework import fields, exceptions, serializers
 
 from olympia import amo
-from olympia.amo.utils import sorted_groupby
+from olympia.amo.utils import ImageCheck, sorted_groupby
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.fields import (
     ESTranslationSerializerField,
@@ -288,3 +289,32 @@ class VersionCompatabilityField(serializers.Field):
             )
             for app, compat in value.items()
         }
+
+
+class IconField(serializers.ImageField):
+    def to_internal_value(self, data):
+        data = super().to_internal_value(data)
+
+        image_check = ImageCheck(data)
+
+        if data.content_type not in amo.IMG_TYPES or not image_check.is_image():
+            raise serializers.ValidationError('Icons must be either PNG or JPG.')
+        errors = []
+
+        if image_check.is_animated():
+            errors.append('Icons cannot be animated.')
+
+        if data.size > settings.MAX_ICON_UPLOAD_SIZE:
+            errors.append(
+                'Please use images smaller than %dMB'
+                % (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024)
+            )
+
+        icon_size = image_check.size
+        if icon_size[0] != icon_size[1]:
+            errors.append('Icon must be square (same width and height).')
+
+        if errors:
+            raise serializers.ValidationError(errors)
+
+        return data
