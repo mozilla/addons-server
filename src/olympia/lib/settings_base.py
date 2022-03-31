@@ -93,9 +93,7 @@ ADDONS_LINTER_BIN = env(
     'ADDONS_LINTER_BIN', default='node_modules/addons-linter/bin/addons-linter'
 )
 
-DELETION_EMAIL = 'amo-notifications+deletion@mozilla.org'
-THEMES_EMAIL = 'theme-reviews@mozilla.org'
-VERIFIED_ADDONS_EMAIL = 'verified-addons@mozilla.com'
+DELETION_EMAIL = 'amo-notifications+deletion@mozilla.com'
 
 DRF_API_VERSIONS = ['auth', 'v3', 'v4', 'v5']
 DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
