@@ -756,6 +756,30 @@ class AddonViewSetCreateUpdateMixin:
         addon = Addon.objects.get()
         assert addon.contributions == valid_url
 
+    def test_name_trademark(self):
+        name = {'en-US': 'FIREFOX foo', 'fr': 'lé Mozilla baa'}
+        response = self.request(name=name)
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'name': ['Add-on names cannot contain the Mozilla or Firefox trademarks.']
+        }
+
+        self.grant_permission(self.user, 'Trademark:Bypass')
+        response = self.request(name=name)
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        assert response.data['name'] == name
+        addon = Addon.objects.get()
+        assert addon.name == name['en-US']
+
+    def test_name_for_trademark(self):
+        # But the form "x for Firefox" is allowed
+        allowed_name = {'en-US': 'name for FIREFOX', 'fr': 'nom for Mozilla'}
+        response = self.request(name=allowed_name)
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        assert response.data['name'] == allowed_name
+        addon = Addon.objects.get()
+        assert addon.name == allowed_name['en-US']
+
 
 class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID

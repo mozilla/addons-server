@@ -58,6 +58,7 @@ from .fields import (
 )
 from .models import Addon, AddonReviewerFlags, DeniedSlug, Preview, ReplacementAddon
 from .tasks import resize_icon
+from .validators import VerifyMozillaTrademark
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -716,7 +717,9 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
-    name = TranslationSerializerField(required=False, max_length=50)
+    name = TranslationSerializerField(
+        max_length=50, required=False, validators=(VerifyMozillaTrademark(),)
+    )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
     promoted = PromotedAddonSerializer(read_only=True)
     ratings = serializers.SerializerMethodField()
