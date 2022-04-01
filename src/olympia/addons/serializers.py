@@ -3,6 +3,7 @@ import re
 
 from django.urls import reverse
 
+import waffle
 from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
@@ -56,8 +57,16 @@ from .fields import (
     SourceFileField,
     VersionCompatabilityField,
 )
-from .models import Addon, AddonReviewerFlags, DeniedSlug, Preview, ReplacementAddon
+from .models import (
+    Addon,
+    AddonApprovalsCounter,
+    AddonReviewerFlags,
+    DeniedSlug,
+    Preview,
+    ReplacementAddon,
+)
 from .tasks import resize_icon
+from .utils import fetch_translations_from_addon
 from .validators import VerifyMozillaTrademark
 
 
@@ -1005,9 +1014,22 @@ class AddonSerializer(serializers.ModelSerializer):
         return addon
 
     def update(self, instance, validated_data):
+        fields_to_review = ('name', 'summary')
+        old_metadata = (
+            fetch_translations_from_addon(instance, fields_to_review)
+            if waffle.switch_is_active('metadata-content-review')
+            and instance.has_listed_versions()
+            else None
+        )
         if 'icon' in validated_data:
             self._save_icon(validated_data['icon'])
         instance = super().update(instance, validated_data)
+
+        if old_metadata is not None and old_metadata != fetch_translations_from_addon(
+            instance, fields_to_review
+        ):
+            statsd.incr('addons.submission.metadata_content_review_triggered')
+            AddonApprovalsCounter.reset_content_for_addon(addon=instance)
         if 'all_categories' in validated_data:
             del instance.all_categories  # super.update will have set it.
             instance.set_categories(validated_data['all_categories'])

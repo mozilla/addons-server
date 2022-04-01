@@ -18,7 +18,6 @@ from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
-from olympia.translations.models import Translation
 from olympia.versions.models import Version
 from olympia.versions.utils import process_color_value
 
@@ -314,13 +313,6 @@ def wizard_unsupported_properties(data, wizard_fields):
     unsupported += [key for key in data.get('images', {}) if key != 'theme_frame']
 
     return unsupported
-
-
-def fetch_existing_translations_from_addon(addon, properties):
-    translation_ids_gen = (getattr(addon, prop + '_id', None) for prop in properties)
-    translation_ids = [id_ for id_ in translation_ids_gen if id_]
-    # Just get all the values together to make it simplier
-    return {str(value) for value in Translation.objects.filter(id__in=translation_ids)}
 
 
 def add_manifest_version_error(validation):

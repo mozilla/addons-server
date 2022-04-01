@@ -34,7 +34,11 @@ from olympia.addons.models import (
     DeniedSlug,
     Preview,
 )
-from olympia.addons.utils import RestrictionChecker, verify_mozilla_trademark
+from olympia.addons.utils import (
+    fetch_translations_from_addon,
+    RestrictionChecker,
+    verify_mozilla_trademark,
+)
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
@@ -43,7 +47,6 @@ from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, CATEGORIES_NO_APP
-from olympia.devhub.utils import fetch_existing_translations_from_addon
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
@@ -122,7 +125,7 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
             and self.instance.has_listed_versions()
         )
         existing_data = (
-            fetch_existing_translations_from_addon(
+            fetch_translations_from_addon(
                 self.instance, self.fields_to_trigger_content_review
             )
             if metadata_content_review
@@ -131,7 +134,7 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
         obj = super().save(*args, **kwargs)
         if not metadata_content_review:
             return obj
-        new_data = fetch_existing_translations_from_addon(
+        new_data = fetch_translations_from_addon(
             obj, self.fields_to_trigger_content_review
         )
         if existing_data != new_data:
