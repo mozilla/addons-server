@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-01 11:39+0000\n"
-"Last-Translator: nguyenthu1991981 <nguyenthu1991981@gmail.com>\n"
+"PO-Revision-Date: 2022-04-01 12:52+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -699,13 +699,11 @@ msgstr "Đã phê duyệt nhưng đang chờ"
 msgid "Account updated."
 msgstr "Đã cập nhật tài khoản."
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "Đã cập nhật tài khoản."
+msgstr "Tài khoản {user} đã bị xóa."
 
-#, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Đã cập nhật tài khoản."
+msgstr "Tài khoản {user} đã bị xóa, khỏi sự kiện Tài khoản Firefox."
 
 msgid "Created: {0}."
 msgstr "Đã tạo: {0}."
