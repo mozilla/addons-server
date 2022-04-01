@@ -334,10 +334,10 @@ class CHANGE_POLICY(_LOG):
     show_user_to_developer = True
 
 
-class CHANGE_ICON(_LOG):
+class CHANGE_MEDIA(_LOG):
     id = 39
     action_class = 'edit'
-    format = _('{addon} icon changed.')
+    format = _('{addon} icon or previews changed.')
     show_user_to_developer = True
 
 

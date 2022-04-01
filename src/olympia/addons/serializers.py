@@ -11,6 +11,7 @@ from olympia.accounts.serializers import (
     BaseUserSerializer,
     UserProfileBasketSyncSerializer,
 )
+from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
@@ -535,15 +536,32 @@ class DeveloperVersionSerializer(VersionSerializer):
         return version
 
     def update(self, instance, validated_data):
+        user = self.context['request'].user
         custom_license = (
             validated_data.pop('license')
             if isinstance(validated_data.get('license'), dict)
             else None
         )
+        existing_maxs = {
+            app: appver.max for app, appver in instance.compatible_apps.items()
+        }
 
         instance = super().update(instance, validated_data)
         if 'compatible_apps' in validated_data:
             instance.set_compatible_apps(validated_data['compatible_apps'])
+            for app, appver in instance.compatible_apps.items():
+                if app not in existing_maxs or existing_maxs[app] != appver.max:
+                    ActivityLog.create(
+                        amo.LOG.MAX_APPVERSION_UPDATED,
+                        instance.addon,
+                        instance,
+                        user=user,
+                        details={
+                            'version': instance.version,
+                            'target': appver.version.version,
+                            'application': appver.application,
+                        },
+                    )
         if custom_license:
             if (
                 existing := getattr(instance, 'license', None)
@@ -553,6 +571,10 @@ class DeveloperVersionSerializer(VersionSerializer):
                 instance.update(
                     license=self.fields['custom_license'].create(custom_license)
                 )
+        if custom_license or 'license' in validated_data:
+            ActivityLog.create(
+                amo.LOG.CHANGE_LICENSE, instance.license, instance.addon, user=user
+            )
         if 'source' in validated_data:
             self._update_admin_review_flag_and_logging(instance)
         return instance
@@ -927,6 +949,32 @@ class AddonSerializer(serializers.ModelSerializer):
             remove_icons(destination)
             self.instance.update(icon_type='')
 
+    def log(self, instance, validated_data):
+        validated_data = {**validated_data}  # we want to modify it, so take a copy
+        user = self.context['request'].user
+
+        if 'disabled_by_user' in validated_data:
+            is_disabled = validated_data.pop('disabled_by_user')
+            ActivityLog.create(
+                amo.LOG.USER_DISABLE if is_disabled else amo.LOG.USER_ENABLE,
+                instance,
+                user=user,
+            )
+        if 'icon' in validated_data:
+            validated_data.pop('icon')
+            ActivityLog.create(amo.LOG.CHANGE_MEDIA, instance, user=user)
+        if 'tag_list' in validated_data:
+            # Tag.add_tag and Tag.remove_tag have their own logging so don't repeat it.
+            validated_data.pop('tag_list')
+
+        if validated_data:
+            ActivityLog.create(
+                amo.LOG.EDIT_PROPERTIES,
+                instance,
+                details=list(validated_data.keys()),
+                user=user,
+            )
+
     def create(self, validated_data):
         upload = validated_data.get('version').get('upload')
 
@@ -955,7 +1003,7 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         if 'icon' in validated_data:
-            self._save_icon(validated_data.pop('icon'))
+            self._save_icon(validated_data['icon'])
         instance = super().update(instance, validated_data)
         if 'all_categories' in validated_data:
             del instance.all_categories  # super.update will have set it.
@@ -963,6 +1011,7 @@ class AddonSerializer(serializers.ModelSerializer):
         if 'tag_list' in validated_data:
             del instance.tag_list  # super.update will have set it.
             instance.set_tag_list(validated_data['tag_list'])
+        self.log(instance, validated_data)
         return instance
 
 

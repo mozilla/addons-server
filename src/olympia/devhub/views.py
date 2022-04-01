@@ -989,7 +989,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
                 editable = False
                 if section == 'media':
-                    ActivityLog.create(amo.LOG.CHANGE_ICON, addon)
+                    ActivityLog.create(amo.LOG.CHANGE_MEDIA, addon)
                 else:
                     ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
 
