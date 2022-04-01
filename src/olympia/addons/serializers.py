@@ -16,6 +16,7 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
+from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.api.fields import (
     EmailTranslationField,
     LazyChoiceField,
@@ -727,7 +728,12 @@ class AddonSerializer(serializers.ModelSerializer):
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField(
-        max_length=50, required=False, validators=(VerifyMozillaTrademark(),)
+        max_length=50,
+        required=False,
+        validators=(
+            VerifyMozillaTrademark(),
+            OneOrMoreLetterOrNumberCharacterValidator(),
+        ),
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
     promoted = PromotedAddonSerializer(read_only=True)
@@ -737,7 +743,11 @@ class AddonSerializer(serializers.ModelSerializer):
     status = ReverseChoiceField(
         choices=list(amo.STATUS_CHOICES_API.items()), read_only=True
     )
-    summary = TranslationSerializerField(required=False, max_length=250)
+    summary = TranslationSerializerField(
+        required=False,
+        max_length=250,
+        validators=(OneOrMoreLetterOrNumberCharacterValidator(),),
+    )
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)
     tags = serializers.ListField(

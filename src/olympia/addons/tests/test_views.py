@@ -785,6 +785,27 @@ class AddonViewSetCreateUpdateMixin:
         addon = Addon.objects.get()
         assert addon.name == allowed_name['en-US']
 
+    def test_name_and_summary_not_symbols_only(self):
+        response = self.request(name={'en-US': '()+([#'}, summary={'en-US': '±↡∋⌚'})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'name': [
+                'Ensure this field contains at least one letter or number character.'
+            ],
+            'summary': [
+                'Ensure this field contains at least one letter or number character.'
+            ],
+        }
+
+        # 'ø' and 'ɵ' are not symbols, they are letters, so it should be valid.
+        response = self.request(name={'en-US': 'ø'}, summary={'en-US': 'ɵ'})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        assert response.data['name'] == {'en-US': 'ø'}
+        assert response.data['summary'] == {'en-US': 'ɵ'}
+        addon = Addon.objects.get()
+        assert addon.name == 'ø'
+        assert addon.summary == 'ɵ'
+
 
 class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
