@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-03 16:51+0000\n"
+"PO-Revision-Date: 2022-04-03 17:47+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3638,7 +3638,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Nýttu þér myndræn bókamerki. Nálgastu eftirlætisvefina þína, nýlega lokaða flipa og fleira - allt úr skýrri reitaðri framsetningu."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
