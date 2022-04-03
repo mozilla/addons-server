@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-03 17:47+0000\n"
+"PO-Revision-Date: 2022-04-03 20:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3656,11 +3656,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Vistaðu upplýsingar af internetinu í OneNote svo þú getir breytt, skrifað athugasemdir og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Stöðvaðu auglýsingarekjara þegar þú smellir á leitarniðurstöður í Google og Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
@@ -3672,17 +3672,17 @@ msgstr "Sjáðu smámyndir við hlið leitarniðurstaðna."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Gerðu vefinn auðveldari fyrir augun með því að dekkja skjáinn."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Lokaðu sjálfgefið fyrir alla sprettiglugga og ákveddu síðan hverja þeirra þú vilt opna."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Sérsníddu útlit hvaða vefsíðu sem er. Breyttu litum, bakgrunni og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
