@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-03 12:12+0000\n"
+"PO-Revision-Date: 2022-04-03 12:14+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3485,7 +3485,7 @@ msgstr "Sendu fréttagreinar, sögur, bloggfærslur og fleira yfir á Kindle-tæ
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Skipuleggðu flipana þína með því að flokka þá í litum eftir vefslóðamynstrum."
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
@@ -3545,7 +3545,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Stöðvaðu rekjara og fáðu nánari upplýsingar um þá."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
