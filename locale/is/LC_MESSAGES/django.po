@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-03-14 12:08+0000\n"
+"PO-Revision-Date: 2022-04-03 12:12+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3394,7 +3394,7 @@ msgstr "Lokaðu á rekjara og njósnaauglýsingar sem fylgjast með ferðum þí
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Njóttu fallegrar nýrrar síðu með sérsniðnum bakgrunni, staðbundnum veðurupplýsingum og fleiru."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3447,7 +3447,7 @@ msgstr "Sæktu myndskeið á einfaldan hátt. Virkar með YouTube, Facebook, Vim
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Bættu færni þína í notkun emoji-táknmynda. Tugir ótrúlegra emoji-tákna fyrir öll tilefni - með einum smelli."
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
@@ -3461,7 +3461,7 @@ msgstr "Afkastamikill auglýsingabani sem er léttur í keyrslu. uBlock Origin k
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Njóttu úrvals nýrra eiginleika á YouTube, eins og kvikmyndasýningarham, útilokun auglýsinga, stýringum fyrir sjálfvirka afspilun og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
