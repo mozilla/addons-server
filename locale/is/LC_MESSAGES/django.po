@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-03 14:11+0000\n"
+"PO-Revision-Date: 2022-04-03 14:13+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3494,7 +3494,7 @@ msgstr "Komdu í veg fyrir að illgjörn vefsvæði noti tölvuna þína til að
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Fáðu aðstoð við málfræði hvar sem þú skrifar á vefnum - á samfélagsmiðlum, í tölvupósti, í skjölum og víðar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3550,7 +3550,7 @@ msgstr "Stöðvaðu rekjara og fáðu nánari upplýsingar um þá."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Lágmarkaðu stafrænu slóðina þína. Láttu Firefox gleyma vefsíðugögnum eins og vefkökum og gögnum í staðbundinni geymslu, en aðeins fyrir þau lén sem þú velur."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
