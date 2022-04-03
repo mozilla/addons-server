@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-03 15:44+0000\n"
+"PO-Revision-Date: 2022-04-03 16:51+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3593,7 +3593,7 @@ msgstr "Lestu ePub-rafbókaskrár beint inni í Firefox - stækkaðu letur, brey
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Spilaðu YouTube myndskeið sjálfgefið í hæstu gæðum, slökktu á athugasemdum og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
@@ -3601,16 +3601,16 @@ msgstr "Fylgstu með rekjurum. Fáðu innsýn í hverjir séu að fylgjast með 
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Breyttu milliþjóninum þínum og vafraðu á vefnum í með þínum eigin milliþjónastillingum."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Bættu áhorf þitt með því að stilla hraða myndskeiða og fleira."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "Bættu dulkóðuðu öryggi við öll þau vefsvæði sem styðja HTTPS. Vafraðu á öruggan hátt."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -3618,7 +3618,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Breyttu því hvernig þú vafrar á Reddit með því að nota merki og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
@@ -3626,11 +3626,11 @@ msgstr "Taktu skjámyndir af vefsíðum, lagaðu þau til og deildu þeim síða
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Öflugra niðurhalsforrit einungis fyrir Windows."
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Finndu út hverjir eru að fylgjast með þér og hvar þeir kunna að deila upplýsingum um þig."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -3642,7 +3642,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Tilgreindu sérsniðna upphafssíðu fyrir nýju flipana þína."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
