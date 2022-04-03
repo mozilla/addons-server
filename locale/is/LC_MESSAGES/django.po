@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-03 12:14+0000\n"
+"PO-Revision-Date: 2022-04-03 14:11+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3469,7 +3469,7 @@ msgstr "Áherslulitaðu einhvern texta og hægrismelltu til að leita í skyndi 
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Nýttu þér myndræn bókamerki. Nálgastu eftirlætisvefina þína úr skýrri reitaðri framsetningu."
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -3540,7 +3540,7 @@ msgstr "Eyddu vefkökum sjálfvirkt eftir að þú lokar flipum."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Einföld leið til að stilla stærð hvaða texta sem er – eða jafnvel stækka síðuna sjálfa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3555,12 +3555,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "Það er óþarft að skrifa það sama aftur og aftur. Vistaðu texta sem oft er sleginn inn til að líma hvenær sem er."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Fáðu meira skjápláss með því að fjarlægja auglýsingar úr vefpósthólfinu þínu."
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
