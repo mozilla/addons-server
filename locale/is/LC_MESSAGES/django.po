@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-03 14:13+0000\n"
+"PO-Revision-Date: 2022-04-03 15:44+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3569,7 +3569,7 @@ msgstr "Sýslaðu með opnu flipana þina á hreinlegu hliðarspjaldi."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Forðastu lúmska rekjara og ýmsar takmarkanir. Dulbúðu flakkið þitt með því að fela auðkenni vafrans þíns og stýrikerfisins."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3597,7 +3597,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "Fylgstu með rekjurum. Fáðu innsýn í hverjir séu að fylgjast með þér með einum smelli."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
