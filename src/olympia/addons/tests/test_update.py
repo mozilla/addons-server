@@ -548,9 +548,9 @@ class TestResponse(VersionCheckMixin, TestCase):
         # response.
         assert output == [expected_output]
 
-    @mock.patch('services.update.log')
+    @mock.patch('services.update.logging.config.dictConfig')
     @mock.patch('services.update.Update')
-    def test_exception_handling(self, UpdateMock, log_mock):
+    def test_exception_handling(self, UpdateMock, dictConfigMock):
         """Test ensuring exceptions are raised and logged properly."""
 
         class CustomException(Exception):
@@ -564,12 +564,17 @@ class TestResponse(VersionCheckMixin, TestCase):
             self.inspector_call_count += 1
 
         with self.assertRaises(CustomException):
-            update.application({'QUERY_STRING': ''}, inspector)
+            with self.assertLogs(level='ERROR') as logs:
+                update.application({'QUERY_STRING': ''}, inspector)
         assert self.inspector_call_count == 0
+        assert len(logs.records) == 1
+        assert logs.records[0].message == 'Boom!'
+        assert logs.records[0].exc_info[1] == update_instance.get_output.side_effect
 
-        # The log should be present.
-        assert log_mock.exception.call_count == 1
-        log_mock.exception.assert_called_with(update_instance.get_output.side_effect)
+        # Ensure we had set up logging correctly. We can't let the actual call
+        # go through, it would override the loggers assertLogs() set up.
+        assert dictConfigMock.call_count == 1
+        assert dictConfigMock.call_args[0] == (settings.LOGGING,)
 
 
 # This test needs to be a TransactionTestCase because we want to test the
@@ -583,22 +588,18 @@ class TestUpdateConnectionEncoding(TransactionTestCase):
         self.addon = addon_factory()
 
     def test_service_database_setting(self):
-        from services.utils import mypool
-
         expected_name = settings.DATABASES['default']['NAME']
         assert 'test' in expected_name
         assert settings.SERVICES_DATABASE['NAME'] == expected_name
 
-        connection = mypool.connect()
+        connection = update.pool.connect()
         cursor = connection.cursor()
         cursor.execute('SELECT DATABASE();')
         assert cursor.fetchone()[0] == expected_name
         connection.close()
 
-    def test_mypool_encoding(self):
-        from services.utils import mypool
-
-        connection = mypool.connect()
+    def test_connection_pool_encoding(self):
+        connection = update.pool.connect()
         assert connection.connection.encoding == 'utf8'
         connection.close()
 
@@ -610,7 +611,7 @@ class TestUpdateConnectionEncoding(TransactionTestCase):
         # - A database cursor instantiated from the update service, not by
         #   django tests.
         # Note that this test would hang before the fix to pass charset when
-        # connecting in services.utils.getconn().
+        # connecting in get_connection().
         data = {
             'id': self.addon.guid,
             'reqVersion': '2鎈',
