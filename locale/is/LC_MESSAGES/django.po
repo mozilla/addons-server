@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-04 13:28+0000\n"
+"PO-Revision-Date: 2022-04-04 14:18+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3768,15 +3768,15 @@ msgstr "Opnar nýjan flipa strax til hægri á eftir núverandi flipa, ekki við
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Sigraðu ruslpóstinn. Notaðu sniðug bráðabirgðanetföng til að haldast nafnlaus og forðast ruslpóst."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Bein leið til að sérsníða innbyggðu persónuverndarstillingarnar í Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Fáðu tafarlausar þýðingar með því að velja texta og smella á hnappinn sem birtist."
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
@@ -3800,7 +3800,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Athugaðu eftirlætis RSS-streymin þín, öll á einni síðu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3817,7 +3817,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Fjarlægðu óþarfa snið og afritaðu bara venjulegan texta."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -3842,7 +3842,7 @@ msgstr "Sækja Youtube-myndskeið og/eða hljóð."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Háþróaður lesari til að safna saman öllum RSS/Atom/RDF-streymunum þínum."
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
