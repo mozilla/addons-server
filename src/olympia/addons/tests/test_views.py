@@ -27,7 +27,12 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonCategory, AddonReviewerFlags, DeniedSlug
+from olympia.addons.models import (
+    AddonCategory,
+    AddonApprovalsCounter,
+    AddonReviewerFlags,
+    DeniedSlug,
+)
 from olympia.amo.tests import (
     ESTestCase,
     APITestClientJWT,
@@ -756,6 +761,51 @@ class AddonViewSetCreateUpdateMixin:
         addon = Addon.objects.get()
         assert addon.contributions == valid_url
 
+    def test_name_trademark(self):
+        name = {'en-US': 'FIREFOX foo', 'fr': 'lé Mozilla baa'}
+        response = self.request(name=name)
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'name': ['Add-on names cannot contain the Mozilla or Firefox trademarks.']
+        }
+
+        self.grant_permission(self.user, 'Trademark:Bypass')
+        response = self.request(name=name)
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        assert response.data['name'] == name
+        addon = Addon.objects.get()
+        assert addon.name == name['en-US']
+
+    def test_name_for_trademark(self):
+        # But the form "x for Firefox" is allowed
+        allowed_name = {'en-US': 'name for FIREFOX', 'fr': 'nom for Mozilla'}
+        response = self.request(name=allowed_name)
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        assert response.data['name'] == allowed_name
+        addon = Addon.objects.get()
+        assert addon.name == allowed_name['en-US']
+
+    def test_name_and_summary_not_symbols_only(self):
+        response = self.request(name={'en-US': '()+([#'}, summary={'en-US': '±↡∋⌚'})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'name': [
+                'Ensure this field contains at least one letter or number character.'
+            ],
+            'summary': [
+                'Ensure this field contains at least one letter or number character.'
+            ],
+        }
+
+        # 'ø' and 'ɵ' are not symbols, they are letters, so it should be valid.
+        response = self.request(name={'en-US': 'ø'}, summary={'en-US': 'ɵ'})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        assert response.data['name'] == {'en-US': 'ø'}
+        assert response.data['summary'] == {'en-US': 'ɵ'}
+        addon = Addon.objects.get()
+        assert addon.name == 'ø'
+        assert addon.summary == 'ɵ'
+
 
 class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
@@ -1289,6 +1339,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             'addon-detail', kwargs={'pk': self.addon.pk}, api_version='v5'
         )
         self.client.login_api(self.user)
+        self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
 
     def request(self, **kwargs):
         return self.client.patch(self.url, data={**kwargs})
@@ -1732,6 +1783,84 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         alog = ActivityLog.objects.get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
+
+    def _test_metadata_content_review(self):
+        response = self.client.patch(
+            self.url,
+            data={'name': {'en-US': 'new name'}, 'summary': {'en-US': 'new summary'}},
+        )
+        assert response.status_code == 200
+
+    @override_switch('metadata-content-review', active=False)
+    @mock.patch('olympia.addons.serializers.fetch_translations_from_addon')
+    def test_metadata_content_review_waffle_off(self, fetch_mock):
+        self._test_metadata_content_review()
+
+        fetch_mock.assert_not_called()
+        with self.assertRaises(AssertionError):
+            self.statsd_incr_mock.assert_any_call(
+                'addons.submission.metadata_content_review_triggered'
+            )
+
+    @override_switch('metadata-content-review', active=True)
+    @mock.patch('olympia.addons.serializers.fetch_translations_from_addon')
+    def test_metadata_content_review_unlisted(self, fetch_mock):
+        self.make_addon_unlisted(self.addon)
+        AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
+        old_content_review = AddonApprovalsCounter.objects.get(
+            addon=self.addon
+        ).last_content_review
+        assert old_content_review
+
+        self._test_metadata_content_review()
+
+        fetch_mock.assert_not_called()
+        with self.assertRaises(AssertionError):
+            self.statsd_incr_mock.assert_any_call(
+                'addons.submission.metadata_content_review_triggered'
+            )
+        assert (
+            old_content_review
+            == AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
+        )
+
+    @override_switch('metadata-content-review', active=True)
+    def test_metadata_change_triggers_content_review(self):
+        AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
+        assert AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
+
+        self._test_metadata_content_review()
+
+        self.addon.reload()
+        # last_content_review should have been reset
+        assert not AddonApprovalsCounter.objects.get(
+            addon=self.addon
+        ).last_content_review
+        self.statsd_incr_mock.assert_any_call(
+            'addons.submission.metadata_content_review_triggered'
+        )
+
+    @override_switch('metadata-content-review', active=True)
+    def test_metadata_change_same_content(self):
+        AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
+        old_content_review = AddonApprovalsCounter.objects.get(
+            addon=self.addon
+        ).last_content_review
+        assert old_content_review
+        self.addon.name = {'en-US': 'new name'}
+        self.addon.summary = {'en-US': 'new summary'}
+        self.addon.save()
+
+        self._test_metadata_content_review()
+
+        with self.assertRaises(AssertionError):
+            self.statsd_incr_mock.assert_any_call(
+                'addons.submission.metadata_content_review_triggered'
+            )
+        assert (
+            old_content_review
+            == AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
+        )
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):

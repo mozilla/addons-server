@@ -3,6 +3,7 @@ import re
 
 from django.urls import reverse
 
+import waffle
 from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
@@ -15,6 +16,7 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
+from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.api.fields import (
     EmailTranslationField,
     LazyChoiceField,
@@ -56,8 +58,17 @@ from .fields import (
     SourceFileField,
     VersionCompatabilityField,
 )
-from .models import Addon, AddonReviewerFlags, DeniedSlug, Preview, ReplacementAddon
+from .models import (
+    Addon,
+    AddonApprovalsCounter,
+    AddonReviewerFlags,
+    DeniedSlug,
+    Preview,
+    ReplacementAddon,
+)
 from .tasks import resize_icon
+from .utils import fetch_translations_from_addon
+from .validators import VerifyMozillaTrademark
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -716,7 +727,14 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
-    name = TranslationSerializerField(required=False, max_length=50)
+    name = TranslationSerializerField(
+        max_length=50,
+        required=False,
+        validators=(
+            VerifyMozillaTrademark(),
+            OneOrMoreLetterOrNumberCharacterValidator(),
+        ),
+    )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
     promoted = PromotedAddonSerializer(read_only=True)
     ratings = serializers.SerializerMethodField()
@@ -725,7 +743,11 @@ class AddonSerializer(serializers.ModelSerializer):
     status = ReverseChoiceField(
         choices=list(amo.STATUS_CHOICES_API.items()), read_only=True
     )
-    summary = TranslationSerializerField(required=False, max_length=250)
+    summary = TranslationSerializerField(
+        required=False,
+        max_length=250,
+        validators=(OneOrMoreLetterOrNumberCharacterValidator(),),
+    )
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)
     tags = serializers.ListField(
@@ -1002,9 +1024,22 @@ class AddonSerializer(serializers.ModelSerializer):
         return addon
 
     def update(self, instance, validated_data):
+        fields_to_review = ('name', 'summary')
+        old_metadata = (
+            fetch_translations_from_addon(instance, fields_to_review)
+            if waffle.switch_is_active('metadata-content-review')
+            and instance.has_listed_versions()
+            else None
+        )
         if 'icon' in validated_data:
             self._save_icon(validated_data['icon'])
         instance = super().update(instance, validated_data)
+
+        if old_metadata is not None and old_metadata != fetch_translations_from_addon(
+            instance, fields_to_review
+        ):
+            statsd.incr('addons.submission.metadata_content_review_triggered')
+            AddonApprovalsCounter.reset_content_for_addon(addon=instance)
         if 'all_categories' in validated_data:
             del instance.all_categories  # super.update will have set it.
             instance.set_categories(validated_data['all_categories'])

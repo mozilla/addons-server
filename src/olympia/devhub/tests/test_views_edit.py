@@ -308,7 +308,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert selected_link is True
 
     @override_switch('metadata-content-review', active=False)
-    @mock.patch('olympia.devhub.forms.fetch_existing_translations_from_addon')
+    @mock.patch('olympia.devhub.forms.fetch_translations_from_addon')
     def test_metadata_content_review_waffle_off(self, fetch_mock):
         data = self.get_dict()
 

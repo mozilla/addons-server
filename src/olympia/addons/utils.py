@@ -21,6 +21,7 @@ from olympia.amo.utils import normalize_string
 from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleErrorMessage
+from olympia.translations.models import Translation
 from olympia.users.models import (
     DeveloperAgreementRestriction,
     UserRestrictionHistory,
@@ -401,3 +402,10 @@ class SitePermissionVersionCreator:
             selected_apps=[x[0] for x in amo.APPS_CHOICES],
             parsed_data=parsed_data,
         )
+
+
+def fetch_translations_from_addon(addon, properties):
+    translation_ids_gen = (getattr(addon, prop + '_id', None) for prop in properties)
+    translation_ids = [id_ for id_ in translation_ids_gen if id_]
+    # Just get all the values together to make it simplier
+    return {str(value) for value in Translation.objects.filter(id__in=translation_ids)}
