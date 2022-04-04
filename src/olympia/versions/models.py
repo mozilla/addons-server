@@ -332,7 +332,8 @@ class Version(OnChangeMixin, ModelBase):
                     'guid': addon.guid,
                     'upload': upload.uuid.hex,
                     'user_id': upload.user_id,
-                    'from_api': upload.source == amo.UPLOAD_SOURCE_SIGNING_API,
+                    'from_api': upload.source
+                    in (amo.UPLOAD_SOURCE_SIGNING_API, amo.UPLOAD_SOURCE_ADDON_API),
                 },
             )
             activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=upload.user)
