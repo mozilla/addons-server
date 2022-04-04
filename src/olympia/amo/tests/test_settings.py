@@ -4,10 +4,11 @@ import json
 from copy import deepcopy
 
 import pytest
+from sentry_sdk.hub import Hub
 
 from django.conf import settings
 
-from olympia.lib.settings_base import get_sentry_release
+from olympia.core.sentry import get_sentry_release
 
 
 @pytest.mark.parametrize(
@@ -36,6 +37,9 @@ def test_base_paths_bytestring(key):
 def test_sentry_release_config():
     version_json = os.path.join(settings.ROOT, 'version.json')
     original = None
+    sentry_client = Hub.current.client
+    current_release = sentry_client.options.get('release')
+    assert get_sentry_release() == current_release
 
     # There is a version.json that contains `version: origin/master`
     # by default in the repository. We should ignore that and fetch
@@ -82,11 +86,12 @@ def test_sentry_release_config():
 
 
 def test_sentry_data_scrubbing():
-    before_send = settings.SENTRY_CONFIG.get('before_send')
-    before_breadcrumb = settings.SENTRY_CONFIG.get('before_breadcrumb')
+    sentry_client = Hub.current.client
+    before_send = sentry_client.options.get('before_send')
+    before_breadcrumb = sentry_client.options.get('before_breadcrumb')
     assert before_send
     assert before_breadcrumb
-    assert settings.SENTRY_CONFIG.get('send_default_pii') is True
+    assert sentry_client.options.get('send_default_pii') is True
     event_raw = open(
         os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/sentry_event.json')
     ).read()
