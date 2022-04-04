@@ -1445,6 +1445,7 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_view(self):
         addon = addon_factory()
+        addon.update(average_daily_users=999)
         addon.authors.add(user_factory(email='foo@bar.com'))
         addon.authors.add(user_factory(email='bar@foo.com'))
         rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
@@ -1457,6 +1458,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         html = pq(response.content)
         assert html('.field-addon_name').length == 1
+        assert html('.field-addon_adi').text() == '999'
         authors = html('.field-authors a')
         assert authors.length == 3
         authors_links = list(
