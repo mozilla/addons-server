@@ -1238,13 +1238,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 parsed_data=self.dummy_parsed_data,
             )
 
-    def test_logging(self):
+    def _test_logging(self, source):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         user.update(last_login_ip='1.2.3.4')
         self.upload.update(
             user=user,
             ip_address='5.6.7.8',
-            source=amo.UPLOAD_SOURCE_SIGNING_API,
+            source=source,
         )
         with self.assertLogs(logger='z.versions', level='INFO') as logs:
             version = Version.from_upload(
@@ -1277,6 +1277,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert activities[1].action == amo.LOG.ADD_VERSION.id
         assert activities[1].arguments == [version, self.addon]
         assert activities[1].user == user
+
+    def test_logging_signing_api(self):
+        self._test_logging(amo.UPLOAD_SOURCE_SIGNING_API)
+
+    def test_logging_addons_api(self):
+        self._test_logging(amo.UPLOAD_SOURCE_ADDON_API)
 
     def test_carry_over_old_license(self):
         version = Version.from_upload(

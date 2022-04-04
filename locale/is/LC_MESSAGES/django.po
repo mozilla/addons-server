@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-03 20:22+0000\n"
+"PO-Revision-Date: 2022-04-04 09:58+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1702,7 +1702,7 @@ msgid "Version {version} already exists."
 msgstr "Útgáfa {version} er þegar til."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Halda í staðinn áfram með fyrirliggjandi innsendingu?"
 
 msgid "Yes"
 msgstr "Já"
@@ -1819,7 +1819,7 @@ msgid "An author has been added to your add-on"
 msgstr "Höfundi var bætt við viðbótina þína"
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Boð til höfundar vegna {addon_name}"
 
 msgid "A confirmation email has been sent to {email}"
 msgstr "Staðfestingartölvupóstur var sendur á {email}"
@@ -3805,7 +3805,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Virkjaðu næturham tl að fara betur með sjónina."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
@@ -4366,7 +4366,7 @@ msgstr "Forritsaukar eru eins og smáforrit fyrir Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Þetta bætir við eiginleikum í Firefox til að gera vafur hraðara, öruggara eða bara skemmtilegra."
+msgstr "Þeir bæta eiginleikum við Firefox til að gera vafur hraðara, öruggara eða bara skemmtilegra."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
