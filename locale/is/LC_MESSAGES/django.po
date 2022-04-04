@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-04 15:01+0000\n"
+"PO-Revision-Date: 2022-04-04 15:08+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3856,7 +3856,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Hreinsaðu skyndiminni vafrans með einum smelli eða lykli."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
@@ -3870,7 +3870,7 @@ msgstr "Njóttu tónlistar frá meira en 30.000 netútvarpsstöðvum út um alla
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Sparaðu bandbreidd með því að streyma einungis hljóðinu frá YouTube-myndskeiðum."
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
@@ -3909,11 +3909,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Framkvæma Wikipedia-leit með því einfaldlega að velja texta á hvaða vefsíðu sem er og hægrismella."
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Finndu það sem þú ert að leita að innan tiltekins léns."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
