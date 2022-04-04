@@ -760,6 +760,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
     list_display = (
         'addon_name',
         'guid',
+        'addon_adi',
         'formatted_channel',
         'version_number',
         'formatted_created',
@@ -794,6 +795,13 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         return '-'
 
     addon_name.short_description = 'Add-on'
+
+    def addon_adi(self, obj):
+        if obj.version:
+            return obj.version.addon.average_daily_users
+        return '-'
+
+    addon_adi.admin_order_field = 'version__addon__average_daily_users'
 
     def formatted_channel(self, obj):
         if obj.version:
