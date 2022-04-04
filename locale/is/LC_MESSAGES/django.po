@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-04 14:18+0000\n"
+"PO-Revision-Date: 2022-04-04 15:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1618,13 +1618,13 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr ""
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Ekki er hægt að bæta við notendum beint"
 
 msgid "An author can only be present once."
 msgstr "Höfund má ekki tiltaka nema einu sinni."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Reikningurinn þarf birtingarnafn áður en hægt er að bæta honum við sem höfundi."
 
 msgid "Must have at least one owner."
 msgstr "Sía verður að hafa a.m.k. einn höfund."
