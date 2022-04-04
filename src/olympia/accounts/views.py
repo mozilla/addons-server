@@ -178,7 +178,7 @@ def update_user(user, identity):
 
 def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
-    log.info(f'Logging in user {user} from FxA')
+    log.info('Logging in user %s from FxA', user)
     user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
     if token_data:
@@ -267,7 +267,11 @@ def with_user(f):
             return safe_redirect(request, next_path, ERROR_NO_PROFILE)
         else:
             # The following log statement is used by foxsec-pipeline.
-            log.info('Logging in FxA user %s', identity['email'])
+            log.info(
+                'Logging in FxA user %s',
+                identity['email'],
+                extra={'sensitive': True},
+            )
             user = find_user(identity)
             # We can't use waffle.flag_is_active() wrapper, because
             # request.user isn't populated at this point (and we don't want

@@ -326,7 +326,10 @@ class Version(OnChangeMixin, ModelBase):
             # We override the IP because it might be called from a task and we
             # want the original IP from the submitter.
             log.info(
-                f'New version: {version!r} ({version.id}) from {upload!r}',
+                'New version: %r (%s) from %r',
+                version,
+                version.pk,
+                upload,
                 extra={
                     'email': upload.user.email,
                     'guid': addon.guid,
@@ -466,7 +469,7 @@ class Version(OnChangeMixin, ModelBase):
         # To avoid a circular import
         from .tasks import delete_preview_files
 
-        log.info(f'Version deleted: {self!r} ({self.id})')
+        log.info('Version deleted: %r (%s)', self, self.id)
         activity.log_create(amo.LOG.DELETE_VERSION, self.addon, str(self.version))
 
         if hard:

@@ -1,7 +1,6 @@
 # Django settings for addons-server project.
 
 import environ
-import json
 import logging
 import os
 import socket
@@ -16,6 +15,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import ignore_logger
 
 import olympia.core.logger
+import olympia.core.sentry
 
 
 env = environ.Env()
@@ -1450,93 +1450,13 @@ REST_FRAMEWORK = {
     'TEST_REQUEST_DEFAULT_FORMAT': 'json',
 }
 
-
-def get_sentry_release():
-    version_json = os.path.join(ROOT, 'version.json')
-    version = None
-
-    if os.path.exists(version_json):
-        try:
-            with open(version_json) as fobj:
-                contents = fobj.read()
-                data = json.loads(contents)
-                version = data.get('version') or data.get('commit')
-        except (OSError, KeyError):
-            version = None
-
-    if not version or version == 'origin/master':
-        try:
-            head_path = os.path.join(ROOT, '.git', 'HEAD')
-            with open(head_path) as fp:
-                head = str(fp.read()).strip()
-
-            if head.startswith('ref: '):
-                head = head[5:]
-                revision_file = os.path.join(ROOT, '.git', *head.split('/'))
-            else:
-                return head
-            with open(revision_file) as fh:
-                version = str(fh.read()).strip()
-        except OSError:
-            version = None
-    return version
-
-
-def scrub_sensitive_data(event, hint):
-    def _scrub_sensitive_data_recursively(data, name=None):
-        # This only works with lists or dicts but we shouldn't need anything else.
-        if isinstance(data, (list, dict)):
-            items = data.items() if isinstance(data, dict) else enumerate(data)
-            for key, value in items:
-                data[key] = _scrub_sensitive_data_recursively(value, name=key)
-        elif (
-            isinstance(data, str)
-            and isinstance(name, str)
-            and name.lower() in SENTRY_SENSITIVE_FIELDS
-        ):
-            data = '*** redacted ***'
-        return data
-
-    try:
-        event = _scrub_sensitive_data_recursively(event)
-    except Exception:
-        pass
-    if 'ip_address' in event.get('user', {}):
-        event['user'].pop('ip_address')
-    return event
-
-
-SENTRY_CONFIG = {
-    # This is the DSN to the Sentry service.
-    'dsn': env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN')),
-    # Automatically configure the release based on git information.
-    # This uses our `version.json` file if possible or tries to fetch
-    # the current git-sha.
-    'release': get_sentry_release(),
-    # 'send_default_pii: False (the default) is a little too aggressive for us,
-    # so we set it to True and do it ourselves - see SENTRY_SENSITIVE_FIELDS
-    # below.
-    'send_default_pii': True,
-    'before_send': scrub_sensitive_data,
-}
-# List of fields to scrub in our custom scrub_sensitive_data() callback.
-# /!\ Each value needs to be in lowercase !
-SENTRY_SENSITIVE_FIELDS = (
-    'email',
-    'ip_address',
-    'remote_addr',
-    'remoteaddresschain',
-    'x-forwarded-for',
-)
-
-
 # We need to load this before sentry_sdk.init or our reverse replacement is too late.
 from olympia.amo import reverse  # noqa
 
 
 sentry_sdk.init(
     integrations=[DjangoIntegration(), CeleryIntegration()],
-    **SENTRY_CONFIG,
+    **olympia.core.sentry.get_sentry_config(env),
 )
 ignore_logger('django.security.DisallowedHost')
 

@@ -1238,8 +1238,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 parsed_data=self.dummy_parsed_data,
             )
 
-    @mock.patch('olympia.versions.models.log')
-    def _test_logging(self, source, log_mock):
+    def _test_logging(self, source):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         user.update(last_login_ip='1.2.3.4')
         self.upload.update(
@@ -1247,26 +1246,28 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             ip_address='5.6.7.8',
             source=source,
         )
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
+        with self.assertLogs(logger='z.versions', level='INFO') as logs:
+            version = Version.from_upload(
+                self.upload,
+                self.addon,
+                amo.RELEASE_CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
+                parsed_data=self.dummy_parsed_data,
+            )
+        assert len(logs.records) == 2
+        assert logs.records[0].message == (
+            f'New version: {version!r} ({version.pk}) from {self.upload!r}'
         )
-        assert log_mock.info.call_count == 2
-        assert log_mock.info.call_args_list[0][0] == (
-            (f'New version: {version!r} ({version.pk}) from {self.upload!r}'),
-        )
-        assert log_mock.info.call_args_list[0][1] == {
-            'extra': {
-                'email': user.email,
-                'guid': self.addon.guid,
-                'upload': self.upload.uuid.hex,
-                'user_id': user.pk,
-                'from_api': True,
-            }
+        expected_extra = {
+            'email': user.email,
+            'guid': self.addon.guid,
+            'upload': self.upload.uuid.hex,
+            'user_id': user.pk,
+            'from_api': True,
         }
+        for key, value in expected_extra.items():
+            assert getattr(logs.records[0], key) == value
+
         task_user = get_task_user()
         assert ActivityLog.objects.count() == 2
         activities = ActivityLog.objects.all()

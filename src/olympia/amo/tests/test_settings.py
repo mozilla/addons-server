@@ -4,10 +4,11 @@ import json
 from copy import deepcopy
 
 import pytest
+from sentry_sdk.hub import Hub
 
 from django.conf import settings
 
-from olympia.lib.settings_base import get_sentry_release
+from olympia.core.sentry import get_sentry_release
 
 
 @pytest.mark.parametrize(
@@ -36,6 +37,9 @@ def test_base_paths_bytestring(key):
 def test_sentry_release_config():
     version_json = os.path.join(settings.ROOT, 'version.json')
     original = None
+    sentry_client = Hub.current.client
+    current_release = sentry_client.options.get('release')
+    assert get_sentry_release() == current_release
 
     # There is a version.json that contains `version: origin/master`
     # by default in the repository. We should ignore that and fetch
@@ -82,9 +86,12 @@ def test_sentry_release_config():
 
 
 def test_sentry_data_scrubbing():
-    before_send = settings.SENTRY_CONFIG.get('before_send')
+    sentry_client = Hub.current.client
+    before_send = sentry_client.options.get('before_send')
+    before_breadcrumb = sentry_client.options.get('before_breadcrumb')
     assert before_send
-    assert settings.SENTRY_CONFIG.get('send_default_pii') is True
+    assert before_breadcrumb
+    assert sentry_client.options.get('send_default_pii') is True
     event_raw = open(
         os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/sentry_event.json')
     ).read()
@@ -92,17 +99,31 @@ def test_sentry_data_scrubbing():
     assert '@bar.com' in event_raw
     assert '172.18.0.1' in event_raw
     assert '127.0.0.42' in event_raw
+    assert '127.0.0.43' in event_raw
+    assert '4.8.15.16' in event_raw
+    assert 'sensitive' in event_raw
     expected_request_data = deepcopy(event['request'])
-
     expected_frame_data = deepcopy(
         event['exception']['values'][0]['stacktrace']['frames'][3]
     )
+    expected_breadcrumb_data = deepcopy(event['breadcrumbs']['values'][5])
+    assert len(event['breadcrumbs']['values']) == 9
 
+    # mimic what sentry does: go through every breadcrumb with
+    # before_breadcrumb() and the entire event with before_send() (Normally
+    # sentry would process breadcrumbs as they are sent, not after the fact,
+    # but this should be a good enough approximation).
+    event['breadcrumbs']['values'] = list(
+        filter(
+            None,
+            map(
+                lambda crumb: before_breadcrumb(crumb, None),
+                event['breadcrumbs']['values'],
+            ),
+        )
+    )
     event = before_send(event, None)
     event_raw = json.dumps(event)
-    assert '@bar.com' not in event_raw
-    assert '172.18.0.1' not in event_raw
-    assert '127.0.0.42' not in event_raw
 
     # We keep cookies, user dict.
     assert event['request']['cookies']
@@ -132,3 +153,20 @@ def test_sentry_data_scrubbing():
         expected_frame_data
         == event['exception']['values'][0]['stacktrace']['frames'][3]
     )
+
+    # We removed one sensitive breadcrumb.
+    assert len(event['breadcrumbs']['values']) == 8
+
+    # We redacted the rest
+    expected_breadcrumb_data['data'][
+        'url'
+    ] = 'https://reputationservice.example.com/...redacted...'
+    assert expected_breadcrumb_data == event['breadcrumbs']['values'][5]
+
+    # Sensitive stuff that should have been redacted.
+    assert '@bar.com' not in event_raw
+    assert '172.18.0.1' not in event_raw
+    assert '127.0.0.42' not in event_raw
+    assert '127.0.0.43' not in event_raw
+    assert '4.8.15.16' not in event_raw
+    assert 'sensitive' not in event_raw
