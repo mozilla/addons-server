@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-04 09:31+0000\n"
+"PO-Revision-Date: 2022-04-04 09:58+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -4366,7 +4366,7 @@ msgstr "Forritsaukar eru eins og smáforrit fyrir Firefox."
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Þetta bætir við eiginleikum í Firefox til að gera vafur hraðara, öruggara eða bara skemmtilegra."
+msgstr "Þeir bæta eiginleikum við Firefox til að gera vafur hraðara, öruggara eða bara skemmtilegra."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
