@@ -222,9 +222,9 @@ bitarray == 2.4.1 \
 bleach==4.1.0 \
     --hash=sha256:4d2651ab93271d1129ac9cbc679f524565cc8a1b791909c4a51eac4446a15994 \
     --hash=sha256:0900d8b37eba61a802ee40ac0061f8c2b5dee29c1927dd1d233e075ebf5a71da
-celery==5.2.3 \
-    --hash=sha256:8aacd02fc23a02760686d63dde1eb0daa9f594e735e73ea8fb15c2ff15cb608c \
-    --hash=sha256:e2cd41667ad97d4f6a2f4672d1c6a6ebada194c619253058b5f23704aaadaa82
+celery==5.2.5 \
+    --hash=sha256:19247ba189b72f82cf387fe5130f8d972f1c41255f87002f3198452849bf3a97 \
+    --hash=sha256:1f31c196e61dde344e322f9c0d33d1bb88c0dbaccbab5019fbb519a43d44706d
 # chardet is required by requests
 chardet==4.0.0 \
     --hash=sha256:f864054d66fd9118f2e67044ac8981a54775ec5b67aed0441892edb553d21da5 \
