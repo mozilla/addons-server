@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,6 +140,9 @@ msgstr "Kiximöy Nik'onel"
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr ""
+
+msgid "Activity Logs"
+msgstr "Kitz'ib'axik Samaj"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Tz'aqat man wachel ta pa AMO -"
@@ -656,7 +659,8 @@ msgstr "{addon} ya'on ruya'öl q'ij richin {0}."
 msgid "{addon} policy changed."
 msgstr "{addon} runa'ojil xjal."
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "{addon} wachib'äl xjal."
 
 msgid "{rating} for {addon} approved."
@@ -1644,11 +1648,14 @@ msgstr[1] "Tikirel xa xe e k'o {0} taq ruwäch awik'in."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Man tikirel ta yetun ri xolwachinäq taq ruwäch kik'in tz'aqatel taq ruwäch."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+#, fuzzy, python-format
+msgid "URL domain must be one of [%s]."
 msgstr "URL ajk'amal k'o chi jun [%s], o jun achajk'amal."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
 msgstr ""
 
 msgid "You have {0} too many tags."
@@ -4531,6 +4538,26 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove ads & receive better protection against malware."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4545,23 +4572,27 @@ msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Kinuk'samaj Chilab'en taq K'amal"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4654,10 +4685,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "chi Ruwäch Tz'aqat"
@@ -4691,6 +4718,25 @@ msgstr "Xchilab'ëx"
 #, fuzzy
 msgid "See more trending extensions"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "Ketz'et ronojel ri taq k'amal"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Xchilab'ëx"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "chi Ruwäch Tz'aqat"
 
 msgid "Could not parse the manifest file."
 msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
@@ -6171,9 +6217,6 @@ msgstr "Ruwachib'al Ruwäch B'i'aj"
 
 msgid "Collections"
 msgstr "Taq mol"
-
-msgid "Activity Logs"
-msgstr "Kitz'ib'axik Samaj"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

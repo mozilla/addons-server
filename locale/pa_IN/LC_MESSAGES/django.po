@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,6 +139,9 @@ msgstr "ਸਮੀਖਿਅਕ ਲਿੰਕ"
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr ""
+
+msgid "Activity Logs"
+msgstr "ਸਰਗਰਮੀ ਲਾਗ"
 
 msgid "- Add-on not on AMO -"
 msgstr "AMO - ਉੱਤੇ -ਐਡ-ਆਨ ਨਹੀਂ"
@@ -647,7 +650,8 @@ msgstr "{addon} ਨੂੰ ਹੁਣ {0}ਦੇ ਅਧੀਨ ਲਾਇਸੰਸ �
 msgid "{addon} policy changed."
 msgstr "{addon} ਨੀਤੀ ਬਦਲ ਗਈ।"
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "{addon} ਆਈਕਾਨ ਬਦਲਿਆ।"
 
 msgid "{rating} for {addon} approved."
@@ -1618,11 +1622,14 @@ msgstr[1] "ਤੁਹਾਡੇ ਕੋਲ ਕੇਵਲ {0} ਵਰਗ ਹੋ ਸਕ
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "ਫ਼ੁਟਕਲ ਵਰਗ ਹੋਰ ਵਰਗਾਂ ਨਾਲ ਜੋੜਿਆ ਨਹੀਂਂ ਜਾ ਸਕਦਾ।"
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+#, fuzzy, python-format
+msgid "URL domain must be one of [%s]."
 msgstr "URL ਡੋਮੇਨ [%s] ਵਿੱਚੋਂ ਇੱਕ, ਜਾਂ ਸਬਡੋਮੇਨ ਹੋਣਾ ਜਰੂਰੀ ਹੈ।"
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
 msgstr ""
 
 msgid "You have {0} too many tags."
@@ -4478,6 +4485,27 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Remove ads & receive better protection against malware."
+msgstr "ਇਸ਼ਤਿਹਾਰਾਂ ਉੱਤੇ ਰੋਕ ਲਾਓ ਅਤੇ ਮਾਲਵੇਅਰ ਅਤੇ ਇਸ਼ਤਿਹਾਰ ਟਰੈਕਿੰਗ ਵਿਰੁੱਧ ਵਾਧਾ ਕੀਤੀ ਸੁਰੱਖਿਆ ਲਵੋ।"
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -4493,23 +4521,27 @@ msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4602,10 +4634,6 @@ msgid "See more ad blocker staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
@@ -4639,6 +4667,25 @@ msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
 #, fuzzy
 msgid "See more trending extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
 
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
@@ -6114,9 +6161,6 @@ msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
 
 msgid "Collections"
 msgstr "ਸੰਗ੍ਰਹਿ "
-
-msgid "Activity Logs"
-msgstr "ਸਰਗਰਮੀ ਲਾਗ"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "ਇੱਕ ਵੈਧ IPv4 ਜਾਂ IPv6 ਪਤਾ ਦਾਖਲ ਕਰੋ, ਜਿਵੇਂ ਕਿ 127.0.0.1। ਨੂੰ ਇੱਕ /32 ਨੈੱਟਵਰਕ ਵਿੱਚ ਬਦਲਿਆ ਜਾਵੇਗਾ।"

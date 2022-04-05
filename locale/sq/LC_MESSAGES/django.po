@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2022-02-25 13:52+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -141,6 +141,9 @@ msgstr "Lidhje shqyrtuesi"
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr "Përftim Git shkaktuar për \"%(addons)s\"."
+
+msgid "Activity Logs"
+msgstr "Regjistra Veprimtarie"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Shtesë jo në AMO -"
@@ -665,7 +668,8 @@ msgstr "{addon} tani qarkullon nën licencën {0}."
 msgid "{addon} policy changed."
 msgstr "Rregullat për {addon} u ndryshuan."
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "U ndryshua ikona për {addon}."
 
 msgid "{rating} for {addon} approved."
@@ -1620,12 +1624,15 @@ msgstr[1] "Mund të keni vetëm {0} kategori."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategoria Të ndryshme s’mund të ndërthuret me të tjera kategori."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+#, fuzzy, python-format
+msgid "URL domain must be one of [%s]."
 msgstr "Përkatësia e URL-së duhet të jetë një nga [%s], ose një nënpërkatësi."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Shtegu URL për GitHub Sponsors duhet të përmbajë /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr ""
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4491,6 +4498,28 @@ msgstr "Përshtateni YouTube-in si e doni."
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Fshini të dhëna shfletimi drejt e nga paneli i shfletuesit."
 
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr "Merrni dosje faqerojtësish prurjesh RSS të vetëpopulluara."
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Remove ads & receive better protection against malware."
+msgstr "Bllokoni reklama bezdisëse dhe përfitoni mbrojtje të thelluar kundrejt malware-i dhe gjurmimesh nga reklama."
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Zgjerimet janë si aplikacione për Firefox-in."
@@ -4505,22 +4534,26 @@ msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Mjete përkthimi"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Bllokues reklamash elitarë"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Zgjerime të rekomanduara"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Mjete përkthimi"
+msgid "YouTube customization"
+msgstr "Përshtatje YouTube-i"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "Shihni zgjedhje nga stafi"
+
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Zgjerime të rekomanduara"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
@@ -4600,10 +4633,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Shihni më tepër bllokues reklamash të zgjedhur nga stafi"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Përshtatje YouTube-i"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Shihni më tepër zgjerime YouTube të zgjedhura nga stafi"
 
@@ -4630,6 +4659,25 @@ msgstr "Zgjerime në modë"
 #. editorial content for the homepage shelves.
 msgid "See more trending extensions"
 msgstr "Shihni më tepër zgjerime në modë"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "Shihni më tepër zgjerime transmetimi në shoqërorë të zgjedhur nga stafi"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Zgjerime në modë"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "Shihni më tepër mjete përkthimi të zgjedhura nga stafi"
 
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
@@ -6029,9 +6077,6 @@ msgstr "Foto Profili"
 
 msgid "Collections"
 msgstr "Koleksione"
-
-msgid "Activity Logs"
-msgstr "Regjistra Veprimtarie"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Jepni një adresë IPv4 ose IPv6 të vlefshme, p.sh., 127.0.0.1. Do të shndërrohet në një rrjet /32."
