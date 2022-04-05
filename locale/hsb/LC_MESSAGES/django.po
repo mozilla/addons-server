@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-05 21:08+0000\n"
+"PO-Revision-Date: 2022-04-05 21:11+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1621,7 +1621,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL-šćežka za sponsorow GitHub dyrbi /sponsors/ wobsahować."
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URL dyrbja so z https:// započeć."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4486,7 +4486,7 @@ msgstr "Wobstarajće sej awtomatisce direktnje do swojich rjadowakow zapołožko
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Skutkowny blokowak přećiwo wšěm typam wabjenja."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
@@ -4498,7 +4498,7 @@ msgstr "Wotstrońće wabjenje a dóstańće polěpšeny škit před škódnej so
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Wotstrońće formatowanje z kopěrowaneho teksta mjezyskłada."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4641,7 +4641,7 @@ msgstr "Dalše tuchwilu woblubowane rozšěrjenja sej wobhladać"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Polěpšenja Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
