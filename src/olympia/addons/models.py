@@ -1333,16 +1333,14 @@ class Addon(OnChangeMixin, ModelBase):
         if no_transforms:
             qs = qs.no_transforms()
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
-        seen = set()
+        # pre-fill all the addon instances with an empty list
+        for addon in addon_dict.values():
+            if not addon.has_per_version_previews:
+                addon.current_previews = []
         for addon_id, previews in itertools.groupby(qs, lambda x: x.addon_id):
-            addon_dict[addon_id]._all_previews = list(previews)
-            seen.add(addon_id)
-        # set _all_previews to empty list on addons without previews.
-        [
-            setattr(addon, '_all_previews', [])
-            for addon in addon_dict.values()
-            if addon.id not in seen
-        ]
+            addon = addon_dict[addon_id]
+            if not addon.has_per_version_previews:
+                addon.current_previews = list(previews)
 
     @staticmethod
     def attach_static_categories(addons, addon_dict=None):
@@ -1384,17 +1382,6 @@ class Addon(OnChangeMixin, ModelBase):
     @property
     def contribution_url(self, lang=settings.LANGUAGE_CODE, app=settings.DEFAULT_APP):
         return reverse('addons.contribute', args=[self.slug])
-
-    @property
-    def thumbnail_url(self):
-        """
-        Returns the addon's thumbnail url or a default.
-        """
-        try:
-            preview = self._all_previews[0]
-            return preview.thumbnail_url
-        except IndexError:
-            return staticfiles_storage.url('img/icons/no-preview.png')
 
     def can_request_review(self):
         """Return whether an add-on can request a review or not."""
@@ -1610,15 +1597,10 @@ class Addon(OnChangeMixin, ModelBase):
         static theme."""
         if self.has_per_version_previews:
             if self.current_version:
-                return self.current_version.previews.all()
-            return VersionPreview.objects.none()
+                return list(self.current_version.previews.all())
+            return []
         else:
-            return self._all_previews
-
-    @cached_property
-    def _all_previews(self):
-        """Exclude promo graphics."""
-        return list(self.previews.exclude(position=-1))
+            return list(self.previews.all())
 
     @property
     def has_per_version_previews(self):

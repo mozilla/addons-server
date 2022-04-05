@@ -500,9 +500,8 @@ class AddonIndexer(BaseSearchIndexer):
         data['colors'] = None
         # Extract dominant colors from static themes.
         if obj.type == amo.ADDON_STATICTHEME:
-            first_preview = obj.current_previews.first()
-            if first_preview:
-                data['colors'] = first_preview.colors
+            if obj.current_previews:
+                data['colors'] = obj.current_previews[0].colors
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
         # Boost by the number of users on a logarithmic scale.

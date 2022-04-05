@@ -155,10 +155,10 @@ def extract_colors_from_static_themes(ids, **kw):
     addons = Addon.objects.filter(id__in=ids)
     extracted = []
     for addon in addons:
-        first_preview = addon.current_previews.first()
-        if first_preview and not first_preview.colors:
-            colors = extract_colors_from_image(first_preview.thumbnail_path)
-            addon.current_previews.update(colors=colors)
+        if addon.current_previews and not addon.current_previews[0].colors:
+            colors = extract_colors_from_image(addon.current_previews[0].thumbnail_path)
+            addon.current_version.previews.update(colors=colors)
+            del addon.current_previews
             extracted.append(addon.pk)
     if extracted:
         index_addons.delay(extracted)

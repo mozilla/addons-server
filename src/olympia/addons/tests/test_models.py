@@ -1680,27 +1680,33 @@ class TestAddonModels(TestCase):
         assert flags.notified_about_auto_approval_delay is False
 
     def test_attach_previews(self):
-        addons = [addon_factory(), addon_factory(), addon_factory()]
+        addons = [
+            addon_factory(),
+            addon_factory(),
+            addon_factory(),
+            addon_factory(type=amo.ADDON_STATICTHEME),
+        ]
         # Give some of the addons previews:
         # 2 for addons[0]
         pa = Preview.objects.create(addon=addons[0])
         pb = Preview.objects.create(addon=addons[0])
-        # nothing for addons[1]; and 1 for addons[2]
+        # nothing for addons[1]; and 1 for addons[2];
+        # addons[3] is a theme so doesn't have Preview instances
         pc = Preview.objects.create(addon=addons[2])
 
         Addon.attach_previews(addons)
 
-        # Create some more previews for [0] and [1].  As _all_previews and
-        # _current_previews are cached_property-s then if attach_previews
+        # Create some more previews for [0] and [1].
+        # As _current_previews is a cached_property then if attach_previews
         # worked then these new Previews won't be in the cached values.
         Preview.objects.create(addon=addons[0])
         Preview.objects.create(addon=addons[1])
-        assert addons[0]._all_previews == [pa, pb]
-        assert addons[1]._all_previews == []
-        assert addons[2]._all_previews == [pc]
         assert addons[0].current_previews == [pa, pb]
         assert addons[1].current_previews == []
         assert addons[2].current_previews == [pc]
+        # But addons[3]'s cached_property shouldn't have been filled with []
+        vp = VersionPreview.objects.create(version=addons[3].current_version)
+        assert addons[3].current_previews == [vp]
 
     def test_promoted_group(self):
         addon = addon_factory()
