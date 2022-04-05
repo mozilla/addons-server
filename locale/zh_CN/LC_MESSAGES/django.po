@@ -4569,9 +4569,8 @@ msgid "See more Steam staff picks"
 msgstr "更多编辑推荐 > 社交流媒体扩展"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "热门扩展"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
