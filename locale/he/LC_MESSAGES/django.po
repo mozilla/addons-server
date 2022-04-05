@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2022-01-22 23:24+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -143,6 +143,9 @@ msgstr "קישורי סוקרים"
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr ""
+
+msgid "Activity Logs"
+msgstr "יומני פעילות"
 
 msgid "- Add-on not on AMO -"
 msgstr "- התוספת לא נמצאת ב־AMO -"
@@ -656,7 +659,8 @@ msgstr "הרישיון של {addon} הוא {0} כעת."
 msgid "{addon} policy changed."
 msgstr "המדיניות של התוספת {addon} השתנתה."
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "הצלמית של התוספת {addon} השתנתה."
 
 msgid "{rating} for {addon} approved."
@@ -1630,11 +1634,14 @@ msgstr[1] "יכולות להיות לך רק {0} קטגוריות."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "לא ניתן לשלב את קטגוריית השונות עם קטגוריות נוספות."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+#, fuzzy, python-format
+msgid "URL domain must be one of [%s]."
 msgstr "כתובת המתחם חייבת להיות אחת מבין [%s], או כל תת שם מתחם שלהן."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
 msgstr ""
 
 msgid "You have {0} too many tags."
@@ -4457,6 +4464,27 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Remove ads & receive better protection against malware."
+msgstr "חסימת פרסומות וקבלת הגנה משופרת מפני נוזקה ומעקב של פרסומות."
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "הרחבות הן כמו יישומים ל־Firefox."
@@ -4471,22 +4499,26 @@ msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "כלי תרגום"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "הרחבות מומלצות"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "כלי תרגום"
+msgid "YouTube customization"
+msgstr "התאמה אישית של YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "הרחבות מומלצות"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
@@ -4572,10 +4604,6 @@ msgid "See more ad blocker staff picks"
 msgstr "הצגת הרחבות מומלצות נוספות"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "התאמה אישית של YouTube"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "תרגומים לשם התוספת"
@@ -4603,6 +4631,25 @@ msgstr "ההרחבות שמובילות לאחרונה"
 #. editorial content for the homepage shelves.
 msgid "See more trending extensions"
 msgstr "הצגת הרחבות נוספות שמובילות לאחרונה"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "הצגת הרחבות פופולריות נוספות"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "ההרחבות שמובילות לאחרונה"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "תרגומים לשם התוספת"
 
 msgid "Could not parse the manifest file."
 msgstr "לא ניתן לפענח את קובץ ה־manifest."
@@ -6060,9 +6107,6 @@ msgstr "תמונת פרופיל"
 
 msgid "Collections"
 msgstr "אוספים"
-
-msgid "Activity Logs"
-msgstr "יומני פעילות"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

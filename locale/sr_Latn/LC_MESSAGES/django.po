@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -148,6 +148,10 @@ msgstr "Recenzenti"
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr ""
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "Aktivnost"
 
 msgid "- Add-on not on AMO -"
 msgstr ""
@@ -746,7 +750,8 @@ msgstr "{addon} je sada licenciran pod {0.name}."
 msgid "{addon} policy changed."
 msgstr "Polisa izmenjena za {addon}."
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "Ikonica je promenjena za {addon}."
 
 #, fuzzy
@@ -1912,10 +1917,13 @@ msgid ""
 msgstr "Kategorija Ostalo se ne može spojiti sa dodatnim kategorijama."
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+msgid "URL domain must be one of [%s]."
 msgstr ""
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
 msgstr ""
 
 msgid "You have {0} too many tags."
@@ -5314,6 +5322,26 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove ads & receive better protection against malware."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5331,23 +5359,27 @@ msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Komentariši"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Komentariši"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5440,10 +5472,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "po verziji dodatka"
@@ -5477,6 +5505,25 @@ msgstr "Komentariši"
 #, fuzzy
 msgid "See more trending extensions"
 msgstr "Pogledajte sve dodatke"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "Pogledajte sve dodatke"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Komentariši"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "po verziji dodatka"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -7101,10 +7148,6 @@ msgstr "Profilna slika"
 
 msgid "Collections"
 msgstr "Kolekcije"
-
-#, fuzzy
-msgid "Activity Logs"
-msgstr "Aktivnost"
 
 msgid ""
 "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into "

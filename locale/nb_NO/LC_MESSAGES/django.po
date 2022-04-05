@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2021-05-20 11:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -138,6 +138,9 @@ msgstr "Gjennomgangslenker"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
+msgstr ""
+
+msgid "Activity Logs"
 msgstr ""
 
 msgid "- Add-on not on AMO -"
@@ -656,7 +659,8 @@ msgstr "{addon} er nå lisensiert under {0}."
 msgid "{addon} policy changed."
 msgstr "{addon} sin policy endret."
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "{addon} ikon endret."
 
 msgid "{rating} for {addon} approved."
@@ -1612,11 +1616,14 @@ msgstr[1] "Du kan bare ha {0} kategorier."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Diverse-kategorien kan ikke kombineres med andre kategorier."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+#, fuzzy, python-format
+msgid "URL domain must be one of [%s]."
 msgstr "URL-domene må være et av [%s], eller et underdomene."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
 msgstr ""
 
 msgid "You have {0} too many tags."
@@ -4417,6 +4424,26 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove ads & receive better protection against malware."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Utvidelser er som apper for Firefox."
@@ -4431,23 +4458,27 @@ msgstr "Se alle utvidelser"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Anbefalte utvidelser"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "Translation tools"
 msgstr "Fane-organisering og verktøy"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
@@ -4534,10 +4565,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Vis flere anbefalte utvidelser"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "Vis flere populære utvidelser"
@@ -4571,6 +4598,25 @@ msgstr "Anbefalte tema"
 #, fuzzy
 msgid "See more trending extensions"
 msgstr "Vis flere anbefalte utvidelser"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "Vis flere populære utvidelser"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Anbefalte tema"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "Vis flere populære utvidelser"
 
 msgid "Could not parse the manifest file."
 msgstr "Kunne ikke analysere manifestfilen."
@@ -5972,9 +6018,6 @@ msgstr ""
 
 msgid "Collections"
 msgstr "Samlinger"
-
-msgid "Activity Logs"
-msgstr ""
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

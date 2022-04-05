@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -152,6 +152,10 @@ msgstr "Reviewers"
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr "Git extraction triggered for \"%(addons)s\"."
+
+#, fuzzy
+msgid "Activity Logs"
+msgstr "Activity"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on not on AMO -"
@@ -691,7 +695,8 @@ msgstr "{addon} is now licensed under {0.name}."
 msgid "{addon} policy changed."
 msgstr "{addon} policy changed."
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "{addon} icon changed."
 
 #, fuzzy
@@ -1755,11 +1760,14 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "The miscellaneous category cannot be combined with additional categories."
 
 #, fuzzy, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+msgid "URL domain must be one of [%s]."
 msgstr "URL domain must be one of [%s], or a subdomain., "
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL path for GitHub Sponsors must contain /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr "URLs must start with https://."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4869,6 +4877,28 @@ msgstr "Customize YouTube to taste."
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Delete browsing data directly from the browser toolbar."
 
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr "Get auto-populated RSS feed bookmark folders."
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr "Effective blocker against all types of ads."
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr "Mass download manager makes extreme downloading extremely easy."
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Remove ads & receive better protection against malware."
+msgstr "Not only block annoying ads, but protect yourself against malware and ad tracking."
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr "Remove formatting from copied Clipboard text."
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -4886,24 +4916,28 @@ msgstr "Browse all add-ons"
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 #, fuzzy
+msgid "Translation tools"
+msgstr "Tab organizers and tools"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+#, fuzzy
 msgid "Elite ad blockers"
 msgstr "Update add-on block"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Recommended Extensions program"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Translation tools"
-msgstr "Tab organizers and tools"
+msgid "YouTube customization"
+msgstr "YouTube customization"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "See staff picks"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Recommended Extensions program"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4998,10 +5032,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Recommended Extensions program"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube customization"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "by Add-on Version"
@@ -5035,6 +5065,25 @@ msgstr "Recommended ({0})"
 #, fuzzy
 msgid "See more trending extensions"
 msgstr "Recommended Extensions program"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr "Steam enhancers"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "Browse all add-ons"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Recommended ({0})"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "by Add-on Version"
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
@@ -6594,10 +6643,6 @@ msgstr "Profile Photo"
 
 msgid "Collections"
 msgstr "Collections"
-
-#, fuzzy
-msgid "Activity Logs"
-msgstr "Activity"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."

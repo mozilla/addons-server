@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -139,6 +139,9 @@ msgstr "Linkuri pentru recenzori"
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr ""
+
+msgid "Activity Logs"
+msgstr "Jurnale de activitate"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Supliment inexistent în AMO -"
@@ -662,7 +665,8 @@ msgstr "{addon} este acum disponibil sub licența {0}."
 msgid "{addon} policy changed."
 msgstr "Politică {addon} modificată."
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "Pictograma {addon} modificată."
 
 msgid "{rating} for {addon} approved."
@@ -1648,11 +1652,14 @@ msgstr[2] "Poți avea doar {0} de categorii."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+#, fuzzy, python-format
+msgid "URL domain must be one of [%s]."
 msgstr "Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
 msgstr ""
 
 msgid "You have {0} too many tags."
@@ -4548,6 +4555,28 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr "Obții dosare de marcaje de fluxuri RSS populate automat."
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+#, fuzzy
+msgid "Remove ads & receive better protection against malware."
+msgstr "Blochezi reclame și obții o protecție sporită împotriva softurilor malițioase și a urmăririi prin reclame."
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensiile sunt ca un fel de aplicații pentru Firefox."
@@ -4562,22 +4591,26 @@ msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Instrumente de traducere"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Blocatoare de reclame de elită"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "Extensii recomandate"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Instrumente de traducere"
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "Extensii recomandate"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
@@ -4665,10 +4698,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
@@ -4702,6 +4731,25 @@ msgstr "Teme recomandate"
 #, fuzzy
 msgid "See more trending extensions"
 msgstr "Vezi mai multe extensii recomandate"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "Vezi mai multe extensii populare"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Teme recomandate"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "Vezi mai multe instrumente de traducere"
 
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
@@ -6142,9 +6190,6 @@ msgstr "Fotografie de profil"
 
 msgid "Collections"
 msgstr "Colecții"
-
-msgid "Activity Logs"
-msgstr "Jurnale de activitate"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Introdu o adresă IPv4 sau IPv6 validă, de ex. 127.0.0.1. Va fi convertită într-una de rețea /32."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2022-02-03 05:27+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -142,6 +142,9 @@ msgstr "검토자 링크"
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
 msgstr "\"%(addons)s\"에 대해 Git 추출이 시작되었습니다."
+
+msgid "Activity Logs"
+msgstr "활동 로그"
 
 msgid "- Add-on not on AMO -"
 msgstr "- AMO에 없는 부가 기능 -"
@@ -659,7 +662,8 @@ msgstr "{addon} 부가기능이 {0} 라이선스를 채용했습니다."
 msgid "{addon} policy changed."
 msgstr "{addon}의 개인정보처리방침이 변경되었습니다."
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "{addon} 아이콘이 변경되었습니다."
 
 msgid "{rating} for {addon} approved."
@@ -1628,12 +1632,15 @@ msgstr[0] "{0}개의 분류만 사용할 수 있습니다."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "기타 카테고리는 다른 카테고리와 결합할 수 없습니다."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+#, fuzzy, python-format
+msgid "URL domain must be one of [%s]."
 msgstr "URL 도메인은 [%s]중에 하나이거나 하위 도메인이어야 합니다."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "GitHub 스폰서의 URL 경로에는 /sponsors/가 포함되어야합니다."
+
+msgid "URLs must start with https://."
+msgstr ""
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4476,6 +4483,26 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove ads & receive better protection against malware."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "확장 기능은 Firefox만을 위한 앱입니다."
@@ -4490,23 +4517,27 @@ msgstr "모든 확장기능 보기"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Recommended extensions"
-msgstr "추천 확장 기능"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "Translation tools"
 msgstr "탭 관리 도구"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Recommended extensions"
+msgstr "추천 확장 기능"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
@@ -4595,10 +4626,6 @@ msgid "See more ad blocker staff picks"
 msgstr "추천 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "부가 기능 이름 번역"
@@ -4632,6 +4659,25 @@ msgstr "추천 테마"
 #, fuzzy
 msgid "See more trending extensions"
 msgstr "추천 확장 기능 더보기"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "인기 확장 기능 더보기"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "추천 테마"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "부가 기능 이름 번역"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -6145,9 +6191,6 @@ msgstr "프로필 사진"
 
 msgid "Collections"
 msgstr "모음집"
-
-msgid "Activity Logs"
-msgstr "활동 로그"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,6 +141,9 @@ msgstr "পর্যালোচনাকারীদের টুলস"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
+msgstr ""
+
+msgid "Activity Logs"
 msgstr ""
 
 msgid "- Add-on not on AMO -"
@@ -651,7 +654,8 @@ msgstr ""
 msgid "{addon} policy changed."
 msgstr "{addon} এর নীতিমালা পরিবর্তন হয়েছে।"
 
-msgid "{addon} icon changed."
+#, fuzzy
+msgid "{addon} icon or previews changed."
 msgstr "{addon} এর আইকন পরিবর্তন হয়েছে।"
 
 msgid "{rating} for {addon} approved."
@@ -1629,10 +1633,13 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "বিবিধ বিষয়শ্রেণী বাড়তি বিষয়শ্রেণীর সাথে মেশানো যাবে না।"
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+msgid "URL domain must be one of [%s]."
 msgstr ""
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
 msgstr ""
 
 msgid "You have {0} too many tags."
@@ -4400,6 +4407,26 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove ads & receive better protection against malware."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4414,23 +4441,27 @@ msgstr "সকল এক্সটেনশন দেখুন"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "মন্তব্য করা হয়েছে"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "মন্তব্য করা হয়েছে"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4523,10 +4554,6 @@ msgid "See more ad blocker staff picks"
 msgstr "সকল এক্সটেনশন দেখুন"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "এড-অন ভার্সন"
@@ -4560,6 +4587,25 @@ msgstr "মন্তব্য করা হয়েছে"
 #, fuzzy
 msgid "See more trending extensions"
 msgstr "সকল এক্সটেনশন দেখুন"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "সকল এক্সটেনশন দেখুন"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "মন্তব্য করা হয়েছে"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
+msgstr "এড-অন ভার্সন"
 
 msgid "Could not parse the manifest file."
 msgstr ""
@@ -5986,9 +6032,6 @@ msgstr "প্রোফাইল ছবি"
 
 msgid "Collections"
 msgstr "সংগ্রহ"
-
-msgid "Activity Logs"
-msgstr ""
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

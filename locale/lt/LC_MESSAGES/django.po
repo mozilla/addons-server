@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-03-10 17:10+0000\n"
+"POT-Creation-Date: 2022-04-05 17:49+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,6 +146,9 @@ msgstr "Plėtojimo kanalas"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
+msgstr ""
+
+msgid "Activity Logs"
 msgstr ""
 
 msgid "- Add-on not on AMO -"
@@ -658,8 +661,9 @@ msgstr ""
 msgid "{addon} policy changed."
 msgstr ""
 
-msgid "{addon} icon changed."
-msgstr ""
+#, fuzzy
+msgid "{addon} icon or previews changed."
+msgstr "Priedas „{addon}“ sukurtas."
 
 msgid "{rating} for {addon} approved."
 msgstr ""
@@ -1656,10 +1660,13 @@ msgid "The miscellaneous category cannot be combined with additional categories.
 msgstr "The miscellaneous category cannot be combined with additional categories."
 
 #, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
+msgid "URL domain must be one of [%s]."
 msgstr ""
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
 msgstr ""
 
 msgid "You have {0} too many tags."
@@ -4474,6 +4481,26 @@ msgstr ""
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Get RSS feed auto-updates direct to your bookmark folders."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Effective blocker against all types of ads."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Mass download manager makes extreme downloading extremely easy."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove ads & receive better protection against malware."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Remove formatting from copied Clipboard text."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4489,23 +4516,27 @@ msgstr "Populiarūs plėtiniai"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Recommended extensions"
-msgstr "Komentuoti"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Recommended extensions"
+msgstr "Komentuoti"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4596,10 +4627,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Populiarūs plėtiniai"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "Populiarūs plėtiniai"
@@ -4632,6 +4659,25 @@ msgstr "Komentuoti"
 #. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more trending extensions"
+msgstr "Populiarūs plėtiniai"
+
+#. editorial content for the homepage shelves.
+msgid "Steam enhancers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more Steam staff picks"
+msgstr "Populiarūs plėtiniai"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Komentuoti"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "See more creativity staff picks"
 msgstr "Populiarūs plėtiniai"
 
 msgid "Could not parse the manifest file."
@@ -6101,9 +6147,6 @@ msgstr ""
 
 msgid "Collections"
 msgstr "Rinkiniai"
-
-msgid "Activity Logs"
-msgstr ""
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""
