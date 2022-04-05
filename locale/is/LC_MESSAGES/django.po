@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-05 17:28+0000\n"
+"PO-Revision-Date: 2022-04-05 17:39+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3934,7 +3934,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Stilltu nýjar flipasíður til að birta sérsniðna bakgrunnsliti og myndir."
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
@@ -3942,7 +3942,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Fyrir þau augnablik þegar þú þarft að skjóta leysigeislum úr köttum."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
@@ -4043,7 +4043,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Breyttu vefsíðum áður en þær eru prentaðar. Gerðu víðtækar sjónrænar breytingar - fjarlægðu auglýsingar eða ósmekklegt efni - á hverri þeirri vefsíðu sem þú vilt prenta."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
@@ -4057,7 +4057,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Verðu þig gegn laumulegustu rekjurunum."
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
@@ -4195,7 +4195,7 @@ msgstr "Búðu til og sérsníddu flipahópa."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "Vistaðu heilar vefsíður – þar á meðal myndir og stíl – sem eina HTML-skrá."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
