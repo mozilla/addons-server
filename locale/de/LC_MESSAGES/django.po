@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-05 18:51+0000\n"
+"PO-Revision-Date: 2022-04-05 18:54+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -668,9 +668,8 @@ msgstr "{addon} steht jetzt unter der Lizenz {0}."
 msgid "{addon} policy changed."
 msgstr "Regeln von {addon} geändert."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "Symbol von {addon} geändert."
+msgstr "Symbol oder Vorschauen von {addon} geändert."
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} für {addon} freigeschaltet."
@@ -1641,9 +1640,9 @@ msgstr[1] "Sie können nur {0} Kategorien auswählen."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Die Kategorie „Verschiedenes“ kann nicht mit anderen Kategorien kombiniert werden."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL-Domain muss zu [%s] gehören oder eine Subdomain sein."
+msgstr "URL-Domain muss zu [%s] gehören."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Der URL-Pfad für GitHub-Sponsoren muss /sponsors/ enthalten."
@@ -4513,9 +4512,8 @@ msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Löschen Sie Surf-Daten direkt aus der Symbolleiste Ihres Browsers."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "Holen Sie sich automatisch ausgefüllte RSS-Feed-Lesezeichenordner."
+msgstr "Holen Sie sich automatische RSS-Feed-Updates direkt in Ihre Lesezeichenordner."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
@@ -4526,13 +4524,12 @@ msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr "Der Massen-Download-Manager macht große Downloads extrem einfach."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "Blockieren Sie nicht nur lästige Anzeigen, sondern schützen Sie sich auch vor Malware und Anzeigenverfolgung."
+msgstr "Entfernen Sie Werbung und erhalten Sie einen besseren Schutz vor Malware."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Entfernen Sie die Formatierung von in die Zwischenablage kopiertem Text."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4676,22 +4673,19 @@ msgstr "Mehr aktuell beliebte Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Steam-Verbesserungen"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Mehr von Mitarbeitern ausgewählte soziale Streaming-Erweiterungen ansehen"
+msgstr "Mehr von Mitarbeitern ausgewählte soziale Erweiterungen zu Steam ansehen"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Aktuell beliebte Erweiterungen"
+msgstr "Kreativitäts-Erweiterungen"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "Weitere von Mitarbeitern ausgewählte Übersetzungswerkzeuge ansehen"
+msgstr "Mehr von Mitarbeitern ausgewählte soziale Kreativitäts-Erweiterungen ansehen"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifest-Datei konnte nicht verarbeitet werden."
