@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-03-10 17:10+0000\n"
-"PO-Revision-Date: 2022-04-04 15:08+0000\n"
+"PO-Revision-Date: 2022-04-05 17:28+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3813,7 +3813,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Skilvirkari leið til að vista bókamerki ef þú notar margar bókamerkjamöppur."
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
@@ -3821,11 +3821,11 @@ msgstr "Fjarlægðu óþarfa snið og afritaðu bara venjulegan texta."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Umbreyttu heilli vefsíðu í það tungumál sem þú vilt - með því að smella á hnapp."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Birtu samstundis alla tengla á vefsíðu í nýjum flipum."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
@@ -3833,7 +3833,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Komdu í veg fyrir að leitarvélar viti hvaða leitarniðurstöður þú smellir á."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
@@ -3884,7 +3884,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Eyddu vafurferlinum þínum. Tilgreindu sérsniðinn fjölda daga til að geyma vafurferilinn áður en hann er sjálfkrafa hreinsaður."
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
@@ -3896,7 +3896,7 @@ msgstr "Geymdu lykilorð á öruggan hátt og skráðu þig sjálfkrafa inn á �
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Fylltu sjálfkrafa út innfyllingarreiti. Vistaðu innslegin gögn einu sinni og þau fyllast sjálfkrafa næst."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
@@ -3917,7 +3917,7 @@ msgstr "Finndu það sem þú ert að leita að innan tiltekins léns."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Veldu texta á hvaða vefsíðu sem er og hægrismelltu til að leita á YouTube að tengdum margmiðlunargögnum."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
