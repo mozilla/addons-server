@@ -1333,14 +1333,14 @@ class Addon(OnChangeMixin, ModelBase):
         if no_transforms:
             qs = qs.no_transforms()
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
-        # pre-fill all the addon instances with an empty list
+        # Pre-fill all the addon instances with an empty list
+        # We set an inner `._current_preview` because we don't know if the addon is a
+        # theme at this point - and can't check addon.type without triggering a query.
         for addon in addon_dict.values():
-            if not addon.has_per_version_previews:
-                addon.current_previews = []
+            addon._current_previews = []
         for addon_id, previews in itertools.groupby(qs, lambda x: x.addon_id):
             addon = addon_dict[addon_id]
-            if not addon.has_per_version_previews:
-                addon.current_previews = list(previews)
+            addon._current_previews = list(previews)
 
     @staticmethod
     def attach_static_categories(addons, addon_dict=None):
@@ -1591,16 +1591,36 @@ class Addon(OnChangeMixin, ModelBase):
         # Make sure the add-on is properly re-indexed
         update_search_index(Addon, self)
 
-    @cached_property
+    @property
     def current_previews(self):
         """Previews for the current version, or all of them if not a
         static theme."""
         if self.has_per_version_previews:
-            if self.current_version:
-                return list(self.current_version.previews.all())
-            return []
+            if not hasattr(self, '_current_version_previews'):
+                self._current_version_previews = (
+                    list(self.current_version.previews.all())
+                    if self.current_version
+                    else []
+                )
+            return self._current_version_previews
         else:
-            return list(self.previews.all())
+            if not hasattr(self, '_current_previews'):
+                self._current_previews = list(self.previews.all())
+            return self._current_previews
+
+    @current_previews.setter
+    def current_previews(self, value):
+        if self.has_per_version_previews:
+            self._current_version_previews = value
+        else:
+            self._current_previews = value
+
+    @current_previews.deleter
+    def current_previews(self):
+        if hasattr(self, '_current_version_previews'):
+            del self._current_version_previews
+        if hasattr(self, '_current_previews'):
+            del self._current_previews
 
     @property
     def has_per_version_previews(self):
