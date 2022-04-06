@@ -908,7 +908,7 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
     'olympia.devhub.tasks.recreate_previews': {'queue': 'images'},
     'olympia.addons.tasks.resize_icon': {'queue': 'images'},
-    'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
+    'olympia.addons.tasks.resize_preview': {'queue': 'images'},
     # AMO
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
