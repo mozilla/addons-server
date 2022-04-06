@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-06 11:50+0000\n"
+"PO-Revision-Date: 2022-04-06 19:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1637,9 +1637,9 @@ msgstr[1] "Você pode ter apenas {0} categorias."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "A categoria diversos não pode ser combinada com outras categorias."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "O domínio da URL deve ser um de [%s], ou um subdomínio."
+msgstr "O domínio da URL deve ser um de [%s]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "O caminho da URL para patrocinadores no GitHub deve conter /sponsors/."
@@ -4542,9 +4542,8 @@ msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Exclua dados de navegação diretamente da barra de ferramentas do navegador."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "Tenha pastas de favoritos de feeds RSS preenchidas automaticamente."
+msgstr "Tenha atualizações automáticas de feeds RSS diretamente em suas pastas de favoritos."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
@@ -4555,9 +4554,8 @@ msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "Bloqueie propaganda e obtenha proteção aprimorada contra malware e rastreamento de anúncios."
+msgstr "Remova anúncios e receba melhor proteção contra malware."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
@@ -4713,14 +4711,12 @@ msgid "See more Steam staff picks"
 msgstr "Mais escolhas da equipe de transmissão em mídias sociais"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Extensões em alta"
+msgstr "Extensões de criatividade"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "Mais escolhas da equipe de ferramentas de tradução"
+msgstr "Mais escolhas da equipe de criatividade"
 
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
