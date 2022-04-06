@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-06 02:51+0000\n"
+"PO-Revision-Date: 2022-04-06 02:52+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4579,21 +4579,19 @@ msgstr "看更多熱門擴充套件"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Steam 加強包"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
 msgstr "看更多看員工精選的 Steam 套件"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "熱門擴充套件"
+msgstr "創意擴充套件"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "看員工精選的更多翻譯工具"
+msgstr "看員工精選的更多創意套件"
 
 msgid "Could not parse the manifest file."
 msgstr "無法剖析安裝資訊檔。"
