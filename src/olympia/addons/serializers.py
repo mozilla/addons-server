@@ -52,7 +52,7 @@ from .fields import (
     CategoriesSerializerField,
     ContributionSerializerField,
     ESLicenseNameSerializerField,
-    IconField,
+    ImageField,
     LicenseNameSerializerField,
     LicenseSlugSerializerField,
     SourceFileField,
@@ -720,7 +720,13 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = OutgoingURLTranslationField(required=False)
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
-    icon = IconField(required=False, allow_null=True, write_only=True)
+    icon = ImageField(
+        required=False,
+        allow_null=True,
+        write_only=True,
+        max_size_setting='MAX_ICON_UPLOAD_SIZE',
+        require_square=True,
+    )
     is_disabled = SplitField(
         serializers.BooleanField(source='disabled_by_user', required=False),
         serializers.BooleanField(),

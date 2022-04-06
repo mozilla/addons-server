@@ -292,28 +292,33 @@ class VersionCompatabilityField(serializers.Field):
         }
 
 
-class IconField(serializers.ImageField):
+class ImageField(serializers.ImageField):
+    def __init__(self, *args, **kwargs):
+        max_size_setting = kwargs.pop('max_size_setting', 'MAX_IMAGE_UPLOAD_SIZE')
+        self.max_size = kwargs.pop('max_size', getattr(settings, max_size_setting))
+        self.require_square = kwargs.pop('require_square', False)
+        super().__init__(*args, **kwargs)
+
     def to_internal_value(self, data):
         data = super().to_internal_value(data)
 
         image_check = ImageCheck(data)
 
         if data.content_type not in amo.IMG_TYPES or not image_check.is_image():
-            raise serializers.ValidationError('Icons must be either PNG or JPG.')
+            raise serializers.ValidationError('Images must be either PNG or JPG.')
         errors = []
 
         if image_check.is_animated():
-            errors.append('Icons cannot be animated.')
+            errors.append('Images cannot be animated.')
 
-        if data.size > settings.MAX_ICON_UPLOAD_SIZE:
+        if data.size > self.max_size:
             errors.append(
-                'Please use images smaller than %dMB'
-                % (settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024)
+                'Images must be smaller than %dMB' % (self.max_size / 1024 / 1024)
             )
 
         icon_size = image_check.size
-        if icon_size[0] != icon_size[1]:
-            errors.append('Icon must be square (same width and height).')
+        if self.require_square and icon_size[0] != icon_size[1]:
+            errors.append('Images must be square (same width and height).')
 
         if errors:
             raise serializers.ValidationError(errors)

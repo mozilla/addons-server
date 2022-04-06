@@ -84,6 +84,14 @@ from ..views import (
 )
 
 
+def _get_upload(filename):
+    return SimpleUploadedFile(
+        filename,
+        open(get_image_path(filename), 'rb').read(),
+        content_type=mimetypes.guess_type(filename)[0],
+    )
+
+
 class TestStatus(TestCase):
     client_class = APITestClientSessionID
     fixtures = ['base/addon_3615']
@@ -1720,25 +1728,25 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
     def test_upload_icon(self, resize_icon_mock):
         def patch_with_error(filename):
             response = self.client.patch(
-                self.url, data={'icon': self._get_upload(filename)}, format='multipart'
+                self.url, data={'icon': _get_upload(filename)}, format='multipart'
             )
             assert response.status_code == 400, response.content
             return response.data['icon']
 
         assert patch_with_error('non-animated.gif') == [
-            'Icons must be either PNG or JPG.'
+            'Images must be either PNG or JPG.'
         ]
-        assert patch_with_error('animated.png') == ['Icons cannot be animated.']
+        assert patch_with_error('animated.png') == ['Images cannot be animated.']
         with override_settings(MAX_ICON_UPLOAD_SIZE=100):
             assert patch_with_error('preview.jpg') == [
-                'Please use images smaller than 0MB',
-                'Icon must be square (same width and height).',
+                'Images must be smaller than 0MB',
+                'Images must be square (same width and height).',
             ]
 
         assert self.addon.icon_type == ''
         response = self.client.patch(
             self.url,
-            data={'icon': self._get_upload('mozilla-sq.png')},
+            data={'icon': _get_upload('mozilla-sq.png')},
             format='multipart',
         )
         assert response.status_code == 200, response.content
