@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-06 02:52+0000\n"
+"PO-Revision-Date: 2022-04-06 04:16+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4417,9 +4417,8 @@ msgid "Delete browsing data directly from the browser toolbar."
 msgstr "直接從瀏覽器工具列刪除上網資料。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "自動產生 RSS 資訊來源與書籤資料夾。"
+msgstr "自動更新 RSS 文章內容到書籤資料夾。"
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
@@ -4435,7 +4434,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "清除複製到剪貼簿的文字當中的格式化文字。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
