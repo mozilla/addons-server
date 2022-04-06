@@ -1393,6 +1393,7 @@ DRF_API_GATES = {
         'is-webextension-shim',
         'version-files',
         'del-version-license-slug',
+        'del-preview-position',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1406,6 +1407,7 @@ DRF_API_GATES = {
         'is-webextension-shim',
         'version-files',
         'del-version-license-slug',
+        'del-preview-position',
     ),
     'v5': (
         'addons-search-_score-field',

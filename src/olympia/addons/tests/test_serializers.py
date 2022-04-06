@@ -190,13 +190,6 @@ class AddonSerializerOutputTestMixin:
         )
         AddonUser.objects.create(user=second_author, addon=self.addon, position=2)
         AddonUser.objects.create(user=first_author, addon=self.addon, position=1)
-        second_preview = Preview.objects.create(
-            addon=self.addon,
-            position=2,
-            caption={'en-US': 'My câption', 'fr': 'Mön tîtré'},
-            sizes={'thumbnail': [199, 99], 'image': [567, 780]},
-        )
-        first_preview = Preview.objects.create(addon=self.addon, position=1)
 
         av_min = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='2.0.99'
@@ -274,37 +267,6 @@ class AddonSerializerOutputTestMixin:
             self.addon.last_updated.replace(microsecond=0).isoformat() + 'Z'
         )
         assert result['name'] == {'en-US': self.addon.name}
-        assert result['previews']
-        assert len(result['previews']) == 2
-
-        result_preview = result['previews'][0]
-        assert result_preview['id'] == first_preview.pk
-        assert result_preview['caption'] is None
-        assert result_preview['image_url'] == absolutify(first_preview.image_url)
-        assert result_preview['thumbnail_url'] == absolutify(
-            first_preview.thumbnail_url
-        )
-        assert result_preview['image_size'] == first_preview.image_dimensions
-        assert result_preview['thumbnail_size'] == first_preview.thumbnail_dimensions
-
-        result_preview = result['previews'][1]
-        assert result_preview['id'] == second_preview.pk
-        assert result_preview['caption'] == {'en-US': 'My câption', 'fr': 'Mön tîtré'}
-        assert result_preview['image_url'] == absolutify(second_preview.image_url)
-        assert result_preview['thumbnail_url'] == absolutify(
-            second_preview.thumbnail_url
-        )
-        assert (
-            result_preview['image_size']
-            == second_preview.image_dimensions
-            == [567, 780]
-        )
-        assert (
-            result_preview['thumbnail_size']
-            == second_preview.thumbnail_dimensions
-            == [199, 99]
-        )
-
         assert result['ratings'] == {
             'average': self.addon.average_rating,
             'bayesian_average': self.addon.bayesian_rating,
@@ -340,6 +302,56 @@ class AddonSerializerOutputTestMixin:
         )
 
         return result
+
+    def test_previews(self):
+        self.addon = addon_factory()
+        second_preview = Preview.objects.create(
+            addon=self.addon,
+            position=2,
+            caption={'en-US': 'My câption', 'fr': 'Mön tîtré'},
+            sizes={'thumbnail': [199, 99], 'image': [567, 780]},
+        )
+        first_preview = Preview.objects.create(addon=self.addon, position=1)
+
+        result = self.serialize()
+
+        assert result['previews']
+        assert len(result['previews']) == 2
+
+        result_preview = result['previews'][0]
+        assert result_preview['id'] == first_preview.pk
+        assert result_preview['caption'] is None
+        assert result_preview['image_url'] == absolutify(first_preview.image_url)
+        assert result_preview['thumbnail_url'] == absolutify(
+            first_preview.thumbnail_url
+        )
+        assert result_preview['image_size'] == first_preview.image_dimensions
+        assert result_preview['thumbnail_size'] == first_preview.thumbnail_dimensions
+        assert result_preview['position'] == first_preview.position
+
+        result_preview = result['previews'][1]
+        assert result_preview['id'] == second_preview.pk
+        assert result_preview['caption'] == {'en-US': 'My câption', 'fr': 'Mön tîtré'}
+        assert result_preview['image_url'] == absolutify(second_preview.image_url)
+        assert result_preview['thumbnail_url'] == absolutify(
+            second_preview.thumbnail_url
+        )
+        assert (
+            result_preview['image_size']
+            == second_preview.image_dimensions
+            == [567, 780]
+        )
+        assert (
+            result_preview['thumbnail_size']
+            == second_preview.thumbnail_dimensions
+            == [199, 99]
+        )
+        assert result_preview['position'] == second_preview.position
+
+        with override_settings(DRF_API_GATES={'v5': ('del-preview-position',)}):
+            result = self.serialize()
+
+            assert 'postion' not in result
 
     @override_settings(DRF_API_GATES={'v5': ('wrap-outgoing-parameter',)})
     def test_outgoing_links_in_v3_v4(self):

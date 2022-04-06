@@ -439,6 +439,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2022-02-10: added session id auth, for internal api authentication, replacing the existing internal auth based on tokens. https://github.com/mozilla/addons-server/issues/18743
 * 2022-03-17: added ``contributions_url`` to be set or changed via addon create/update endpoints. https://github.com/mozilla/addons-server/issues/18267
 * 2022-03-24: added ``icon`` to be set or changed via addon update endpoints. https://github.com/mozilla/addons-server/issues/18232
+* 2022-04-14: added a ``previews`` endpoint under /addon/ that can be used to create, update, and delete add-on previews for non-themes. https://github.com/mozilla/addons-server/issues/18236
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

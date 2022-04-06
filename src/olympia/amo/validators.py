@@ -4,6 +4,8 @@ from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as _
 
+from rest_framework import fields
+
 
 @deconstructible
 class OneOrMorePrintableCharacterValidator:
@@ -33,3 +35,14 @@ class OneOrMoreLetterOrNumberCharacterValidator(OneOrMorePrintableCharacterValid
 
     # We want at least a (L)etter or (N)umber for the value to be valid.
     unicode_categories = ('L', 'N')
+
+
+class CreateOnlyValidator:
+    """
+    This validator just raises SkipField when the field is used for update operations.
+    """
+    requires_context = True
+
+    def __call__(self, value, serializer_field):
+        if serializer_field.parent.instance is not None:
+            raise fields.SkipField()

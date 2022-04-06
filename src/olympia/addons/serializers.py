@@ -16,7 +16,10 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
-from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
+from olympia.amo.validators import (
+    CreateOnlyValidator,
+    OneOrMoreLetterOrNumberCharacterValidator,
+)
 from olympia.api.fields import (
     EmailTranslationField,
     LazyChoiceField,
@@ -66,7 +69,7 @@ from .models import (
     Preview,
     ReplacementAddon,
 )
-from .tasks import resize_icon
+from .tasks import resize_icon, resize_preview
 from .utils import fetch_translations_from_addon
 from .validators import VerifyMozillaTrademark
 
@@ -127,21 +130,33 @@ class FileSerializer(serializers.ModelSerializer):
         return True
 
 
+class ThisAddonDefault:
+    requires_context = True
+
+    def __call__(self, serializer_field):
+        return serializer_field.context['view'].get_addon_object()
+
+
 class PreviewSerializer(serializers.ModelSerializer):
-    caption = TranslationSerializerField()
+    caption = TranslationSerializerField(required=False)
     image_url = serializers.SerializerMethodField()
     thumbnail_url = serializers.SerializerMethodField()
     image_size = serializers.ReadOnlyField(source='image_dimensions')
     thumbnail_size = serializers.ReadOnlyField(source='thumbnail_dimensions')
+    image = ImageField(write_only=True, validators=(CreateOnlyValidator(),))
+    addon = serializers.HiddenField(default=ThisAddonDefault())
 
     class Meta:
         # Note: this serializer can also be used for VersionPreview.
         model = Preview
         fields = (
             'id',
+            'addon',
             'caption',
+            'image',
             'image_size',
             'image_url',
+            'position',
             'thumbnail_size',
             'thumbnail_url',
         )
@@ -151,6 +166,37 @@ class PreviewSerializer(serializers.ModelSerializer):
 
     def get_thumbnail_url(self, obj):
         return absolutify(obj.thumbnail_url)
+
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        request = self.context.get('request', None)
+        if request and is_gate_active(request, 'del-preview-position'):
+            data.pop('position', None)
+        return data
+
+    def create(self, validated_data):
+        image = validated_data.pop('image')
+        instance = super().create(validated_data)
+
+        storage = SafeStorage(user_media='previews')
+        with storage.open(instance.original_path, 'wb') as original_file:
+            for chunk in image.chunks():
+                original_file.write(chunk)
+
+        resize_preview.delay(
+            instance.original_path,
+            instance.pk,
+            set_modified_on=instance.addon.serializable_reference(),
+        )
+
+        return instance
+
+    def save(self, *args, **kwargs):
+        instance = super().save(*args, **kwargs)
+        ActivityLog.create(
+            amo.LOG.CHANGE_MEDIA, instance.addon, user=self.context['request'].user
+        )
+        return instance
 
 
 class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
