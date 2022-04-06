@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-03-15 09:14+0000\n"
+"PO-Revision-Date: 2022-04-05 21:25+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -670,7 +670,7 @@ msgid "{addon} policy changed."
 msgstr "beleid van {addon} gewijzigd."
 
 msgid "{addon} icon or previews changed."
-msgstr ""
+msgstr "{addon}-pictogram of voorbeelden gewijzigd."
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} voor {addon} goedgekeurd."
@@ -1629,13 +1629,13 @@ msgstr "De categorie diversen kan niet met extra categorieën worden gecombineer
 
 #, python-format
 msgid "URL domain must be one of [%s]."
-msgstr ""
+msgstr "Domein van URL moet er een zijn van [%s]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL-pad voor GitHub-sponsors moet /sponsors/ bevatten."
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URL’s moeten beginnen met https://."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4493,23 +4493,23 @@ msgstr "Verwijder navigatiegegevens rechtstreeks vanuit de browserwerkbalk."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Ontvang automatische updates van RSS-feeds rechtstreeks in uw bladwijzermappen."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Effectieve blokkering tegen alle soorten advertenties."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Massadownloadbeheerder maakt extreem downloaden extreem eenvoudig."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Verwijder advertenties en ontvang verbeterde bescherming tegen malware."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Verwijder opmaak van gekopieerde klembordtekst."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4653,19 +4653,19 @@ msgstr "Meer populaire extensies bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Steam-versterkers"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor Steam bekijken"
 
 #. editorial content for the homepage shelves.
 msgid "Creativity extensions"
-msgstr ""
+msgstr "Creativiteitsextensies"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor creativiteit bekijken"
 
 msgid "Could not parse the manifest file."
 msgstr "Kon het manifest-bestand niet verwerken."
