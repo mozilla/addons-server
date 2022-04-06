@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-06 19:42+0000\n"
+"PO-Revision-Date: 2022-04-06 19:48+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -676,9 +676,8 @@ msgstr "{addon} está agora licenciado sob {0}."
 msgid "{addon} policy changed."
 msgstr "Política de {addon} alterada."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "Ícone de {addon} alterado."
+msgstr "Ícone ou visão de {addon} alterados."
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} para {addon} aprovada."
@@ -1645,7 +1644,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "O caminho da URL para patrocinadores no GitHub deve conter /sponsors/."
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URLs devem começar com https://."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4547,11 +4546,11 @@ msgstr "Tenha atualizações automáticas de feeds RSS diretamente em suas pasta
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Bloqueador eficaz contra todos os tipos de anúncios."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "O gerenciador de downloads em massa torna downloads extremos extremamente fácil."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
@@ -4559,7 +4558,7 @@ msgstr "Remova anúncios e receba melhor proteção contra malware."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Remova a formatação de texto copiado para a área de transferência."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4703,12 +4702,11 @@ msgstr "Mais extensões em alta"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Melhoradores do Steam"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Mais escolhas da equipe de transmissão em mídias sociais"
+msgstr "Mais escolhas da equipe de Steam"
 
 #. editorial content for the homepage shelves.
 msgid "Creativity extensions"
