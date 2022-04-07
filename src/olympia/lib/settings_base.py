@@ -556,7 +556,8 @@ HOMEPAGE_SHELVES_EDITORIAL_CONTENT_API = (
     'https://addons.mozilla.org/api/v5/shelves/editorial'
 )
 
-# Filename where the strings will be stored. Used in l10n extract config below.
+# Filename where the strings will be stored. Used in extract_content_strings
+# management command, but note that the filename is hardcoded in babel.cfg.
 EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
