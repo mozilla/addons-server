@@ -25,6 +25,11 @@ setup(
         'Framework :: Django',
         'Topic :: Internet :: WWW/HTTP :: Browsers',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.9',
     ],
+    entry_points={
+        'babel.extractors': [
+            'jinja2_custom = olympia.core.babel:extract_jinja',
+        ]
+    },
 )

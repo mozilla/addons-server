@@ -3,7 +3,7 @@
      data-default="{{ default_locale }}" id="l10n-menu">
   {% set dl = languages[default_locale] %}
   <p>
-  {# l10n: {0} is a language name, like 'French' #}
+  {# L10n: {0} is a language name, like 'French' #}
   {% trans %}
     Localize for: <a id="change-locale" href="#">{{ dl }}</a>
   {% endtrans %}
@@ -38,7 +38,7 @@
   </div>
   <div id="modal-l10n-unsaved" class="modal hidden">
     <p class="msg">
-    {# l10n: {0} is a language name, like 'French' #}
+    {# L10n: {0} is a language name, like 'French' #}
     {% trans %}
       You have unsaved changes in the <b>{0}</b> locale.
       Would you like to save your changes before switching locales?
@@ -52,7 +52,7 @@
   </div>
   <div id="modal-l10n-rm" class="modal hidden">
     <p class="msg">
-    {# l10n: {0} is a language name, like 'French' #}
+    {# L10n: {0} is a language name, like 'French' #}
     {% trans %}
       Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone.
     {% endtrans %}

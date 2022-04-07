@@ -19,6 +19,11 @@ set -o pipefail
 # Treat unset variables as an error an exit immediately.
 set -u
 
+# Extraction needs our django settings for jinja, so we need a django settings
+# module set. Since this command is meant to be run in local envs, we use
+# "settings".
+DJANGO_SETTINGS_MODULE=settings
+
 INITIAL_GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 GIT_CHANGES=$(git status --porcelain)
 GIT_REMOTE="https://github.com/mozilla/addons-server.git"  # Upstream.
@@ -81,7 +86,8 @@ function init_environment {
 
 function run_l10n_extraction {
     python3 manage.py extract_content_strings
-    python3 manage.py extract
+    PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babel.cfg -o locale/templates/LC_MESSAGES/django.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server .
+    PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babeljs.cfg -o locale/templates/LC_MESSAGES/djangojs.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server .
 
     pushd locale > /dev/null
 

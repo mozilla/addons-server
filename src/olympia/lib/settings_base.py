@@ -308,7 +308,7 @@ SECRET_CDN_TOKEN = env('SECRET_CDN_TOKEN', default=None)
 
 # Templates configuration.
 # List of path patterns for which we should be using Django Template Language.
-# If you add things here, don't forget to also change PUENTE config below.
+# If you add things here, don't forget to also change babel.cfg !
 JINJA_EXCLUDE_TEMPLATE_PATHS = (
     # All emails should be processed with Django for consistency.
     r'^.*\/emails\/',
@@ -326,6 +326,8 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
 TEMPLATES = [
     {
         'BACKEND': 'django_jinja.backend.Jinja2',
+        # This is used by olympia.core.babel to find the template configuration
+        # for jinja2 templates.
         'NAME': 'jinja2',
         'APP_DIRS': True,
         'DIRS': (
@@ -352,6 +354,7 @@ TEMPLATES = [
             ),
             'extensions': (
                 'jinja2.ext.do',
+                'jinja2.ext.i18n',
                 'jinja2.ext.loopcontrols',
                 'django_jinja.builtins.extensions.CsrfExtension',
                 'django_jinja.builtins.extensions.DjangoFiltersExtension',
@@ -359,13 +362,16 @@ TEMPLATES = [
                 'django_jinja.builtins.extensions.TimezoneExtension',
                 'django_jinja.builtins.extensions.UrlsExtension',
                 'olympia.amo.templatetags.jinja_helpers.Spaceless',
-                'puente.ext.i18n',
                 'waffle.jinja.WaffleExtension',
             ),
+            'policies': {
+                'ext.i18n.trimmed': True,
+            },
             'finalize': lambda x: x if x is not None else '',
             'translation_engine': 'django.utils.translation',
             'autoescape': True,
             'trim_blocks': True,
+            'lstrip_blocks': True,
         },
     },
     {
@@ -519,7 +525,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'waffle',
     'django_jinja',
-    'puente',
     'rangefilter',
     'nobot',
     # Django contrib apps
@@ -551,51 +556,8 @@ HOMEPAGE_SHELVES_EDITORIAL_CONTENT_API = (
     'https://addons.mozilla.org/api/v5/shelves/editorial'
 )
 
-# Filename where the strings will be stored. Used in puente config below.
+# Filename where the strings will be stored. Used in l10n extract config below.
 EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
-
-# Tells the extract script what files to look for l10n in and what function
-# handles the extraction. The puente library expects this.
-PUENTE = {
-    'BASE_DIR': ROOT,
-    # Tells the extract script what files to look for l10n in and what function
-    # handles the extraction.
-    'DOMAIN_METHODS': {
-        'django': [
-            ('src/olympia/**.py', 'python'),
-            # Extract the generated file containing editorial content for all
-            # disco pane recommendations using jinja2 parser. It's not a real
-            # template, but it uses jinja2 syntax for convenience, hence why
-            # it's not in templates/ with a .html extension.
-            (EDITORIAL_CONTENT_FILENAME, 'jinja2'),
-            # Make sure we're parsing django-admin & email templates with the
-            # django template extractor. This should match the behavior of
-            # JINJA_EXCLUDE_TEMPLATE_PATHS
-            (
-                'src/olympia/**/templates/**/emails/**.*',
-                'enmerkar.extract.extract_django',
-            ),
-            ('**/templates/admin/**.html', 'enmerkar.extract.extract_django'),
-            (
-                '**/templates/devhub/forms/widgets/compat_app_input_option.html',
-                'enmerkar.extract.extract_django',
-            ),
-            ('src/olympia/**/templates/**.html', 'jinja2'),
-        ],
-        'djangojs': [
-            # We can't say **.js because that would dive into mochikit
-            # and timeplot and all the other baggage we're carrying.
-            # Timeplot, in particular, crashes the extractor with bad
-            # unicode data.
-            ('static/js/**-all.js', 'ignore'),
-            ('static/js/**-min.js', 'ignore'),
-            ('static/js/*.js', 'javascript'),
-            ('static/js/common/**.js', 'javascript'),
-            ('static/js/stats/**.js', 'javascript'),
-            ('static/js/zamboni/**.js', 'javascript'),
-        ],
-    },
-}
 
 # Bundles is a dictionary of two dictionaries, css and js, which list css files
 # and js files that can be bundled together by the minify app.
@@ -999,10 +961,19 @@ LOGGING = {
             'level': 'ERROR',
             'class': 'django_statsd.loggers.errors.StatsdHandler',
         },
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
     },
     'root': {'handlers': ['mozlog'], 'level': logging.INFO},
     'loggers': {
         'amqp': {'handlers': ['null'], 'level': logging.WARNING, 'propagate': False},
+        'babel': {'handlers': ['console'], 'level': logging.INFO, 'propagate': False},
+        'blib2to3.pgen2.driver': {
+            'handlers': ['null'],
+            'level': logging.INFO,
+            'propagate': False,
+        },
         'caching': {'handlers': ['mozlog'], 'level': logging.ERROR, 'propagate': False},
         'caching.invalidation': {
             'handlers': ['null'],
