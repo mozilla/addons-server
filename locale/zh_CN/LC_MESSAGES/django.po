@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-07 13:37+0000\n"
+"PO-Revision-Date: 2022-04-07 13:48+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4408,7 +4408,7 @@ msgstr "有效屏蔽所有类型的广告。"
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "多任务下载管理器，轻松处理批量下载。"
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
@@ -4416,7 +4416,7 @@ msgstr "去广告并获得更好的恶意软件防护。"
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "清除复制到剪贴板中文本的格式。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
