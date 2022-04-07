@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-06 11:58+0000\n"
+"PO-Revision-Date: 2022-04-07 06:27+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -668,9 +668,8 @@ msgstr "{addon} falt no ûnder de lisinsje {0}."
 msgid "{addon} policy changed."
 msgstr "belied fan {addon} wizige."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "{addon}-piktogram wizige."
+msgstr "{addon}-piktogram of foarbylden wizige."
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} foar {addon} goedkard."
@@ -1629,9 +1628,9 @@ msgstr[1] "Jo kinne mar {0} kategoryen brûke."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "De kategory ferskaat kin net mei ekstra kategoryen kombinearre wurde."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL-domein moat ta [%s] hearre of in subdomein wêze."
+msgstr "Domein fan URL moat der ien fan [%s] wêze."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL-paad foar GitHub-sponsors moat /sponsors/ befetsje."
@@ -4493,9 +4492,8 @@ msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Smyt navigaasjegegevens streekrjocht fan de browserarkbalke út fuort."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "Krij automatysk folle blêdwizermappen mei RSS-feeds."
+msgstr "Untfang automatyske fernijingen fan RSS-feeds streekrjocht yn jo blêdwizermappen."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
@@ -4656,7 +4654,7 @@ msgstr "Mear populêre útwreidingen besjen"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Steam-fersterkers"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
