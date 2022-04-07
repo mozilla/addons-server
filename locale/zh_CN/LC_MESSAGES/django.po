@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-05 18:27+0000\n"
+"PO-Revision-Date: 2022-04-07 13:16+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1600,9 +1600,9 @@ msgstr[0] "您只能选择 {0} 个分类。"
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "这个杂项分类不能与其他分类混用。"
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "网址域名必须是 [%s] 之一，或其子域。"
+msgstr "URL 的域名须为 [%s] 中其一。"
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "GitHub 的赞助（Sponsor） URL 路径须包含 /sponsors/。"
@@ -4564,18 +4564,16 @@ msgid "Steam enhancers"
 msgstr "Steam 增强工具"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "更多编辑推荐 > 社交流媒体扩展"
+msgstr "更多编辑推荐 > Steam 工具"
 
 #. editorial content for the homepage shelves.
 msgid "Creativity extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "更多编辑推荐 > 翻译工具"
+msgstr "更多编辑推荐 > 创意工具"
 
 msgid "Could not parse the manifest file."
 msgstr "未能解析清单文件。"
