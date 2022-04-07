@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-07 13:16+0000\n"
+"PO-Revision-Date: 2022-04-07 13:37+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4399,9 +4399,8 @@ msgid "Delete browsing data directly from the browser toolbar."
 msgstr "直接从浏览器工具栏中删除浏览数据。"
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "RSS 收取点“实时书签”功能经典重现。"
+msgstr "自动更新 RSS 订阅内容至书签文件夹。"
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
@@ -4569,7 +4568,7 @@ msgstr "更多编辑推荐 > Steam 工具"
 
 #. editorial content for the homepage shelves.
 msgid "Creativity extensions"
-msgstr ""
+msgstr "创意扩展"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
