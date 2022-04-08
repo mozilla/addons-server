@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-08 20:19+0000\n"
+"PO-Revision-Date: 2022-04-08 20:49+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3692,7 +3692,7 @@ msgstr "ჩანართების თვითგანახლება �
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
-"გამოყავით ერთმანეტთისგან თქვენი ინტერნეტსაქმიანობის სხვადასხვა არეები ფერებად დაყოფილი და გამიჯნული ფუნთუშების მქონე ჩანართებით. ახლა უკვე ჩაშენებულია Mozilla VPN-ში პირადულობის დაცვის დამატებით "
+"გამოყავით ერთმანეთისგან თქვენი ინტერნეტსაქმიანობის სხვადასხვა არეები ფერებად დაყოფილი და გამიჯნული ფუნთუშების მქონე ჩანართებით. ახლა უკვე ჩაშენებულია Mozilla VPN-ში პირადულობის დაცვის დამატებით "
 "შრედ."
 
 #. editorial content for the discovery pane.
