@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-08 20:51+0000\n"
+"PO-Revision-Date: 2022-04-08 21:13+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3637,7 +3637,7 @@ msgstr "Ecosia მისი სარეკლამო შემოსავლ
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr "გვერდი რომელსაც ეძებთ, აღარაა ხელმისაწვდომი? მონახეთ მისი დაარქივებული/შენახული ასლები."
+msgstr "გვერდი, რომელსაც ეძებთ, აღარაა ხელმისაწვდომი? მონახეთ მისი დაარქივებული/გადანახული ასლები."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4286,7 +4286,7 @@ msgstr "ამინდის პროგნოზის სიახლეე�
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr "წაშალეთ ფუნთუშები, გვერდების ისტორია და დამახსოვრებული ფაილები ერთი წკაპით."
+msgstr "წაშალეთ ფუნთუშები, გვერდების ისტორია და მომარაგებული ფაილები ერთი წკაპით."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
