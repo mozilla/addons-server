@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-08 20:49+0000\n"
+"PO-Revision-Date: 2022-04-08 20:51+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4036,7 +4036,7 @@ msgstr "მონიშნეთ ტექსტი ნებისმიერ 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
 msgstr ""
-"მიიღეთ მეტი სარგებელი Amazon-ისგან. შესაძენი საქონლის სხვა ინტერნეტ-მაღაზიებში თვალიერებისას, თუ იგი Amazon მაღაზიაშიცაა ხელმისაწვდომი, მარტივი დაწკაპებით შეგეძლებათ იხილოთ Amazon-ის ჩამონათვალში."
+"მიიღეთ მეტი სარგებელი Amazon-ისგან. შესაძენი საქონლის სხვა ინტერნეტმაღაზიებში თვალიერებისას, თუ იგი Amazon-მაღაზიაშიცაა ხელმისაწვდომი, მარტივი დაწკაპებით შეგეძლებათ იხილოთ Amazon-ის ჩამონათვალში."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
