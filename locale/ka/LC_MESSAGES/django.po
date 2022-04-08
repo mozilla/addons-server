@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-08 17:37+0000\n"
+"PO-Revision-Date: 2022-04-08 17:50+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4487,7 +4487,7 @@ msgstr "ნებისმიერი რეკლამის შედეგ�
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "ერთიანად ჩამოტვირთვის სამართავი უსაზღვრო ჩამოტვირთვებს უსაზღვროდ ამარტივებს."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4496,7 +4496,7 @@ msgstr "შეზღუდეთ რეკლამები და მიიღ
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "გაფორმების მოცილება ასლად აღებული ტექსტიდან."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4639,7 +4639,7 @@ msgstr "სხვა გავრცელებული გაფართო�
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Steam-ის გამაუმჯობესებლები"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
