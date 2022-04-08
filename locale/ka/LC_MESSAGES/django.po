@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-08 17:50+0000\n"
+"PO-Revision-Date: 2022-04-08 17:55+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -656,9 +656,8 @@ msgstr "{addon} გავრცელდება {0} ლიცენზიი�
 msgid "{addon} policy changed."
 msgstr "{addon}-ის დებულება შეიცვალა."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "{addon}-ის ხატულა შეიცვალა."
+msgstr "{addon} შესათვალიერებელი ან ხატულა შეცვლილია."
 
 msgid "{rating} for {addon} approved."
 msgstr "{addon}-ის {rating} დამოწმებულია."
@@ -1633,9 +1632,9 @@ msgstr[1] "თქვენ მხოლოდ {0} კატეგორია �
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "კატეგორია „სხვადასხვა“, ვერ გაერთიანდება სხვა კატეგორიებთან."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "URL დომენი უნდა წარმოადგენდეს ერთ-ერთი ამათგანს [%s], ან მათ ქვედომენს."
+msgstr "მისამართების ჯგუფი უნდა იყოს რომელიმე [%s]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "GitHub-დამფინანსებლების ბმულში, უნდა იყოს /sponsors/."
@@ -4477,9 +4476,8 @@ msgid "Delete browsing data directly from the browser toolbar."
 msgstr "წაშალეთ დათვალიერების მონაცემები ბრაუზერის ხელსაწყოთა ზოლიდანვე."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "გამოიყენეთ თვითშევსებადი RSS-არხების სანიშნეთა საქაღალდეები."
+msgstr "RSS-არხების სანიშნეთა თვითგანახლებადი საქაღალდეები."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
@@ -4490,9 +4488,8 @@ msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr "ერთიანად ჩამოტვირთვის სამართავი უსაზღვრო ჩამოტვირთვებს უსაზღვროდ ამარტივებს."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "შეზღუდეთ რეკლამები და მიიღეთ გაძლიერებული დაცვა მავნე საიტებისა და სარეკლამო მეთვალყურეებისგან."
+msgstr "მოიცილეთ რეკლამები და უკეთ დᲐიცავით თავზე მავნებლებისგან."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
@@ -4642,19 +4639,16 @@ msgid "Steam enhancers"
 msgstr "Steam-ის გამაუმჯობესებლები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "სოციალური ნაკადისთვის, თანამშრომლების შერჩეული"
+msgstr "ხელსაწყოები Steam-ისთვის, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "ფართოდ გავრცელებული გაფართოებები"
+msgstr "შემოქმედებითი გაფართოებები"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "თარგმნის სხვა ხელსაწყოები, თანამშრომლების შერჩეული"
+msgstr "ხელსაწყოები შემოქმედებისთვის, თანამშრომლების შერჩეული"
 
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
