@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-08 20:59+0000\n"
+"PO-Revision-Date: 2022-04-09 21:26+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -150,7 +150,7 @@ msgid "Listed"
 msgstr "Listate"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr "Le percursos del additivo e del collectiones debe finir con \"/\""
+msgstr "Le routes del additivo e del collectiones debe finir con \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o Firefox."
@@ -4472,7 +4472,7 @@ msgstr "Blocator efficace contra tote typos de avisos publicitari."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Le gestor de discargamentos massive rende extrememente facile le discargamentos extreme."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
