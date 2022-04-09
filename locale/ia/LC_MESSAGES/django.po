@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-09 21:26+0000\n"
+"PO-Revision-Date: 2022-04-09 21:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4623,7 +4623,7 @@ msgstr "Vide altere extensiones de tendentia"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Augmentatores de Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
