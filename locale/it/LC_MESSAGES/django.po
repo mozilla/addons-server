@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-03-11 07:06+0000\n"
-"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
+"PO-Revision-Date: 2022-04-09 17:16+0000\n"
+"Last-Translator: Nicole <nicolecosen@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -672,7 +672,7 @@ msgid "{addon} policy changed."
 msgstr "{addon} ha cambiato informativa sulla privacy."
 
 msgid "{addon} icon or previews changed."
-msgstr ""
+msgstr "L’icona o le anteprime di {addon} sono state modificate."
 
 msgid "{rating} for {addon} approved."
 msgstr "Approvata {rating} per {addon}."
@@ -1665,13 +1665,13 @@ msgstr "La categoria Varie non può essere utilizzata insieme ad ulteriori categ
 
 #, python-format
 msgid "URL domain must be one of [%s]."
-msgstr ""
+msgstr "Il dominio dell’URL deve essere uno tra [%s]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Il percorso dell’URL per gli sponsor GitHub deve contenere /sponsors/."
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "Gli URL devono iniziare con https://."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4557,7 +4557,7 @@ msgstr "Elimina i dati di navigazione direttamente dalla barra degli strumenti d
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Ricevi gli aggiornamenti automatici dei feed RSS direttamente nelle tue cartelle dei segnalibri."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
@@ -4565,11 +4565,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Il gestore di download di massa rende estremamente facile il download estremo."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Rimuovi gli annunci pubblicitari e migliora la protezione contro i malware."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
@@ -4721,15 +4721,15 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
-msgstr ""
+msgstr "Visualizza altri strumenti per Steam scelti dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "Creativity extensions"
-msgstr ""
+msgstr "Estensioni per la creatività"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
-msgstr ""
+msgstr "Visualizza altri strumenti per la creatività scelti dallo staff"
 
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
