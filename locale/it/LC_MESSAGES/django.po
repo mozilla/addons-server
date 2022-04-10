@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-09 17:16+0000\n"
-"Last-Translator: Nicole <nicolecosen@gmail.com>\n"
+"PO-Revision-Date: 2022-04-10 08:32+0000\n"
+"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4561,7 +4561,7 @@ msgstr "Ricevi gli aggiornamenti automatici dei feed RSS direttamente nelle tue 
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Blocco efficace contro tutti i tipi di pubblicità."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
@@ -4573,7 +4573,7 @@ msgstr "Rimuovi gli annunci pubblicitari e migliora la protezione contro i malwa
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Rimuovi la formattazione del testo copiato negli appunti."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4717,7 +4717,7 @@ msgstr "Visualizza altre estensioni di tendenza"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Strumenti per migliorare Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
