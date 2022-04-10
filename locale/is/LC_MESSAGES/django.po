@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-10 09:31+0000\n"
+"PO-Revision-Date: 2022-04-10 09:52+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3948,7 +3948,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr "Fyrir þau augnablik þegar þú þarft að skjóta leysigeislum úr köttum."
+msgstr "Fyrir þær stundir þegar þú þarft nauðsynlega að skjóta leysigeislum úr köttum."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
@@ -3956,7 +3956,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Rosalega margir flipar? Hættu að skruna og leitaðu með flýtilyklum á lyklaborðinu."
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -3968,15 +3968,15 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Einbeittu þér að því sem þú ert að horfa á með því að dimma allt annað en myndskeiðaspilarann."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Breyttu bókamerkjunum þínum á þægilegu hliðarspjaldi."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Geymdu lykilorð á öruggan hátt og skráðu þig sjálfkrafa inn á þekkt vefsvæði."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4088,7 +4088,7 @@ msgstr "Hættu að eyða dýrmætu minni með óvirkum flipum."
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Vistaðu heilar vefsíður – eða bara hluta þeirra – sem eina HTML-skrá."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
