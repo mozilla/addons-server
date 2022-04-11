@@ -330,6 +330,7 @@ class AddonIndexer(BaseSearchIndexer):
                             'id': {'type': 'long', 'index': False},
                             'caption_translations': cls.get_translations_definition(),
                             'modified': {'type': 'date', 'index': False},
+                            'position': {'type': 'long', 'index': False},
                             'sizes': {
                                 'type': 'object',
                                 'properties': {
@@ -535,7 +536,12 @@ class AddonIndexer(BaseSearchIndexer):
         )
 
         data['previews'] = [
-            {'id': preview.id, 'modified': preview.modified, 'sizes': preview.sizes}
+            {
+                'id': preview.id,
+                'modified': preview.modified,
+                'sizes': preview.sizes,
+                'position': preview.position,
+            }
             for preview in obj.current_previews
         ]
 

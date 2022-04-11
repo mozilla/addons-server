@@ -440,6 +440,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['previews'][0]['modified'] == first_preview.modified
         assert extracted['previews'][0]['caption_translations'] == []
         assert extracted['previews'][0]['sizes'] == first_preview.sizes == {}
+        assert extracted['previews'][0]['position'] == first_preview.position
         assert extracted['previews'][1]['id'] == second_preview.pk
         assert extracted['previews'][1]['modified'] == second_preview.modified
         assert extracted['previews'][1]['caption_translations'] == [
@@ -451,6 +452,7 @@ class TestAddonIndexer(TestCase):
             == second_preview.sizes
             == {'thumbnail': [199, 99], 'image': [567, 780]}
         )
+        assert extracted['previews'][1]['position'] == second_preview.position
 
         # Only raw translations dict should exist, since we don't need the
         # to search against preview captions.
@@ -481,6 +483,7 @@ class TestAddonIndexer(TestCase):
             == current_preview.sizes
             == {'thumbnail': [56, 78], 'image': [91, 234]}
         )
+        assert extracted['previews'][0]['position'] == current_preview.position
         assert 'caption_translations' not in extracted['previews'][1]
         assert extracted['previews'][1]['id'] == second_preview.pk
         assert extracted['previews'][1]['modified'] == second_preview.modified
@@ -489,6 +492,7 @@ class TestAddonIndexer(TestCase):
             == second_preview.sizes
             == {'thumbnail': [12, 34], 'image': [56, 78]}
         )
+        assert extracted['previews'][1]['position'] == second_preview.position
 
         # Make sure we extract colors from the first preview.
         assert extracted['colors'] == [{'h': 1, 's': 2, 'l': 3, 'ratio': 0.9}]

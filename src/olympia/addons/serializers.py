@@ -1144,12 +1144,16 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         model = Addon
         fields = AddonSerializer.Meta.fields + ('_score',)
 
-    def fake_preview_object(self, obj, data, model_class=Preview):
+    def fake_preview_object(self, obj, data, idx, model_class=Preview):
         # This is what ESPreviewSerializer.fake_object() would do, but we do
         # it here and make that fake_object() method a no-op in order to have
         # access to the right model_class to use - VersionPreview for static
         # themes, Preview for the rest.
-        preview = model_class(id=data['id'], sizes=data.get('sizes', {}))
+        # We might not have position in ES; if not fake it with the list position.
+        position = data.get('position', idx)
+        preview = model_class(
+            id=data['id'], sizes=data.get('sizes', {}), position=position
+        )
         preview.addon = obj
         preview.version = obj.current_version
         preview_serializer = self.fields['previews'].child
@@ -1288,8 +1292,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         is_static_theme = data.get('type') == amo.ADDON_STATICTHEME
         preview_model_class = VersionPreview if is_static_theme else Preview
         obj.current_previews = [
-            self.fake_preview_object(obj, preview_data, model_class=preview_model_class)
-            for preview_data in data.get('previews', [])
+            self.fake_preview_object(
+                obj, preview_data, idx, model_class=preview_model_class
+            )
+            for idx, preview_data in enumerate(data.get('previews', []))
         ]
 
         promoted = data.get('promoted', None)
