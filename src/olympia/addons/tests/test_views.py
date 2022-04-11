@@ -27,12 +27,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import (
-    AddonCategory,
-    AddonApprovalsCounter,
-    AddonReviewerFlags,
-    DeniedSlug,
-)
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     ESTestCase,
     APITestClientJWT,
@@ -65,9 +60,14 @@ from olympia.versions.models import ApplicationsVersions, AppVersion, License
 
 from ..models import (
     Addon,
+    AddonCategory,
+    AddonApprovalsCounter,
     AddonRegionalRestrictions,
+    AddonReviewerFlags,
     AddonUser,
+    DeniedSlug,
     ReplacementAddon,
+    Preview,
 )
 from ..serializers import (
     AddonSerializer,
@@ -82,6 +82,14 @@ from ..views import (
     AddonAutoCompleteSearchView,
     AddonSearchView,
 )
+
+
+def _get_upload(filename):
+    return SimpleUploadedFile(
+        filename,
+        open(get_image_path(filename), 'rb').read(),
+        content_type=mimetypes.guess_type(filename)[0],
+    )
 
 
 class TestStatus(TestCase):
@@ -1720,25 +1728,25 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
     def test_upload_icon(self, resize_icon_mock):
         def patch_with_error(filename):
             response = self.client.patch(
-                self.url, data={'icon': self._get_upload(filename)}, format='multipart'
+                self.url, data={'icon': _get_upload(filename)}, format='multipart'
             )
             assert response.status_code == 400, response.content
             return response.data['icon']
 
         assert patch_with_error('non-animated.gif') == [
-            'Icons must be either PNG or JPG.'
+            'Images must be either PNG or JPG.'
         ]
-        assert patch_with_error('animated.png') == ['Icons cannot be animated.']
+        assert patch_with_error('animated.png') == ['Images cannot be animated.']
         with override_settings(MAX_ICON_UPLOAD_SIZE=100):
             assert patch_with_error('preview.jpg') == [
-                'Please use images smaller than 0MB',
-                'Icon must be square (same width and height).',
+                'Images must be smaller than 0MB',
+                'Images must be square (same width and height).',
             ]
 
         assert self.addon.icon_type == ''
         response = self.client.patch(
             self.url,
-            data={'icon': self._get_upload('mozilla-sq.png')},
+            data={'icon': _get_upload('mozilla-sq.png')},
             format='multipart',
         )
         assert response.status_code == 200, response.content
@@ -5427,3 +5435,132 @@ class TestAddonRecommendationView(ESTestCase):
                 assert len(data['results']) == 4
                 assert search_mock.call_count == 1
                 assert count_mock.call_count == 0
+
+
+class TestAddonPreviewViewSet(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,))
+
+    @override_settings(API_THROTTLING=False)
+    @mock.patch('olympia.addons.serializers.resize_preview.delay')
+    def test_create(self, resize_preview_mock):
+        def post_with_error(filename):
+            response = self.client.post(
+                url, data={'image': _get_upload(filename)}, format='multipart'
+            )
+            assert response.status_code == 400, response.content
+            return response.data['image']
+
+        url = reverse_ns(
+            'addon-preview-list',
+            kwargs={'addon_pk': self.addon.id},
+            api_version='v5',
+        )
+
+        response = self.client.post(
+            url, data={'image': _get_upload('mozilla-sq.png')}, format='multipart'
+        )
+        assert response.status_code == 401, response.content
+
+        self.client.login_api(self.user)
+        assert post_with_error('non-animated.gif') == [
+            'Images must be either PNG or JPG.'
+        ]
+        assert post_with_error('animated.png') == ['Images cannot be animated.']
+        with override_settings(MAX_IMAGE_UPLOAD_SIZE=100):
+            assert post_with_error('preview.jpg') == [
+                'Images must be smaller than 0MB',
+            ]
+
+        assert not self.addon.previews.exists()
+        response = self.client.post(
+            url,
+            data={'image': _get_upload('preview.jpg')},
+            format='multipart',
+        )
+        assert response.status_code == 201, response.content
+
+        self.addon.reload()
+        preview = self.addon.previews.get()
+        assert response.data == {
+            'caption': None,
+            'id': preview.id,
+            'image_size': [],
+            'image_url': absolutify(preview.image_url),
+            'position': 0,
+            'thumbnail_size': [],
+            'thumbnail_url': absolutify(preview.thumbnail_url),
+        }
+        resize_preview_mock.assert_called_with(
+            preview.original_path,
+            preview.id,
+            set_modified_on=self.addon.serializable_reference(),
+        )
+        assert os.path.exists(preview.original_path)
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.CHANGE_MEDIA.id
+        assert alog.addonlog_set.get().addon == self.addon
+
+    @mock.patch('olympia.addons.serializers.resize_preview.delay')
+    def test_cannot_update_image(self, resize_preview_mock):
+        self.client.login_api(self.user)
+        preview = Preview.objects.create(addon=self.addon)
+        url = reverse_ns(
+            'addon-preview-detail',
+            kwargs={'addon_pk': self.addon.id, 'pk': preview.id},
+            api_version='v5',
+        )
+        response = self.client.patch(
+            url,
+            data={'image': _get_upload('preview.jpg')},
+            format='multipart',
+        )
+        assert response.status_code == 200, response.content
+
+        resize_preview_mock.assert_not_called()
+
+    def test_update(self):
+        preview = Preview.objects.create(addon=self.addon)
+        url = reverse_ns(
+            'addon-preview-detail',
+            kwargs={'addon_pk': self.addon.id, 'pk': preview.id},
+            api_version='v5',
+        )
+        data = {'caption': {'en-US': 'a thing', 'fr': 'un thíng'}, 'position': 1}
+
+        response = self.client.patch(url, data=data)
+        assert response.status_code == 401
+
+        self.client.login_api(self.user)
+        response = self.client.patch(url, data=data)
+        assert response.status_code == 200
+        preview.reload()
+        assert response.data['caption'] == {'en-US': 'a thing', 'fr': 'un thíng'}
+        assert response.data['position'] == preview.position == 1
+        assert preview.caption == 'a thing'
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.CHANGE_MEDIA.id
+        assert alog.addonlog_set.get().addon == self.addon
+
+    def test_delete(self):
+        preview = Preview.objects.create(addon=self.addon)
+        url = reverse_ns(
+            'addon-preview-detail', kwargs={'addon_pk': self.addon.id, 'pk': preview.id}
+        )
+        response = self.client.delete(url)
+        assert response.status_code == 401
+        assert Preview.objects.filter(id=preview.id)
+
+        self.client.login_api(self.user)
+        response = self.client.delete(url)
+        assert response.status_code == 204
+        assert not Preview.objects.filter(id=preview.id)
+        alog = ActivityLog.objects.get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.CHANGE_MEDIA.id
+        assert alog.addonlog_set.get().addon == self.addon

@@ -155,10 +155,10 @@ def extract_colors_from_static_themes(ids, **kw):
     addons = Addon.objects.filter(id__in=ids)
     extracted = []
     for addon in addons:
-        first_preview = addon.current_previews.first()
-        if first_preview and not first_preview.colors:
-            colors = extract_colors_from_image(first_preview.thumbnail_path)
-            addon.current_previews.update(colors=colors)
+        if addon.current_previews and not addon.current_previews[0].colors:
+            colors = extract_colors_from_image(addon.current_previews[0].thumbnail_path)
+            addon.current_version.previews.update(colors=colors)
+            del addon.current_previews
             extracted.append(addon.pk)
     if extracted:
         index_addons.delay(extracted)
@@ -358,3 +358,36 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
         return {'icon_hash': icon_hash}
     except Exception as e:
         log.error(f'Error saving addon icon ({dest_file}): {e}')
+
+
+@task
+@set_modified_on
+def resize_preview(src, preview_pk, **kw):
+    """Resizes preview images and stores the sizes on the preview."""
+    preview = Preview.objects.get(pk=preview_pk)
+    preview.sizes = {'thumbnail_format': amo.ADDON_PREVIEW_SIZES['thumbnail_format']}
+    thumb_dst, full_dst, orig_dst = (
+        preview.thumbnail_path,
+        preview.image_path,
+        preview.original_path,
+    )
+    log.info('[1@None] Resizing preview and storing size: %s' % thumb_dst)
+    try:
+        (preview.sizes['thumbnail'], preview.sizes['original']) = resize_image(
+            src,
+            thumb_dst,
+            amo.ADDON_PREVIEW_SIZES['thumbnail'],
+            format=amo.ADDON_PREVIEW_SIZES['thumbnail_format'],
+        )
+        (preview.sizes['image'], _) = resize_image(
+            src,
+            full_dst,
+            amo.ADDON_PREVIEW_SIZES['full'],
+        )
+        if not os.path.exists(os.path.dirname(orig_dst)):
+            os.makedirs(os.path.dirname(orig_dst))
+        os.rename(src, orig_dst)
+        preview.save()
+        return True
+    except Exception as e:
+        log.error('Error saving preview: %s' % e)

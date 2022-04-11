@@ -70,8 +70,6 @@ from olympia.versions.models import (
     Version,
 )
 
-from . import tasks
-
 
 format_html_lazy = keep_lazy_text(format_html)
 
@@ -1279,7 +1277,7 @@ class PreviewForm(forms.ModelForm):
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
                 upload_path = os.path.join(settings.TMP_PATH, 'preview', upload_hash)
-                tasks.resize_preview.delay(
+                addons_tasks.resize_preview.delay(
                     upload_path,
                     self.instance.pk,
                     set_modified_on=self.instance.serializable_reference(),

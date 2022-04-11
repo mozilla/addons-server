@@ -14,6 +14,7 @@ from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (
     CreateModelMixin,
+    DestroyModelMixin,
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
@@ -27,6 +28,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
+from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.authentication import (
     JWTKeyAuthentication,
@@ -79,6 +81,7 @@ from .serializers import (
     ESAddonSerializer,
     LanguageToolsSerializer,
     ReplacementAddonSerializer,
+    PreviewSerializer,
     StaticCategorySerializer,
     VersionSerializer,
     ListVersionSerializer,
@@ -271,7 +274,7 @@ class AddonViewSet(
         for restriction in self.get_georestrictions():
             if not restriction.has_permission(request, self):
                 raise UnavailableForLegalReasons()
-        if self.action in ('create', 'update', 'partial_update'):
+        if self.action in ('create', 'update', 'partial_update', 'destroy'):
             self.permission_classes = self.write_permission_classes
         super().check_permissions(request)
 
@@ -289,7 +292,7 @@ class AddonViewSet(
             if not restriction.has_object_permission(request, self, obj):
                 raise UnavailableForLegalReasons()
 
-        if self.action in ('update', 'partial_update'):
+        if self.action in ('update', 'partial_update', 'destroy'):
             self.permission_classes = self.write_permission_classes
         try:
             super().check_object_permissions(request, obj)
@@ -344,7 +347,7 @@ class AddonChildMixin:
         if permission_classes is None:
             permission_classes = (
                 AddonViewSet.write_permission_classes
-                if self.action in ('create', 'update', 'partial_update')
+                if self.action in ('create', 'update', 'partial_update', 'destroy')
                 else AddonViewSet.permission_classes
             )
         if georestriction_classes is None:
@@ -612,6 +615,43 @@ class AddonVersionViewSet(
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
+
+
+class AddonPreviewViewSet(
+    AddonChildMixin,
+    CreateModelMixin,
+    DestroyModelMixin,
+    UpdateModelMixin,
+    GenericViewSet,
+):
+    # Permissions are always checked against the parent add-on in
+    # get_addon_object() using AddonViewSet's permissions so we don't need
+    # to set any here.
+    permission_classes = []
+    authentication_classes = [
+        JWTKeyAuthentication,
+        SessionIDAuthentication,
+    ]
+    throttle_classes = addon_submission_throttles
+    serializer_class = PreviewSerializer
+
+    def check_permissions(self, request):
+        # When listing, we can't use AllowRelatedObjectPermissions() with
+        # check_permissions(), because AllowAddonAuthor needs an author to
+        # do the actual permission check. To work around that, we call
+        # super + check_object_permission() ourselves, passing down the
+        # addon object directly.
+        # Note that just calling get_addon_object() will trigger permission
+        # checks on its own using AddonViewSet permission classes, regardless
+        # of what permission classes are set on self.
+        return super().check_object_permissions(request, self.get_addon_object())
+
+    def get_queryset(self):
+        return self.get_addon_object().previews.all()
+
+    def perform_destroy(self, instance):
+        super().perform_destroy(instance)
+        ActivityLog.create(amo.LOG.CHANGE_MEDIA, instance.addon, user=self.request.user)
 
 
 class AddonSearchView(ListAPIView):

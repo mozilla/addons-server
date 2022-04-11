@@ -330,6 +330,7 @@ class AddonIndexer(BaseSearchIndexer):
                             'id': {'type': 'long', 'index': False},
                             'caption_translations': cls.get_translations_definition(),
                             'modified': {'type': 'date', 'index': False},
+                            'position': {'type': 'long', 'index': False},
                             'sizes': {
                                 'type': 'object',
                                 'properties': {
@@ -500,9 +501,8 @@ class AddonIndexer(BaseSearchIndexer):
         data['colors'] = None
         # Extract dominant colors from static themes.
         if obj.type == amo.ADDON_STATICTHEME:
-            first_preview = obj.current_previews.first()
-            if first_preview:
-                data['colors'] = first_preview.colors
+            if obj.current_previews:
+                data['colors'] = obj.current_previews[0].colors
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
         # Boost by the number of users on a logarithmic scale.
@@ -536,7 +536,12 @@ class AddonIndexer(BaseSearchIndexer):
         )
 
         data['previews'] = [
-            {'id': preview.id, 'modified': preview.modified, 'sizes': preview.sizes}
+            {
+                'id': preview.id,
+                'modified': preview.modified,
+                'sizes': preview.sizes,
+                'position': preview.position,
+            }
             for preview in obj.current_previews
         ]
 

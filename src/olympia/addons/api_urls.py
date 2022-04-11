@@ -11,6 +11,7 @@ from .views import (
     AddonAutoCompleteSearchView,
     AddonFeaturedView,
     AddonRecommendationView,
+    AddonPreviewViewSet,
     AddonSearchView,
     AddonVersionViewSet,
     AddonViewSet,
@@ -27,6 +28,7 @@ addons.register(r'addon', AddonViewSet, basename='addon')
 # Router for children of /addons/addon/{addon_pk}/.
 sub_addons = NestedSimpleRouter(addons, r'addon', lookup='addon')
 sub_addons.register('versions', AddonVersionViewSet, basename='addon-version')
+sub_addons.register('previews', AddonPreviewViewSet, basename='addon-preview')
 sub_versions = NestedSimpleRouter(sub_addons, r'versions', lookup='version')
 sub_versions.register(
     r'reviewnotes', VersionReviewNotesViewSet, basename='version-reviewnotes'

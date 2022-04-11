@@ -6,7 +6,7 @@ from django.conf import settings
 from PIL import Image, ImageColor
 
 from olympia.addons.models import Preview
-from olympia.devhub.tasks import resize_preview
+from olympia.addons.tasks import resize_preview
 
 
 def generate_addon_preview(addon):

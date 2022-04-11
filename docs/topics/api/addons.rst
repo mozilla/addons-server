@@ -180,6 +180,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object|null previews[].caption: The caption describing a preview (See :ref:`translated fields <api-overview-translations>`).
     :>json int previews[].image_size[]: width, height dimensions of of the preview image.
     :>json string previews[].image_url: The URL (including a cachebusting query string) to the preview image.
+    :>json int position: The position in the list of previews images.
     :>json int previews[].thumbnail_size[]: width, height dimensions of of the preview image thumbnail.
     :>json string previews[].thumbnail_url: The URL (including a cachebusting query string) to the preview image thumbnail.
     :>json object|null promoted: Object holding promotion information about the add-on. Null if the add-on is not currently promoted.
@@ -630,6 +631,61 @@ This endpoint allows the metadata for an existing version to be edited.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :<json string|null source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
+
+
+--------------
+Preview Create
+--------------
+
+.. _addon-preview-create:
+
+This endpoint allows a submission of a preview image to an existing non-theme add-on to create a new preview image. Themes can only have generated previews and new previews can not be created.
+Image files cannot be uploaded as JSON - the request must be sent as multipart form-data instead.
+If desired, ``position`` can be set set at the same time as ``image``, but ``caption`` can not, so a separate API call is needed.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/previews/
+
+    .. _addon-preview-create-request:
+
+    :form image: The image being uploaded.
+    :form postion: Integer value for the position the image should be returned in the addon :ref:`detail <addon-detail-object>` (optional). Order is ascending so lower positions are placed earlier.
+    :reqheader Content-Type: multipart/form-data
+
+
+------------
+Preview Edit
+------------
+
+.. _addon-preview-edit:
+
+This endpoint allows the metadata for an existing preview for a non-theme add-on to be edited. Themes can only have generated previews and previews can not be edited.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/previews/(int:id)/
+
+    .. _addon-preview-edit-request:
+
+    :<json object caption: The caption describing a preview (See :ref:`translated fields <api-overview-translations>`).
+    :<json int position: The position the image should be returned in the addon :ref:`detail <addon-detail-object>`. Order is ascending so lower positions are placed earlier.
+
+
+--------------
+Preview Delete
+--------------
+
+.. _addon-preview-delete:
+
+This endpoint allows the metadata for an existing preview for a non-theme add-on to be deleted. Themes can only have generated previews and previews can not be deleted.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`.
+
+.. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/previews/(int:id)/
 
 
 -------------

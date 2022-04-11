@@ -870,7 +870,7 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
     'olympia.devhub.tasks.recreate_previews': {'queue': 'images'},
     'olympia.addons.tasks.resize_icon': {'queue': 'images'},
-    'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
+    'olympia.addons.tasks.resize_preview': {'queue': 'images'},
     # AMO
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
     'olympia.amo.tasks.send_email': {'queue': 'amo'},
@@ -1122,10 +1122,9 @@ def read_only_mode(env):
 
 
 # Uploaded file limits
-MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
-MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
-MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
+MAX_ICON_UPLOAD_SIZE = MAX_IMAGE_UPLOAD_SIZE
+MAX_PHOTO_UPLOAD_SIZE = MAX_IMAGE_UPLOAD_SIZE
 MAX_STATICTHEME_SIZE = 7 * 1024 * 1024
 MAX_ZIP_UNCOMPRESSED_SIZE = 200 * 1024 * 1024
 
@@ -1365,6 +1364,7 @@ DRF_API_GATES = {
         'is-webextension-shim',
         'version-files',
         'del-version-license-slug',
+        'del-preview-position',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1378,6 +1378,7 @@ DRF_API_GATES = {
         'is-webextension-shim',
         'version-files',
         'del-version-license-slug',
+        'del-preview-position',
     ),
     'v5': (
         'addons-search-_score-field',

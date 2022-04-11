@@ -16,7 +16,10 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
-from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
+from olympia.amo.validators import (
+    CreateOnlyValidator,
+    OneOrMoreLetterOrNumberCharacterValidator,
+)
 from olympia.api.fields import (
     EmailTranslationField,
     LazyChoiceField,
@@ -52,7 +55,7 @@ from .fields import (
     CategoriesSerializerField,
     ContributionSerializerField,
     ESLicenseNameSerializerField,
-    IconField,
+    ImageField,
     LicenseNameSerializerField,
     LicenseSlugSerializerField,
     SourceFileField,
@@ -66,7 +69,7 @@ from .models import (
     Preview,
     ReplacementAddon,
 )
-from .tasks import resize_icon
+from .tasks import resize_icon, resize_preview
 from .utils import fetch_translations_from_addon
 from .validators import VerifyMozillaTrademark
 
@@ -127,21 +130,33 @@ class FileSerializer(serializers.ModelSerializer):
         return True
 
 
+class ThisAddonDefault:
+    requires_context = True
+
+    def __call__(self, serializer_field):
+        return serializer_field.context['view'].get_addon_object()
+
+
 class PreviewSerializer(serializers.ModelSerializer):
-    caption = TranslationSerializerField()
+    caption = TranslationSerializerField(required=False)
     image_url = serializers.SerializerMethodField()
     thumbnail_url = serializers.SerializerMethodField()
     image_size = serializers.ReadOnlyField(source='image_dimensions')
     thumbnail_size = serializers.ReadOnlyField(source='thumbnail_dimensions')
+    image = ImageField(write_only=True, validators=(CreateOnlyValidator(),))
+    addon = serializers.HiddenField(default=ThisAddonDefault())
 
     class Meta:
         # Note: this serializer can also be used for VersionPreview.
         model = Preview
         fields = (
             'id',
+            'addon',
             'caption',
+            'image',
             'image_size',
             'image_url',
+            'position',
             'thumbnail_size',
             'thumbnail_url',
         )
@@ -151,6 +166,37 @@ class PreviewSerializer(serializers.ModelSerializer):
 
     def get_thumbnail_url(self, obj):
         return absolutify(obj.thumbnail_url)
+
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        request = self.context.get('request', None)
+        if request and is_gate_active(request, 'del-preview-position'):
+            data.pop('position', None)
+        return data
+
+    def create(self, validated_data):
+        image = validated_data.pop('image')
+        instance = super().create(validated_data)
+
+        storage = SafeStorage(user_media='previews')
+        with storage.open(instance.original_path, 'wb') as original_file:
+            for chunk in image.chunks():
+                original_file.write(chunk)
+
+        resize_preview.delay(
+            instance.original_path,
+            instance.pk,
+            set_modified_on=instance.addon.serializable_reference(),
+        )
+
+        return instance
+
+    def save(self, *args, **kwargs):
+        instance = super().save(*args, **kwargs)
+        ActivityLog.create(
+            amo.LOG.CHANGE_MEDIA, instance.addon, user=self.context['request'].user
+        )
+        return instance
 
 
 class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
@@ -720,7 +766,13 @@ class AddonSerializer(serializers.ModelSerializer):
     homepage = OutgoingURLTranslationField(required=False)
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
-    icon = IconField(required=False, allow_null=True, write_only=True)
+    icon = ImageField(
+        required=False,
+        allow_null=True,
+        write_only=True,
+        max_size_setting='MAX_ICON_UPLOAD_SIZE',
+        require_square=True,
+    )
     is_disabled = SplitField(
         serializers.BooleanField(source='disabled_by_user', required=False),
         serializers.BooleanField(),
@@ -1092,12 +1144,16 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         model = Addon
         fields = AddonSerializer.Meta.fields + ('_score',)
 
-    def fake_preview_object(self, obj, data, model_class=Preview):
+    def fake_preview_object(self, obj, data, idx, model_class=Preview):
         # This is what ESPreviewSerializer.fake_object() would do, but we do
         # it here and make that fake_object() method a no-op in order to have
         # access to the right model_class to use - VersionPreview for static
         # themes, Preview for the rest.
-        preview = model_class(id=data['id'], sizes=data.get('sizes', {}))
+        # We might not have position in ES; if not fake it with the list position.
+        position = data.get('position', idx)
+        preview = model_class(
+            id=data['id'], sizes=data.get('sizes', {}), position=position
+        )
         preview.addon = obj
         preview.version = obj.current_version
         preview_serializer = self.fields['previews'].child
@@ -1236,8 +1292,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         is_static_theme = data.get('type') == amo.ADDON_STATICTHEME
         preview_model_class = VersionPreview if is_static_theme else Preview
         obj.current_previews = [
-            self.fake_preview_object(obj, preview_data, model_class=preview_model_class)
-            for preview_data in data.get('previews', [])
+            self.fake_preview_object(
+                obj, preview_data, idx, model_class=preview_model_class
+            )
+            for idx, preview_data in enumerate(data.get('previews', []))
         ]
 
         promoted = data.get('promoted', None)

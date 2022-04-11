@@ -44,12 +44,16 @@ def test_recreate_theme_previews():
         sizes={'image': [123, 456], 'thumbnail': [34, 45]},
     )
 
-    assert addon_without_previews.current_previews.count() == 0
-    assert addon_with_previews.current_previews.count() == 1
+    assert len(addon_without_previews.current_previews) == 0
+    assert len(addon_with_previews.current_previews) == 1
     recreate_theme_previews([addon_without_previews.id, addon_with_previews.id])
-    assert addon_without_previews.reload().current_previews.count() == 2
-    assert addon_with_previews.reload().current_previews.count() == 2
-    sizes = addon_without_previews.current_previews.values_list('sizes', flat=True)
+    del addon_without_previews.reload().current_previews
+    del addon_with_previews.reload().current_previews
+    assert len(addon_without_previews.current_previews) == 2
+    assert len(addon_with_previews.current_previews) == 2
+    sizes = addon_without_previews.current_version.previews.values_list(
+        'sizes', flat=True
+    )
     renderings = amo.THEME_PREVIEW_RENDERINGS
     assert list(sizes) == [
         {
