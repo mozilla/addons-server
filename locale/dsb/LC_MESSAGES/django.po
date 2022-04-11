@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-11 21:31+0000\n"
+"PO-Revision-Date: 2022-04-11 21:37+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1623,7 +1623,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL-sćažka za sponsory GitHub musy /sponsors/ wopśimowaś."
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URL muse se z https:// zachopiś."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4486,11 +4486,11 @@ msgstr "Wobstarajśo se awtomatiski direktnje do swójich zarědnikow cytańskic
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Statkowny blokěrowak pśeśiwo wšym typam wabjenja."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Zastojnik za masowe ześěgnjenje wjelike ześěgnjenja wjelgin wólažcujo."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
@@ -4498,7 +4498,7 @@ msgstr "Wótwónoźćo wabjenje a dostańśo pólěpšony šćit pśed škódnej
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Wótwónožćo formatěrowanje z kopěrowanego teksta mjazywótkłada."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4641,22 +4641,19 @@ msgstr "Dalšne tuchylu woblubowane rozšyrjenja se woglědaś"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Pólěpšenja Steam"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja socialnego tšuganja pokazaś"
+msgstr "Wěcej wót sobuźěłaśerjow wubrane rozšyrjenja socialnego tšuženja pokazaś"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Woblubowane rozšyrjenja"
+msgstr "Rozšyrjenja za kreatiwnosć"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "Dalšne wót sobuźěłaśerjow wubrane pśełožowańske rědy pokazaś"
+msgstr "Wěcej wót sobuźěłaśerjow wubrane rozšyrjenja kreatiwnosći pokazaś"
 
 msgid "Could not parse the manifest file."
 msgstr "Manifestowa dataja njedajo se analyzěrowaś."
