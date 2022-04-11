@@ -30,7 +30,7 @@ ROBOT_NAME="Mozilla Add-ons Robot"
 
 # gettext flags
 CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
-MERGE_FLAGS="--update --width=200 --backup=none"
+MERGE_FLAGS="--update --width=200 --backup=none --no-fuzzy-matching"
 UNIQ_FLAGS="--width=200"
 
 info() {
