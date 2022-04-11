@@ -399,6 +399,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             )
 
         license_ = data.get('license')
+        is_custom = isinstance(license_, dict)
         if not self.instance:
             channel = data['upload'].channel
             if channel == amo.RELEASE_CHANNEL_LISTED and not license_:
@@ -420,16 +421,27 @@ class DeveloperVersionSerializer(VersionSerializer):
                     )
             addon_type = self.parsed_data['type']
         else:
+            # In the case where we are updating the version; the existing license is
+            # built-in; and we setting a custom license we need to force the validation
+            # as if was a new license because we create a new instance for it.
+            if (
+                is_custom
+                and (existing := self.instance.license)
+                and existing.builtin != License.OTHER
+                and not (custom_license := LicenseSerializer(data=license_)).is_valid()
+            ):
+                raise exceptions.ValidationError(
+                    {'custom_license': custom_license.errors}
+                )
             addon_type = self.addon.type
 
-        if isinstance(license_, License) and license_.creative_commons == (
-            addon_type != amo.ADDON_STATICTHEME
-        ):
+        is_theme = addon_type == amo.ADDON_STATICTHEME
+        if isinstance(license_, License) and license_.creative_commons != is_theme:
             raise exceptions.ValidationError(
                 {'license': 'Wrong addon type for this license.'},
                 code='required',
             )
-        if isinstance(license_, dict) and addon_type == amo.ADDON_STATICTHEME:
+        if is_custom and is_theme:
             raise exceptions.ValidationError(
                 {'custom_license': 'Custom licenses are not supported for themes.'},
             )
@@ -573,15 +585,11 @@ class DeveloperVersionSerializer(VersionSerializer):
                             'application': appver.application,
                         },
                     )
-        if custom_license:
-            if (
-                existing := getattr(instance, 'license', None)
-            ) and existing.builtin == License.OTHER:
-                self.fields['custom_license'].update(existing, custom_license)
+        if custom_license and (custom_license_field := self.fields['custom_license']):
+            if (existing := instance.license) and existing.builtin == License.OTHER:
+                custom_license_field.update(existing, custom_license)
             else:
-                instance.update(
-                    license=self.fields['custom_license'].create(custom_license)
-                )
+                instance.update(license=custom_license_field.create(custom_license))
         if custom_license or 'license' in validated_data:
             ActivityLog.create(
                 amo.LOG.CHANGE_LICENSE, instance.license, instance.addon, user=user

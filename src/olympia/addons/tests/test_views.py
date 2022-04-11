@@ -2041,7 +2041,10 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert 'source' in self.client.get(self.url).data
 
 
-class SubmitSourceMixin:
+class VersionViewSetCreateUpdateMixin:
+    def request(self, **kwargs):
+        raise NotImplementedError
+
     def _submit_source(self, filepath, error=False):
         raise NotImplementedError
 
@@ -2236,8 +2239,30 @@ class SubmitSourceMixin:
         assert log.details is None
         assert log.arguments == [self.addon, version]
 
+    def test_custom_license_needs_name_and_text(self):
+        response = self.request(custom_license={})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'custom_license': {
+                'name': ['This field is required.'],
+                'text': ['This field is required.'],
+            }
+        }
 
-class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
+        response = self.request(custom_license={'name': {'en-US': 'foo'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'custom_license': {'text': ['This field is required.']}
+        }
+
+        response = self.request(custom_license={'text': {'en-US': 'baa'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'custom_license': {'name': ['This field is required.']}
+        }
+
+
+class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
 
     @classmethod
@@ -2275,6 +2300,9 @@ class TestVersionViewSetCreate(UploadMixin, SubmitSourceMixin, TestCase):
         self.license = License.objects.create(builtin=2)
         self.minimal_data = {'upload': self.upload.uuid}
         self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
+
+    def request(self, **kwargs):
+        return self.client.post(self.url, data={**self.minimal_data, **kwargs})
 
     def test_basic_unlisted(self):
         response = self.client.post(
@@ -2724,7 +2752,7 @@ class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
     client_class = APITestClientJWT
 
 
-class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
+class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
 
     @classmethod
@@ -2761,6 +2789,9 @@ class TestVersionViewSetUpdate(UploadMixin, SubmitSourceMixin, TestCase):
             api_version='v5',
         )
         self.client.login_api(self.user)
+
+    def request(self, **kwargs):
+        return self.client.patch(self.url, data={**kwargs})
 
     def test_basic(self):
         response = self.client.patch(
