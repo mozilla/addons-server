@@ -40,6 +40,12 @@ def extract_jinja(fileobj, keywords, comment_tags, options):
     """
     Wrapper around jinja2's babel_extract() that sets the relevant options by
     looking at our django settings.
+
+    This is necessary because jinja2's babel_extract() loads a default
+    environement which doesn't have our extensions and doesn't set the options
+    we need for trimming, so it can't process all our templates and generates
+    a po file that doesn't correspond to our gettext calls because of the
+    whitespace differences.
     """
     # django needs to be configured for the jinja extensions to be imported,
     # since at least one imports our models.
