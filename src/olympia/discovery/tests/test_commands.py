@@ -111,11 +111,6 @@ expected_content = """{# L10n: editorial content for the discovery pane. #}
 
 
 class TestExtractDiscoStringsCommand(TestCase):
-    def test_settings(self):
-        assert (settings.EDITORIAL_CONTENT_FILENAME, 'jinja2') in settings.PUENTE[
-            'DOMAIN_METHODS'
-        ]['django']
-
     def test_basic(self):
         responses.add(
             responses.GET,
