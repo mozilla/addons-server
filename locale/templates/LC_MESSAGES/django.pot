@@ -1,5 +1,5 @@
 # Translations template for addons-server.
-# Copyright (C) 2022 ORGANIZATION
+# Copyright (C) 2022 Mozilla
 # This file is distributed under the same license as the addons-server project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-11 09:32+0000\n"
+"POT-Creation-Date: 2022-04-11 11:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"

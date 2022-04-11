@@ -86,8 +86,8 @@ function init_environment {
 
 function run_l10n_extraction {
     python3 manage.py extract_content_strings
-    PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babel.cfg -o locale/templates/LC_MESSAGES/django.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server .
-    PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babeljs.cfg -o locale/templates/LC_MESSAGES/djangojs.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server .
+    PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babel.cfg -o locale/templates/LC_MESSAGES/django.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
+    PYTHONPATH=. DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babeljs.cfg -o locale/templates/LC_MESSAGES/djangojs.pot -c 'L10n:' -w 80 --version=1.0 --project=addons-server --copyright-holder=Mozilla .
 
     pushd locale > /dev/null
 
