@@ -47,8 +47,10 @@ def test_recreate_theme_previews():
     assert len(addon_without_previews.current_previews) == 0
     assert len(addon_with_previews.current_previews) == 1
     recreate_theme_previews([addon_without_previews.id, addon_with_previews.id])
-    assert len(addon_without_previews.reload().current_previews) == 2
-    assert len(addon_with_previews.reload().current_previews) == 2
+    del addon_without_previews.reload().current_previews
+    del addon_with_previews.reload().current_previews
+    assert len(addon_without_previews.current_previews) == 2
+    assert len(addon_with_previews.current_previews) == 2
     sizes = addon_without_previews.current_version.previews.values_list(
         'sizes', flat=True
     )

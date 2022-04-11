@@ -847,16 +847,6 @@ class TestAddonModels(TestCase):
             == 'http://testserver/static/img/addon-icons/default-64.png'
         )
 
-    def test_thumbnail_url(self):
-        """
-        Test for the actual thumbnail URL if it should exist, or the no-preview
-        url.
-        """
-        a = Addon.objects.get(pk=4664)
-        a.thumbnail_url.index('/previews/thumbs/20/20397.jpg?modified=')
-        a = Addon.objects.get(pk=5299)
-        assert a.thumbnail_url == 'http://testserver/static/img/icons/no-preview.png'
-
     def test_is_unreviewed(self):
         """Test if add-on is unreviewed or not"""
         # public add-on
