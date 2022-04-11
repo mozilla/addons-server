@@ -59,8 +59,8 @@ def extract_jinja(fileobj, keywords, comment_tags, options):
                 TEMPLATE['OPTIONS'].get('policies', {}).get('ext.i18n.trimmed', False)
             )
             # Also, never be silent, that would hide exceptions that are almost
-            # certainly bad news.
-            options['silent'] = False
+            # certainly bad news as they generally prevent extraction.
+            options['silent'] = generate_option(False)
             break
 
     return babel_extract(fileobj, keywords, comment_tags, options)

@@ -371,7 +371,6 @@ TEMPLATES = [
             'translation_engine': 'django.utils.translation',
             'autoescape': True,
             'trim_blocks': True,
-            'lstrip_blocks': True,
         },
     },
     {
