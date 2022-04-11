@@ -124,7 +124,7 @@ class Command(ProcessObjectsCommand):
                         type__in=(
                             _ADDON_THEME,
                             amo.ADDON_LPADDON,
-                            amo.ADDON_PLUGIN,
+                            _ADDON_PLUGIN,
                             _ADDON_PERSONA,
                             _ADDON_WEBAPP,
                         )

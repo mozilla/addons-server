@@ -1075,7 +1075,7 @@ class TestReviewHelper(TestReviewHelperBase):
     @patch('olympia.reviewers.utils.sign_file')
     def test_old_nomination_to_public_bonus_score(self, sign_mock):
         sign_mock.reset()
-        self.setup_data(amo.STATUS_NOMINATED, type=amo.ADDON_PLUGIN)
+        self.setup_data(amo.STATUS_NOMINATED, type=_ADDON_PLUGIN)
         self.version.update(nomination=self.days_ago(9))
 
         self.helper.handler.approve_latest_version()

@@ -418,7 +418,7 @@ class TestDeleteObsoleteAddons(TestCase):
         self.lpaddon = addon_factory()
         self.lpaddon.update(type=amo.ADDON_LPADDON)
         self.plugin = addon_factory()
-        self.plugin.update(type=amo.ADDON_PLUGIN)
+        self.plugin.update(type=_ADDON_PLUGIN)
         self.lwt = addon_factory(type=9, guid=None)  # _ADDON_PERSONA
         self.webapp = addon_factory()
         self.webapp.update(type=11)  # webapp

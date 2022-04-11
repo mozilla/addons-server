@@ -305,7 +305,7 @@ class ReviewerScore(ModelBase):
                 queue = ''
 
             if (
-                addon.type in [amo.ADDON_EXTENSION, amo.ADDON_PLUGIN, amo.ADDON_API]
+                addon.type in [amo.ADDON_EXTENSION, _ADDON_PLUGIN, amo.ADDON_API]
                 and queue
             ):
                 reviewed_score_name = 'REVIEWED_ADDON_%s' % queue
