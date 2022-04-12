@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext
 
 from rest_framework import exceptions
 
@@ -33,7 +34,9 @@ class ValidateVersionLicense:
             and 'custom_license' in request.data
         ):
             raise exceptions.ValidationError(
-                'Both `license` and `custom_license` cannot be provided together.'
+                gettext(
+                    'Both `license` and `custom_license` cannot be provided together.'
+                )
             )
 
         license_ = data.get('license')
@@ -54,8 +57,10 @@ class ValidateVersionLicense:
                     raise exceptions.ValidationError(
                         {
                             'license': (
-                                'This field, or custom_license, is required for listed '
-                                'versions.'
+                                gettext(
+                                    'This field, or custom_license, is required for '
+                                    'listed versions.'
+                                )
                             )
                         },
                         code='required',
@@ -82,10 +87,14 @@ class ValidateVersionLicense:
         is_theme = addon_type == amo.ADDON_STATICTHEME
         if isinstance(license_, License) and license_.creative_commons != is_theme:
             raise exceptions.ValidationError(
-                {'license': 'Wrong addon type for this license.'},
+                {'license': gettext('Wrong addon type for this license.')},
                 code='required',
             )
         if is_custom and is_theme:
             raise exceptions.ValidationError(
-                {'custom_license': 'Custom licenses are not supported for themes.'},
+                {
+                    'custom_license': gettext(
+                        'Custom licenses are not supported for themes.'
+                    )
+                },
             )

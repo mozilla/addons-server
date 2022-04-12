@@ -1,6 +1,7 @@
 import os
 import re
 
+from django.utils.translation import gettext
 from django.urls import reverse
 
 import waffle
@@ -255,7 +256,9 @@ class LicenseSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         if self.instance and not self.get_is_custom(self.instance):
-            raise exceptions.ValidationError('Built in licenses can not be updated.')
+            raise exceptions.ValidationError(
+                gettext('Built in licenses can not be updated.')
+            )
         return data
 
 
@@ -413,7 +416,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         request = self.context.get('request')
         own_upload = request and request.user == value.user
         if not own_upload or not value.valid or value.validation_timeout:
-            raise exceptions.ValidationError('Upload is not valid.')
+            raise exceptions.ValidationError(gettext('Upload is not valid.'))
         # Parse the file to get and validate package data with the addon.
         self.parsed_data = parse_addon(value, addon=self.addon, user=request.user)
         return value
@@ -422,7 +425,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         # check the guid/version isn't in the addon blocklist
         block_qs = Block.objects.filter(guid=guid) if guid else ()
         if block_qs and block_qs.first().is_version_blocked(version_string):
-            msg = (
+            msg = gettext(
                 'Version {version} matches {block_link} for this add-on. '
                 'You can contact {amo_admins} for additional information.'
             )
@@ -441,10 +444,14 @@ class DeveloperVersionSerializer(VersionSerializer):
         )
         if existing_versions.exists():
             if existing_versions[0].deleted:
-                msg = f'Version {version_string} was uploaded before and deleted.'
+                msg = gettext(
+                    'Version {version_string} was uploaded before and deleted.'
+                )
             else:
-                msg = f'Version {version_string} already exists.'
-            raise exceptions.ValidationError({'version': msg})
+                msg = gettext('Version {version_string} already exists.')
+            raise exceptions.ValidationError(
+                {'version': msg.format(version_string=version_string)}
+            )
 
     def validate(self, data):
         if not self.instance:
@@ -460,7 +467,10 @@ class DeveloperVersionSerializer(VersionSerializer):
             if channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
                 if self.addon.disabled_by_user:
                     raise exceptions.ValidationError(
-                        'Listed versions cannot be submitted while add-on is disabled.'
+                        gettext(
+                            'Listed versions cannot be submitted while add-on is '
+                            'disabled.'
+                        )
                     )
                 # This is replicating what Addon.get_required_metadata does
                 missing_addon_metadata = [
@@ -474,8 +484,10 @@ class DeveloperVersionSerializer(VersionSerializer):
                 ]
                 if missing_addon_metadata:
                     raise exceptions.ValidationError(
-                        'Addon metadata is required to be set to create a listed '
-                        f'version: {missing_addon_metadata}.',
+                        gettext(
+                            'Addon metadata is required to be set to create a listed '
+                            'version: {missing_addon_metadata}.'
+                        ).format(missing_addon_metadata=missing_addon_metadata),
                         code='required',
                     )
         else:
@@ -899,7 +911,7 @@ class AddonSerializer(serializers.ModelSerializer):
             # DeniedSlug.blocked checks for all numeric slugs as well as being denied.
             if DeniedSlug.blocked(value):
                 raise exceptions.ValidationError(
-                    'This slug cannot be used. Please choose another.'
+                    gettext('This slug cannot be used. Please choose another.')
                 )
 
         return value
@@ -914,7 +926,9 @@ class AddonSerializer(serializers.ModelSerializer):
             # We test for new versions in VersionSerailizer.validate instead
             if channel == amo.RELEASE_CHANNEL_LISTED:
                 # This is replicating what Addon.get_required_metadata does
-                required_msg = 'This field is required for addons with listed versions.'
+                required_msg = gettext(
+                    'This field is required for addons with listed versions.'
+                )
                 missing_metadata = {
                     field: required_msg
                     for field, value in (
@@ -938,7 +952,7 @@ class AddonSerializer(serializers.ModelSerializer):
             # double check we didn't lose any
             if slugs != {cat.slug for cat in data['all_categories']}:
                 raise exceptions.ValidationError(
-                    {'categories': 'Invalid category name.'}
+                    {'categories': gettext('Invalid category name.')}
                 )
         return data
 
