@@ -7,7 +7,6 @@ import pygit2
 from unittest import mock
 from unittest.mock import MagicMock
 from pathlib import Path
-from waffle.testutils import override_switch
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
