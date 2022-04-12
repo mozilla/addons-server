@@ -68,7 +68,7 @@ from .models import (
 )
 from .tasks import resize_icon
 from .utils import fetch_translations_from_addon
-from .validators import VerifyMozillaTrademark
+from .validators import ValidateVersionLicense, VerifyMozillaTrademark
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -326,6 +326,7 @@ class DeveloperVersionSerializer(VersionSerializer):
 
     class Meta:
         model = Version
+        validators = (ValidateVersionLicense(),)
         fields = (
             'id',
             'channel',
@@ -363,11 +364,12 @@ class DeveloperVersionSerializer(VersionSerializer):
         return super().to_representation(instance)
 
     def validate_upload(self, value):
-        own_upload = (request := self.context.get('request')) and (
-            request.user == value.user
-        )
+        request = self.context.get('request')
+        own_upload = request and request.user == value.user
         if not own_upload or not value.valid or value.validation_timeout:
             raise exceptions.ValidationError('Upload is not valid.')
+        # Parse the file to get and validate package data with the addon.
+        self.parsed_data = parse_addon(value, addon=self.addon, user=request.user)
         return value
 
     def _check_blocklist(self, guid, version_string):
@@ -386,66 +388,6 @@ class DeveloperVersionSerializer(VersionSerializer):
                 ),
             )
 
-    def _check_license(self, data):
-        # We have to check the raw request data because data from both fields will be
-        # under `license` at this point.
-        if (
-            (request := self.context.get('request'))
-            and 'license' in request.data
-            and 'custom_license' in request.data
-        ):
-            raise exceptions.ValidationError(
-                'Both `license` and `custom_license` cannot be provided together.'
-            )
-
-        license_ = data.get('license')
-        is_custom = isinstance(license_, dict)
-        if not self.instance:
-            channel = data['upload'].channel
-            if channel == amo.RELEASE_CHANNEL_LISTED and not license_:
-                # If the previous version has a license we can use that, otherwise its
-                # required. This is what we do in Version.from_upload to get the
-                # license.
-                previous_version = self.addon and self.addon.find_latest_version(
-                    channel=channel, exclude=()
-                )
-                if not previous_version or not previous_version.license_id:
-                    raise exceptions.ValidationError(
-                        {
-                            'license': (
-                                'This field, or custom_license, is required for listed '
-                                'versions.'
-                            )
-                        },
-                        code='required',
-                    )
-            addon_type = self.parsed_data['type']
-        else:
-            # In the case where we are updating the version; the existing license is
-            # built-in; and we setting a custom license we need to force the validation
-            # as if was a new license because we create a new instance for it.
-            if (
-                is_custom
-                and (existing := self.instance.license)
-                and existing.builtin != License.OTHER
-                and not (custom_license := LicenseSerializer(data=license_)).is_valid()
-            ):
-                raise exceptions.ValidationError(
-                    {'custom_license': custom_license.errors}
-                )
-            addon_type = self.addon.type
-
-        is_theme = addon_type == amo.ADDON_STATICTHEME
-        if isinstance(license_, License) and license_.creative_commons != is_theme:
-            raise exceptions.ValidationError(
-                {'license': 'Wrong addon type for this license.'},
-                code='required',
-            )
-        if is_custom and is_theme:
-            raise exceptions.ValidationError(
-                {'custom_license': 'Custom licenses are not supported for themes.'},
-            )
-
     def _check_for_existing_versions(self, version_string):
         # Make sure we don't already have this version.
         existing_versions = Version.unfiltered.filter(
@@ -459,14 +401,6 @@ class DeveloperVersionSerializer(VersionSerializer):
             raise exceptions.ValidationError({'version': msg})
 
     def validate(self, data):
-        if not self.instance:
-            # Parse the file to get and validate package data with the addon.
-            self.parsed_data = parse_addon(
-                data.get('upload'), addon=self.addon, user=self.context['request'].user
-            )
-
-        self._check_license(data)
-
         if not self.instance:
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
             self._check_blocklist(guid, self.parsed_data.get('version'))
