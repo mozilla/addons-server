@@ -130,14 +130,6 @@ def test_enforce_pygit_global_search_path(settings):
 def test_git_repository_path():
     repo = AddonGitRepository(1789)
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, '9/89/1789', 'addon'
-    )
-
-
-@override_switch('git-storage-broader-structure', active=True)
-def test_git_repository_path_new_structure_waffle_switch():
-    repo = AddonGitRepository(1789)
-    assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, '89/1789/1789', 'addon'
     )
 
@@ -165,28 +157,6 @@ def test_git_repo_init_with_missing_master_branch_raises_error(settings):
 
 
 def test_git_repo_init_opens_existing_repo(settings):
-    expected_path = os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, '2/42/4815162342', 'addon'
-    )
-
-    assert not os.path.exists(expected_path)
-
-    repo = AddonGitRepository(4815162342)
-    assert not os.path.exists(expected_path)
-
-    assert repo.git_repository_path
-    assert not os.path.exists(expected_path)
-
-    # accessing repo.git_repository creates the directory
-    repo.git_repository
-    assert os.path.exists(expected_path)
-
-    repo2 = AddonGitRepository(4815162342)
-    assert repo.git_repository.path == repo2.git_repository.path
-
-
-@override_switch('git-storage-broader-structure', active=True)
-def test_git_repo_init_opens_existing_repo_broader_structure_waffle_switch_on(settings):
     expected_path = os.path.join(
         settings.GIT_FILE_STORAGE_PATH, '42/2342/4815162342', 'addon'
     )
