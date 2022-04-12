@@ -806,11 +806,8 @@ class Addon(OnChangeMixin, ModelBase):
             models.signals.pre_delete.send(sender=Addon, instance=self)
             self._ratings.all().delete()
             # We avoid triggering signals for Version & File on purpose to
-            # avoid extra work. Files will be moved to the correct storage
-            # location with hide_disabled_files task or hide_disabled_files
-            # cron as a fallback.
+            # avoid extra work.
             self.disable_all_files()
-            file_tasks.hide_disabled_files.delay(addon_id=self.id)
 
             self.versions.all().update(deleted=True)
             VersionReviewerFlags.objects.filter(version__addon=self).update(
@@ -1862,34 +1859,6 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
         # Calls `inherit_nomination` manually given that signals are
         # deactivated to avoid circular calls.
         inherit_nomination(None, latest_version)
-
-
-@Addon.on_change
-def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None, **kwargs):
-    """
-    Move files when an add-on is disabled/enabled.
-
-    There is a similar watcher in olympia.files.models that tracks File
-    status, but this one is useful for when the Files do not change their
-    status.
-    """
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-    attrs = {
-        key: value
-        for key, value in old_attr.items()
-        if key in ('disabled_by_user', 'status')
-    }
-    was_disabled = Addon(**attrs).is_disabled
-    is_disabled = instance.is_disabled
-    if was_disabled and not is_disabled:
-        for file_ in File.objects.filter(version__addon=instance.id):
-            file_.unhide_disabled_file()
-    elif is_disabled and not was_disabled:
-        for file_ in File.objects.filter(version__addon=instance.id):
-            file_.hide_disabled_file()
 
 
 @Addon.on_change

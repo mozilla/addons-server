@@ -59,8 +59,6 @@ class TestSigning(TestCase):
     def tearDown(self):
         if os.path.exists(self.file_.file_path):
             os.unlink(self.file_.file_path)
-        if os.path.exists(self.file_.guarded_file_path):
-            os.unlink(self.file_.guarded_file_path)
         super().tearDown()
 
     def _sign_file(self, file_):
@@ -207,7 +205,7 @@ class TestSigning(TestCase):
     def test_call_signing(self):
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -240,7 +238,7 @@ class TestSigning(TestCase):
         ).file
         assert signing.sign_file(file_)
 
-        signature_info, manifest = _get_signature_details(file_.current_file_path)
+        signature_info, manifest = _get_signature_details(file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -267,7 +265,7 @@ class TestSigning(TestCase):
         )
 
     def _test_add_guid_existing_guid(self, file_):
-        with open(file_.current_file_path, 'rb') as fobj:
+        with open(file_.file_path, 'rb') as fobj:
             contents = fobj.read()
         with override_switch('add-guid-to-manifest', active=False):
             assert signing.add_guid(file_) == contents
@@ -289,7 +287,7 @@ class TestSigning(TestCase):
         file_ = version_factory(
             addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'}
         ).file
-        with open(file_.current_file_path, 'rb') as fobj:
+        with open(file_.file_path, 'rb') as fobj:
             contents = fobj.read()
         # with the waffle off it's the same as with an existing guid
         with override_switch('add-guid-to-manifest', active=False):
@@ -301,7 +299,7 @@ class TestSigning(TestCase):
             assert zip_blob != contents
         # compare the zip contents
         with (
-            zipfile.ZipFile(file_.current_file_path) as orig_zip,
+            zipfile.ZipFile(file_.file_path) as orig_zip,
             zipfile.ZipFile(io.BytesIO(zip_blob)) as new_zip,
         ):
             for info in orig_zip.filelist:
@@ -329,27 +327,13 @@ class TestSigning(TestCase):
             assert 'manifest.json' in (info.filename for info in orig_zip.filelist)
             assert len(orig_zip.filelist) == len(new_zip.filelist)
 
-    def test_call_signing_on_file_in_guarded_file_path(self):
-        # We should be able to sign files even if the associated File instance
-        # or the add-on is disabled.
-        # First let's disable the file and prove that we're only dealing with
-        # the file in guarded add-ons storage.
-        assert not os.path.exists(self.file_.guarded_file_path)
-        assert os.path.exists(self.file_.file_path)
-        self.file_.update(status=amo.STATUS_DISABLED)
-        assert os.path.exists(self.file_.guarded_file_path)
-        assert not os.path.exists(self.file_.file_path)
-
-        # Then call the signing test as normal.
-        self.test_call_signing()
-
     def test_call_signing_too_long_guid_bug_1203365(self):
         long_guid = 'x' * 65
         hashed = hashlib.sha256(force_bytes(long_guid)).hexdigest()
         self.addon.update(guid=long_guid)
         signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == hashed
@@ -398,7 +382,7 @@ class TestSigning(TestCase):
 
         signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
 
@@ -428,7 +412,7 @@ class TestSigning(TestCase):
     def _check_signed_correctly(self, states):
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -439,7 +423,7 @@ class TestSigning(TestCase):
         assert 'Name: META-INF/cose.manifest' in manifest
         assert 'Name: META-INF/cose.sig' in manifest
 
-        recommendation_data = _get_recommendation_data(self.file_.current_file_path)
+        recommendation_data = _get_recommendation_data(self.file_.file_path)
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert sorted(recommendation_data['states']) == states
 
@@ -475,7 +459,7 @@ class TestSigning(TestCase):
 
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -489,7 +473,7 @@ class TestSigning(TestCase):
 
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.current_file_path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'

@@ -8553,7 +8553,7 @@ class TestThemeBackgroundImages(ReviewBase):
         assert data == {}
 
     def test_header_images(self):
-        destination = self.addon.current_version.file.current_file_path
+        destination = self.addon.current_version.file.file_path
         zip_file = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
         )

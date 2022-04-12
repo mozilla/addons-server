@@ -63,7 +63,7 @@ def use_promoted_signer(file_obj, promo_group):
 
 
 def add_guid(file_obj):
-    with storage.open(file_obj.current_file_path) as fobj:
+    with storage.open(file_obj.file_path) as fobj:
         # Get the file data and add the guid to the manifest if waffle switch is enabled
         if waffle.switch_is_active('add-guid-to-manifest'):
             with zipfile.ZipFile(fobj, mode='r') as existing_zip:
@@ -172,14 +172,14 @@ def call_signing(file_obj):
 
     # Save the returned file in our storage. The caller will save the file_obj
     # instance in the database.
-    with storage.open(file_obj.current_file_path, 'wb') as fobj:
+    with storage.open(file_obj.file_path, 'wb') as fobj:
         fobj.write(b64decode(response.json()[0]['signed_file']))
 
     # Now fetch the certificates serial number. Future versions of
     # autograph may return this in the response.
     # https://github.com/mozilla-services/autograph/issues/214
     # Now extract the file and fetch the pkcs signature
-    with zipfile.ZipFile(file_obj.current_file_path, mode='r') as zip_fobj:
+    with zipfile.ZipFile(file_obj.file_path, mode='r') as zip_fobj:
         return get_signer_serial_number(
             zip_fobj.read(os.path.join('META-INF', 'mozilla.rsa'))
         )
@@ -203,8 +203,8 @@ def sign_file(file_obj):
         raise SigningError(f'Not signing file {file_obj.pk}: no active endpoint')
 
     # No file? No signature.
-    if not os.path.exists(file_obj.current_file_path):
-        raise SigningError(f"File {file_obj.current_file_path} doesn't exist on disk")
+    if not os.path.exists(file_obj.file_path):
+        raise SigningError(f"File {file_obj.file_path} doesn't exist on disk")
 
     # Don't sign Mozilla signed extensions (they're already signed).
     if file_obj.is_mozilla_signed_extension:
@@ -227,12 +227,12 @@ def sign_file(file_obj):
 
     # Get the path before call_signing modifies it... We'll delete it after if
     # signing was successful and we ended up changing it.
-    old_path = file_obj.current_file_path
+    old_path = file_obj.file_path
 
     # Sign the file. If there's any exception, we skip the rest.
     cert_serial_num = str(call_signing(file_obj))
 
-    size = storage.size(file_obj.current_file_path)
+    size = storage.size(file_obj.file_path)
 
     # Save the certificate serial number for revocation if needed, change the
     # filename to use a .xpi extension (cachebusting anything that depends on
@@ -256,7 +256,7 @@ def sign_file(file_obj):
         )
 
     # Remove old unsigned path if necessary.
-    if old_path != file_obj.current_file_path:
+    if old_path != file_obj.file_path:
         storage.delete(old_path)
 
     return file_obj

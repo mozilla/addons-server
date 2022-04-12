@@ -45,7 +45,7 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
 
         # Create a FileUpload object for an XPI containing version 1.1.
         self.file_upload = self.get_upload(
-            abspath=self.file.current_file_path, with_validation=False
+            abspath=self.file.file_path, with_validation=False
         )
 
         self.mock_chain = self.patch('olympia.devhub.utils.chain')

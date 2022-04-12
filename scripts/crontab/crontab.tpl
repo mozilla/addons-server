@@ -16,8 +16,6 @@ HOME=/tmp
 10 * * * * %(z_cron)s update_blog_posts
 15 * * * * %(django)s send_pending_rejection_last_warning_notifications
 20 * * * * %(z_cron)s addon_last_updated
-25 * * * * %(z_cron)s hide_disabled_files
-55 * * * * %(z_cron)s unhide_disabled_files
 
 # Four times per day
 35 18,12,6,0 * * * %(z_cron)s upload_mlbf_to_remote_settings

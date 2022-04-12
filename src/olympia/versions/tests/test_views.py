@@ -176,11 +176,11 @@ class TestDownloadsBase(TestCase):
             'downloads.latest', kwargs={'addon_id': self.addon.slug}
         )
 
-    def assert_served_internally(self, response, *, guarded=False, attachment=False):
+    def assert_served_internally(self, response, *, attachment=False):
         assert response.status_code == 200
-        file_path = self.file.guarded_file_path if guarded else self.file.file_path
         assert (
-            decode_http_header_value(response[settings.XSENDFILE_HEADER]) == file_path
+            decode_http_header_value(response[settings.XSENDFILE_HEADER])
+            == self.file.file_path
         )
         assert response['Access-Control-Allow-Origin'] == '*'
 
@@ -299,16 +299,13 @@ class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
     @mock.patch.object(acl, 'check_unlisted_addons_viewer_or_reviewer', lambda x: True)
     @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
-        """File downloading is allowed for unlisted reviewers, using guarded
-        file path since the addon is deleted."""
-        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
+        """File downloading is allowed for unlisted reviewers."""
+        self.assert_served_internally(self.client.get(self.file_url))
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(
-            self.client.get(url), guarded=True, attachment=True
-        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
         # Even allowed to bypass georestrictions.
         AddonRegionalRestrictions.objects.create(
@@ -316,7 +313,6 @@ class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
         )
         self.assert_served_internally(
             self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
-            guarded=True,
             attachment=True,
         )
 
@@ -405,101 +401,93 @@ class NonPublicFileDownloadsMixin:
     def test_file_disabled_ok_for_author(self):
         self.file.update(status=amo.STATUS_DISABLED)
         assert self.client.login(email='g@gmail.com')
-        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
+        self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(
-            self.client.get(url), guarded=True, attachment=True
-        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_file_disabled_ok_for_reviewer(self):
         self.file.update(status=amo.STATUS_DISABLED)
         self.client.login(email='reviewer@mozilla.com')
-        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
+        self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(
-            self.client.get(url), guarded=True, attachment=True
-        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_file_disabled_ok_for_admin(self):
         self.file.update(status=amo.STATUS_DISABLED)
         self.client.login(email='admin@mozilla.com')
-        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
+        self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(
-            self.client.get(url), guarded=True, attachment=True
-        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_ok_for_author(self):
         # Addon should be disabled or the version unlisted at this point, so
         # it should be served internally.
         assert self.client.login(email='g@gmail.com')
-        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
+        self.assert_served_internally(
+            self.client.get(self.file_url),
+        )
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(
-            self.client.get(url), guarded=True, attachment=True
-        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_ok_for_admin(self):
         # Addon should be disabled or the version unlisted at this point, so
         # it should be served internally.
         self.client.login(email='admin@mozilla.com')
-        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
+        self.assert_served_internally(
+            self.client.get(self.file_url),
+        )
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(
-            self.client.get(url), guarded=True, attachment=True
-        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_user_disabled_ok_for_author(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         assert self.client.login(email='g@gmail.com')
-        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
+        self.assert_served_internally(
+            self.client.get(self.file_url),
+        )
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(
-            self.client.get(url), guarded=True, attachment=True
-        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_user_disabled_ok_for_admin(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         self.client.login(email='admin@mozilla.com')
-        self.assert_served_internally(self.client.get(self.file_url), guarded=True)
+        self.assert_served_internally(
+            self.client.get(self.file_url),
+        )
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(
-            self.client.get(url), guarded=True, attachment=True
-        )
+        self.assert_served_internally(self.client.get(url), attachment=True)
 
 
-class DownloadsNonGuardedMixin:
+class DownloadsNonDisabledMixin:
     def test_ok_for_author(self):
-        # Unlisted versions of non-disabled add-ons will be served internally
-        # but not from the guarded path.
         assert self.client.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
@@ -510,8 +498,6 @@ class DownloadsNonGuardedMixin:
         self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_ok_for_admin(self):
-        # Unlisted versions of non-disabled add-ons will be served internally
-        # but not from the guarded path.
         self.client.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
@@ -529,7 +515,7 @@ class TestDisabledFileDownloads(NonPublicFileDownloadsMixin, TestDownloadsBase):
 
 
 class TestUnlistedFileDownloads(
-    DownloadsNonGuardedMixin, NonPublicFileDownloadsMixin, TestDownloadsBase
+    DownloadsNonDisabledMixin, NonPublicFileDownloadsMixin, TestDownloadsBase
 ):
     def setUp(self):
         super().setUp()
@@ -541,7 +527,7 @@ class TestUnlistedFileDownloads(
 
 
 class TestUnlistedSitePermissionFileDownloads(
-    DownloadsNonGuardedMixin, NonPublicFileDownloadsMixin, TestDownloadsBase
+    DownloadsNonDisabledMixin, NonPublicFileDownloadsMixin, TestDownloadsBase
 ):
     def setUp(self):
         super().setUp()

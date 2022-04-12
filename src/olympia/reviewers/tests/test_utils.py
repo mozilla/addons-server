@@ -90,15 +90,13 @@ class TestReviewHelperBase(TestCase):
         assert scores[0].note_key == reviewed_type
 
     def remove_paths(self):
-        for path in (self.file.file_path, self.file.guarded_file_path):
-            if not storage.exists(path):
-                storage.delete(path)
+        if not storage.exists(self.file.file_path):
+            storage.delete(self.file.file_path)
 
     def create_paths(self):
-        for path in (self.file.file_path, self.file.guarded_file_path):
-            if not storage.exists(path):
-                with storage.open(path, 'w') as f:
-                    f.write('test data\n')
+        if not storage.exists(self.file.file_path):
+            with storage.open(self.file.file_path, 'w') as f:
+                f.write('test data\n')
         self.addCleanup(self.remove_paths)
 
     def setup_data(
@@ -1279,8 +1277,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approval_counter.counter == 1
 
         assert not sign_mock.called
-        assert storage.exists(self.file.guarded_file_path)
-        assert not storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file_path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
@@ -1649,8 +1646,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
 
         assert not sign_mock.called
-        assert storage.exists(self.file.guarded_file_path)
-        assert not storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file_path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
     def test_email_unicode_monster(self):
