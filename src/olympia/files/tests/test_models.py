@@ -237,7 +237,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             fp.write(b'some data\n')
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_DISABLED
-        assert file_.generate_hash().startswith('sha256:6524f7791a35ef4dd4c6f')
+        assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_APPROVED
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
 

@@ -394,9 +394,7 @@ def _run_yara_query_rule_on_version(version, rule):
     """
     file_ = version.file
     scanner_result = ScannerQueryResult(version=version, scanner=YARA)
-    _run_yara_for_path(
-        scanner_result, file_.file_path, definition=rule.definition
-    )
+    _run_yara_for_path(scanner_result, file_.file_path, definition=rule.definition)
     # Unlike ScannerResult, we only want to save ScannerQueryResult if there is
     # a match, there would be too many things to save otherwise and we don't
     # really care about non-matches.
