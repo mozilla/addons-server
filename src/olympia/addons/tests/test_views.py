@@ -1772,12 +1772,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
 
     @mock.patch('olympia.addons.serializers.remove_icons')
-    def test_delete_icon(self, remove_icons_mock):
+    def _test_delete_icon(self, request_kwargs, remove_icons_mock):
         self.addon.update(icon_type='image/png')
-        response = self.client.patch(
-            self.url,
-            data={'icon': None},
-        )
+        response = self.client.patch(self.url, **request_kwargs)
         assert response.status_code == 200, response.content
 
         self.addon.reload()
@@ -1791,6 +1788,12 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         alog = ActivityLog.objects.get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
+
+    def test_delete_icon_json(self):
+        self._test_delete_icon({'data': {'icon': None}})
+
+    def test_delete_icon_formdata(self):
+        self._test_delete_icon({'data': {'icon': ''}, 'format': 'multipart'})
 
     def _test_metadata_content_review(self):
         response = self.client.patch(
@@ -3177,21 +3180,24 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         }
 
     @mock.patch('olympia.addons.views.log')
-    def test_source_set_null_clears_field(self, log_mock):
+    def _test_delete_source(self, request_kw, log_mock):
         AddonReviewerFlags.objects.create(
             addon=self.version.addon, needs_admin_code_review=True
         )
         self.version.update(source='src.zip')
-        response = self.client.patch(
-            self.url,
-            data={'source': None},
-        )
+        response = self.client.patch(self.url, **request_kw)
         assert response.status_code == 200, response.content
         self.version.reload()
         assert not self.version.source
         assert self.addon.needs_admin_code_review  # still set
         # No logging when setting source to None.
         assert log_mock.info.call_count == 0
+
+    def test_delete_source_json(self):
+        self._test_delete_source({'data': {'source': None}})
+
+    def test_delete_source_formdata(self):
+        self._test_delete_source({'data': {'source': ''}, 'format': 'multipart'})
 
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)

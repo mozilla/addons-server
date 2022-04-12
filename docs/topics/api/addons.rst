@@ -377,7 +377,7 @@ Note: as form-data can not include objects, and creating an add-on requires the 
 
     .. _addon-icon-request-edit:
 
-    :form icon: The icon file being uploaded.
+    :form icon: The icon file being uploaded, or an empty value to clear.
     :reqheader Content-Type: multipart/form-data
 
 
@@ -594,7 +594,7 @@ Note: as form-data can not be nested as objects it's not possible to set ``sourc
 
     .. _version-sources-request-create:
 
-    :form source: The add-on file being uploaded.
+    :form source: The add-on file being uploaded, or an empty value to clear.
     :form upload: The uuid for the xpi upload to create this version with.
     :form license: The :ref:`slug of a non-custom license <license-list>` (optional).
     :reqheader Content-Type: multipart/form-data
