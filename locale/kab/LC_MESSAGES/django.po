@@ -4564,7 +4564,7 @@ msgstr "Wali ugar n yisiɣzaf n usuddem anmetti"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Imsefraken n waccaren"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
