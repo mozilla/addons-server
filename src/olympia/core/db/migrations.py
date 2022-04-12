@@ -26,7 +26,7 @@ class DeleteWaffleSwitch(migrations.RunPython):
         )
 
     def describe(self):
-        return "Delete Waffle Switch (Python operation)"
+        return 'Delete Waffle Switch (Python operation)'
 
 
 class CreateWaffleSwitch(migrations.RunPython):
@@ -38,4 +38,4 @@ class CreateWaffleSwitch(migrations.RunPython):
         )
 
     def describe(self):
-        return "Create Waffle Switch (Python operation)"
+        return 'Create Waffle Switch (Python operation)'
