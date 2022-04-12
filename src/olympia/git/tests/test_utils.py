@@ -9,7 +9,6 @@ from unittest.mock import MagicMock
 from pathlib import Path
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 from olympia import amo
 from olympia.amo.tests import (

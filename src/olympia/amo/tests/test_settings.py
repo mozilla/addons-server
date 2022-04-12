@@ -3,7 +3,6 @@ import json
 
 from copy import deepcopy
 
-import pytest
 from sentry_sdk.hub import Hub
 
 from django.conf import settings

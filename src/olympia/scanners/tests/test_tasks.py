@@ -1,5 +1,3 @@
-import os
-import shutil
 from decimal import Decimal
 from unittest import mock
 

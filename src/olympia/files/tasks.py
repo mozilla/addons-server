@@ -12,11 +12,9 @@ import waffle
 
 import olympia.core.logger
 
-from olympia.amo.celery import task
-from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
-from olympia.files.models import File, FileUpload
+from olympia.files.models import FileUpload
 from olympia.files.utils import (
     ManifestJSONExtractor,
     extract_zip,

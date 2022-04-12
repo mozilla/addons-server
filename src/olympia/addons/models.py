@@ -757,7 +757,6 @@ class Addon(OnChangeMixin, ModelBase):
         # To avoid a circular import
         from . import tasks
         from olympia.versions import tasks as version_tasks
-        from olympia.files import tasks as file_tasks
 
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
