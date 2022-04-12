@@ -11,29 +11,6 @@ from django.conf import settings
 from olympia.core.sentry import get_sentry_release
 
 
-@pytest.mark.parametrize(
-    'key', ('SHARED_STORAGE', 'GUARDED_ADDONS_PATH', 'TMP_PATH', 'MEDIA_ROOT')
-)
-def test_base_paths_bytestring(key):
-    """Make sure all relevant base paths are bytestrings.
-
-    Filenames and filesystem paths are generally handled as byte-strings
-    and we are running into various errors if they're not.
-
-    One of many examples would be
-
-    >>> os.path.join('path1', 'pæth2'.encode('utf-8'))
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-      File "/usr/lib64/python2.7/posixpath.py", line 80, in join
-        path += '/' + b
-    UnicodeDecodeError: 'ascii' codec can't decode byte...
-
-    See https://github.com/mozilla/addons-server/issues/3579 for context.
-    """
-    assert isinstance(getattr(settings, key), str)
-
-
 def test_sentry_release_config():
     version_json = os.path.join(settings.ROOT, 'version.json')
     original = None

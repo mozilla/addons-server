@@ -1300,7 +1300,6 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 # or changed.
 STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
 ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
-GUARDED_ADDONS_PATH = os.path.join(STORAGE_ROOT, 'guarded-addons')
 GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
 MLBF_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'mlbf')
 SITEMAP_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'sitemaps')
