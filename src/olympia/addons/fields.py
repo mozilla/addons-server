@@ -238,7 +238,7 @@ class VersionCompatabilityField(serializers.Field):
             if isinstance(data, list):
                 # if it's a list of apps, normalize into a dict first
                 data = {key: {} for key in data}
-            if not isinstance(data, dict) or len(data) == 0:
+            if not isinstance(data, dict) or data == {}:
                 # if it's neither it's not a valid input
                 raise exceptions.ValidationError('Invalid value')
 
