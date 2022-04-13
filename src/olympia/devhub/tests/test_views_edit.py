@@ -1,6 +1,5 @@
 import json
 import os
-from unittest import mock
 
 from django.core.files.storage import default_storage as storage
 from django.urls import reverse
@@ -307,16 +306,6 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         assert selected_link is True
 
-    @override_switch('metadata-content-review', active=False)
-    @mock.patch('olympia.devhub.forms.fetch_translations_from_addon')
-    def test_metadata_content_review_waffle_off(self, fetch_mock):
-        data = self.get_dict()
-
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-        fetch_mock.assert_not_called()
-
-    @override_switch('metadata-content-review', active=True)
     def test_metadata_change_triggers_content_review(self):
         data = self.get_dict()
         addon = self.addon = self.get_addon()

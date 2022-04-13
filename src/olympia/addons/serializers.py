@@ -3,7 +3,6 @@ import re
 
 from django.urls import reverse
 
-import waffle
 from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
@@ -1021,8 +1020,7 @@ class AddonSerializer(serializers.ModelSerializer):
         fields_to_review = ('name', 'summary')
         old_metadata = (
             fetch_translations_from_addon(instance, fields_to_review)
-            if waffle.switch_is_active('metadata-content-review')
-            and instance.has_listed_versions()
+            if instance.has_listed_versions()
             else None
         )
         if 'icon' in validated_data:
