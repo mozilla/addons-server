@@ -8,7 +8,6 @@ from django.conf import settings
 from olympia.amo.tests import TestCase
 from olympia.files.management.commands.migrate_guarded_addons import (
     Command as MigrateGuardedAddons,
-    Entry,
 )
 
 
@@ -18,58 +17,57 @@ class TestMigrateGuardedAddons(TestCase):
         self.command.verbosity = 1
         self.command.stderr = io.StringIO()
         self.command.stdout = io.StringIO()
+        self.command.guarded_addons_path = os.path.join(
+            settings.STORAGE_ROOT, 'guarded-addons'
+        )
 
     def test_migrate_file(self):
-        addon = Entry('foo', '/guarded-addons/foo')
-        file_ = Entry('bar.xpi', '/guarded-addons/foo/bar.xpi')
         with mock.patch(
             'olympia.files.management.commands.migrate_guarded_addons.os.link'
         ) as mocked_link:
-            self.command.migrate_file(addon, file_)
-        expected_path = os.path.join(settings.ADDONS_PATH, addon.name, 'bar.xpi')
+            self.command.migrate_file('foo', 'bar.xpi')
+        expected_source_path = os.path.join(
+            self.command.guarded_addons_path, 'foo', 'bar.xpi'
+        )
+        expected_target_path = os.path.join(settings.ADDONS_PATH, 'foo', 'bar.xpi')
         assert mocked_link.call_count == 1
-        assert mocked_link.call_args == ((file_.path, expected_path),)
+        assert mocked_link.call_args == ((expected_source_path, expected_target_path),)
 
     def test_migrate_file_already_exists(self):
-        addon = Entry('foo', '/guarded-addons/foo')
-        file_ = Entry('bar.xpi', '/guarded-addons/foo/bar.xpi')
+        self.command.guarded_addons_path = '/tmp/guarded-addons'
         with mock.patch(
             'olympia.files.management.commands.migrate_guarded_addons.os.link'
         ) as mocked_link:
             mocked_link.side_effect = FileExistsError
-            self.command.migrate_file(addon, file_)
-        expected_path = os.path.join(settings.ADDONS_PATH, addon.name, 'bar.xpi')
+            self.command.migrate_file('foo', 'bar.xpi')
+        expected_source_path = os.path.join(
+            self.command.guarded_addons_path, 'foo', 'bar.xpi'
+        )
+        expected_target_path = os.path.join(settings.ADDONS_PATH, 'foo', 'bar.xpi')
         assert mocked_link.call_count == 1
-        assert mocked_link.call_args == ((file_.path, expected_path),)
+        assert mocked_link.call_args == ((expected_source_path, expected_target_path),)
         self.command.stderr.seek(0)
         assert (
             self.command.stderr.read()
-            == 'Ignoring already existing /guarded-addons/foo/bar.xpi'
+            == 'Ignoring already existing /tmp/guarded-addons/foo/bar.xpi'
         )
 
     def test_migrate_addon(self):
-        self.command.guarded_addons_path = os.path.join(
-            settings.STORAGE_ROOT, 'guarded-addons'
-        )
-        addon = Entry('foo', os.path.join(self.command.guarded_addons_path, 'foo'))
-        os.makedirs(addon.path)
-        file_path = os.path.join(addon.path, 'bar.xpi')
+        addon_path = os.path.join(self.command.guarded_addons_path, 'foo')
+        os.makedirs(addon_path)
+        file_path = os.path.join(addon_path, 'bar.xpi')
         with open(file_path, 'w') as f:
             f.write('a')
-        expected_file = Entry('bar.xpi', file_path)
         with mock.patch.object(self.command, 'migrate_file') as migrate_file_mock:
-            self.command.migrate_addon(addon)
+            self.command.migrate_addon('foo')
         assert migrate_file_mock.call_count == 1
-        assert migrate_file_mock.call_args[0] == (addon, expected_file)
+        assert migrate_file_mock.call_args[0] == ('foo', 'bar.xpi')
 
     def test_migrate_addon_empty_dir(self):
-        self.command.guarded_addons_path = os.path.join(
-            settings.STORAGE_ROOT, 'guarded-addons'
-        )
-        addon = Entry('foo', os.path.join(self.command.guarded_addons_path, 'foo'))
-        os.makedirs(addon.path)
+        addon_path = os.path.join(self.command.guarded_addons_path, 'foo')
+        os.makedirs(addon_path)
         with mock.patch.object(self.command, 'migrate_file') as migrate_file_mock:
-            self.command.migrate_addon(addon)
+            self.command.migrate_addon('foo')
         assert migrate_file_mock.call_count == 0
 
     def test_print_eta(self):
@@ -113,20 +111,19 @@ class TestMigrateGuardedAddons(TestCase):
 
     @mock.patch('olympia.files.management.commands.migrate_guarded_addons.os.scandir')
     def test_migrate(self, scandir_mock):
-        guarded_addons_path = os.path.join(settings.STORAGE_ROOT, 'guarded-addons')
         # Return 2001 addon directories and a stray .whatever that should be ignored.
         scandir_mock.return_value = [
             mock.Mock(
                 spec=os.DirEntry,
                 _name=str(x),
-                path=os.path.join(guarded_addons_path, str(x)),
+                path=os.path.join(self.command.guarded_addons_path, str(x)),
             )
             for x in range(1, 2002)
         ] + [
             mock.Mock(
                 spec=os.DirEntry,
                 _name='.whatever',
-                path=os.path.join(guarded_addons_path, '.whatever'),
+                path=os.path.join(self.command.guarded_addons_path, '.whatever'),
             )
         ]
         for mocked in scandir_mock.return_value:
@@ -138,11 +135,9 @@ class TestMigrateGuardedAddons(TestCase):
         # We're mocking migrate_addon() so scandir() should have been called
         # only once.
         assert scandir_mock.call_count == 1
-        assert scandir_mock.call_args == ((guarded_addons_path,),)
+        assert scandir_mock.call_args == ((self.command.guarded_addons_path,),)
         assert migrate_addon_mock.call_count == 2001
-        assert migrate_addon_mock.call_args_list[23] == (
-            (Entry('24', os.path.join(guarded_addons_path, '24')),),
-        )
+        assert migrate_addon_mock.call_args_list[23] == (('24',),)
         self.command.stdout.seek(0)
         # We should have printed the ETA 3 times.
         assert len(self.command.stdout.read().strip().split('\n')) == 3

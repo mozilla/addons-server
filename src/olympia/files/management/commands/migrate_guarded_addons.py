@@ -1,16 +1,13 @@
 import os
-from collections import namedtuple
 from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
 
-Entry = namedtuple('Entry', 'name, path')
-
-
 class Command(BaseCommand):
     def handle(self, *args, **options):
+        self.guarded_addons_path = os.path.join(settings.STORAGE_ROOT, 'guarded-addons')
         self.migrate()
 
     def print_eta(self, *, elapsed, entries_migrated, entries_remaining):
@@ -26,16 +23,15 @@ class Command(BaseCommand):
         self.stdout.write(f'ETA {eta} ; Remaining entries {entries_remaining}\n')
 
     def migrate(self):
-        guarded_addons_path = os.path.join(settings.STORAGE_ROOT, 'guarded-addons')
         # Note: we handle empty directories, but for ETA to be reliable, it's
         # best to remove them first by running find . -type d -empty -delete.
-        entries_total = os.stat(guarded_addons_path).st_nlink - 1
+        entries_total = os.stat(self.guarded_addons_path).st_nlink - 1
         entries_migrated = 0
-        entries = os.scandir(guarded_addons_path)
+        entries = os.scandir(self.guarded_addons_path)
         start_time = datetime.now()
         for addon in entries:
             if not addon.name.startswith('.'):
-                self.migrate_addon(Entry(addon.name, addon.path))
+                self.migrate_addon(addon.name)
                 # Since we use the add-ons and not the files to compute the ETA
                 # it's never going to be 100% accurate, but it should be good
                 # enough.
@@ -48,16 +44,17 @@ class Command(BaseCommand):
                         entries_remaining=entries_total - entries_migrated,
                     )
 
-    def migrate_addon(self, addon):
-        new_addon_path = os.path.join(settings.ADDONS_PATH, addon.name)
-        os.makedirs(new_addon_path, exist_ok=True)
-        files = os.scandir(addon.path)
+    def migrate_addon(self, dirname):
+        old_dirpath = os.path.join(self.guarded_addons_path, dirname)
+        new_dirpath = os.path.join(settings.ADDONS_PATH, dirname)
+        os.makedirs(new_dirpath, exist_ok=True)
+        files = os.scandir(old_dirpath)
         for file_ in files:
-            self.migrate_file(addon, Entry(file_.name, file_.path))
+            self.migrate_file(dirname, file_.name)
 
-    def migrate_file(self, addon, file_):
-        old_path = file_.path
-        new_path = os.path.join(settings.ADDONS_PATH, addon.name, file_.name)
+    def migrate_file(self, dirname, filename):
+        old_path = os.path.join(self.guarded_addons_path, dirname, filename)
+        new_path = os.path.join(settings.ADDONS_PATH, dirname, filename)
         try:
             os.link(old_path, new_path)
         except FileExistsError:
