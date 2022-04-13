@@ -2050,6 +2050,8 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
 
 class VersionViewSetCreateUpdateMixin:
+    SUCCESS_STATUS_CODE = 200
+
     def request(self, **kwargs):
         raise NotImplementedError
 
@@ -2269,9 +2271,82 @@ class VersionViewSetCreateUpdateMixin:
             'custom_license': {'name': ['This field is required.']}
         }
 
+    def test_compatibility_list(self):
+        response = self.request(compatibility=[])
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Invalid value']}
+
+        response = self.request(compatibility=['foo', 'android'])
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Invalid app specified']}
+
+        response = self.request(compatibility=['firefox', 'android'])
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        data = response.data
+        self.addon.reload()
+        assert self.addon.versions.count() == (1 if hasattr(self, 'version') else 2)
+        version = self.addon.find_latest_version(channel=None)
+        assert data['compatibility'] == {
+            'android': {'max': '*', 'min': '48.0'},
+            'firefox': {'max': '*', 'min': '42.0'},
+        }
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+
+    def test_compatibility_dict(self):
+        response = self.request(compatibility={})
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Invalid value']}
+
+        response = self.request(compatibility={'firefox': {'min': '65.0'}, 'foo': {}})
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Invalid app specified']}
+
+        # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
+        response = self.request(
+            compatibility={'firefox': {'min': '65.0'}, 'android': {}}
+        )
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        data = response.data
+        self.addon.reload()
+        assert self.addon.versions.count() == (1 if hasattr(self, 'version') else 2)
+        version = self.addon.find_latest_version(channel=None)
+        assert data['compatibility'] == {
+            # android was specified but with an empty dict, so gets the defaults
+            'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
+            # firefox max wasn't specified, so is the default max app version
+            'firefox': {'max': '*', 'min': '65.0'},
+        }
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+
+    def test_compatibility_dict_100(self):
+        # 100.0 is valid per setUpTestData()
+        response = self.request(compatibility={'firefox': {'min': '100.0'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        data = response.data
+        self.addon.reload()
+        assert self.addon.versions.count() == (1 if hasattr(self, 'version') else 2)
+        version = self.addon.find_latest_version(channel=None)
+        assert data['compatibility'] == {
+            # firefox max wasn't specified, so is the default max app version
+            'firefox': {'max': '*', 'min': '100.0'},
+        }
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX]
+
+    def test_compatibility_invalid_versions(self):
+        # 99 doesn't exist as an appversion
+        response = self.request(compatibility={'firefox': {'min': '99.0'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Unknown app version specified']}
+
+        # `*` isn't a valid min
+        response = self.request(compatibility={'firefox': {'min': '*'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Unknown app version specified']}
+
 
 class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
+    SUCCESS_STATUS_CODE = 201
 
     @classmethod
     def setUpTestData(cls):
@@ -2501,110 +2576,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert data['release_notes'] == {'en-US': 'dsdsdsd'}
         assert version.release_notes == 'dsdsdsd'
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
-
-    def test_compatibility_list(self):
-        response = self.client.post(
-            self.url,
-            data={
-                **self.minimal_data,
-                'compatibility': ['foo', 'android'],
-            },
-        )
-
-        assert response.status_code == 400, response.content
-        assert response.data == {'compatibility': ['Invalid app specified']}
-
-        response = self.client.post(
-            self.url,
-            data={
-                **self.minimal_data,
-                'compatibility': ['firefox', 'android'],
-            },
-        )
-
-        assert response.status_code == 201, response.content
-        data = response.data
-        self.addon.reload()
-        assert self.addon.versions.count() == 2
-        version = self.addon.find_latest_version(channel=None)
-        assert data['compatibility'] == {
-            'android': {'max': '*', 'min': '48.0'},
-            'firefox': {'max': '*', 'min': '42.0'},
-        }
-        assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
-
-    def test_compatibility_dict(self):
-        response = self.client.post(
-            self.url,
-            data={
-                **self.minimal_data,
-                'compatibility': {'firefox': {'min': '65.0'}, 'foo': {}},
-            },
-        )
-        assert response.data == {'compatibility': ['Invalid app specified']}
-
-        response = self.client.post(
-            self.url,
-            data={
-                **self.minimal_data,
-                # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
-                'compatibility': {'firefox': {'min': '65.0'}, 'android': {}},
-            },
-        )
-
-        assert response.status_code == 201, response.content
-        data = response.data
-        self.addon.reload()
-        assert self.addon.versions.count() == 2
-        version = self.addon.find_latest_version(channel=None)
-        assert data['compatibility'] == {
-            # android was specified but with an empty dict, so gets the defaults
-            'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
-            # firefox max wasn't specified, so is the default max app version
-            'firefox': {'max': '*', 'min': '65.0'},
-        }
-        assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
-
-    def test_compatibility_dict_100(self):
-        response = self.client.post(
-            self.url,
-            data={
-                **self.minimal_data,
-                # 100.0 is valid per setUpTestData()
-                'compatibility': {'firefox': {'min': '100.0'}},
-            },
-        )
-        assert response.status_code == 201, response.content
-        data = response.data
-        self.addon.reload()
-        assert self.addon.versions.count() == 2
-        version = self.addon.find_latest_version(channel=None)
-        assert data['compatibility'] == {
-            # firefox max wasn't specified, so is the default max app version
-            'firefox': {'max': '*', 'min': '100.0'},
-        }
-        assert list(version.compatible_apps.keys()) == [amo.FIREFOX]
-
-    def test_compatibility_invalid_versions(self):
-        response = self.client.post(
-            self.url,
-            data={
-                **self.minimal_data,
-                # 99 doesn't exist as an appversion
-                'compatibility': {'firefox': {'min': '99.0'}},
-            },
-        )
-        assert response.data == {'compatibility': ['Unknown app version specified']}
-
-        response = self.client.post(
-            self.url,
-            data={
-                **self.minimal_data,
-                # `*` isn't a valid min
-                'compatibility': {'firefox': {'min': '*'}},
-            },
-        )
-        assert response.data == {'compatibility': ['Unknown app version specified']}
 
     def test_check_blocklist(self):
         Block.objects.create(guid=self.addon.guid, updated_by=self.user)
@@ -2913,103 +2884,6 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         self.addon.reload()
         self.version.reload()
         assert self.version.version == '123.b4'
-
-    def test_compatibility_list(self):
-        assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX]
-
-        response = self.client.patch(
-            self.url,
-            data={
-                'compatibility': ['foo', 'android'],
-            },
-        )
-
-        assert response.status_code == 400, response.content
-        assert response.data == {'compatibility': ['Invalid app specified']}
-
-        response = self.client.patch(
-            self.url,
-            data={
-                'compatibility': ['firefox', 'android'],
-            },
-        )
-
-        assert response.status_code == 200, response.content
-        data = response.data
-        self.addon.reload()
-        self.version.reload()
-        del self.version._compatible_apps
-        assert self.addon.versions.count() == 1
-        assert data['compatibility'] == {
-            'android': {'max': '*', 'min': '48.0'},
-            'firefox': {'max': '*', 'min': '42.0'},
-        }
-        assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
-        alogs = ActivityLog.objects.all()
-        assert len(alogs) == 2
-        assert alogs[0].action == alogs[1].action == amo.LOG.MAX_APPVERSION_UPDATED.id
-        assert alogs[0].details['application'] == amo.ANDROID.id
-        assert alogs[1].details['application'] == amo.FIREFOX.id
-
-    def test_compatibility_dict(self):
-        assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX]
-        assert self.version.compatible_apps[amo.FIREFOX].max == AppVersion.objects.get(
-            version=amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-            application=amo.FIREFOX.id,
-        )
-        response = self.client.patch(
-            self.url,
-            data={
-                'compatibility': {'firefox': {'max': '65.0'}, 'foo': {}},
-            },
-        )
-        assert response.data == {'compatibility': ['Invalid app specified']}
-
-        response = self.client.patch(
-            self.url,
-            data={
-                # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
-                'compatibility': {'firefox': {'max': '65.0'}, 'android': {}},
-            },
-        )
-
-        assert response.status_code == 200, response.content
-        data = response.data
-        self.addon.reload()
-        self.version.reload()
-        del self.version._compatible_apps
-        assert self.addon.versions.count() == 1
-        assert data['compatibility'] == {
-            # android was specified but with an empty dict, so gets the defaults
-            'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
-            # firefox min wasn't specified, so is the default min app version
-            'firefox': {'max': '65.0', 'min': '42.0'},
-        }
-        assert list(self.version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
-        alogs = ActivityLog.objects.all()
-        assert len(alogs) == 2
-        assert alogs[0].action == alogs[1].action == amo.LOG.MAX_APPVERSION_UPDATED.id
-        assert alogs[0].details['application'] == amo.ANDROID.id
-        assert alogs[1].details['application'] == amo.FIREFOX.id
-
-    def test_compatibility_invalid_versions(self):
-        response = self.client.patch(
-            self.url,
-            data={
-                # 99 doesn't exist as an appversion
-                'compatibility': {'firefox': {'min': '99.0'}},
-            },
-        )
-        assert response.data == {'compatibility': ['Unknown app version specified']}
-
-        response = self.client.patch(
-            self.url,
-            data={
-                # `*` isn't a valid min
-                'compatibility': {'firefox': {'min': '*'}},
-            },
-        )
-        assert response.data == {'compatibility': ['Unknown app version specified']}
 
     def test_cant_update_disabled_addon(self):
         self.addon.update(status=amo.STATUS_DISABLED)

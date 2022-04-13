@@ -238,42 +238,43 @@ class VersionCompatabilityField(serializers.Field):
             if isinstance(data, list):
                 # if it's a list of apps, normalize into a dict first
                 data = {key: {} for key in data}
-            if isinstance(data, dict):
-                version = self.parent.instance
-                existing = version.compatible_apps if version else {}
-                internal = {}
-                for app_name, min_max in data.items():
-                    app = amo.APPS[app_name]
-                    # we need to copy() to avoid changing the instance before save
-                    apps_versions = (
-                        (ex := existing.get(app)) and copy.copy(ex)
-                    ) or ApplicationsVersions(application=app.id)
-
-                    app_version_qs = AppVersion.objects.filter(application=app.id)
-                    if 'max' in min_max:
-                        apps_versions.max = app_version_qs.get(version=min_max['max'])
-                    elif version:
-                        apps_versions.max = app_version_qs.get(
-                            version=amo.DEFAULT_WEBEXT_MAX_VERSION
-                        )
-
-                    app_version_qs = app_version_qs.exclude(version='*')
-                    if 'min' in min_max:
-                        apps_versions.min = app_version_qs.get(version=min_max['min'])
-                    elif version:
-                        apps_versions.min = app_version_qs.get(
-                            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[app]
-                        )
-
-                    internal[app] = apps_versions
-                return internal
-            else:
+            if not isinstance(data, dict) or len(data) == 0:
                 # if it's neither it's not a valid input
                 raise exceptions.ValidationError('Invalid value')
+
+            version = self.parent.instance
+            existing = version.compatible_apps if version else {}
+            internal = {}
+            for app_name, min_max in data.items():
+                app = amo.APPS[app_name]
+                # we need to copy() to avoid changing the instance before save
+                apps_versions = copy.copy(existing.get(app)) or ApplicationsVersions(
+                    application=app.id
+                )
+
+                app_version_qs = AppVersion.objects.filter(application=app.id)
+                if 'max' in min_max:
+                    apps_versions.max = app_version_qs.get(version=min_max['max'])
+                elif version:
+                    apps_versions.max = app_version_qs.get(
+                        version=amo.DEFAULT_WEBEXT_MAX_VERSION
+                    )
+
+                app_version_qs = app_version_qs.exclude(version='*')
+                if 'min' in min_max:
+                    apps_versions.min = app_version_qs.get(version=min_max['min'])
+                elif version:
+                    apps_versions.min = app_version_qs.get(
+                        version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[app]
+                    )
+
+                internal[app] = apps_versions
         except KeyError:
             raise exceptions.ValidationError('Invalid app specified')
         except AppVersion.DoesNotExist:
             raise exceptions.ValidationError('Unknown app version specified')
+
+        return internal
 
     def to_representation(self, value):
         return {
