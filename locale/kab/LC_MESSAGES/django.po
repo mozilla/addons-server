@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-12 02:29+0000\n"
+"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"PO-Revision-Date: 2022-04-12 17:32+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -156,7 +156,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Ismawen n yizegrar ur zmiren ara ad gebren ticraḍ yersen n Mozilla neɣ Firefox."
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
+msgstr "Tisirag n usmel i {hostnames}"
 
 msgid "My Add-ons"
 msgstr "Izegrar-iw"
@@ -1616,7 +1616,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Abrid n URL i yimendaden n GitHub ilaq ad yesɛu /sponsors/."
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URLs yezmer ad yebdu s https://."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -2737,7 +2737,7 @@ msgid "You do not need to submit Source Code, and you’re ready for the next st
 msgstr "Ur tesriḍ ara ad tazneḍ tangalt aɣbalu daɣen ad tizmireḍ ad tedduḍ ɣer umecwaṛ i d-iteddun."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Ilaq ad tazneḍ tangalt-ik·im n uɣbalu n usiɣzef."
 
 msgid "Your source code must include:"
 msgstr "Tangalt-ik n uɣbalu ilaq ad teddu:"
@@ -4443,7 +4443,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Sagen YouTube akken tebɣiḍ."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
@@ -4496,11 +4496,11 @@ msgstr "Ẓreg amsewḥel n yizegrar"
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Asagen n YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Wali tafrant n terbaεt"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4564,7 +4564,7 @@ msgstr "Wali ugar n yisiɣzaf n usuddem anmetti"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Imsefraken n waccaren"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-06 09:43+0000\n"
+"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"PO-Revision-Date: 2022-04-13 12:17+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4556,15 +4556,15 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Bloqueur efficace contre tous les types de publicités."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Avec le gestionnaire de téléchargement de masse, le téléchargement extrême est extrêmement facile."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Supprimez les publicités et soyez mieux protégé·e contre les logiciels malveillants."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."

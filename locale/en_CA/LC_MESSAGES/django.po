@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-05 17:49+0000\n"
-"PO-Revision-Date: 2022-04-11 16:01+0000\n"
+"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"PO-Revision-Date: 2022-04-12 17:15+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -1612,7 +1612,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL path for GitHub Sponsors must contain /sponsors/."
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URLs must start with https://."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -4443,11 +4443,11 @@ msgstr "Get RSS feed auto-updates direct to your bookmark folders."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Effective blocker against all types of ads."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Mass download manager makes extreme downloading extremely easy."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
@@ -4455,7 +4455,7 @@ msgstr "Remove ads & receive better protection against malware."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Remove formatting from copied Clipboard text."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4598,7 +4598,7 @@ msgstr "See more trending extensions"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Steam enhancers"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
