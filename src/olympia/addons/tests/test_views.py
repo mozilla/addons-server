@@ -56,7 +56,12 @@ from olympia.files.utils import parse_addon
 from olympia.files.tests.test_models import UploadMixin
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, AppVersion, License
+from olympia.versions.models import (
+    ApplicationsVersions,
+    AppVersion,
+    License,
+    VersionPreview,
+)
 
 from ..models import (
     Addon,
@@ -5536,6 +5541,31 @@ class TestAddonPreviewViewSet(TestCase):
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
         assert alog.addonlog_set.get().addon == self.addon
 
+    def test_cannot_create_for_themes(self):
+        self.client.login_api(self.user)
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        url = reverse_ns(
+            'addon-preview-list',
+            kwargs={'addon_pk': self.addon.id},
+            api_version='v5',
+        )
+        response = self.client.post(
+            url,
+            data={'image': _get_upload('preview.jpg')},
+            format='multipart',
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'non_field_errors': ['Previews cannot be created for themes.']
+        }
+
+        self.addon.reload()
+        assert not self.addon.previews.exists()
+        assert not Preview.objects.filter(addon=self.addon).exists()
+        assert not VersionPreview.objects.filter(
+            version=self.addon.current_version
+        ).exists()
+
     @mock.patch('olympia.addons.serializers.resize_preview.delay')
     def test_cannot_update_image(self, resize_preview_mock):
         self.client.login_api(self.user)
@@ -5563,8 +5593,14 @@ class TestAddonPreviewViewSet(TestCase):
         )
         data = {'caption': {'en-US': 'a thing', 'fr': 'un thíng'}, 'position': 1}
 
+        # can't patch if not authenticated
         response = self.client.patch(url, data=data)
         assert response.status_code == 401
+
+        # can't patch if not your add-on
+        self.client.login_api(user_factory())
+        response = self.client.patch(url, data=data)
+        assert response.status_code == 403
 
         self.client.login_api(self.user)
         response = self.client.patch(url, data=data)
@@ -5583,9 +5619,15 @@ class TestAddonPreviewViewSet(TestCase):
         url = reverse_ns(
             'addon-preview-detail', kwargs={'addon_pk': self.addon.id, 'pk': preview.id}
         )
+        # can't delete if not authenticated
         response = self.client.delete(url)
         assert response.status_code == 401
         assert Preview.objects.filter(id=preview.id)
+
+        # can't delete if not your add-on
+        self.client.login_api(user_factory())
+        response = self.client.delete(url)
+        assert response.status_code == 403
 
         self.client.login_api(self.user)
         response = self.client.delete(url)

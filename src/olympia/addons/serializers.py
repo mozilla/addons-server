@@ -2,6 +2,7 @@ import os
 import re
 
 from django.urls import reverse
+from django.utils.translation import gettext
 
 import waffle
 from django_statsd.clients import statsd
@@ -172,6 +173,13 @@ class PreviewSerializer(serializers.ModelSerializer):
         request = self.context.get('request', None)
         if request and is_gate_active(request, 'del-preview-position'):
             data.pop('position', None)
+        return data
+
+    def validate(self, data):
+        if self.context['view'].get_addon_object().type == amo.ADDON_STATICTHEME:
+            raise exceptions.ValidationError(
+                gettext('Previews cannot be created for themes.')
+            )
         return data
 
     def create(self, validated_data):
