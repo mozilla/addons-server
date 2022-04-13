@@ -1799,18 +1799,6 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
         assert response.status_code == 200
 
-    @override_switch('metadata-content-review', active=False)
-    @mock.patch('olympia.addons.serializers.fetch_translations_from_addon')
-    def test_metadata_content_review_waffle_off(self, fetch_mock):
-        self._test_metadata_content_review()
-
-        fetch_mock.assert_not_called()
-        with self.assertRaises(AssertionError):
-            self.statsd_incr_mock.assert_any_call(
-                'addons.submission.metadata_content_review_triggered'
-            )
-
-    @override_switch('metadata-content-review', active=True)
     @mock.patch('olympia.addons.serializers.fetch_translations_from_addon')
     def test_metadata_content_review_unlisted(self, fetch_mock):
         self.make_addon_unlisted(self.addon)
@@ -1832,7 +1820,6 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             == AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
         )
 
-    @override_switch('metadata-content-review', active=True)
     def test_metadata_change_triggers_content_review(self):
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         assert AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
@@ -1848,7 +1835,6 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             'addons.submission.metadata_content_review_triggered'
         )
 
-    @override_switch('metadata-content-review', active=True)
     def test_metadata_change_same_content(self):
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         old_content_review = AddonApprovalsCounter.objects.get(
