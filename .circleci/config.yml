@@ -314,13 +314,16 @@ references:
 
   defaults-with-elasticsearch: &defaults-with-elasticsearch
     <<: *defaults
+    parameters:
+      elasticsearchversion:
+        type: string
     docker:
       - image: *python
       - image: *redis
       - image: *memcached
       - image: *mysql
         <<: *mysql-config
-      - image: docker.elastic.co/elasticsearch/elasticsearch:6.8.8
+      - image: docker.elastic.co/elasticsearch/elasticsearch:<< parameters.elasticsearchversion >>
         environment:
           # Disable all xpack related features to avoid unrelated logging in
           # docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -628,8 +631,6 @@ jobs:
           command: dockerize -wait tcp://localhost:9200 -timeout 1m
       - run:
           command: pytest -m "es_tests and not needs_locales_compilation and not static_assets" -v src/olympia/
-          environment:
-            ES_VERSION: 6.x
 
   release-master:
     <<: *defaults-release
@@ -659,7 +660,12 @@ workflows:
       - docs
       - main
       - reviewers-and-zadmin
-      - es-tests
+      - es-tests:
+          matrix:
+            parameters:
+              elasticsearchversion:
+                - 6.8.8
+                - 7.13.2
       - release-master:
           filters:
             branches:

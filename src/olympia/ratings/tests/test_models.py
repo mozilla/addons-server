@@ -2,6 +2,8 @@ from unittest import mock
 
 from django.core import mail
 
+from elasticsearch_dsl import Search
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.indexers import AddonIndexer

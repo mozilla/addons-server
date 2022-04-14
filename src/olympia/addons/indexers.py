@@ -5,9 +5,10 @@ from olympia.constants.promoted import RECOMMENDED
 
 import olympia.core.logger
 from olympia import amo
-from olympia.amo.indexers import BaseSearchIndexer
 from olympia.amo.utils import attach_trans_dict
 from olympia.amo.celery import create_chunked_tasks_signatures
+from olympia.amo.utils import to_language
+from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.lib.es.utils import create_index
 from olympia.versions.compare import version_int
 
@@ -15,10 +16,154 @@ from olympia.versions.compare import version_int
 log = olympia.core.logger.getLogger('z.es')
 
 
-class AddonIndexer(BaseSearchIndexer):
-    """Fields we don't need to expose in the results, only used for filtering
-    or sorting."""
+class AddonIndexer:
+    """
+    Base Indexer class for add-ons.
+    """
 
+    @classmethod
+    def attach_translation_mappings(cls, mapping, field_names):
+        """
+        For each field in field_names, attach a dict to the ES mapping
+        properties making "<field_name>_translations" an object containing
+        "string" and "lang" as non-indexed strings.
+
+        Used to store non-indexed, non-analyzed translations in ES that will be
+        sent back by the API for each item. It does not take care of the
+        indexed content for search, it's there only to store and return
+        raw translations.
+        """
+        for field_name in field_names:
+            # _translations is the suffix in TranslationSerializer.
+            mapping['properties'][
+                '%s_translations' % field_name
+            ] = cls.get_translations_definition()
+
+    @classmethod
+    def get_translations_definition(cls):
+        """
+        Return the mapping to use for raw translations (to be returned directly
+        by the API, not used for analysis).
+        See attach_translation_mappings() for more information.
+        """
+        return {
+            'type': 'object',
+            'properties': {
+                'lang': {'type': 'text', 'index': False},
+                'string': {'type': 'text', 'index': False},
+            },
+        }
+
+    @classmethod
+    def get_raw_field_definition(cls):
+        """
+        Return the mapping to use for the "raw" version of a field. Meant to be
+        used as part of a 'fields': {'raw': ... } definition in the mapping of
+        an existing field.
+
+        Used for exact matches and sorting
+        """
+        # It needs to be a keyword to turnoff all analysis ; that means we
+        # don't get the lowercase filter applied by the standard &
+        # language-specific analyzers, so we need to do that ourselves through
+        # a custom normalizer for exact matches to work in a case-insensitive
+        # way.
+        return {
+            'type': 'keyword',
+            'normalizer': 'lowercase_keyword_normalizer',
+        }
+
+    @classmethod
+    def attach_language_specific_analyzers(cls, mapping, field_names):
+        """
+        For each field in field_names, attach language-specific mappings that
+        will use specific analyzers for these fields in every language that we
+        support.
+
+        These mappings are used by the search filtering code if they exist.
+        """
+        for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items():
+            for field in field_names:
+                property_name = '%s_l10n_%s' % (field, lang)
+                mapping['properties'][property_name] = {
+                    'type': 'text',
+                    'analyzer': analyzer,
+                }
+
+    @classmethod
+    def attach_language_specific_analyzers_with_raw_variant(cls, mapping, field_names):
+        """
+        Like attach_language_specific_analyzers() but with an extra field to
+        storethe "raw" variant of the value, for exact matches.
+        """
+        for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items():
+            for field in field_names:
+                property_name = '%s_l10n_%s' % (field, lang)
+                mapping['properties'][property_name] = {
+                    'type': 'text',
+                    'analyzer': analyzer,
+                    'fields': {
+                        'raw': cls.get_raw_field_definition(),
+                    },
+                }
+
+    @classmethod
+    def extract_field_api_translations(cls, obj, field, db_field=None):
+        """
+        Returns a dict containing translations that we need to store for
+        the API. Empty translations are skipped entirely.
+        """
+        if db_field is None:
+            db_field = '%s_id' % field
+
+        extend_with_me = {
+            '%s_translations'
+            % field: [
+                {'lang': to_language(lang), 'string': str(string)}
+                for lang, string in obj.translations[getattr(obj, db_field)]
+                if string
+            ]
+        }
+        return extend_with_me
+
+    @classmethod
+    def extract_field_search_translation(cls, obj, field, default_locale):
+        """
+        Returns the translation for this field in the object's default locale,
+        in the form a dict with one entry (the field being the key and the
+        translation being the value, or an empty string if none was found).
+
+        That field will be analyzed and indexed by ES *without*
+        language-specific analyzers.
+        """
+        translations = dict(obj.translations[getattr(obj, '%s_id' % field)])
+        default_locale = default_locale.lower() if default_locale else None
+        value = translations.get(default_locale, getattr(obj, field))
+
+        return {field: str(value) if value else ''}
+
+    @classmethod
+    def extract_field_analyzed_translations(cls, obj, field, db_field=None):
+        """
+        Returns a dict containing translations for each language that we have
+        an analyzer for, for the given field.
+
+        When no translation exist for a given language+field combo, the value
+        returned is an empty string, to avoid storing the word "None" as the
+        field does not understand null values.
+        """
+        if db_field is None:
+            db_field = '%s_id' % field
+
+        translations = dict(obj.translations[getattr(obj, db_field)])
+
+        return {
+            '%s_l10n_%s' % (field, lang): translations.get(lang) or ''
+            for lang in SEARCH_LANGUAGE_TO_ANALYZER
+        }
+
+    # Fields we don't need to expose in the results, only used for filtering
+    # or sorting.
     hidden_fields = (
         '*.raw',
         'boost',
@@ -53,7 +198,6 @@ class AddonIndexer(BaseSearchIndexer):
                     # for instance.
                     'tokenizer': 'standard',
                     'filter': [
-                        'standard',
                         'custom_word_delimiter',
                         'lowercase',
                         'stop',
@@ -218,7 +362,6 @@ class AddonIndexer(BaseSearchIndexer):
 
     @classmethod
     def get_mapping(cls):
-        doc_name = cls.get_doctype_name()
         appver_mapping = {
             'properties': {
                 'max': {'type': 'long'},
@@ -266,102 +409,99 @@ class AddonIndexer(BaseSearchIndexer):
             },
         }
         mapping = {
-            doc_name: {
-                'properties': {
-                    'id': {'type': 'long'},
-                    'app': {'type': 'byte'},
-                    'average_daily_users': {'type': 'long'},
-                    'bayesian_rating': {'type': 'double'},
-                    'boost': {'type': 'float', 'null_value': 1.0},
-                    'category': {'type': 'integer'},
-                    'colors': {
-                        'type': 'nested',
-                        'properties': {
-                            'h': {'type': 'integer'},
-                            's': {'type': 'integer'},
-                            'l': {'type': 'integer'},
-                            'ratio': {'type': 'double'},
-                        },
+            'properties': {
+                'id': {'type': 'long'},
+                'app': {'type': 'byte'},
+                'average_daily_users': {'type': 'long'},
+                'bayesian_rating': {'type': 'double'},
+                'boost': {'type': 'float', 'null_value': 1.0},
+                'category': {'type': 'integer'},
+                'colors': {
+                    'type': 'nested',
+                    'properties': {
+                        'h': {'type': 'integer'},
+                        's': {'type': 'integer'},
+                        'l': {'type': 'integer'},
+                        'ratio': {'type': 'double'},
                     },
-                    'contributions': {'type': 'text'},
-                    'created': {'type': 'date'},
-                    'current_version': version_mapping,
-                    'default_locale': {'type': 'keyword', 'index': False},
-                    'description': {'type': 'text', 'analyzer': 'snowball'},
-                    'guid': {'type': 'keyword'},
-                    'has_eula': {'type': 'boolean', 'index': False},
-                    'has_privacy_policy': {'type': 'boolean', 'index': False},
-                    'hotness': {'type': 'double'},
-                    'icon_hash': {'type': 'keyword', 'index': False},
-                    'icon_type': {'type': 'keyword', 'index': False},
-                    'is_disabled': {'type': 'boolean'},
-                    'is_experimental': {'type': 'boolean'},
-                    'is_recommended': {'type': 'boolean'},
-                    'last_updated': {'type': 'date'},
-                    'listed_authors': {
-                        'type': 'object',
-                        'properties': {
-                            'id': {'type': 'long'},
-                            'name': {'type': 'text'},
-                            'username': {'type': 'keyword'},
-                            'is_public': {'type': 'boolean', 'index': False},
-                        },
-                    },
-                    'modified': {'type': 'date', 'index': False},
-                    'name': {
-                        'type': 'text',
-                        # Adding word-delimiter to split on camelcase, known
-                        # words like 'tab', and punctuation, and eliminate
-                        # duplicates.
-                        'analyzer': 'standard_with_word_split',
-                        'fields': {
-                            # Raw field for exact matches and sorting.
-                            'raw': cls.get_raw_field_definition(),
-                            # Trigrams for partial matches.
-                            'trigrams': {
-                                'type': 'text',
-                                'analyzer': 'trigram',
-                            },
-                        },
-                    },
-                    'previews': {
-                        'type': 'object',
-                        'properties': {
-                            'id': {'type': 'long', 'index': False},
-                            'caption_translations': cls.get_translations_definition(),
-                            'modified': {'type': 'date', 'index': False},
-                            'position': {'type': 'long', 'index': False},
-                            'sizes': {
-                                'type': 'object',
-                                'properties': {
-                                    'thumbnail': {'type': 'short', 'index': False},
-                                    'image': {'type': 'short', 'index': False},
-                                },
-                            },
-                        },
-                    },
-                    'promoted': {
-                        'type': 'object',
-                        'properties': {
-                            'group_id': {'type': 'byte'},
-                            'approved_for_apps': {'type': 'byte'},
-                        },
-                    },
-                    'ratings': {
-                        'type': 'object',
-                        'properties': {
-                            'count': {'type': 'short', 'index': False},
-                            'average': {'type': 'float'},
-                        },
-                    },
-                    'slug': {'type': 'keyword'},
-                    'requires_payment': {'type': 'boolean', 'index': False},
-                    'status': {'type': 'byte'},
-                    'summary': {'type': 'text', 'analyzer': 'snowball'},
-                    'tags': {'type': 'keyword'},
-                    'type': {'type': 'byte'},
-                    'weekly_downloads': {'type': 'long'},
                 },
+                'contributions': {'type': 'text'},
+                'created': {'type': 'date'},
+                'current_version': version_mapping,
+                'default_locale': {'type': 'keyword', 'index': False},
+                'description': {'type': 'text', 'analyzer': 'snowball'},
+                'guid': {'type': 'keyword'},
+                'has_eula': {'type': 'boolean', 'index': False},
+                'has_privacy_policy': {'type': 'boolean', 'index': False},
+                'hotness': {'type': 'double'},
+                'icon_hash': {'type': 'keyword', 'index': False},
+                'icon_type': {'type': 'keyword', 'index': False},
+                'is_disabled': {'type': 'boolean'},
+                'is_experimental': {'type': 'boolean'},
+                'is_recommended': {'type': 'boolean'},
+                'last_updated': {'type': 'date'},
+                'listed_authors': {
+                    'type': 'object',
+                    'properties': {
+                        'id': {'type': 'long'},
+                        'name': {'type': 'text'},
+                        'username': {'type': 'keyword'},
+                        'is_public': {'type': 'boolean', 'index': False},
+                    },
+                },
+                'modified': {'type': 'date', 'index': False},
+                'name': {
+                    'type': 'text',
+                    # Adding word-delimiter to split on camelcase, known
+                    # words like 'tab', and punctuation, and eliminate
+                    # duplicates.
+                    'analyzer': 'standard_with_word_split',
+                    'fields': {
+                        # Raw field for exact matches and sorting.
+                        'raw': cls.get_raw_field_definition(),
+                        # Trigrams for partial matches.
+                        'trigrams': {
+                            'type': 'text',
+                            'analyzer': 'trigram',
+                        },
+                    },
+                },
+                'previews': {
+                    'type': 'object',
+                    'properties': {
+                        'id': {'type': 'long', 'index': False},
+                        'caption_translations': cls.get_translations_definition(),
+                        'modified': {'type': 'date', 'index': False},
+                        'sizes': {
+                            'type': 'object',
+                            'properties': {
+                                'thumbnail': {'type': 'short', 'index': False},
+                                'image': {'type': 'short', 'index': False},
+                            },
+                        },
+                    },
+                },
+                'promoted': {
+                    'type': 'object',
+                    'properties': {
+                        'group_id': {'type': 'byte'},
+                        'approved_for_apps': {'type': 'byte'},
+                    },
+                },
+                'ratings': {
+                    'type': 'object',
+                    'properties': {
+                        'count': {'type': 'short', 'index': False},
+                        'average': {'type': 'float', 'index': False},
+                    },
+                },
+                'slug': {'type': 'keyword'},
+                'requires_payment': {'type': 'boolean', 'index': False},
+                'status': {'type': 'byte'},
+                'summary': {'type': 'text', 'analyzer': 'snowball'},
+                'tags': {'type': 'keyword'},
+                'type': {'type': 'byte'},
+                'weekly_downloads': {'type': 'long'},
             },
         }
 
@@ -601,9 +741,7 @@ class AddonIndexer(BaseSearchIndexer):
         index_settings = copy.deepcopy(cls.index_settings)
 
         config = {
-            'mappings': {
-                cls.get_doctype_name(): cls.get_mapping(),
-            },
+            'mappings': cls.get_mapping(),
             'settings': {
                 # create_index will add its own index settings like number of
                 # shards and replicas.

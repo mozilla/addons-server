@@ -130,10 +130,7 @@ class TestAddonIndexer(TestCase):
         return fields
 
     def test_mapping(self):
-        doc_name = self.indexer.get_doctype_name()
-        assert doc_name
-
-        mapping_properties = self.indexer.get_mapping()[doc_name]['properties']
+        mapping_properties = self.indexer.get_mapping()['properties']
 
         # Make sure the get_mapping() method does not return fields we did
         # not expect to be present, or omitted fields we want.
@@ -181,10 +178,7 @@ class TestAddonIndexer(TestCase):
         Old versions of ElasticSearch allowed 'no' and 'yes' strings,
         this changed with ElasticSearch 5.x.
         """
-        doc_name = self.indexer.get_doctype_name()
-        assert doc_name
-
-        mapping_properties = self.indexer.get_mapping()[doc_name]['properties']
+        mapping_properties = self.indexer.get_mapping()['properties']
 
         assert all(
             isinstance(prop['index'], bool)
@@ -578,13 +572,12 @@ class TestAddonIndexerWithES(ESTestCase):
         self.reindex(Addon)
 
         indexer = AddonIndexer()
-        doc_name = indexer.get_doctype_name()
         real_index_name = self.get_index_name('default')
-        mappings = self.es.indices.get_mapping(indexer.get_index_alias())[
+        alias = indexer.get_index_alias()
+        mappings = self.es.indices.get_mapping(alias, include_type_name=False)[
             real_index_name
         ]['mappings']
 
-        actual_properties = mappings[doc_name]['properties']
-        indexer_properties = indexer.get_mapping()[doc_name]['properties']
-
+        actual_properties = mappings['properties']
+        indexer_properties = indexer.get_mapping()['properties']
         assert set(actual_properties.keys()) == set(indexer_properties.keys())

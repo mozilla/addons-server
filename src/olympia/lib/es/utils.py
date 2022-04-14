@@ -24,6 +24,10 @@ unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
 get_indices = Reindexing.objects.get_indices
 
 
+def get_major_version(es):
+    return int(es.info()['version']['number'].split('.')[0])
+
+
 def index_objects(
     *, ids, indexer_class, index=None, transforms=None, manager_name=None
 ):
@@ -33,7 +37,6 @@ def index_objects(
         manager_name = 'objects'
 
     manager = getattr(indexer_class.get_model(), manager_name)
-
     indices = Reindexing.objects.get_indices(index)
 
     if transforms is None:
@@ -44,19 +47,26 @@ def index_objects(
         qs = qs.transform(transform)
 
     bulk = []
+    es = amo_search.get_es()
+
+    major_version = get_major_version(es)
     for obj in qs:
         data = indexer_class.extract_document(obj)
         for index in indices:
-            bulk.append(
-                {
-                    '_source': data,
-                    '_id': obj.id,
-                    '_type': indexer_class.get_doctype_name(),
-                    '_index': index,
-                }
-            )
+            item = {
+                '_source': data,
+                '_id': obj.id,
+                '_index': index,
+            }
+            if major_version < 7:
+                # While on 6.x, we use the `addons` type when creating indices
+                # and when bulk-indexing. We completely ignore it on searches.
+                # When on 7.x, we don't pass type at all at creation or
+                # indexing, and continue to ignore it on searches.
+                # That should ensure we're compatible with both transparently.
+                item['_type'] = 'addons'
+            bulk.append(item)
 
-    es = amo_search.get_es()
     return helpers.bulk(es, bulk)
 
 
@@ -110,8 +120,12 @@ def create_index(index, config=None):
             'max_result_window': settings.ES_MAX_RESULT_WINDOW,
         }
     )
-
+    major_version = get_major_version(es)
     if not es.indices.exists(index):
+        # See above, while on 6.x the mapping needs to include the `addons` doc
+        # type.
+        if major_version < 7:
+            config['mappings'] = {'addons': config['mappings']}
         es.indices.create(index, body=config)
 
     return index

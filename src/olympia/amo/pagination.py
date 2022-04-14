@@ -72,7 +72,13 @@ class ESPaginator(Paginator):
         page = Page(result.hits, number, self)
 
         # Overwrite the `count` with the total received from ES results.
-        self.count = int(page.object_list.total)
+        try:
+            # Elasticsearch 7.x and higher
+            total = page.object_list.total['value']
+        except TypeError:
+            # Elasticsearch 6.x and lower
+            total = page.object_list.total
+        self.count = int(total)
 
         # Now that we have the count validate that the page number isn't higher
         # than the possible number of pages and adjust accordingly.
