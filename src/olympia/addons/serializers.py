@@ -366,7 +366,10 @@ class DeveloperVersionSerializer(VersionSerializer):
     )
     source = SourceFileField(required=False, allow_null=True)
     upload = serializers.SlugRelatedField(
-        slug_field='uuid', queryset=FileUpload.objects.all(), write_only=True
+        slug_field='uuid',
+        queryset=FileUpload.objects.all(),
+        write_only=True,
+        validators=(CreateOnlyValidator(),),
     )
 
     class Meta:
@@ -396,11 +399,6 @@ class DeveloperVersionSerializer(VersionSerializer):
             'upload',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
-
-    def __init__(self, instance=None, data=serializers.empty, **kwargs):
-        if instance and isinstance(data, dict):
-            data.pop('upload', None)  # we only support upload field for create
-        super().__init__(instance=instance, data=data, **kwargs)
 
     def to_representation(self, instance):
         # SourceFileField needs the version id to build the url.
@@ -753,7 +751,9 @@ class AddonSerializer(serializers.ModelSerializer):
         choices=list(amo.ADDON_TYPE_CHOICES_API.items()), read_only=True
     )
     url = serializers.SerializerMethodField()
-    version = DeveloperVersionSerializer(write_only=True)
+    version = DeveloperVersionSerializer(
+        write_only=True, validators=(CreateOnlyValidator(), ValidateVersionLicense())
+    )
     versions_url = serializers.SerializerMethodField()
 
     class Meta:
@@ -820,11 +820,6 @@ class AddonSerializer(serializers.ModelSerializer):
             'version',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
-
-    def __init__(self, instance=None, data=serializers.empty, **kwargs):
-        if instance and isinstance(data, dict):
-            data.pop('version', None)  # we only support version field for create
-        super().__init__(instance=instance, data=data, **kwargs)
 
     def to_representation(self, obj):
         data = super().to_representation(obj)
