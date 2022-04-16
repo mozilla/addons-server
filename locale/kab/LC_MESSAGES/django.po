@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-12 16:15+0000\n"
-"PO-Revision-Date: 2022-04-16 20:57+0000\n"
+"PO-Revision-Date: 2022-04-16 21:40+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1305,7 +1305,7 @@ msgid "GNU Library General Public License v2.1"
 msgstr "GNU Library General Public License v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "GNU Library General Public License v3.0"
 
 msgid "The MIT License"
 msgstr "Turagt n MIT"
@@ -1606,9 +1606,9 @@ msgstr[1] "Tzemreḍ kan ad tesɛuḍ {0} n taggayin."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Taggayt Ayen nniḍen ur tezmir ara ad tettwaseqdec akked tiyaḍ."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "Taɣult n URL yessefk ad tettekki ar [%s] neɣ yiwen seg tiɣula-is tisnawanin."
+msgstr "Taɣult n URL yessefk ad tili d yiwet seg [%s]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Abrid n URL i yimendaden n GitHub ilaq ad yesɛu /sponsors/."
@@ -1728,7 +1728,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "Ḍmen d dakken isem akked ugzul gebren ma aṭas {limit_value} n yisekkilen (ɣur-sen meṛṛa {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Deg usmel-a. <span class=\"helptext\">Asumer-inek•inem tettwabder s wudem azayaz deg {site_domain}. </span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
