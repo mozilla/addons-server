@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-12 16:15+0000\n"
-"PO-Revision-Date: 2022-04-16 20:45+0000\n"
+"PO-Revision-Date: 2022-04-16 20:57+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -343,7 +343,7 @@ msgid "Valid user session not found matching the provided session key."
 msgstr "Ulac tiɣimit tameɣtut yemṣadan ɣer tsarut n tɣimit i d-yettwamudden."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Asesfer n ujiṭu n unekcum yecceḍ; aseqdac yesra ad yeqqen ɣer FxA i tikkelt-nniḍen."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Yir anaw i yiwet neɣ ugar n tsura deg usali"
@@ -656,9 +656,8 @@ msgstr "{addon} hatan tura daw n turagt {0}."
 msgid "{addon} policy changed."
 msgstr "{addon} yesnifel tasertit."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "{addon} yesnifel tignit."
+msgstr "Tignit {addon} neɣ tiskanin ttwabeddlent."
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} i {addon} yettwaqbel."
@@ -696,9 +695,8 @@ msgstr "Amiḍa yettusnifel."
 msgid "Account {user} deleted."
 msgstr "Amiḍan {user} yettwakkes."
 
-#, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Amiḍan {user} yettwakkes."
+msgstr "Amiḍan {user} yettwakkes, seg tedyanin n yimiḍanen n Firefox."
 
 msgid "Created: {0}."
 msgstr "Yettwarna: {0}."
@@ -1298,13 +1296,13 @@ msgid "Mozilla Public License 2.0"
 msgstr "Turagt tazayezt n Mozilla 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "GNU General Public License v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "GNU Library General Public License v2.1"
 
 msgid "GNU Library General Public License v3.0"
 msgstr ""
