@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-12 16:15+0000\n"
-"PO-Revision-Date: 2022-04-14 02:13+0000\n"
+"PO-Revision-Date: 2022-04-16 20:45+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -340,7 +340,7 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr "Aqerru n tsiregt mačči d ameɣtu. Azrir igebren talɣut n usulu ur issefk ara ad yegber isekkilen imellalen."
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Ulac tiɣimit tameɣtut yemṣadan ɣer tsarut n tɣimit i d-yettwamudden."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr ""
