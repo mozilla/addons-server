@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-12 16:15+0000\n"
-"PO-Revision-Date: 2022-04-16 21:42+0000\n"
+"PO-Revision-Date: 2022-04-17 20:11+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4448,9 +4448,8 @@ msgid "Delete browsing data directly from the browser toolbar."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "Awi-d ikaramen n tecraḍ n yisebtar s yisuddam-inek RSS, ččuren s wuem awurman"
+msgstr "Awi ileqman iwurmanen n usuddem RSS srid ɣer yikaramen-ik•im n tecraḍ n yisebtar."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
