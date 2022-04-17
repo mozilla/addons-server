@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-12 16:15+0000\n"
-"PO-Revision-Date: 2022-04-17 20:40+0000\n"
+"PO-Revision-Date: 2022-04-17 20:47+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4460,9 +4460,8 @@ msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "Sewḥel adellel daɣen awi ugar n ummesten yennernan mgal yir iseɣzanen akked uḍfaṛ n udellel."
+msgstr "Kkes adellel, tremseḍ ammesten igerrzen mgal yir aseɣẓan."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
@@ -4569,7 +4568,7 @@ msgstr "Wali ugar n yisiɣzaf i usefrek n waccaren yettwafernen sɣur terbaεt"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "Isiɣzaf yettwacerḍen s “{tag}”"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
@@ -4617,9 +4616,8 @@ msgid "See more Steam staff picks"
 msgstr "Wali ugar n yisiɣzaf n usuddem anmetti"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Isental yettwassnen"
+msgstr "Isiɣzaf n usnulfu"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
