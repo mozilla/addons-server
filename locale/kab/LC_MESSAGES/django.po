@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-12 16:15+0000\n"
-"PO-Revision-Date: 2022-04-17 20:11+0000\n"
+"PO-Revision-Date: 2022-04-17 20:30+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4417,11 +4417,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Suqqel din din yal aḍris ara tferneḍ ɣef yisebtar web."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Err Firefox ad yettbeddil initen almend n wakud n wass."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
@@ -4453,7 +4453,7 @@ msgstr "Awi ileqman iwurmanen n usuddem RSS srid ɣer yikaramen-ik•im n tecra�
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Amsewḥal iǧehden mgal yal adellel."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
