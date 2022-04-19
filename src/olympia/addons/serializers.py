@@ -1,7 +1,6 @@
 import os
 import re
 
-from django.utils.translation import gettext
 from django.urls import reverse
 from django.utils.translation import gettext
 
