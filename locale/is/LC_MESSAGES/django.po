@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-12 16:15+0000\n"
-"PO-Revision-Date: 2022-04-10 09:52+0000\n"
+"PO-Revision-Date: 2022-04-19 15:42+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -264,17 +264,17 @@ msgstr "Fannst ekki"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Því miður getum við ekki fundið það sem þú ert að leita að.</h1> <p>Síðan eða skjalið sem þú baðst um fannst ekki á vefsvæðinu okkar. Það er mögulegt að þú hafir smellt á tengil sem er úreltur "
 "eða sett inn rangt skrifað vistsfang.</p> <ul> <li>Ef þú skrifaðir inn vistfangið skaltu athuga vel stafsetninguna.</li> <li>Ef þú smelltir á tengil einhvers staðar ættirðu að %(open_bug_link)s "
 "tilkynna vandamálið %(close_bug_link)s. Segðu okkur hvaðan þú komst, að hverju þú leitaðir og við munum gera okkar besta til að laga þetta. </li> </ul> <p>Eða þú getur bara hoppað yfir á nokkrar af "
 "vinsælustu síðunum á vefsvæðinu okkar. </p> <ul> <li>Hefur þú áhuga á <a href=\"%(rec)s\">lista með úrvali viðbóta </a>? </li> <li> Viltu <a href=\"%(search)s\">leita að viðbótum </a>? Þú getur "
-"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. </"
-"li> </ul>"
+"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. "
+"</li> </ul>"
 
 msgid "Oops"
 msgstr "Úbbs"
@@ -284,8 +284,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur "
-"líka hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
+"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur líka"
+" hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
 
 msgid "Register or Log in"
 msgstr "Nýskráðu þig eða skráðu inn"
@@ -405,8 +405,8 @@ msgstr "Útgáfur"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -2056,9 +2056,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -2274,8 +2272,8 @@ msgid "Email"
 msgstr "Tölvupóstur"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2826,8 +2824,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2899,8 +2897,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -4030,7 +4027,7 @@ msgstr "Lokaðu á truflandi sprettglugga með einum smelli."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
-msgstr ""
+msgstr "Sástu áhugaverða mynd á vefnum? Viltu vita meira um hana?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
@@ -4047,7 +4044,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "Lagaðu leiðindi með hljóð. Er hljóðstyrkur á einhverju vefsvæði of lítill? Of hár? SoundFixer getur hjálpað."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4100,7 +4097,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "Lestu skýrar og auðveldar. Fjarlægðu truflanir í kringum texta á vefsíðum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4150,7 +4147,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "Notaðu talkennsl til að leita með röddinni á Google, Yahoo og DuckDuckGo."
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
@@ -4217,7 +4214,7 @@ msgstr "Lokar á allar auglýsingar - myndskeið, sprettglugga, borða og fleira
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Horfðu á streymisefni hvar sem er með vinum og fjölskyldu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4245,7 +4242,7 @@ msgstr "Vista marga flipa sem þægileg bókamerki."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Skipuleggðu flipa og bókamerki Firefox á snyrtilegu hliðarspjaldi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4339,11 +4336,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Þýða í hvelli valinn texta á vefsíðum."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Láttu Firefox breyta um lit eftir tíma dagsins."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
@@ -4371,7 +4368,7 @@ msgstr "Eyddu vafurgögnum beint úr verkfærastiku vafrans."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Fáðu sjálfvirkar uppfærslur fyrir RSS-streymi beint í bókamerkjamöppurnar þínar."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
@@ -5973,8 +5970,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6030,8 +6027,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
