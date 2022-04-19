@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-03-05 16:28+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -149,6 +149,46 @@ msgstr "Registos de atividade"
 msgid "- Add-on not on AMO -"
 msgstr "- Extra não no AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "O caminho do endereço para os patrocinadores do GitHub deve conter /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr ""
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Arquivo inválido ou corrompido."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "Listado"
@@ -156,11 +196,53 @@ msgstr "Listado"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Caminhos de extras e coleções têm de acabar com \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "A versão {version} corresponde a {block_link} para este Extra. Pode contactar {amo_admins} para informação adicional."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nomes de extras não podem conter as marcas registadas Mozilla ou Firefox."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Permissões do site para {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Os meus Extras"
@@ -1643,12 +1725,6 @@ msgstr "A categoria diversos não pode ser combinada com categorias adicionais."
 msgid "URL domain must be one of [%s]."
 msgstr "O domínio URL tem de ser um de [%s], ou um subdomínio."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "O caminho do endereço para os patrocinadores do GitHub deve conter /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr ""
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Tem {0} etiqueta a mais."
@@ -1706,9 +1782,6 @@ msgstr "Por favor, especifique a Política de Privacidade do seu extra:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Tipo de ficheiro não suportado, por favor, envie um ficheiro de arquivo {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Arquivo inválido ou corrompido."
-
 msgid "View current"
 msgstr "Ver atual"
 
@@ -1729,9 +1802,6 @@ msgstr "Sobrepor validação falhada"
 
 msgid "Need to select at least one application."
 msgstr "Necessita de selecionar pelo menos uma aplicação."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "A versão {version} corresponde a {block_link} para este Extra. Pode contactar {amo_admins} para informação adicional."
 
 msgid "a blocklist entry"
 msgstr "uma entrada de lista de bloqueio"
@@ -4283,10 +4353,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Bloquear os sites que distraem. Basta indicar os sites que deseja que a extensão bloqueie. Disciplina instantânea!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Encontre páginas de Internet arquivadas, inativas ou de outra forma desaparecidas."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Altere a aparência do seu navegador. Crie com facilidade os seus próprios temas visuais para que o Firefox tenha a aparência que desejar."
@@ -4778,6 +4844,12 @@ msgstr "Erro inesperado."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "O tipo (%s) não corresponde ao tipo do seu extra no AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Chave \"upload\" em falta nos dados multi-parte do ficheiro."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Utilizador"
@@ -5739,9 +5811,6 @@ msgstr "Não foi possível encontrar o Extra com a Identificação. \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Não é proprietário deste extra."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Chave \"upload\" em falta nos dados multi-parte do ficheiro."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

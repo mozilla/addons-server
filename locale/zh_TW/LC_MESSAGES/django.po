@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-07 04:26+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -145,6 +145,46 @@ msgstr "活動紀錄"
 msgid "- Add-on not on AMO -"
 msgstr "- 附加元件不位於 AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "GitHub 贊助者的網址路徑必須包含 /sponsors/。"
+
+msgid "URLs must start with https://."
+msgstr "網址必須以 https:// 開頭。"
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "無效或毀損的壓縮檔。"
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "顯示"
@@ -152,11 +192,53 @@ msgstr "顯示"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "附加元件及收藏集的路徑結尾，必須為「/」"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "版本 {version} 與此附加元件 {block_link} 相符。若需更多資訊，請聯絡 {amo_admins}。"
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加元件名稱中，不得包含 Mozilla 或 Firefox 商標。"
 
 msgid "Site permissions for {hostnames}"
 msgstr "{hostnames} 的網站權限"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "我的附加元件"
@@ -1618,12 +1700,6 @@ msgstr "這個雜項類別不能與其他的類別結合。"
 msgid "URL domain must be one of [%s]."
 msgstr "網址當中的網域名稱，必需是 [ %s ] 當中其中一個。"
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "GitHub 贊助者的網址路徑必須包含 /sponsors/。"
-
-msgid "URLs must start with https://."
-msgstr "網址必須以 https:// 開頭。"
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "標籤多出 {0} 個了。"
@@ -1680,9 +1756,6 @@ msgstr "請註明您附加元件的隱私權保護政策:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支援的檔案格式，請上傳 {extensions} 格式的封存檔。"
 
-msgid "Invalid or broken archive."
-msgstr "無效或毀損的壓縮檔。"
-
 msgid "View current"
 msgstr "檢視目前檔案"
 
@@ -1703,9 +1776,6 @@ msgstr "無視驗證失敗"
 
 msgid "Need to select at least one application."
 msgstr "至少需要一套相容的應用程式。"
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "版本 {version} 與此附加元件 {block_link} 相符。若需更多資訊，請聯絡 {amo_admins}。"
 
 msgid "a blocklist entry"
 msgstr "封鎖清單項目"
@@ -4198,10 +4268,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
@@ -4680,6 +4746,12 @@ msgstr "未預期的錯誤。"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "類型（%s）與您的附加元件在 AMO 上架的類型（%s）不符"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "在 multipart 檔案資料中缺少「upload」鍵值。"
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "使用者"
@@ -5643,9 +5715,6 @@ msgstr "找不到 ID 為「{}」的附加元件。"
 
 msgid "You do not own this addon."
 msgstr "您並未擁有此附加元件。"
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "在 multipart 檔案資料中缺少「upload」鍵值。"
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

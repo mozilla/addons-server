@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-07 13:48+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -145,6 +145,46 @@ msgstr "活动日志"
 msgid "- Add-on not on AMO -"
 msgstr "- 附加组件不在 AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "GitHub 的赞助（Sponsor） URL 路径须包含 /sponsors/。"
+
+msgid "URLs must start with https://."
+msgstr "URL 须以 https:// 开头。"
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "无效或损坏的压缩文件。"
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "显示"
@@ -152,11 +192,53 @@ msgstr "显示"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "附加组件和收集路径需要以“/”结尾"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "版本 {version} 与该附加组件的 {block_link} 相匹配。您可以联系 {amo_admins} 了解更多信息。"
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加组件名称不得包含 Mozilla 或 Firefox 商标。"
 
 msgid "Site permissions for {hostnames}"
 msgstr "{hostnames} 的网站权限"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "我的附加组件"
@@ -1607,12 +1689,6 @@ msgstr "这个杂项分类不能与其他分类混用。"
 msgid "URL domain must be one of [%s]."
 msgstr "URL 的域名须为 [%s] 中其一。"
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "GitHub 的赞助（Sponsor） URL 路径须包含 /sponsors/。"
-
-msgid "URLs must start with https://."
-msgstr "URL 须以 https:// 开头。"
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "您的标签多出了 {0} 个。"
@@ -1669,9 +1745,6 @@ msgstr "请指定您的附加组件的隐私政策:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支持的文件类型，请上传一个 {extensions} 格式的压缩文件。"
 
-msgid "Invalid or broken archive."
-msgstr "无效或损坏的压缩文件。"
-
 msgid "View current"
 msgstr "查看当前"
 
@@ -1692,9 +1765,6 @@ msgstr "无视验证失败"
 
 msgid "Need to select at least one application."
 msgstr "需要选择至少一个应用程序。"
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "版本 {version} 与该附加组件的 {block_link} 相匹配。您可以联系 {amo_admins} 了解更多信息。"
 
 msgid "a blocklist entry"
 msgstr "屏蔽列表条目"
@@ -4178,10 +4248,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "屏蔽分散注意力的网站。列出要扩展去屏蔽的网站。自律！"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "查找已归档、已死或因其他原因消失的网页。"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "更改浏览器外观。轻松设计自己的视觉主题，让 Firefox 有你的个性。"
@@ -4660,6 +4726,12 @@ msgstr "意外错误。"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "类型（%s）与您的附加组件在 AMO 上架的类型（%s）不匹配"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "多部分文件数据中缺少 \"upload\" 键值。"
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "用户"
@@ -5619,9 +5691,6 @@ msgstr "未能找到 ID 为 \"{}\" 的附加组件。"
 
 msgid "You do not own this addon."
 msgstr "您不拥有此附加组件。"
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "多部分文件数据中缺少 \"upload\" 键值。"
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

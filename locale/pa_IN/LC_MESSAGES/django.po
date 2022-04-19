@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,16 +146,98 @@ msgstr "ਸਰਗਰਮੀ ਲਾਗ"
 msgid "- Add-on not on AMO -"
 msgstr "AMO - ਉੱਤੇ -ਐਡ-ਆਨ ਨਹੀਂ"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
+msgstr ""
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "ਅਵੈਧ ਜਾਂ ਖਰਾਬ ਆਰਕਾਈਵ।"
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "ਐਡਆਨ ਅਤੇ ਕਲੈਕਸ਼ਨ ਪਾਥ ਨੂੰ \"/\" ਨਾਲ ਖਤਮ ਕਰਨ ਦੀ ਲੋੜ ਹੈ"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ਐਡ-ਆਨ ਦੇ ਨਾਂ ਵਿੱਚ ਮੋਜ਼ੀਲਾ ਜਾਂ ਫਾਇਰਫਾਕਸ ਟ੍ਰੇਡਮਾਰਕ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਦੇ ਹਨ।"
 
 msgid "Site permissions for {hostnames}"
+msgstr ""
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -1626,12 +1708,6 @@ msgstr "ਫ਼ੁਟਕਲ ਵਰਗ ਹੋਰ ਵਰਗਾਂ ਨਾਲ ਜੋੜ�
 msgid "URL domain must be one of [%s]."
 msgstr "URL ਡੋਮੇਨ [%s] ਵਿੱਚੋਂ ਇੱਕ, ਜਾਂ ਸਬਡੋਮੇਨ ਹੋਣਾ ਜਰੂਰੀ ਹੈ।"
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
-
-msgid "URLs must start with https://."
-msgstr ""
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "ਤੁਹਾਡੇ ਕੋਲ {0} ਬਹੁਤ ਸਾਰੇ ਟੈਗ ਹਨ।"
@@ -1689,9 +1765,6 @@ msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਪਰਦੇਦਾਰੀ ਨੀਤੀ 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਅਕਾਈਵ ਫ਼ਾਈਲ {extensions} ਅੱਪਲੋਡ ਕਰੋ।"
 
-msgid "Invalid or broken archive."
-msgstr "ਅਵੈਧ ਜਾਂ ਖਰਾਬ ਆਰਕਾਈਵ।"
-
 msgid "View current"
 msgstr "ਮੌਜੂਦਾ ਵੇਖੋ"
 
@@ -1712,9 +1785,6 @@ msgstr "ਓਵਰਰਾਈਡ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹ
 
 msgid "Need to select at least one application."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਚੁਣਨ ਦੀ ਲੋੜ ਹੈ।"
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
 
 msgid "a blocklist entry"
 msgstr ""
@@ -4244,10 +4314,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "ਆਰਕਾਈਵਡ, ਮਰੇ, ਜਾਂ ਅਸਫਲ ਵੈਬ ਪੰਨਿਆਂ ਨੂੰ ਲੱਭੋ।"
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
@@ -4765,6 +4831,12 @@ msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "ਕਿਸਮ (%s) AMO (%s) ਤੇ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਿਸਮ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "ਮਲਟੀਪਾਰਟ ਫਾਈਲ ਡਾਟਾ ਵਿੱਚ \"ਅਪਲੋਡ\" ਕੁੰਜੀ ਨਹੀਂ ਲੱਗੀ।"
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "ਯੂਜ਼ਰ"
@@ -5789,9 +5861,6 @@ msgstr "ਇਹ id \"{}\"ਨਾਲ ਐਡਆਨ ਨਹੀਂ ਲੱਭ ਸਕਿ�
 
 msgid "You do not own this addon."
 msgstr "ਤੁਹਾਡੇ ਕੋਲ ਇਸ ਐਡਆਨ ਦਾ ਮਾਲਕ ਨਹੀਂ ਹੈ।"
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "ਮਲਟੀਪਾਰਟ ਫਾਈਲ ਡਾਟਾ ਵਿੱਚ \"ਅਪਲੋਡ\" ਕੁੰਜੀ ਨਹੀਂ ਲੱਗੀ।"
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

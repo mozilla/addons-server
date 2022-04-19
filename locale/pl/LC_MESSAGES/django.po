@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -162,6 +162,47 @@ msgstr "Dzienniki aktywności"
 msgid "- Add-on not on AMO -"
 msgstr "— Dodatek nie znajduje się na AMO —"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
+msgstr ""
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Niewłaściwe archiwum."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "Wyświetlanie"
@@ -169,10 +210,52 @@ msgstr "Wyświetlanie"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Ścieżki do dodatku i kolekcji muszą kończyć się znakiem „/”"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nazwy dodatków nie mogą zawierać znaków towarowych Mozilli lub Firefoksa."
 
 msgid "Site permissions for {hostnames}"
+msgstr ""
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -1690,12 +1773,6 @@ msgstr "Kategoria „Ogólne” nie może być łączona z innymi kategoriami."
 msgid "URL domain must be one of [%s]."
 msgstr "Domena adresu URL musi być typu [%s] lub być poddomeną."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
-
-msgid "URLs must start with https://."
-msgstr ""
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Masz zbyt dużo etykiet o {0}."
@@ -1755,10 +1832,6 @@ msgstr "Określ zasady ochrony prywatności dla dodatku:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nieobsługiwany typ pliku, wczytaj plik spakowany {extensions}."
 
-#, fuzzy
-msgid "Invalid or broken archive."
-msgstr "Niewłaściwe archiwum."
-
 msgid "View current"
 msgstr "Wyświetl aktualne"
 
@@ -1780,9 +1853,6 @@ msgstr "Zastąp nieudane sprawdzenie"
 #, fuzzy
 msgid "Need to select at least one application."
 msgstr "Musi być określony przynajmniej jeden kompatybilny program."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
 
 msgid "a blocklist entry"
 msgstr ""
@@ -4393,10 +4463,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
@@ -4911,6 +4977,12 @@ msgstr "Nieoczekiwany błąd."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> w pliku install.rdf (%s) nie pasuje do typu dodatku na AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Brak klucza „upload” w danych wieloczęściowego pliku."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 #, fuzzy
 msgid "User"
@@ -5947,9 +6019,6 @@ msgstr "Nie można znaleźć dodatku o identyfikatorze „{}”."
 
 msgid "You do not own this addon."
 msgstr "Nie jesteś właścicielem tego dodatku."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Brak klucza „upload” w danych wieloczęściowego pliku."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

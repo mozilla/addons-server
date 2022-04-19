@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-10 08:32+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -149,6 +149,46 @@ msgstr "Registri attività"
 msgid "- Add-on not on AMO -"
 msgstr "- Componenti aggiuntivi esterni -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "Il percorso dell’URL per gli sponsor GitHub deve contenere /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr "Gli URL devono iniziare con https://."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Archivio non valido o corrotto."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "Visualizzato"
@@ -156,11 +196,53 @@ msgstr "Visualizzato"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "I percorsi di componenti aggiuntivi e raccolte devono terminare con il carattere “/”"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "La versione {version} corrisponde a {block_link} per questo componente aggiuntivo. Puoi contattare {amo_admins} per maggiori informazioni."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "I nomi dei componenti aggiuntivi non possono contenere i marchi registrati di Mozilla o Firefox."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Permessi siti per {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "I miei componenti aggiuntivi"
@@ -1667,12 +1749,6 @@ msgstr "La categoria Varie non può essere utilizzata insieme ad ulteriori categ
 msgid "URL domain must be one of [%s]."
 msgstr "Il dominio dell’URL deve essere uno tra [%s]."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "Il percorso dell’URL per gli sponsor GitHub deve contenere /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr "Gli URL devono iniziare con https://."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Hai {0} etichetta in eccesso."
@@ -1730,9 +1806,6 @@ msgstr "Specifica l’informativa sulla privacy del tuo componente aggiuntivo:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Tipo di file non supportato. Carica un file archivio valido {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Archivio non valido o corrotto."
-
 msgid "View current"
 msgstr "Mostra versione corrente"
 
@@ -1753,9 +1826,6 @@ msgstr "Il tentativo di sostituzione forzata è fallito"
 
 msgid "Need to select at least one application."
 msgstr "È necessario selezionare almeno un’applicazione."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "La versione {version} corrisponde a {block_link} per questo componente aggiuntivo. Puoi contattare {amo_admins} per maggiori informazioni."
 
 msgid "a blocklist entry"
 msgstr "una voce della blocklist"
@@ -4327,10 +4397,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Blocca i siti web che ti distraggono. Basta elencare i siti che vuoi bloccare attraverso l’estensione. Disciplina istantanea!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Trova pagine web archiviate, irraggiungibili o scomparse."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Cambia aspetto al tuo browser. Disegna rapidamente i tuoi temi visivi: dai a Firefox lo stile che ti piace!"
@@ -4811,6 +4877,12 @@ msgstr "Errore inaspettato."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Il tipo (%s) non corrisponde al tipo del tuo add-on su AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Impossibile trovare la chiave di “upload” tra i dati multipart del file."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Utente"
@@ -5779,9 +5851,6 @@ msgstr "Impossibile trovare il componente aggiuntivo con ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Non sei il proprietario di questo componente aggiuntivo."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Impossibile trovare la chiave di “upload” tra i dati multipart del file."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

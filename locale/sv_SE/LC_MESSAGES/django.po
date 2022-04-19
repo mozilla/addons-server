@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-07 20:41+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -145,17 +145,99 @@ msgstr "Aktivitetsloggar"
 msgid "- Add-on not on AMO -"
 msgstr "- Tillägg finns inte på AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "URL-sökväg för GitHub-sponsorer måste innehålla /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr "Webbadresser måste börja med https://."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Ogiltigt eller trasigt arkiv."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "Listad"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Sökväg för tillägg och samling måste sluta med \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Version {version} matchar {block_link} för detta tillägg. Du kan kontakta {amo_admins} för ytterligare information."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tilläggsnamn kan inte innehålla varumärkena Mozilla eller Firefox."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Webbplatsbehörigheter för {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Mina tillägg"
@@ -1611,12 +1693,6 @@ msgstr "Den övriga kategorin kan inte kombineras med ytterligare kategorier."
 msgid "URL domain must be one of [%s]."
 msgstr "URL-domänen måste vara en av [%s]."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "URL-sökväg för GitHub-sponsorer måste innehålla /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr "Webbadresser måste börja med https://."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Du har {0} för många taggar."
@@ -1674,9 +1750,6 @@ msgstr "Ange ditt tilläggs sekretesspolicy:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Filtypen stöds inte, vänligen ladda upp en arkivfil {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Ogiltigt eller trasigt arkiv."
-
 msgid "View current"
 msgstr "Visa aktuell"
 
@@ -1697,9 +1770,6 @@ msgstr "Åsidosätt misslyckad validering"
 
 msgid "Need to select at least one application."
 msgstr "Välj åtminstone ett program."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} matchar {block_link} för detta tillägg. Du kan kontakta {amo_admins} för ytterligare information."
 
 msgid "a blocklist entry"
 msgstr "en blocklistpost"
@@ -4245,10 +4315,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Blockera distraherande webbplatser. Lista bara de webbplatser du vill att tillägget ska blockera. Omedelbar disciplin!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Hitta arkiverade, döda eller på annat sätt försvunna webbsidor."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Ändra webbläsarens utseende. Designa enkelt dina egna visuella teman så att Firefox ser ut som du vill."
@@ -4727,6 +4793,12 @@ msgstr "Oväntat fel."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Typen (%s) matchar inte typen av ditt tillägg på AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Saknade \"upload\"-nyckel i multipart fildata."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Användare"
@@ -5687,9 +5759,6 @@ msgstr "Det gick inte att hitta tillägg med ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Du äger inte detta tillägg."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Saknade \"upload\"-nyckel i multipart fildata."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

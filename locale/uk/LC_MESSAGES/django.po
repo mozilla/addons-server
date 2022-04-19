@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-05 19:46+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
@@ -152,17 +152,99 @@ msgstr "Журнали активності"
 msgid "- Add-on not on AMO -"
 msgstr "- Додаток не на AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "Шлях URL-адреси для спонсорів GitHub повинен містити /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr "URL-адреси мають починатися з https://."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Некоректний чи пошкоджений архів."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "У списку"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Адреси додатків і колекцій мають закінчуватися з \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Версія {version} збігається з {block_link} для цього додатка. Для отримання додаткової інформації ви можете зв’язатися з {amo_admins}."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Назва додатків не може містити торгові марки Mozilla чи Firefox."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Дозволи сайту для {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Мої додатки"
@@ -1626,12 +1708,6 @@ msgstr "Категорія Різне не може бути об'єднана �
 msgid "URL domain must be one of [%s]."
 msgstr "Домен URL-адреси має бути одним із [%s]."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "Шлях URL-адреси для спонсорів GitHub повинен містити /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr "URL-адреси мають починатися з https://."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "У вас на {0} мітку більше допустимого."
@@ -1690,9 +1766,6 @@ msgstr "Вкажіть політику приватності вашого до
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Непідтримуваний тип файлу, вивантажте будь ласка файл архіву (розширення)."
 
-msgid "Invalid or broken archive."
-msgstr "Некоректний чи пошкоджений архів."
-
 msgid "View current"
 msgstr "Переглянути поточний"
 
@@ -1713,9 +1786,6 @@ msgstr "Ігнорувати невдалу валідацію"
 
 msgid "Need to select at least one application."
 msgstr "Необхідно обрати принаймні одну програму."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Версія {version} збігається з {block_link} для цього додатка. Для отримання додаткової інформації ви можете зв’язатися з {amo_admins}."
 
 msgid "a blocklist entry"
 msgstr "запис у списку блокування"
@@ -4251,10 +4321,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Блокуйте відволікаючі вебсайти. Вкажіть сайти, які ви хочете блокувати розширенням. Миттєва дисципліна!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Знаходьте заархівовані, мертві, або іншим чином зниклі вебсторінки."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Змініть зовнішній вигляд браузера. Легко створюйте власні теми оформлення, щоб надати Firefox вигляду, який вам до вподоби."
@@ -4734,6 +4800,12 @@ msgstr "Неочікувана помилка."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Тип (%s) не відповідає типу вашого додатка на AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Відсутній ключ \"upload\" під час надсилання файлу."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Користувач"
@@ -5695,9 +5767,6 @@ msgstr "Не вдалося знайти додаток з ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Ви не володієте цим додатком."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Відсутній ключ \"upload\" під час надсилання файлу."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,16 +155,98 @@ msgstr "Log Aktiviti"
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on bukan dalam AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
+msgstr ""
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Arkib tidak sah atau rosak."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "Tersenarai"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Laluan add-on dan koleksi perlu berakhir dengan \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nama add-on tidak boleh mengandungi tanda dagangan Mozilla atau Firefox."
 
 msgid "Site permissions for {hostnames}"
+msgstr ""
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -1666,12 +1748,6 @@ msgstr "Kategori rencam tidak boleh digabungkan dengan kategori tambahan."
 msgid "URL domain must be one of [%s]."
 msgstr "Domain URL hendaklah salah satu daripada [%s], atau sub-domain."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
-
-msgid "URLs must start with https://."
-msgstr ""
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Anda ada {0} terlalu banyak tag."
@@ -1729,9 +1805,6 @@ msgstr "Sila tetapkan Polisi Privasi add-on anda:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Jenis fail tidak disokong, sila muat naik fail arkib {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Arkib tidak sah atau rosak."
-
 msgid "View current"
 msgstr "Tinjau semasa"
 
@@ -1752,9 +1825,6 @@ msgstr "Pembatalan gagal pengesahan"
 
 msgid "Need to select at least one application."
 msgstr "Perlu pilih sekurang-kurangnya satu aplikasi."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
 
 msgid "a blocklist entry"
 msgstr ""
@@ -4346,10 +4416,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
@@ -4864,6 +4930,12 @@ msgstr "Ralat tidak dijangka."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> dalam install.rdf (%s) anda tidak sepadan dengan jenis add-on anda dalam AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Kehilangan kekunci \"muat naik\" dalam berbilang bahagian data fail."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 #, fuzzy
 msgid "User"
@@ -5898,9 +5970,6 @@ msgstr "Tidak dapat menemukan add-on dengan guid \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Anda bukan pemilik add-on ini."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Kehilangan kekunci \"muat naik\" dalam berbilang bahagian data fail."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
