@@ -530,6 +530,9 @@ Version compatibility examples
 
 .. _version-compatibility-examples:
 
+    .. note::
+        The compatibility for Dictionary type add-ons cannot be created or updated.
+
 Full example:
 
 .. code-block:: json
@@ -584,7 +587,7 @@ Version Sources
 
 Version source files cannot be uploaded as JSON - the request must be sent as multipart form-data instead.
 If desired, ``license`` can be set set/updated at the same time as ``source``, but fields that
-contain complex data structure (list or object) such as ``compatability``, ``release_notes``,
+contain complex data structure (list or object) such as ``compatibility``, ``release_notes``,
 or ``custom_license`` can not, so separate API calls are needed.
 
 Note: as form-data can not be nested as objects it's not possible to set ``source`` as part of the

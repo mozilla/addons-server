@@ -59,7 +59,7 @@ from .fields import (
     LicenseNameSerializerField,
     LicenseSlugSerializerField,
     SourceFileField,
-    VersionCompatabilityField,
+    VersionCompatibilityField,
 )
 from .models import (
     Addon,
@@ -292,7 +292,7 @@ class MinimalVersionSerializer(serializers.ModelSerializer):
 
 
 class SimpleVersionSerializer(MinimalVersionSerializer):
-    compatibility = VersionCompatabilityField(
+    compatibility = VersionCompatibilityField(
         # default to just Desktop Firefox; most of the times developers don't develop
         # their WebExtensions for Android.  See https://bit.ly/2QaMicU
         source='compatible_apps',
@@ -562,14 +562,18 @@ class DeveloperVersionSerializer(VersionSerializer):
             else None
         )
         existing_maxs = {
-            app: appver.max for app, appver in instance.compatible_apps.items()
+            app: appver.max
+            for app, appver in instance.compatible_apps.items()
+            if appver
         }
 
         instance = super().update(instance, validated_data)
         if 'compatible_apps' in validated_data:
             instance.set_compatible_apps(validated_data['compatible_apps'])
             for app, appver in instance.compatible_apps.items():
-                if app not in existing_maxs or existing_maxs[app] != appver.max:
+                if appver and (
+                    app not in existing_maxs or existing_maxs[app] != appver.max
+                ):
                     ActivityLog.create(
                         amo.LOG.MAX_APPVERSION_UPDATED,
                         instance.addon,

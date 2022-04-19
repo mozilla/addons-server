@@ -44,7 +44,7 @@ A developer is defined as a user who is listed as a developer or owner of one or
     :>json string|null occupation: The occupation of the user.
     :>json string|null picture_type: the image type (only 'image/png' is supported) if a user photo has been uploaded, or null otherwise.
     :>json string|null picture_url: URL to a photo of the user, or null if no photo has been uploaded.
-    :>json string username: deprecated property still included for backwards compatability.  Previous chosen by the user, used in the account url. If not previously set will be a randomly generated string.
+    :>json string username: deprecated property still included for backwards compatibility.  Previous chosen by the user, used in the account url. If not previously set will be a randomly generated string.
 
 
 
