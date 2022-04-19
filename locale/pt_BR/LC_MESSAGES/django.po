@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-19 16:03+0000\n"
-"PO-Revision-Date: 2022-04-19 21:11+0000\n"
+"PO-Revision-Date: 2022-04-19 21:21+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -170,23 +170,23 @@ msgid "URLs must start with https://."
 msgstr "URLs devem começar com https://."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Tipo de arquivo não suportado, envie um arquivo de arquivamento ({extensions})."
 
 msgid "Invalid or broken archive."
 msgstr "Arquivamento inválido ou quebrado."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Valor inválido"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Aplicativo inválido especificado"
 
 msgid "Unknown app version specified"
-msgstr ""
+msgstr "Versão desconhecida do aplicativo especificada"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Imagens devem ser menores que %dMB"
 
 # Column name in a table.
 msgid "Listed"
@@ -196,34 +196,34 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "As rotas da extensão precisam terminar com \"/\""
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Visualizações não podem ser criadas para temas."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Licenças incorporadas não podem ser atualizadas."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "O envio não é válido."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "A versão {version} corresponde a {block_link} desta extensão. Você pode entrar em contato com {amo_admins} para obter informações adicionais."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "A versão {version_string} foi enviada antes e excluída."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "A versão {version_string} já existe."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Versões listadas não podem ser enviadas enquanto a extensão estiver desativada."
 
 msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Os metadados da extensão precisam ser definidos para criar uma versão listada: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Este identificador não pode ser usado. Escolha outro."
 
 msgid "This field is required for addons with listed versions."
-msgstr ""
+msgstr "Este campo é obrigatório em extensões com versões listadas."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Os nomes das extensões não podem conter as marcas registradas Mozilla ou Firefox."
@@ -232,16 +232,16 @@ msgid "Site permissions for {hostnames}"
 msgstr "Permissões de sites de {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Ambos `license` e `custom_license` não podem ser fornecidos juntos."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Este campo, ou custom_license, é obrigatório em versões listadas."
 
 msgid "Wrong addon type for this license."
-msgstr ""
+msgstr "Tipo de extensão incorreto para esta licença."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Licenças personalizadas não são suportadas em temas."
 
 msgid "My Add-ons"
 msgstr "Minhas extensões"
@@ -1804,7 +1804,7 @@ msgid "a blocklist entry"
 msgstr "um item da lista de bloqueio"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr "A versão {version} foi carregada antes e excluída."
+msgstr "A versão {version} foi enviada antes e excluída."
 
 msgid "Version {version} already exists."
 msgstr "A versão {version} já existe."
@@ -4863,7 +4863,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Chave \"upload\" em falta nos dados multi-parte do arquivo."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Falta o argumento \"channel\"."
 
 msgid "User"
 msgstr "Usuário"
