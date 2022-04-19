@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-19 16:03+0000\n"
-"PO-Revision-Date: 2022-04-19 17:12+0000\n"
+"PO-Revision-Date: 2022-04-19 17:15+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -219,16 +219,16 @@ msgid "Version {version_string} already exists."
 msgstr "A(z) {version_string} verzió már létezik."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "A felsorolt verziók nem küldhetők el, amíg a kiegészítő le van tiltva."
 
 msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Egy felsorolt verzió létrehozásához be kell állítani a kiegészítő metaadatait: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Ez a SEO URL nem használható. Válasszon egy másikat."
 
 msgid "This field is required for addons with listed versions."
-msgstr ""
+msgstr "Ez a mező kötelező a felsorolt verzióval rendelkező kiegészítők esetén."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
@@ -237,16 +237,16 @@ msgid "Site permissions for {hostnames}"
 msgstr "A(z) {hostnames} webhelyengedélyei"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "A „license” és a „custom_license” együtt nem adható meg."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Ez a mező, vagy a „custom_license” kötelező a felsorolt verzióknál."
 
 msgid "Wrong addon type for this license."
-msgstr ""
+msgstr "Hibás kiegészítőtípus ehhez a licenchez."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Az egyéni licencek nem támogatottak a témáknál."
 
 msgid "My Add-ons"
 msgstr "Saját kiegészítők"
@@ -4827,7 +4827,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Hiányzó „feltöltés” kulcs a többrészes fájl adataiban."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "A „channel” argumentum hiányzik."
 
 msgid "User"
 msgstr "Felhasználó"
