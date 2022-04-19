@@ -1,6 +1,7 @@
 from django.core.exceptions import PermissionDenied
 from django import http, shortcuts
 from django.utils.crypto import constant_time_compare
+from django.utils.translation import gettext
 
 from rest_framework import exceptions, status
 from rest_framework.mixins import CreateModelMixin
@@ -77,13 +78,13 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
             filedata = request.FILES['upload']
         else:
             raise exceptions.ValidationError(
-                'Missing "upload" key in multipart file data.',
+                gettext('Missing "upload" key in multipart file data.'),
                 status.HTTP_400_BAD_REQUEST,
             )
         channel = amo.CHANNEL_CHOICES_LOOKUP.get(request.POST.get('channel'))
         if not channel:
             raise exceptions.ValidationError(
-                'Missing "channel" arg.',
+                gettext('Missing "channel" arg.'),
                 status.HTTP_400_BAD_REQUEST,
             )
 

@@ -7,6 +7,7 @@ from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
 from django.http.request import QueryDict
+from django.utils.translation import gettext
 from django.urls import reverse
 
 from rest_framework import fields, exceptions, serializers
@@ -39,12 +40,17 @@ class CategoriesSerializerField(serializers.Field):
             for app_name, category_names in data.items():
                 if len(category_names) > amo.MAX_CATEGORIES:
                     raise exceptions.ValidationError(
-                        'Maximum number of categories per application '
-                        f'({amo.MAX_CATEGORIES}) exceeded'
+                        gettext(
+                            'Maximum number of categories per application '
+                            '({MAX_CATEGORIES}) exceeded'
+                        ).format(MAX_CATEGORIES=amo.MAX_CATEGORIES)
                     )
                 if len(category_names) > 1 and 'other' in category_names:
                     raise exceptions.ValidationError(
-                        'The "other" category cannot be combined with another category'
+                        gettext(
+                            'The "other" category cannot be combined with another '
+                            'category'
+                        )
                     )
                 app_cats = CATEGORIES[APPS[app_name].id]
                 # We don't know the addon_type at this point, so try them all and we'll
@@ -57,10 +63,10 @@ class CategoriesSerializerField(serializers.Field):
                     all_cat_slugs.update(type_cats.keys())
                 # Now double-check all the category names were found
                 if not all_cat_slugs.issuperset(category_names):
-                    raise exceptions.ValidationError('Invalid category name.')
+                    raise exceptions.ValidationError(gettext('Invalid category name.'))
             return categories
         except KeyError:
-            raise exceptions.ValidationError('Invalid app name.')
+            raise exceptions.ValidationError(gettext('Invalid app name.'))
 
     def to_representation(self, value):
         grouped = sorted_groupby(
@@ -100,16 +106,19 @@ class ContributionSerializerField(OutgoingURLField):
 
         if parsed_url.hostname not in amo.VALID_CONTRIBUTION_DOMAINS:
             errors.append(
-                'URL domain must be one of '
-                f'[{", ".join(amo.VALID_CONTRIBUTION_DOMAINS)}].'
+                gettext('URL domain must be one of [{domains}].').format(
+                    domains=', '.join(amo.VALID_CONTRIBUTION_DOMAINS)
+                )
             )
         elif parsed_url.hostname == 'github.com' and not parsed_url.path.startswith(
             '/sponsors/'
         ):
             # Issue 15497, validate path for GitHub Sponsors
-            errors.append('URL path for GitHub Sponsors must contain /sponsors/.')
+            errors.append(
+                gettext('URL path for GitHub Sponsors must contain /sponsors/.')
+            )
         if parsed_url.scheme != 'https':
-            errors.append('URLs must start with https://.')
+            errors.append(gettext('URLs must start with https://.'))
 
         if errors:
             raise exceptions.ValidationError(errors)
@@ -195,7 +204,7 @@ class SourceFileField(serializers.FileField):
 
         # Ensure the file type is one we support.
         if not data.name.endswith(VALID_SOURCE_EXTENSIONS):
-            error_msg = (
+            error_msg = gettext(
                 'Unsupported file type, please upload an archive file ({extensions}).'
             )
             raise exceptions.ValidationError(
@@ -216,7 +225,7 @@ class SourceFileField(serializers.FileField):
                     for member in archive.getmembers():
                         archive_member_validator(archive, member)
         except (zipfile.BadZipFile, tarfile.ReadError, OSError, EOFError):
-            raise exceptions.ValidationError('Invalid or broken archive.')
+            raise exceptions.ValidationError(gettext('Invalid or broken archive.'))
 
         return data
 
@@ -240,7 +249,7 @@ class VersionCompatabilityField(serializers.Field):
                 data = {key: {} for key in data}
             if not isinstance(data, dict) or data == {}:
                 # if it's neither it's not a valid input
-                raise exceptions.ValidationError('Invalid value')
+                raise exceptions.ValidationError(gettext('Invalid value'))
 
             version = self.parent.instance
             existing = version.compatible_apps if version else {}
@@ -270,9 +279,9 @@ class VersionCompatabilityField(serializers.Field):
 
                 internal[app] = apps_versions
         except KeyError:
-            raise exceptions.ValidationError('Invalid app specified')
+            raise exceptions.ValidationError(gettext('Invalid app specified'))
         except AppVersion.DoesNotExist:
-            raise exceptions.ValidationError('Unknown app version specified')
+            raise exceptions.ValidationError(gettext('Unknown app version specified'))
 
         return internal
 
@@ -306,15 +315,18 @@ class ImageField(serializers.ImageField):
         image_check = ImageCheck(data)
 
         if data.content_type not in amo.IMG_TYPES or not image_check.is_image():
-            raise serializers.ValidationError('Images must be either PNG or JPG.')
+            raise exceptions.ValidationError(
+                gettext('Images must be either PNG or JPG.')
+            )
         errors = []
 
         if image_check.is_animated():
-            errors.append('Images cannot be animated.')
+            errors.append(gettext('Images cannot be animated.'))
 
         if data.size > self.max_size:
             errors.append(
-                'Images must be smaller than %dMB' % (self.max_size / 1024 / 1024)
+                gettext('Images must be smaller than %dMB')
+                % (self.max_size / 1024 / 1024)
             )
 
         icon_size = image_check.size
@@ -322,6 +334,6 @@ class ImageField(serializers.ImageField):
             errors.append('Images must be square (same width and height).')
 
         if errors:
-            raise serializers.ValidationError(errors)
+            raise exceptions.ValidationError(errors)
 
         return data
