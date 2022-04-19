@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -160,6 +160,47 @@ msgstr "Activity"
 msgid "- Add-on not on AMO -"
 msgstr "- Add-on not on AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr "The \"other\" category cannot be combined with another category"
+
+msgid "Invalid category name."
+msgstr "Invalid category name."
+
+msgid "Invalid app name."
+msgstr "Invalid app name."
+
+msgid "URL domain must be one of [{domains}]."
+msgstr "URL domain must be one of [{domains}]."
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "URL path for GitHub Sponsors must contain /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr "URLs must start with https://."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr "Unsupported file type, please upload an archive file ({extensions})."
+
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Invalid archive."
+
+msgid "Invalid value"
+msgstr "Invalid value"
+
+msgid "Invalid app specified"
+msgstr "Invalid app specified"
+
+msgid "Unknown app version specified"
+msgstr "Unknown app version specified"
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr "Images must be smaller than %dMB"
+
 # Column name in a table.
 msgid "Listed"
 msgstr "Listed"
@@ -167,11 +208,53 @@ msgstr "Listed"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Addon and collection paths need to end with \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr "Previews cannot be created for themes."
+
+msgid "Built in licenses can not be updated."
+msgstr "Built in licenses can not be updated."
+
+msgid "Upload is not valid."
+msgstr "Upload is not valid."
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr "Version {version_string} was uploaded before and deleted."
+
+msgid "Version {version_string} already exists."
+msgstr "Version {version_string} already exists."
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr "Listed versions cannot be submitted while add-on is disabled."
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+
+msgid "This slug cannot be used. Please choose another."
+msgstr "This slug cannot be used. Please choose another."
+
+msgid "This field is required for addons with listed versions."
+msgstr "This field is required for addons with listed versions."
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Site permissions for {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr "Both `license` and `custom_license` cannot be provided together."
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr "This field, or custom_license, is required for listed versions."
+
+msgid "Wrong addon type for this license."
+msgstr "Wrong addon type for this license."
+
+msgid "Custom licenses are not supported for themes."
+msgstr "Custom licenses are not supported for themes."
 
 msgid "My Add-ons"
 msgstr "My Add-ons"
@@ -1763,12 +1846,6 @@ msgstr "The miscellaneous category cannot be combined with additional categories
 msgid "URL domain must be one of [%s]."
 msgstr "URL domain must be one of [%s], or a subdomain., "
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "URL path for GitHub Sponsors must contain /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr "URLs must start with https://."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "You have {0} too many tags."
@@ -1827,10 +1904,6 @@ msgstr "Please specify your add-on's Privacy Policy:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Unsupported file type, please upload an archive file {extensions}."
 
-#, fuzzy
-msgid "Invalid or broken archive."
-msgstr "Invalid archive."
-
 msgid "View current"
 msgstr "View current"
 
@@ -1852,9 +1925,6 @@ msgstr "Override failed validation"
 #, fuzzy
 msgid "Need to select at least one application."
 msgstr "Need at least one compatible application."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 
 msgid "a blocklist entry"
 msgstr "a blocklist entry"
@@ -4627,10 +4697,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "List the websites you want the extension to block. Instant discipline!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Find archived, dead, or otherwise disappeared web pages."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
@@ -5165,6 +5231,12 @@ msgstr "Unexpected error."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Missing \"upload\" key in multipart file data."
+
+msgid "Missing \"channel\" arg."
+msgstr "Missing \"channel\" arg."
 
 #, fuzzy
 msgid "User"
@@ -6262,9 +6334,6 @@ msgstr "Could not find add-on with id \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "You do not own this addon."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Missing \"upload\" key in multipart file data."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

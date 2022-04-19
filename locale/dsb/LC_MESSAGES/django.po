@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-11 21:37+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,17 +146,99 @@ msgstr "Protokole aktiwnosći"
 msgid "- Add-on not on AMO -"
 msgstr "- Dodank njejo na AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "URL-sćažka za sponsory GitHub musy /sponsors/ wopśimowaś."
+
+msgid "URLs must start with https://."
+msgstr "URL muse se z https:// zachopiś."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Njepłaśiwy abo wobškóźony archiw."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "W lisćinje"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Sćažki dodankow a zběrkow muse se na \"/\" kóńcyś"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Wersija {version} {block_link} za toś ten dodank wótpowědujo. Móžośo se z {amo_admins} za pśidatne informacije do zwiska stajiś."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Mjenja dodankow njamógu wikowu marku Mozilla abo Firefox wopśimowaś."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Sedłowe pšawa za {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Móje dodanki"
@@ -1619,12 +1701,6 @@ msgstr "Kategorija „Wšake“ njedajo se drugimi kategorijami kombiněrowaś."
 msgid "URL domain must be one of [%s]."
 msgstr "URL-domena musy jadna z [%s] byś."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "URL-sćažka za sponsory GitHub musy /sponsors/ wopśimowaś."
-
-msgid "URLs must start with https://."
-msgstr "URL muse se z https:// zachopiś."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Maśo {0} wobznamjenje pśewjele."
@@ -1684,9 +1760,6 @@ msgstr "Pšosym pódajśo pšawidła priwatnosći swójogo dodanka:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Njepódpěrany datajowy typ, pšosym nagrajśo archiwowu dataju {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Njepłaśiwy abo wobškóźony archiw."
-
 msgid "View current"
 msgstr "Aktualne pokazaś"
 
@@ -1707,9 +1780,6 @@ msgstr "Njeraźone pśeglědanje pśepisaś"
 
 msgid "Need to select at least one application."
 msgstr "Musyśo nanejmjenjej jadno nałoženje wubraś."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Wersija {version} {block_link} za toś ten dodank wótpowědujo. Móžośo se z {amo_admins} za pśidatne informacije do zwiska stajiś."
 
 msgid "a blocklist entry"
 msgstr "zapisk blokěrowańskeje lisćiny"
@@ -4253,10 +4323,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Blokěrujśo mólece websedła. Nalicćo websedła, kótarež rozšyrjenje ma blokěrowaś. A to ned!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Namakajśo archiwowane, marłe abo howac někak zgubjone webboki."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Změńśo wuglědanje swójogo wobglědowaka. Wugótujśo swóje wizuelne drastwy, aby Firefox tak wuglědał, ako wy cośo."
@@ -4736,6 +4802,12 @@ msgstr "Njewócakana zmólka."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Typ (%s) typoju wašogo dodanka na AMO (%s) njewótpowědujo"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Felujucy kluc „upload“ wěcejdźělowych datajowych datach."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Wužywaŕ"
@@ -5699,9 +5771,6 @@ msgstr "Dodank z ID „{}“ njedajo se namakaś."
 
 msgid "You do not own this addon."
 msgstr "Toś ten dodank wam njesłuša."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Felujucy kluc „upload“ wěcejdźělowych datajowych datach."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

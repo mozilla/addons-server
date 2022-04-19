@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-03-20 13:01+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -152,6 +152,46 @@ msgstr "Логи активности"
 msgid "- Add-on not on AMO -"
 msgstr "- Дополнение не на AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "Путь URL для GitHub Sponsors должен содержать /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr ""
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Некорректный или повреждённый архив."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "Опубликованное"
@@ -159,11 +199,53 @@ msgstr "Опубликованное"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Пути дополнений и подборок должны заканчиваться \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Версия {version} соответствует {block_link} для этого дополнения. Вы можете связаться с {amo_admins} для получения дополнительной информации."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Имена дополнений не могут содержать товарных марок Mozilla или Firefox."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Разрешения на сайты для {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Мои дополнения"
@@ -1640,12 +1722,6 @@ msgstr "Категория Разное не может быть скомбин�
 msgid "URL domain must be one of [%s]."
 msgstr "Домен в URL должен быть одним из [%s], или поддоменом."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "Путь URL для GitHub Sponsors должен содержать /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr ""
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "У вас на {0} метку больше, чем это допустимо."
@@ -1704,9 +1780,6 @@ msgstr "Пожалуйста, укажите политику приватнос
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Неподдерживаемый тип файла, пожалуйста, загрузите архивный файл {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Некорректный или повреждённый архив."
-
 msgid "View current"
 msgstr "Просмотреть текущее"
 
@@ -1727,9 +1800,6 @@ msgstr "Игнорировать неудавшуюся валидацию"
 
 msgid "Need to select at least one application."
 msgstr "Нужно выбрать хотя бы одно приложение."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Версия {version} соответствует {block_link} для этого дополнения. Вы можете связаться с {amo_admins} для получения дополнительной информации."
 
 msgid "a blocklist entry"
 msgstr "элемент чёрного списка"
@@ -4297,10 +4367,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Блокируйте отвлекающие сайты. Просто укажите список веб-сайтов, которые хотите заблокировать. Моментальная дисциплина!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Находите архивированные, мёртвые или ещё каким-либо образом исчезнувшие веб-страницы."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Изменяйте внешний вид вашего браузера. Легко создавайте свои собственные визуальные темы, чтобы Firefox выглядел так, как вам хочется."
@@ -4791,6 +4857,12 @@ msgstr "Неожиданная ошибка."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Тип (%s) не соответствует типу вашего дополнения на AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Отсутствует ключ \"upload\" при отправке файла."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Пользователь"
@@ -5752,9 +5824,6 @@ msgstr "Не удалось найти дополнение с идентифи�
 
 msgid "You do not own this addon."
 msgstr "Вы не владеете этим дополнением."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Отсутствует ключ \"upload\" при отправке файла."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

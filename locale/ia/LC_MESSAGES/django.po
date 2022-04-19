@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-09 21:46+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,17 +146,99 @@ msgstr "Registros del activitate"
 msgid "- Add-on not on AMO -"
 msgstr "- Additivos externe -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "Le route de accesso del URL per le sponsores de GitHub debe continer /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr "Le URLs debe initiar con https://."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Archivo non valide o rupte."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "Listate"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Le routes del additivo e del collectiones debe finir con \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Version {version} corresponde a {block_link} pro iste additivo. Tu pote contactar {amo_admins} pro plus informationes."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o Firefox."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Permissiones de sito pro {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Mi additivos"
@@ -1620,12 +1702,6 @@ msgstr "Le categoria Miscellanea non pote esser combinate con altere categorias.
 msgid "URL domain must be one of [%s]."
 msgstr "Le dominio de URL debe esser un de [%s]."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "Le route de accesso del URL per le sponsores de GitHub debe continer /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr "Le URLs debe initiar con https://."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Tu ha {0} etiquetta in excesso."
@@ -1683,9 +1759,6 @@ msgstr "Per favor specifica tu Politica de confidentialitate del additivo:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Typo de file non supportate, per favor incarga un file de archivo {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Archivo non valide o rupte."
-
 msgid "View current"
 msgstr "Vider version actual"
 
@@ -1706,9 +1779,6 @@ msgstr "Supplantar validation mancate"
 
 msgid "Need to select at least one application."
 msgstr "Il es necesse al minus eliger un application compatibile."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} corresponde a {block_link} pro iste additivo. Tu pote contactar {amo_admins} pro plus informationes."
 
 msgid "a blocklist entry"
 msgstr "un entrata de lista del blocadas"
@@ -4232,10 +4302,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Bloca sitos web que distrahe. Simplemente lista le sitos que tu desira blocate per le extension. Disciplina instantanee!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Trova paginas web archivate, morte o alteremente disparite."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Cambia apparentia a tu navigator. Designa facilemente tu proprie themas visual pro facer parer Firefox como te place."
@@ -4715,6 +4781,12 @@ msgstr "Error inexpectate."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Le typo (%s) non concorda con le typo de tu additivo sur AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Clave “upload” mancante in le datos del file multiparte."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Usator"
@@ -5675,9 +5747,6 @@ msgstr "Impossibile trovar un additivo con id \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Tu non es proprietario de iste additivo."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Clave “upload” mancante in le datos del file multiparte."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

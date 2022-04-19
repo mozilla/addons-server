@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-07 21:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -148,6 +148,46 @@ msgstr "Regjistra Veprimtarie"
 msgid "- Add-on not on AMO -"
 msgstr "- Shtesë jo në AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "Shtegu URL për GitHub Sponsors duhet të përmbajë /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr "URL-të duhet të fillojnë me https://."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Arkiv i pavlefshëm ose i dëmtuar."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "E pranishme"
@@ -155,11 +195,53 @@ msgstr "E pranishme"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Shtigjet për shtesa dhe koleksione lypset të përfundojnë me \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Versioni {version} përputhet me {block_link} për këtë shtesë. Për më tepër informacion, mund të lidheni me {amo_admins}."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Emrat e shtesave s’mund të përmbajnë shenjat tregtare Mozilla ose Firefox."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Leje sajti për {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Shtesat e Mia"
@@ -1628,12 +1710,6 @@ msgstr "Kategoria Të ndryshme s’mund të ndërthuret me të tjera kategori."
 msgid "URL domain must be one of [%s]."
 msgstr "Përkatësia e URL-së duhet të jetë një nga [%s], ose një nënpërkatësi."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "Shtegu URL për GitHub Sponsors duhet të përmbajë /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr "URL-të duhet të fillojnë me https://."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Keni {0} etiketë të tepërt."
@@ -1691,9 +1767,6 @@ msgstr "Ju lutemi, përcaktoni Rregullat e Privatësi për shtesën tuaj:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Arkiv i pavlefshëm ose i dëmtuar."
-
 msgid "View current"
 msgstr "Shihni të tanishmen"
 
@@ -1714,9 +1787,6 @@ msgstr "Anashkaloje vleftësimin e dështuar"
 
 msgid "Need to select at least one application."
 msgstr "Lypset të përzgjidhet të paktën një aplikacion."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Versioni {version} përputhet me {block_link} për këtë shtesë. Për më tepër informacion, mund të lidheni me {amo_admins}."
 
 msgid "a blocklist entry"
 msgstr "zë liste blloqesh"
@@ -4266,10 +4336,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Bllokoni sajte që ju shpërqendrojnë. Thjesht radhitni sajtet që dëshironi të bllokohen nga zgjerimi. Disiplinë aty për aty!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Gjeni faqe web të arkivuara, të vdekura, ose ndryshe të zhdukura."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Ndryshoni pamjen e shfletuesit tuaj. Hartoni me lehtësinë temën tuaj pamore për ta bërë Firefox-in të duket ashtu si ju pëlqen."
@@ -4754,6 +4820,12 @@ msgstr "Gabim i papritur."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Lloji (%s) nuk përputhet me llojin e shtesës tuaj te (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Mungon kyç \"upload\" te të dhëna kartele multipart."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Përdorues"
@@ -5714,9 +5786,6 @@ msgstr "S’u gjet dot Shtesë me ID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Nuk jeni pronar i kësaj shtese."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Mungon kyç \"upload\" te të dhëna kartele multipart."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

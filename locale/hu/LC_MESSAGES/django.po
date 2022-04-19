@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-06 09:08+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -153,6 +153,46 @@ msgstr "Tevékenységnaplók"
 msgid "- Add-on not on AMO -"
 msgstr "- A kiegészítő nincs az AMO-n -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "A GitHub-szponzorok URL-címének tartalmaznia kell a következőt: /sponsors/."
+
+msgid "URLs must start with https://."
+msgstr "Az URL-eknek https:// előtaggal kell kezdődniük."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Érvénytelen vagy hibás archívum."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "Felsorolva"
@@ -160,11 +200,53 @@ msgstr "Felsorolva"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "A kiegészítő, és gyűjtemény útvonalaknak „/” karakterrel kell végződniük"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
 
 msgid "Site permissions for {hostnames}"
 msgstr "A(z) {hostnames} webhelyengedélyei"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Saját kiegészítők"
@@ -1643,12 +1725,6 @@ msgstr "Az egyéb kategória nem vonható össze más kategóriákkal."
 msgid "URL domain must be one of [%s]."
 msgstr "Az URL domainnek a következők egyikének kell lennie: [%s]."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "A GitHub-szponzorok URL-címének tartalmaznia kell a következőt: /sponsors/."
-
-msgid "URLs must start with https://."
-msgstr "Az URL-eknek https:// előtaggal kell kezdődniük."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "{0} címkével több az engedélyezettnél."
@@ -1706,9 +1782,6 @@ msgstr "Adja meg a kiegészítő adatvédelmi irányelveit:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nem támogatott fájlformátum, {extensions} archívumfájlt töltsön fel."
 
-msgid "Invalid or broken archive."
-msgstr "Érvénytelen vagy hibás archívum."
-
 msgid "View current"
 msgstr "Jelenlegi megjelenítése"
 
@@ -1729,9 +1802,6 @@ msgstr "Sikertelen vizsgálat felülbírálása"
 
 msgid "Need to select at least one application."
 msgstr "Legalább egy alkalmazást ki kell választania."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
 
 msgid "a blocklist entry"
 msgstr "egy blokklistabejegyzés"
@@ -4278,10 +4348,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Blokkolja a figyelmet elterelő weboldalakat. Csak sorolja fel azokat a webhelyeket, amelyeket blokkolni akar a kiegészítővel. Azonnali fegyelem!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Keressen archivált, halott vagy más módon eltűnt weblapokat."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Módosítsa a böngésző megjelenését. Tervezzen saját vizuális témákat, hogy úgy nézzen ki a Firefox, ahogyan csak szeretné."
@@ -4762,6 +4828,12 @@ msgstr "Váratlan hiba."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "A típus (%s) nem egyezik meg a kiegészítő típusával az AMO-ban (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Hiányzó „feltöltés” kulcs a többrészes fájl adataiban."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Felhasználó"
@@ -5728,9 +5800,6 @@ msgstr "A(z) „{}” azonosítójú kiegészítő nem található."
 
 msgid "You do not own this addon."
 msgstr "Nem Ön a kiegészítő tulajdonosa."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Hiányzó „feltöltés” kulcs a többrészes fájl adataiban."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

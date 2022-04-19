@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-02-06 17:54+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -158,16 +158,98 @@ msgstr "Dnevnici aktivnosti"
 msgid "- Add-on not on AMO -"
 msgstr "- Dodatak nije na AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
+msgstr ""
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Neispravna ili pokvarena arhiva."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "Na popisu"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Staze dodataka i zbirki moraju završiti s kosom crtom"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nazivi dodataka ne smiju sadržati zaštitne znakove Mozilla ili Firefox."
 
 msgid "Site permissions for {hostnames}"
+msgstr ""
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
 msgstr ""
 
 # 80%
@@ -1644,12 +1726,6 @@ msgstr "Kategorija Razno ne može se kombinirati s dodatnim kategorijama."
 msgid "URL domain must be one of [%s]."
 msgstr "URL domena mora biti jedna od [%s] ili poddomena."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
-
-msgid "URLs must start with https://."
-msgstr ""
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Imaš {0} oznaku previše."
@@ -1708,9 +1784,6 @@ msgstr "Odredi politiku privatnosti za tvoj dodatak:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nepodržana vrsta datoteke, prenesi arhivsku datoteku {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Neispravna ili pokvarena arhiva."
-
 msgid "View current"
 msgstr "Pogledaj trenutačnu"
 
@@ -1731,9 +1804,6 @@ msgstr "Zanemari neuspjelu provjeru"
 
 msgid "Need to select at least one application."
 msgstr "Moraš odabrati barem jednu aplikaciju."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
 
 msgid "a blocklist entry"
 msgstr "blokiran unos"
@@ -4224,10 +4294,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Promijeni izgled preglednika. Jednostavno dizajniraj vlastite vizualne teme kako bi Firefox izgledao kako želiš."
@@ -4723,6 +4789,12 @@ msgstr "Neočekivana greška."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr ""
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "U višedjelnoj datoteci nedostaje ključ \"upload\"."
+
+msgid "Missing \"channel\" arg."
 msgstr ""
 
 msgid "User"
@@ -5702,9 +5774,6 @@ msgstr "Nije bilo moguće pronaći dodatak s ID oznakom „{}”."
 
 msgid "You do not own this addon."
 msgstr "Nisi vlasnik/vlasnica ovog dodatka."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "U višedjelnoj datoteci nedostaje ključ \"upload\"."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

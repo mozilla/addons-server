@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,16 +147,99 @@ msgstr "Kitz'ib'axik Samaj"
 msgid "- Add-on not on AMO -"
 msgstr "- Tz'aqat man wachel ta pa AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
+msgstr ""
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Man okel ta yakb'äl."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "Cholajin"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Ri kib'i' tz'aqat chuqa' mol k'o chi nikik'isb'ej rik'in \"/\""
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr ""
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Ri kib'i' tz'aqat man tikirel ta nikik'waj ketal ri Mozilla chuqa' Firefox."
 
 msgid "Site permissions for {hostnames}"
+msgstr ""
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -1652,12 +1735,6 @@ msgstr "Man tikirel ta yetun ri xolwachinäq taq ruwäch kik'in tz'aqatel taq ru
 msgid "URL domain must be one of [%s]."
 msgstr "URL ajk'amal k'o chi jun [%s], o jun achajk'amal."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
-
-msgid "URLs must start with https://."
-msgstr ""
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "E k'o {0} taq etal ruwi'."
@@ -1715,10 +1792,6 @@ msgstr "Tajikib'a' ri Runa'ojil Ichinanem ri atz'aqat:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Man yek'ul ta re taq ruwäch yakb'äl re', tajotob'a' jun yakb'äl rik'in rub'anikil {extensions}."
 
-#, fuzzy
-msgid "Invalid or broken archive."
-msgstr "Man okel ta yakb'äl."
-
 msgid "View current"
 msgstr "Titz'et ri wakami"
 
@@ -1740,9 +1813,6 @@ msgstr "Tirepüx rusachoj jikib'anem"
 #, fuzzy
 msgid "Need to select at least one application."
 msgstr "K'atzinel jun k'amonel chokoy."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
 
 msgid "a blocklist entry"
 msgstr ""
@@ -4301,10 +4371,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr ""
@@ -4817,6 +4883,12 @@ msgstr "Man oyob'en ta re sachoj."
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> pa ri ayakb'al install.rdf (%s) man nuk'äm ta ri' rik'in ri rucha'onem atz'aqat pa AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Nrajo' na ri \"upload\" tzij pa ri kiyakb'al multipart."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Okisanel"
@@ -5843,9 +5915,6 @@ msgstr "Man xilitäj ta tz'aqat rik'in ri id \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Man awichin ta re tz'aqat re'."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Nrajo' na ri \"upload\" tzij pa ri kiyakb'al multipart."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

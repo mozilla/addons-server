@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -146,16 +146,98 @@ msgstr "Jurnale de activitate"
 msgid "- Add-on not on AMO -"
 msgstr "- Supliment inexistent în AMO -"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr ""
+
+msgid "URLs must start with https://."
+msgstr ""
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Arhivă nevalidă sau coruptă."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 msgid "Listed"
 msgstr "Listat"
 
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Căile către suplimente și colecții trebuie să se termine în „/”"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Versiunea {version} corespunde cu {block_link} pentru acest supliment. Contactează {amo_admins} pentru informații suplimentare."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Denumirile suplimentelor nu pot conține mărci comerciale Mozilla sau Firefox."
 
 msgid "Site permissions for {hostnames}"
+msgstr ""
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
 msgstr ""
 
 msgid "My Add-ons"
@@ -1656,12 +1738,6 @@ msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
 msgid "URL domain must be one of [%s]."
 msgstr "Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
-
-msgid "URLs must start with https://."
-msgstr ""
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Ai {0} etichetă în plus."
@@ -1720,9 +1796,6 @@ msgstr "Te rugăm să specifici politica de confidențialitate aferentă suplime
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Tip de fișier nesuportat. Te rugăm să încarci un fișier tip arhivă {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Arhivă nevalidă sau coruptă."
-
 msgid "View current"
 msgstr "Afișează versiunea actuală"
 
@@ -1743,9 +1816,6 @@ msgstr "Înlocuire forțată validare eșuată"
 
 msgid "Need to select at least one application."
 msgstr "Necesită selectarea cel puțin a unei aplicații."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Versiunea {version} corespunde cu {block_link} pentru acest supliment. Contactează {amo_admins} pentru informații suplimentare."
 
 msgid "a blocklist entry"
 msgstr "o intrare în lista de blocaje"
@@ -4317,10 +4387,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Blochezi site-urile web care îți distrag atenția. Pur și simplu enumeri site-urile pe care vrei să le blocheze extensia. Disciplină instant!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Caută pagini web arhivate, moarte sau dispărute altminteri."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Schimbă-ți aspectul browserului. Îți creezi ușor propriile teme vizuale și dai Firefox-ului un aspect pe gustul tău."
@@ -4828,6 +4894,12 @@ msgstr "Eroare neașteptată."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Tipul (%s) nu se potrivește cu tipul suplimentului înregistrat pe AMO (%s)"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Cheie de „încărcare” lipsă în datele fișierului multiparte."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Utilizator"
@@ -5827,9 +5899,6 @@ msgstr "Nu am găsit niciun supliment cu ID „{}”."
 
 msgid "You do not own this addon."
 msgstr "Nu deții acest supliment."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Cheie de „încărcare” lipsă în datele fișierului multiparte."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."

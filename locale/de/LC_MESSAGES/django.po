@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-12 16:15+0000\n"
+"POT-Creation-Date: 2022-04-19 16:03+0000\n"
 "PO-Revision-Date: 2022-04-05 18:54+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,6 +145,46 @@ msgstr "Aktivitätsprotokolle"
 msgid "- Add-on not on AMO -"
 msgstr "– Add-on nicht auf AMO –"
 
+msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
+msgstr ""
+
+msgid "The \"other\" category cannot be combined with another category"
+msgstr ""
+
+msgid "Invalid category name."
+msgstr ""
+
+msgid "Invalid app name."
+msgstr ""
+
+msgid "URL domain must be one of [{domains}]."
+msgstr ""
+
+msgid "URL path for GitHub Sponsors must contain /sponsors/."
+msgstr "Der URL-Pfad für GitHub-Sponsoren muss /sponsors/ enthalten."
+
+msgid "URLs must start with https://."
+msgstr "URLs müssen mit https:// beginnen."
+
+msgid "Unsupported file type, please upload an archive file ({extensions})."
+msgstr ""
+
+msgid "Invalid or broken archive."
+msgstr "Ungültiges oder defektes Archiv."
+
+msgid "Invalid value"
+msgstr ""
+
+msgid "Invalid app specified"
+msgstr ""
+
+msgid "Unknown app version specified"
+msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr ""
+
 # Column name in a table.
 msgid "Listed"
 msgstr "Angezeigt"
@@ -152,11 +192,53 @@ msgstr "Angezeigt"
 msgid "Addon and collection paths need to end with \"/\""
 msgstr "Add-on und Sammlungs-Pfade müssen mit „/“ enden"
 
+msgid "Previews cannot be created for themes."
+msgstr ""
+
+msgid "Built in licenses can not be updated."
+msgstr ""
+
+msgid "Upload is not valid."
+msgstr ""
+
+msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
+msgstr "Version {version} passt zu {block_link} für dieses Add-on. Weitere Informationen erhalten Sie per E-Mail von {amo_admins}."
+
+msgid "Version {version_string} was uploaded before and deleted."
+msgstr ""
+
+msgid "Version {version_string} already exists."
+msgstr ""
+
+msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "This slug cannot be used. Please choose another."
+msgstr ""
+
+msgid "This field is required for addons with listed versions."
+msgstr ""
+
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on-Namen dürfen weder die Markenzeichen Mozilla noch Firefox enthalten."
 
 msgid "Site permissions for {hostnames}"
 msgstr "Website-Berechtigungen für {hostnames}"
+
+msgid "Both `license` and `custom_license` cannot be provided together."
+msgstr ""
+
+msgid "This field, or custom_license, is required for listed versions."
+msgstr ""
+
+msgid "Wrong addon type for this license."
+msgstr ""
+
+msgid "Custom licenses are not supported for themes."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Meine Add-ons"
@@ -1644,12 +1726,6 @@ msgstr "Die Kategorie „Verschiedenes“ kann nicht mit anderen Kategorien komb
 msgid "URL domain must be one of [%s]."
 msgstr "URL-Domain muss zu [%s] gehören."
 
-msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr "Der URL-Pfad für GitHub-Sponsoren muss /sponsors/ enthalten."
-
-msgid "URLs must start with https://."
-msgstr "URLs müssen mit https:// beginnen."
-
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Sie haben {0} Schlagwort zu viel."
@@ -1707,9 +1783,6 @@ msgstr "Bitte geben Sie die Datenschutzrichtlinie Ihres Add-ons an:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nicht unterstützter Dateityp, bitte laden Sie eine Archivdatei hoch {extensions}."
 
-msgid "Invalid or broken archive."
-msgstr "Ungültiges oder defektes Archiv."
-
 msgid "View current"
 msgstr "Aktuelles ansehen"
 
@@ -1730,9 +1803,6 @@ msgstr "Fehlgeschlagene Validierung außer Kraft setzen"
 
 msgid "Need to select at least one application."
 msgstr "Es muss mindestens eine Anwendung ausgewählt werden."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} passt zu {block_link} für dieses Add-on. Weitere Informationen erhalten Sie per E-Mail von {amo_admins}."
 
 msgid "a blocklist entry"
 msgstr "ein Sperrlisteneintrag"
@@ -4283,10 +4353,6 @@ msgid "Block distracting websites. Simply list the sites you want the extension 
 msgstr "Blockieren Sie störende Websites. Listen Sie die Websites auf, die die Erweiterung blockieren soll. Disziplin auf Knopfdruck!"
 
 #. editorial content for the discovery pane.
-msgid "Find archived, dead, or otherwise disappeared web pages."
-msgstr "Finden Sie archivierte, tote oder auf andere Weise verschwundene Webseiten."
-
-#. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Ändern Sie das Erscheinungsbild Ihres Browsers. Gestalten Sie ganz einfach Ihre eigenen visuellen Designs, damit Firefox so aussieht, wie Sie es möchten."
@@ -4767,6 +4833,12 @@ msgstr "Unerwarteter Fehler."
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Der Typ (%s) stimmt nicht mit dem Typ Ihres Add-ons auf AMO (%s) überein"
+
+msgid "Missing \"upload\" key in multipart file data."
+msgstr "Fehlender „Upload“-Schlüssel in mehrteiligen Dateidaten."
+
+msgid "Missing \"channel\" arg."
+msgstr ""
 
 msgid "User"
 msgstr "Benutzer"
@@ -5727,9 +5799,6 @@ msgstr "Es wurde kein Add-on mit der ID „{}“ gefunden."
 
 msgid "You do not own this addon."
 msgstr "Sie sind nicht der Besitzer dieses Add-ons."
-
-msgid "Missing \"upload\" key in multipart file data."
-msgstr "Fehlender „Upload“-Schlüssel in mehrteiligen Dateidaten."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
