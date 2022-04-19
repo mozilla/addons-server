@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-19 16:03+0000\n"
-"PO-Revision-Date: 2022-04-19 17:12+0000\n"
+"PO-Revision-Date: 2022-04-19 17:16+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -202,31 +202,31 @@ msgid "Previews cannot be created for themes."
 msgstr "Не можна створити попередній перегляд для тем."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Вбудовані ліцензії не можна оновлювати."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Вивантаження недійсне."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Версія {version} збігається з {block_link} для цього додатка. Для отримання додаткової інформації ви можете зв’язатися з {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Версія {version_string} була раніше завантажена і видалена."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Версія {version_string} вже існує."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Перераховані версії не можуть бути надіслані, якщо додаток вимкнено."
 
 msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Для створення переліченої версії необхідно налаштувати метадані додатка: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Не може бути застосовано це закінчення. Виберіть інше."
 
 msgid "This field is required for addons with listed versions."
-msgstr ""
+msgstr "Це поле обов’язкове для додатків із зазначеними версіями."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Назва додатків не може містити торгові марки Mozilla чи Firefox."
@@ -235,16 +235,16 @@ msgid "Site permissions for {hostnames}"
 msgstr "Дозволи сайту для {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "І `license`, і `custom_license` не можуть бути надані разом."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Це поле, або custom_license, обов’язкове для перерахованих версій."
 
 msgid "Wrong addon type for this license."
-msgstr ""
+msgstr "Неправильний тип додатка для цієї ліцензії."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Користувацькі ліцензії не підтримуються для тем."
 
 msgid "My Add-ons"
 msgstr "Мої додатки"
@@ -4801,7 +4801,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Відсутній ключ \"upload\" під час надсилання файлу."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Відсутній аргумент \"channel\"."
 
 msgid "User"
 msgstr "Користувач"
