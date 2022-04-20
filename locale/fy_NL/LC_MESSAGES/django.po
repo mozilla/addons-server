@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-19 16:03+0000\n"
-"PO-Revision-Date: 2022-04-20 09:41+0000\n"
+"PO-Revision-Date: 2022-04-20 09:46+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -197,34 +197,34 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "Paden nei add-ons en kolleksjes moatte mei ‘/’ einigje"
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Foar tema’s kinne gjin foarbylden makke wurden."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Ynboude lisinsjes kinne net bywurke wurde."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Oplaad is net jildich."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Ferzje {version} komt oerien mei {block_link} foar dizze add-on. Jo kinne kontakt opnimme mei {amo_admins} foar oanfoljende ynformaasje."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Ferzje {version_string} is earder al opladen fuortsmiten."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Ferzje {version_string} bestiet al."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Fermelde ferzjes kinne net yntsjinne wurde, wylst de add-on útskeakele is."
 
 msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Add-on-metadata moatte ynsteld wurde om in fermelde ferzje te meitsjen: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Dizze identifikator kin net brûkt wurde. Kies in oare."
 
 msgid "This field is required for addons with listed versions."
-msgstr ""
+msgstr "Dit fjild is fereaske foar add-ons mei fermelde ferzjes."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nammen fan add-ons meie de Mozilla- of Firefox-hannelsmerken net befetsje."
@@ -233,13 +233,13 @@ msgid "Site permissions for {hostnames}"
 msgstr "Websitemachtigingen foar {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Sawol ‘license’ as ‘custom_license’ kinne net tegearre opjûn wurde."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Dit fjild, of custom_license, is fereaske foar fermelde ferzjes."
 
 msgid "Wrong addon type for this license."
-msgstr ""
+msgstr "Ferkeard type add-on foar dizze lisinsje."
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
