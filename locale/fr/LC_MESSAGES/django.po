@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-19 16:03+0000\n"
-"PO-Revision-Date: 2015-10-17 12:14+0000\n"
+"PO-Revision-Date: 2022-04-20 08:04+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -212,22 +212,22 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr "La version {version} correspond à {block_link} pour ce module complémentaire. Vous pouvez contacter {amo_admins} pour plus d’informations."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "La version {version_string} a déjà été envoyée et supprimée auparavant."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "La version {version_string} existe déjà."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Les versions répertoriées ne peuvent pas être soumises lorsque le module complémentaire est désactivé."
 
 msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Les métadonnées du module complémentaire doivent être précisées pour créer une version répertoriée : {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Ce raccourci ne peut pas être utilisé. Veuillez en choisir un autre."
 
 msgid "This field is required for addons with listed versions."
-msgstr ""
+msgstr "Ce champ est obligatoire pour les modules complémentaires avec des versions répertoriées."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Les noms des modules ne peuvent contenir les marques déposées Mozilla ou Firefox."
@@ -236,16 +236,16 @@ msgid "Site permissions for {hostnames}"
 msgstr "Autorisations de site pour {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Il n’est pas possible de préciser à la fois `license` et `custom_license`."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Ce champ, ou celui de custom_license, est nécessaire pour les versions répertoriées."
 
 msgid "Wrong addon type for this license."
-msgstr ""
+msgstr "Mauvais type de module complémentaire pour cette licence."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Les licences personnalisées ne sont pas prises en charge pour les thèmes."
 
 msgid "My Add-ons"
 msgstr "Mes modules"
@@ -759,7 +759,7 @@ msgid "{addon} policy changed."
 msgstr "{addon} a changé de politique."
 
 msgid "{addon} icon or previews changed."
-msgstr ""
+msgstr "L’icône ou les aperçus de {addon} ont changé."
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} pour {addon} approuvée."
@@ -1745,7 +1745,7 @@ msgstr "La catégorie divers ne peut pas être combinée avec d’autres."
 
 #, python-format
 msgid "URL domain must be one of [%s]."
-msgstr ""
+msgstr "Le domaine de l’URL doit appartenir à [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
