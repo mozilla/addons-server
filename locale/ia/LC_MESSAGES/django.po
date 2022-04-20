@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-19 16:03+0000\n"
-"PO-Revision-Date: 2022-04-20 15:40+0000\n"
+"PO-Revision-Date: 2022-04-20 15:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -217,10 +217,10 @@ msgid "Addon metadata is required to be set to create a listed version: {missing
 msgstr "Le metadatos del additivo es necesse pro esser predefinite a crear un version publicate: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Iste alias breve non pote esser usate. Elige un altero."
 
 msgid "This field is required for addons with listed versions."
-msgstr ""
+msgstr "Iste campo es necesse pro additivos con versiones publicate."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o Firefox."
@@ -229,16 +229,16 @@ msgid "Site permissions for {hostnames}"
 msgstr "Permissiones de sito pro {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Ambe `license` e `custom_license` non pote esser fornite insimul."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Isto campo, o custom_license, es necesse pro versiones publicate."
 
 msgid "Wrong addon type for this license."
-msgstr ""
+msgstr "Typo de additivo errate pro iste licentia."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Le licentias personalisate non es supportate pro themas."
 
 msgid "My Add-ons"
 msgstr "Mi additivos"
@@ -4783,7 +4783,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Clave “upload” mancante in le datos del file multiparte."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Argumento \"channel\" mancante."
 
 msgid "User"
 msgstr "Usator"
