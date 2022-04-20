@@ -148,12 +148,6 @@ class MOZILLA(App):
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
 
 
-class UNKNOWN_APP(App):
-    """Placeholder for unknown applications."""
-
-    pretty = _('Unknown')
-
-
 # UAs will attempt to match in this order.
 APP_DETECT = (ANDROID, FIREFOX)
 APP_USAGE = (FIREFOX, ANDROID)
@@ -171,12 +165,6 @@ for _app in APP_USAGE:
 
 # Fake max version for when we want max compatibility
 FAKE_MAX_VERSION = '65535'
-
-# The lowest maxVersion an app has to support to allow default-to-compatible.
-D2C_MIN_VERSIONS = {
-    FIREFOX.id: '4.0',
-    ANDROID.id: '11.0',
-}
 
 DEFAULT_WEBEXT_MIN_VERSIONS = {
     FIREFOX: DEFAULT_WEBEXT_MIN_VERSION,

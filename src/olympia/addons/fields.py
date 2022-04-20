@@ -236,13 +236,17 @@ class SourceFileField(serializers.FileField):
             return absolutify(reverse('downloads.source', args=(self.parent.id,)))
 
 
-class VersionCompatabilityField(serializers.Field):
+class VersionCompatibilityField(serializers.Field):
     def to_internal_value(self, data):
         """Note: this returns unsaved and incomplete ApplicationsVersions objects that
         need to have version set, and may have missing min or max AppVersion instances
         for new Version instances. (As intended - we want to be able to partially
         specify min or max and have the manifest or defaults be instead used).
         """
+        if self.parent.addon and self.parent.addon.type in amo.NO_COMPAT:
+            raise exceptions.ValidationError(
+                gettext('This type of add-on does not allow custom compatibility.')
+            )
         try:
             if isinstance(data, list):
                 # if it's a list of apps, normalize into a dict first
@@ -294,7 +298,9 @@ class VersionCompatabilityField(serializers.Field):
                 }
                 if compat
                 else {
-                    'min': amo.D2C_MIN_VERSIONS.get(app.id, '1.0'),
+                    'min': amo.DEFAULT_WEBEXT_MIN_VERSIONS.get(
+                        app, amo.DEFAULT_WEBEXT_MIN_VERSION
+                    ),
                     'max': amo.FAKE_MAX_VERSION,
                 }
             )

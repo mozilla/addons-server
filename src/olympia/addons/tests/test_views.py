@@ -52,7 +52,7 @@ from olympia.constants.promoted import (
     SPONSORED,
     VERIFIED,
 )
-from olympia.files.utils import parse_addon
+from olympia.files.utils import parse_addon, parse_xpi
 from olympia.files.tests.test_models import UploadMixin
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
@@ -2337,6 +2337,57 @@ class VersionViewSetCreateUpdateMixin:
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Unknown app version specified']}
 
+    @staticmethod
+    def _parse_xpi_mock(pkg, addon, minimal, user):
+        return {**parse_xpi(pkg, addon, minimal, user), 'type': amo.ADDON_DICT}
+
+    def test_compatibility_dictionary_list(self):
+        self.addon.update(type=amo.ADDON_DICT)
+        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
+            response = self.request(compatibility=[])
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'This type of add-on does not allow custom compatibility.'
+            ]
+        }
+
+        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
+            response = self.request(compatibility=['firefox', 'android'])
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'This type of add-on does not allow custom compatibility.'
+            ]
+        }
+
+    def test_compatibility_dictionary_dict(self):
+        self.addon.update(type=amo.ADDON_DICT)
+        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
+            response = self.request(compatibility={})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'This type of add-on does not allow custom compatibility.'
+            ]
+        }
+
+        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
+            response = self.request(
+                compatibility={'firefox': {'min': '65.0'}, 'android': {}}
+            )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'This type of add-on does not allow custom compatibility.'
+            ]
+        }
+
+    def test_basic_dictionary(self):
+        self.addon.update(type=amo.ADDON_DICT)
+        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
+            self.test_basic()
+
 
 class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
@@ -2413,7 +2464,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert response.status_code == 201, response.content
         assert log_mock.info.call_count == 0
 
-    def test_basic_listed(self):
+    def test_basic(self):
         self.upload.update(automated_signing=False)
         self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
         self.addon.update_status()
@@ -2425,9 +2476,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert response.status_code == 201, response.content
         data = response.data
         assert data['license'] == LicenseSerializer().to_representation(self.license)
-        assert data['compatibility'] == {
-            'firefox': {'max': '*', 'min': '42.0'},
-        }
         self.addon.reload()
         assert self.addon.versions.count() == 2
         version = self.addon.find_latest_version(channel=None)

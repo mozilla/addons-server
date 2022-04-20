@@ -274,7 +274,6 @@ VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.zip')
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
 NO_COMPAT = (ADDON_DICT,)
-HAS_COMPAT = {t: t not in NO_COMPAT for t in ADDON_TYPES}
 
 # Validation.
 

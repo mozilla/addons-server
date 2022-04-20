@@ -444,7 +444,6 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
         assert version.is_compatible_by_default
-        assert version.is_compatible_app(amo.FIREFOX)
 
     def test_is_compatible_by_default_type(self):
         # Types in NO_COMPAT are compatible by default.
@@ -452,7 +451,6 @@ class TestVersion(TestCase):
         version = version_factory(addon=addon)
         addon.update(type=amo.ADDON_DICT)
         assert version.is_compatible_by_default
-        assert version.is_compatible_app(amo.FIREFOX)
 
     def test_is_compatible_by_default_strict_opt_in(self):
         # Add-ons opting into strict compatibility should not be compatible
@@ -462,17 +460,6 @@ class TestVersion(TestCase):
         file = version.file
         file.update(strict_compatibility=True)
         assert not version.is_compatible_by_default
-        assert version.is_compatible_app(amo.FIREFOX)
-
-    def test_is_compatible_app_max_version(self):
-        # Add-ons with max app version < 4.0 should not be compatible.
-        addon = Addon.objects.get(id=3615)
-        version = version_factory(addon=addon, max_app_version='3.5')
-        assert not version.is_compatible_app(amo.FIREFOX)
-        # An app that isn't supported should also be False.
-        assert not version.is_compatible_app(amo.ANDROID)
-        # An app that can't do d2c should also be False.
-        assert not version.is_compatible_app(amo.UNKNOWN_APP)
 
     def test_get_url_path(self):
         assert self.version.get_url_path() == ('/en-US/firefox/addon/a3615/versions/')
@@ -1928,16 +1915,10 @@ class TestApplicationsVersions(TestCase):
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox 5.0 and later'
 
-    def test_repr_when_low_app_support(self):
-        addon = addon_factory(
-            version_kw={'min_app_version': '3.0', 'max_app_version': '3.5'}
-        )
-        version = addon.current_version
-        assert str(version.apps.all()[0]) == 'Firefox 3.0 - 3.5'
-
     def test_repr_when_unicode(self):
         addon = addon_factory(
-            version_kw={'min_app_version': 'ك', 'max_app_version': 'ك'}
+            version_kw={'min_app_version': 'ك', 'max_app_version': 'ك'},
+            file_kw={'strict_compatibility': True},
         )
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox ك - ك'

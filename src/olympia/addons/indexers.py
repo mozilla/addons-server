@@ -458,7 +458,9 @@ class AddonIndexer(BaseSearchIndexer):
                 # released, so we directly index a super high version as the
                 # max.
                 min_human, max_human = (
-                    amo.D2C_MIN_VERSIONS.get(app.id, '1.0'),
+                    amo.DEFAULT_WEBEXT_MIN_VERSIONS.get(
+                        app, amo.DEFAULT_WEBEXT_MIN_VERSION
+                    ),
                     amo.FAKE_MAX_VERSION,
                 )
                 min_, max_ = version_int(min_human), version_int(max_human)

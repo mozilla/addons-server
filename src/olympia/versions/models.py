@@ -51,7 +51,6 @@ from olympia.translations.fields import (
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
 
-from .compare import version_int
 from .fields import VersionStringField
 
 
@@ -558,6 +557,10 @@ class Version(OnChangeMixin, ModelBase):
     def set_compatible_apps(self, apps):
         from olympia.addons.tasks import index_addons  # circular import
 
+        # We shouldn't be trying to set compatiblity on addons that don't have them.
+        if self.addon and self.addon.type in amo.NO_COMPAT:
+            return
+
         # clear any removed applications
         self.apps.exclude(application__in=(app.id for app in apps)).delete()
         # then save the instances
@@ -576,17 +579,6 @@ class Version(OnChangeMixin, ModelBase):
         """Returns whether or not the add-on is considered compatible by
         default."""
         return not self.file.strict_compatibility
-
-    def is_compatible_app(self, app):
-        """Returns True if the provided app passes compatibility conditions."""
-        if self.addon.type in amo.NO_COMPAT:
-            return True
-        appversion = self.compatible_apps.get(app)
-        if appversion and app.id in amo.D2C_MIN_VERSIONS:
-            return version_int(appversion.max.version) >= version_int(
-                amo.D2C_MIN_VERSIONS.get(app.id, '*')
-            )
-        return False
 
     def is_public(self):
         # To be public, a version must not be deleted, must belong to a public
@@ -1172,9 +1164,7 @@ class ApplicationsVersions(models.Model):
         )
 
     def __str__(self):
-        if self.version.is_compatible_by_default and self.version.is_compatible_app(
-            amo.APP_IDS[self.application]
-        ):
+        if self.version.is_compatible_by_default:
             return gettext('{app} {min} and later').format(
                 app=self.get_application_display(), min=self.min
             )
