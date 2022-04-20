@@ -8,6 +8,7 @@ import tempfile
 import zipfile
 
 from unittest import mock
+from unittest.mock import patch
 
 from django.conf import settings
 from django.core.cache import cache
@@ -20,7 +21,7 @@ from django.utils.http import urlsafe_base64_encode, urlunquote
 import pytest
 
 from elasticsearch import Elasticsearch
-from unittest.mock import patch
+from freezegun import freeze_time
 from rest_framework.test import APIRequestFactory
 from waffle import switch_is_active
 from waffle.testutils import override_switch
@@ -80,7 +81,7 @@ from ..serializers import (
     DeveloperVersionSerializer,
     LicenseSerializer,
 )
-from ..utils import generate_addon_guid
+from ..utils import generate_addon_guid, generate_delete_token
 from ..views import (
     DEFAULT_FIND_REPLACEMENT_PATH,
     FIND_REPLACEMENT_SRC,
@@ -1867,6 +1868,78 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):
     client_class = APITestClientJWT
+
+
+class TestAddonViewSetDelete(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,))
+        self.url = reverse_ns(
+            'addon-detail', kwargs={'pk': self.addon.pk}, api_version='v5'
+        )
+
+    @freeze_time()
+    def test_delete_confirm(self):
+        delete_confirm_url = f'{self.url}delete_confirm/'
+
+        response = self.client.get(delete_confirm_url)
+        assert response.status_code == 401
+
+        self.client.login_api(self.user)
+        response = self.client.get(delete_confirm_url)
+        assert response.status_code == 200
+        assert response.data == {'delete_confirm': generate_delete_token(self.addon.id)}
+
+        # confirm we didn't delete the addon already
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+
+    def _perform_delete_request(self, status_code):
+        token = generate_delete_token(self.addon.id)
+        response = self.client.delete(f'{self.url}?delete_confirm={token}')
+        assert response.status_code == status_code, response.content
+        self.addon.reload()
+        return response
+
+    def test_delete(self):
+        response = self.client.delete(self.url)
+        assert response.status_code == 401
+
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 400
+        assert response.data == [
+            '"delete_confirm" token must be supplied for add-on delete.'
+        ]
+
+        response = self.client.delete(f'{self.url}?delete_confirm=foo')
+        assert response.status_code == 400
+        assert response.data == ['"delete_confirm" token is invalid.']
+
+        self._perform_delete_request(204)
+        assert self.addon.status == amo.STATUS_DELETED
+
+    def test_delete_prevented_for_developer_role(self):
+        AddonUser.objects.get(addon=self.addon, user=self.user).update(
+            role=amo.AUTHOR_ROLE_DEV
+        )
+        self.client.login_api(self.user)
+        response = self._perform_delete_request(403)
+        assert response.data == {
+            'detail': 'You do not have permission to perform this action.',
+            'is_disabled_by_developer': False,
+            'is_disabled_by_mozilla': False,
+        }
+        assert self.addon.status == amo.STATUS_APPROVED
+
+    def test_delete_allowed_for_site_permission_addons(self):
+        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+        self.client.login_api(self.user)
+        self._perform_delete_request(204)
+        assert self.addon.status == amo.STATUS_DELETED
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):

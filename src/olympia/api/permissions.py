@@ -115,6 +115,18 @@ class AllowAddonAuthor(BasePermission):
         return obj.authors.filter(pk=request.user.pk).exists()
 
 
+class AllowAddonOwner(BasePermission):
+    """Allow access if the user is in the object authors, and has an owner role."""
+
+    def has_permission(self, request, view):
+        return request.user.is_authenticated
+
+    def has_object_permission(self, request, view, obj):
+        return obj.authors.filter(
+            pk=request.user.pk, addonuser__role=amo.AUTHOR_ROLE_OWNER
+        ).exists()
+
+
 class AllowIfNotMozillaDisabled(BasePermission):
     """Allow access unless disabled by mozilla.
 

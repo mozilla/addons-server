@@ -333,7 +333,7 @@ Edit
 This endpoint allows an add-on's AMO metadata to be edited.
 
     .. note::
-        This API requires :doc:`authentication <auth>`.
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
 .. http:patch:: /api/v5/addons/addon/(int:id|string:slug|string:guid)/
 
@@ -379,6 +379,47 @@ Note: as form-data can not include objects, and creating an add-on requires the 
 
     :form icon: The icon file being uploaded, or an empty value to clear.
     :reqheader Content-Type: multipart/form-data
+
+
+------
+Delete
+------
+
+.. _addon-delete:
+
+This endpoint allows an add-on to be deleted.
+Because add-on deletion is an irreversible and destructive action an additional token must be retrieved beforehand, and passed as a parameter to the delete endpoint.
+Deleting the add-on will permanently delete all versions and files submitted for this add-on, listed or not.
+The add-on ID (``guid``) cannot be restored and will forever be unusable for submission.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an owner of the add-on..
+
+.. http:delete:: /api/v5/addons/addon/(int:id|string:slug|string:guid)/
+
+    .. _addon-delete-request:
+
+    :query string delete_confirm: the confirmation token from the :ref:`delete confirm <addon-delete-confirm>` endpoint.
+
+
+~~~~~~~~~~~~~~
+Delete Confirm
+~~~~~~~~~~~~~~
+
+.. _addon-delete-confirm:
+
+This endpoint just supplies a special signed JWT token that can be used to confirm deletion of an add-on.
+The token is valid for 60 seconds after it's been created, and is only valid for this specific add-on.
+
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an owner of the add-on.
+
+.. http:get:: /api/v5/addons/addon/(int:id|string:slug|string:guid)/delete_confirm/
+
+    .. _addon-delete-confirm-request:
+
+    :>json string delete_confirm: The confirmation token to be used with :ref:`add-on delete <addon-delete>` endpoint.
 
 
 -------------
@@ -504,7 +545,7 @@ is compatible with.  Add-on properties cannot be set with version create so an
 already defined.
 
     .. note::
-        This API requires :doc:`authentication <auth>`.
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
 .. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
 
@@ -620,7 +661,7 @@ Version Edit
 This endpoint allows the metadata for an existing version to be edited.
 
     .. note::
-        This API requires :doc:`authentication <auth>`.
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
 .. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
 
@@ -647,7 +688,7 @@ Image files cannot be uploaded as JSON - the request must be sent as multipart f
 If desired, ``position`` can be set set at the same time as ``image``, but ``caption`` can not, so a separate API call is needed.
 
     .. note::
-        This API requires :doc:`authentication <auth>`.
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
 .. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/previews/
 
@@ -667,7 +708,7 @@ Preview Edit
 This endpoint allows the metadata for an existing preview for a non-theme add-on to be edited. Themes can only have generated previews and previews can not be edited.
 
     .. note::
-        This API requires :doc:`authentication <auth>`.
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
 .. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/previews/(int:id)/
 
@@ -686,7 +727,7 @@ Preview Delete
 This endpoint allows the metadata for an existing preview for a non-theme add-on to be deleted. Themes can only have generated previews and previews can not be deleted.
 
     .. note::
-        This API requires :doc:`authentication <auth>`.
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
 .. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/previews/(int:id)/
 

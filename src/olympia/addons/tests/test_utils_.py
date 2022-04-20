@@ -1,18 +1,36 @@
-from contextlib import ExitStack
-from unittest import mock
-import pytest
 import zipfile
+
+from contextlib import ExitStack
+from datetime import timedelta
+from unittest import mock
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.forms import ValidationError
 from django.test.client import RequestFactory
 
+import pytest
+
+from freezegun import freeze_time
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.utils import (
+from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.applications.models import AppVersion
+from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
+from olympia.files.models import FileUpload
+from olympia.users.models import (
+    EmailUserRestriction,
+    Group,
+    GroupUser,
+    IPNetworkUserRestriction,
+    RESTRICTION_TYPES,
+    UserRestrictionHistory,
+)
+
+from ..utils import (
+    generate_delete_token,
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
@@ -25,19 +43,8 @@ from olympia.addons.utils import (
     TAAR_LITE_OUTCOME_REAL_FAIL,
     TAAR_LITE_OUTCOME_REAL_SUCCESS,
     TAAR_LITE_FALLBACK_REASON_INVALID,
+    validate_delete_token,
     verify_mozilla_trademark,
-)
-from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.applications.models import AppVersion
-from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
-from olympia.files.models import FileUpload
-from olympia.users.models import (
-    EmailUserRestriction,
-    Group,
-    GroupUser,
-    IPNetworkUserRestriction,
-    RESTRICTION_TYPES,
-    UserRestrictionHistory,
 )
 
 
@@ -611,3 +618,25 @@ class TestSitePermissionVersionCreator(TestCase):
         self.make_addon_unlisted(addon)
         with self.assertRaises(ImproperlyConfigured):
             creator.create_version(addon=addon)
+
+
+@freeze_time(as_kwarg='frozen_time')
+def test_generate_delete_token(frozen_time=None):
+    addon_id = 1234
+    token = generate_delete_token(addon_id)
+    # generated token is valid
+    assert validate_delete_token(token, addon_id)
+    # generating with the same addon_id at the same time returns the same value
+    assert token == generate_delete_token(addon_id)
+    # generating with a different addon_id at the same time returns a different value
+    assert token != generate_delete_token(addon_id + 1)
+    # and the addon_id must match for it to be a valid token
+    assert not validate_delete_token(token, addon_id + 1)
+
+    # token is valid for 60 seconds so after 59 is still valid
+    frozen_time.tick(timedelta(seconds=59))
+    assert validate_delete_token(token, addon_id)
+
+    # but not after 60 seconds
+    frozen_time.tick(timedelta(seconds=2))
+    assert not validate_delete_token(token, addon_id)

@@ -2,6 +2,7 @@ import uuid
 import json
 import zipfile
 
+from datetime import datetime, timedelta
 from io import BytesIO
 from urllib.parse import urlparse
 
@@ -12,6 +13,8 @@ from django.core.files.base import File
 from django.db.transaction import atomic
 from django.utils import translation
 from django.utils.translation import gettext
+
+import jwt
 
 from django_statsd.clients import statsd
 
@@ -27,6 +30,9 @@ from olympia.users.models import (
     UserRestrictionHistory,
 )
 from olympia.users.utils import get_task_user
+
+
+log = core.logger.getLogger('z.addons')
 
 
 def generate_addon_guid():
@@ -409,3 +415,33 @@ def fetch_translations_from_addon(addon, properties):
     translation_ids = [id_ for id_ in translation_ids_gen if id_]
     # Just get all the values together to make it simplier
     return {str(value) for value in Translation.objects.filter(id__in=translation_ids)}
+
+
+def generate_delete_token(addon_id):
+    token_payload = {
+        'exp': datetime.utcnow() + timedelta(seconds=60),
+        'addon_id': addon_id,
+        'action': 'delete',
+    }
+    return jwt.encode(token_payload, settings.SECRET_KEY)
+
+
+def validate_delete_token(token, addon_id):
+    try:
+        token_payload = jwt.decode(
+            token,
+            settings.SECRET_KEY,
+            algorithms=(settings.JWT_AUTH['JWT_ALGORITHM'],),
+            options={
+                'verify_signature': True,
+                'verify_exp': True,
+                'verify_nbf': False,
+                'verify_iat': False,
+                'verify_aud': False,
+                'require': ['exp'],
+            },
+        )
+    except Exception as e:
+        log.debug(e)
+        return False
+    return token_payload['addon_id'] == addon_id and token_payload['action'] == 'delete'
