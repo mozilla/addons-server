@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-19 16:03+0000\n"
-"PO-Revision-Date: 2022-04-20 14:49+0000\n"
+"PO-Revision-Date: 2022-04-20 15:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -159,7 +159,7 @@ msgid "Invalid app name."
 msgstr "Nomine de app non valide."
 
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "Le dominio de URL debe esser un de [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Le route de accesso del URL per le sponsores de GitHub debe continer /sponsors/."
@@ -168,23 +168,23 @@ msgid "URLs must start with https://."
 msgstr "Le URLs debe initiar con https://."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Typo de file non tractate, per favor carga un file archivo ({extensions})."
 
 msgid "Invalid or broken archive."
 msgstr "Archivo non valide o rupte."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Valor invalide"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "App specificate invalide"
 
 msgid "Unknown app version specified"
-msgstr ""
+msgstr "Version de app specificate incognite"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Imagines debe esser minor de %dMB"
 
 msgid "Listed"
 msgstr "Listate"
@@ -193,19 +193,19 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "Le routes del additivo e del collectiones debe finir con \"/\""
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Vistas preliminar non pote esser create pro themas."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Le licentias integrate non pote esser actualisate."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Cargamento non valide."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Version {version} corresponde a {block_link} pro iste additivo. Tu pote contactar {amo_admins} pro plus informationes."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Le version {version_string} ha jam essite cargate e delite."
 
 msgid "Version {version_string} already exists."
 msgstr ""
