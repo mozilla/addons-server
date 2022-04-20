@@ -664,8 +664,8 @@ workflows:
           matrix:
             parameters:
               elasticsearchversion:
-                - 6.8.8
-                - 7.13.2
+                - 6.8.23
+                - 7.17.2
       - release-master:
           filters:
             branches:
