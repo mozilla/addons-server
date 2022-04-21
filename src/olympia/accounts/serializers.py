@@ -38,7 +38,7 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
     def get_url(self, obj):
         def is_adminish(user):
-            return user and acl.action_allowed_user(user, amo.permissions.USERS_EDIT)
+            return user and acl.action_allowed_for(user, amo.permissions.USERS_EDIT)
 
         request = self.context.get('request', None)
         current_user = getattr(request, 'user', None) if request else None

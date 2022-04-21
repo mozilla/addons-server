@@ -160,7 +160,7 @@ def ratings_moderation_log_detail(request, id):
     if len(log.arguments) > 1 and isinstance(log.arguments[1], Rating):
         review = log.arguments[1]
 
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
     can_undelete = (
         review and review.deleted and (is_admin or request.user.pk == log.user.pk)
@@ -195,14 +195,16 @@ def dashboard(request):
         amo.permissions.REVIEWER_TOOLS_VIEW,
         amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW,
     ]
-    view_all = any(acl.action_allowed(request, perm) for perm in view_all_permissions)
+    view_all = any(
+        acl.action_allowed_for(request.user, perm) for perm in view_all_permissions
+    )
     admin_reviewer = is_admin_reviewer(request)
     queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
 
-    if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+    if view_all or acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
         sections[gettext('Pre-Review Add-ons')] = []
-        if view_all or acl.action_allowed(
-            request, amo.permissions.ADDONS_RECOMMENDED_REVIEW
+        if view_all or acl.action_allowed_for(
+            request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW
         ):
             sections[gettext('Pre-Review Add-ons')].append(
                 (
@@ -249,14 +251,18 @@ def dashboard(request):
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             ),
         ]
-    if view_all or acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
+    if view_all or acl.action_allowed_for(
+        request.user, amo.permissions.ADDONS_CONTENT_REVIEW
+    ):
         sections[gettext('Content Review')] = [
             (
                 gettext('Content Review ({0})').format(queue_counts['content_review']),
                 reverse('reviewers.queue_content_review'),
             ),
         ]
-    if view_all or acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
+    if view_all or acl.action_allowed_for(
+        request.user, amo.permissions.STATIC_THEMES_REVIEW
+    ):
         sections[gettext('Themes')] = [
             (
                 gettext('New ({0})').format(queue_counts['theme_nominated']),
@@ -272,7 +278,9 @@ def dashboard(request):
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             ),
         ]
-    if view_all or acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
+    if view_all or acl.action_allowed_for(
+        request.user, amo.permissions.RATINGS_MODERATE
+    ):
         sections[gettext('User Ratings Moderation')] = [
             (
                 gettext('Ratings Awaiting Moderation ({0})').format(
@@ -289,7 +297,9 @@ def dashboard(request):
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             ),
         ]
-    if view_all or acl.action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED):
+    if view_all or acl.action_allowed_for(
+        request.user, amo.permissions.ADDONS_REVIEW_UNLISTED
+    ):
         sections[gettext('Unlisted Add-ons')] = [
             (gettext('All Unlisted Add-ons'), reverse('reviewers.unlisted_queue_all')),
             (
@@ -301,13 +311,13 @@ def dashboard(request):
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             ),
         ]
-    if view_all or acl.action_allowed(
-        request, amo.permissions.ADDON_REVIEWER_MOTD_EDIT
+    if view_all or acl.action_allowed_for(
+        request.user, amo.permissions.ADDON_REVIEWER_MOTD_EDIT
     ):
         sections[gettext('Announcement')] = [
             (gettext('Update message of the day'), reverse('reviewers.motd'))
         ]
-    if view_all or acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
+    if view_all or acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
         sections[gettext('Admin Tools')] = [
             (
                 gettext('Add-ons Pending Rejection ({0})').format(
@@ -348,7 +358,7 @@ def save_motd(request):
 
 
 def is_admin_reviewer(request):
-    return acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+    return acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
 
 def filter_admin_review_for_legacy_queue(qs):
@@ -573,7 +583,7 @@ def review(request, addon, channel=None):
     if (
         channel == amo.RELEASE_CHANNEL_LISTED
         and content_review is False
-        and acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW)
+        and acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW)
         and not acl.is_reviewer(request.user, addon, allow_content_reviewers=False)
     ):
         return redirect('reviewers.review', 'content', addon.pk)
@@ -622,7 +632,7 @@ def review(request, addon, channel=None):
     form = ReviewForm(
         request.POST if request.method == 'POST' else None, helper=form_helper
     )
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
     approvals_info = None
     reports = Paginator(AbuseReport.objects.for_addon(addon), 5).page(1)
@@ -814,7 +824,7 @@ def review(request, addon, channel=None):
             acl.is_unlisted_addons_viewer_or_reviewer(request.user)
         ),
         acl_is_review_moderator=(
-            acl.action_allowed_user(request.user, amo.permissions.RATINGS_MODERATE)
+            acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE)
             and request.user.is_staff
         ),
         actions=actions,
@@ -895,8 +905,8 @@ def review_viewing(request):
         review_locks = cache.get_many(cache.get(user_key, {}))
         can_lock_more_reviews = len(
             review_locks
-        ) < amo.REVIEWER_REVIEW_LOCK_LIMIT or acl.action_allowed(
-            request, amo.permissions.REVIEWS_ADMIN
+        ) < amo.REVIEWER_REVIEW_LOCK_LIMIT or acl.action_allowed_for(
+            request.user, amo.permissions.REVIEWS_ADMIN
         )
         if can_lock_more_reviews or currently_viewing == user_id:
             set_reviewing_cache(addon_id, user_id)

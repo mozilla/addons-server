@@ -193,12 +193,12 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
         is_reviewer_and_listed_submission = (
             subscriber.channel == amo.RELEASE_CHANNEL_LISTED
             and instance.channel == amo.RELEASE_CHANNEL_LISTED
-            and any(acl.action_allowed_user(user, perm) for perm in listed_perms)
+            and any(acl.action_allowed_for(user, perm) for perm in listed_perms)
         )
         is_unlisted_reviewer_and_unlisted_submission = (
             subscriber.channel == amo.RELEASE_CHANNEL_UNLISTED
             and instance.channel == amo.RELEASE_CHANNEL_UNLISTED
-            and any(acl.action_allowed_user(user, perm) for perm in unlisted_perms)
+            and any(acl.action_allowed_for(user, perm) for perm in unlisted_perms)
         )
         if is_active_user and (
             is_reviewer_and_listed_submission

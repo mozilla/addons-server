@@ -15,19 +15,7 @@ def match_rules(rules, app, action):
     return False
 
 
-def action_allowed(request, permission):
-    """
-    Determines if the request user has permission to do a certain action.
-
-    `permission` is a tuple constant in constants.permissions.
-
-    Note: relies in user.groups_list, which is cached on the user instance the
-    first time it's accessed. See also action_allowed_user().
-    """
-    return action_allowed_user(request.user, permission)
-
-
-def action_allowed_user(user, permission):
+def action_allowed_for(user, permission):
     """
     Determines if the user has permission to do a certain action.
 
@@ -52,7 +40,7 @@ def experiments_submission_allowed(user, parsed_addon_data):
 
     See bug 1220097.
     """
-    return not parsed_addon_data.get('is_experiment', False) or action_allowed_user(
+    return not parsed_addon_data.get('is_experiment', False) or action_allowed_for(
         user, amo.permissions.EXPERIMENTS_SUBMIT
     )
 
@@ -64,7 +52,7 @@ def langpack_submission_allowed(user, parsed_addon_data):
     See https://github.com/mozilla/addons-server/issues/11788 and
     https://github.com/mozilla/addons-server/issues/11793
     """
-    return not parsed_addon_data.get('type') == amo.ADDON_LPAPP or action_allowed_user(
+    return not parsed_addon_data.get('type') == amo.ADDON_LPAPP or action_allowed_for(
         user, amo.permissions.LANGPACK_SUBMIT
     )
 
@@ -74,7 +62,7 @@ def reserved_guid_addon_submission_allowed(user, parsed_addon_data):
     by people with the right permission.
     """
     guid = parsed_addon_data.get('guid') or ''
-    return not guid.lower().endswith(amo.RESERVED_ADDON_GUIDS) or action_allowed_user(
+    return not guid.lower().endswith(amo.RESERVED_ADDON_GUIDS) or action_allowed_for(
         user, amo.permissions.SYSTEM_ADDON_SUBMIT
     )
 
@@ -85,7 +73,7 @@ def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
     """
     return not parsed_addon_data.get(
         'is_mozilla_signed_extension'
-    ) or action_allowed_user(user, amo.permissions.SYSTEM_ADDON_SUBMIT)
+    ) or action_allowed_for(user, amo.permissions.SYSTEM_ADDON_SUBMIT)
 
 
 def site_permission_addons_submission_allowed(user, parsed_addon_data):
@@ -93,7 +81,7 @@ def site_permission_addons_submission_allowed(user, parsed_addon_data):
     permission or the task user."""
     return (
         not parsed_addon_data.get('type') == amo.ADDON_SITE_PERMISSION
-        or action_allowed_user(user, amo.permissions.ADDONS_SUBMIT_SITE_PERMISSION)
+        or action_allowed_for(user, amo.permissions.ADDONS_SUBMIT_SITE_PERMISSION)
         or (user and user.pk == settings.TASK_USER_ID)
     )
 
@@ -129,7 +117,7 @@ def check_addon_ownership(
     if addon.is_deleted:
         return False
     # Users with 'Addons:Edit' can do anything.
-    if allow_addons_edit_permission and action_allowed_user(
+    if allow_addons_edit_permission and action_allowed_for(
         request.user, amo.permissions.ADDONS_EDIT
     ):
         return True
@@ -154,28 +142,28 @@ def is_listed_addons_reviewer(user, allow_content_reviewers=True):
     ]
     if allow_content_reviewers:
         permissions.append(amo.permissions.ADDONS_CONTENT_REVIEW)
-    allow_access = any(action_allowed_user(user, perm) for perm in permissions)
+    allow_access = any(action_allowed_for(user, perm) for perm in permissions)
     return allow_access
 
 
 def is_listed_addons_viewer_or_reviewer(user, allow_content_reviewers=True):
-    return action_allowed_user(
+    return action_allowed_for(
         user, amo.permissions.REVIEWER_TOOLS_VIEW
     ) or is_listed_addons_reviewer(user, allow_content_reviewers)
 
 
 def is_unlisted_addons_reviewer(user):
-    return action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
+    return action_allowed_for(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
 
 def is_unlisted_addons_viewer_or_reviewer(user):
-    return action_allowed_user(
+    return action_allowed_for(
         user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
     ) or is_unlisted_addons_reviewer(user)
 
 
 def is_static_theme_reviewer(user):
-    return action_allowed_user(user, amo.permissions.STATIC_THEMES_REVIEW)
+    return action_allowed_for(user, amo.permissions.STATIC_THEMES_REVIEW)
 
 
 def is_reviewer(user, addon, allow_content_reviewers=True):
@@ -219,7 +207,7 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
                 amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW,
             ]
         )
-    allow_access = any(action_allowed_user(user, perm) for perm in permissions)
+    allow_access = any(action_allowed_for(user, perm) for perm in permissions)
     return allow_access
 
 

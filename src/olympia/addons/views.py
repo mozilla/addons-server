@@ -229,8 +229,8 @@ class AddonViewSet(
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if self.request.user.is_authenticated and acl.action_allowed(
-            self.request, amo.permissions.ADDONS_VIEW_DELETED
+        if self.request.user.is_authenticated and acl.action_allowed_for(
+            self.request.user, amo.permissions.ADDONS_VIEW_DELETED
         ):
             qs = Addon.unfiltered.all()
         else:

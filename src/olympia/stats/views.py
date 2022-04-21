@@ -327,7 +327,7 @@ def check_stats_permission(request, addon):
 
     can_view = user.is_authenticated and (
         addon.has_author(user)
-        or acl.action_allowed(request, amo.permissions.STATS_VIEW)
+        or acl.action_allowed_for(request.user, amo.permissions.STATS_VIEW)
     )
     if not can_view:
         raise PermissionDenied

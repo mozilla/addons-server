@@ -1170,7 +1170,7 @@ def version_edit(request, addon_id, addon, version_id):
             )
             timer.log_interval('1.form_populated')
 
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
     if not static_theme and addon.accepts_compatible_apps():
         qs = version.apps.all().select_related('min', 'max')
@@ -1331,7 +1331,7 @@ def check_validation_override(request, form, addon, version):
 def version_list(request, addon_id, addon):
     qs = addon.versions.order_by('-created')
     versions = amo_utils.paginate(request, qs)
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
     data = {
         'addon': addon,
@@ -1545,7 +1545,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
         ):
             addon.update(status=amo.STATUS_NOMINATED)
         return redirect(next_view, *url_args)
-    is_admin = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
     if addon:
         channel_choice_text = (
             forms.DistributionChoiceForm().LISTED_LABEL

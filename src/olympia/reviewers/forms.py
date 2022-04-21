@@ -227,7 +227,7 @@ class ReviewForm(forms.Form):
         user = self.helper.handler.user
         rejection_period_widget_attributes = {}
         rejection_period = self.fields['delayed_rejection_days']
-        if not acl.action_allowed_user(user, amo.permissions.REVIEWS_ADMIN):
+        if not acl.action_allowed_for(user, amo.permissions.REVIEWS_ADMIN):
             rejection_period.min_value = rejection_period.initial
             rejection_period.max_value = rejection_period.initial
             rejection_period_widget_attributes['readonly'] = 'readonly'

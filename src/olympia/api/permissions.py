@@ -16,7 +16,7 @@ from .utils import is_gate_active
 
 class GroupPermission(BasePermission):
     """
-    Allow access depending on the result of action_allowed_user().
+    Allow access depending on the result of action_allowed_for().
     """
 
     def __init__(self, permission):
@@ -25,7 +25,7 @@ class GroupPermission(BasePermission):
     def has_permission(self, request, view):
         if not request.user.is_authenticated:
             return False
-        return acl.action_allowed_user(request.user, self.permission)
+        return acl.action_allowed_for(request.user, self.permission)
 
     def has_object_permission(self, request, view, obj):
         return self.has_permission(request, view)
@@ -187,7 +187,7 @@ class AllowListedViewerOrReviewer(BasePermission):
     def has_object_permission(self, request, view, obj):
         can_access_because_viewer = (
             request.method in SAFE_METHODS
-            and acl.action_allowed_user(request.user, permissions.REVIEWER_TOOLS_VIEW)
+            and acl.action_allowed_for(request.user, permissions.REVIEWER_TOOLS_VIEW)
         )
         can_access_because_listed_reviewer = obj.has_listed_versions(
             include_deleted=True
@@ -216,7 +216,7 @@ class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
     def has_object_permission(self, request, view, obj):
         can_access_because_unlisted_viewer = (
             request.method in SAFE_METHODS
-            and acl.action_allowed_user(
+            and acl.action_allowed_for(
                 request.user, permissions.REVIEWER_TOOLS_UNLISTED_VIEW
             )
         )

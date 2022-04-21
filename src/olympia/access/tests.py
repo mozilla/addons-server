@@ -10,8 +10,7 @@ from olympia.amo.tests import addon_factory, TestCase, req_factory_factory, user
 from olympia.users.models import UserProfile
 
 from .acl import (
-    action_allowed,
-    action_allowed_user,
+    action_allowed_for,
     check_addon_ownership,
     is_listed_addons_reviewer,
     is_static_theme_reviewer,
@@ -70,11 +69,8 @@ def test_match_rules():
 
 
 def test_anonymous_user():
-    fake_request = req_factory_factory('/')
-    assert not action_allowed(fake_request, amo.permissions.ANY_ADMIN)
-
     # This should not cause an exception (and obviously not return True either)
-    assert not action_allowed_user(None, amo.permissions.ANY_ADMIN)
+    assert not action_allowed_for(None, amo.permissions.ANY_ADMIN)
 
 
 class ACLTestCase(TestCase):

@@ -35,13 +35,13 @@
       <li><a href="{{ addon.get_url_path() }}">
         {{ _('View Product Page') }}</a></li>
       {% endif %}
-      {% if action_allowed(amo.permissions.ADDONS_EDIT) %}
+      {% if action_allowed_for(request.user, amo.permissions.ADDONS_EDIT) %}
         <li><a href="{{ url('reviewers.review', addon.pk) }}">
           {{ _('Listed Review Page') }}</a></li>
         <li><a href="{{ url('reviewers.review', 'unlisted', addon.pk) }}">
           {{ _('Unlisted Review Page') }}</a></li>
       {% endif %}
-      {% if action_allowed(amo.permissions.REVIEWS_ADMIN) %}
+      {% if action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN) %}
         <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">
           {{ _('Admin Manage') }}</a></li>
       {% endif %}

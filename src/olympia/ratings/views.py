@@ -126,7 +126,9 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
     def check_throttles(self, request):
         # Let users with Ratings:BypassThrottling bypass rate-limiting
         # completely. Used by QA automated release tests on stage.
-        if acl.action_allowed(request, amo.permissions.RATINGS_BYPASS_THROTTLING):
+        if acl.action_allowed_for(
+            request.user, amo.permissions.RATINGS_BYPASS_THROTTLING
+        ):
             return
         super().check_throttles(request)
 
@@ -328,7 +330,9 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
     def get_queryset(self):
         requested = self.request.GET.get('filter', '').split(',')
-        has_addons_edit = acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT)
+        has_addons_edit = acl.action_allowed_for(
+            self.request.user, amo.permissions.ADDONS_EDIT
+        )
 
         # Add this as a property of the view, because we need to pass down the
         # information to the serializer to show/hide delete replies.

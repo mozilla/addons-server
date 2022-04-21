@@ -65,7 +65,7 @@
       {% if version.needs_human_review %}
         <div><strong class="risk-high">
           {{ _('Flagged by scanners') }}
-          {%- if request.user.is_staff and action_allowed(amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW) %}
+          {%- if request.user.is_staff and action_allowed_for(request.user, amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW) %}
             {% for result in version.scannerresults.all() -%}
               {%- if loop.first %}({% endif -%}
               <a href="{{ url('admin:scanners_scannerresult_change', result.pk ) }}">{{ result.get_scanner_display() }}</a>

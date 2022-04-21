@@ -191,7 +191,7 @@ def download_source(request, version_id):
     # Channel doesn't matter, source code is only available to admin reviewers
     # or developers of the add-on. If the add-on, version or file is deleted or
     # disabled, then only admins can access.
-    has_permission = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+    has_permission = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
     if (
         addon.status != amo.STATUS_DISABLED

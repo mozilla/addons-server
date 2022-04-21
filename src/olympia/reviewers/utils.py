@@ -539,8 +539,8 @@ class ReviewHelper:
         # Is the current user an appropriate reviewer, not only for this kind
         # of add-on, but also for the state the add-on is in ? (Allows more
         # impactful actions).
-        is_appropriate_reviewer = acl.action_allowed_user(request.user, permission)
-        is_appropriate_reviewer_post_review = acl.action_allowed_user(
+        is_appropriate_reviewer = acl.action_allowed_for(request.user, permission)
+        is_appropriate_reviewer_post_review = acl.action_allowed_for(
             request.user, permission_post_review
         )
 

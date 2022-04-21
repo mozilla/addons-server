@@ -1022,7 +1022,7 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
             or self.cleaned_data['upload'].validation_timeout
         ) and not (
             self.cleaned_data['admin_override_validation']
-            and acl.action_allowed(self.request, amo.permissions.REVIEWS_ADMIN)
+            and acl.action_allowed_for(self.request.user, amo.permissions.REVIEWS_ADMIN)
         ):
             raise forms.ValidationError(
                 gettext('There was an error with your upload. Please try again.')
