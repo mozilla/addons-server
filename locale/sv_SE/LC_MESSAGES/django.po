@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 22:29+0000\n"
+"PO-Revision-Date: 2022-04-21 23:09+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4570,7 +4570,7 @@ msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "Sekretess och antispårning"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4579,7 +4579,7 @@ msgstr "Kreativitetstillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search"
-msgstr ""
+msgstr "Bildsökning"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4797,7 +4797,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Saknade \"upload\"-nyckel i multipart fildata."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Saknar argument \"channel\"."
 
 msgid "User"
 msgstr "Användare"
@@ -4952,7 +4952,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Har automatisk godkännande inaktiverad/försenad flagga satt"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Är i en marknadsförd tilläggsgrupp som kräver förhandsgranskning"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Försenad eftersom det är den första listade versionen"
@@ -5777,13 +5777,13 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "Ogiltigt tilläggs-ID i URL eller paket"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Du kan inte lägga till listade versioner till ett tillägg som är satt till tillståndet \"Invisible\"."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Du kan inte lägga till en listad version till detta tillägg via API:t på grund av saknad metadata. Skicka in via hemsidan"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Ingen uppladdad fil för det tillägget och versionen."
 
 msgid "Overview"
 msgstr "Översikt"
@@ -6206,6 +6206,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Följande författare har lagts till i ditt tillägg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6241,6 +6244,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Följande författare har ändrats för ditt tillägg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6248,6 +6254,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Följande författare har tagits bort från tillägget %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
