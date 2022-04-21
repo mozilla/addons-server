@@ -2,6 +2,8 @@ from unittest import mock
 
 from django.core import mail
 
+from elasticsearch_dsl import Q, Search
+
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.indexers import AddonIndexer
@@ -11,8 +13,6 @@ from olympia.amo.tests import ESTestCase, TestCase, addon_factory, user_factory
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.amo.search import get_es
 from olympia.users.models import UserProfile
-
-from elasticsearch_dsl import Q, Search
 
 
 class TestRatingModel(TestCase):

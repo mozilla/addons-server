@@ -672,7 +672,9 @@ class AddonSearchView(ListAPIView):
                 using=amo.search.get_es(),
                 index=AddonIndexer.get_index_alias(),
             )
-            .extra(_source={'excludes': AddonIndexer.hidden_fields})
+            .extra(
+                _source={'excludes': AddonIndexer.hidden_fields}, track_total_hits=True
+            )
             .params(search_type='dfs_query_then_fetch')
         )
 
@@ -994,6 +996,15 @@ class AddonRecommendationView(AddonSearchView):
             )
         )
 
+    def get_results_count(self, results):
+        try:
+            # Elasticsearch 7.x and higher
+            total = results.hits.total['value']
+        except TypeError:
+            # Elasticsearch 6.x and lower
+            total = results.hits.total
+        return int(total)
+
     def filter_queryset(self, qs):
         qs = super().filter_queryset(qs)
         guid_param = self.request.GET.get('guid')
@@ -1001,17 +1012,18 @@ class AddonRecommendationView(AddonSearchView):
         guids, self.ab_outcome, self.fallback_reason = get_addon_recommendations(
             guid_param, taar_enable
         )
-        results_qs = qs.query(query.Bool(must=[Q('terms', guid=guids)]))
-
-        results_qs.execute()  # To cache the results.
-        if results_qs.count() != 4 and is_outcome_recommended(self.ab_outcome):
+        recommended_qs = qs.query(query.Bool(must=[Q('terms', guid=guids)]))
+        results = recommended_qs.execute()
+        if self.get_results_count(results) != 4 and is_outcome_recommended(
+            self.ab_outcome
+        ):
             (
                 guids,
                 self.ab_outcome,
                 self.fallback_reason,
             ) = get_addon_recommendations_invalid()
             return qs.query(query.Bool(must=[Q('terms', guid=guids)]))
-        return results_qs
+        return results
 
     def paginate_queryset(self, queryset):
         # We don't need pagination for the fixed number of results.
