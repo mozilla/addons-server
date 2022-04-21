@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 15:24+0000\n"
+"PO-Revision-Date: 2022-04-21 15:34+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -146,7 +146,7 @@ msgid "- Add-on not on AMO -"
 msgstr "- 附加组件不在 AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "超出单个应用程序的最大分类数（{MAX_CATEGORIES}）"
 
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
@@ -182,7 +182,7 @@ msgid "Invalid app specified"
 msgstr "指定的应用无效"
 
 msgid "Unknown app version specified"
-msgstr "指定的应用版本未知"
+msgstr "指定的应用程序版本未知"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -217,7 +217,7 @@ msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "需设置附加组件元数据以创建上架版本：{missing_addon_metadata}。"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -515,7 +515,7 @@ msgstr "找不到对应 GUID %(guid)s 的屏蔽记录"
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "GUID 为 %(guid)s 的附加组件不存在"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "由于最低或最高版本变动，要更新的屏蔽内容不同。"
@@ -683,7 +683,7 @@ msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} 已要求高级审核。"
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "此附加组件已被标记为管理员审核。它仍处于我们的审核队列，但需要由我们的管理员进行审查。审核可能比平时消耗更多时间。"
 
 msgid "Comment on {addon} {version}."
 msgstr "对 {addon} {version} 的评论。"
@@ -823,7 +823,7 @@ msgstr "{file} 已签名。"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "已删除 id 为 {0} 且 GUID 为 {1} 的附加组件"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} 已从初步审核迁移。"
@@ -4884,7 +4884,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "已设置禁用/推迟自动批准"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "在推广附加组件组中，需要预先审查"
 
 msgid "Delayed because it's the first listed version"
 msgstr "因为是首次上架的版本，已推迟"
@@ -5709,7 +5709,7 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "URL 或包中的附加组件 ID 无效"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "您不能将上架版本添加到状态设为“不可见”的附加组件。"
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr "由于缺少元数据，您无法通过 API 添加此附加组件的上架版本。请通过网站提交。"
