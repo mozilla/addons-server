@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 19:20+0000\n"
+"PO-Revision-Date: 2022-04-21 19:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -223,7 +223,7 @@ msgid "This slug cannot be used. Please choose another."
 msgstr "Iste alias breve non pote esser usate. Elige un altero."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Iste campo es necesse pro additivos con versiones publicate."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o Firefox."
@@ -238,7 +238,7 @@ msgid "This field, or custom_license, is required for listed versions."
 msgstr "Isto campo, o custom_license, es necesse pro versiones publicate."
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Errate typo de additivo pro iste licentia."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Le licentias personalisate non es supportate pro themas."
@@ -525,7 +525,7 @@ msgstr "Blocada con GUID %(guid)s non trovate"
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Le additivo con GUID %(guid)s non existe"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Le blocadas a actualisar es differente perque le version minime o maxime ha cambiate."
@@ -694,6 +694,8 @@ msgstr "Super revision de {addon} {version} demandate."
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Le additivo ha essite signalate pro recension de administrator. Illo es ancora in nostre cauda de revision, ma illo debera esser controlate per un de nostre revisores administrator. Le revision pote"
+" prender plus tempore que le usual."
 
 msgid "Comment on {addon} {version}."
 msgstr "Commento sur {addon} {version}."
