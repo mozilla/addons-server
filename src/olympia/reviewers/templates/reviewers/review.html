@@ -231,7 +231,7 @@
             <label for="notify_new_listed_versions">{{ _('Notify me about new listed versions') }}</label>
         </li>
         {% endif %}
-        {% if acl_check_unlisted_addons_viewer_or_reviewer %}
+        {% if acl_is_unlisted_addons_viewer_or_reviewer %}
         <li>
           <input type="checkbox" id="notify_new_unlisted_versions"
             data-api-url-subscribe-unlisted="{{ drf_url('reviewers-addon-subscribe-unlisted', addon.pk) }}"
@@ -408,7 +408,7 @@
     {% if unlisted and addon.has_listed_versions(include_deleted=True) %}
       <li><a href="{{ url('reviewers.review', addon.id) }}">{{ _('Listed Review Page') }}</a></li>
     {# On the listed review page, show link to unlisted version review if necessary and allowed #}
-    {% elif not unlisted and acl_check_unlisted_addons_viewer_or_reviewer and addon.has_unlisted_versions(include_deleted=True) %}
+    {% elif not unlisted and acl_is_unlisted_addons_viewer_or_reviewer and addon.has_unlisted_versions(include_deleted=True) %}
       <li><a href="{{ url('reviewers.review', 'unlisted', addon.id) }}">{{ _('Unlisted Review Page') }}</a></li>
     {% endif %}
 

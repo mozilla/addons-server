@@ -534,7 +534,7 @@ class ReviewHelper:
             permission_post_review = amo.permissions.REVIEWS_ADMIN
 
         # Is the current user a reviewer for this kind of add-on ?
-        is_reviewer = acl.is_reviewer(request, self.addon)
+        is_reviewer = acl.is_reviewer(request.user, self.addon)
 
         # Is the current user an appropriate reviewer, not only for this kind
         # of add-on, but also for the state the add-on is in ? (Allows more

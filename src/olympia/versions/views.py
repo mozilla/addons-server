@@ -74,9 +74,9 @@ def download_file(request, file_id, download_type=None, **kwargs):
 
     def is_appropriate_reviewer(addon, channel):
         return (
-            acl.is_reviewer(request, addon)
+            acl.is_reviewer(request.user, addon)
             if channel == amo.RELEASE_CHANNEL_LISTED
-            else acl.check_unlisted_addons_viewer_or_reviewer(request)
+            else acl.is_unlisted_addons_viewer_or_reviewer(request.user)
         )
 
     file_ = get_object_or_404(File.objects, pk=file_id)

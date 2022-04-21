@@ -252,7 +252,7 @@ class AddonViewSet(
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance', None)
         request = self.request
-        if acl.check_unlisted_addons_viewer_or_reviewer(request) or (
+        if acl.is_unlisted_addons_viewer_or_reviewer(request.user) or (
             obj
             and request.user.is_authenticated
             and obj.authors.filter(pk=request.user.pk).exists()

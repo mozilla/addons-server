@@ -187,11 +187,11 @@ class AllowListedViewerOrReviewer(BasePermission):
     def has_object_permission(self, request, view, obj):
         can_access_because_viewer = (
             request.method in SAFE_METHODS
-            and acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW)
+            and acl.action_allowed_user(request.user, permissions.REVIEWER_TOOLS_VIEW)
         )
         can_access_because_listed_reviewer = obj.has_listed_versions(
             include_deleted=True
-        ) and acl.is_reviewer(request, obj)
+        ) and acl.is_reviewer(request.user, obj)
 
         return can_access_because_viewer or can_access_because_listed_reviewer
 
@@ -211,15 +211,17 @@ class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
     """
 
     def has_permission(self, request, view):
-        return acl.check_unlisted_addons_viewer_or_reviewer(request)
+        return acl.is_unlisted_addons_viewer_or_reviewer(request.user)
 
     def has_object_permission(self, request, view, obj):
         can_access_because_unlisted_viewer = (
             request.method in SAFE_METHODS
-            and acl.action_allowed(request, permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
+            and acl.action_allowed_user(
+                request.user, permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+            )
         )
-        can_access_because_unlisted_reviewer = acl.check_unlisted_addons_reviewer(
-            request
+        can_access_because_unlisted_reviewer = acl.is_unlisted_addons_reviewer(
+            request.user
         )
         has_unlisted_or_no_listed = obj.has_unlisted_versions(
             include_deleted=True

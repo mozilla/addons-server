@@ -565,7 +565,7 @@ def review(request, addon, channel=None):
         channel == amo.RELEASE_CHANNEL_UNLISTED
         or not addon.has_listed_versions(include_deleted=True)
     )
-    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
+    if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
 
     # Are we looking at a listed review page while only having content review
@@ -574,7 +574,7 @@ def review(request, addon, channel=None):
         channel == amo.RELEASE_CHANNEL_LISTED
         and content_review is False
         and acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW)
-        and not acl.is_reviewer(request, addon, allow_content_reviewers=False)
+        and not acl.is_reviewer(request.user, addon, allow_content_reviewers=False)
     ):
         return redirect('reviewers.review', 'content', addon.pk)
 
@@ -809,12 +809,12 @@ def review(request, addon, channel=None):
     ctx = context(
         # Used for reviewer subscription check, don't use global `is_reviewer`
         # since that actually is `is_user_any_kind_of_reviewer`.
-        acl_is_reviewer=acl.is_reviewer(request, addon),
-        acl_check_unlisted_addons_viewer_or_reviewer=(
-            acl.check_unlisted_addons_viewer_or_reviewer(request)
+        acl_is_reviewer=acl.is_reviewer(request.user, addon),
+        acl_is_unlisted_addons_viewer_or_reviewer=(
+            acl.is_unlisted_addons_viewer_or_reviewer(request.user)
         ),
         acl_is_review_moderator=(
-            acl.action_allowed(request, amo.permissions.RATINGS_MODERATE)
+            acl.action_allowed_user(request.user, amo.permissions.RATINGS_MODERATE)
             and request.user.is_staff
         ),
         actions=actions,
@@ -970,17 +970,17 @@ def reviewlog(request):
     form = ReviewLogForm(data)
 
     approvals = ActivityLog.objects.review_log()
-    if not acl.check_unlisted_addons_viewer_or_reviewer(request):
+    if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         # Only display logs related to unlisted versions to users with the
         # right permission.
         approvals = approvals.exclude(
             versionlog__version__channel=amo.RELEASE_CHANNEL_UNLISTED
         )
-    if not acl.check_listed_addons_reviewer(request):
+    if not acl.is_listed_addons_reviewer(request.user):
         approvals = approvals.exclude(
             versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON
         )
-    if not acl.check_static_theme_reviewer(request):
+    if not acl.is_static_theme_reviewer(request.user):
         approvals = approvals.exclude(
             versionlog__version__addon__type=amo.ADDON_STATICTHEME
         )
@@ -1032,7 +1032,7 @@ def whiteboard(request, addon, channel):
         channel == amo.RELEASE_CHANNEL_UNLISTED
         or not addon.has_listed_versions(include_deleted=True)
     )
-    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
+    if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
 
     whiteboard, _ = Whiteboard.objects.get_or_create(pk=addon.pk)
@@ -1070,7 +1070,7 @@ def unlisted_pending_manual_approval(request):
 
 def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
     unlisted_only = not addon.has_listed_versions(include_deleted=True)
-    if unlisted_only and not acl.check_unlisted_addons_viewer_or_reviewer(request):
+    if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
 
     if not eula_or_privacy:
@@ -1139,7 +1139,7 @@ def download_git_stored_file(request, version_id, filename):
 
     if version.channel == amo.RELEASE_CHANNEL_LISTED:
         is_owner = acl.check_addon_ownership(request, addon, allow_developer=True)
-        if not (acl.is_reviewer(request, addon) or is_owner):
+        if not (acl.is_reviewer(request.user, addon) or is_owner):
             raise PermissionDenied
     else:
         if not acl.author_or_unlisted_viewer_or_reviewer(request, addon):
@@ -1328,9 +1328,9 @@ class AddonReviewerViewSet(GenericViewSet):
         addon = get_object_or_404(Addon.unfiltered.id_or_slug(kwargs['pk']))
         file = get_object_or_404(File, version__addon=addon, id=kwargs['file_id'])
         if file.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
-            if not acl.check_unlisted_addons_viewer_or_reviewer(request):
+            if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
                 raise PermissionDenied
-        elif not acl.is_reviewer(request, addon):
+        elif not acl.is_reviewer(request.user, addon):
             raise PermissionDenied
         try:
             result = file.validation
@@ -1375,8 +1375,8 @@ class ReviewAddonVersionMixin:
             # Allow viewing unlisted for reviewers with permissions or
             # addon authors.
             addon = self.get_addon_object()
-            self.can_view_unlisted = acl.check_unlisted_addons_viewer_or_reviewer(
-                self.request
+            self.can_view_unlisted = acl.is_unlisted_addons_viewer_or_reviewer(
+                self.request.user
             ) or addon.has_author(self.request.user)
         return self.can_view_unlisted
 

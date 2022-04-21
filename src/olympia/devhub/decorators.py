@@ -62,9 +62,9 @@ def dev_required(
                             file__id=file_id, channel=amo.RELEASE_CHANNEL_UNLISTED
                         ).exists()
                         has_required_permission = (
-                            acl.check_unlisted_addons_viewer_or_reviewer(request)
+                            acl.is_unlisted_addons_viewer_or_reviewer(request.user)
                             if is_unlisted
-                            else (acl.check_listed_addons_viewer_or_reviewer(request))
+                            else (acl.is_listed_addons_viewer_or_reviewer(request.user))
                         )
                         if has_required_permission:
                             return fun()

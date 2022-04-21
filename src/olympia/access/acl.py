@@ -129,8 +129,8 @@ def check_addon_ownership(
     if addon.is_deleted:
         return False
     # Users with 'Addons:Edit' can do anything.
-    if allow_addons_edit_permission and action_allowed(
-        request, amo.permissions.ADDONS_EDIT
+    if allow_addons_edit_permission and action_allowed_user(
+        request.user, amo.permissions.ADDONS_EDIT
     ):
         return True
     # Only admins can edit admin-disabled addons.
@@ -147,38 +147,38 @@ def check_addon_ownership(
     return addon.addonuser_set.filter(user=request.user, role__in=roles).exists()
 
 
-def check_listed_addons_reviewer(request, allow_content_reviewers=True):
+def is_listed_addons_reviewer(user, allow_content_reviewers=True):
     permissions = [
         amo.permissions.ADDONS_REVIEW,
         amo.permissions.ADDONS_RECOMMENDED_REVIEW,
     ]
     if allow_content_reviewers:
         permissions.append(amo.permissions.ADDONS_CONTENT_REVIEW)
-    allow_access = any(action_allowed(request, perm) for perm in permissions)
+    allow_access = any(action_allowed_user(user, perm) for perm in permissions)
     return allow_access
 
 
-def check_listed_addons_viewer_or_reviewer(request, allow_content_reviewers=True):
-    return action_allowed(
-        request, amo.permissions.REVIEWER_TOOLS_VIEW
-    ) or check_listed_addons_reviewer(request, allow_content_reviewers)
+def is_listed_addons_viewer_or_reviewer(user, allow_content_reviewers=True):
+    return action_allowed_user(
+        user, amo.permissions.REVIEWER_TOOLS_VIEW
+    ) or is_listed_addons_reviewer(user, allow_content_reviewers)
 
 
-def check_unlisted_addons_reviewer(request):
-    return action_allowed(request, amo.permissions.ADDONS_REVIEW_UNLISTED)
+def is_unlisted_addons_reviewer(user):
+    return action_allowed_user(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
 
-def check_unlisted_addons_viewer_or_reviewer(request):
-    return action_allowed(
-        request, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
-    ) or check_unlisted_addons_reviewer(request)
+def is_unlisted_addons_viewer_or_reviewer(user):
+    return action_allowed_user(
+        user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+    ) or is_unlisted_addons_reviewer(user)
 
 
-def check_static_theme_reviewer(request):
-    return action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW)
+def is_static_theme_reviewer(user):
+    return action_allowed_user(user, amo.permissions.STATIC_THEMES_REVIEW)
 
 
-def is_reviewer(request, addon, allow_content_reviewers=True):
+def is_reviewer(user, addon, allow_content_reviewers=True):
     """Return True if the user is an addons reviewer, or a theme reviewer
     and the addon is a theme.
 
@@ -187,9 +187,9 @@ def is_reviewer(request, addon, allow_content_reviewers=True):
     reviewer.
     """
     if addon.type == amo.ADDON_STATICTHEME:
-        return check_static_theme_reviewer(request)
-    return check_listed_addons_reviewer(
-        request, allow_content_reviewers=allow_content_reviewers
+        return is_static_theme_reviewer(user)
+    return is_listed_addons_reviewer(
+        user, allow_content_reviewers=allow_content_reviewers
     )
 
 
@@ -224,7 +224,7 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
 
 
 def author_or_unlisted_viewer_or_reviewer(request, addon):
-    return check_unlisted_addons_viewer_or_reviewer(request) or check_addon_ownership(
+    return is_unlisted_addons_viewer_or_reviewer(request.user) or check_addon_ownership(
         request,
         addon,
         allow_addons_edit_permission=False,

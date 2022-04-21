@@ -13,10 +13,10 @@ from .acl import (
     action_allowed,
     action_allowed_user,
     check_addon_ownership,
-    check_listed_addons_reviewer,
-    check_static_theme_reviewer,
-    check_unlisted_addons_reviewer,
-    check_unlisted_addons_viewer_or_reviewer,
+    is_listed_addons_reviewer,
+    is_static_theme_reviewer,
+    is_unlisted_addons_reviewer,
+    is_unlisted_addons_viewer_or_reviewer,
     is_reviewer,
     is_user_any_kind_of_reviewer,
     match_rules,
@@ -264,59 +264,59 @@ class TestCheckReviewer(TestCase):
 
     def test_no_perm(self):
         request = req_factory_factory('noop', user=self.user)
-        assert not check_listed_addons_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
+        assert not is_listed_addons_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
         assert not is_user_any_kind_of_reviewer(request.user)
-        assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
-        assert not is_reviewer(request, self.statictheme)
+        assert not is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
+        assert not is_reviewer(self.user, self.statictheme)
 
     def test_perm_addons(self):
         self.grant_permission(self.user, 'Addons:Review')
         request = req_factory_factory('noop', user=self.user)
-        assert check_listed_addons_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
+        assert is_listed_addons_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_unlisted_addons(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         request = req_factory_factory('noop', user=self.user)
-        assert not check_listed_addons_reviewer(request)
-        assert check_unlisted_addons_reviewer(request)
-        assert check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
+        assert not is_listed_addons_reviewer(self.user)
+        assert is_unlisted_addons_reviewer(self.user)
+        assert is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_static_themes(self):
         self.grant_permission(self.user, 'Addons:ThemeReview')
         request = req_factory_factory('noop', user=self.user)
-        assert not check_listed_addons_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_unlisted_addons_viewer_or_reviewer(request)
-        assert check_static_theme_reviewer(request)
+        assert not is_listed_addons_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert is_static_theme_reviewer(self.user)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_is_reviewer_for_addon_reviewer(self):
         """An addon reviewer is not necessarily a theme reviewer."""
         self.grant_permission(self.user, 'Addons:Review')
         request = req_factory_factory('noop', user=self.user)
-        assert is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.statictheme)
+        assert is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.statictheme)
         assert is_user_any_kind_of_reviewer(request.user)
-        assert is_reviewer(request, self.addon, allow_content_reviewers=False)
+        assert is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_is_reviewer_for_static_theme_reviewer(self):
         self.grant_permission(self.user, 'Addons:ThemeReview')
         request = req_factory_factory('noop', user=self.user)
-        assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
-        assert is_reviewer(request, self.statictheme)
-        assert is_reviewer(request, self.statictheme, allow_content_reviewers=False)
-        assert check_static_theme_reviewer(request)
+        assert not is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
+        assert is_reviewer(self.user, self.statictheme)
+        assert is_reviewer(self.user, self.statictheme, allow_content_reviewers=False)
+        assert is_static_theme_reviewer(self.user)
         assert is_user_any_kind_of_reviewer(request.user)
 
     def test_perm_content_review(self):
@@ -324,27 +324,29 @@ class TestCheckReviewer(TestCase):
         request = req_factory_factory('noop', user=self.user)
         assert is_user_any_kind_of_reviewer(request.user)
 
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.statictheme)
-        assert not is_reviewer(request, self.statictheme, allow_content_reviewers=False)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert not is_reviewer(self.user, self.statictheme)
+        assert not is_reviewer(
+            self.user, self.statictheme, allow_content_reviewers=False
+        )
 
-        assert check_listed_addons_reviewer(request)
-        assert is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
+        assert is_listed_addons_reviewer(self.user)
+        assert is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_perm_reviewertools_view(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
         request = req_factory_factory('noop', user=self.user)
         assert is_user_any_kind_of_reviewer(request.user, allow_viewers=True)
         assert not is_user_any_kind_of_reviewer(request.user)
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.statictheme)
-        assert not check_listed_addons_reviewer(request)
-        assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert not is_reviewer(self.user, self.statictheme)
+        assert not is_listed_addons_reviewer(self.user)
+        assert not is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_perm_reviewertools_unlisted_view(self):
         self.make_addon_unlisted(self.addon)
@@ -353,14 +355,14 @@ class TestCheckReviewer(TestCase):
         request = req_factory_factory('noop', user=self.user)
         assert is_user_any_kind_of_reviewer(request.user, allow_viewers=True)
         assert not is_user_any_kind_of_reviewer(request.user)
-        assert check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.statictheme)
-        assert not check_listed_addons_reviewer(request)
-        assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
+        assert is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert not is_reviewer(self.user, self.statictheme)
+        assert not is_listed_addons_reviewer(self.user)
+        assert not is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
 
 system_guids = pytest.mark.parametrize(
