@@ -30,7 +30,7 @@ from olympia.users.models import (
 )
 
 from ..utils import (
-    generate_delete_token,
+    DeleteTokenSigner,
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
@@ -43,7 +43,6 @@ from ..utils import (
     TAAR_LITE_OUTCOME_REAL_FAIL,
     TAAR_LITE_OUTCOME_REAL_SUCCESS,
     TAAR_LITE_FALLBACK_REASON_INVALID,
-    validate_delete_token,
     verify_mozilla_trademark,
 )
 
@@ -621,22 +620,23 @@ class TestSitePermissionVersionCreator(TestCase):
 
 
 @freeze_time(as_kwarg='frozen_time')
-def test_generate_delete_token(frozen_time=None):
+def test_delete_token_signer(frozen_time=None):
+    signer = DeleteTokenSigner()
     addon_id = 1234
-    token = generate_delete_token(addon_id)
+    token = signer.generate(addon_id)
     # generated token is valid
-    assert validate_delete_token(token, addon_id)
+    assert signer.validate(token, addon_id)
     # generating with the same addon_id at the same time returns the same value
-    assert token == generate_delete_token(addon_id)
+    assert token == signer.generate(addon_id)
     # generating with a different addon_id at the same time returns a different value
-    assert token != generate_delete_token(addon_id + 1)
+    assert token != signer.generate(addon_id + 1)
     # and the addon_id must match for it to be a valid token
-    assert not validate_delete_token(token, addon_id + 1)
+    assert not signer.validate(token, addon_id + 1)
 
     # token is valid for 60 seconds so after 59 is still valid
     frozen_time.tick(timedelta(seconds=59))
-    assert validate_delete_token(token, addon_id)
+    assert signer.validate(token, addon_id)
 
     # but not after 60 seconds
     frozen_time.tick(timedelta(seconds=2))
-    assert not validate_delete_token(token, addon_id)
+    assert not signer.validate(token, addon_id)

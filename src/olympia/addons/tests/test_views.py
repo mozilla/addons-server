@@ -81,7 +81,7 @@ from ..serializers import (
     DeveloperVersionSerializer,
     LicenseSerializer,
 )
-from ..utils import generate_addon_guid, generate_delete_token
+from ..utils import DeleteTokenSigner, generate_addon_guid
 from ..views import (
     DEFAULT_FIND_REPLACEMENT_PATH,
     FIND_REPLACEMENT_SRC,
@@ -1891,14 +1891,16 @@ class TestAddonViewSetDelete(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(delete_confirm_url)
         assert response.status_code == 200
-        assert response.data == {'delete_confirm': generate_delete_token(self.addon.id)}
+        assert response.data == {
+            'delete_confirm': DeleteTokenSigner().generate(self.addon.id)
+        }
 
         # confirm we didn't delete the addon already
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
 
     def _perform_delete_request(self, status_code):
-        token = generate_delete_token(self.addon.id)
+        token = DeleteTokenSigner().generate(self.addon.id)
         response = self.client.delete(f'{self.url}?delete_confirm={token}')
         assert response.status_code == status_code, response.content
         self.addon.reload()

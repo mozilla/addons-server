@@ -2,7 +2,6 @@ import uuid
 import json
 import zipfile
 
-from datetime import datetime, timedelta
 from io import BytesIO
 from urllib.parse import urlparse
 
@@ -10,11 +9,10 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.core.files.base import File
+from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
 from django.db.transaction import atomic
 from django.utils import translation
 from django.utils.translation import gettext
-
-import jwt
 
 from django_statsd.clients import statsd
 
@@ -417,31 +415,17 @@ def fetch_translations_from_addon(addon, properties):
     return {str(value) for value in Translation.objects.filter(id__in=translation_ids)}
 
 
-def generate_delete_token(addon_id):
-    token_payload = {
-        'exp': datetime.utcnow() + timedelta(seconds=60),
-        'addon_id': addon_id,
-        'action': 'delete',
-    }
-    return jwt.encode(token_payload, settings.SECRET_KEY)
+class DeleteTokenSigner(TimestampSigner):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **{'salt': 'addon-delete', **kwargs})
 
+    def generate(self, addon_id):
+        return self.sign_object({'addon_id': addon_id})
 
-def validate_delete_token(token, addon_id):
-    try:
-        token_payload = jwt.decode(
-            token,
-            settings.SECRET_KEY,
-            algorithms=(settings.JWT_AUTH['JWT_ALGORITHM'],),
-            options={
-                'verify_signature': True,
-                'verify_exp': True,
-                'verify_nbf': False,
-                'verify_iat': False,
-                'verify_aud': False,
-                'require': ['exp'],
-            },
-        )
-    except Exception as e:
-        log.debug(e)
-        return False
-    return token_payload['addon_id'] == addon_id and token_payload['action'] == 'delete'
+    def validate(self, token, addon_id):
+        try:
+            token_payload = self.unsign_object(token, max_age=60)
+        except (SignatureExpired, BadSignature) as exc:
+            log.debug(exc)
+            return False
+        return token_payload['addon_id'] == addon_id

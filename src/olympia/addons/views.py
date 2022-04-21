@@ -88,11 +88,10 @@ from .serializers import (
     ListVersionSerializer,
 )
 from .utils import (
-    generate_delete_token,
+    DeleteTokenSigner,
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
-    validate_delete_token,
 )
 
 
@@ -340,7 +339,8 @@ class AddonViewSet(
 
     @action(detail=True)
     def delete_confirm(self, request, *args, **kwargs):
-        return Response({'delete_confirm': generate_delete_token(self.get_object().id)})
+        token = DeleteTokenSigner().generate(self.get_object().id)
+        return Response({'delete_confirm': token})
 
     def destroy(self, request, *args, **kwargs):
         # check token
@@ -349,7 +349,7 @@ class AddonViewSet(
             raise exceptions.ValidationError(
                 '"delete_confirm" token must be supplied for add-on delete.'
             )
-        if not validate_delete_token(token, self.get_object().id):
+        if not DeleteTokenSigner().validate(token, self.get_object().id):
             raise exceptions.ValidationError('"delete_confirm" token is invalid.')
 
         return super().destroy(request, *args, **kwargs)
