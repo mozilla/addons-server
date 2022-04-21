@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 19:40+0000\n"
+"PO-Revision-Date: 2022-04-21 19:44+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4948,7 +4948,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Contrasignate pro le disactivation o le retardo del approbation automatic"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Es in un gruppo de additivos promovite que require pre-revision"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Retardate perque il es le prime version listate"
@@ -5396,7 +5396,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>ATTENTION!</strong> Un altere usator videva iste pagina ante te."
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Le tabula blanc es le loco pro excambiar informationes pertinente a iste additivo (qualcunque version), inter le disveloppator e le recensente. Isto es visibile e modificabile per ambes."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "Le tabula blanc private es usate pro excambiar informationes inter revisores, que es independente del version. Per favor mantene un linguage objective. Illo es visibile solo al revisores."
@@ -5753,11 +5753,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Impossibile trovar un additivo con id \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Tu non es proprietario de iste additivo."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Tu non pote adder versiones a un additivo in stato: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Le version non concorda con le file manifesto."
@@ -5773,13 +5773,13 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "ID del additivo non valide in URL o pacchetto"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Tu non pote adder versiones publicate a un additivo definite como stato \"Invisibile\"."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Tu non pote usar le API pro adder un version jam in lista de presentation pro iste additivo, perque il ha metadatos mancante. Per favor invia lo per le sito web"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Nulle file incargate pro ille additivo e version."
 
 msgid "Overview"
 msgstr "Panorama"
@@ -6202,6 +6202,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Le sequente autor ha essite addite a tu additivo %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6237,6 +6240,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Le sequente autor ha essite cambiate sur tu additivo %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6244,6 +6250,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Le sequente autor ha essite removite ab le additivo %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
