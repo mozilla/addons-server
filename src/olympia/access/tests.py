@@ -1,4 +1,3 @@
-from unittest import mock
 import pytest
 
 from django.contrib.auth.models import AnonymousUser
@@ -6,7 +5,7 @@ from django.contrib.auth.models import AnonymousUser
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import addon_factory, TestCase, req_factory_factory, user_factory
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.users.models import UserProfile
 
 from .acl import (
