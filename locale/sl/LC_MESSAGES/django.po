@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 13:45+0000\n"
+"PO-Revision-Date: 2022-04-21 13:49+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -520,7 +520,7 @@ msgstr "Blokada z GUID %(guid)s ni bila najdena"
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Dodatek z GUID %(guid)s ne obstaja"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Blokade za posodobitev se razlikujejo, ker se je spremenila najnižja ali najvišja različica."
@@ -4703,7 +4703,7 @@ msgstr "Več trenutno priljubljenih razširitev"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Izboljšave za Steam"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5743,7 +5743,7 @@ msgid "The name of the rule in the definition should match the name of the scann
 msgstr ""
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "V definiciji je dovoljeno samo eno pravilo Yara"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
@@ -5753,7 +5753,7 @@ msgid "An error occurred when compiling the definition"
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Zaženi to pravilo tudi za dodatke, ki so bili prisilno onemogočeni."
 
 msgid "Abort"
 msgstr "Prekini"
@@ -5773,7 +5773,7 @@ msgid "Return To AMO is currently disabled"
 msgstr "Vrnitev v AMO je trenutno onemogočena"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Neveljaven GUID za vrnitev na AMO (ni v obliki base64url?)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
@@ -5786,11 +5786,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Dodatka z ID-jem \"{}\" ni bilo mogoče najti."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Niste lastnik tega dodatka."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Ne morete dodajati različic dodatku, katerega stanje je: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Različica se ne ujema z datoteko manifesta."
@@ -5812,7 +5812,7 @@ msgid "You cannot add a listed version to this add-on via the API due to missing
 msgstr ""
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Ni naložene datoteke za ta dodatek in različico."
 
 msgid "Overview"
 msgstr "Pregled"
@@ -6248,6 +6248,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"K vašemu dodatku %(addon_name)s ( %(addon_url)s ) je bil dodan naslednji avtor:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
