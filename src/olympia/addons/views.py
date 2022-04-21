@@ -387,7 +387,7 @@ class AddonVersionViewSet(
         use_developer_serializer = getattr(
             self.request, 'user', None
         ) and acl.author_or_unlisted_viewer_or_reviewer(
-            self.request, self.get_addon_object()
+            self.request.user, self.get_addon_object()
         )
 
         if (

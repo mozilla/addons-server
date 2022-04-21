@@ -39,7 +39,7 @@ def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=F
         )
         if not (
             has_listed_versions
-            or acl.author_or_unlisted_viewer_or_reviewer(request, addon)
+            or acl.author_or_unlisted_viewer_or_reviewer(request.user, addon)
         ):
             raise http.Http404
         return f(request, addon, *args, **kw)

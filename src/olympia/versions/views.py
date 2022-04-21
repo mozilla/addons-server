@@ -101,7 +101,7 @@ def download_file(request, file_id, download_type=None, **kwargs):
         has_permission = is_appropriate_reviewer(
             addon, channel
         ) or acl.check_addon_ownership(
-            request,
+            request.user,
             addon,
             allow_developer=True,
             allow_mozilla_disabled_addon=True,
@@ -200,7 +200,10 @@ def download_source(request, version_id):
         and not addon.is_deleted
     ):
         has_permission = has_permission or acl.check_addon_ownership(
-            request, addon, allow_addons_edit_permission=False, allow_developer=True
+            request.user,
+            addon,
+            allow_addons_edit_permission=False,
+            allow_developer=True,
         )
     if not has_permission:
         raise http.Http404()

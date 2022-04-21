@@ -353,7 +353,7 @@ def feed(request, addon_id=None):
             )
 
             if not acl.check_addon_ownership(
-                request,
+                request.user,
                 addon,
                 allow_developer=True,
                 allow_mozilla_disabled_addon=True,
@@ -546,7 +546,9 @@ def ownership(request, addon_id, addon):
         # regular developers, but can be edited by owners even if it's a site
         # permission add-on.
         'editable_body_class': 'no-edit'
-        if not acl.check_addon_ownership(request, addon, allow_site_permission=True)
+        if not acl.check_addon_ownership(
+            request.user, addon, allow_site_permission=True
+        )
         else '',
     }
     post_data = request.POST if request.method == 'POST' else None

@@ -74,7 +74,7 @@ def dev_required(
                 # On read-only requests, we can allow developers, and even let
                 # authors see mozilla disabled or site permission add-ons.
                 if acl.check_addon_ownership(
-                    request,
+                    request.user,
                     addon,
                     allow_developer=True,
                     allow_mozilla_disabled_addon=True,
@@ -89,7 +89,7 @@ def dev_required(
             # status is disabled that check will return False).
             elif request.method == 'POST':
                 if acl.check_addon_ownership(
-                    request,
+                    request.user,
                     addon,
                     allow_developer=not owner_for_post,
                     allow_site_permission=allow_site_permission_for_post,

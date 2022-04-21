@@ -87,7 +87,7 @@ def site_permission_addons_submission_allowed(user, parsed_addon_data):
 
 
 def check_addon_ownership(
-    request,
+    user,
     addon,
     allow_developer=False,
     allow_addons_edit_permission=True,
@@ -95,7 +95,7 @@ def check_addon_ownership(
     allow_site_permission=False,
 ):
     """
-    Check that request.user is the owner of the add-on.
+    Check that user is the owner of the add-on.
 
     Will always return False for deleted add-ons.
 
@@ -111,14 +111,14 @@ def check_addon_ownership(
       allow_addons_edit_permission=True and the user has the Addons:Edit
       permission. This has precedence over all other checks.
     """
-    if not request.user.is_authenticated:
+    if not user.is_authenticated:
         return False
     # Deleted addons can't be edited at all.
     if addon.is_deleted:
         return False
     # Users with 'Addons:Edit' can do anything.
     if allow_addons_edit_permission and action_allowed_for(
-        request.user, amo.permissions.ADDONS_EDIT
+        user, amo.permissions.ADDONS_EDIT
     ):
         return True
     # Only admins can edit admin-disabled addons.
@@ -132,7 +132,7 @@ def check_addon_ownership(
     if allow_developer:
         roles += (amo.AUTHOR_ROLE_DEV,)
 
-    return addon.addonuser_set.filter(user=request.user, role__in=roles).exists()
+    return addon.addonuser_set.filter(user=user, role__in=roles).exists()
 
 
 def is_listed_addons_reviewer(user, allow_content_reviewers=True):
@@ -211,9 +211,9 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
     return allow_access
 
 
-def author_or_unlisted_viewer_or_reviewer(request, addon):
-    return is_unlisted_addons_viewer_or_reviewer(request.user) or check_addon_ownership(
-        request,
+def author_or_unlisted_viewer_or_reviewer(user, addon):
+    return is_unlisted_addons_viewer_or_reviewer(user) or check_addon_ownership(
+        user,
         addon,
         allow_addons_edit_permission=False,
         allow_developer=True,
