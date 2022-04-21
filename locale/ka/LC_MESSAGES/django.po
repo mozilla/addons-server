@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-19 16:03+0000\n"
+"POT-Creation-Date: 2022-04-21 10:22+0000\n"
 "PO-Revision-Date: 2022-04-08 21:41+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr "სახეობა"
 msgid "Users"
 msgstr "მომხმარებლები"
 
-msgid "Addons"
+msgid "Add-ons"
 msgstr "დამატებები"
 
 msgid "minimum reports count (grouped by guid)"
@@ -173,6 +173,9 @@ msgstr ""
 msgid "Invalid or broken archive."
 msgstr "უმართებულო ან დაზიანებული არქივი."
 
+msgid "This type of add-on does not allow custom compatibility."
+msgstr ""
+
 msgid "Invalid value"
 msgstr ""
 
@@ -189,8 +192,8 @@ msgstr ""
 msgid "Listed"
 msgstr "გამოქვეყნებულია"
 
-msgid "Addon and collection paths need to end with \"/\""
-msgstr "დამატებისა და კრებულის მისამართები უნდა მთავრდებოდეს „/“ სიმბოლოთი"
+msgid "Add-on and collection paths need to end with \"/\""
+msgstr ""
 
 msgid "Previews cannot be created for themes."
 msgstr ""
@@ -213,13 +216,13 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-msgid "This field is required for addons with listed versions."
+msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -234,7 +237,7 @@ msgstr ""
 msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
 
-msgid "Wrong addon type for this license."
+msgid "Wrong add-on type for this license."
 msgstr ""
 
 msgid "Custom licenses are not supported for themes."
@@ -518,8 +521,8 @@ msgid "Block with GUID %(guid)s not found"
 msgstr "შეზღუდვა GUID-ით %(guid)s ვერ მოიძებნა"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "დამატება GUID-ით %(guid)s არ არსებობს"
+msgid "Add-on with GUID %(guid)s does not exist"
+msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "განსაახლებელი შეზღუდვები განსხვავებულია, ვინაიდან, Min ან Max-ვერსია შეიცვალა."
@@ -686,8 +689,8 @@ msgstr "საჭიროა მეტი მონაცემების მ
 msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} საჭიროებს პროფესიონალურ განხილვას."
 
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr "თქვენი დამატება მონიშნულია ადმინისტრაციული განხილვისთვის.  ჯერ კიდევ რიგშია, მაგრამ საჭიროა ერთმა მმართველმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტხანს შეიძლება გაგრძელდეს."
+msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
 
 msgid "Comment on {addon} {version}."
 msgstr "შენიშვნა {addon} {version}-ზე."
@@ -826,8 +829,8 @@ msgid "{file} was signed."
 msgstr "{file} დამოწმებულია."
 
 #. L10n: {0} is the add-on GUID.
-msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr "დამატების id {0} GUID {1} -ით წაშლილია"
+msgid "Add-on id {0} with GUID {1} has been deleted"
+msgstr ""
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} გადატანილია წინასწარი განხილვიდან."
@@ -1003,9 +1006,6 @@ msgstr "Firefox Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-msgid "Unknown"
-msgstr "უცნობი"
-
 msgid "Incomplete"
 msgstr "დაუსრულებელი"
 
@@ -1024,8 +1024,8 @@ msgstr "გამოუქვეყნებელი"
 msgid "Signing API"
 msgstr "ხელმოწერის API"
 
-msgid "Addon API"
-msgstr "დამატების API"
+msgid "Add-on API"
+msgstr ""
 
 msgid "Automatically generated by AMO"
 msgstr "ავტომატურად ადგენს AMO"
@@ -1658,6 +1658,9 @@ msgstr "თვითდამოწმების გადადება გ�
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "თვითდამოწმების გადადება განუსაზღვრელად და შეზღუდვების დამატება მომავალი დამოწმებებისთვის"
 
+msgid "Unknown"
+msgstr "უცნობი"
+
 msgid "True positive"
 msgstr "ჭეშმარიტი დადებითი"
 
@@ -1964,9 +1967,9 @@ msgid "There was an error uploading your preview."
 msgstr "წინასწარი ვერსიის ატვირთვისას მოხდა შეცდომა."
 
 #, python-format
-msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgid ""
+"The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"უახლესი დამოწმებული ვერსია დამატების %s, ვერ წაიშლება ან შეიზღუდება, ვინაიდან წინა ვერსია არ დამოწმებულა %s დასარეკლამებლად. გთხოვთ, დაუკავშირდეთ AMO-ს ხელმძღვანელობას, ამ საკითხზე დახმარებისთვის."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2432,11 +2435,9 @@ msgid "Whiteboard"
 msgstr "შენიშვნების გვერდი"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
-"შენიშვნების გვერდი არის ადგილი, სადაც შეიძლება განთავსდეს თქვენს დამატებასთან დაკავშირებული ინფორმაცია, ვერსიის განურჩევლად. გამოიყენეთ დამატების გამოცდის გზებისა და სხვა საჭირო ინფორმაციის "
-"მისათითებლად. არსებული ინფორმაციის შეცვლა, შეეძლებათ შემსწორებლებს."
 
 msgid "Add-on Media for {0}"
 msgstr "მედია დამატება {0}-სთვის"
@@ -3538,11 +3539,9 @@ msgstr "ვერსიის გათიშვა"
 
 #, python-format
 msgid ""
-"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"უახლესი დამოწმებული ვერსია დამატების %(promoted_group_name)s ვერ წაიშლება ან შეიზღუდება, ვინაიდან წინა ვერსია არ დამოწმებულა %(promoted_group_name)s დასარეკლამებლად. გთხოვთ დაუკავშირდეთ AMO-ს "
-"ხელმძღვანელობას, ამ საკითხზე დახმარებისთვის."
 
 msgid "Hide Add-on"
 msgstr "დამატების დამალვა"
@@ -4580,19 +4579,17 @@ msgid "See all extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "თარგმნის ხელსაწყოები"
+msgid "Privacy & anti-tracking"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "რეკლამის საუკეთესო შემზღუდავები"
+msgid "Creativity extensions"
+msgstr "შემოქმედებითი გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-ის უკეთ მორგება"
+msgid "Image search"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4647,6 +4644,10 @@ msgid "See more password manager staff picks"
 msgstr "პაროლის სხვა მმართველები, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "თარგმნის ხელსაწყოები"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "თარგმნის სხვა ხელსაწყოები, თანამშრომლების შერჩეული"
 
@@ -4675,8 +4676,16 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "სხვა გავრცელებული, მონიშვნით „{tag}“"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "რეკლამის საუკეთესო შემზღუდავები"
+
+#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "რეკლამის სხვა შემზღუდავები, თანამშრომლების შერჩეული"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-ის უკეთ მორგება"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4713,10 +4722,6 @@ msgstr "Steam-ის გამაუმჯობესებლები"
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
 msgstr "ხელსაწყოები Steam-ისთვის, თანამშრომლების შერჩეული"
-
-#. editorial content for the homepage shelves.
-msgid "Creativity extensions"
-msgstr "შემოქმედებითი გაფართოებები"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
@@ -4956,8 +4961,8 @@ msgstr "შეჩერებულია მიმომხილველი�
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr "გათიშული/დაყოვნებული თვითდამოწმების მონიშვნა აქვს მითითებული"
 
-msgid "Is in a promoted addon group that requires pre-review"
-msgstr "დაფინანსებული დამატებების ჯგუფშია, რომელის საჭიროებს წინასწრ განხილვას"
+msgid "Is in a promoted add-on group that requires pre-review"
+msgstr ""
 
 msgid "Delayed because it's the first listed version"
 msgstr "გადადებულია, ვინაიდან პირველი გამოქვეყნებული ვერსიაა"
@@ -5404,8 +5409,8 @@ msgstr "გამოცდის თარიღი:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>შენიშვნა!</strong> თქვენამდე, სხვა მომხმარებელმა უკვე ნახა ეს გვერდი."
 
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "შენიშვნების გვერდი არის ადგილი, თქვენს დამატებასთან დაკავშირებული ინფორმაციის გასაცვლელად (ვერსიის განურჩევლად), შემმუშავებელსა და შემსწორებელს შორის. ტექსტის ნახვა და შეცვლა შეუძლიათ ორივეს."
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "პირადი შენიშვნების გვერდი გამოიყენება ინფორმაციის მიმოცვლისთვის შემსწორებელთა შორის, ვერსიის განურჩევლად. გთხოვთ, გამოიყენოთ საქმიანი მიმართვებისთვის. ხილულია, მხოლოდ შემსწორებლებისთვის."
@@ -5761,12 +5766,12 @@ msgstr "მოთხოვნის სიგრძე აჭარბებს 
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr "დამატება ID-ნომრით „{}“ ვერ მოიძებნა."
 
-msgid "You do not own this addon."
-msgstr "თქვენ არ ფლობთ ამ დამატებას."
+msgid "You do not own this add-on."
+msgstr ""
 
 #, python-format
-msgid "You cannot add versions to an addon that has status: %s."
-msgstr "დამატებაზე, რომლის მდგომარეობაა %s, ახალი ვერსიების მითითება არ შეგიძლიათ."
+msgid "You cannot add versions to an add-on that has status: %s."
+msgstr ""
 
 msgid "Version does not match the manifest file."
 msgstr "ვერსია არ ემთხვევა მანიფესტის ფაილით განსაზღვრულს."
@@ -5781,14 +5786,14 @@ msgstr "გთხოვთ, მიუთითოთ დამატების
 msgid "Invalid Add-on ID in URL or package"
 msgstr "დამატების უმართებულო ID URL-ბმულში"
 
-msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
-msgstr "დამატებაზე, რომლის მდგომარეობაა „უხილავი“, გამოქვეყნებული ვერსიების მითითება შეუძლებელია."
+msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
+msgstr ""
 
-msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr "ამ დამატების გამოქვეყნებულ ვერსიაზე API-ის საშუალებით დამატება არ შეგიძლიათ, არასაკმარისი მონაცემების გამო. გთხოვთ გადმოაგზავნოთ საიტის მეშვეობით"
+msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
+msgstr ""
 
-msgid "No uploaded file for that addon and version."
-msgstr "ამ დამატებისთვის ატვირთული ფაილები არ არის."
+msgid "No uploaded file for that add-on and version."
+msgstr ""
 
 msgid "Overview"
 msgstr "ზოგადი მიმოხილვა"
@@ -6046,9 +6051,6 @@ msgstr "გადასვლა"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} დამატების გვერდზე დაბრუნება"
 
-msgid "Add-ons"
-msgstr "დამატებები"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">რეგისტრაცია</a> ან <a href=\"%(login)s\">შესვლა</a>"
@@ -6209,13 +6211,10 @@ msgstr "სურათის წაშლა"
 
 #, python-format
 msgid ""
-"The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
+"The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"მოცემული ავტორი შემოუერთდა თქვენს დამატებას %(addon_name)s ( %(addon_url)s ):\n"
-"\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6249,23 +6248,17 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
+"The following author has been changed on your add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
-"მოცემული ავტორი შეიცვალა თქვენს დამატებაზე %(addon_name)s ( %(addon_url)s ):\n"
-"\n"
-"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
-"The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
+"The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
-"მოცემული ავტორი მოცილებულია დამატებიდან %(addon_name)s ( %(addon_url)s ):\n"
-"\n"
-"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
