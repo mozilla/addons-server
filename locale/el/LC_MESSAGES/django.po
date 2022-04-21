@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 11:59+0000\n"
+"PO-Revision-Date: 2022-04-21 15:56+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4861,7 +4861,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Απουσία κλειδιού «upload» σε δεδομένα αρχείου πολλαπλών τμημάτων."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Απουσία ορίσματος «channel»."
 
 msgid "User"
 msgstr "Χρήστης"
@@ -5016,7 +5016,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Έχει σημανθεί για απενεργοποίηση/καθυστέρηση αυτόματης έγκρισης"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Είναι σε ομάδα προωθημένων προσθέτων που απαιτεί προκαταρκτικό έλεγχο"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Καθυστέρησε επειδή είναι η πρώτη καταχωρημένη έκδοση"
@@ -5470,7 +5470,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Προειδοποίηση!</strong> Κάποιος άλλος χρήστη έβλεπε τη σελίδα αυτή πριν από εσάς."
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Ο πίνακας είναι ένα σημείο για ανταλλαγή πληροφοριών σχετικά με αυτό το πρόσθετο (ανεξαρτήτως έκδοσης), μεταξύ προγραμματιστή και ελεγκτή. Είναι ορατός και επεξεργάσιμος και από τους δύο."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "Ο ιδιωτικός πίνακας χρησιμοποιείται για ανταλλαγή πληροφοριών μεταξύ ελεγκτών ανεξαρτήτως της έκδοσης. Παρακαλούμε να είστε αντικειμενικοί. Είναι ορατός μόνο στους ελεγκτές."
@@ -5830,11 +5830,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Δεν ήταν δυνατή η εύρεση του προσθέτου με ID «{}»."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Δεν είστε κάτοχος αυτού του προσθέτου."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Δεν μπορείτε να προσθέσετε εκδόσεις σε πρόσθετο με κατάσταση: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Η έκδοση δεν ταιριάζει με το αρχείο μανιφέστου."
@@ -5850,13 +5850,13 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "Μη έγκυρο ID προσθέτου στο URL ή στο πακέτο"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Δεν μπορείτε να προσθέσετε καταχωρημένες εκδόσεις σε πρόσθετο με κατάσταση «Αόρατο»."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Δεν μπορείτε να προσθέσετε μια καταχωρημένη έκδοση σε αυτό το πρόσθετο μέσω του API, λόγω ελλιπών μεταδεδομένων. Παρακαλώ κάντε υποβολή μέσω του ιστοτόπου"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Κανένα μεταφορτωμένο αρχείο για αυτό το πρόσθετο και αυτήν την έκδοση."
 
 msgid "Overview"
 msgstr "Επισκόπηση"
@@ -6283,6 +6283,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Ο ακόλουθος δημιουργός έχει προστεθεί στο πρόσθετό σας, %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6318,6 +6321,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Ο ακόλουθος δημιουργός έχει αλλαχθεί στο πρόσθετό σας, %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6325,6 +6331,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Ο ακόλουθος δημιουργός έχει αφαιρεθεί από το πρόσθετο %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
