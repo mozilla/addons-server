@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 12:18+0000\n"
+"PO-Revision-Date: 2022-04-21 13:01+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -5427,6 +5427,8 @@ msgstr "<strong>Waarschuwing!</strong> Een andere gebruiker heeft deze pagina v�
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
+"Het notitiebord is de plek waar voor deze add-on relevante informatie (ongeacht de versie) tussen de ontwikkelaar en de beoordelaar kan worden uitgewisseld. Dit is voor beiden zichtbaar en te "
+"bewerken."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "Het privénotitiebord wordt gebruikt voor de uitwisseling van versieonafhankelijke informatie tussen beoordelaars. Houd het taalgebruik objectief. Dit is alleen zichtbaar voor beoordelaars."
@@ -5783,11 +5785,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Kon geen add-on met ID ‘{}’ vinden."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Deze add-on is niet van u."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "U kunt geen versies aan een add-on met de status %s toevoegen."
 
 msgid "Version does not match the manifest file."
 msgstr "Versie komt niet overeen met het manifest-bestand."
@@ -5803,13 +5805,13 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "Ongeldige add-on-ID in URL"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "U kunt geen versies aan een add-on met de status ‘Onzichtbaar’ toevoegen."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "U kunt geen vermelde versie aan deze add-on toevoegen via de API vanwege ontbrekende metagegevens. Dien hem in via de website"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Geen geüpload bestand voor die add-on en versie."
 
 msgid "Overview"
 msgstr "Overzicht"
@@ -6233,6 +6235,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"De volgende auteur is toegevoegd aan uw addon %(addon_name)s (%(addon_url)s):\n"
+"\n"
+"%(author_name)s (%(author_url)s):%(author_role)s"
 
 #, python-format
 msgid ""
@@ -6268,6 +6273,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"De volgende auteur is gewijzigd bij uw add-on %(addon_name)s (%(addon_url)s):\n"
+"\n"
+"%(author_name)s (%(author_url)s): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6275,6 +6283,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"De volgende auteur is verwijderd uit add-on %(addon_name)s (%(addon_url)s):\n"
+"\n"
+"%(author_name)s (%(author_url)s)"
 
 #, python-format
 msgid ""
