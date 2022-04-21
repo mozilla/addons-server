@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 10:41+0000\n"
+"PO-Revision-Date: 2022-04-21 10:42+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -177,7 +177,7 @@ msgid "Invalid or broken archive."
 msgstr "Archivio non valido o corrotto."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Per questo tipo di componente aggiuntivo non è consentita una compatibilità personalizzata."
 
 msgid "Invalid value"
 msgstr "Valore non valido"
@@ -190,7 +190,7 @@ msgstr "Versione dell’app specificata sconosciuta"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Le immagini devono essere inferiori a %d MB"
 
 # Column name in a table.
 msgid "Listed"
@@ -218,7 +218,7 @@ msgid "Version {version_string} already exists."
 msgstr "La versione {version_string} esiste già."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Le versioni elencate non possono essere caricate mentre il componente aggiuntivo è disattivato."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "È necessario specificare i metadati del componente aggiuntivo per creare una versione elencata: {missing_addon_metadata}."
@@ -4659,7 +4659,7 @@ msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "Privacy e antitracciamento"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4668,7 +4668,7 @@ msgstr "Estensioni per la creatività"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search"
-msgstr ""
+msgstr "Ricerca immagini"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
