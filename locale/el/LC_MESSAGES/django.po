@@ -197,7 +197,7 @@ msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Δεν είναι δυνατή η δημιουργία προεπισκόπησης για τα θέματα."
 
 msgid "Built in licenses can not be updated."
 msgstr ""
