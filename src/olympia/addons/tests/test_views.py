@@ -940,8 +940,8 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             )
         assert response.status_code == 400, response.content
         assert response.data == {
-            'categories': ['This field is required for addons with listed versions.'],
-            'name': ['This field is required for addons with listed versions.'],
+            'categories': ['This field is required for add-ons with listed versions.'],
+            'name': ['This field is required for add-ons with listed versions.'],
             # 'summary': summary was provided via POST, so we're good
         }
 
@@ -2580,7 +2580,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert response.status_code == 400, response.content
         assert response.data == {
             'non_field_errors': [
-                'Addon metadata is required to be set to create a listed version: '
+                'Add-on metadata is required to be set to create a listed version: '
                 "['categories']."
             ],
         }
@@ -3065,7 +3065,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             data={'license': self.version.license.slug},
         )
         assert response.status_code == 400, response.content
-        assert response.data == {'license': ['Wrong addon type for this license.']}
+        assert response.data == {'license': ['Wrong add-on type for this license.']}
 
         self.addon.update(type=amo.ADDON_EXTENSION)
         self.version.license.update(builtin=12)
@@ -3074,7 +3074,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             data={'license': self.version.license.slug},
         )
         assert response.status_code == 400, response.content
-        assert response.data == {'license': ['Wrong addon type for this license.']}
+        assert response.data == {'license': ['Wrong add-on type for this license.']}
 
     def test_cannot_supply_both_custom_and_license_id(self):
         license_data = {

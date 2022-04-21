@@ -408,7 +408,7 @@ class TestAbuse(TestCase):
         # (because of the "All" default choice) but since 'created' is actually
         # 2 fields, and we have submitted both, we now have 6 expected items.
         assert len(lis) == 6
-        assert lis.text().split() == ['Addons', 'All', 'Other', 'From:', 'To:', 'All']
+        assert lis.text().split() == ['Add-ons', 'All', 'Other', 'From:', 'To:', 'All']
         assert lis.eq(3).find('#id_created__range__gte')
         assert lis.eq(4).find('#id_created__range__lte')
 

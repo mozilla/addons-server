@@ -2016,7 +2016,7 @@ class TestAutoApprovalSummary(TestCase):
             'Has auto-approval disabled/delayed flag set',
             'Version string and guid match a blocklist Block',
             'Is locked by a reviewer',
-            'Is in a promoted addon group that requires pre-review',
+            'Is in a promoted add-on group that requires pre-review',
             "Delayed because it's the first listed version",
         ]
 
