@@ -1282,7 +1282,7 @@ def version_delete(request, addon_id, addon):
         # of a promoted approved add-on.
         group = addon.promoted_group()
         msg = gettext(
-            'The latest approved version of this %s addon cannot '
+            'The latest approved version of this %s add-on cannot '
             'be deleted or disabled because the previous version was not '
             'approved for %s promotion. '
             'Please contact AMO Admins if you need help with this.'

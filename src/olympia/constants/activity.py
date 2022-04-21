@@ -221,7 +221,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
     keep = True
     review_queue = True
     sanitize = _(
-        "The addon has been flagged for Admin Review.  It's still "
+        "The add-on has been flagged for Admin Review. It's still "
         'in our review queue, but it will need to be checked by one '
         'of our admin reviewers. The review might take longer than '
         'usual.'
@@ -527,7 +527,7 @@ class DELETE_ADDON(_LOG):
     id = 133
     action_class = 'delete'
     # L10n: {0} is the add-on GUID.
-    format = _('Addon id {0} with GUID {1} has been deleted')
+    format = _('Add-on id {0} with GUID {1} has been deleted')
     keep = True
     show_user_to_developer = True
 

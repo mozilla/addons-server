@@ -37,7 +37,7 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         """
         return (
             ('user', gettext('Users')),
-            ('addon', gettext('Addons')),
+            ('addon', gettext('Add-ons')),
         )
 
     def queryset(self, request, queryset):

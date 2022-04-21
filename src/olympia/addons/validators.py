@@ -87,7 +87,7 @@ class ValidateVersionLicense:
         is_theme = addon_type == amo.ADDON_STATICTHEME
         if isinstance(license_, License) and license_.creative_commons != is_theme:
             raise exceptions.ValidationError(
-                {'license': gettext('Wrong addon type for this license.')},
+                {'license': gettext('Wrong add-on type for this license.')},
                 code='required',
             )
         if is_custom and is_theme:

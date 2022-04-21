@@ -501,7 +501,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             ),
         )
 
-    addons_authorship.short_description = _('Addons')
+    addons_authorship.short_description = _('Add-ons')
 
     def ratings_authorship(self, obj):
         return related_content_link(obj, Rating, 'user')

@@ -68,7 +68,7 @@ def with_addon(allow_missing=False):
                 return fn(view, request, addon=addon, **kwargs)
             else:
                 return Response(
-                    {'error': gettext('You do not own this addon.')},
+                    {'error': gettext('You do not own this add-on.')},
                     status=status.HTTP_403_FORBIDDEN,
                 )
 
@@ -138,7 +138,7 @@ class VersionView(APIView):
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:
             msg = gettext(
-                'You cannot add versions to an addon that has status: %s.'
+                'You cannot add versions to an add-on that has status: %s.'
                 % amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED]
             )
             raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
@@ -226,7 +226,7 @@ class VersionView(APIView):
 
             if addon.disabled_by_user and channel == amo.RELEASE_CHANNEL_LISTED:
                 msg = gettext(
-                    'You cannot add listed versions to an addon set to '
+                    'You cannot add listed versions to an add-on set to '
                     '"Invisible" state.'
                 )
                 raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
@@ -235,7 +235,7 @@ class VersionView(APIView):
             if not addon.has_complete_metadata(has_listed_versions=will_have_listed):
                 raise forms.ValidationError(
                     gettext(
-                        'You cannot add a listed version to this addon '
+                        'You cannot add a listed version to this add-on '
                         'via the API due to missing metadata. '
                         'Please submit via the website'
                     ),
@@ -282,7 +282,7 @@ class VersionView(APIView):
                     )
                 )
         except FileUpload.DoesNotExist:
-            msg = gettext('No uploaded file for that addon and version.')
+            msg = gettext('No uploaded file for that add-on and version.')
             return Response({'error': msg}, status=status.HTTP_404_NOT_FOUND)
 
         try:
