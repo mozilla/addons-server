@@ -60,7 +60,7 @@ class MultiAddForm(MultiGUIDInputForm):
             if not blk and not Block.get_addons_for_guids_qs((guid,)).exists():
                 errors.append(
                     ValidationError(
-                        _('Addon with GUID %(guid)s does not exist'),
+                        _('Add-on with GUID %(guid)s does not exist'),
                         params={'guid': guid},
                     )
                 )

@@ -168,7 +168,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self.api_key = self.create_api_key(self.user, 'bar')
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 403
-        assert response.data['error'] == 'You do not own this addon.'
+        assert response.data['error'] == 'You do not own this add-on.'
 
     def test_admin_does_not_own_addon(self):
         self.user = UserProfile.objects.create(
@@ -178,7 +178,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self.make_admin(self.user)
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 403
-        assert response.data['error'] == 'You do not own this addon.'
+        assert response.data['error'] == 'You do not own this add-on.'
 
     def test_version_does_not_match_manifest_file(self):
         response = self.request('PUT', self.url(self.guid, '2.5'))
@@ -430,7 +430,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'), version='3.0')
         assert response.status_code == 400
-        error_msg = 'cannot add versions to an addon that has status: %s.' % (
+        error_msg = 'cannot add versions to an add-on that has status: %s.' % (
             amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED]
         )
         assert error_msg in response.data['error']
@@ -442,7 +442,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'), version='3.0')
         assert response.status_code == 400
-        error_msg = 'cannot add listed versions to an addon set to "Invisible"'
+        error_msg = 'cannot add listed versions to an add-on set to "Invisible"'
         assert error_msg in response.data['error']
 
         response = self.request(
@@ -520,7 +520,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
         assert response.status_code == 400
-        error_msg = 'You cannot add a listed version to this addon via the API'
+        error_msg = 'You cannot add a listed version to this add-on via the API'
         assert error_msg in response.data['error']
 
     def test_invalid_guid_in_package_post(self):
@@ -1302,7 +1302,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         self.api_key = self.create_api_key(self.user, 'bar')
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 403
-        assert response.data['error'] == 'You do not own this addon.'
+        assert response.data['error'] == 'You do not own this add-on.'
 
     def test_admin_can_view(self):
         self.create_version('3.0')
@@ -1318,7 +1318,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
     def test_version_does_not_exist(self):
         response = self.get(self.url(self.guid, '2.5'))
         assert response.status_code == 404
-        assert response.data['error'] == 'No uploaded file for that addon and version.'
+        assert response.data['error'] == 'No uploaded file for that add-on and version.'
 
     def test_version_exists(self):
         self.create_version('3.0')

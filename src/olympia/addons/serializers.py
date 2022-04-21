@@ -489,7 +489,7 @@ class DeveloperVersionSerializer(VersionSerializer):
                 if missing_addon_metadata:
                     raise exceptions.ValidationError(
                         gettext(
-                            'Addon metadata is required to be set to create a listed '
+                            'Add-on metadata is required to be set to create a listed '
                             'version: {missing_addon_metadata}.'
                         ).format(missing_addon_metadata=missing_addon_metadata),
                         code='required',
@@ -932,7 +932,7 @@ class AddonSerializer(serializers.ModelSerializer):
             if channel == amo.RELEASE_CHANNEL_LISTED:
                 # This is replicating what Addon.get_required_metadata does
                 required_msg = gettext(
-                    'This field is required for addons with listed versions.'
+                    'This field is required for add-ons with listed versions.'
                 )
                 missing_metadata = {
                     field: required_msg

@@ -603,7 +603,7 @@ class TestAddonModels(TestCase):
         log = AddonLog.objects.order_by('-id').first().activity_log
         assert log.action == amo.LOG.DELETE_ADDON.id
         assert log.to_string() == (
-            f'Addon id {addon_id} with GUID {guid} has been deleted'
+            f'Add-on id {addon_id} with GUID {guid} has been deleted'
         )
 
     def test_delete(self):

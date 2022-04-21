@@ -86,7 +86,7 @@ class TestBlockAdmin(TestCase):
         # A single invalid guid should redirect back to the page too (for now)
         response = self.client.post(self.add_url, {'guids': 'guid@'}, follow=False)
         assert b'Add-on GUIDs (one per line)' in response.content
-        assert b'Addon with GUID guid@ does not exist' in response.content
+        assert b'Add-on with GUID guid@ does not exist' in response.content
 
         addon = addon_factory(guid='guid@')
         # But should continue to the django admin add page if it exists
