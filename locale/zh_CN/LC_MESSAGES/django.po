@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 15:09+0000\n"
+"PO-Revision-Date: 2022-04-21 15:24+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -173,16 +173,16 @@ msgid "Invalid or broken archive."
 msgstr "无效或损坏的压缩文件。"
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "此类型的附加组件不允许自定义兼容性。"
 
 msgid "Invalid value"
 msgstr "无效值"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "指定的应用无效"
 
 msgid "Unknown app version specified"
-msgstr ""
+msgstr "指定的应用版本未知"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -199,7 +199,7 @@ msgid "Previews cannot be created for themes."
 msgstr "无法创建主题预览。"
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "无法更新内置许可证。"
 
 msgid "Upload is not valid."
 msgstr "上传无效。"
@@ -223,7 +223,7 @@ msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "附加组件的上架版本，此字段必填。"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加组件名称不得包含 Mozilla 或 Firefox 商标。"
@@ -232,16 +232,16 @@ msgid "Site permissions for {hostnames}"
 msgstr "{hostnames} 的网站权限"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "不可同时提供`license`和`custom_license`。"
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "上架版本须填此字段或 custom_license 字段。"
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "此许可证的附加组件类型错误。"
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "主题不支持自定义许可证。"
 
 msgid "My Add-ons"
 msgstr "我的附加组件"
