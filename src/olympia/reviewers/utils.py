@@ -430,14 +430,24 @@ class ReviewHelper:
     process off to the correct handler.
     """
 
-    def __init__(self, request=None, addon=None, version=None, content_review=False):
+    def __init__(
+        self, *, addon, version=None, user=None, content_review=False, human_review=True
+    ):
         self.handler = None
         self.required = {}
         self.addon = addon
         self.version = version
         self.content_review = content_review
-        self.set_review_handler(request)
-        self.actions = self.get_actions(request)
+        if human_review and user is None:
+            raise RuntimeError(
+                'A user should be passed to ReviewHelper when human_review is True'
+            )
+        elif not human_review:
+            user = get_task_user()
+        self.human_review = human_review
+        self.user = user
+        self.set_review_handler()
+        self.actions = self.get_actions()
 
     @property
     def redirect_url(self):
@@ -446,41 +456,38 @@ class ReviewHelper:
     def set_data(self, data):
         self.handler.set_data(data)
 
-    def set_review_handler(self, request):
+    def set_review_handler(self):
         """Set the handler property."""
         if self.version and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
             self.handler = ReviewUnlisted(
-                request,
-                self.addon,
-                self.version,
-                'unlisted',
+                addon=self.addon,
+                version=self.version,
+                review_type='unlisted',
+                user=self.user,
+                human_review=self.human_review,
                 content_review=self.content_review,
             )
         elif self.addon.status == amo.STATUS_NOMINATED:
             self.handler = ReviewAddon(
-                request,
-                self.addon,
-                self.version,
-                'nominated',
+                addon=self.addon,
+                version=self.version,
+                review_type='nominated',
+                user=self.user,
+                human_review=self.human_review,
                 content_review=self.content_review,
             )
         else:
             self.handler = ReviewFiles(
-                request,
-                self.addon,
-                self.version,
-                'pending',
+                addon=self.addon,
+                version=self.version,
+                review_type='pending',
+                user=self.user,
+                human_review=self.human_review,
                 content_review=self.content_review,
             )
 
-    def get_actions(self, request):
+    def get_actions(self):
         actions = OrderedDict()
-        if request is None:
-            # If request is not set, it means we are just (ab)using the
-            # ReviewHelper for its `handler` attribute and we don't care about
-            # the actions.
-            return actions
-
         # 2 kind of checks are made for the review page.
         # - Base permission checks to access the review page itself, done in
         #   the review() view
@@ -534,25 +541,27 @@ class ReviewHelper:
             permission_post_review = amo.permissions.REVIEWS_ADMIN
 
         # Is the current user a reviewer for this kind of add-on ?
-        is_reviewer = acl.is_reviewer(request, self.addon)
+        is_reviewer = acl.is_reviewer(self.user, self.addon)
 
         # Is the current user an appropriate reviewer, not only for this kind
         # of add-on, but also for the state the add-on is in ? (Allows more
         # impactful actions).
-        is_appropriate_reviewer = acl.action_allowed_user(request.user, permission)
+        is_appropriate_reviewer = acl.action_allowed_user(self.user, permission)
         is_appropriate_reviewer_post_review = acl.action_allowed_user(
-            request.user, permission_post_review
+            self.user, permission_post_review
         )
 
-        addon_is_complete = self.addon.status not in (
+        addon_is_complete_and_not_disabled = self.addon.status not in (
             amo.STATUS_NULL,
             amo.STATUS_DELETED,
+            amo.STATUS_DISABLED,
         )
         addon_is_incomplete_and_version_is_unlisted = (
             self.addon.status == amo.STATUS_NULL and version_is_unlisted
         )
         addon_is_reviewable = (
-            addon_is_complete or addon_is_incomplete_and_version_is_unlisted
+            addon_is_complete_and_not_disabled
+            or addon_is_incomplete_and_version_is_unlisted
         )
         version_is_unreviewed = self.version and self.version.is_unreviewed
         addon_is_valid = self.addon.is_public() or self.addon.is_unreviewed()
@@ -582,7 +591,9 @@ class ReviewHelper:
             # been auto-approved, provided that the add-on isn't marked as
             # needing admin review.
             can_reject_multiple = addon_is_valid_and_version_is_listed and (
-                is_appropriate_reviewer or is_appropriate_reviewer_post_review
+                is_appropriate_reviewer
+                or is_appropriate_reviewer_post_review
+                or not self.human_review
             )
 
         # Definitions for all actions.
@@ -599,7 +610,7 @@ class ReviewHelper:
                 not self.content_review
                 and addon_is_reviewable
                 and version_is_unreviewed
-                and is_appropriate_reviewer
+                and (is_appropriate_reviewer or not self.human_review)
                 and not version_is_blocked
             ),
             'allows_reasons': not is_static_theme,
@@ -741,7 +752,6 @@ class ReviewHelper:
             'minimal': True,
             'available': (is_reviewer),
         }
-
         return OrderedDict(
             ((key, action) for key, action in actions.items() if action['available'])
         )
@@ -755,17 +765,17 @@ class ReviewHelper:
 
 class ReviewBase:
     def __init__(
-        self, request, addon, version, review_type, content_review=False, user=None
+        self,
+        *,
+        addon,
+        version,
+        user,
+        review_type,
+        content_review=False,
+        human_review=True,
     ):
-        self.request = request
-        if request:
-            self.user = user or self.request.user
-            self.human_review = True
-        else:
-            # Use the addons team go-to user "Mozilla" for the automatic
-            # validations.
-            self.user = user or get_task_user()
-            self.human_review = False
+        self.user = user
+        self.human_review = human_review
         self.addon = addon
         self.version = version
         self.review_type = (

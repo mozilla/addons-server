@@ -131,9 +131,9 @@ class TestReviewHelperBase(TestCase):
 
     def get_helper(self, content_review=False):
         return ReviewHelper(
-            request=self.request,
             addon=self.addon,
             version=self.version,
+            user=self.request.user,
             content_review=content_review,
         )
 
@@ -174,7 +174,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.setup_type(amo.STATUS_DISABLED) == 'extension_pending'
 
     def test_no_version(self):
-        helper = ReviewHelper(request=self.request, addon=self.addon, version=None)
+        helper = ReviewHelper(addon=self.addon, version=None, user=self.request.user)
         assert helper.handler.review_type == 'extension_pending'
 
     def test_review_files(self):

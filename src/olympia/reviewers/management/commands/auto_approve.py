@@ -36,6 +36,10 @@ log = olympia.core.logger.getLogger('z.reviewers.auto_approve')
 LOCK_NAME = 'auto-approve'  # Name of the lock() used.
 
 
+class ApprovalNotAvailableError(Exception):
+    pass
+
+
 class Command(BaseCommand):
     help = 'Auto-approve add-on versions based on predefined criteria'
 
@@ -51,9 +55,13 @@ class Command(BaseCommand):
         )
 
     def fetch_candidates(self):
-        """Return a queryset with the Version instances that should be
-        considered for auto approval."""
-        return Version.objects.auto_approvable().order_by('nomination', 'created')
+        """Return a queryset with the Version ids that should be considered for
+        auto approval."""
+        return (
+            Version.objects.auto_approvable()
+            .order_by('nomination', 'created')
+            .values_list('id', flat=True)
+        )
 
     @use_primary_db
     def handle(self, *args, **options):
@@ -73,17 +81,18 @@ class Command(BaseCommand):
                 qs = self.fetch_candidates()
                 self.stats['total'] = len(qs)
 
-                for version in qs:
-                    self.process(version)
+                for version_id in qs:
+                    self.process(version_id)
 
                 self.log_final_summary(self.stats)
             else:
                 # We didn't get the lock...
                 log.error('auto-approve lock present, aborting.')
 
-    def process(self, version):
-        """Process a single version, figuring out if it should be auto-approved
-        and calling the approval code if necessary."""
+    def process(self, version_id):
+        """Process a single version by id, figuring out if it should be
+        auto-approved and calling the approval code if necessary."""
+        version = Version.objects.get(pk=version_id)
         already_locked = AutoApprovalSummary.check_is_locked(version)
         if not already_locked:
             # Lock the addon for ourselves if possible. Even though
@@ -160,6 +169,13 @@ class Command(BaseCommand):
                 version,
             )
             self.stats['error'] += 1
+        except ApprovalNotAvailableError:
+            statsd.incr('reviewers.auto_approve.approve.failure')
+            log.info(
+                'Version %s was skipped because approval action was not available',
+                version,
+            )
+            self.stats['error'] += 1
         except SigningError:
             statsd.incr('reviewers.auto_approve.approve.failure')
             log.info('Version %s was skipped because of a signing error', version)
@@ -179,8 +195,14 @@ class Command(BaseCommand):
     def approve(self, version):
         """Do the approval itself, caling ReviewHelper to change the status,
         sign the files, send the e-mail, etc."""
-        # Note: this should automatically use the TASK_USER_ID user.
-        helper = ReviewHelper(addon=version.addon, version=version)
+        helper = ReviewHelper(
+            addon=version.addon,
+            version=version,
+            human_review=False,
+        )
+        approve_action = helper.actions.get('public')
+        if not approve_action:
+            raise ApprovalNotAvailableError
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
             helper.handler.data = {
                 # The comment is not translated on purpose, to behave like
@@ -193,7 +215,7 @@ class Command(BaseCommand):
             }
         else:
             helper.handler.data = {'comments': 'automatic validation'}
-        helper.handler.approve_latest_version()
+        approve_action['method']()
         statsd.incr('reviewers.auto_approve.approve.success')
 
     def log_final_summary(self, stats):
