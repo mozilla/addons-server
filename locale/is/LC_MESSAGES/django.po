@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-19 16:03+0000\n"
+"POT-Creation-Date: 2022-04-21 10:22+0000\n"
 "PO-Revision-Date: 2022-04-20 17:47+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr "tegund"
 msgid "Users"
 msgstr "Notendur"
 
-msgid "Addons"
+msgid "Add-ons"
 msgstr "Viðbætur"
 
 msgid "minimum reports count (grouped by guid)"
@@ -173,6 +173,9 @@ msgstr ""
 msgid "Invalid or broken archive."
 msgstr "Ógild eða skemmd safnskrá."
 
+msgid "This type of add-on does not allow custom compatibility."
+msgstr ""
+
 msgid "Invalid value"
 msgstr ""
 
@@ -189,8 +192,8 @@ msgstr ""
 msgid "Listed"
 msgstr "Upptalið"
 
-msgid "Addon and collection paths need to end with \"/\""
-msgstr "Slóðir á viðbætur og söfn þurfa að enda á \"/\""
+msgid "Add-on and collection paths need to end with \"/\""
+msgstr ""
 
 msgid "Previews cannot be created for themes."
 msgstr ""
@@ -213,13 +216,13 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Addon metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-msgid "This field is required for addons with listed versions."
+msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -234,7 +237,7 @@ msgstr ""
 msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
 
-msgid "Wrong addon type for this license."
+msgid "Wrong add-on type for this license."
 msgstr ""
 
 msgid "Custom licenses are not supported for themes."
@@ -346,17 +349,17 @@ msgstr "Fannst ekki"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Því miður getum við ekki fundið það sem þú ert að leita að.</h1> <p>Síðan eða skjalið sem þú baðst um fannst ekki á vefsvæðinu okkar. Það er mögulegt að þú hafir smellt á tengil sem er úreltur "
 "eða sett inn rangt skrifað vistsfang.</p> <ul> <li>Ef þú skrifaðir inn vistfangið skaltu athuga vel stafsetninguna.</li> <li>Ef þú smelltir á tengil einhvers staðar ættirðu að %(open_bug_link)s "
 "tilkynna vandamálið %(close_bug_link)s. Segðu okkur hvaðan þú komst, að hverju þú leitaðir og við munum gera okkar besta til að laga þetta. </li> </ul> <p>Eða þú getur bara hoppað yfir á nokkrar af "
 "vinsælustu síðunum á vefsvæðinu okkar. </p> <ul> <li>Hefur þú áhuga á <a href=\"%(rec)s\">lista með úrvali viðbóta </a>? </li> <li> Viltu <a href=\"%(search)s\">leita að viðbótum </a>? Þú getur "
-"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. "
-"</li> </ul>"
+"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. </"
+"li> </ul>"
 
 msgid "Oops"
 msgstr "Úbbs"
@@ -366,8 +369,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur líka"
-" hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
+"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur "
+"líka hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
 
 msgid "Register or Log in"
 msgstr "Nýskráðu þig eða skráðu inn"
@@ -487,8 +490,8 @@ msgstr "Útgáfur"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -518,8 +521,8 @@ msgid "Block with GUID %(guid)s not found"
 msgstr "Blokk með GUID %(guid)s fannst ekki"
 
 #, python-format
-msgid "Addon with GUID %(guid)s does not exist"
-msgstr "Viðbót með GUID %(guid)s er ekki til"
+msgid "Add-on with GUID %(guid)s does not exist"
+msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr ""
@@ -686,8 +689,8 @@ msgstr "Frekari upplýsinga óskað"
 msgid "{addon} {version} super review requested."
 msgstr "Beðið um ofur-yfirferð fyrir {addon} {version}."
 
-msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr "Viðbótin hefur verið merkt fyrir yfirferð stjórnenda. Það er enn í yfirferðarröðinni okkar, en einn af stjórnendum okkar þarf að yfirfara hana. Yfirferðin gæti tekið lengri tíma en venjulega."
+msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
+msgstr ""
 
 msgid "Comment on {addon} {version}."
 msgstr "Athugasemd um {addon} {version}."
@@ -826,7 +829,7 @@ msgid "{file} was signed."
 msgstr "{file} var undirrituð."
 
 #. L10n: {0} is the add-on GUID.
-msgid "Addon id {0} with GUID {1} has been deleted"
+msgid "Add-on id {0} with GUID {1} has been deleted"
 msgstr ""
 
 msgid "{addon} migrated from preliminary."
@@ -1003,9 +1006,6 @@ msgstr "Firefox fyrir Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-msgid "Unknown"
-msgstr "Óþekkt"
-
 msgid "Incomplete"
 msgstr "Óklárað"
 
@@ -1024,8 +1024,8 @@ msgstr "Óskráð"
 msgid "Signing API"
 msgstr "Undirritunar-API"
 
-msgid "Addon API"
-msgstr "API-viðbótar"
+msgid "Add-on API"
+msgstr ""
 
 msgid "Automatically generated by AMO"
 msgstr "Útbúið sjálfvirkt af AMO"
@@ -1630,6 +1630,9 @@ msgstr "Tefja sjálfvirkt-samþykki ótímabundið og bæta við takmörkunum"
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr "Tefja sjálfvirkt-samþykki ótímabundið og bæta við takmörkunum fyrir seinni tíma samþykki"
 
+msgid "Unknown"
+msgstr "Óþekkt"
+
 msgid "True positive"
 msgstr "Sannjákvætt"
 
@@ -1934,7 +1937,8 @@ msgid "There was an error uploading your preview."
 msgstr "Villa kom upp við að senda inn umsögnina þína."
 
 #, python-format
-msgid "The latest approved version of this %s addon cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgid ""
+"The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 #, python-format
@@ -2126,7 +2130,9 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -2342,8 +2348,8 @@ msgid "Email"
 msgstr "Tölvupóstur"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2385,8 +2391,8 @@ msgid "Whiteboard"
 msgstr ""
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
-"help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2894,8 +2900,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2967,7 +2973,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3428,7 +3435,7 @@ msgstr "Gera útgáfu óvirka"
 
 #, python-format
 msgid ""
-"The latest approved version of this %(promoted_group_name)s addon cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
+"The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
 
@@ -4465,19 +4472,17 @@ msgid "See all extensions"
 msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Þýðingatól"
+msgid "Privacy & anti-tracking"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Auglýsingabanar fyrir elítuna"
+msgid "Creativity extensions"
+msgstr "Forritsaukar fyrir sköpunargleði"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Sérsníðing YouTube"
+msgid "Image search"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4532,6 +4537,10 @@ msgid "See more password manager staff picks"
 msgstr "Skoðaðu fleiri lykilorðastjóra sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Þýðingatól"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Skoðaðu fleiri þýðingatól sem starfsfólk hefur valið"
 
@@ -4560,8 +4569,16 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Sjá fleiri forritsauka merkta með \"{tag}\""
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Auglýsingabanar fyrir elítuna"
+
+#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Sérsníðing YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4598,10 +4615,6 @@ msgstr "Til að bæta Steam"
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
 msgstr "Skoðaðu fleira tengt Steam sem starfsfólk hefur valið"
-
-#. editorial content for the homepage shelves.
-msgid "Creativity extensions"
-msgstr "Forritsaukar fyrir sköpunargleði"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
@@ -4841,7 +4854,7 @@ msgstr "er læst af yfirferðaraðila"
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
 
-msgid "Is in a promoted addon group that requires pre-review"
+msgid "Is in a promoted add-on group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
@@ -5289,7 +5302,7 @@ msgstr "Prófað á:"
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
-msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
@@ -5646,11 +5659,11 @@ msgstr ""
 msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Gat ekki fundið viðbót með auðkennið \"{}\"."
 
-msgid "You do not own this addon."
-msgstr "Þú átt ekki þessa viðbót."
+msgid "You do not own this add-on."
+msgstr ""
 
 #, python-format
-msgid "You cannot add versions to an addon that has status: %s."
+msgid "You cannot add versions to an add-on that has status: %s."
 msgstr ""
 
 msgid "Version does not match the manifest file."
@@ -5666,13 +5679,13 @@ msgstr ""
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-msgid "You cannot add listed versions to an addon set to \"Invisible\" state."
+msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""
 
-msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
+msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr ""
 
-msgid "No uploaded file for that addon and version."
+msgid "No uploaded file for that add-on and version."
 msgstr ""
 
 msgid "Overview"
@@ -5929,9 +5942,6 @@ msgstr "Fara"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Fara til baka á heimasíðu {0} viðbótarinnar"
 
-msgid "Add-ons"
-msgstr "Viðbætur"
-
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Nýskráðu þig</a> eða <a href=\"%(login)s\">skráðu þig inn</a>"
@@ -6039,8 +6049,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6087,7 +6097,7 @@ msgstr "Eyða mynd"
 
 #, python-format
 msgid ""
-"The following author has been added to your addon %(addon_name)s ( %(addon_url)s ):\n"
+"The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
@@ -6096,7 +6106,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6110,14 +6121,14 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The following author has been changed on your addon %(addon_name)s ( %(addon_url)s ):\n"
+"The following author has been changed on your add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
 
 #, python-format
 msgid ""
-"The following author has been removed from addon %(addon_name)s ( %(addon_url)s ):\n"
+"The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
