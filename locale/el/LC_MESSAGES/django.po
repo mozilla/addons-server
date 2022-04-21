@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 15:56+0000\n"
+"PO-Revision-Date: 2022-04-21 16:17+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -147,7 +147,7 @@ msgid "- Add-on not on AMO -"
 msgstr "- Το πρόσθετο δεν είναι στο AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Έχετε υπερβεί τον μέγιστο αριθμό κατηγοριών ανά εφαρμογή ({MAX_CATEGORIES})"
 
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
@@ -174,7 +174,7 @@ msgid "Invalid or broken archive."
 msgstr "Άκυρο ή κατεστραμμένο αρχείο."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Αυτός ο τύπος πρόσθετου δεν επιτρέπει προσαρμοσμένη συμβατότητα."
 
 msgid "Invalid value"
 msgstr "Μη έγκυρη τιμή"
@@ -221,7 +221,7 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Αυτό το slug δεν μπορεί να χρησιμοποιηθεί. Παρακαλώ επιλέξτε κάποιο άλλο."
 
 msgid "This field is required for add-ons with listed versions."
 msgstr ""
@@ -239,10 +239,10 @@ msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Εσφαλμένος τύπος πρόσθετου για αυτήν την άδεια."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Οι προσαρμοσμένες άδειες δεν υποστηρίζονται για τα θέματα."
 
 msgid "My Add-ons"
 msgstr "Τα πρόσθετά μου"
@@ -533,7 +533,7 @@ msgstr "Δεν βρέθηκε το μπλοκ με GUID %(guid)s"
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Το πρόσθετο με GUID %(guid)s δεν υπάρχει"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Τα μπλοκ προς ενημέρωση είναι διαφορετικά επειδή έχει αλλάξει η ελάχιστη ή η μέγιστη έκδοση."
