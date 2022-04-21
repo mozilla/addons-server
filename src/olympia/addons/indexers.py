@@ -472,6 +472,7 @@ class AddonIndexer:
                         'id': {'type': 'long', 'index': False},
                         'caption_translations': cls.get_translations_definition(),
                         'modified': {'type': 'date', 'index': False},
+                        'position': {'type': 'long', 'index': False},
                         'sizes': {
                             'type': 'object',
                             'properties': {
