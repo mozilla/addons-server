@@ -9,6 +9,7 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.core.files.base import File
+from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
 from django.db.transaction import atomic
 from django.utils import translation
 from django.utils.translation import gettext
@@ -27,6 +28,9 @@ from olympia.users.models import (
     UserRestrictionHistory,
 )
 from olympia.users.utils import get_task_user
+
+
+log = core.logger.getLogger('z.addons')
 
 
 def generate_addon_guid():
@@ -409,3 +413,19 @@ def fetch_translations_from_addon(addon, properties):
     translation_ids = [id_ for id_ in translation_ids_gen if id_]
     # Just get all the values together to make it simplier
     return {str(value) for value in Translation.objects.filter(id__in=translation_ids)}
+
+
+class DeleteTokenSigner(TimestampSigner):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **{'salt': 'addon-delete', **kwargs})
+
+    def generate(self, addon_id):
+        return self.sign_object({'addon_id': addon_id})
+
+    def validate(self, token, addon_id):
+        try:
+            token_payload = self.unsign_object(token, max_age=60)
+        except (SignatureExpired, BadSignature) as exc:
+            log.debug(exc)
+            return False
+        return token_payload['addon_id'] == addon_id

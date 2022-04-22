@@ -38,6 +38,7 @@ from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
+    AllowAddonOwner,
     AllowIfNotMozillaDisabled,
     AllowIfNotSitePermission,
     AllowReadOnlyIfPublic,
@@ -87,6 +88,7 @@ from .serializers import (
     ListVersionSerializer,
 )
 from .utils import (
+    DeleteTokenSigner,
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
@@ -195,7 +197,11 @@ def find_replacement_addon(request):
 
 
 class AddonViewSet(
-    CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet
+    CreateModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin,
+    GenericViewSet,
 ):
     write_permission_classes = [
         APIGatePermission('addon-submission-api'),
@@ -203,6 +209,11 @@ class AddonViewSet(
         AllowIfNotMozillaDisabled,
         AllowIfNotSitePermission,
         IsSubmissionAllowedFor,
+    ]
+    delete_permission_classes = [
+        APIGatePermission('addon-submission-api'),
+        AllowAddonOwner,
+        AllowIfNotMozillaDisabled,
     ]
     permission_classes = [
         AnyOf(
@@ -274,8 +285,10 @@ class AddonViewSet(
         for restriction in self.get_georestrictions():
             if not restriction.has_permission(request, self):
                 raise UnavailableForLegalReasons()
-        if self.action in ('create', 'update', 'partial_update', 'destroy'):
+        if self.action in ('create', 'update', 'partial_update'):
             self.permission_classes = self.write_permission_classes
+        elif self.action in ('destroy', 'delete_confirm'):
+            self.permission_classes = self.delete_permission_classes
         super().check_permissions(request)
 
     def check_object_permissions(self, request, obj):
@@ -292,8 +305,10 @@ class AddonViewSet(
             if not restriction.has_object_permission(request, self, obj):
                 raise UnavailableForLegalReasons()
 
-        if self.action in ('update', 'partial_update', 'destroy'):
+        if self.action in ('update', 'partial_update'):
             self.permission_classes = self.write_permission_classes
+        elif self.action in ('destroy', 'delete_confirm'):
+            self.permission_classes = self.delete_permission_classes
         try:
             super().check_object_permissions(request, obj)
         except exceptions.APIException as exc:
@@ -321,6 +336,23 @@ class AddonViewSet(
             obj, context=self.get_serializer_context()
         )
         return Response(serializer.data)
+
+    @action(detail=True)
+    def delete_confirm(self, request, *args, **kwargs):
+        token = DeleteTokenSigner().generate(self.get_object().id)
+        return Response({'delete_confirm': token})
+
+    def destroy(self, request, *args, **kwargs):
+        # check token
+        token = request.GET.get('delete_confirm')
+        if not token:
+            raise exceptions.ValidationError(
+                '"delete_confirm" token must be supplied for add-on delete.'
+            )
+        if not DeleteTokenSigner().validate(token, self.get_object().id):
+            raise exceptions.ValidationError('"delete_confirm" token is invalid.')
+
+        return super().destroy(request, *args, **kwargs)
 
 
 class AddonChildMixin:

@@ -2057,7 +2057,7 @@ class AddonUserManager(ManagerBase):
 class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    user = user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     role = models.SmallIntegerField(
         default=amo.AUTHOR_ROLE_OWNER, choices=amo.AUTHOR_CHOICES_UNFILTERED
     )
