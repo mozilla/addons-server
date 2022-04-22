@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-22 10:07+0000\n"
+"PO-Revision-Date: 2022-04-22 10:11+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -214,16 +214,16 @@ msgid "Version {version_string} already exists."
 msgstr "{version_string} ვერსია უკვე არსებობს."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "გამოქვეყნებული ვერსიები ვერ გადაიგზავნება, როცა დამატება გათიშულია."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "დამატების თანმხლები მონაცემები აუცილებელია, გამოსაქვეყნებელი ვერსიის შესაქმნელად: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "ეს დაბოლოება ვერ იქნება გამოყენებული. გთხოვთ, შეარჩიოთ სხვა."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "ეს ველი აუცილებელია გამოქვეყნებული ვერსიების მქონე დამატებებისთვის."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "დამატების სახელში Mozilla-ს ან Firefox-ის სავაჭრო ნიშნების გამოყენება დაუშვებელია."
@@ -232,7 +232,7 @@ msgid "Site permissions for {hostnames}"
 msgstr "საიტის ნებართვები მისამართისთვის {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "ორივე, `license` და `custom_license` ვერ მიეთითება ერთდროულად."
 
 msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
