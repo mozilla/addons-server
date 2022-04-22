@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.db import models
 from django.template import engines
 from django.utils.encoding import force_str
 
@@ -103,3 +105,14 @@ def transfield_changed(field, initial, data):
     ]
     data = [(f'{field}_{k}', v) for k, v in iter(data[field].items()) if k != 'init']
     return set(initial) != set(data)
+
+
+def default_locale(obj):
+    """Get obj's default locale."""
+    if hasattr(obj, 'get_fallback'):
+        fallback = obj.get_fallback()
+        if isinstance(fallback, models.Field):
+            fallback = getattr(obj, fallback.name)
+        return fallback
+    else:
+        return settings.LANGUAGE_CODE

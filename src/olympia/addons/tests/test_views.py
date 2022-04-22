@@ -1381,6 +1381,61 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert alog.action == amo.LOG.EDIT_PROPERTIES.id
         assert alog.details == ['summary']
 
+    @override_settings(API_THROTTLING=False)
+    def test_translated_fields(self):
+        def patch(description_dict):
+            return self.client.patch(self.url, data={'description': description_dict})
+
+        self.addon.reload()
+        self.addon.description = 'description'
+        self.addon.save()
+
+        # change description in default_locale
+        desc_en_us = 'description in English'
+        response = patch({'en-US': desc_en_us})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] == {'en-US': desc_en_us}
+        assert self.addon.reload().description == desc_en_us
+
+        # add description in other locale
+        desc_es = 'descripción en español'
+        response = patch({'es': desc_es})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] == {'en-US': desc_en_us, 'es': desc_es}
+        assert self.addon.reload().description == desc_en_us
+        with self.activate('es'):
+            assert self.addon.reload().description == desc_es
+        with self.activate('fr'):
+            assert self.addon.reload().description == desc_en_us  # default fallback
+
+        # delete description in other locale (and add one)
+        desc_fr = 'descriptif en français'
+        response = patch({'es': None, 'fr': desc_fr})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] == {'en-US': desc_en_us, 'fr': desc_fr}
+        assert self.addon.reload().description == desc_en_us
+        with self.activate('es'):
+            assert self.addon.reload().description == desc_en_us  # default fallback
+        with self.activate('fr'):
+            assert self.addon.reload().description == desc_fr
+
+        # delete description in default_locale but not "fr" - not allowed
+        response = patch({'en-US': None})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'description': [
+                'A value in the default locale of "en-US" is required if other '
+                'translations are set.'
+            ]
+        }
+
+        # but we can delete all translations (for a required==False field)
+        response = patch({'en-US': None, 'fr': None})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] is None
+        self.addon = Addon.objects.get(id=self.addon.id)
+        assert self.addon.description is None
+
     def test_not_authenticated(self):
         self.client.logout_api()
         response = self.client.patch(
