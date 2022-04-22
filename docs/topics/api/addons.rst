@@ -408,7 +408,7 @@ Delete Confirm
 
 .. _addon-delete-confirm:
 
-This endpoint just supplies a special signed JWT token that can be used to confirm deletion of an add-on.
+This endpoint just supplies a special signed token that can be used to confirm deletion of an add-on.
 The token is valid for 60 seconds after it's been created, and is only valid for this specific add-on.
 
 
