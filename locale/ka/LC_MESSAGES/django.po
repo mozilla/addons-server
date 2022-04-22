@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-22 10:22+0000\n"
+"PO-Revision-Date: 2022-04-22 11:20+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4573,7 +4573,7 @@ msgstr "გაფართოებები ერთგვარი პრო�
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "მათი მეშვეობით Firefox იღებს ახალ შესაძლებლობებს გვერდების უფრო სწრაფად და უსაფრთხოდ მოსანახულებლად, ან უბრალოდ გასართობად."
+msgstr "მათი მეშვეობით Firefox იღებს ახალ შესაძლებლობებს გვერდების უფრო სწრაფად და უსაფრთხოდ მოსანახულებლად, ანდაც გასართობად."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
