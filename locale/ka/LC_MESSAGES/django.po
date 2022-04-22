@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-22 10:21+0000\n"
+"PO-Revision-Date: 2022-04-22 10:22+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -691,6 +691,8 @@ msgstr "{addon} {version} საჭიროებს პროფესიო�
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"თქვენი დამატება ჩანიშნულია, ხელმძღვანელობასთან გადასაგზავნად. ჯერ კიდევ განსახილველთა რიგშია, მაგრამ საჭიროა ერთმა მმართველმა მაინც შეამოწმოს. რის შედეგადაც, ეს განხილვა ჩვეულზე მეტ ხანს შეიძლება "
+"გაგრძელდეს."
 
 msgid "Comment on {addon} {version}."
 msgstr "შენიშვნა {addon} {version}-ზე."
