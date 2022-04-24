@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-24 16:31+0000\n"
+"PO-Revision-Date: 2022-04-24 16:35+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4978,7 +4978,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Hat markearring ‘automatysk goedkarre útskeakele/útsteld’"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Stiet yn in groep fan promoate add-ons dy’t yn it foar beoardiele moatte wurde"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Fertrage omdat it de earste ferzje yn de list is"
@@ -5429,6 +5429,8 @@ msgstr "<strong>Warskôging!</strong> In oare brûker hat dizze side earder as j
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
+"It notysjeboerd is it plak wêr’t foar dizze add-on relevante ynformaasje (likefolle de ferzje) tusken de ûntwikkeler en de beoardieler útwiksele wurde kin. Dit is foar beiden sichtber en te "
+"bewurkjen."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "It priveenotysjeboerd wurdt brûkt foar de útwikseling fan ferzjeûnôfhinklike ynformaasje tusken beoardielers. Hâld it taalgebrûk objektyf. Dit is allinnich sichtber foar beoardielers."
@@ -5785,11 +5787,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Koe gjin add-on mei ID ‘{}’ fine."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Dizze add-on is net fan jo."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Jo kinne gjin ferzjes oan in add-on mei de steat %s tafoegje."
 
 msgid "Version does not match the manifest file."
 msgstr "Ferzje komt net oerien mei it manifest-bestân."
@@ -5805,13 +5807,13 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "Unjildige add-on-ID yn URL"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Jo kinne gjin ferzjes oan in add-on mei de steat ‘Unsichtber’ tafoegje."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Jo kinne gjin fermelde ferzje oan dizze add-on tafoegje fia de API fanwegen ûntbrekkende metagegevens. Tsjinje him yn fia de website"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Gjin opladen bestân foar dy add-on en ferzje."
 
 msgid "Overview"
 msgstr "Oersjoch"
