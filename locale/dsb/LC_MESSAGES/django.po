@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-24 19:21+0000\n"
+"PO-Revision-Date: 2022-04-24 19:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -150,16 +150,16 @@ msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Maksimalna licba kategorijow na nałoženje ({MAX_CATEGORIES}) jo pśekšocona"
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Kategorija „howacne“ njedajo se z drugeju kategoriju kombiněrowaś"
 
 msgid "Invalid category name."
-msgstr ""
+msgstr "Njepłaśiwe mě kategorije."
 
 msgid "Invalid app name."
-msgstr ""
+msgstr "Njepłaśiwe mě nałoženja."
 
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "URL-domena musy jadna z [{domains}] byś."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "URL-sćažka za sponsory GitHub musy /sponsors/ wopśimowaś."
@@ -174,32 +174,32 @@ msgid "Invalid or broken archive."
 msgstr "Njepłaśiwy abo wobškóźony archiw."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Toś ten dodankowy typ swójsku kompatibelnosć njedowólujo."
 
 msgid "Invalid value"
 msgstr "Njepłaśiwa gódnota"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Njepłaśiwe nałoženje pódane"
 
 msgid "Unknown app version specified"
-msgstr ""
+msgstr "Njepłaśiwa nałožeńska wersija pódana"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Wobraze muse mjeńše ako %d MB byś"
 
 msgid "Listed"
 msgstr "W lisćinje"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Sćažki dodankow a zběrkow muse se na \"/\" kóńcyś"
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Pśeglědy njedaju se za drastwy napóraś."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Zatwarjone licence njedaju se aktualizěrowaś."
 
 msgid "Upload is not valid."
 msgstr "Nagraśe njejo płaśiwe."
@@ -214,16 +214,16 @@ msgid "Version {version_string} already exists."
 msgstr "Wersija {version_string} južo eksistěrujo."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Nalicone wersije njedaju se zapódaś, mjaztym až dodank jo znjemóžnjony."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Dodankowe metadaty muse se póstajiś, aby se nalicona wersija napórała: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Adresowe mě njedajo se wužywaś. Pšosym wubjeŕśo druge."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Toś to pólo jo za dodanki z naliconymi wersijami trjebne."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Mjenja dodankow njamógu wikowu marku Mozilla abo Firefox wopśimowaś."
