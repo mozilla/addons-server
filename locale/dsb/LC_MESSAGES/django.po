@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-24 19:30+0000\n"
+"PO-Revision-Date: 2022-04-24 19:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -232,16 +232,16 @@ msgid "Site permissions for {hostnames}"
 msgstr "Sedłowe pšawa za {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "„license“ a „custom_license“ njedajotej se gromaźe pódaś."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Toś to pólo, abo „custom_license“ jo za nalicone wersije trjebne."
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Wopacny dodankowy typ za toś tu licencu."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Swójske licence se za drastwy njepódpěraju."
 
 msgid "My Add-ons"
 msgstr "Móje dodanki"
@@ -4584,7 +4584,7 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "Priwatnosć a šćit pśed slědowanim"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4811,7 +4811,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Felujucy kluc „upload“ wěcejdźělowych datajowych datach."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Felujucy argument „channel“."
 
 msgid "User"
 msgstr "Wužywaŕ"
