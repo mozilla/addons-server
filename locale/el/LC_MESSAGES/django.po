@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 16:17+0000\n"
+"PO-Revision-Date: 2022-04-24 17:48+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -183,7 +183,7 @@ msgid "Invalid app specified"
 msgstr ""
 
 msgid "Unknown app version specified"
-msgstr ""
+msgstr "Καθορίστηκε άγνωστη έκδοση εφαρμογής"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -200,10 +200,10 @@ msgid "Previews cannot be created for themes."
 msgstr "Δεν είναι δυνατή η δημιουργία προεπισκόπησης για τα θέματα."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Οι ενσωματωμένες άδειες δεν μπορούν να ενημερωθούν."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Η μεταφόρτωση δεν είναι έγκυρη."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Η έκδοση {version} ταιριάζει με το {block_link} για αυτό το πρόσθετο. Μπορείτε να επικοινωνήσετε με τους {amo_admins} για περισσότερες πληροφορίες."
@@ -212,7 +212,7 @@ msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Η έκδοση {version_string} υπάρχει ήδη."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
@@ -224,7 +224,7 @@ msgid "This slug cannot be used. Please choose another."
 msgstr "Αυτό το slug δεν μπορεί να χρησιμοποιηθεί. Παρακαλώ επιλέξτε κάποιο άλλο."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Αυτό το πεδίο απαιτείται για πρόσθετα με καταχωρημένες εκδόσεις."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Τα ονόματα προσθέτων δεν μπορούν να περιέχουν τα εμπορικά σήματα της Mozilla ή του Firefox."
