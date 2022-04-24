@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-24 03:50+0000\n"
+"PO-Revision-Date: 2022-04-24 03:58+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4497,7 +4497,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Kkes ayen ur tesriḍ ara seg Twitter inek·inem."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
@@ -4505,7 +4505,7 @@ msgstr "Sagen YouTube akken tebɣiḍ."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Kkes isefka n tunigin srid seg ufeggag n yifecka n yiminig."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
@@ -4525,7 +4525,7 @@ msgstr "Kkes adellel, tremseḍ ammesten igerrzen mgal yir aseɣẓan."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Kkes amsal seg uḍris yettwaneɣlen ɣer tecfawt."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4541,7 +4541,7 @@ msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "Tabaḍnit & mgal-aḍfar"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4550,7 +4550,7 @@ msgstr "Isiɣzaf n usnulfu"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search"
-msgstr ""
+msgstr "Andai n tugna"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4925,7 +4925,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Tacreḍt tawurmant n uqbal tensa/tɛeṭṭel"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Yella deg ugraw n yizegrar yettwarefden i yesran asenqed uzwir"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Yeɛṭel acku d lqem amenzu i d-yettwabedren"
@@ -5373,7 +5373,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Ɣur-k!</strong> Aseqdac-nniḍen iwala asebter-a uqbel-ik."
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Tafelwit tamellalt d amḍiq i umbaddal n telɣut icudden ɣer uzegrir-a (akken yebɣu yella lqem), gar uneflay akked umaẓrag. Tafelwit-a zemren ad tt-wali i sin."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "Tafelwit-a tamellalt tettwaseqdec deg tulsa n tɣuri i beṭṭu n telɣut tamunant ɣef lqem. Ma ulac aɣilif qqim kan deg tmussni. Ala wid yettalsen taɣuri ara t-iwalin."
@@ -5730,11 +5730,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Ur izmir ara ad d-yaf azegrir s usulay \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Ur tezmireḍ ara ad terreḍ azegrir-a inek·inem."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Ur temirzḍ ar ad ternuḍ ileqman i uzegrir yelllan deg waddad: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Lqem ur imenṭaḍ ara akked ufaylu n umeskan."
@@ -5750,7 +5750,7 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "Asulay n uzegrir d armeɣtu deg URL neɣ deg ukemmus"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Ur tezmireḍ ar ad ternuḍ ileqman i yettwabedren i uzegrir yellan deg waddad: \"uffir\"."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr ""
