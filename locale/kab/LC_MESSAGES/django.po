@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-24 03:39+0000\n"
+"PO-Revision-Date: 2022-04-24 03:50+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2408,6 +2408,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Tafelwit d amḍiq ara yeǧǧen ad d-nmudd talɣut icudden ar uzegrir-ik, akken yebɣu yella lqem, i yimceggiren. Aseqdec-is ad d-imudd tarrayin n usekyed n uzegrir, akked yal talɣut-nniḍen izemren ad "
+"tmudd afus. Tafelwit-a ad izmiren ad ttbeddlen imceggiren."
 
 msgid "Add-on Media for {0}"
 msgstr "Allal n teγwal n uzegrir i {0}"
@@ -2536,17 +2538,11 @@ msgstr "Ffer iznan yellan deg ileman yezrin yettwazeglen"
 msgid "Top"
 msgstr "Afella n usebter"
 
-#, fuzzy
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
-"Tukksa n uzegrir inek ad yekkes ilebda akk ileqman akked ifuyla n uzegrir-agi, ama ttwabedren-d neɣ ala. Asulay ID n uzegrir ad yeqqim icudd ar umiḍan inek, ihi wiyaḍ ur ttizmiren ara ad sqedcen "
-"asulay-agisi i yileqman nniḍen."
+msgstr "Tukksa n uzegrir-inek·inem ad yekkes i lebda akk ileqman d yifuyla i tuzneḍ i uzegrir-a, ama ttwabedren-d neɣ ala."
 
-#, fuzzy
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Tukksa n uzegrir inek ad yekkes ilebda akk ileqman akked ifuyla n uzegrir-agi, ama ttwabedren-d neɣ ala. Asulay ID n uzegrir ad yeqqim icudd ar umiḍan inek, ihi wiyaḍ ur ttizmiren ara ad sqedcen "
-"asulay-agisi i yileqman nniḍen."
+msgstr "Asulay n uzegrir ad yeqqim yeqqen ɣer umiḍan-ik·im, akka wiyaḍ ur ttizmiren ara ad sqedcen asulay-a i yileqman nniḍen."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
@@ -3509,6 +3505,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Lqem aneggaru yettwaqeblen n uzegrir-a %(promoted_group_name)s ur izmir ara ad yettwakkes neɣ ad yens acku lqem aqbur ur yettwaqbel ara i usmel %(promoted_group_name)s. Ma ulac aɣilif, nermes "
+"inedbalen n AMO ma tesriḍ tallelt ɣef waya."
 
 msgid "Hide Add-on"
 msgstr "Ffer lqem"
@@ -3821,9 +3819,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Seqdec taɣerdayt akken ad tmedleḍ accaren, ad tinigeḍ deg yisebtar, atg."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Cudd tignitin n yismal web ɣer yigmaḍ-ik n unadi."
+msgstr "Cudd tugniwin n tenfult ɣer yigmaḍ-ik·im n unadi."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4431,19 +4428,16 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Tufid-d tawlaft yelhan deg web? Seqdec TinEye akken ad tafeḍ ansa i d-tekka."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Ɣer ifuyla ePub srid deg Firefox — Semɣer teɣzi n tsefsit, teɣzi n usebter, d wayen-nniḍen."
+msgstr "Ɣeṛ ifuyla ePub srid deg Firefox — Semɣer teɣzi n tsefsit, tisektiwin n usebter, d wayen-nniḍen."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Mudd udem i uḥerrek n tɣerdayt. Wali tarrayt tamaynut n tunigin s wugar n 50 twila."
+msgstr "Mudd udem i uḥerrek n tɣerdayt. Snirem tarrayin timaynutin n tunigin s wugar n 50 twila."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "Seqdec taɣerdayt akken ad tmedleḍ accaren, ad tinigeḍ deg yisebtar, atg."
+msgstr "Seqdec ambiwel n tɣerdayt i umdal n waccaren, isebter n tunigin d wugar n wayen-nniḍen."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
