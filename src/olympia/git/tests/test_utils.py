@@ -9,10 +9,8 @@ from unittest.mock import MagicMock
 from pathlib import Path
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 from olympia import amo
-from olympia.addons.cron import hide_disabled_files
 from olympia.amo.tests import (
     addon_factory,
     version_factory,
@@ -179,55 +177,6 @@ def test_git_repo_init_opens_existing_repo(settings):
 @pytest.mark.django_db
 def test_extract_and_commit_from_version(settings):
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-
-    repo = AddonGitRepository.extract_and_commit_from_version(addon.current_version)
-
-    assert repo.git_repository_path == AddonGitRepository(addon.id).git_repository_path
-    assert os.listdir(repo.git_repository_path) == ['.git']
-
-    # Verify via subprocess to make sure the repositories are properly
-    # read by the regular git client
-    output = _run_process('git branch', repo)
-    assert 'listed' in output
-    assert 'unlisted' not in output
-
-    # Test that a new "unlisted" branch is created only if needed
-    addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-    repo = AddonGitRepository.extract_and_commit_from_version(
-        version=addon.current_version
-    )
-    output = _run_process('git branch', repo)
-    assert 'listed' in output
-    assert 'unlisted' in output
-
-    output = _run_process('git log listed', repo)
-    expected = 'Create new version {} ({}) for {} from {}'.format(
-        repr(addon.current_version),
-        addon.current_version.id,
-        repr(addon),
-        repr(addon.current_version.file),
-    )
-    assert expected in output
-
-    # Check that the files are there.
-    expected = {'extracted/README.md', 'extracted/manifest.json'}
-    output = _run_process('git ls-tree -r --name-only listed', repo)
-    assert set(output.split()) == expected
-
-
-@pytest.mark.django_db
-def test_extract_and_commit_from_version_fallback_file_path(settings):
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-    # Pretend the add-on file is in fallback_file_path instead of the normal
-    # path, just like it would happen if by misfortune we run the extraction
-    # after the add-on/file status has changed but before the file has been
-    # moved.
-    storage.move_stored_file(
-        addon.current_version.file.current_file_path,
-        addon.current_version.file.fallback_file_path,
-    )
-
-    # Everything should still be processed normally.
 
     repo = AddonGitRepository.extract_and_commit_from_version(addon.current_version)
 
@@ -1594,8 +1543,6 @@ def test_extract_version_to_git_deleted_version():
 
     version = addon.current_version
     version.delete()
-
-    hide_disabled_files()
 
     extract_version_to_git(version.pk)
 

@@ -164,7 +164,7 @@ class File(OnChangeMixin, ModelBase):
         log.info(f'New file: {file_!r} from {upload!r}')
 
         # Move the uploaded file from the temp location.
-        storage.copy_stored_file(upload_path, file_.current_file_path)
+        storage.copy_stored_file(upload_path, file_.file_path)
 
         if upload.validation:
             validation = json.loads(upload.validation)
@@ -174,7 +174,7 @@ class File(OnChangeMixin, ModelBase):
 
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
-        with open(filename or self.current_file_path, 'rb') as fobj:
+        with open(filename or self.file_path, 'rb') as fobj:
             return f'sha256:{get_sha256(fobj)}'
 
     def generate_filename(self):
@@ -238,79 +238,8 @@ class File(OnChangeMixin, ModelBase):
         return self.version.addon
 
     @property
-    def guarded_file_path(self):
-        return os.path.join(
-            user_media_path('guarded_addons'), str(self.version.addon_id), self.filename
-        )
-
-    @property
-    def current_file_path(self):
-        """Returns the current path of the file, whether or not it is
-        guarded."""
-
-        file_disabled = self.status == amo.STATUS_DISABLED
-        addon_disabled = self.addon.is_disabled
-        if file_disabled or addon_disabled:
-            return self.guarded_file_path
-        else:
-            return self.file_path
-
-    @property
-    def fallback_file_path(self):
-        """Fallback path in case the file was disabled/re-enabled and not yet
-        moved - sort of the opposite to current_file_path. This should only be
-        used for things like code search or git extraction where we really want
-        the file contents no matter what."""
-        return (
-            self.file_path
-            if self.current_file_path == self.guarded_file_path
-            else self.guarded_file_path
-        )
-
-    @property
     def extension(self):
         return os.path.splitext(self.filename)[-1]
-
-    def move_file(self, source_path, destination_path, log_message):
-        """Move a file from `source_path` to `destination_path` and delete the
-        source directory if it's empty once the file has been successfully
-        moved.
-
-        Meant to move files from/to the guarded file path as they are disabled
-        or re-enabled.
-
-        IOError and UnicodeEncodeError are caught and logged."""
-        log_message = force_str(log_message)
-        try:
-            if storage.exists(source_path):
-                source_parent_path = os.path.dirname(source_path)
-                log.info(
-                    log_message.format(source=source_path, destination=destination_path)
-                )
-                storage.move_stored_file(source_path, destination_path)
-                # Now that the file has been deleted, remove the directory if
-                # it exists to prevent the main directory from growing too
-                # much (#11464)
-                remaining_dirs, remaining_files = storage.listdir(source_parent_path)
-                if len(remaining_dirs) == len(remaining_files) == 0:
-                    storage.delete(source_parent_path)
-        except (UnicodeEncodeError, OSError):
-            msg = f'Move Failure: {source_path} {destination_path}'
-            log.exception(msg)
-
-    def hide_disabled_file(self):
-        """Move a file from the public path to the guarded file path."""
-        if not self.filename:
-            return
-        src, dst = self.file_path, self.guarded_file_path
-        self.move_file(src, dst, 'Moving disabled file: {source} => {destination}')
-
-    def unhide_disabled_file(self):
-        """Move a file from guarded file path to the public file path."""
-        if not self.filename:
-            return
-        src, dst = self.guarded_file_path, self.file_path
-        self.move_file(src, dst, 'Moving undisabled file: {source} => {destination}')
 
     @cached_property
     def permissions(self):
@@ -377,27 +306,19 @@ def cleanup_file(sender, instance, **kw):
     the file system"""
     if kw.get('raw') or not instance.filename:
         return
-    # Use getattr so the paths are accessed inside the try block.
-    for path in ('file_path', 'guarded_file_path'):
-        try:
-            filename = getattr(instance, path)
-        except models.ObjectDoesNotExist:
-            return
-        if storage.exists(filename):
-            log.info(f'Removing filename: {filename} for file: {instance.pk}')
-            storage.delete(filename)
+    try:
+        filename = getattr(instance, 'file_path')
+    except models.ObjectDoesNotExist:
+        return
+    if storage.exists(filename):
+        log.info(f'Removing filename: {filename} for file: {instance.pk}')
+        storage.delete(filename)
 
 
 @File.on_change
 def check_file(old_attr, new_attr, instance, sender, **kw):
     if kw.get('raw'):
         return
-    old, new = old_attr.get('status'), instance.status
-    if new == amo.STATUS_DISABLED and old != amo.STATUS_DISABLED:
-        instance.hide_disabled_file()
-    elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
-        instance.unhide_disabled_file()
-
     # Log that the hash has changed.
     old, new = old_attr.get('hash'), instance.hash
     if old != new:

@@ -8,8 +8,8 @@ from waffle.testutils import override_switch
 
 from django.conf import settings
 
-from olympia.amo.tests import TestCase, addon_factory
-from olympia.files.tasks import repack_fileupload, hide_disabled_files
+from olympia.amo.tests import TestCase
+from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import SafeZip
 from olympia.files.tests.test_utils import AppVersionsMixin
@@ -196,19 +196,3 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
                         '}',
                     ]
                 )
-
-
-class TestHideDisabledFile(TestCase):
-    msg = 'Moving disabled file: {source} => {destination}'
-
-    def setUp(self):
-        self.addon1 = addon_factory()
-        self.addon2 = addon_factory()
-        self.file1 = self.addon1.current_version.file
-
-    @mock.patch('olympia.files.models.File.move_file')
-    def test_hide_disabled_files(self, move_file_mock):
-        hide_disabled_files.delay(addon_id=self.addon1.id)
-        move_file_mock.assert_called_once_with(
-            self.file1.file_path, self.file1.guarded_file_path, self.msg
-        )

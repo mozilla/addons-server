@@ -787,12 +787,10 @@ class ReviewBase:
     def set_data(self, data):
         self.data = data
 
-    def set_file(self, status, file, hide_disabled_file=False):
+    def set_file(self, status, file):
         """Change the file to be the new status."""
         file.datestatuschanged = datetime.now()
         file.reviewed = datetime.now()
-        if hide_disabled_file:
-            file.hide_disabled_file()
         file.status = status
         file.save()
 
@@ -1034,7 +1032,7 @@ class ReviewBase:
 
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_NULL)
-        self.set_file(amo.STATUS_DISABLED, self.file, hide_disabled_file=True)
+        self.set_file(amo.STATUS_DISABLED, self.file)
 
         if self.human_review:
             # Clear needs human review flags, but only on the latest version:
@@ -1210,7 +1208,7 @@ class ReviewBase:
         for version in self.data['versions']:
             file = version.file
             if not pending_rejection_deadline:
-                self.set_file(amo.STATUS_DISABLED, file, hide_disabled_file=True)
+                self.set_file(amo.STATUS_DISABLED, file)
             self.log_action(
                 action_id,
                 version=version,

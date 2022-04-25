@@ -401,18 +401,11 @@ class AddonGitRepository:
         with TemporaryWorktree(self.git_repository) as worktree:
             if file_obj:
                 # Now extract the extension to the workdir
-                try:
-                    extract_extension_to_dest(
-                        source=file_obj.current_file_path,
-                        dest=worktree.extraction_target_path,
-                        force_fsync=True,
-                    )
-                except FileNotFoundError:
-                    extract_extension_to_dest(
-                        source=file_obj.fallback_file_path,
-                        dest=worktree.extraction_target_path,
-                        force_fsync=True,
-                    )
+                extract_extension_to_dest(
+                    source=file_obj.file_path,
+                    dest=worktree.extraction_target_path,
+                    force_fsync=True,
+                )
 
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct

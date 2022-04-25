@@ -153,24 +153,24 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         """Test that version (soft)delete doesn't delete the file."""
         f = File.objects.get(pk=67442)
         try:
-            with storage.open(f.current_file_path, 'w') as fi:
+            with storage.open(f.file_path, 'w') as fi:
                 fi.write('sample data\n')
-            assert storage.exists(f.current_file_path)
+            assert storage.exists(f.file_path)
             f.version.delete()
-            assert storage.exists(f.current_file_path)
+            assert storage.exists(f.file_path)
         finally:
-            if storage.exists(f.current_file_path):
-                storage.delete(f.current_file_path)
+            if storage.exists(f.file_path):
+                storage.delete(f.file_path)
 
     def test_delete_file_path(self):
         f = File.objects.get(pk=67442)
-        self.check_delete(f, f.current_file_path)
+        self.check_delete(f, f.file_path)
 
     def test_delete_no_file(self):
         # test that the file object can be deleted without the file
         # being present
         file = File.objects.get(pk=74797)
-        filename = file.current_file_path
+        filename = file.file_path
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         file.delete()
 
@@ -179,44 +179,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file = File.objects.get(pk=67442)
         file.update(filename='')
         file.delete()
-
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_disable_signal(self, hide_mock):
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_APPROVED
-        f.save()
-        assert not hide_mock.called
-
-        f.status = amo.STATUS_DISABLED
-        f.save()
-        assert hide_mock.called
-
-    @mock.patch('olympia.files.models.File.unhide_disabled_file')
-    def test_unhide_on_enable(self, unhide_mock):
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_APPROVED
-        f.save()
-        assert not unhide_mock.called
-
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_DISABLED
-        f.save()
-        assert not unhide_mock.called
-
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_APPROVED
-        f.save()
-        assert unhide_mock.called
-
-    def test_unhide_disabled_files(self):
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_APPROVED
-        f.filename = 'test_unhide_disabled_filés.xpi'
-        with storage.open(f.guarded_file_path, 'wb') as fp:
-            fp.write(b'some data\n')
-        f.unhide_disabled_file()
-        assert storage.exists(f.file_path)
-        assert storage.open(f.file_path).size
 
     def test_latest_url(self):
         file_ = File.objects.get(id=67442)
@@ -273,11 +235,9 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(pk=67442)
         with storage.open(file_.file_path, 'wb') as fp:
             fp.write(b'some data\n')
-        with storage.open(file_.guarded_file_path, 'wb') as fp:
-            fp.write(b'some data guarded\n')
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_DISABLED
-        assert file_.generate_hash().startswith('sha256:6524f7791a35ef4dd4c6f')
+        assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_APPROVED
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
 
@@ -334,70 +294,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             'iamnutherstring',
             'laststring!',
         ]
-
-    def test_current_file_path(self):
-        public_fp = '/storage/files/3615/delicious_bookmarks-2.1.072-fx.xpi'
-        guarded_fp = '/guarded-addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
-
-        # Add-on enabled, file approved
-        f = File.objects.get(pk=67442)
-        assert f.current_file_path.endswith(public_fp)
-
-        # Add-on user-disabled, file approved
-        f.addon.update(disabled_by_user=True)
-        assert f.current_file_path.endswith(guarded_fp)
-        f.addon.update(disabled_by_user=False)
-
-        # Add-on mozilla-disabled, file approved
-        f.addon.update(status=amo.STATUS_DISABLED)
-        assert f.current_file_path.endswith(guarded_fp)
-        f.addon.update(status=amo.STATUS_APPROVED)
-
-        # Add-on enabled, file disabled
-        f.update(status=amo.STATUS_DISABLED)
-        f = File.objects.get(pk=67442)
-        assert f.current_file_path.endswith(guarded_fp)
-
-        # Add-on user-disabled, file disabled
-        f.addon.update(disabled_by_user=True)
-        assert f.current_file_path.endswith(guarded_fp)
-        f.addon.update(disabled_by_user=False)
-
-        # Add-on mozilla-disabled, file disabled
-        f.addon.update(status=amo.STATUS_DISABLED)
-        assert f.current_file_path.endswith(guarded_fp)
-
-    def test_fallback_file_path(self):
-        public_fp = '/storage/files/3615/delicious_bookmarks-2.1.072-fx.xpi'
-        guarded_fp = '/guarded-addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
-
-        # Add-on enabled, file approved
-        f = File.objects.get(pk=67442)
-        assert f.fallback_file_path.endswith(guarded_fp)
-
-        # Add-on user-disabled, file approved
-        f.addon.update(disabled_by_user=True)
-        assert f.fallback_file_path.endswith(public_fp)
-        f.addon.update(disabled_by_user=False)
-
-        # Add-on mozilla-disabled, file approved
-        f.addon.update(status=amo.STATUS_DISABLED)
-        assert f.fallback_file_path.endswith(public_fp)
-        f.addon.update(status=amo.STATUS_APPROVED)
-
-        # Add-on enabled, file disabled
-        f.update(status=amo.STATUS_DISABLED)
-        f = File.objects.get(pk=67442)
-        assert f.fallback_file_path.endswith(public_fp)
-
-        # Add-on user-disabled, file disabled
-        f.addon.update(disabled_by_user=True)
-        assert f.fallback_file_path.endswith(public_fp)
-        f.addon.update(disabled_by_user=False)
-
-        # Add-on mozilla-disabled, file disabled
-        f.addon.update(status=amo.STATUS_DISABLED)
-        assert f.fallback_file_path.endswith(public_fp)
 
     def test_has_been_validated_returns_false_when_no_validation(self):
         file = File()
@@ -1239,7 +1135,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'jets-0.1.zip'
         expected_path_orig = force_str(upload.path)
-        expected_path_dest = force_str(file_.current_file_path)
+        expected_path_dest = force_str(file_.file_path)
         assert copy_stored_file_mock.call_count == 1
         assert copy_stored_file_mock.call_args_list[0][0] == (
             expected_path_orig,
@@ -1360,20 +1256,16 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert len(permissions_list) == 2
         assert permissions_list == parsed_data['optional_permissions']
 
-    def test_file_is_copied_to_current_path_at_upload(self):
+    def test_file_is_copied_to_file_path_at_upload(self):
         upload = self.upload('webextension')
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert os.path.exists(file_.file_path)
-        assert not os.path.exists(file_.guarded_file_path)
-        assert os.path.exists(file_.current_file_path)
 
-    def test_file_is_copied_to_current_path_at_upload_if_disabled(self):
+    def test_file_is_copied_to_file_path_at_upload_if_disabled(self):
         self.addon.update(disabled_by_user=True)
         upload = self.upload('webextension')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert not os.path.exists(file_.file_path)
-        assert os.path.exists(file_.guarded_file_path)
-        assert os.path.exists(file_.current_file_path)
+        assert os.path.exists(file_.file_path)
 
     def test_permission_enabler_site_permissions(self):
         upload = self.upload('webextension.xpi')

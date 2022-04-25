@@ -311,8 +311,7 @@ class TestVersion(TestCase):
         assert self.addon.versions.count() == 1
         assert Addon.objects.get(id=3615).status == amo.STATUS_NOMINATED
 
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_user_can_disable_addon(self, hide_mock):
+    def test_user_can_disable_addon(self):
         version = self.addon.current_version
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=False)
         response = self.client.post(self.disable_url)
@@ -321,7 +320,6 @@ class TestVersion(TestCase):
         version.reload()
         assert addon.disabled_by_user
         assert addon.status == amo.STATUS_APPROVED
-        assert hide_mock.called
 
         # Check we didn't change the status of the files.
         assert version.file.status == amo.STATUS_APPROVED
@@ -331,8 +329,7 @@ class TestVersion(TestCase):
         msg = entry.to_string()
         assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
 
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_user_can_disable_addon_pending_version(self, hide_mock):
+    def test_user_can_disable_addon_pending_version(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=False)
         (new_version, _) = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         assert (
@@ -345,7 +342,6 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         assert addon.disabled_by_user
         assert addon.status == amo.STATUS_APPROVED
-        assert hide_mock.called
 
         # Check we disabled the file pending review.
         new_version.file.reload()
@@ -361,8 +357,7 @@ class TestVersion(TestCase):
         msg = entry.to_string()
         assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
 
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_disabling_addon_awaiting_review_disables_version(self, hide_mock):
+    def test_disabling_addon_awaiting_review_disables_version(self):
         self.addon.update(status=amo.STATUS_AWAITING_REVIEW, disabled_by_user=False)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
 
@@ -371,7 +366,6 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         assert addon.disabled_by_user
         assert addon.status == amo.STATUS_NULL
-        assert hide_mock.called
 
         # Check we disabled the file pending review.
         self.version = Version.objects.get(id=self.version.id)

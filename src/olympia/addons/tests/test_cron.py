@@ -1,8 +1,4 @@
-import os
-
 from celery import group
-from django.core.files.storage import default_storage as storage
-from django.test.utils import override_settings
 
 from unittest import mock
 
@@ -13,9 +9,8 @@ from olympia.addons.tasks import (
     update_addon_weekly_downloads,
 )
 from olympia.addons.models import Addon, FrozenAddon
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.files.models import File
-from olympia.versions.models import Version
 
 
 class TestLastUpdated(TestCase):
@@ -38,179 +33,6 @@ class TestLastUpdated(TestCase):
         cron.addon_last_updated()
         for addon in Addon.objects.filter(status=amo.STATUS_APPROVED):
             assert addon.last_updated == addon.created
-
-
-class TestHideDisabledFiles(TestCase):
-    msg = 'Moving disabled file: {source} => {destination}'
-
-    def setUp(self):
-        super().setUp()
-        self.addon = addon_factory(
-            version_kw={'version': '1'}, file_kw={'filename': 'f1'}
-        )
-        self.f1 = self.addon.current_version.file
-        version2 = version_factory(
-            addon=self.addon, version='2', file_kw={'filename': 'f2'}
-        )
-        self.f2 = version2.file
-
-    @mock.patch('olympia.files.models.os')
-    def test_leave_nondisabled_files(self, os_mock):
-        # All these addon/file status pairs should stay.
-        stati = (
-            (amo.STATUS_APPROVED, amo.STATUS_APPROVED),
-            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW),
-        )
-        for addon_status, file_status in stati:
-            self.addon.update(status=addon_status)
-            File.objects.update(status=file_status)
-            cron.hide_disabled_files()
-            assert not os_mock.path.exists.called, (addon_status, file_status)
-            assert not os_mock.path.remove.called, (addon_status, file_status)
-            assert not os_mock.path.rmdir.called, (addon_status, file_status)
-
-    @mock.patch('olympia.files.models.File.move_file')
-    def test_move_user_disabled_addon(self, mv_mock):
-        # Use Addon.objects.update so the signal handler isn't called.
-        Addon.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_APPROVED, disabled_by_user=True
-        )
-        File.objects.update(status=amo.STATUS_APPROVED)
-        cron.hide_disabled_files()
-        # Check that f2 was moved.
-        f2 = self.f2
-        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path, self.msg)
-        # Check that f1 was moved as well.
-        f1 = self.f1
-        mv_mock.call_args = mv_mock.call_args_list[0]
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path, self.msg)
-        # There's only 2 files, both should have been moved.
-        assert mv_mock.call_count == 2
-
-    @mock.patch('olympia.files.models.File.move_file')
-    def test_move_admin_disabled_addon(self, mv_mock):
-        Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_DISABLED)
-        File.objects.update(status=amo.STATUS_APPROVED)
-        cron.hide_disabled_files()
-        # Check that f2 was moved.
-        f2 = self.f2
-        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path, self.msg)
-        # Check that f1 was moved as well.
-        f1 = self.f1
-        mv_mock.call_args = mv_mock.call_args_list[0]
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path, self.msg)
-        # There's only 2 files, both should have been moved.
-        assert mv_mock.call_count == 2
-
-    @mock.patch('olympia.files.models.File.move_file')
-    def test_move_disabled_file(self, mv_mock):
-        Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_APPROVED)
-        File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
-        File.objects.filter(id=self.f2.id).update(status=amo.STATUS_AWAITING_REVIEW)
-        cron.hide_disabled_files()
-        # Only f1 should have been moved.
-        f1 = self.f1
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path, self.msg)
-        assert mv_mock.call_count == 1
-
-    @mock.patch('olympia.amo.utils.SafeStorage.exists')
-    @mock.patch('olympia.amo.utils.SafeStorage.move_stored_file')
-    def test_move_disabled_addon_ioerror(self, mv_mock, storage_exists):
-        # raise an IOError for the first file, we need to make sure
-        # that the second one is still being properly processed
-        mv_mock.side_effect = [IOError, None]
-        storage_exists.return_value = True
-
-        # Use Addon.objects.update so the signal handler isn't called.
-        Addon.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_APPROVED, disabled_by_user=True
-        )
-        File.objects.update(status=amo.STATUS_APPROVED)
-
-        cron.hide_disabled_files()
-
-        # Check that we called `move_stored_file` for f2 properly
-        f2 = self.f2
-        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path)
-
-        # Check that we called `move_stored_file` for f1 properly
-        f1 = self.f1
-        mv_mock.call_args = mv_mock.call_args_list[0]
-        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path)
-
-        # Make sure we called `mv` twice despite an `IOError` for the first
-        # file
-        assert mv_mock.call_count == 2
-
-
-class TestUnhideDisabledFiles(TestCase):
-    msg = 'Moving undisabled file: {source} => {destination}'
-
-    def setUp(self):
-        super().setUp()
-        self.addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
-        self.version = Version.objects.create(addon=self.addon)
-        self.file_ = File.objects.create(version=self.version, filename='fé')
-
-    @mock.patch('olympia.files.models.os')
-    def test_leave_disabled_files(self, os_mock):
-        self.addon.update(status=amo.STATUS_DISABLED)
-        cron.unhide_disabled_files()
-        assert not os_mock.path.exists.called
-        assert not os_mock.path.remove.called
-        assert not os_mock.path.rmdir.called
-
-        self.addon.update(status=amo.STATUS_APPROVED)
-        self.file_.update(status=amo.STATUS_DISABLED)
-        cron.unhide_disabled_files()
-        assert not os_mock.path.exists.called
-        assert not os_mock.path.remove.called
-        assert not os_mock.path.rmdir.called
-
-        self.addon.update(disabled_by_user=True)
-        self.file_.update(status=amo.STATUS_APPROVED)
-        cron.unhide_disabled_files()
-        assert not os_mock.path.exists.called
-        assert not os_mock.path.remove.called
-        assert not os_mock.path.rmdir.called
-
-    @mock.patch('olympia.files.models.File.move_file')
-    def test_move_public_files(self, mv_mock):
-        self.addon.update(status=amo.STATUS_APPROVED)
-        self.file_.update(status=amo.STATUS_APPROVED)
-        cron.unhide_disabled_files()
-        mv_mock.assert_called_with(
-            self.file_.guarded_file_path, self.file_.file_path, self.msg
-        )
-        assert mv_mock.call_count == 1
-
-    def test_cleans_up_empty_directories_after_moving(self):
-        self.addon.update(status=amo.STATUS_APPROVED)
-        self.file_.update(status=amo.STATUS_APPROVED)
-        with storage.open(self.file_.guarded_file_path, 'wb') as fp:
-            fp.write(b'content')
-        assert not storage.exists(self.file_.file_path)
-        assert storage.exists(self.file_.guarded_file_path)
-
-        cron.unhide_disabled_files()
-
-        assert storage.exists(self.file_.file_path)
-        assert not storage.exists(self.file_.guarded_file_path)
-        # Empty dir also removed:
-        assert not storage.exists(os.path.dirname(self.file_.guarded_file_path))
-
-    @override_settings(GUARDED_ADDONS_PATH='/tmp/guarded-addons')
-    @mock.patch('olympia.files.models.File.unhide_disabled_file')
-    def test_move_not_disabled_files(self, unhide_mock):
-        fpath = 'src/olympia/files/fixtures/files/webextension.xpi'
-        with amo.tests.copy_file(fpath, self.file_.guarded_file_path):
-            # Make sure this works correctly with bytestring base paths
-            # and doesn't raise a `UnicodeDecodeError`
-            # Reverts what got introduced in #11000 but accidently
-            # broke various other unicode-path related things
-            # (e.g file viewer extraction)
-            cron.unhide_disabled_files()
-            assert unhide_mock.called
 
 
 class TestAvgDailyUserCountTestCase(TestCase):

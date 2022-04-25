@@ -688,7 +688,7 @@ class AMOPaths:
 
     def xpi_copy_over(self, file, name):
         """Copies over a file into place for tests."""
-        path = file.current_file_path
+        path = file.file_path
         if not os.path.exists(os.path.dirname(path)):
             os.makedirs(os.path.dirname(path))
         shutil.copyfile(self.xpi_path(name), path)
@@ -880,7 +880,7 @@ def file_factory(**kw):
     )
 
     if os.path.exists(fixture_path):
-        root_storage.copy_stored_file(fixture_path, file_.current_file_path)
+        root_storage.copy_stored_file(fixture_path, file_.file_path)
 
     return file_
 

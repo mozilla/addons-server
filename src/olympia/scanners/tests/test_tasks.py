@@ -1,5 +1,3 @@
-import os
-import shutil
 from decimal import Decimal
 from unittest import mock
 
@@ -805,24 +803,9 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert yara_result.version == self.version
         assert not yara_result.was_blocked
 
-    def test_run_on_chunk_fallback_file_path(self):
-        # Make sure it still works when a file has been disabled but the path
-        # has not been moved to the guarded location yet (we fall back to the
-        # other path).
-        # We avoid triggering the on_change callback that would move the file
-        # when the status is updated by doing an update() on the queryset.
+    def test_run_on_chunk_disabled(self):
+        # Make sure it still works when a file has been disabled
         File.objects.filter(pk=self.version.file.pk).update(status=amo.STATUS_DISABLED)
-        self.test_run_on_chunk()
-
-    def test_run_on_chunk_fallback_file_path_guarded(self):
-        # Like test_run_on_chunk_fallback_file_path() but starting with a
-        # public File instance that somehow still has its file in the guarded
-        # path (Would happen if the whole add-on was disabled then re-enabled
-        # and the files haven't been moved back to the public location yet).
-        file_ = self.version.file
-        if not os.path.exists(os.path.dirname(file_.guarded_file_path)):
-            os.makedirs(os.path.dirname(file_.guarded_file_path))
-        shutil.move(file_.file_path, file_.guarded_file_path)
         self.test_run_on_chunk()
 
     def test_dont_generate_results_if_not_matching_rule(self):

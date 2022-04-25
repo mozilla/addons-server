@@ -12,11 +12,9 @@ import waffle
 
 import olympia.core.logger
 
-from olympia.amo.celery import task
-from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
-from olympia.files.models import File, FileUpload
+from olympia.files.models import FileUpload
 from olympia.files.utils import (
     ManifestJSONExtractor,
     extract_zip,
@@ -93,10 +91,3 @@ def repack_fileupload(results, upload_pk):
     else:
         log.info('Not repackaging upload %s, it is not a zip file.', upload_pk)
     return results
-
-
-@task
-@use_primary_db
-def hide_disabled_files(addon_id):
-    for file_ in File.objects.filter(version__addon=addon_id):
-        file_.hide_disabled_file()

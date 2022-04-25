@@ -355,60 +355,6 @@ class TestVersion(TestCase):
         assert version.file.status == amo.STATUS_DISABLED
         assert version.file.original_status == amo.STATUS_NULL
 
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_new_version_disable_old_unreviewed(self, hide_disabled_file_mock):
-        addon = Addon.objects.get(id=3615)
-        # The status doesn't change for public files.
-        qs = File.objects.filter(version=addon.current_version)
-        assert qs.all()[0].status == amo.STATUS_APPROVED
-        Version.objects.create(addon=addon)
-        assert qs.all()[0].status == amo.STATUS_APPROVED
-        assert not hide_disabled_file_mock.called
-
-        qs.update(status=amo.STATUS_AWAITING_REVIEW)
-        version = Version.objects.create(addon=addon, version='0.87')
-        version.disable_old_files()
-        assert qs.all()[0].status == amo.STATUS_DISABLED
-        assert hide_disabled_file_mock.called
-
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_new_version_dont_disable_old_unlisted_unreviewed(
-        self, hide_disabled_file_mock
-    ):
-        addon = Addon.objects.get(id=3615)
-        old_version = version_factory(
-            addon=addon,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        new_version = Version.objects.create(addon=addon)
-        new_version.disable_old_files()
-        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
-        assert not hide_disabled_file_mock.called
-
-        # Doesn't happen even if the new version is also unlisted.
-        new_version = Version.objects.create(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.54'
-        )
-        new_version.disable_old_files()
-        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
-        assert not hide_disabled_file_mock.called
-
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_new_version_unlisted_dont_disable_old_unreviewed(
-        self, hide_disabled_file_mock
-    ):
-        addon = Addon.objects.get(id=3615)
-        old_version = addon.current_version
-        old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-
-        version = version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        version.disable_old_files()
-
-        old_version.reload()
-        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
-        assert not hide_disabled_file_mock.called
-
     def _reset_version(self, version):
         version.file.status = amo.STATUS_APPROVED
         version.deleted = False
