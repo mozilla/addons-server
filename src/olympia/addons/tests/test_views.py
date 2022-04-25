@@ -76,6 +76,7 @@ from ..models import (
     Preview,
 )
 from ..serializers import (
+    AddonAuthorSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
     DeveloperVersionSerializer,
@@ -5626,3 +5627,122 @@ class TestAddonPreviewViewSet(TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
         assert alog.addonlog_set.get().addon == self.addon
+
+
+class TestAddonAuthorViewSet(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,))
+        self.addonuser = self.addon.addonuser_set.get()
+        self.detail_url = reverse_ns(
+            'addon-author-detail',
+            kwargs={'addon_pk': self.addon.pk, 'user_id': self.user.id},
+            api_version='v5',
+        )
+
+    def test_list(self):
+        list_url = reverse_ns(
+            'addon-author-list', kwargs={'addon_pk': self.addon.pk}, api_version='v5'
+        )
+        dev_author = AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_DEV, position=2
+        )
+        # this author shouldn't be in the results because it's deleted.
+        AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_DELETED
+        )
+        hidden_author = AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), listed=False, position=1
+        )
+
+        assert self.client.get(list_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.get(list_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.get(list_url)
+        assert response.status_code == 200, response.content
+        assert len(response.data) == 3
+        assert response.data[0] == AddonAuthorSerializer().to_representation(
+            instance=self.addonuser
+        )
+        assert response.data[1] == AddonAuthorSerializer().to_representation(
+            instance=hidden_author
+        )
+        assert response.data[2] == AddonAuthorSerializer().to_representation(
+            instance=dev_author
+        )
+
+    def test_detail(self):
+        assert self.client.get(self.detail_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.get(self.detail_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200, response.content
+        assert response.data == AddonAuthorSerializer().to_representation(
+            instance=self.addonuser
+        )
+
+    def test_developer_role(self):
+        self.addonuser.update(role=amo.AUTHOR_ROLE_DEV)
+        self.client.login_api(self.user)
+        # developer role authors should be able to view all details of authors
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200, response.content
+        assert response.data == AddonAuthorSerializer().to_representation(
+            instance=self.addonuser
+        )
+        # but not update
+        response = self.client.patch(self.detail_url, {'position': 2})
+        assert response.status_code == 403, response.content
+
+    def test_update(self):
+        data = {'position': 2}
+        assert self.client.patch(self.detail_url, data).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.patch(self.detail_url, data).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.patch(self.detail_url, data)
+        assert response.status_code == 200, response.content
+        self.addonuser.reload()
+        assert response.data['position'] == self.addonuser.position == 2
+
+    def test_update_role(self):
+        new_author = AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_DEV
+        )
+        self.client.login_api(self.user)
+        response = self.client.patch(self.detail_url, {'role': 'developer'})
+        assert response.status_code == 400, response.content
+        assert response.data['role'] == ['Add-ons need at least one owner.']
+
+        new_author.update(role=amo.AUTHOR_ROLE_OWNER)
+        response = self.client.patch(self.detail_url, {'role': 'developer'})
+        assert response.status_code == 200, response.content
+        self.addonuser.reload()
+        assert response.data['role'] == 'developer'
+        self.addonuser.role == amo.AUTHOR_ROLE_DEV
+
+    def test_update_listed(self):
+        new_author = AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), listed=False
+        )
+        self.client.login_api(self.user)
+        response = self.client.patch(self.detail_url, {'listed': False})
+        assert response.status_code == 400, response.content
+        assert response.data['listed'] == ['Add-ons need at least one listed author.']
+
+        new_author.update(listed=True)
+        response = self.client.patch(self.detail_url, {'listed': False})
+        assert response.status_code == 200, response.content
+        self.addonuser.reload()
+        assert response.data['listed'] is False
+        self.addonuser.listed is False
