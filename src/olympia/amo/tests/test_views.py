@@ -193,7 +193,7 @@ class TestCommon(TestCase):
         response = self.client.get(self.url, follow=True)
         request = response.context['request']
         assert not request.user.is_developer
-        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
+        assert acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
 
         expected = [
             ('Tools', '#'),
@@ -213,7 +213,7 @@ class TestCommon(TestCase):
         response = self.client.get(self.url, follow=True)
         request = response.context['request']
         assert request.user.is_developer
-        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
+        assert acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
 
         expected = [
             ('Tools', '#'),
@@ -232,9 +232,9 @@ class TestCommon(TestCase):
         assert response.status_code == 200
         request = response.context['request']
         assert not request.user.is_developer
-        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
-        assert acl.action_allowed(request, amo.permissions.LOCALIZER)
-        assert acl.action_allowed(request, amo.permissions.ANY_ADMIN)
+        assert acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
+        assert acl.action_allowed_for(request.user, amo.permissions.LOCALIZER)
+        assert acl.action_allowed_for(request.user, amo.permissions.ANY_ADMIN)
 
         expected = [
             ('Tools', '#'),
@@ -256,9 +256,9 @@ class TestCommon(TestCase):
         assert response.status_code == 200
         request = response.context['request']
         assert request.user.is_developer
-        assert acl.action_allowed(request, amo.permissions.ADDONS_REVIEW)
-        assert acl.action_allowed(request, amo.permissions.LOCALIZER)
-        assert acl.action_allowed(request, amo.permissions.ANY_ADMIN)
+        assert acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW)
+        assert acl.action_allowed_for(request.user, amo.permissions.LOCALIZER)
+        assert acl.action_allowed_for(request.user, amo.permissions.ANY_ADMIN)
 
         expected = [
             ('Tools', '#'),

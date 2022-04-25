@@ -108,7 +108,7 @@ class TestAddonView(TestCase):
         assert addon_ == addon
 
     @mock.patch(
-        'olympia.access.acl.check_unlisted_addons_viewer_or_reviewer', lambda r: False
+        'olympia.access.acl.is_unlisted_addons_viewer_or_reviewer', lambda user: False
     )
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False
@@ -120,7 +120,7 @@ class TestAddonView(TestCase):
             view(self.request, self.addon.slug)
 
     @mock.patch(
-        'olympia.access.acl.check_unlisted_addons_viewer_or_reviewer', lambda r: False
+        'olympia.access.acl.is_unlisted_addons_viewer_or_reviewer', lambda user: False
     )
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: True
@@ -145,7 +145,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
         self.view = dec.addon_view_factory(qs=Addon.objects.all)(self.func)
 
     @mock.patch(
-        'olympia.access.acl.check_unlisted_addons_viewer_or_reviewer', lambda r: False
+        'olympia.access.acl.is_unlisted_addons_viewer_or_reviewer', lambda user: False
     )
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False
@@ -157,7 +157,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
             self.view(self.request, self.addon.slug)
 
     @mock.patch(
-        'olympia.access.acl.check_unlisted_addons_viewer_or_reviewer', lambda r: False
+        'olympia.access.acl.is_unlisted_addons_viewer_or_reviewer', lambda user: False
     )
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: True
@@ -170,7 +170,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
         assert addon == self.addon
 
     @mock.patch(
-        'olympia.access.acl.check_unlisted_addons_viewer_or_reviewer', lambda r: True
+        'olympia.access.acl.is_unlisted_addons_viewer_or_reviewer', lambda user: True
     )
     @mock.patch(
         'olympia.access.acl.check_addon_ownership', lambda *args, **kwargs: False

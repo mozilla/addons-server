@@ -62,9 +62,9 @@ def dev_required(
                             file__id=file_id, channel=amo.RELEASE_CHANNEL_UNLISTED
                         ).exists()
                         has_required_permission = (
-                            acl.check_unlisted_addons_viewer_or_reviewer(request)
+                            acl.is_unlisted_addons_viewer_or_reviewer(request.user)
                             if is_unlisted
-                            else (acl.check_listed_addons_viewer_or_reviewer(request))
+                            else (acl.is_listed_addons_viewer_or_reviewer(request.user))
                         )
                         if has_required_permission:
                             return fun()
@@ -74,7 +74,7 @@ def dev_required(
                 # On read-only requests, we can allow developers, and even let
                 # authors see mozilla disabled or site permission add-ons.
                 if acl.check_addon_ownership(
-                    request,
+                    request.user,
                     addon,
                     allow_developer=True,
                     allow_mozilla_disabled_addon=True,
@@ -89,7 +89,7 @@ def dev_required(
             # status is disabled that check will return False).
             elif request.method == 'POST':
                 if acl.check_addon_ownership(
-                    request,
+                    request.user,
                     addon,
                     allow_developer=not owner_for_post,
                     allow_site_permission=allow_site_permission_for_post,

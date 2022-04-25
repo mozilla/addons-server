@@ -1,4 +1,3 @@
-from unittest import mock
 import pytest
 
 from django.contrib.auth.models import AnonymousUser
@@ -6,17 +5,16 @@ from django.contrib.auth.models import AnonymousUser
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import addon_factory, TestCase, req_factory_factory, user_factory
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.users.models import UserProfile
 
 from .acl import (
-    action_allowed,
-    action_allowed_user,
+    action_allowed_for,
     check_addon_ownership,
-    check_listed_addons_reviewer,
-    check_static_theme_reviewer,
-    check_unlisted_addons_reviewer,
-    check_unlisted_addons_viewer_or_reviewer,
+    is_listed_addons_reviewer,
+    is_static_theme_reviewer,
+    is_unlisted_addons_reviewer,
+    is_unlisted_addons_viewer_or_reviewer,
     is_reviewer,
     is_user_any_kind_of_reviewer,
     match_rules,
@@ -70,11 +68,8 @@ def test_match_rules():
 
 
 def test_anonymous_user():
-    fake_request = req_factory_factory('/')
-    assert not action_allowed(fake_request, amo.permissions.ANY_ADMIN)
-
     # This should not cause an exception (and obviously not return True either)
-    assert not action_allowed_user(None, amo.permissions.ANY_ADMIN)
+    assert not action_allowed_for(None, amo.permissions.ANY_ADMIN)
 
 
 class ACLTestCase(TestCase):
@@ -95,26 +90,15 @@ class TestCheckAddonOwnership(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
         self.au = AddonUser.objects.get(addon=self.addon, user=self.user)
         assert self.au.role == amo.AUTHOR_ROLE_OWNER
-        self.request = self.fake_request_with_user(self.user)
 
         # Extra kwargs to self.check_addon_ownership in all tests. Override in child
         # test classes to run all the tests with a different set of base
         # kwargs.
         self.extra_kwargs = {}
-
-    def fake_request_with_user(self, user):
-        request = mock.Mock()
-        request.user = user
-        return request
-
-    def login_admin(self):
-        assert self.client.login(email='admin@mozilla.com')
-        return UserProfile.objects.get(email='admin@mozilla.com')
 
     def check_addon_ownership(self, *args, **kwargs):
         _kwargs = self.extra_kwargs.copy()
@@ -122,54 +106,49 @@ class TestCheckAddonOwnership(TestCase):
         return check_addon_ownership(*args, **_kwargs)
 
     def test_anonymous(self):
-        self.request.user = AnonymousUser()
-        self.client.logout()
-        assert not self.check_addon_ownership(self.request, self.addon)
+        self.user = AnonymousUser()
+        assert not self.check_addon_ownership(self.user, self.addon)
 
     def test_allow_addons_edit_permission(self):
-        self.request = self.fake_request_with_user(self.login_admin())
-        assert self.check_addon_ownership(self.request, self.addon)
+        self.user = UserProfile.objects.get(email='admin@mozilla.com')
+        assert self.check_addon_ownership(self.user, self.addon)
         assert self.check_addon_ownership(
-            self.request, self.addon, allow_addons_edit_permission=True
+            self.user, self.addon, allow_addons_edit_permission=True
         )
         assert not self.check_addon_ownership(
-            self.request, self.addon, allow_addons_edit_permission=False
+            self.user, self.addon, allow_addons_edit_permission=False
         )
 
     def test_disabled(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert not self.check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.user, self.addon)
         self.test_allow_addons_edit_permission()
 
     def test_deleted(self):
         self.addon.update(status=amo.STATUS_DELETED)
-        assert not self.check_addon_ownership(self.request, self.addon)
-        self.request.user = self.login_admin()
-        assert not self.check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.user, self.addon)
+        self.user = UserProfile.objects.get(email='admin@mozilla.com')
+        assert not self.check_addon_ownership(self.user, self.addon)
 
     def test_allow_mozilla_disabled_addon(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         assert self.check_addon_ownership(
-            self.request, self.addon, allow_mozilla_disabled_addon=True
+            self.user, self.addon, allow_mozilla_disabled_addon=True
         )
 
     def test_owner(self):
-        assert self.check_addon_ownership(self.request, self.addon)
+        assert self.check_addon_ownership(self.user, self.addon)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert not self.check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.user, self.addon)
 
     def test_allow_developer(self):
-        assert self.check_addon_ownership(
-            self.request, self.addon, allow_developer=True
-        )
+        assert self.check_addon_ownership(self.user, self.addon, allow_developer=True)
 
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
-        assert self.check_addon_ownership(
-            self.request, self.addon, allow_developer=True
-        )
+        assert self.check_addon_ownership(self.user, self.addon, allow_developer=True)
 
     def test_add_and_remove_group(self):
         group = Group.objects.create(name='A Test Group', rules='Test:Group')
@@ -195,13 +174,11 @@ class TestCheckAddonOwnership(TestCase):
         # Let's add `user_dev` as a developer of `self.addon`.
         self.addon.addonuser_set.create(user=user_dev, role=amo.AUTHOR_ROLE_DEV)
         # Now, let's make sure `user_dev` is not an owner.
-        self.request = self.fake_request_with_user(user_dev)
+        self.user = user_dev
 
-        assert not self.check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.user, self.addon)
         # `user_dev` is a developer of `self.addon`.
-        assert self.check_addon_ownership(
-            self.request, self.addon, allow_developer=True
-        )
+        assert self.check_addon_ownership(self.user, self.addon, allow_developer=True)
 
 
 class TestCheckAddonOwnershipSitePermission(TestCheckAddonOwnership):
@@ -223,13 +200,13 @@ class TestCheckAddonOwnershipSitePermissionFalse(TestCheckAddonOwnership):
         # Not authorized - even if we're allowing mozilla disabled add-ons,
         # it's still a site permission add-on and we're not allowing that.
         assert not self.check_addon_ownership(
-            self.request, self.addon, allow_mozilla_disabled_addon=True
+            self.user, self.addon, allow_mozilla_disabled_addon=True
         )
 
     def test_owner(self):
         # Not authorized - even if we're allowing owners by default,
         # it's still a site permission add-on and we're not allowing that.
-        assert not self.check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.user, self.addon)
 
     def test_allow_developer(self):
         # Not authorized - even if we're allowing developers,
@@ -237,19 +214,19 @@ class TestCheckAddonOwnershipSitePermissionFalse(TestCheckAddonOwnership):
         self.au.role = amo.AUTHOR_ROLE_DEV
         self.au.save()
         assert not self.check_addon_ownership(
-            self.request, self.addon, allow_developer=True
+            self.user, self.addon, allow_developer=True
         )
 
     def test_owner_of_a_different_addon(self):
         user_dev = user_factory()
         addon_factory(users=[user_dev])
         self.addon.addonuser_set.create(user=user_dev, role=amo.AUTHOR_ROLE_DEV)
-        self.request = self.fake_request_with_user(user_dev)
+        self.user = user_dev
         # Not authorized - even when we're allowing owners/developers,
         # it's still a site permission add-on and we're not allowing that.
-        assert not self.check_addon_ownership(self.request, self.addon)
+        assert not self.check_addon_ownership(self.user, self.addon)
         assert not self.check_addon_ownership(
-            self.request, self.addon, allow_developer=True
+            self.user, self.addon, allow_developer=True
         )
 
 
@@ -263,104 +240,97 @@ class TestCheckReviewer(TestCase):
         self.statictheme = addon_factory(type=amo.ADDON_STATICTHEME)
 
     def test_no_perm(self):
-        request = req_factory_factory('noop', user=self.user)
-        assert not check_listed_addons_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert not is_user_any_kind_of_reviewer(request.user)
-        assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
-        assert not is_reviewer(request, self.statictheme)
+        assert not is_listed_addons_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert not is_user_any_kind_of_reviewer(self.user)
+        assert not is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
+        assert not is_reviewer(self.user, self.statictheme)
 
     def test_perm_addons(self):
         self.grant_permission(self.user, 'Addons:Review')
-        request = req_factory_factory('noop', user=self.user)
-        assert check_listed_addons_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert is_user_any_kind_of_reviewer(request.user)
+        assert is_listed_addons_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert is_user_any_kind_of_reviewer(self.user)
 
     def test_perm_unlisted_addons(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-        request = req_factory_factory('noop', user=self.user)
-        assert not check_listed_addons_reviewer(request)
-        assert check_unlisted_addons_reviewer(request)
-        assert check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert is_user_any_kind_of_reviewer(request.user)
+        assert not is_listed_addons_reviewer(self.user)
+        assert is_unlisted_addons_reviewer(self.user)
+        assert is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert is_user_any_kind_of_reviewer(self.user)
 
     def test_perm_static_themes(self):
         self.grant_permission(self.user, 'Addons:ThemeReview')
-        request = req_factory_factory('noop', user=self.user)
-        assert not check_listed_addons_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_unlisted_addons_viewer_or_reviewer(request)
-        assert check_static_theme_reviewer(request)
-        assert is_user_any_kind_of_reviewer(request.user)
+        assert not is_listed_addons_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert is_static_theme_reviewer(self.user)
+        assert is_user_any_kind_of_reviewer(self.user)
 
     def test_is_reviewer_for_addon_reviewer(self):
         """An addon reviewer is not necessarily a theme reviewer."""
         self.grant_permission(self.user, 'Addons:Review')
-        request = req_factory_factory('noop', user=self.user)
-        assert is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.statictheme)
-        assert is_user_any_kind_of_reviewer(request.user)
-        assert is_reviewer(request, self.addon, allow_content_reviewers=False)
+        assert is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.statictheme)
+        assert is_user_any_kind_of_reviewer(self.user)
+        assert is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_is_reviewer_for_static_theme_reviewer(self):
         self.grant_permission(self.user, 'Addons:ThemeReview')
-        request = req_factory_factory('noop', user=self.user)
-        assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
-        assert is_reviewer(request, self.statictheme)
-        assert is_reviewer(request, self.statictheme, allow_content_reviewers=False)
-        assert check_static_theme_reviewer(request)
-        assert is_user_any_kind_of_reviewer(request.user)
+        assert not is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
+        assert is_reviewer(self.user, self.statictheme)
+        assert is_reviewer(self.user, self.statictheme, allow_content_reviewers=False)
+        assert is_static_theme_reviewer(self.user)
+        assert is_user_any_kind_of_reviewer(self.user)
 
     def test_perm_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
-        request = req_factory_factory('noop', user=self.user)
-        assert is_user_any_kind_of_reviewer(request.user)
+        assert is_user_any_kind_of_reviewer(self.user)
 
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.statictheme)
-        assert not is_reviewer(request, self.statictheme, allow_content_reviewers=False)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert not is_reviewer(self.user, self.statictheme)
+        assert not is_reviewer(
+            self.user, self.statictheme, allow_content_reviewers=False
+        )
 
-        assert check_listed_addons_reviewer(request)
-        assert is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
+        assert is_listed_addons_reviewer(self.user)
+        assert is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_perm_reviewertools_view(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
-        request = req_factory_factory('noop', user=self.user)
-        assert is_user_any_kind_of_reviewer(request.user, allow_viewers=True)
-        assert not is_user_any_kind_of_reviewer(request.user)
-        assert not check_unlisted_addons_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.statictheme)
-        assert not check_listed_addons_reviewer(request)
-        assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
+        assert is_user_any_kind_of_reviewer(self.user, allow_viewers=True)
+        assert not is_user_any_kind_of_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert not is_reviewer(self.user, self.statictheme)
+        assert not is_listed_addons_reviewer(self.user)
+        assert not is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_perm_reviewertools_unlisted_view(self):
         self.make_addon_unlisted(self.addon)
         self.make_addon_unlisted(self.statictheme)
         self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
-        request = req_factory_factory('noop', user=self.user)
-        assert is_user_any_kind_of_reviewer(request.user, allow_viewers=True)
-        assert not is_user_any_kind_of_reviewer(request.user)
-        assert check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_unlisted_addons_reviewer(request)
-        assert check_unlisted_addons_viewer_or_reviewer(request)
-        assert not check_static_theme_reviewer(request)
-        assert not is_reviewer(request, self.statictheme)
-        assert not check_listed_addons_reviewer(request)
-        assert not is_reviewer(request, self.addon)
-        assert not is_reviewer(request, self.addon, allow_content_reviewers=False)
+        assert is_user_any_kind_of_reviewer(self.user, allow_viewers=True)
+        assert not is_user_any_kind_of_reviewer(self.user)
+        assert is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_unlisted_addons_reviewer(self.user)
+        assert is_unlisted_addons_viewer_or_reviewer(self.user)
+        assert not is_static_theme_reviewer(self.user)
+        assert not is_reviewer(self.user, self.statictheme)
+        assert not is_listed_addons_reviewer(self.user)
+        assert not is_reviewer(self.user, self.addon)
+        assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
 
 system_guids = pytest.mark.parametrize(

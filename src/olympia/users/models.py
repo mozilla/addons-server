@@ -248,7 +248,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """
         from olympia.access import acl
 
-        return acl.action_allowed_user(
+        return acl.action_allowed_for(
             self, amo.permissions.DJANGO_PERMISSIONS_MAPPING[perm]
         )
 

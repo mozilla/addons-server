@@ -149,24 +149,24 @@ class TestPermissionRequired(TestCase):
         self.f.__name__ = 'function'
         self.request = mock.Mock()
 
-    @mock.patch('olympia.access.acl.action_allowed')
-    def test_permission_not_allowed(self, action_allowed):
-        action_allowed.return_value = False
+    @mock.patch('olympia.access.acl.action_allowed_for')
+    def test_permission_not_allowed(self, action_allowed_for):
+        action_allowed_for.return_value = False
         func = decorators.permission_required(self.empty_permission)(self.f)
         with self.assertRaises(PermissionDenied):
             func(self.request)
 
-    @mock.patch('olympia.access.acl.action_allowed')
-    def test_permission_allowed(self, action_allowed):
-        action_allowed.return_value = True
+    @mock.patch('olympia.access.acl.action_allowed_for')
+    def test_permission_allowed(self, action_allowed_for):
+        action_allowed_for.return_value = True
         func = decorators.permission_required(self.empty_permission)(self.f)
         func(self.request)
         assert self.f.called
 
-    @mock.patch('olympia.access.acl.action_allowed')
-    def test_permission_allowed_correctly(self, action_allowed):
+    @mock.patch('olympia.access.acl.action_allowed_for')
+    def test_permission_allowed_correctly(self, action_allowed_for):
         func = decorators.permission_required(amo.permissions.ANY_ADMIN)(self.f)
         func(self.request)
-        action_allowed.assert_called_with(
-            self.request, amo.permissions.AclPermission('Admin', '%')
+        action_allowed_for.assert_called_with(
+            self.request.user, amo.permissions.AclPermission('Admin', '%')
         )

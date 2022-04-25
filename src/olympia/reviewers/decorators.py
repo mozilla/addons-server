@@ -16,7 +16,7 @@ def _view_on_get(request, permission):
     If the user is in a group with rule 'ReviewerTools:View' and the request is
     a GET request, they are allowed to view.
     """
-    return request.method == 'GET' and acl.action_allowed(request, permission)
+    return request.method == 'GET' and acl.action_allowed_for(request.user, permission)
 
 
 def permission_or_tools_listed_view_required(permission):
@@ -25,7 +25,7 @@ def permission_or_tools_listed_view_required(permission):
         @login_required
         def wrapper(request, *args, **kw):
             view_on_get = _view_on_get(request, permissions.REVIEWER_TOOLS_VIEW)
-            if view_on_get or acl.action_allowed(request, permission):
+            if view_on_get or acl.action_allowed_for(request.user, permission):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied
@@ -43,7 +43,7 @@ def permission_or_tools_unlisted_view_required(permission):
             view_on_get = _view_on_get(
                 request, permissions.REVIEWER_TOOLS_UNLISTED_VIEW
             )
-            if view_on_get or acl.action_allowed(request, permission):
+            if view_on_get or acl.action_allowed_for(request.user, permission):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied
@@ -87,7 +87,7 @@ def any_reviewer_or_moderator_required(f):
     def wrapper(request, *args, **kw):
         allow_access = acl.is_user_any_kind_of_reviewer(
             request.user, allow_viewers=(request.method == 'GET')
-        ) or acl.action_allowed(request, permissions.RATINGS_MODERATE)
+        ) or acl.action_allowed_for(request.user, permissions.RATINGS_MODERATE)
         if allow_access:
             return f(request, *args, **kw)
         raise PermissionDenied

@@ -139,7 +139,7 @@ class TestNewUploadForm(TestCase):
         ), (form.errors)
 
         # Admin override makes the form ignore the brokenness
-        with mock.patch('olympia.access.acl.action_allowed_user') as acl:
+        with mock.patch('olympia.access.acl.action_allowed_for') as acl:
             # For the 'Addons:Edit' permission check.
             acl.return_value = True
             data['admin_override_validation'] = True
@@ -181,7 +181,7 @@ class TestNewUploadForm(TestCase):
         ), (form.errors)
 
         # Admin override can bypass
-        with mock.patch('olympia.access.acl.action_allowed_user') as acl:
+        with mock.patch('olympia.access.acl.action_allowed_for') as acl:
             # For the 'Addons:Edit' permission check.
             acl.return_value = True
             data['admin_override_validation'] = True

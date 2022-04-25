@@ -534,13 +534,13 @@ class ReviewHelper:
             permission_post_review = amo.permissions.REVIEWS_ADMIN
 
         # Is the current user a reviewer for this kind of add-on ?
-        is_reviewer = acl.is_reviewer(request, self.addon)
+        is_reviewer = acl.is_reviewer(request.user, self.addon)
 
         # Is the current user an appropriate reviewer, not only for this kind
         # of add-on, but also for the state the add-on is in ? (Allows more
         # impactful actions).
-        is_appropriate_reviewer = acl.action_allowed_user(request.user, permission)
-        is_appropriate_reviewer_post_review = acl.action_allowed_user(
+        is_appropriate_reviewer = acl.action_allowed_for(request.user, permission)
+        is_appropriate_reviewer_post_review = acl.action_allowed_for(
             request.user, permission_post_review
         )
 

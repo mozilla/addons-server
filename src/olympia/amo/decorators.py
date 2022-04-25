@@ -62,7 +62,7 @@ def permission_required(permission):
         def wrapper(request, *args, **kw):
             from olympia.access import acl
 
-            if acl.action_allowed(request, permission):
+            if acl.action_allowed_for(request.user, permission):
                 return f(request, *args, **kw)
             else:
                 raise PermissionDenied

@@ -446,7 +446,7 @@ class AddonAdmin(admin.ModelAdmin):
         if request.method != 'POST':
             return HttpResponseNotAllowed(['POST'])
 
-        if not acl.action_allowed(request, amo.permissions.ADDONS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.ADDONS_EDIT):
             return HttpResponseForbidden()
 
         obj = get_object_or_404(Addon, id=object_id)
@@ -521,8 +521,8 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         if obj is not None:
             return super().has_change_permission(request, obj=obj)
         else:
-            return acl.action_allowed(
-                request, amo.permissions.ADDONS_EDIT
+            return acl.action_allowed_for(
+                request.user, amo.permissions.ADDONS_EDIT
             ) or super().has_change_permission(request, obj=obj)
 
 

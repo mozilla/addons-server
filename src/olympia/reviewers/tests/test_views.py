@@ -6859,7 +6859,7 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
         self.client.login_api(self.user)
         assert self.client.get(self.url).status_code == 403
 
-    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda user, addon: False)
     def test_wrong_type_of_reviewer_cannot_see_json_results(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)

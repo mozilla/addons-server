@@ -267,7 +267,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
     def get_actions(self, request):
         actions = super().get_actions(request)
-        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             # You need Users:Edit to be able to ban users and reset their api
             # key confirmation.
             actions.pop('ban_action')
@@ -277,8 +277,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        extra_context['has_users_edit_permission'] = acl.action_allowed(
-            request, amo.permissions.USERS_EDIT
+        extra_context['has_users_edit_permission'] = acl.action_allowed_for(
+            request.user, amo.permissions.USERS_EDIT
         )
 
         lookup_field = UserProfile.get_lookup_field(object_id)
@@ -322,7 +322,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         if obj is None:
             raise Http404()
 
-        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
         ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
@@ -341,7 +341,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         if obj is None:
             raise Http404()
 
-        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
         self.reset_api_key_action(request, UserProfile.objects.filter(pk=obj.pk))
@@ -358,7 +358,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         if obj is None:
             raise Http404()
 
-        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
         self.reset_session_action(request, UserProfile.objects.filter(pk=obj.pk))
@@ -375,7 +375,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         if obj is None:
             raise Http404()
 
-        if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
         ActivityLog.create(amo.LOG.ADMIN_USER_PICTURE_DELETED, obj)

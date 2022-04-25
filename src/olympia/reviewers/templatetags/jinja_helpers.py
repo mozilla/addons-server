@@ -48,9 +48,11 @@ def queue_tabnav(context):
 
     if listed:
         tabnav = []
-        if acl.action_allowed(request, amo.permissions.ADDONS_RECOMMENDED_REVIEW):
+        if acl.action_allowed_for(
+            request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW
+        ):
             tabnav.append(('recommended', 'queue_recommended', gettext('Recommended')))
-        if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+        if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
                 (
                     'extension',
@@ -62,7 +64,7 @@ def queue_tabnav(context):
                 ('scanners', 'queue_scanners', gettext('Flagged By Scanners'))
             )
             tabnav.append(('mad', 'queue_mad', gettext('Flagged for Human Review')))
-        if acl.action_allowed(request, amo.permissions.STATIC_THEMES_REVIEW):
+        if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
             tabnav.extend(
                 (
                     (
@@ -77,20 +79,20 @@ def queue_tabnav(context):
                     ),
                 )
             )
-        if acl.action_allowed(request, amo.permissions.RATINGS_MODERATE):
+        if acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE):
             tabnav.append(('moderated', 'queue_moderated', gettext('Rating Reviews')))
 
-        if acl.action_allowed(request, amo.permissions.ADDONS_REVIEW):
+        if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
                 ('auto_approved', 'queue_auto_approved', gettext('Auto Approved'))
             )
 
-        if acl.action_allowed(request, amo.permissions.ADDONS_CONTENT_REVIEW):
+        if acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW):
             tabnav.append(
                 ('content_review', 'queue_content_review', gettext('Content Review'))
             )
 
-        if acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN):
+        if acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
             tabnav.append(
                 (
                     'pending_rejection',

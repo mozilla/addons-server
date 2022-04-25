@@ -240,8 +240,8 @@ class AddonViewSet(
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if self.request.user.is_authenticated and acl.action_allowed(
-            self.request, amo.permissions.ADDONS_VIEW_DELETED
+        if self.request.user.is_authenticated and acl.action_allowed_for(
+            self.request.user, amo.permissions.ADDONS_VIEW_DELETED
         ):
             qs = Addon.unfiltered.all()
         else:
@@ -263,7 +263,7 @@ class AddonViewSet(
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance', None)
         request = self.request
-        if acl.check_unlisted_addons_viewer_or_reviewer(request) or (
+        if acl.is_unlisted_addons_viewer_or_reviewer(request.user) or (
             obj
             and request.user.is_authenticated
             and obj.authors.filter(pk=request.user.pk).exists()
@@ -419,7 +419,7 @@ class AddonVersionViewSet(
         use_developer_serializer = getattr(
             self.request, 'user', None
         ) and acl.author_or_unlisted_viewer_or_reviewer(
-            self.request, self.get_addon_object()
+            self.request.user, self.get_addon_object()
         )
 
         if (

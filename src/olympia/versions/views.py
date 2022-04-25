@@ -74,9 +74,9 @@ def download_file(request, file_id, download_type=None, **kwargs):
 
     def is_appropriate_reviewer(addon, channel):
         return (
-            acl.is_reviewer(request, addon)
+            acl.is_reviewer(request.user, addon)
             if channel == amo.RELEASE_CHANNEL_LISTED
-            else acl.check_unlisted_addons_viewer_or_reviewer(request)
+            else acl.is_unlisted_addons_viewer_or_reviewer(request.user)
         )
 
     file_ = get_object_or_404(File.objects, pk=file_id)
@@ -101,7 +101,7 @@ def download_file(request, file_id, download_type=None, **kwargs):
         has_permission = is_appropriate_reviewer(
             addon, channel
         ) or acl.check_addon_ownership(
-            request,
+            request.user,
             addon,
             allow_developer=True,
             allow_mozilla_disabled_addon=True,
@@ -191,7 +191,7 @@ def download_source(request, version_id):
     # Channel doesn't matter, source code is only available to admin reviewers
     # or developers of the add-on. If the add-on, version or file is deleted or
     # disabled, then only admins can access.
-    has_permission = acl.action_allowed(request, amo.permissions.REVIEWS_ADMIN)
+    has_permission = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
     if (
         addon.status != amo.STATUS_DISABLED
@@ -200,7 +200,10 @@ def download_source(request, version_id):
         and not addon.is_deleted
     ):
         has_permission = has_permission or acl.check_addon_ownership(
-            request, addon, allow_addons_edit_permission=False, allow_developer=True
+            request.user,
+            addon,
+            allow_addons_edit_permission=False,
+            allow_developer=True,
         )
     if not has_permission:
         raise http.Http404()

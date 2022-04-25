@@ -17,7 +17,7 @@ from django.utils.translation import gettext
 from django_statsd.clients import statsd
 
 from olympia import amo, core
-from olympia.access.acl import action_allowed_user
+from olympia.access.acl import action_allowed_for
 from olympia.amo.utils import normalize_string
 from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
 from olympia.discovery.utils import call_recommendation_server
@@ -41,7 +41,7 @@ def verify_mozilla_trademark(name, user, form=None):
     skip_trademark_check = (
         user
         and user.is_authenticated
-        and action_allowed_user(user, amo.permissions.TRADEMARK_BYPASS)
+        and action_allowed_for(user, amo.permissions.TRADEMARK_BYPASS)
     )
 
     def _check(name):
