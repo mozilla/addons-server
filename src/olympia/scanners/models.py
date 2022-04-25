@@ -34,7 +34,6 @@ from olympia.constants.scanners import (
     SCANNERS,
     SCHEDULED,
     UNKNOWN,
-    WAT,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -123,10 +122,10 @@ class AbstractScannerResult(ModelBase):
         return res
 
     def can_report_feedback(self):
-        return self.state == UNKNOWN and self.scanner not in [WAT, MAD]
+        return self.state == UNKNOWN and self.scanner not in [MAD]
 
     def can_revert_feedback(self):
-        return self.state != UNKNOWN and self.scanner not in [WAT, MAD]
+        return self.state != UNKNOWN and self.scanner not in [MAD]
 
     def get_git_repository(self):
         return {

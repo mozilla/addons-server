@@ -17,7 +17,7 @@ from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
-from olympia.scanners.tasks import run_customs, run_wat, run_yara, call_mad_api
+from olympia.scanners.tasks import run_customs, run_yara, call_mad_api
 from olympia.versions.models import Version
 from olympia.versions.utils import process_color_value
 
@@ -264,9 +264,6 @@ class Validator:
 
         if waffle.switch_is_active('enable-customs'):
             tasks_in_parallel.append(run_customs.s(upload_pk))
-
-        if waffle.switch_is_active('enable-wat'):
-            tasks_in_parallel.append(run_wat.s(upload_pk))
 
         return [
             tasks.create_initial_validation_results.si(),

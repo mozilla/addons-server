@@ -34,7 +34,6 @@ from olympia.constants.scanners import (
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
-    WAT,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -240,11 +239,6 @@ class TestScannerResultAdmin(TestCase):
         # version.
         assert '/browse/' not in self.admin.formatted_matched_rules_with_files(result)
 
-    def test_formatted_score_when_scanner_is_not_mad_or_customs(self):
-        result = ScannerResult(score=0.123, scanner=WAT)
-
-        assert self.admin.formatted_score(result) == '-'
-
     def test_formatted_score_for_customs(self):
         result = ScannerResult(score=0.123, scanner=CUSTOMS)
 
@@ -263,9 +257,6 @@ class TestScannerResultAdmin(TestCase):
     def test_list_queries(self):
         ScannerResult.objects.create(
             scanner=CUSTOMS, version=addon_factory().current_version
-        )
-        ScannerResult.objects.create(
-            scanner=WAT, version=addon_factory().current_version
         )
         deleted_addon = addon_factory(name='a deleted add-on')
         ScannerResult.objects.create(
