@@ -278,27 +278,28 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     def test_fetch_candidates(self):
         # Create the candidates and extra addons & versions that should not be
         # considered for auto-approval.
-        expected = self.create_candidates()
+        candidates = self.create_candidates()
+        expected = [version.id for addon, version in candidates]
 
         # Gather the candidates.
         command = auto_approve.Command()
-        command.post_review = True
         qs = command.fetch_candidates()
 
         # Test that they are all present.
-        assert [(version.addon, version) for version in qs] == expected
+        assert list(qs) == expected
 
     @mock.patch('olympia.reviewers.management.commands.auto_approve.statsd.incr')
     @mock.patch('olympia.reviewers.management.commands.auto_approve.ReviewHelper')
     def test_approve(self, review_helper_mock, statsd_incr_mock):
+        review_helper_mock.return_value.actions = {'public': mock.MagicMock()}
         command = auto_approve.Command()
         command.approve(self.version)
         assert review_helper_mock.call_count == 1
         assert review_helper_mock.call_args == (
             (),
-            {'addon': self.addon, 'version': self.version},
+            {'addon': self.addon, 'version': self.version, 'human_review': False},
         )
-        assert review_helper_mock().handler.approve_latest_version.call_count == 1
+        assert review_helper_mock().actions['public']['method'].call_count == 1
         assert statsd_incr_mock.call_count == 1
         assert statsd_incr_mock.call_args == (
             ('reviewers.auto_approve.approve.success',),

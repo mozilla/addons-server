@@ -627,7 +627,11 @@ def review(request, addon, channel=None):
     )
 
     form_helper = ReviewHelper(
-        request=request, addon=addon, version=version, content_review=content_review
+        addon=addon,
+        version=version,
+        user=request.user,
+        content_review=content_review,
+        human_review=True,
     )
     form = ReviewForm(
         request.POST if request.method == 'POST' else None, helper=form_helper

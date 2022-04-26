@@ -11,13 +11,6 @@ from olympia.amo.tests import addon_factory, user_factory
 from olympia.reviewers.utils import ReviewAddon, ReviewFiles, ReviewHelper
 
 
-@pytest.fixture
-def mock_request(rf, db):  # rf is a RequestFactory provided by pytest-django.
-    request = rf.get('/')
-    request.user = user_factory()
-    return request
-
-
 @mock.patch('olympia.reviewers.utils.sign_file', lambda f: None)
 @pytest.mark.parametrize(
     'review_action,addon_status,file_status,review_class,review_type,'
@@ -68,7 +61,6 @@ def mock_request(rf, db):  # rf is a RequestFactory provided by pytest-django.
     ],
 )
 def test_review_scenario(
-    mock_request,
     review_action,
     addon_status,
     file_status,
@@ -86,9 +78,8 @@ def test_review_scenario(
     )
     version = addon.versions.get()
     # Get the review helper.
-    helper = ReviewHelper(mock_request, addon, version)
+    helper = ReviewHelper(addon=addon, version=version, user=user_factory())
     assert isinstance(helper.handler, review_class)
-    helper.set_review_handler(mock_request)
     assert helper.handler.review_type == review_type
     helper.set_data({'comments': 'testing review scenarios'})
     # Run the action (approve_latest_version, reject_latest_version).

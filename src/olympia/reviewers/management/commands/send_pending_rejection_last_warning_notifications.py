@@ -85,7 +85,7 @@ class Command(BaseCommand):
             return
         log.info('Sending email for %s' % addon)
         # Set up ReviewHelper with the data needed to send the notification.
-        helper = ReviewHelper(addon=addon)
+        helper = ReviewHelper(addon=addon, human_review=False)
         helper.handler.data = {
             'comments': getattr(relevant_activity_log, 'details', {}).get(
                 'comments', ''
