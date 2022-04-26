@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-26 19:25+0000\n"
+"PO-Revision-Date: 2022-04-26 19:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -1084,9 +1084,8 @@ msgstr "Изтрит"
 msgid "Extension"
 msgstr "Разширение"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Цялостна тема"
+msgstr "Изведена от употреба цялостна тема"
 
 msgid "Dictionary"
 msgstr "Речник"
@@ -1104,7 +1103,7 @@ msgid "Plugin"
 msgstr "Приставка"
 
 msgid "Deprecated LWT"
-msgstr "Остарял LWT"
+msgstr "Изведен от употреба LWT"
 
 msgid "Theme (Static)"
 msgstr "Тема (статична)"
@@ -1117,9 +1116,8 @@ msgstr "Права:"
 msgid "Extensions"
 msgstr "Разширения"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Цялостни теми"
+msgstr "Изведени от употреба цялостни теми"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1139,7 +1137,7 @@ msgid "Plugins"
 msgstr "Приставки"
 
 msgid "Deprecated LWTs"
-msgstr "Остарели LWT"
+msgstr "Изведен от употреба LWT"
 
 msgid "Themes (Static)"
 msgstr "Теми (статични)"
