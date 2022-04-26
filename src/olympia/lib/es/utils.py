@@ -17,12 +17,6 @@ from .models import Reindexing
 
 log = olympia.core.logger.getLogger('z.es')
 
-# shortcut functions
-is_reindexing_amo = Reindexing.objects.is_reindexing_amo
-flag_reindexing_amo = Reindexing.objects.flag_reindexing_amo
-unflag_reindexing_amo = Reindexing.objects.unflag_reindexing_amo
-get_indices = Reindexing.objects.get_indices
-
 
 def get_major_version(es):
     return int(es.info()['version']['number'].split('.')[0])
@@ -76,7 +70,7 @@ def raise_if_reindex_in_progress(site):
     If it's on, and if no "FORCE_INDEXING" variable is present in the env,
     raises a CommandError.
     """
-    already_reindexing = Reindexing.objects._is_reindexing(site)
+    already_reindexing = Reindexing.objects.is_reindexing(site)
     if already_reindexing and 'FORCE_INDEXING' not in os.environ:
         raise CommandError(
             'Indexation already occurring. Add a '

@@ -12,12 +12,8 @@ import olympia.core.logger
 from olympia.addons.indexers import AddonIndexer
 from olympia.amo.celery import task
 from olympia.amo.search import get_es
-from olympia.lib.es.utils import (
-    flag_reindexing_amo,
-    is_reindexing_amo,
-    timestamp_index,
-    unflag_reindexing_amo,
-)
+from olympia.lib.es.models import Reindexing
+from olympia.lib.es.utils import timestamp_index
 
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')
@@ -61,14 +57,16 @@ def create_new_index(alias, new_index):
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
     logger.info('Flagging the database to start the reindexation')
-    flag_reindexing_amo(new_index=new_index, old_index=old_index, alias=alias)
+    Reindexing.objects.flag_reindexing(
+        new_index=new_index, old_index=old_index, alias=alias
+    )
 
 
 @task
 def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
     logger.info('Unflagging the database')
-    unflag_reindexing_amo()
+    Reindexing.objects.unflag_reindexing()
 
 
 def gather_index_data_tasks(alias, index):
@@ -98,13 +96,13 @@ class Command(BaseCommand):
             action='store_true',
             help=('Bypass the database flag that says another indexation is ongoing'),
             default=False,
-        ),
+        )
         parser.add_argument(
             '--wipe',
             action='store_true',
             help=('Deletes AMO indexes prior to reindexing.'),
             default=False,
-        ),
+        )
         parser.add_argument(
             '--key',
             action='store',
@@ -114,13 +112,13 @@ class Command(BaseCommand):
                 '"default", which contains Add-ons data.' % (self.accepted_keys())
             ),
             default='default',
-        ),
+        )
         parser.add_argument(
             '--noinput',
             action='store_true',
             help=('Do not ask for confirmation before wiping. Default: False'),
             default=False,
-        ),
+        )
 
     def accepted_keys(self):
         return ', '.join(settings.ES_INDEXES.keys())
@@ -134,7 +132,7 @@ class Command(BaseCommand):
         """
         force = kwargs['force']
 
-        if is_reindexing_amo() and not force:
+        if Reindexing.objects.is_reindexing() and not force:
             raise CommandError('Indexation already occurring - use --force to bypass')
 
         alias = settings.ES_INDEXES.get(kwargs['key'], None)
@@ -253,7 +251,7 @@ class Command(BaseCommand):
 
             if not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False):
                 time.sleep(10)  # give celeryd some time to flag the DB
-            while is_reindexing_amo():
+            while Reindexing.objects.is_reindexing():
                 self.stdout.write('.')
                 self.stdout.flush()
                 time.sleep(5)
