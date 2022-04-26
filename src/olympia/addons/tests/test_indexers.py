@@ -268,7 +268,7 @@ class TestAddonIndexer(TestCase):
         version = self.addon.current_version
         # Add a bunch of things to it to test different scenarios.
         version.license = License.objects.create(
-            name='My licensé', url='http://example.com/', builtin=0
+            name='My licensé', url='http://example.com/', builtin=3
         )
         [
             WebextPermission.objects.create(
@@ -295,7 +295,7 @@ class TestAddonIndexer(TestCase):
             }
         }
         assert extracted['current_version']['license'] == {
-            'builtin': 0,
+            'builtin': 3,
             'id': version.license.pk,
             'name_translations': [{'lang': 'en-US', 'string': 'My licensé'}],
             'url': 'http://example.com/',

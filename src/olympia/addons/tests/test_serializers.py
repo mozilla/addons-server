@@ -49,7 +49,7 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.licenses import LICENSES_BY_BUILTIN, LICENSE_GPL3
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
 from olympia.ratings.models import Rating
@@ -764,6 +764,21 @@ class AddonSerializerOutputTestMixin:
         Rating.objects.create(addon=self.addon, rating=5, user=user_factory())
         result = self.serialize()
         assert result['ratings']['grouped_counts'] == {1: 0, 2: 2, 3: 0, 4: 0, 5: 1}
+
+    def test_current_version_license_builtin(self):
+        self.addon = addon_factory()
+        self.addon.current_version.license.builtin = LICENSE_GPL3.builtin
+        self.addon.current_version.license.url = 'http://gplv3.example.com/'
+        self.addon.current_version.license.save()
+        result = self.serialize()
+
+        assert result['current_version']['license'] == {
+            'id': self.addon.current_version.license.pk,
+            'is_custom': False,
+            'name': {'en-US': 'GNU General Public License v3.0'},
+            'slug': 'GPL-3.0-or-later',
+            'url': 'http://gplv3.example.com/',
+        }
 
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):

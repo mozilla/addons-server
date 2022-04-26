@@ -399,7 +399,7 @@ class AddonIndexer:
                     'type': 'object',
                     'properties': {
                         'id': {'type': 'long', 'index': False},
-                        'builtin': {'type': 'boolean', 'index': False},
+                        'builtin': {'type': 'short', 'index': False},
                         'name_translations': cls.get_translations_definition(),
                         'url': {'type': 'text', 'index': False},
                     },
@@ -569,7 +569,7 @@ class AddonIndexer:
             if version_obj.license:
                 data['license'] = {
                     'id': version_obj.license.id,
-                    'builtin': bool(version_obj.license.builtin),
+                    'builtin': version_obj.license.builtin,
                     'url': version_obj.license.url,
                 }
                 attach_trans_dict(License, [version_obj.license])
