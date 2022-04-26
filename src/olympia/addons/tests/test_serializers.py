@@ -766,10 +766,14 @@ class AddonSerializerOutputTestMixin:
         assert result['ratings']['grouped_counts'] == {1: 0, 2: 2, 3: 0, 4: 0, 5: 1}
 
     def test_current_version_license_builtin(self):
-        self.addon = addon_factory()
-        self.addon.current_version.license.builtin = LICENSE_GPL3.builtin
-        self.addon.current_version.license.url = 'http://gplv3.example.com/'
-        self.addon.current_version.license.save()
+        self.addon = addon_factory(
+            version_kw={
+                'license_kw': {
+                    'builtin': LICENSE_GPL3.builtin,
+                    'url': 'http://gplv3.example.com/',
+                }
+            }
+        )
         result = self.serialize()
 
         assert result['current_version']['license'] == {
