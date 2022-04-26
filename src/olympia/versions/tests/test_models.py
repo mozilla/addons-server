@@ -34,7 +34,7 @@ from olympia.constants.promoted import (
     SPOTLIGHT,
     STRATEGIC,
 )
-from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
+from olympia.constants.scanners import CUSTOMS, YARA, MAD
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -1462,21 +1462,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
-    def test_set_version_to_wat_scanners_result(self):
-        self.create_switch('enable-wat', active=True)
-        scanners_result = ScannerResult.objects.create(upload=self.upload, scanner=WAT)
-        assert scanners_result.version is None
-
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        scanners_result.refresh_from_db()
-        assert scanners_result.version == version
-
     def test_set_version_to_yara_scanners_result(self):
         self.create_switch('enable-yara', active=True)
         scanners_result = ScannerResult.objects.create(upload=self.upload, scanner=YARA)
@@ -1495,7 +1480,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_does_nothing_when_no_scanner_is_enabled(self):
         self.create_switch('enable-customs', active=False)
-        self.create_switch('enable-wat', active=False)
         self.create_switch('enable-yara', active=False)
         scanners_result = ScannerResult.objects.create(
             upload=self.upload, scanner=CUSTOMS

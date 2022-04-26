@@ -19,7 +19,6 @@ from olympia.constants.scanners import (
     LABEL_BAD,
     MAD,
     TRUE_POSITIVE,
-    WAT,
     YARA,
 )
 from olympia.blocklist.models import Block
@@ -72,7 +71,7 @@ class TestScannerResultViewInternal(TestCase):
         # result labelled as "good" because it has been approved
         good_version_1 = version_factory(addon=addon_factory())
         good_result_1 = ScannerResult.objects.create(
-            scanner=WAT, version=good_version_1
+            scanner=CUSTOMS, version=good_version_1
         )
         ActivityLog.create(amo.LOG.APPROVE_VERSION, good_version_1, user=self.user)
         # result labelled as "good" because auto-approve has been confirmed
@@ -158,7 +157,7 @@ class TestScannerResultViewInternal(TestCase):
         )
         # result labelled as "good" because it has been approved
         good_version = version_factory(addon=addon_factory())
-        ScannerResult.objects.create(scanner=WAT, version=good_version)
+        ScannerResult.objects.create(scanner=CUSTOMS, version=good_version)
         VersionLog.objects.create(
             activity_log=ActivityLog.create(
                 action=amo.LOG.APPROVE_VERSION,
@@ -197,7 +196,7 @@ class TestScannerResultViewInternal(TestCase):
         )
         # result labelled as "good" because it has been approved
         good_version = version_factory(addon=addon_factory())
-        ScannerResult.objects.create(scanner=WAT, version=good_version)
+        ScannerResult.objects.create(scanner=CUSTOMS, version=good_version)
         VersionLog.objects.create(
             activity_log=ActivityLog.create(
                 action=amo.LOG.APPROVE_VERSION,
@@ -215,9 +214,11 @@ class TestScannerResultViewInternal(TestCase):
         response = self.client.get('{}'.format(f'{self.url}?scanner=yara&label=bad'))
         self.assert_json_results(response, expected_results=1)
 
-        response = self.client.get('{}'.format(f'{self.url}?scanner=wat&label=bad'))
+        response = self.client.get('{}'.format(f'{self.url}?scanner=customs&label=bad'))
         self.assert_json_results(response, expected_results=0)
-        response = self.client.get('{}'.format(f'{self.url}?scanner=wat&label=good'))
+        response = self.client.get(
+            '{}'.format(f'{self.url}?scanner=customs&label=good')
+        )
         self.assert_json_results(response, expected_results=1)
 
     def test_get_results_with_blocked_versions(self):

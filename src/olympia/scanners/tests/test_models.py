@@ -21,7 +21,6 @@ from olympia.constants.scanners import (
     SCANNERS,
     SCHEDULED,
     UNKNOWN,
-    WAT,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -46,9 +45,6 @@ class TestScannerResultMixin:
 
     def create_customs_result(self):
         return self.model.objects.create(scanner=CUSTOMS)
-
-    def create_wat_result(self):
-        return self.model.objects.create(scanner=WAT)
 
     def create_mad_result(self):
         return self.model.objects.create(scanner=MAD)
@@ -134,10 +130,6 @@ class TestScannerResultMixin:
 
         assert result.extract_rule_names() == [rule1, rule2]
 
-    def test_extract_rule_names_returns_empty_list_for_unsupported_scanner(self):
-        result = self.create_wat_result()
-        assert result.extract_rule_names() == []
-
     def test_extract_rule_names_with_no_customs_matched_rules_attribute(self):
         result = self.create_customs_result()
         result.results = {}
@@ -171,7 +163,7 @@ class TestScannerResultMixin:
             assert result.get_git_repository() == git_repo
 
     def test_get_git_repository_returns_none_if_not_supported(self):
-        result = self.create_wat_result()
+        result = self.create_customs_result()
         assert result.get_git_repository() is None
 
     def test_can_report_feedback(self):
@@ -181,10 +173,6 @@ class TestScannerResultMixin:
     def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
         result = self.create_customs_result()
         result.state = FALSE_POSITIVE
-        assert not result.can_report_feedback()
-
-    def test_can_report_feedback_is_false_when_scanner_is_wat(self):
-        result = self.create_wat_result()
         assert not result.can_report_feedback()
 
     def test_can_report_feedback_is_false_when_scanner_is_mad(self):
@@ -200,10 +188,6 @@ class TestScannerResultMixin:
         result = self.create_yara_result()
         assert result.state == UNKNOWN
         assert not result.can_revert_feedback()
-
-    def test_get_files_by_matched_rules_for_wat(self):
-        result = self.create_wat_result()
-        assert result.get_files_by_matched_rules() == {}
 
     def test_get_files_by_matched_rules_with_no_yara_results(self):
         result = self.create_yara_result()
@@ -305,10 +289,6 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
         upload = self.create_file_upload()
         return self.model.objects.create(upload=upload, scanner=CUSTOMS)
 
-    def create_wat_result(self):
-        upload = self.create_file_upload()
-        return self.model.objects.create(upload=upload, scanner=WAT)
-
     def create_yara_result(self):
         upload = self.create_file_upload()
         return self.model.objects.create(upload=upload, scanner=YARA)
@@ -329,10 +309,10 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
         upload = self.create_file_upload()
 
         customs_result = self.model.objects.create(upload=upload, scanner=CUSTOMS)
-        wat_result = self.model.objects.create(upload=upload, scanner=WAT)
+        yara_result = self.model.objects.create(upload=upload, scanner=YARA)
 
         assert customs_result.scanner == CUSTOMS
-        assert wat_result.scanner == WAT
+        assert yara_result.scanner == YARA
 
     def test_upload_constraint(self):
         upload = self.create_file_upload()

@@ -2,11 +2,14 @@ from django.utils.translation import gettext_lazy as _
 
 
 CUSTOMS = 1
-WAT = 2
+# We do not use the WAT scanner anymore but we keep this constant for the model
+# definition. We shouldn't use this constant, though.
+# See: https://github.com/mozilla/addons-server/issues/19152
+_WAT = 2
 YARA = 3
 MAD = 4
 
-SCANNERS = {CUSTOMS: 'customs', WAT: 'wat', YARA: 'yara', MAD: 'mad'}
+SCANNERS = {CUSTOMS: 'customs', _WAT: 'wat', YARA: 'yara', MAD: 'mad'}
 
 # Action IDs are also used for severity (the higher, the more severe).
 # The field is a PositiveSmallIntegerField, it should go up to 65535.

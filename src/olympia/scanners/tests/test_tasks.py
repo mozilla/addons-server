@@ -24,7 +24,6 @@ from olympia.constants.scanners import (
     NEW,
     RUNNING,
     SCHEDULED,
-    WAT,
     YARA,
 )
 from olympia.files.models import File
@@ -41,7 +40,6 @@ from olympia.scanners.tasks import (
     mark_yara_query_rule_as_completed_or_aborted,
     run_customs,
     run_scanner,
-    run_wat,
     run_yara,
     run_yara_query_rule,
     run_yara_query_rule_on_versions_chunk,
@@ -243,44 +241,6 @@ class TestRunCustoms(TestCase):
         self.results.update({'errors': 1})
 
         returned_results = run_customs(self.results, self.upload_pk)
-
-        assert not run_scanner_mock.called
-        assert returned_results == self.results
-
-
-class TestRunWat(TestCase):
-    API_URL = 'http://wat.example.org'
-    API_KEY = 'some-api-key'
-
-    def setUp(self):
-        super().setUp()
-
-        self.upload_pk = 1234
-        self.results = {**amo.VALIDATOR_SKELETON_RESULTS}
-
-    @override_settings(WAT_API_URL=API_URL, WAT_API_KEY=API_KEY)
-    @mock.patch('olympia.scanners.tasks.run_scanner')
-    def test_calls_run_scanner_with_mock(self, run_scanner_mock):
-        run_scanner_mock.return_value = self.results
-
-        returned_results = run_wat(self.results, self.upload_pk)
-
-        assert run_scanner_mock.called
-        run_scanner_mock.assert_called_once_with(
-            self.results,
-            self.upload_pk,
-            scanner=WAT,
-            api_url=self.API_URL,
-            api_key=self.API_KEY,
-        )
-        assert returned_results == self.results
-
-    @override_settings(WAT_API_URL=API_URL, WAT_API_KEY=API_KEY)
-    @mock.patch('olympia.scanners.tasks.run_scanner')
-    def test_does_not_run_when_results_contain_errors(self, run_scanner_mock):
-        self.results.update({'errors': 1})
-
-        returned_results = run_wat(self.results, self.upload_pk)
 
         assert not run_scanner_mock.called
         assert returned_results == self.results

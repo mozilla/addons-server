@@ -856,7 +856,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
-    'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
     'olympia.scanners.tasks.call_mad_api': {'queue': 'devhub'},
     # Activity (goes to devhub queue).
@@ -1489,8 +1488,6 @@ EXTENSION_WORKSHOP_URL = env(
 SCANNER_TIMEOUT = 60  # seconds
 CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
 CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)
-WAT_API_URL = env('WAT_API_URL', default=None)
-WAT_API_KEY = env('WAT_API_KEY', default=None)
 MAD_API_URL = env('MAD_API_URL', default=None)
 MAD_API_TIMEOUT = 5  # seconds
 # Git(Hub) repository names, e.g., `owner/repo-name`
