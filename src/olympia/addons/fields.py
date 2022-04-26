@@ -64,6 +64,8 @@ class CategoriesSerializerField(serializers.Field):
                 # Now double-check all the category names were found
                 if not all_cat_slugs.issuperset(category_names):
                     raise exceptions.ValidationError(gettext('Invalid category name.'))
+            if not categories and self.required:
+                self.fail('required')
             return categories
         except KeyError:
             raise exceptions.ValidationError(gettext('Invalid app name.'))
