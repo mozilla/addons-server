@@ -52,15 +52,15 @@ def test_celery_routes_only_contain_valid_tasks():
 
 def test_create_chunked_tasks_signatures():
     items = list(range(0, 6))
-    batch = create_chunked_tasks_signatures(fake_task_with_args, items, 2)
+    batch = create_chunked_tasks_signatures(fake_task, items, 2)
     assert isinstance(batch, group)
     assert len(batch) == 3
-    assert batch.tasks[0] == fake_task_with_args.si([items[0], items[1]])
-    assert batch.tasks[1] == fake_task_with_args.si([items[2], items[3]])
-    assert batch.tasks[2] == fake_task_with_args.si([items[4], items[5]])
+    assert batch.tasks[0] == fake_task.si([items[0], items[1]])
+    assert batch.tasks[1] == fake_task.si([items[2], items[3]])
+    assert batch.tasks[2] == fake_task.si([items[4], items[5]])
 
     batch = create_chunked_tasks_signatures(
-        fake_task_with_args,
+        fake_task,
         items,
         3,
         task_args=('foo', 'bar'),
@@ -68,10 +68,10 @@ def test_create_chunked_tasks_signatures():
     )
     assert isinstance(batch, group)
     assert len(batch) == 2
-    assert batch.tasks[0] == fake_task_with_args.si(
+    assert batch.tasks[0] == fake_task.si(
         [items[0], items[1], items[2]], 'foo', 'bar', some='kwarg'
     )
-    assert batch.tasks[1] == fake_task_with_args.si(
+    assert batch.tasks[1] == fake_task.si(
         [items[3], items[4], items[5]], 'foo', 'bar', some='kwarg'
     )
 
@@ -83,13 +83,7 @@ def fake_task_with_result():
 
 
 @task
-def fake_task():
-    fake_task_func()
-    return 'foobar'
-
-
-@task
-def fake_task_with_args(something, *args, **kwargs):
+def fake_task(*args, **kwargs):
     fake_task_func()
     return 'foobar'
 
