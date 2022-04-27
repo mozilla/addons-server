@@ -55,6 +55,7 @@ from olympia.constants.promoted import (
 )
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.files.tests.test_models import UploadMixin
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
@@ -4615,6 +4616,24 @@ class TestAddonSearchView(ESTestCase):
         ids = [result['id'] for result in data['results']]
         # addon2 and addon4 will be first because they're recommended
         assert ids == [addon2.id, addon4.id, addon1.id, addon3.id, addon5.id]
+
+    def test_filter_by_ratings(self):
+        addon1 = addon_factory(popularity=666)
+        addon2 = addon_factory(popularity=555)
+        addon_factory(popularity=444)
+
+        Rating.objects.create(addon=addon1, user=user_factory(), rating=1)
+        Rating.objects.create(addon=addon1, user=user_factory(), rating=2)
+        Rating.objects.create(addon=addon2, user=user_factory(), rating=1)
+
+        self.refresh()
+
+        data = self.perform_search(self.url, {'ratings__gt': 1.0})
+        ids = [result['id'] for result in data['results']]
+        # addon1 will be returned because it has an average rating higher than
+        # the request. addon2 doesn't, and addon3 doesn't have ratings, so they
+        # should not be present.
+        assert ids == [addon1.id]
 
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
