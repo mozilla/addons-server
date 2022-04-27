@@ -25,13 +25,34 @@ def get_major_version(es):
 def index_objects(
     *, ids, indexer_class, index=None, transforms=None, manager_name=None
 ):
+    """
+    Index specified `ids` in ES using `indexer_class`. This is done in a single
+    bulk action.
+
+    Pass `index` to index on the specific index instead of the default index
+    alias from the `indexed_class`.
+
+    Pass `transforms` or `manager_name` to change the queryset used to fetch
+    the objects to index.
+
+    Unless an `index` is specified, if a reindexing is taking place for the
+    default index then this function will index on both the old and new indices
+    to allow indexing to still work while reindexing isn't complete yet.
+    """
     if index is None:
         index = indexer_class.get_index_alias()
+        # If we didn't have an index passed as argument, then we should index
+        # on both old and new indexes during a reindex.
+        indices = Reindexing.objects.get_indices(index)
+    else:
+        # If we did have an index passed then the caller wanted us to only
+        # consider the index they specified, so we only consider that one.
+        indices = [index]
+
     if manager_name is None:
         manager_name = 'objects'
 
     manager = getattr(indexer_class.get_model(), manager_name)
-    indices = Reindexing.objects.get_indices(index)
 
     if transforms is None:
         transforms = []
@@ -44,7 +65,7 @@ def index_objects(
     es = amo_search.get_es()
 
     major_version = get_major_version(es)
-    for obj in qs:
+    for obj in qs.order_by('pk'):
         data = indexer_class.extract_document(obj)
         for index in indices:
             item = {

@@ -9,10 +9,11 @@ from django.conf import settings
 from django.core.signals import request_finished, request_started
 from django.test.testcases import TransactionTestCase
 
+from celery import group
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
 from olympia.amo.tests import TestCase
-from olympia.amo.celery import app, task
+from olympia.amo.celery import app, create_chunked_tasks_signatures, task
 from olympia.amo.utils import utc_millesecs_from_epoch
 
 
@@ -49,6 +50,32 @@ def test_celery_routes_only_contain_valid_tasks():
         assert task_name in settings.CELERY_TASK_ROUTES.keys()
 
 
+def test_create_chunked_tasks_signatures():
+    items = list(range(0, 6))
+    batch = create_chunked_tasks_signatures(fake_task_with_args, items, 2)
+    assert isinstance(batch, group)
+    assert len(batch) == 3
+    assert batch.tasks[0] == fake_task_with_args.si([items[0], items[1]])
+    assert batch.tasks[1] == fake_task_with_args.si([items[2], items[3]])
+    assert batch.tasks[2] == fake_task_with_args.si([items[4], items[5]])
+
+    batch = create_chunked_tasks_signatures(
+        fake_task_with_args,
+        items,
+        3,
+        task_args=('foo', 'bar'),
+        task_kwargs={'some': 'kwarg'},
+    )
+    assert isinstance(batch, group)
+    assert len(batch) == 2
+    assert batch.tasks[0] == fake_task_with_args.si(
+        [items[0], items[1], items[2]], 'foo', 'bar', some='kwarg'
+    )
+    assert batch.tasks[1] == fake_task_with_args.si(
+        [items[3], items[4], items[5]], 'foo', 'bar', some='kwarg'
+    )
+
+
 @task(ignore_result=False)
 def fake_task_with_result():
     fake_task_func()
@@ -57,6 +84,12 @@ def fake_task_with_result():
 
 @task
 def fake_task():
+    fake_task_func()
+    return 'foobar'
+
+
+@task
+def fake_task_with_args(something, *args, **kwargs):
     fake_task_func()
     return 'foobar'
 

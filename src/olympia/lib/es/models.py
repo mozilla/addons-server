@@ -24,11 +24,11 @@ class ReindexingManager(models.Manager):
         """Return the indices associated with an alias.
 
         If we are reindexing, there should be two indices returned.
-
         """
         try:
+            # Can we find a reindex for the given alias/index ?
             reindex = self.get(alias=index)
-            # Yes. Let's reindex on both indexes.
+            # Yes. Let's return both new and old indexes.
             return [
                 idx for idx in (reindex.new_index, reindex.old_index) if idx is not None
             ]

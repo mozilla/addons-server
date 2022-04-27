@@ -184,7 +184,8 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         alias = settings.ES_INDEXES[key]
         # Patch reindex.gather_index_data_tasks so that it returns a group of
         # dummy tasks - otherwise the chain would not contain the indexation
-        # tasks and that's what we really care about.
+        # tasks (since there aren't any add-ons to index) and that's what we
+        # really care about.
         gather_index_data_tasks_mock.return_value = group([dummy_task.si()] * 42)
         workflow = command.create_workflow(alias)
 

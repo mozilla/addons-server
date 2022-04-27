@@ -110,55 +110,6 @@ def get_es_index_name(key):
     return f'{value}{ES_INDEX_SUFFIXES[key]}'
 
 
-def setup_es_test_data(es):
-    try:
-        es.cluster.health()
-    except Exception as e:
-        e.args = tuple(
-            [
-                '%s (it looks like ES is not running, try starting it or '
-                "don't run ES tests: make test_no_es)" % e.args[0]
-            ]
-            + list(e.args[1:])
-        )
-        raise
-
-    aliases_and_indexes = set(
-        list(settings.ES_INDEXES.values()) + list(es.indices.get_alias().keys())
-    )
-
-    for key in aliases_and_indexes:
-        if key.startswith('test_'):
-            if es.indices.exists_alias(name=key):
-                es.indices.delete_alias(index='*', name=key, ignore=[404])
-            elif es.indices.exists(key):
-                es.indices.delete(key, ignore=[404])
-
-    # Figure out the name of the indices we're going to create from the
-    # suffixes generated at import time. Like the aliases later, the name
-    # has been prefixed by pytest, we need to add a suffix that is unique
-    # to this test run.
-    actual_indices = {key: get_es_index_name(key) for key in settings.ES_INDEXES.keys()}
-
-    # Create new addons and stats indexes with the timestamped name.
-    # This is crucial to set up the correct mappings before we start
-    # indexing things in tests.
-    AddonIndexer.create_new_index(actual_indices['default'])
-
-    # Alias it to the name the code is going to use (which is suffixed by
-    # pytest to avoid clashing with the real thing).
-    actions = [
-        {
-            'add': {
-                'index': actual_indices['default'],
-                'alias': settings.ES_INDEXES['default'],
-            }
-        },
-    ]
-
-    es.indices.update_aliases({'actions': actions})
-
-
 def formset(*args, **kw):
     """
     Build up a formset-happy POST.
@@ -1013,6 +964,56 @@ class ESTestCaseMixin:
         # right before each test.
         stop_es_mocks()
         cls.es = amo_search.get_es()
+        # Make sure ES cluster is in a good state, resetting the index if
+        # necessary.
+        try:
+            cls.es.cluster.health()
+        except Exception as e:
+            e.args = tuple(
+                [
+                    '%s (it looks like ES is not running, try starting it or '
+                    "don't run ES tests: make test_no_es)" % e.args[0]
+                ]
+                + list(e.args[1:])
+            )
+            raise
+
+        aliases_and_indexes = set(
+            list(settings.ES_INDEXES.values()) + list(cls.es.indices.get_alias().keys())
+        )
+
+        for key in aliases_and_indexes:
+            if key.startswith('test_'):
+                if cls.es.indices.exists_alias(name=key):
+                    cls.es.indices.delete_alias(index='*', name=key, ignore=[404])
+                elif cls.es.indices.exists(key):
+                    cls.es.indices.delete(key, ignore=[404])
+
+        # Figure out the name of the indices we're going to create from the
+        # suffixes generated at import time. Like the aliases later, the name
+        # has been prefixed by pytest, we need to add a suffix that is unique
+        # to this test run.
+        actual_indices = {
+            key: get_es_index_name(key) for key in settings.ES_INDEXES.keys()
+        }
+
+        # Create new addons and stats indexes with the timestamped name.
+        # This is crucial to set up the correct mappings before we start
+        # indexing things in tests.
+        AddonIndexer.create_new_index(actual_indices['default'])
+
+        # Alias it to the name the code is going to use (which is suffixed by
+        # pytest to avoid clashing with the real thing).
+        actions = [
+            {
+                'add': {
+                    'index': actual_indices['default'],
+                    'alias': settings.ES_INDEXES['default'],
+                }
+            },
+        ]
+
+        cls.es.indices.update_aliases({'actions': actions})
         super().setUpClass()
 
     def setUp(self):
@@ -1020,11 +1021,6 @@ class ESTestCaseMixin:
         # generic pytest fixture started the mocks in the meantime
         stop_es_mocks()
         super().setUp()
-
-    @classmethod
-    def setUpTestData(cls):
-        setup_es_test_data(cls.es)
-        super().setUpTestData()
 
     @classmethod
     def refresh(cls, index='default'):

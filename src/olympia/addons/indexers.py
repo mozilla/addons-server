@@ -764,4 +764,6 @@ class AddonIndexer:
 
         ids = cls.get_model().unfiltered.values_list('id', flat=True).order_by('id')
         chunk_size = 150
-        return create_chunked_tasks_signatures(index_addons, list(ids), chunk_size)
+        return create_chunked_tasks_signatures(
+            index_addons, list(ids), chunk_size, task_kwargs={'index': index_name}
+        )
