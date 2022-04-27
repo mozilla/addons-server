@@ -16,7 +16,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, ESTestCaseMixin, PatchMixin, reverse_ns
 from olympia.amo.utils import urlparams
 from olympia.lib.es.management.commands import reindex
-from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
+from olympia.lib.es.models import Reindexing
 
 
 @shared_task
@@ -27,8 +27,8 @@ def dummy_task():
 class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
     def setUp(self):
         super().setUp()
-        if is_reindexing_amo():
-            unflag_reindexing_amo()
+        if Reindexing.objects.is_reindexing():
+            Reindexing.objects.unflag_reindexing()
 
         self.url = reverse_ns('addon-search')
 
@@ -122,7 +122,7 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         # Wait for the reindex in the thread to flag the database.
         # The database transaction isn't shared with the thread, so force the
         # commit.
-        while t.is_alive() and not is_reindexing_amo():
+        while t.is_alive() and not Reindexing.objects.is_reindexing():
             connection._commit()
 
         if not wipe:
@@ -184,7 +184,8 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         alias = settings.ES_INDEXES[key]
         # Patch reindex.gather_index_data_tasks so that it returns a group of
         # dummy tasks - otherwise the chain would not contain the indexation
-        # tasks and that's what we really care about.
+        # tasks (since there aren't any add-ons to index) and that's what we
+        # really care about.
         gather_index_data_tasks_mock.return_value = group([dummy_task.si()] * 42)
         workflow = command.create_workflow(alias)
 
