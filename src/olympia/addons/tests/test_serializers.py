@@ -16,6 +16,7 @@ from olympia.addons.models import (
     ReplacementAddon,
 )
 from olympia.addons.serializers import (
+    AddonAuthorSerializer,
     AddonBasketSyncSerializer,
     AddonDeveloperSerializer,
     AddonSerializer,
@@ -1782,3 +1783,20 @@ class TestReplacementAddonSerializer(TestCase):
         addon.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
         assert result['replacement'] == ['newstuff@mozilla']
+
+
+class TestAddonAuthorSerializer(TestCase):
+    def test_basic(self):
+        user = user_factory(read_dev_agreement=self.days_ago(0))
+        addon = addon_factory(users=(user,))
+        addonuser = addon.addonuser_set.get()
+
+        data = AddonAuthorSerializer().to_representation(instance=addonuser)
+        assert data == {
+            'user_id': user.id,
+            'role': 'owner',
+            'position': 0,
+            'listed': True,
+            'name': user.name,
+            'email': user.email,
+        }

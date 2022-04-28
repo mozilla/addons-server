@@ -98,6 +98,11 @@ AUTHOR_CHOICES = (
     (AUTHOR_ROLE_DEV, _('Developer')),
 )
 
+AUTHOR_CHOICES_API = {
+    AUTHOR_ROLE_OWNER: 'owner',
+    AUTHOR_ROLE_DEV: 'developer',
+}
+
 AUTHOR_CHOICES_UNFILTERED = AUTHOR_CHOICES + ((AUTHOR_ROLE_DELETED, _('(Deleted)')),)
 
 # Addon types

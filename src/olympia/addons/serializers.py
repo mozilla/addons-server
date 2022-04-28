@@ -65,6 +65,7 @@ from .models import (
     Addon,
     AddonApprovalsCounter,
     AddonReviewerFlags,
+    AddonUser,
     DeniedSlug,
     Preview,
     ReplacementAddon,
@@ -693,6 +694,52 @@ class AddonDeveloperSerializer(BaseUserSerializer):
     class Meta(BaseUserSerializer.Meta):
         fields = BaseUserSerializer.Meta.fields + ('picture_url',)
         read_only_fields = fields
+
+
+class AddonAuthorSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(source='user.id', read_only=True)
+    name = serializers.CharField(source='user.name', read_only=True)
+    email = serializers.CharField(source='user.email', read_only=True)
+    role = ReverseChoiceField(choices=list(amo.AUTHOR_CHOICES_API.items()))
+
+    class Meta:
+        model = AddonUser
+        fields = ('user_id', 'name', 'email', 'listed', 'position', 'role')
+
+        writeable_fields = (
+            'listed',
+            'position',
+            'role',
+        )
+        read_only_fields = tuple(set(fields) - set(writeable_fields))
+
+    def validate_role(self, value):
+        if (
+            value != amo.AUTHOR_ROLE_OWNER
+            and not AddonUser.objects.filter(
+                addon_id=self.instance.addon_id, role=amo.AUTHOR_ROLE_OWNER
+            )
+            .exclude(id=self.instance.id)
+            .exists()
+        ):
+            raise serializers.ValidationError(
+                gettext('Add-ons need at least one owner.')
+            )
+        return value
+
+    def validate_listed(self, value):
+        if (
+            value is not True
+            and not AddonUser.objects.filter(
+                addon_id=self.instance.addon_id, listed=True
+            )
+            .exclude(id=self.instance.id)
+            .exists()
+        ):
+            raise serializers.ValidationError(
+                gettext('Add-ons need at least one listed author.')
+            )
+        return value
 
 
 class PromotedAddonSerializer(serializers.ModelSerializer):

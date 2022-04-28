@@ -74,6 +74,7 @@ from .indexers import AddonIndexer
 from .models import Addon, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
+    AddonAuthorSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
     DeveloperVersionSerializer,
@@ -684,6 +685,61 @@ class AddonPreviewViewSet(
     def perform_destroy(self, instance):
         super().perform_destroy(instance)
         ActivityLog.create(amo.LOG.CHANGE_MEDIA, instance.addon, user=self.request.user)
+
+
+class AddonAuthorViewSet(
+    AddonChildMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    GenericViewSet,
+):
+    # We can't define permissions here because we need slightly different permissions
+    # for list and get - see check_permissions and check_object_permissions. Permissions
+    # are also always checked against the parent add-on in get_addon_object() using
+    # AddonViewSet's permissions.
+    permission_classes = []
+    authentication_classes = [
+        JWTKeyAuthentication,
+        SessionIDAuthentication,
+    ]
+    throttle_classes = addon_submission_throttles
+    serializer_class = AddonAuthorSerializer
+    lookup_field = 'user__id'
+    lookup_url_kwarg = 'user_id'
+    pagination_class = None  # Add-ons don't have huge numbers of authors
+
+    def check_permissions(self, request):
+        # When listing, we can't use AllowRelatedObjectPermissions() with
+        # check_permissions(), because AllowAddonAuthor needs an author to do the actual
+        # permission check. To work around that, we call super +
+        # check_object_permission() ourselves, passing down the addon object directly.
+        # We're overriding the permission_classes to restrict access to add-on authors.
+        addon = self.get_addon_object(
+            permission_classes=[
+                APIGatePermission('addon-submission-api'),
+                AnyOf(
+                    AllowAddonAuthor,
+                    AllowListedViewerOrReviewer,
+                    AllowUnlistedViewerOrReviewer,
+                ),
+            ]
+        )
+        return super().check_object_permissions(request, addon)
+
+    def check_object_permissions(self, request, obj):
+        # check_permissions will have been executed by this point, enforcing that add-on
+        # authors have access only, but for updates/deletes we want to restrict further
+        # to owner role authors.
+        if self.action in ('update', 'partial_update', 'destroy'):
+            self.permission_classes = [
+                AllowRelatedObjectPermissions('addon', [AllowAddonOwner])
+            ]
+
+        super().check_object_permissions(request, obj)
+
+    def get_queryset(self):
+        return self.get_addon_object().addonuser_set.all().order_by('position')
 
 
 class AddonSearchView(ListAPIView):
