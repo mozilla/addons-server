@@ -35,7 +35,7 @@ class TestReviewForm(TestCase):
         return ReviewForm(
             data=data,
             helper=ReviewHelper(
-                request=self.request, addon=self.addon, version=self.version
+                addon=self.addon, version=self.version, user=self.request.user
             ),
         )
 
@@ -43,7 +43,7 @@ class TestReviewForm(TestCase):
         self.file.update(status=file_status)
         self.addon.update(status=addon_status)
         form = self.get_form()
-        return form.helper.get_actions(self.request)
+        return form.helper.get_actions()
 
     def test_actions_reject(self):
         self.grant_permission(self.request.user, 'Addons:Review')

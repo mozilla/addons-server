@@ -51,7 +51,7 @@ class Command(BaseCommand):
         Trigger task sending email notifying developer(s) of the add-on that
         this version hasn't been auto-approved yet.
         """
-        helper = ReviewHelper(addon=version.addon, version=version)
+        helper = ReviewHelper(addon=version.addon, version=version, human_review=False)
         helper.handler.data = {}
         helper.handler.notify_about_auto_approval_delay(version)
 
