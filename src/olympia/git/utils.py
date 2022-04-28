@@ -13,6 +13,7 @@ import pygit2
 from django_statsd.clients import statsd
 
 from django.conf import settings
+from django.db import connections
 from django.utils import translation
 from django.utils.functional import cached_property
 
@@ -360,6 +361,14 @@ class AddonGitRepository:
                 author=author,
                 branch=branch,
             )
+
+            # extraction might have taken a while, and our connection might be
+            # gone and we haven't realized it. Django cleans up connections
+            # after CONN_MAX_AGE but only during request/response cycle, so
+            # let's do it ourselves before using the database again- it will
+            # automatically reconnect if needed (use 'default' since we want
+            # the primary db where writes go).
+            connections['default'].close_if_unusable_or_obsolete()
 
             # Set the latest git hash on the related version.
             version.update(git_hash=commit.hex)
