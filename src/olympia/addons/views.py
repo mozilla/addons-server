@@ -692,6 +692,7 @@ class AddonAuthorViewSet(
     ListModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
+    DestroyModelMixin,
     GenericViewSet,
 ):
     # We can't define permissions here because we need slightly different permissions
@@ -740,6 +741,12 @@ class AddonAuthorViewSet(
 
     def get_queryset(self):
         return self.get_addon_object().addonuser_set.all().order_by('position')
+
+    def perform_destroy(self, instance):
+        serializer = self.get_serializer(instance)
+        serializer.validate_role(value=None)
+        serializer.validate_listed(value=None)
+        return super().perform_destroy(instance)
 
 
 class AddonSearchView(ListAPIView):
