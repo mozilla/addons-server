@@ -714,7 +714,6 @@ class AddonAuthorSerializer(serializers.ModelSerializer):
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
     def validate_role(self, value):
-        # we need at least one listed user
         if (
             value != amo.AUTHOR_ROLE_OWNER
             and not AddonUser.objects.filter(
@@ -729,7 +728,6 @@ class AddonAuthorSerializer(serializers.ModelSerializer):
         return value
 
     def validate_listed(self, value):
-        # we need at least one addon owner
         if (
             value is not True
             and not AddonUser.objects.filter(
