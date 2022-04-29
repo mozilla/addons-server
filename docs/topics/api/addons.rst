@@ -821,7 +821,7 @@ Add-ons must have at least one owner, and at least one listed author.
         This API requires :doc:`authentication <auth>`, and for the user to be an owner of the add-on.
 
     .. warning::
-        If you change you delete yourself as an add-on author you will lose all access to the add-on.
+        If you delete yourself as an add-on author you will lose all access to the add-on.
 
 .. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/authors/(int:user_id)/
 
