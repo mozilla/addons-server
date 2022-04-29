@@ -1431,7 +1431,7 @@ class TestUploadDetail(UploadMixin, TestCase):
             (m['message'], m.get('type') == 'error')
             for m in data['validation']['messages']
         ]
-        expected = [('"/version" is a required property', True)]
+        expected = [('"/" must have required property \'version\'', True)]
         assert message == expected
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
