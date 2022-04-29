@@ -809,6 +809,24 @@ This endpoint allows the properties of an add-on author to be edited.
 
 
 -------------
+Author Delete
+-------------
+
+.. _addon-author-delete:
+
+This endpoint allows an add-on author to be removed from an add-on.
+Add-ons must have at least one owner, and at least one listed author.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an owner of the add-on.
+
+    .. warning::
+        If you delete yourself as an add-on author you will lose all access to the add-on.
+
+.. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/authors/(int:user_id)/
+
+
+-------------
 Upload Create
 -------------
 

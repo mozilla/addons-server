@@ -5820,3 +5820,29 @@ class TestAddonAuthorViewSet(TestCase):
         self.addonuser.reload()
         assert response.data['listed'] is False
         self.addonuser.listed is False
+
+    def test_delete(self):
+        new_author = AddonUser.objects.create(
+            addon=self.addon,
+            user=user_factory(),
+            role=amo.AUTHOR_ROLE_DEV,
+            listed=False,
+        )
+        assert self.client.delete(self.detail_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.delete(self.detail_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 400
+        assert response.data == ['Add-ons need at least one owner.']
+
+        new_author.update(role=amo.AUTHOR_ROLE_OWNER)
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 400
+        assert response.data == ['Add-ons need at least one listed author.']
+
+        new_author.update(listed=True)
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 204
