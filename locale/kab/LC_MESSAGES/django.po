@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-29 04:41+0000\n"
+"PO-Revision-Date: 2022-04-29 04:51+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1160,69 +1160,69 @@ msgid "Shopping"
 msgstr "Tiɣin"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr "Sider isiɣzaf Firefox yesnernayen tarmit-ik n tiɣin srid syifecka n yitikiyen n useɣes di ssuma, ifecka n unadi n yiweẓla igerrzen, imaslaḍen n uktazal, d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox yesnernayen tarmit-ik n tiɣin srid s yifecka n yitikiyen n useɣes di ssuma, ifecka n unadi n yiweẓla igerrzen, imaslaḍen n uktazal, d wayen-nniḍen."
 
 msgid "Social & Communication"
 msgstr "Timetti & Taɣwalt"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Sider isiɣzaf Firefox yesnernayen iẓedwa n tmetti akked yifecka n usefrek n yiznan imiranen. Taggayt-a tegber ilɣa n yiccaren yennerna, ifecka n usider n tvidyutin d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox yesnernayen iẓedwa n tmetti akked yifecka n usefrek n yiznan imiranen. Taggayt-a tegber ilɣa n yiccaren yennerna, ifecka n usader n tvidyutin d wayen-nniḍen."
 
 msgid "Tabs"
 msgstr "Iccaren"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
-"Sider isiɣzaf Firefox i tmerna n yiccaren udmawanen neɣ asebter amaynut n yiccer. Wali isiɣzaf i izemren ad erren iccaren n yiminig gar ifassen-ik,  ad snernin tarrayt n temyigawt yid-sen d wayen-"
+"Sader isiɣzaf Firefox i tmerna n yiccaren udmawanen neɣ asebter amaynut n yiccer. Wali isiɣzaf i izemren ad erren iccaren n yiminig gar ifassen-ik,  ad snernin tarrayt n temyigawt yid-sen d wayen-"
 "nniḍen."
 
 msgid "Web Development"
 msgstr "Taneflit Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "Sider isiɣzaf Firefox yesnernayessumuren ifecka n tneflit web. Taggayt-a tegber isiɣzaf i GitHub, akken ad tbeddleḍ imeggi aseqdac, asefrek n yinagan n tuqqna d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox yessumuren ifecka n tneflit web. Taggayt-a tegber isiɣzaf i GitHub, akken ad tbeddleḍ imeggi aseqdac, asefrek n yinagan n tuqqna d wayen-nniḍen."
 
 msgid "Other"
 msgstr "Wiyaḍ"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr "Sider isiɣzaf Firefox izemren ad k-swehmen, maca lhan i umahil ur nettwassen ara aṭas."
+msgstr "Sader isiɣzaf Firefox izemren ad k-swehmen, maca lhan i umahil ur nettwassen ara aṭas."
 
 msgid "Device Features & Location"
 msgstr "Timahilin akked wadig n ibenkan"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Sider isiɣzaf Firefox yesnernayen Firefox i Android. Eg inadiyen iruraden, serreḥ i teɣbula tinagrawanin, aru tizmilin, d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox yesnernayen Firefox i Android. Eg inadiyen iruraden, serreḥ i teɣbula tinagrawanin, aru tizmilin, d wayen-nniḍen."
 
 msgid "Experimental"
 msgstr "Armitan"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "Sider isiɣzaf Firefox s lqem yittilin si sya ɣer daa, i iheggan i usekyed izuyaz. Iwenniten-ik ad lqun ineflayen ɣef yibeddilen ara yilin deg yileqman i d-iteddun."
+msgstr "Sader isiɣzaf Firefox s lqem yittilin si sya ɣer da, i iheggan i usekyed izuyaz. Iwenniten-ik ad lɣun ineflayen ɣef yibeddilen ara yilin deg yileqman i d-iteddun."
 
 msgid "Performance"
 msgstr "Tamellit"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Sider isiɣzaf ara yesnernin timellit n Firefox. Af-d isiɣzaf ara k-d-imudden afus deg tiffursa neɣ deg tmellit s usewḥel n udellel ur nemɛin ara, d wayen-nniḍen."
+msgstr "Sader isiɣzaf ara yesnernin timellit n Firefox. Af-d isiɣzaf ara k-d-imudden afus deg tiffursa neɣ deg tmellit s usewḥel n udellel ur nemɛin ara, d wayen-nniḍen."
 
 msgid "Photos & Media"
 msgstr "Tiwlafin & Allalen n teywalt"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Sider isiɣzaf ara yesnerni n tewlafin akked imidyaten. Taggayt-a tegber isiɣzaf n unadi deg tewlafin, akken ad tegeḍ tuṭṭfiwin n ugdil n yisebtar ummiden, d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox i usnerni n tewlafin akked imidyaten. Taggayt-a tegber isiɣzaf n unadi deg tewlafin, akken ad tgeḍ tuṭṭfiwin n ugdil n yisebtar ummiden, d wayen-nniḍen."
 
 msgid "Security & Privacy"
 msgstr "Taɣellist & Tabaḍnit"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr "Sider isiɣzaf Firefox akken ad tinigeḍ s wudem aɣelsan akked tbaḍit. Wali isiɣzaf i izemren ad sḥebsen ineḍfaren n udellel deg uḍfar-nsen, sfeḍ s wudem fessusen amazray, d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox akken ad tinigeḍ s wudem aɣellsan, abani. Wali isiɣzaf i izemren ad sḥebsen ineḍfaren n udellel deg uḍfar-nsen, sfeḍ s wudem fessusen amazray, d wayen-nniḍen."
 
 msgid "Social Networking"
 msgstr "Aẓeṭṭa n tmetti"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Sider isiɣzaf Firefow akken ad tesnerniḍ tarmit-ik deg yismal n yiẓeḍwa inmettiyen yettwassnen am YouTube, GitHub, Reddit, d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefow akken ad tesnerniḍ tarmit-ik deg yismal n yizeḍwa inmettiyen yettwassnen am YouTube, GitHub, Reddit, d wayen-nniḍen."
 
 msgid "Sports & Games"
 msgstr "Addal & uraren"
@@ -1279,7 +1279,7 @@ msgid "Fashion"
 msgstr "Amaynut"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr "Sider isental Firefox yesfugulen aɣanib-ik anurif n yal talɣa — tineɣrufin, initen, talɣiwind wayen-nniḍen."
+msgstr "Sader isental Firefox yesfugulen aɣanib-ik anurif n yal talɣa — tineɣrufin, initen, talɣiwind wayen-nniḍen."
 
 msgid "Film and TV"
 msgstr "Isura & Tiliẓri"
