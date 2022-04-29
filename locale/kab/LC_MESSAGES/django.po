@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-29 04:51+0000\n"
+"PO-Revision-Date: 2022-04-29 04:58+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1285,7 +1285,7 @@ msgid "Film and TV"
 msgstr "Isura & Tiliẓri"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr "Sider isental i Firefox i d-yekkan seg isura akked tiliẓri. Taggayt-a tegber unuɣen yettḥerriken am Uchiha Madara, isura am Matrix, tidwilin am (Game of Thrones), d wayen-nniḍen."
+msgstr "Sader isental n Firefox i d-yekkan seg yisura akked tiliẓri. Taggayt-a tegber unuɣen yettḥerriken am Uchiha Madara, isura am Matrix, tidwilin am (Game of Thrones), d wayen-nniḍen."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr "Asali n usentel Firefox akked uɣaniv n uminig . Taggayt-a tesɛa initen , tagensest n ulugut n Firefox , d ugar n iɣunav imuta fox.  "
@@ -2130,7 +2130,7 @@ msgstr "Jerred ar usuddem-agi"
 msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
-msgstr "Azegrir-agi ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lqem aneggaru n %(app_name)s. Ma ulac aɣilif, leqqem talɣut n umṣada n uzegrir inek neq azen lqem amaynut."
+msgstr "Azegrir-a ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lqem aneggaru n %(app_name)s. Ma ulac aɣilif, leqqem talɣut n umṣada n uzegrir inek neq azen lqem amaynut."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -2601,8 +2601,8 @@ msgstr "Azegrir-agi ur imṣada xaṛsum akke yiwen seg ileqman-ik."
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> asider n ḍḍurt"
-msgstr[1] "<strong>{0}</strong> isidar n ḍḍurt"
+msgstr[0] "<strong>{0}</strong> asader n dduṛt"
+msgstr[1] "<strong>{0}</strong> isadaren n dduṛt"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
@@ -3184,7 +3184,7 @@ msgstr ""
 "Ma yella azegrir-ik yettazen isefka seg uselkim n useqdac, tasertit tabadnit tlaq akken ad tesfehmeḍ isefka ara yettwaznen daɣen amek ara ttwasqedcen. Urti-agi ilaq kan i yizegrar yettwabedren."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Ma yella azegrir-inek yegber tangalt meẓẓiyen, yessden neɣ tin i d-yettwasurwen s tmacint ur nelli ara si temkarḍiyin yettwassnen, sider-d iɣbula-a i usenqed."
+msgstr "Ma yella azegrir-inek yegber tangalt meẓẓiyen, yessden neɣ tin i d-yettwasurwen s tmacint ur nelli ara si temkarḍiyin yettwassnen, sader iɣbula-a i usenqed."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Seddu ma ulac aɣilif tarrayt ara tḍefreḍ akken ad theggiḍ afaylu n uzegrir. Tzemreḍ ad tesqedceḍ afaylu README neɣ tizmilin i yimsekyaden n lqem-agi."
@@ -3778,7 +3778,7 @@ msgstr "Eg tuṭṭfiwin n ugdil n yisebtar web seg wayen i tferneḍ sakin bedd
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr "Afecku n usider ufrin i Windows kan."
+msgstr "Afecku n usader ufrin i Windows kan."
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
@@ -5590,7 +5590,7 @@ msgid "Additional sources:"
 msgstr "Tiɣbula nniḍen:"
 
 msgid "Download files"
-msgstr "Sider ifuyla"
+msgstr "Sader ifuyla"
 
 msgid "The developer has provided source code."
 msgstr "Aneflay yefka-d tangalt taɣbalut."
@@ -5614,7 +5614,7 @@ msgid "Flagged for human review"
 msgstr "Yettwacreḍ i  usenqed n umdan"
 
 msgid "Download"
-msgstr "Sider"
+msgstr "Sader"
 
 msgid "Not Auto Approved Because"
 msgstr "Ur ittwaqbel ara s wudem awurman acku"
@@ -5884,7 +5884,7 @@ msgid "About tracking external sources..."
 msgstr "Ɣef uḍfar n yiɣbula izɣarayanen..."
 
 msgid "Download contents by Date"
-msgstr "Sider iɣbula s wazemz"
+msgstr "Sader iɣbula s wazemz"
 
 msgid "User countries by Date"
 msgstr "Timura n useqdac s wazemz"
@@ -5929,7 +5929,7 @@ msgid "See more platforms&hellip;"
 msgstr "Wali ugar n twannadin&hellip;"
 
 msgid "Download sources by Date"
-msgstr "Iɣbula n usider s wazemz"
+msgstr "Iɣbula n usader s wazemz"
 
 msgid "Add-on Status by Date"
 msgstr "Addad n uzegrir s wazemz"
@@ -5988,7 +5988,7 @@ msgid "Forum"
 msgstr "Anmager"
 
 msgid "Download Firefox"
-msgstr "Sider Firefox"
+msgstr "Sader Firefox"
 
 msgid "Android Browser"
 msgstr "Iminig Android"
