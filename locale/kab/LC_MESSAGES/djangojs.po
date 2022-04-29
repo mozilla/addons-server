@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:14+0000\n"
-"PO-Revision-Date: 2020-12-14 19:42+0000\n"
+"PO-Revision-Date: 2022-04-29 04:37+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -449,11 +449,11 @@ msgstr "Iɣbula n usader seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr "Sider ilemmasen, {0} n wussan ineggura"
+msgstr "Sader ilemmasen, {0} n wussan ineggura"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
-msgstr "Sider ilemmasen seg {0} ɣer {1}"
+msgstr "Sader ilemmasen seg {0} ɣer {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"

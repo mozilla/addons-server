@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2016-12-20 11:17+0000\n"
-"Last-Translator: Muhend Belkacem <taqbaylitassa@gmail.com>\n"
+"PO-Revision-Date: 2022-04-29 04:41+0000\n"
+"Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -1121,7 +1121,7 @@ msgid "Download Management"
 msgstr "Asefrek n usader"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr "Sader isiɣzaf Firefox izemren ad ɛiwnen deg ysider agbur web, aẓawan akked tvidyutin. Tzemreḍ daɣen ad tafeḍ isiɣzaf i usefrek n yosadaren, beṭṭu n yifuyla, d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox i izemren ad ɛiwnen deg usader n ugbur web, aẓawan akked tvidyutin. Tzemreḍ daɣen ad tafeḍ isiɣzaf i usefrek n yiadaren, beṭṭu n yifuyla d wayen-nniḍen."
 
 msgid "Feeds, News & Blogging"
 msgstr "Isuddam, isallen & ublugi"
@@ -1139,22 +1139,22 @@ msgid "Language Support"
 msgstr "Asefrek n tutlayt"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Sider isiɣzaf Firefox yettmuddun asefrek n tutlayt am usenqed n tjeṛṛumt, anadi n wawalen, tasuqilt n yiḍrien, aḍris ɣer taɣect, atg."
+msgstr "Sader isiɣzaf Firefox yettmuddun asefrek n tutlayt am usenqed n tjeṛṛumt, anadi n wawalen, tasuqqilt n yiḍrien, aḍris ɣer taɣect, atg."
 
 msgid "Photos, Music & Videos"
 msgstr "Tiwlafin, aẓawan & tvidyutin"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr "Sider isiɣzaf Firefox yesnernayen aseqdec n tewlafin, aẓawan d tvidyutin. Isiɣzaf n taggayt-a sirigen abeddel  n yifyla imeslawen akked tvidyutin, anadi n tewlafin yettin, s wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox yesnernayen aseqdec n tewlafin, aẓawan d tvidyutin. Isiɣzaf n taggayt-a sirigen abeddel  n yifuyla imeslawen akked tvidyutin, anadi n tewlafin yettin, d wayen-nniḍen."
 
 msgid "Privacy & Security"
 msgstr "Tabaḍnit  & Taɣellist"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr "Sider isiɣzaf Firefox i tunigin s wudem abaḍni neɣ aɣelsan. Taggayt-a tegber isiɣzaf yessirigen asewḥel n udellel, asewḥel n uḍfaṛ, asefrek n uwehhi, atg."
+msgstr "Sader isiɣzaf Firefox i tunigin s wudem abaḍni neɣ aɣellsan. Taggayt-a tegber isiɣzaf yessirigen asewḥel n udellel, asewḥel n uḍfaṛ, asefrek n uwehhi, atg."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "Sider isiɣzaf Firefox i unadi. Taggayt-a tegber isiɣzaf yessebruṛuqen neɣ yettnadin aḍris, tansiwin IP/tiɣula d wayen-nniḍen."
+msgstr "Sader isiɣzaf Firefox i unadi. Taggayt-a tegber isiɣzaf yessebruṛuqen neɣ yettnadin aḍris, tansiwin IP/tiɣula d wayen-nniḍen."
 
 msgid "Shopping"
 msgstr "Tiɣin"
