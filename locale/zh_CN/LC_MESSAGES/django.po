@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-29 06:20+0000\n"
+"PO-Revision-Date: 2022-04-29 06:29+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -149,7 +149,7 @@ msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "超出单个应用程序的最大分类数（{MAX_CATEGORIES}）"
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "“其他”分类不能与其他分类组合"
 
 msgid "Invalid category name."
 msgstr "分类名无效。"
@@ -214,13 +214,13 @@ msgid "Version {version_string} already exists."
 msgstr "版本 {version_string} 已存在。"
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "附加组件禁用时无法提交上架版本。"
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "需设置附加组件元数据以创建上架版本：{missing_addon_metadata}。"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "短网址不可用，请另选。"
 
 msgid "This field is required for add-ons with listed versions."
 msgstr "附加组件的上架版本，此字段必填。"
@@ -2387,7 +2387,7 @@ msgstr "白板"
 msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
-msgstr ""
+msgstr "白板是用来放置您要提供给网站编辑的有关于您的附加组件的信息，不局限于特定版本。请使用它来提供测试附加组件的方法或其他任何可帮助测试的额外信息。此白板也可被网站编辑所编辑。"
 
 msgid "Add-on Media for {0}"
 msgstr "附加组件“{0}”的媒体"
@@ -5332,7 +5332,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>警告！</strong>已有其他用户先于您在查看此页。"
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "此白板用来放置有关开发者与网站编辑之间对此附加组件（不限版本）的交流信息。这对两方可见并可编辑。"
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "审核者与开发者可使用独立于版本号的私密白板交换信息。请保持语言简单客观。只有审核者可以看到白板内容。"
@@ -5693,7 +5693,7 @@ msgstr "您不拥有此附加组件。"
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr "您不能添加新版本到状态为 %s 的附加组件。"
+msgstr "您不能为状态为 %s 的附加组件添加新版本。"
 
 msgid "Version does not match the manifest file."
 msgstr "版本与清单文件不匹配。"
@@ -5709,7 +5709,7 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "URL 或包中的附加组件 ID 无效"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr "您不能将上架版本添加到状态设为“不可见”的附加组件。"
+msgstr "您不能为状态设为“不可见”的附加组件添加上架版本。"
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr "由于缺少元数据，您无法通过 API 添加此附加组件的上架版本。请通过网站提交。"
