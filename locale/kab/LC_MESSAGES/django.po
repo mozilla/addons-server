@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-29 04:58+0000\n"
+"PO-Revision-Date: 2022-04-29 05:20+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -147,7 +147,7 @@ msgid "- Add-on not on AMO -"
 msgstr "- Azegrir ulac-it di AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Amḍan afellay n taggayin s usnas ({MAX_CATEGORIES}) iεedda"
 
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
@@ -199,7 +199,7 @@ msgid "Previews cannot be created for themes."
 msgstr ""
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Turagen tuslien ur zmirent ara ad d-ttwasalint."
 
 msgid "Upload is not valid."
 msgstr "Asali d arameɣtu."
@@ -220,7 +220,7 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Anegzum-a ur yezmir ara ad yettuseqdec. Ma ulac aγili; fren wayeḍ-nniḍen."
 
 msgid "This field is required for add-ons with listed versions."
 msgstr ""
@@ -4686,9 +4686,8 @@ msgid "See more Steam staff picks"
 msgstr "Wali ugar n yisiɣzaf n usuddem anmetti"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "Wali ugar n yifecka n usuqel yettwafernen sɣur terbaεt"
+msgstr "Wali ugar n usumer n terbaεt n usnulfu"
 
 msgid "Could not parse the manifest file."
 msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
@@ -5753,10 +5752,10 @@ msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr "Ur tezmireḍ ar ad ternuḍ ileqman i yettwabedren i uzegrir yellan deg waddad: \"uffir\"."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Ur tezmireḍ ara ad tbedreḍ lqem-a n uzegrir s API imi tettuḍ iɣef isefka. Ma ulac aɣilif, azen-d deg usmel web"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Ulac afaylu yulin i uzegrir neɣ lqem-nni."
 
 msgid "Overview"
 msgstr "Tazwart"
@@ -5765,7 +5764,7 @@ msgid "by Source"
 msgstr "s uɣbalu"
 
 msgid "by Medium"
-msgstr ""
+msgstr "s tallalt"
 
 msgid "by Content"
 msgstr "s ugburen"
@@ -6177,6 +6176,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Ameskar-agi yettwerna ɣer uzegrir-ik %(addon_name)s ( %(addon_url)s):\n"
+"\n"
+"%(author_name)s (%(author_url)s): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6212,6 +6214,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Ameskar-agi yettusnifel deg uzegrir  %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s (%(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6219,6 +6224,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Ameskar-agi yettwakkes seg uzegrir %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
