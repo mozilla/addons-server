@@ -1,6 +1,7 @@
 import os
 import re
 
+from django.core.exceptions import ValidationError as DjangoValidationError
 from django.urls import reverse
 from django.utils.translation import gettext
 
@@ -43,7 +44,7 @@ from olympia.promoted.models import PromotedAddon
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.ratings.utils import get_grouped_ratings
 from olympia.tags.models import Tag
-from olympia.users.models import UserProfile
+from olympia.users.models import EmailUserRestriction, RESTRICTION_TYPES, UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     License,
@@ -66,6 +67,7 @@ from .models import (
     AddonApprovalsCounter,
     AddonReviewerFlags,
     AddonUser,
+    AddonUserPendingConfirmation,
     DeniedSlug,
     Preview,
     ReplacementAddon,
@@ -697,25 +699,23 @@ class AddonDeveloperSerializer(BaseUserSerializer):
 
 
 class AddonAuthorSerializer(serializers.ModelSerializer):
-    user_id = serializers.IntegerField(source='user.id', read_only=True)
     name = serializers.CharField(source='user.name', read_only=True)
     email = serializers.CharField(source='user.email', read_only=True)
-    role = ReverseChoiceField(choices=list(amo.AUTHOR_CHOICES_API.items()))
+    role = ReverseChoiceField(
+        choices=list(amo.AUTHOR_CHOICES_API.items()), default=amo.AUTHOR_ROLE_OWNER
+    )
 
     class Meta:
         model = AddonUser
         fields = ('user_id', 'name', 'email', 'listed', 'position', 'role')
 
-        writeable_fields = (
-            'listed',
-            'position',
-            'role',
-        )
+        writeable_fields = ('listed', 'position', 'role')
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
     def validate_role(self, value):
         if (
-            value != amo.AUTHOR_ROLE_OWNER
+            self.instance
+            and value != amo.AUTHOR_ROLE_OWNER
             and not AddonUser.objects.filter(
                 addon_id=self.instance.addon_id, role=amo.AUTHOR_ROLE_OWNER
             )
@@ -729,7 +729,8 @@ class AddonAuthorSerializer(serializers.ModelSerializer):
 
     def validate_listed(self, value):
         if (
-            value is not True
+            self.instance
+            and value is not True
             and not AddonUser.objects.filter(
                 addon_id=self.instance.addon_id, listed=True
             )
@@ -739,6 +740,49 @@ class AddonAuthorSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 gettext('Add-ons need at least one listed author.')
             )
+        return value
+
+
+class AddonPendingAuthorSerializer(AddonAuthorSerializer):
+    user_id = serializers.IntegerField()
+    addon = serializers.HiddenField(default=ThisAddonDefault())
+
+    class Meta:
+        model = AddonUserPendingConfirmation
+        fields = ('addon', 'user_id', 'name', 'email', 'listed', 'role')
+
+        writeable_fields = ('addon', 'user_id', 'listed', 'role')
+        read_only_fields = tuple(set(fields) - set(writeable_fields))
+
+    def validate_user_id(self, value):
+        try:
+            user = UserProfile.objects.get(id=value)
+        except UserProfile.DoesNotExist:
+            raise exceptions.ValidationError(gettext('Account not found.'))
+
+        if not EmailUserRestriction.allow_email(
+            user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+        ):
+            raise exceptions.ValidationError(EmailUserRestriction.error_message)
+
+        if self.context['view'].get_addon_object().authors.filter(pk=user.pk).exists():
+            raise exceptions.ValidationError(
+                gettext('An author can only be present once.')
+            )
+
+        try:
+            if user.display_name is None:
+                raise DjangoValidationError('')  # raise so we can catch below.
+            for validator in user._meta.get_field('display_name').validators:
+                validator(user.display_name)
+        except DjangoValidationError:
+            raise exceptions.ValidationError(
+                gettext(
+                    'The account needs a display name before it can be added as an '
+                    'author.'
+                )
+            )
+
         return value
 
 

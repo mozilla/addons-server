@@ -57,7 +57,7 @@ from olympia.files.utils import parse_addon, parse_xpi
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
-from olympia.users.models import UserProfile
+from olympia.users.models import EmailUserRestriction, UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
@@ -72,12 +72,14 @@ from ..models import (
     AddonRegionalRestrictions,
     AddonReviewerFlags,
     AddonUser,
+    AddonUserPendingConfirmation,
     DeniedSlug,
     ReplacementAddon,
     Preview,
 )
 from ..serializers import (
     AddonAuthorSerializer,
+    AddonPendingAuthorSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
     DeveloperVersionSerializer,
@@ -5846,3 +5848,189 @@ class TestAddonAuthorViewSet(TestCase):
         new_author.update(listed=True)
         response = self.client.delete(self.detail_url)
         assert response.status_code == 204
+
+
+class TestAddonPendingAuthorViewSet(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,))
+        self.pending_author = AddonUserPendingConfirmation.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_OWNER
+        )
+        self.detail_url = reverse_ns(
+            'addon-pending-author-detail',
+            kwargs={'addon_pk': self.addon.pk, 'user_id': self.pending_author.user.id},
+            api_version='v5',
+        )
+        self.list_url = reverse_ns(
+            'addon-pending-author-list',
+            kwargs={'addon_pk': self.addon.pk},
+            api_version='v5',
+        )
+
+    def test_list(self):
+        dev_author = AddonUserPendingConfirmation.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_DEV
+        )
+        hidden_author = AddonUserPendingConfirmation.objects.create(
+            addon=self.addon, user=user_factory(), listed=False
+        )
+
+        assert self.client.get(self.list_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.get(self.list_url).status_code == 403
+
+        self.client.login_api(self.pending_author.user)
+        assert self.client.get(self.list_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200, response.content
+        assert len(response.data) == 3, response.data
+        assert response.data[0] == AddonPendingAuthorSerializer().to_representation(
+            instance=self.pending_author
+        )
+        assert response.data[1] == AddonPendingAuthorSerializer().to_representation(
+            instance=dev_author
+        )
+        assert response.data[2] == AddonPendingAuthorSerializer().to_representation(
+            instance=hidden_author
+        )
+
+    def test_detail(self):
+        assert self.client.get(self.detail_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.get(self.detail_url).status_code == 403
+
+        self.client.login_api(self.pending_author.user)
+        assert self.client.get(self.detail_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200, response.content
+        assert response.data == AddonPendingAuthorSerializer().to_representation(
+            instance=self.pending_author
+        )
+
+    def test_delete(self):
+        assert self.client.delete(self.detail_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.delete(self.detail_url).status_code == 403
+
+        self.client.login_api(self.pending_author.user)
+        assert self.client.get(self.detail_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 204
+
+    def test_create(self):
+        # This will be user that will be created
+        user = user_factory(display_name='new_guy')
+        data = {'user_id': user.id, 'role': 'developer'}
+        assert self.client.post(self.list_url, data=data).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.post(self.list_url, data=data).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.post(self.list_url, data=data)
+        assert response.status_code == 201, response.content
+        assert AddonUserPendingConfirmation.objects.filter(
+            user=user, addon=self.addon, role=amo.AUTHOR_ROLE_DEV
+        ).exists()
+
+    @override_settings(API_THROTTLING=False)
+    def test_create_validation(self):
+        self.client.login_api(self.user)
+
+        # user doesn't exist
+        response = self.client.post(self.list_url, data={'user_id': 12345})
+        assert response.status_code == 400, response.content
+        assert response.data == {'user_id': ['Account not found.']}
+
+        # not allowed
+        user = user_factory(email='foo@baa.com')
+        EmailUserRestriction.objects.create(email_pattern='*@baa.com')
+        response = self.client.post(self.list_url, data={'user_id': user.id})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'user_id': [
+                'The email address used for your account is not allowed for add-on '
+                'submission.'
+            ]
+        }
+
+        # can't add a user that is already an author
+        user.update(email='foo@mozilla.com')
+        dupe_addonuser = AddonUser.objects.create(addon=self.addon, user=user)
+        response = self.client.post(self.list_url, data={'user_id': user.id})
+        assert response.status_code == 400, response.content
+        assert response.data == {'user_id': ['An author can only be present once.']}
+
+        # account needs a display name
+        dupe_addonuser.delete()
+        user.update(display_name=None)
+        response = self.client.post(self.list_url, data={'user_id': user.id})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'user_id': [
+                'The account needs a display name before it can be added as an '
+                'author.'
+            ]
+        }
+
+    def test_confirm(self):
+        AddonUser.objects.create(addon=self.addon, user=user_factory(), position=3)
+        confirm_url = reverse_ns(
+            'addon-pending-author-confirm',
+            kwargs={'addon_pk': self.addon.pk},
+            api_version='v5',
+        )
+
+        assert self.client.post(confirm_url).status_code == 401
+
+        self.client.login_api(user_factory())  # random user can't confirm, only invited
+        assert self.client.post(confirm_url).status_code == 403
+
+        pending_user = self.pending_author.user
+        assert pending_user not in self.addon.reload().authors.all()
+        self.client.login_api(pending_user)
+        response = self.client.post(confirm_url)
+        assert response.status_code == 200
+
+        assert pending_user in self.addon.reload().authors.all()
+        assert not AddonUserPendingConfirmation.objects.filter(
+            id=self.pending_author.id
+        ).exists()
+        addonuser = AddonUser.objects.get(addon=self.addon, user=pending_user)
+        assert addonuser.position == 4  # should be + 1 after the existing authors
+        assert addonuser.role == self.pending_author.role
+        assert addonuser.listed == self.pending_author.listed
+
+    def test_decline(self):
+        decline_url = reverse_ns(
+            'addon-pending-author-decline',
+            kwargs={'addon_pk': self.addon.pk},
+            api_version='v5',
+        )
+
+        assert self.client.post(decline_url).status_code == 401
+
+        self.client.login_api(user_factory())  # random user can't decline, only invited
+        assert self.client.post(decline_url).status_code == 403
+
+        pending_user = self.pending_author.user
+        self.client.login_api(pending_user)
+        response = self.client.post(decline_url)
+        assert response.status_code == 200
+
+        assert not AddonUserPendingConfirmation.objects.filter(
+            id=self.pending_author.id
+        ).exists()
+        assert pending_user not in self.addon.reload().authors.all()

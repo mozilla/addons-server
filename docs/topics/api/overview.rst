@@ -441,6 +441,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2022-04-28: added the ability to delete add-ons via addon detail api endpoint. https://github.com/mozilla/addons-server/issues/19072
 * 2022-05-05: added the ability to list and edit add-on authors. https://github.com/mozilla/addons-server/issues/18231
 * 2022-05-05: added the ability to delete add-on authors. https://github.com/mozilla/addons-server/issues/19163
+* 2022-05-12: added the ability to add new add-on authors, as pending authors. https://github.com/mozilla/addons-server/issues/19164
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
