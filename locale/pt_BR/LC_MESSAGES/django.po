@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-30 14:28+0000\n"
+"PO-Revision-Date: 2022-04-30 14:39+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2464,6 +2464,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"O quadro branco é um local para fornecer informações relevantes sobre sua extensão para os revisores, qualquer que seja a versão. Use para indicar formas de testar a extensão e quaisquer informações"
+" adicionais que possam ajudar. Este quadro branco também pode ser editado pelos revisores."
 
 msgid "Add-on Media for {0}"
 msgstr "Mídia da extensão {0}"
@@ -3601,6 +3603,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"A última versão aprovada desta extensão de %(promoted_group_name)s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção de %(promoted_group_name)s. Entre em "
+"contato com os administradores da AMO se precisar de ajuda com isso."
 
 msgid "Hide Add-on"
 msgstr "Ocultar extensão"
@@ -4640,7 +4644,7 @@ msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "Privacidade e anti-rastreamento"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4649,7 +4653,7 @@ msgstr "Extensões de criatividade"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search"
-msgstr ""
+msgstr "Pesquisa de imagem"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5025,7 +5029,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Tem ligado o flag de aprovação automática desativada/adiada"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Está em um grupo de extensões promovidas que requer revisão prévia"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Adiado porque é a primeira versão listada"
@@ -5487,7 +5491,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Aviso!</strong> Outro usuário estava visualizando essa página antes de você."
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "O quadro branco é o local de troca de informações relevantes desta extensão (qualquer que seja a versão), entre o desenvolvedor e o revisor. Ambos podem ver e editar."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "O quadro branco privativo é usado apenas para trocar informação entre revisores independentes da versão. Por favor, mantenha a linguagem objetiva. É visível apenas para os revisores."
@@ -5849,7 +5853,7 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Não foi possível encontrar uma extensão com ID \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Esta extensão não é sua."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
