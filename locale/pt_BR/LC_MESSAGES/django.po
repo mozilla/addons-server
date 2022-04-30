@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-30 14:39+0000\n"
+"PO-Revision-Date: 2022-04-30 14:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -5857,7 +5857,7 @@ msgstr "Esta extensão não é sua."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Você não pode adicionar versões a uma extensão com status: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "A versão não corresponde ao arquivo manifest."
@@ -5873,13 +5873,13 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "ID de extensão inválido na URL ou pacote"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Você não pode adicionar versões listadas a uma extensão definida com status \"Invisível\"."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Você não pode adicionar uma versão listada desta extensão via API devido à falta de metadados. Envie através do site"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Nenhum arquivo enviado para esta extensão e versão."
 
 msgid "Overview"
 msgstr "Visão geral"
@@ -6306,6 +6306,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"O seguinte autor foi adicionado à sua extensão %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6341,6 +6344,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"O seguinte autor foi alterado em sua extensão %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6348,6 +6354,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"O seguinte autor foi removido da extensão %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
