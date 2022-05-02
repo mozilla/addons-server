@@ -336,9 +336,9 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         file_obj = addon.current_version.file
         fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
-        with amo.tests.copy_file(fixture, file_obj.file_path):
+        with amo.tests.copy_file(fixture, file_obj.file.path):
             with pytest.raises(forms.ValidationError) as exc:
-                utils.parse_xpi(file_obj.file_path)
+                utils.parse_xpi(file_obj.file.path)
                 assert dict(exc.value.messages)['en-us'].startswith(
                     'Add-on names cannot contain the Mozilla or'
                 )
@@ -351,8 +351,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         file_obj = addon.current_version.file
         fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
-        with amo.tests.copy_file(fixture, file_obj.file_path):
-            utils.parse_xpi(file_obj.file_path)
+        with amo.tests.copy_file(fixture, file_obj.file.path):
+            utils.parse_xpi(file_obj.file.path)
 
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
@@ -858,16 +858,16 @@ def test_bump_version_in_manifest_json(file_obj):
         application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
     )
     with amo.tests.copy_file(
-        'src/olympia/files/fixtures/files/webextension.xpi', file_obj.file_path
+        'src/olympia/files/fixtures/files/webextension.xpi', file_obj.file.path
     ):
         utils.update_version_number(file_obj, '0.0.1.1-signed')
-        parsed = utils.parse_xpi(file_obj.file_path)
+        parsed = utils.parse_xpi(file_obj.file.path)
         assert parsed['version'] == '0.0.1.1-signed'
 
 
 def test_extract_translations_simple(file_obj):
     extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
-    with amo.tests.copy_file(extension, file_obj.file_path):
+    with amo.tests.copy_file(extension, file_obj.file.path):
         messages = utils.extract_translations(file_obj)
         assert list(sorted(messages.keys())) == [
             'de',
@@ -884,7 +884,7 @@ def test_extract_translations_simple(file_obj):
 def test_extract_translations_fail_silent_invalid_file(read_mock, file_obj):
     extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
-    with amo.tests.copy_file(extension, file_obj.file_path):
+    with amo.tests.copy_file(extension, file_obj.file.path):
         read_mock.side_effect = KeyError
 
         # Does not raise an exception

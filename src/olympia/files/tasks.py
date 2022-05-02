@@ -80,8 +80,7 @@ def repack_fileupload(results, upload_pk):
                 dir=settings.TMP_PATH, suffix='.zip', delete=False
             )
             shutil.make_archive(os.path.splitext(file_.name)[0], 'zip', tempdir)
-        with open(file_.name, 'rb') as f:
-            upload.hash = 'sha256:%s' % get_sha256(f)
+        upload.hash = 'sha256:%s' % get_sha256(file_)
         timer.log_interval('2.repackaged')
         log.info('Zip from upload %s repackaged, moving file back', upload_pk)
         storage.move_stored_file(file_.name, upload.path)

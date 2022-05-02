@@ -5,7 +5,7 @@ import socket
 import struct
 import time
 import uuid
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core.files import File as DjangoFile
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
@@ -639,7 +640,7 @@ class AMOPaths:
 
     def xpi_copy_over(self, file, name):
         """Copies over a file into place for tests."""
-        path = file.file_path
+        path = file.file.path
         if not os.path.exists(os.path.dirname(path)):
             os.makedirs(os.path.dirname(path))
         shutil.copyfile(self.xpi_path(name), path)
@@ -820,19 +821,19 @@ def license_factory(**kw):
 
 
 def file_factory(**kw):
-    version = kw['version']
-    filename = kw.pop('filename', f'{version.addon_id}-{version.id}.xpi')
-    status = kw.pop('status', amo.STATUS_APPROVED)
-
-    file_ = File.objects.create(filename=filename, status=status, **kw)
-
-    fixture_path = os.path.join(
-        settings.ROOT, 'src/olympia/files/fixtures/files', filename
-    )
-
-    if os.path.exists(fixture_path):
-        root_storage.copy_stored_file(fixture_path, file_.file_path)
-
+    filename = kw.pop('filename')
+    if filename:
+        fixture_path = os.path.join(
+            settings.ROOT, 'src/olympia/files/fixtures/files', filename
+        )
+        context = open(fixture_path, 'rb')
+    else:
+        context = nullcontext()
+    kw.setdefault('status', amo.STATUS_APPROVED)
+    with context as src:
+        if src:
+            kw['file'] = DjangoFile(src)
+        file_ = File.objects.create(**kw)
     return file_
 
 

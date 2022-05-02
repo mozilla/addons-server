@@ -45,7 +45,7 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
 
         # Create a FileUpload object for an XPI containing version 1.1.
         self.file_upload = self.get_upload(
-            abspath=self.file.file_path, with_validation=False
+            abspath=self.file.file.path, with_validation=False
         )
 
         self.mock_chain = self.patch('olympia.devhub.utils.chain')
@@ -268,7 +268,7 @@ def test_extract_theme_properties(zip_file):
 
     # Add the zip in the right place
     zip_file = os.path.join(settings.ROOT, zip_file)
-    root_storage.copy_stored_file(zip_file, addon.current_version.file.file_path)
+    root_storage.copy_stored_file(zip_file, addon.current_version.file.file.path)
     result = utils.extract_theme_properties(addon, addon.current_version.channel)
     assert result == {
         'colors': {'frame': '#adb09f', 'tab_background_text': '#000'},

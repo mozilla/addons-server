@@ -153,24 +153,24 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         """Test that version (soft)delete doesn't delete the file."""
         f = File.objects.get(pk=67442)
         try:
-            with storage.open(f.file_path, 'w') as fi:
+            with storage.open(f.file.path, 'w') as fi:
                 fi.write('sample data\n')
-            assert storage.exists(f.file_path)
+            assert storage.exists(f.file.path)
             f.version.delete()
-            assert storage.exists(f.file_path)
+            assert storage.exists(f.file.path)
         finally:
-            if storage.exists(f.file_path):
-                storage.delete(f.file_path)
+            if storage.exists(f.file.path):
+                storage.delete(f.file.path)
 
     def test_delete_file_path(self):
         f = File.objects.get(pk=67442)
-        self.check_delete(f, f.file_path)
+        self.check_delete(f, f.file.path)
 
     def test_delete_no_file(self):
         # test that the file object can be deleted without the file
         # being present
         file = File.objects.get(pk=74797)
-        filename = file.file_path
+        filename = file.file.path
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         file.delete()
 
@@ -233,7 +233,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert file_.generate_hash(filename).startswith('sha256:95bd414295acda29c4')
 
         file_ = File.objects.get(pk=67442)
-        with storage.open(file_.file_path, 'wb') as fp:
+        with storage.open(file_.file.path, 'wb') as fp:
             fp.write(b'some data\n')
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_DISABLED
@@ -1135,7 +1135,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'jets-0.1.zip'
         expected_path_orig = force_str(upload.path)
-        expected_path_dest = force_str(file_.file_path)
+        expected_path_dest = force_str(file_.file.path)
         assert copy_stored_file_mock.call_count == 1
         assert copy_stored_file_mock.call_args_list[0][0] == (
             expected_path_orig,
@@ -1259,13 +1259,13 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_file_is_copied_to_file_path_at_upload(self):
         upload = self.upload('webextension')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert os.path.exists(file_.file_path)
+        assert os.path.exists(file_.file.path)
 
     def test_file_is_copied_to_file_path_at_upload_if_disabled(self):
         self.addon.update(disabled_by_user=True)
         upload = self.upload('webextension')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert os.path.exists(file_.file_path)
+        assert os.path.exists(file_.file.path)
 
     def test_permission_enabler_site_permissions(self):
         upload = self.upload('webextension.xpi')

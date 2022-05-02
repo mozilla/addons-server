@@ -118,7 +118,7 @@ class TestRecalculateHash(TestCase):
 
     @mock.patch.object(
         File,
-        'file_path',
+        'file.path',
         amo.tests.AMOPaths().file_fixture_path('https-everywhere.xpi'),
     )
     @mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
@@ -136,7 +136,7 @@ class TestRecalculateHash(TestCase):
 
     @mock.patch.object(
         File,
-        'file_path',
+        'file.path',
         amo.tests.AMOPaths().file_fixture_path('https-everywhere.xpi'),
     )
     def test_regenerate_hash_get(self):

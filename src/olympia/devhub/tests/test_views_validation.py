@@ -212,7 +212,7 @@ class TestFileValidation(TestCase):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
-        with storage.open(self.file.file_path, 'wb') as f:
+        with storage.open(self.file.file.path, 'wb') as f:
             f.write(b'<pretend this is an xpi>\n')
         self.addon = self.file.version.addon
         args = [self.addon.slug, self.file.id]

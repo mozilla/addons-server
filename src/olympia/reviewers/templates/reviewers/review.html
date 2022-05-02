@@ -138,7 +138,7 @@
         <ul>
           {% for file in form.unreviewed_files %}
           <li>
-            {{ file.filename }} &middot;
+            {{ file.pretty_filename }} &middot;
             {{ file_review_status(addon, file) }}
           </li>
           {% endfor %}

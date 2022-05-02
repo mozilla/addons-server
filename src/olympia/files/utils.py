@@ -73,8 +73,8 @@ def get_filepath(fileorpath):
         return fileorpath
     elif isinstance(fileorpath, DjangoFile):
         return fileorpath
-    elif hasattr(fileorpath, 'file_path'):  # File
-        return fileorpath.file_path
+    elif hasattr(fileorpath, 'file'):  # File
+        return fileorpath.file
     elif hasattr(fileorpath, 'path'):  # FileUpload
         return fileorpath.path
     elif hasattr(fileorpath, 'name'):  # file-like object
@@ -804,8 +804,8 @@ def extract_xpi(xpi, path):
 
 
 def parse_xpi(xpi, addon=None, minimal=False, user=None):
-    """Extract and parse an XPI. Returns a dict with various properties
-    describing the xpi.
+    """Extract and parse an XPI. Returns a dict with various
+    properties describing the xpi.
 
     Will raise ValidationError if something went wrong while parsing.
 
@@ -992,26 +992,28 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     return parsed
 
 
-def get_sha256(file_obj, block_size=io.DEFAULT_BUFFER_SIZE):
+def get_sha256(file_obj):
     """Calculate a sha256 hash for `file_obj`.
 
-    `file_obj` must be an open file descriptor. The caller needs to take
-    care of closing it properly.
-    """
+    `file_obj` must either be be an open file descriptor, in which case the
+    caller needs to take care of closing it properly, or a django File-like
+    object with a chunks() method to iterate over its contents."""
     hash_ = hashlib.sha256()
-
-    for chunk in iter(lambda: file_obj.read(block_size), b''):
+    if hasattr(file_obj, 'chunks') and callable(file_obj.chunks):
+        iterator = file_obj.chunks()
+    else:
+        iterator = iter(lambda: file_obj.read(io.DEFAULT_BUFFER_SIZE), b'')
+    for chunk in iterator:
         hash_.update(chunk)
-
     return hash_.hexdigest()
 
 
 def update_version_number(file_obj, new_version_number):
     """Update the manifest to have the new version number."""
     # Create a new xpi with the updated version.
-    updated = f'{file_obj.file_path}.updated_version_number'
+    updated = f'{file_obj.file.path}.updated_version_number'
     # Copy the original XPI, with the updated manifest.json.
-    with zipfile.ZipFile(file_obj.file_path, 'r') as source:
+    with zipfile.ZipFile(file_obj.file.path, 'r') as source:
         file_list = source.infolist()
         with zipfile.ZipFile(updated, 'w', zipfile.ZIP_DEFLATED) as dest:
             for file_ in file_list:
@@ -1022,7 +1024,7 @@ def update_version_number(file_obj, new_version_number):
                     )
                 dest.writestr(file_, content)
     # Move the updated file to the original file.
-    shutil.move(updated, file_obj.file_path)
+    os.replace(updated, file_obj.file.path)
 
 
 class InvalidOrUnsupportedCrx(Exception):

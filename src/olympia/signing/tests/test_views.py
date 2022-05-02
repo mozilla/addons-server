@@ -1399,7 +1399,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         file_ = qs.get()
 
         # We're repackaging, so we can't compare the hash to an existing value.
-        expected_hash = file_.generate_hash(filename=file_.file_path)
+        expected_hash = file_.generate_hash(filename=file_.file.path)
         assert file_.hash == expected_hash
         assert response.data['files'][0]['hash'] == expected_hash
 
@@ -1462,7 +1462,7 @@ class TestSignedFile(SigningAPITestMixin, TestCase):
     def test_can_download_once_authenticated(self):
         response = self.get(self.url())
         assert response.status_code == 200
-        assert response[settings.XSENDFILE_HEADER] == (self.file_.file_path)
+        assert response[settings.XSENDFILE_HEADER] == (self.file_.file.path)
 
     def test_cannot_download_without_authentication(self):
         response = self.client.get(self.url())  # no auth

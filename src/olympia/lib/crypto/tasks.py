@@ -111,13 +111,13 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
         bumped_version_number = get_new_version_number(version.version)
         did_sign = False  # Did we sign at the file?
 
-        if not os.path.isfile(file_obj.file_path):
+        if not os.path.isfile(file_obj.file.path):
             log.info(f'File {file_obj.pk} does not exist, skip')
             continue
 
         # Save the original file, before bumping the version.
-        backup_path = f'{file_obj.file_path}.backup_signature'
-        shutil.copy(file_obj.file_path, backup_path)
+        backup_path = f'{file_obj.file.path}.backup_signature'
+        shutil.copy(file_obj.file.path, backup_path)
 
         try:
             # Need to bump the version (modify manifest file)
@@ -125,11 +125,11 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
             update_version_number(file_obj, bumped_version_number)
             did_sign = bool(sign_file(file_obj))
             if not did_sign:  # We didn't sign, so revert the version bump.
-                shutil.move(backup_path, file_obj.file_path)
+                shutil.move(backup_path, file_obj.file.path)
         except Exception:
             log.error(f'Failed signing file {file_obj.pk}', exc_info=True)
             # Revert the version bump, restore the backup.
-            shutil.move(backup_path, file_obj.file_path)
+            shutil.move(backup_path, file_obj.file.path)
 
         # Now update the Version model, if we signed at least one file.
         if did_sign:

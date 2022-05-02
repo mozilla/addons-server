@@ -8,6 +8,7 @@ import uuid
 from urllib.parse import urljoin
 
 from django.conf import settings
+from django.core.files import File as DjangoFile
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
@@ -26,6 +27,8 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.templatetags.jinja_helpers import user_media_path
+from olympia.amo.utils import SafeStorage
+from olympia.files.fields import FilenameFileField
 from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_as_xpi
 
 
@@ -36,12 +39,55 @@ log = olympia.core.logger.getLogger('z.files')
 DEFAULT_MANIFEST_VERSION = 2
 
 
+def files_upload_to_callback(instance, filename):
+    """upload_to callback for File instances.
+
+    It is called automatically when calling save() on a File, since it's a
+    upload_to callback.
+
+    The returned paths are in the format of:
+    {addon_id}/{addon_name}-{version}-{apps}.{extension}
+
+    By convention, newly signed files after 2022-03-31 get a .xpi extension,
+    unsigned get .zip. This helps ensure CDN cache is busted when we sign
+    something.
+
+    Note that per Django requirements this gets passed the object instance and
+    a filename, but the filename is completely ignored here (it's meant to
+    represent the user-provided filename in user uploads).
+    """
+    parts = []
+    addon = instance.version.addon
+    # slugify drops unicode so we may end up with an empty string.
+    # Apache did not like serving unicode filenames (bug 626587).
+    name = slugify(addon.name).replace('-', '_') or 'addon'
+    parts.append(name)
+    parts.append(instance.version.version)
+
+    if addon.type not in amo.NO_COMPAT and instance.version.compatible_apps:
+        apps = '+'.join(sorted(a.shortername for a in instance.version.compatible_apps))
+        parts.append(apps)
+
+    file_extension = '.xpi' if instance.is_signed else '.zip'
+    return os.path.join(str(instance.addon.pk), '-'.join(parts) + file_extension)
+
+
+def files_storage():
+    return SafeStorage(user_media='addons')
+
+
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
     version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
-    filename = models.CharField(max_length=255, default='')
+    file = FilenameFileField(
+        max_length=255,
+        default='',
+        db_column='filename',
+        storage=files_storage,
+        upload_to=files_upload_to_callback,
+    )
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
     # The original hash of the file, before we sign it, or repackage it in
@@ -99,7 +145,7 @@ class File(OnChangeMixin, ModelBase):
         # See https://github.com/mozilla-mobile/fenix/blob/
         # 07d43971c0767fc023996dc32eb73e3e37c6517a/app/src/main/java/org/mozilla/fenix/
         # AppRequestInterceptor.kt#L173
-        kwargs = {'file_id': self.pk, 'filename': self.filename}
+        kwargs = {'file_id': self.pk, 'filename': self.pretty_filename}
         if attachment:
             kwargs['download_type'] = 'attachment'
         return reverse('downloads.file', kwargs=kwargs)
@@ -125,14 +171,17 @@ class File(OnChangeMixin, ModelBase):
             'is_mozilla_signed_extension', False
         )
         file_.is_signed = file_.is_mozilla_signed_extension
-        file_.filename = file_.generate_filename()
-
-        file_.hash = file_.generate_hash(upload_path)
+        file_.hash = upload.hash
         file_.original_hash = file_.hash
         file_.manifest_version = parsed_data.get(
             'manifest_version', DEFAULT_MANIFEST_VERSION
         )
-        file_.save()
+        log.info(f'New file: {file_!r} from {upload!r}')
+
+        # FIXME if FileUpload also did things correctly I wouldn't have to do this...
+        with open(upload_path, 'rb') as src:
+            file_.file = DjangoFile(src)
+            file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))
         optional_permissions = list(parsed_data.get('optional_permissions', []))
@@ -161,61 +210,20 @@ class File(OnChangeMixin, ModelBase):
                 file=file_,
             )
 
-        log.info(f'New file: {file_!r} from {upload!r}')
-
-        # Move the uploaded file from the temp location.
-        storage.copy_stored_file(upload_path, file_.file_path)
-
         if upload.validation:
             validation = json.loads(upload.validation)
             FileValidation.from_json(file_, validation)
 
         return file_
 
-    def generate_hash(self, filename=None):
-        """Generate a hash for a file."""
-        with open(filename or self.file_path, 'rb') as fobj:
-            return f'sha256:{get_sha256(fobj)}'
+    def generate_hash(self):
+        """Generate a hash for the File"""
+        return f'sha256:{get_sha256(self.file)}'
 
-    def generate_filename(self):
-        """
-        Files are in the format of:
-        {addon_name}-{version}-{apps}
-        (-{platform} for some of the old ones from back when we had multiple
-         platforms)
-
-        By convention, newly signed files after 2022-03-31 get a .xpi
-        extension, unsigned get .zip. This helps ensure CDN cache is busted
-        when we sign something.
-        """
-        parts = []
-        addon = self.version.addon
-        # slugify drops unicode so we may end up with an empty string.
-        # Apache did not like serving unicode filenames (bug 626587).
-        name = slugify(addon.name).replace('-', '_') or 'addon'
-        parts.append(name)
-        parts.append(self.version.version)
-
-        if addon.type not in amo.NO_COMPAT and self.version.compatible_apps:
-            apps = '+'.join(sorted(a.shortername for a in self.version.compatible_apps))
-            parts.append(apps)
-
-        file_extension = '.xpi' if self.is_signed else '.zip'
-        return '-'.join(parts) + file_extension
-
-    _pretty_filename = re.compile(r'(?P<slug>[a-z0-7_]+)(?P<suffix>.*)')
-
-    def pretty_filename(self, maxlen=20):
-        """Displayable filename.
-
-        Truncates filename so that the slug part fits maxlen.
-        """
-        m = self._pretty_filename.match(self.filename)
-        if not m:
-            return self.filename
-        if len(m.group('slug')) < maxlen:
-            return self.filename
-        return '{}...{}'.format(m.group('slug')[0 : (maxlen - 3)], m.group('suffix'))
+    @property
+    def pretty_filename(self):
+        """Displayable filename."""
+        return os.path.basename(self.file.name)
 
     def latest_xpi_url(self, attachment=False):
         addon = self.version.addon
@@ -228,18 +236,12 @@ class File(OnChangeMixin, ModelBase):
         return reverse('downloads.latest', kwargs=kw)
 
     @property
-    def file_path(self):
-        return os.path.join(
-            user_media_path('addons'), str(self.version.addon_id), self.filename
-        )
-
-    @property
     def addon(self):
         return self.version.addon
 
     @property
     def extension(self):
-        return os.path.splitext(self.filename)[-1]
+        return os.path.splitext(self.file.name)[-1]
 
     @cached_property
     def permissions(self):
@@ -300,19 +302,11 @@ models.signals.post_delete.connect(
 )
 
 
-@receiver(models.signals.post_delete, sender=File, dispatch_uid='cleanup_file')
-def cleanup_file(sender, instance, **kw):
-    """On delete of the file object from the database, unlink the file from
-    the file system"""
-    if kw.get('raw') or not instance.filename:
-        return
-    try:
-        filename = getattr(instance, 'file_path')
-    except models.ObjectDoesNotExist:
-        return
-    if storage.exists(filename):
-        log.info(f'Removing filename: {filename} for file: {instance.pk}')
-        storage.delete(filename)
+# FIXME:
+# cleanup_file() should not be necessary anymore. but wait, does that mean that
+# when running tests, we're going to delete a bunch of files ? Also, what's the
+# deal with filename allowed to be an empty string, do we have such files in
+# tests and database ? what are the consequences ?
 
 
 @File.on_change

@@ -108,7 +108,7 @@ class TestPromotedAddon(TestCase):
         file_ = promo.addon.current_version.file
         file_.update(filename='webextension.xpi')
         with amo.tests.copy_file(
-            'src/olympia/files/fixtures/files/webextension.xpi', file_.file_path
+            'src/olympia/files/fixtures/files/webextension.xpi', file_.file.path
         ):
             # SPOTLIGHT doesnt have special signing states so won't be resigned
             promo.addon.reload()

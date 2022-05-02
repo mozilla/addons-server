@@ -144,7 +144,7 @@ def download_file(request, file_id, download_type=None, **kwargs):
         # nginx won't override it if present.
         response = HttpResponseXSendFile(
             request,
-            file_.file_path,
+            file_.file.path,
             content_type='application/x-xpinstall',
             attachment=attachment,
         )

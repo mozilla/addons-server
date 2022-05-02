@@ -8,6 +8,7 @@ from base64 import b64decode, b64encode
 
 from django.db import transaction
 from django.conf import settings
+from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_bytes, force_str
 
@@ -63,7 +64,7 @@ def use_promoted_signer(file_obj, promo_group):
 
 
 def add_guid(file_obj):
-    with storage.open(file_obj.file_path) as fobj:
+    with storage.open(file_obj.file.path) as fobj:
         # Get the file data and add the guid to the manifest if waffle switch is enabled
         if waffle.switch_is_active('add-guid-to-manifest'):
             with zipfile.ZipFile(fobj, mode='r') as existing_zip:
@@ -104,11 +105,7 @@ def add_guid(file_obj):
 def call_signing(file_obj):
     """Sign `file_obj` via autographs /sign/file endpoint.
 
-    This writes the file to the filesystem (to a potentially new path, the
-    filename is regenerated) and modifies the file_obj instance, but does not
-    save it to the database.
-
-    :returns: The certificates serial number.
+    :returns: the signed content (bytes)
     """
     conf = settings.AUTOGRAPH_CONFIG
 
@@ -165,24 +162,7 @@ def call_signing(file_obj):
         log.error(msg, extra={'reason': response.reason, 'text': response.text})
         raise SigningError(msg)
 
-    # Prepare the new filename (file_obj isn't saved at this staged, but we
-    # need to modify the instance to get the new path)
-    file_obj.is_signed = True
-    file_obj.filename = file_obj.generate_filename()
-
-    # Save the returned file in our storage. The caller will save the file_obj
-    # instance in the database.
-    with storage.open(file_obj.file_path, 'wb') as fobj:
-        fobj.write(b64decode(response.json()[0]['signed_file']))
-
-    # Now fetch the certificates serial number. Future versions of
-    # autograph may return this in the response.
-    # https://github.com/mozilla-services/autograph/issues/214
-    # Now extract the file and fetch the pkcs signature
-    with zipfile.ZipFile(file_obj.file_path, mode='r') as zip_fobj:
-        return get_signer_serial_number(
-            zip_fobj.read(os.path.join('META-INF', 'mozilla.rsa'))
-        )
+    return b64decode(response.json()[0]['signed_file'])
 
 
 def sign_file(file_obj):
@@ -203,8 +183,8 @@ def sign_file(file_obj):
         raise SigningError(f'Not signing file {file_obj.pk}: no active endpoint')
 
     # No file? No signature.
-    if not os.path.exists(file_obj.file_path):
-        raise SigningError(f"File {file_obj.file_path} doesn't exist on disk")
+    if not os.path.exists(file_obj.file.path):
+        raise SigningError(f"File {file_obj.file.path} doesn't exist on disk")
 
     # Don't sign Mozilla signed extensions (they're already signed).
     if file_obj.is_mozilla_signed_extension:
@@ -225,28 +205,35 @@ def sign_file(file_obj):
             )
         )
 
-    # Get the path before call_signing modifies it... We'll delete it after if
-    # signing was successful and we ended up changing it.
-    old_path = file_obj.file_path
+    # Get the path before modifying it... We'll delete it after if signing was
+    # successful and we ended up changing it.
+    old_path = file_obj.file.path
 
     # Sign the file. If there's any exception, we skip the rest.
-    cert_serial_num = str(call_signing(file_obj))
+    signed_contents = call_signing(file_obj)
 
-    size = storage.size(file_obj.file_path)
-
-    # Save the certificate serial number for revocation if needed, change the
-    # filename to use a .xpi extension (cachebusting anything that depends on
-    # the filename with the old .zip extension) and re-hash the file now that
-    # it's been signed.
-    file_obj.update(
-        cert_serial_num=cert_serial_num,
-        hash=file_obj.generate_hash(),
-        size=size,
-        # We-specify filename and is_signed that we already updated on the
-        # instance without saving, otherwise those wouldn't get updated.
-        filename=file_obj.filename,
-        is_signed=file_obj.is_signed,
-    )
+    # Prepare everything that needs to be saved. Note that the file isn't saved
+    # to disk until the file_obj.save() call.
+    # We need to pass _a_ name to ContentFile() so that the underlying code
+    # to save the file works, but the name passed doesn't actually matter: it
+    # will get overridden by the upload_to callback. Note that it means .name
+    # and .path are not usable before the .save() call.
+    signed_contents_as_file = ContentFile(signed_contents, name='addon.xpi')
+    # Fetch the certificates serial number by extracting the file and
+    # fetching the pkcs signature. Future versions of autograph may return this
+    # in the response: https://github.com/mozilla-services/autograph/issues/214
+    with zipfile.ZipFile(signed_contents_as_file) as zip_fobj:
+        file_obj.cert_serial_num = get_signer_serial_number(
+            zip_fobj.read(os.path.join('META-INF', 'mozilla.rsa'))
+        )
+    file_obj.is_signed = True
+    file_obj.file = signed_contents_as_file
+    file_obj.hash = file_obj.generate_hash()
+    file_obj.size = file_obj.file.size
+    # Django built-in methods seek(0) before reading, but let's add one just in
+    # case something on our end tries a direct read() after.
+    file_obj.file.seek(0)
+    file_obj.save()
     log.info(f'Signing complete for file {file_obj.pk}')
 
     if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
@@ -256,7 +243,7 @@ def sign_file(file_obj):
         )
 
     # Remove old unsigned path if necessary.
-    if old_path != file_obj.file_path:
+    if old_path != file_obj.file.path:
         storage.delete(old_path)
 
     return file_obj

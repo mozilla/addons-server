@@ -33,11 +33,11 @@ def test_recreate_theme_previews():
 
     addon_without_previews = addon_factory(type=amo.ADDON_STATICTHEME)
     root_storage.copy_stored_file(
-        xpi_path, addon_without_previews.current_version.file.file_path
+        xpi_path, addon_without_previews.current_version.file.file.path
     )
     addon_with_previews = addon_factory(type=amo.ADDON_STATICTHEME)
     root_storage.copy_stored_file(
-        xpi_path, addon_with_previews.current_version.file.file_path
+        xpi_path, addon_with_previews.current_version.file.file.path
     )
     VersionPreview.objects.create(
         version=addon_with_previews.current_version,
