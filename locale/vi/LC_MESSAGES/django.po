@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 06:40+0000\n"
+"PO-Revision-Date: 2022-05-03 06:51+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -195,37 +195,37 @@ msgid "Listed"
 msgstr "Liệt kê"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Tiện ích và đường dẫn bộ sưu tập cần phải kết thúc bằng \"/\""
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Không thể tạo bản xem trước cho chủ đề."
 
 msgid "Built in licenses can not be updated."
 msgstr ""
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Tải lên không hợp lệ."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Phiên bản {version} khớp với {block_link} cho tiện ích này. Bạn có thể liên hệ với {amo_admins} để biết thêm thông tin."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Phiên bản {version_string} đã được tải lên trước đó và đã bị xóa."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Phiên bản {version_string} đã tồn tại."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Cần thiết lập metadata của tiện ích để tạo phiên bản được liệt kê: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Không thể sử dụng slug này. Vui lòng chọn slug khác."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Trường này là bắt buộc đối với các tiện ích với các phiên bản được liệt kê."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox."
@@ -234,16 +234,16 @@ msgid "Site permissions for {hostnames}"
 msgstr "Quyền hạn trang web cho {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Không thể cung cấp `license` và `custom_license` cùng nhau."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Trường này, hoặc custom_license, là bắt buộc đối với các phiên bản được liệt kê."
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Loại tiện ích không chính xác cho giấy phép này."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Giấy phép tùy chỉnh không được hỗ trợ cho các chủ đề."
 
 msgid "My Add-ons"
 msgstr "Tiện ích của tôi"
@@ -430,10 +430,10 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr "Tiêu đề Authorization không hợp lệ. Chuỗi thông tin xác thực không được chứa khoảng trắng."
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Không tìm thấy phiên người dùng hợp lệ khớp với khóa phiên được cung cấp."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Làm mới access token không thành công; người dùng cần đăng nhập lại FxA."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Một hoặc nhiều khóa bị sai kiểu trong payload"
@@ -700,6 +700,8 @@ msgstr ""
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Tiện ích đã được gắn cờ để quản trị viên xem xét. Nó vẫn nằm trong hàng đợi xem xét, nhưng sẽ cần được kiểm tra bởi một trong các quản trị viên của chúng tôi. Quá trình xem xét có thể mất nhiều thời"
+" gian hơn bình thường."
 
 msgid "Comment on {addon} {version}."
 msgstr "Nhận xét về {addon} {version}."
