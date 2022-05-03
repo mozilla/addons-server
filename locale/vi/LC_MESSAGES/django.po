@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 07:50+0000\n"
+"PO-Revision-Date: 2022-05-03 08:04+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -4804,17 +4804,17 @@ msgid "Add-ons using an ID ending with this suffix need to be signed with privil
 msgstr ""
 
 msgid "You cannot submit a language pack"
-msgstr ""
+msgstr "Bạn không thể gửi gói ngôn ngữ"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Kiểu tập tin không được hỗ trợ, vui lòng tải lên tệp được hỗ trợ {extensions}."
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Lỗi không xác định."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Loại (%s) không khớp với loại tiện ích của bạn trên AMO (%s)"
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
@@ -4841,31 +4841,31 @@ msgid "Other (please specify)"
 msgstr "Khác (vui lòng chỉ ra)"
 
 msgid "This field is required."
-msgstr ""
+msgstr "Trường này là bắt buộc."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Bạn không thể thay đổi tiện ích của xét duyệt khi nó đã được tạo."
 
 msgid "You can't reply to a review that is already a reply."
 msgstr ""
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Bạn không thể thay đổi phiên bản của tiện ích đã được xét duyệt sau khi đã tạo xét duyệt."
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Phiên bản tiện ích này không tồn tại hoặc không công khai."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Bạn không thể để lại đánh giá về tiện ích của chính mình."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Bạn không thể để lại nhiều đánh giá cho cùng một phiên bản của một tiện ích mở rộng."
 
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr ""
+msgstr "Cờ không hợp lệ [{}] - phải là một trong [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Không thể gắn cờ xếp hạng này vì nó không có văn bản đánh giá."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
@@ -4878,11 +4878,11 @@ msgid "Not yet rated"
 msgstr "Chưa được xếp hạng"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Đã xếp hạng {0} trên 5 sao"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Đã xếp hạng %(rating)s trên 5 sao"
 
 msgid "Approved reviews"
 msgstr "Đánh giá được chấp thuận"
@@ -4989,10 +4989,10 @@ msgid "Is available to be used in reviews"
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "Bạn không thể gửi bình luận nếu `canned_response` đã được chỉ định."
 
 msgid "You can't submit an empty comment."
-msgstr ""
+msgstr "Bạn không thể gửi một bình luận trống."
 
 msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
@@ -5017,7 +5017,7 @@ msgid "Total Weight"
 msgstr "Tổng số Bài đánh giá"
 
 msgid "Maliciousness Score"
-msgstr ""
+msgstr "Điểm độc hại"
 
 msgid "Type"
 msgstr "Kiểu"
@@ -5030,23 +5030,19 @@ msgid "Pending Rejection Deadline"
 msgstr "Thời hạn yêu cầu thông tin"
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Cập nhật lần cuối"
 
-#, fuzzy
 msgid "Listed versions needing human review ({0})"
-msgstr "Đánh giá đang chờ xử lý khác ({0})"
+msgstr "Các phiên bản liệt kê cần người xét duyệt ({0})"
 
-#, fuzzy
 msgid "Unlisted versions needing human review ({0})"
-msgstr "Đánh giá đang chờ xử lý khác ({0})"
+msgstr "Các phiên bản không liệt kê cần người xét duyệt ({0})"
 
-#, fuzzy
 msgid "Listed version"
 msgstr "Phiên bản được liệt kê"
 
-#, fuzzy
 msgid "Unlisted versions ({0})"
-msgstr "Phiên bản được liệt kê"
+msgstr "Phiên bản không liệt kê ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5100,7 +5096,7 @@ msgid "Comment"
 msgstr "Bình luận"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Đưa ra nhận xét về phiên bản này. Nhà phát triển sẽ không thể thấy điều này."
 
 msgid "Pre-Review Add-ons"
 msgstr ""
@@ -5123,9 +5119,8 @@ msgstr "Trình quét bảo mật"
 msgid "Flagged By Scanners"
 msgstr "Được gắn cờ bởi trình quét"
 
-#, fuzzy
 msgid "Flagged for Human Review"
-msgstr "Đánh giá xếp hạng ({0})"
+msgstr "Đã gắn cờ cho người đánh giá"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Tự động phê duyệt tiện ích"
@@ -5144,9 +5139,8 @@ msgstr "Hướng dẫn đánh giá"
 msgid "Content Review"
 msgstr "Đánh giá nội dung"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "Đánh giá nội dung ({0})"
+msgstr ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -5204,19 +5198,19 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "{addon} – EULA"
-msgstr ""
+msgstr "{addon} – EULA"
 
 msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Chính sách riêng tư"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr " Báo cáo lạm dụng – {addon} – Tiện ích cho Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Báo cáo lạm dụng cho {addon} và các nhà phát triển của nó ({num})"
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Báo cáo lạm dụng"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
@@ -5229,19 +5223,19 @@ msgid "Original Add-on ID"
 msgstr "ID tiện ích ban đầu"
 
 msgid "Add-on(s) sharing same ID"
-msgstr ""
+msgstr "(Các) tiện ích chia sẻ cùng một ID"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "ID AMO nội bộ"
 
 msgid "Support Website"
 msgstr "Trang web hỗ trợ"
 
 msgid "Visibility"
-msgstr ""
+msgstr "Trạng thái hiển thị"
 
 msgid "Visible"
-msgstr ""
+msgstr "Hiển thị"
 
 msgid "Weekly Downloads"
 msgstr "Tải về hàng tuần"
@@ -5283,13 +5277,13 @@ msgid "Image Gallery"
 msgstr "Trưng bày Hình ảnh"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Không có gì để thấy ở đây!  Nhà phát triển đã không bao gồm bất kỳ chi tiết nào."
 
 msgid "Add-on name translations"
 msgstr "Bản dịch tên tiện ích"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr "Công cụ xét duyệt – Tiện ích cho Firefox"
 
 msgid "Return to the Reviewer Tools dashboard"
 msgstr "Quay trở lại bảng điều khiển Công cụ đánh giá"
@@ -5304,10 +5298,10 @@ msgid "Rank"
 msgstr "Xếp hạng"
 
 msgid "Score"
-msgstr ""
+msgstr "Điểm"
 
 msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Nhật ký kiểm duyệt người xét duyệt – Tiện ích cho Firefox"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
@@ -5333,13 +5327,13 @@ msgstr "Đánh giá tác giả"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "Tiêu đề tiện ích"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Văn bản xét duyệt"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -5348,13 +5342,13 @@ msgid "Undelete"
 msgstr ""
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
+msgstr " – Công cụ xét duyệt – Tiện ích cho Firefox"
 
 msgid "Back to review"
 msgstr ""
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Đánh giá nội dung – Tiện ích cho Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
 msgstr "Tiện ích được phê duyệt tự động - Tiện ích cho Firefox"
@@ -5363,9 +5357,8 @@ msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Tiện ích không liệt kê – Tiện ích cho Firefox"
 
-#, fuzzy
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr "Yêu cầu thông tin đã hết hạn"
 
@@ -5381,7 +5374,7 @@ msgstr "bởi %(user)s lúc %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Được gắn cờ bởi %(user)s trên %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr "Tất cả xét duyệt đã được điều chỉnh. Làm tốt lắm!"
@@ -5399,7 +5392,7 @@ msgid "Reviewer's Guide"
 msgstr "Hướng dẫn đánh giá"
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – Tiện ích cho Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5410,19 +5403,19 @@ msgid "Review {0}"
 msgstr "Xét duyệt {0}"
 
 msgid "Add-on important changes history"
-msgstr ""
+msgstr "Lịch sử thay đổi quan trọng của tiện ích"
 
 msgid "Add-on History"
-msgstr ""
+msgstr "Lịch sử tiện ích"
 
 msgid "You don't have permission to review it."
 msgstr "Bạn không được phép đánh giá nó."
 
 msgid "Please select one or more versions in the list below."
-msgstr ""
+msgstr "Vui lòng chọn một hoặc nhiều phiên bản trong danh sách dưới đây."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "Bạn vẫn có thể gửi biểu mẫu này, tuy nhiên chỉ làm như vậy nếu bạn biết nó sẽ không xung đột."
 
 msgid "Insert canned response..."
 msgstr "Chèn mẫu phản hồi sẵn..."
@@ -5434,7 +5427,7 @@ msgid "Tested on:"
 msgstr "Đã thử nghiệm trên:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Cảnh báo!</strong> Một người dùng khác đã xem trang này trước bạn."
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
@@ -5637,7 +5630,7 @@ msgstr "Từ Trước đến Nay"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "Bạn có <span>{0}</span> điểm."
 
 msgid "Theme"
 msgstr "Giao diện"
@@ -5647,7 +5640,7 @@ msgstr "Không tìm thấy kết quả nào"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s vào %(date)s [%(ip_address)s]"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
