@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 07:40+0000\n"
+"PO-Revision-Date: 2022-05-03 07:50+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -5651,32 +5651,31 @@ msgstr ""
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Phiên bản %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Đã xác nhận)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Thời hạn yêu cầu thông tin"
+msgstr "Đang chờ từ chối về việc xét duyệt phiên bản mới"
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "Khả năng tương thích:"
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "Nguồn bổ sung:"
 
 msgid "Download files"
 msgstr "Tải xuống tập tin"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Nhà phát triển đã cung cấp mã nguồn."
 
 msgid "Maliciousness Score:"
-msgstr ""
+msgstr "Điểm độc hại:"
 
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
+msgstr "Điểm độc hại thể hiện khả năng phiên bản này là độc hại, dựa trên phát hiện của máy quét."
 
 msgid "Code Weight:"
 msgstr ""
@@ -5685,11 +5684,10 @@ msgid "Metadata Weight:"
 msgstr ""
 
 msgid "Flagged by scanners"
-msgstr ""
+msgstr "Đã gắn cờ bởi máy quét"
 
-#, fuzzy
 msgid "Flagged for human review"
-msgstr "Đánh giá xếp hạng ({0})"
+msgstr "Đã gắn cờ cho người đánh giá"
 
 msgid "Download"
 msgstr "Tải xuống"
@@ -5698,21 +5696,20 @@ msgid "Not Auto Approved Because"
 msgstr "Không được tự động phê duyệt vì"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Tập lệnh tự động phê duyệt chưa được chạy trên phiên bản này."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Phiên bản này chưa được xét duyệt."
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Bị từ chối hoặc chưa được xét duyệt"
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[trạng thái: %s]"
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Đánh giá đang chờ xử lý khác ({0})"
+msgstr "Đang chờ xét duyệt khác"
 
 msgid "Updates"
 msgstr "Cập nhật"
@@ -5725,9 +5722,8 @@ msgstr "Đánh giá xếp hạng"
 msgid "Auto Approved"
 msgstr "Tự động phê duyệt"
 
-#, fuzzy
 msgid "Pending Rejection"
-msgstr "Đánh giá đang chờ xử lý khác ({0})"
+msgstr "Đang chờ từ chối"
 
 msgid "presence of matched rules"
 msgstr ""
@@ -5736,7 +5732,7 @@ msgid "result state"
 msgstr "trạng thái kết quả"
 
 msgid "Excluding results solely matching these rules"
-msgstr ""
+msgstr "Loại trừ các kết quả chỉ phù hợp với các quy tắc này"
 
 #, fuzzy
 msgid "presence of a version"
@@ -5781,13 +5777,13 @@ msgid "An error occurred when compiling the definition"
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "Chạy quy tắc này trên các tiện ích cũng đã bị vô hiệu hóa."
 
 msgid "Abort"
-msgstr ""
+msgstr "Hủy bỏ"
 
 msgid "Run"
-msgstr ""
+msgstr "Chạy"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5795,7 +5791,7 @@ msgstr "Tham số \"%s\" không hợp lệ."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Kết hợp các tham số \"%s\" và \"%s\" không hợp lệ."
 
 msgid "Return To AMO is currently disabled"
 msgstr ""
@@ -5805,42 +5801,42 @@ msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Kết hợp các tham số \"%s\", \"%s\" và \"%s\" không hợp lệ."
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Độ dài truy vấn đã đạt giới hạn."
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "Không thể tìm thấy tiện ích có ID \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Bạn không sở hữu tiện ích này."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Bạn không thể thêm phiên bản vào tiện ích có trạng thái: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Phiên bản không khớp với tập tin manifest."
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
+msgstr "Phiên bản đã tồn tại. Phiên bản mới nhất là: %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Vui lòng chỉ định ID tiện ích của bạn trong tập tin manifest nếu nó dài hơn 64 ký tự."
 
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "ID tiện ích trong URL hoặc gói không hợp lệ"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Bạn không thể thêm các phiên bản được liệt kê vào tiện ích được đặt thành trạng thái \"Ẩn\"."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Bạn không thể thêm phiên bản được liệt kê vào tiện ích này qua API do thiếu metadata. Vui lòng gửi qua trang web"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Không có tập tin nào được tải lên cho tiện ích và phiên bản đó."
 
 msgid "Overview"
 msgstr "Tổng quan"
@@ -5873,7 +5869,7 @@ msgid "by Platform"
 msgstr "theo Nền tảng"
 
 msgid "by Country"
-msgstr ""
+msgstr "theo Quốc gia"
 
 msgid "close"
 msgstr "đóng"
@@ -5911,7 +5907,7 @@ msgid "Controls:"
 msgstr "Điều khiển:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "đặt lại thu phóng"
 
 msgid "Group by:"
 msgstr "Nhóm lại theo:"
@@ -5944,7 +5940,7 @@ msgid "Custom..."
 msgstr "Tùy biến…"
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Xin lỗi, số liệu thống kê tạm thời không có sẵn."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Đang nạp dữ liệu mới nhất&hellip;"
