@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 08:29+0000\n"
+"PO-Revision-Date: 2022-05-03 08:41+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -4036,7 +4036,7 @@ msgstr "Ngăn công cụ tìm kiếm biết bạn nhấp vào kết quả tìm k
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Tải xuống video và/hoặc âm thanh trên YouTube."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4045,7 +4045,7 @@ msgstr "Một trình đọc nâng cao để tổng hợp tất cả các nguồn
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Tạo ghi chú chung và dành riêng cho trang web để xem lại sau."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4055,25 +4055,25 @@ msgstr "Di chuyển giống như điện thoại cho màn hình của bạn. Tí
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Xóa bộ nhớ đệm của trình duyệt bằng một cú nhấp chuột hoặc tổ hợp phím."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Đánh dấu văn bản trên các trang web để lưu và truy cập sau này."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Thưởng thức âm nhạc từ hơn 30.000 đài phát thanh từ khắp nơi trên thế giới."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr ""
+msgstr "Tiết kiệm băng thông bằng cách chỉ phát trực tuyến âm thanh từ các clip YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Biến các từ thành dòng tiêu đề đẹp và văn bản lớp phủ hình ảnh."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4083,69 +4083,69 @@ msgstr "Tự động điều hướng đến phiên bản an toàn của trang w
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr ""
+msgstr "Xóa lịch sử điều hướng của bạn. Chỉ định số ngày tùy chỉnh để lưu lại lịch sử trình duyệt trước khi lịch sử đó tự động bị xóa."
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Ngăn không cho quảng cáo xuất hiện trong kết quả tìm kiếm của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Lưu trữ mật khẩu an toàn và tự động đăng nhập vào các trang web đã biết."
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Điền vào các biểu mẫu tự động. Lưu dữ liệu đã nhập một lần và nó sẽ tự động điền vào lần sau."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Tìm kiếm riêng tư chỉ với một cú nhấp chuột."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Chấm dứt chiếm đoạt thẻ. Đừng để các liên kết được nhấp kiểm soát thẻ hiện tại của bạn và tải nội dung bạn không yêu cầu."
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Dễ dàng thực hiện tìm kiếm trên Wikipedia bằng cách đánh dấu văn bản từ bất kỳ trang web nào và nhấp chuột phải."
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Tìm những gì bạn đang tìm kiếm trong một miền cụ thể."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
-msgstr ""
+msgstr "Đánh dấu văn bản từ bất kỳ trang web nào và nhấp chuột phải để tìm kiếm phương tiện liên quan trên YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Đạt được lợi thế của Amazon. Khi xem các trang sản phẩm trên các cửa hàng trực tuyến khác, nếu nó cũng có sẵn trên Amazon, bạn có thể chỉ cần nhấp vào nút để kiểm tra danh sách Amazon của nó."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Tận hưởng quyền kiểm soát thẻ tốt nhất—đóng các thẻ trùng lặp, hợp nhất cửa sổ, sao chép tiêu đề thẻ và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Tận hưởng một nền giáo dục kỳ lạ. Tải một bài báo Wikipedia ngẫu nhiên mỗi khi bạn mở một thẻ mới."
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "Định cấu hình các trang thẻ mới để hiển thị màu nền và hình ảnh tùy chỉnh."
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Gặp gỡ một chú mèo con đáng yêu với mỗi thẻ mới. Hãy gãi sau tai và xem điều gì sẽ xảy ra."
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
-msgstr ""
+msgstr "Đối với những khoảnh khắc khi bạn cần bắn tia laze từ con mèo."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Tìm kiếm trên Firefox bằng cách dễ dàng truy cập các thẻ đang mở, dấu trang và lịch sử của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4153,70 +4153,70 @@ msgstr "Rất nhiều thẻ đang mở? Bỏ qua việc cuộn và tìm kiếm t
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Ngừng chuyển hướng để bạn có thể truy cập trang web mình muốn—nhanh hơn."
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Thêm khả năng hiển thị/ẩn cho tất cả các trường mật khẩu."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Tập trung vào những gì bạn đang xem bằng cách làm mờ mọi thứ trừ trình phát video."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Sửa đổi dấu trang của bạn thông qua một bảng điều khiển dễ truy cập."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Lưu trữ mật khẩu an toàn và đăng nhập tự động vào các trang web đã biết."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Một trình chặn quảng cáo đơn giản chỉ tập trung vào việc hiển thị nội dung bạn muốn."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Theo dõi lịch sử định giá của Amazon. Đưa ra quyết định mua sắm sáng suốt."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Mua sắm với sự tự tin. Tiện ích mở rộng này cung cấp thêm một kiểm tra để đảm bảo bạn đang mua sắm trên một trang web đã được kiểm tra độ tin cậy."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Theo dõi năng suất. Đo lượng thời gian bạn dành cho máy tính hoặc trên các ứng dụng công việc cụ thể như Trello, JIRA, Basecamp, GitHub, v.v."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Lưu nội dung yêu thích của bạn trên web. Ghi lại nội dung như bài báo, video, hình ảnh và hơn thế nữa để lưu và sử dụng cho các dự án cá nhân hoặc cộng tác nhóm trong thời gian thực."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Chỉ cho phép nội dung web chạy từ các trang web mà bạn tin tưởng. Lướt web an toàn."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Kiểm soát hoàn toàn các cookie bạn đã tích lũy trong khi duyệt."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Tự động xóa lịch sử trình duyệt cho các trang web bạn chọn."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Bảo vệ dấu trang cá nhân của bạn bằng mật khẩu."
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Bạn có sử dụng VPN không? Địa chỉ IP của bạn có thể bị rò rỉ. Chấm dứt điều đó bằng cách tắt WebRTC."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "Đóng các cửa sổ bật lên gây phiền nhiễu chỉ bằng một cú nhấp chuột đơn giản."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
@@ -4224,11 +4224,11 @@ msgstr "Tìm một hình ảnh thú vị trên web? Muốn tìm hiểu thêm v�
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Chỉ cần kéo văn bản, hình ảnh hoặc liên kết để thực hiện các hành động như sao chép, mở, tìm kiếm và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Khai thác khả năng tải xuống video và/hoặc âm thanh ở nhiều định dạng."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5181,12 +5181,11 @@ msgstr "Thông báo"
 msgid "Update message of the day"
 msgstr "Cập nhật thông điệp trong ngày"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Đánh giá đang chờ xử lý khác ({0})"
+msgstr ""
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Đã có lỗi xảy ra"
 
 msgid "Self-reviews are not allowed."
 msgstr "Không được tự xét duyệt"
@@ -5494,14 +5493,14 @@ msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
 msgstr "Bật tự động phê duyệt"
 
 msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
+msgstr "Tự động phê duyệt hiện bị vô hiệu hóa cho đến {date}"
 
 #, fuzzy
 msgid "Clear Auto-Approval Extra Delay"
 msgstr "Bật tự động phê duyệt"
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Xóa các từ chối đang chờ xử lý"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Xóa cờ đánh giá đoạn mã của quản trị"
@@ -5523,10 +5522,10 @@ msgid "Update add-on block"
 msgstr ""
 
 msgid "(admin)"
-msgstr ""
+msgstr "(quản trị viên)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "Trang quản trị"
 
 msgid "Review This Add-on"
 msgstr "Xét duyệt Tiện ích này"
@@ -5535,13 +5534,13 @@ msgid "More Information"
 msgstr "Thông tin Thêm"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Giải pháp"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
 msgstr ""
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Người xét duyệt"
 
 msgid "Add-on has been deleted."
 msgstr "Tiện ích đã bị xóa."
@@ -5556,10 +5555,10 @@ msgid "No reviews found for this period."
 msgstr "Không tìm thấy đánh giá nào trong khoảng thời gian này."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Nguồn gốc:"
 
 msgid "Method:"
-msgstr ""
+msgstr "Phương thức:"
 
 msgid "Source:"
 msgstr "Nguồn:"
@@ -5571,7 +5570,7 @@ msgid "Dismiss this announcement"
 msgstr "Bỏ thông báo này"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Các tập tin trong phiên bản này:"
 
 msgid "All Platforms"
 msgstr "Tất cả Nền tảng"
@@ -5580,13 +5579,13 @@ msgid "Browse all files in this version"
 msgstr "Duyệt qua tất cả các tập tin trong phiên bản này"
 
 msgid "Contents"
-msgstr ""
+msgstr "Nội dung"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "So sánh phiên bản này với phiên bản cuối cùng được xét duyệt"
 
 msgid "Compare"
-msgstr ""
+msgstr "So sánh"
 
 msgid "Permissions:"
 msgstr "Quyền hạn:"
@@ -5596,25 +5595,25 @@ msgstr "Quyền hạn tùy chọn:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>Bởi %(user)s vào %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "Cũ hơn"
 
 msgid "Newer"
-msgstr ""
+msgstr "Mới hơn"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "{num} phiên bản được gắn cờ bởi máy quét trên các trang khác."
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr ""
+msgstr "{num} phiên bản được gắn cờ để người xem xét trên các trang khác."
 
 msgid "{num} versions pending rejection on other pages."
-msgstr ""
+msgstr "{num} phiên bản đang chờ từ chối trên các trang khác."
 
 msgid "Recent Points"
-msgstr ""
+msgstr "Điểm gần đây"
 
 msgid "No points awarded yet."
 msgstr ""
