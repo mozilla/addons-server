@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: 2022-04-21 14:43+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
@@ -222,14 +222,14 @@ msgstr "Версія {version_string} вже існує."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Перераховані версії не можуть бути надіслані, якщо додаток вимкнено."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Для створення переліченої версії необхідно налаштувати метадані додатка: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Не може бути застосовано це закінчення. Виберіть інше."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Це поле обов’язкове для додатків із зазначеними версіями."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Назва додатків не може містити торгові марки Mozilla чи Firefox."
@@ -248,6 +248,12 @@ msgstr "Неправильний тип додатка для цієї ліце�
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Користувацькі ліцензії не підтримуються для тем."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Це поле обов’язкове для додатків із зазначеними версіями."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Для створення переліченої версії необхідно налаштувати метадані додатка: {missing_addon_metadata}."
 
 msgid "My Add-ons"
 msgstr "Мої додатки"
@@ -455,11 +461,17 @@ msgstr "Адресу електронної пошти не знайдено."
 msgid "Unavailable for legal reasons."
 msgstr "Недоступно з юридичних причин."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Код мови {lang_code} неправильний."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Ви повинні вказати об'єкт для {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

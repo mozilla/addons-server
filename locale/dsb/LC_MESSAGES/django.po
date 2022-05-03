@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: 2022-04-24 19:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -216,14 +216,14 @@ msgstr "Wersija {version_string} južo eksistěrujo."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Nalicone wersije njedaju se zapódaś, mjaztym až dodank jo znjemóžnjony."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Dodankowe metadaty muse se póstajiś, aby se nalicona wersija napórała: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Adresowe mě njedajo se wužywaś. Pšosym wubjeŕśo druge."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Toś to pólo jo za dodanki z naliconymi wersijami trjebne."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Mjenja dodankow njamógu wikowu marku Mozilla abo Firefox wopśimowaś."
@@ -242,6 +242,12 @@ msgstr "Wopacny dodankowy typ za toś tu licencu."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Swójske licence se za drastwy njepódpěraju."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Toś to pólo jo za dodanki z naliconymi wersijami trjebne."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Dodankowe metadaty muse se póstajiś, aby se nalicona wersija napórała: {missing_addon_metadata}."
 
 msgid "My Add-ons"
 msgstr "Móje dodanki"
@@ -452,11 +458,17 @@ msgstr "E-mailowa adresa njejo se namakała."
 msgid "Unavailable for legal reasons."
 msgstr "Njejo k dispoziciji z pšawniskich pśicynow."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Rěcny kod {lang_code} jo njepłaśiwy."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Musyśo objekt za {lang-code:value} pódaś."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

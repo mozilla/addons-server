@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: 2022-04-22 11:20+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -216,14 +216,14 @@ msgstr "{version_string} ვერსია უკვე არსებობ�
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "გამოქვეყნებული ვერსიები ვერ გადაიგზავნება, როცა დამატება გათიშულია."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "დამატების თანმხლები მონაცემები აუცილებელია, გამოსაქვეყნებელი ვერსიის შესაქმნელად: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "ეს დაბოლოება ვერ იქნება გამოყენებული. გთხოვთ, შეარჩიოთ სხვა."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "ეს ველი აუცილებელია გამოქვეყნებული ვერსიების მქონე დამატებებისთვის."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "დამატების სახელში Mozilla-ს ან Firefox-ის სავაჭრო ნიშნების გამოყენება დაუშვებელია."
@@ -242,6 +242,12 @@ msgstr "შეუფერებელი სახის დამატებ�
 
 msgid "Custom licenses are not supported for themes."
 msgstr "მორგებული ლიცენზიები მხარდაუჭერელია თემებისთვის."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "ეს ველი აუცილებელია გამოქვეყნებული ვერსიების მქონე დამატებებისთვის."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "დამატების თანმხლები მონაცემები აუცილებელია, გამოსაქვეყნებელი ვერსიის შესაქმნელად: {missing_addon_metadata}."
 
 msgid "My Add-ons"
 msgstr "ჩემი დამატებები"
@@ -451,11 +457,17 @@ msgstr "ელფოსტის მისამართი ვერ მოი
 msgid "Unavailable for legal reasons."
 msgstr "მიუწვდომელია სამართლებრივი მიზეზების გამო."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "ენის კოდი {lang_code} არასწორია."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "საჭიროა {lang-code:value} ობიექტის მითითება."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

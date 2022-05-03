@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: 2022-04-25 09:30+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -224,14 +224,14 @@ msgstr "A(z) {version_string} verzió már létezik."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "A felsorolt verziók nem küldhetők el, amíg a kiegészítő le van tiltva."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Egy felsorolt verzió létrehozásához be kell állítani a kiegészítő metaadatait: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Ez a SEO URL nem használható. Válasszon egy másikat."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Ez a mező kötelező a felsorolt verzióval rendelkező kiegészítők esetén."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
@@ -250,6 +250,12 @@ msgstr "Hibás kiegészítőtípus ehhez a licenchez."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Az egyéni licencek nem támogatottak a témáknál."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Ez a mező kötelező a felsorolt verzióval rendelkező kiegészítők esetén."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Egy felsorolt verzió létrehozásához be kell állítani a kiegészítő metaadatait: {missing_addon_metadata}."
 
 msgid "My Add-ons"
 msgstr "Saját kiegészítők"
@@ -459,11 +465,17 @@ msgstr "Az e-mail-cím nem található."
 msgid "Unavailable for legal reasons."
 msgstr "Jogi okokból nem érhető el."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "A következő nyelvkód érvénytelen: {lang_code}."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Meg kell adnia egy {lang-code:value} objektumot."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
