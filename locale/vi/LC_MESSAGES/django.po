@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 08:04+0000\n"
+"PO-Revision-Date: 2022-05-03 08:11+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -4426,44 +4426,44 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save batches of tabs as convenient bookmarks."
-msgstr ""
+msgstr "Lưu hàng loạt thẻ dưới dạng dấu trang tiện lợi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Các thẻ và dấu trang được sắp xếp gọn gàng trong thanh lề của Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Hàng nghìn GIF trong tầm tay bạn."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "Cách dễ nhất để quản lý đăng ký YouTube."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Nhận thanh cuộn chuột mà bạn luôn muốn—chỉ định chiều rộng và màu sắc."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
-msgstr ""
+msgstr "Lưu và khôi phục các thẻ. Bao gồm các tính năng tự động lưu và đồng bộ hóa đám mây."
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Tạm biệt các cảnh báo cookie phiền phức!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Tất cả biểu tượng cảm xúc của bạn cần—luôn chỉ cần một cú nhấp chuột."
 
 #. editorial content for the discovery pane.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Ngừng cung cấp địa chỉ email của bạn cho các trang web. Firefox Relay bảo vệ danh tính của bạn và ngăn chặn thư rác."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4471,27 +4471,27 @@ msgstr "Một số trang web gặp khó khăn khi phát video trên Android. Đ�
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Tìm một hình ảnh thú vị trên web? Sử dụng TinEye để khám phá nguồn gốc của nó."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "Đọc tập tin ePUB ngay trong Firefox—tăng kích thước phông chữ, kích thước trang và hơn thế nữa."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr ""
+msgstr "Tùy chỉnh cử chỉ chuột. Khám phá những cách mới để điều hướng với hơn 50 tùy chỉnh."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr ""
+msgstr "Sử dụng cử chỉ chuột để đóng thẻ, điều hướng trang và hơn thế nữa."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "Thưởng thức hình ảnh của bạn phù hợp với giao diện của kết quả tìm kiếm của bạn."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr ""
+msgstr "Các trang web được đọc to. Hơn 40 ngôn ngữ được hỗ trợ."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
@@ -4747,13 +4747,13 @@ msgid "Add-on ID is required for Firefox 47 and below."
 msgstr "ID tiện ích được yêu cầu cho Firefox 47 trở xuống."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "\"strict_min_version\" được hỗ trợ thấp nhất là 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "\"strict_min_version\" {appver} không xác định cho {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "\"strict_min_version\" {appver} không xác định cho {app}"
 
 msgid "Unsupported archive type."
 msgstr ""
@@ -4770,17 +4770,17 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Kích thước đã giải nén quá lớn"
 
 msgid "Invalid archive."
 msgstr "Gói nén bất hợp lệ."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "ID tiện ích trong tập tin manifest.json (%s) của bạn không khớp với ID tiện ích của bạn trên AMO (%s)"
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Đã tìm thấy ID tiện ích trùng lặp."
 
 msgid "Version numbers should have fewer than 32 characters."
 msgstr "Số phiên bản phải ít hơn 32 kí tự."
@@ -4789,19 +4789,19 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Số phiên bản chỉ được chứa chữ cái, chữ số, và các kí tự chấm câu sau: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Kích thước tối đa cho chủ đề của WebExtension là {0}."
 
 msgid "You cannot submit this type of add-on"
-msgstr ""
+msgstr "Bạn không thể gửi loại tiện ích này"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr ""
+msgstr "Bạn không thể gửi tiện ích bằng ID kết thúc bằng hậu tố này"
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Bạn không thể gửi Tiện ích mở rộng Mozilla đã ký"
 
 msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
+msgstr "Các tiện ích sử dụng ID kết thúc bằng hậu tố này cần phải được ký bằng chứng chỉ đặc quyền trước khi được gửi"
 
 msgid "You cannot submit a language pack"
 msgstr "Bạn không thể gửi gói ngôn ngữ"
