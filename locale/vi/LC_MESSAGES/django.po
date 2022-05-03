@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 07:00+0000\n"
+"PO-Revision-Date: 2022-05-03 07:09+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -2573,7 +2573,7 @@ msgid "Top"
 msgstr "Trên cùng"
 
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
+msgstr "Xóa tiện ích của bạn sẽ xóa vĩnh viễn tất cả các phiên bản và tập tin bạn đã gửi cho tiện ích này, được liệt kê hay không."
 
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
 msgstr "ID tiện ích mở rộng sẽ tiếp tục được liên kết với tài khoản của bạn, vì vậy những người khác sẽ không thể gửi các phiên bản sử dụng cùng một ID."
@@ -2603,7 +2603,7 @@ msgid "Delete this add-on."
 msgstr "Xóa tiện ích này."
 
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "Chỉnh sửa chi tiết trên trang sản phẩm của tiện ích này"
 
 msgid "Upload a new version of this add-on"
 msgstr "Tải lên phiên bản mới của tiện ích này"
@@ -2627,7 +2627,7 @@ msgid "View Recent Changes"
 msgstr "Hiển thị Thay đổi Gần đây"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Tiện ích này thiếu một số thông tin cần thiết trước khi nó có thể được gửi để xuất bản."
 
 msgid "This add-on doesn't have any versions."
 msgstr "Tiện ích này không có bất kỳ phiên bản nào."
@@ -2668,18 +2668,20 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Cảnh báo: bạn có các giá trị tên/tóm tắt ở các ngôn ngữ khác sẽ được tự động cắt để vừa với giới hạn %(max_length)s ký tự.  Để chỉnh sửa những điều này, hãy chuyển đến Chỉnh sửa trang sản phẩm sau "
+"khi quá trình gửi hoàn tất."
 
 msgid "Add-on URL:"
 msgstr "URL tiện ích:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Vui lòng chỉ sử dụng các chữ cái, số, dấu gạch dưới và dấu gạch ngang trong URL của bạn."
 
 msgid "Name:"
 msgstr "Tên:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Tên trên danh sách trên trang web này. Có thể khác với tên bên trong tiện ích, cái mà nó được hiển thị bên trong Firefox"
 
 msgid "Summary:"
 msgstr "Tóm tắt:"
@@ -2691,7 +2693,7 @@ msgid "This add-on is experimental"
 msgstr "Tiện ích này là thử nghiệm"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
-msgstr ""
+msgstr "Chọn tùy chọn này nếu tiện ích của bạn là thử nghiệm hoặc không sẵn sàng để sử dụng chung.  Tiện ích sẽ được liệt kê nhưng sẽ bị giảm khả năng hiển thị.  Bạn có thể thay đổi cài đặt này sau."
 
 msgid "Select a category for this add-on:"
 msgstr "Chọn một danh mục cho tiện ích mở rộng này:"
@@ -2706,16 +2708,16 @@ msgid "License:"
 msgstr "Giấy phép:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Vui lòng chọn một giấy phép phù hợp với các quyền bạn cấp."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Nếu tiện ích của bạn truyền bất kỳ dữ liệu nào từ máy tính của người dùng, thì cần phải có chính sách bảo mật giải thích dữ liệu nào được gửi và cách dữ liệu đó được sử dụng."
 
 msgid "Notes to Reviewer:"
 msgstr "Ghi chú cho người đánh giá:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Có điều gì mà người đánh giá của chúng tôi cần lưu ý khi đánh giá tiện ích này không?"
 
 msgid "Remember"
 msgstr "Lưu lại"
@@ -2725,9 +2727,11 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Nếu bạn đã gửi mã nguồn, nhưng không bao gồm hướng dẫn, bạn phải cung cấp chúng tại đây. Nhập hướng dẫn tạo từng bước để tạo bản sao chính xác của mã tiện ích, theo %(policy_requirements_open)syêu "
+"cầu chính sách%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Những ghi chú này sẽ chỉ hiển thị cho bạn và những người đánh giá của chúng tôi."
 
 msgid "Submit Version"
 msgstr "Gửi phiên bản"
@@ -2739,24 +2743,24 @@ msgid "Release Notes:"
 msgstr "Ghi chú phát hành:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "Cho người dùng của bạn biết những gì mới và đã thay đổi trong phiên bản này."
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Các ghi chú này sẽ xuất hiện trên trang chi tiết."
 
 msgid "How to Distribute this Version"
 msgstr "Cách phân phối phiên bản này"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Để bắt đầu, hãy chọn cách bạn muốn phân phối phiên bản này."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Bạn có thể tìm hiểu thêm về các tùy chọn này bằng cách đọc <a %(a_attrs)s>Add-on Distribution and Signing</a> trên Firefox Extension Workshop."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Tất cả các tiện ích phải tuân thủ <a %(a_attrs)s>chính sách tiện ích của Mozilla</a> và phải được xem xét thủ công bất kỳ lúc nào sau khi gửi."
 
 msgid "Submission Complete"
 msgstr "Việc gửi lên Hoàn tất"
@@ -2768,16 +2772,18 @@ msgid "Preview of the version submitted"
 msgstr "Xem trước phiên bản đã gửi"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Bạn đã hoàn tất! Phiên bản này sẽ có sẵn sau khi nó được đánh giá. Bạn sẽ được thông báo khi nó được xem xét."
 
 #, python-format
 msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Bạn đã hoàn tất! ✨ Bạn sẽ nhận được email xác nhận khi phiên bản này được xuất bản trên %(site_domain)s. Lưu ý rằng có thể mất đến 24 giờ trước khi xuất bản hoặc lâu hơn nếu tiện ích của bạn được "
+"chọn để xem xét thủ công. Nếu bạn không thấy email sau 24 giờ, vui lòng kiểm tra trong thư mục spam của bạn."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Danh sách của bạn sẽ thành công hơn bằng cách thêm một mô tả chi tiết. Chuẩn bị danh sách của bạn để xuất bản:"
 
 #, python-format
 msgid ""
@@ -2788,13 +2794,13 @@ msgid "Manage Listing"
 msgstr "Quản lý danh sách"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr ""
+msgstr "Bạn cũng có thể chỉnh sửa phiên bản này để thêm ghi chú phiên bản hoặc mã nguồn nếu nội dung bạn gửi bao gồm mã được rút gọn, nối hoặc do máy tạo ra."
 
 msgid "Edit version {0}"
 msgstr "Chỉnh sửa phiên bản {0}"
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Xin nhắc lại, tiện ích của bạn có thể được xem xét thủ công bất kỳ lúc nào."
 
 msgid "Go to My Submissions"
 msgstr "Chuyển đến đệ trình của tôi"
@@ -2803,10 +2809,10 @@ msgid "Source Code Upload"
 msgstr "Tải lên mã nguồn"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "Bạn có cần gửi mã nguồn không?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Những người đánh giá tiện ích của Mozilla cần có khả năng đọc và tái tạo mã trong tiện ích mở rộng của bạn. Nếu họ không thể, tiện ích mở rộng của bạn có thể bị từ chối."
 
 msgid "Do you use any of the following in your extension?"
 msgstr ""
