@@ -949,6 +949,27 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             # 'summary': summary was provided via POST, so we're good
         }
 
+    def test_listed_metadata_null(self):
+        self.upload.update(automated_signing=False)
+        # name and summary are defined in the manifest but we're trying override them
+        response = self.client.post(
+            self.url,
+            data={
+                'summary': {'en-US': None},
+                'name': {'en-US': None},
+                'categories': {'firefox': ['bookmarks']},
+                'version': {
+                    'upload': self.upload.uuid,
+                    'license': self.license.slug,
+                },
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'name': ['This field is required for add-ons with listed versions.'],
+            'summary': ['This field is required for add-ons with listed versions.'],
+        }
+
     def test_not_authenticated(self):
         self.client.logout_api()
         response = self.client.post(
