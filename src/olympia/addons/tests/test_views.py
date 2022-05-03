@@ -935,6 +935,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
                 self.url,
                 data={
                     'summary': {'en-US': 'replacement summary'},
+                    'name': {'en-US': None},  # None should be ignored
                     'version': {
                         'upload': self.upload.uuid,
                         'license': self.license.slug,
@@ -1921,6 +1922,22 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             old_content_review
             == AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
         )
+
+    def test_metadata_required(self):
+        # name and summary are treated as required for updates
+        data = {'name': {'en-US': None}, 'summary': {'en-US': None}, 'categories': {}}
+        response = self.client.patch(self.url, data=data)
+        assert response.status_code == 400
+        assert response.data == {
+            'name': ['A value in the default locale of "en-US" is required.'],
+            'summary': ['A value in the default locale of "en-US" is required.'],
+            'categories': ['This field is required.'],
+        }
+
+        # this requirement isn't enforced for addons without listed versions though
+        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.patch(self.url, data=data)
+        assert response.status_code == 200
 
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):

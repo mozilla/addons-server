@@ -72,7 +72,12 @@ from .models import (
 )
 from .tasks import resize_icon, resize_preview
 from .utils import fetch_translations_from_addon
-from .validators import ValidateVersionLicense, VerifyMozillaTrademark
+from .validators import (
+    AddonMetadataValidator,
+    AddonMetadataNewVersionValidator,
+    ValidateVersionLicense,
+    VerifyMozillaTrademark,
+)
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -385,7 +390,7 @@ class DeveloperVersionSerializer(VersionSerializer):
 
     class Meta:
         model = Version
-        validators = (ValidateVersionLicense(),)
+        validators = (ValidateVersionLicense(), AddonMetadataNewVersionValidator())
         fields = (
             'id',
             'channel',
@@ -465,38 +470,17 @@ class DeveloperVersionSerializer(VersionSerializer):
             if self.addon:
                 self._check_for_existing_versions(self.parsed_data.get('version'))
 
-            channel = data['upload'].channel
-            # If this is a new version to an existing addon, check that all the required
-            # metadata is set. We test for new addons in AddonSerailizer.validate
-            # instead. Also check for submitting listed versions when disabled.
-            if channel == amo.RELEASE_CHANNEL_LISTED and self.addon:
-                if self.addon.disabled_by_user:
+                # Also check for submitting listed versions when disabled.
+                if (
+                    data['upload'].channel == amo.RELEASE_CHANNEL_LISTED
+                    and self.addon.disabled_by_user
+                ):
                     raise exceptions.ValidationError(
                         gettext(
                             'Listed versions cannot be submitted while add-on is '
                             'disabled.'
                         )
                     )
-                # This is replicating what Addon.get_required_metadata does
-                missing_addon_metadata = [
-                    field
-                    for field, value in (
-                        ('categories', self.addon.all_categories),
-                        ('name', self.addon.name),
-                        ('summary', self.addon.summary),
-                    )
-                    if not value
-                ]
-                if missing_addon_metadata:
-                    raise exceptions.ValidationError(
-                        gettext(
-                            'Add-on metadata is required to be set to create a listed '
-                            'version: {missing_addon_metadata}.'
-                        ).format(missing_addon_metadata=missing_addon_metadata),
-                        code='required',
-                    )
-        else:
-            data.pop('upload', None)  # upload can only be set during create
 
         return data
 
@@ -822,12 +806,15 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     url = serializers.SerializerMethodField()
     version = DeveloperVersionSerializer(
-        write_only=True, validators=(CreateOnlyValidator(), ValidateVersionLicense())
+        write_only=True,
+        # Note: we're purposefully omitting AddonMetadataNewVersionValidator
+        validators=(CreateOnlyValidator(), ValidateVersionLicense()),
     )
     versions_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
+        validators = (AddonMetadataValidator(),)
         fields = (
             'id',
             'authors',
@@ -956,6 +943,16 @@ class AddonSerializer(serializers.ModelSerializer):
     def get_is_source_public(self, obj):
         return False
 
+    def run_validation(self, *args, **kwargs):
+        # We want name and summary to be required fields so they're not cleared, but
+        # *only* if this is an existing add-on with listed versions.
+        # - see AddonMetadataValidator for new add-ons/versions.
+        if self.instance and self.instance.has_listed_versions():
+            self.fields['name'].required = True
+            self.fields['summary'].required = True
+            self.fields['categories'].required = True
+        return super().run_validation(*args, **kwargs)
+
     def validate_slug(self, value):
         slug_validator(value)
 
@@ -969,32 +966,15 @@ class AddonSerializer(serializers.ModelSerializer):
         return value
 
     def validate(self, data):
-        if not self.instance:
-            parsed_data = self.fields['version'].parsed_data
-            addon_type = parsed_data['type']
-            channel = getattr(data.get('version', {}).get('upload'), 'channel', None)
-
-            # If this is a new addon, check that all the required metadata is set.
-            # We test for new versions in VersionSerailizer.validate instead
-            if channel == amo.RELEASE_CHANNEL_LISTED:
-                # This is replicating what Addon.get_required_metadata does
-                required_msg = gettext(
-                    'This field is required for add-ons with listed versions.'
-                )
-                missing_metadata = {
-                    field: required_msg
-                    for field, value in (
-                        ('categories', data.get('all_categories')),
-                        ('name', data.get('name', parsed_data.get('name'))),
-                        ('summary', data.get('summary', parsed_data.get('summary'))),
-                    )
-                    if not value
-                }
-                if missing_metadata:
-                    raise exceptions.ValidationError(missing_metadata, code='required')
-        else:
-            addon_type = self.instance.type
         if 'all_categories' in data:
+            # We can't do this in a validate_categories function because we need
+            # parsed_data from the version field; and we can't move this functionality
+            # out into a validator class because we need to change `data` to drop dupes.
+            addon_type = (
+                self.instance.type
+                if self.instance
+                else self.fields['version'].parsed_data['type']
+            )
             # filter out categories for the wrong type.
             # There might be dupes, e.g. "other" is a category for 2 types
             slugs = {cat.slug for cat in data['all_categories']}
@@ -1112,8 +1092,7 @@ class AddonSerializer(serializers.ModelSerializer):
 class AddonSerializerWithUnlistedData(AddonSerializer):
     latest_unlisted_version = SimpleVersionSerializer(read_only=True)
 
-    class Meta:
-        model = Addon
+    class Meta(AddonSerializer.Meta):
         fields = AddonSerializer.Meta.fields + ('latest_unlisted_version',)
         read_only_fields = tuple(
             set(fields) - set(AddonSerializer.Meta.writeable_fields)
