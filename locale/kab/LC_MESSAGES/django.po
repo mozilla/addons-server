@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 07:04+0000\n"
+"PO-Revision-Date: 2022-05-03 07:12+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -2726,7 +2726,7 @@ msgstr "I wakken ad tebduḍ, fren amek i tebɣi ad tezuzreḍ lqem-a."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Tzemreḍ ad tissineḍ ugar ɣef textiṛiyin-a s tɣuri n <a %(a_attrs)s>Azuzer d usezmel n uzegrir</a> ɣef tnemselt n yisiɣzaf n Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -4678,12 +4678,11 @@ msgstr "Ugar n yisiɣzaf yettwassnen"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Isnerniyen n Steam"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Wali ugar n yisiɣzaf n usuddem anmetti"
+msgstr "Wali ugar n tefranin n terbaεt Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
