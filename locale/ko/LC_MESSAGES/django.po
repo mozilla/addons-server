@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 09:01+0000\n"
+"PO-Revision-Date: 2022-05-03 09:07+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -4639,9 +4639,8 @@ msgid "See more password manager staff picks"
 msgstr "비밀번호 관리자 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Translation tools"
-msgstr "탭 관리 도구"
+msgstr "번역 도구"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4666,16 +4665,15 @@ msgstr "탭 관리 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "“{tag}” 태그 확장 기능"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "인기 확장 기능 더보기"
+msgstr "\"{tag}\" 태그 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "엘리트 광고 차단기"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -4683,7 +4681,7 @@ msgstr "광고 차단기 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube 사용자 지정"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4724,14 +4722,12 @@ msgid "Steam enhancers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "인기 확장 기능 더보기"
+msgstr "Steam 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "부가 기능 이름 번역"
+msgstr "창의성 직원 추천 더보기"
 
 msgid "Could not parse the manifest file."
 msgstr ""
