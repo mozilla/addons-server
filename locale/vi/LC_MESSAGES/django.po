@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 08:41+0000\n"
+"PO-Revision-Date: 2022-05-03 08:44+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -4923,16 +4923,16 @@ msgid "Applications:"
 msgstr "Ứng dụng:"
 
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
+msgstr "Trì hoãn từ chối, yêu cầu nhà phát triển sửa chữa trong thời gian ngắn hơn…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Từ chối ngay lập tức. Chỉ sử dụng trong trường hợp các vấn đề bảo mật nghiêm trọng."
 
 msgid "days"
 msgstr "ngày"
 
 msgid "Choose one or more reasons:"
-msgstr ""
+msgstr "Chọn một hoặc nhiều lý do:"
 
 msgid "Choose a canned response..."
 msgstr "Chọn một mẫu phản hồi sẵn..."
@@ -4959,25 +4959,25 @@ msgid "Needs Admin Static Theme Review"
 msgstr "Cần xem lại chủ đề tĩnh của quản trị"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Nguồn đã cung cấp"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "Tự động phê duyệt tạm thời bị trì hoãn"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "Tự động phê duyệt bị trì hoãn hoàn toàn"
 
 msgid "Is locked by a reviewer"
-msgstr ""
+msgstr "Bị khóa bởi người xét duyệt"
 
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
+msgstr "Đã đặt cờ vô hiệu hóa/trì hoãn tự động phê duyệt"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Nằm trong nhóm tiện ích được quảng cáo yêu cầu xem xét trước"
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Bị trì hoãn vì đây là phiên bản được liệt kê đầu tiên"
 
 msgid "Version string and guid match a blocklist Block"
 msgstr ""
@@ -5004,7 +5004,7 @@ msgid "Flags"
 msgstr "Cờ"
 
 msgid "Last Review"
-msgstr ""
+msgstr "Xét duyệt gần đây nhất"
 
 msgid "Code Weight"
 msgstr ""
@@ -5131,7 +5131,7 @@ msgid "Auto Approved Add-ons ({0})"
 msgstr "Tự động phê duyệt tiện ích ({0})"
 
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Nhật ký xét duyệt tiện ích"
 
 msgid "Review Guide"
 msgstr "Hướng dẫn đánh giá"
@@ -5140,7 +5140,7 @@ msgid "Content Review"
 msgstr "Đánh giá nội dung"
 
 msgid "Content Review ({0})"
-msgstr ""
+msgstr "Xét duyệt nội dung ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
