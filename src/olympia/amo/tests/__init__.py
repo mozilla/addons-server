@@ -629,6 +629,10 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
 class AMOPaths:
     """Mixin for getting common AMO Paths."""
 
+    # FIXME: probably want to replace all of this with stuff returning
+    # DjangoFile instances so that it can be used to assign to a file
+    # field on Files.
+
     def file_fixture_path(self, name):
         path = 'src/olympia/files/fixtures/files/%s' % name
         return os.path.join(settings.ROOT, path)

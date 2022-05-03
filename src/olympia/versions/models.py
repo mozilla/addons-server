@@ -41,7 +41,7 @@ from olympia.constants.licenses import CC_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
-from olympia.files.models import File
+from olympia.files.models import File, cleanup_file
 from olympia.translations.fields import (
     LinkifiedField,
     PurifiedField,
@@ -1014,8 +1014,12 @@ def inherit_nomination(sender, instance, **kw):
         instance.inherit_nomination()
 
 
-# FIXME: double-check but cleanup_version shouldn't be necessary anymore.
-# see comment for cleanup_file removal.
+def cleanup_version(sender, instance, **kw):
+    """On delete of the version object call the file delete and signals."""
+    if kw.get('raw'):
+        return
+    if hasattr(instance, 'file'):
+        cleanup_file(instance.file.__class__, instance.file)
 
 
 @Version.on_change
@@ -1064,6 +1068,9 @@ models.signals.post_save.connect(
 )
 models.signals.post_save.connect(
     inherit_nomination, sender=Version, dispatch_uid='version_inherit_nomination'
+)
+models.signals.pre_delete.connect(
+    cleanup_version, sender=Version, dispatch_uid='cleanup_version'
 )
 models.signals.post_delete.connect(
     update_status, sender=Version, dispatch_uid='version_update_status'

@@ -302,11 +302,20 @@ models.signals.post_delete.connect(
 )
 
 
-# FIXME:
-# cleanup_file() should not be necessary anymore. but wait, does that mean that
-# when running tests, we're going to delete a bunch of files ? Also, what's the
-# deal with filename allowed to be an empty string, do we have such files in
-# tests and database ? what are the consequences ?
+@receiver(models.signals.post_delete, sender=File, dispatch_uid='cleanup_file')
+def cleanup_file(sender, instance, **kw):
+    """On delete of the file object from the database, unlink the file from
+    the file system"""
+    try:
+        if kw.get('raw') or not instance.file:
+            return
+        if storage.exists(instance.file.path):
+            log.info(
+                f'Removing filename: {instance.pretty_filename} for file: {instance.pk}'
+            )
+            instance.file.delete(save=False)
+    except models.ObjectDoesNotExist:
+        return
 
 
 @File.on_change

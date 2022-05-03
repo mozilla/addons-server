@@ -177,7 +177,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_delete_signal(self):
         """Test that if there's no filename, the signal is ok."""
         file = File.objects.get(pk=67442)
-        file.update(filename='')
+        file.update(file='')
         file.delete()
 
     def test_latest_url(self):
@@ -192,21 +192,20 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename(self):
         file_ = File.objects.get(id=67442)
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-fx.zip'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '3615/delicious_bookmarks-2.1.072-fx.zip'
+        )
         file_.is_signed = True
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '3615/delicious_bookmarks-2.1.072-fx.xpi'
+        )
 
     def test_pretty_filename(self):
         file_ = File.objects.get(id=67442)
-        file_.generate_filename()
-        assert file_.pretty_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
-
-    def test_pretty_filename_short(self):
-        file_ = File.objects.get(id=67442)
-        file_.is_signed = True
-        file_.version.addon.name = 'A Place Where The Sea Remembers Your Name'
-        file_.filename = file_.generate_filename()
-        assert file_.pretty_filename() == 'a_place_where_the...-2.1.072-fx.xpi'
+        assert file_.file.name == '3615/delicious_bookmarks-2.1.072-fx.xpi'
+        assert file_.pretty_filename == 'delicious_bookmarks-2.1.072-fx.xpi'
 
     def test_generate_filename_many_apps(self):
         file_ = File.objects.get(id=67442)
@@ -216,21 +215,26 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
         # instead of 'fx+an'
         # See: https://github.com/mozilla/addons-server/issues/3358
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-an+fx.xpi'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '3615/delicious_bookmarks-2.1.072-an+fx.xpi'
+        )
 
     def test_generate_filename_ja(self):
         file_ = File()
         file_.version = Version(version='0.1.7')
         file_.version.compatible_apps = {amo.FIREFOX: None}
-        file_.version.addon = Addon(name=' フォクすけ  といっしょ')
+        file_.version.addon = Addon(name=' フォクすけ  といっしょ', pk=4242)
         file_.is_signed = True
-        assert file_.generate_filename() == 'addon-0.1.7-fx.xpi'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '4242/addon-0.1.7-fx.xpi'
+        )
 
     def test_generate_hash(self):
-        file_ = File()
+        file_ = File(file=self.xpi_path('https-everywhere.xpi'))
         file_.version = Version.objects.get(pk=81551)
-        filename = self.xpi_path('https-everywhere.xpi')
-        assert file_.generate_hash(filename).startswith('sha256:95bd414295acda29c4')
+        assert file_.generate_hash().startswith('sha256:95bd414295acda29c4')
 
         file_ = File.objects.get(pk=67442)
         with storage.open(file_.file.path, 'wb') as fp:
