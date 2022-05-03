@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 06:45+0000\n"
+"PO-Revision-Date: 2022-05-03 07:04+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -217,13 +217,13 @@ msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Ileqman yettwabdaren ur zmirent ara ad ttwaznent mi ara yens uzegrir."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Idfersefka n uzegrir ttwasran ad ttusbadun i wakken ad yettwarnu lqem i d-yettwabedren: {missing_addon_metadata}."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Anegzum-a ur yezmir ara ad yettuseqdec. Ma ulac aγili; fren wayeḍ-nniḍen."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Urti-a yettusra i uzegrir s yileqman d-yettwabedren."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Ismawen n yizegrar ur zmiren ara ad gebren ticraḍ yersen n Mozilla neɣ Firefox."
@@ -241,7 +241,7 @@ msgid "Wrong add-on type for this license."
 msgstr ""
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Turagin tudmawanin ur ttusefrakent ara i yisental."
 
 msgid "My Add-ons"
 msgstr "Izegrar-iw"
@@ -2037,7 +2037,7 @@ msgid "more add-ons..."
 msgstr "ugar n izegrar..."
 
 msgid "Extension Workshop"
-msgstr "Tanemsel n usiɣzef"
+msgstr "Tanemselt n usiɣzef"
 
 msgid "Documentation"
 msgstr "Tasemlit"
@@ -2545,7 +2545,7 @@ msgid "The add-on ID will continue to be linked to your account, so others won't
 msgstr "Asulay n uzegrir ad yeqqim yeqqen ɣer umiḍan-ik·im, akka wiyaḍ ur ttizmiren ara ad sqedcen asulay-a i yileqman nniḍen."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "Asulay n uzegrir ur yezmir ara ad yettwarr, ad yuɣal dayen ur yettuseqdac ara i tuzna."
 
 msgid "Delete Add-on"
 msgstr "Kkes azegrir"
@@ -2719,10 +2719,10 @@ msgid "These notes will appear on the detail page."
 msgstr "Tizmilin-agi ad d-banent deg usebter n telqayt."
 
 msgid "How to Distribute this Version"
-msgstr "Amek ara zuzreq lqem-agi"
+msgstr "Amek ara yettuzuzer lqem-agi"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "I wakken ad tebduḍ, fren amek i tebɣi ad tezuzreḍ lqem-a."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
