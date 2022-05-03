@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 07:09+0000\n"
+"PO-Revision-Date: 2022-05-03 07:20+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1741,7 +1741,7 @@ msgid "An author can only be present once."
 msgstr ""
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Tài khoản cần có tên hiển thị trước khi có thể được thêm làm tác giả."
 
 msgid "Must have at least one owner."
 msgstr "Phải có ít nhất một người sở hữu."
@@ -1792,7 +1792,7 @@ msgid "Need at least one compatible application."
 msgstr "Cần ít nhất một ứng dụng tương thích."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Bạn đã gửi quá nhiều video tải lên gần đây. Vui lòng thử lại sau một thời gian."
 
 msgid "There was an error with your upload. Please try again."
 msgstr "Có một lỗi với việc tải lên của bạn. Vui lòng thử lại."
@@ -2839,7 +2839,7 @@ msgid "Your source code must include:"
 msgstr "Mã nguồn của bạn phải bao gồm:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr ""
+msgstr "Hướng dẫn xây dựng từng bước để tạo bản sao chính xác của mã tiện ích, trong tập tin README trong mã nguồn của bạn hoặc trong ghi chú cho người xét duyệt trên trang tiếp theo."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr ""
@@ -3217,7 +3217,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Vui lòng bao gồm hướng dẫn về cách tái tạo tập tin tiện ích chính thức, trong tập tin README hoặc ghi chú cho người xét duyệt cho phiên bản này."
 
 msgid "Read more about the source code review policy."
 msgstr "Đọc thêm về chính sách xem xét mã nguồn."
@@ -4487,83 +4487,85 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Xóa các thông số theo dõi dài đó khỏi URL kết quả tìm kiếm của Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Nhận cập nhật thời tiết trực tiếp từ Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Quản lý thời gian của bạn tốt hơn với đồng hồ trình duyệt với biểu đồ các khoảng thời gian làm việc."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "Mệt mỏi vì \"Video bị tạm dừng. Tiếp tục xem?\"? Nghe nhạc yêu thích của bạn không bị gián đoạn trên YouTube."
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "Hãy bỏ qua các cảnh báo cookie khó chịu!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
-msgstr ""
+msgstr "Quay trở lại thời điểm đơn giản hơn — khi kết quả tìm kiếm hàng đầu của bạn đứng trên quảng cáo (tương thích với công cụ tìm kiếm của Google và Bing)."
 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
 msgstr ""
+"Ngừng cung cấp địa chỉ email của bạn cho các trang web. Firefox Relay bảo vệ danh tính của bạn và ngăn chặn thư rác. Nâng cấp lên cao cấp để có thêm các lợi ích, chẳng hạn như chặn các email quảng "
+"cáo cụ thể hơn."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Dịch ngay lập tức bất kỳ văn bản đã chọn nào trên các trang web."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Làm cho Firefox thay đổi màu sắc dựa trên thời gian trong ngày."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Loại bỏ các yếu tố gây xao nhãng trên YouTube. Xóa các đề xuất, nhận xét về video có liên quan và được đề xuất, và nhiều hơn nữa."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Mang biểu tượng cảm xúc theo bạn ở khắp mọi nơi trên web."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Đặt các hạn chế trên các trang web gây mất tập trung, lãng phí thời gian."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Loại bỏ sự lộn xộn khỏi Twitter của bạn."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Tùy chỉnh YouTube theo sở thích."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Xóa dữ liệu duyệt trực tiếp từ thanh công cụ của trình duyệt."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Nhận tự động cập nhật nguồn cấp dữ liệu RSS trực tiếp đến các thư mục dấu trang của bạn."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Trình chặn hiệu quả chống lại tất cả các loại quảng cáo."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Trình quản lý tải xuống hàng loạt giúp việc tải xuống cực kỳ dễ dàng."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Xóa quảng cáo và nhận được sự bảo vệ tốt hơn trước phần mềm độc hại."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Xóa định dạng khỏi văn bản đã sao chép của khay nhớ tạm."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4579,21 +4581,20 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "Riêng tư & chống theo dõi"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
 msgstr "Chủ đề thịnh hành"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search"
-msgstr ""
+msgstr "Tìm kiếm hình ảnh"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Xem lựa chọn của nhân viên"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4605,7 +4606,7 @@ msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Chủ đề phổ biến"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
@@ -4634,11 +4635,11 @@ msgstr "Chủ đề được đề xuất"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Xem thêm các chủ đề được đề xuất"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
-msgstr ""
+msgstr "Trình quản lý mật khẩu mạnh"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
@@ -4663,7 +4664,7 @@ msgstr "Xem thêm các tiện ích phổ biến"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Quản lý thẻ"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4679,7 +4680,7 @@ msgstr "Xem các tiện ích mở rộng khác được gắn thẻ \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Trình chặn quảng cáo ưu tú"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -4687,7 +4688,7 @@ msgstr "Xem thêm các trình chặn quảng cáo được lựa chọn bởi bi
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "Tùy chỉnh YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4702,28 +4703,24 @@ msgid "See more trending themes"
 msgstr "Xem các chủ đề thịnh hành khác"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
 msgstr "Chủ đề thịnh hành"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
 msgstr "Xem các chủ đề thịnh hành khác"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
 msgstr "Chủ đề thịnh hành"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Xem thêm các tiện ích mở rộng được đề xuất"
+msgstr "Xem thêm các xu hướng cho tiện ích mở rộng"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Tăng cường cho Steam"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4736,7 +4733,7 @@ msgid "See more creativity staff picks"
 msgstr "Xem thêm các công cụ dịch thuật được lựa chọn bởi biên tập viên"
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Không thể phân tích cú pháp tập tin manifest."
 
 msgid "Add-on ID is required for Firefox 47 and below."
 msgstr "ID tiện ích được yêu cầu cho Firefox 47 trở xuống."
