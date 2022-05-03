@@ -107,11 +107,11 @@ class AddonMetadataValidator:
     def has_metadata(self, data, addon, field):
         data_value = data.get(field)
         values = data_value.values() if isinstance(data_value, dict) else data_value
-        return (values and any(val for val in values if val)) or bool(addon.get(field))
+        return any(val for val in values if val) if values else bool(addon.get(field))
 
     def get_addon_data(self, serializer):
         if hasattr(serializer.fields.get('version'), 'parsed_data'):
-            # if we have a version field it's a new addon, so get the parsed_data
+            # if we have a version field with parsed_data it's a new addon, so get it.
             parsed = serializer.fields['version'].parsed_data
             return {field: parsed.get(field) for field in self.fields}
         else:
