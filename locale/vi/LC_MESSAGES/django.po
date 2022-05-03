@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 08:20+0000\n"
+"PO-Revision-Date: 2022-05-03 08:29+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -3603,7 +3603,7 @@ msgstr "Đánh dấu bất kỳ văn bản nào, nhấp chuột phải và dịc
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Thực hiện tìm kiếm hình ảnh ngược từ một loạt các công cụ."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3613,22 +3613,22 @@ msgstr "Chặn quảng cáo và bảo vệ quyền riêng tư. Một thiết l�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Bạn có rất nhiều thẻ đang mở? Sắp xếp chúng trong một thanh lề ngăn nắp."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Đừng để Facebook theo dõi. Cô lập danh tính Facebook của bạn thành một “vùng chứa” riêng biệt để ngăn Facebook theo dõi bạn trên web."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Đơn giản hóa việc tìm kiếm bằng cách đánh dấu văn bản trên bất kỳ trang web nào để tìm kiếm cụm từ từ một loạt các công cụ."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "Cập nhật thời tiết tức thì từ khắp nơi trên thế giới."
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -3642,20 +3642,20 @@ msgstr "Nhìn thấy một bức tranh thú vị trên web và muốn tìm hiể
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "Tải xuống video một cách dễ dàng. Hoạt động với YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope và hàng trăm trang web video khác."
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "Nâng cấp trò chơi biểu tượng cảm xúc của bạn. Hàng chục biểu tượng cảm xúc tuyệt vời cho mọi dịp—luôn chỉ cần một cú nhấp chuột."
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Quản lý mật khẩu được đơn giản hóa. Đồng bộ hóa tất cả thông tin đăng nhập của bạn trên các thiết bị bằng một mật khẩu để quản lý tất cả."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Trình chặn quảng cáo hiệu quả, nhẹ. uBlock Origin thực thi hàng nghìn bộ lọc nội dung mà không tốn nhiều bộ nhớ."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3668,7 +3668,7 @@ msgstr "Đánh dấu bất kỳ văn bản nào và nhấp chuột phải để 
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Thưởng thức dấu trang trực quan. Truy cập các trang web yêu thích của bạn từ một bố cục ô."
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -3702,11 +3702,11 @@ msgstr "Hiển thị thời gian trên toàn thế giới hiện tại trên tha
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Bản dịch dễ dàng. Đánh dấu văn bản trên bất kỳ trang web nào—hoặc chọn toàn bộ trang—để dịch ngay lập tức."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Khai thác trí tuệ học thuật. Truy cập hơn 10 triệu bài nghiên cứu miễn phí."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
@@ -3800,235 +3800,235 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Thay đổi máy chủ proxy của bạn và lướt web thông qua cài đặt proxy tự xác định."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "Nâng cao trải nghiệm xem của bạn bằng cách điều chỉnh tốc độ video và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "Thêm bảo mật được mã hóa vào bất kỳ trang web nào hỗ trợ HTTPS. Duyệt một cách an toàn."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Nhận các phiếu giảm giá tốt nhất được tự động áp dụng cho giỏ hàng của bạn lúc thanh toán."
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Thay đổi cách bạn lướt Reddit bằng cách sử dụng tag và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Chụp màn hình trang web, chỉnh sửa và chia sẻ nó."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Một công cụ trình tải xuống ưu việt chỉ dành cho Windows."
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Tìm hiểu xem ai đang theo dõi bạn và nơi họ có thể chia sẻ thông tin của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Lướt web ẩn danh. Duyệt web với danh tính được ngụy trang—thậm chí xuất hiện như thể bạn đang duyệt từ một quốc gia khác."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Thưởng thức dấu trang trực quan. Truy cập các trang web yêu thích của bạn, các thẻ đã đóng gần đây và hơn thế nữa—tất cả đều từ một bố cục xếp hình tuyệt đẹp."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Chỉ định một trang chủ tùy chỉnh cho các thẻ mới của bạn."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Chuyển tất cả các thẻ đang mở của bạn thành một danh sách để dễ dàng quản lý chúng và tăng tốc Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Quản lý tải xuống mạnh mẽ. Kiểm tra trạng thái tải xuống của bạn thông qua thanh trạng thái, lịch sử tải xuống và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Lưu thông tin từ internet vào OneNote để bạn có thể chỉnh sửa, chú thích và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Dừng trình theo dõi quảng cáo khi bạn nhấp vào kết quả trả về của Google và Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "Sử dụng cử chỉ chuột để đóng thẻ, điều hướng trang và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "See thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Xem hình ảnh thu nhỏ cùng với kết quả tìm kiếm của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Làm cho trang web dễ nhìn hơn bằng cách làm tối màn hình của nó."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Chặn tất cả các cửa sổ bật lên theo mặc định, sau đó đợi bạn quyết định muốn mở cái nào."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Tùy chỉnh giao diện của bất kỳ trang web nào. Thay đổi màu sắc, nền trang và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Tùy chỉnh trang thẻ mới của bạn để hiển thị một số ô, hình nền ưa thích và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Lưu trữ mật khẩu an toàn và truy cập chúng trên nhiều thiết bị."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Biết bạn đi đâu trên web. Nhận vị trí quốc gia của các trang web bạn truy cập. Hãy là một khách du lịch internet có hiểu biết."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Nâng cao trải nghiệm đọc của bạn. Làm cho văn bản bạn đang đọc hấp dẫn hơn bằng cách loại bỏ những thứ lộn xộn xung quanh nó."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Right-click and drag links you want open in new tabs."
-msgstr ""
+msgstr "Nhấp chuột phải và kéo các liên kết bạn muốn mở trong các thẻ mới."
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Truy cập các thẻ đã đóng gần đây bằng cách nhấp chuột phải vào biểu tượng trên thanh công cụ của bạn."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Tạo cảm hứng cho năng suất. Sửa đổi trang thẻ mới của bạn để hiển thị nền đẹp, đặt trọng tâm hàng ngày của bạn và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Chặn các trang web lãng phí thời gian để bạn có thể tập trung vào nhiệm vụ trước mắt."
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Tự động tải lại các thẻ dựa trên khoảng thời gian."
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Tìm và giải quyết các dấu trang bị hỏng, trùng lặp và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Hoàn thành công việc với danh sách việc cần làm hữu ích được đồng bộ hóa giữa các thiết bị."
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Theo dõi giá lịch sử, tìm sản phẩm cạnh tranh, biết xếp hạng của người bán và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "Biến nó thành YouTube của bạn. Phát video trên hình trong hình, chỉ xem quảng cáo trong các kênh đã đăng ký, chụp ảnh màn hình video và hơn thế nữa."
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Nhận thông tin tham gia và lưu lượng truy cập chuyên sâu cho bất kỳ trang web nào."
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Áp dụng giao diện mới, hiện đại cho Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Sử dụng cử chỉ chuột để hoàn thành công việc nhanh hơn."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Ẩn các phần của trang web bạn đang xem."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Tải xuống hình ảnh bạn tìm thấy trên web."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Hạn chế quyền truy cập vào nội dung không phù hợp hoặc không mong muốn bằng bộ lọc."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Mở thẻ mới ở bên phải thẻ hiện tại của bạn, không phải ở cuối hàng."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Chinh phục thư rác. Sử dụng các địa chỉ email tạm thời thông minh để ẩn danh và tránh thư rác."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Một đường dẫn trực tiếp để tùy chỉnh cài đặt bảo mật tích hợp trong Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Nhận bản dịch tức thì bằng cách đánh dấu văn bản và nhấp vào nút bật lên."
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Đi thẳng đến trang web bạn muốn truy cập mà không bị chuyển hướng ở giữa."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp trên web. Truy cập WhatsApp từ trong bảng thanh công cụ của Firefox để nhận thông báo huy hiệu về các chủ đề chưa đọc."
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Nhận bản dịch tiếng Đức chuyên nghiệp giữa tiếng Anh, tiếng Pháp, tiếng Tây Ban Nha và các ngôn ngữ khác."
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Hạn chế Firefox truy cập các trang web bạn xác định. Một công cụ tuyệt vời để thực hiện kỷ luật trực tuyến."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Quản lý năng suất của bạn bằng cách làm việc trong khoảng thời gian đã định."
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Kiểm tra tất cả các nguồn cấp RSS yêu thích của bạn trong một trang."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Bật chế độ ban đêm để có trải nghiệm xem tốt hơn."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "Đảo ngược tìm kiếm hình ảnh bằng cách tận dụng sức mạnh của nhiều nhà cung cấp dịch vụ tìm kiếm."
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Một cách hiệu quả hơn để lưu dấu trang nếu bạn sử dụng nhiều thư mục dấu trang."
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Loại bỏ các định dạng không cần thiết và chỉ sao chép văn bản thuần túy."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Chuyển đổi toàn bộ trang web sang ngôn ngữ ưa thích của bạn—chỉ với một nút bấm."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Hiển thị ngay lập tức tất cả các liên kết từ một trang web trong các thẻ mới."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "Loại bỏ các trang chuyển hướng và thông số theo dõi URL khỏi các liên kết web. Hoạt động tự động."
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
