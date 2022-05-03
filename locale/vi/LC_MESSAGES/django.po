@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 07:29+0000\n"
+"PO-Revision-Date: 2022-05-03 07:40+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -5895,17 +5895,17 @@ msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
 msgstr "{0} :: Bảng thống kê :: Tiện ích cho {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Bảng điều khiển thống kê"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Bảng điều khiển thống kê :: Tiện ích cho {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
 msgstr "Thống kê cho {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Bảng điều khiển thống kê"
 
 msgid "Controls:"
 msgstr "Điều khiển:"
@@ -5993,7 +5993,7 @@ msgid "<b>{0}</b> Weekly Downloads"
 msgstr "<b>{0}</b> tải xuống hàng tuần"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Đang tải..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> Người dùng Hàng ngày Trung bình"
@@ -6032,6 +6032,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Người dùng hàng ngày là gì?</h2> <p> Các tiện ích được tải xuống từ trang web này kiểm tra các bản cập nhật mỗi ngày một lần. Tổng số ping cập nhật này được gọi là người dùng đang hoạt động hàng"
+" ngày. Người dùng hàng ngày có thể được chia nhỏ theo phiên bản bổ trợ, hệ điều hành, trạng thái tiện ích, ứng dụng và ngôn ngữ. </p>"
 
 msgid "Application versions by Date"
 msgstr "Phiên bản ứng dụng theo Ngày"
@@ -6043,7 +6045,7 @@ msgid "Back to Add-ons"
 msgstr "Trở lại Tiện ích"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "Logo Footer"
 
 msgid "Legal Notices"
 msgstr "Lưu ý Pháp lí"
@@ -6080,13 +6082,13 @@ msgid "Android Browser"
 msgstr "Trình duyệt Android"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "Trình duyệt iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Trình duyệt Focus"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Trình duyệt trên máy tính"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr "Phiên bản Beta, Nightly, nhà phát triển"
@@ -6118,13 +6120,13 @@ msgstr "Bản địa hóa cho: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Ngôn ngữ hiện có"
 
 msgid "New Locales"
-msgstr ""
+msgstr "Ngôn ngữ mới"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
@@ -6135,36 +6137,36 @@ msgstr "Hủy bỏ Thay đổi"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Bạn có chắc chắn muốn xóa tất cả <b>{0}</b> bản dịch không? Điều này không thể hoàn tác được."
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Xóa ngôn ngữ"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Người dùng \"%(user)s\" đã bị cấm."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Ảnh của người dùng \"%(user)s\" đã bị xóa."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Người dùng \"%(users)s\" đã bị cấm."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Cấm người dùng đã chọn"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
+msgstr "Người dùng \"%(users)s\" đã đặt lại (các) phiên của họ."
 
 msgid "Reset session"
 msgstr "Đặt lại phiên"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
+msgstr "Người dùng \"%(users)s\" đã đặt lại khóa API của họ."
 
 msgid "Reset API Key"
 msgstr "Đặt lại khóa API"
@@ -6176,10 +6178,10 @@ msgid "Collections"
 msgstr "Bộ sưu tập"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Nhập địa chỉ IPv4 hoặc IPv6 hợp lệ, ví dụ: 127.0.0.1. Sẽ được chuyển đổi thành mạng a /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Bạn chỉ có thể nhập một, địa chỉ IP hoặc mạng."
 
 msgid "No user with that email."
 msgstr "Không người dùng nào có email đó."
@@ -6187,9 +6189,8 @@ msgstr "Không người dùng nào có email đó."
 msgid "Firefox user {id}"
 msgstr "Người dùng Firefox {id}"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Nhập mạng IP4 hoặc IP6 hợp lệ."
+msgstr "Nhập dải mạng CIDR IPv4 hoặc IPv6 hợp lệ, ví dụ: 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr ""
@@ -6263,6 +6264,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Tác giả sau đã được thêm trên tiện ích %(addon_name)s ( %(addon_url)s ) của bạn:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6279,6 +6283,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Xin chào %(author_name)s,\n"
+"\n"
+"Bạn đã được mời trở thành tác giả của %(addon_name)s trên %(domain)s. Chấp nhận lời mời sẽ cung cấp cho bạn quyền truy cập để chỉnh sửa tiện ích và có thể hiển thị tên của bạn trong danh sách tác giả trên trang web.\n"
+"\n"
+"Nhấp vào liên kết bên dưới để trả lời nếu bạn muốn được thêm làm tác giả cho %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Nếu bạn không muốn nhận được lời mời này, vui lòng gửi email đến amo-admins@mozilla.com.\n"
+"\n"
+"Trân trọng,\n"
+"Nhóm tiện ích mở rộng của Mozilla"
 
 #, python-format
 msgid ""
@@ -6286,6 +6302,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Tác giả sau đã được thay đổi trên tiện ích %(addon_name)s ( %(addon_url)s ) của bạn:\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6293,6 +6312,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Tác giả sau đã bị xóa khỏi tiện ích %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
@@ -6306,6 +6328,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Xin chào,\n"
+"\n"
+"Bạn nhận được thông báo này vì tài khoản người dùng của bạn %(name)s trên %(site_url)s đã bị xóa. Điều này có thể được thực hiện tự động nếu gần đây bạn đã xóa Tài khoản Firefox của mình.\n"
+"\n"
+"Nếu bạn không làm điều này hoặc tin rằng một người trái phép đã truy cập vào tài khoản của bạn, vui lòng trả lời email này. Nếu không, bạn không cần thực hiện thêm hành động nào.\n"
+"\n"
+"Trân trọng,\n"
+"\n"
+"Nhóm tiện ích mở rộng của Firefox"
 
 msgctxt "user_list_others"
 msgid "others"
