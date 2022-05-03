@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-05-03 07:20+0000\n"
+"PO-Revision-Date: 2022-05-03 07:29+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1813,7 +1813,7 @@ msgid "Version {version} already exists."
 msgstr "Phiên bản {version} đã tồn tại."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Tiếp tục với tải lên hiện có thay thế?"
 
 msgid "Yes"
 msgstr "Có"
@@ -1828,7 +1828,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Đảm bảo tên và tóm tắt được kết hợp tối đa {limit_value} ký tự (hiện tại là {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "Trên trang web này. <span class=\"helptext\">Nội dung bạn gửi được liệt kê công khai trên {site_domain}.</span>"
@@ -2815,25 +2815,25 @@ msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the co
 msgstr "Những người đánh giá tiện ích của Mozilla cần có khả năng đọc và tái tạo mã trong tiện ích mở rộng của bạn. Nếu họ không thể, tiện ích mở rộng của bạn có thể bị từ chối."
 
 msgid "Do you use any of the following in your extension?"
-msgstr ""
+msgstr "Bạn có sử dụng bất kỳ điều nào sau đây trong tiện ích mở rộng của mình không?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Bộ tạo mã hoặc bộ giảm thiểu mã"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Các công cụ kết hợp nhiều tập tin thành một, chẳng hạn như <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Công cụ mẫu web, cho cả HTML và CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr ""
+msgstr "Bất kỳ công cụ nào khác lấy mã hoặc tập tin, áp dụng xử lý và tạo (các) mã hoặc tập tin để đưa vào tiện ích"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Bạn không cần gửi mã nguồn và bạn đã sẵn sàng cho bước tiếp theo."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Bạn phải gửi mã nguồn của tiện ích mở rộng của bạn."
 
 msgid "Your source code must include:"
 msgstr "Mã nguồn của bạn phải bao gồm:"
@@ -2842,20 +2842,22 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr "Hướng dẫn xây dựng từng bước để tạo bản sao chính xác của mã tiện ích, trong tập tin README trong mã nguồn của bạn hoặc trong ghi chú cho người xét duyệt trên trang tiếp theo."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Một tập lệnh xây dựng thực hiện tất cả các bước kỹ thuật cần thiết."
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Hệ điều hành và xây dựng các yêu cầu về môi trường."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
+"Phiên bản bắt buộc và hướng dẫn cài đặt của bất kỳ chương trình nào được sử dụng trong quá trình xây dựng (chẳng hạn như <span class=\"tech-emphasis\">node</span> và <span class=\"tech-"
+"emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Để biết thêm thông tin, vui lòng đọc <a %(a_attrs)s>đệ trình mã nguồn</a> trên Firefox Extension Workshop."
 
 msgid "Upload source code:"
 msgstr "Tải lên mã nguồn:"
@@ -2899,7 +2901,7 @@ msgid "Theme generator"
 msgstr "Trình tạo chủ đề"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Cảnh báo: các thuộc tính tập tin manifest sau đây mà phiên bản tải lên gần đây nhất của bạn được sử dụng trong tập tin manifest không được hỗ trợ trong trình hướng dẫn này và sẽ bị bỏ qua:"
 
 msgid "Theme name"
 msgstr "Tên chủ đề"
@@ -3080,19 +3082,22 @@ msgid "Invisible"
 msgstr "Ẩn"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Vui lòng hoàn thiện tiện ích của bạn bằng cách thêm phiên bản hoặc metadata bị thiếu."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr ""
+"Bạn sẽ nhận được một email khi việc xét duyệt hoàn tất. Cho đến lúc đó, tiện ích của bạn sẽ không được hiển thị trong trang trưng bày của chúng tôi nhưng vẫn có thể được truy cập trực tiếp từ trang "
+"chi tiết."
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Tiện ích của bạn được hiển thị trong trang trưng bày của chúng tôi và người dùng đang nhận được cập nhật tự động."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
+msgstr "Tiện ích của bạn đã bị quản trị viên vô hiệu hóa và không còn hiển thị trong thư viện của chúng tôi nữa. Nếu bạn có bất kỳ câu hỏi nào, vui lòng gửi email đến amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"Tiện ích của bạn sẽ không được đưa vào kết quả tìm kiếm và trang danh sách của nó sẽ cho biết bạn đã vô hiệu hóa nó. Việc gửi phiên bản mới cho danh sách sẽ không được chấp nhận ở trạng thái này."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3113,22 +3118,22 @@ msgid "Listed Version:"
 msgstr "Phiên bản được liệt kê:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr ""
+msgstr "Đây là phiên bản tiện ích của bạn sẽ được cài đặt nếu ai đó nhấp vào nút Cài đặt trên addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Phiên bản được liệt kê tiếp theo:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
+msgstr "Đây là phiên bản mới nhất được tải lên, tuy nhiên nó chưa có trên trang web"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Đã ký để tự phân phối. Cập nhật do bạn xử lý."
 
 msgid "Latest Version:"
 msgstr "Phiên bản mới nhất:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "Đây là phiên bản không công khai được tải lên mới nhất"
 
 msgid "Upload New Version"
 msgstr "Tải lên phiên bản mới"
@@ -3174,12 +3179,13 @@ msgstr "Phiên bản chữ ký đang chờ xử lý"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Bạn đã hoàn tất! ✨ Bạn sẽ được thông báo qua email khi tập tin đã ký sẵn sàng được tải xuống từ trung tâm nhà phát triển. Nếu bạn không thấy email sau 24 giờ, vui lòng kiểm tra thư mục spam của bạn."
 
 msgid "License"
 msgstr "Giấy phép"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Vui lòng chọn một giấy phép phù hợp với các quyền bạn cấp trên mã nguồn của mình. Nó chỉ phù hợp với các tiện ích được liệt kê."
 
 msgid "Sort by:"
 msgstr "Sắp xếp theo:"
@@ -3205,16 +3211,18 @@ msgid "End-User License Agreement"
 msgstr "Thỏa thuận Giấy phép Người dùng Cuối"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Xin lưu ý rằng EULA không giống như giấy phép mã, chẳng hạn như GPL hoặc MPL. Nó chỉ phù hợp với các tiện ích được liệt kê."
 
 msgid "Privacy Policy"
 msgstr "Chính sách riêng tư"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Nếu tiện ích của bạn truyền bất kỳ dữ liệu nào từ máy tính của người dùng, thì cần phải có chính sách bảo mật giải thích dữ liệu nào được gửi và cách dữ liệu đó được sử dụng. Nó chỉ phù hợp với các "
+"tiện ích được liệt kê."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "Nếu tiện ích của bạn chứa mã được rút gọn, nối liền hoặc mã do máy tạo ra khác với các thư viện đã biết, hãy tải lên các nguồn của tiện ích đó để xem xét."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Vui lòng bao gồm hướng dẫn về cách tái tạo tập tin tiện ích chính thức, trong tập tin README hoặc ghi chú cho người xét duyệt cho phiên bản này."
