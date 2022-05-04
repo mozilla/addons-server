@@ -30,6 +30,7 @@ from olympia.amo.tests import (
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.blocklist.models import Block
 from olympia.files.models import File, FileUpload
+from olympia.files.utils import get_sha256
 from olympia.signing.views import VersionView
 from olympia.users.models import (
     EmailUserRestriction,
@@ -1384,7 +1385,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         file_ = qs.get()
         assert response.data['files'][0]['download_url'] == absolutify(
             reverse_ns('signing.file', kwargs={'file_id': file_.id})
-            + f'/{file_.filename}'
+            + f'/{file_.pretty_filename}'
         )
 
     def test_file_hash(self):
@@ -1398,8 +1399,10 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 200
         file_ = qs.get()
 
-        # We're repackaging, so we can't compare the hash to an existing value.
-        expected_hash = file_.generate_hash(filename=file_.file.path)
+        # We're repackaging, so we can't compare the hash to an existing value,
+        # we have to recompute it.
+        with open(file_.file.path, 'rb') as f:
+            expected_hash = f'sha256:{get_sha256(f)}'
         assert file_.hash == expected_hash
         assert response.data['files'][0]['hash'] == expected_hash
 
@@ -1456,6 +1459,7 @@ class TestSignedFile(SigningAPITestMixin, TestCase):
             name='thing',
             version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
             users=[self.user],
+            file_kw={'filename': 'webextension.xpi'},
         )
         return addon.latest_unlisted_version.file
 
