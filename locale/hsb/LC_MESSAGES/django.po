@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-03 19:24+0000\n"
-"PO-Revision-Date: 2022-05-04 11:51+0000\n"
+"PO-Revision-Date: 2022-05-04 11:54+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -457,16 +457,16 @@ msgid "Unavailable for legal reasons."
 msgstr "Z prawniskich přičinow k dispoziciji njeje."
 
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Rěčny kod „{lang_code}“ je njepłaćiwy."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Dyrbiće objekt za {lang-code:value} podać."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Hódnota w standardnej rěči „{lang_code}“ je trěbna."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Hódnot w standardnej rěči „{lang_code}“ je trěbna, jeli druhe přełožki su nastajene."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
