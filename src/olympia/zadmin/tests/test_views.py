@@ -7,13 +7,11 @@ from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
-from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, user_factory, version_factory
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
 
 
 class TestHomeAndIndex(TestCase):

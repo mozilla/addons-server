@@ -8553,11 +8553,16 @@ class TestThemeBackgroundImages(ReviewBase):
         assert data == {}
 
     def test_header_images(self):
-        destination = self.addon.current_version.file.file.path
-        zip_file = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
-        )
-        self.root_storage.copy_stored_file(zip_file, destination)
+        with open(
+            os.path.join(
+                settings.ROOT,
+                'src/olympia/devhub/tests/addons/static_theme_tiled.zip',
+            ),
+            'rb',
+        ) as src:
+            file_ = self.addon.current_version.file
+            file_.file = DjangoFile(src)
+            file_.save()
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)

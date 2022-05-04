@@ -44,7 +44,6 @@ from olympia.scanners.tasks import (
     run_yara_query_rule,
     run_yara_query_rule_on_versions_chunk,
 )
-from olympia.versions.models import Version
 
 
 class TestRunScanner(UploadMixin, TestCase):

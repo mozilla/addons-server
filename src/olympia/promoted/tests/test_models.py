@@ -102,40 +102,39 @@ class TestPromotedAddon(TestCase):
         core.set_user(user_factory())
         task_user = user_factory(id=settings.TASK_USER_ID)
         promo = PromotedAddon.objects.create(
-            addon=addon_factory(version_kw={'version': '0.123a'}),
+            addon=addon_factory(
+                version_kw={'version': '0.123a'},
+                file_kw={'filename': 'webextension.xpi'},
+            ),
             group_id=promoted.SPOTLIGHT.id,
         )
         file_ = promo.addon.current_version.file
-        file_.update(filename='webextension.xpi')
-        with amo.tests.copy_file(
-            'src/olympia/files/fixtures/files/webextension.xpi', file_.file.path
-        ):
-            # SPOTLIGHT doesnt have special signing states so won't be resigned
-            promo.addon.reload()
-            promo.addon.promoted_group() == promoted.NOT_PROMOTED
-            promo.approve_for_addon()
-            promo.addon.reload()
-            promo.addon.promoted_group() == promoted.SPOTLIGHT
-            assert promo.addon.current_version.version == '0.123a'
-            mock_sign_file.assert_not_called()
+        # SPOTLIGHT doesnt have special signing states so won't be resigned
+        promo.addon.reload()
+        promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        promo.approve_for_addon()
+        promo.addon.reload()
+        promo.addon.promoted_group() == promoted.SPOTLIGHT
+        assert promo.addon.current_version.version == '0.123a'
+        mock_sign_file.assert_not_called()
 
-            # VERIFIED does though.
-            promo.update(group_id=promoted.VERIFIED.id)
-            promo.addon.reload()
-            promo.addon.promoted_group() == promoted.NOT_PROMOTED
-            promo.approve_for_addon()
-            promo.addon.reload()
-            promo.addon.promoted_group() == promoted.VERIFIED
-            assert promo.addon.current_version.version == '0.123a.1-signed'
-            mock_sign_file.assert_called_with(file_)
-            assert (
-                ActivityLog.objects.for_addons((promo.addon,))
-                .filter(action=amo.LOG.VERSION_RESIGNED.id)
-                .exists()
-            )
-            alog = ActivityLog.objects.filter(action=amo.LOG.VERSION_RESIGNED.id).get()
-            assert alog.user == task_user
-            assert '0.123a.1-signed</a> re-signed (previously 0.123a)' in (str(alog))
+        # VERIFIED does though.
+        promo.update(group_id=promoted.VERIFIED.id)
+        promo.addon.reload()
+        promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        promo.approve_for_addon()
+        promo.addon.reload()
+        promo.addon.promoted_group() == promoted.VERIFIED
+        assert promo.addon.current_version.version == '0.123a.1-signed'
+        mock_sign_file.assert_called_with(file_)
+        assert (
+            ActivityLog.objects.for_addons((promo.addon,))
+            .filter(action=amo.LOG.VERSION_RESIGNED.id)
+            .exists()
+        )
+        alog = ActivityLog.objects.filter(action=amo.LOG.VERSION_RESIGNED.id).get()
+        assert alog.user == task_user
+        assert '0.123a.1-signed</a> re-signed (previously 0.123a)' in (str(alog))
 
     def test_get_resigned_version_number(self):
         addon = addon_factory(
