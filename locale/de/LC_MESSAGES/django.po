@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: 2022-04-21 14:21+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -216,14 +216,14 @@ msgstr "Version {version_string} existiert bereits."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Gelistete Versionen können nicht eingereicht werden, während das Add-on deaktiviert ist."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Add-on-Metadaten müssen festgelegt werden, um eine gelistete Version zu erstellen: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Dieser Adressname kann nicht verwendet werden. Bitte wählen Sie einen anderen."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Dieses Feld ist für Add-ons mit gelisteten Versionen erforderlich."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on-Namen dürfen weder die Markenzeichen Mozilla noch Firefox enthalten."
@@ -242,6 +242,12 @@ msgstr "Falscher Add-on-Typ für diese Lizenz."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Benutzerdefinierte Lizenzen werden für Themes nicht unterstützt."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Dieses Feld ist für Add-ons mit gelisteten Versionen erforderlich."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Add-on-Metadaten müssen festgelegt werden, um eine gelistete Version zu erstellen: {missing_addon_metadata}."
 
 msgid "My Add-ons"
 msgstr "Meine Add-ons"
@@ -459,11 +465,17 @@ msgstr "E-Mail-Adresse nicht gefunden."
 msgid "Unavailable for legal reasons."
 msgstr "Aus rechtlichen Gründen nicht verfügbar."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Der Sprachcode {lang_code} ist ungültig."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Sie müssen ein Objekt für {lang-code:value} angeben."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

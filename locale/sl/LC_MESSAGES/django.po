@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: 2022-04-21 13:49+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -216,14 +216,14 @@ msgstr "Različica {version_string} že obstaja."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Te reglete ni mogoče uporabiti. Izberite drugačno."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Imena dodatkov ne smejo vsebovati blagovnih znamk Mozilla ali Firefox."
@@ -242,6 +242,12 @@ msgstr "Napačna vrsta dodatka za to licenco."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Za teme licence po meri niso podprte."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Moji dodatki"
@@ -451,11 +457,17 @@ msgstr "E-poštni naslov ni najden."
 msgid "Unavailable for legal reasons."
 msgstr "Ni na voljo iz pravnih razlogov."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Koda jezika {lang_code} je neveljavna."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Podati morate objekt za {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

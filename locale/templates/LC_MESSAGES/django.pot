@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,12 +101,12 @@ msgstr ""
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:155 src/olympia/addons/fields.py:325
+#: src/olympia/accounts/serializers.py:155 src/olympia/addons/fields.py:327
 #: src/olympia/devhub/views.py:1083
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:159 src/olympia/addons/fields.py:330
+#: src/olympia/accounts/serializers.py:159 src/olympia/addons/fields.py:332
 #: src/olympia/devhub/views.py:1089
 msgid "Images cannot be animated."
 msgstr ""
@@ -207,52 +207,52 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:66 src/olympia/addons/serializers.py:960
+#: src/olympia/addons/fields.py:66 src/olympia/addons/serializers.py:987
 msgid "Invalid category name."
 msgstr ""
 
-#: src/olympia/addons/fields.py:69
+#: src/olympia/addons/fields.py:71
 msgid "Invalid app name."
 msgstr ""
 
-#: src/olympia/addons/fields.py:109
+#: src/olympia/addons/fields.py:111
 msgid "URL domain must be one of [{domains}]."
 msgstr ""
 
-#: src/olympia/addons/fields.py:118 src/olympia/devhub/forms.py:304
+#: src/olympia/addons/fields.py:120 src/olympia/devhub/forms.py:304
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
 
-#: src/olympia/addons/fields.py:121 src/olympia/devhub/forms.py:307
+#: src/olympia/addons/fields.py:123 src/olympia/devhub/forms.py:307
 msgid "URLs must start with https://."
 msgstr ""
 
-#: src/olympia/addons/fields.py:207
+#: src/olympia/addons/fields.py:209
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
-#: src/olympia/addons/fields.py:228 src/olympia/devhub/forms.py:773
+#: src/olympia/addons/fields.py:230 src/olympia/devhub/forms.py:773
 #: src/olympia/files/utils.py:737
 msgid "Invalid or broken archive."
 msgstr ""
 
-#: src/olympia/addons/fields.py:248
+#: src/olympia/addons/fields.py:250
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
-#: src/olympia/addons/fields.py:256
+#: src/olympia/addons/fields.py:258
 msgid "Invalid value"
 msgstr ""
 
-#: src/olympia/addons/fields.py:286
+#: src/olympia/addons/fields.py:288
 msgid "Invalid app specified"
 msgstr ""
 
-#: src/olympia/addons/fields.py:288
+#: src/olympia/addons/fields.py:290
 msgid "Unknown app version specified"
 msgstr ""
 
-#: src/olympia/addons/fields.py:334
+#: src/olympia/addons/fields.py:336
 #, python-format
 msgid "Images must be smaller than %dMB"
 msgstr ""
@@ -266,49 +266,47 @@ msgstr ""
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/serializers.py:180
+#: src/olympia/addons/serializers.py:186
 msgid "Previews cannot be created for themes."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:266
+#: src/olympia/addons/serializers.py:272
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:423
+#: src/olympia/addons/serializers.py:429
 msgid "Upload is not valid."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:432 src/olympia/devhub/forms.py:1036
+#: src/olympia/addons/serializers.py:438 src/olympia/devhub/forms.py:1036
 #: src/olympia/signing/views.py:195
 msgid ""
 "Version {version} matches {block_link} for this add-on. You can contact "
 "{amo_admins} for additional information."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:451
+#: src/olympia/addons/serializers.py:457
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:455
+#: src/olympia/addons/serializers.py:461
 msgid "Version {version_string} already exists."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:474
+#: src/olympia/addons/serializers.py:479
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:491
-msgid ""
-"Add-on metadata is required to be set to create a listed version: "
-"{missing_addon_metadata}."
+#: src/olympia/addons/serializers.py:710
+msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:919
+#: src/olympia/addons/serializers.py:724
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:963
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-#: src/olympia/addons/serializers.py:934
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 #: src/olympia/addons/utils.py:57
@@ -333,6 +331,16 @@ msgstr ""
 
 #: src/olympia/addons/validators.py:96
 msgid "Custom licenses are not supported for themes."
+msgstr ""
+
+#: src/olympia/addons/validators.py:134
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+#: src/olympia/addons/validators.py:153
+msgid ""
+"Add-on metadata is required to be set to create a listed version: "
+"{missing_addon_metadata}."
 msgstr ""
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4
@@ -418,7 +426,7 @@ msgstr ""
 msgid "Positive integer"
 msgstr ""
 
-#: src/olympia/amo/fields.py:42 src/olympia/api/fields.py:343
+#: src/olympia/amo/fields.py:42 src/olympia/api/fields.py:380
 #, python-format
 msgid ""
 "This field can only be used to link to external websites. URLs on %(domain)s "
@@ -654,14 +662,24 @@ msgid "Unavailable for legal reasons."
 msgstr ""
 
 #: src/olympia/api/fields.py:87
-msgid "The language code {lang_code} is invalid."
+msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
 #: src/olympia/api/fields.py:88
 msgid "You must provide an object of {lang-code:value}."
 msgstr ""
 
-#: src/olympia/api/fields.py:325
+#: src/olympia/api/fields.py:89
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+#: src/olympia/api/fields.py:92
+msgid ""
+"A value in the default locale of \"{lang_code}\" is required if other "
+"translations are set."
+msgstr ""
+
+#: src/olympia/api/fields.py:362
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
@@ -1449,88 +1467,88 @@ msgstr ""
 msgid "Developer"
 msgstr ""
 
-#: src/olympia/constants/base.py:101
+#: src/olympia/constants/base.py:106
 msgid "(Deleted)"
 msgstr ""
 
-#: src/olympia/constants/base.py:125
+#: src/olympia/constants/base.py:130
 msgid "Extension"
 msgstr ""
 
-#: src/olympia/constants/base.py:126
+#: src/olympia/constants/base.py:131
 msgid "Deprecated Complete Theme"
 msgstr ""
 
-#: src/olympia/constants/base.py:127
+#: src/olympia/constants/base.py:132
 msgid "Dictionary"
 msgstr ""
 
-#: src/olympia/constants/base.py:128
+#: src/olympia/constants/base.py:133
 msgid "Search Engine"
 msgstr ""
 
-#: src/olympia/constants/base.py:129
+#: src/olympia/constants/base.py:134
 msgid "Language Pack (Application)"
 msgstr ""
 
-#: src/olympia/constants/base.py:130
+#: src/olympia/constants/base.py:135
 msgid "Language Pack (Add-on)"
 msgstr ""
 
-#: src/olympia/constants/base.py:131
+#: src/olympia/constants/base.py:136
 msgid "Plugin"
 msgstr ""
 
-#: src/olympia/constants/base.py:132
+#: src/olympia/constants/base.py:137
 msgid "Deprecated LWT"
 msgstr ""
 
-#: src/olympia/constants/base.py:133
+#: src/olympia/constants/base.py:138
 msgid "Theme (Static)"
 msgstr ""
 
-#: src/olympia/constants/base.py:134
+#: src/olympia/constants/base.py:139
 msgid "Site Permission"
 msgstr ""
 
-#: src/olympia/constants/base.py:139
+#: src/olympia/constants/base.py:144
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr ""
 
-#: src/olympia/constants/base.py:140
+#: src/olympia/constants/base.py:145
 msgid "Deprecated Complete Themes"
 msgstr ""
 
-#: src/olympia/constants/base.py:141
+#: src/olympia/constants/base.py:146
 msgid "Dictionaries"
 msgstr ""
 
-#: src/olympia/constants/base.py:142 src/olympia/constants/categories.py:146
+#: src/olympia/constants/base.py:147 src/olympia/constants/categories.py:146
 msgid "Search Tools"
 msgstr ""
 
-#: src/olympia/constants/base.py:143
+#: src/olympia/constants/base.py:148
 msgid "Language Packs (Application)"
 msgstr ""
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:149
 msgid "Language Packs (Add-on)"
 msgstr ""
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:150
 msgid "Plugins"
 msgstr ""
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:151
 msgid "Deprecated LWTs"
 msgstr ""
 
-#: src/olympia/constants/base.py:147
+#: src/olympia/constants/base.py:152
 msgid "Themes (Static)"
 msgstr ""
 
-#: src/olympia/constants/base.py:148
+#: src/olympia/constants/base.py:153
 msgid "Site Permissions"
 msgstr ""
 
@@ -2278,11 +2296,11 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:178 src/olympia/reviewers/utils.py:610
+#: src/olympia/constants/reviewers.py:178 src/olympia/reviewers/utils.py:621
 msgid "Reject"
 msgstr ""
 
-#: src/olympia/constants/reviewers.py:179 src/olympia/reviewers/utils.py:597
+#: src/olympia/constants/reviewers.py:179 src/olympia/reviewers/utils.py:608
 msgid "Approve"
 msgstr ""
 
@@ -2322,68 +2340,68 @@ msgstr ""
 msgid "Header image alignment problem"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:21
+#: src/olympia/constants/scanners.py:24
 msgid "No action"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:22
+#: src/olympia/constants/scanners.py:25
 msgid "Flag for human review"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:23
+#: src/olympia/constants/scanners.py:26
 msgid "Delay auto-approval"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:24
+#: src/olympia/constants/scanners.py:27
 msgid "Delay auto-approval indefinitely"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:25
+#: src/olympia/constants/scanners.py:28
 msgid "Delay auto-approval indefinitely and add restrictions"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:28
+#: src/olympia/constants/scanners.py:31
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:39
+#: src/olympia/constants/scanners.py:42
 msgid "Unknown"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:40
+#: src/olympia/constants/scanners.py:43
 msgid "True positive"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:41
+#: src/olympia/constants/scanners.py:44
 msgid "False positive"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:42
+#: src/olympia/constants/scanners.py:45
 msgid "Inconclusive"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:53
+#: src/olympia/constants/scanners.py:56
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:73
 msgid "New"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:54
+#: src/olympia/constants/scanners.py:57
 msgid "Running"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:55
+#: src/olympia/constants/scanners.py:58
 msgid "Aborted"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:56
+#: src/olympia/constants/scanners.py:59
 msgid "Aborting"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:57
+#: src/olympia/constants/scanners.py:60
 msgid "Completed"
 msgstr ""
 
-#: src/olympia/constants/scanners.py:58
+#: src/olympia/constants/scanners.py:61
 msgid "Scheduled"
 msgstr ""
 
@@ -2653,7 +2671,7 @@ msgid ""
 "After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
-#: src/olympia/devhub/utils.py:326
+#: src/olympia/devhub/utils.py:323
 msgid ""
 "Manifest V3 is currently not supported for upload. {start_href}Read more "
 "about the support timeline{end_href}."
@@ -4620,7 +4638,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
-#: src/olympia/reviewers/views.py:1116
+#: src/olympia/reviewers/views.py:1120
 msgid "End-User License Agreement"
 msgstr ""
 
@@ -4632,7 +4650,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 #: src/olympia/reviewers/templates/reviewers/addon_details_box.html:154
-#: src/olympia/reviewers/views.py:1128 src/olympia/templates/copyright.html:5
+#: src/olympia/reviewers/views.py:1132 src/olympia/templates/copyright.html:5
 msgid "Privacy Policy"
 msgstr ""
 
@@ -7230,95 +7248,95 @@ msgstr ""
 msgid "Unlisted versions ({0})"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:592
+#: src/olympia/reviewers/utils.py:603
 msgid ""
 "This will approve, sign, and publish this version. The comments will be sent "
 "to the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:611
+#: src/olympia/reviewers/utils.py:622
 msgid ""
 "This will reject this version and remove it from the queue. The comments will"
 " be sent to the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:631
+#: src/olympia/reviewers/utils.py:642
 msgid "Approve Content"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:632
+#: src/olympia/reviewers/utils.py:643
 msgid ""
 "This records your approbation of the content of the latest public version, "
 "without notifying the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:647
+#: src/olympia/reviewers/utils.py:658
 msgid "Confirm Approval"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:648
+#: src/olympia/reviewers/utils.py:659
 msgid ""
 "The latest public version of this add-on was automatically approved. This "
 "records your confirmation of the approval of that version, without notifying "
 "the developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:665
+#: src/olympia/reviewers/utils.py:676
 msgid "Reject Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:669
+#: src/olympia/reviewers/utils.py:680
 msgid ""
 "This will reject the selected versions. The comments will be sent to the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:679
+#: src/olympia/reviewers/utils.py:690
 msgid "Block Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:683
+#: src/olympia/reviewers/utils.py:694
 msgid ""
 "This will disable the selected approved versions silently, and open up the "
 "block creation admin page."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:694
+#: src/olympia/reviewers/utils.py:705
 msgid "Confirm Multiple Versions"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:697
+#: src/olympia/reviewers/utils.py:708
 msgid ""
 "This will confirm approval of the selected versions without notifying the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:708
+#: src/olympia/reviewers/utils.py:719
 msgid "Reviewer reply"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:709
+#: src/olympia/reviewers/utils.py:720
 msgid ""
 "This will send a message to the developer. You will be notified when they "
 "reply."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:724
+#: src/olympia/reviewers/utils.py:735
 msgid "Request super-review"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:725
+#: src/olympia/reviewers/utils.py:736
 msgid ""
 "If you have concerns about this add-on that an admin reviewer should look "
 "into, enter your comments in the area below. They will not be sent to the "
 "developer."
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:736
+#: src/olympia/reviewers/utils.py:747
 msgid "Comment"
 msgstr ""
 
-#: src/olympia/reviewers/utils.py:737
+#: src/olympia/reviewers/utils.py:748
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
@@ -7448,19 +7466,19 @@ msgstr ""
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:673
+#: src/olympia/reviewers/views.py:677
 msgid "Review successfully processed."
 msgstr ""
 
-#: src/olympia/reviewers/views.py:920
+#: src/olympia/reviewers/views.py:924
 msgid "Review lock limit reached"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1115
+#: src/olympia/reviewers/views.py:1119
 msgid "{addon} – EULA"
 msgstr ""
 
-#: src/olympia/reviewers/views.py:1127
+#: src/olympia/reviewers/views.py:1131
 msgid "{addon} – Privacy Policy"
 msgstr ""
 
@@ -8190,40 +8208,40 @@ msgstr ""
 msgid "file signature"
 msgstr ""
 
-#: src/olympia/scanners/models.py:216
+#: src/olympia/scanners/models.py:215
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-#: src/olympia/scanners/models.py:224
+#: src/olympia/scanners/models.py:223
 msgid ""
 "When unchecked, the scanner results will not be bound to this rule and the "
 "action will not be executed."
 msgstr ""
 
-#: src/olympia/scanners/models.py:257
+#: src/olympia/scanners/models.py:256
 msgid "Yara rules should have a definition"
 msgstr ""
 
-#: src/olympia/scanners/models.py:263
+#: src/olympia/scanners/models.py:262
 msgid ""
 "The name of the rule in the definition should match the name of the scanner "
 "rule"
 msgstr ""
 
-#: src/olympia/scanners/models.py:272
+#: src/olympia/scanners/models.py:271
 msgid "Only one Yara rule is allowed in the definition"
 msgstr ""
 
-#: src/olympia/scanners/models.py:280
+#: src/olympia/scanners/models.py:279
 #, python-format
 msgid "The definition is not valid: %(error)s"
 msgstr ""
 
-#: src/olympia/scanners/models.py:286
+#: src/olympia/scanners/models.py:285
 msgid "An error occurred when compiling the definition"
 msgstr ""
 
-#: src/olympia/scanners/models.py:341
+#: src/olympia/scanners/models.py:340
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 

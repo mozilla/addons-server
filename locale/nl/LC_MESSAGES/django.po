@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: 2022-04-21 13:01+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -219,14 +219,14 @@ msgstr "Versie {version_string} bestaat al."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Vermelde versies kunnen niet worden ingediend terwijl de add-on is uitgeschakeld."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Add-on-metadata moeten worden ingesteld om een vermelde versie te maken: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Deze identificator kan niet worden gebruikt. Kies een andere."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Dit veld is vereist voor add-ons met vermelde versies."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Namen van add-ons mogen de Mozilla- of Firefox-handelsmerken niet bevatten."
@@ -245,6 +245,12 @@ msgstr "Verkeerd type add-on voor deze licentie."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Aangepaste licenties worden niet ondersteund voor thema’s."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Dit veld is vereist voor add-ons met vermelde versies."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Add-on-metadata moeten worden ingesteld om een vermelde versie te maken: {missing_addon_metadata}."
 
 msgid "My Add-ons"
 msgstr "Mijn add-ons"
@@ -460,11 +466,17 @@ msgstr "E-mailadres niet gevonden."
 msgid "Unavailable for legal reasons."
 msgstr "Om juridische redenen niet beschikbaar."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "De taalcode {lang_code} is ongeldig."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "U dient een object van {lang-code:value} op te geven."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

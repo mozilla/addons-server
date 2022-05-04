@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
 "PO-Revision-Date: 2022-04-21 11:21+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -221,13 +221,13 @@ msgstr "הגרסה {version_string} כבר קיימת."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -247,6 +247,12 @@ msgstr "סוג תוספת שגוי עבור רישיון זה."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "רישיונות מותאמים אישית אינם נתמכים עבור ערכות נושא."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "התוספות שלי"
@@ -449,11 +455,17 @@ msgstr "כתובת דוא״ל לא נמצאה."
 msgid "Unavailable for legal reasons."
 msgstr "לא זמין מסיבות משפטיות."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "קוד השפה {lang_code} שגוי."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "עליך לספק אובייקט מסוג {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
