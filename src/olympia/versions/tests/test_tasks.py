@@ -2,6 +2,7 @@ import os
 from base64 import b64encode
 
 from django.conf import settings
+from django.core.files import File as DjangoFile
 from django.utils.encoding import force_str
 
 from unittest import mock
@@ -163,9 +164,10 @@ def test_generate_static_theme_preview(
     if header_url is not None:
         theme_manifest['images']['theme_frame'] = header_url
     addon = addon_factory()
-    destination = addon.current_version.file.file.path
-    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
-    root_storage.copy_stored_file(zip_file, destination)
+    file_ = addon.current_version.file
+    with open(os.path.join(HEADER_ROOT, 'theme_images.zip'), 'rb') as src:
+        file_.file = DjangoFile(src)
+        file_.save()
     # existing previews should be deleted if they exist
     existing_preview = VersionPreview.objects.create(version=addon.current_version)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
@@ -353,9 +355,10 @@ def test_generate_static_theme_preview_with_alternative_properties(
         'colors': manifest_colors,
     }
     addon = addon_factory()
-    destination = addon.current_version.file.file.path
-    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
-    root_storage.copy_stored_file(zip_file, destination)
+    file_ = addon.current_version.file
+    with open(os.path.join(HEADER_ROOT, 'theme_images.zip'), 'rb') as src:
+        file_.file = DjangoFile(src)
+        file_.save()
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg
@@ -519,11 +522,16 @@ def test_generate_preview_with_additional_backgrounds(
         },
     }
     addon = addon_factory()
-    destination = addon.current_version.file.file.path
-    zip_file = os.path.join(
-        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
-    )
-    root_storage.copy_stored_file(zip_file, destination)
+    file_ = addon.current_version.file
+    with open(
+        os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/static_theme_tiled.zip',
+        ),
+        'rb',
+    ) as src:
+        file_.file = DjangoFile(src)
+        file_.save()
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg

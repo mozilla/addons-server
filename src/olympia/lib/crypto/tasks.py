@@ -111,7 +111,7 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
         bumped_version_number = get_new_version_number(version.version)
         did_sign = False  # Did we sign at the file?
 
-        if not os.path.isfile(file_obj.file.path):
+        if not file_obj.file or not os.path.isfile(file_obj.file.path):
             log.info(f'File {file_obj.pk} does not exist, skip')
             continue
 

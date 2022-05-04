@@ -332,27 +332,26 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
     def test_mozilla_trademark_disallowed(self, resolve_message):
         resolve_message.return_value = 'Notify Mozilla'
 
-        addon = amo.tests.addon_factory()
+        addon = amo.tests.addon_factory(
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
+        )
         file_obj = addon.current_version.file
-        fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
-
-        with amo.tests.copy_file(fixture, file_obj.file.path):
-            with pytest.raises(forms.ValidationError) as exc:
-                utils.parse_xpi(file_obj.file.path)
-                assert dict(exc.value.messages)['en-us'].startswith(
-                    'Add-on names cannot contain the Mozilla or'
-                )
+        with pytest.raises(forms.ValidationError) as exc:
+            utils.parse_xpi(file_obj.file.path)
+            assert dict(exc.value.messages)['en-us'].startswith(
+                'Add-on names cannot contain the Mozilla or'
+            )
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
     def test_mozilla_trademark_for_prefix_allowed(self, resolve_message):
         resolve_message.return_value = 'Notify for Mozilla'
 
-        addon = amo.tests.addon_factory()
+        addon = amo.tests.addon_factory(
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
+        )
         file_obj = addon.current_version.file
-        fixture = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
 
-        with amo.tests.copy_file(fixture, file_obj.file.path):
-            utils.parse_xpi(file_obj.file.path)
+        utils.parse_xpi(file_obj.file.path)
 
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
@@ -835,16 +834,8 @@ def test_extract_extension_to_dest_invalid_archive():
     assert mock_rmtree.called
 
 
-@pytest.fixture
-def file_obj():
-    addon = amo.tests.addon_factory()
-    addon.update(guid='xxxxx')
-    version = addon.current_version
-    return version.file
-
-
 @pytestmark
-def test_bump_version_in_manifest_json(file_obj):
+def test_bump_version_in_manifest_json():
     AppVersion.objects.create(
         application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION
     )
@@ -857,54 +848,58 @@ def test_bump_version_in_manifest_json(file_obj):
     AppVersion.objects.create(
         application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
     )
-    with amo.tests.copy_file(
-        'src/olympia/files/fixtures/files/webextension.xpi', file_obj.file.path
-    ):
-        utils.update_version_number(file_obj, '0.0.1.1-signed')
-        parsed = utils.parse_xpi(file_obj.file.path)
-        assert parsed['version'] == '0.0.1.1-signed'
+    file_obj = amo.tests.addon_factory(
+        file_kw={'filename': 'webextension.xpi'}
+    ).current_version.file
+    utils.update_version_number(file_obj, '0.0.1.1-signed')
+    parsed = utils.parse_xpi(file_obj.file.path)
+    assert parsed['version'] == '0.0.1.1-signed'
 
 
-def test_extract_translations_simple(file_obj):
-    extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
-    with amo.tests.copy_file(extension, file_obj.file.path):
-        messages = utils.extract_translations(file_obj)
-        assert list(sorted(messages.keys())) == [
-            'de',
-            'en-US',
-            'ja',
-            'nb-NO',
-            'nl',
-            'ru',
-            'sv-SE',
-        ]
+@pytestmark
+def test_extract_translations_simple():
+    file_obj = amo.tests.addon_factory(
+        file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
+    ).current_version.file
+    messages = utils.extract_translations(file_obj)
+    assert list(sorted(messages.keys())) == [
+        'de',
+        'en-US',
+        'ja',
+        'nb-NO',
+        'nl',
+        'ru',
+        'sv-SE',
+    ]
 
 
+@pytestmark
 @mock.patch('olympia.files.utils.zipfile.ZipFile.read')
-def test_extract_translations_fail_silent_invalid_file(read_mock, file_obj):
-    extension = 'src/olympia/files/fixtures/files/notify-link-clicks-i18n.xpi'
+def test_extract_translations_fail_silent_invalid_file(read_mock):
+    file_obj = amo.tests.addon_factory(
+        file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
+    ).current_version.file
 
-    with amo.tests.copy_file(extension, file_obj.file.path):
-        read_mock.side_effect = KeyError
+    read_mock.side_effect = KeyError
 
-        # Does not raise an exception
+    # Does not raise an exception
+    utils.extract_translations(file_obj)
+
+    read_mock.side_effect = IOError
+
+    # Does not raise an exception too
+    utils.extract_translations(file_obj)
+
+    # We don't fail on invalid JSON too, this is addons-linter domain
+    read_mock.side_effect = ValueError
+
+    utils.extract_translations(file_obj)
+
+    # But everything else...
+    read_mock.side_effect = TypeError
+
+    with pytest.raises(TypeError):
         utils.extract_translations(file_obj)
-
-        read_mock.side_effect = IOError
-
-        # Does not raise an exception too
-        utils.extract_translations(file_obj)
-
-        # We don't fail on invalid JSON too, this is addons-linter domain
-        read_mock.side_effect = ValueError
-
-        utils.extract_translations(file_obj)
-
-        # But everything else...
-        read_mock.side_effect = TypeError
-
-        with pytest.raises(TypeError):
-            utils.extract_translations(file_obj)
 
 
 def test_get_all_files():

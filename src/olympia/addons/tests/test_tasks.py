@@ -5,13 +5,14 @@ import tempfile
 from unittest import mock
 
 from django.conf import settings
+from django.core.files import File as DjangoFile
 
 from PIL import Image
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import addon_factory, root_storage, TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
 from olympia.versions.models import VersionPreview
@@ -27,18 +28,20 @@ from ..tasks import (
 
 @pytest.mark.django_db
 def test_recreate_theme_previews():
+    addon_without_previews = addon_factory(type=amo.ADDON_STATICTHEME)
+    addon_with_previews = addon_factory(type=amo.ADDON_STATICTHEME)
     xpi_path = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/mozilla_static_theme.zip'
     )
+    with open(xpi_path, 'rb') as src:
+        file_ = addon_without_previews.current_version.file
+        file_.file = DjangoFile(src)
+        file_.save()
+    with open(xpi_path, 'rb') as src:
+        file_ = addon_with_previews.current_version.file
+        file_.file = DjangoFile(src)
+        file_.save()
 
-    addon_without_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    root_storage.copy_stored_file(
-        xpi_path, addon_without_previews.current_version.file.file.path
-    )
-    addon_with_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    root_storage.copy_stored_file(
-        xpi_path, addon_with_previews.current_version.file.file.path
-    )
     VersionPreview.objects.create(
         version=addon_with_previews.current_version,
         sizes={'image': [123, 456], 'thumbnail': [34, 45]},

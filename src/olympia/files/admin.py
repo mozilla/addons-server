@@ -31,7 +31,6 @@ class FileAdmin(admin.ModelAdmin):
                     'id',
                     'created',
                     'version',
-                    'filename',
                     'size',
                     'hash',
                     'original_hash',
@@ -68,7 +67,9 @@ class FileAdmin(admin.ModelAdmin):
 
     def file_download_url(self, instance):
         return format_html(
-            '<a href="{}">Download file</a>', instance.get_absolute_url(attachment=True)
+            '<a href="{}">{}</a>',
+            instance.get_absolute_url(attachment=True),
+            instance.pretty_filename or 'Download',
         )
 
     file_download_url.short_description = 'Download this file'

@@ -349,7 +349,7 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_trailing_filename(self):
-        url = self.file_url + self.file.filename
+        url = self.file_url + self.file.pretty_filename
         self.assert_served_internally(self.client.get(url))
 
     def test_null_datestatuschanged(self):
@@ -357,7 +357,8 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_unicode_url(self):
-        self.file.update(filename='图像浏览器-0.5-fx.xpi')
+        self.file.file.name = f'{self.file.addon.pk}/图像浏览器-0.5-fx.xpi'
+        self.file.save()
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_deleted(self):
@@ -621,7 +622,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         expected_redirect_url = absolutify(
             reverse(
                 'downloads.file',
-                kwargs={'file_id': self.file.pk, 'filename': self.file.filename},
+                kwargs={'file_id': self.file.pk, 'filename': self.file.pretty_filename},
             )
         )
         self.assert3xx(response, expected_redirect_url, 302)
@@ -646,7 +647,7 @@ class TestDownloadsLatest(TestDownloadsBase):
                 kwargs={
                     'file_id': self.file.pk,
                     'download_type': 'attachment',
-                    'filename': self.file.filename,
+                    'filename': self.file.pretty_filename,
                 },
             )
         )
@@ -671,7 +672,7 @@ class TestDownloadsLatest(TestDownloadsBase):
                 kwargs={
                     'file_id': self.file.pk,
                     'download_type': 'attachment',
-                    'filename': self.file.filename,
+                    'filename': self.file.pretty_filename,
                 },
             )
         )
@@ -695,7 +696,7 @@ class TestDownloadsLatest(TestDownloadsBase):
                 kwargs={
                     'file_id': self.file.pk,
                     'download_type': 'attachment',
-                    'filename': self.file.filename,
+                    'filename': self.file.pretty_filename,
                 },
             )
         )
@@ -712,7 +713,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         expected_redirect_url = absolutify(
             reverse(
                 'downloads.file',
-                kwargs={'file_id': self.file.pk, 'filename': self.file.filename},
+                kwargs={'file_id': self.file.pk, 'filename': self.file.pretty_filename},
             )
         )
         response = self.client.get(self.latest_url)
