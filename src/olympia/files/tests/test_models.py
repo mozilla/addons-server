@@ -4,7 +4,6 @@ import os
 import re
 import tempfile
 import zipfile
-import shutil
 
 from unittest import mock
 from unittest.mock import patch
@@ -37,7 +36,6 @@ from olympia.files.models import (
     FileUpload,
     FileValidation,
     WebextPermission,
-    nfd_str,
     track_file_status_change,
 )
 from olympia.files.utils import check_xpi_info, ManifestJSONExtractor, parse_addon
@@ -232,8 +230,9 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         )
 
     def test_generate_hash(self):
-        file_ = File(file=self.xpi_path('https-everywhere.xpi'))
-        file_.version = Version.objects.get(pk=81551)
+        file_ = addon_factory(
+            file_kw={'filename': 'https-everywhere.xpi'}
+        ).current_version.file
         assert file_.generate_hash().startswith('sha256:95bd414295acda29c4')
 
         file_ = File.objects.get(pk=67442)
@@ -1081,10 +1080,12 @@ class TestFileFromUpload(UploadMixin, TestCase):
                 'metadata': {},
             }
         )
-        fname = nfd_str(self.xpi_path(name))
-        if not self.root_storage.exists(fname):
-            with self.root_storage.open(fname, 'w') as fs:
-                shutil.copyfileobj(open(fname), fs)
+        fname = self.file_fixture_path(name)
+        # FIXME: this didn't make sense: we're checking if fname exists, if
+        # it doesn't we... copy from opening fname ?
+        # if not self.root_storage.exists(fname):
+        #     with self.root_storage.open(fname, 'w') as fs:
+        #         shutil.copyfileobj(open(fname), fs)
         data = {
             'path': force_str(fname),
             'name': force_str(name),
@@ -1134,10 +1135,12 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_dont_send_both_bytes_and_str_to_copy_stored_file(
         self, copy_stored_file_mock
     ):
+        # FIXME: self.upload() is going to create uploads with a path pointing
+        # to a fixture not inside storage/. Is that ok ?
         upload = self.upload('wébextension.xpi')
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'jets-0.1.zip'
+        assert file_.file.name == f'{self.version.addon.pk}/jets-0.1.zip'
         expected_path_orig = force_str(upload.path)
         expected_path_dest = force_str(file_.file.path)
         assert copy_stored_file_mock.call_count == 1
@@ -1291,7 +1294,7 @@ class TestZip(TestCase, amo.tests.AMOPaths):
         """This zip contains just one file chrome/ that we expect
         to be unzipped as a directory, not a file.
         """
-        xpi = self.xpi_path('directory-test')
+        xpi = self.file_fixture_path('directory-test.xpi')
 
         # This was to work around: http://bugs.python.org/issue4710
         # which was fixed in Python 2.6.2.

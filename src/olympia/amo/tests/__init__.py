@@ -634,20 +634,16 @@ class AMOPaths:
     # field on Files.
 
     def file_fixture_path(self, name):
-        path = 'src/olympia/files/fixtures/files/%s' % name
-        return os.path.join(settings.ROOT, path)
-
-    def xpi_path(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi']:
-            return self.file_fixture_path(name + '.xpi')
-        return self.file_fixture_path(name)
+        path = 'src/olympia/files/fixtures/files'
+        return os.path.join(settings.ROOT, path, name)
 
     def xpi_copy_over(self, file, name):
         """Copies over a file into place for tests."""
+        # FIXME: maybe we can do better. also, it's only used in scanners
         path = file.file.path
         if not os.path.exists(os.path.dirname(path)):
             os.makedirs(os.path.dirname(path))
-        shutil.copyfile(self.xpi_path(name), path)
+        shutil.copyfile(self.file_fixture_path(name), path)
 
 
 def _get_created(created):
@@ -825,7 +821,7 @@ def license_factory(**kw):
 
 
 def file_factory(**kw):
-    filename = kw.pop('filename')
+    filename = kw.pop('filename', None)
     if filename:
         fixture_path = os.path.join(
             settings.ROOT, 'src/olympia/files/fixtures/files', filename

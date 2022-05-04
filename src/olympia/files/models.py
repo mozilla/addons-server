@@ -162,7 +162,7 @@ class File(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         file_ = cls(version=version)
-        upload_path = force_str(nfd_str(upload.path))
+        upload_path = force_str(upload.path)
         # Size in bytes.
         file_.size = storage.size(upload_path)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
@@ -181,6 +181,9 @@ class File(OnChangeMixin, ModelBase):
         # FIXME if FileUpload also did things correctly I wouldn't have to do this...
         with open(upload_path, 'rb') as src:
             file_.file = DjangoFile(src)
+            import ipdb
+
+            ipdb.set_trace()
             file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))
@@ -621,10 +624,3 @@ class FileSitePermission(ModelBase):
 
     class Meta:
         db_table = 'site_permissions'
-
-
-def nfd_str(u):
-    """Uses NFD to normalize unicode strings."""
-    if isinstance(u, str):
-        return unicodedata.normalize('NFD', u).encode('utf-8')
-    return u
