@@ -654,7 +654,17 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         response = self.post()
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        assert addon.current_version.file.filename == 'weta_fade-1.0-an+fx.zip'
+        # So maybe django has simplified the filename because it already existed...
+        # which shouldn't happen - it's a single test - but maybe ?
+        # Nope...
+        # And even manually calling files_upload_to_callback(addon.current_version.file, None)
+        # works, I get the +. Same inside that callback before saving.
+        # So what's happening ? I need to look deeper.
+
+        assert (
+            addon.current_version.file.file.name
+            == f'{addon.pk}/weta_fade-1.0-an+fx.zip'
+        )
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 2
@@ -671,7 +681,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
-        assert latest_version.file.filename == 'weta_fade-1.0-an+fx.zip'
+        assert latest_version.file.file.name == f'{addon.pk}/weta_fade-1.0-an+fx.zip'
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -697,7 +707,10 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         addon = Addon.objects.get()
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        assert addon.current_version.file.filename == 'weta_fade-1.0-an+fx.zip'
+        assert (
+            addon.current_version.file.file.name
+            == f'{addon.pk}/weta_fade-1.0-an+fx.zip'
+        )
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 2
@@ -726,7 +739,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
-        assert latest_version.file.filename == 'weta_fade-1.0-an+fx.zip'
+        assert latest_version.file.filename == f'{addon.pk}/weta_fade-1.0-an+fx.zip'
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0

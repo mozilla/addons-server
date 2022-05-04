@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
+from django.core.files import File as DjangoFile
 from django.test.utils import override_settings
 
 import pytest
@@ -17,7 +18,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
     addon_factory,
-    root_storage,
     TestCase,
     user_factory,
     version_factory,
@@ -268,7 +268,11 @@ def test_extract_theme_properties(zip_file):
 
     # Add the zip in the right place
     zip_file = os.path.join(settings.ROOT, zip_file)
-    root_storage.copy_stored_file(zip_file, addon.current_version.file.file.path)
+    with open(zip_file, 'rb') as src:
+        file_ = addon.current_version.file
+        file_.file = DjangoFile(src)
+        file_.save()
+
     result = utils.extract_theme_properties(addon, addon.current_version.channel)
     assert result == {
         'colors': {'frame': '#adb09f', 'tab_background_text': '#000'},

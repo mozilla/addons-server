@@ -8,6 +8,7 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.storage import default_storage as storage
 
 from unittest import mock
 import pytest
@@ -465,33 +466,39 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
 class TestValidateFilePath(ValidatorTestCase):
     def test_success(self):
+        dest_path = storage.path('files/temp/webextension.xpi')
+        self.root_storage.copy_stored_file(
+            get_addon_file('valid_webextension.xpi'),
+            dest_path,
+        )
         result = json.loads(
-            tasks.validate_file_path(
-                get_addon_file('valid_webextension.xpi'),
-                channel=amo.RELEASE_CHANNEL_LISTED,
-            )
+            tasks.validate_file_path(dest_path, channel=amo.RELEASE_CHANNEL_LISTED)
         )
         assert result['success']
         assert not result['errors']
         assert not result['warnings']
 
     def test_fail_warning(self):
+        dest_path = storage.path('files/temp/webextension.xpi')
+        self.root_storage.copy_stored_file(
+            get_addon_file('valid_webextension_warning.xpi'),
+            dest_path,
+        )
         result = json.loads(
-            tasks.validate_file_path(
-                get_addon_file('valid_webextension_warning.xpi'),
-                channel=amo.RELEASE_CHANNEL_LISTED,
-            )
+            tasks.validate_file_path(dest_path, channel=amo.RELEASE_CHANNEL_LISTED)
         )
         assert result['success']
         assert not result['errors']
         assert result['warnings']
 
     def test_fail_error(self):
+        dest_path = storage.path('files/temp/webextension.xpi')
+        self.root_storage.copy_stored_file(
+            get_addon_file('invalid_webextension_invalid_id.xpi'),
+            dest_path,
+        )
         result = json.loads(
-            tasks.validate_file_path(
-                get_addon_file('invalid_webextension_invalid_id.xpi'),
-                channel=amo.RELEASE_CHANNEL_LISTED,
-            )
+            tasks.validate_file_path(dest_path, channel=amo.RELEASE_CHANNEL_LISTED)
         )
         assert not result['success']
         assert result['errors']

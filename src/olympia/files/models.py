@@ -179,6 +179,9 @@ class File(OnChangeMixin, ModelBase):
         # FIXME if FileUpload also did things correctly I wouldn't have to do this...
         with open(upload_path, 'rb') as src:
             file_.file = DjangoFile(src)
+            import ipdb
+
+            ipdb.set_trace()
             file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))

@@ -6,6 +6,7 @@ from urllib.parse import quote, urlencode
 
 from django.conf import settings
 from django.core import mail
+from django.core.files import File as DjangoFile
 from django.core.files.storage import default_storage as storage
 from django.test import RequestFactory
 from django.urls import reverse
@@ -1978,11 +1979,13 @@ class TestThemeBackgroundImage(TestCase):
         assert data == {}
 
     def test_header_image(self):
-        destination = self.addon.current_version.file.file.path
         zip_file = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.root_storage.copy_stored_file(zip_file, destination)
+        with open(zip_file, 'rb') as src:
+            file_ = self.addon.current_version.file
+            file_.file = DjangoFile(src)
+            file_.save()
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
