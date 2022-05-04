@@ -44,7 +44,7 @@ def files_upload_to_callback(instance, filename):
     upload_to callback.
 
     The returned paths are in the format of:
-    {addon_id}/{addon_name}-{version}-{apps}.{extension}
+    {addon_id}/{addon_name}-{version}.{extension}
 
     By convention, newly signed files after 2022-03-31 get a .xpi extension,
     unsigned get .zip. This helps ensure CDN cache is busted when we sign
@@ -61,11 +61,6 @@ def files_upload_to_callback(instance, filename):
     name = slugify(addon.name).replace('-', '_') or 'addon'
     parts.append(name)
     parts.append(instance.version.version)
-
-    if addon.type not in amo.NO_COMPAT and instance.version.compatible_apps:
-        apps = '+'.join(sorted(a.shortername for a in instance.version.compatible_apps))
-        parts.append(apps)
-
     file_extension = '.xpi' if instance.is_signed else '.zip'
     return os.path.join(str(instance.addon.pk), '-'.join(parts) + file_extension)
 
@@ -179,9 +174,6 @@ class File(OnChangeMixin, ModelBase):
         # FIXME if FileUpload also did things correctly I wouldn't have to do this...
         with open(upload_path, 'rb') as src:
             file_.file = DjangoFile(src)
-            import ipdb
-
-            ipdb.set_trace()
             file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))
