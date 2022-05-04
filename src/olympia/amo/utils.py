@@ -863,9 +863,6 @@ class SafeStorage(FileSystemStorage):
     def base_location(self):
         from olympia.amo.templatetags.jinja_helpers import user_media_path
 
-        import ipdb
-
-        ipdb.set_trace()
         if hasattr(self, '_user_media'):
             return user_media_path(self._user_media or '')
         return self._value_or_setting(self._location, settings.STORAGE_ROOT)
@@ -882,12 +879,6 @@ class SafeStorage(FileSystemStorage):
                 else:
                     raise
         return super()._open(name, mode=mode)
-
-    def _save(self, *args, **kwargs):
-        import ipdb
-
-        ipdb.set_trace()
-        return super()._save(*args, **kwargs)
 
     def path(self, name):
         return os.path.normpath(super().path(force_str(name)))

@@ -1,8 +1,6 @@
 import hashlib
 import json
 import os
-import re
-import unicodedata
 import uuid
 
 from urllib.parse import urljoin
@@ -181,9 +179,6 @@ class File(OnChangeMixin, ModelBase):
         # FIXME if FileUpload also did things correctly I wouldn't have to do this...
         with open(upload_path, 'rb') as src:
             file_.file = DjangoFile(src)
-            import ipdb
-
-            ipdb.set_trace()
             file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))
@@ -415,6 +410,12 @@ class FileUpload(ModelBase):
                 file_destination.write(chunk)
         return hash_obj
 
+    @classmethod
+    def generate_path(cls, ext='.zip'):
+        return os.path.join(
+            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
+        )
+
     def add_file(self, chunks, filename, size):
         if not self.uuid:
             self.uuid = self._meta.get_field('uuid')._create_uuid()
@@ -432,9 +433,7 @@ class FileUpload(ModelBase):
         # linter.
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
             ext = '.zip'
-        self.path = os.path.join(
-            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
-        )
+        self.path = self.generate_path(ext)
 
         hash_obj = None
         if was_crx:

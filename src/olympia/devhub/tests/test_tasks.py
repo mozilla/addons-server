@@ -464,12 +464,6 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
 
 class TestValidateFilePath(ValidatorTestCase):
-    def setUp(self):
-        super().setUp()
-        patcher = mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
-        self.addCleanup(patcher.stop)
-        patcher.start()
-
     def test_success(self):
         result = json.loads(
             tasks.validate_file_path(
