@@ -87,7 +87,7 @@ class TestReviewHelperBase(TestCase):
         assert scores[0].note_key == reviewed_type
 
     def remove_paths(self):
-        if not storage.exists(self.file.file.path):
+        if self.file.file and not storage.exists(self.file.file.path):
             storage.delete(self.file.file.path)
 
     def create_paths(self):
@@ -150,7 +150,7 @@ class TestReviewHelperBase(TestCase):
 # it works correctly, so we set ENABLE_ADDON_SIGNING to True and mock the
 # actual signing call.
 @override_settings(ENABLE_ADDON_SIGNING=True)
-@mock.patch('olympia.lib.crypto.signing.call_signing', lambda f: None)
+@patch('olympia.lib.crypto.signing.call_signing', lambda f: None)
 class TestReviewHelper(TestReviewHelperBase):
     __test__ = True
 
@@ -896,7 +896,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.REVIEWER_REPLY_VERSION.id) == 1
 
-    def test_email_no_locale(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_email_no_locale(self, sign_file_mock):
         self.addon.name = {'es': '¿Dónde está la biblioteca?'}
         self.setup_data(amo.STATUS_NOMINATED)
         with translation.override('es'):
@@ -913,7 +914,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert '/addon/a3615' in message.body
         assert 'Your add-on, Delicious Bookmarks ' in message.body
 
-    def test_email_no_name(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_email_no_name(self, sign_file_mock):
         self.addon.name.delete()
         self.addon.refresh_from_db()
         self.setup_data(amo.STATUS_NOMINATED)
@@ -925,13 +927,15 @@ class TestReviewHelper(TestReviewHelperBase):
         assert '/addon/a3615' in message.body
         assert 'Your add-on, None ' in message.body
 
-    def test_nomination_to_public_no_files(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nomination_to_public_no_files(self, sign_file_mock):
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.approve_latest_version()
 
         assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
 
-    def test_nomination_to_public_and_current_version(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nomination_to_public_and_current_version(self, sign_file_mock):
         self.setup_data(amo.STATUS_NOMINATED)
         self.addon = Addon.objects.get(pk=3615)
         self.addon.update(_current_version=None)
@@ -941,7 +945,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon = Addon.objects.get(pk=3615)
         assert self.addon.current_version
 
-    def test_nomination_to_public_new_addon(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nomination_to_public_new_addon(self, sign_file_mock):
         """Make sure new add-ons can be made public (bug 637959)"""
         status = amo.STATUS_NOMINATED
         self.setup_data(status)
@@ -978,7 +983,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
-    def test_nomination_to_public_need_human_review(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nomination_to_public_need_human_review(self, sign_file_mock):
         self.setup_data(amo.STATUS_NOMINATED)
         self.version.update(needs_human_review=True)
         self.helper.handler.approve_latest_version()
@@ -989,7 +995,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert not self.version.needs_human_review
 
-    def test_nomination_to_public_need_human_review_not_human(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nomination_to_public_need_human_review_not_human(self, sign_file_mock):
         self.setup_data(amo.STATUS_NOMINATED, human_review=False)
         self.version.update(needs_human_review=True)
         self.helper.handler.approve_latest_version()
@@ -1000,7 +1007,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.version.needs_human_review
 
-    def test_unlisted_approve_latest_version_need_human_review(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_unlisted_approve_latest_version_need_human_review(self, sign_file_mock):
         self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.version.update(needs_human_review=True)
         flags = version_review_flags_factory(
@@ -1022,7 +1030,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not flags.needs_human_review_by_mad
         assert not addon_flags.auto_approval_disabled_until_next_approval_unlisted
 
-    def test_unlisted_approve_latest_version_need_human_review_not_human(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_unlisted_approve_latest_version_need_human_review_not_human(
+        self, sign_file_mock
+    ):
         self.setup_data(
             amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED, human_review=False
         )
@@ -1047,7 +1058,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # Not changed this this is not a human approval.
         assert addon_flags.auto_approval_disabled_until_next_approval_unlisted
 
-    def test_nomination_to_public_with_version_reviewer_flags(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nomination_to_public_with_version_reviewer_flags(self, sign_file_mock):
         flags = version_review_flags_factory(
             version=self.addon.current_version,
             needs_human_review_by_mad=True,
@@ -1065,8 +1077,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not flags.pending_rejection_by
 
     @patch('olympia.reviewers.utils.sign_file')
-    def test_nomination_to_public(self, sign_mock):
-        sign_mock.reset()
+    def test_nomination_to_public(self, sign_file_mock):
+        sign_file_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
         AutoApprovalSummary.objects.update_or_create(
             version=self.version, defaults={'verdict': amo.AUTO_APPROVED, 'weight': 101}
@@ -1086,7 +1098,7 @@ class TestReviewHelper(TestReviewHelperBase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file)
+        sign_file_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -1094,8 +1106,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     @patch('olympia.reviewers.utils.sign_file')
-    def test_old_nomination_to_public_bonus_score(self, sign_mock):
-        sign_mock.reset()
+    def test_old_nomination_to_public_bonus_score(self, sign_file_mock):
+        sign_file_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED, type=amo.ADDON_PLUGIN)
         self.version.update(nomination=self.days_ago(9))
 
@@ -1113,7 +1125,7 @@ class TestReviewHelper(TestReviewHelperBase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        sign_mock.assert_called_with(self.file)
+        sign_file_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -1123,8 +1135,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self._check_score(amo.REVIEWED_ADDON_FULL, bonus=4)
 
     @patch('olympia.reviewers.utils.sign_file')
-    def test_nomination_to_public_not_human(self, sign_mock):
-        sign_mock.reset()
+    def test_nomination_to_public_not_human(self, sign_file_mock):
+        sign_file_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED, human_review=False)
 
         self.helper.handler.approve_latest_version()
@@ -1145,7 +1157,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # human review field should be empty.
         assert approval_counter.last_human_review is None
 
-        sign_mock.assert_called_with(self.file)
+        sign_file_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -1154,14 +1166,17 @@ class TestReviewHelper(TestReviewHelperBase):
         assert ReviewerScore.objects.count() == 0
 
     @patch('olympia.reviewers.utils.sign_file')
-    def test_public_addon_with_version_awaiting_review_to_public(self, sign_mock):
-        sign_mock.reset()
+    def test_public_addon_with_version_awaiting_review_to_public(self, sign_file_mock):
+        sign_file_mock.reset()
         self.addon.current_version.update(created=self.days_ago(1))
         self.version = version_factory(
             addon=self.addon,
             channel=amo.RELEASE_CHANNEL_LISTED,
             version='3.0.42',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'filename': 'webextension.xpi',
+            },
         )
         self.preamble = 'Mozilla Add-ons: Delicious Bookmarks 3.0.42'
         self.file = self.version.file
@@ -1199,7 +1214,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approval_counter.counter == 2
         self.assertCloseToNow(approval_counter.last_human_review)
 
-        sign_mock.assert_called_with(self.file)
+        sign_file_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
@@ -1258,14 +1273,17 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.addon.reviewerflags.auto_approval_disabled_until_next_approval
 
     @patch('olympia.reviewers.utils.sign_file')
-    def test_public_addon_with_version_awaiting_review_to_sandbox(self, sign_mock):
-        sign_mock.reset()
+    def test_public_addon_with_version_awaiting_review_to_sandbox(self, sign_file_mock):
+        sign_file_mock.reset()
         self.addon.current_version.update(created=self.days_ago(1))
         self.version = version_factory(
             addon=self.addon,
             channel=amo.RELEASE_CHANNEL_LISTED,
             version='3.0.42',
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'filename': 'webextension.xpi',
+            },
         )
         self.preamble = 'Mozilla Add-ons: Delicious Bookmarks 3.0.42'
         self.file = self.version.file
@@ -1273,7 +1291,6 @@ class TestReviewHelper(TestReviewHelperBase):
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED, weight=101
         )
-        self.create_paths()
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
         # Safeguards.
@@ -1298,7 +1315,7 @@ class TestReviewHelper(TestReviewHelperBase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        assert not sign_mock.called
+        assert not sign_file_mock.called
         assert storage.exists(self.file.file.path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
@@ -1605,8 +1622,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert activity.arguments == [self.addon, second_unlisted]
 
     @patch('olympia.reviewers.utils.sign_file')
-    def test_null_to_public_unlisted(self, sign_mock):
-        sign_mock.reset()
+    def test_null_to_public_unlisted(self, sign_file_mock):
+        sign_file_mock.reset()
         self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         self.helper.handler.approve_latest_version()
@@ -1627,15 +1644,15 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert 'You received this email because' not in message.body
 
-        sign_mock.assert_called_with(self.file)
+        sign_file_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
     @patch('olympia.reviewers.utils.sign_file')
-    def test_nomination_to_public_failed_signing(self, sign_mock):
-        sign_mock.side_effect = Exception
-        sign_mock.reset()
+    def test_nomination_to_public_failed_signing(self, sign_file_mock):
+        sign_file_mock.side_effect = Exception
+        sign_file_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
 
         with self.assertRaises(Exception):
@@ -1652,7 +1669,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 0
 
     @patch('olympia.reviewers.utils.sign_file')
-    def test_nomination_to_sandbox(self, sign_mock):
+    def test_nomination_to_sandbox(self, sign_file_mock):
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.reject_latest_version()
 
@@ -1667,7 +1684,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # AddonApprovalsCounter was not touched since we didn't approve.
         assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
 
-        assert not sign_mock.called
+        assert not sign_file_mock.called
         assert storage.exists(self.file.file.path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
@@ -1777,19 +1794,28 @@ class TestReviewHelper(TestReviewHelperBase):
 
             assert self.addon.needs_admin_code_review
 
-    def test_nominated_review_time_set_version_approve_latest_version(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nominated_review_time_set_version_approve_latest_version(
+        self, sign_file_mock
+    ):
         self.version.update(reviewed=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.approve_latest_version()
         assert self.version.reload().reviewed
 
-    def test_nominated_review_time_set_version_reject_latest_version(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nominated_review_time_set_version_reject_latest_version(
+        self, sign_file_mock
+    ):
         self.version.update(reviewed=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.reject_latest_version()
         assert self.version.reload().reviewed
 
-    def test_nominated_review_time_set_file_approve_latest_version(self):
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_nominated_review_time_set_file_approve_latest_version(
+        self, sign_file_mock
+    ):
         self.file.update(reviewed=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.approve_latest_version()
