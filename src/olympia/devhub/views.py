@@ -786,7 +786,7 @@ def file_validation(request, addon_id, addon, file_id):
         'validate_url': validate_url,
         'file_url': file_url,
         'file': file_,
-        'filename': file_.file.name,
+        'filename': file_.pretty_filename,
         'timestamp': file_.created,
         'addon': addon,
     }

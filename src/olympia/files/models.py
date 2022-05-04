@@ -216,7 +216,7 @@ class File(OnChangeMixin, ModelBase):
     @property
     def pretty_filename(self):
         """Displayable filename."""
-        return os.path.basename(self.file.name)
+        return os.path.basename(self.file.name) if self.file else ''
 
     def latest_xpi_url(self, attachment=False):
         addon = self.version.addon
