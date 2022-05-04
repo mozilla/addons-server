@@ -111,7 +111,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         url = file_.get_absolute_url()
         # Important: Fenix relies on this URL pattern to decide when to trigger
         # the add-on install flow. Changing this URL would likely break Fenix.
-        expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072-fx.xpi'
+        expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072.xpi'
         assert url.endswith(expected), url
 
     def test_get_url_path(self):
@@ -122,7 +122,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         expected = (
             '/firefox/downloads/file/67442'
-            '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
+            '/type:attachment/delicious_bookmarks-2.1.072.xpi'
         )
         assert file_.get_url_path(attachment=True) == expected
 
@@ -130,7 +130,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         expected = (
             'http://testserver/firefox/downloads/file/67442'
-            '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
+            '/type:attachment/delicious_bookmarks-2.1.072.xpi'
         )
         assert file_.get_absolute_url(attachment=True) == expected
 
@@ -192,31 +192,18 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '3615/delicious_bookmarks-2.1.072-fx.zip'
+            == '3615/delicious_bookmarks-2.1.072.zip'
         )
         file_.is_signed = True
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '3615/delicious_bookmarks-2.1.072-fx.xpi'
+            == '3615/delicious_bookmarks-2.1.072.xpi'
         )
 
     def test_pretty_filename(self):
         file_ = File.objects.get(id=67442)
-        assert file_.file.name == '3615/delicious_bookmarks-2.1.072-fx.xpi'
-        assert file_.pretty_filename == 'delicious_bookmarks-2.1.072-fx.xpi'
-
-    def test_generate_filename_many_apps(self):
-        file_ = File.objects.get(id=67442)
-        file_.version.compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
-        file_.is_signed = True
-        # After adding sorting for compatible_apps, above becomes
-        # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
-        # instead of 'fx+an'
-        # See: https://github.com/mozilla/addons-server/issues/3358
-        assert (
-            file_._meta.get_field('file').upload_to(file_, None)
-            == '3615/delicious_bookmarks-2.1.072-an+fx.xpi'
-        )
+        assert file_.file.name == '3615/delicious_bookmarks-2.1.072.xpi'
+        assert file_.pretty_filename == 'delicious_bookmarks-2.1.072.xpi'
 
     def test_generate_filename_ja(self):
         file_ = File()
@@ -226,7 +213,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_.is_signed = True
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '4242/addon-0.1.7-fx.xpi'
+            == '4242/addon-0.1.7.xpi'
         )
 
     def test_generate_hash(self):
@@ -712,7 +699,7 @@ class TestFileUpload(UploadMixin, TestCase):
 
         upload = FileUpload.from_post(
             b'',
-            filename='мозила_србија-0.11-fx.xpi',
+            filename='мозила_србија-0.11.xpi',
             size=0,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,

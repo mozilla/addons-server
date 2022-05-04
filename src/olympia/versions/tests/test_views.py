@@ -357,7 +357,7 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_internally(self.client.get(self.file_url))
 
     def test_unicode_url(self):
-        self.file.file.name = f'{self.file.addon.pk}/图像浏览器-0.5-fx.xpi'
+        self.file.file.name = f'{self.file.addon.pk}/图像浏览器-0.5.xpi'
         self.file.save()
         self.assert_served_internally(self.client.get(self.file_url))
 

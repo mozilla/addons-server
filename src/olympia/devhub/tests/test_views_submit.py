@@ -654,13 +654,6 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         response = self.post()
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        # So maybe django has simplified the filename because it already existed...
-        # which shouldn't happen - it's a single test - but maybe ?
-        # Nope...
-        # And even manually calling files_upload_to_callback(addon.current_version.file, None)
-        # works, I get the +. Same inside that callback before saving.
-        # So what's happening ? I need to look deeper.
-
         assert addon.current_version.file.file.name == f'{addon.pk}/weta_fade-1.0.zip'
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
