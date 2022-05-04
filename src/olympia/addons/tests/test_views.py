@@ -2413,6 +2413,7 @@ class VersionViewSetCreateUpdateMixin:
         assert log.details is None
         assert log.arguments == [self.addon, version]
 
+    @override_settings(API_THROTTLING=False)
     def test_custom_license_needs_name_and_text(self):
         response = self.request(custom_license={})
         assert response.status_code == 400, response.content
@@ -2433,6 +2434,18 @@ class VersionViewSetCreateUpdateMixin:
         assert response.status_code == 400, response.content
         assert response.data == {
             'custom_license': {'name': ['This field is required.']}
+        }
+
+        # Check null values are also ignored
+        response = self.request(
+            custom_license={'name': {'en-US': None}, 'text': {'en-US': None}}
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'custom_license': {
+                'name': ['A value in the default locale of "en-US" is required.'],
+                'text': ['A value in the default locale of "en-US" is required.'],
+            }
         }
 
     def test_compatibility_list(self):
