@@ -465,40 +465,42 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
 
 class TestValidateFilePath(ValidatorTestCase):
-    def test_success(self):
+    def copy_addon_file(self, name):
+        """Copy addon file from our test files to storage location and return
+        new path under that location so that it can be opened by
+        storage.open()."""
         dest_path = storage.path('files/temp/webextension.xpi')
-        self.root_storage.copy_stored_file(
-            get_addon_file('valid_webextension.xpi'),
-            dest_path,
-        )
+        self.root_storage.copy_stored_file(get_addon_file(name), dest_path)
+        return dest_path
+
+    def test_success(self):
         result = json.loads(
-            tasks.validate_file_path(dest_path, channel=amo.RELEASE_CHANNEL_LISTED)
+            tasks.validate_file_path(
+                self.copy_addon_file('valid_webextension.xpi'),
+                channel=amo.RELEASE_CHANNEL_LISTED,
+            )
         )
         assert result['success']
         assert not result['errors']
         assert not result['warnings']
 
     def test_fail_warning(self):
-        dest_path = storage.path('files/temp/webextension.xpi')
-        self.root_storage.copy_stored_file(
-            get_addon_file('valid_webextension_warning.xpi'),
-            dest_path,
-        )
         result = json.loads(
-            tasks.validate_file_path(dest_path, channel=amo.RELEASE_CHANNEL_LISTED)
+            tasks.validate_file_path(
+                self.copy_addon_file('valid_webextension_warning.xpi'),
+                channel=amo.RELEASE_CHANNEL_LISTED,
+            )
         )
         assert result['success']
         assert not result['errors']
         assert result['warnings']
 
     def test_fail_error(self):
-        dest_path = storage.path('files/temp/webextension.xpi')
-        self.root_storage.copy_stored_file(
-            get_addon_file('invalid_webextension_invalid_id.xpi'),
-            dest_path,
-        )
         result = json.loads(
-            tasks.validate_file_path(dest_path, channel=amo.RELEASE_CHANNEL_LISTED)
+            tasks.validate_file_path(
+                self.copy_addon_file('invalid_webextension_invalid_id.xpi'),
+                channel=amo.RELEASE_CHANNEL_LISTED,
+            )
         )
         assert not result['success']
         assert result['errors']
@@ -512,7 +514,8 @@ class TestValidateFilePath(ValidatorTestCase):
         # When parse_addon() raises a NoManifestFound error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
-            get_addon_file('valid_webextension.xpi'), channel=amo.RELEASE_CHANNEL_LISTED
+            self.copy_addon_file('valid_webextension.xpi'),
+            channel=amo.RELEASE_CHANNEL_LISTED,
         )
         assert run_addons_linter_mock.call_count == 1
 
@@ -526,7 +529,7 @@ class TestValidateFilePath(ValidatorTestCase):
         # When parse_addon() raises a InvalidManifest error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
-            get_addon_file('invalid_manifest_webextension.xpi'),
+            self.copy_addon_file('invalid_manifest_webextension.xpi'),
             channel=amo.RELEASE_CHANNEL_LISTED,
         )
         assert run_addons_linter_mock.call_count == 1
@@ -540,7 +543,7 @@ class TestValidateFilePath(ValidatorTestCase):
         parse_addon_mock.return_value = mock.Mock()
         run_addons_linter_mock.return_value = {'fake_results': True}
         tasks.validate_file_path(
-            get_addon_file('webextension.xpi'),
+            self.copy_addon_file('valid_webextension.xpi'),
             channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
         assert parse_addon_mock.call_count == 1
