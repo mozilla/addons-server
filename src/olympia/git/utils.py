@@ -418,7 +418,7 @@ class AddonGitRepository:
             if file_obj:
                 # Now extract the extension to the workdir
                 extract_extension_to_dest(
-                    source=file_obj.file.path,
+                    source=file_obj.file_path,
                     dest=worktree.extraction_target_path,
                     force_fsync=True,
                 )
