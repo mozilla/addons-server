@@ -1,7 +1,6 @@
 import hashlib
 import json
 import os
-import re
 import uuid
 
 from urllib.parse import urljoin
