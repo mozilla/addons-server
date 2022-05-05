@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-27 10:16+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"PO-Revision-Date: 2022-05-04 18:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -216,14 +216,14 @@ msgstr "Le version {version_string} jam existe."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Le versiones publicate non pote esser inviate durante que le additivo es disactivate."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Metadatos de additivo es necesse esser configurate pro crear un version publicate: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "Le additivos debe haber al minus un proprietario."
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Iste alias breve non pote esser usate. Elige un altero."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Iste campo es necesse pro additivos con versiones publicate."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o Firefox."
@@ -242,6 +242,12 @@ msgstr "Errate typo de additivo pro iste licentia."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Le licentias personalisate non es supportate pro themas."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Iste campo es necesse pro additivos con versiones publicate."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Metadatos de additivo es necesse esser configurate pro crear un version publicate: {missing_addon_metadata}."
 
 msgid "My Add-ons"
 msgstr "Mi additivos"
@@ -452,11 +458,17 @@ msgstr "Adresse de e-mail non trovate."
 msgid "Unavailable for legal reasons."
 msgstr "Indisponibile per rationes legal."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Le codice de lingua {lang_code} non es valide."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "Le codice de lingua \"{lang_code}\" non es valide."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Tu debe fornir un objecto de {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

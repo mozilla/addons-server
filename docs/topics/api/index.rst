@@ -36,6 +36,7 @@ using the API.
    accounts
    activity
    addons
+   authors
    applications
    blocklist
    categories

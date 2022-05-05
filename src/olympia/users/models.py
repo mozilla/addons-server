@@ -811,8 +811,7 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
     )
 
     error_message = _(
-        'The email address used for your account is not '
-        'allowed for add-on submission.'
+        'The email address used for your account is not allowed for add-on submission.'
     )
 
     class Meta:

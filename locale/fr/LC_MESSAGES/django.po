@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-20 08:04+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"PO-Revision-Date: 2022-04-29 14:26+0000\n"
+"Last-Translator: Yaya.Cout <yaya.cout@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -159,13 +159,13 @@ msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
+msgstr "Nom de catégorie invalide."
 
 msgid "Invalid app name."
-msgstr ""
+msgstr "Nom d’application invalide."
 
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "Le domaine de l’URL doit appartenir à [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Le lien des sponsors GitHub doit contenir /sponsors/."
@@ -174,7 +174,7 @@ msgid "URLs must start with https://."
 msgstr "Les URL doivent commencer par https://."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Ce type de fichier n’est pas pris en charge, veuillez envoyer une archive ({extensions})."
 
 msgid "Invalid or broken archive."
 msgstr "Archive invalide ou corrompue."
@@ -183,7 +183,7 @@ msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Valeur invalide"
 
 msgid "Invalid app specified"
 msgstr ""
@@ -223,14 +223,14 @@ msgstr "La version {version_string} existe déjà."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Les versions répertoriées ne peuvent pas être soumises lorsque le module complémentaire est désactivé."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Ce raccourci ne peut pas être utilisé. Veuillez en choisir un autre."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Les noms des modules ne peuvent contenir les marques déposées Mozilla ou Firefox."
@@ -249,6 +249,12 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Les licences personnalisées ne sont pas prises en charge pour les thèmes."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
 
 msgid "My Add-ons"
 msgstr "Mes modules"
@@ -467,11 +473,17 @@ msgstr "Adresse électronique introuvable."
 msgid "Unavailable for legal reasons."
 msgstr "Indisponible pour raisons juridiques."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Le code de langue {lang_code} est invalide."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Vous devez spécifier un objet {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

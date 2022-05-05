@@ -98,3 +98,61 @@ class ValidateVersionLicense:
                     )
                 },
             )
+
+
+class AddonMetadataValidator:
+    requires_context = True
+    fields = {'name': 'name', 'summary': 'summary', 'all_categories': 'categories'}
+
+    def has_metadata(self, data, addon, field):
+        data_value = data.get(field)
+        values = data_value.values() if isinstance(data_value, dict) else data_value
+        return any(val for val in values if val) if values else bool(addon.get(field))
+
+    def get_addon_data(self, serializer):
+        if hasattr(serializer.fields.get('version'), 'parsed_data'):
+            # if we have a version field with parsed_data it's a new addon, so get it.
+            parsed = serializer.fields['version'].parsed_data
+            return {field: parsed.get(field) for field in self.fields}
+        else:
+            # else it's a new version, so extract the existing addon data
+            addon = getattr(serializer, 'addon', None)
+            return {field: getattr(addon, field, None) for field in self.fields}
+
+    def get_channel(self, data):
+        upload = data.get('upload', data.get('version', {}).get('upload'))
+        return upload.channel if upload else None
+
+    def __call__(self, data, serializer):
+        if (
+            not serializer.instance
+            and self.get_channel(data) == amo.RELEASE_CHANNEL_LISTED
+        ):
+            # Check that the required metadata is set for an addon with listed versions
+            addon_data = self.get_addon_data(serializer)
+            # This is replicating what Addon.get_required_metadata does
+            required_msg = gettext(
+                'This field is required for add-ons with listed versions.'
+            )
+            missing_metadata = {
+                serializer_field: required_msg
+                for data_field, serializer_field in self.fields.items()
+                if not self.has_metadata(data, addon_data, data_field)
+            }
+            if missing_metadata:
+                raise exceptions.ValidationError(missing_metadata, code='required')
+
+
+class AddonMetadataNewVersionValidator(AddonMetadataValidator):
+    def __call__(self, data, serializer):
+        try:
+            return super().__call__(data=data, serializer=serializer)
+        except exceptions.ValidationError as exc:
+            # Reformat the validation error(s) into a single error
+            raise exceptions.ValidationError(
+                gettext(
+                    'Add-on metadata is required to be set to create a listed '
+                    'version: {missing_addon_metadata}.'
+                ).format(missing_addon_metadata=list(exc.detail)),
+                code='required',
+            )

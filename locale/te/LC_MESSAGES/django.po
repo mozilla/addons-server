@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-29 14:19+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"PO-Revision-Date: 2022-05-04 11:48+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -216,13 +216,13 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -241,6 +241,12 @@ msgid "Wrong add-on type for this license."
 msgstr ""
 
 msgid "Custom licenses are not supported for themes."
+msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
 
 msgid "My Add-ons"
@@ -444,11 +450,17 @@ msgstr "ఈమెయిల్ చిరునామా కనబడలేదు.
 msgid "Unavailable for legal reasons."
 msgstr "న్యాయపరమైన కారణాలవల్ల అందుబాటులో లేదు."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "భాష కోడ్ {lang_code} చెల్లనిది."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "మీరు తప్పనిసరిగా {lang-code:value} వంటి ఆబ్జెక్టుని ఇవ్వాలి."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1097,12 +1109,14 @@ msgstr "హెచ్చరికలు మరియు నవీకరణలు"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"తాజా వార్తల కోసం, పనులను చక్కబెట్టుకోడానికి, సామర్థ్యాన్ని మెరుగుపరుచుకోడానికి Firefox పొడగింతలను దించుకోండి. ట్యాబులను రీలోడ్ చేయడానికి, ఉత్పాదకతను సంభాళించడానికి, ఇంకా మరెన్నో చేసే పొడగింతలను "
+"కనుగొనండి."
 
 msgid "Appearance"
 msgstr "రూపురేఖలు"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "వెబ్‌సైట్ల, Firefox విహారిణి రూపురేఖలను మీకు తగ్గట్టు మార్చుకోడానికి వీలుకల్పించే పొడగింతలను దించుకోండి. చీకటి అలంకారాలు, ట్యాబుల నిర్వహణ వంటి పొడగింతలు ఈ వర్గంలో ఉంటాయి."
 
 msgid "Bookmarks"
 msgstr "ఇష్టాంశములు"

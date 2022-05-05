@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-25 16:13+0000\n"
-"PO-Revision-Date: 2022-04-28 10:00+0000\n"
+"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"PO-Revision-Date: 2022-05-04 09:01+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -216,14 +216,14 @@ msgstr "版本 {version_string} 已存在。"
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "停用附加元件時，無法送出上架的版本。"
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "需要設定附加元件後設資料才能建立上架版本：{missing_addon_metadata}。"
+msgid "Add-ons need at least one owner."
+msgstr "附加元件至少要有一位擁有者。"
+
+msgid "Add-ons need at least one listed author."
+msgstr "附加元件至少要列出一位作者。"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "這個 slug 無法使用，請改用其他的 slug。"
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "對公開上架的附加元件，此欄位必填。"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加元件名稱中，不得包含 Mozilla 或 Firefox 商標。"
@@ -242,6 +242,12 @@ msgstr "此授權條款的附加元件類型錯誤。"
 
 msgid "Custom licenses are not supported for themes."
 msgstr "佈景主題不支援自訂授權條款。"
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "對公開上架的附加元件，此欄位必填。"
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "需要設定附加元件後設資料才能建立上架版本：{missing_addon_metadata}。"
 
 msgid "My Add-ons"
 msgstr "我的附加元件"
@@ -445,11 +451,17 @@ msgstr "找不到電子郵件信箱。"
 msgid "Unavailable for legal reasons."
 msgstr "由於法律因素無法使用。"
 
-msgid "The language code {lang_code} is invalid."
-msgstr "語言代碼 {lang_code} 無效。"
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "語言代碼「{lang_code}」無效。"
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "您必須提供 {lang-code:value} 的物件。"
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "「{lang_code}」的預設語系值必填。"
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "若設定了其他翻譯，「{lang_code}」的預設語系值必填。"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
