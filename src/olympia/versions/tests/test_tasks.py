@@ -516,12 +516,13 @@ def test_generate_preview_with_additional_backgrounds(
             'additional_backgrounds_tiling': ['repeat-x'],
         },
     }
-    addon = addon_factory()
-    destination = addon.current_version.file.file_path
-    zip_file = os.path.join(
-        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
+    addon = addon_factory(
+        file_kw={
+            'filename': os.path.join(
+                settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
+            )
+        }
     )
-    root_storage.copy_stored_file(zip_file, destination)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg
