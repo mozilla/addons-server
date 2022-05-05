@@ -5928,6 +5928,7 @@ class TestAddonPendingAuthorViewSet(TestCase):
         self.client.login_api(self.user)
         response = self.client.delete(self.detail_url)
         assert response.status_code == 204
+        assert not AddonUserPendingConfirmation.objects.exists()
 
     def test_create(self):
         # This will be user that will be created

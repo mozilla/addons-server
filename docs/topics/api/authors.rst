@@ -109,9 +109,8 @@ Pending Author Create
 
 .. _addon-pending-author-create:
 
-This endpoint allows an owner to invite a user to become an author of an add-on.
-A pending author is created for the add-on, and once they confirm the invitation, they will an author.
-The user will be sent an email notifying them of the invitation to become an author of the add-on.
+This endpoint allows an owner to invite a user to become an author of an add-on - the user will be sent an email notifying them of the invitation.
+A pending author is created for the add-on, and once they confirm the invitation, they will be an author of that add-on.
 Authors will be given the position at the end of the list of authors when confirmed.
 
     .. note::
