@@ -2023,6 +2023,8 @@ class TestAddonViewSetDelete(TestCase):
         AddonUser.objects.get(addon=self.addon, user=self.user).update(
             role=amo.AUTHOR_ROLE_DEV
         )
+        # edge-case: user is an owner of a *different* add-on too
+        addon_factory(users=(self.user,))
         self.client.login_api(self.user)
         response = self._perform_delete_request(403)
         assert response.data == {
@@ -5803,6 +5805,8 @@ class TestAddonAuthorViewSet(TestCase):
 
     def test_developer_role(self):
         self.addonuser.update(role=amo.AUTHOR_ROLE_DEV)
+        # edge-case: user is an owner of a *different* add-on too
+        addon_factory(users=(self.user,))
         self.client.login_api(self.user)
         # developer role authors should be able to view all details of authors
         response = self.client.get(self.detail_url)
@@ -5812,6 +5816,10 @@ class TestAddonAuthorViewSet(TestCase):
         )
         # but not update
         response = self.client.patch(self.detail_url, {'position': 2})
+        assert response.status_code == 403, response.content
+
+        # and not delete either
+        response = self.client.delete(self.detail_url)
         assert response.status_code == 403, response.content
 
     def test_update(self):

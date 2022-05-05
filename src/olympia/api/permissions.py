@@ -122,8 +122,8 @@ class AllowAddonOwner(BasePermission):
         return request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
-        return obj.authors.filter(
-            pk=request.user.pk, addonuser__role=amo.AUTHOR_ROLE_OWNER
+        return obj.addonuser_set.filter(
+            user_id=request.user.pk, role=amo.AUTHOR_ROLE_OWNER
         ).exists()
 
 
