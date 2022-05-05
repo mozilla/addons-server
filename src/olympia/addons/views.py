@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from django import http
-from django.db.models import Prefetch
+from django.db.models import Max, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
@@ -19,6 +19,7 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     UpdateModelMixin,
 )
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
@@ -71,7 +72,7 @@ from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import Addon, ReplacementAddon
+from .models import Addon, AddonUser, AddonUserPendingConfirmation, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
     AddonAuthorSerializer,
@@ -83,6 +84,7 @@ from .serializers import (
     ESAddonSerializer,
     LanguageToolsSerializer,
     ReplacementAddonSerializer,
+    AddonPendingAuthorSerializer,
     PreviewSerializer,
     StaticCategorySerializer,
     VersionSerializer,
@@ -376,7 +378,6 @@ class AddonChildMixin:
         used."""
         if hasattr(self, 'addon_object'):
             return self.addon_object
-
         if permission_classes is None:
             permission_classes = (
                 AddonViewSet.write_permission_classes
@@ -699,7 +700,7 @@ class AddonAuthorViewSet(
     # for list and get - see check_permissions and check_object_permissions. Permissions
     # are also always checked against the parent add-on in get_addon_object() using
     # AddonViewSet's permissions.
-    permission_classes = []
+    permission_classes = [APIGatePermission('addon-submission-api')]
     authentication_classes = [
         JWTKeyAuthentication,
         SessionIDAuthentication,
@@ -718,7 +719,6 @@ class AddonAuthorViewSet(
         # We're overriding the permission_classes to restrict access to add-on authors.
         addon = self.get_addon_object(
             permission_classes=[
-                APIGatePermission('addon-submission-api'),
                 AnyOf(
                     AllowAddonAuthor,
                     AllowListedViewerOrReviewer,
@@ -726,7 +726,9 @@ class AddonAuthorViewSet(
                 ),
             ]
         )
-        return super().check_object_permissions(request, addon)
+        return super().check_permissions(request) and super().check_object_permissions(
+            request, addon
+        )
 
     def check_object_permissions(self, request, obj):
         # check_permissions will have been executed by this point, enforcing that add-on
@@ -743,10 +745,58 @@ class AddonAuthorViewSet(
         return self.get_addon_object().addonuser_set.all().order_by('position')
 
     def perform_destroy(self, instance):
-        serializer = self.get_serializer(instance)
-        serializer.validate_role(value=None)
-        serializer.validate_listed(value=None)
+        if isinstance(instance, AddonUser):
+            serializer = self.get_serializer(instance)
+            serializer.validate_role(value=None)
+            serializer.validate_listed(value=None)
         return super().perform_destroy(instance)
+
+
+class AddonPendingAuthorViewSet(CreateModelMixin, AddonAuthorViewSet):
+    serializer_class = AddonPendingAuthorSerializer
+    permission_classes = [APIGatePermission('addon-submission-api'), IsAuthenticated]
+
+    def check_permissions(self, request):
+        # pending_confirm needs to be confirmable without being an addon author already
+        if self.action in ('confirm', 'decline'):
+            # .get_addon_object is cached so we just need to call without restricted
+            # permission_classes first and it'll be used for subsequent calls too.
+            self.get_addon_object(permission_classes=())
+
+        return super().check_permissions(request)
+
+    def get_queryset(self):
+        return self.get_addon_object().addonuserpendingconfirmation_set.all()
+
+    def get_object_for_request(self, request):
+        try:
+            return self.get_queryset().get(user=request.user)
+        except AddonUserPendingConfirmation.DoesNotExist:
+            raise exceptions.PermissionDenied()
+
+    @action(detail=False, methods=('post',))
+    def confirm(self, request, *args, **kwargs):
+        pending = self.get_object_for_request(request)
+
+        max_position = super().get_queryset().aggregate(max=Max('position'))['max'] or 0
+        AddonUser.unfiltered.update_or_create(
+            addon=pending.addon,
+            user=pending.user,
+            defaults={
+                'role': pending.role,
+                'listed': pending.listed,
+                'position': max_position + 1,
+            },
+        )
+        # The invitation is now obsolete.
+        pending.delete()
+
+        return Response()
+
+    @action(detail=False, methods=('post',))
+    def decline(self, request, *args, **kwargs):
+        self.get_object_for_request(request).delete()
+        return Response()
 
 
 class AddonSearchView(ListAPIView):
