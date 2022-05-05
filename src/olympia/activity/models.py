@@ -635,7 +635,7 @@ class ActivityLog(ModelBase):
                 file_ = self.f(
                     '<a href="{0}">{1}</a> (validation {2})',
                     arg.get_absolute_url(),
-                    arg.filename,
+                    arg.pretty_filename,
                     validation,
                 )
                 arguments.remove(arg)
