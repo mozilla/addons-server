@@ -179,10 +179,9 @@ class File(OnChangeMixin, ModelBase):
 
     def generate_filename(self):
         """
-        Files are in the format of:
-        {addon_name}-{version}-{apps}
-        (-{platform} for some of the old ones from back when we had multiple
-         platforms)
+        Files are in the format of {addon_name}-{version}
+        (-{apps} and -{platform} for some of the old ones from back when we had
+        multiple files per versions)
 
         By convention, newly signed files after 2022-03-31 get a .xpi
         extension, unsigned get .zip. This helps ensure CDN cache is busted
@@ -195,10 +194,6 @@ class File(OnChangeMixin, ModelBase):
         name = slugify(addon.name).replace('-', '_') or 'addon'
         parts.append(name)
         parts.append(self.version.version)
-
-        if addon.type not in amo.NO_COMPAT and self.version.compatible_apps:
-            apps = '+'.join(sorted(a.shortername for a in self.version.compatible_apps))
-            parts.append(apps)
 
         file_extension = '.xpi' if self.is_signed else '.zip'
         return '-'.join(parts) + file_extension
