@@ -151,7 +151,7 @@ class TestSigning(TestCase):
         # Pretend file on filesystem contains non-ascii characters. The
         # upload_to callback won't let us, so emulate what it does - as long as
         # we can read the file afterwards details don't matter.
-        self.file_.filename = f'{self.file_.addon.pk}/wébextension.xpi.zip'
+        self.file_.file.name = f'{self.file_.addon.pk}/wébextension.xpi.zip'
         os.rename(src, self.file_.file_path)
         self.assert_not_signed()
         signing.sign_file(self.file_)
@@ -601,7 +601,7 @@ class TestTasks(TestCase):
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
         """Sign files which have non-ascii filenames."""
         src = self.file_.file_path
-        self.file_.filename = f'{self.file_.addon.pk}/wébextension.xpi.zip'
+        self.file_.file.name = f'{self.file_.addon.pk}/wébextension.xpi.zip'
         self.file_.save()
         os.rename(src, self.file_.file_path)
         file_hash = self.file_.generate_hash()
