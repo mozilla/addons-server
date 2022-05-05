@@ -1,7 +1,6 @@
 import hashlib
 import json
 import os
-import re
 import unicodedata
 import uuid
 
@@ -203,6 +202,7 @@ class File(OnChangeMixin, ModelBase):
         file_extension = '.xpi' if self.is_signed else '.zip'
         return '-'.join(parts) + file_extension
 
+    @property
     def pretty_filename(self):
         """Displayable filename."""
         return os.path.basename(self.filename) if self.filename else ''
