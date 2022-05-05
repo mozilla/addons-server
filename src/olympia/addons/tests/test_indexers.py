@@ -312,7 +312,7 @@ class TestAddonIndexer(TestCase):
         extracted_file = extracted['current_version']['files'][0]
         assert extracted_file['id'] == version.file.pk
         assert extracted_file['created'] == version.file.created
-        assert extracted_file['filename'] == version.file.file.name
+        assert extracted_file['filename'] == version.file.filename
         assert extracted_file['hash'] == version.file.hash
         assert extracted_file['is_mozilla_signed_extension'] == (
             version.file.is_mozilla_signed_extension

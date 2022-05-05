@@ -230,7 +230,7 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def file_path(self):
-        return self.file.path if self.file else ''
+        return self.file_path if self.file else ''
 
     @property
     def filename(self):
@@ -310,7 +310,7 @@ def cleanup_file(sender, instance, **kw):
     try:
         if kw.get('raw') or not instance.file:
             return
-        if storage.exists(instance.file.path):
+        if storage.exists(instance.file_path):
             log.info(
                 f'Removing filename: {instance.pretty_filename} for file: {instance.pk}'
             )

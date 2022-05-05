@@ -1364,8 +1364,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             parsed_data=parsed_data,
         )
         assert (
-            version.file.file.name
-            == f'{version.addon.pk}/delicious_bookmarks-0.0.1.zip'
+            version.file.filename == f'{version.addon.pk}/delicious_bookmarks-0.0.1.zip'
         )
 
     def test_track_upload_time(self):

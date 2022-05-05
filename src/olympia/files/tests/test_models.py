@@ -151,24 +151,24 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         """Test that version (soft)delete doesn't delete the file."""
         f = File.objects.get(pk=67442)
         try:
-            with storage.open(f.file.path, 'w') as fi:
+            with storage.open(f.file_path, 'w') as fi:
                 fi.write('sample data\n')
-            assert storage.exists(f.file.path)
+            assert storage.exists(f.file_path)
             f.version.delete()
-            assert storage.exists(f.file.path)
+            assert storage.exists(f.file_path)
         finally:
-            if storage.exists(f.file.path):
-                storage.delete(f.file.path)
+            if storage.exists(f.file_path):
+                storage.delete(f.file_path)
 
     def test_delete_file_path(self):
         f = File.objects.get(pk=67442)
-        self.check_delete(f, f.file.path)
+        self.check_delete(f, f.file_path)
 
     def test_delete_no_file(self):
         # test that the file object can be deleted without the file
         # being present
         file = File.objects.get(pk=74797)
-        filename = file.file.path
+        filename = file.file_path
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         file.delete()
 
@@ -202,7 +202,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_pretty_filename(self):
         file_ = File.objects.get(id=67442)
-        assert file_.file.name == '3615/delicious_bookmarks-2.1.072.xpi'
+        assert file_.filename == '3615/delicious_bookmarks-2.1.072.xpi'
         assert file_.pretty_filename == 'delicious_bookmarks-2.1.072.xpi'
 
     def test_generate_filename_ja(self):
@@ -223,7 +223,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert file_.generate_hash().startswith('sha256:95bd414295acda29c4')
 
         file_ = File.objects.get(pk=67442)
-        with storage.open(file_.file.path, 'wb') as fp:
+        with storage.open(file_.file_path, 'wb') as fp:
             fp.write(b'some data\n')
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_DISABLED
@@ -1081,14 +1081,14 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_filename(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.file.name == f'{file_.addon.pk}/xxx-0.1.zip'
+        assert file_.filename == f'{file_.addon.pk}/xxx-0.1.zip'
 
     def test_filename_no_extension(self):
         upload = self.upload('webextension.xpi')
         # Remove the extension.
         upload.name = upload.name.rsplit('.', 1)[0]
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.file.name == f'{file_.addon.pk}/xxx-0.1.zip'
+        assert file_.filename == f'{file_.addon.pk}/xxx-0.1.zip'
 
     def test_file_validation(self):
         upload = self.upload('webextension.xpi')
@@ -1104,7 +1104,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         upload = self.upload('webextension.xpi')
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.file.name == f'{file_.addon.pk}/jets-0.1.zip'
+        assert file_.filename == f'{file_.addon.pk}/jets-0.1.zip'
 
     def test_size(self):
         upload = self.upload('webextension.xpi')
@@ -1126,12 +1126,12 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_extension_extension(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.file.name.endswith('.zip')
+        assert file_.filename.endswith('.zip')
 
     def test_langpack_extension(self):
         upload = self.upload('webextension_langpack.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.file.name.endswith('.zip')
+        assert file_.filename.endswith('.zip')
 
     def test_experiment(self):
         upload = self.upload('experiment_inside_webextension.xpi')
@@ -1223,13 +1223,13 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_file_is_copied_to_file_path_at_upload(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert os.path.exists(file_.file.path)
+        assert os.path.exists(file_.file_path)
 
     def test_file_is_copied_to_file_path_at_upload_if_disabled(self):
         self.addon.update(disabled_by_user=True)
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert os.path.exists(file_.file.path)
+        assert os.path.exists(file_.file_path)
 
     def test_permission_enabler_site_permissions(self):
         upload = self.upload('webextension.xpi')

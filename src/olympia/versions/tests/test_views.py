@@ -180,7 +180,7 @@ class TestDownloadsBase(TestCase):
         assert response.status_code == 200
         assert (
             decode_http_header_value(response[settings.XSENDFILE_HEADER])
-            == self.file.file.path
+            == self.file.file_path
         )
         assert response['Access-Control-Allow-Origin'] == '*'
 

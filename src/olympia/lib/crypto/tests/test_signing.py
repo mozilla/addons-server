@@ -56,8 +56,8 @@ class TestSigning(TestCase):
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
     # def tearDown(self):
-    #     if os.path.exists(self.file_.file.path):
-    #         os.unlink(self.file_.file.path)
+    #     if os.path.exists(self.file_.file_path):
+    #         os.unlink(self.file_.file_path)
     #     super().tearDown()
 
     def _sign_file(self, file_):
@@ -67,13 +67,13 @@ class TestSigning(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        assert not signing.is_signed(self.file_.file.path)
+        assert not signing.is_signed(self.file_.file_path)
 
     def assert_signed(self):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
-        assert signing.is_signed(self.file_.file.path)
+        assert signing.is_signed(self.file_.file_path)
 
     def test_supports_firefox_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
@@ -147,35 +147,35 @@ class TestSigning(TestCase):
         self.assert_signed()
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
-        with zipfile.ZipFile(self.file_.file.path, mode='r') as zf:
+        with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
             with zf.open('META-INF/mozilla.sf', 'r') as mozillasf:
                 assert mozillasf.read().endswith(b'\n\n')
 
     def test_sign_file_non_ascii_filename(self):
-        src = self.file_.file.path
+        src = self.file_.file_path
         # Pretend file on filesystem contains non-ascii characters. The
         # upload_to callback won't let us, so emulate what it does - as long as
         # we can read the file afterwards details don't matter.
-        self.file_.file.name = f'{self.file_.addon.pk}/wébextension.xpi.zip'
-        os.rename(src, self.file_.file.path)
+        self.file_.filename = f'{self.file_.addon.pk}/wébextension.xpi.zip'
+        os.rename(src, self.file_.file_path)
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_sign_file_with_utf8_filename_inside_package(self):
         fpath = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
-        with amo.tests.copy_file(fpath, self.file_.file.path, overwrite=True):
+        with amo.tests.copy_file(fpath, self.file_.file_path, overwrite=True):
             self.assert_not_signed()
             signing.sign_file(self.file_)
             self.assert_signed()
 
-            with zipfile.ZipFile(self.file_.file.path, mode='r') as zf:
+            with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
                 with zf.open('META-INF/manifest.mf', 'r') as manifest_mf:
                     manifest_contents = manifest_mf.read().decode('utf-8')
                     assert '\u1109\u1161\u11a9' in manifest_contents
 
     def test_no_sign_missing_file(self):
-        os.unlink(self.file_.file.path)
+        os.unlink(self.file_.file_path)
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
@@ -184,7 +184,7 @@ class TestSigning(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        assert not signing.is_signed(self.file_.file.path)
+        assert not signing.is_signed(self.file_.file_path)
 
     def test_dont_sign_again_mozilla_signed_extensions(self):
         """Don't try to resign mozilla signed extensions."""
@@ -193,21 +193,21 @@ class TestSigning(TestCase):
         self.assert_not_signed()
 
     def test_is_signed(self):
-        assert not signing.is_signed(self.file_.file.path)
+        assert not signing.is_signed(self.file_.file_path)
         signing.sign_file(self.file_)
-        assert signing.is_signed(self.file_.file.path)
+        assert signing.is_signed(self.file_.file_path)
 
     def test_size_updated(self):
-        unsigned_size = storage.size(self.file_.file.path)
+        unsigned_size = storage.size(self.file_.file_path)
         signing.sign_file(self.file_)
-        signed_size = storage.size(self.file_.file.path)
+        signed_size = storage.size(self.file_.file_path)
         assert self.file_.size == signed_size
         assert unsigned_size < signed_size
 
     def test_call_signing(self):
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.file.path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -240,7 +240,7 @@ class TestSigning(TestCase):
         ).file
         assert signing.sign_file(file_)
 
-        signature_info, manifest = _get_signature_details(file_.file.path)
+        signature_info, manifest = _get_signature_details(file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -267,7 +267,7 @@ class TestSigning(TestCase):
         )
 
     def _test_add_guid_existing_guid(self, file_):
-        with open(file_.file.path, 'rb') as fobj:
+        with open(file_.file_path, 'rb') as fobj:
             contents = fobj.read()
         with override_switch('add-guid-to-manifest', active=False):
             assert signing.add_guid(file_) == contents
@@ -289,7 +289,7 @@ class TestSigning(TestCase):
         file_ = version_factory(
             addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'}
         ).file
-        with open(file_.file.path, 'rb') as fobj:
+        with open(file_.file_path, 'rb') as fobj:
             contents = fobj.read()
         # with the waffle off it's the same as with an existing guid
         with override_switch('add-guid-to-manifest', active=False):
@@ -301,7 +301,7 @@ class TestSigning(TestCase):
             assert zip_blob != contents
         # compare the zip contents
         with (
-            zipfile.ZipFile(file_.file.path) as orig_zip,
+            zipfile.ZipFile(file_.file_path) as orig_zip,
             zipfile.ZipFile(io.BytesIO(zip_blob)) as new_zip,
         ):
             for info in orig_zip.filelist:
@@ -335,7 +335,7 @@ class TestSigning(TestCase):
         self.addon.update(guid=long_guid)
         signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.file.path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == hashed
@@ -384,7 +384,7 @@ class TestSigning(TestCase):
 
         signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.file.path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
 
@@ -414,7 +414,7 @@ class TestSigning(TestCase):
     def _check_signed_correctly(self, states):
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.file.path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -425,7 +425,7 @@ class TestSigning(TestCase):
         assert 'Name: META-INF/cose.manifest' in manifest
         assert 'Name: META-INF/cose.sig' in manifest
 
-        recommendation_data = _get_recommendation_data(self.file_.file.path)
+        recommendation_data = _get_recommendation_data(self.file_.file_path)
         assert recommendation_data['addon_id'] == 'xxxxx'
         assert sorted(recommendation_data['states']) == states
 
@@ -461,7 +461,7 @@ class TestSigning(TestCase):
 
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.file.path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -475,7 +475,7 @@ class TestSigning(TestCase):
 
         assert signing.sign_file(self.file_)
 
-        signature_info, manifest = _get_signature_details(self.file_.file.path)
+        signature_info, manifest = _get_signature_details(self.file_.file_path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
@@ -544,7 +544,7 @@ class TestTasks(TestCase):
         super().tearDown()
 
     def get_backup_file_path(self):
-        return f'{self.file_.file.path}.backup_signature'
+        return f'{self.file_.file_path}.backup_signature'
 
     def set_max_appversion(self, version):
         """Set self.max_appversion to the given version."""
@@ -605,10 +605,10 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
         """Sign files which have non-ascii filenames."""
-        src = self.file_.file.path
-        self.file_.file.name = f'{self.file_.addon.pk}/wébextension.xpi.zip'
+        src = self.file_.file_path
+        self.file_.filename = f'{self.file_.addon.pk}/wébextension.xpi.zip'
         self.file_.save()
-        os.rename(src, self.file_.file.path)
+        os.rename(src, self.file_.file_path)
         file_hash = self.file_.generate_hash()
         assert self.version.version == '0.0.1'
         tasks.sign_addons([self.addon.pk])
@@ -650,7 +650,7 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_resign_and_bump_version_in_model(self, mock_sign_file):
         fname = './src/olympia/files/fixtures/files/webextension_signed_already.xpi'
-        with amo.tests.copy_file(fname, self.file_.file.path, overwrite=True):
+        with amo.tests.copy_file(fname, self.file_.file_path, overwrite=True):
             self.file_.update(is_signed=True)
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
@@ -664,7 +664,7 @@ class TestTasks(TestCase):
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_dont_sign_dont_bump_version_bad_zipfile(self, mock_sign_file):
-        with amo.tests.copy_file(__file__, self.file_.file.path, overwrite=True):
+        with amo.tests.copy_file(__file__, self.file_.file_path, overwrite=True):
             file_hash = self.file_.generate_hash()
             assert self.version.version == '0.0.1'
             tasks.sign_addons([self.addon.pk])

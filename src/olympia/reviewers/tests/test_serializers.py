@@ -44,7 +44,7 @@ class TestFileInfoSerializer(TestCase):
 
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.reload()
-        assert self.addon.current_version.file.file.name
+        assert self.addon.current_version.file.filename
         self.version = self.addon.current_version
         self.file = self.addon.current_version.file
 

@@ -541,7 +541,7 @@ class AddonIndexer:
                     {
                         'id': version_obj.file.id,
                         'created': version_obj.file.created,
-                        'filename': version_obj.file.file.name,
+                        'filename': version_obj.file.filename,
                         'hash': version_obj.file.hash,
                         'is_mozilla_signed_extension': (
                             version_obj.file.is_mozilla_signed_extension

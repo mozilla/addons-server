@@ -337,7 +337,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         )
         file_obj = addon.current_version.file
         with pytest.raises(forms.ValidationError) as exc:
-            utils.parse_xpi(file_obj.file.path)
+            utils.parse_xpi(file_obj.file_path)
             assert dict(exc.value.messages)['en-us'].startswith(
                 'Add-on names cannot contain the Mozilla or'
             )
@@ -351,7 +351,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         )
         file_obj = addon.current_version.file
 
-        utils.parse_xpi(file_obj.file.path)
+        utils.parse_xpi(file_obj.file_path)
 
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
@@ -852,7 +852,7 @@ def test_bump_version_in_manifest_json():
         file_kw={'filename': 'webextension.xpi'}
     ).current_version.file
     utils.update_version_number(file_obj, '0.0.1.1-signed')
-    parsed = utils.parse_xpi(file_obj.file.path)
+    parsed = utils.parse_xpi(file_obj.file_path)
     assert parsed['version'] == '0.0.1.1-signed'
 
 

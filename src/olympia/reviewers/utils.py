@@ -1342,13 +1342,13 @@ class ReviewFiles(ReviewBase):
     def log_public_message(self):
         log.info(
             'Making %s files %s public'
-            % (self.addon, self.file.file.name if self.file else '')
+            % (self.addon, self.file.filename if self.file else '')
         )
 
     def log_sandbox_message(self):
         log.info(
             'Making %s files %s disabled'
-            % (self.addon, self.file.file.name if self.file else '')
+            % (self.addon, self.file.filename if self.file else '')
         )
 
 
@@ -1381,7 +1381,7 @@ class ReviewUnlisted(ReviewBase):
 
         log.info(
             'Making %s files %s public'
-            % (self.addon, self.file.file.name if self.file else '')
+            % (self.addon, self.file.filename if self.file else '')
         )
         log.info('Sending email for %s' % (self.addon))
 

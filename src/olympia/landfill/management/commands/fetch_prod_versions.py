@@ -60,7 +60,7 @@ class Command(BaseCommand):
         return data
 
     def _download_file(self, url, file_):
-        with storage.open(file_.file.path, 'wb') as f:
+        with storage.open(file_.file_path, 'wb') as f:
             data = requests.get(url)
             f.write(data.content)
 

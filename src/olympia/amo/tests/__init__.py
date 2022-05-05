@@ -640,7 +640,7 @@ class AMOPaths:
     def xpi_copy_over(self, file, name):
         """Copies over a file into place for tests."""
         # FIXME: maybe we can do better. also, it's only used in scanners
-        path = file.file.path
+        path = file.file_path
         if not os.path.exists(os.path.dirname(path)):
             os.makedirs(os.path.dirname(path))
         shutil.copyfile(self.file_fixture_path(name), path)
