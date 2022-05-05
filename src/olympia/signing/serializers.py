@@ -63,7 +63,7 @@ class SigningFileUploadSerializer(serializers.ModelSerializer):
         url = drf_reverse(
             'signing.file',
             request=self._context.get('request'),
-            kwargs={'file_id': file_.id, 'filename': file_.filename},
+            kwargs={'file_id': file_.id, 'filename': file_.pretty_filename},
         )
         return absolutify(url)
 
