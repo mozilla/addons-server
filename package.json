@@ -23,7 +23,7 @@
     "underscore": "1.13.3"
   },
   "devDependencies": {
-    "jest": "^27.0.0",
+    "jest": "^28.0.0",
     "jest-date-mock": "^1.0.8",
     "prettier": "^2.0.5",
     "terser": "^5.0.0"
