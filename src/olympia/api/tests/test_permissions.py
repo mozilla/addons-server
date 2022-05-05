@@ -19,6 +19,7 @@ from olympia.amo.tests import (
 )
 from olympia.api.permissions import (
     AllowAddonAuthor,
+    AllowAddonOwner,
     AllowAnyKindOfReviewer,
     AllowIfNotMozillaDisabled,
     AllowIfNotSitePermission,
@@ -138,11 +139,13 @@ class TestAnyOf(TestCase):
 
 
 class TestAllowAddonAuthor(TestCase):
+    permission_class = AllowAddonAuthor
+
     def setUp(self):
         self.addon = addon_factory()
-        self.permission = AllowAddonAuthor()
+        self.permission = self.permission_class()
         self.owner = user_factory()
-        self.addon.addonuser_set.create(user=self.owner)
+        self.addonuser = self.addon.addonuser_set.create(user=self.owner)
         self.request = RequestFactory().get('/')
         self.request.user = AnonymousUser()
 
@@ -169,6 +172,22 @@ class TestAllowAddonAuthor(TestCase):
         assert not self.permission.has_object_permission(
             self.request, myview, self.addon
         )
+
+
+class TestAllowAddonOwner(TestAllowAddonAuthor):
+    permission_class = AllowAddonOwner
+
+    def test_has_object_permission_developer_user(self):
+        self.request.user = self.owner
+        self.addonuser.update(role=amo.AUTHOR_ROLE_DEV)
+        assert self.request.user in self.addon.authors.all()
+        assert not self.permission.has_object_permission(
+            self.request, myview, self.addon
+        )
+
+    def test_has_object_permission_developer_who_is_owner_of_different_addon(self):
+        addon_factory(users=(self.owner,))
+        self.test_has_object_permission_developer_user()
 
 
 class TestAllowIfNotMozillaDisabled(TestCase):
