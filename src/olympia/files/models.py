@@ -229,6 +229,14 @@ class File(OnChangeMixin, ModelBase):
         return reverse('downloads.latest', kwargs=kw)
 
     @property
+    def file_path(self):
+        return self.file.path if self.file else ''
+
+    @property
+    def filename(self):
+        return self.file.name if self.file else ''
+
+    @property
     def addon(self):
         return self.version.addon
 
