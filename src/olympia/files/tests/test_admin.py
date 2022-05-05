@@ -33,7 +33,6 @@ class TestFileAdmin(TestCase):
 
         post_data = {
             'version': file_.version.pk,
-            'filename': file_.filename,
             'size': file_.size,
             'hash': 'xxx',
             'original_hash': 'xxx',

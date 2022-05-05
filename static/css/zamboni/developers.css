@@ -282,6 +282,17 @@ form .char-count b {
     margin-bottom: 5px;
 }
 
+#file-list td {
+    white-space: nowrap;
+}
+
+#file-list td a {
+    display: inline-block;
+    max-width: 20em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
 #file-list .preview {
     overflow: auto;
     margin-bottom: 15px;
