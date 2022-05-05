@@ -1,7 +1,6 @@
 import hashlib
 import json
 import os
-import re
 import unicodedata
 import uuid
 
@@ -99,7 +98,7 @@ class File(OnChangeMixin, ModelBase):
         # See https://github.com/mozilla-mobile/fenix/blob/
         # 07d43971c0767fc023996dc32eb73e3e37c6517a/app/src/main/java/org/mozilla/fenix/
         # AppRequestInterceptor.kt#L173
-        kwargs = {'file_id': self.pk, 'filename': self.filename}
+        kwargs = {'file_id': self.pk, 'filename': self.pretty_filename}
         if attachment:
             kwargs['download_type'] = 'attachment'
         return reverse('downloads.file', kwargs=kwargs)
@@ -203,19 +202,10 @@ class File(OnChangeMixin, ModelBase):
         file_extension = '.xpi' if self.is_signed else '.zip'
         return '-'.join(parts) + file_extension
 
-    _pretty_filename = re.compile(r'(?P<slug>[a-z0-7_]+)(?P<suffix>.*)')
-
-    def pretty_filename(self, maxlen=20):
-        """Displayable filename.
-
-        Truncates filename so that the slug part fits maxlen.
-        """
-        m = self._pretty_filename.match(self.filename)
-        if not m:
-            return self.filename
-        if len(m.group('slug')) < maxlen:
-            return self.filename
-        return '{}...{}'.format(m.group('slug')[0 : (maxlen - 3)], m.group('suffix'))
+    @property
+    def pretty_filename(self):
+        """Displayable filename."""
+        return os.path.basename(self.filename) if self.filename else ''
 
     def latest_xpi_url(self, attachment=False):
         addon = self.version.addon

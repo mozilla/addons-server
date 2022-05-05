@@ -349,7 +349,7 @@ class TestDownloads(TestDownloadsBase):
         self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_trailing_filename(self):
-        url = self.file_url + self.file.filename
+        url = self.file_url + self.file.pretty_filename
         self.assert_served_internally(self.client.get(url))
 
     def test_null_datestatuschanged(self):
@@ -621,7 +621,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         expected_redirect_url = absolutify(
             reverse(
                 'downloads.file',
-                kwargs={'file_id': self.file.pk, 'filename': self.file.filename},
+                kwargs={'file_id': self.file.pk, 'filename': self.file.pretty_filename},
             )
         )
         self.assert3xx(response, expected_redirect_url, 302)
@@ -646,7 +646,7 @@ class TestDownloadsLatest(TestDownloadsBase):
                 kwargs={
                     'file_id': self.file.pk,
                     'download_type': 'attachment',
-                    'filename': self.file.filename,
+                    'filename': self.file.pretty_filename,
                 },
             )
         )
@@ -671,7 +671,7 @@ class TestDownloadsLatest(TestDownloadsBase):
                 kwargs={
                     'file_id': self.file.pk,
                     'download_type': 'attachment',
-                    'filename': self.file.filename,
+                    'filename': self.file.pretty_filename,
                 },
             )
         )
@@ -695,7 +695,7 @@ class TestDownloadsLatest(TestDownloadsBase):
                 kwargs={
                     'file_id': self.file.pk,
                     'download_type': 'attachment',
-                    'filename': self.file.filename,
+                    'filename': self.file.pretty_filename,
                 },
             )
         )
@@ -712,7 +712,7 @@ class TestDownloadsLatest(TestDownloadsBase):
         expected_redirect_url = absolutify(
             reverse(
                 'downloads.file',
-                kwargs={'file_id': self.file.pk, 'filename': self.file.filename},
+                kwargs={'file_id': self.file.pk, 'filename': self.file.pretty_filename},
             )
         )
         response = self.client.get(self.latest_url)

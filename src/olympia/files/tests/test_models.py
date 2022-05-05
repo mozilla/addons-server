@@ -199,14 +199,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_pretty_filename(self):
         file_ = File.objects.get(id=67442)
         file_.generate_filename()
-        assert file_.pretty_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
-
-    def test_pretty_filename_short(self):
-        file_ = File.objects.get(id=67442)
-        file_.is_signed = True
-        file_.version.addon.name = 'A Place Where The Sea Remembers Your Name'
-        file_.filename = file_.generate_filename()
-        assert file_.pretty_filename() == 'a_place_where_the...-2.1.072-fx.xpi'
+        assert file_.pretty_filename == 'delicious_bookmarks-2.1.072-fx.xpi'
 
     def test_generate_filename_many_apps(self):
         file_ = File.objects.get(id=67442)
