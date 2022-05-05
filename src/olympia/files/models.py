@@ -230,7 +230,7 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def file_path(self):
-        return self.file_path if self.file else ''
+        return self.file.path if self.file else ''
 
     @property
     def filename(self):
