@@ -5,7 +5,6 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
-from django.core.files import File as DjangoFile
 from django.test.utils import override_settings
 
 import pytest

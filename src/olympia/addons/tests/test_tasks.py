@@ -5,7 +5,6 @@ import tempfile
 from unittest import mock
 
 from django.conf import settings
-from django.core.files import File as DjangoFile
 
 from PIL import Image
 from waffle.testutils import override_switch
