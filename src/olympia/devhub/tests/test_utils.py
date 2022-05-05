@@ -262,22 +262,19 @@ def test_extract_theme_properties(zip_file):
         AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
         AppVersion.objects.create(application=amo.ANDROID.id, version=version)
 
-    addon = addon_factory(type=amo.ADDON_STATICTHEME)
-    result = utils.extract_theme_properties(addon, addon.current_version.channel)
-    assert result == {}  # There's no file, but it be should safely handled.
-
-    # Add the zip in the right place
-    zip_file = os.path.join(settings.ROOT, zip_file)
-    with open(zip_file, 'rb') as src:
-        file_ = addon.current_version.file
-        file_.file = DjangoFile(src)
-        file_.save()
-
+    addon = addon_factory(
+        type=amo.ADDON_STATICTHEME,
+        file_kw={'filename': os.path.join(settings.ROOT, zip_file)},
+    )
     result = utils.extract_theme_properties(addon, addon.current_version.channel)
     assert result == {
         'colors': {'frame': '#adb09f', 'tab_background_text': '#000'},
         'images': {'theme_frame': 'weta.png'},
     }
+
+    addon.current_version.file.update(file='')
+    result = utils.extract_theme_properties(addon, addon.current_version.channel)
+    assert result == {}  # There's no file, but it be should safely handled.
 
 
 @pytest.mark.django_db

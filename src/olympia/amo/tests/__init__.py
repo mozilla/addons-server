@@ -811,8 +811,12 @@ def license_factory(**kw):
 def file_factory(**kw):
     filename = kw.pop('filename', None)
     if filename:
-        fixture_path = os.path.join(
-            settings.ROOT, 'src/olympia/files/fixtures/files', filename
+        fixture_path = (
+            filename
+            if filename.startswith('/')
+            else os.path.join(
+                settings.ROOT, 'src/olympia/files/fixtures/files', filename
+            )
         )
         context = open(fixture_path, 'rb')
     else:

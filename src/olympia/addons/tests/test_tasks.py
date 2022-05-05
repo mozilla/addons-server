@@ -28,20 +28,15 @@ from ..tasks import (
 
 @pytest.mark.django_db
 def test_recreate_theme_previews():
-    addon_without_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    addon_with_previews = addon_factory(type=amo.ADDON_STATICTHEME)
     xpi_path = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/mozilla_static_theme.zip'
     )
-    with open(xpi_path, 'rb') as src:
-        file_ = addon_without_previews.current_version.file
-        file_.file = DjangoFile(src)
-        file_.save()
-    with open(xpi_path, 'rb') as src:
-        file_ = addon_with_previews.current_version.file
-        file_.file = DjangoFile(src)
-        file_.save()
-
+    addon_without_previews = addon_factory(
+        type=amo.ADDON_STATICTHEME, file_kw={'filename': xpi_path}
+    )
+    addon_with_previews = addon_factory(
+        type=amo.ADDON_STATICTHEME, file_kw={'filename': xpi_path}
+    )
     VersionPreview.objects.create(
         version=addon_with_previews.current_version,
         sizes={'image': [123, 456], 'thumbnail': [34, 45]},
