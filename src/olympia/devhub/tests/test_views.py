@@ -1959,7 +1959,15 @@ class TestThemeBackgroundImage(TestCase):
     def setUp(self):
         user = user_factory(email='regular@mozilla.com')
         assert self.client.login(email='regular@mozilla.com')
-        self.addon = addon_factory(users=[user])
+        self.addon = addon_factory(
+            users=[user],
+            type=amo.ADDON_STATICTHEME,
+            file_kw={
+                'filename': os.path.join(
+                    settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
+                )
+            },
+        )
         self.url = reverse(
             'devhub.submit.version.previous_background',
             args=[self.addon.slug, 'listed'],
@@ -1972,17 +1980,13 @@ class TestThemeBackgroundImage(TestCase):
         assert response.status_code == 403
 
     def test_no_header_image(self):
+        self.addon.current_version.file.update(filename='')
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
         assert data == {}
 
     def test_header_image(self):
-        destination = self.addon.current_version.file.file_path
-        zip_file = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
-        )
-        self.root_storage.copy_stored_file(zip_file, destination)
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(force_str(response.content))

@@ -116,7 +116,7 @@ class File(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         file_ = cls(version=version)
-        upload_path = force_str(nfd_str(upload.path))
+        upload_path = force_str(upload.path)
         # Size in bytes.
         file_.size = storage.size(upload_path)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
@@ -409,6 +409,12 @@ class FileUpload(ModelBase):
                 file_destination.write(chunk)
         return hash_obj
 
+    @classmethod
+    def generate_path(cls, ext='.zip'):
+        return os.path.join(
+            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
+        )
+
     def add_file(self, chunks, filename, size):
         if not self.uuid:
             self.uuid = self._meta.get_field('uuid')._create_uuid()
@@ -426,9 +432,7 @@ class FileUpload(ModelBase):
         # linter.
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
             ext = '.zip'
-        self.path = os.path.join(
-            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
-        )
+        self.path = self.generate_path(ext)
 
         hash_obj = None
         if was_crx:
@@ -618,10 +622,3 @@ class FileSitePermission(ModelBase):
 
     class Meta:
         db_table = 'site_permissions'
-
-
-def nfd_str(u):
-    """Uses NFD to normalize unicode strings."""
-    if isinstance(u, str):
-        return unicodedata.normalize('NFD', u).encode('utf-8')
-    return u

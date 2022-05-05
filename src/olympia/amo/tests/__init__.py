@@ -629,20 +629,8 @@ class AMOPaths:
     """Mixin for getting common AMO Paths."""
 
     def file_fixture_path(self, name):
-        path = 'src/olympia/files/fixtures/files/%s' % name
-        return os.path.join(settings.ROOT, path)
-
-    def xpi_path(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi']:
-            return self.file_fixture_path(name + '.xpi')
-        return self.file_fixture_path(name)
-
-    def xpi_copy_over(self, file, name):
-        """Copies over a file into place for tests."""
-        path = file.file_path
-        if not os.path.exists(os.path.dirname(path)):
-            os.makedirs(os.path.dirname(path))
-        shutil.copyfile(self.xpi_path(name), path)
+        path = 'src/olympia/files/fixtures/files'
+        return os.path.join(settings.ROOT, path, name)
 
 
 def _get_created(created):
@@ -820,20 +808,28 @@ def license_factory(**kw):
 
 
 def file_factory(**kw):
-    version = kw['version']
-    filename = kw.pop('filename', f'{version.addon_id}-{version.id}.xpi')
-    status = kw.pop('status', amo.STATUS_APPROVED)
-
-    file_ = File.objects.create(filename=filename, status=status, **kw)
-
-    fixture_path = os.path.join(
-        settings.ROOT, 'src/olympia/files/fixtures/files', filename
-    )
-
-    if os.path.exists(fixture_path):
-        root_storage.copy_stored_file(fixture_path, file_.file_path)
-
-    return file_
+    filename = kw.pop('filename', None)
+    if filename:
+        # If a filename is passed, also copy the file over to where it would
+        # have been uploaded. filename can either be an absolute path or name
+        # relative to the files fixture directory.
+        fixture_path = (
+            filename
+            if filename.startswith('/')
+            else os.path.join(
+                settings.ROOT, 'src/olympia/files/fixtures/files', filename
+            )
+        )
+        version = kw['version']  # Has to exist anyway for file_factory to work
+        kw['filename'] = f'addon-{version.version}.xpi'
+        file_path = os.path.join(
+            settings.ADDONS_PATH, str(version.addon_id), kw['filename']
+        )
+        if not os.path.exists(os.path.dirname(file_path)):
+            os.makedirs(os.path.dirname(file_path))
+        shutil.copyfile(fixture_path, file_path)
+    kw.setdefault('status', amo.STATUS_APPROVED)
+    return File.objects.create(**kw)
 
 
 def req_factory_factory(url, user=None, post=False, data=None, session=None):

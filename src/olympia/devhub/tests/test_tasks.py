@@ -8,6 +8,7 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.core import mail
+from django.core.files.storage import default_storage as storage
 
 from unittest import mock
 import pytest
@@ -464,16 +465,18 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
 
 class TestValidateFilePath(ValidatorTestCase):
-    def setUp(self):
-        super().setUp()
-        patcher = mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
-        self.addCleanup(patcher.stop)
-        patcher.start()
+    def copy_addon_file(self, name):
+        """Copy addon file from our test files to storage location and return
+        new path under that location so that it can be opened by
+        storage.open()."""
+        dest_path = storage.path('files/temp/webextension.xpi')
+        self.root_storage.copy_stored_file(get_addon_file(name), dest_path)
+        return dest_path
 
     def test_success(self):
         result = json.loads(
             tasks.validate_file_path(
-                get_addon_file('valid_webextension.xpi'),
+                self.copy_addon_file('valid_webextension.xpi'),
                 channel=amo.RELEASE_CHANNEL_LISTED,
             )
         )
@@ -484,7 +487,7 @@ class TestValidateFilePath(ValidatorTestCase):
     def test_fail_warning(self):
         result = json.loads(
             tasks.validate_file_path(
-                get_addon_file('valid_webextension_warning.xpi'),
+                self.copy_addon_file('valid_webextension_warning.xpi'),
                 channel=amo.RELEASE_CHANNEL_LISTED,
             )
         )
@@ -495,7 +498,7 @@ class TestValidateFilePath(ValidatorTestCase):
     def test_fail_error(self):
         result = json.loads(
             tasks.validate_file_path(
-                get_addon_file('invalid_webextension_invalid_id.xpi'),
+                self.copy_addon_file('invalid_webextension_invalid_id.xpi'),
                 channel=amo.RELEASE_CHANNEL_LISTED,
             )
         )
@@ -511,7 +514,8 @@ class TestValidateFilePath(ValidatorTestCase):
         # When parse_addon() raises a NoManifestFound error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
-            get_addon_file('valid_webextension.xpi'), channel=amo.RELEASE_CHANNEL_LISTED
+            self.copy_addon_file('valid_webextension.xpi'),
+            channel=amo.RELEASE_CHANNEL_LISTED,
         )
         assert run_addons_linter_mock.call_count == 1
 
@@ -525,7 +529,7 @@ class TestValidateFilePath(ValidatorTestCase):
         # When parse_addon() raises a InvalidManifest error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
-            get_addon_file('invalid_manifest_webextension.xpi'),
+            self.copy_addon_file('invalid_manifest_webextension.xpi'),
             channel=amo.RELEASE_CHANNEL_LISTED,
         )
         assert run_addons_linter_mock.call_count == 1
@@ -539,7 +543,7 @@ class TestValidateFilePath(ValidatorTestCase):
         parse_addon_mock.return_value = mock.Mock()
         run_addons_linter_mock.return_value = {'fake_results': True}
         tasks.validate_file_path(
-            get_addon_file('webextension.xpi'),
+            self.copy_addon_file('valid_webextension.xpi'),
             channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
         assert parse_addon_mock.call_count == 1

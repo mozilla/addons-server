@@ -7,12 +7,11 @@ from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
-from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.amo.tests import TestCase, user_factory
+from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase, user_factory, version_factory
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
 
 
 class TestHomeAndIndex(TestCase):
@@ -114,38 +113,29 @@ class TestRecalculateHash(TestCase):
 
     def setUp(self):
         super().setUp()
+        self.addon = Addon.objects.get(pk=3615)
         self.client.login(email='admin@mozilla.com')
 
-    @mock.patch.object(
-        File,
-        'file_path',
-        amo.tests.AMOPaths().file_fixture_path('https-everywhere.xpi'),
-    )
-    @mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
     def test_regenerate_hash(self):
-        version = Version.objects.create(addon_id=3615)
-        file = File.objects.create(filename='https-everywhere.xpi', version=version)
+        file = version_factory(
+            addon=self.addon, file_kw={'filename': 'https-everywhere.xpi'}
+        ).file
 
-        r = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
-        assert json.loads(r.content)['success'] == 1
+        response = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
+        assert json.loads(response.content)['success'] == 1
 
         file = File.objects.get(pk=file.id)
 
         assert file.size, 'File size should not be zero'
         assert file.hash, 'File hash should not be empty'
 
-    @mock.patch.object(
-        File,
-        'file_path',
-        amo.tests.AMOPaths().file_fixture_path('https-everywhere.xpi'),
-    )
     def test_regenerate_hash_get(self):
         """Don't allow GET"""
-        version = Version.objects.create(addon_id=3615)
-        file = File.objects.create(filename='https-everywhere.xpi', version=version)
-
-        r = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
-        assert r.status_code == 405  # GET out of here
+        file = version_factory(
+            addon=self.addon, file_kw={'filename': 'https-everywhere.xpi'}
+        ).file
+        response = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
+        assert response.status_code == 405  # GET out of here
 
 
 class TestPerms(TestCase):

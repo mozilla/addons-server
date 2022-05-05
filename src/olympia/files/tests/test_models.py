@@ -37,7 +37,6 @@ from olympia.files.models import (
     FileUpload,
     FileValidation,
     WebextPermission,
-    nfd_str,
     track_file_status_change,
 )
 from olympia.files.utils import check_xpi_info, ManifestJSONExtractor, parse_addon
@@ -227,10 +226,12 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert file_.generate_filename() == 'addon-0.1.7-fx.xpi'
 
     def test_generate_hash(self):
-        file_ = File()
-        file_.version = Version.objects.get(pk=81551)
-        filename = self.xpi_path('https-everywhere.xpi')
-        assert file_.generate_hash(filename).startswith('sha256:95bd414295acda29c4')
+        file_ = addon_factory(
+            file_kw={'filename': 'https-everywhere.xpi'}
+        ).current_version.file
+        assert file_.generate_hash(file_.file_path).startswith(
+            'sha256:95bd414295acda29c4'
+        )
 
         file_ = File.objects.get(pk=67442)
         with storage.open(file_.file_path, 'wb') as fp:
@@ -346,7 +347,7 @@ class TestTrackFileStatusChange(TestCase):
         )
 
 
-class TestParseXpi(TestCase):
+class TestParseXpi(amo.tests.AMOPaths, TestCase):
     @classmethod
     def setUpTestData(cls):
         versions = {
@@ -367,14 +368,12 @@ class TestParseXpi(TestCase):
         self.user = user_factory()
 
     def parse(self, addon=None, filename='webextension.xpi', **kwargs):
-        path = 'src/olympia/files/fixtures/files/' + filename
-        xpi = os.path.join(settings.ROOT, path)
         parse_addon_kwargs = {
             'user': self.user,
         }
         parse_addon_kwargs.update(**kwargs)
 
-        with open(xpi, 'rb') as fobj:
+        with open(self.file_fixture_path(filename), 'rb') as fobj:
             file_ = SimpleUploadedFile(filename, fobj.read())
             return parse_addon(file_, addon, **parse_addon_kwargs)
 
@@ -1064,9 +1063,6 @@ class TestFileFromUpload(UploadMixin, TestCase):
             guid='@webextension-guid', type=amo.ADDON_EXTENSION, name='xxx'
         )
         self.version = Version.objects.create(addon=self.addon)
-        patcher = mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
-        self.addCleanup(patcher.stop)
-        patcher.start()
 
     def upload(self, name):
         validation_data = json.dumps(
@@ -1077,14 +1073,13 @@ class TestFileFromUpload(UploadMixin, TestCase):
                 'metadata': {},
             }
         )
-        fname = nfd_str(self.xpi_path(name))
-        if not self.root_storage.exists(fname):
-            with self.root_storage.open(fname, 'w') as fs:
-                shutil.copyfileobj(open(fname), fs)
+        src_path = self.file_fixture_path(name)
+        dest_path = FileUpload.generate_path()
+        self.root_storage.copy_stored_file(src_path, dest_path)
         data = {
-            'path': force_str(fname),
-            'name': force_str(name),
-            'hash': 'sha256:%s' % name,
+            'path': dest_path,
+            'name': name,
+            'hash': 'sha256:fake_hash',
             'validation': validation_data,
             'source': amo.UPLOAD_SOURCE_DEVHUB,
             'ip_address': '127.0.0.50',
@@ -1114,33 +1109,11 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert fv.warnings == 1
         assert fv.notices == 2
 
-    def test_file_hash(self):
+    def test_utf8_addon_name(self):
         upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.hash.startswith('sha256:')
-        assert len(file_.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
-
-    def test_utf8(self):
-        upload = self.upload('wébextension.xpi')
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == 'jets-0.1.zip'
-
-    @mock.patch('olympia.amo.utils.SafeStorage.copy_stored_file')
-    def test_dont_send_both_bytes_and_str_to_copy_stored_file(
-        self, copy_stored_file_mock
-    ):
-        upload = self.upload('wébextension.xpi')
-        self.version.addon.name = 'jéts!'
-        file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'jets-0.1.zip'
-        expected_path_orig = force_str(upload.path)
-        expected_path_dest = force_str(file_.file_path)
-        assert copy_stored_file_mock.call_count == 1
-        assert copy_stored_file_mock.call_args_list[0][0] == (
-            expected_path_orig,
-            expected_path_dest,
-        )
 
     def test_size(self):
         upload = self.upload('webextension.xpi')
@@ -1170,7 +1143,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert file_.filename.endswith('.zip')
 
     def test_experiment(self):
-        upload = self.upload('experiment_inside_webextension')
+        upload = self.upload('experiment_inside_webextension.xpi')
         file_ = File.from_upload(
             upload, self.version, parsed_data={'is_experiment': True}
         )
@@ -1184,7 +1157,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert not file_.is_experiment
 
     def test_mozilla_signed_extension(self):
-        upload = self.upload('webextension_signed_already')
+        upload = self.upload('webextension_signed_already.xpi')
         file_ = File.from_upload(
             upload,
             self.version,
@@ -1193,7 +1166,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert file_.is_mozilla_signed_extension
 
     def test_not_mozilla_signed_extension(self):
-        upload = self.upload('webextension.xpi')
+        upload = self.upload('webextension.xpi.xpi')
         file_ = File.from_upload(
             upload,
             self.version,
@@ -1202,7 +1175,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert not file_.is_mozilla_signed_extension
 
     def test_webextension_mv2(self):
-        upload = self.upload('webextension')
+        upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.manifest_version == 2
 
@@ -1257,13 +1230,13 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert permissions_list == parsed_data['optional_permissions']
 
     def test_file_is_copied_to_file_path_at_upload(self):
-        upload = self.upload('webextension')
+        upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert os.path.exists(file_.file_path)
 
     def test_file_is_copied_to_file_path_at_upload_if_disabled(self):
         self.addon.update(disabled_by_user=True)
-        upload = self.upload('webextension')
+        upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert os.path.exists(file_.file_path)
 
@@ -1287,7 +1260,7 @@ class TestZip(TestCase, amo.tests.AMOPaths):
         """This zip contains just one file chrome/ that we expect
         to be unzipped as a directory, not a file.
         """
-        xpi = self.xpi_path('directory-test')
+        xpi = self.file_fixture_path('directory-test.xpi')
 
         # This was to work around: http://bugs.python.org/issue4710
         # which was fixed in Python 2.6.2.
