@@ -4,7 +4,6 @@ import os
 import re
 import tempfile
 import zipfile
-import shutil
 
 from unittest import mock
 from unittest.mock import patch
