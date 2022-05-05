@@ -336,7 +336,7 @@ class TestTrackFileStatusChange(TestCase):
         )
 
 
-class TestParseXpi(TestCase):
+class TestParseXpi(amo.tests.AMOPaths, TestCase):
     @classmethod
     def setUpTestData(cls):
         versions = {
@@ -357,14 +357,12 @@ class TestParseXpi(TestCase):
         self.user = user_factory()
 
     def parse(self, addon=None, filename='webextension.xpi', **kwargs):
-        path = 'src/olympia/files/fixtures/files/' + filename
-        xpi = os.path.join(settings.ROOT, path)
         parse_addon_kwargs = {
             'user': self.user,
         }
         parse_addon_kwargs.update(**kwargs)
 
-        with open(xpi, 'rb') as fobj:
+        with open(self.file_fixture_path(filename), 'rb') as fobj:
             file_ = SimpleUploadedFile(filename, fobj.read())
             return parse_addon(file_, addon, **parse_addon_kwargs)
 

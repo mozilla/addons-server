@@ -9,7 +9,6 @@ from django.test.utils import override_settings
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory,
-    AMOPaths,
     TestCase,
     user_factory,
     version_factory,
@@ -589,7 +588,7 @@ class TestRunYara(UploadMixin, TestCase):
         assert received_results == self.results
 
 
-class TestRunYaraQueryRule(AMOPaths, TestCase):
+class TestRunYaraQueryRule(TestCase):
     def setUp(self):
         super().setUp()
 

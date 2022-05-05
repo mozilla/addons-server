@@ -629,21 +629,9 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
 class AMOPaths:
     """Mixin for getting common AMO Paths."""
 
-    # FIXME: probably want to replace all of this with stuff returning
-    # DjangoFile instances so that it can be used to assign to a file
-    # field on Files.
-
     def file_fixture_path(self, name):
         path = 'src/olympia/files/fixtures/files'
         return os.path.join(settings.ROOT, path, name)
-
-    def xpi_copy_over(self, file, name):
-        """Copies over a file into place for tests."""
-        # FIXME: maybe we can do better. also, it's only used in scanners
-        path = file.file_path
-        if not os.path.exists(os.path.dirname(path)):
-            os.makedirs(os.path.dirname(path))
-        shutil.copyfile(self.file_fixture_path(name), path)
 
 
 def _get_created(created):

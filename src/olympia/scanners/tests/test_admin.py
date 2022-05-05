@@ -16,7 +16,6 @@ from urllib.parse import urljoin
 
 from olympia import amo
 from olympia.amo.tests import (
-    AMOPaths,
     TestCase,
     addon_factory,
     user_factory,
@@ -1086,7 +1085,7 @@ class TestScannerRuleAdmin(TestCase):
         assert len(select.children()) == 3
 
 
-class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
+class TestScannerQueryRuleAdmin(TestCase):
     def setUp(self):
         super().setUp()
 
