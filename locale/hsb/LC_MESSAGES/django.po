@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-03 19:24+0000\n"
-"PO-Revision-Date: 2022-05-04 11:54+0000\n"
+"PO-Revision-Date: 2022-05-05 15:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -466,7 +466,7 @@ msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr "Hódnota w standardnej rěči „{lang_code}“ je trěbna."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr "Hódnot w standardnej rěči „{lang_code}“ je trěbna, jeli druhe přełožki su nastajene."
+msgstr "Hódnota w standardnej rěči „{lang_code}“ je trěbna, jeli druhe přełožki su nastajene."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
