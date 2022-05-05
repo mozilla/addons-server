@@ -162,10 +162,9 @@ def test_generate_static_theme_preview(
     }
     if header_url is not None:
         theme_manifest['images']['theme_frame'] = header_url
-    addon = addon_factory()
-    destination = addon.current_version.file.file_path
-    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
-    root_storage.copy_stored_file(zip_file, destination)
+    addon = addon_factory(
+        file_kw={'filename': os.path.join(HEADER_ROOT, 'theme_images.zip')}
+    )
     # existing previews should be deleted if they exist
     existing_preview = VersionPreview.objects.create(version=addon.current_version)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
@@ -352,10 +351,9 @@ def test_generate_static_theme_preview_with_alternative_properties(
         'images': manifest_images,
         'colors': manifest_colors,
     }
-    addon = addon_factory()
-    destination = addon.current_version.file.file_path
-    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
-    root_storage.copy_stored_file(zip_file, destination)
+    addon = addon_factory(
+        file_kw={'filename': os.path.join(HEADER_ROOT, 'theme_images.zip')}
+    )
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg

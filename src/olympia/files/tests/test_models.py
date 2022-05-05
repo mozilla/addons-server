@@ -1165,7 +1165,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert file_.is_mozilla_signed_extension
 
     def test_not_mozilla_signed_extension(self):
-        upload = self.upload('webextension.xpi.xpi')
+        upload = self.upload('webextension.xpi')
         file_ = File.from_upload(
             upload,
             self.version,
