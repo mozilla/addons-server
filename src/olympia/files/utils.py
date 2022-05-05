@@ -815,7 +815,7 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
     add-on: guid and version.
     """
     try:
-        xpi = get_file(xpi)  # Suspicious operation, hidden by our try/except
+        xpi = get_file(xpi)
         zip_file = SafeZip(xpi)
 
         certificate = os.path.join('META-INF', 'mozilla.rsa')
