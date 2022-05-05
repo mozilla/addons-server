@@ -55,11 +55,6 @@ class TestSigning(TestCase):
 
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
-    # def tearDown(self):
-    #     if os.path.exists(self.file_.file_path):
-    #         os.unlink(self.file_.file_path)
-    #     super().tearDown()
-
     def _sign_file(self, file_):
         signing.sign_file(file_)
 
