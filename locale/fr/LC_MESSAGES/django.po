@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-03 19:24+0000\n"
-"PO-Revision-Date: 2022-05-06 07:23+0000\n"
+"PO-Revision-Date: 2022-05-06 15:56+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -186,10 +186,10 @@ msgid "Invalid value"
 msgstr "Valeur invalide"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Application invalide spécifiée"
 
 msgid "Unknown app version specified"
-msgstr ""
+msgstr "Version d’application inconnue spécifiée"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
