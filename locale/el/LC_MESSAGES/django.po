@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-03 19:24+0000\n"
-"PO-Revision-Date: 2022-05-07 12:22+0000\n"
+"PO-Revision-Date: 2022-05-08 22:06+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -473,7 +473,7 @@ msgid "You must provide an object of {lang-code:value}."
 msgstr "Πρέπει να παρέχετε ένα αντικείμενο του {lang-code:value}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Απαιτείται μια τιμή στην προεπιλεγμένη γλώσσα «{lang_code}»."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
 msgstr ""
@@ -853,7 +853,7 @@ msgstr "Το {file} έχει υπογραφεί."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Το ID προσθέτου {0} με GUID {1} έχει διαγραφεί"
 
 msgid "{addon} migrated from preliminary."
 msgstr "Το {addon} μεταφέρθηκε από τον πρώτο έλεγχο."
