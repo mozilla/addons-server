@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-03 19:24+0000\n"
-"PO-Revision-Date: 2022-05-05 13:13+0000\n"
+"PO-Revision-Date: 2022-05-08 17:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -217,10 +217,10 @@ msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Viðbætur þurfa að minnsta kosti einn eiganda."
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Viðbætur þurfa að minnsta kosti einn skráðan höfund."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -460,7 +460,7 @@ msgid "Unavailable for legal reasons."
 msgstr "Ekki í boði af lagalegum ástæðum."
 
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Tungumálskóðinn '{lang_code}' er ógildur."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr ""
@@ -899,13 +899,13 @@ msgid "{addon} information request altered or removed by admin."
 msgstr ""
 
 msgid "Information request altered"
-msgstr ""
+msgstr "Upplýsingabeiðni breytt"
 
 msgid "Information request cleared by developer on {addon} {version}."
 msgstr ""
 
 msgid "Information request removed"
-msgstr ""
+msgstr "Upplýsingabeiðni fjarlægð"
 
 msgid "{addon} {version} admin add-on-review requested."
 msgstr ""
