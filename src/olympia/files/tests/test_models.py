@@ -216,6 +216,22 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             == '4242/addon-0.1.7.xpi'
         )
 
+    def test_filename_not_migrated(self):
+        # We aren't migrating files yet, so the filename in database should
+        # just be the xpi filename without any directories, despite the
+        # file_.name containing the add-on dir.
+        file_ = addon_factory(
+            file_kw={'filename': 'https-everywhere.xpi'}
+        ).current_version.file
+        filename_in_instance = file_.file.name
+        assert filename_in_instance.startswith(f'{str(file_.addon.pk)}/')
+        filename_in_db = File.objects.filter(pk=file_.pk).values_list(
+            'file', flat=True
+        )[0]
+        assert filename_in_db
+        assert '/' not in filename_in_db
+        assert not filename_in_db.startswith(f'{str(file_.addon.pk)}/')
+
     def test_generate_hash(self):
         file_ = addon_factory(
             file_kw={'filename': 'https-everywhere.xpi'}
