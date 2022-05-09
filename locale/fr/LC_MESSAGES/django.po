@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-03 19:24+0000\n"
-"PO-Revision-Date: 2022-05-06 15:56+0000\n"
+"PO-Revision-Date: 2022-05-09 09:38+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -153,10 +153,10 @@ msgid "- Add-on not on AMO -"
 msgstr "- Module complémentaire non présent sur AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Nombre maximal de catégories par application ({MAX_CATEGORIES}) dépassé"
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "La catégorie « autre » ne peut pas être combinée avec une autre catégorie"
 
 msgid "Invalid category name."
 msgstr "Nom de catégorie invalide."
@@ -180,7 +180,7 @@ msgid "Invalid or broken archive."
 msgstr "Archive invalide ou corrompue."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Ce type de module complémentaire ne permet pas la compatibilité personnalisée."
 
 msgid "Invalid value"
 msgstr "Valeur invalide"
@@ -480,10 +480,10 @@ msgid "You must provide an object of {lang-code:value}."
 msgstr "Vous devez spécifier un objet {lang-code:value}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Une valeur dans la langue par défaut de « {lang_code} » est nécessaire."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Une valeur dans la langue par défaut de « {lang_code} » est requise si d’autres traductions sont définies."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
