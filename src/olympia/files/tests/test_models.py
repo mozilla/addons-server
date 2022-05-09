@@ -225,6 +225,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         ).current_version.file
         filename_in_instance = file_.file.name
         assert filename_in_instance.startswith(f'{str(file_.addon.pk)}/')
+        assert file_.file.path == f'{settings.ADDONS_PATH}/{filename_in_instance}'
         filename_in_db = File.objects.filter(pk=file_.pk).values_list(
             'file', flat=True
         )[0]
