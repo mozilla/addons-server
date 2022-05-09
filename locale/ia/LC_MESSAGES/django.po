@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-03 19:24+0000\n"
-"PO-Revision-Date: 2022-05-04 18:00+0000\n"
+"PO-Revision-Date: 2022-05-05 14:35+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -220,7 +220,7 @@ msgid "Add-ons need at least one owner."
 msgstr "Le additivos debe haber al minus un proprietario."
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Le additivos besonia de al minus un autor listate."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Iste alias breve non pote esser usate. Elige un altero."
@@ -465,10 +465,10 @@ msgid "You must provide an object of {lang-code:value}."
 msgstr "Tu debe fornir un objecto de {lang-code:value}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Un valor in le lingua predefinite de \"{lang_code}\" es necesse."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Un valor in le lingua predefinite de \"{lang_code}\" es obligate si altere traductiones es predefinite."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."

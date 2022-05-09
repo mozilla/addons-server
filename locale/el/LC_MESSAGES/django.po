@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-03 19:24+0000\n"
-"PO-Revision-Date: 2022-05-04 19:52+0000\n"
+"PO-Revision-Date: 2022-05-08 22:06+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -218,10 +218,10 @@ msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν κάτοχο."
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν καταχωρημένο δημιουργό."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Αυτό το slug δεν μπορεί να χρησιμοποιηθεί. Παρακαλώ επιλέξτε κάποιο άλλο."
@@ -467,13 +467,13 @@ msgid "Unavailable for legal reasons."
 msgstr "Μη διαθέσιμο για νομικούς λόγους."
 
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Ο κωδικός γλώσσας «{lang_code}» δεν είναι έγκυρος."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Πρέπει να παρέχετε ένα αντικείμενο του {lang-code:value}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Απαιτείται μια τιμή στην προεπιλεγμένη γλώσσα «{lang_code}»."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
 msgstr ""
@@ -853,7 +853,7 @@ msgstr "Το {file} έχει υπογραφεί."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Το ID προσθέτου {0} με GUID {1} έχει διαγραφεί"
 
 msgid "{addon} migrated from preliminary."
 msgstr "Το {addon} μεταφέρθηκε από τον πρώτο έλεγχο."

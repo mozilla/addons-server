@@ -811,6 +811,9 @@ def license_factory(**kw):
 def file_factory(**kw):
     filename = kw.pop('filename', None)
     if filename:
+        # If a filename is passed, also copy the file over to where it would
+        # have been uploaded. filename can either be an absolute path or name
+        # relative to the files fixture directory.
         fixture_path = (
             filename
             if filename.startswith('/')

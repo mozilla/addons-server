@@ -163,11 +163,9 @@ def test_generate_static_theme_preview(
     }
     if header_url is not None:
         theme_manifest['images']['theme_frame'] = header_url
-    addon = addon_factory()
-    file_ = addon.current_version.file
-    with open(os.path.join(HEADER_ROOT, 'theme_images.zip'), 'rb') as src:
-        file_.file = DjangoFile(src)
-        file_.save()
+    addon = addon_factory(
+        file_kw={'filename': os.path.join(HEADER_ROOT, 'theme_images.zip')}
+    )
     # existing previews should be deleted if they exist
     existing_preview = VersionPreview.objects.create(version=addon.current_version)
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
@@ -354,11 +352,9 @@ def test_generate_static_theme_preview_with_alternative_properties(
         'images': manifest_images,
         'colors': manifest_colors,
     }
-    addon = addon_factory()
-    file_ = addon.current_version.file
-    with open(os.path.join(HEADER_ROOT, 'theme_images.zip'), 'rb') as src:
-        file_.file = DjangoFile(src)
-        file_.save()
+    addon = addon_factory(
+        file_kw={'filename': os.path.join(HEADER_ROOT, 'theme_images.zip')}
+    )
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg
@@ -521,17 +517,13 @@ def test_generate_preview_with_additional_backgrounds(
             'additional_backgrounds_tiling': ['repeat-x'],
         },
     }
-    addon = addon_factory()
-    file_ = addon.current_version.file
-    with open(
-        os.path.join(
-            settings.ROOT,
-            'src/olympia/devhub/tests/addons/static_theme_tiled.zip',
-        ),
-        'rb',
-    ) as src:
-        file_.file = DjangoFile(src)
-        file_.save()
+    addon = addon_factory(
+        file_kw={
+            'filename': os.path.join(
+                settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
+            )
+        }
+    )
     generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     # for svg preview we write the svg twice, 1st with write_svg, later with convert_svg

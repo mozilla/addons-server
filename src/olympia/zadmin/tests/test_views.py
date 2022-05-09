@@ -1,5 +1,3 @@
-import json
-
 from unittest import mock
 
 from django.http import HttpResponseRedirect
@@ -122,7 +120,7 @@ class TestRecalculateHash(TestCase):
         ).file
 
         response = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
-        assert json.loads(response.content)['success'] == 1
+        assert response.json()['success'] == 1
 
         file = File.objects.get(pk=file.id)
 
