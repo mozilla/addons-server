@@ -9,7 +9,6 @@ from django.test.utils import override_settings
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory,
-    AMOPaths,
     TestCase,
     user_factory,
     version_factory,
@@ -44,7 +43,6 @@ from olympia.scanners.tasks import (
     run_yara_query_rule,
     run_yara_query_rule_on_versions_chunk,
 )
-from olympia.versions.models import Version
 
 
 class TestRunScanner(UploadMixin, TestCase):
@@ -590,12 +588,13 @@ class TestRunYara(UploadMixin, TestCase):
         assert received_results == self.results
 
 
-class TestRunYaraQueryRule(AMOPaths, TestCase):
+class TestRunYaraQueryRule(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.version = addon_factory().current_version
-        self.xpi_copy_over(self.version.file, 'webextension.xpi')
+        self.version = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
 
         # This rule will match for all files in the xpi.
         self.rule = ScannerQueryRule.objects.create(
@@ -616,6 +615,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # by itself.
         other_addon = addon_factory(
             version_kw={'created': self.days_ago(1)},
+            file_kw={'filename': 'webextension.xpi'},
         )
         other_addon_previous_current_version = other_addon.current_version
         included_versions = [
@@ -625,6 +625,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
             addon_factory(
                 disabled_by_user=True,  # Doesn't matter.
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'filename': 'webextension.xpi'},
             ).versions.get(),
             # Unlisted webextension version of an add-on that has multiple
             # versions.
@@ -632,18 +633,20 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
                 addon=other_addon,
                 created=self.days_ago(42),
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
+                file_kw={'filename': 'webextension.xpi'},
             ),
             # Listed webextension versions of an add-on that has multiple
             # versions.
             other_addon_previous_current_version,
-            version_factory(addon=other_addon),
+            version_factory(
+                addon=other_addon, file_kw={'filename': 'webextension.xpi'}
+            ),
         ]
         # Ignored version:
         # Listed Webextension version belonging to mozilla disabled add-on.
-        addon_factory(status=amo.STATUS_DISABLED).current_version
-
-        for version in Version.unfiltered.all():
-            self.xpi_copy_over(version.file, 'webextension.xpi')
+        addon_factory(
+            status=amo.STATUS_DISABLED, file_kw={'filename': 'webextension.xpi'}
+        ).current_version
 
         # Run the task.
         run_yara_query_rule.delay(self.rule.pk)

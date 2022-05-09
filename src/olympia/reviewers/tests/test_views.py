@@ -8536,6 +8536,15 @@ class TestCannedResponseViewSet(TestCase):
 class TestThemeBackgroundImages(ReviewBase):
     def setUp(self):
         super().setUp()
+        self.addon = addon_factory(
+            type=amo.ADDON_STATICTHEME,
+            file_kw={
+                'filename': os.path.join(
+                    settings.ROOT,
+                    'src/olympia/devhub/tests/addons/static_theme_tiled.zip',
+                )
+            },
+        )
         self.url = reverse(
             'reviewers.theme_background_images', args=[self.addon.current_version.id]
         )
@@ -8547,17 +8556,13 @@ class TestThemeBackgroundImages(ReviewBase):
         assert response.status_code == 403
 
     def test_no_header_image(self):
+        self.addon.current_version.file.update(filename='')
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data == {}
 
     def test_header_images(self):
-        destination = self.addon.current_version.file.file_path
-        zip_file = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
-        )
-        self.root_storage.copy_stored_file(zip_file, destination)
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)

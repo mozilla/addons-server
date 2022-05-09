@@ -16,7 +16,6 @@ from urllib.parse import urljoin
 
 from olympia import amo
 from olympia.amo.tests import (
-    AMOPaths,
     TestCase,
     addon_factory,
     user_factory,
@@ -1086,7 +1085,7 @@ class TestScannerRuleAdmin(TestCase):
         assert len(select.children()) == 3
 
 
-class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
+class TestScannerQueryRuleAdmin(TestCase):
     def setUp(self):
         super().setUp()
 
@@ -1289,8 +1288,9 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         assert rule.state == SCHEDULED
 
     def test_run_action_functional(self):
-        version = addon_factory().current_version
-        self.xpi_copy_over(version.file, 'webextension.xpi')
+        version = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
         rule = ScannerQueryRule.objects.create(
             name='always_true',
             scanner=YARA,
