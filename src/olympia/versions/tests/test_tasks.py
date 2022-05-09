@@ -2,7 +2,6 @@ import os
 from base64 import b64encode
 
 from django.conf import settings
-from django.core.files import File as DjangoFile
 from django.utils.encoding import force_str
 
 from unittest import mock

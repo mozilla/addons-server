@@ -8556,7 +8556,7 @@ class TestThemeBackgroundImages(ReviewBase):
         assert response.status_code == 403
 
     def test_no_header_image(self):
-        self.addon.current_version.file.update(filename='')
+        self.addon.current_version.file.update(file='')
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)
