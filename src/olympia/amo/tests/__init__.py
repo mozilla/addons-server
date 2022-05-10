@@ -5,7 +5,7 @@ import socket
 import struct
 import time
 import uuid
-from contextlib import contextmanager, nullcontext
+from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
@@ -809,6 +809,7 @@ def license_factory(**kw):
 
 
 def file_factory(**kw):
+    kw.setdefault('status', amo.STATUS_APPROVED)
     filename = kw.pop('filename', None)
     if filename:
         # If a filename is passed, also copy the file over to where it would
@@ -821,13 +822,10 @@ def file_factory(**kw):
                 settings.ROOT, 'src/olympia/files/fixtures/files', filename
             )
         )
-        context = open(fixture_path, 'rb')
+        with open(fixture_path, 'rb') as f:
+            kw['file'] = DjangoFile(f)
+            file_ = File.objects.create(**kw)
     else:
-        context = nullcontext()
-    kw.setdefault('status', amo.STATUS_APPROVED)
-    with context as src:
-        if src:
-            kw['file'] = DjangoFile(src)
         file_ = File.objects.create(**kw)
     return file_
 
