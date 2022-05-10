@@ -600,10 +600,11 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_bump_non_ascii_filename(self, mock_sign_file):
         """Sign files which have non-ascii filenames."""
-        src = self.file_.file_path
-        self.file_.file.name = f'{self.file_.addon.pk}/wébextension.xpi.zip'
+        old_file_path = self.file_.file_path
+        old_file_dirs = os.path.dirname(self.file_.file.name)
+        self.file_.file.name = f'{old_file_dirs}/wébextension.zip'
         self.file_.save()
-        os.rename(src, self.file_.file_path)
+        os.rename(old_file_path, self.file_.file_path)
         file_hash = self.file_.generate_hash()
         assert self.version.version == '0.0.1'
         tasks.sign_addons([self.addon.pk])

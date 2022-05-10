@@ -1138,7 +1138,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         upload = self.upload('webextension.xpi')
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == f'{file_.addon.pk}/jets-0.1.zip'
+        assert file_.filename == '56/3456/123456/jets-0.1.zip'
 
     def test_size(self):
         upload = self.upload('webextension.xpi')
