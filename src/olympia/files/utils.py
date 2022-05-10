@@ -69,13 +69,15 @@ def get_filepath(fileorpath):
     This supports various input formats, a path, a django `File` object,
     `olympia.files.File`, a `FileUpload` or just a regular file-like object.
     """
+    from olympia.files.models import File, FileUpload
+
     if isinstance(fileorpath, str):
         return fileorpath
     elif isinstance(fileorpath, DjangoFile):
         return fileorpath
-    elif hasattr(fileorpath, 'file'):  # File
+    elif isinstance(fileorpath, File):
         return fileorpath.file
-    elif hasattr(fileorpath, 'path'):  # FileUpload
+    elif isinstance(fileorpath, FileUpload):
         return fileorpath.path
     elif hasattr(fileorpath, 'name'):  # file-like object
         return fileorpath.name
