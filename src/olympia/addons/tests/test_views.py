@@ -6033,15 +6033,21 @@ class TestAddonPendingAuthorViewSet(TestCase):
         assert response.status_code == 400, response.content
         assert response.data == {'user_id': ['An author can only be present once.']}
 
-        # account needs a display name
         dupe_addonuser.delete()
-        user.update(display_name=None)
+        # can't add the same pending author twice
+        response = self.client.post(
+            self.list_url, data={'user_id': self.pending_author.user.id}
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'user_id': ['An author can only be present once.']}
+
+        # account needs a display name
+        assert not user.display_name
         response = self.client.post(self.list_url, data={'user_id': user.id})
         assert response.status_code == 400, response.content
         assert response.data == {
             'user_id': [
-                'The account needs a display name before it can be added as an '
-                'author.'
+                'The account needs a display name before it can be added as an author.'
             ]
         }
 
@@ -6094,3 +6100,30 @@ class TestAddonPendingAuthorViewSet(TestCase):
             id=self.pending_author.id
         ).exists()
         assert pending_user not in self.addon.reload().authors.all()
+
+    def test_developer_role(self):
+        AddonUser.objects.get(user=self.user).update(role=amo.AUTHOR_ROLE_DEV)
+        # edge-case: user is an owner of a *different* add-on too
+        addon_factory(users=(self.user,))
+        self.client.login_api(self.user)
+
+        # developer role authors should be able to view all details of authors
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200, response.content
+        assert response.data == AddonPendingAuthorSerializer().to_representation(
+            instance=self.pending_author
+        )
+        # but not update
+        response = self.client.patch(self.detail_url, {'role': 'owner'})
+        assert response.status_code == 403, response.content
+
+        # or create
+        response = self.client.post(
+            self.list_url,
+            data={'user_id': user_factory(display_name='me!').id, 'role': 'owner'},
+        )
+        assert response.status_code == 403, response.content
+
+        # and not delete either
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 403, response.content

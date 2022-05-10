@@ -700,7 +700,7 @@ class AddonAuthorViewSet(
     # for list and get - see check_permissions and check_object_permissions. Permissions
     # are also always checked against the parent add-on in get_addon_object() using
     # AddonViewSet's permissions.
-    permission_classes = [APIGatePermission('addon-submission-api')]
+    permission_classes = [APIGatePermission('addon-submission-api'), IsAuthenticated]
     authentication_classes = [
         JWTKeyAuthentication,
         SessionIDAuthentication,
@@ -710,6 +710,8 @@ class AddonAuthorViewSet(
     lookup_field = 'user__id'
     lookup_url_kwarg = 'user_id'
     pagination_class = None  # Add-ons don't have huge numbers of authors
+    # We want unsafe actions to be restricted to owner role authors
+    owner_actions = ('create', 'update', 'partial_update', 'destroy')
 
     def check_permissions(self, request):
         # When listing, we can't use AllowRelatedObjectPermissions() with
@@ -720,7 +722,9 @@ class AddonAuthorViewSet(
         addon = self.get_addon_object(
             permission_classes=[
                 AnyOf(
-                    AllowAddonAuthor,
+                    AllowAddonOwner
+                    if self.action in self.owner_actions
+                    else AllowAddonAuthor,
                     AllowListedViewerOrReviewer,
                     AllowUnlistedViewerOrReviewer,
                 ),
@@ -729,17 +733,6 @@ class AddonAuthorViewSet(
         return super().check_permissions(request) and super().check_object_permissions(
             request, addon
         )
-
-    def check_object_permissions(self, request, obj):
-        # check_permissions will have been executed by this point, enforcing that add-on
-        # authors have access only, but for updates/deletes we want to restrict further
-        # to owner role authors.
-        if self.action in ('update', 'partial_update', 'destroy'):
-            self.permission_classes = [
-                AllowRelatedObjectPermissions('addon', [AllowAddonOwner])
-            ]
-
-        super().check_object_permissions(request, obj)
 
     def get_queryset(self):
         return self.get_addon_object().addonuser_set.all().order_by('position')
@@ -754,10 +747,9 @@ class AddonAuthorViewSet(
 
 class AddonPendingAuthorViewSet(CreateModelMixin, AddonAuthorViewSet):
     serializer_class = AddonPendingAuthorSerializer
-    permission_classes = [APIGatePermission('addon-submission-api'), IsAuthenticated]
 
     def check_permissions(self, request):
-        # pending_confirm needs to be confirmable without being an addon author already
+        # confirm/decline needs to be actionable without being an addon author already
         if self.action in ('confirm', 'decline'):
             # .get_addon_object is cached so we just need to call without restricted
             # permission_classes first and it'll be used for subsequent calls too.
