@@ -168,7 +168,8 @@ class File(OnChangeMixin, ModelBase):
         )
         log.info(f'New file: {file_!r} from {upload!r}')
 
-        # FIXME if FileUpload also did things correctly I wouldn't have to do this...
+        # FileUpload.path is not a FileField, so we have to open() the path to
+        # make a DjangoFile in order to assign it to file_.file.
         with open(upload_path, 'rb') as src:
             file_.file = DjangoFile(src)
             file_.save()  # This also saves the file to the filesystem.
