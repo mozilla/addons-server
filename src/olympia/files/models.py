@@ -217,10 +217,11 @@ class File(OnChangeMixin, ModelBase):
         return os.path.basename(self.file.name) if self.file else ''
 
     def latest_xpi_url(self, attachment=False):
-        addon = self.version.addon
+        addon = self.addon
+        extension = os.path.splitext(self.filename)[-1] or 'xpi'
         kw = {
             'addon_id': addon.slug,
-            'filename': f'addon-{addon.pk}-latest{self.extension}',
+            'filename': f'addon-{addon.pk}-latest{extension}',
         }
         if attachment:
             kw['download_type'] = 'attachment'
@@ -237,10 +238,6 @@ class File(OnChangeMixin, ModelBase):
     @property
     def addon(self):
         return self.version.addon
-
-    @property
-    def extension(self):
-        return os.path.splitext(self.file.name)[-1]
 
     @cached_property
     def permissions(self):
