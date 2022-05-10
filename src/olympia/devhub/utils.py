@@ -279,7 +279,7 @@ class Validator:
 
 def extract_theme_properties(addon, channel):
     version = addon.find_latest_version(channel)
-    if not version or not version.file.file:
+    if not version:
         return {}
     try:
         parsed_data = parse_xpi(
