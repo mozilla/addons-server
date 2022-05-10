@@ -6033,15 +6033,21 @@ class TestAddonPendingAuthorViewSet(TestCase):
         assert response.status_code == 400, response.content
         assert response.data == {'user_id': ['An author can only be present once.']}
 
-        # account needs a display name
         dupe_addonuser.delete()
-        user.update(display_name=None)
+        # can't add the same pending author twice
+        response = self.client.post(
+            self.list_url, data={'user_id': self.pending_author.user.id}
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'user_id': ['An author can only be present once.']}
+
+        # account needs a display name
+        assert not user.display_name
         response = self.client.post(self.list_url, data={'user_id': user.id})
         assert response.status_code == 400, response.content
         assert response.data == {
             'user_id': [
-                'The account needs a display name before it can be added as an '
-                'author.'
+                'The account needs a display name before it can be added as an author.'
             ]
         }
 

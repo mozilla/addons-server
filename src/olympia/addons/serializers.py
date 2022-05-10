@@ -749,7 +749,11 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
         ):
             raise exceptions.ValidationError(EmailUserRestriction.error_message)
 
-        if self.context['view'].get_addon_object().authors.filter(pk=user.pk).exists():
+        addon = self.context['view'].get_addon_object()
+        if (
+            addon.authors.filter(pk=user.pk).exists()
+            or addon.addonuserpendingconfirmation_set.filter(user_id=user.pk).exists()
+        ):
             raise exceptions.ValidationError(
                 gettext('An author can only be present once.')
             )
