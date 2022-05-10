@@ -192,12 +192,12 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '3615/delicious_bookmarks-2.1.072.zip'
+            == '15/3615/3615/delicious_bookmarks-2.1.072.zip'  # zip extension.
         )
         file_.is_signed = True
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '3615/delicious_bookmarks-2.1.072.xpi'
+            == '15/3615/3615/delicious_bookmarks-2.1.072.xpi'  # xpi extension.
         )
 
     def test_pretty_filename(self):
@@ -213,16 +213,32 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_.is_signed = True
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '4242/addon-0.1.7.xpi'
+            == '42/4242/4242/addon-0.1.7.xpi'
         )
 
-    def test_filename_not_migrated(self):
-        # We aren't migrating files yet, so the filename in database should
-        # just be the xpi filename without any directories, despite the
-        # file_.name containing the add-on dir.
+    def test_filename_new_file_deep_directory_structure(self):
+        # New files should be stored in deep directory structure
         file_ = addon_factory(
-            file_kw={'filename': 'https-everywhere.xpi'}
+            pk=14071789,
+            name='My äDødôn',
+            version_kw={'version': '4.8.15.16'},
+            file_kw={'filename': 'https-everywhere.xpi'},
         ).current_version.file
+        filename_in_instance = file_.file.name
+        assert filename_in_instance == '89/1789/14071789/my_addon-4.8.15.16.zip'
+        assert file_.file.path == f'{settings.ADDONS_PATH}/{filename_in_instance}'
+        filename_in_db = File.objects.filter(pk=file_.pk).values_list(
+            'file', flat=True
+        )[0]
+        assert filename_in_db
+        assert filename_in_db == filename_in_instance
+
+    def test_filename_not_migrated(self):
+        # We aren't migrating existing files yet, so for an existing File
+        # instance, the filename in database should just be the xpi filename
+        # without any directories, despite the file_.name containing the add-on
+        # dir.
+        file_ = File.objects.get(pk=67442)
         filename_in_instance = file_.file.name
         assert filename_in_instance.startswith(f'{str(file_.addon.pk)}/')
         assert file_.file.path == f'{settings.ADDONS_PATH}/{filename_in_instance}'
@@ -1066,7 +1082,10 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.addon = Addon.objects.create(
-            guid='@webextension-guid', type=amo.ADDON_EXTENSION, name='xxx'
+            guid='@webextension-guid',
+            type=amo.ADDON_EXTENSION,
+            name='xxx',
+            pk=123456,
         )
         self.version = Version.objects.create(addon=self.addon)
 
@@ -1096,14 +1115,14 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_filename(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == f'{file_.addon.pk}/xxx-0.1.zip'
+        assert file_.filename == '56/3456/123456/xxx-0.1.zip'
 
     def test_filename_no_extension(self):
         upload = self.upload('webextension.xpi')
         # Remove the extension.
         upload.name = upload.name.rsplit('.', 1)[0]
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == f'{file_.addon.pk}/xxx-0.1.zip'
+        assert file_.filename == '56/3456/123456/xxx-0.1.zip'
 
     def test_file_validation(self):
         upload = self.upload('webextension.xpi')
