@@ -27,7 +27,12 @@ from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import SafeStorage
 from olympia.files.fields import FilenameFileField
-from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_as_xpi
+from olympia.files.utils import (
+    get_sha256,
+    id_to_path,
+    InvalidOrUnsupportedCrx,
+    write_crx_as_xpi,
+)
 
 
 log = olympia.core.logger.getLogger('z.files')
@@ -40,11 +45,20 @@ DEFAULT_MANIFEST_VERSION = 2
 def files_upload_to_callback(instance, filename):
     """upload_to callback for File instances.
 
-    It is called automatically when calling save() on a File, since it's a
-    upload_to callback.
+    When <File instance>.save() is called, that triggers a call to this
+    function if the underlying <File instance>.file had not yet been
+    "committed" to the filesystem - typically when we're assigned it but not
+    called saved yet.
 
-    The returned paths are in the format of:
-    {addon_id}/{addon_name}-{version}.{extension}
+    For new uploads, the returned path is:
+    {directories}/addon_name}-{version}.{extension}, where {directories} is
+    {addon_id last 2 digits}/{addon_id last 4 digits}/{addon_id}
+
+    For older uploads, the returned path used to be in the format of
+    {addon_id}/{addon_name}-{version}.{extension} (and even used to contain
+    compatible apps associated with the file before), and our custom
+    FilenameFileField ensured we only stored the filename without the leading
+    directory to the database for backwards-compatibility.
 
     By convention, newly signed files after 2022-03-31 get a .xpi extension,
     unsigned get .zip. This helps ensure CDN cache is busted when we sign
@@ -59,7 +73,9 @@ def files_upload_to_callback(instance, filename):
     name = slugify(instance.addon.name).replace('-', '_') or 'addon'
     parts = (name, instance.version.version)
     file_extension = '.xpi' if instance.is_signed else '.zip'
-    return os.path.join(str(instance.addon.pk), '-'.join(parts) + file_extension)
+    return os.path.join(
+        id_to_path(instance.addon.pk, breadth=2), '-'.join(parts) + file_extension
+    )
 
 
 def files_storage():
