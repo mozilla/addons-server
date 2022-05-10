@@ -54,13 +54,10 @@ def files_upload_to_callback(instance, filename):
     a filename, but the filename is completely ignored here (it's meant to
     represent the user-provided filename in user uploads).
     """
-    parts = []
-    addon = instance.version.addon
     # slugify drops unicode so we may end up with an empty string.
     # Apache did not like serving unicode filenames (bug 626587).
-    name = slugify(addon.name).replace('-', '_') or 'addon'
-    parts.append(name)
-    parts.append(instance.version.version)
+    name = slugify(instance.addon.name).replace('-', '_') or 'addon'
+    parts = (name, instance.version.version)
     file_extension = '.xpi' if instance.is_signed else '.zip'
     return os.path.join(str(instance.addon.pk), '-'.join(parts) + file_extension)
 
