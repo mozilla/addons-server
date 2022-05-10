@@ -2,6 +2,7 @@ import os
 import re
 
 from django.core.exceptions import ValidationError as DjangoValidationError
+from django.core.files import File as DjangoFile
 from django.urls import reverse
 from django.utils.translation import gettext
 
@@ -1201,7 +1202,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             id=data['id'],
             created=self.handle_date(data['created']),
             hash=data['hash'],
-            filename=data['filename'],
+            file=DjangoFile(data['filename']),
             is_mozilla_signed_extension=data.get('is_mozilla_signed_extension'),
             size=data['size'],
             status=data['status'],

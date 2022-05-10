@@ -271,7 +271,7 @@ def test_extract_theme_properties(zip_file):
         'images': {'theme_frame': 'weta.png'},
     }
 
-    addon.current_version.file.update(filename='')
+    addon.current_version.file.update(file='')
     result = utils.extract_theme_properties(addon, addon.current_version.channel)
     assert result == {}  # There's no file, but it be should safely handled.
 

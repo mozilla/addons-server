@@ -111,7 +111,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         url = file_.get_absolute_url()
         # Important: Fenix relies on this URL pattern to decide when to trigger
         # the add-on install flow. Changing this URL would likely break Fenix.
-        expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072-fx.xpi'
+        expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072.xpi'
         assert url.endswith(expected), url
 
     def test_get_url_path(self):
@@ -122,7 +122,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         expected = (
             '/firefox/downloads/file/67442'
-            '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
+            '/type:attachment/delicious_bookmarks-2.1.072.xpi'
         )
         assert file_.get_url_path(attachment=True) == expected
 
@@ -130,7 +130,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         expected = (
             'http://testserver/firefox/downloads/file/67442'
-            '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
+            '/type:attachment/delicious_bookmarks-2.1.072.xpi'
         )
         assert file_.get_absolute_url(attachment=True) == expected
 
@@ -175,7 +175,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_delete_signal(self):
         """Test that if there's no filename, the signal is ok."""
         file = File.objects.get(pk=67442)
-        file.update(filename='')
+        file.update(file='')
         file.delete()
 
     def test_latest_url(self):
@@ -190,40 +190,54 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename(self):
         file_ = File.objects.get(id=67442)
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-fx.zip'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '3615/delicious_bookmarks-2.1.072.zip'
+        )
         file_.is_signed = True
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '3615/delicious_bookmarks-2.1.072.xpi'
+        )
 
     def test_pretty_filename(self):
         file_ = File.objects.get(id=67442)
-        file_.generate_filename()
-        assert file_.pretty_filename == 'delicious_bookmarks-2.1.072-fx.xpi'
-
-    def test_generate_filename_many_apps(self):
-        file_ = File.objects.get(id=67442)
-        file_.version.compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
-        file_.is_signed = True
-        # After adding sorting for compatible_apps, above becomes
-        # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
-        # instead of 'fx+an'
-        # See: https://github.com/mozilla/addons-server/issues/3358
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-an+fx.xpi'
+        assert file_.filename == '3615/delicious_bookmarks-2.1.072.xpi'
+        assert file_.pretty_filename == 'delicious_bookmarks-2.1.072.xpi'
 
     def test_generate_filename_ja(self):
         file_ = File()
         file_.version = Version(version='0.1.7')
         file_.version.compatible_apps = {amo.FIREFOX: None}
-        file_.version.addon = Addon(name=' フォクすけ  といっしょ')
+        file_.version.addon = Addon(name=' フォクすけ  といっしょ', pk=4242)
         file_.is_signed = True
-        assert file_.generate_filename() == 'addon-0.1.7-fx.xpi'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '4242/addon-0.1.7.xpi'
+        )
+
+    def test_filename_not_migrated(self):
+        # We aren't migrating files yet, so the filename in database should
+        # just be the xpi filename without any directories, despite the
+        # file_.name containing the add-on dir.
+        file_ = addon_factory(
+            file_kw={'filename': 'https-everywhere.xpi'}
+        ).current_version.file
+        filename_in_instance = file_.file.name
+        assert filename_in_instance.startswith(f'{str(file_.addon.pk)}/')
+        assert file_.file.path == f'{settings.ADDONS_PATH}/{filename_in_instance}'
+        filename_in_db = File.objects.filter(pk=file_.pk).values_list(
+            'file', flat=True
+        )[0]
+        assert filename_in_db
+        assert '/' not in filename_in_db
+        assert not filename_in_db.startswith(f'{str(file_.addon.pk)}/')
 
     def test_generate_hash(self):
         file_ = addon_factory(
             file_kw={'filename': 'https-everywhere.xpi'}
         ).current_version.file
-        assert file_.generate_hash(file_.file_path).startswith(
-            'sha256:95bd414295acda29c4'
-        )
+        assert file_.generate_hash().startswith('sha256:95bd414295acda29c4')
 
         file_ = File.objects.get(pk=67442)
         with storage.open(file_.file_path, 'wb') as fp:
@@ -700,7 +714,7 @@ class TestFileUpload(UploadMixin, TestCase):
 
         upload = FileUpload.from_post(
             b'',
-            filename='мозила_србија-0.11-fx.xpi',
+            filename='мозила_србија-0.11.xpi',
             size=0,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
@@ -1082,14 +1096,14 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_filename(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'xxx-0.1.zip'
+        assert file_.filename == f'{file_.addon.pk}/xxx-0.1.zip'
 
     def test_filename_no_extension(self):
         upload = self.upload('webextension.xpi')
         # Remove the extension.
         upload.name = upload.name.rsplit('.', 1)[0]
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'xxx-0.1.zip'
+        assert file_.filename == f'{file_.addon.pk}/xxx-0.1.zip'
 
     def test_file_validation(self):
         upload = self.upload('webextension.xpi')
@@ -1105,7 +1119,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         upload = self.upload('webextension.xpi')
         self.version.addon.name = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'jets-0.1.zip'
+        assert file_.filename == f'{file_.addon.pk}/jets-0.1.zip'
 
     def test_size(self):
         upload = self.upload('webextension.xpi')
@@ -1119,10 +1133,10 @@ class TestFileFromUpload(UploadMixin, TestCase):
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.status == amo.STATUS_AWAITING_REVIEW
 
-    def test_file_hash_paranoia(self):
+    def test_file_hash_copied_over(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.hash.startswith('sha256:79ff4a97e898d80')
+        assert file_.hash == 'sha256:fake_hash'
 
     def test_extension_extension(self):
         upload = self.upload('webextension.xpi')

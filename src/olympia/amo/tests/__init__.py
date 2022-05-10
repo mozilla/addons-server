@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core.files import File as DjangoFile
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
@@ -808,6 +809,7 @@ def license_factory(**kw):
 
 
 def file_factory(**kw):
+    kw.setdefault('status', amo.STATUS_APPROVED)
     filename = kw.pop('filename', None)
     if filename:
         # If a filename is passed, also copy the file over to where it would
@@ -820,16 +822,12 @@ def file_factory(**kw):
                 settings.ROOT, 'src/olympia/files/fixtures/files', filename
             )
         )
-        version = kw['version']  # Has to exist anyway for file_factory to work
-        kw['filename'] = f'addon-{version.version}.xpi'
-        file_path = os.path.join(
-            settings.ADDONS_PATH, str(version.addon_id), kw['filename']
-        )
-        if not os.path.exists(os.path.dirname(file_path)):
-            os.makedirs(os.path.dirname(file_path))
-        shutil.copyfile(fixture_path, file_path)
-    kw.setdefault('status', amo.STATUS_APPROVED)
-    return File.objects.create(**kw)
+        with open(fixture_path, 'rb') as f:
+            kw['file'] = DjangoFile(f)
+            file_ = File.objects.create(**kw)
+    else:
+        file_ = File.objects.create(**kw)
+    return file_
 
 
 def req_factory_factory(url, user=None, post=False, data=None, session=None):

@@ -69,13 +69,15 @@ def get_filepath(fileorpath):
     This supports various input formats, a path, a django `File` object,
     `olympia.files.File`, a `FileUpload` or just a regular file-like object.
     """
+    from olympia.files.models import File, FileUpload
+
     if isinstance(fileorpath, str):
         return fileorpath
     elif isinstance(fileorpath, DjangoFile):
         return fileorpath
-    elif hasattr(fileorpath, 'file_path'):  # File
-        return fileorpath.file_path
-    elif hasattr(fileorpath, 'path'):  # FileUpload
+    elif isinstance(fileorpath, File):
+        return fileorpath.file
+    elif isinstance(fileorpath, FileUpload):
         return fileorpath.path
     elif hasattr(fileorpath, 'name'):  # file-like object
         return fileorpath.name
@@ -804,8 +806,8 @@ def extract_xpi(xpi, path):
 
 
 def parse_xpi(xpi, addon=None, minimal=False, user=None):
-    """Extract and parse an XPI. Returns a dict with various properties
-    describing the xpi.
+    """Extract and parse an XPI. Returns a dict with various
+    properties describing the xpi.
 
     Will raise ValidationError if something went wrong while parsing.
 
@@ -992,17 +994,19 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     return parsed
 
 
-def get_sha256(file_obj, block_size=io.DEFAULT_BUFFER_SIZE):
+def get_sha256(file_obj):
     """Calculate a sha256 hash for `file_obj`.
 
-    `file_obj` must be an open file descriptor. The caller needs to take
-    care of closing it properly.
-    """
+    `file_obj` must either be be an open file descriptor, in which case the
+    caller needs to take care of closing it properly, or a django File-like
+    object with a chunks() method to iterate over its contents."""
     hash_ = hashlib.sha256()
-
-    for chunk in iter(lambda: file_obj.read(block_size), b''):
+    if hasattr(file_obj, 'chunks') and callable(file_obj.chunks):
+        iterator = file_obj.chunks()
+    else:
+        iterator = iter(lambda: file_obj.read(io.DEFAULT_BUFFER_SIZE), b'')
+    for chunk in iterator:
         hash_.update(chunk)
-
     return hash_.hexdigest()
 
 
@@ -1022,7 +1026,7 @@ def update_version_number(file_obj, new_version_number):
                     )
                 dest.writestr(file_, content)
     # Move the updated file to the original file.
-    shutil.move(updated, file_obj.file_path)
+    os.replace(updated, file_obj.file_path)
 
 
 class InvalidOrUnsupportedCrx(Exception):
