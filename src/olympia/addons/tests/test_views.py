@@ -7,10 +7,12 @@ import tarfile
 import tempfile
 import zipfile
 
+from collections import Counter
 from unittest import mock
 from unittest.mock import patch
 
 from django.conf import settings
+from django.core import mail
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.utils import override_settings
@@ -5849,6 +5851,10 @@ class TestAddonAuthorViewSet(TestCase):
         assert response.status_code == 200, response.content
         self.addonuser.reload()
         assert response.data['position'] == self.addonuser.position == 2
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.CHANGE_USER_WITH_ROLE.id
+        ).exists()
+        assert len(mail.outbox) == 0
 
     def test_update_role(self):
         new_author = AddonUser.objects.create(
@@ -5866,6 +5872,13 @@ class TestAddonAuthorViewSet(TestCase):
         assert response.data['role'] == 'developer'
         self.addonuser.role == amo.AUTHOR_ROLE_DEV
 
+        log = ActivityLog.objects.get(action=amo.LOG.CHANGE_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 1
+        assert Counter(mail.outbox[0].recipients()) == Counter(
+            (self.user.email, new_author.user.email)
+        )
+
     def test_update_listed(self):
         new_author = AddonUser.objects.create(
             addon=self.addon, user=user_factory(), listed=False
@@ -5881,6 +5894,10 @@ class TestAddonAuthorViewSet(TestCase):
         self.addonuser.reload()
         assert response.data['listed'] is False
         self.addonuser.listed is False
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.CHANGE_USER_WITH_ROLE.id
+        ).exists()
+        assert len(mail.outbox) == 0
 
     def test_delete(self):
         new_author = AddonUser.objects.create(
@@ -5907,6 +5924,13 @@ class TestAddonAuthorViewSet(TestCase):
         new_author.update(listed=True)
         response = self.client.delete(self.detail_url)
         assert response.status_code == 204
+
+        log = ActivityLog.objects.get(action=amo.LOG.REMOVE_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 1
+        assert Counter(mail.outbox[0].recipients()) == Counter(
+            (self.user.email, new_author.user.email)
+        )
 
 
 class TestAddonPendingAuthorViewSet(TestCase):
@@ -5989,10 +6013,17 @@ class TestAddonPendingAuthorViewSet(TestCase):
         assert response.status_code == 204
         assert not AddonUserPendingConfirmation.objects.exists()
 
+        log = ActivityLog.objects.get(action=amo.LOG.REMOVE_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 1
+        assert Counter(mail.outbox[0].recipients()) == Counter(
+            (self.user.email, self.pending_author.user.email)
+        )
+
     def test_create(self):
         # This will be user that will be created
-        user = user_factory(display_name='new_guy')
-        data = {'user_id': user.id, 'role': 'developer'}
+        new_user = user_factory(display_name='new_guy')
+        data = {'user_id': new_user.id, 'role': 'developer'}
         assert self.client.post(self.list_url, data=data).status_code == 401
 
         self.client.login_api(user_factory())
@@ -6002,8 +6033,14 @@ class TestAddonPendingAuthorViewSet(TestCase):
         response = self.client.post(self.list_url, data=data)
         assert response.status_code == 201, response.content
         assert AddonUserPendingConfirmation.objects.filter(
-            user=user, addon=self.addon, role=amo.AUTHOR_ROLE_DEV
+            user=new_user, addon=self.addon, role=amo.AUTHOR_ROLE_DEV
         ).exists()
+
+        log = ActivityLog.objects.get(action=amo.LOG.ADD_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].recipients() == [self.user.email]
+        assert mail.outbox[1].recipients() == [new_user.email]
 
     @override_settings(API_THROTTLING=False)
     def test_create_validation(self):
@@ -6050,6 +6087,21 @@ class TestAddonPendingAuthorViewSet(TestCase):
                 'The account needs a display name before it can be added as an author.'
             ]
         }
+
+    def test_update_role(self):
+        self.client.login_api(self.user)
+        response = self.client.patch(self.detail_url, {'role': 'developer'})
+        assert response.status_code == 200, response.content
+        self.pending_author.reload()
+        assert response.data['role'] == 'developer'
+        self.pending_author.role == amo.AUTHOR_ROLE_DEV
+
+        log = ActivityLog.objects.get(action=amo.LOG.CHANGE_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 1
+        assert Counter(mail.outbox[0].recipients()) == Counter(
+            (self.user.email, self.pending_author.user.email)
+        )
 
     def test_confirm(self):
         AddonUser.objects.create(addon=self.addon, user=user_factory(), position=3)
