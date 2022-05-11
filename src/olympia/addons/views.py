@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from django.utils.translation import gettext
 
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers, status
@@ -738,10 +739,24 @@ class AddonAuthorViewSet(
         return self.get_addon_object().addonuser_set.all().order_by('position')
 
     def perform_destroy(self, instance):
+        serializer = self.get_serializer(instance)
         if isinstance(instance, AddonUser):
-            serializer = self.get_serializer(instance)
             serializer.validate_role(value=None)
             serializer.validate_listed(value=None)
+
+        recipients = list(
+            {
+                *instance.addon.authors.values_list('email', flat=True),
+                instance.user.email,
+            }
+        )
+        serializer.log(instance, amo.LOG.REMOVE_USER_WITH_ROLE)
+        serializer.mail_user_changes(
+            instance,
+            title=gettext('An author has been removed from your add-on'),
+            template_part='author_removed',
+            recipients=recipients,
+        )
         return super().perform_destroy(instance)
 
 
