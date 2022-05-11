@@ -1354,7 +1354,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert version.version == '0.0.1'
 
-    def test_file_name(self):
+    def test_filename(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
@@ -1363,7 +1363,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
-        assert version.file.filename == '15/3615/3615/delicious_bookmarks-0.0.1.zip'
+        assert version.file.filename == '15/3615/3615/a3615-0.0.1.zip'
 
     def test_track_upload_time(self):
         # Set created time back (just for sanity) otherwise the delta

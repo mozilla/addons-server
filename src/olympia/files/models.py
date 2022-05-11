@@ -51,7 +51,7 @@ def files_upload_to_callback(instance, filename):
     called saved yet.
 
     For new uploads, the returned path is:
-    {directories}/addon_name}-{version}.{extension}, where {directories} is
+    {directories}/addon_slug}-{version}.{extension}, where {directories} is
     {addon_id last 2 digits}/{addon_id last 4 digits}/{addon_id}
 
     For older uploads, the returned path used to be in the format of
@@ -68,9 +68,9 @@ def files_upload_to_callback(instance, filename):
     a filename, but the filename is completely ignored here (it's meant to
     represent the user-provided filename in user uploads).
     """
-    # slugify drops unicode so we may end up with an empty string.
-    # Apache did not like serving unicode filenames (bug 626587).
-    name = slugify(instance.addon.name).replace('-', '_') or 'addon'
+    # Start with the add-on slug, but make it go through django's slugify() to
+    # drop unicode characters.
+    name = slugify(instance.addon.slug).replace('-', '_') or 'addon'
     parts = (name, instance.version.version)
     file_extension = '.xpi' if instance.is_signed else '.zip'
     return os.path.join(

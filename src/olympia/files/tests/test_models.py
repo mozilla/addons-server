@@ -192,12 +192,12 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '15/3615/3615/delicious_bookmarks-2.1.072.zip'  # zip extension.
+            == '15/3615/3615/a3615-2.1.072.zip'  # zip extension.
         )
         file_.is_signed = True
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '15/3615/3615/delicious_bookmarks-2.1.072.xpi'  # xpi extension.
+            == '15/3615/3615/a3615-2.1.072.xpi'  # xpi extension.
         )
 
     def test_pretty_filename(self):
@@ -209,7 +209,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File()
         file_.version = Version(version='0.1.7')
         file_.version.compatible_apps = {amo.FIREFOX: None}
-        file_.version.addon = Addon(name=' フォクすけ  といっしょ', pk=4242)
+        file_.version.addon = Addon(slug=' フォクすけ  といっしょ', pk=4242)
         file_.is_signed = True
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
@@ -220,7 +220,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         # New files should be stored in deep directory structure
         file_ = addon_factory(
             pk=14071789,
-            name='My äDødôn',
+            slug='My äDødôn',
             version_kw={'version': '4.8.15.16'},
             file_kw={'filename': 'https-everywhere.xpi'},
         ).current_version.file
@@ -1084,7 +1084,8 @@ class TestFileFromUpload(UploadMixin, TestCase):
         self.addon = Addon.objects.create(
             guid='@webextension-guid',
             type=amo.ADDON_EXTENSION,
-            name='xxx',
+            slug='xxx',
+            name='Addon XXX',
             pk=123456,
         )
         self.version = Version.objects.create(addon=self.addon)
@@ -1134,9 +1135,9 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert fv.warnings == 1
         assert fv.notices == 2
 
-    def test_utf8_addon_name(self):
+    def test_filename_utf8_addon_slug(self):
         upload = self.upload('webextension.xpi')
-        self.version.addon.name = 'jéts!'
+        self.version.addon.slug = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.filename == '56/3456/123456/jets-0.1.zip'
 
