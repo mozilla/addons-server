@@ -137,7 +137,7 @@ Authors will be given the position at the end of the list of authors when confir
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be invited to be an author (to be a pending author).
 
-.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/pending-authors/confirm
+.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/pending-authors/confirm/
 
 
 ----------------------
@@ -151,7 +151,7 @@ This endpoint allows a user to decline the invitation to be an author of an add-
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be invited to be an author (to be a pending author).
 
-.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/pending-authors/decline
+.. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/pending-authors/decline/
 
 
 -------------------
