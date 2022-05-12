@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-04-28 10:37+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -227,6 +227,24 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "U vašeho doplňku byla změněna role autora"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Autor může být uveden pouze jednou."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Před přidáním účtu jako autora musí být v účtu nastaveno zobrazované jméno."
+
+msgid "An author has been added to your add-on"
+msgstr "K vašemu doplňku byl přidán nový autor"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Nabídka autorství pro doplněk {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -253,6 +271,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "U vašeho doplňku byl odebrán jeden z autorů"
 
 msgid "My Add-ons"
 msgstr "Mé doplňky"
@@ -1734,12 +1755,6 @@ msgstr "Dříve, než změníte výchozí jazyk, musíte mít v tomto jazyce vyp
 msgid "Users can not be added directly"
 msgstr "Uživatelé nemohou být přidáni přímo"
 
-msgid "An author can only be present once."
-msgstr "Autor může být uveden pouze jednou."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Před přidáním účtu jako autora musí být v účtu nastaveno zobrazované jméno."
-
 msgid "Must have at least one owner."
 msgstr "Musí být alespoň jeden vlastník."
 
@@ -1925,20 +1940,8 @@ msgstr "Nabídka byla přijata."
 msgid "Invitation declined."
 msgstr "Nabídka byla odmítnuta."
 
-msgid "An author has been added to your add-on"
-msgstr "K vašemu doplňku byl přidán nový autor"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Nabídka autorství pro doplněk {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Na adresu {email} byl zaslán potvrzovací e-mail"
-
-msgid "An author role has been changed on your add-on"
-msgstr "U vašeho doplňku byla změněna role autora"
-
-msgid "An author has been removed from your add-on"
-msgstr "U vašeho doplňku byl odebrán jeden z autorů"
 
 msgid "Changes successfully saved."
 msgstr "Změny byly úspěšně uloženy."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-05-26 05:01+0000\n"
 "Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -228,6 +228,26 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "เพิ่มผู้สร้างไปยังส่วนเสริมของคุณแล้ว"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "สามารถระบุผู้สร้างหนึ่งคนได้ครั้งเดียวเท่านั้น"
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr "เพิ่มผู้สร้างไปยังส่วนเสริมของคุณแล้ว"
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "การบริจาคสำหรับ {addon}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -254,6 +274,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "เอาผู้สร้างออกจากส่วนเสริมของคุณแล้ว"
 
 msgid "My Add-ons"
 msgstr "ส่วนเสริมของฉัน"
@@ -1743,12 +1766,6 @@ msgstr "ก่อนที่จะเปลี่ยนภาษาเริ่
 msgid "Users can not be added directly"
 msgstr ""
 
-msgid "An author can only be present once."
-msgstr "สามารถระบุผู้สร้างหนึ่งคนได้ครั้งเดียวเท่านั้น"
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
 msgid "Must have at least one owner."
 msgstr "ต้องมีเจ้าของอย่างน้อยหนึ่งคน"
 
@@ -1934,22 +1951,8 @@ msgstr "ยอมรับคำเชิญแล้ว"
 msgid "Invitation declined."
 msgstr "ปฏิเสธคำเชิญแล้ว"
 
-msgid "An author has been added to your add-on"
-msgstr "เพิ่มผู้สร้างไปยังส่วนเสริมของคุณแล้ว"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "การบริจาคสำหรับ {addon}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "อีเมลยืนยันได้ถูกส่งไปที่ {email}"
-
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "เพิ่มผู้สร้างไปยังส่วนเสริมของคุณแล้ว"
-
-msgid "An author has been removed from your add-on"
-msgstr "เอาผู้สร้างออกจากส่วนเสริมของคุณแล้ว"
 
 msgid "Changes successfully saved."
 msgstr "การเปลี่ยนแปลงถูกบันทึกเรียบร้อย"

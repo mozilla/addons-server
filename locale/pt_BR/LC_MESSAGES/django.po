@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-04-30 14:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,6 +225,25 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "Foi alterado o papel de um autor da sua extensão"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Um autor só pode ser listado uma vez."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "A conta precisa de um nome de exibição antes de poder ser adicionada como um autor."
+
+msgid "An author has been added to your add-on"
+msgstr "Foi adicionado um autor a sua extensão"
+
+# {addon} is an add-on name.
+msgid "Author invitation for {addon_name}"
+msgstr "Convite de autor de {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr "Este identificador não pode ser usado. Escolha outro."
 
@@ -251,6 +270,9 @@ msgstr "Este campo é obrigatório em extensões com versões listadas."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "Metadados de extensão precisam ser definidos para criar uma versão listada: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Foi removido um autor da sua extensão"
 
 msgid "My Add-ons"
 msgstr "Minhas extensões"
@@ -1748,12 +1770,6 @@ msgstr "Antes de alterar o idioma padrão você deve ter um nome, resumo e descr
 msgid "Users can not be added directly"
 msgstr "Usuários não podem se adicionados diretamente"
 
-msgid "An author can only be present once."
-msgstr "Um autor só pode ser listado uma vez."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "A conta precisa de um nome de exibição antes de poder ser adicionada como um autor."
-
 msgid "Must have at least one owner."
 msgstr "Deve haver pelo menos um dono."
 
@@ -1942,21 +1958,8 @@ msgstr "Convite aceito."
 msgid "Invitation declined."
 msgstr "Convite recusado."
 
-msgid "An author has been added to your add-on"
-msgstr "Foi adicionado um autor a sua extensão"
-
-# {addon} is an add-on name.
-msgid "Author invitation for {addon_name}"
-msgstr "Convite de autor de {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Um email de confirmação foi enviado para {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Foi alterado o papel de um autor da sua extensão"
-
-msgid "An author has been removed from your add-on"
-msgstr "Foi removido um autor da sua extensão"
 
 msgid "Changes successfully saved."
 msgstr "Alterações salvas com sucesso."

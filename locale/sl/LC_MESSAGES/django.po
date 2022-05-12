@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-04-21 13:49+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -222,6 +222,24 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "Avtor vašega dodatka je bil spremenjen"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Avtor je lahko naveden le enkrat."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Da bo ta račun lahko dodan kot avtor, potrebuje prikazno ime."
+
+msgid "An author has been added to your add-on"
+msgstr "Vašemu dodatku je bil dodan avtor"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Povabilo avtorja za {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr "Te reglete ni mogoče uporabiti. Izberite drugačno."
 
@@ -248,6 +266,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Vašemu dodatku je bil odstranjen avtor"
 
 msgid "My Add-ons"
 msgstr "Moji dodatki"
@@ -1742,12 +1763,6 @@ msgstr "Preden spremenite privzeto lokalno nastavitev, morate imeti v novi nasta
 msgid "Users can not be added directly"
 msgstr "Uporabnikov ni mogoče dodati neposredno"
 
-msgid "An author can only be present once."
-msgstr "Avtor je lahko naveden le enkrat."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Da bo ta račun lahko dodan kot avtor, potrebuje prikazno ime."
-
 msgid "Must have at least one owner."
 msgstr "Mora imeti vsaj enega lastnika."
 
@@ -1931,20 +1946,8 @@ msgstr "Povabilo sprejeto."
 msgid "Invitation declined."
 msgstr "Povabilo zavrnjeno."
 
-msgid "An author has been added to your add-on"
-msgstr "Vašemu dodatku je bil dodan avtor"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Povabilo avtorja za {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Potrditvena e-pošta je bila poslana na {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Avtor vašega dodatka je bil spremenjen"
-
-msgid "An author has been removed from your add-on"
-msgstr "Vašemu dodatku je bil odstranjen avtor"
 
 msgid "Changes successfully saved."
 msgstr "Spremembe uspešno shranjene."

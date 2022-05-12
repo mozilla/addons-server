@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -230,6 +230,27 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਇੱਕ ਲੇਖਕ ਦੀ ਭੂਮਿਕਾ ਬਦਲੀ ਗਈ"
+
+msgid "Account not found."
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "ਇੱਕ ਲੇਖਕ ਕੇਵਲ ਇੱਕ ਵਾਰ ਸੂਚੀਬੱਧ ਹੋ ਸਕਦਾ।"
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਵਿੱਚ ਇੱਕ ਲੇਖਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ"
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "{addon}ਲਈ ਯੋਗਦਾਨ।"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -256,6 +277,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੋਂ ਇੱਕ ਲੇਖਕ ਨੂੰ ਹਟਾਇਆ ਗਿਆ"
 
 msgid "My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
@@ -1848,13 +1872,6 @@ msgstr "ਤੁਹਾਡਾ ਮੂਲ ਲੋਕੇਲ ਬਦਲਣ ਤੋਂ ਪ�
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "ਇੱਕ ਲੇਖਕ ਕੇਵਲ ਇੱਕ ਵਾਰ ਸੂਚੀਬੱਧ ਹੋ ਸਕਦਾ।"
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
 msgid "Must have at least one owner."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
 
@@ -2043,22 +2060,8 @@ msgstr ""
 msgid "Invitation declined."
 msgstr ""
 
-msgid "An author has been added to your add-on"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਵਿੱਚ ਇੱਕ ਲੇਖਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "{addon}ਲਈ ਯੋਗਦਾਨ।"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
-
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਇੱਕ ਲੇਖਕ ਦੀ ਭੂਮਿਕਾ ਬਦਲੀ ਗਈ"
-
-msgid "An author has been removed from your add-on"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੋਂ ਇੱਕ ਲੇਖਕ ਨੂੰ ਹਟਾਇਆ ਗਿਆ"
 
 msgid "Changes successfully saved."
 msgstr "ਬਦਲਾਵ ਸਫ਼ਲਤਾਪੂਰਕ ਸੰਭਾਲ੍ਹੇ ਗਏ।"

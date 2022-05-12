@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -238,6 +238,27 @@ msgstr "Add-ons need at least one owner."
 msgid "Add-ons need at least one listed author."
 msgstr "Add-ons need at least one listed author."
 
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "An author has a role changed on your add-on"
+
+msgid "Account not found."
+msgstr "Account not found."
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "An author can only be listed once."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "The account needs a display name before it can be added as an author."
+
+msgid "An author has been added to your add-on"
+msgstr "An author has been added to your add-on"
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "Contributions for {addon}."
+
 msgid "This slug cannot be used. Please choose another."
 msgstr "This slug cannot be used. Please choose another."
 
@@ -264,6 +285,9 @@ msgstr "This field is required for add-ons with listed versions."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "An author has been removed from your add-on"
 
 msgid "My Add-ons"
 msgstr "My Add-ons"
@@ -1872,13 +1896,6 @@ msgstr "Before changing your default locale you must have a name, summary, and d
 msgid "Users can not be added directly"
 msgstr "Users can not be added directly"
 
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "An author can only be listed once."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "The account needs a display name before it can be added as an author."
-
 msgid "Must have at least one owner."
 msgstr "Must have at least one owner."
 
@@ -2075,22 +2092,8 @@ msgstr "Invitation accepted."
 msgid "Invitation declined."
 msgstr "Invitation declined."
 
-msgid "An author has been added to your add-on"
-msgstr "An author has been added to your add-on"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "Contributions for {addon}."
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "A confirmation email has been sent to {email}"
-
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "An author has a role changed on your add-on"
-
-msgid "An author has been removed from your add-on"
-msgstr "An author has been removed from your add-on"
 
 msgid "Changes successfully saved."
 msgstr "Changes successfully saved."

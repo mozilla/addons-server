@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -231,6 +231,24 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "Se ha cambiado un rol de autor en tu complemento"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Un autor sólo puede ser listado una vez."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "La cuenta necesita un nombre para mostrar antes de poder agregarla como autor."
+
+msgid "An author has been added to your add-on"
+msgstr "Un autor ha sido añadido a tu complemento"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Invitación de autor para {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -257,6 +275,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Un autor ha sido eliminado de tu complemento"
 
 msgid "My Add-ons"
 msgstr "Mis complementos"
@@ -1767,12 +1788,6 @@ msgstr "Antes de cambiar tu idioma predeterminado, debes tener un nombre, un res
 msgid "Users can not be added directly"
 msgstr "Los usuarios no se pueden agregar directamente"
 
-msgid "An author can only be present once."
-msgstr "Un autor sólo puede ser listado una vez."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "La cuenta necesita un nombre para mostrar antes de poder agregarla como autor."
-
 msgid "Must have at least one owner."
 msgstr "Debe tener al menos un propietario."
 
@@ -1958,20 +1973,8 @@ msgstr "Invitación aceptada."
 msgid "Invitation declined."
 msgstr "Invitación rechazada."
 
-msgid "An author has been added to your add-on"
-msgstr "Un autor ha sido añadido a tu complemento"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Invitación de autor para {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Se ha enviado un enlace de confirmación a {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Se ha cambiado un rol de autor en tu complemento"
-
-msgid "An author has been removed from your add-on"
-msgstr "Un autor ha sido eliminado de tu complemento"
 
 msgid "Changes successfully saved."
 msgstr "Los cambios se han guardado correctamente."

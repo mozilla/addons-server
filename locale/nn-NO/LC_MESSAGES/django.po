@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-12-19 12:57+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,6 +223,24 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "Ei rolle for opphavsmann er endra i tillegget ditt"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Ein opphavsmann kan berre vere oppførd ein gong."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Kontoen treng eit visingsnamn før han kan leggjast til som ein opphavsmann."
+
+msgid "An author has been added to your add-on"
+msgstr "Ein opphavsmann er lagt til i utvidinga di"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Opphavsmanninvitasjon for {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -249,6 +267,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Ein opphavsmann er fjerna frå utvidinga di"
 
 msgid "My Add-ons"
 msgstr "Mine tillegg"
@@ -1731,12 +1752,6 @@ msgstr "Før du endrar standardspråk må du spesifisera eit namn, ei oppsummeri
 msgid "Users can not be added directly"
 msgstr "Brukarar kan ikkje leggjast til direkte"
 
-msgid "An author can only be present once."
-msgstr "Ein opphavsmann kan berre vere oppførd ein gong."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Kontoen treng eit visingsnamn før han kan leggjast til som ein opphavsmann."
-
 msgid "Must have at least one owner."
 msgstr "Må ha minst ein eigar."
 
@@ -1921,20 +1936,8 @@ msgstr "Invitasjon godkjend."
 msgid "Invitation declined."
 msgstr "Invitasjon avvist."
 
-msgid "An author has been added to your add-on"
-msgstr "Ein opphavsmann er lagt til i utvidinga di"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Opphavsmanninvitasjon for {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Ein stadfestings e-post er sendt til {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Ei rolle for opphavsmann er endra i tillegget ditt"
-
-msgid "An author has been removed from your add-on"
-msgstr "Ein opphavsmann er fjerna frå utvidinga di"
 
 msgid "Changes successfully saved."
 msgstr "Endringane er lagra."

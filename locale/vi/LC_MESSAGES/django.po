@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-05-03 08:44+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -224,6 +224,24 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "Vai trò tác giả đã được thay đổi trên tiện ích của bạn"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr ""
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Tài khoản cần có tên hiển thị trước khi có thể được thêm làm tác giả."
+
+msgid "An author has been added to your add-on"
+msgstr "Một tác giả đã được thêm vào tiện ích của bạn"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Lời mời tác giả cho {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr "Không thể sử dụng slug này. Vui lòng chọn slug khác."
 
@@ -250,6 +268,9 @@ msgstr "Trường này là bắt buộc đối với các tiện ích với các
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "Cần thiết lập metadata của tiện ích để tạo phiên bản được liệt kê: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Một tác giả đã bị xóa khỏi tiện ích của bạn"
 
 msgid "My Add-ons"
 msgstr "Tiện ích của tôi"
@@ -1749,12 +1770,6 @@ msgstr "Trước khi thay đổi bản địa mặc định, bạn phải có t�
 msgid "Users can not be added directly"
 msgstr ""
 
-msgid "An author can only be present once."
-msgstr ""
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Tài khoản cần có tên hiển thị trước khi có thể được thêm làm tác giả."
-
 msgid "Must have at least one owner."
 msgstr "Phải có ít nhất một người sở hữu."
 
@@ -1938,20 +1953,8 @@ msgstr "Lời mời được chấp nhận."
 msgid "Invitation declined."
 msgstr "Lời mời bị từ chối."
 
-msgid "An author has been added to your add-on"
-msgstr "Một tác giả đã được thêm vào tiện ích của bạn"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Lời mời tác giả cho {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Một email xác nhận đã được gửi đến {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Vai trò tác giả đã được thay đổi trên tiện ích của bạn"
-
-msgid "An author has been removed from your add-on"
-msgstr "Một tác giả đã bị xóa khỏi tiện ích của bạn"
 
 msgid "Changes successfully saved."
 msgstr "Thay đổi đã được lưu thành công."
