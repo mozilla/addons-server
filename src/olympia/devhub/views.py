@@ -67,6 +67,11 @@ from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import DeveloperAgreementRestriction
+from olympia.users.utils import (
+    send_addon_author_add_mail,
+    send_addon_author_change_mail,
+    send_addon_author_remove_mail,
+)
 from olympia.versions.models import Version
 from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
@@ -586,85 +591,23 @@ def ownership(request, addon_id, addon):
     else:
         policy_form = None
 
-    def mail_user_changes(author, title, template_part, recipients, extra_context=None):
-        from olympia.amo.utils import send_mail
-
-        context_data = {
-            'author': author,
-            'addon': addon,
-            'DOMAIN': settings.DOMAIN,
-        }
-        if extra_context:
-            context_data.update(extra_context)
-        template = loader.get_template(f'users/emails/{template_part}.ltxt')
-        send_mail(
-            title, template.render(context_data), None, recipients, use_deny_list=False
-        )
-
     def process_author_changes(source_form, existing_authors_emails):
         addon_users_to_process = source_form.save(commit=False)
         for addon_user in addon_users_to_process:
-            action = None
             addon_user.addon = addon
             if not addon_user.pk:
-                action = amo.LOG.ADD_USER_WITH_ROLE
-                mail_user_changes(
-                    author=addon_user,
-                    title=gettext('An author has been added to your add-on'),
-                    template_part='author_added',
-                    recipients=existing_authors_emails,
-                )
-                mail_user_changes(
-                    author=addon_user,
-                    title=gettext('Author invitation for {addon_name}').format(
-                        addon_name=str(addon.name)
-                    ),
-                    template_part='author_added_confirmation',
-                    recipients=[addon_user.user.email],
-                    extra_context={
-                        'author_confirmation_link': absolutify(
-                            reverse('devhub.addons.invitation', args=(addon.slug,))
-                        )
-                    },
-                )
+                send_addon_author_add_mail(addon_user, existing_authors_emails)
                 messages.success(
                     request,
                     gettext('A confirmation email has been sent to {email}').format(
                         email=addon_user.user.email
                     ),
                 )
-
             elif addon_user.role != addon_user._original_role:
-                action = amo.LOG.CHANGE_USER_WITH_ROLE
-                title = gettext('An author role has been changed on your add-on')
-                recipients = list(
-                    set(existing_authors_emails + [addon_user.user.email])
-                )
-                mail_user_changes(
-                    author=addon_user,
-                    title=title,
-                    template_part='author_changed',
-                    recipients=recipients,
-                )
+                send_addon_author_change_mail(addon_user, existing_authors_emails)
             addon_user.save()
-            if action:
-                ActivityLog.create(
-                    action, addon_user.user, str(addon_user.get_role_display()), addon
-                )
         for addon_user in source_form.deleted_objects:
-            recipients = list(set(existing_authors_emails + [addon_user.user.email]))
-            ActivityLog.create(
-                amo.LOG.REMOVE_USER_WITH_ROLE,
-                addon_user.user,
-                str(addon_user.get_role_display()),
-                addon,
-            )
-            mail_user_changes(
-                author=addon_user,
-                title=gettext('An author has been removed from your add-on'),
-                template_part='author_removed',
-                recipients=recipients,
-            )
+            send_addon_author_remove_mail(addon_user, existing_authors_emails)
             addon_user.delete()
 
     if request.method == 'POST' and all([form.is_valid() for form in fs]):

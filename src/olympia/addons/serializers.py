@@ -1,10 +1,8 @@
 import os
 import re
 
-from django.conf import settings
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.core.files import File as DjangoFile
-from django.template import loader
 from django.urls import reverse
 from django.utils.translation import gettext
 
@@ -729,47 +727,6 @@ class AddonAuthorSerializer(serializers.ModelSerializer):
             )
         return value
 
-    def mail_user_changes(
-        self, instance, title, template_part, recipients, extra_context=None
-    ):
-        from olympia.amo.utils import send_mail
-
-        context_data = {
-            'author': instance,
-            'addon': instance.addon,
-            'DOMAIN': settings.DOMAIN,
-            **(extra_context or {}),
-        }
-        template = loader.get_template(f'users/emails/{template_part}.ltxt')
-        send_mail(
-            title, template.render(context_data), None, recipients, use_deny_list=False
-        )
-
-    def log(self, instance, action):
-        ActivityLog.create(
-            action, instance.user, instance.get_role_display(), instance.addon
-        )
-
-    def update(self, instance, validated_data):
-        role_change = (role := validated_data.get('role')) and instance.role != role
-        instance = super().update(instance, validated_data)
-
-        if role_change:
-            recipients = list(
-                {
-                    *instance.addon.authors.values_list('email', flat=True),
-                    instance.user.email,
-                }
-            )
-            self.mail_user_changes(
-                instance,
-                title=gettext('An author role has been changed on your add-on'),
-                template_part='author_changed',
-                recipients=recipients,
-            )
-            self.log(instance, amo.LOG.CHANGE_USER_WITH_ROLE)
-        return instance
-
 
 class AddonPendingAuthorSerializer(AddonAuthorSerializer):
     user_id = serializers.IntegerField()
@@ -816,34 +773,6 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
             )
 
         return value
-
-    def create(self, validated_data):
-        instance = super().create(validated_data)
-        addon = instance.addon
-        existing_authors_emails = list(
-            instance.addon.authors.values_list('email', flat=True)
-        )
-        self.mail_user_changes(
-            instance,
-            title=gettext('An author has been added to your add-on'),
-            template_part='author_added',
-            recipients=existing_authors_emails,
-        )
-        self.mail_user_changes(
-            instance,
-            title=gettext('Author invitation for {addon_name}').format(
-                addon_name=str(addon.name)
-            ),
-            template_part='author_added_confirmation',
-            recipients=[instance.user.email],
-            extra_context={
-                'author_confirmation_link': absolutify(
-                    reverse('devhub.addons.invitation', args=(addon.slug,))
-                )
-            },
-        )
-        self.log(instance, amo.LOG.ADD_USER_WITH_ROLE)
-        return instance
 
 
 class PromotedAddonSerializer(serializers.ModelSerializer):
