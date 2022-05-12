@@ -126,6 +126,7 @@ class AddonSerializerOutputTestMixin:
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
         assert result_file['url'] == file_.get_absolute_url()
+        assert result_file['url'].endswith('.xpi')
         assert result_file['permissions'] == file_.permissions
         assert result_file['optional_permissions'] == file_.optional_permissions
 
@@ -156,8 +157,10 @@ class AddonSerializerOutputTestMixin:
             description='My Addôn description',
             developer_comments='Dévelopers Addôn comments',
             file_kw={
+                'filename': 'webextension.xpi',
                 'hash': 'fakehash',
                 'size': 42,
+                'is_signed': True,
             },
             guid=generate_addon_guid(),
             homepage='https://www.example.org/',
@@ -622,7 +625,9 @@ class AddonSerializerOutputTestMixin:
         )
 
     def test_webextension(self):
-        self.addon = addon_factory()
+        self.addon = addon_factory(
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True}
+        )
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         # Give one of the versions some webext permissions to test that.
@@ -983,7 +988,10 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
 
         self.addon = addon_factory()
         version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='1.1'
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='1.1',
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True},
         )
         assert self.addon.latest_unlisted_version
 
@@ -1091,9 +1099,11 @@ class TestVersionSerializerOutput(TestCase):
         )
         addon = addon_factory(
             file_kw={
+                'filename': 'webextension.xpi',
                 'hash': 'fakehash',
                 'is_mozilla_signed_extension': True,
                 'size': 42,
+                'is_signed': True,
             },
             version_kw={
                 'license': license,
@@ -1126,6 +1136,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['file']['size'] == current_file.size
         assert result['file']['status'] == 'public'
         assert result['file']['url'] == current_file.get_absolute_url()
+        assert result['file']['url'].endswith('.xpi')
 
         assert result['channel'] == 'listed'
         assert result['edit_url'] == absolutify(
