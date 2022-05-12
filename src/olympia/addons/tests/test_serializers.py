@@ -625,7 +625,9 @@ class AddonSerializerOutputTestMixin:
         )
 
     def test_webextension(self):
-        self.addon = addon_factory()
+        self.addon = addon_factory(
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True}
+        )
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         # Give one of the versions some webext permissions to test that.
@@ -986,7 +988,10 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
 
         self.addon = addon_factory()
         version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='1.1'
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='1.1',
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True},
         )
         assert self.addon.latest_unlisted_version
 
