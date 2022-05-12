@@ -1206,7 +1206,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             id=data['id'],
             created=self.handle_date(data['created']),
             hash=data['hash'],
-            file=DjangoFile(data['filename']),
+            # The underlying file instance is fake, but the name really matters
+            # to get the right filename in our download URLs.
+            file=DjangoFile(None, name=data['filename']),
             is_mozilla_signed_extension=data.get('is_mozilla_signed_extension'),
             size=data['size'],
             status=data['status'],
