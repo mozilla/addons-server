@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-05-03 07:13+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,6 +222,24 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "Tamlilt n umeskar tbeddel deg uzegrir-ik"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Ameskar ad d-yettwasken kan tikkelt."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Amiḍan yesra i yisem n uskan send ad yettwarnu am umeskar."
+
+msgid "An author has been added to your add-on"
+msgstr "Ameskar yettwarna ad uzegrir inek"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Tinubga n umeskar ɣer {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr "Anegzum-a ur yezmir ara ad yettuseqdec. Ma ulac aγili; fren wayeḍ-nniḍen."
 
@@ -248,6 +266,9 @@ msgstr "Urti-a yettusra i uzegrir s yileqman d-yettwabedren."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "Idfersefka n uzegrir ttwasran ad ttusbadun i wakken ad yettwarnu lqem i d-yettwabedren: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Ameskar yettwakkes seg uzegrir inek"
 
 msgid "My Add-ons"
 msgstr "Izegrar-iw"
@@ -1719,12 +1740,6 @@ msgstr "Send asnifel n usideg inek amezwer yessefk ad tmuddeḍ isem, agzul akke
 msgid "Users can not be added directly"
 msgstr "Iseqdacen ur zmiren ara ad ttwarnun srid"
 
-msgid "An author can only be present once."
-msgstr "Ameskar ad d-yettwasken kan tikkelt."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Amiḍan yesra i yisem n uskan send ad yettwarnu am umeskar."
-
 msgid "Must have at least one owner."
 msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
 
@@ -1908,20 +1923,8 @@ msgstr "Tinubga tettwaqbel."
 msgid "Invitation declined."
 msgstr "Tinubga tettwagi."
 
-msgid "An author has been added to your add-on"
-msgstr "Ameskar yettwarna ad uzegrir inek"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Tinubga n umeskar ɣer {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Imayl n usentem yettwazen ɣer {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Tamlilt n umeskar tbeddel deg uzegrir-ik"
-
-msgid "An author has been removed from your add-on"
-msgstr "Ameskar yettwakkes seg uzegrir inek"
 
 msgid "Changes successfully saved."
 msgstr "Isnifal ttwakelsen akken iwata."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-04-26 19:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -227,6 +227,27 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "Променена е роля на автор на ваша добавка"
+
+msgid "Account not found."
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "Авторът може да бъде показван само веднъж."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr "Добавен е автор към ваша добавка"
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "Дарения за {addon}."
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -253,6 +274,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Автор е премахнат от ваша добавка"
 
 msgid "My Add-ons"
 msgstr "Мои добавки"
@@ -1788,13 +1812,6 @@ msgstr "Преди да промените стандартния език тр�
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "Авторът може да бъде показван само веднъж."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
 msgid "Must have at least one owner."
 msgstr "Трябва да има поне един собственик."
 
@@ -1980,22 +1997,8 @@ msgstr "Поканата е приета."
 msgid "Invitation declined."
 msgstr "Поканата е отказана."
 
-msgid "An author has been added to your add-on"
-msgstr "Добавен е автор към ваша добавка"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "Дарения за {addon}."
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Писмо за потвърждение е изпратено до {email}"
-
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "Променена е роля на автор на ваша добавка"
-
-msgid "An author has been removed from your add-on"
-msgstr "Автор е премахнат от ваша добавка"
 
 msgid "Changes successfully saved."
 msgstr "Промените са запазени успешно."

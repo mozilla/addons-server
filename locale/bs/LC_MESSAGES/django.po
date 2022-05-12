@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,6 +228,26 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "Autor je uklonjen s vašeg dodatka"
+
+msgid "Account not found."
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "Autor može biti naveden samo jednom."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr ""
+
+msgid "Author invitation for {addon_name}"
+msgstr ""
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -254,6 +274,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Autor je uklonjen s vašeg dodatka"
 
 msgid "My Add-ons"
 msgstr ""
@@ -1755,13 +1778,6 @@ msgstr ""
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "Autor može biti naveden samo jednom."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
 msgid "Must have at least one owner."
 msgstr "Mora imati barem jednog vlasnika."
 
@@ -1949,21 +1965,8 @@ msgstr ""
 msgid "Invitation declined."
 msgstr ""
 
-msgid "An author has been added to your add-on"
-msgstr ""
-
-msgid "Author invitation for {addon_name}"
-msgstr ""
-
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
-
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "Autor je uklonjen s vašeg dodatka"
-
-msgid "An author has been removed from your add-on"
-msgstr "Autor je uklonjen s vašeg dodatka"
 
 msgid "Changes successfully saved."
 msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-06-08 15:09+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -227,6 +227,25 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "Peran seorang penulis telah diubah pada pengaya Anda"
+
+msgid "Account not found."
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "Penulis hanya akan terdaftar sekali."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Akun ini membutuhkan nama sebelum dapat ditambahkan sebagai penulis."
+
+msgid "An author has been added to your add-on"
+msgstr "Penulis telah ditambahkan ke pengaya anda"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Undangan penyusun untuk {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -253,6 +272,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Seorang penulis telah dihapus dari pengaya anda"
 
 msgid "My Add-ons"
 msgstr "Pengayaku"
@@ -1758,13 +1780,6 @@ msgstr "Sebelum mengubah kode pelokalan baku Anda harus menentukan nama, ringkas
 msgid "Users can not be added directly"
 msgstr "Pengguna tidak dapat ditambahkan secara langsung"
 
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "Penulis hanya akan terdaftar sekali."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Akun ini membutuhkan nama sebelum dapat ditambahkan sebagai penulis."
-
 msgid "Must have at least one owner."
 msgstr "Harus punya sekurangnya satu pemilik."
 
@@ -1949,20 +1964,8 @@ msgstr "Undangan diterima."
 msgid "Invitation declined."
 msgstr "Undangan ditolak."
 
-msgid "An author has been added to your add-on"
-msgstr "Penulis telah ditambahkan ke pengaya anda"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Undangan penyusun untuk {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Email konfirmasi telah dikirim ke {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Peran seorang penulis telah diubah pada pengaya Anda"
-
-msgid "An author has been removed from your add-on"
-msgstr "Seorang penulis telah dihapus dari pengaya anda"
 
 msgid "Changes successfully saved."
 msgstr "Perubahan berhasil disimpan."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-02-06 17:54+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -234,6 +234,24 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr "Jedna uloga autora je promijenjena na tvom dodatku"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Autor se smije samo jednom navesti."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Račun treba ime za prikaz da bi mogao bi se mogao dodati kao autor."
+
+msgid "An author has been added to your add-on"
+msgstr "Tvom dodatku je dodan jedan autor"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Autorska pozivnica za {addon_name}"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -260,6 +278,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Jedan autor je uklonjen iz tvog dodatka"
 
 # 80%
 msgid "My Add-ons"
@@ -1751,12 +1772,6 @@ msgstr "Prije mijenjanja standardnog jezika moraš imati ime, sažetak i opis na
 msgid "Users can not be added directly"
 msgstr "Korisnici se ne mogu izravno dodati"
 
-msgid "An author can only be present once."
-msgstr "Autor se smije samo jednom navesti."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Račun treba ime za prikaz da bi mogao bi se mogao dodati kao autor."
-
 msgid "Must have at least one owner."
 msgstr "Mora imati barem jednog vlasnika."
 
@@ -1943,20 +1958,8 @@ msgstr "Pozivnica prihvaćena."
 msgid "Invitation declined."
 msgstr "Pozivnica odbijena."
 
-msgid "An author has been added to your add-on"
-msgstr "Tvom dodatku je dodan jedan autor"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Autorska pozivnica za {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "E-poruka s potvrdom je poslana na {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Jedna uloga autora je promijenjena na tvom dodatku"
-
-msgid "An author has been removed from your add-on"
-msgstr "Jedan autor je uklonjen iz tvog dodatka"
 
 msgid "Changes successfully saved."
 msgstr "Promjene uspješno spremljene."

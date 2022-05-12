@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -207,7 +207,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:66 src/olympia/addons/serializers.py:987
+#: src/olympia/addons/fields.py:66 src/olympia/addons/serializers.py:1107
 msgid "Invalid category name."
 msgstr ""
 
@@ -232,7 +232,7 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 #: src/olympia/addons/fields.py:230 src/olympia/devhub/forms.py:773
-#: src/olympia/files/utils.py:737
+#: src/olympia/files/utils.py:739
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -266,46 +266,73 @@ msgstr ""
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/serializers.py:186
+#: src/olympia/addons/serializers.py:191
 msgid "Previews cannot be created for themes."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:272
+#: src/olympia/addons/serializers.py:277
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:429
+#: src/olympia/addons/serializers.py:434
 msgid "Upload is not valid."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:438 src/olympia/devhub/forms.py:1036
+#: src/olympia/addons/serializers.py:443 src/olympia/devhub/forms.py:1036
 #: src/olympia/signing/views.py:195
 msgid ""
 "Version {version} matches {block_link} for this add-on. You can contact "
 "{amo_admins} for additional information."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:457
+#: src/olympia/addons/serializers.py:462
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:461
+#: src/olympia/addons/serializers.py:466
 msgid "Version {version_string} already exists."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:479
+#: src/olympia/addons/serializers.py:484
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:710
+#: src/olympia/addons/serializers.py:713
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:724
+#: src/olympia/addons/serializers.py:728
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:963
+#: src/olympia/addons/serializers.py:766 src/olympia/devhub/views.py:639
+msgid "An author role has been changed on your add-on"
+msgstr ""
+
+#: src/olympia/addons/serializers.py:789
+msgid "Account not found."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:802 src/olympia/devhub/forms.py:436
+#: src/olympia/devhub/forms.py:506
+msgid "An author can only be present once."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:812 src/olympia/devhub/forms.py:447
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+#: src/olympia/addons/serializers.py:828 src/olympia/devhub/views.py:613
+msgid "An author has been added to your add-on"
+msgstr ""
+
+#: src/olympia/addons/serializers.py:834
+#: src/olympia/devhub/templates/devhub/addons/invitation.html:3
+#: src/olympia/devhub/views.py:619
+msgid "Author invitation for {addon_name}"
+msgstr ""
+
+#: src/olympia/addons/serializers.py:1083
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -341,6 +368,10 @@ msgstr ""
 msgid ""
 "Add-on metadata is required to be set to create a listed version: "
 "{missing_addon_metadata}."
+msgstr ""
+
+#: src/olympia/addons/views.py:756 src/olympia/devhub/views.py:664
+msgid "An author has been removed from your add-on"
 msgstr ""
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4
@@ -2467,14 +2498,6 @@ msgstr ""
 msgid "Users can not be added directly"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:436 src/olympia/devhub/forms.py:506
-msgid "An author can only be present once."
-msgstr ""
-
-#: src/olympia/devhub/forms.py:447
-msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
 #: src/olympia/devhub/forms.py:483
 msgid "Must have at least one owner."
 msgstr ""
@@ -2756,25 +2779,8 @@ msgstr ""
 msgid "Invitation declined."
 msgstr ""
 
-#: src/olympia/devhub/views.py:613
-msgid "An author has been added to your add-on"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/invitation.html:3
-#: src/olympia/devhub/views.py:619
-msgid "Author invitation for {addon_name}"
-msgstr ""
-
 #: src/olympia/devhub/views.py:632
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
-
-#: src/olympia/devhub/views.py:639
-msgid "An author role has been changed on your add-on"
-msgstr ""
-
-#: src/olympia/devhub/views.py:664
-msgid "An author has been removed from your add-on"
 msgstr ""
 
 #: src/olympia/devhub/views.py:675 src/olympia/devhub/views.py:1233
@@ -6830,110 +6836,110 @@ msgstr ""
 msgid "See more creativity staff picks"
 msgstr ""
 
-#: src/olympia/files/utils.py:207 src/olympia/files/utils.py:841
+#: src/olympia/files/utils.py:209 src/olympia/files/utils.py:843
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:327
+#: src/olympia/files/utils.py:329
 msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
-#: src/olympia/files/utils.py:337
+#: src/olympia/files/utils.py:339
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
-#: src/olympia/files/utils.py:365
+#: src/olympia/files/utils.py:367
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:379
+#: src/olympia/files/utils.py:381
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:538
+#: src/olympia/files/utils.py:540
 msgid "Unsupported archive type."
 msgstr ""
 
-#: src/olympia/files/utils.py:546
+#: src/olympia/files/utils.py:548
 msgid ""
 "Invalid file name in archive. Please make sure all filenames are utf-8 or "
 "latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:561
+#: src/olympia/files/utils.py:563
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:569
+#: src/olympia/files/utils.py:571
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: src/olympia/files/utils.py:601
+#: src/olympia/files/utils.py:603
 msgid "Uncompressed size is too large"
 msgstr ""
 
-#: src/olympia/files/utils.py:649
+#: src/olympia/files/utils.py:651
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:870
+#: src/olympia/files/utils.py:872
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json (%s) does not match the ID of your add-on"
 " on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:885
+#: src/olympia/files/utils.py:887
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:888
+#: src/olympia/files/utils.py:890
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:892
+#: src/olympia/files/utils.py:894
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:902
+#: src/olympia/files/utils.py:904
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:915 src/olympia/files/utils.py:944
+#: src/olympia/files/utils.py:917 src/olympia/files/utils.py:946
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:919
+#: src/olympia/files/utils.py:921
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
-#: src/olympia/files/utils.py:924
+#: src/olympia/files/utils.py:926
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:934
+#: src/olympia/files/utils.py:936
 msgid ""
 "Add-ons using an ID ending with this suffix need to be signed with privileged"
 " certificate before being submitted"
 msgstr ""
 
-#: src/olympia/files/utils.py:941
+#: src/olympia/files/utils.py:943
 msgid "You cannot submit a language pack"
 msgstr ""
 
-#: src/olympia/files/utils.py:976
+#: src/olympia/files/utils.py:978
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
-#: src/olympia/files/utils.py:984
+#: src/olympia/files/utils.py:986
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:988
+#: src/olympia/files/utils.py:990
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -8823,14 +8829,14 @@ msgstr ""
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr ""
 
-#: src/olympia/users/models.py:879
+#: src/olympia/users/models.py:878
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1016
+#: src/olympia/users/models.py:1015
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -8838,13 +8844,13 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1033
+#: src/olympia/users/models.py:1032
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#: src/olympia/users/models.py:1082
+#: src/olympia/users/models.py:1081
 msgid "User Restriction History"
 msgstr ""
 
@@ -8969,11 +8975,11 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: src/olympia/versions/models.py:1168
+#: src/olympia/versions/models.py:1167
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1205
+#: src/olympia/versions/models.py:1204
 msgid "The install origin {origin} is not permitted."
 msgstr ""
 

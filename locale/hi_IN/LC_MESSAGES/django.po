@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-03 19:24+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,6 +223,25 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
+msgid "An author role has been changed on your add-on"
+msgstr ""
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "एक लेखक केवल एक बार उपस्थित हो सकता है।"
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "लेखक के रूप में जोड़े जाने से पहले खाते को एक प्रदर्शन नाम की आवश्यकता होती है।"
+
+msgid "An author has been added to your add-on"
+msgstr "एक लेखक को आपके ऐड-ऑन में जोड़ा गया है"
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "{addon} के लिए योगदान।"
+
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -249,6 +268,9 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "आपके ऐड-ऑन से एक लेखक को हटा दिया गया है"
 
 msgid "My Add-ons"
 msgstr "मेरे ऐड-ऑन्स"
@@ -1753,12 +1775,6 @@ msgstr "अपनी स्थानीय भाषा को रूपान�
 msgid "Users can not be added directly"
 msgstr "उपयोगकर्ताओं को सीधे नहीं जोड़ा जा सकता है"
 
-msgid "An author can only be present once."
-msgstr "एक लेखक केवल एक बार उपस्थित हो सकता है।"
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "लेखक के रूप में जोड़े जाने से पहले खाते को एक प्रदर्शन नाम की आवश्यकता होती है।"
-
 msgid "Must have at least one owner."
 msgstr "कम से कम एक मालिक होना चाहिए."
 
@@ -1944,21 +1960,8 @@ msgstr "निमंत्रण स्वीकार किया गया।
 msgid "Invitation declined."
 msgstr "निमंत्रण अस्वीकार कर दिया।"
 
-msgid "An author has been added to your add-on"
-msgstr "एक लेखक को आपके ऐड-ऑन में जोड़ा गया है"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "{addon} के लिए योगदान।"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
-
-msgid "An author role has been changed on your add-on"
-msgstr ""
-
-msgid "An author has been removed from your add-on"
-msgstr "आपके ऐड-ऑन से एक लेखक को हटा दिया गया है"
 
 msgid "Changes successfully saved."
 msgstr "परिवर्तन सफलतापूर्वक सहेजे गए।"
