@@ -482,7 +482,7 @@ msgid "Related Categories"
 msgstr "Verwandte Kategorien"
 
 msgid "Part of these Collections"
-msgstr "Teile dieser Sammlungen"
+msgstr "Teil dieser Sammlungen"
 
 #, python-format
 msgid "Other add-ons by %(author)s"
