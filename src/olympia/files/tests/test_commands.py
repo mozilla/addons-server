@@ -12,7 +12,6 @@ from olympia.files.management.commands.migrate_files_to_new_structure import (
 from olympia.files.management.commands.migrate_guarded_addons import (
     Command as MigrateGuardedAddons,
 )
-from olympia.files.models import File
 
 
 class TestMigrateFilesToNewStructure(TestCase):
