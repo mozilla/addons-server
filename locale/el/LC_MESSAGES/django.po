@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-12 12:09+0000\n"
-"PO-Revision-Date: 2022-05-16 08:39+0000\n"
+"PO-Revision-Date: 2022-05-16 08:50+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -159,7 +159,7 @@ msgid "Invalid app name."
 msgstr "Μη έγκυρο όνομα εφαρμογής."
 
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "Ο τομέας του URL πρέπει να είναι ένας από τους [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Η διαδρομή URL για χορηγούς GitHub πρέπει να περιέχει το /sponsors/."
@@ -735,6 +735,8 @@ msgstr "Ζητήθηκε αξιολόγηση συντάκτη για το {addo
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Το πρόσθετο έχει επισημανθεί για αξιολόγηση από διαχειριστή. Βρίσκεται ακόμη στη σειρά αξιολόγησής μας, αλλά θα πρέπει να ελεγχθεί από έναν από τους διαχειριστές ελεγκτές. Η αξιολόγηση ίσως "
+"διαρκέσει περισσότερο χρόνο από το συνηθισμένο."
 
 msgid "Comment on {addon} {version}."
 msgstr "Σχόλιο στο {addon} {version}."
@@ -2014,6 +2016,8 @@ msgstr "Παρουσιάστηκε σφάλμα κατά την αποστολή
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Η τελευταία εγκεκριμένη έκδοση του προσθέτου %s δεν μπορεί να διαγραφεί ή να απενεργοποιηθεί, επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %s. Παρακαλούμε επικοινωνήστε με τους "
+"διαχειριστές του AMO αν χρειάζεστε βοήθεια."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2487,6 +2491,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Ο λευκός πίνακας παρέχει πληροφορίες σχετικά με το πρόσθετό σας, για οποιαδήποτε έκδοση, στους ελεγκτές. Χρησιμοποιήστε τον για να παρέχετε τρόπους δοκιμής του προσθέτου, καθώς και τυχόν "
+"επιπρόσθετες πληροφορίες που ενδέχεται να φανούν χρήσιμες. Αυτός ο λευκός πίνακας μπορεί να επεξεργαστεί και από τους ελεγκτές."
 
 msgid "Add-on Media for {0}"
 msgstr "Αρχεία πολυμέσων για το {0}"
@@ -3610,6 +3616,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Η τελευταία εγκεκριμένη έκδοση του προσθέτου %(promoted_group_name)s δεν μπορεί να διαγραφεί ή να απενεργοποιηθεί, επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %(promoted_group_name)s. "
+"Παρακαλούμε επικοινωνήστε με τους διαχειριστές του AMO αν χρειάζεστε βοήθεια."
 
 msgid "Hide Add-on"
 msgstr "Απόκρυψη προσθέτου"
