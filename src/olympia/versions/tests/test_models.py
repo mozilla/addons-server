@@ -34,7 +34,7 @@ from olympia.constants.promoted import (
     SPOTLIGHT,
     STRATEGIC,
 )
-from olympia.constants.scanners import CUSTOMS, WAT, YARA, MAD
+from olympia.constants.scanners import CUSTOMS, YARA, MAD
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -354,60 +354,6 @@ class TestVersion(TestCase):
         version.file.reload()
         assert version.file.status == amo.STATUS_DISABLED
         assert version.file.original_status == amo.STATUS_NULL
-
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_new_version_disable_old_unreviewed(self, hide_disabled_file_mock):
-        addon = Addon.objects.get(id=3615)
-        # The status doesn't change for public files.
-        qs = File.objects.filter(version=addon.current_version)
-        assert qs.all()[0].status == amo.STATUS_APPROVED
-        Version.objects.create(addon=addon)
-        assert qs.all()[0].status == amo.STATUS_APPROVED
-        assert not hide_disabled_file_mock.called
-
-        qs.update(status=amo.STATUS_AWAITING_REVIEW)
-        version = Version.objects.create(addon=addon, version='0.87')
-        version.disable_old_files()
-        assert qs.all()[0].status == amo.STATUS_DISABLED
-        assert hide_disabled_file_mock.called
-
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_new_version_dont_disable_old_unlisted_unreviewed(
-        self, hide_disabled_file_mock
-    ):
-        addon = Addon.objects.get(id=3615)
-        old_version = version_factory(
-            addon=addon,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        new_version = Version.objects.create(addon=addon)
-        new_version.disable_old_files()
-        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
-        assert not hide_disabled_file_mock.called
-
-        # Doesn't happen even if the new version is also unlisted.
-        new_version = Version.objects.create(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.54'
-        )
-        new_version.disable_old_files()
-        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
-        assert not hide_disabled_file_mock.called
-
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_new_version_unlisted_dont_disable_old_unreviewed(
-        self, hide_disabled_file_mock
-    ):
-        addon = Addon.objects.get(id=3615)
-        old_version = addon.current_version
-        old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-
-        version = version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
-        version.disable_old_files()
-
-        old_version.reload()
-        assert old_version.file.status == amo.STATUS_AWAITING_REVIEW
-        assert not hide_disabled_file_mock.called
 
     def _reset_version(self, version):
         version.file.status = amo.STATUS_APPROVED
@@ -1408,7 +1354,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert version.version == '0.0.1'
 
-    def test_file_name(self):
+    def test_filename(self):
         parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
         version = Version.from_upload(
             self.upload,
@@ -1417,7 +1363,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
-        assert version.file.filename == 'delicious_bookmarks-0.0.1-fx.zip'
+        assert version.file.filename == '15/3615/3615/a3615-0.0.1.zip'
 
     def test_track_upload_time(self):
         # Set created time back (just for sanity) otherwise the delta
@@ -1516,21 +1462,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         scanners_result.refresh_from_db()
         assert scanners_result.version == version
 
-    def test_set_version_to_wat_scanners_result(self):
-        self.create_switch('enable-wat', active=True)
-        scanners_result = ScannerResult.objects.create(upload=self.upload, scanner=WAT)
-        assert scanners_result.version is None
-
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        scanners_result.refresh_from_db()
-        assert scanners_result.version == version
-
     def test_set_version_to_yara_scanners_result(self):
         self.create_switch('enable-yara', active=True)
         scanners_result = ScannerResult.objects.create(upload=self.upload, scanner=YARA)
@@ -1549,7 +1480,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_does_nothing_when_no_scanner_is_enabled(self):
         self.create_switch('enable-customs', active=False)
-        self.create_switch('enable-wat', active=False)
         self.create_switch('enable-yara', active=False)
         scanners_result = ScannerResult.objects.create(
             upload=self.upload, scanner=CUSTOMS

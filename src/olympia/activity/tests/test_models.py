@@ -494,8 +494,8 @@ class TestActivityLog(TestCase):
         log = ActivityLog.create(amo.LOG.UNLISTED_SIGNED, addon.current_version.file)
         assert str(log) == (
             '<a href="http://testserver/firefox/downloads/file/67442/'
-            'delicious_bookmarks-2.1.072-fx.xpi">'
-            'delicious_bookmarks-2.1.072-fx.xpi</a>'
+            'delicious_bookmarks-2.1.072.xpi">'
+            'delicious_bookmarks-2.1.072.xpi</a>'
             ' (validation ignored) was signed.'
         )
 

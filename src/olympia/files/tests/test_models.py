@@ -4,7 +4,6 @@ import os
 import re
 import tempfile
 import zipfile
-import shutil
 
 from unittest import mock
 from unittest.mock import patch
@@ -37,7 +36,6 @@ from olympia.files.models import (
     FileUpload,
     FileValidation,
     WebextPermission,
-    nfd_str,
     track_file_status_change,
 )
 from olympia.files.utils import check_xpi_info, ManifestJSONExtractor, parse_addon
@@ -113,7 +111,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         url = file_.get_absolute_url()
         # Important: Fenix relies on this URL pattern to decide when to trigger
         # the add-on install flow. Changing this URL would likely break Fenix.
-        expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072-fx.xpi'
+        expected = '/firefox/downloads/file/67442/delicious_bookmarks-2.1.072.xpi'
         assert url.endswith(expected), url
 
     def test_get_url_path(self):
@@ -124,7 +122,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         expected = (
             '/firefox/downloads/file/67442'
-            '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
+            '/type:attachment/delicious_bookmarks-2.1.072.xpi'
         )
         assert file_.get_url_path(attachment=True) == expected
 
@@ -132,7 +130,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         expected = (
             'http://testserver/firefox/downloads/file/67442'
-            '/type:attachment/delicious_bookmarks-2.1.072-fx.xpi'
+            '/type:attachment/delicious_bookmarks-2.1.072.xpi'
         )
         assert file_.get_absolute_url(attachment=True) == expected
 
@@ -153,70 +151,32 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         """Test that version (soft)delete doesn't delete the file."""
         f = File.objects.get(pk=67442)
         try:
-            with storage.open(f.current_file_path, 'w') as fi:
+            with storage.open(f.file_path, 'w') as fi:
                 fi.write('sample data\n')
-            assert storage.exists(f.current_file_path)
+            assert storage.exists(f.file_path)
             f.version.delete()
-            assert storage.exists(f.current_file_path)
+            assert storage.exists(f.file_path)
         finally:
-            if storage.exists(f.current_file_path):
-                storage.delete(f.current_file_path)
+            if storage.exists(f.file_path):
+                storage.delete(f.file_path)
 
     def test_delete_file_path(self):
         f = File.objects.get(pk=67442)
-        self.check_delete(f, f.current_file_path)
+        self.check_delete(f, f.file_path)
 
     def test_delete_no_file(self):
         # test that the file object can be deleted without the file
         # being present
         file = File.objects.get(pk=74797)
-        filename = file.current_file_path
+        filename = file.file_path
         assert not os.path.exists(filename), 'File exists at: %s' % filename
         file.delete()
 
     def test_delete_signal(self):
         """Test that if there's no filename, the signal is ok."""
         file = File.objects.get(pk=67442)
-        file.update(filename='')
+        file.update(file='')
         file.delete()
-
-    @mock.patch('olympia.files.models.File.hide_disabled_file')
-    def test_disable_signal(self, hide_mock):
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_APPROVED
-        f.save()
-        assert not hide_mock.called
-
-        f.status = amo.STATUS_DISABLED
-        f.save()
-        assert hide_mock.called
-
-    @mock.patch('olympia.files.models.File.unhide_disabled_file')
-    def test_unhide_on_enable(self, unhide_mock):
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_APPROVED
-        f.save()
-        assert not unhide_mock.called
-
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_DISABLED
-        f.save()
-        assert not unhide_mock.called
-
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_APPROVED
-        f.save()
-        assert unhide_mock.called
-
-    def test_unhide_disabled_files(self):
-        f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_APPROVED
-        f.filename = 'test_unhide_disabled_filés.xpi'
-        with storage.open(f.guarded_file_path, 'wb') as fp:
-            fp.write(b'some data\n')
-        f.unhide_disabled_file()
-        assert storage.exists(f.file_path)
-        assert storage.open(f.file_path).size
 
     def test_latest_url(self):
         file_ = File.objects.get(id=67442)
@@ -230,54 +190,77 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename(self):
         file_ = File.objects.get(id=67442)
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-fx.zip'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '15/3615/3615/a3615-2.1.072.zip'  # zip extension.
+        )
         file_.is_signed = True
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '15/3615/3615/a3615-2.1.072.xpi'  # xpi extension.
+        )
 
     def test_pretty_filename(self):
         file_ = File.objects.get(id=67442)
-        file_.generate_filename()
-        assert file_.pretty_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'
-
-    def test_pretty_filename_short(self):
-        file_ = File.objects.get(id=67442)
-        file_.is_signed = True
-        file_.version.addon.name = 'A Place Where The Sea Remembers Your Name'
-        file_.filename = file_.generate_filename()
-        assert file_.pretty_filename() == 'a_place_where_the...-2.1.072-fx.xpi'
-
-    def test_generate_filename_many_apps(self):
-        file_ = File.objects.get(id=67442)
-        file_.version.compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
-        file_.is_signed = True
-        # After adding sorting for compatible_apps, above becomes
-        # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
-        # instead of 'fx+an'
-        # See: https://github.com/mozilla/addons-server/issues/3358
-        assert file_.generate_filename() == 'delicious_bookmarks-2.1.072-an+fx.xpi'
+        assert file_.filename == '3615/delicious_bookmarks-2.1.072.xpi'
+        assert file_.pretty_filename == 'delicious_bookmarks-2.1.072.xpi'
 
     def test_generate_filename_ja(self):
         file_ = File()
         file_.version = Version(version='0.1.7')
         file_.version.compatible_apps = {amo.FIREFOX: None}
-        file_.version.addon = Addon(name=' フォクすけ  といっしょ')
+        file_.version.addon = Addon(slug=' フォクすけ  といっしょ', pk=4242)
         file_.is_signed = True
-        assert file_.generate_filename() == 'addon-0.1.7-fx.xpi'
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '42/4242/4242/addon-0.1.7.xpi'
+        )
+
+    def test_filename_new_file_deep_directory_structure(self):
+        # New files should be stored in deep directory structure
+        file_ = addon_factory(
+            pk=14071789,
+            slug='My äDødôn',
+            version_kw={'version': '4.8.15.16'},
+            file_kw={'filename': 'https-everywhere.xpi'},
+        ).current_version.file
+        filename_in_instance = file_.file.name
+        assert filename_in_instance == '89/1789/14071789/my_addon-4.8.15.16.zip'
+        assert file_.file.path == f'{settings.ADDONS_PATH}/{filename_in_instance}'
+        filename_in_db = File.objects.filter(pk=file_.pk).values_list(
+            'file', flat=True
+        )[0]
+        assert filename_in_db
+        assert filename_in_db == filename_in_instance
+
+    def test_filename_not_migrated(self):
+        # We aren't migrating existing files yet, so for an existing File
+        # instance, the filename in database should just be the xpi filename
+        # without any directories, despite the file_.name containing the add-on
+        # dir.
+        file_ = File.objects.get(pk=67442)
+        filename_in_instance = file_.file.name
+        assert filename_in_instance.startswith(f'{str(file_.addon.pk)}/')
+        assert file_.file.path == f'{settings.ADDONS_PATH}/{filename_in_instance}'
+        filename_in_db = File.objects.filter(pk=file_.pk).values_list(
+            'file', flat=True
+        )[0]
+        assert filename_in_db
+        assert '/' not in filename_in_db
+        assert not filename_in_db.startswith(f'{str(file_.addon.pk)}/')
 
     def test_generate_hash(self):
-        file_ = File()
-        file_.version = Version.objects.get(pk=81551)
-        filename = self.xpi_path('https-everywhere.xpi')
-        assert file_.generate_hash(filename).startswith('sha256:95bd414295acda29c4')
+        file_ = addon_factory(
+            file_kw={'filename': 'https-everywhere.xpi'}
+        ).current_version.file
+        assert file_.generate_hash().startswith('sha256:95bd414295acda29c4')
 
         file_ = File.objects.get(pk=67442)
         with storage.open(file_.file_path, 'wb') as fp:
             fp.write(b'some data\n')
-        with storage.open(file_.guarded_file_path, 'wb') as fp:
-            fp.write(b'some data guarded\n')
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_DISABLED
-        assert file_.generate_hash().startswith('sha256:6524f7791a35ef4dd4c6f')
+        assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_APPROVED
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
 
@@ -335,70 +318,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             'laststring!',
         ]
 
-    def test_current_file_path(self):
-        public_fp = '/storage/files/3615/delicious_bookmarks-2.1.072-fx.xpi'
-        guarded_fp = '/guarded-addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
-
-        # Add-on enabled, file approved
-        f = File.objects.get(pk=67442)
-        assert f.current_file_path.endswith(public_fp)
-
-        # Add-on user-disabled, file approved
-        f.addon.update(disabled_by_user=True)
-        assert f.current_file_path.endswith(guarded_fp)
-        f.addon.update(disabled_by_user=False)
-
-        # Add-on mozilla-disabled, file approved
-        f.addon.update(status=amo.STATUS_DISABLED)
-        assert f.current_file_path.endswith(guarded_fp)
-        f.addon.update(status=amo.STATUS_APPROVED)
-
-        # Add-on enabled, file disabled
-        f.update(status=amo.STATUS_DISABLED)
-        f = File.objects.get(pk=67442)
-        assert f.current_file_path.endswith(guarded_fp)
-
-        # Add-on user-disabled, file disabled
-        f.addon.update(disabled_by_user=True)
-        assert f.current_file_path.endswith(guarded_fp)
-        f.addon.update(disabled_by_user=False)
-
-        # Add-on mozilla-disabled, file disabled
-        f.addon.update(status=amo.STATUS_DISABLED)
-        assert f.current_file_path.endswith(guarded_fp)
-
-    def test_fallback_file_path(self):
-        public_fp = '/storage/files/3615/delicious_bookmarks-2.1.072-fx.xpi'
-        guarded_fp = '/guarded-addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
-
-        # Add-on enabled, file approved
-        f = File.objects.get(pk=67442)
-        assert f.fallback_file_path.endswith(guarded_fp)
-
-        # Add-on user-disabled, file approved
-        f.addon.update(disabled_by_user=True)
-        assert f.fallback_file_path.endswith(public_fp)
-        f.addon.update(disabled_by_user=False)
-
-        # Add-on mozilla-disabled, file approved
-        f.addon.update(status=amo.STATUS_DISABLED)
-        assert f.fallback_file_path.endswith(public_fp)
-        f.addon.update(status=amo.STATUS_APPROVED)
-
-        # Add-on enabled, file disabled
-        f.update(status=amo.STATUS_DISABLED)
-        f = File.objects.get(pk=67442)
-        assert f.fallback_file_path.endswith(public_fp)
-
-        # Add-on user-disabled, file disabled
-        f.addon.update(disabled_by_user=True)
-        assert f.fallback_file_path.endswith(public_fp)
-        f.addon.update(disabled_by_user=False)
-
-        # Add-on mozilla-disabled, file disabled
-        f.addon.update(status=amo.STATUS_DISABLED)
-        assert f.fallback_file_path.endswith(public_fp)
-
     def test_has_been_validated_returns_false_when_no_validation(self):
         file = File()
         assert not file.has_been_validated
@@ -450,7 +369,7 @@ class TestTrackFileStatusChange(TestCase):
         )
 
 
-class TestParseXpi(TestCase):
+class TestParseXpi(amo.tests.AMOPaths, TestCase):
     @classmethod
     def setUpTestData(cls):
         versions = {
@@ -471,14 +390,12 @@ class TestParseXpi(TestCase):
         self.user = user_factory()
 
     def parse(self, addon=None, filename='webextension.xpi', **kwargs):
-        path = 'src/olympia/files/fixtures/files/' + filename
-        xpi = os.path.join(settings.ROOT, path)
         parse_addon_kwargs = {
             'user': self.user,
         }
         parse_addon_kwargs.update(**kwargs)
 
-        with open(xpi, 'rb') as fobj:
+        with open(self.file_fixture_path(filename), 'rb') as fobj:
             file_ = SimpleUploadedFile(filename, fobj.read())
             return parse_addon(file_, addon, **parse_addon_kwargs)
 
@@ -813,7 +730,7 @@ class TestFileUpload(UploadMixin, TestCase):
 
         upload = FileUpload.from_post(
             b'',
-            filename='мозила_србија-0.11-fx.xpi',
+            filename='мозила_србија-0.11.xpi',
             size=0,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
@@ -1165,12 +1082,13 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.addon = Addon.objects.create(
-            guid='@webextension-guid', type=amo.ADDON_EXTENSION, name='xxx'
+            guid='@webextension-guid',
+            type=amo.ADDON_EXTENSION,
+            slug='xxx',
+            name='Addon XXX',
+            pk=123456,
         )
         self.version = Version.objects.create(addon=self.addon)
-        patcher = mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
-        self.addCleanup(patcher.stop)
-        patcher.start()
 
     def upload(self, name):
         validation_data = json.dumps(
@@ -1181,14 +1099,13 @@ class TestFileFromUpload(UploadMixin, TestCase):
                 'metadata': {},
             }
         )
-        fname = nfd_str(self.xpi_path(name))
-        if not self.root_storage.exists(fname):
-            with self.root_storage.open(fname, 'w') as fs:
-                shutil.copyfileobj(open(fname), fs)
+        src_path = self.file_fixture_path(name)
+        dest_path = FileUpload.generate_path()
+        self.root_storage.copy_stored_file(src_path, dest_path)
         data = {
-            'path': force_str(fname),
-            'name': force_str(name),
-            'hash': 'sha256:%s' % name,
+            'path': dest_path,
+            'name': name,
+            'hash': 'sha256:fake_hash',
             'validation': validation_data,
             'source': amo.UPLOAD_SOURCE_DEVHUB,
             'ip_address': '127.0.0.50',
@@ -1199,14 +1116,14 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_filename(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'xxx-0.1.zip'
+        assert file_.filename == '56/3456/123456/xxx-0.1.zip'
 
     def test_filename_no_extension(self):
         upload = self.upload('webextension.xpi')
         # Remove the extension.
         upload.name = upload.name.rsplit('.', 1)[0]
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'xxx-0.1.zip'
+        assert file_.filename == '56/3456/123456/xxx-0.1.zip'
 
     def test_file_validation(self):
         upload = self.upload('webextension.xpi')
@@ -1218,33 +1135,11 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert fv.warnings == 1
         assert fv.notices == 2
 
-    def test_file_hash(self):
+    def test_filename_utf8_addon_slug(self):
         upload = self.upload('webextension.xpi')
+        self.version.addon.slug = 'jéts!'
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.hash.startswith('sha256:')
-        assert len(file_.hash) == 64 + 7  # 64 for hash, 7 for 'sha256:'
-
-    def test_utf8(self):
-        upload = self.upload('wébextension.xpi')
-        self.version.addon.name = 'jéts!'
-        file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'jets-0.1.zip'
-
-    @mock.patch('olympia.amo.utils.SafeStorage.copy_stored_file')
-    def test_dont_send_both_bytes_and_str_to_copy_stored_file(
-        self, copy_stored_file_mock
-    ):
-        upload = self.upload('wébextension.xpi')
-        self.version.addon.name = 'jéts!'
-        file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.filename == 'jets-0.1.zip'
-        expected_path_orig = force_str(upload.path)
-        expected_path_dest = force_str(file_.current_file_path)
-        assert copy_stored_file_mock.call_count == 1
-        assert copy_stored_file_mock.call_args_list[0][0] == (
-            expected_path_orig,
-            expected_path_dest,
-        )
+        assert file_.filename == '56/3456/123456/jets-0.1.zip'
 
     def test_size(self):
         upload = self.upload('webextension.xpi')
@@ -1258,10 +1153,10 @@ class TestFileFromUpload(UploadMixin, TestCase):
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.status == amo.STATUS_AWAITING_REVIEW
 
-    def test_file_hash_paranoia(self):
+    def test_file_hash_copied_over(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert file_.hash.startswith('sha256:79ff4a97e898d80')
+        assert file_.hash == 'sha256:fake_hash'
 
     def test_extension_extension(self):
         upload = self.upload('webextension.xpi')
@@ -1274,7 +1169,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert file_.filename.endswith('.zip')
 
     def test_experiment(self):
-        upload = self.upload('experiment_inside_webextension')
+        upload = self.upload('experiment_inside_webextension.xpi')
         file_ = File.from_upload(
             upload, self.version, parsed_data={'is_experiment': True}
         )
@@ -1288,7 +1183,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert not file_.is_experiment
 
     def test_mozilla_signed_extension(self):
-        upload = self.upload('webextension_signed_already')
+        upload = self.upload('webextension_signed_already.xpi')
         file_ = File.from_upload(
             upload,
             self.version,
@@ -1306,7 +1201,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert not file_.is_mozilla_signed_extension
 
     def test_webextension_mv2(self):
-        upload = self.upload('webextension')
+        upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert file_.manifest_version == 2
 
@@ -1360,20 +1255,16 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert len(permissions_list) == 2
         assert permissions_list == parsed_data['optional_permissions']
 
-    def test_file_is_copied_to_current_path_at_upload(self):
-        upload = self.upload('webextension')
+    def test_file_is_copied_to_file_path_at_upload(self):
+        upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
         assert os.path.exists(file_.file_path)
-        assert not os.path.exists(file_.guarded_file_path)
-        assert os.path.exists(file_.current_file_path)
 
-    def test_file_is_copied_to_current_path_at_upload_if_disabled(self):
+    def test_file_is_copied_to_file_path_at_upload_if_disabled(self):
         self.addon.update(disabled_by_user=True)
-        upload = self.upload('webextension')
+        upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data={})
-        assert not os.path.exists(file_.file_path)
-        assert os.path.exists(file_.guarded_file_path)
-        assert os.path.exists(file_.current_file_path)
+        assert os.path.exists(file_.file_path)
 
     def test_permission_enabler_site_permissions(self):
         upload = self.upload('webextension.xpi')
@@ -1395,7 +1286,7 @@ class TestZip(TestCase, amo.tests.AMOPaths):
         """This zip contains just one file chrome/ that we expect
         to be unzipped as a directory, not a file.
         """
-        xpi = self.xpi_path('directory-test')
+        xpi = self.file_fixture_path('directory-test.xpi')
 
         # This was to work around: http://bugs.python.org/issue4710
         # which was fixed in Python 2.6.2.

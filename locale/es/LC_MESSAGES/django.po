@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -225,13 +225,31 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr "Se ha cambiado un rol de autor en tu complemento"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Un autor sólo puede ser listado una vez."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "La cuenta necesita un nombre para mostrar antes de poder agregarla como autor."
+
+msgid "An author has been added to your add-on"
+msgstr "Un autor ha sido añadido a tu complemento"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Invitación de autor para {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -251,6 +269,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Un autor ha sido eliminado de tu complemento"
 
 msgid "My Add-ons"
 msgstr "Mis complementos"
@@ -466,11 +493,17 @@ msgstr "No se encontró la dirección de correo."
 msgid "Unavailable for legal reasons."
 msgstr "No disponible por razones legales."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "El código del lenguaje {lang_code} no es válido."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Tienes que proporcionar un objeto de {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1755,12 +1788,6 @@ msgstr "Antes de cambiar tu idioma predeterminado, debes tener un nombre, un res
 msgid "Users can not be added directly"
 msgstr "Los usuarios no se pueden agregar directamente"
 
-msgid "An author can only be present once."
-msgstr "Un autor sólo puede ser listado una vez."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "La cuenta necesita un nombre para mostrar antes de poder agregarla como autor."
-
 msgid "Must have at least one owner."
 msgstr "Debe tener al menos un propietario."
 
@@ -1946,20 +1973,8 @@ msgstr "Invitación aceptada."
 msgid "Invitation declined."
 msgstr "Invitación rechazada."
 
-msgid "An author has been added to your add-on"
-msgstr "Un autor ha sido añadido a tu complemento"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Invitación de autor para {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Se ha enviado un enlace de confirmación a {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Se ha cambiado un rol de autor en tu complemento"
-
-msgid "An author has been removed from your add-on"
-msgstr "Un autor ha sido eliminado de tu complemento"
 
 msgid "Changes successfully saved."
 msgstr "Los cambios se han guardado correctamente."

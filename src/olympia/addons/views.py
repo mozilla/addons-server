@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from django import http
-from django.db.models import Prefetch
+from django.db.models import Max, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
@@ -19,6 +19,7 @@ from rest_framework.mixins import (
     RetrieveModelMixin,
     UpdateModelMixin,
 )
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.views import APIView
@@ -30,6 +31,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import get_outgoing_url
+from olympia.amo.utils import StopWatch
 from olympia.api.authentication import (
     JWTKeyAuthentication,
     SessionIDAuthentication,
@@ -66,14 +68,19 @@ from olympia.search.filters import (
     SortingFilter,
 )
 from olympia.translations.query import order_by_translation
-from olympia.amo.utils import StopWatch
+from olympia.users.utils import (
+    send_addon_author_add_mail,
+    send_addon_author_change_mail,
+    send_addon_author_remove_mail,
+)
 from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import Addon, ReplacementAddon
+from .models import Addon, AddonUser, AddonUserPendingConfirmation, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
+    AddonAuthorSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
     DeveloperVersionSerializer,
@@ -82,6 +89,7 @@ from .serializers import (
     ESAddonSerializer,
     LanguageToolsSerializer,
     ReplacementAddonSerializer,
+    AddonPendingAuthorSerializer,
     PreviewSerializer,
     StaticCategorySerializer,
     VersionSerializer,
@@ -240,8 +248,8 @@ class AddonViewSet(
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if self.request.user.is_authenticated and acl.action_allowed(
-            self.request, amo.permissions.ADDONS_VIEW_DELETED
+        if self.request.user.is_authenticated and acl.action_allowed_for(
+            self.request.user, amo.permissions.ADDONS_VIEW_DELETED
         ):
             qs = Addon.unfiltered.all()
         else:
@@ -263,7 +271,7 @@ class AddonViewSet(
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance', None)
         request = self.request
-        if acl.check_unlisted_addons_viewer_or_reviewer(request) or (
+        if acl.is_unlisted_addons_viewer_or_reviewer(request.user) or (
             obj
             and request.user.is_authenticated
             and obj.authors.filter(pk=request.user.pk).exists()
@@ -375,7 +383,6 @@ class AddonChildMixin:
         used."""
         if hasattr(self, 'addon_object'):
             return self.addon_object
-
         if permission_classes is None:
             permission_classes = (
                 AddonViewSet.write_permission_classes
@@ -419,7 +426,7 @@ class AddonVersionViewSet(
         use_developer_serializer = getattr(
             self.request, 'user', None
         ) and acl.author_or_unlisted_viewer_or_reviewer(
-            self.request, self.get_addon_object()
+            self.request.user, self.get_addon_object()
         )
 
         if (
@@ -684,6 +691,124 @@ class AddonPreviewViewSet(
     def perform_destroy(self, instance):
         super().perform_destroy(instance)
         ActivityLog.create(amo.LOG.CHANGE_MEDIA, instance.addon, user=self.request.user)
+
+
+class AddonAuthorViewSet(
+    AddonChildMixin,
+    ListModelMixin,
+    RetrieveModelMixin,
+    UpdateModelMixin,
+    DestroyModelMixin,
+    GenericViewSet,
+):
+    # We can't define permissions here because we need slightly different permissions
+    # for list and get - see check_permissions and check_object_permissions. Permissions
+    # are also always checked against the parent add-on in get_addon_object() using
+    # AddonViewSet's permissions.
+    permission_classes = [APIGatePermission('addon-submission-api'), IsAuthenticated]
+    authentication_classes = [
+        JWTKeyAuthentication,
+        SessionIDAuthentication,
+    ]
+    throttle_classes = addon_submission_throttles
+    serializer_class = AddonAuthorSerializer
+    lookup_field = 'user__id'
+    lookup_url_kwarg = 'user_id'
+    pagination_class = None  # Add-ons don't have huge numbers of authors
+    # We want unsafe actions to be restricted to owner role authors
+    owner_actions = ('create', 'update', 'partial_update', 'destroy')
+
+    def check_permissions(self, request):
+        # When listing, we can't use AllowRelatedObjectPermissions() with
+        # check_permissions(), because AllowAddonAuthor needs an author to do the actual
+        # permission check. To work around that, we call super +
+        # check_object_permission() ourselves, passing down the addon object directly.
+        # We're overriding the permission_classes to restrict access to add-on authors.
+        addon = self.get_addon_object(
+            permission_classes=[
+                AnyOf(
+                    AllowAddonOwner
+                    if self.action in self.owner_actions
+                    else AllowAddonAuthor,
+                    AllowListedViewerOrReviewer,
+                    AllowUnlistedViewerOrReviewer,
+                ),
+            ]
+        )
+        return super().check_permissions(request) and super().check_object_permissions(
+            request, addon
+        )
+
+    def get_queryset(self):
+        return self.get_addon_object().addonuser_set.all().order_by('position')
+
+    def _get_existing_author_emails(self):
+        return self.get_addon_object().authors.values_list('email', flat=True)
+
+    def perform_update(self, serializer):
+        old_role = serializer.instance.role
+        instance = serializer.save()
+        if old_role != instance.role:
+            send_addon_author_change_mail(instance, self._get_existing_author_emails())
+
+    def perform_destroy(self, instance):
+        if isinstance(instance, AddonUser):
+            serializer = self.get_serializer(instance)
+            serializer.validate_role(value=None)
+            serializer.validate_listed(value=None)
+
+        send_addon_author_remove_mail(instance, self._get_existing_author_emails())
+        return super().perform_destroy(instance)
+
+
+class AddonPendingAuthorViewSet(CreateModelMixin, AddonAuthorViewSet):
+    serializer_class = AddonPendingAuthorSerializer
+
+    def check_permissions(self, request):
+        # confirm/decline needs to be actionable without being an addon author already
+        if self.action in ('confirm', 'decline'):
+            # .get_addon_object is cached so we just need to call without restricted
+            # permission_classes first and it'll be used for subsequent calls too.
+            self.get_addon_object(permission_classes=())
+
+        return super().check_permissions(request)
+
+    def get_queryset(self):
+        return self.get_addon_object().addonuserpendingconfirmation_set.all()
+
+    def get_object_for_request(self, request):
+        try:
+            return self.get_queryset().get(user=request.user)
+        except AddonUserPendingConfirmation.DoesNotExist:
+            raise exceptions.PermissionDenied()
+
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        send_addon_author_add_mail(instance, self._get_existing_author_emails())
+
+    @action(detail=False, methods=('post',))
+    def confirm(self, request, *args, **kwargs):
+        pending = self.get_object_for_request(request)
+
+        max_position = super().get_queryset().aggregate(max=Max('position'))['max'] or 0
+        AddonUser.unfiltered.update_or_create(
+            addon=pending.addon,
+            user=pending.user,
+            defaults={
+                'role': pending.role,
+                'listed': pending.listed,
+                'position': max_position + 1,
+            },
+        )
+        # The invitation is now obsolete.
+        pending.delete()
+
+        return Response()
+
+    @action(detail=False, methods=('post',))
+    def decline(self, request, *args, **kwargs):
+        self.get_object_for_request(request).delete()
+        return Response()
 
 
 class AddonSearchView(ListAPIView):

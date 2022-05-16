@@ -322,7 +322,8 @@ class TestModelBase(TestCase):
         file = Addon.objects.get(pk=3615).current_version.file
         relative = os.path.join(
             reverse(
-                'downloads.file', kwargs={'file_id': file.id, 'filename': file.filename}
+                'downloads.file',
+                kwargs={'file_id': file.id, 'filename': file.pretty_filename},
             )
         )
         with override_settings(EXTERNAL_SITE_URL=settings.SITE_URL):

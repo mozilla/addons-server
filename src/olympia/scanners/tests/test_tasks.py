@@ -1,5 +1,3 @@
-import os
-import shutil
 from decimal import Decimal
 from unittest import mock
 
@@ -11,7 +9,6 @@ from django.test.utils import override_settings
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory,
-    AMOPaths,
     TestCase,
     user_factory,
     version_factory,
@@ -26,7 +23,6 @@ from olympia.constants.scanners import (
     NEW,
     RUNNING,
     SCHEDULED,
-    WAT,
     YARA,
 )
 from olympia.files.models import File
@@ -43,12 +39,10 @@ from olympia.scanners.tasks import (
     mark_yara_query_rule_as_completed_or_aborted,
     run_customs,
     run_scanner,
-    run_wat,
     run_yara,
     run_yara_query_rule,
     run_yara_query_rule_on_versions_chunk,
 )
-from olympia.versions.models import Version
 
 
 class TestRunScanner(UploadMixin, TestCase):
@@ -245,44 +239,6 @@ class TestRunCustoms(TestCase):
         self.results.update({'errors': 1})
 
         returned_results = run_customs(self.results, self.upload_pk)
-
-        assert not run_scanner_mock.called
-        assert returned_results == self.results
-
-
-class TestRunWat(TestCase):
-    API_URL = 'http://wat.example.org'
-    API_KEY = 'some-api-key'
-
-    def setUp(self):
-        super().setUp()
-
-        self.upload_pk = 1234
-        self.results = {**amo.VALIDATOR_SKELETON_RESULTS}
-
-    @override_settings(WAT_API_URL=API_URL, WAT_API_KEY=API_KEY)
-    @mock.patch('olympia.scanners.tasks.run_scanner')
-    def test_calls_run_scanner_with_mock(self, run_scanner_mock):
-        run_scanner_mock.return_value = self.results
-
-        returned_results = run_wat(self.results, self.upload_pk)
-
-        assert run_scanner_mock.called
-        run_scanner_mock.assert_called_once_with(
-            self.results,
-            self.upload_pk,
-            scanner=WAT,
-            api_url=self.API_URL,
-            api_key=self.API_KEY,
-        )
-        assert returned_results == self.results
-
-    @override_settings(WAT_API_URL=API_URL, WAT_API_KEY=API_KEY)
-    @mock.patch('olympia.scanners.tasks.run_scanner')
-    def test_does_not_run_when_results_contain_errors(self, run_scanner_mock):
-        self.results.update({'errors': 1})
-
-        returned_results = run_wat(self.results, self.upload_pk)
 
         assert not run_scanner_mock.called
         assert returned_results == self.results
@@ -632,12 +588,13 @@ class TestRunYara(UploadMixin, TestCase):
         assert received_results == self.results
 
 
-class TestRunYaraQueryRule(AMOPaths, TestCase):
+class TestRunYaraQueryRule(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.version = addon_factory().current_version
-        self.xpi_copy_over(self.version.file, 'webextension.xpi')
+        self.version = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
 
         # This rule will match for all files in the xpi.
         self.rule = ScannerQueryRule.objects.create(
@@ -658,6 +615,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         # by itself.
         other_addon = addon_factory(
             version_kw={'created': self.days_ago(1)},
+            file_kw={'filename': 'webextension.xpi'},
         )
         other_addon_previous_current_version = other_addon.current_version
         included_versions = [
@@ -667,6 +625,7 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
             addon_factory(
                 disabled_by_user=True,  # Doesn't matter.
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                file_kw={'filename': 'webextension.xpi'},
             ).versions.get(),
             # Unlisted webextension version of an add-on that has multiple
             # versions.
@@ -674,18 +633,20 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
                 addon=other_addon,
                 created=self.days_ago(42),
                 channel=amo.RELEASE_CHANNEL_UNLISTED,
+                file_kw={'filename': 'webextension.xpi'},
             ),
             # Listed webextension versions of an add-on that has multiple
             # versions.
             other_addon_previous_current_version,
-            version_factory(addon=other_addon),
+            version_factory(
+                addon=other_addon, file_kw={'filename': 'webextension.xpi'}
+            ),
         ]
         # Ignored version:
         # Listed Webextension version belonging to mozilla disabled add-on.
-        addon_factory(status=amo.STATUS_DISABLED).current_version
-
-        for version in Version.unfiltered.all():
-            self.xpi_copy_over(version.file, 'webextension.xpi')
+        addon_factory(
+            status=amo.STATUS_DISABLED, file_kw={'filename': 'webextension.xpi'}
+        ).current_version
 
         # Run the task.
         run_yara_query_rule.delay(self.rule.pk)
@@ -805,24 +766,9 @@ class TestRunYaraQueryRule(AMOPaths, TestCase):
         assert yara_result.version == self.version
         assert not yara_result.was_blocked
 
-    def test_run_on_chunk_fallback_file_path(self):
-        # Make sure it still works when a file has been disabled but the path
-        # has not been moved to the guarded location yet (we fall back to the
-        # other path).
-        # We avoid triggering the on_change callback that would move the file
-        # when the status is updated by doing an update() on the queryset.
+    def test_run_on_chunk_disabled(self):
+        # Make sure it still works when a file has been disabled
         File.objects.filter(pk=self.version.file.pk).update(status=amo.STATUS_DISABLED)
-        self.test_run_on_chunk()
-
-    def test_run_on_chunk_fallback_file_path_guarded(self):
-        # Like test_run_on_chunk_fallback_file_path() but starting with a
-        # public File instance that somehow still has its file in the guarded
-        # path (Would happen if the whole add-on was disabled then re-enabled
-        # and the files haven't been moved back to the public location yet).
-        file_ = self.version.file
-        if not os.path.exists(os.path.dirname(file_.guarded_file_path)):
-            os.makedirs(os.path.dirname(file_.guarded_file_path))
-        shutil.move(file_.file_path, file_.guarded_file_path)
         self.test_run_on_chunk()
 
     def test_dont_generate_results_if_not_matching_rule(self):

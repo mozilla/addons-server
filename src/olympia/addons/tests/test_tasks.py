@@ -11,7 +11,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import addon_factory, root_storage, TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
 from olympia.versions.models import VersionPreview
@@ -30,14 +30,11 @@ def test_recreate_theme_previews():
     xpi_path = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/mozilla_static_theme.zip'
     )
-
-    addon_without_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    root_storage.copy_stored_file(
-        xpi_path, addon_without_previews.current_version.file.file_path
+    addon_without_previews = addon_factory(
+        type=amo.ADDON_STATICTHEME, file_kw={'filename': xpi_path}
     )
-    addon_with_previews = addon_factory(type=amo.ADDON_STATICTHEME)
-    root_storage.copy_stored_file(
-        xpi_path, addon_with_previews.current_version.file.file_path
+    addon_with_previews = addon_factory(
+        type=amo.ADDON_STATICTHEME, file_kw={'filename': xpi_path}
     )
     VersionPreview.objects.create(
         version=addon_with_previews.current_version,

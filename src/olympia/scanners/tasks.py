@@ -24,7 +24,6 @@ from olympia.constants.scanners import (
     MAD,
     RUNNING,
     SCANNERS,
-    WAT,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
@@ -155,29 +154,6 @@ def run_customs(results, upload_pk):
         scanner=CUSTOMS,
         api_url=settings.CUSTOMS_API_URL,
         api_key=settings.CUSTOMS_API_KEY,
-    )
-
-
-@validation_task
-def run_wat(results, upload_pk):
-    """
-    Run the wat scanner on a FileUpload and store the results.
-
-    This task is intended to be run as part of the submission process only.
-    When a version is created from a FileUpload, the files are removed. In
-    addition, we usually delete old FileUpload entries after 180 days.
-
-    - `results` are the validation results passed in the validation chain. This
-       task is a validation task, which is why it must receive the validation
-       results as first argument.
-    - `upload_pk` is the FileUpload ID.
-    """
-    return run_scanner(
-        results,
-        upload_pk,
-        scanner=WAT,
-        api_url=settings.WAT_API_URL,
-        api_key=settings.WAT_API_KEY,
     )
 
 
@@ -394,14 +370,7 @@ def _run_yara_query_rule_on_version(version, rule):
     """
     file_ = version.file
     scanner_result = ScannerQueryResult(version=version, scanner=YARA)
-    try:
-        _run_yara_for_path(
-            scanner_result, file_.current_file_path, definition=rule.definition
-        )
-    except FileNotFoundError:
-        _run_yara_for_path(
-            scanner_result, file_.fallback_file_path, definition=rule.definition
-        )
+    _run_yara_for_path(scanner_result, file_.file_path, definition=rule.definition)
     # Unlike ScannerResult, we only want to save ScannerQueryResult if there is
     # a match, there would be too many things to save otherwise and we don't
     # really care about non-matches.

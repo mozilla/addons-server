@@ -66,7 +66,7 @@ class Command(BaseCommand):
                 addon,
             )
             return
-        helper = ReviewHelper(addon=addon, version=latest_version)
+        helper = ReviewHelper(addon=addon, version=latest_version, human_review=False)
         helper.handler.data = {
             'comments': 'Automatic rejection after grace period ended.',
             'versions': versions,

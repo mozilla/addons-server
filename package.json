@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.6",
-    "addons-linter": "5.0.0",
+    "addons-linter": "5.2.0",
     "clean-css": "5.3.0",
     "clean-css-cli": "5.6.0",
     "jqmodal": "1.4.2",
@@ -20,11 +20,13 @@
     "less": "4.1.2",
     "source-map": "0.7.3",
     "timeago": "1.6.7",
-    "underscore": "1.13.2"
+    "underscore": "1.13.3"
   },
   "devDependencies": {
-    "jest": "^27.0.0",
+    "jest": "^28.0.0",
+    "jest-environment-jsdom": "^28.0.0",
     "jest-date-mock": "^1.0.8",
+    "lodash": "^4.17.21",
     "prettier": "^2.0.5",
     "terser": "^5.0.0"
   }

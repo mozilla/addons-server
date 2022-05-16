@@ -2,7 +2,7 @@
 <ul>
 {% set show_listed=addon.has_listed_versions() %}
 {% if not addon.has_complete_metadata() and addon.status == amo.STATUS_NULL and addon.can_request_review() %}
-  {% if check_addon_ownership(request, addon, allow_developer=True) %}
+  {% if check_addon_ownership(request.user, addon, allow_developer=True) %}
     <li>
       <form action="{{ url('devhub.request-review', addon.slug) }}" method="post" class="resume">
         {% csrf_token %}
@@ -14,7 +14,7 @@
       </form>
     </li>
   {% endif %}
-  {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
+  {% if check_addon_ownership(request.user, addon) and addon.can_be_deleted() %}
     <li>
       <a href="#" class="delete-addon tooltip"
          title="{{ _('Delete this add-on.') }}">{{ _('Delete') }}</a>
@@ -24,7 +24,7 @@
     </li>
   {% endif %}
 {% else %}
-  {% if check_addon_ownership(request, addon, allow_developer=True) %}
+  {% if check_addon_ownership(request.user, addon, allow_developer=True) %}
     <li>
       <a href="{{ addon.get_dev_url() }}" class="tooltip"
          title="{{ _("Edit details on this add-on's product page") }}">

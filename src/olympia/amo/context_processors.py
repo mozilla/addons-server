@@ -86,7 +86,7 @@ def global_settings(request):
                     'href': reverse('reviewers.dashboard'),
                 }
             )
-        if acl.action_allowed(request, amo.permissions.ANY_ADMIN):
+        if acl.action_allowed_for(request.user, amo.permissions.ANY_ADMIN):
             tools_links.append(
                 {'text': gettext('Admin Tools'), 'href': reverse('admin:index')}
             )

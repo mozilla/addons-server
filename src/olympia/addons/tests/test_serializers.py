@@ -16,6 +16,7 @@ from olympia.addons.models import (
     ReplacementAddon,
 )
 from olympia.addons.serializers import (
+    AddonAuthorSerializer,
     AddonBasketSyncSerializer,
     AddonDeveloperSerializer,
     AddonSerializer,
@@ -49,7 +50,7 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.licenses import LICENSES_BY_BUILTIN, LICENSE_GPL3
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
 from olympia.ratings.models import Rating
@@ -125,6 +126,7 @@ class AddonSerializerOutputTestMixin:
         assert result_file['size'] == file_.size
         assert result_file['status'] == amo.STATUS_CHOICES_API[file_.status]
         assert result_file['url'] == file_.get_absolute_url()
+        assert result_file['url'].endswith('.xpi')
         assert result_file['permissions'] == file_.permissions
         assert result_file['optional_permissions'] == file_.optional_permissions
 
@@ -155,8 +157,10 @@ class AddonSerializerOutputTestMixin:
             description='My Addôn description',
             developer_comments='Dévelopers Addôn comments',
             file_kw={
+                'filename': 'webextension.xpi',
                 'hash': 'fakehash',
                 'size': 42,
+                'is_signed': True,
             },
             guid=generate_addon_guid(),
             homepage='https://www.example.org/',
@@ -621,7 +625,9 @@ class AddonSerializerOutputTestMixin:
         )
 
     def test_webextension(self):
-        self.addon = addon_factory()
+        self.addon = addon_factory(
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True}
+        )
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
         # Give one of the versions some webext permissions to test that.
@@ -764,6 +770,25 @@ class AddonSerializerOutputTestMixin:
         Rating.objects.create(addon=self.addon, rating=5, user=user_factory())
         result = self.serialize()
         assert result['ratings']['grouped_counts'] == {1: 0, 2: 2, 3: 0, 4: 0, 5: 1}
+
+    def test_current_version_license_builtin(self):
+        self.addon = addon_factory(
+            version_kw={
+                'license_kw': {
+                    'builtin': LICENSE_GPL3.builtin,
+                    'url': 'http://gplv3.example.com/',
+                }
+            }
+        )
+        result = self.serialize()
+
+        assert result['current_version']['license'] == {
+            'id': self.addon.current_version.license.pk,
+            'is_custom': False,
+            'name': {'en-US': 'GNU General Public License v3.0'},
+            'slug': 'GPL-3.0-or-later',
+            'url': 'http://gplv3.example.com/',
+        }
 
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
@@ -963,7 +988,10 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
 
         self.addon = addon_factory()
         version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='1.1'
+            addon=self.addon,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='1.1',
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True},
         )
         assert self.addon.latest_unlisted_version
 
@@ -1071,9 +1099,11 @@ class TestVersionSerializerOutput(TestCase):
         )
         addon = addon_factory(
             file_kw={
+                'filename': 'webextension.xpi',
                 'hash': 'fakehash',
                 'is_mozilla_signed_extension': True,
                 'size': 42,
+                'is_signed': True,
             },
             version_kw={
                 'license': license,
@@ -1106,6 +1136,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['file']['size'] == current_file.size
         assert result['file']['status'] == 'public'
         assert result['file']['url'] == current_file.get_absolute_url()
+        assert result['file']['url'].endswith('.xpi')
 
         assert result['channel'] == 'listed'
         assert result['edit_url'] == absolutify(
@@ -1418,12 +1449,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         assert 'current_compatible_version' not in result
 
     def test_current_compatible_version(self):
-        # Set a filename to make sure the file actually exists.
-        # file_factory (used via addon_factory) copies files that exists
-        # as fixtures in src/olympia/files/fixtures/files to their rightful
-        # place.
-        file_kw = {'filename': 'langpack-localepicker.xpi'}
-        self.addon = addon_factory(type=amo.ADDON_LPAPP, file_kw=file_kw)
+        self.addon = addon_factory(type=amo.ADDON_LPAPP)
 
         # compatible_versions is set by the view through prefetch, it
         # looks like a list.
@@ -1431,7 +1457,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         self.addon.compatible_versions[0].update(created=self.days_ago(1))
         # Create a new current version, just to prove that
         # current_compatible_version does not use that.
-        version_factory(addon=self.addon, file_kw=file_kw)
+        version_factory(addon=self.addon)
         self.addon.reload
         assert self.addon.compatible_versions[0] != self.addon.current_version
         self.request = APIRequestFactory().get('/?app=firefox&appversion=57.0')
@@ -1763,3 +1789,20 @@ class TestReplacementAddonSerializer(TestCase):
         addon.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
         assert result['replacement'] == ['newstuff@mozilla']
+
+
+class TestAddonAuthorSerializer(TestCase):
+    def test_basic(self):
+        user = user_factory(read_dev_agreement=self.days_ago(0))
+        addon = addon_factory(users=(user,))
+        addonuser = addon.addonuser_set.get()
+
+        data = AddonAuthorSerializer().to_representation(instance=addonuser)
+        assert data == {
+            'user_id': user.id,
+            'role': 'owner',
+            'position': 0,
+            'listed': True,
+            'name': user.name,
+            'email': user.email,
+        }

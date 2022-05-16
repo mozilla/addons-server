@@ -19,7 +19,7 @@ class TestFileAdmin(TestCase):
         assert str(file_.pk) in force_str(response.content)
 
     def test_can_edit_with_admin_advanced_permission(self):
-        addon = addon_factory()
+        addon = addon_factory(file_kw={'filename': 'webextension.xpi'})
         file_ = addon.current_version.file
         detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -33,7 +33,6 @@ class TestFileAdmin(TestCase):
 
         post_data = {
             'version': file_.version.pk,
-            'filename': file_.filename,
             'size': file_.size,
             'hash': 'xxx',
             'original_hash': 'xxx',

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-03-06 01:15+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -219,13 +219,31 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr "あなたのアドオンの作者の役割が変更されました"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "1 人の作者は一度だけ掲載できます。"
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "アカウントを作成者として追加するには、アカウントは表示名が必要です。"
+
+msgid "An author has been added to your add-on"
+msgstr "このアドオンの作者が追加されました"
+
+msgid "Author invitation for {addon_name}"
+msgstr "{addon_name} への招待"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -245,6 +263,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "このアドオンの作者が削除されました"
 
 msgid "My Add-ons"
 msgstr "自分のアドオン"
@@ -457,11 +484,17 @@ msgstr "メールアドレスが見つかりません。"
 msgid "Unavailable for legal reasons."
 msgstr "法的な理由で利用できません。"
 
-msgid "The language code {lang_code} is invalid."
-msgstr "言語コード {lang_code} が正しくありません。"
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "{lang-code:value} のオブジェクトを提供してください。"
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1717,12 +1750,6 @@ msgstr "既定のロケールを変更する前に、そのロケールでアド
 msgid "Users can not be added directly"
 msgstr "ユーザーを直接追加することはできません"
 
-msgid "An author can only be present once."
-msgstr "1 人の作者は一度だけ掲載できます。"
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "アカウントを作成者として追加するには、アカウントは表示名が必要です。"
-
 msgid "Must have at least one owner."
 msgstr "オーナーが最低 1 人は必要です。"
 
@@ -1906,20 +1933,8 @@ msgstr "招待を受け入れました。"
 msgid "Invitation declined."
 msgstr "招待を辞退しました。"
 
-msgid "An author has been added to your add-on"
-msgstr "このアドオンの作者が追加されました"
-
-msgid "Author invitation for {addon_name}"
-msgstr "{addon_name} への招待"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "確認メールを {email} に送信しました"
-
-msgid "An author role has been changed on your add-on"
-msgstr "あなたのアドオンの作者の役割が変更されました"
-
-msgid "An author has been removed from your add-on"
-msgstr "このアドオンの作者が削除されました"
 
 msgid "Changes successfully saved."
 msgstr "変更の保存が完了しました。"

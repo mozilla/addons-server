@@ -216,8 +216,6 @@ Then the resulting translations would be::
 "name": {"en-US": "Fun", "fr": "Jeux","kn": "ಆಟಗಳು"}
 
 To delete a translation, pass ``null`` as the value for that language.
-(Note: this behavior is currently buggy/broken - see
-https://github.com/mozilla/addons-server/issues/8816 for more details)
 
 
 .. _api-overview-outgoing:
@@ -441,6 +439,9 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2022-03-24: added ``icon`` to be set or changed via addon update endpoints. https://github.com/mozilla/addons-server/issues/18232
 * 2022-04-14: added a ``previews`` endpoint under /addon/ that can be used to create, update, and delete add-on previews for non-themes. https://github.com/mozilla/addons-server/issues/18236
 * 2022-04-28: added the ability to delete add-ons via addon detail api endpoint. https://github.com/mozilla/addons-server/issues/19072
+* 2022-05-05: added the ability to list and edit add-on authors. https://github.com/mozilla/addons-server/issues/18231
+* 2022-05-05: added the ability to delete add-on authors. https://github.com/mozilla/addons-server/issues/19163
+* 2022-05-12: added the ability to add new add-on authors, as pending authors. https://github.com/mozilla/addons-server/issues/19164
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

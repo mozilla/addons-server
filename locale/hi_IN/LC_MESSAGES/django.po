@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -217,13 +217,32 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr ""
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "एक लेखक केवल एक बार उपस्थित हो सकता है।"
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "लेखक के रूप में जोड़े जाने से पहले खाते को एक प्रदर्शन नाम की आवश्यकता होती है।"
+
+msgid "An author has been added to your add-on"
+msgstr "एक लेखक को आपके ऐड-ऑन में जोड़ा गया है"
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "{addon} के लिए योगदान।"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -243,6 +262,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "आपके ऐड-ऑन से एक लेखक को हटा दिया गया है"
 
 msgid "My Add-ons"
 msgstr "मेरे ऐड-ऑन्स"
@@ -450,11 +478,17 @@ msgstr "ईमेल पता नहीं मिला।"
 msgid "Unavailable for legal reasons."
 msgstr "कानूनी कारणों से अनुपलब्ध।"
 
-msgid "The language code {lang_code} is invalid."
-msgstr "{lang_code} भाषा कोड अमान्य है।"
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "आपको {lang-code:value} का कोई ऑब्जेक्ट प्रदान करना होगा।"
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1741,12 +1775,6 @@ msgstr "अपनी स्थानीय भाषा को रूपान�
 msgid "Users can not be added directly"
 msgstr "उपयोगकर्ताओं को सीधे नहीं जोड़ा जा सकता है"
 
-msgid "An author can only be present once."
-msgstr "एक लेखक केवल एक बार उपस्थित हो सकता है।"
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "लेखक के रूप में जोड़े जाने से पहले खाते को एक प्रदर्शन नाम की आवश्यकता होती है।"
-
 msgid "Must have at least one owner."
 msgstr "कम से कम एक मालिक होना चाहिए."
 
@@ -1932,21 +1960,8 @@ msgstr "निमंत्रण स्वीकार किया गया।
 msgid "Invitation declined."
 msgstr "निमंत्रण अस्वीकार कर दिया।"
 
-msgid "An author has been added to your add-on"
-msgstr "एक लेखक को आपके ऐड-ऑन में जोड़ा गया है"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "{addon} के लिए योगदान।"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
-
-msgid "An author role has been changed on your add-on"
-msgstr ""
-
-msgid "An author has been removed from your add-on"
-msgstr "आपके ऐड-ऑन से एक लेखक को हटा दिया गया है"
 
 msgid "Changes successfully saved."
 msgstr "परिवर्तन सफलतापूर्वक सहेजे गए।"

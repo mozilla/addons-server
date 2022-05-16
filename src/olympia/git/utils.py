@@ -10,9 +10,11 @@ from collections import namedtuple
 
 import pygit2
 
+from celery import current_task
 from django_statsd.clients import statsd
 
 from django.conf import settings
+from django.db import connections
 from django.utils import translation
 from django.utils.functional import cached_property
 
@@ -361,6 +363,20 @@ class AddonGitRepository:
                 branch=branch,
             )
 
+            if (
+                current_task
+                and current_task.request.id is not None
+                and not current_task.request.is_eager
+            ):
+                # Extraction might have taken a while, and our connection might
+                # be gone and we haven't realized it. Django cleans up
+                # connections after CONN_MAX_AGE but only during the
+                # request/response cycle, so if we're inside a task let's do it
+                # ourselves before using the database again - it will
+                # automatically reconnect if needed (use 'default' since we
+                # want the primary db where writes go).
+                connections['default'].close_if_unusable_or_obsolete()
+
             # Set the latest git hash on the related version.
             version.update(git_hash=commit.hex)
         finally:
@@ -401,18 +417,11 @@ class AddonGitRepository:
         with TemporaryWorktree(self.git_repository) as worktree:
             if file_obj:
                 # Now extract the extension to the workdir
-                try:
-                    extract_extension_to_dest(
-                        source=file_obj.current_file_path,
-                        dest=worktree.extraction_target_path,
-                        force_fsync=True,
-                    )
-                except FileNotFoundError:
-                    extract_extension_to_dest(
-                        source=file_obj.fallback_file_path,
-                        dest=worktree.extraction_target_path,
-                        force_fsync=True,
-                    )
+                extract_extension_to_dest(
+                    source=file_obj.file_path,
+                    dest=worktree.extraction_target_path,
+                    force_fsync=True,
+                )
 
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct

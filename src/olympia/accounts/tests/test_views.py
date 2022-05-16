@@ -25,7 +25,7 @@ from waffle.models import Switch
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.access.acl import action_allowed_user
+from olympia.access.acl import action_allowed_for
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.accounts.views import FxaNotificationView
@@ -1712,7 +1712,7 @@ class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
         res = self.post(self.url, {'group': 'reviewer'})
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert action_allowed_user(user, amo.permissions.ADDONS_REVIEW)
+        assert action_allowed_for(user, amo.permissions.ADDONS_REVIEW)
 
     def test_can_create_an_admin_user(self):
         group = Group.objects.create(rules='*:*', name='admin group')
@@ -1720,7 +1720,7 @@ class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
 
         assert res.status_code == 201, res.content
         user = UserProfile.objects.get(pk=res.data['user_id'])
-        assert action_allowed_user(user, amo.permissions.NONE)
+        assert action_allowed_for(user, amo.permissions.NONE)
         assert res.data['groups'] == [(group.pk, group.name, group.rules)]
 
 

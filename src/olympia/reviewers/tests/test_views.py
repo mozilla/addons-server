@@ -6859,7 +6859,7 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
         self.client.login_api(self.user)
         assert self.client.get(self.url).status_code == 403
 
-    @mock.patch.object(acl, 'is_reviewer', lambda request, addon: False)
+    @mock.patch.object(acl, 'is_reviewer', lambda user, addon: False)
     def test_wrong_type_of_reviewer_cannot_see_json_results(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
@@ -8536,6 +8536,15 @@ class TestCannedResponseViewSet(TestCase):
 class TestThemeBackgroundImages(ReviewBase):
     def setUp(self):
         super().setUp()
+        self.addon = addon_factory(
+            type=amo.ADDON_STATICTHEME,
+            file_kw={
+                'filename': os.path.join(
+                    settings.ROOT,
+                    'src/olympia/devhub/tests/addons/static_theme_tiled.zip',
+                )
+            },
+        )
         self.url = reverse(
             'reviewers.theme_background_images', args=[self.addon.current_version.id]
         )
@@ -8547,17 +8556,23 @@ class TestThemeBackgroundImages(ReviewBase):
         assert response.status_code == 403
 
     def test_no_header_image(self):
+        self.addon.current_version.file.update(file='')
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data == {}
 
     def test_header_images(self):
-        destination = self.addon.current_version.file.current_file_path
-        zip_file = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
-        )
-        self.root_storage.copy_stored_file(zip_file, destination)
+        with open(
+            os.path.join(
+                settings.ROOT,
+                'src/olympia/devhub/tests/addons/static_theme_tiled.zip',
+            ),
+            'rb',
+        ) as src:
+            file_ = self.addon.current_version.file
+            file_.file = DjangoFile(src)
+            file_.save()
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
         data = json.loads(response.content)

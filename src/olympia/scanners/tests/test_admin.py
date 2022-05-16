@@ -16,7 +16,6 @@ from urllib.parse import urljoin
 
 from olympia import amo
 from olympia.amo.tests import (
-    AMOPaths,
     TestCase,
     addon_factory,
     user_factory,
@@ -34,7 +33,6 @@ from olympia.constants.scanners import (
     SCHEDULED,
     TRUE_POSITIVE,
     UNKNOWN,
-    WAT,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -240,11 +238,6 @@ class TestScannerResultAdmin(TestCase):
         # version.
         assert '/browse/' not in self.admin.formatted_matched_rules_with_files(result)
 
-    def test_formatted_score_when_scanner_is_not_mad_or_customs(self):
-        result = ScannerResult(score=0.123, scanner=WAT)
-
-        assert self.admin.formatted_score(result) == '-'
-
     def test_formatted_score_for_customs(self):
         result = ScannerResult(score=0.123, scanner=CUSTOMS)
 
@@ -263,9 +256,6 @@ class TestScannerResultAdmin(TestCase):
     def test_list_queries(self):
         ScannerResult.objects.create(
             scanner=CUSTOMS, version=addon_factory().current_version
-        )
-        ScannerResult.objects.create(
-            scanner=WAT, version=addon_factory().current_version
         )
         deleted_addon = addon_factory(name='a deleted add-on')
         ScannerResult.objects.create(
@@ -1095,7 +1085,7 @@ class TestScannerRuleAdmin(TestCase):
         assert len(select.children()) == 3
 
 
-class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
+class TestScannerQueryRuleAdmin(TestCase):
     def setUp(self):
         super().setUp()
 
@@ -1298,8 +1288,9 @@ class TestScannerQueryRuleAdmin(AMOPaths, TestCase):
         assert rule.state == SCHEDULED
 
     def test_run_action_functional(self):
-        version = addon_factory().current_version
-        self.xpi_copy_over(version.file, 'webextension.xpi')
+        version = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
         rule = ScannerQueryRule.objects.create(
             name='always_true',
             scanner=YARA,

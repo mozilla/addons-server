@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.core.files import File as DjangoFile
 from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
@@ -108,55 +109,6 @@ def get_es_index_name(key):
     the aliases point to."""
     value = settings.ES_INDEXES[key]
     return f'{value}{ES_INDEX_SUFFIXES[key]}'
-
-
-def setup_es_test_data(es):
-    try:
-        es.cluster.health()
-    except Exception as e:
-        e.args = tuple(
-            [
-                '%s (it looks like ES is not running, try starting it or '
-                "don't run ES tests: make test_no_es)" % e.args[0]
-            ]
-            + list(e.args[1:])
-        )
-        raise
-
-    aliases_and_indexes = set(
-        list(settings.ES_INDEXES.values()) + list(es.indices.get_alias().keys())
-    )
-
-    for key in aliases_and_indexes:
-        if key.startswith('test_'):
-            if es.indices.exists_alias(name=key):
-                es.indices.delete_alias(index='*', name=key, ignore=[404])
-            elif es.indices.exists(key):
-                es.indices.delete(key, ignore=[404])
-
-    # Figure out the name of the indices we're going to create from the
-    # suffixes generated at import time. Like the aliases later, the name
-    # has been prefixed by pytest, we need to add a suffix that is unique
-    # to this test run.
-    actual_indices = {key: get_es_index_name(key) for key in settings.ES_INDEXES.keys()}
-
-    # Create new addons and stats indexes with the timestamped name.
-    # This is crucial to set up the correct mappings before we start
-    # indexing things in tests.
-    AddonIndexer.create_new_index(actual_indices['default'])
-
-    # Alias it to the name the code is going to use (which is suffixed by
-    # pytest to avoid clashing with the real thing).
-    actions = [
-        {
-            'add': {
-                'index': actual_indices['default'],
-                'alias': settings.ES_INDEXES['default'],
-            }
-        },
-    ]
-
-    es.indices.update_aliases({'actions': actions})
 
 
 def formset(*args, **kw):
@@ -678,20 +630,8 @@ class AMOPaths:
     """Mixin for getting common AMO Paths."""
 
     def file_fixture_path(self, name):
-        path = 'src/olympia/files/fixtures/files/%s' % name
-        return os.path.join(settings.ROOT, path)
-
-    def xpi_path(self, name):
-        if os.path.splitext(name)[-1] not in ['.xml', '.xpi']:
-            return self.file_fixture_path(name + '.xpi')
-        return self.file_fixture_path(name)
-
-    def xpi_copy_over(self, file, name):
-        """Copies over a file into place for tests."""
-        path = file.current_file_path
-        if not os.path.exists(os.path.dirname(path)):
-            os.makedirs(os.path.dirname(path))
-        shutil.copyfile(self.xpi_path(name), path)
+        path = 'src/olympia/files/fixtures/files'
+        return os.path.join(settings.ROOT, path, name)
 
 
 def _get_created(created):
@@ -869,19 +809,24 @@ def license_factory(**kw):
 
 
 def file_factory(**kw):
-    version = kw['version']
-    filename = kw.pop('filename', f'{version.addon_id}-{version.id}.xpi')
-    status = kw.pop('status', amo.STATUS_APPROVED)
-
-    file_ = File.objects.create(filename=filename, status=status, **kw)
-
-    fixture_path = os.path.join(
-        settings.ROOT, 'src/olympia/files/fixtures/files', filename
-    )
-
-    if os.path.exists(fixture_path):
-        root_storage.copy_stored_file(fixture_path, file_.current_file_path)
-
+    kw.setdefault('status', amo.STATUS_APPROVED)
+    filename = kw.pop('filename', None)
+    if filename:
+        # If a filename is passed, also copy the file over to where it would
+        # have been uploaded. filename can either be an absolute path or name
+        # relative to the files fixture directory.
+        fixture_path = (
+            filename
+            if filename.startswith('/')
+            else os.path.join(
+                settings.ROOT, 'src/olympia/files/fixtures/files', filename
+            )
+        )
+        with open(fixture_path, 'rb') as f:
+            kw['file'] = DjangoFile(f)
+            file_ = File.objects.create(**kw)
+    else:
+        file_ = File.objects.create(**kw)
     return file_
 
 
@@ -1013,6 +958,56 @@ class ESTestCaseMixin:
         # right before each test.
         stop_es_mocks()
         cls.es = amo_search.get_es()
+        # Make sure ES cluster is in a good state, resetting the index if
+        # necessary.
+        try:
+            cls.es.cluster.health()
+        except Exception as e:
+            e.args = tuple(
+                [
+                    '%s (it looks like ES is not running, try starting it or '
+                    "don't run ES tests: make test_no_es)" % e.args[0]
+                ]
+                + list(e.args[1:])
+            )
+            raise
+
+        aliases_and_indexes = set(
+            list(settings.ES_INDEXES.values()) + list(cls.es.indices.get_alias().keys())
+        )
+
+        for key in aliases_and_indexes:
+            if key.startswith('test_'):
+                if cls.es.indices.exists_alias(name=key):
+                    cls.es.indices.delete_alias(index='*', name=key, ignore=[404])
+                elif cls.es.indices.exists(key):
+                    cls.es.indices.delete(key, ignore=[404])
+
+        # Figure out the name of the indices we're going to create from the
+        # suffixes generated at import time. Like the aliases later, the name
+        # has been prefixed by pytest, we need to add a suffix that is unique
+        # to this test run.
+        actual_indices = {
+            key: get_es_index_name(key) for key in settings.ES_INDEXES.keys()
+        }
+
+        # Create new addons and stats indexes with the timestamped name.
+        # This is crucial to set up the correct mappings before we start
+        # indexing things in tests.
+        AddonIndexer.create_new_index(actual_indices['default'])
+
+        # Alias it to the name the code is going to use (which is suffixed by
+        # pytest to avoid clashing with the real thing).
+        actions = [
+            {
+                'add': {
+                    'index': actual_indices['default'],
+                    'alias': settings.ES_INDEXES['default'],
+                }
+            },
+        ]
+
+        cls.es.indices.update_aliases({'actions': actions})
         super().setUpClass()
 
     def setUp(self):
@@ -1020,11 +1015,6 @@ class ESTestCaseMixin:
         # generic pytest fixture started the mocks in the meantime
         stop_es_mocks()
         super().setUp()
-
-    @classmethod
-    def setUpTestData(cls):
-        setup_es_test_data(cls.es)
-        super().setUpTestData()
 
     @classmethod
     def refresh(cls, index='default'):

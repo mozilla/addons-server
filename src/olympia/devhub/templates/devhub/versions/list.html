@@ -91,7 +91,7 @@
   </tr>
   {% set can_request_review=addon.can_request_review() %}
   {% set can_cancel=(not addon.is_disabled and addon.status==amo.STATUS_NOMINATED) %}
-  {% if full_info and check_addon_ownership(request, addon, allow_developer=True) and version.channel == amo.RELEASE_CHANNEL_LISTED and (can_request_review or can_cancel) %}
+  {% if full_info and check_addon_ownership(request.user, addon, allow_developer=True) and version.channel == amo.RELEASE_CHANNEL_LISTED and (can_request_review or can_cancel) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
         {% if can_request_review %}
@@ -151,7 +151,7 @@
     <h3>{{ distro_tag(amo.RELEASE_CHANNEL_LISTED)}} {{ _('Listing visibility') }}</h3>
     <div class="item" id="addon-current-state">
       <div class="item_wrapper">
-        {% set owner = check_addon_ownership(request, addon, allow_developer=True) %}
+        {% set owner = check_addon_ownership(request.user, addon, allow_developer=True) %}
         <label><input name="addon-state" value="listed" type="radio"
                     {% if not owner or addon.status == amo.STATUS_DISABLED %}disabled="disabled"{% endif %}
                     {% if not addon.is_disabled %}checked="checked"{% endif %}
@@ -215,7 +215,7 @@
   <div class="item" id="version-list"
        data-stats="{{ url('devhub.versions.stats', addon.slug) }}">
     <div class="item_wrapper">
-      {% if check_addon_ownership(request, addon, allow_developer=True) and addon.status != amo.STATUS_DISABLED %}{# i.e. Admin disabled #}
+      {% if check_addon_ownership(request.user, addon, allow_developer=True) and addon.status != amo.STATUS_DISABLED %}{# i.e. Admin disabled #}
       <div>
         {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
         <a href="{{ version_upload_url }}" class="button version-upload">{{ _('Upload a New Version') }}</a>
@@ -242,7 +242,7 @@
       </div>
     {% endif %}
   </div>
-  {% if check_addon_ownership(request, addon, allow_site_permission=True) and addon.can_be_deleted() %}
+  {% if check_addon_ownership(request.user, addon, allow_site_permission=True) and addon.can_be_deleted() %}
   <h3>{{ _('Delete Add-on') }}</h3>
   <div class="item" id="addon-delete-listing">
     <div class="item_wrapper">

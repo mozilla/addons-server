@@ -149,7 +149,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :query boolean show_grouped_ratings: Whether or not to show ratings aggregates in the ``ratings`` object (Use "true"/"1" as truthy values, "0"/"false" as falsy ones).
     :>json int id: The add-on id on AMO.
     :>json array authors: Array holding information about the authors for the add-on.
-    :>json int authors[].id: The id for an author.
+    :>json int authors[].id: The user id for an author.
     :>json string authors[].name: The name for an author.
     :>json string authors[].url: The link to the profile page for an author.
     :>json string authors[].username: The username for an author.

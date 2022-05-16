@@ -1,13 +1,12 @@
 import hashlib
 import json
 import os
-import re
-import unicodedata
 import uuid
 
 from urllib.parse import urljoin
 
 from django.conf import settings
+from django.core.files import File as DjangoFile
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
@@ -26,7 +25,14 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.files.utils import get_sha256, InvalidOrUnsupportedCrx, write_crx_as_xpi
+from olympia.amo.utils import SafeStorage
+from olympia.files.fields import FilenameFileField
+from olympia.files.utils import (
+    get_sha256,
+    id_to_path,
+    InvalidOrUnsupportedCrx,
+    write_crx_as_xpi,
+)
 
 
 log = olympia.core.logger.getLogger('z.files')
@@ -36,12 +42,58 @@ log = olympia.core.logger.getLogger('z.files')
 DEFAULT_MANIFEST_VERSION = 2
 
 
+def files_upload_to_callback(instance, filename):
+    """upload_to callback for File instances.
+
+    When <File instance>.save() is called, that triggers a call to this
+    function if the underlying <File instance>.file had not yet been
+    "committed" to the filesystem - typically when we're assigned it but not
+    called saved yet.
+
+    For new uploads, the returned path is:
+    {directories}/addon_slug}-{version}.{extension}, where {directories} is
+    {addon_id last 2 digits}/{addon_id last 4 digits}/{addon_id}
+
+    For older uploads, the returned path used to be in the format of
+    {addon_id}/{addon_name}-{version}.{extension} (and even used to contain
+    compatible apps associated with the file before), and our custom
+    FilenameFileField ensured we only stored the filename without the leading
+    directory to the database for backwards-compatibility.
+
+    By convention, newly signed files after 2022-03-31 get a .xpi extension,
+    unsigned get .zip. This helps ensure CDN cache is busted when we sign
+    something.
+
+    Note that per Django requirements this gets passed the object instance and
+    a filename, but the filename is completely ignored here (it's meant to
+    represent the user-provided filename in user uploads).
+    """
+    # Start with the add-on slug, but make it go through django's slugify() to
+    # drop unicode characters.
+    name = slugify(instance.addon.slug).replace('-', '_') or 'addon'
+    parts = (name, instance.version.version)
+    file_extension = '.xpi' if instance.is_signed else '.zip'
+    return os.path.join(
+        id_to_path(instance.addon.pk, breadth=2), '-'.join(parts) + file_extension
+    )
+
+
+def files_storage():
+    return SafeStorage(user_media='addons')
+
+
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
 
     version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
-    filename = models.CharField(max_length=255, default='')
+    file = FilenameFileField(
+        max_length=255,
+        default='',
+        db_column='filename',
+        storage=files_storage,
+        upload_to=files_upload_to_callback,
+    )
     size = models.PositiveIntegerField(default=0)  # In bytes.
     hash = models.CharField(max_length=255, default='')
     # The original hash of the file, before we sign it, or repackage it in
@@ -99,7 +151,7 @@ class File(OnChangeMixin, ModelBase):
         # See https://github.com/mozilla-mobile/fenix/blob/
         # 07d43971c0767fc023996dc32eb73e3e37c6517a/app/src/main/java/org/mozilla/fenix/
         # AppRequestInterceptor.kt#L173
-        kwargs = {'file_id': self.pk, 'filename': self.filename}
+        kwargs = {'file_id': self.pk, 'filename': self.pretty_filename}
         if attachment:
             kwargs['download_type'] = 'attachment'
         return reverse('downloads.file', kwargs=kwargs)
@@ -116,7 +168,7 @@ class File(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         file_ = cls(version=version)
-        upload_path = force_str(nfd_str(upload.path))
+        upload_path = force_str(upload.path)
         # Size in bytes.
         file_.size = storage.size(upload_path)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
@@ -125,14 +177,18 @@ class File(OnChangeMixin, ModelBase):
             'is_mozilla_signed_extension', False
         )
         file_.is_signed = file_.is_mozilla_signed_extension
-        file_.filename = file_.generate_filename()
-
-        file_.hash = file_.generate_hash(upload_path)
+        file_.hash = upload.hash
         file_.original_hash = file_.hash
         file_.manifest_version = parsed_data.get(
             'manifest_version', DEFAULT_MANIFEST_VERSION
         )
-        file_.save()
+        log.info(f'New file: {file_!r} from {upload!r}')
+
+        # FileUpload.path is not a FileField, so we have to open() the path to
+        # make a DjangoFile in order to assign it to file_.file.
+        with open(upload_path, 'rb') as src:
+            file_.file = DjangoFile(src)
+            file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))
         optional_permissions = list(parsed_data.get('optional_permissions', []))
@@ -161,67 +217,27 @@ class File(OnChangeMixin, ModelBase):
                 file=file_,
             )
 
-        log.info(f'New file: {file_!r} from {upload!r}')
-
-        # Move the uploaded file from the temp location.
-        storage.copy_stored_file(upload_path, file_.current_file_path)
-
         if upload.validation:
             validation = json.loads(upload.validation)
             FileValidation.from_json(file_, validation)
 
         return file_
 
-    def generate_hash(self, filename=None):
-        """Generate a hash for a file."""
-        with open(filename or self.current_file_path, 'rb') as fobj:
-            return f'sha256:{get_sha256(fobj)}'
+    def generate_hash(self):
+        """Generate a hash for the File"""
+        return f'sha256:{get_sha256(self.file)}'
 
-    def generate_filename(self):
-        """
-        Files are in the format of:
-        {addon_name}-{version}-{apps}
-        (-{platform} for some of the old ones from back when we had multiple
-         platforms)
-
-        By convention, newly signed files after 2022-03-31 get a .xpi
-        extension, unsigned get .zip. This helps ensure CDN cache is busted
-        when we sign something.
-        """
-        parts = []
-        addon = self.version.addon
-        # slugify drops unicode so we may end up with an empty string.
-        # Apache did not like serving unicode filenames (bug 626587).
-        name = slugify(addon.name).replace('-', '_') or 'addon'
-        parts.append(name)
-        parts.append(self.version.version)
-
-        if addon.type not in amo.NO_COMPAT and self.version.compatible_apps:
-            apps = '+'.join(sorted(a.shortername for a in self.version.compatible_apps))
-            parts.append(apps)
-
-        file_extension = '.xpi' if self.is_signed else '.zip'
-        return '-'.join(parts) + file_extension
-
-    _pretty_filename = re.compile(r'(?P<slug>[a-z0-7_]+)(?P<suffix>.*)')
-
-    def pretty_filename(self, maxlen=20):
-        """Displayable filename.
-
-        Truncates filename so that the slug part fits maxlen.
-        """
-        m = self._pretty_filename.match(self.filename)
-        if not m:
-            return self.filename
-        if len(m.group('slug')) < maxlen:
-            return self.filename
-        return '{}...{}'.format(m.group('slug')[0 : (maxlen - 3)], m.group('suffix'))
+    @property
+    def pretty_filename(self):
+        """Displayable filename."""
+        return os.path.basename(self.file.name) if self.file else ''
 
     def latest_xpi_url(self, attachment=False):
-        addon = self.version.addon
+        addon = self.addon
+        extension = os.path.splitext(self.filename)[-1] or 'xpi'
         kw = {
             'addon_id': addon.slug,
-            'filename': f'addon-{addon.pk}-latest{self.extension}',
+            'filename': f'addon-{addon.pk}-latest{extension}',
         }
         if attachment:
             kw['download_type'] = 'attachment'
@@ -229,88 +245,15 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def file_path(self):
-        return os.path.join(
-            user_media_path('addons'), str(self.version.addon_id), self.filename
-        )
+        return self.file.path if self.file else ''
+
+    @property
+    def filename(self):
+        return self.file.name if self.file else ''
 
     @property
     def addon(self):
         return self.version.addon
-
-    @property
-    def guarded_file_path(self):
-        return os.path.join(
-            user_media_path('guarded_addons'), str(self.version.addon_id), self.filename
-        )
-
-    @property
-    def current_file_path(self):
-        """Returns the current path of the file, whether or not it is
-        guarded."""
-
-        file_disabled = self.status == amo.STATUS_DISABLED
-        addon_disabled = self.addon.is_disabled
-        if file_disabled or addon_disabled:
-            return self.guarded_file_path
-        else:
-            return self.file_path
-
-    @property
-    def fallback_file_path(self):
-        """Fallback path in case the file was disabled/re-enabled and not yet
-        moved - sort of the opposite to current_file_path. This should only be
-        used for things like code search or git extraction where we really want
-        the file contents no matter what."""
-        return (
-            self.file_path
-            if self.current_file_path == self.guarded_file_path
-            else self.guarded_file_path
-        )
-
-    @property
-    def extension(self):
-        return os.path.splitext(self.filename)[-1]
-
-    def move_file(self, source_path, destination_path, log_message):
-        """Move a file from `source_path` to `destination_path` and delete the
-        source directory if it's empty once the file has been successfully
-        moved.
-
-        Meant to move files from/to the guarded file path as they are disabled
-        or re-enabled.
-
-        IOError and UnicodeEncodeError are caught and logged."""
-        log_message = force_str(log_message)
-        try:
-            if storage.exists(source_path):
-                source_parent_path = os.path.dirname(source_path)
-                log.info(
-                    log_message.format(source=source_path, destination=destination_path)
-                )
-                storage.move_stored_file(source_path, destination_path)
-                # Now that the file has been deleted, remove the directory if
-                # it exists to prevent the main directory from growing too
-                # much (#11464)
-                remaining_dirs, remaining_files = storage.listdir(source_parent_path)
-                if len(remaining_dirs) == len(remaining_files) == 0:
-                    storage.delete(source_parent_path)
-        except (UnicodeEncodeError, OSError):
-            msg = f'Move Failure: {source_path} {destination_path}'
-            log.exception(msg)
-
-    def hide_disabled_file(self):
-        """Move a file from the public path to the guarded file path."""
-        if not self.filename:
-            return
-        src, dst = self.file_path, self.guarded_file_path
-        self.move_file(src, dst, 'Moving disabled file: {source} => {destination}')
-
-    def unhide_disabled_file(self):
-        """Move a file from guarded file path to the public file path."""
-        if not self.filename:
-            return
-        src, dst = self.guarded_file_path, self.file_path
-        self.move_file(src, dst, 'Moving undisabled file: {source} => {destination}')
 
     @cached_property
     def permissions(self):
@@ -375,29 +318,22 @@ models.signals.post_delete.connect(
 def cleanup_file(sender, instance, **kw):
     """On delete of the file object from the database, unlink the file from
     the file system"""
-    if kw.get('raw') or not instance.filename:
-        return
-    # Use getattr so the paths are accessed inside the try block.
-    for path in ('file_path', 'guarded_file_path'):
-        try:
-            filename = getattr(instance, path)
-        except models.ObjectDoesNotExist:
+    try:
+        if kw.get('raw') or not instance.file:
             return
-        if storage.exists(filename):
-            log.info(f'Removing filename: {filename} for file: {instance.pk}')
-            storage.delete(filename)
+        if storage.exists(instance.file_path):
+            log.info(
+                f'Removing filename: {instance.pretty_filename} for file: {instance.pk}'
+            )
+            instance.file.delete(save=False)
+    except models.ObjectDoesNotExist:
+        return
 
 
 @File.on_change
 def check_file(old_attr, new_attr, instance, sender, **kw):
     if kw.get('raw'):
         return
-    old, new = old_attr.get('status'), instance.status
-    if new == amo.STATUS_DISABLED and old != amo.STATUS_DISABLED:
-        instance.hide_disabled_file()
-    elif old == amo.STATUS_DISABLED and new != amo.STATUS_DISABLED:
-        instance.unhide_disabled_file()
-
     # Log that the hash has changed.
     old, new = old_attr.get('hash'), instance.hash
     if old != new:
@@ -488,6 +424,12 @@ class FileUpload(ModelBase):
                 file_destination.write(chunk)
         return hash_obj
 
+    @classmethod
+    def generate_path(cls, ext='.zip'):
+        return os.path.join(
+            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
+        )
+
     def add_file(self, chunks, filename, size):
         if not self.uuid:
             self.uuid = self._meta.get_field('uuid')._create_uuid()
@@ -505,9 +447,7 @@ class FileUpload(ModelBase):
         # linter.
         if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
             ext = '.zip'
-        self.path = os.path.join(
-            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
-        )
+        self.path = self.generate_path(ext)
 
         hash_obj = None
         if was_crx:
@@ -697,10 +637,3 @@ class FileSitePermission(ModelBase):
 
     class Meta:
         db_table = 'site_permissions'
-
-
-def nfd_str(u):
-    """Uses NFD to normalize unicode strings."""
-    if isinstance(u, str):
-        return unicodedata.normalize('NFD', u).encode('utf-8')
-    return u

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,13 +225,34 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "Peranan pengarang add-on anda telah ditukar"
+
+msgid "Account not found."
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "Seorang pengarang hanya boleh disenaraikan sekali sahaja."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr "Seorang pengarang ditambah ke add-on anda"
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "Sumbangan untuk {addon}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -251,6 +272,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Seorang pengarang disingkir daripada add-on anda"
 
 msgid "My Add-ons"
 msgstr "Add-on Saya"
@@ -462,11 +492,17 @@ msgstr "Alamat E-mel"
 msgid "Unavailable for legal reasons."
 msgstr ""
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Kod bahasa {lang_code} tidak sah."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Anda perlu beri objek kepada {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1761,13 +1797,6 @@ msgstr "Sebelum menukar lokaliti piawai anda, anda mesti ada nama, ringkasan dan
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "Seorang pengarang hanya boleh disenaraikan sekali sahaja."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
 msgid "Must have at least one owner."
 msgstr "Perlu ada sekurang-kurangnya seorang pemilik."
 
@@ -1953,22 +1982,8 @@ msgstr ""
 msgid "Invitation declined."
 msgstr ""
 
-msgid "An author has been added to your add-on"
-msgstr "Seorang pengarang ditambah ke add-on anda"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "Sumbangan untuk {addon}."
-
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
-
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "Peranan pengarang add-on anda telah ditukar"
-
-msgid "An author has been removed from your add-on"
-msgstr "Seorang pengarang disingkir daripada add-on anda"
 
 msgid "Changes successfully saved."
 msgstr "Perubahan berjaya disimpan."

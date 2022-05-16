@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-24 19:34+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-12 20:39+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -216,14 +216,32 @@ msgstr "Wersija {version_string} južo eksistěrujo."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Nalicone wersije njedaju se zapódaś, mjaztym až dodank jo znjemóžnjony."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Dodankowe metadaty muse se póstajiś, aby se nalicona wersija napórała: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "Dodanki nanejmjenjej jadnogo wobsejźarja trjebaju."
+
+msgid "Add-ons need at least one listed author."
+msgstr "Dodanki nanejmjenjej jadnogo naliconego awtora trjebaju."
+
+msgid "An author role has been changed on your add-on"
+msgstr "Awtorowa rola jo se změniła za waš dodank"
+
+msgid "Account not found."
+msgstr "Konto njejo se namakało."
+
+msgid "An author can only be present once."
+msgstr "Awtor smějo se jano jaden raz pódaś."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Konto zwobraznjeńske mě trjeba, nježli až dajo se ako awtor pśidaś."
+
+msgid "An author has been added to your add-on"
+msgstr "Awtor jo se wašomu dodankoju pśidał"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Awtorowa pśepšosba za {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Adresowe mě njedajo se wužywaś. Pšosym wubjeŕśo druge."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Toś to pólo jo za dodanki z naliconymi wersijami trjebne."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Mjenja dodankow njamógu wikowu marku Mozilla abo Firefox wopśimowaś."
@@ -242,6 +260,15 @@ msgstr "Wopacny dodankowy typ za toś tu licencu."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Swójske licence se za drastwy njepódpěraju."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Toś to pólo jo za dodanki z naliconymi wersijami trjebne."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Dodankowe metadaty muse se póstajiś, aby se nalicona wersija napórała: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Awtor jo se z wašogo dodanka wótpórał"
 
 msgid "My Add-ons"
 msgstr "Móje dodanki"
@@ -452,11 +479,17 @@ msgstr "E-mailowa adresa njejo se namakała."
 msgid "Unavailable for legal reasons."
 msgstr "Njejo k dispoziciji z pšawniskich pśicynow."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Rěcny kod {lang_code} jo njepłaśiwy."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "Rěcny kod „{lang_code}“ jo njepłaśiwy."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Musyśo objekt za {lang-code:value} pódaś."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "Gódnota w standardnej rěcy „{lang_code}“ jo trjebna."
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "Gódnota w standardnej rěcy „{lang_code}“ jo trjebna, jolic druge pśełožki su nastajone."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1718,12 +1751,6 @@ msgstr "Nježli až změnjaśo swóju standardnu rěc, musyśo mě, zespominanje
 msgid "Users can not be added directly"
 msgstr "Wužywarje njedaju se direktnje pśidaś"
 
-msgid "An author can only be present once."
-msgstr "Awtor smějo se jano jaden raz pódaś."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Konto zwobraznjeńske mě trjeba, nježli až dajo se ako awtor pśidaś."
-
 msgid "Must have at least one owner."
 msgstr "Musy nanejmjenjej jadnogo wobsejźerja měś."
 
@@ -1909,20 +1936,8 @@ msgstr "Pśepšosba jo akceptěrowana."
 msgid "Invitation declined."
 msgstr "Pśepšosba jo wótpokazana."
 
-msgid "An author has been added to your add-on"
-msgstr "Awtor jo se wašomu dodankoju pśidał"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Awtorowa pśepšosba za {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Wobkšuśeńska mejlka jo se pósłała na {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Awtorowa rola jo se změniła za waš dodank"
-
-msgid "An author has been removed from your add-on"
-msgstr "Awtor jo se z wašogo dodanka wótpórał"
 
 msgid "Changes successfully saved."
 msgstr "Změny su se wuspěšnje składli."

@@ -289,7 +289,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
     def get_actions(self, request):
         actions = super().get_actions(request)
-        if not acl.action_allowed(request, amo.permissions.ABUSEREPORTS_EDIT):
+        if not acl.action_allowed_for(request.user, amo.permissions.ABUSEREPORTS_EDIT):
             # You need AbuseReports:Edit for the extra actions.
             actions.pop('mark_as_valid')
             actions.pop('mark_as_suspicious')

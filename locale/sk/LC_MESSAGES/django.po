@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-02-08 18:40+0000\n"
 "Last-Translator: Vlado Valaštiak <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -219,13 +219,31 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr ""
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr ""
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr "K vášmu doplnku bol pridaný autor"
+
+msgid "Author invitation for {addon_name}"
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -245,6 +263,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Autor bol pri vašom doplnku odobraný"
 
 msgid "My Add-ons"
 msgstr "Moje doplnky"
@@ -452,10 +479,16 @@ msgstr "E-mailová adresa sa nenašla."
 msgid "Unavailable for legal reasons."
 msgstr ""
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Kód jazyka {lang_code} nie je platný."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
 msgstr ""
 
 #, python-format
@@ -1733,12 +1766,6 @@ msgstr "Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a
 msgid "Users can not be added directly"
 msgstr ""
 
-msgid "An author can only be present once."
-msgstr ""
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
 msgid "Must have at least one owner."
 msgstr "Musí mať aspoň jedného vlastníka."
 
@@ -1923,20 +1950,8 @@ msgstr ""
 msgid "Invitation declined."
 msgstr ""
 
-msgid "An author has been added to your add-on"
-msgstr "K vášmu doplnku bol pridaný autor"
-
-msgid "Author invitation for {addon_name}"
-msgstr ""
-
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
-
-msgid "An author role has been changed on your add-on"
-msgstr ""
-
-msgid "An author has been removed from your add-on"
-msgstr "Autor bol pri vašom doplnku odobraný"
 
 msgid "Changes successfully saved."
 msgstr "Zmeny boli úspešne uložené."

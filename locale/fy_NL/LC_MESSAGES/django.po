@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-24 16:42+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-12 13:31+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -220,14 +220,32 @@ msgstr "Ferzje {version_string} bestiet al."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Fermelde ferzjes kinne net yntsjinne wurde, wylst de add-on útskeakele is."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Add-on-metadata moat ynsteld wurde om in fermelde ferzje te meitsjen: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "Add-ons hawwe op syn minst ien eigener nedich."
+
+msgid "Add-ons need at least one listed author."
+msgstr "Add-ons hawwe op syn minst ien fermelde eigener nedich."
+
+msgid "An author role has been changed on your add-on"
+msgstr "In skriuwer hat in wizige rol foar jo add-on"
+
+msgid "Account not found."
+msgstr "Account net fûn."
+
+msgid "An author can only be present once."
+msgstr "In skriuwer kin mar ien kear fermeld wurde."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "De account hat inskermnamme nedich foardat dizze as auteur tafoege wurde kin."
+
+msgid "An author has been added to your add-on"
+msgstr "Der is in skriuwer oan jo add-on tafoege"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Auteurútnûging foar {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Dizze identifikator kin net brûkt wurde. Kies in oare."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Dit fjild is fereaske foar add-ons mei fermelde ferzjes."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nammen fan add-ons meie de Mozilla- of Firefox-hannelsmerken net befetsje."
@@ -246,6 +264,15 @@ msgstr "Ferkeard type add-on foar dizze lisinsje."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Oanpaste lisinsjes wurde net stipe foar tema’s."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Dit fjild is fereaske foar add-ons mei fermelde ferzjes."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Add-on-metadata moat ynsteld wurde om in fermelde ferzje te meitsjen: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Der is in skriuwer fuortsmiten fan jo add-on"
 
 msgid "My Add-ons"
 msgstr "Myn add-ons"
@@ -459,11 +486,17 @@ msgstr "E-mailadres net fûn."
 msgid "Unavailable for legal reasons."
 msgstr "Om juridyske redenen net beskikber."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "De taalkoade {lang_code} is ûnjildich."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "De taalkoade ‘{lang_code}’ is ûnjildich."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Jo moatte in objekt fan {lang-code:value} opjaan."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "In wearde yn de standertlocale fan ‘{lang_code}’ is fereaske."
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "In wearde yn de standertlocale fan ‘{lang_code}’ is fereaske as oare oersettingen ynsteld binne."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1729,12 +1762,6 @@ msgstr "Eardat jo jo standertlocale wizigje, moatte jo in namme, gearfetting en 
 msgid "Users can not be added directly"
 msgstr "Brûkers kinne net direkt tafoege wurde"
 
-msgid "An author can only be present once."
-msgstr "In skriuwer kin mar ien kear fermeld wurde."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "De account hat inskermnamme nedich foardat dizze as auteur tafoege wurde kin."
-
 msgid "Must have at least one owner."
 msgstr "Der moat op syn minst ien eigener wêze."
 
@@ -1920,20 +1947,8 @@ msgstr "Utnûging akseptearre."
 msgid "Invitation declined."
 msgstr "Utnûging wegere."
 
-msgid "An author has been added to your add-on"
-msgstr "Der is in skriuwer oan jo add-on tafoege"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Auteurútnûging foar {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Der is in befêstigingsberjocht ferstjoerd nei {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "In skriuwer hat in wizige rol foar jo add-on"
-
-msgid "An author has been removed from your add-on"
-msgstr "Der is in skriuwer fuortsmiten fan jo add-on"
 
 msgid "Changes successfully saved."
 msgstr "Wizigingen mei sukses bewarre."

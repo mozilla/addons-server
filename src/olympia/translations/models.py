@@ -52,6 +52,9 @@ class Translation(ModelBase):
     def __str__(self):
         return str(self.localized_string) if self.localized_string else ''
 
+    def __repr__(self):
+        return f'<Translation: {self.locale}: {self.__str__()}>'
+
     def __bool__(self):
         # __bool__ is called to evaluate an object in a boolean context.
         # We want Translations to be falsy if their string is empty.

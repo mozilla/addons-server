@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2022-04-07 21:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -219,13 +219,32 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr "Te shtesa juaj një autor pati ndryshim roli"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Një autor mund të jetë i pranishëm vetëm një herë."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Llogaria lypset të ketë një emër shfaqjeje, përpara se të mund të shtohet si një autor."
+
+msgid "An author has been added to your add-on"
+msgstr "Te shtesa juaj është shtuar një autor"
+
+# %1 is an add-on name.
+msgid "Author invitation for {addon_name}"
+msgstr "Ftesë autori për {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -245,6 +264,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Prej shtesës suaj u hoq një autor"
 
 msgid "My Add-ons"
 msgstr "Shtesat e Mia"
@@ -458,11 +486,17 @@ msgstr "S’u gjet adresë email."
 msgid "Unavailable for legal reasons."
 msgstr "Jo e passhme, për arsye ligjore."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Kodi {lang_code} për gjuhën është i pavlefshëm."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Duhet të furnizoni një objekt {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1723,12 +1757,6 @@ msgstr "Para se të ndryshoni vendoren parazgjedhje duhet të keni një emër, n
 msgid "Users can not be added directly"
 msgstr "Përdoruesit s’mund të shtohen drejtpërsëdrejti"
 
-msgid "An author can only be present once."
-msgstr "Një autor mund të jetë i pranishëm vetëm një herë."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Llogaria lypset të ketë një emër shfaqjeje, përpara se të mund të shtohet si një autor."
-
 msgid "Must have at least one owner."
 msgstr "Duhet të ketë të paktën një pronar."
 
@@ -1914,21 +1942,8 @@ msgstr "Ftesa u pranua."
 msgid "Invitation declined."
 msgstr "Ftesa u hodh poshtë."
 
-msgid "An author has been added to your add-on"
-msgstr "Te shtesa juaj është shtuar një autor"
-
-# %1 is an add-on name.
-msgid "Author invitation for {addon_name}"
-msgstr "Ftesë autori për {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Te {email} u dërgua një email ripohimi"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Te shtesa juaj një autor pati ndryshim roli"
-
-msgid "An author has been removed from your add-on"
-msgstr "Prej shtesës suaj u hoq një autor"
 
 msgid "Changes successfully saved."
 msgstr "Ndryshimet u ruajtën me sukses."

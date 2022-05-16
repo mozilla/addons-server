@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-03-18 20:07+0000\n"
-"Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-04-28 10:37+0000\n"
+"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -221,13 +221,31 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr "U vašeho doplňku byla změněna role autora"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Autor může být uveden pouze jednou."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Před přidáním účtu jako autora musí být v účtu nastaveno zobrazované jméno."
+
+msgid "An author has been added to your add-on"
+msgstr "K vašemu doplňku byl přidán nový autor"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Nabídka autorství pro doplněk {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -247,6 +265,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "U vašeho doplňku byl odebrán jeden z autorů"
 
 msgid "My Add-ons"
 msgstr "Mé doplňky"
@@ -459,11 +486,17 @@ msgstr "E-mailová adresa nebyla nalezena."
 msgid "Unavailable for legal reasons."
 msgstr "Nedostupné z právních důvodů."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Kód jazyka {lang_code} není platný."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Je nutné poskytnout tento objekt: {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1722,12 +1755,6 @@ msgstr "Dříve, než změníte výchozí jazyk, musíte mít v tomto jazyce vyp
 msgid "Users can not be added directly"
 msgstr "Uživatelé nemohou být přidáni přímo"
 
-msgid "An author can only be present once."
-msgstr "Autor může být uveden pouze jednou."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Před přidáním účtu jako autora musí být v účtu nastaveno zobrazované jméno."
-
 msgid "Must have at least one owner."
 msgstr "Musí být alespoň jeden vlastník."
 
@@ -1913,20 +1940,8 @@ msgstr "Nabídka byla přijata."
 msgid "Invitation declined."
 msgstr "Nabídka byla odmítnuta."
 
-msgid "An author has been added to your add-on"
-msgstr "K vašemu doplňku byl přidán nový autor"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Nabídka autorství pro doplněk {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Na adresu {email} byl zaslán potvrzovací e-mail"
-
-msgid "An author role has been changed on your add-on"
-msgstr "U vašeho doplňku byla změněna role autora"
-
-msgid "An author has been removed from your add-on"
-msgstr "U vašeho doplňku byl odebrán jeden z autorů"
 
 msgid "Changes successfully saved."
 msgstr "Změny byly úspěšně uloženy."
@@ -2843,7 +2858,7 @@ msgid "Operating system and build environment requirements."
 msgstr "Požadavky na operační systém a sestavovací prostředí."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr "Požadované verze a instalační pokyny o všech programech použitých při procesu sestavení (například <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm< /span>)."
+msgstr "Požadované verze a instalační pokyny o všech programech použitých při procesu sestavení (například <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Zdrojové soubory (s výjimkou open-source knihoven třetích stran) nemohou být transpilované, obfuskované, minifikované nebo jinak strojově vygenerované."

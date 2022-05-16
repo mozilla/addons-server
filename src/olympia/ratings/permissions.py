@@ -19,12 +19,12 @@ def user_can_delete_rating(request, rating):
     )
     is_addon_author = rating.addon.has_author(request.user)
     is_moderator = (
-        acl.action_allowed(request, amo.permissions.RATINGS_MODERATE)
+        acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE)
         and rating.editorreview
     )
-    can_edit_users_or_addons = acl.action_allowed(
-        request, amo.permissions.USERS_EDIT
-    ) or acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
+    can_edit_users_or_addons = acl.action_allowed_for(
+        request.user, amo.permissions.USERS_EDIT
+    ) or acl.action_allowed_for(request.user, amo.permissions.ADDONS_EDIT)
 
     return is_rating_author or (
         not is_addon_author and (is_moderator or can_edit_users_or_addons)

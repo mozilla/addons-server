@@ -1,7 +1,7 @@
 <tr>
   <td>
     <a href="{{ file.get_absolute_url() }}">
-      {{ file.pretty_filename() }}</a>
+      {{ file.pretty_filename }}</a>
   </td>
   <td>{{ file.size|filesizeformat(binary=True) }}</td>
   <td>{{ choices[file.status] }}</td>

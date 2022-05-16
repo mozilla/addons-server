@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-09 23:31+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-04 22:55+0000\n"
+"Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -219,13 +219,33 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr ""
+
+msgid "Account not found."
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "제작자는 한명만 표시됩니다."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "작성자로 추가하려면 계정에 표시 이름이 필요합니다."
+
+msgid "An author has been added to your add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "{addon}에 기부금이 들어왔습니다."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -244,6 +264,15 @@ msgid "Wrong add-on type for this license."
 msgstr ""
 
 msgid "Custom licenses are not supported for themes."
+msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "My Add-ons"
@@ -455,11 +484,17 @@ msgstr "이메일 주소를 찾을 수 없습니다."
 msgid "Unavailable for legal reasons."
 msgstr "법적 이유로 사용할 수 없습니다."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "언어 코드 {lang_code}가 유효하지 않습니다."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "{lang-code:value} 객체를 제공해야 합니다."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1166,7 +1201,7 @@ msgid "Download Firefox extensions that enhance photo, music and video experienc
 msgstr "사진, 음악 및 비디오 경험을 향상 시키는 Firefox 확장 프로그램을 다운로드 하십시오. 이 범주의 확장은 오디오 및 비디오 역 이미지 검색 등을 수정합니다."
 
 msgid "Privacy & Security"
-msgstr "개인 정보 보안"
+msgstr "개인 정보 보호 및 보안"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr "사생활을 보호하면서 안전하게 탐색 하기 위한 Firefox 확장 프로그램을 다운로드 하십시오. 이 분류에는 성가신 광고 차단, 추적 방지, 리디렉션 관리 등을 위한 확장 프로그램이 포함되어 있습니다."
@@ -1229,7 +1264,7 @@ msgid "Download Firefox extensions to enhance photos and media. This category in
 msgstr "사진과 미디어를 향상시키는 Firefox 확장 프로그램을 다운로드하세요. 이 분류에는 역 이미지 검색, 전체 페이지 캡처와 같은 다양한 기능이 포함되어있습니다."
 
 msgid "Security & Privacy"
-msgstr "보안 및 개인 정보"
+msgstr "보안 및 개인 정보 보호"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr "Firefox 확장 프로그램을 다운로드하여 안전하고 사생활을 보호하면서 서핑하세요. 감춰진 광고 추적기를 추적하고 검색 기록을 쉽게 지울 수 있는 확장 프로그램을 찾아보세요."
@@ -1725,13 +1760,6 @@ msgstr "기본 언어를 변경하려면 먼저 이름, 요약 정보, 설명을
 msgid "Users can not be added directly"
 msgstr "사용자 직접 추가 불가"
 
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "제작자는 한명만 표시됩니다."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "작성자로 추가하려면 계정에 표시 이름이 필요합니다."
-
 msgid "Must have at least one owner."
 msgstr "적어도 한명의 소유자는 있어야 합니다."
 
@@ -1916,21 +1944,8 @@ msgstr "초대를 수락하였습니다."
 msgid "Invitation declined."
 msgstr "초대를 거절하였습니다."
 
-msgid "An author has been added to your add-on"
-msgstr ""
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "{addon}에 기부금이 들어왔습니다."
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "인증 메시지가 {email}로 발송 완료"
-
-msgid "An author role has been changed on your add-on"
-msgstr ""
-
-msgid "An author has been removed from your add-on"
-msgstr ""
 
 msgid "Changes successfully saved."
 msgstr "변경 내역이 성공적으로 저장되었습니다."
@@ -4575,25 +4590,24 @@ msgstr "Firefox에 다양한 기능을 추가하여 더 빠르고, 안전하고,
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
-msgstr "모든 확장기능 보기"
+msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "개인 정보 보호 및 추적 방지"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "추천 테마"
+msgstr "창의성 확장 기능"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search"
-msgstr ""
+msgstr "이미지 검색"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "직원 추천 보기"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4616,9 +4630,8 @@ msgid "Enhanced privacy extensions"
 msgstr "향상된 개인 정보 보호 확장 기능"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "추천 확장 기능 더보기"
+msgstr "추천 개인 정보 보호 확장 기능 더보기"
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4643,19 +4656,16 @@ msgid "Strong password managers"
 msgstr "추천 비밀번호 관리자"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "추천 확장 기능 더보기"
+msgstr "비밀번호 관리자 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Translation tools"
-msgstr "탭 관리 도구"
+msgstr "번역 도구"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "부가 기능 이름 번역"
+msgstr "번역 도구 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4663,45 +4673,40 @@ msgid "Social streaming"
 msgstr "소셜네트웍"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "인기 확장 기능 더보기"
+msgstr "소셜 스트리밍 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "추천 확장 기능 더보기"
+msgstr "탭 관리 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr ""
+msgstr "“{tag}” 태그 확장 기능"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "인기 확장 기능 더보기"
+msgstr "\"{tag}\" 태그 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "엘리트 광고 차단기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "추천 확장 기능 더보기"
+msgstr "광고 차단기 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube 사용자 지정"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "부가 기능 이름 번역"
+msgstr "YouTube 확장 기능 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4738,14 +4743,12 @@ msgid "Steam enhancers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "인기 확장 기능 더보기"
+msgstr "Steam 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "부가 기능 이름 번역"
+msgstr "창의성 직원 추천 더보기"
 
 msgid "Could not parse the manifest file."
 msgstr ""

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2021-11-02 10:00+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-04-26 19:36+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -221,13 +221,34 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "Променена е роля на автор на ваша добавка"
+
+msgid "Account not found."
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "Авторът може да бъде показван само веднъж."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr "Добавен е автор към ваша добавка"
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "Дарения за {addon}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -247,6 +268,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "Автор е премахнат от ваша добавка"
 
 msgid "My Add-ons"
 msgstr "Мои добавки"
@@ -454,11 +484,17 @@ msgstr "Имейл адресът не е намерен."
 msgid "Unavailable for legal reasons."
 msgstr "Не е достъпно по правни причини."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Кодът на езика {lang_code} е недействителен."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Трябва да предоставите обект с {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1084,9 +1120,8 @@ msgstr "Изтрит"
 msgid "Extension"
 msgstr "Разширение"
 
-#, fuzzy
 msgid "Deprecated Complete Theme"
-msgstr "Цялостна тема"
+msgstr "Изведена от употреба цялостна тема"
 
 msgid "Dictionary"
 msgstr "Речник"
@@ -1104,7 +1139,7 @@ msgid "Plugin"
 msgstr "Приставка"
 
 msgid "Deprecated LWT"
-msgstr "Остарял LWT"
+msgstr "Изведен от употреба LWT"
 
 msgid "Theme (Static)"
 msgstr "Тема (статична)"
@@ -1117,9 +1152,8 @@ msgstr "Права:"
 msgid "Extensions"
 msgstr "Разширения"
 
-#, fuzzy
 msgid "Deprecated Complete Themes"
-msgstr "Цялостни теми"
+msgstr "Изведени от употреба цялостни теми"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1139,7 +1173,7 @@ msgid "Plugins"
 msgstr "Приставки"
 
 msgid "Deprecated LWTs"
-msgstr "Остарели LWT"
+msgstr "Изведен от употреба LWT"
 
 msgid "Themes (Static)"
 msgstr "Теми (статични)"
@@ -1480,7 +1514,7 @@ msgid "Recommended"
 msgstr "Коментирано"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Спонсорирано"
 
 msgid "Verified"
 msgstr ""
@@ -1674,7 +1708,7 @@ msgid "Online gambling"
 msgstr "Онлайн хазарт"
 
 msgid "Spam content"
-msgstr ""
+msgstr "Нежелано съдържание"
 
 msgid "Low-quality, stretched, or blank image"
 msgstr ""
@@ -1776,13 +1810,6 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Преди да промените стандартния език трябва да имате име, обобщение и описание на този език. Липсва ви %s."
 
 msgid "Users can not be added directly"
-msgstr ""
-
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "Авторът може да бъде показван само веднъж."
-
-msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
 msgid "Must have at least one owner."
@@ -1970,22 +1997,8 @@ msgstr "Поканата е приета."
 msgid "Invitation declined."
 msgstr "Поканата е отказана."
 
-msgid "An author has been added to your add-on"
-msgstr "Добавен е автор към ваша добавка"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "Дарения за {addon}."
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Писмо за потвърждение е изпратено до {email}"
-
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "Променена е роля на автор на ваша добавка"
-
-msgid "An author has been removed from your add-on"
-msgstr "Автор е премахнат от ваша добавка"
 
 msgid "Changes successfully saved."
 msgstr "Промените са запазени успешно."
@@ -4320,7 +4333,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Спрете да прахосвате ценното място в паметта с неактивни раздели."
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."

@@ -107,11 +107,11 @@ def disable_addon_for_block(block):
     from olympia.reviewers.utils import ReviewBase
 
     review = ReviewBase(
-        request=None,
         addon=block.addon,
         version=None,
-        review_type='pending',
         user=get_task_user(),
+        review_type='pending',
+        human_review=False,
     )
     review.set_data(
         {

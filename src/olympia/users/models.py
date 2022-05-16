@@ -248,7 +248,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """
         from olympia.access import acl
 
-        return acl.action_allowed_user(
+        return acl.action_allowed_for(
             self, amo.permissions.DJANGO_PERMISSIONS_MAPPING[perm]
         )
 
@@ -516,15 +516,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # set the status to disabled - using the manager update() method
         addons_sole.update(status=amo.STATUS_DISABLED)
         # collect Files that need to be disabled now the addons are disabled
-        files_to_disable = File.objects.filter(version__addon__in=addons_sole)
-        files_to_disable.update(status=amo.STATUS_DISABLED)
-        if move_files:
-            # if necessary move the files on filesystem (expensive operation)
-            for file_ in files_to_disable:
-                file_.hide_disabled_file()
+        File.objects.filter(version__addon__in=addons_sole).update(
+            status=amo.STATUS_DISABLED
+        )
 
-        # Finally run Addon.force_disable to add the logging; update versions
-        # Status was already DISABLED so shouldn't fire watch_disabled again.
+        # Finally run Addon.force_disable to add the logging; update versions.
         addons_sole_ids = []
         for addon in addons_sole:
             addons_sole_ids.append(addon.pk)
@@ -815,8 +811,7 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
     )
 
     error_message = _(
-        'The email address used for your account is not '
-        'allowed for add-on submission.'
+        'The email address used for your account is not allowed for add-on submission.'
     )
 
     class Meta:

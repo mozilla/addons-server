@@ -856,7 +856,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
-    'olympia.scanners.tasks.run_wat': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
     'olympia.scanners.tasks.call_mad_api': {'queue': 'devhub'},
     # Activity (goes to devhub queue).
@@ -881,7 +880,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.delete_addons': {'queue': 'addons'},
     'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.addons.tasks.version_changed': {'queue': 'addons'},
-    'olympia.files.tasks.hide_disabled_files': {'queue': 'addons'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
     'olympia.git.tasks.continue_git_extraction': {'queue': 'addons'},
     'olympia.git.tasks.extract_versions_to_git': {'queue': 'addons'},
@@ -1301,7 +1299,6 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesSto
 # or changed.
 STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
 ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
-GUARDED_ADDONS_PATH = os.path.join(STORAGE_ROOT, 'guarded-addons')
 GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
 MLBF_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'mlbf')
 SITEMAP_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'sitemaps')
@@ -1449,8 +1446,6 @@ CRON_JOBS = {
     'update_addon_average_daily_users': 'olympia.addons.cron',
     'update_addon_weekly_downloads': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
-    'hide_disabled_files': 'olympia.addons.cron',
-    'unhide_disabled_files': 'olympia.addons.cron',
     'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
     'write_sitemaps': 'olympia.amo.cron',
@@ -1493,8 +1488,6 @@ EXTENSION_WORKSHOP_URL = env(
 SCANNER_TIMEOUT = 60  # seconds
 CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
 CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)
-WAT_API_URL = env('WAT_API_URL', default=None)
-WAT_API_KEY = env('WAT_API_KEY', default=None)
 MAD_API_URL = env('MAD_API_URL', default=None)
 MAD_API_TIMEOUT = 5  # seconds
 # Git(Hub) repository names, e.g., `owner/repo-name`

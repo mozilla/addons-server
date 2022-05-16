@@ -1,5 +1,6 @@
 import json
 import logging.config
+import os
 
 from django.utils.encoding import force_bytes
 from email.utils import formatdate
@@ -197,7 +198,7 @@ class Update:
         slug = data['slug']
         version = data['version']
         file_id = data['file_id']
-        filename = data['filename']
+        filename = os.path.basename(data['filename'])
         update = {
             'version': data['version'],
             # This is essentially re-implementing File.get_absolute_url()

@@ -99,7 +99,6 @@ def path():
         settings.TMP_PATH,
         settings.MEDIA_ROOT,
         user_media_path('addons'),
-        user_media_path('guarded_addons'),
         user_media_path('addon_icons'),
         user_media_path('previews'),
         user_media_path('userpics'),

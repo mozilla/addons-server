@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 14:21+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-12 16:23+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -216,14 +216,32 @@ msgstr "Version {version_string} existiert bereits."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Gelistete Versionen können nicht eingereicht werden, während das Add-on deaktiviert ist."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Add-on-Metadaten müssen festgelegt werden, um eine gelistete Version zu erstellen: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "Add-ons benötigen mindestens einen Besitzer."
+
+msgid "Add-ons need at least one listed author."
+msgstr "Add-ons benötigen mindestens einen gelisteten Autor."
+
+msgid "An author role has been changed on your add-on"
+msgstr "Bei Ihrem Add-on wurde eine Autorenrolle geändert"
+
+msgid "Account not found."
+msgstr "Konto nicht gefunden."
+
+msgid "An author can only be present once."
+msgstr "Ein Autor darf nur einmal aufgeführt werden."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Das Konto benötigt einen Anzeigenamen, bevor es als Autor hinzugefügt werden kann."
+
+msgid "An author has been added to your add-on"
+msgstr "Ihrem Add-on wurde ein Autor hinzugefügt"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Autoreneinladung für {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Dieser Adressname kann nicht verwendet werden. Bitte wählen Sie einen anderen."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Dieses Feld ist für Add-ons mit gelisteten Versionen erforderlich."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on-Namen dürfen weder die Markenzeichen Mozilla noch Firefox enthalten."
@@ -242,6 +260,15 @@ msgstr "Falscher Add-on-Typ für diese Lizenz."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Benutzerdefinierte Lizenzen werden für Themes nicht unterstützt."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Dieses Feld ist für Add-ons mit gelisteten Versionen erforderlich."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Add-on-Metadaten müssen festgelegt werden, um eine gelistete Version zu erstellen: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Von Ihrem Add-on wurde ein Autor entfernt"
 
 msgid "My Add-ons"
 msgstr "Meine Add-ons"
@@ -459,11 +486,17 @@ msgstr "E-Mail-Adresse nicht gefunden."
 msgid "Unavailable for legal reasons."
 msgstr "Aus rechtlichen Gründen nicht verfügbar."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Der Sprachcode {lang_code} ist ungültig."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "Der Sprachcode „{lang_code}“ ist ungültig."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Sie müssen ein Objekt für {lang-code:value} angeben."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "Im Standardgebietsschema von „{lang_code}“ wird ein Wert benötigt."
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "Im Standardgebietsschema von „{lang_code}“ wird ein Wert benötigt, wenn andere Übersetzungen festgelegt sind."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1741,12 +1774,6 @@ msgstr "Bevor Sie Ihre Standardsprache ändern, müssen Sie in dieser Sprache ei
 msgid "Users can not be added directly"
 msgstr "Benutzer können nicht direkt hinzugefügt werden"
 
-msgid "An author can only be present once."
-msgstr "Ein Autor darf nur einmal aufgeführt werden."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Das Konto benötigt einen Anzeigenamen, bevor es als Autor hinzugefügt werden kann."
-
 msgid "Must have at least one owner."
 msgstr "Mindestens ein Besitzer muss angegeben sein."
 
@@ -1933,20 +1960,8 @@ msgstr "Einladung angenommen."
 msgid "Invitation declined."
 msgstr "Einladung abgelehnt."
 
-msgid "An author has been added to your add-on"
-msgstr "Ihrem Add-on wurde ein Autor hinzugefügt"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Autoreneinladung für {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Eine Bestätigungs-E-Mail wurde an {email} gesendet"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Bei Ihrem Add-on wurde eine Autorenrolle geändert"
-
-msgid "An author has been removed from your add-on"
-msgstr "Von Ihrem Add-on wurde ein Autor entfernt"
 
 msgid "Changes successfully saved."
 msgstr "Änderungen erfolgreich gespeichert."

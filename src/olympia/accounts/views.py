@@ -510,7 +510,7 @@ class AccountViewSet(
 
     @property
     def admin_viewing(self):
-        return acl.action_allowed_user(self.request.user, amo.permissions.USERS_EDIT)
+        return acl.action_allowed_for(self.request.user, amo.permissions.USERS_EDIT)
 
     def get_serializer_class(self):
         if self.self_view or self.admin_viewing:

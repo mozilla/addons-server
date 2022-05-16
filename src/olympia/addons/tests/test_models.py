@@ -1,7 +1,7 @@
 import json
 import os
 from datetime import datetime, timedelta
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
 from django import forms
 from django.conf import settings
@@ -625,12 +625,6 @@ class TestAddonModels(TestCase):
         addon.delete()
         dpf_addons_mock.assert_called_with(sender=None, instance=addon_preview)
         dpf_vesions_mock.assert_called_with(sender=None, instance=version_preview)
-
-    @patch('olympia.files.tasks.hide_disabled_files')
-    def test_delete_hides_files(self, hide_disabled_files_mock):
-        addon = addon_factory()
-        addon.delete()
-        hide_disabled_files_mock.delay.assert_called_with(addon_id=addon.id)
 
     def test_delete_clear_pending_rejection(self):
         addon = addon_factory()
@@ -1416,28 +1410,6 @@ class TestAddonModels(TestCase):
         # Make sure the type (EXTENSION) isn't localized.
         assert 'Deleting EXTENSION a3615 (3615)' in admin_mail.subject
         assert 'The following EXTENSION was deleted' in admin_mail.body
-
-    @patch('olympia.files.models.File.hide_disabled_file')
-    def test_admin_disabled_file_hidden(self, hide_mock):
-        a = Addon.objects.get(id=3615)
-        a.status = amo.STATUS_APPROVED
-        a.save()
-        assert not hide_mock.called
-
-        a.status = amo.STATUS_DISABLED
-        a.save()
-        assert hide_mock.called
-
-    @patch('olympia.files.models.File.hide_disabled_file')
-    def test_user_disabled_file_hidden(self, hide_mock):
-        a = Addon.objects.get(id=3615)
-        a.disabled_by_user = False
-        a.save()
-        assert not hide_mock.called
-
-        a.disabled_by_user = True
-        a.save()
-        assert hide_mock.called
 
     def test_category_transform(self):
         addon = Addon.objects.get(id=3615)
@@ -2839,49 +2811,6 @@ class TestRemoveLocale(TestCase):
                 'locale', flat=True
             )
         )
-
-
-class TestAddonWatchDisabled(TestCase):
-    def setUp(self):
-        super().setUp()
-        self.addon = Addon(
-            type=amo.ADDON_DICT, disabled_by_user=False, status=amo.STATUS_APPROVED
-        )
-        self.addon.save()
-
-    @patch('olympia.addons.models.File.objects.filter')
-    def test_no_disabled_change(self, file_mock):
-        mock = Mock()
-        file_mock.return_value = [mock]
-        self.addon.save()
-        assert not mock.unhide_disabled_file.called
-        assert not mock.hide_disabled_file.called
-
-    @patch('olympia.addons.models.File.objects.filter')
-    def test_disable_addon(self, file_mock):
-        mock = Mock()
-        file_mock.return_value = [mock]
-        self.addon.update(disabled_by_user=True)
-        assert not mock.unhide_disabled_file.called
-        assert mock.hide_disabled_file.called
-
-    @patch('olympia.addons.models.File.objects.filter')
-    def test_admin_disable_addon(self, file_mock):
-        mock = Mock()
-        file_mock.return_value = [mock]
-        self.addon.update(status=amo.STATUS_DISABLED)
-        assert not mock.unhide_disabled_file.called
-        assert mock.hide_disabled_file.called
-
-    @patch('olympia.addons.models.File.objects.filter')
-    def test_enable_addon(self, file_mock):
-        mock = Mock()
-        file_mock.return_value = [mock]
-        self.addon.update(status=amo.STATUS_DISABLED)
-        mock.reset_mock()
-        self.addon.update(status=amo.STATUS_APPROVED)
-        assert mock.unhide_disabled_file.called
-        assert not mock.hide_disabled_file.called
 
 
 class TestTrackAddonStatusChange(TestCase):

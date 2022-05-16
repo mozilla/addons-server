@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 14:43+0000\n"
-"Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-13 07:09+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -222,14 +222,32 @@ msgstr "Версія {version_string} вже існує."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Перераховані версії не можуть бути надіслані, якщо додаток вимкнено."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Для створення переліченої версії необхідно налаштувати метадані додатка: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "Додаток повинен мати принаймні одного власника."
+
+msgid "Add-ons need at least one listed author."
+msgstr "Додаток повинен мати принаймні одного зазначеного автора."
+
+msgid "An author role has been changed on your add-on"
+msgstr "Роль автора вашого додатка було змінено"
+
+msgid "Account not found."
+msgstr "Обліковий запис не знайдено."
+
+msgid "An author can only be present once."
+msgstr "Автора можна зазначити лише один раз."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Обліковий запис повинен мати відображуване ім'я, щоб додати його автором."
+
+msgid "An author has been added to your add-on"
+msgstr "До вашого додатка був доданий автор"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Запрошення автора для {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Не може бути застосовано це закінчення. Виберіть інше."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Це поле обов’язкове для додатків із зазначеними версіями."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Назва додатків не може містити торгові марки Mozilla чи Firefox."
@@ -248,6 +266,15 @@ msgstr "Неправильний тип додатка для цієї ліце�
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Користувацькі ліцензії не підтримуються для тем."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Це поле обов’язкове для додатків із зазначеними версіями."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Для створення переліченої версії необхідно налаштувати метадані додатка: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Із вашого додатка був видалений автор"
 
 msgid "My Add-ons"
 msgstr "Мої додатки"
@@ -455,11 +482,17 @@ msgstr "Адресу електронної пошти не знайдено."
 msgid "Unavailable for legal reasons."
 msgstr "Недоступно з юридичних причин."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Код мови {lang_code} неправильний."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "Недійсний код мови \"{lang_code}\"."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Ви повинні вказати об'єкт для {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "Необхідно вказати значення типової локалі для \"{lang_code}\"."
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "Якщо налаштовано інші переклади, необхідно вказати значення типової локалі для \"{lang_code}\"."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1724,12 +1757,6 @@ msgstr "Перед зміною вашої типової локалі, ви п�
 msgid "Users can not be added directly"
 msgstr "Користувачів не можна додавати безпосередньо"
 
-msgid "An author can only be present once."
-msgstr "Автора можна зазначити лише один раз."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Обліковий запис повинен мати відображуване ім'я, щоб додати його автором."
-
 msgid "Must have at least one owner."
 msgstr "Необхідний хоча б один власник."
 
@@ -1915,20 +1942,8 @@ msgstr "Запрошення прийнято."
 msgid "Invitation declined."
 msgstr "Запрошення відхилено."
 
-msgid "An author has been added to your add-on"
-msgstr "До вашого додатка був доданий автор"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Запрошення автора для {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Електронний лист для підтвердження надіслано на адресу {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Роль автора вашого додатка було змінено"
-
-msgid "An author has been removed from your add-on"
-msgstr "Із вашого додатка був видалений автор"
 
 msgid "Changes successfully saved."
 msgstr "Зміни успішно збережені."

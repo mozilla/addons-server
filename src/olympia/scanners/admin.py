@@ -354,7 +354,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     # Custom actions
     def has_actions_permission(self, request):
-        return acl.action_allowed(request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
+        return acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT
+        )
 
     def get_list_display(self, request):
         fields = super().get_list_display(request)
@@ -606,8 +608,8 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             )
 
     def handle_revert(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT
+        is_admin = acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT
         )
         if not is_admin or request.method != 'POST':
             raise Http404
@@ -859,7 +861,9 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         return '-'
 
     def has_actions_permission(self, request):
-        return acl.action_allowed(request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
+        return acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
+        )
 
 
 @admin.register(ScannerRule)
@@ -900,15 +904,15 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 
     def change_view(self, request, *args, **kwargs):
         kwargs['extra_context'] = kwargs.get('extra_context') or {}
-        kwargs['extra_context']['hide_action_buttons'] = not acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
+        kwargs['extra_context']['hide_action_buttons'] = not acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
         )
         return super().change_view(request, *args, **kwargs)
 
     def changelist_view(self, request, *args, **kwargs):
         kwargs['extra_context'] = kwargs.get('extra_context') or {}
-        kwargs['extra_context']['hide_action_buttons'] = not acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
+        kwargs['extra_context']['hide_action_buttons'] = not acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
         )
         return super().changelist_view(request, *args, **kwargs)
 
@@ -918,8 +922,8 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         return super().has_change_permission(request, obj=obj)
 
     def handle_run(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
+        is_admin = acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
         )
         if not is_admin or request.method != 'POST':
             raise Http404
@@ -951,8 +955,8 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         return redirect('admin:scanners_scannerqueryrule_changelist')
 
     def handle_abort(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed(
-            request, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
+        is_admin = acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
         )
         if not is_admin or request.method != 'POST':
             raise Http404

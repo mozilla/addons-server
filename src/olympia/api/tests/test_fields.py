@@ -163,26 +163,66 @@ class TestTranslationSerializerField(TestCase):
         assert result == {'fr': '', 'en-US': ''}
 
     def test_wrong_locale_code(self):
-        data = {
-            'unknown-locale': 'some name',
-        }
+        data = {'unknown-locale': 'some name'}
         field = self.field_class()
         with self.assertRaises(exceptions.ValidationError) as exc:
             field.run_validation(data)
         assert exc.exception.detail == [
-            "The language code 'unknown-locale' is invalid."
+            'The language code "unknown-locale" is invalid.'
         ]
 
     def test_none_type_locale_is_allowed(self):
         # None values are valid because they are used to nullify existing
         # translations in something like a PATCH.
-        data = {
-            'en-US': None,
-        }
-        field = self.field_class()
+        data = {'en-US': None}
+        field = self.field_class(required=False)
         result = field.run_validation(data)
         field.run_validation(result)
         assert result == data
+
+    def test_none_type_locale_is_not_allowed_for_required_fields(self):
+        data = {'en-US': None}
+        field = self.field_class(required=True)
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            field.run_validation(data)
+        assert exc.exception.detail == [
+            'A value in the default locale of "en-US" is required.'
+        ]
+
+    def test_none_type_locale_is_not_allowed_when_other_locales_exist(self):
+        field = self.field_class(required=False)
+        # self.addon has a translation in Spanish
+        field.bind('name', serializers.Serializer(instance=self.addon))
+        data = {'en-US': None}
+
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            field.run_validation(data)
+        assert exc.exception.detail == [
+            'A value in the default locale of "en-US" is required if other '
+            'translations are set.'
+        ]
+
+    def test_none_type_locale_allowed_if_all_locales_are_none(self):
+        field = self.field_class(required=False)
+        # self.addon has a translation in Spanish
+        field.bind('name', serializers.Serializer(instance=self.addon))
+        data = {'en-US': None, 'es': None}
+
+        result = field.run_validation(data)
+        field.run_validation(result)
+        assert result == data
+
+    def test_none_type_locale_is_not_allowed_when_other_locales_are_set(self):
+        field = self.field_class(required=False)
+        field.bind('name', serializers.Serializer(instance=addon_factory()))
+        data = {'en-US': None, 'fr': 'lé nom'}
+
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            field.run_validation(data)
+        assert exc.exception.detail == [
+            'A value in the default locale of "en-US" is required if other '
+            'translations are set.'
+        ]
 
     def test_get_attribute(self):
         field = self.field_class()

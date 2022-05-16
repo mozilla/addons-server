@@ -1,6 +1,6 @@
 from datetime import date
 
-from django.db.models import Q, Value, IntegerField
+from django.db.models import Value, IntegerField
 
 import olympia.core.logger
 
@@ -13,8 +13,6 @@ from olympia.addons.tasks import (
 )
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import chunked
-from olympia.files.models import File
 from olympia.stats.utils import (
     get_addons_and_average_daily_users_from_bigquery,
     get_addons_and_weekly_downloads_from_bigquery,
@@ -88,49 +86,6 @@ def addon_last_updated():
     # Get anything that didn't match above.
     other = Addon.objects.filter(last_updated__isnull=True).values_list('id', 'created')
     _change_last_updated(dict(other))
-
-
-def hide_disabled_files():
-    """
-    Move files (on filesystem) belonging to disabled files (in database) to the
-    correct place if necessary, so they they are not publicly accessible
-    any more.
-
-    See also unhide_disabled_files().
-    """
-    ids = File.objects.filter(
-        Q(version__addon__status=amo.STATUS_DISABLED)
-        | Q(version__addon__disabled_by_user=True)
-        | Q(status=amo.STATUS_DISABLED)
-    ).values_list('id', flat=True)
-    for chunk in chunked(ids, 300):
-        qs = File.objects.select_related('version').filter(id__in=chunk)
-        for file_ in qs:
-            # This tries to move the file to the disabled location. If it
-            # didn't exist at the source, it will catch the exception, log it
-            # and continue.
-            file_.hide_disabled_file()
-
-
-def unhide_disabled_files():
-    """
-    Move files (on filesystem) belonging to public files (in database) to the
-    correct place if necessary, so they they publicly accessible.
-
-    See also hide_disabled_files().
-    """
-    ids = File.objects.exclude(
-        Q(version__addon__status=amo.STATUS_DISABLED)
-        | Q(version__addon__disabled_by_user=True)
-        | Q(status=amo.STATUS_DISABLED)
-    ).values_list('id', flat=True)
-    for chunk in chunked(ids, 300):
-        qs = File.objects.select_related('version').filter(id__in=chunk)
-        for file_ in qs:
-            # This tries to move the file to the public location. If it
-            # didn't exist at the source, it will catch the exception, log it
-            # and continue.
-            file_.unhide_disabled_file()
 
 
 def update_addon_hotness(chunk_size=300):

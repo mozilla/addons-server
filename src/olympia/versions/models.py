@@ -1069,7 +1069,6 @@ models.signals.post_save.connect(
 models.signals.post_save.connect(
     inherit_nomination, sender=Version, dispatch_uid='version_inherit_nomination'
 )
-
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version'
 )

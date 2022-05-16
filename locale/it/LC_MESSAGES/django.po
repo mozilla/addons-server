@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 10:42+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-12 13:13+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -220,14 +220,32 @@ msgstr "La versione {version_string} esiste già."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Le versioni elencate non possono essere caricate mentre il componente aggiuntivo è disattivato."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "È necessario specificare i metadati del componente aggiuntivo per creare una versione elencata: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "I componenti aggiuntivi richiedono almeno un proprietario."
+
+msgid "Add-ons need at least one listed author."
+msgstr "I componenti aggiuntivi richiedono almeno un autore elencato."
+
+msgid "An author role has been changed on your add-on"
+msgstr "Uno dei ruoli di autore del tuo componente aggiuntivo è stato modificato"
+
+msgid "Account not found."
+msgstr "Account non trovato."
+
+msgid "An author can only be present once."
+msgstr "Ogni autore può avere una sola presenza."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Per essere aggiunto come autore, l’account deve essere dotato di un nome di visualizzazione."
+
+msgid "An author has been added to your add-on"
+msgstr "È stato aggiunto un autore per il componente aggiuntivo."
+
+msgid "Author invitation for {addon_name}"
+msgstr "Invito a un ruolo di autore di {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Questo slug non può essere utilizzato. Scegline un altro."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Questo campo è obbligatorio per i componenti aggiuntivi con le versioni elencate."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "I nomi dei componenti aggiuntivi non possono contenere i marchi registrati di Mozilla o Firefox."
@@ -246,6 +264,15 @@ msgstr "Tipo di componente aggiuntivo errato per questa licenza."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Le licenze personalizzate non sono supportate per i temi."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Questo campo è obbligatorio per i componenti aggiuntivi con le versioni elencate."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "È necessario specificare i metadati del componente aggiuntivo per creare una versione elencata: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "È stato rimosso un autore per il componente aggiuntivo"
 
 msgid "My Add-ons"
 msgstr "I miei componenti aggiuntivi"
@@ -462,11 +489,17 @@ msgstr "Indirizzo email non trovato."
 msgid "Unavailable for legal reasons."
 msgstr "Non disponibile per motivi legali."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "{lang_code} non è un codice lingua valido."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "Il codice della lingua “{lang_code}” non è valido."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Devi fornire un oggetto di {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "È obbligatorio specificare un valore nel locale predefinito di “{lang_code}”."
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "È obbligatorio specificare un valore nel locale predefinito di “{lang_code}” se sono impostate altre traduzioni."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1764,12 +1797,6 @@ msgstr "Per poter modificare il locale predefinito è necessario inserire un nom
 msgid "Users can not be added directly"
 msgstr "Impossibile aggiungere utenti direttamente"
 
-msgid "An author can only be present once."
-msgstr "Ogni autore può avere una sola presenza."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Per essere aggiunto come autore, l’account deve essere dotato di un nome di visualizzazione."
-
 msgid "Must have at least one owner."
 msgstr "Deve avere almeno un proprietario."
 
@@ -1958,20 +1985,8 @@ msgstr "Invito accettato."
 msgid "Invitation declined."
 msgstr "Invito declinato."
 
-msgid "An author has been added to your add-on"
-msgstr "È stato aggiunto un autore per il componente aggiuntivo."
-
-msgid "Author invitation for {addon_name}"
-msgstr "Invito a un ruolo di autore di {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Una email di conferma è stata inviata a {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Uno dei ruoli di autore del tuo componente aggiuntivo è stato modificato"
-
-msgid "An author has been removed from your add-on"
-msgstr "È stato rimosso un autore per il componente aggiuntivo"
 
 msgid "Changes successfully saved."
 msgstr "Modifiche salvate correttamente."

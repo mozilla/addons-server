@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.db import models
 from django.forms import ValidationError
 from django.forms.utils import ErrorList
 from django.utils.encoding import force_str
@@ -8,17 +6,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation.trans_real import to_language
 
 from .fields import LocaleErrorMessage, _TransField
-
-
-def default_locale(obj):
-    """Get obj's default locale."""
-    if hasattr(obj, 'get_fallback'):
-        fallback = obj.get_fallback()
-        if isinstance(fallback, models.Field):
-            fallback = getattr(obj, fallback.name)
-        return fallback
-    else:
-        return settings.LANGUAGE_CODE
+from .utils import default_locale
 
 
 class TranslationFormMixin:

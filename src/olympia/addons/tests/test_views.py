@@ -7,10 +7,12 @@ import tarfile
 import tempfile
 import zipfile
 
+from collections import Counter
 from unittest import mock
 from unittest.mock import patch
 
 from django.conf import settings
+from django.core import mail
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.utils import override_settings
@@ -55,8 +57,9 @@ from olympia.constants.promoted import (
 )
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.files.tests.test_models import UploadMixin
+from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
-from olympia.users.models import UserProfile
+from olympia.users.models import EmailUserRestriction, UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
@@ -71,11 +74,14 @@ from ..models import (
     AddonRegionalRestrictions,
     AddonReviewerFlags,
     AddonUser,
+    AddonUserPendingConfirmation,
     DeniedSlug,
     ReplacementAddon,
     Preview,
 )
 from ..serializers import (
+    AddonAuthorSerializer,
+    AddonPendingAuthorSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
     DeveloperVersionSerializer,
@@ -933,6 +939,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
                 self.url,
                 data={
                     'summary': {'en-US': 'replacement summary'},
+                    'name': {'en-US': None},  # None should be ignored
                     'version': {
                         'upload': self.upload.uuid,
                         'license': self.license.slug,
@@ -944,6 +951,27 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'categories': ['This field is required for add-ons with listed versions.'],
             'name': ['This field is required for add-ons with listed versions.'],
             # 'summary': summary was provided via POST, so we're good
+        }
+
+    def test_listed_metadata_null(self):
+        self.upload.update(automated_signing=False)
+        # name and summary are defined in the manifest but we're trying override them
+        response = self.client.post(
+            self.url,
+            data={
+                'summary': {'en-US': None},
+                'name': {'en-US': None},
+                'categories': {'firefox': ['bookmarks']},
+                'version': {
+                    'upload': self.upload.uuid,
+                    'license': self.license.slug,
+                },
+            },
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'name': ['This field is required for add-ons with listed versions.'],
+            'summary': ['This field is required for add-ons with listed versions.'],
         }
 
     def test_not_authenticated(self):
@@ -1380,6 +1408,61 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.EDIT_PROPERTIES.id
         assert alog.details == ['summary']
+
+    @override_settings(API_THROTTLING=False)
+    def test_translated_fields(self):
+        def patch(description_dict):
+            return self.client.patch(self.url, data={'description': description_dict})
+
+        self.addon.reload()
+        self.addon.description = 'description'
+        self.addon.save()
+
+        # change description in default_locale
+        desc_en_us = 'description in English'
+        response = patch({'en-US': desc_en_us})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] == {'en-US': desc_en_us}
+        assert self.addon.reload().description == desc_en_us
+
+        # add description in other locale
+        desc_es = 'descripción en español'
+        response = patch({'es': desc_es})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] == {'en-US': desc_en_us, 'es': desc_es}
+        assert self.addon.reload().description == desc_en_us
+        with self.activate('es'):
+            assert self.addon.reload().description == desc_es
+        with self.activate('fr'):
+            assert self.addon.reload().description == desc_en_us  # default fallback
+
+        # delete description in other locale (and add one)
+        desc_fr = 'descriptif en français'
+        response = patch({'es': None, 'fr': desc_fr})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] == {'en-US': desc_en_us, 'fr': desc_fr}
+        assert self.addon.reload().description == desc_en_us
+        with self.activate('es'):
+            assert self.addon.reload().description == desc_en_us  # default fallback
+        with self.activate('fr'):
+            assert self.addon.reload().description == desc_fr
+
+        # delete description in default_locale but not "fr" - not allowed
+        response = patch({'en-US': None})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'description': [
+                'A value in the default locale of "en-US" is required if other '
+                'translations are set.'
+            ]
+        }
+
+        # but we can delete all translations (for a required==False field)
+        response = patch({'en-US': None, 'fr': None})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] is None
+        self.addon = Addon.objects.get(id=self.addon.id)
+        assert self.addon.description is None
 
     def test_not_authenticated(self):
         self.client.logout_api()
@@ -1865,6 +1948,22 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             == AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
         )
 
+    def test_metadata_required(self):
+        # name and summary are treated as required for updates
+        data = {'name': {'en-US': None}, 'summary': {'en-US': None}, 'categories': {}}
+        response = self.client.patch(self.url, data=data)
+        assert response.status_code == 400
+        assert response.data == {
+            'name': ['A value in the default locale of "en-US" is required.'],
+            'summary': ['A value in the default locale of "en-US" is required.'],
+            'categories': ['This field is required.'],
+        }
+
+        # this requirement isn't enforced for addons without listed versions though
+        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.patch(self.url, data=data)
+        assert response.status_code == 200
+
 
 class TestAddonViewSetUpdateJWTAuth(TestAddonViewSetUpdate):
     client_class = APITestClientJWT
@@ -1928,6 +2027,8 @@ class TestAddonViewSetDelete(TestCase):
         AddonUser.objects.get(addon=self.addon, user=self.user).update(
             role=amo.AUTHOR_ROLE_DEV
         )
+        # edge-case: user is an owner of a *different* add-on too
+        addon_factory(users=(self.user,))
         self.client.login_api(self.user)
         response = self._perform_delete_request(403)
         assert response.data == {
@@ -2318,6 +2419,7 @@ class VersionViewSetCreateUpdateMixin:
         assert log.details is None
         assert log.arguments == [self.addon, version]
 
+    @override_settings(API_THROTTLING=False)
     def test_custom_license_needs_name_and_text(self):
         response = self.request(custom_license={})
         assert response.status_code == 400, response.content
@@ -2338,6 +2440,18 @@ class VersionViewSetCreateUpdateMixin:
         assert response.status_code == 400, response.content
         assert response.data == {
             'custom_license': {'name': ['This field is required.']}
+        }
+
+        # Check null values are also ignored
+        response = self.request(
+            custom_license={'name': {'en-US': None}, 'text': {'en-US': None}}
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'custom_license': {
+                'name': ['A value in the default locale of "en-US" is required.'],
+                'text': ['A value in the default locale of "en-US" is required.'],
+            }
         }
 
     def test_compatibility_list(self):
@@ -4561,6 +4675,24 @@ class TestAddonSearchView(ESTestCase):
         # addon2 and addon4 will be first because they're recommended
         assert ids == [addon2.id, addon4.id, addon1.id, addon3.id, addon5.id]
 
+    def test_filter_by_ratings(self):
+        addon1 = addon_factory(popularity=666)
+        addon2 = addon_factory(popularity=555)
+        addon_factory(popularity=444)
+
+        Rating.objects.create(addon=addon1, user=user_factory(), rating=1)
+        Rating.objects.create(addon=addon1, user=user_factory(), rating=2)
+        Rating.objects.create(addon=addon2, user=user_factory(), rating=1)
+
+        self.refresh()
+
+        data = self.perform_search(self.url, {'ratings__gt': 1.0})
+        ids = [result['id'] for result in data['results']]
+        # addon1 will be returned because it has an average rating higher than
+        # the request. addon2 doesn't, and addon3 doesn't have ratings, so they
+        # should not be present.
+        assert ids == [addon1.id]
+
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClientSessionID
@@ -5626,3 +5758,424 @@ class TestAddonPreviewViewSet(TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
         assert alog.addonlog_set.get().addon == self.addon
+
+
+class TestAddonAuthorViewSet(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,))
+        self.addonuser = self.addon.addonuser_set.get()
+        self.detail_url = reverse_ns(
+            'addon-author-detail',
+            kwargs={'addon_pk': self.addon.pk, 'user_id': self.user.id},
+            api_version='v5',
+        )
+
+    def test_list(self):
+        list_url = reverse_ns(
+            'addon-author-list', kwargs={'addon_pk': self.addon.pk}, api_version='v5'
+        )
+        dev_author = AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_DEV, position=2
+        )
+        # this author shouldn't be in the results because it's deleted.
+        AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_DELETED
+        )
+        hidden_author = AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), listed=False, position=1
+        )
+
+        assert self.client.get(list_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.get(list_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.get(list_url)
+        assert response.status_code == 200, response.content
+        assert len(response.data) == 3
+        assert response.data[0] == AddonAuthorSerializer().to_representation(
+            instance=self.addonuser
+        )
+        assert response.data[1] == AddonAuthorSerializer().to_representation(
+            instance=hidden_author
+        )
+        assert response.data[2] == AddonAuthorSerializer().to_representation(
+            instance=dev_author
+        )
+
+    def test_detail(self):
+        assert self.client.get(self.detail_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.get(self.detail_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200, response.content
+        assert response.data == AddonAuthorSerializer().to_representation(
+            instance=self.addonuser
+        )
+
+    def test_developer_role(self):
+        self.addonuser.update(role=amo.AUTHOR_ROLE_DEV)
+        # edge-case: user is an owner of a *different* add-on too
+        addon_factory(users=(self.user,))
+        self.client.login_api(self.user)
+        # developer role authors should be able to view all details of authors
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200, response.content
+        assert response.data == AddonAuthorSerializer().to_representation(
+            instance=self.addonuser
+        )
+        # but not update
+        response = self.client.patch(self.detail_url, {'position': 2})
+        assert response.status_code == 403, response.content
+
+        # and not delete either
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 403, response.content
+
+    def test_update(self):
+        data = {'position': 2}
+        assert self.client.patch(self.detail_url, data).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.patch(self.detail_url, data).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.patch(self.detail_url, data)
+        assert response.status_code == 200, response.content
+        self.addonuser.reload()
+        assert response.data['position'] == self.addonuser.position == 2
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.CHANGE_USER_WITH_ROLE.id
+        ).exists()
+        assert len(mail.outbox) == 0
+
+    def test_update_role(self):
+        new_author = AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_DEV
+        )
+        self.client.login_api(self.user)
+        response = self.client.patch(self.detail_url, {'role': 'developer'})
+        assert response.status_code == 400, response.content
+        assert response.data['role'] == ['Add-ons need at least one owner.']
+
+        new_author.update(role=amo.AUTHOR_ROLE_OWNER)
+        response = self.client.patch(self.detail_url, {'role': 'developer'})
+        assert response.status_code == 200, response.content
+        self.addonuser.reload()
+        assert response.data['role'] == 'developer'
+        self.addonuser.role == amo.AUTHOR_ROLE_DEV
+
+        log = ActivityLog.objects.get(action=amo.LOG.CHANGE_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 1
+        assert Counter(mail.outbox[0].recipients()) == Counter(
+            (self.user.email, new_author.user.email)
+        )
+
+    def test_update_listed(self):
+        new_author = AddonUser.objects.create(
+            addon=self.addon, user=user_factory(), listed=False
+        )
+        self.client.login_api(self.user)
+        response = self.client.patch(self.detail_url, {'listed': False})
+        assert response.status_code == 400, response.content
+        assert response.data['listed'] == ['Add-ons need at least one listed author.']
+
+        new_author.update(listed=True)
+        response = self.client.patch(self.detail_url, {'listed': False})
+        assert response.status_code == 200, response.content
+        self.addonuser.reload()
+        assert response.data['listed'] is False
+        self.addonuser.listed is False
+        assert not ActivityLog.objects.filter(
+            action=amo.LOG.CHANGE_USER_WITH_ROLE.id
+        ).exists()
+        assert len(mail.outbox) == 0
+
+    def test_delete(self):
+        new_author = AddonUser.objects.create(
+            addon=self.addon,
+            user=user_factory(),
+            role=amo.AUTHOR_ROLE_DEV,
+            listed=False,
+        )
+        assert self.client.delete(self.detail_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.delete(self.detail_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 400
+        assert response.data == ['Add-ons need at least one owner.']
+
+        new_author.update(role=amo.AUTHOR_ROLE_OWNER)
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 400
+        assert response.data == ['Add-ons need at least one listed author.']
+
+        new_author.update(listed=True)
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 204
+
+        log = ActivityLog.objects.get(action=amo.LOG.REMOVE_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 1
+        assert Counter(mail.outbox[0].recipients()) == Counter(
+            (self.user.email, new_author.user.email)
+        )
+
+
+class TestAddonPendingAuthorViewSet(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,))
+        self.pending_author = AddonUserPendingConfirmation.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_OWNER
+        )
+        self.detail_url = reverse_ns(
+            'addon-pending-author-detail',
+            kwargs={'addon_pk': self.addon.pk, 'user_id': self.pending_author.user.id},
+            api_version='v5',
+        )
+        self.list_url = reverse_ns(
+            'addon-pending-author-list',
+            kwargs={'addon_pk': self.addon.pk},
+            api_version='v5',
+        )
+
+    def test_list(self):
+        dev_author = AddonUserPendingConfirmation.objects.create(
+            addon=self.addon, user=user_factory(), role=amo.AUTHOR_ROLE_DEV
+        )
+        hidden_author = AddonUserPendingConfirmation.objects.create(
+            addon=self.addon, user=user_factory(), listed=False
+        )
+
+        assert self.client.get(self.list_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.get(self.list_url).status_code == 403
+
+        self.client.login_api(self.pending_author.user)
+        assert self.client.get(self.list_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200, response.content
+        assert len(response.data) == 3, response.data
+        assert response.data[0] == AddonPendingAuthorSerializer().to_representation(
+            instance=self.pending_author
+        )
+        assert response.data[1] == AddonPendingAuthorSerializer().to_representation(
+            instance=dev_author
+        )
+        assert response.data[2] == AddonPendingAuthorSerializer().to_representation(
+            instance=hidden_author
+        )
+
+    def test_detail(self):
+        assert self.client.get(self.detail_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.get(self.detail_url).status_code == 403
+
+        self.client.login_api(self.pending_author.user)
+        assert self.client.get(self.detail_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200, response.content
+        assert response.data == AddonPendingAuthorSerializer().to_representation(
+            instance=self.pending_author
+        )
+
+    def test_delete(self):
+        assert self.client.delete(self.detail_url).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.delete(self.detail_url).status_code == 403
+
+        self.client.login_api(self.pending_author.user)
+        assert self.client.get(self.detail_url).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 204
+        assert not AddonUserPendingConfirmation.objects.exists()
+
+        log = ActivityLog.objects.get(action=amo.LOG.REMOVE_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 1
+        assert Counter(mail.outbox[0].recipients()) == Counter(
+            (self.user.email, self.pending_author.user.email)
+        )
+
+    def test_create(self):
+        # This will be user that will be created
+        new_user = user_factory(display_name='new_guy')
+        data = {'user_id': new_user.id, 'role': 'developer'}
+        assert self.client.post(self.list_url, data=data).status_code == 401
+
+        self.client.login_api(user_factory())
+        assert self.client.post(self.list_url, data=data).status_code == 403
+
+        self.client.login_api(self.user)
+        response = self.client.post(self.list_url, data=data)
+        assert response.status_code == 201, response.content
+        assert AddonUserPendingConfirmation.objects.filter(
+            user=new_user, addon=self.addon, role=amo.AUTHOR_ROLE_DEV
+        ).exists()
+
+        log = ActivityLog.objects.get(action=amo.LOG.ADD_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 2
+        assert mail.outbox[0].recipients() == [self.user.email]
+        assert mail.outbox[1].recipients() == [new_user.email]
+
+    @override_settings(API_THROTTLING=False)
+    def test_create_validation(self):
+        self.client.login_api(self.user)
+
+        # user doesn't exist
+        response = self.client.post(self.list_url, data={'user_id': 12345})
+        assert response.status_code == 400, response.content
+        assert response.data == {'user_id': ['Account not found.']}
+
+        # not allowed
+        user = user_factory(email='foo@baa.com')
+        EmailUserRestriction.objects.create(email_pattern='*@baa.com')
+        response = self.client.post(self.list_url, data={'user_id': user.id})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'user_id': [
+                'The email address used for your account is not allowed for add-on '
+                'submission.'
+            ]
+        }
+
+        # can't add a user that is already an author
+        user.update(email='foo@mozilla.com')
+        dupe_addonuser = AddonUser.objects.create(addon=self.addon, user=user)
+        response = self.client.post(self.list_url, data={'user_id': user.id})
+        assert response.status_code == 400, response.content
+        assert response.data == {'user_id': ['An author can only be present once.']}
+
+        dupe_addonuser.delete()
+        # can't add the same pending author twice
+        response = self.client.post(
+            self.list_url, data={'user_id': self.pending_author.user.id}
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {'user_id': ['An author can only be present once.']}
+
+        # account needs a display name
+        assert not user.display_name
+        response = self.client.post(self.list_url, data={'user_id': user.id})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'user_id': [
+                'The account needs a display name before it can be added as an author.'
+            ]
+        }
+
+    def test_update_role(self):
+        self.client.login_api(self.user)
+        response = self.client.patch(self.detail_url, {'role': 'developer'})
+        assert response.status_code == 200, response.content
+        self.pending_author.reload()
+        assert response.data['role'] == 'developer'
+        self.pending_author.role == amo.AUTHOR_ROLE_DEV
+
+        log = ActivityLog.objects.get(action=amo.LOG.CHANGE_USER_WITH_ROLE.id)
+        assert log.user == self.user
+        assert len(mail.outbox) == 1
+        assert Counter(mail.outbox[0].recipients()) == Counter(
+            (self.user.email, self.pending_author.user.email)
+        )
+
+    def test_confirm(self):
+        AddonUser.objects.create(addon=self.addon, user=user_factory(), position=3)
+        confirm_url = reverse_ns(
+            'addon-pending-author-confirm',
+            kwargs={'addon_pk': self.addon.pk},
+            api_version='v5',
+        )
+
+        assert self.client.post(confirm_url).status_code == 401
+
+        self.client.login_api(user_factory())  # random user can't confirm, only invited
+        assert self.client.post(confirm_url).status_code == 403
+
+        pending_user = self.pending_author.user
+        assert pending_user not in self.addon.reload().authors.all()
+        self.client.login_api(pending_user)
+        response = self.client.post(confirm_url)
+        assert response.status_code == 200
+
+        assert pending_user in self.addon.reload().authors.all()
+        assert not AddonUserPendingConfirmation.objects.filter(
+            id=self.pending_author.id
+        ).exists()
+        addonuser = AddonUser.objects.get(addon=self.addon, user=pending_user)
+        assert addonuser.position == 4  # should be + 1 after the existing authors
+        assert addonuser.role == self.pending_author.role
+        assert addonuser.listed == self.pending_author.listed
+
+    def test_decline(self):
+        decline_url = reverse_ns(
+            'addon-pending-author-decline',
+            kwargs={'addon_pk': self.addon.pk},
+            api_version='v5',
+        )
+
+        assert self.client.post(decline_url).status_code == 401
+
+        self.client.login_api(user_factory())  # random user can't decline, only invited
+        assert self.client.post(decline_url).status_code == 403
+
+        pending_user = self.pending_author.user
+        self.client.login_api(pending_user)
+        response = self.client.post(decline_url)
+        assert response.status_code == 200
+
+        assert not AddonUserPendingConfirmation.objects.filter(
+            id=self.pending_author.id
+        ).exists()
+        assert pending_user not in self.addon.reload().authors.all()
+
+    def test_developer_role(self):
+        AddonUser.objects.get(user=self.user).update(role=amo.AUTHOR_ROLE_DEV)
+        # edge-case: user is an owner of a *different* add-on too
+        addon_factory(users=(self.user,))
+        self.client.login_api(self.user)
+
+        # developer role authors should be able to view all details of authors
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200, response.content
+        assert response.data == AddonPendingAuthorSerializer().to_representation(
+            instance=self.pending_author
+        )
+        # but not update
+        response = self.client.patch(self.detail_url, {'role': 'owner'})
+        assert response.status_code == 403, response.content
+
+        # or create
+        response = self.client.post(
+            self.list_url,
+            data={'user_id': user_factory(display_name='me!').id, 'role': 'owner'},
+        )
+        assert response.status_code == 403, response.content
+
+        # and not delete either
+        response = self.client.delete(self.detail_url)
+        assert response.status_code == 403, response.content

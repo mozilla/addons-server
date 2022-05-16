@@ -399,7 +399,7 @@ class AddonIndexer:
                     'type': 'object',
                     'properties': {
                         'id': {'type': 'long', 'index': False},
-                        'builtin': {'type': 'boolean', 'index': False},
+                        'builtin': {'type': 'short', 'index': False},
                         'name_translations': cls.get_translations_definition(),
                         'url': {'type': 'text', 'index': False},
                     },
@@ -493,7 +493,7 @@ class AddonIndexer:
                     'type': 'object',
                     'properties': {
                         'count': {'type': 'short', 'index': False},
-                        'average': {'type': 'float', 'index': False},
+                        'average': {'type': 'float'},
                     },
                 },
                 'slug': {'type': 'keyword'},
@@ -569,7 +569,7 @@ class AddonIndexer:
             if version_obj.license:
                 data['license'] = {
                     'id': version_obj.license.id,
-                    'builtin': bool(version_obj.license.builtin),
+                    'builtin': version_obj.license.builtin,
                     'url': version_obj.license.url,
                 }
                 attach_trans_dict(License, [version_obj.license])
@@ -764,4 +764,6 @@ class AddonIndexer:
 
         ids = cls.get_model().unfiltered.values_list('id', flat=True).order_by('id')
         chunk_size = 150
-        return create_chunked_tasks_signatures(index_addons, list(ids), chunk_size)
+        return create_chunked_tasks_signatures(
+            index_addons, list(ids), chunk_size, task_kwargs={'index': index_name}
+        )

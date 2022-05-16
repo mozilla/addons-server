@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -216,13 +216,31 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr "A fost modificat rolul unui autor în suplimentul tău"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Autorii pot fi listați numai o dată."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Contul are nevoie de o denumire de afișat înainte de a putea fi adăugat ca autor."
+
+msgid "An author has been added to your add-on"
+msgstr "A fost adăugat un autor la suplimentul tău"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Invitație ca autor pentru {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -242,6 +260,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "A fost eliminat un autor din suplimentul tău"
 
 msgid "My Add-ons"
 msgstr "Suplimentele mele"
@@ -456,11 +483,17 @@ msgstr "Nu s-a găsit adresa de e-mail."
 msgid "Unavailable for legal reasons."
 msgstr ""
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Codul limbii {lang_code} este nevalid."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Trebuie să furnizezi un obiect {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1751,12 +1784,6 @@ msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezum
 msgid "Users can not be added directly"
 msgstr "Utilizatorii nu pot fi adăugați direct"
 
-msgid "An author can only be present once."
-msgstr "Autorii pot fi listați numai o dată."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Contul are nevoie de o denumire de afișat înainte de a putea fi adăugat ca autor."
-
 msgid "Must have at least one owner."
 msgstr "Trebuie să aibă cel puțin un proprietar."
 
@@ -1942,20 +1969,8 @@ msgstr "Invitație acceptată."
 msgid "Invitation declined."
 msgstr "Invitație refuzată."
 
-msgid "An author has been added to your add-on"
-msgstr "A fost adăugat un autor la suplimentul tău"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Invitație ca autor pentru {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "A fost trimis un mesaj e-mail de confirmare la {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "A fost modificat rolul unui autor în suplimentul tău"
-
-msgid "An author has been removed from your add-on"
-msgstr "A fost eliminat un autor din suplimentul tău"
 
 msgid "Changes successfully saved."
 msgstr "Modificări salvate cu succes."

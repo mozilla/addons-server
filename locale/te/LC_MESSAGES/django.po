@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-03-13 13:37+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-04 11:48+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -153,10 +153,10 @@ msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
+msgstr "చెల్లని వర్గం పేరు."
 
 msgid "Invalid app name."
-msgstr ""
+msgstr "చెల్లని యాప్ పేరు."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr ""
@@ -177,7 +177,7 @@ msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "Invalid value"
-msgstr ""
+msgstr "చెల్లని విలువ"
 
 msgid "Invalid app specified"
 msgstr ""
@@ -216,13 +216,31 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr "మీ పొడగింతలో ఒక రచయిత పాత్ర మార్చబడింది"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "ఒక రచయిత ఒకసారి మాత్రమే ఉండగలరు."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "ఖాతాను రచయితగా చేర్చే ముందు చూపించే పేరు తప్పనిసరి."
+
+msgid "An author has been added to your add-on"
+msgstr "మీ పొడిగింతకు ఒక రచయిత జోడించబడ్డారు"
+
+msgid "Author invitation for {addon_name}"
+msgstr "{addon_name} కోసం రచయిత ఆహ్వానం"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -242,6 +260,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
 
 msgid "My Add-ons"
 msgstr "నా పొడిగింతలు"
@@ -440,11 +467,17 @@ msgstr "ఈమెయిల్ చిరునామా కనబడలేదు.
 msgid "Unavailable for legal reasons."
 msgstr "న్యాయపరమైన కారణాలవల్ల అందుబాటులో లేదు."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "భాష కోడ్ {lang_code} చెల్లనిది."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "మీరు తప్పనిసరిగా {lang-code:value} వంటి ఆబ్జెక్టుని ఇవ్వాలి."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1092,13 +1125,13 @@ msgid "Alerts & Updates"
 msgstr "హెచ్చరికలు మరియు నవీకరణలు"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "తాజా వార్తల కోసం, పనులను చక్కబెట్టుకోడానికి, సామర్థ్యాన్ని మెరుగుపరుచుకోడానికి Firefox పొడగింతలను దించుకోండి. ట్యాబులను రీలోడ్ చేయడానికి, ఉత్పాదకతను సంభాళించడానికి, ఇంకా మరెన్నో చేసే పొడగింతలను కనుగొనండి."
 
 msgid "Appearance"
 msgstr "రూపురేఖలు"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "వెబ్‌సైట్ల, Firefox విహారిణి రూపురేఖలను మీకు తగ్గట్టు మార్చుకోడానికి వీలుకల్పించే పొడగింతలను దించుకోండి. చీకటి అలంకారాలు, ట్యాబుల నిర్వహణ వంటి పొడగింతలు ఈ వర్గంలో ఉంటాయి."
 
 msgid "Bookmarks"
 msgstr "ఇష్టాంశములు"
@@ -1694,12 +1727,6 @@ msgstr "మీ అప్రమేయ లొకేలును మార్చడ
 msgid "Users can not be added directly"
 msgstr "వాడుకరులను నేరుగా జోడించలేరు"
 
-msgid "An author can only be present once."
-msgstr "ఒక రచయిత ఒకసారి మాత్రమే ఉండగలరు."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "ఖాతాను రచయితగా చేర్చే ముందు చూపించే పేరు తప్పనిసరి."
-
 msgid "Must have at least one owner."
 msgstr "కనీసం ఒక యజమాని ఉండాలి."
 
@@ -1883,20 +1910,8 @@ msgstr "ఆహ్వానం అంగీకరించబడింది."
 msgid "Invitation declined."
 msgstr "ఆహ్వానం తిరస్కరించబడింది."
 
-msgid "An author has been added to your add-on"
-msgstr "మీ పొడిగింతకు ఒక రచయిత జోడించబడ్డారు"
-
-msgid "Author invitation for {addon_name}"
-msgstr "{addon_name} కోసం రచయిత ఆహ్వానం"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "నిర్ధారణ సందేశం {email} కు పంపబడింది"
-
-msgid "An author role has been changed on your add-on"
-msgstr "మీ పొడగింతలో ఒక రచయిత పాత్ర మార్చబడింది"
-
-msgid "An author has been removed from your add-on"
-msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
 
 msgid "Changes successfully saved."
 msgstr "మార్పులు విజయవంతంగా భద్రపరచబడ్డాయి."

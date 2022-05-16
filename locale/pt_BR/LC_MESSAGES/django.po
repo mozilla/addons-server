@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-19 21:21+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-04-30 14:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -176,7 +176,7 @@ msgid "Invalid or broken archive."
 msgstr "Arquivamento inválido ou quebrado."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Esse tipo de extensão não permite compatibilidade personalizada."
 
 msgid "Invalid value"
 msgstr "Valor inválido"
@@ -196,7 +196,7 @@ msgid "Listed"
 msgstr "Listado"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Caminhos de extensões e coleções precisam terminar com \"/\""
 
 msgid "Previews cannot be created for themes."
 msgstr "Visualizações não podem ser criadas para temas."
@@ -219,14 +219,33 @@ msgstr "A versão {version_string} já existe."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Versões listadas não podem ser enviadas enquanto a extensão estiver desativada."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr "Foi alterado o papel de um autor da sua extensão"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "Um autor só pode ser listado uma vez."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "A conta precisa de um nome de exibição antes de poder ser adicionada como um autor."
+
+msgid "An author has been added to your add-on"
+msgstr "Foi adicionado um autor a sua extensão"
+
+# {addon} is an add-on name.
+msgid "Author invitation for {addon_name}"
+msgstr "Convite de autor de {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Este identificador não pode ser usado. Escolha outro."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Os nomes das extensões não podem conter as marcas registradas Mozilla ou Firefox."
@@ -241,10 +260,19 @@ msgid "This field, or custom_license, is required for listed versions."
 msgstr "Este campo, ou custom_license, é obrigatório em versões listadas."
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Tipo de extensão incorreto para esta licença."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Licenças personalizadas não são suportadas em temas."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Este campo é obrigatório em extensões com versões listadas."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Metadados de extensão precisam ser definidos para criar uma versão listada: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Foi removido um autor da sua extensão"
 
 msgid "My Add-ons"
 msgstr "Minhas extensões"
@@ -457,11 +485,17 @@ msgstr "Endereço de email não encontrado."
 msgid "Unavailable for legal reasons."
 msgstr "Não disponível por motivos legais"
 
-msgid "The language code {lang_code} is invalid."
-msgstr "O código de idioma {lang_code} é inválido."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Você precisa fornecer um objeto de {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -528,7 +562,7 @@ msgstr "Bloqueio com GUID %(guid)s não encontrado"
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Não existe extensão com GUID %(guid)s"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Os bloqueios a ser atualizados são diferentes porque a versão Mínima ou Máxima mudou."
@@ -706,6 +740,8 @@ msgstr "Análise completa de {addon} {version} solicitada."
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"A extensão foi marcada para revisão de administrador. Ela ainda está em nossa lista de revisão, mas precisa ser verificada por um de nossos revisores administradores. A revisão pode demorar mais do "
+"que o normal."
 
 msgid "Comment on {addon} {version}."
 msgstr "Comentário sobre {addon} {version}."
@@ -847,7 +883,7 @@ msgstr "{file} foi assinado."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Foi excluído o id de extensão {0} com GUID {1}"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} migrou da preliminar."
@@ -1042,7 +1078,7 @@ msgid "Signing API"
 msgstr "API de assinatura"
 
 msgid "Add-on API"
-msgstr ""
+msgstr "API de extensões"
 
 msgid "Automatically generated by AMO"
 msgstr "Gerado automaticamente pelo AMO"
@@ -1734,12 +1770,6 @@ msgstr "Antes de alterar o idioma padrão você deve ter um nome, resumo e descr
 msgid "Users can not be added directly"
 msgstr "Usuários não podem se adicionados diretamente"
 
-msgid "An author can only be present once."
-msgstr "Um autor só pode ser listado uma vez."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "A conta precisa de um nome de exibição antes de poder ser adicionada como um autor."
-
 msgid "Must have at least one owner."
 msgstr "Deve haver pelo menos um dono."
 
@@ -1928,21 +1958,8 @@ msgstr "Convite aceito."
 msgid "Invitation declined."
 msgstr "Convite recusado."
 
-msgid "An author has been added to your add-on"
-msgstr "Foi adicionado um autor a sua extensão"
-
-# {addon} is an add-on name.
-msgid "Author invitation for {addon_name}"
-msgstr "Convite de autor de {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Um email de confirmação foi enviado para {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Foi alterado o papel de um autor da sua extensão"
-
-msgid "An author has been removed from your add-on"
-msgstr "Foi removido um autor da sua extensão"
 
 msgid "Changes successfully saved."
 msgstr "Alterações salvas com sucesso."
@@ -1975,6 +1992,8 @@ msgstr "Ocorreu um erro ao enviar sua imagem."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"A última versão aprovada desta extensão %s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção %s. Entre em contato com os administradores da AMO se "
+"precisar de ajuda com isso."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2461,6 +2480,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
 "may help. This whiteboard is also editable by reviewers."
 msgstr ""
+"O quadro branco é um local para fornecer informações relevantes sobre sua extensão para os revisores, qualquer que seja a versão. Use para indicar formas de testar a extensão e quaisquer "
+"informações adicionais que possam ajudar. Este quadro branco também pode ser editado pelos revisores."
 
 msgid "Add-on Media for {0}"
 msgstr "Mídia da extensão {0}"
@@ -3601,6 +3622,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"A última versão aprovada desta extensão de %(promoted_group_name)s não pode ser excluída nem desativada porque a versão anterior não foi aprovada para promoção de %(promoted_group_name)s. Entre em "
+"contato com os administradores da AMO se precisar de ajuda com isso."
 
 msgid "Hide Add-on"
 msgstr "Ocultar extensão"
@@ -4640,7 +4663,7 @@ msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "Privacidade e anti-rastreamento"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4649,7 +4672,7 @@ msgstr "Extensões de criatividade"
 
 #. editorial content for the secondary hero shelves.
 msgid "Image search"
-msgstr ""
+msgstr "Pesquisa de imagem"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5025,7 +5048,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Tem ligado o flag de aprovação automática desativada/adiada"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Está em um grupo de extensões promovidas que requer revisão prévia"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Adiado porque é a primeira versão listada"
@@ -5487,7 +5510,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Aviso!</strong> Outro usuário estava visualizando essa página antes de você."
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "O quadro branco é o local de troca de informações relevantes desta extensão (qualquer que seja a versão), entre o desenvolvedor e o revisor. Ambos podem ver e editar."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "O quadro branco privativo é usado apenas para trocar informação entre revisores independentes da versão. Por favor, mantenha a linguagem objetiva. É visível apenas para os revisores."
@@ -5849,11 +5872,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Não foi possível encontrar uma extensão com ID \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Esta extensão não é sua."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Você não pode adicionar versões a uma extensão com status: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "A versão não corresponde ao arquivo manifest."
@@ -5869,13 +5892,13 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "ID de extensão inválido na URL ou pacote"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Você não pode adicionar versões listadas a uma extensão definida com status \"Invisível\"."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Você não pode adicionar uma versão listada desta extensão via API devido à falta de metadados. Envie através do site"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Nenhum arquivo enviado para esta extensão e versão."
 
 msgid "Overview"
 msgstr "Visão geral"
@@ -6302,6 +6325,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"O seguinte autor foi adicionado à sua extensão %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6338,6 +6364,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"O seguinte autor foi alterado em sua extensão %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6345,6 +6374,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"O seguinte autor foi removido da extensão %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""

@@ -98,6 +98,11 @@ AUTHOR_CHOICES = (
     (AUTHOR_ROLE_DEV, _('Developer')),
 )
 
+AUTHOR_CHOICES_API = {
+    AUTHOR_ROLE_OWNER: 'owner',
+    AUTHOR_ROLE_DEV: 'developer',
+}
+
 AUTHOR_CHOICES_UNFILTERED = AUTHOR_CHOICES + ((AUTHOR_ROLE_DELETED, _('(Deleted)')),)
 
 # Addon types
@@ -381,6 +386,8 @@ RESERVED_ADDON_GUIDS = (
     '@mozillaonline.com',
     '@mozillafoundation.org',
     '@rally.mozilla.org',
+    # A temporary special case for aboutsync, which has a "legacy" ID.
+    'aboutsync@mhammond.github.com',
     # Temporary add-ons as defined in Firefox. Should not be submitted to AMO.
     '@temporary-addon',
 )

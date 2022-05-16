@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -231,13 +231,33 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr ""
+
+msgid "Account not found."
+msgstr ""
+
+#, fuzzy
+msgid "An author can only be present once."
+msgstr "Ní féidir údar a thaispeáint ach uair amháin."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr ""
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "Deontais le haghaidh {addon}."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -256,6 +276,15 @@ msgid "Wrong add-on type for this license."
 msgstr ""
 
 msgid "Custom licenses are not supported for themes."
+msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "My Add-ons"
@@ -464,10 +493,16 @@ msgstr "Seoladh Ríomhphoist"
 msgid "Unavailable for legal reasons."
 msgstr ""
 
-msgid "The language code {lang_code} is invalid."
+msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
 msgstr ""
 
 #, python-format
@@ -1832,13 +1867,6 @@ msgstr "Sular féidir leat an logchaighdeán réamhshocraithe a athrú, tá ainm
 msgid "Users can not be added directly"
 msgstr ""
 
-#, fuzzy
-msgid "An author can only be present once."
-msgstr "Ní féidir údar a thaispeáint ach uair amháin."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
 msgid "Must have at least one owner."
 msgstr "Ní mór úinéir amháin a bheith ann."
 
@@ -2027,20 +2055,7 @@ msgstr ""
 msgid "Invitation declined."
 msgstr ""
 
-msgid "An author has been added to your add-on"
-msgstr ""
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "Deontais le haghaidh {addon}."
-
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
-
-msgid "An author role has been changed on your add-on"
-msgstr ""
-
-msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "Changes successfully saved."

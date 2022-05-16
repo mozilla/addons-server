@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 19:44+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-12 14:49+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -216,14 +216,32 @@ msgstr "Le version {version_string} jam existe."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Le versiones publicate non pote esser inviate durante que le additivo es disactivate."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Metadatos de additivo es necesse esser configurate pro crear un version publicate: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "Le additivos debe haber al minus un proprietario."
+
+msgid "Add-ons need at least one listed author."
+msgstr "Le additivos besonia de al minus un autor listate."
+
+msgid "An author role has been changed on your add-on"
+msgstr "Le rolo de un autor ha essite cambiate sur tu additivo"
+
+msgid "Account not found."
+msgstr "Conto non trovate."
+
+msgid "An author can only be present once."
+msgstr "Un autor pote esser presente solo un vice."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Le conto require un nomine a monstrar ante que illo pote esser addite como autor."
+
+msgid "An author has been added to your add-on"
+msgstr "Un autor ha essite addite a tu additivo"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Invitation de autor pro {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Iste alias breve non pote esser usate. Elige un altero."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Iste campo es necesse pro additivos con versiones publicate."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o Firefox."
@@ -242,6 +260,15 @@ msgstr "Errate typo de additivo pro iste licentia."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Le licentias personalisate non es supportate pro themas."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Iste campo es necesse pro additivos con versiones publicate."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Metadatos de additivo es necesse esser configurate pro crear un version publicate: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Un autor ha essite removite ex tu additivo"
 
 msgid "My Add-ons"
 msgstr "Mi additivos"
@@ -452,11 +479,17 @@ msgstr "Adresse de e-mail non trovate."
 msgid "Unavailable for legal reasons."
 msgstr "Indisponibile per rationes legal."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Le codice de lingua {lang_code} non es valide."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "Le codice de lingua \"{lang_code}\" non es valide."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Tu debe fornir un objecto de {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "Un valor in le lingua predefinite de \"{lang_code}\" es necesse."
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "Un valor in le lingua predefinite de \"{lang_code}\" es obligate si altere traductiones es predefinite."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1717,12 +1750,6 @@ msgstr "Ante de cambiar tu localisation predefinite tu debe haber un nomine, sum
 msgid "Users can not be added directly"
 msgstr "Usatores non pote esser addite directemente"
 
-msgid "An author can only be present once."
-msgstr "Un autor pote esser presente solo un vice."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Le conto require un nomine a monstrar ante que illo pote esser addite como autor."
-
 msgid "Must have at least one owner."
 msgstr "Debe haber al minus un proprietario."
 
@@ -1908,20 +1935,8 @@ msgstr "Invitation acceptate."
 msgid "Invitation declined."
 msgstr "Invitation declinate."
 
-msgid "An author has been added to your add-on"
-msgstr "Un autor ha essite addite a tu additivo"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Invitation de autor pro {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Un email de confirmation ha essite inviate a {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Le rolo de un autor ha essite cambiate sur tu additivo"
-
-msgid "An author has been removed from your add-on"
-msgstr "Un autor ha essite removite ex tu additivo"
 
 msgid "Changes successfully saved."
 msgstr "Cambios salvate con successo."
@@ -3942,7 +3957,7 @@ msgstr "Aperi un nove scheda al dextra de tu actual scheda, non al fin del linea
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Conquire le spam. Usa ingeniose adresses de e-mail temporari pro restar anonyme e evitar le spam."
+msgstr "Conquire le spam. Usa ingeniose adresses email temporari pro restar anonyme e evitar le spam."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."

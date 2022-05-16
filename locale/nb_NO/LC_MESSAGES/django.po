@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
 "PO-Revision-Date: 2021-05-20 11:49+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -216,13 +216,31 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
 msgstr ""
+
+msgid "Add-ons need at least one listed author."
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr "En rolle for opphavsmann har blitt endret i tillegget ditt"
+
+msgid "Account not found."
+msgstr ""
+
+msgid "An author can only be present once."
+msgstr "En opphavsmann kan bare være oppført en gang."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Kontoen trenger et visningsnavn før den kan legges til som opphavsmann."
+
+msgid "An author has been added to your add-on"
+msgstr "En opphavsmann har blitt lagt til i tillegget ditt"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Opphavsmanninvitasjon for {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
-
-msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -242,6 +260,15 @@ msgstr ""
 
 msgid "Custom licenses are not supported for themes."
 msgstr ""
+
+msgid "This field is required for add-ons with listed versions."
+msgstr ""
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "An author has been removed from your add-on"
+msgstr "En opphavsmann har blitt fjernet fra tillegget ditt"
 
 msgid "My Add-ons"
 msgstr "Mine utvidelser"
@@ -453,11 +480,17 @@ msgstr "Fant ikke e-postadressen."
 msgid "Unavailable for legal reasons."
 msgstr "Ikke tilgjengelig på grunn av juridiske årsaker."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Språkkoden {lang_code} er ugyldig."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr ""
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Du må oppgi et objekt med {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr ""
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1714,12 +1747,6 @@ msgstr "Bør du endrer standard språk må du oppgi et navn, oppsummering og bes
 msgid "Users can not be added directly"
 msgstr "Brukere kan ikke legges til direkte"
 
-msgid "An author can only be present once."
-msgstr "En opphavsmann kan bare være oppført en gang."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Kontoen trenger et visningsnavn før den kan legges til som opphavsmann."
-
 msgid "Must have at least one owner."
 msgstr "Må ha minst én eier."
 
@@ -1904,20 +1931,8 @@ msgstr "Invitasjon godkjent."
 msgid "Invitation declined."
 msgstr "Invitasjon avvist."
 
-msgid "An author has been added to your add-on"
-msgstr "En opphavsmann har blitt lagt til i tillegget ditt"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Opphavsmanninvitasjon for {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "En bekreftelsesepost har blitt sendt til {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "En rolle for opphavsmann har blitt endret i tillegget ditt"
-
-msgid "An author has been removed from your add-on"
-msgstr "En opphavsmann har blitt fjernet fra tillegget ditt"
 
 msgid "Changes successfully saved."
 msgstr "Endringene ble lagret."

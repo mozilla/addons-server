@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 23:14+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-12 12:47+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -215,14 +215,32 @@ msgstr "Version {version_string} existerar redan."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Listade versioner kan inte skickas in när tillägget är inaktiverat."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Tilläggsmetadata måste ställas in för att skapa en listad version: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "Tillägg behöver minst en ägare."
+
+msgid "Add-ons need at least one listed author."
+msgstr "Tillägg behöver minst en listad författare."
+
+msgid "An author role has been changed on your add-on"
+msgstr "En roll för upphovsman har ändrats i ditt tillägg"
+
+msgid "Account not found."
+msgstr "Kontot hittades inte."
+
+msgid "An author can only be present once."
+msgstr "En författare kan bara vara förekomma en gång."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "Kontot behöver ett visningsnamn innan det kan läggas till som författare."
+
+msgid "An author has been added to your add-on"
+msgstr "En upphovsman har lagts till i ditt tillägg"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Upphovsmansinbjudan för {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Denna slugg kan inte användas. Välj en annan."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Detta fält krävs för tillägg med listade versioner."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tilläggsnamn kan inte innehålla varumärkena Mozilla eller Firefox."
@@ -241,6 +259,15 @@ msgstr "Fel tilläggstyp för denna licens."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Anpassade licenser stöds inte för teman."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Detta fält krävs för tillägg med listade versioner."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Tilläggsmetadata måste ställas in för att skapa en listad version: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "En upphovsman har tagits bort från ditt tillägg"
 
 msgid "My Add-ons"
 msgstr "Mina tillägg"
@@ -450,11 +477,17 @@ msgstr "E-postadressen hittades inte."
 msgid "Unavailable for legal reasons."
 msgstr "Ej tillgänglig av juridiska skäl."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "Språkkoden {lang_code} är ogiltig."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "Språkkoden \"{lang_code}\" är ogiltig."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "Du måste ge ett objekt med {lang-code:value}."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "Ett värde i standardspråket \"{lang_code}\" krävs."
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "Ett värde i standardspråket \"{lang_code}\" krävs om andra översättningar är inställda."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1706,12 +1739,6 @@ msgstr "Innan du ändrar ditt standardspråk måste du ha ett namn, sammanfattni
 msgid "Users can not be added directly"
 msgstr "Användare kan inte läggas till direkt"
 
-msgid "An author can only be present once."
-msgstr "En författare kan bara vara förekomma en gång."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "Kontot behöver ett visningsnamn innan det kan läggas till som författare."
-
 msgid "Must have at least one owner."
 msgstr "Måste minst ha en ägare."
 
@@ -1897,20 +1924,8 @@ msgstr "Inbjudan accepterad."
 msgid "Invitation declined."
 msgstr "Inbjudan avvisades."
 
-msgid "An author has been added to your add-on"
-msgstr "En upphovsman har lagts till i ditt tillägg"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Upphovsmansinbjudan för {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Ett bekräftelsemeddelande har skickats till {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "En roll för upphovsman har ändrats i ditt tillägg"
-
-msgid "An author has been removed from your add-on"
-msgstr "En upphovsman har tagits bort från ditt tillägg"
 
 msgid "Changes successfully saved."
 msgstr "Ändringar sparade."

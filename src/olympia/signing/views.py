@@ -58,7 +58,7 @@ def with_addon(allow_missing=False):
                 addon.has_author(request.user)
                 or (
                     request.method == 'GET'
-                    and acl.action_allowed_user(
+                    and acl.action_allowed_for(
                         request.user, amo.permissions.ADDONS_EDIT
                     )
                 )
@@ -86,7 +86,7 @@ class VersionView(APIView):
         # Let users with LanguagePack:Submit permission bypass throttles.
         # Used by releng automated signing scripts so that they can sign a
         # bunch of langpacks at once.
-        if acl.action_allowed(request, amo.permissions.LANGPACK_SUBMIT):
+        if acl.action_allowed_for(request.user, amo.permissions.LANGPACK_SUBMIT):
             return
         super().check_throttles(request)
 

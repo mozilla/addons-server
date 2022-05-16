@@ -13,6 +13,7 @@ from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.amo.utils import to_language
 from olympia.api.utils import is_gate_active
 from olympia.translations.models import Translation
+from olympia.translations.utils import default_locale
 
 
 class ReverseChoiceField(fields.ChoiceField):
@@ -83,9 +84,15 @@ class TranslationSerializerField(fields.CharField):
     """
 
     default_error_messages = {
-        **fields.CharField.default_error_messages,
-        'unknown_locale': _('The language code {lang_code} is invalid.'),
+        'unknown_locale': _('The language code "{lang_code}" is invalid.'),
         'no_dict': _('You must provide an object of {lang-code:value}.'),
+        'default_locale_required': _(
+            'A value in the default locale of "{lang_code}" is required.'
+        ),
+        'default_locale': _(
+            'A value in the default locale of "{lang_code}" is required if other '
+            'translations are set.'
+        ),
     }
 
     def __init__(self, *args, **kwargs):
@@ -103,7 +110,7 @@ class TranslationSerializerField(fields.CharField):
         else:
             return None
 
-    def fetch_all_translations(self, obj, source, field):
+    def fetch_all_translations(self, obj, field):
         # this property is set by amo.utils.attach_trans_dict
         if trans_dict := getattr(obj, 'translations', None):
             translations = trans_dict.get(field.id, [])
@@ -122,32 +129,32 @@ class TranslationSerializerField(fields.CharField):
         else:
             return {lang: value, requested_lang: None, '_default': lang}
 
-    def fetch_single_translation(self, obj, source, field, requested_language):
+    def fetch_single_translation(self, obj, field, requested_language):
         return self._format_single_translation_response(
             str(field) if field else field,
             to_language(field.locale),
             to_language(requested_language),
         )
 
-    def get_attribute(self, obj):
+    def get_source_field(self, obj):
         source = self.source or self.field_name
         try:
             field = fields.get_attribute(obj, source.split('.'))
         except AttributeError:
             field = None
+        return field
 
+    def get_attribute(self, obj):
+        field = self.get_source_field(obj)
         if not field:
             return None
 
         requested_language = self.get_requested_language()
-
         if requested_language:
-            single = self.fetch_single_translation(
-                obj, source, field, requested_language
-            )
+            single = self.fetch_single_translation(obj, field, requested_language)
             return list(single.values())[0] if single and self.flat else single
         else:
-            return self.fetch_all_translations(obj, source, field)
+            return self.fetch_all_translations(obj, field)
 
     def to_representation(self, val):
         return val
@@ -160,11 +167,41 @@ class TranslationSerializerField(fields.CharField):
             for locale, value in data.items():
                 if locale.lower() not in settings.LANGUAGE_URL_MAP:
                     raise exceptions.ValidationError(
-                        self.error_messages['unknown_locale'].format(
-                            lang_code=repr(locale)
-                        )
+                        self.error_messages['unknown_locale'].format(lang_code=locale)
                     )
                 data[locale] = super().run_validation(value)
+
+            obj = getattr(self.parent, 'instance', None)
+            default = default_locale(obj)
+            if default in data and data[default] is None:
+                # i.e. we're trying to delete the value in the default_locale
+                if self.required:
+                    raise exceptions.ValidationError(
+                        self.error_messages['default_locale_required'].format(
+                            lang_code=default
+                        )
+                    )
+                else:
+                    # even if not a required field, we need a default_locale value if
+                    # there are other localizations.
+                    existing_translations = (
+                        self.fetch_all_translations(obj, self.get_source_field(obj))
+                        or {}
+                        if obj
+                        else {}
+                    )
+                    any_other_locales = any(
+                        locale
+                        for locale, value in {**existing_translations, **data}.items()
+                        if value is not None and locale != default
+                    )
+                    if any_other_locales:
+                        raise exceptions.ValidationError(
+                            self.error_messages['default_locale'].format(
+                                lang_code=default
+                            )
+                        )
+
             return data
 
         return super().run_validation(data)
@@ -218,18 +255,18 @@ class ESTranslationSerializerField(TranslationSerializerField):
         # fake Translation() instance to prevent SQL queries from being
         # automatically made by the translations app.
         translation = self.fetch_single_translation(
-            obj, target_name, target_translations, get_language()
+            obj, target_translations, get_language()
         )
         if translation:
             locale, value = list(translation.items())[0]
             translation = Translation(localized_string=value, locale=locale)
         setattr(obj, target_name, translation)
 
-    def fetch_all_translations(self, obj, source, field):
+    def fetch_all_translations(self, obj, field):
         return field or None
 
-    def fetch_single_translation(self, obj, source, field, requested_language):
-        translations = self.fetch_all_translations(obj, source, field) or {}
+    def fetch_single_translation(self, obj, field, requested_language):
+        translations = self.fetch_all_translations(obj, field) or {}
         locale = None
         value = None
         if requested_language in translations:
@@ -439,7 +476,7 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
                     translations[language] = value
         return translations
 
-    def fetch_all_translations(self, obj, source, field):
+    def fetch_all_translations(self, obj, field):
         # TODO: get all locales or KEY_LOCALES_FOR_EDITORIAL_CONTENT at least?
         base_language = to_language(settings.LANGUAGE_CODE)
         current_language = to_language(get_language())
@@ -449,7 +486,7 @@ class GetTextTranslationSerializerField(TranslationSerializerField):
             field, {current_language, default_language}, base_language=base_language
         )
 
-    def fetch_single_translation(self, obj, source, field, requested_language):
+    def fetch_single_translation(self, obj, field, requested_language):
         base_language = to_language(settings.LANGUAGE_CODE)
         default_language = getattr(obj, 'default_locale', base_language)
 

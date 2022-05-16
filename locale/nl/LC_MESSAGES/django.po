@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-04-21 10:22+0000\n"
-"PO-Revision-Date: 2022-04-21 13:01+0000\n"
+"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"PO-Revision-Date: 2022-05-12 13:27+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -219,14 +219,32 @@ msgstr "Versie {version_string} bestaat al."
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Vermelde versies kunnen niet worden ingediend terwijl de add-on is uitgeschakeld."
 
-msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Add-on-metadata moeten worden ingesteld om een vermelde versie te maken: {missing_addon_metadata}."
+msgid "Add-ons need at least one owner."
+msgstr "Add-ons hebben ten minste één eigenaar nodig."
+
+msgid "Add-ons need at least one listed author."
+msgstr "Add-ons hebben ten minste één vermelde auteur nodig."
+
+msgid "An author role has been changed on your add-on"
+msgstr "Een schrijverrol is gewijzigd voor uw add-on"
+
+msgid "Account not found."
+msgstr "Account niet gevonden."
+
+msgid "An author can only be present once."
+msgstr "Een schrijver kan maar één keer worden vermeld."
+
+msgid "The account needs a display name before it can be added as an author."
+msgstr "De account heeft een schermnaam nodig voordat deze als een schrijver kan worden toegevoegd."
+
+msgid "An author has been added to your add-on"
+msgstr "Er is een schrijver aan uw add-on toegevoegd"
+
+msgid "Author invitation for {addon_name}"
+msgstr "Schrijveruitnodiging voor {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "Deze identificator kan niet worden gebruikt. Kies een andere."
-
-msgid "This field is required for add-ons with listed versions."
-msgstr "Dit veld is vereist voor add-ons met vermelde versies."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Namen van add-ons mogen de Mozilla- of Firefox-handelsmerken niet bevatten."
@@ -245,6 +263,15 @@ msgstr "Verkeerd type add-on voor deze licentie."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Aangepaste licenties worden niet ondersteund voor thema’s."
+
+msgid "This field is required for add-ons with listed versions."
+msgstr "Dit veld is vereist voor add-ons met vermelde versies."
+
+msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr "Add-on-metadata moeten worden ingesteld om een vermelde versie te maken: {missing_addon_metadata}."
+
+msgid "An author has been removed from your add-on"
+msgstr "Er is een schrijver verwijderd van uw add-on"
 
 msgid "My Add-ons"
 msgstr "Mijn add-ons"
@@ -460,11 +487,17 @@ msgstr "E-mailadres niet gevonden."
 msgid "Unavailable for legal reasons."
 msgstr "Om juridische redenen niet beschikbaar."
 
-msgid "The language code {lang_code} is invalid."
-msgstr "De taalcode {lang_code} is ongeldig."
+msgid "The language code \"{lang_code}\" is invalid."
+msgstr "De taalcode ‘{lang_code}’ is ongeldig."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr "U dient een object van {lang-code:value} op te geven."
+
+msgid "A value in the default locale of \"{lang_code}\" is required."
+msgstr "Een waarde in de standaardlocale van ‘{lang_code}’ is vereist."
+
+msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
+msgstr "Een waarde in de standaardlocale van ‘{lang_code}’ is vereist als andere vertalingen zijn ingesteld."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1728,12 +1761,6 @@ msgstr "Voordat u uw standaardlocale wijzigt, dient u een naam, samenvatting en 
 msgid "Users can not be added directly"
 msgstr "Gebruikers kunnen niet rechtstreeks worden toegevoegd"
 
-msgid "An author can only be present once."
-msgstr "Een schrijver kan maar één keer worden vermeld."
-
-msgid "The account needs a display name before it can be added as an author."
-msgstr "De account heeft een schermnaam nodig voordat deze als een schrijver kan worden toegevoegd."
-
 msgid "Must have at least one owner."
 msgstr "Er dient ten minste één eigenaar te zijn."
 
@@ -1919,20 +1946,8 @@ msgstr "Uitnodiging geaccepteerd."
 msgid "Invitation declined."
 msgstr "Uitnodiging geweigerd."
 
-msgid "An author has been added to your add-on"
-msgstr "Er is een schrijver aan uw add-on toegevoegd"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Schrijveruitnodiging voor {addon_name}"
-
 msgid "A confirmation email has been sent to {email}"
 msgstr "Er is een bevestigingsbericht verzonden naar {email}"
-
-msgid "An author role has been changed on your add-on"
-msgstr "Een schrijverrol is gewijzigd voor uw add-on"
-
-msgid "An author has been removed from your add-on"
-msgstr "Er is een schrijver verwijderd van uw add-on"
 
 msgid "Changes successfully saved."
 msgstr "Wijzigingen met succes opgeslagen."

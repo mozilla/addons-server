@@ -268,7 +268,7 @@ class TestAddonIndexer(TestCase):
         version = self.addon.current_version
         # Add a bunch of things to it to test different scenarios.
         version.license = License.objects.create(
-            name='My licensé', url='http://example.com/', builtin=0
+            name='My licensé', url='http://example.com/', builtin=3
         )
         [
             WebextPermission.objects.create(
@@ -295,7 +295,7 @@ class TestAddonIndexer(TestCase):
             }
         }
         assert extracted['current_version']['license'] == {
-            'builtin': 0,
+            'builtin': 3,
             'id': version.license.pk,
             'name_translations': [{'lang': 'en-US', 'string': 'My licensé'}],
             'url': 'http://example.com/',
@@ -550,13 +550,16 @@ class TestAddonIndexer(TestCase):
                 version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
             ).pk,
         ]
-        rval = AddonIndexer.reindex_tasks_group('addons')
+        rval = AddonIndexer.reindex_tasks_group('addons-1234567890')
         assert create_chunked_tasks_signatures_mock.call_count == 1
         assert create_chunked_tasks_signatures_mock.call_args[0] == (
             index_addons,
             expected_ids,
             150,
         )
+        assert create_chunked_tasks_signatures_mock.call_args[1] == {
+            'task_kwargs': {'index': 'addons-1234567890'},
+        }
         assert rval == create_chunked_tasks_signatures_mock.return_value
 
 
