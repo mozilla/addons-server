@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-12 12:09+0000\n"
-"PO-Revision-Date: 2022-05-13 11:56+0000\n"
+"PO-Revision-Date: 2022-05-16 08:39+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -194,7 +194,7 @@ msgid "Listed"
 msgstr "Καταχωρημένο"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Οι διαδρομές προσθέτων και συλλογών πρέπει να λήγουν με «/»"
 
 msgid "Previews cannot be created for themes."
 msgstr "Δεν είναι δυνατή η δημιουργία προεπισκόπησης για τα θέματα."
@@ -209,13 +209,13 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr "Η έκδοση {version} ταιριάζει με το {block_link} για αυτό το πρόσθετο. Μπορείτε να επικοινωνήσετε με τους {amo_admins} για περισσότερες πληροφορίες."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Η έκδοση {version_string} μεταφορτώθηκε πριν και διαγράφηκε."
 
 msgid "Version {version_string} already exists."
 msgstr "Η έκδοση {version_string} υπάρχει ήδη."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Οι καταχωρημένες εκδόσεις δεν μπορούν να υποβληθούν, όσο το πρόσθετο είναι ανενεργό."
 
 msgid "Add-ons need at least one owner."
 msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν κάτοχο."
