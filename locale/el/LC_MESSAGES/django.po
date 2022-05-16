@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-12 12:09+0000\n"
-"PO-Revision-Date: 2022-05-16 08:50+0000\n"
+"PO-Revision-Date: 2022-05-16 08:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -150,7 +150,7 @@ msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Έχετε υπερβεί τον μέγιστο αριθμό κατηγοριών ανά εφαρμογή ({MAX_CATEGORIES})"
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Η κατηγορία «άλλα» δεν μπορεί να συνδυαστεί με κάποια άλλη κατηγορία"
 
 msgid "Invalid category name."
 msgstr "Μη έγκυρο όνομα κατηγορίας."
@@ -251,10 +251,10 @@ msgid "Site permissions for {hostnames}"
 msgstr "Άδειες ιστοτόπων για {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Δεν είναι δυνατή η ταυτόχρονη παροχή των «license» και «custom_license»."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Αυτό το πεδίο, ή το «custom_license», απαιτείται για τις καταχωρημένες εκδόσεις."
 
 msgid "Wrong add-on type for this license."
 msgstr "Εσφαλμένος τύπος πρόσθετου για αυτήν την άδεια."
@@ -266,7 +266,7 @@ msgid "This field is required for add-ons with listed versions."
 msgstr "Αυτό το πεδίο απαιτείται για πρόσθετα με καταχωρημένες εκδόσεις."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Απαιτείται ορισμός μεταδεδομένων προσθέτου για τη δημιουργία μιας καταχωρισμένης έκδοσης: {missing_addon_metadata}."
 
 msgid "An author has been removed from your add-on"
 msgstr "Ένας δημιουργός έχει αφαιρεθεί από το πρόσθετό σας"
@@ -497,7 +497,7 @@ msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr "Απαιτείται μια τιμή στην προεπιλεγμένη γλώσσα «{lang_code}»."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Απαιτείται μια τιμή στην προεπιλεγμένη γλώσσα «{lang_code}» εάν έχουν οριστεί άλλες μεταφράσεις."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
