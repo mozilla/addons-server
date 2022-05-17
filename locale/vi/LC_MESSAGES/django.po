@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-12 12:09+0000\n"
-"PO-Revision-Date: 2022-05-17 03:11+0000\n"
+"PO-Revision-Date: 2022-05-17 03:14+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -5760,10 +5760,10 @@ msgid "file signature"
 msgstr "chữ ký tập tin"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Đây là tên chính xác của quy tắc được sử dụng bởi trình quét."
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Khi bỏ chọn, kết quả trình quét sẽ không bị ràng buộc với quy tắc này và hành động sẽ không được thực hiện."
 
 msgid "Yara rules should have a definition"
 msgstr ""
@@ -5776,7 +5776,7 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Định nghĩa không hợp lệ: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr ""
@@ -6194,7 +6194,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Nhập dải mạng CIDR IPv4 hoặc IPv6 hợp lệ, ví dụ: 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Nhiều tiện ích vi phạm chính sách của chúng tôi đã được gửi từ địa chỉ của bạn. Địa chỉ IP đã bị chặn."
 
 msgid "Email Pattern"
 msgstr ""
@@ -6203,7 +6203,7 @@ msgid "Enter full email that should be blocked or use unix-style wildcards, e.g.
 msgstr ""
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "Địa chỉ email được sử dụng cho tài khoản của bạn không được phép đệ trình tiện ích."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
@@ -6347,4 +6347,4 @@ msgid "{app} {min} and later"
 msgstr "{app} {min} trở lên"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Origin cài đặt {origin} không được phép."
