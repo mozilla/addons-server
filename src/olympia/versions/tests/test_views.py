@@ -690,7 +690,7 @@ class TestDownloadsAPIAuthFailure(APILoginMixin, TestDownloadsBase):
 
         response = self.client.get(self.file_url)
         assert response.status_code == 401
-        assert response.data == {'detail' 'Incorrect authentication credentials.'}
+        assert response.data == {'detail': 'Incorrect authentication credentials.'}
 
     def test_auth_fail_session_id(self):
         self._test_auth_fail(self.session_id_auth_mock, APITestClientSessionID)
