@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"POT-Creation-Date: 2022-05-18 08:08+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -222,9 +222,6 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-msgid "An author role has been changed on your add-on"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਲੇਖਕ ਦੀ ਭੂਮਿਕਾ ਬਦਲੀ ਗਈ"
-
 msgid "Account not found."
 msgstr ""
 
@@ -233,12 +230,6 @@ msgstr "ਇੱਕ ਲੇਖਕ ਸਿਰਫ ਇੱਕ ਵਾਰ ਮੌਜੂਦ 
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "ਇਸ ਨੂੰ ਲੇਖਕ ਦੇ ਤੌਰ ਤੇ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾਣ ਤੋਂ ਪਹਿਲਾਂ ਖਾਤੇ ਨੂੰ ਪ੍ਰਦਰਸ਼ਤ ਨਾਮ ਦੀ ਜ਼ਰੂਰਤ ਹੁੰਦੀ ਹੈ।"
-
-msgid "An author has been added to your add-on"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਵਿੱਚ ਇੱਕ ਲੇਖਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ"
-
-msgid "Author invitation for {addon_name}"
-msgstr "{addon_name} ਲਈ ਲੇਖਕ ਦਾ ਸੱਦਾ"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -266,9 +257,6 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
-
-msgid "An author has been removed from your add-on"
-msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੋਂ ਇੱਕ ਲੇਖਕ ਨੂੰ ਹਟਾਇਆ ਗਿਆ"
 
 msgid "My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
@@ -2245,6 +2233,9 @@ msgstr "ਸੂਚੀਬੱਧ ਵੰਨਗੀ ਦੀ ਪਹਿਲ ਝਲਕ"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "ਝਲਕ ਅਜੇ ਵੀ ਤਿਆਰ ਕੀਤੀ ਜਾ ਰਹੀ ਐ - ਮੁੜ ਕੇ ਆਇਉ ਜਾਂ ਵਰਕਾ ਸੱਜਰਾ ਕਰੋ।"
+
+msgid "Author invitation for {addon_name}"
+msgstr "{addon_name} ਲਈ ਲੇਖਕ ਦਾ ਸੱਦਾ"
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr "ਤੁਹਾਨੂੰ {addon_name}ਦੇ ਲੇਖਕ ਬਣਨ ਲਈ ਸੱਦਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।"
@@ -4603,17 +4594,16 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4676,10 +4666,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4770,6 +4756,11 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -6324,6 +6315,15 @@ msgstr "ਮੌਜੀਲਾ ਨੂੰ ਮੇਰੇ ਵਿਅਕਤੀਗਤ ਐ�
 
 msgid "User Notifications"
 msgstr "ਉਪਭੋਗੀ ਅਧਿਸੂਚਨਾਵਾਂ"
+
+msgid "An author has been added to your add-on"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਵਿੱਚ ਇੱਕ ਲੇਖਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ"
+
+msgid "An author role has been changed on your add-on"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਲੇਖਕ ਦੀ ਭੂਮਿਕਾ ਬਦਲੀ ਗਈ"
+
+msgid "An author has been removed from your add-on"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੋਂ ਇੱਕ ਲੇਖਕ ਨੂੰ ਹਟਾਇਆ ਗਿਆ"
 
 msgid "Ban"
 msgstr "ਪਾਬੰਦੀ"

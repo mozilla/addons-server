@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"POT-Creation-Date: 2022-05-18 08:08+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -240,10 +240,6 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "Zmieniono rolę autora twojego dodatku"
-
 msgid "Account not found."
 msgstr ""
 
@@ -253,13 +249,6 @@ msgstr "Autor może być wyszczególniony tylko raz."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
-
-msgid "An author has been added to your add-on"
-msgstr "Dodano autora do twojego dodatku"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "Dotacje dla dodatku {addon}."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -287,9 +276,6 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
-
-msgid "An author has been removed from your add-on"
-msgstr "sunięto autora twojego dodatku"
 
 msgid "My Add-ons"
 msgstr "Moje dodatki"
@@ -2331,6 +2317,10 @@ msgstr "Podgląd najnowszej wersji"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Nadal trwa generowanie podglądu — wróć później lub odśwież stronę."
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "Dotacje dla dodatku {addon}."
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr ""
@@ -4744,17 +4734,16 @@ msgid "See all extensions"
 msgstr "Przejrzyj wszystkie rozszerzenia"
 
 #. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "Skomentowano"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4818,10 +4807,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Przejrzyj wszystkie rozszerzenia"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4912,6 +4897,11 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Przejrzyj wszystkie rozszerzenia"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Skomentowano"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -6485,6 +6475,16 @@ msgstr "Mozilla chce skontaktować się ze mną w sprawie mojego dodatku"
 
 msgid "User Notifications"
 msgstr "Powiadomienia użytkownika"
+
+msgid "An author has been added to your add-on"
+msgstr "Dodano autora do twojego dodatku"
+
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "Zmieniono rolę autora twojego dodatku"
+
+msgid "An author has been removed from your add-on"
+msgstr "sunięto autora twojego dodatku"
 
 msgid "Ban"
 msgstr "Zablokuj"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"POT-Creation-Date: 2022-05-18 08:08+0000\n"
 "PO-Revision-Date: 2022-04-07 21:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -225,9 +225,6 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-msgid "An author role has been changed on your add-on"
-msgstr "Te shtesa juaj një autor pati ndryshim roli"
-
 msgid "Account not found."
 msgstr ""
 
@@ -236,13 +233,6 @@ msgstr "Një autor mund të jetë i pranishëm vetëm një herë."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Llogaria lypset të ketë një emër shfaqjeje, përpara se të mund të shtohet si një autor."
-
-msgid "An author has been added to your add-on"
-msgstr "Te shtesa juaj është shtuar një autor"
-
-# %1 is an add-on name.
-msgid "Author invitation for {addon_name}"
-msgstr "Ftesë autori për {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -270,9 +260,6 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
-
-msgid "An author has been removed from your add-on"
-msgstr "Prej shtesës suaj u hoq një autor"
 
 msgid "My Add-ons"
 msgstr "Shtesat e Mia"
@@ -2251,6 +2238,10 @@ msgstr "Paraparje e versionit të shfaqur"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Paraparja është duke u krijuar - rikthehuni më vonë ose rifreskoni faqen."
+
+# %1 is an add-on name.
+msgid "Author invitation for {addon_name}"
+msgstr "Ftesë autori për {addon_name}"
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr "Jeni ftuar të bëheni një autor i {addon_name}."
@@ -4610,18 +4601,17 @@ msgid "See all extensions"
 msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "Zgjerime në modë"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search"
-msgstr ""
+msgid "Translation tools"
+msgstr "Mjete përkthimi"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4675,10 +4665,6 @@ msgstr "Përgjegjës të fuqishëm fjalëkalimesh"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "Shihni më tepër zgjerime përgjegjës fjalëkalimesh të zgjedhura nga stafi"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Mjete përkthimi"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4756,6 +4742,11 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Shihni më tepër zgjerime transmetimi në shoqërorë të zgjedhur nga stafi"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Zgjerime në modë"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -6236,6 +6227,15 @@ msgstr "Mozilla ka nevojë të më kontaktojë rreth shtesës sime individuale"
 
 msgid "User Notifications"
 msgstr "Njoftime Përdoruesish"
+
+msgid "An author has been added to your add-on"
+msgstr "Te shtesa juaj është shtuar një autor"
+
+msgid "An author role has been changed on your add-on"
+msgstr "Te shtesa juaj një autor pati ndryshim roli"
+
+msgid "An author has been removed from your add-on"
+msgstr "Prej shtesës suaj u hoq një autor"
 
 msgid "Ban"
 msgstr "Dëboje"
