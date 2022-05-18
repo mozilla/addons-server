@@ -244,7 +244,7 @@ class TestApiAuthentication(TestCase):
         self.f.assert_not_called()
         assert self.request.user != api_user
         assert result.status_code == 401
-        assert result.data == {"detail": "Incorrect authentication credentials."}
+        assert result.data == {'detail': 'Incorrect authentication credentials.'}
 
     def test_auth_fail_session_id(self):
         self._test_auth_fail(self.session_id_auth_mock, SessionIDAuthentication)
