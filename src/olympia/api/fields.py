@@ -115,6 +115,9 @@ class TranslationSerializerField(fields.CharField):
         if trans_dict := getattr(obj, 'translations', None):
             translations = trans_dict.get(field.id, [])
             return {to_language(locale): value for (locale, value) in translations}
+        elif field is None:
+            # field is None when there is no translation in the default locale
+            return {}
         else:
             translations = field.__class__.objects.filter(
                 id=field.id, localized_string__isnull=False

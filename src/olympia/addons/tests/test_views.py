@@ -1464,6 +1464,17 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self.addon = Addon.objects.get(id=self.addon.id)
         assert self.addon.description is None
 
+        # And repeat the same call
+        response = patch({'en-US': None, 'fr': None})
+        assert response.status_code == 200, response.content
+
+        # and then set it back again
+        response = patch({'en-US': 'something'})
+        assert response.status_code == 200, response.content
+        assert response.data['description'] == {'en-US': 'something'}
+        self.addon = Addon.objects.get(id=self.addon.id)
+        assert self.addon.description == 'something'
+
     def test_not_authenticated(self):
         self.client.logout_api()
         response = self.client.patch(
