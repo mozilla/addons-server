@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"POT-Creation-Date: 2022-05-18 08:08+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -238,10 +238,6 @@ msgstr "Add-ons need at least one owner."
 msgid "Add-ons need at least one listed author."
 msgstr "Add-ons need at least one listed author."
 
-#, fuzzy
-msgid "An author role has been changed on your add-on"
-msgstr "An author has a role changed on your add-on"
-
 msgid "Account not found."
 msgstr "Account not found."
 
@@ -251,13 +247,6 @@ msgstr "An author can only be listed once."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "The account needs a display name before it can be added as an author."
-
-msgid "An author has been added to your add-on"
-msgstr "An author has been added to your add-on"
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "Contributions for {addon}."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr "This slug cannot be used. Please choose another."
@@ -285,9 +274,6 @@ msgstr "This field is required for add-ons with listed versions."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-
-msgid "An author has been removed from your add-on"
-msgstr "An author has been removed from your add-on"
 
 msgid "My Add-ons"
 msgstr "My Add-ons"
@@ -2423,6 +2409,10 @@ msgstr "View other versions"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Preview still being generated - come back later or refresh the page."
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "Contributions for {addon}."
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr "You have been invited to become an author of {addon_name}."
@@ -5000,18 +4990,18 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr "Extension starter pack"
+
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
 msgstr "Privacy & anti-tracking"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Creativity extensions"
-msgstr "Recommended ({0})"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search"
-msgstr "Image search"
+msgid "Translation tools"
+msgstr "Tab organizers and tools"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5075,11 +5065,6 @@ msgstr "Recommended password managers"
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Recommended Extensions program"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Translation tools"
-msgstr "Tab organizers and tools"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5171,6 +5156,11 @@ msgstr "Steam enhancers"
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Browse all add-ons"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Recommended ({0})"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -6813,6 +6803,16 @@ msgstr "Mozilla needs to contact me about my individual add-on"
 
 msgid "User Notifications"
 msgstr "User Notifications"
+
+msgid "An author has been added to your add-on"
+msgstr "An author has been added to your add-on"
+
+#, fuzzy
+msgid "An author role has been changed on your add-on"
+msgstr "An author has a role changed on your add-on"
+
+msgid "An author has been removed from your add-on"
+msgstr "An author has been removed from your add-on"
 
 #, fuzzy
 msgid "Ban"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"POT-Creation-Date: 2022-05-18 08:08+0000\n"
 "PO-Revision-Date: 2021-12-07 14:56+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -222,9 +222,6 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-msgid "An author role has been changed on your add-on"
-msgstr "A fost modificat rolul unui autor în suplimentul tău"
-
 msgid "Account not found."
 msgstr ""
 
@@ -233,12 +230,6 @@ msgstr "Autorii pot fi listați numai o dată."
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Contul are nevoie de o denumire de afișat înainte de a putea fi adăugat ca autor."
-
-msgid "An author has been added to your add-on"
-msgstr "A fost adăugat un autor la suplimentul tău"
-
-msgid "Author invitation for {addon_name}"
-msgstr "Invitație ca autor pentru {addon_name}"
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -266,9 +257,6 @@ msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
-
-msgid "An author has been removed from your add-on"
-msgstr "A fost eliminat un autor din suplimentul tău"
 
 msgid "My Add-ons"
 msgstr "Suplimentele mele"
@@ -2280,6 +2268,9 @@ msgstr "Previzualizarea versiunii listate"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr "Previzualizarea este încă în curs de generare - revino mai târziu sau reîmprospătează pagina."
+
+msgid "Author invitation for {addon_name}"
+msgstr "Invitație ca autor pentru {addon_name}"
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr "Ai fost invitat(ă) ca autor al {addon_name}."
@@ -4666,18 +4657,17 @@ msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "Teme recomandate"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search"
-msgstr ""
+msgid "Translation tools"
+msgstr "Instrumente de traducere"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4734,10 +4724,6 @@ msgstr "Managere de parole recomandate"
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Vezi mai multe extensii recomandate"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Instrumente de traducere"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4827,6 +4813,11 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Vezi mai multe extensii populare"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Teme recomandate"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -6347,6 +6338,15 @@ msgstr "Mozilla trebuie să mă contacteze cu privire la suplimentul meu individ
 
 msgid "User Notifications"
 msgstr "Notificări utilizatori"
+
+msgid "An author has been added to your add-on"
+msgstr "A fost adăugat un autor la suplimentul tău"
+
+msgid "An author role has been changed on your add-on"
+msgstr "A fost modificat rolul unui autor în suplimentul tău"
+
+msgid "An author has been removed from your add-on"
+msgstr "A fost eliminat un autor din suplimentul tău"
 
 msgid "Ban"
 msgstr "Interdicție"

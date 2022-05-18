@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"POT-Creation-Date: 2022-05-18 08:08+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,9 +223,6 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-msgid "An author role has been changed on your add-on"
-msgstr ""
-
 msgid "Account not found."
 msgstr ""
 
@@ -233,12 +230,6 @@ msgid "An author can only be present once."
 msgstr ""
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
-
-msgid "An author has been added to your add-on"
-msgstr ""
-
-msgid "Author invitation for {addon_name}"
 msgstr ""
 
 msgid "This slug cannot be used. Please choose another."
@@ -266,9 +257,6 @@ msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
-
-msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "My Add-ons"
@@ -2227,6 +2215,9 @@ msgid "Preview of listed version"
 msgstr ""
 
 msgid "Preview still being generated - come back later or refresh the page."
+msgstr ""
+
+msgid "Author invitation for {addon_name}"
 msgstr ""
 
 msgid "You have been invited to become an author of {addon_name}."
@@ -4494,17 +4485,16 @@ msgid "See all extensions"
 msgstr "તમામ એક્સટેન્શન્સને બ્રાઉઝ કરો"
 
 #. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "ટિપ્પણી કરી"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4566,10 +4556,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "તમામ એક્સટેન્શન્સને બ્રાઉઝ કરો"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4659,6 +4645,11 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "તમામ એક્સટેન્શન્સને બ્રાઉઝ કરો"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "ટિપ્પણી કરી"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -6140,6 +6131,15 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr ""
+
+msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "Ban"

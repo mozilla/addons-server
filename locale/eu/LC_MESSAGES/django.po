@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-12 12:09+0000\n"
+"POT-Creation-Date: 2022-05-18 08:08+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -237,9 +237,6 @@ msgstr ""
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-msgid "An author role has been changed on your add-on"
-msgstr ""
-
 msgid "Account not found."
 msgstr ""
 
@@ -248,13 +245,6 @@ msgstr ""
 
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
-
-msgid "An author has been added to your add-on"
-msgstr ""
-
-#, fuzzy
-msgid "Author invitation for {addon_name}"
-msgstr "{addon}: ekarpenak."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -281,9 +271,6 @@ msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
-
-msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "My Add-ons"
@@ -2347,6 +2334,10 @@ msgstr "Onartutako bertsioak"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
+
+#, fuzzy
+msgid "Author invitation for {addon_name}"
+msgstr "{addon}: ekarpenak."
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr ""
@@ -4718,17 +4709,16 @@ msgid "See all extensions"
 msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "Iruzkina"
-
-#. editorial content for the secondary hero shelves.
-msgid "Image search"
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4793,10 +4783,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Arakatu gehigarri guztiak"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4889,6 +4875,11 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Arakatu gehigarri guztiak"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Iruzkina"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -6491,6 +6482,15 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
+msgstr ""
+
+msgid "An author has been added to your add-on"
+msgstr ""
+
+msgid "An author role has been changed on your add-on"
+msgstr ""
+
+msgid "An author has been removed from your add-on"
 msgstr ""
 
 msgid "Ban"
