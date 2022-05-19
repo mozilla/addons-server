@@ -224,6 +224,18 @@ class TestTranslationSerializerField(TestCase):
             'translations are set.'
         ]
 
+    def test_set_value_on_existing_none(self):
+        field = self.field_class(required=False)
+        addon = addon_factory()
+        assert addon.description is None
+        field.bind('description', serializers.Serializer(instance=addon))
+        field.run_validation({'en-US': None, 'fr': None})
+        field.run_validation({'en-US': 'yes', 'fr': 'no'})
+        field.run_validation({'en-US': 'yes', 'fr': None})
+        with self.assertRaises(exceptions.ValidationError):
+            # tested in test_none_type_locale_is_not_allowed_when_other_locales_are_set
+            field.run_validation({'en-US': None, 'fr': 'óh!'})
+
     def test_get_attribute(self):
         field = self.field_class()
         self._test_expected_dict(field)
