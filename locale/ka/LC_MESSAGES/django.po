@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-19 00:52+0000\n"
+"PO-Revision-Date: 2022-05-19 19:52+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3886,7 +3886,7 @@ msgstr "ჩაასწორეთ ახალი ჩანართის გ
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr "შეინახეთ პაროლები უსაფრთხოდ და მიიღეთ მათზე წვდომა სხვადასხვა მოწყობილობებიდან."
+msgstr "შეინახეთ პაროლები უსაფრთხოდ და მიიღეთ მათთან წვდომა სხვადასხვა მოწყობილობებიდან."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
