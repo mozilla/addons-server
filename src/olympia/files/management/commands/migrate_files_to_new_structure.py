@@ -59,13 +59,13 @@ class Command(BaseCommand):
         old_dirpath = os.path.join(settings.ADDONS_PATH, dirname)
         new_dirpath = os.path.join(settings.ADDONS_PATH, id_to_path(dirname, breadth=2))
         os.makedirs(new_dirpath, exist_ok=True)
-        migrrated_count_in_dir = 0
+        migrated_count_in_dir = 0
         for entry in os.scandir(old_dirpath):
-            if entry.is_file():
+            if entry.is_file() and entry.name.endswith(('.zip', '.xpi')):
                 result = self.migrate_file(dirname, entry.name)
                 if result:
-                    migrrated_count_in_dir += 1
-        return migrrated_count_in_dir
+                    migrated_count_in_dir += 1
+        return migrated_count_in_dir
 
     def migrate_file(self, addon_pk, filename):
         filename_with_dirname = os.path.join(addon_pk, filename)
