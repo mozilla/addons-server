@@ -51,8 +51,10 @@ def files_upload_to_callback(instance, filename):
     called saved yet.
 
     For new uploads, the returned path is:
-    {directories}/addon_slug}-{version}.{extension}, where {directories} is
-    {addon_id last 2 digits}/{addon_id last 4 digits}/{addon_id}
+    {directories}/{addon_slug}-{version}.{extension}, where {directories} is
+    {addon_id last 2 digits}/{addon_id last 4 digits}/{addon_id}. We drop all
+    non-ascii chars from the slug, and if the result is empty, fall back on the
+    addon id.
 
     For older uploads, the returned path used to be in the format of
     {addon_id}/{addon_name}-{version}.{extension} (and even used to contain
@@ -70,7 +72,9 @@ def files_upload_to_callback(instance, filename):
     """
     # Start with the add-on slug, but make it go through django's slugify() to
     # drop unicode characters.
-    name = slugify(instance.addon.slug).replace('-', '_') or 'addon'
+    name = (
+        instance.addon.slug and slugify(instance.addon.slug).replace('-', '_')
+    ) or str(instance.addon.pk)
     parts = (name, instance.version.version)
     file_extension = '.xpi' if instance.is_signed else '.zip'
     return os.path.join(
