@@ -70,7 +70,9 @@ def files_upload_to_callback(instance, filename):
     """
     # Start with the add-on slug, but make it go through django's slugify() to
     # drop unicode characters.
-    name = slugify(instance.addon.slug).replace('-', '_') or 'addon'
+    name = (
+        slugify(instance.addon.slug or instance.addon.pk).replace('-', '_') or 'addon'
+    )
     parts = (name, instance.version.version)
     file_extension = '.xpi' if instance.is_signed else '.zip'
     return os.path.join(

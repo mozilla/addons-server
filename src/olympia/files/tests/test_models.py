@@ -216,6 +216,17 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             == '42/4242/4242/addon-0.1.7.xpi'
         )
 
+    def test_generate_filename_no_slug(self):
+        file_ = File()
+        file_.version = Version(version='0.1.7')
+        file_.version.compatible_apps = {amo.FIREFOX: None}
+        file_.version.addon = Addon(slug='', pk=4242)
+        file_.is_signed = True
+        assert (
+            file_._meta.get_field('file').upload_to(file_, None)
+            == '42/4242/4242/4242-0.1.7.xpi'
+        )
+
     def test_filename_new_file_deep_directory_structure(self):
         # New files should be stored in deep directory structure
         file_ = addon_factory(
