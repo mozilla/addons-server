@@ -213,7 +213,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_.is_signed = True
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '42/4242/4242/addon-0.1.7.xpi'
+            == '42/4242/4242/4242-0.1.7.xpi'
         )
 
     def test_generate_filename_no_slug(self):
