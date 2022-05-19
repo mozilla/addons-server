@@ -7,7 +7,8 @@ from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
 from django.http.request import QueryDict
-from django.utils.translation import gettext
+from django.utils.encoding import smart_str
+from django.utils.translation import gettext, gettext_lazy as _
 from django.urls import reverse
 
 from rest_framework import fields, exceptions, serializers
@@ -185,19 +186,22 @@ class ESLicenseNameSerializerField(LicenseNameSerializerField):
         return self.custom_translation_field.attach_translations(obj, data, field_name)
 
 
-class LicenseSlugSerializerField(serializers.SlugRelatedField):
+class LicenseSlugSerializerField(serializers.RelatedField):
+    default_error_messages = {
+        'does_not_exist': _('License with slug={value} does not exist.'),
+    }
+
     def __init__(self, **kwargs):
         super().__init__(
-            slug_field='builtin',
-            queryset=License.objects.exclude(builtin=License.OTHER),
-            **kwargs,
+            queryset=License.objects.exclude(builtin=License.OTHER), **kwargs
         )
 
     def to_internal_value(self, data):
-        license_ = LICENSES_BY_SLUG.get(data)
-        if not license_:
-            self.fail('invalid')
-        return super().to_internal_value(license_.builtin)
+        try:
+            license_ = LICENSES_BY_SLUG[data]
+            return self.get_queryset().get(builtin=license_.builtin)
+        except (License.DoesNotExist, KeyError, TypeError):
+            self.fail('does_not_exist', value=smart_str(data))
 
 
 class SourceFileField(serializers.FileField):

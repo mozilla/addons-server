@@ -50,8 +50,9 @@ class TestReverseChoiceField(TestCase):
         """Test that choices still matter, and you can't a) send the internal
         value or b) send an invalid value."""
         field = ReverseChoiceField(choices=(('internal', 'human'),))
-        with self.assertRaises(serializers.ValidationError):
-            field.to_internal_value('internal')
+        for invalid_value in ('internal', {}, [], None, 0):
+            with self.assertRaises(serializers.ValidationError):
+                field.to_internal_value(invalid_value)
 
 
 class TestTranslationSerializerField(TestCase):
