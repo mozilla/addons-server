@@ -1103,10 +1103,7 @@ def _update_version_in_json_manifest(content, new_version_number):
 
 
 def extract_translations(file_obj):
-    """Extract all translation messages from `file_obj`.
-
-    :param locale: if not `None` the list will be restricted only to `locale`.
-    """
+    """Extract all translation messages from `file_obj`."""
     xpi = get_filepath(file_obj)
 
     messages = {}
@@ -1176,7 +1173,7 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
         default_locale = find_language(default_locale)
 
     msgid = match.group('msgid')
-    default = {'message': message}
+    default = {'message': message} if default_locale else {'message': None}
 
     if locale in messages:
         message = messages[locale].get(msgid, default)

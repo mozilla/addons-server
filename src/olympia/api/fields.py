@@ -85,7 +85,7 @@ class TranslationSerializerField(fields.CharField):
 
     default_error_messages = {
         'unknown_locale': _('The language code "{lang_code}" is invalid.'),
-        'no_dict': _('You must provide an object of {lang-code:value}.'),
+        'no_dict': _('You must provide an object of {{lang-code:value}}.'),
         'default_locale_required': _(
             'A value in the default locale of "{lang_code}" is required.'
         ),
@@ -96,6 +96,9 @@ class TranslationSerializerField(fields.CharField):
     }
 
     def __init__(self, *args, **kwargs):
+        # If not overriden, the field defaults to allow_null=True, and allow_null=False
+        # for new serializer instances (i.e. parent.instance=None) for dict style data.
+        self.allow_null_kwarg = kwargs.get('allow_null')
         super().__init__(*args, **{'allow_null': True, **kwargs})
 
     @property
@@ -164,26 +167,24 @@ class TranslationSerializerField(fields.CharField):
 
     def run_validation(self, data=fields.empty):
         if data != fields.empty and not self.flat and not isinstance(data, dict):
-            raise exceptions.ValidationError(self.error_messages['no_dict'])
+            self.fail('no_dict')
 
         if isinstance(data, dict):
+            obj = getattr(self.parent, 'instance', None)
+            if not obj and self.allow_null_kwarg is None:
+                self.allow_null = False
+            if not obj and len(data) == 0 and self.required:
+                self.fail('required')
             for locale, value in data.items():
                 if locale.lower() not in settings.LANGUAGE_URL_MAP:
-                    raise exceptions.ValidationError(
-                        self.error_messages['unknown_locale'].format(lang_code=locale)
-                    )
+                    self.fail('unknown_locale', lang_code=locale)
                 data[locale] = super().run_validation(value)
 
-            obj = getattr(self.parent, 'instance', None)
             default = default_locale(obj)
             if default in data and data[default] is None:
                 # i.e. we're trying to delete the value in the default_locale
                 if self.required:
-                    raise exceptions.ValidationError(
-                        self.error_messages['default_locale_required'].format(
-                            lang_code=default
-                        )
-                    )
+                    self.fail('default_locale_required', lang_code=default)
                 else:
                     # even if not a required field, we need a default_locale value if
                     # there are other localizations.
@@ -199,11 +200,7 @@ class TranslationSerializerField(fields.CharField):
                         if value is not None and locale != default
                     )
                     if any_other_locales:
-                        raise exceptions.ValidationError(
-                            self.error_messages['default_locale'].format(
-                                lang_code=default
-                            )
-                        )
+                        self.fail('default_locale', lang_code=default)
 
             return data
 

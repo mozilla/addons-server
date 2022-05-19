@@ -933,7 +933,9 @@ class Addon(OnChangeMixin, ModelBase):
         return addon
 
     @classmethod
-    def resolve_webext_translations(cls, data, upload):
+    def resolve_webext_translations(
+        cls, data, upload, use_default_locale_fallback=True
+    ):
         """Resolve all possible translations from an add-on.
 
         This returns a modified `data` dictionary accordingly with proper
@@ -955,15 +957,26 @@ class Addon(OnChangeMixin, ModelBase):
             if isinstance(data[field], dict):
                 # if the field value is already a localized set of values don't override
                 continue
-            data[field] = {
-                locale: resolve_i18n_message(
-                    data[field],
-                    locale=locale,
-                    default_locale=default_locale,
-                    messages=messages,
-                )
-                for locale in messages
-            }
+            if messages:
+                data[field] = {
+                    locale: value
+                    for locale in messages
+                    if (
+                        value := resolve_i18n_message(
+                            data[field],
+                            locale=locale,
+                            default_locale=use_default_locale_fallback
+                            and default_locale,
+                            messages=messages,
+                        )
+                    )
+                    is not None
+                }
+            else:
+                # If we got a default_locale but no messages then the default_locale has
+                # been set via the serializer for a non-localized xpi, so format data
+                # correctly so the manifest values are assigned the correct locale.
+                data[field] = {default_locale: data[field]}
 
         return data
 

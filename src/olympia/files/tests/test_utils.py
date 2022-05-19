@@ -1050,11 +1050,17 @@ class TestResolvei18nMessage:
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
         assert result == 'bar'
 
-    def test_ignore_wrong_format(self):
+    def test_ignore_wrong_format_default(self):
+        messages = {'en-US': {'foo': 'bar'}}
+
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en', 'fr')
+        assert result == '__MSG_foo__'
+
+    def test_ignore_wrong_format_no_default(self):
         messages = {'en-US': {'foo': 'bar'}}
 
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
-        assert result == '__MSG_foo__'
+        assert result is None
 
 
 class TestGetBackgroundImages(TestCase):
