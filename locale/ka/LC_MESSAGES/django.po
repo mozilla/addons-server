@@ -217,7 +217,7 @@ msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "გამოქვეყნებული ვერსიები ვერ გადაიგზავნება, როცა დამატება გათიშულია."
 
 msgid "Add-ons need at least one owner."
-msgstr "დამატებას უნდა ჰყავდეს, სულ მცირე, ერთი მფლობელი მაინც."
+msgstr "დამატებას უნდა მიეთითოს, სულ მცირე, ერთი მფლობელი მაინც."
 
 msgid "Add-ons need at least one listed author."
 msgstr "დამატებას უნდა მიეთითოს, სულ მცირე, ერთი ავტორი მაინც."
