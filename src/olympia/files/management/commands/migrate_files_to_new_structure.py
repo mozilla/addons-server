@@ -61,7 +61,7 @@ class Command(BaseCommand):
         os.makedirs(new_dirpath, exist_ok=True)
         migrrated_count_in_dir = 0
         for entry in os.scandir(old_dirpath):
-            if entry.is_file():
+            if entry.is_file() and entry.name.endswith(('.zip', '.xpi')):
                 result = self.migrate_file(dirname, entry.name)
                 if result:
                     migrrated_count_in_dir += 1

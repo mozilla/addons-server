@@ -135,6 +135,28 @@ class TestMigrateFilesToNewStructure(TestCase):
         assert migrate_file_mock.call_count == 1
         assert migrate_file_mock.call_args[0] == ('4815162342', 'bar.xpi')
 
+    def test_migrate_directory_contents_ignore_non_zip_or_xpi(self):
+        addon_path = os.path.join(settings.ADDONS_PATH, '4815162342')
+        os.makedirs(addon_path)
+        for filename in ('bar.xpi', 'baz.zip', 'xyz.png'):
+            file_path = os.path.join(addon_path, filename)
+            with open(file_path, 'w') as f:
+                f.write('a')
+        with mock.patch.object(self.command, 'migrate_file') as migrate_file_mock:
+            self.command.migrate_directory_contents('4815162342')
+        assert migrate_file_mock.call_count == 2
+        expected = [
+            ('4815162342', 'bar.xpi'),
+            ('4815162342', 'baz.zip'),
+        ]
+        actual = sorted(
+            (
+                migrate_file_mock.call_args_list[0][0],
+                migrate_file_mock.call_args_list[1][0],
+            )
+        )
+        assert actual == expected
+
     def test_migrate_directory_contents_empty_dir(self):
         addon_path = os.path.join(settings.ADDONS_PATH, '4815162342')
         os.makedirs(addon_path)
