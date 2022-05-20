@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
 from rest_framework import exceptions as drf_exceptions
+from rest_framework.authentication import get_authorization_header
 from rest_framework.settings import api_settings
 
 import olympia.core.logger
@@ -191,11 +192,7 @@ def api_authentication(f):
     already have been attempted by this point so api auth will only be tried for
     anonymous (unauthenticated) requests."""
 
-    from olympia.api.authentication import (
-        get_authorization_header,
-        SessionIDAuthentication,
-        JWTKeyAuthentication,
-    )
+    from olympia.api.authentication import SessionIDAuthentication, JWTKeyAuthentication
 
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
