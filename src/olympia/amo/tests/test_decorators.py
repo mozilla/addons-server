@@ -193,7 +193,7 @@ class TestApiAuthentication(TestCase):
         )
         self.jwt_key_auth_mock.return_value = None
 
-    @mock.patch('olympia.api.authentication.get_authorization_header')
+    @mock.patch('olympia.amo.decorators.get_authorization_header')
     def test_already_authd(self, get_authorization_header_mock):
         self.request.user.is_anonymous = False
         self.function(self.request, 123)
