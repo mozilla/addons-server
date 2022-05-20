@@ -6,6 +6,9 @@ from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
+from rest_framework import exceptions as drf_exceptions
+from rest_framework.settings import api_settings
+
 import olympia.core.logger
 
 from . import models as context
@@ -188,10 +191,6 @@ def api_authentication(f):
     already have been attempted by this point so api auth will only be tried for
     anonymous (unauthenticated) requests."""
 
-    from rest_framework import exceptions as drf_exceptions
-    from rest_framework.settings import api_settings
-    from rest_framework.views import exception_handler as drf_exception_handler
-
     from olympia.api.authentication import (
         get_authorization_header,
         SessionIDAuthentication,
@@ -212,7 +211,7 @@ def api_authentication(f):
             except drf_exceptions.AuthenticationFailed as exc:
                 # We have to set some props DRF would usually set in the APIView
                 exc.auth_header = api_auth.authenticate_header(request)
-                response = drf_exception_handler(exc, None)
+                response = api_settings.EXCEPTION_HANDLER(exc, None)
                 response.accepted_renderer = api_settings.DEFAULT_RENDERER_CLASSES[0]()
                 response.accepted_media_type = response.accepted_renderer.media_type
                 response.renderer_context = {
