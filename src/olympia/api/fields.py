@@ -47,7 +47,7 @@ class ReverseChoiceField(fields.ChoiceField):
         """
         try:
             value = self.reversed_choices[value]
-        except KeyError:
+        except (KeyError, TypeError):
             self.fail('invalid_choice', input=value)
         return super().to_internal_value(value)
 

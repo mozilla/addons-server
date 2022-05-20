@@ -47,6 +47,7 @@ from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
 from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.constants.licenses import LICENSE_GPL3
 from olympia.constants.promoted import (
     LINE,
     SPOTLIGHT,
@@ -2587,6 +2588,22 @@ class VersionViewSetCreateUpdateMixin:
         self.addon.update(type=amo.ADDON_DICT)
         with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
             self.test_basic()
+
+    @override_settings(API_THROTTLING=False)
+    def test_cannot_specify_invalid_license_slug(self):
+        License.objects.create(builtin=LICENSE_GPL3.builtin)
+
+        for invalid_slug in ('made-up-slug', 0, {}, []):
+            response = self.request(license=invalid_slug)
+            assert response.status_code == 400
+            assert response.data == {
+                'license': [f'License with slug={invalid_slug} does not exist.']
+            }
+
+        assert (
+            self.request(license=LICENSE_GPL3.slug).status_code
+            == self.SUCCESS_STATUS_CODE
+        )
 
 
 class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, TestCase):
