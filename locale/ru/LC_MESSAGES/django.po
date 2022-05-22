@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-22 11:21+0000\n"
+"PO-Revision-Date: 2022-05-22 11:31+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1099,9 +1099,8 @@ msgstr "Устаревшая LWT"
 msgid "Theme (Static)"
 msgstr "Тема (статическая)"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Разрешения:"
+msgstr "Разрешение для сайтов"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -1133,9 +1132,8 @@ msgstr "Устаревшие LWT"
 msgid "Themes (Static)"
 msgstr "Темы (статические)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Разрешения:"
+msgstr "Разрешения для сайтов"
 
 msgid "Alerts & Updates"
 msgstr "Оповещения и обновления"
@@ -1739,9 +1737,9 @@ msgstr[2] "У вас может быть только {0} категорий."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Категория Разное не может быть скомбинирована с дополнительными категориями."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "Домен в URL должен быть одним из [%s], или поддоменом."
+msgstr "Домен URL должен быть одним из [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1854,13 +1852,11 @@ msgstr ""
 msgid "Display Name"
 msgstr "Отображаемое имя"
 
-#, fuzzy
 msgid "Origin"
-msgstr "Источник:"
+msgstr "Источник"
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Разрешения:"
+msgstr "Разрешения"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
 msgstr ""
@@ -1975,6 +1971,8 @@ msgstr "Ошибка при загрузке вашего предпросмот
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Последняя утвержденная версия этого дополнения %s не может быть удалена или отключена, поскольку предыдущая версия не была утверждена для продвижения %s. Пожалуйста, свяжитесь с администраторами "
+"AMO, если вам нужна помощь."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2462,6 +2460,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Белая доска является местом для предоставления информации, относящейся к вашему дополнению, независимо от версии, проверяющему. Используйте её, чтобы обеспечить тестирование дополнения, и для "
+"размещения любой дополнительной информации, которая может помочь. Эта доска может также редактироваться проверяющими."
 
 msgid "Add-on Media for {0}"
 msgstr "Медиа дополнения для {0}"
@@ -3585,6 +3585,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Последняя утвержденная версия этого дополнения %(promoted_group_name)s не может быть удалена или отключена, поскольку предыдущая версия не была утверждена для продвижения %(promoted_group_name)s. "
+"Пожалуйста, свяжитесь с администраторами AMO, если вам нужна помощь."
 
 msgid "Hide Add-on"
 msgstr "Скрыть дополнение"
@@ -3901,9 +3903,8 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Используйте жесты мышью для закрытия вкладок, перемещения по страницам и других действий."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
-msgstr "Наслаждайтесь эскизами веб-сайтов в результатах поиска."
+msgstr "Просматривайте эскизы веб-сайтов в результатах поиска."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4511,17 +4512,14 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Нашли в Интернете интересную картинку? Проследите ее происхождение с помощью TinEye."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "Читайте ePub-файлы прямо в Firefox — увеличивайте шрифт, размеры страницы и многое другое."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Настройте жесты мыши. Откройте для себя новый способ навигации с более чем 50 конфигурациями."
+msgstr "Настройте жесты мыши. Откройте для себя новые способы навигации с более чем 50 конфигурациями."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Используйте жесты мышью для закрытия вкладок, перемещения по страницам и других действий."
 
@@ -4607,13 +4605,12 @@ msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "Блокируйте рекламу и получайте улучшенную защиту от вредоносного ПО и рекламного отслеживания."
+msgstr "Блокируйте рекламу и получайте улучшенную защиту от вредоносных программ."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Удаляйте форматирование из текста скопированного в буфер обмена."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4633,7 +4630,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & anti-tracking"
-msgstr ""
+msgstr "Приватность и защита от отслеживания"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4746,28 +4743,24 @@ msgid "See more trending themes"
 msgstr "Больше набирающих популярность тем"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Популярные темы"
+msgstr "Самые высоко оцененные темы"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Больше набирающих популярность тем"
+msgstr "Больше самых высоко оцененных тем"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Популярные темы"
+msgstr "Популярные расширения"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Больше рекомендуемых расширений"
+msgstr "Больше набирающих популярность расширений"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Усилители Steam"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4775,9 +4768,8 @@ msgid "See more Steam staff picks"
 msgstr "Больше средств вещания в социальных сетях отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Популярные темы"
+msgstr "Расширения для творчества"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5020,7 +5012,7 @@ msgid "Has auto-approval disabled/delayed flag set"
 msgstr "Имеет установленный флаг отключения/задержки автоодобрения"
 
 msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
+msgstr "Находится в продвигаемой группе дополнений, требующей предварительной проверки"
 
 msgid "Delayed because it's the first listed version"
 msgstr "Отложено, так как это первая опубликованная версия"
@@ -5468,7 +5460,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Предупреждение!</strong> До вас другой пользователь просматривал эту страницу."
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Белая доска является местом для обмена информацией, относящейся к этому дополнению (независимо от версии), между разработчиком и проверяющим. Она видима и редактируема ими обоими."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr "Приватная белая доска используется для обмена информацией между проверяющими, вне зависимости от версии. Пожалуйста, будьте конкретны. Доска видна только проверяющим."
@@ -5825,11 +5817,11 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Не удалось найти дополнение с идентификатором \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Вы не владеете этим дополнением."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Вы не можете добавить к этому дополнению версии, которые имеют статус: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Версия не соответствует манифесту."
@@ -5845,13 +5837,13 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "Неверный идентификатор дополнения в URL или пакете"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Вы не можете добавлять опубликованные версии к дополнению, установленному в состояние «Невидимое»."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Вы не можете добавить опубликованную версию к этому дополнению через API из-за отсутствующих метаданных. Пожалуйста, отправьте её через сайт"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Нет выгруженного файла для этого дополнения и версии."
 
 msgid "Overview"
 msgstr "Обзор"
@@ -6196,9 +6188,8 @@ msgstr "Нет пользователя с таким почтовым адре�
 msgid "Firefox user {id}"
 msgstr "Пользователь Firefox {id}"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Введите корректную IPv6 или IPv6 CIDR подсеть, например, 127.0.0.1/28"
+msgstr "Введите корректную IPv4 или IPv6 подсеть CIDR, например, 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Несколько дополнений, нарушающих наши правила, были представлены из вашего местоположения. IP-адрес был заблокирован."
@@ -6283,6 +6274,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Следующий автор был добавлен в ваше дополнение %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
