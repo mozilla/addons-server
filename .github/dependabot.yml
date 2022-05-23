@@ -39,3 +39,6 @@ updates:
   - dependency-name: click
     versions:
     - ">= 9"
+  - dependency-name: google-cloud-bigquery
+    versions:
+    - ">= 3.0.0"
