@@ -1,13 +1,14 @@
 import os
 
+from unittest import mock
+
 from django.conf import settings
 from django.utils.encoding import smart_str
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.urls import reverse
 
-from unittest import mock
-
+from rest_framework import exceptions as drf_exceptions
 from pyquery import PyQuery
 
 from olympia import amo
@@ -15,7 +16,13 @@ from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonRegionalRestrictions
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import (
+    APITestClientJWT,
+    APITestClientSessionID,
+    TestCase,
+    addon_factory,
+    version_factory,
+)
 from olympia.files.models import File
 from olympia.users.models import UserProfile
 
@@ -192,6 +199,9 @@ class TestDownloadsBase(TestCase):
         assert response['Cache-Control'] == 'max-age=86400'
         assert response['Access-Control-Allow-Origin'] == '*'
         return response
+
+    def login(self, **kwargs):
+        return self.client.login(**kwargs)
 
 
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
@@ -396,12 +406,12 @@ class NonPublicFileDownloadsMixin:
 
     def test_file_disabled_unprivileged_404(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        assert self.client.login(email='regular@mozilla.com')
+        assert self.login(email='regular@mozilla.com')
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_ok_for_author(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        assert self.client.login(email='g@gmail.com')
+        assert self.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
@@ -412,7 +422,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_file_disabled_ok_for_reviewer(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.client.login(email='reviewer@mozilla.com')
+        self.login(email='reviewer@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
@@ -423,7 +433,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_file_disabled_ok_for_admin(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.client.login(email='admin@mozilla.com')
+        self.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
@@ -435,7 +445,7 @@ class NonPublicFileDownloadsMixin:
     def test_ok_for_author(self):
         # Addon should be disabled or the version unlisted at this point, so
         # it should be served internally.
-        assert self.client.login(email='g@gmail.com')
+        assert self.login(email='g@gmail.com')
         self.assert_served_internally(
             self.client.get(self.file_url),
         )
@@ -449,7 +459,7 @@ class NonPublicFileDownloadsMixin:
     def test_ok_for_admin(self):
         # Addon should be disabled or the version unlisted at this point, so
         # it should be served internally.
-        self.client.login(email='admin@mozilla.com')
+        self.login(email='admin@mozilla.com')
         self.assert_served_internally(
             self.client.get(self.file_url),
         )
@@ -462,7 +472,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_user_disabled_ok_for_author(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
-        assert self.client.login(email='g@gmail.com')
+        assert self.login(email='g@gmail.com')
         self.assert_served_internally(
             self.client.get(self.file_url),
         )
@@ -475,7 +485,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_user_disabled_ok_for_admin(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
-        self.client.login(email='admin@mozilla.com')
+        self.login(email='admin@mozilla.com')
         self.assert_served_internally(
             self.client.get(self.file_url),
         )
@@ -489,7 +499,7 @@ class NonPublicFileDownloadsMixin:
 
 class DownloadsNonDisabledMixin:
     def test_ok_for_author(self):
-        assert self.client.login(email='g@gmail.com')
+        assert self.login(email='g@gmail.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
@@ -499,7 +509,7 @@ class DownloadsNonDisabledMixin:
         self.assert_served_internally(self.client.get(url), attachment=True)
 
     def test_ok_for_admin(self):
-        self.client.login(email='admin@mozilla.com')
+        self.login(email='admin@mozilla.com')
         self.assert_served_internally(self.client.get(self.file_url))
 
         url = reverse(
@@ -509,10 +519,29 @@ class DownloadsNonDisabledMixin:
         self.assert_served_internally(self.client.get(url), attachment=True)
 
 
+class APILoginMixin:
+    def login(self, **kwargs):
+        try:
+            user = UserProfile.objects.get(**kwargs)
+            user.update(read_dev_agreement=self.days_ago(0))
+            self.client.login_api(user)
+        except UserProfile.DoesNotExist:
+            return False
+        return True
+
+
 class TestDisabledFileDownloads(NonPublicFileDownloadsMixin, TestDownloadsBase):
     def setUp(self):
         super().setUp()
         self.addon.update(status=amo.STATUS_DISABLED)
+
+
+class TestDisabledFileDownloadsSessionAPIAuth(APILoginMixin, TestDisabledFileDownloads):
+    client_class = APITestClientSessionID
+
+
+class TestDisabledFileDownloadsJWTAPIAuth(APILoginMixin, TestDisabledFileDownloads):
+    client_class = APITestClientJWT
 
 
 class TestUnlistedFileDownloads(
@@ -525,6 +554,14 @@ class TestUnlistedFileDownloads(
             UserProfile.objects.get(email='reviewer@mozilla.com'),
             'Addons:ReviewUnlisted',
         )
+
+
+class TestUnlistedFileDownloadsSessionAPIAuth(APILoginMixin, TestUnlistedFileDownloads):
+    client_class = APITestClientSessionID
+
+
+class TestUnlistedFileDownloadsJWTAPIAuth(APILoginMixin, TestUnlistedFileDownloads):
+    client_class = APITestClientJWT
 
 
 class TestUnlistedSitePermissionFileDownloads(
@@ -540,6 +577,18 @@ class TestUnlistedSitePermissionFileDownloads(
         )
 
 
+class TestUnlistedSitePermissionFileDownloadsSessionAPIAuth(
+    APILoginMixin, TestUnlistedSitePermissionFileDownloads
+):
+    client_class = APITestClientSessionID
+
+
+class TestUnlistedSitePermissionFileDownloadsJWTAPIAuth(
+    APILoginMixin, TestUnlistedSitePermissionFileDownloads
+):
+    client_class = APITestClientJWT
+
+
 class TestUnlistedDisabledSitePermissionFileDownloads(
     NonPublicFileDownloadsMixin, TestDownloadsBase
 ):
@@ -553,6 +602,18 @@ class TestUnlistedDisabledSitePermissionFileDownloads(
         )
 
 
+class TestUnlistedDisabledSitePermissionFileDownloadsSessionAPIAuth(
+    APILoginMixin, TestUnlistedDisabledSitePermissionFileDownloads
+):
+    client_class = APITestClientSessionID
+
+
+class TestUnlistedDisabledSitePermissionFileDownloadsJWTAPIAuth(
+    APILoginMixin, TestUnlistedDisabledSitePermissionFileDownloads
+):
+    client_class = APITestClientJWT
+
+
 class TestUnlistedDisabledAndDeletedFileDownloads(TestDisabledFileDownloads):
     # Like TestDownloadsUnlistedAddonDeleted above, nothing should change for
     # reviewers and admins if the add-on is deleted in addition to being
@@ -563,18 +624,30 @@ class TestUnlistedDisabledAndDeletedFileDownloads(TestDisabledFileDownloads):
 
     def test_user_disabled_ok_for_author(self):
         self.addon.update(disabled_by_user=True)
-        assert self.client.login(email='g@gmail.com')
+        assert self.login(email='g@gmail.com')
         assert self.client.get(self.file_url).status_code == 404
 
     def test_ok_for_author(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert self.client.login(email='g@gmail.com')
+        assert self.login(email='g@gmail.com')
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_ok_for_author(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        assert self.client.login(email='g@gmail.com')
+        assert self.login(email='g@gmail.com')
         assert self.client.get(self.file_url).status_code == 404
+
+
+class TestUnlistedDisabledAndDeletedFileDownloadsSessionAPIAuth(
+    APILoginMixin, TestUnlistedDisabledAndDeletedFileDownloads
+):
+    client_class = APITestClientSessionID
+
+
+class TestUnlistedDisabledAndDeletedFileDownloadsJWTAPIAuth(
+    APILoginMixin, TestUnlistedDisabledAndDeletedFileDownloads
+):
+    client_class = APITestClientJWT
 
 
 class TestUnlistedDisabledAndDeletedSitePermissionFileDownloads(
@@ -583,6 +656,51 @@ class TestUnlistedDisabledAndDeletedSitePermissionFileDownloads(
     def setUp(self):
         super().setUp()
         self.addon.update(type=amo.ADDON_SITE_PERMISSION)
+
+
+class TestUnlistedDisabledAndDeletedSitePermissionFileDownloadsSessionAPIAuth(
+    APILoginMixin, TestUnlistedDisabledAndDeletedSitePermissionFileDownloads
+):
+    client_class = APITestClientSessionID
+
+
+class TestUnlistedDisabledAndDeletedSitePermissionFileDownloadsJWTAPIAuth(
+    APILoginMixin, TestUnlistedDisabledAndDeletedSitePermissionFileDownloads
+):
+    client_class = APITestClientJWT
+
+
+class TestDownloadsAPIAuthFailure(APILoginMixin, TestDownloadsBase):
+    def setUp(self):
+        super().setUp()
+        self.session_id_auth_mock = self.patch(
+            'olympia.api.authentication.SessionIDAuthentication.authenticate'
+        )
+        self.session_id_auth_mock.return_value = None
+        self.jwt_key_auth_mock = self.patch(
+            'olympia.api.authentication.JWTKeyAuthentication.authenticate'
+        )
+        self.jwt_key_auth_mock.return_value = None
+
+    def _test_auth_fail(self, authenticate_mock, TestClientClass):
+        self.client = TestClientClass()
+        authenticate_mock.side_effect = drf_exceptions.AuthenticationFailed
+
+        assert self.login(email='g@gmail.com')
+
+        response = self.client.get(self.file_url)
+        assert response.status_code == 401
+        assert response.data == {'detail': 'Incorrect authentication credentials.'}
+
+    def test_auth_fail_session_id(self):
+        self._test_auth_fail(self.session_id_auth_mock, APITestClientSessionID)
+        # Once we have a failing auth the second auth class shouldn't be attempted
+        self.jwt_key_auth_mock.assert_not_called()
+
+    def test_auth_fail_jwt(self):
+        self._test_auth_fail(self.jwt_key_auth_mock, APITestClientJWT)
+        # SessionID auth should have been tried first and ignored
+        self.session_id_auth_mock.assert_called()
 
 
 class TestDownloadsLatest(TestDownloadsBase):

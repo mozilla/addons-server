@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from unittest import mock
 
 from django import http
 from django.contrib.auth.models import AnonymousUser
@@ -6,12 +7,14 @@ from django.core.exceptions import PermissionDenied
 from django.test import RequestFactory
 from django.utils.encoding import force_str
 
-from unittest import mock
 import pytest
+
+from rest_framework import exceptions as drf_exceptions
 
 from olympia import amo
 from olympia.amo import decorators
 from olympia.amo.tests import TestCase, fxa_login_link
+from olympia.api.authentication import JWTKeyAuthentication, SessionIDAuthentication
 from olympia.users.models import UserProfile
 
 
@@ -170,3 +173,85 @@ class TestPermissionRequired(TestCase):
         action_allowed_for.assert_called_with(
             self.request.user, amo.permissions.AclPermission('Admin', '%')
         )
+
+
+class TestApiAuthentication(TestCase):
+    def setUp(self):
+        super().setUp()
+        self.f = mock.Mock()
+        self.f.__name__ = 'function'
+        self.request = mock.Mock()
+        self.request.user = mock.Mock()
+        self.request.user.is_anonymous = True
+        self.function = decorators.api_authentication(self.f)
+        self.session_id_auth_mock = self.patch(
+            'olympia.api.authentication.SessionIDAuthentication.authenticate'
+        )
+        self.session_id_auth_mock.return_value = None
+        self.jwt_key_auth_mock = self.patch(
+            'olympia.api.authentication.JWTKeyAuthentication.authenticate'
+        )
+        self.jwt_key_auth_mock.return_value = None
+
+    @mock.patch('olympia.amo.decorators.get_authorization_header')
+    def test_already_authd(self, get_authorization_header_mock):
+        self.request.user.is_anonymous = False
+        self.function(self.request, 123)
+        self.f.assert_called_with(self.request, 123)
+        get_authorization_header_mock.assert_not_called()
+
+    def test_no_api_auth_header(self):
+        self.request.META = {}
+        self.function(self.request, 123)
+        self.f.assert_called_with(self.request, 123)
+        self.session_id_auth_mock.assert_not_called()
+        self.jwt_key_auth_mock.assert_not_called()
+
+    def test_no_compatible_auth_header(self):
+        self.request.META = {'HTTP_AUTHORIZATION': 'SomeOtherThing'}
+        self.function(self.request, 123)
+        self.f.assert_called_with(self.request, 123)
+        self.session_id_auth_mock.assert_called()
+        self.jwt_key_auth_mock.assert_called()
+
+    def _test_auth_success(self, authenticate_mock, AuthClass):
+        api_user = mock.Mock()
+        self.request.META = {
+            'HTTP_AUTHORIZATION': AuthClass().authenticate_header(self.request)
+        }
+        authenticate_mock.return_value = (api_user, None)
+        self.function(self.request, 123)
+        self.f.assert_called_with(self.request, 123)
+        assert self.request.user == api_user
+
+    def test_auth_success_session_id(self):
+        self._test_auth_success(self.session_id_auth_mock, SessionIDAuthentication)
+        # Once we have a passing auth the second auth class shouldn't be attempted
+        self.jwt_key_auth_mock.assert_not_called()
+
+    def test_auth_success_jwt(self):
+        self._test_auth_success(self.jwt_key_auth_mock, JWTKeyAuthentication)
+        # SessionID auth should have been tried first and ignored
+        self.session_id_auth_mock.assert_called()
+
+    def _test_auth_fail(self, authenticate_mock, AuthClass):
+        api_user = mock.Mock()
+        self.request.META = {
+            'HTTP_AUTHORIZATION': AuthClass().authenticate_header(self.request)
+        }
+        authenticate_mock.side_effect = drf_exceptions.AuthenticationFailed
+        result = self.function(self.request, 123)
+        self.f.assert_not_called()
+        assert self.request.user != api_user
+        assert result.status_code == 401
+        assert result.data == {'detail': 'Incorrect authentication credentials.'}
+
+    def test_auth_fail_session_id(self):
+        self._test_auth_fail(self.session_id_auth_mock, SessionIDAuthentication)
+        # Once we have a failing auth the second auth class shouldn't be attempted
+        self.jwt_key_auth_mock.assert_not_called()
+
+    def test_auth_fail_jwt(self):
+        self._test_auth_fail(self.jwt_key_auth_mock, JWTKeyAuthentication)
+        # SessionID auth should have been tried first and ignored
+        self.session_id_auth_mock.assert_called()

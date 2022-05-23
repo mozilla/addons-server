@@ -13,6 +13,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, AddonRegionalRestrictions
+from olympia.amo.decorators import api_authentication
 from olympia.amo.utils import HttpResponseXSendFile
 from olympia.files.models import File
 from olympia.versions.models import Version
@@ -62,6 +63,7 @@ def update_info_redirect(request, version_id):
 
 
 @non_atomic_requests
+@api_authentication
 def download_file(request, file_id, download_type=None, **kwargs):
     """
     Download the file identified by `file_id` parameter.

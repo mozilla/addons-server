@@ -6,6 +6,10 @@ from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 
+from rest_framework import exceptions as drf_exceptions
+from rest_framework.authentication import get_authorization_header
+from rest_framework.settings import api_settings
+
 import olympia.core.logger
 
 from . import models as context
@@ -179,5 +183,42 @@ def allow_cross_site_request(f):
         response['Access-Control-Allow-Origin'] = '*'
         response['Access-Control-Allow-Methods'] = 'GET'
         return response
+
+    return wrapper
+
+
+def api_authentication(f):
+    """Allows API authentication to be used by this django view. Standard auth will
+    already have been attempted by this point so api auth will only be tried for
+    anonymous (unauthenticated) requests."""
+
+    from olympia.api.authentication import SessionIDAuthentication, JWTKeyAuthentication
+
+    @functools.wraps(f)
+    def wrapper(request, *args, **kw):
+        if request.user.is_anonymous and get_authorization_header(request):
+            # if user isn't authenticated with standard auth, try the API auth methods
+            try:
+                for api_auth in (SessionIDAuthentication, JWTKeyAuthentication):
+                    api_auth = api_auth()
+                    result = api_auth.authenticate(request)
+                    if result:
+                        request.user, _ = result
+                        break
+            except drf_exceptions.AuthenticationFailed as exc:
+                # We have to set some props DRF would usually set in the APIView
+                exc.auth_header = api_auth.authenticate_header(request)
+                response = api_settings.EXCEPTION_HANDLER(exc, None)
+                response.accepted_renderer = api_settings.DEFAULT_RENDERER_CLASSES[0]()
+                response.accepted_media_type = response.accepted_renderer.media_type
+                response.renderer_context = {
+                    'view': None,
+                    'args': args,
+                    'kwargs': kw,
+                    'request': request,
+                }
+                return response
+
+        return f(request, *args, **kw)
 
     return wrapper
