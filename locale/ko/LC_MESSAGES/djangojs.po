@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:09+0000\n"
-"PO-Revision-Date: 2022-01-29 19:35+0000\n"
+"PO-Revision-Date: 2022-01-29 19:42+0000\n"
 "Last-Translator: Jiye Back <jiye080202@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -161,10 +161,10 @@ msgid "Daily Users"
 msgstr "일일 사용자 수"
 
 msgid "Amount, in USD"
-msgstr "금액 (미국 달러화)"
+msgstr "금액, USD"
 
 msgid "Number of Contributions"
-msgstr "기부 횟수"
+msgstr "기여 수"
 
 msgid "More Info..."
 msgstr "자세히 알아보기..."
