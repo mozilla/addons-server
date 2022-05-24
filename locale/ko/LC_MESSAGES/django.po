@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 05:40+0000\n"
+"PO-Revision-Date: 2022-05-24 05:45+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3066,28 +3066,26 @@ msgstr "마지막 업데이트:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr ""
+msgstr "코드 검토를 통과 한 후 이 사이트에 나열됩니다. 자동 업데이트는 이 사이트에서 처리합니다."
 
 msgid "Status:"
 msgstr "상태:"
 
-#, fuzzy
 msgid "Listed Version:"
-msgstr "최신 버전:"
+msgstr "나열된 버전:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr ""
+msgstr "이것은 누군가 addons.mozilla.org에서 설치 버튼을 클릭하면 설치될 부가 기능의 버전입니다."
 
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "다음 버전:"
+msgstr "다음 목록 버전:"
 
 #, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 않았습니다."
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "자체 배포를 위해 서명했습니다. 업데이트는 귀하가 처리합니다."
 
 msgid "Latest Version:"
 msgstr "최신 버전:"
@@ -3123,14 +3121,13 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "본 계약과 규칙 및 정책을 읽고 동의합니다"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "사용자가 부가 기능의 출처를 알 수 있도록 계정에 표시 이름 세트가 필요합니다. 아래에 하나를 입력하십시오."
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "또는 <a href=\"{0}\">취소</a>"
 
-#, fuzzy
 msgid "More information on Developer Accounts"
-msgstr "추가 정보 필요"
+msgstr "개발자 계정에 대한 추가 정보"
 
 msgid "Developer News"
 msgstr "개발자 뉴스"
@@ -3143,13 +3140,13 @@ msgid "Version Signature Pending"
 msgstr "버전 사인됨"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "완료되었습니다! ✨ 개발자 허브에서 서명 파일을 다운로드할 준비가 되면 이메일로 알려드립니다. 24시간이 지나도 이메일을 받지 못한 경우 스팸 폴더를 확인해 주세요."
 
 msgid "License"
 msgstr "라이선스"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "소스 코드에 부여한 권한에 적합한 라이선스를 선택하세요. 나열된 추가 기능에만 관련됩니다."
 
 msgid "Sort by:"
 msgstr "정렬 방식:"
@@ -3175,16 +3172,16 @@ msgid "End-User License Agreement"
 msgstr "최종 사용자 라이선스 동의서"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "EULA는 GPL 또는 MPL과 같은 코드 라이센스와 동일하지 않습니다. 나열된 추가 기능에만 관련됩니다."
 
 msgid "Privacy Policy"
 msgstr "개인정보처리방침"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "부가 기능이 사용자의 컴퓨터에서 데이터를 전송하는 경우 전송되는 데이터와 사용 방법을 설명하는 개인정보 보호 정책이 필요합니다. 나열된 추가 기능에만 관련됩니다."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "부가 기능에 알려진 라이브러리 이외의 압축, 연결 또는 기계 생성 코드가 포함 된 경우 검토를 위해 소스를 업로드하세요."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "README 파일, 혹은 검토자에게 알려줄 주의 사항으로 마지막 부가기능파일을 어떻게 복사하는지의 설명을 포함시켜 주십시오."
@@ -3193,54 +3190,48 @@ msgid "Read more about the source code review policy."
 msgstr "소스 코드 검토 정책에 대해 자세히 읽어보세요."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "동급 최고의 확장 및 테마 구축"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "확장 개발을 처음 접하든, 기존 확장이나 테마를 다듬거나 포팅하든, 맞춤형 엔터프라이즈 솔루션을 만들든 관계없이 지원할 리소스가 있습니다."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Visit the Firefox Extension Workshop"
-msgstr "확장 기능"
+msgstr "Firefox 확장 워크샵 방문"
 
 msgid "Connect with us"
-msgstr ""
+msgstr "연결"
 
 msgid "Twitter"
 msgstr "트위터"
 
-#, fuzzy
 msgid "For developers"
-msgstr "개발자"
+msgstr "개발자용"
 
 msgid "For end users"
-msgstr ""
+msgstr "최종 사용자 용"
 
 msgid "Matrix"
 msgstr "매트릭스"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "커뮤니티 및 지원"
+msgstr "커뮤니티 포럼"
 
-#, fuzzy
 msgid "Extensions Developers Newsletter"
-msgstr "확장 기능 개발"
+msgstr "확장 프로그램 개발자 뉴스레터"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Firefox 확장 기능 개발자를 위한 최신 뉴스와 이벤트를 확인하세요."
 
-#, fuzzy
 msgid "Email Address"
 msgstr "이메일 주소"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "이 %(link_open)s개인정보 보호정책%(link_close)s에 설명 된대로 Mozilla에서 내 정보를 처리하는 데 동의합니다."
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "로그아웃"
+msgstr "가입하기"
 
 msgid "Thanks!"
 msgstr "감사합니다!"
