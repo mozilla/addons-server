@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 05:31+0000\n"
+"PO-Revision-Date: 2022-05-24 05:40+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -2806,29 +2806,29 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "소스 코드를 제출해야합니까?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Mozilla의 부가 기능 리뷰어는 당신의 확장 기능의 코드를 읽고 재현할 수 있어야 합니다. 그렇지 않은 경우 확장 기능은 거부될 수 있습니다."
 
 #, fuzzy
 msgid "Do you use any of the following in your extension?"
 msgstr "다음 중 하나라도 사용합니까?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "코드 생성기 또는 압축기"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "<span class=\"tech-emphasis\">webpack</span>과 같이 여러 파일을 단일 파일로 결합하는 도구"
 
 msgid "Web template engines, both for HTML and CSS"
 msgstr "HTML 및 CSS 용 웹 템플릿 엔진"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr ""
+msgstr "코드나 파일을 가져와 처리를 하고 확장에 포함할 코드나 파일을 생성하는 기타 도구"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "소스 코드를 제출할 필요가 없으며 다음 단계를 수행할 준비가 되었습니다."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "확장 기능의 소스 코드를 제출해야 합니다."
 
 #, fuzzy
 msgid "Your source code must include:"
@@ -2838,10 +2838,10 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "필요한 모든 기술 단계를 실행하는 빌드 스크립트입니다."
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "운영 체제 및 빌드 환경 요구 사항입니다."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
@@ -2851,7 +2851,7 @@ msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "자세한 내용은 Firefox 확장 기능 워크샵에서 <a %(a_attrs)s>소스 코드 제출</a>을 읽어보시기 바랍니다."
 
 msgid "Upload source code:"
 msgstr "소스 코드 업로드:"
@@ -2896,7 +2896,7 @@ msgid "Theme generator"
 msgstr "테마 생성기"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "경고: 가장 최신 버전의 매니페스트에서 사용된 다음 매니페스트 속성은 이 마법사에서 지원되지 않으며 무시됩니다:"
 
 msgid "Theme name"
 msgstr "테마 이름"
@@ -2945,10 +2945,10 @@ msgstr "API 자격 증명"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "자세한 안내는 <a href=\"%(docs_url)s\">API 문서</a>를 참조하세요."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "API 키를 비밀로 유지하고 Mozilla 기여자를 포함하여 <strong>누구와도 공유하지 마세요</strong>."
 
 msgid "JWT issuer"
 msgstr "JWT 발급자"
@@ -2960,14 +2960,14 @@ msgstr "JWT 시크릿"
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "API 요청을하려면 <a href=\"%(jwt_url)s\">JSON 웹 토큰(JWT)</a>을 인증 헤더로 보냅니다. <a href=\"%(docs_url)s\">API 문서</a>에 설명 된대로 모든 요청에 대해 JWT를 생성해야합니다."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "<strong>%(name)s</strong> 사용자에 대한 API 자격 증명을 생성하려면 아래 확인 버튼을 클릭하세요."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "확인 링크가 귀하의 이메일 주소로 전송됩니다. 확인 후 이 페이지에서 API 키를 찾을 수 있습니다."
 
 msgid "You don't have any API credentials."
 msgstr "API 자격 증명이 없습니다."
@@ -3054,7 +3054,7 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr "부가 기능이 사이트 관리자에의해 비활성화되어 갤러리에 더이상 노출되지 않습니다. 문의 사항이 있으시면, amo-admins@mozilla.com 으로 이메일을 보내 주세요."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "부가 기능은 검색 결과에 포함되지 않으며 목록 페이지에 비활성화된 것으로 표시됩니다. 이 상태에서는 목록에 대한 새 버전 제출이 허용되지 않습니다."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
