@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 05:45+0000\n"
+"PO-Revision-Date: 2022-05-24 08:21+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3237,17 +3237,16 @@ msgid "Thanks!"
 msgstr "감사합니다!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Mozilla 관련 뉴스레터 구독 인증을 해본 적이 없으면 따로 인증이 필요할 수 있습니다. 메일함을 확인해보시고 메일이 없으면 혹시 스팸 필터에 걸린 메일이 없는지도 살펴보세요."
 
 msgid "Resources"
 msgstr "자원"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: 빌드 및 테스트 확장"
 
 msgid "Promote"
 msgstr "승격"
