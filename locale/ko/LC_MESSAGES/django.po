@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 02:30+0000\n"
+"PO-Revision-Date: 2022-05-24 02:38+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -2394,7 +2394,7 @@ msgstr "웹사이트"
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
-msgstr ""
+msgstr "부가 기능에 지원 웹 사이트 또는 포럼이 있는 경우 여기에 주소를 입력하십시오. 웹 사이트가 다른 언어로 현지화 된 경우 이 필드의 여러 번역을 추가 할 수 있습니다. 나열된 추가 기능에만 관련됩니다."
 
 msgid "Images"
 msgstr "이미지"
@@ -2412,7 +2412,7 @@ msgstr "개발자 코멘트"
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "부가 기능의 요약이나 설명에 부합하지는 않지만 최종 사용자가 알고 싶어하는 모든 정보 입니다. 일반적인 사용에는 알려진 주요 버그 목록, 버그보고 방법에 대한 정보, 새 버전의 예상 출시 날짜 등이 포함됩니다. 나열된 부가 기능에만 해당됩니다."
 
 msgid "Universally unique identifier"
 msgstr "일반 고유 식별자"
@@ -2440,7 +2440,7 @@ msgstr "부가 기능 아이콘"
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
-msgstr ""
+msgstr "부가 기능의 아이콘을 업로드하거나 제공되는 것 중 하나를 선택하십시오. 아이콘은 부가 기능이 있는 거의 모든 곳에 표시됩니다. 업로드 된 이미지는 .png, .jpg 이미지 유형 중 하나여야 합니다. 나열된 부가 기능에만 관련됩니다."
 
 msgid "Select an icon for your add-on:"
 msgstr "부가 기능에 들어갈 아이콘을 선택하세요:"
@@ -2449,9 +2449,8 @@ msgstr "부가 기능에 들어갈 아이콘을 선택하세요:"
 msgid "32x32px"
 msgstr "32x32px"
 
-#, fuzzy
 msgid "Used in listings of add-ons, like search results."
-msgstr "검색 결과나 추천 부가 기능과 같은 부가 기능 목록에 쓰입니다."
+msgstr "검색 결과와 같은 추가 기능 목록에 사용됩니다."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2464,9 +2463,8 @@ msgstr "부가 기능 상세 정보 페이지에 쓰입니다."
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "부가 기능 상세 정보 페이지에 쓰입니다."
+msgstr "향후 부가 기능 세부 정보 페이지의 표준이 될 것입니다."
 
 msgid "Upload a Custom Icon..."
 msgstr "사용자 지정 아이콘 업로드..."
@@ -2477,9 +2475,8 @@ msgstr "PNG와 JPG를 지원합니다."
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "아이콘은 정사각형이어야하고 최소 크기가 128x128 픽셀이어야 합니다."
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG와 JPG 형식을 지원합니다. 64x64 픽셀보다 큰 아이콘은 크기가 재조정 됩니다."
+msgstr "아이콘이 더 크면 128x128 픽셀로 크기가 조정됩니다."
 
 msgid "Screenshots"
 msgstr "스크린샷"
@@ -2494,13 +2491,13 @@ msgid "Add a Screenshot..."
 msgstr "스크린샷 추가...."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG와 JPG가 지원되고 PNG가 권장됩니다. 스크린 샷의 최대 권장 크기는 2400x1800 픽셀입니다."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "최소 크기는 1000x750이고 4:3 비율이 필요합니다."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "제품 페이지에 스크린 샷이 있으면 설치 가능성이 크게 높아집니다."
 
 msgid "Continue"
 msgstr "계속"
@@ -2527,22 +2524,20 @@ msgid "The licensor permits others to distribute derivativeworks only under the 
 msgstr "라이선스 보유자가 동일 라이선스 내지는 라이선스 보유자의 저작물을 관장하는 곳과 호환되는 라이선스가 적용될 때에 한해서 다른 사람이 파생 저작물을 배포할 수 있도록 허용합니다."
 
 # 87%
-#, fuzzy
 msgid "Your Add-on will be released under the following license:"
-msgstr "테마가 다음의 라이선스 하에 공개됩니다:"
+msgstr "부가 기능은 다음 라이선스에 따라 출시됩니다:"
 
 msgid "Select a different license."
 msgstr "다른 라이선스를 선택하세요."
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "추가 정보 필요"
+msgstr "크리에이티브 커먼즈 라이선스에 대한 추가 정보"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "부가 기능은 현재 \"보이지 않음\"으로 설정되어 있습니다."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "이 상태에서는 \"자체\"가 사용 가능한 유일한 배포 방법입니다."
 
 msgid "General Tests"
 msgstr "일반 테스트"
@@ -2562,28 +2557,28 @@ msgid "Compatibility Tests"
 msgstr "호환성 테스트"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "자동 서명에 필요하지 않은 메시지 숨기기"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "이전 버전에 존재하고 무시된 메시지 숨기기"
 
 msgid "Top"
 msgstr "최상위"
 
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
+msgstr "부가기능을 삭제하면 부가기능을 위해 제출했던 모든 버전과 파일이 나열 여부와 상관없이 영구적으로 삭제됩니다."
 
 msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
+msgstr "부가 기능 ID는 계속 귀하의 계정과 연결되므로, 다른 사용자가 동일한 ID를 사용하여 버전을 제출할 수 없습니다."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "부가 기능 ID는 복원할 수 없으며 제출에 영원히 사용할 수 없습니다."
 
 msgid "Delete Add-on"
 msgstr "부가 기능 삭제"
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "결정을 확인하려면 다음 텍스트를 입력하십시오: {slug}"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "부가 기능을 삭제하려는 이유를 설명해 주세요:"
