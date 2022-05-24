@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 08:00+0000\n"
+"PO-Revision-Date: 2022-05-24 14:29+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -165,7 +165,7 @@ msgid "Invalid category name."
 msgstr ""
 
 msgid "Invalid app name."
-msgstr ""
+msgstr "Virheellinen sovelluksen nimi."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr ""
@@ -174,7 +174,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URL-osoitteiden alussa on oltava https://."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
@@ -186,7 +186,7 @@ msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Virheellinen arvo"
 
 msgid "Invalid app specified"
 msgstr ""
@@ -233,7 +233,7 @@ msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "Account not found."
-msgstr ""
+msgstr "Tiliä ei löydy."
 
 msgid "An author can only be present once."
 msgstr ""
@@ -469,7 +469,7 @@ msgid "Unavailable for legal reasons."
 msgstr "Ei saatavilla lainsäädännöllisistä syistä."
 
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Kielikoodi \"{lang_code}\" on virheellinen."
 
 msgid "You must provide an object of {lang-code:value}."
 msgstr ""
@@ -588,7 +588,7 @@ msgid "Save"
 msgstr "Tallenna"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Tallenna ja lisää enemmän"
 
 msgid "Delete"
 msgstr "Poista"
@@ -5275,10 +5275,10 @@ msgid "Unlisted Add-ons Pending Manual Approval"
 msgstr "Poista käytöstä automaattinen hyväksyminen"
 
 msgid "Announcement"
-msgstr ""
+msgstr "Ilmoitus"
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "Päivitä päivän viesti"
 
 # 100%
 #, fuzzy
