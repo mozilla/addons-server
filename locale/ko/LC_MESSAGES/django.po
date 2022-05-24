@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 08:31+0000\n"
+"PO-Revision-Date: 2022-05-24 08:40+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3350,7 +3350,7 @@ msgid "Ready to submit or manage your extension?"
 msgstr "확장 기능을 제출하거나 관리할 준비가 되었나요?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "확장 프로그램 및 테마를 제출하거나 관리하려면 개발자 허브에 로그인하세요."
 
 msgid "Register for a developer account or log in to the Developer Hub"
 msgstr "개발자 계정 등록 또는 개발자 허브 로그인"
@@ -3579,26 +3579,26 @@ msgstr "열린 탭이 많습니까? 깔끔한 사이드바에 정리하세요."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
-msgstr ""
+msgstr "Facebook 추적을 중지하십시오. Facebook ID를 별도의 “컨테이너”로 분리하여 Facebook이 웹에서 사용자를 추적하지 못하도록 합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "모든 웹 페이지에서 텍스트를 강조 표시하여 엔진 배열에서 구문을 검색하여 검색을 단순화합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Instant weather updates from around the world."
-msgstr ""
+msgstr "전 세계의 즉각적인 날씨 업데이트"
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "새 탭마다 표시되는 페이지를 선택하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "웹에서 흥미로운 사진을 보고 그것에 대해 더 알고 싶으십니까? 이 이미지 검색 도구를 사용해보세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3607,11 +3607,11 @@ msgstr "쉽게 동영상을 다운로드하세요. YouTube, Facebook, Vimeo, Twi
 
 #. editorial content for the discovery pane.
 msgid "Up your emoji game. Dozens of amazing emojis for every occasion—always just a click away."
-msgstr ""
+msgstr "이모티콘 게임을 즐겨보세요. 모든 경우에 사용할 수 있는 수십 개의 놀라운 이모티콘이 항상 클릭 한 번으로 제공됩니다."
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "암호 관리가 간소화되었습니다. 모든 로그인을 하나의 비밀번호로 모든 기기에서 동기화하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3622,11 +3622,11 @@ msgstr "가볍고 효과적인 광고 차단기입니다. uBlock Origin은 메�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "시네마 모드, 광고 차단, 자동 재생 제어 등과 같은 새로운 YouTube 기능 모음을 즐겨보세요."
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "텍스트를 강조 표시하고 마우스 오른쪽 버튼을 클릭하여 이미지 검색을 빠르게 수행합니다."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -3635,89 +3635,89 @@ msgstr "웹 브라우저에 사고싶은 것들을 저장해 놓을 수 있습�
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "검색 결과에 브리태니커 정보를 자동으로 추가합니다."
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "성가신 광고와 특수 효과가 YouTube에 표시되지 않도록 차단하세요."
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "뉴스 기사, 스토리, 블로그 게시물 등을 Kindle로 보냅니다."
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "URL 패턴에 따라 색상을 그룹화하여 탭을 구성합니다."
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "악성 웹 사이트가 사용자의 컴퓨터를 사용하여 암호 화폐를 채굴하지 못하도록합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "소셜 미디어, 이메일, 문서 등 웹에서 작성하는 모든 곳에서 문법 도움을 받으세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Firefox의 상태 표시 줄에 현재 전 세계 시간을 표시합니다."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "쉬운 번역. 웹 페이지의 텍스트를 강조 표시하거나 전체 페이지를 선택하여 즉시 번역하세요."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "학문적 지혜를 탭하십시오. 천만 개 이상의 연구 논문에 무료로 액세스하세요."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures. Discover a new way to navigate with 50+ configurations."
-msgstr ""
+msgstr "마우스 제스처를 사용자 지정합니다. 50개 이상의 구성으로 탐색하는 새로운 방법을 찾아보세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "집중된 시청 경험을 위해 비디오 플레이어 주변의 페이지를 어둡게합니다."
 
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia는 검색 수익의 80%를 전 세계의 나무 심기 프로그램에 투자합니다. Ecosia를 Firefox 검색에 바로 적용하세요."
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "찾고있는 페이지를 사용할 수 없습니까? 보관/캐시 된 버전을 검색합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Hover over an image to magnify it."
-msgstr ""
+msgstr "확대하려면 이미지 위로 마우스를 가져갑니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "탭을 닫은 후 자동으로 쿠키를 삭제합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "페이지의 텍스트 크기를 조정하거나 페이지 전체를 확대하는 간단한 방법입니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "트태커의 추적을 중지하고 이에 대해 자세히 알아보세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "깨끗한 디지털 흔적을 남기십시오. Firefox가 쿠키 및 로컬 저장소와 같은 웹 사이트 데이터를 잊어 버리도록 하지만 선택한 도메인에 대해서만 가능합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "같은 것을 반복해서 쓸 필요가 없습니다. 자주 입력하는 텍스트를 저장하여 언제든지 붙여 넣습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
