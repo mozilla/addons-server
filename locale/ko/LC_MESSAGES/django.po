@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 08:40+0000\n"
+"PO-Revision-Date: 2022-05-24 08:45+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3722,21 +3722,21 @@ msgstr "같은 것을 반복해서 쓸 필요가 없습니다. 자주 입력하�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "웹 기반 받은 편지함에서 광고를 제거하여 더 많은 화면 공간을 확보하세요."
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "깔끔한 사이드 바에서 열린 탭을 관리하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "교활한 추적기 및 제한을 피하세요. 브라우저와 운영 체제의 ID를 숨겨 탐색을 위장하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "설정 한 시간 간격에 따라 탭을 자동으로 다시 로드합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3746,53 +3746,53 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "웹을 탐색 할 때 추가 단계의 추적 보호를 사용하세요."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Firefox에서 바로 ePub 파일을 읽어보세요. 글꼴 크기, 페이지 크기 등을 늘릴 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "YouTube 동영상을 기본적으로 최고 품질로 재생하고 특수 효과를 끄는 등의 작업을 할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr ""
+msgstr "추적기를 추적하십시오. 클릭 한 번으로 누가 나를 추적하는지 엿볼 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "프록시 서버를 변경하고 자체 정의된 프록시 설정을 통해 웹 서핑을 합니다."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr ""
+msgstr "비디오 속도 등을 조정하여 시청 경험을 향상 시키십시오."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr ""
+msgstr "HTTPS를 지원하는 모든 사이트에 암호화된 보안을 추가합니다. 안전하게 탐색하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "결제시 장바구니에 자동으로 적용되는 최고의 쿠폰을 받으세요."
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "태그 등을 사용하여 Reddit을 서핑하는 방식을 변경하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "웹 페이지 스크린 샷을 찍고, 수정, 공유하세요."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "우수한 Windows 전용 다운로더 도구입니다."
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "누가 나를 추적하고 있고 내 정보가 공유되는지를 확인하세요."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
