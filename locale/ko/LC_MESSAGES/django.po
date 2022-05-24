@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 08:21+0000\n"
+"PO-Revision-Date: 2022-05-24 08:31+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3264,7 +3264,7 @@ msgid "Review Add-ons"
 msgstr "부가 기능 검토"
 
 msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjoy great perks too!"
-msgstr ""
+msgstr "자원 검토자는 부가 기능을 안전하고 안정적으로 사용하도록 도와줍니다. 그들도 큰 혜택을 누립니다!"
 
 msgid "Join us!"
 msgstr "가입하기!"
@@ -3273,17 +3273,16 @@ msgid "Write Some Code"
 msgstr "코드 작성"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr ""
+msgstr "코딩 기술로 부가 기능을 개선하는 데 도움을 주세요."
 
 msgid "Get started"
 msgstr "시작하기"
 
-#, fuzzy
 msgid "More Ways to Participate"
-msgstr "그 외 개인화 방법"
+msgstr "더 많은 참여 방법"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr ""
+msgstr "Firefox를 최고의 사용자 정의 브라우저로 유지하는데에 코딩 기술은 필요하지 않습니다!"
 
 msgid "See how"
 msgstr "방법보기"
@@ -3292,22 +3291,20 @@ msgid "Get involved"
 msgstr "참여하기"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "수천 명의 개발자와 연결하고 확장 생태계에 기여할 수있는 더 많은 방법을 찾아보세요."
 
-#, fuzzy
 msgid "Learn more about the developer community"
-msgstr "소스 코드 검토 정책에 대해 자세히 읽어보세요."
+msgstr "개발자 커뮤니티에 대해 자세히 알아보기"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "코드 검토를 통과 한 후 이 사이트에 등록됩니다. 자동 업데이트는 이 사이트에서 처리합니다."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "View All Submissions"
-msgstr "모든 버전 보기"
+msgstr "모든 제출물 보기"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "여기에서 부가 기능과 테마를 보고 관리 할 수 있습니다. 첫 번째 부가 기능을 게시하려면 \"첫 번째 부가 기능 제출\" 또는 \"첫 번째 테마 제출\"을 클릭하십시오."
 
 msgid "Submit Your First Add-on"
 msgstr "첫 번째 부가 기능 제출"
@@ -3350,7 +3347,7 @@ msgid "Learn how to make an extension"
 msgstr "부가 기능에 대해 더 알아보기"
 
 msgid "Ready to submit or manage your extension?"
-msgstr ""
+msgstr "확장 기능을 제출하거나 관리할 준비가 되었나요?"
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr ""
@@ -3431,7 +3428,7 @@ msgid "Loading Review History..."
 msgstr "검토 기록 읽는중..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "리뷰 메모를 가져오는 중에 문제가 발생했습니다."
 
 #, fuzzy
 msgid "Load older..."
@@ -3452,11 +3449,11 @@ msgid "Listing visibility"
 msgstr "부가 기능 변경 내역"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}보임:{label_close} {site_url}의 모든 사용자에게 표시되며 검색 결과 및 제품 페이지에 포함됩니다."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr ""
+msgstr "{label_open}보이지 않음:{label_close} 검색 결과에 포함되지 않으며 제품 페이지에 비활성화 된 것으로 표시됩니다. 이 상태에서는 제품에 대한 새 버전 제출이 허용되지 않습니다."
 
 #, fuzzy
 msgid "Listed versions"
@@ -3496,7 +3493,7 @@ msgstr "버전 {version} 삭제"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
-msgstr ""
+msgstr "현재 버전의 부가 기능을 삭제하려고합니다. 이 것이 부가 기능의 유일한 공개 버전인 경우 부가 기능 상태가 변경되거나 목록이 공개되지 않을 수 있습니다."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "삭제하면 이 버전은 다시는 복구할 수 없습니다:"
@@ -3552,32 +3549,32 @@ msgstr[0] "경고 {0}개"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "웹에서 사용자를 따르는 보이지 않는 추적기와 스파이 광고를 차단합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "사용자 정의 가능한 배경, 지역 날씨 정보 등이 포함된 아름다운 새 페이지를 즐기십시오."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "텍스트를 강조 표시하고 마우스 오른쪽 버튼을 클릭하면 즉시 번역 할 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "엔진 배열에서 역 이미지 검색을 수행합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr ""
+msgstr "광고 차단 및 개인 정보 보호. 간단한 설정을 통해 표시되는 광고와 인터넷에서 추적되는 방식을 제어 할 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "열린 탭이 많습니까? 깔끔한 사이드바에 정리하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
