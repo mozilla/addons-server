@@ -269,6 +269,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT',
             guid=guid,
             version='0.0.1',
+            # Note: this extension is NOT signed but it contains a
+            # `META-INF/manifest.mf` file to force addons-linter to NOT emit
+            # errors related to this extension being privileged. This allows
+            # the test case to continue to work as expected.
             filename='src/olympia/files/fixtures/files/'
             'experiment_inside_webextension.xpi',
         )
