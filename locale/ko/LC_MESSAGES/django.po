@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 01:23+0000\n"
+"PO-Revision-Date: 2022-05-24 01:49+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -2031,7 +2031,7 @@ msgid "You must provide further details to proceed."
 msgstr "계속하려면 추가 세부 사항을 제공해야합니다."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "귀하의 이전 자격 증명이 철회되었으며 더 이상 유효하지 않습니다."
 
 msgid "New API key created"
 msgstr "새 API 키가 생성됨"
@@ -2060,9 +2060,8 @@ msgid "more add-ons..."
 msgstr "그밖의 부가 기능..."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "확장 기능"
+msgstr "확장 기능 워크샵"
 
 msgid "Documentation"
 msgstr "문서 자료"
@@ -2235,17 +2234,16 @@ msgid "Preview of listed version"
 msgstr "다른 버전 보기"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "아직 생성중인 미리보기 - 나중에 다시 방문하거나 페이지를 새로 고침 하세요."
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "{addon}에 기부금이 들어왔습니다."
+msgstr "{addon_name}에 대한 작성자 초대"
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "{addon_name}의 작성자로 초대되었습니다."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "초대를 수락하면 추가 기능을 편집 할 수 있는 권한이 주어지며 웹 사이트의 작성자 목록에 이름이 표시 될 수 있습니다."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr ""
