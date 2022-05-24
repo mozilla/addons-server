@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 07:47+0000\n"
+"PO-Revision-Date: 2022-05-24 08:00+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -1733,7 +1733,7 @@ msgid "New"
 msgstr "Uusi"
 
 msgid "Running"
-msgstr ""
+msgstr "Käynnissä"
 
 msgid "Aborted"
 msgstr "Keskeytetty"
@@ -1741,12 +1741,11 @@ msgstr "Keskeytetty"
 msgid "Aborting"
 msgstr "Keskeytetään"
 
-#, fuzzy
 msgid "Completed"
-msgstr "Keskeneräinen"
+msgstr "Valmis"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Aikataulutettu"
 
 msgid "Core"
 msgstr ""
@@ -3633,7 +3632,7 @@ msgstr "Estä näkymättömät seuraimet ja vakoilevat mainokset, jotka seuraava
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Nauti uuden välilehden sivusta mukautettavan taustakuvan, paikallissään ja paljon muun kera."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3690,7 +3689,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Yksinkertaistettua salasanojen hallintaa. Synkronoi kaikki kirjautumisesi eri laitteiden välille yhden salasanan taakse."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4478,7 +4477,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "Tuhansia GIF-kuvia käden ulottuvilla."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
