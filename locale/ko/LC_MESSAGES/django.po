@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 00:40+0000\n"
+"PO-Revision-Date: 2022-05-24 01:21+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -445,7 +445,7 @@ msgid "Valid user session not found matching the provided session key."
 msgstr "제공된 세션 키와 일치하는 유효한 사용자 세션을 찾을 수 없습니다."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "액세스 토큰 새로 고침에 실패했습니다; 사용자는 FxA에 다시 로그인해야 합니다."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "페이로드의 하나 이상의 키 유형이 잘못됨"
@@ -1832,7 +1832,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr "결합된 이름과 요약은 {limit_value}자 이내여야 합니다({show_value}가 있음)."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "이 사이트에서. <span class=\"helptext\">귀하의 제안은 {site_domain}에 공개적으로 게시됩니다.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -1850,7 +1850,7 @@ msgid "Permissions"
 msgstr "권한:"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
+msgstr "동일한 출처 및 권한에 대한 사이트 권한 부가 기능을 만들어 냈습니다."
 
 msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
 msgstr ""
@@ -1859,20 +1859,20 @@ msgid "Invalid or corrupt add-on file."
 msgstr "잘못되거나 손상된 부가기능 파일입니다."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "제출한 파일에서 개발자 API 키를 찾았습니다. 계정을 보호하기 위해 키가 취소됩니다."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "제출된 파일에서 공동 저자의 개발자 API 키를 찾았습니다. 추가 기능을 보호하기 위해 키가 취소됩니다."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Mozila 보안 공지: 귀하의 AMO API 자격 증명이 취소되었습니다."
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "검사 과정에서 너무 많은 오류/경고가 발생했으며 %s개의 메세지가 잘려져 있는 상태입니다. 현재 표시된 메세지부터 확인 후에 나머지 메세지를 확인하실 수 있습니다."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "매니페스트 V3는 현재 업로드가 지원되지 않습니다. {start_href}지원 일정에 대해 자세히 알아보세요{end_href}."
 
 msgid "Updated"
 msgstr "최근 업데이트"
@@ -1947,16 +1947,14 @@ msgstr "움직이는 아이콘은 사용할 수 없습니다."
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
+msgstr "이미지는 4:3 비율이어야 합니다."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
+msgstr "아이콘은 너비와 높이가 {0} 픽셀 이상이어야 합니다."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "아이콘은 정사각형 이어야 합니다(동일한 너비와 높이)."
 
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
@@ -1982,10 +1980,10 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 검토시 이점에 유의해 주세요."
 
 msgid "Header area background"
-msgstr ""
+msgstr "헤더 영역 배경"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr ""
+msgstr "헤더 이미지를 통해 가려지거나 보이지 않는 헤더 부분에 표시되는 헤더 영역 배경의 색상입니다. 매니페스트 필드:  프레임."
 
 msgid "Header area text and icons"
 msgstr ""
