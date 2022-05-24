@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 12:50+0000\n"
+"PO-Revision-Date: 2022-05-24 12:59+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2003,13 +2003,13 @@ msgid "Toolbar field area background"
 msgstr "Fundo del area del campo del barra de instrumentos"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Le color del fundo pro le campos in le barra del instrumentos e in le barra URL. Campo de manifesto:  toolbar_field."
+msgstr "Le color de fundo pro le campos in le barra de instrumentos, como le barra de adresse. Campo de manifesto:  toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr "Texto in campos del barra del instrumentos"
+msgstr "Texto del area del campo del barra de instrumentos"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Le color de texto in le campos del barra del instrumentos e in le barra del URL. Campo de manifesto:  toolbar_field_text."
+msgstr "Le color de texto in le campos del barra de instrumentos, como le barra de adresse. Campo de manifesto:  toolbar_field_text."
 
 msgid "Tab highlight"
 msgstr "Color de scheda active"
@@ -3887,7 +3887,7 @@ msgstr "Clicca a dextra e trahe ligamines que tu vole aperir in un nove scheda."
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr "Accede le schedas claudite recentemente per clic dextre sur le icone in tu barra del instrumentos."
+msgstr "Accede al schedas claudite recentemente con un clic dextre sur le icone in tu barra de instrumentos."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -3964,7 +3964,7 @@ msgstr "Va directe al sito web que tu desira pro acceder sin esser intertanto re
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr "Accede WhatsApp sur le web per le quadro del barra del instrumentos de Firefox pro obtener le placa de notification del filos non legite."
+msgstr "WhatsApp sur le web. Accede a WhatsApp a partir del barra de instrumentos de Firefox pro reciper notificationes sur conversationes non legite."
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
@@ -4536,7 +4536,7 @@ msgstr "Personalisa YouTube a tu gustos."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr "Deler datos de navigation directemente barra del instrumentos del navigator."
+msgstr "Deler datos de navigation directemente desde le barra de instrumentos del navigator."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
