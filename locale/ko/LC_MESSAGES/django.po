@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2021-02-08 13:13+0000\n"
-"Last-Translator: parkj22 <parkj22@gsiscommunity.kr>\n"
+"PO-Revision-Date: 2022-05-24 02:30+0000\n"
+"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -2288,7 +2288,7 @@ msgid "Tags"
 msgstr "태그"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "태그는 사용자가 추가 기능을 찾는 데 도움이 됩니다. 최대 {0}개의 태그를 가질 수 있습니다. 부가 기능과 관련된 태그만 선택하십시오."
 
 msgid "Limit {0} tags."
 msgstr ""
@@ -2297,13 +2297,13 @@ msgid "Contributions URL"
 msgstr "공헌 URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "사용자에게 금전적 기부를 요청하려면 이를 할 수 있는 페이지로 설정하십시오."
 
 msgid "Default Locale"
 msgstr "기본 언어"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "추가 기능에 대한 정보는 로케일 별 번역으로 재정의하지 않는 한 이 로케일로 표시됩니다. 나열된 추가 기능에만 관련됩니다."
 
 msgid "Homepage"
 msgstr "홈페이지"
@@ -2311,7 +2311,7 @@ msgstr "홈페이지"
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
-msgstr ""
+msgstr "부가 기능에 다른 홈페이지가 있는 경우 여기에 주소를 입력하세요. 웹 사이트가 다른 언어로 현지화 된 경우 이 필드의 여러 번역을 추가 할 수 있습니다. 나열된 추가 기능에만 관련됩니다."
 
 msgid "Describe Add-on"
 msgstr "부가 기능 설명"
@@ -2321,14 +2321,13 @@ msgstr "부가 기능 설명"
 msgid "Describe {0}"
 msgstr "부가 기능 설명"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "요약 정보"
+msgstr "이름 및 요약"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
-msgstr ""
+msgstr "요약은 부가 기능이 하는 일을 명확하고 간결하게 설명해야 합니다. 제품 페이지와 검색 결과에 이름과 요약이 모두 표시됩니다. 최대 길이는 합쳐서 70 자이고 최소 길이는 각각 2 자입니다."
 
 msgid "Summary"
 msgstr "요약 정보"
@@ -2342,12 +2341,11 @@ msgstr "부가 기능이 갖게될 짧고 고유한 URL 주소로 선택해 주�
 msgid "View Listing"
 msgstr "목록 보기"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "프로필 보기"
+msgstr "제품 페이지 보기"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "이 요약은 부가 기능의 기능을 명확하게 설명해야 합니다. 목록 및 검색에 표시되며 검토자가 추가 기능을 테스트하는 데 사용됩니다."
 
 msgid "Description"
 msgstr "설명"
@@ -2361,27 +2359,26 @@ msgstr ""
 msgid "This add-on is experimental."
 msgstr "이 부가 기능은 테스트용입니다."
 
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
+msgstr "이 추가 기능은 일반적인 사용이 가능합니다."
 
 msgid "Requires Payment?"
 msgstr "결제가 필요한가요?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "이 부가 기능의 핵심 기능이 작동하기 위해 선불 결제 또는 평가판 기간이 지날 필요가 있는 경우 이 체크 박스를 선택합니다."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "이 부가 기능에는 결제나 유료 서비스, 유료 소프트웨어, 추가 하드웨어가 필요합니다."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "이 부가 기능은 결제나 유료 서비스, 유료 소프트웨어, 추가 하드웨어가 필요하지 않습니다."
 
 msgid "Categories"
 msgstr "분류"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "카테고리는 사용자가 추가 기능을 탐색하는 기본 방법입니다. 많은 노출을 위해 애드온의 기능에 맞는 것을 선택하십시오."
 
 msgid "Email"
 msgstr "이메일"
@@ -2389,7 +2386,7 @@ msgstr "이메일"
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
-msgstr ""
+msgstr "지원 문의를 위해 이메일 주소를 표시하려면 여기에 입력하십시오. 각 언어에 대해 다른 주소가있는 경우 이 필드의 여러 번역을 추가 할 수 있습니다. 나열된 추가 기능에만 관련됩니다."
 
 msgid "Website"
 msgstr "웹사이트"
