@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 01:21+0000\n"
+"PO-Revision-Date: 2022-05-24 01:23+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1983,17 +1983,17 @@ msgid "Header area background"
 msgstr "헤더 영역 배경"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "헤더 이미지를 통해 가려지거나 보이지 않는 헤더 부분에 표시되는 헤더 영역 배경의 색상입니다. 매니페스트 필드:  프레임."
+msgstr "헤더 이미지를 통해 가려지거나 보이지 않는 헤더 부분에 표시되는 헤더 영역 배경의 색상입니다. 매니페스트 필드:  frame."
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "헤더 영역 텍스트 및 아이콘"
 
 #, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "탭 부분의 글자색입니다."
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "도구 모음 영역 배경"
 
 #, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
@@ -2007,19 +2007,19 @@ msgid "The color of the text and icons in the toolbar and the active tab. Manife
 msgstr "탭 부분의 글자색입니다."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "도구 모음 필드 영역 배경"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "URL 표시 줄과 같은 도구 모음에 있는 필드의 배경색입니다. 매니페스트 필드:  toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "도구 모음 필드 영역 텍스트"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "URL 표시 줄과 같은 도구 모음의 필드에있는 텍스트 색상입니다. 매니페스트 필드:  toolbar_field_text."
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "탭 강조"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
