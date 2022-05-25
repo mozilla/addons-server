@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 01:52+0000\n"
+"PO-Revision-Date: 2022-05-25 02:10+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3889,68 +3889,68 @@ msgstr "없어진 북마크, 중복 항목 등을 찾아 해결합니다."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "여러 기기에서 동기화되는 유용한 할 일 목록으로 작업을 완료하세요."
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "과거 가격을 추적하고, 경쟁 제품을 찾고, 판매자의 평점 등을 알 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "나만의 YouTube로 만드세요. 팝업 창에서 비디오를 재생하고, 광고는 구독한 채널에서만 보고, 비디오 스크린샷을 찍는 등 다양한 작업을 수행할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "모든 웹 사이트에 대한 상세한 연결과 트래픽 정보를 얻으십시오."
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Wikipedia에 신선하고 현대적인 모습을 적용합니다."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "마우스 제스처를 사용하여 작업을 더 빨리 완료하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "보고 있는 웹사이트의 일부를 숨깁니다."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "웹에서 찾은 이미지를 다운로드하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "필터를 사용하여 부적절하거나 원하지 않는 콘텐츠에 대한 접근을 제한합니다."
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "끝이 아니라 현재 탭의 오른쪽에서 새 탭을 엽니다."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "스팸을 정복하십시오. 영리한 임시 이메일 주소를 사용하여 익명을 유지하고 스팸을 피하십시오."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Firefox에 내장된 개인 정보 설정을 사용자 정의하는 직접적인 경로입니다."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "텍스트를 강조 표시하고 팝업 버튼을 클릭하여 즉시 번역을 받으세요."
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "중간에 리디렉션되지 않고 액세스하려는 웹 사이트로 바로 이동합니다."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "웹의 WhatsApp. 읽지 않은 글타래에 대한 배지 알림을 받으려면 Firefox의 도구 모음 패널에서 WhatsApp에 접근하세요."
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "영어, 프랑스어, 스페인어 및 기타 언어 간의 전문 독일어 번역을 받으세요."
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
