@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 01:32+0000\n"
+"PO-Revision-Date: 2022-05-25 01:34+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3804,42 +3804,42 @@ msgstr "보이는 책갈피를 즐기세요. 멋진 타일 레이아웃에서 �
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "새 탭에 대한 사용자 정의 홈 페이지를 지정하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "열려있는 모든 탭을 목록으로 변환하여 쉽게 관리하고 Firefox 속도를 높일 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "강력한 다운로드 관리. 상태 표시 줄, 다운로드 내역 페이지 등을 통해 다운로드 상태를 확인합니다."
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "인터넷의 정보를 OneNote에 저장하여 편집, 주석 달기 등을 할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Google 및 Yandex 검색 결과를 클릭하면 광고 추적기를 중지합니다."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, navigate pages, and more."
-msgstr ""
+msgstr "마우스 제스처를 사용하여 탭을 닫고 페이지를 탐색하는 등의 작업을 할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "See thumbnail images alongside your search returns."
-msgstr ""
+msgstr "검색 결과와 함께 섬네일을 참조하세요."
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "디스플레이를 어둡게하여 웹에서 눈을 편안하게 만드세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "모든 팝업을 기본적으로 차단한 다음에 어떤 팝업을 열지 결정하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
