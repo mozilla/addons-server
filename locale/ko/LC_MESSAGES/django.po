@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 12:45+0000\n"
+"PO-Revision-Date: 2022-05-25 23:08+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -4970,7 +4970,7 @@ msgid "You can't submit an empty comment."
 msgstr "이런 종류의 부가 기능은 제출할 수 없음"
 
 msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
+msgstr "줄 번호를 파일 이름에 연결하지 않고 제출할 수 없습니다."
 
 msgid "ID"
 msgstr "ID"
@@ -5035,14 +5035,14 @@ msgid "Approve Content"
 msgstr "승인 / 거부"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "이것은 개발자에게 알리지 않고 최신 공개 버전의 콘텐츠에 대한 승인을 기록합니다."
 
 #, fuzzy
 msgid "Confirm Approval"
 msgstr "승인 대기열"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "이 부가 기능의 최신 공개 버전이 자동으로 승인되었습니다. 이것은 개발자에게 알리지 않고 해당 버전의 승인 확인을 기록합니다."
 
 #, fuzzy
 msgid "Reject Multiple Versions"
@@ -5092,7 +5092,7 @@ msgid "Pre-Review Add-ons"
 msgstr "부가 기능 검토"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "권장 ({0})"
 
 #, fuzzy
 msgid "Other Pending Review ({0})"
@@ -5116,13 +5116,11 @@ msgstr "보안성 테스트"
 msgid "Flagged for Human Review"
 msgstr "심사 조정 ({0})"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "안드로이드용 부가 기능"
+msgstr "자동 승인된 부가 기능"
 
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "내가 제작한 모든 부가 기능"
+msgstr "자동 승인된 부가 기능 ({0})"
 
 msgid "Add-on Review Log"
 msgstr "부가 기능 검토 기록"
@@ -5133,13 +5131,11 @@ msgstr "검토 가이드"
 msgid "Content Review"
 msgstr "콘텐츠 검토"
 
-#, fuzzy
 msgid "Content Review ({0})"
-msgstr "콘텐츠 검토({0})"
+msgstr "콘텐츠 검토 ({0})"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "내가 제작한 모든 부가 기능"
+msgstr "신규 ({0})"
 
 #, fuzzy
 msgid "Updates ({0})"
@@ -5152,16 +5148,15 @@ msgid "User Ratings Moderation"
 msgstr ""
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "평가 대기 중 ({0})"
 
 # 80%
 # 100%
 msgid "Moderated Review Log"
 msgstr "검토 조정 기록"
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "조정 행동:"
+msgstr "중재 가이드"
 
 #, fuzzy
 msgid "Unlisted Add-ons"
