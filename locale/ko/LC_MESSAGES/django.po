@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 12:21+0000\n"
+"PO-Revision-Date: 2022-05-25 12:25+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -4144,42 +4144,42 @@ msgstr "아마존 가격 내역을 추적합니다. 정보를 바탕으로 쇼�
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "안심하고 쇼핑하세요. 이 확장 프로그램은 신뢰성이 검증된 사이트에서 쇼핑하고 있는지 확인하기 위해 추가 검사를 제공합니다."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "생산성을 추적합니다. 컴퓨터 또는 Trello, JIRA, Basecamp, GitHub 등과 같은 특정 업무용 앱에서 보내는 시간을 측정합니다."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "웹에 좋아하는 것을 저장하십시오. 기사, 비디오, 이미지 등과 같은 콘텐츠를 클립하여 저장하고 개별 프로젝트 또는 실시간 팀 협업에 사용할 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "신뢰할 수 있는 사이트에서만 웹 콘텐츠를 실행할 수 있습니다. 안전하게 서핑하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "탐색하는 동안 쌓인 쿠키를 완전히 제어하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "선택한 웹사이트의 브라우저 기록을 자동으로 삭제합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "개인 북마크를 암호로 보호합니다."
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "VPN을 사용하십니까? IP 주소가 유출 될 수 있습니다. WebRTC를 비활성화하여 이를 방지하세요."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying pop-ups with a simple click."
-msgstr ""
+msgstr "간단한 클릭으로 성가신 팝업을 닫습니다."
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Want to learn more about it?"
@@ -4187,16 +4187,16 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "텍스트, 이미지 또는 링크를 드래그하기만 하면 복사, 열기, 검색 등과 같은 작업을 수행할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "다양한 형식의 비디오 및/또는 오디오를 다운로드하는 기능을 활용하십시오."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "웹 사이트의 서버가 지리적으로 어디에 있는지 알아보십시오. 정보에 밝은 웹 여행자가 되십시오."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
