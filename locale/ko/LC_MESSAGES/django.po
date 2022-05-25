@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 12:41+0000\n"
+"PO-Revision-Date: 2022-05-25 12:45+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -4713,7 +4713,7 @@ msgid "Add-on ID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "지원되는 가장 낮은 \"strict_min_version\"은 42.0입니다."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
@@ -4722,7 +4722,7 @@ msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "지원되지 않는 아카이브 유형입니다."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
@@ -4736,7 +4736,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "압축 파일내 파일 용량 제한 초과: {0}"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "압축되지 않은 크기가 너무 큽니다."
 
 msgid "Invalid archive."
 msgstr "잘못된 압축 파일입니다."
@@ -4755,7 +4755,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "버전 번호엔 문자, 숫자, 다음의 특수 기호만 들어있어야 합니다: +*.-_"
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "WebExtension 테마의 최대 크기는 {0}입니다."
 
 msgid "You cannot submit this type of add-on"
 msgstr "이런 종류의 부가 기능은 제출할 수 없음"
@@ -4764,7 +4764,7 @@ msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
 msgid "You cannot submit a Mozilla Signed Extension"
-msgstr ""
+msgstr "Mozilla 서명 확장을 제출할 수 없습니다."
 
 msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
 msgstr ""
@@ -4778,7 +4778,7 @@ msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "지원하지 않는 파일 형식입니다. {extensions} 압축 파일을 업로드 해 주십시오."
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "예기치 않은 오류입니다."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
@@ -4835,10 +4835,10 @@ msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr ""
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "이 평가에는 리뷰 텍스트가 없기 때문에 신고할 수 없습니다."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "플래그 이유로 \"기타\"를 선택할 때 간단한 설명을 제공해야합니다."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -4896,7 +4896,7 @@ msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr ""
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "즉시 거부합니다. 심각한 보안 문제가 있는 경우에만 사용하십시오."
 
 # 83%
 # 100%
@@ -4904,7 +4904,7 @@ msgid "days"
 msgstr "일"
 
 msgid "Choose one or more reasons:"
-msgstr ""
+msgstr "이유를 하나 이상 선택하세요:"
 
 msgid "Choose a canned response..."
 msgstr "자동 응답 메시지를 선택해 주세요..."
@@ -4935,35 +4935,35 @@ msgid "Sources provided"
 msgstr "원본 제공됨"
 
 msgid "Auto-approval delayed temporarily"
-msgstr ""
+msgstr "자동 승인이 일시적으로 지연됨"
 
 msgid "Auto-approval delayed indefinitely"
-msgstr ""
+msgstr "자동 승인 무기한 지연됨"
 
 #, fuzzy
 msgid "Is locked by a reviewer"
 msgstr "검토자에 의해 잠겼습니다."
 
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
+msgstr "자동 승인 비활성화/지연 플래그가 설정됨"
 
 msgid "Is in a promoted add-on group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "첫 번째 나열된 버전이기 때문에 지연됨"
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "버전 문자열 및 guid가 차단 목록 차단과 일치합니다."
 
 msgid "Weight breakdown not available."
-msgstr ""
+msgstr "중량 분석을 사용할 수 없습니다."
 
 msgid "Is available to be used in reviews"
 msgstr ""
 
 msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
+msgstr "`canned_response`가 정의된 경우 댓글을 제출할 수 없습니다."
 
 #, fuzzy
 msgid "You can't submit an empty comment."
