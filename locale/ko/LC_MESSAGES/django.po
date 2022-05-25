@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-24 08:45+0000\n"
+"PO-Revision-Date: 2022-05-25 01:32+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3796,11 +3796,11 @@ msgstr "누가 나를 추적하고 있고 내 정보가 공유되는지를 확�
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "익명으로 서핑하십시오. 다른 국가에서 검색하는 것처럼 익명으로 웹을 검색 할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "보이는 책갈피를 즐기세요. 멋진 타일 레이아웃에서 즐겨찾는 사이트, 최근에 닫은 탭 등에 접근 할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
