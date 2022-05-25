@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 12:25+0000\n"
+"PO-Revision-Date: 2022-05-25 12:41+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -4200,79 +4200,79 @@ msgstr "웹 사이트의 서버가 지리적으로 어디에 있는지 알아보
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "성가신 오디오를 수정합니다. 웹사이트의 볼륨이 너무 작나요? 소리가 너무 큰가요? SoundFixer가 도와드리겠습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "인쇄하기 전에 웹 페이지를 편집하세요. 인쇄하려는 웹 페이지가 어떻게 보이는지 변경(광고 또는 불쾌한 콘텐츠 제거)을 합니다."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "아마존 가격 내역을 추적합니다. 관심 있는 아마존 상품의 가격 변동에 대한 알림을 수신하여 현명한 쇼핑 결정을 내리십시오."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "매우 선명하게 브라우저 오디오 설정을 조정합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "가장 교활한 추적자로부터 자신을 방어하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "향상된 추적기 차단, 스마트 암호화 및 기타 개인 정보 보호 혜택을 누리면서 검색하세요."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
-msgstr ""
+msgstr "탭을 단순화합니다. 깔끔한 수직 사이드바에 열려 있는 많은 탭을 정리하세요."
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "원치 않는 쿠키를 자동으로 삭제합니다. 화이트리스트 및 블랙리스트 지원을 제공합니다."
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "간단한 마우스 클릭으로 전체 화면으로 동영상을 볼 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "비활성화된 탭으로 소중한 메모리 공간을 낭비하지 마세요."
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "전체 페이지 또는 일부만 단일 HTML 파일로 저장합니다."
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "일반적인 TOS 계약의 넌센스를 잘라냅니다. 이 영리한 확장 기능은 동의해야 하는 내용을 빠르게 이해하는 데 도움이 됩니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "더 명확하고 쉽게 읽으십시오. 웹 페이지에서 텍스트 주변의 어수선함을 제거하십시오."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "광고를 차단하고 맬웨어 및 광고 추적에 대한 보호 기능을 강화하십시오."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "멀티 스레딩 다운로드 지원을 즐기십시오. 다운로드 할 수 있는 다양한 유형의 미디어를 자동으로 감지합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "이미지를 쉽게 저장하세요. 현재 탭에서 가져오기만 하면 됩니다."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "웹 페이지를 측정합니다. 모든 웹 페이지에 디지털 눈금자를 그려 페이지 요소의 높이, 너비 및 정렬을 확인합니다."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -4281,106 +4281,106 @@ msgstr "강력한 비밀번호 관리의 이점을 누리세요."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "웹 페이지를 시각적으로 보기 좋게 만들기 위해 명암을 사용자 정의합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "방해가 되는 웹사이트를 차단합니다. 확장 프로그램에서 차단할 사이트를 나열하기만 하면 됩니다. 즉시 없앰!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "브라우저의 모양을 변경합니다. Firefox가 원하는 대로 보이도록 자신만의 시각적 테마를 쉽게 디자인하세요."
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "웹 어디에서나 개인 메모를 보관하세요. 사이드바를 사용하여 특정 웹 페이지에 메모를 첨부하기만 하면 됩니다."
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
-msgstr ""
+msgstr "음성 인식을 사용하여 Google, Yahoo 및 DuckDuckGo에서 음성 검색을 활성화합니다."
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "제품을 추적하고 Amazon, Best Buy, eBay, Home Depot 및 Walmart에서 관심 있는 품목의 가격이 떨어지면 알림을 받습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "웹을 어둡게 하거나 사용자 정의 색 구성표를 선택하여 인터넷을 자신의 취향에 맞게 시각적으로 조정하십시오."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get a more advanced search page on Firefox for Android."
-msgstr ""
+msgstr "Android 용 Firefox에서 고급 검색 페이지를 가져옵니다."
 
 #. editorial content for the discovery pane.
 msgid "Some sites have difficulty playing videos on Firefox for Android. This extension provides a fix."
-msgstr ""
+msgstr "일부 사이트는 Android 용 Firefox에서 비디오를 재생하는 데 어려움이 있습니다. 이 확장은 수정 사항을 제공합니다."
 
 #. editorial content for the discovery pane.
 msgid "Select, sort, and run your downloads faster."
-msgstr ""
+msgstr "다운로드를 더 빠르게 선택, 정렬 및 실행하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr ""
+msgstr "브라우저에서 바로 날씨 업데이트를 받으세요."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr ""
+msgstr "클릭 한 번으로 쿠키, 검색 기록 및 캐시된 파일을 삭제합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Remove tracking elements from web links."
-msgstr ""
+msgstr "웹 링크에서 추적 요소를 제거합니다."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "자동으로 채워진 RSS 피드 북마크 폴더를 가져옵니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Easily organize tons of open tabs."
-msgstr ""
+msgstr "수많은 열린 탭을 쉽게 구성할 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Create and customize tab groups."
-msgstr ""
+msgstr "탭 그룹을 만들고 사용자 지정합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
-msgstr ""
+msgstr "이미지와 스타일을 포함한 전체 웹 페이지를 단일 HTML 파일로 저장합니다."
 
 #. editorial content for the discovery pane.
 msgid "Automatically replace derogatory words across the web."
-msgstr ""
+msgstr "웹에서 경멸적인 단어를 자동으로 바꿉니다."
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "동영상, 팝업, 배너 등 모든 광고를 차단합니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "어디에서나 친구 및 가족과 함께 스트리밍 미디어를 시청하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr ""
+msgstr "YouTube 동영상의 스폰서 부분을 건너뜁니다."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "웹 페이지를 소리내어 읽게 하십시오. 40개 이상의 언어가 지원됩니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
-msgstr ""
+msgstr "단어의 정의를 즉시 보려면 단어를 두 번 클릭하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
@@ -4399,12 +4399,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr ""
+msgstr "수천 개의 GIF를 손쉽게 사용할 수 있습니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "The easiest way to manage YouTube subscriptions."
-msgstr ""
+msgstr "YouTube 구독을 관리하는 가장 쉬운 방법입니다."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4430,11 +4430,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "일부 웹사이트는 Android에서 동영상을 재생하는 데 문제가 있습니다. 고쳐졌습니다."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "웹에서 흥미로운 이미지를 찾으십니까? TinEye를 사용하여 출처를 찾아보세요."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4450,7 +4450,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
-msgstr ""
+msgstr "검색 결과와 함께 웹 사이트의 썸네일 이미지를 즐기십시오."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4462,11 +4462,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr ""
+msgstr "Firefox에서 직접 날씨 업데이트를 받으세요."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "작업 간격을 표시하는 브라우저 시계로 시간을 더 잘 관리하십시오."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
@@ -4474,7 +4474,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr ""
+msgstr "짜증나는 쿠키 경고는 이제 그만!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
@@ -4510,7 +4510,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "취향에 맞게 YouTube를 맞춤설정하세요."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
@@ -4630,7 +4630,7 @@ msgstr "소셜 스트리밍 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "탭 관리자"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
