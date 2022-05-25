@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 01:34+0000\n"
+"PO-Revision-Date: 2022-05-25 01:51+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3844,36 +3844,36 @@ msgstr "모든 팝업을 기본적으로 차단한 다음에 어떤 팝업을 �
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "모든 웹 사이트의 모양을 사용자 정의하십시오. 색상, 페이지 배경 등을 변경합니다."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "원하는 수의 타일, 배경 이미지 등을 표시하도록 새 탭 페이지를 사용자 지정합니다."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "암호를 안전하게 저장하고 여러 장치에서 액세스하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "웹에서 이동한 곳이 어디인지 알 수 있습니다. 방문하는 웹 사이트의 국가 위치를 확인하세요. 정보에 밝은 인터넷 여행자가 되십시오."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "독서 경험을 향상 시키십시오. 주변의 어수선함을 제거하여 읽고 있는 텍스트를 더 매력적으로 만드십시오."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Right-click and drag links you want open in new tabs."
-msgstr ""
+msgstr "새 탭에서 열려고 하는 링크를 마우스 오른쪽 단추로 클릭하고 드래그 합니다."
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "도구 모음에서 아이콘을 마우스 오른쪽 버튼으로 클릭하여 최근에 닫은 탭에 접근 합니다."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "생산성을 높이세요. 아름다운 배경을 넣거나 매일 보는 사이트를 설정 하는 등 새 탭 페이지를 수정해 보세요."
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
