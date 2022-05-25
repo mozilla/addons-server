@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 02:10+0000\n"
+"PO-Revision-Date: 2022-05-25 02:15+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -3954,15 +3954,15 @@ msgstr "영어, 프랑스어, 스페인어 및 기타 언어 간의 전문 독�
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "지정한 웹사이트에 Firefox가 접근하지 못하도록 제한합니다. 온라인 자기 관리을 위한 훌륭한 도구입니다."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "작업 시간 간격을 정해서 생산성을 관리하십시오."
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "한 페이지에서 즐겨 찾는 RSS 피드를 모두 확인하세요."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3971,23 +3971,23 @@ msgstr "더 나은 시각 경험을 위해 야간 모드를 활성화하세요."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
-msgstr ""
+msgstr "여러 검색 공급자의 기능을 활용하여 이미지 검색을 반대로 합니다."
 
 #. editorial content for the discovery pane.
 msgid "A more efficient way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "여러 책갈피 폴더를 사용하는 경우 책갈피를 저장하는 더 효율적인 방법입니다."
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "불필요한 서식을 제거하고 일반 텍스트만 복사합니다."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "버튼 클릭으로 전체 웹페이지를 원하는 언어로 변환할 수 있습니다."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "웹 페이지의 모든 링크를 새 탭에 즉시 표시합니다."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
