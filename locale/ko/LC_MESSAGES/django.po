@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 23:08+0000\n"
+"PO-Revision-Date: 2022-05-25 23:11+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -5158,9 +5158,8 @@ msgstr "검토 조정 기록"
 msgid "Moderation Guide"
 msgstr "중재 가이드"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "모든 부가 기능"
+msgstr "목록에 없는 부가 기능"
 
 #, fuzzy
 msgid "All Unlisted Add-ons"
@@ -5201,11 +5200,10 @@ msgid "{addon} – Privacy Policy"
 msgstr "이 부가 기능은 개인 정보 보호 정책을 보유하고 있습니다"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr " 악용 신고 – {addon} – Firefox 용 부가기능"
 
-#, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "{addon} ({num})에 대한 정책 위반 신고"
+msgstr "{addon}과 개발자인 ({num})에 대한 정책 위반 보고"
 
 msgid "Abuse Reports"
 msgstr "정책 위반 신고"
@@ -5217,9 +5215,8 @@ msgstr "{0}의 부가 기능 정보"
 msgid "Add-on ID"
 msgstr "부가 기능 ID"
 
-#, fuzzy
 msgid "Original Add-on ID"
-msgstr "부가 기능 사인"
+msgstr "원본 부가 기능 ID"
 
 msgid "Add-on(s) sharing same ID"
 msgstr ""
