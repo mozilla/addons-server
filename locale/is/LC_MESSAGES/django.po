@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-26 21:30+0000\n"
+"PO-Revision-Date: 2022-05-26 21:32+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -881,10 +881,10 @@ msgid "Source code uploaded"
 msgstr "Grunnkóði sendur inn"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr ""
+msgstr "Sjálfvirkt samþykki staðfest fyrir {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "Sjálfvirkt samþykki staðfest"
 
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} virkjuð aftur."
@@ -986,13 +986,13 @@ msgid "{addon} {version} reject scheduled."
 msgstr ""
 
 msgid "Rejection scheduled"
-msgstr ""
+msgstr "Höfnun á áætlun"
 
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr ""
+msgstr "{addon} {version} endur-undirrituð (áður {0})."
 
 msgid "Version re-signed"
-msgstr ""
+msgstr "Útgáfa endur-undirrituð"
 
 msgid "{user} force-disabled {addon}."
 msgstr ""
