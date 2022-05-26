@@ -10,13 +10,16 @@ from PIL import Image
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
+from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
 
 from ..tasks import (
+    disable_addons,
     recreate_theme_previews,
     resize_icon,
     update_addon_average_daily_users,
@@ -333,3 +336,20 @@ class TestResizeIcon(TestCase):
         final_size = [(32, 12), (339, 128), (339, 128)]
 
         self._uploader(resize_size, final_size)
+
+
+@mock.patch('olympia.addons.tasks.index_addons.delay')
+def test_disable_addons(index_addons_mock):
+    UserProfile.objects.create(pk=settings.TASK_USER_ID)
+    addon = addon_factory()
+    disable_addons([addon.id])
+
+    addon.reload()
+    assert addon.status == amo.STATUS_DISABLED
+    assert addon.current_version is None
+    assert addon.versions.all()[0].file.status == amo.STATUS_DISABLED
+
+    assert ActivityLog.objects.filter(
+        action=amo.LOG.FORCE_DISABLE.id, addonlog__addon=addon
+    ).exists()
+    index_addons_mock.assert_called_with([addon.id])
