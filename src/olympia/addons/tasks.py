@@ -8,7 +8,7 @@ from elasticsearch_dsl import Search
 
 import olympia.core
 
-from olympia import amo
+from olympia import activity, amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon,
@@ -20,11 +20,13 @@ from olympia.addons.models import (
 from olympia.addons.utils import compute_last_updated
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
+from olympia.amo.search import get_es
 from olympia.amo.utils import extract_colors_from_image
 from olympia.devhub.tasks import resize_image
+from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.es.utils import index_objects
-from olympia.amo.search import get_es
+from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
 
@@ -390,3 +392,23 @@ def resize_preview(src, preview_pk, **kw):
         return True
     except Exception as e:
         log.error('Error saving preview: %s' % e)
+
+
+@task
+@use_primary_db
+def disable_addons(addon_ids, **kw):
+    """Set the given addon ids to disabled (amo.STATUS_DISABLED)."""
+    log.info(
+        '[%s@%s] Disabling addons starting at id: %s...'
+        % (
+            len(addon_ids),
+            disable_addons.rate_limit,
+            addon_ids[0],
+        )
+    )
+    addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
+    for addon in addons:
+        activity.log_create(amo.LOG.FORCE_DISABLE, addon, user=get_task_user())
+    addons.update(status=amo.STATUS_DISABLED, _current_version=None)
+    File.objects.filter(version__addon__in=addons).update(status=amo.STATUS_DISABLED)
+    index_addons.delay(addon_ids)
