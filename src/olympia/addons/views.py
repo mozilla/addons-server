@@ -80,6 +80,7 @@ from .indexers import AddonIndexer
 from .models import Addon, AddonUser, AddonUserPendingConfirmation, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
+    AddonSerializerFromPut,
     AddonAuthorSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
@@ -207,7 +208,7 @@ def find_replacement_addon(request):
 class AddonViewSet(
     CreateModelMixin,
     RetrieveModelMixin,
-    UpdateModelMixin,
+    #  UpdateModelMixin, - we're implementing update ourselves
     DestroyModelMixin,
     GenericViewSet,
 ):
@@ -271,10 +272,10 @@ class AddonViewSet(
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance', None)
         request = self.request
-        if acl.is_unlisted_addons_viewer_or_reviewer(request.user) or (
-            obj
-            and request.user.is_authenticated
-            and obj.authors.filter(pk=request.user.pk).exists()
+        if request.user.is_authenticated and (
+            self.action in ('create', 'update', 'partial_update')
+            or acl.is_unlisted_addons_viewer_or_reviewer(request.user)
+            or (obj and obj.authors.filter(pk=request.user.pk).exists())
         ):
             return self.serializer_class_with_unlisted_data
         return self.serializer_class
@@ -361,6 +362,44 @@ class AddonViewSet(
             raise exceptions.ValidationError('"delete_confirm" token is invalid.')
 
         return super().destroy(request, *args, **kwargs)
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        return Response(serializer.data)
+
+    def update(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+        except http.Http404:
+            instance = None
+            save_kwargs = {'guid': self.kwargs.get('guid')}
+        else:
+            save_kwargs = {}
+        if self.lookup_field != 'guid':
+            raise http.Http404
+
+        serializer = AddonSerializerFromPut(
+            instance=instance, data=request.data, context=self.get_serializer_context()
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save(**save_kwargs)
+
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+
+        status_code = status.HTTP_201_CREATED if not instance else status.HTTP_200_OK
+        return Response(serializer.data, status=status_code)
 
 
 class AddonChildMixin:

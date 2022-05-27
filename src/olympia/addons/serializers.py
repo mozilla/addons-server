@@ -79,6 +79,7 @@ from .utils import fetch_translations_from_addon
 from .validators import (
     AddonMetadataValidator,
     AddonDefaultLocaleValidator,
+    MatchingGuidValidator,
     VersionAddonMetadataValidator,
     VersionLicenseValidator,
     VerifyMozillaTrademark,
@@ -998,15 +999,17 @@ class AddonSerializer(serializers.ModelSerializer):
     def get_is_source_public(self, obj):
         return False
 
-    def run_validation(self, *args, **kwargs):
+    def run_validation(self, data=serializers.empty):
         # We want name and summary to be required fields so they're not cleared, but
         # *only* if this is an existing add-on with listed versions.
         # - see AddonMetadataValidator for new add-ons/versions.
         if self.instance and self.instance.has_listed_versions():
-            self.fields['name'].required = True
-            self.fields['summary'].required = True
-            self.fields['categories'].required = True
-        return super().run_validation(*args, **kwargs)
+            for field in ('name', 'summary', 'categories'):
+                if field in data:
+                    self.fields[field].required = True
+        if self.instance:
+            self.fields['version'].addon = self.instance
+        return super().run_validation(data)
 
     def validate_slug(self, value):
         slug_validator(value)
@@ -1083,6 +1086,9 @@ class AddonSerializer(serializers.ModelSerializer):
         if 'tag_list' in validated_data:
             # Tag.add_tag and Tag.remove_tag have their own logging so don't repeat it.
             validated_data.pop('tag_list')
+        if 'version' in validated_data:
+            # version is always a new object, and not a property either
+            validated_data.pop('version')
 
         if validated_data:
             ActivityLog.create(
@@ -1140,6 +1146,11 @@ class AddonSerializer(serializers.ModelSerializer):
         if 'tag_list' in validated_data:
             del instance.tag_list  # super.update will have set it.
             instance.set_tag_list(validated_data['tag_list'])
+        if 'version' in validated_data:
+            self.fields['version'].create(
+                {**validated_data.get('version', {}), 'addon': instance}
+            )
+
         self.log(instance, validated_data)
         return instance
 
@@ -1152,6 +1163,13 @@ class AddonSerializerWithUnlistedData(AddonSerializer):
         read_only_fields = tuple(
             set(fields) - set(AddonSerializer.Meta.writeable_fields)
         )
+
+
+class AddonSerializerFromPut(AddonSerializerWithUnlistedData):
+    version = DeveloperVersionSerializer(
+        write_only=True,
+        validators=(VersionLicenseValidator(), MatchingGuidValidator()),
+    )
 
 
 class SimpleAddonSerializer(AddonSerializer):

@@ -383,6 +383,27 @@ Note: as form-data can not include objects, and creating an add-on requires the 
     :reqheader Content-Type: multipart/form-data
 
 
+--------------------
+Put - Create or Edit
+--------------------
+
+.. _addon-put:
+
+This endpoint allows a submission of an upload, which will either update an existing add-on and create a new version if the guid already exists, or will create a new add-on if the guid does not exist.
+See the :ref:`Add-on Create <addon-create>` documentation for details of the request and restrictions.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on if the add-on exists already.
+
+    .. note::
+        If the add-on guid is specified in the manifest it must match the the guid in the url.
+
+    .. note::
+        A submission that results in a new add-on will have metadata defaults taken from the manifest (e.g. name), but a submission that updates an existing listing will not use data from the manifest.
+
+.. http:put:: /api/v5/addons/addon/(string:guid)/
+
+
 ------
 Delete
 ------
