@@ -1438,7 +1438,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
                 'version': {'upload': upload.uuid},
                 'default_locale': 'de',
                 # A no name provided for de, and our xpi is missing name in de
-                'support_url': {'it': 'https://it.support.test/'}, # B
+                'support_url': {'it': 'https://it.support.test/'},  # B
             },
         )
         assert response.status_code == 400, response.data
@@ -1457,7 +1457,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             data={
                 'version': {'upload': upload.uuid},
                 'default_locale': 'de',
-                'name': {'de': 'Das Name'}, # A
+                'name': {'de': 'Das Name'},  # A
                 # B no summary provided, but the xpi already has a translation in de
                 # C no support_url provided and there aren't other translations
             },
