@@ -1374,14 +1374,14 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert response.data == {'default_locale': ['"zz" is not a valid choice.']}
 
     def test_default_locale(self):
-        # An xpi without localization:
-        # failure cases:
-        # field has other translations provided
+        # An xpi without localization - the values are in the manifest directly so will
+        # be intepretted as whatever locale is specified as the default locale.
         response = self.client.post(
             self.url,
             data={
                 **self.minimal_data,
                 'default_locale': 'fr',
+                # the field will have a translation in de, but won't have a value in fr
                 'description': {'de': 'Das description'},
             },
         )
@@ -1391,30 +1391,36 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'description': [error_string],
         }
 
-        # success cases:
-        # field is provided with a value in new default
-        # field already has a value in new default
-        # field has no other translations
+        # success cases, all tested with the post request with the different fields
+        # A field is provided with a value in new default
+        # B field already has a value in new default
+        # C field has no other translations
         response = self.client.post(
             self.url,
             data={
                 **self.minimal_data,
                 'default_locale': 'fr',
-                'name': {'fr': 'nom française'},
-                # no summary, but does have a value in the manifest already
-                # no description and doesn't have other translations
+                'name': {'fr': 'nom française'},  # A - a value in fr
+                # B no summary provided, but has a value in the manifest already
+                # C no description and doesn't have other translations
             },
         )
         assert response.status_code == 201, response.data
         addon = Addon.objects.get()
         assert addon.default_locale == 'fr'
+        # from the postdata
         assert addon.name == 'nom française'
         assert addon.name.locale == 'fr'
+        # summary value is from the manifest
         assert addon.summary == 'just a test addon with the manifest.json format'
         assert addon.summary.locale == 'fr'
+        # and there is no description either in the manifest or provided in post
         assert addon.description is None
 
     def test_default_locale_localized_xpi(self):
+        # This xpi has localized values in the xpi, but has been crafted to not have a
+        # name translation for de, which is valid if the default_locale is another lang,
+        # but won't be valid if the default_locale is de.
         upload = self.get_upload(
             'notify-link-clicks-i18n-missing.xpi',
             user=self.user,
@@ -1422,47 +1428,53 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
 
-        error_string = 'A value in the default locale of "de" is required.'
-        # field doesn't have a value in the xpi in new default, or
-        # field has other translations provided
+        # failure cases:
+        # A field doesn't have a value in the xpi in new default, or
+        # B field has other translations provided
         response = self.client.post(
             self.url,
             data={
                 'version': {'upload': upload.uuid},
                 'default_locale': 'de',
-                # 'name' - not provided in de in the xpi
-                'support_url': {'it': 'https://it.support.test/'},
+                # A no name provided for de, and our xpi is missing name in de
+                'support_url': {'it': 'https://it.support.test/'}, # B
             },
         )
         assert response.status_code == 400, response.data
+        error_string = 'A value in the default locale of "de" is required.'
         assert response.data == {
             'name': [error_string],
             'support_url': [error_string],
         }
 
-        # success cases:
-        # field is provided with a value in new default
-        # field already has a value in new default
-        # field isn't required and has no other translations
+        # success cases, all tested with the post request with the different fields:
+        # A field is provided with a value in new default
+        # B field already has a value in new default
+        # C field isn't required and has no other translations
         response = self.client.post(
             self.url,
             data={
                 'version': {'upload': upload.uuid},
                 'default_locale': 'de',
-                'name': {'de': 'Das Name'},
-                # no summary, but does have a value in de already
-                # no support_url but doesn't have other translations
+                'name': {'de': 'Das Name'}, # A
+                # B no summary provided, but the xpi already has a translation in de
+                # C no support_url provided and there aren't other translations
             },
         )
         assert response.status_code == 201, response.data
         with self.activate('fr'):  # a locale the xpi doesn't have so we get defaults
             addon = Addon.objects.get()
         assert addon.default_locale == 'de'
+        # from the postdata
         assert addon.name == 'Das Name'
         assert addon.name.locale == 'de'
+        # summary is from the xpi translation json files
         assert addon.summary == 'Benachrichtigt den Benutzer über Linkklicks'
         assert addon.summary.locale == 'de'
+        # and there is no description either in the xpi, manifest or provided in post
         assert addon.description is None
+        # homepage is defined directly in the manifest, and is not localized, so just
+        # testing the mix of translated and not translated is working as expected
         assert str(addon.homepage).startswith('https://github.com/mdn/')
         assert addon.homepage.locale == 'de'
 
@@ -2113,10 +2125,10 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
 
         self.addon.update(description=None)
-        # success cases:
-        # A field is provided with a value in new default
-        # B field already has a value in new default
-        # C field isn't required and has no other translations
+        # success cases - tested with different fields in the patch request:
+        # A field is provided with a value in new default in the postdata
+        # B field already has a value in new default - we created the Translation above
+        # C field isn't required and has no other translations - we set description=None
         response = self.client.patch(
             self.url,
             data={
