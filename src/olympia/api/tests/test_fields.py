@@ -172,18 +172,34 @@ class TestTranslationSerializerField(TestCase):
             'The language code "unknown-locale" is invalid.'
         ]
 
-    def test_none_type_locale_is_allowed(self):
+    def test_none_type_locale_is_allowed_for_update(self):
         # None values are valid because they are used to nullify existing
         # translations in something like a PATCH.
         data = {'en-US': None}
         field = self.field_class(required=False)
+        field.bind('name', serializers.Serializer(instance=addon_factory()))
         result = field.run_validation(data)
         field.run_validation(result)
         assert result == data
 
+    def test_none_type_locale_is_not_allowed_for_new_instances(self):
+        data = {'en-US': None}
+        field = self.field_class(required=False)
+        field.bind('name', serializers.Serializer())
+        with self.assertRaises(exceptions.ValidationError) as exc:
+            field.run_validation(data)
+        assert exc.exception.detail == ['This field may not be null.']
+
+    def test_none_type_locale_is_allowed_for_new_instances_when_allow_null_set(self):
+        data = {'en-US': None}
+        field = self.field_class(required=False, allow_null=True)
+        field.bind('name', serializers.Serializer())
+        assert field.run_validation(data) == data
+
     def test_none_type_locale_is_not_allowed_for_required_fields(self):
         data = {'en-US': None}
         field = self.field_class(required=True)
+        field.bind('name', serializers.Serializer(instance=self.addon))
         with self.assertRaises(exceptions.ValidationError) as exc:
             field.run_validation(data)
         assert exc.exception.detail == [

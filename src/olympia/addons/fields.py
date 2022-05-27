@@ -145,8 +145,12 @@ class LicenseNameSerializerField(serializers.Field):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.builtin_translation_field = self.builtin_translation_field_class()
-        self.custom_translation_field = self.custom_translation_field_class()
+        self.builtin_translation_field = self.builtin_translation_field_class(
+            *args, **kwargs
+        )
+        self.custom_translation_field = self.custom_translation_field_class(
+            *args, **kwargs
+        )
 
     def bind(self, field_name, parent):
         super().bind(field_name, parent)

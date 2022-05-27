@@ -39,6 +39,7 @@ from olympia.constants.applications import APPS_ALL, APP_IDS
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
+from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedAddon
@@ -77,8 +78,9 @@ from .tasks import resize_icon, resize_preview
 from .utils import fetch_translations_from_addon
 from .validators import (
     AddonMetadataValidator,
-    AddonMetadataNewVersionValidator,
-    ValidateVersionLicense,
+    AddonDefaultLocaleValidator,
+    VersionAddonMetadataValidator,
+    VersionLicenseValidator,
     VerifyMozillaTrademark,
 )
 
@@ -231,8 +233,8 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
 class LicenseSerializer(serializers.ModelSerializer):
     is_custom = serializers.SerializerMethodField()
-    name = LicenseNameSerializerField()
-    text = TranslationSerializerField()
+    name = LicenseNameSerializerField(allow_null=True)
+    text = TranslationSerializerField(allow_null=True)
     url = serializers.SerializerMethodField()
     slug = serializers.ReadOnlyField()
 
@@ -393,7 +395,7 @@ class DeveloperVersionSerializer(VersionSerializer):
 
     class Meta:
         model = Version
-        validators = (ValidateVersionLicense(), AddonMetadataNewVersionValidator())
+        validators = (VersionLicenseValidator(), VersionAddonMetadataValidator())
         fields = (
             'id',
             'channel',
@@ -800,6 +802,9 @@ class AddonSerializer(serializers.ModelSerializer):
         source='contributions', required=False
     )
     current_version = CurrentVersionSerializer(read_only=True)
+    default_locale = serializers.ChoiceField(
+        choices=list(AMO_LANGUAGES), required=False
+    )
     description = TranslationSerializerField(required=False)
     developer_comments = TranslationSerializerField(required=False)
     edit_url = serializers.SerializerMethodField()
@@ -856,14 +861,14 @@ class AddonSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     version = DeveloperVersionSerializer(
         write_only=True,
-        # Note: we're purposefully omitting AddonMetadataNewVersionValidator
-        validators=(CreateOnlyValidator(), ValidateVersionLicense()),
+        # Note: we're purposefully omitting VersionAddonMetadataValidator
+        validators=(CreateOnlyValidator(), VersionLicenseValidator()),
     )
     versions_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
-        validators = (AddonMetadataValidator(),)
+        validators = (AddonMetadataValidator(), AddonDefaultLocaleValidator())
         fields = (
             'id',
             'authors',
@@ -910,6 +915,7 @@ class AddonSerializer(serializers.ModelSerializer):
         writeable_fields = (
             'categories',
             'contributions_url',
+            'default_locale',
             'description',
             'developer_comments',
             'homepage',
