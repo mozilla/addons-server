@@ -959,6 +959,20 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         )
         assert response.status_code == 201
 
+    def test_deleted_webextension(self):
+        guid = '@webextension-with-guid'
+        addon = addon_factory(guid=guid, users=[self.user])
+        addon.delete()
+        response = self.request(
+            'POST',
+            guid=guid,
+            version='1.0',
+            filename=self.xpi_filepath('@create-webextension-with-guid', '1.0'),
+            url=reverse_ns('signing.version'),
+        )
+        assert response.status_code == 400
+        assert response.data['error'] == 'Duplicate add-on ID found.'
+
 
 class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
     def test_addon_does_not_exist_webextension(self):
@@ -1124,6 +1138,20 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 400
         assert response.data['error'] == 'Invalid Add-on ID in URL or package'
         assert not Addon.unfiltered.filter(guid=guid).exists()
+
+    def test_deleted_webextension(self):
+        guid = '@webextension-with-guid'
+        addon = addon_factory(guid=guid, users=[self.user])
+        addon.delete()
+        response = self.request(
+            'PUT',
+            filename=self.xpi_filepath('@create-webextension-with-guid', '1.0'),
+            guid=guid,
+            version='1.0',
+        )
+
+        assert response.status_code == 400
+        assert response.data['error'] == 'Duplicate add-on ID found.'
 
     def test_webextension_reuse_guid(self):
         response = self.request(
