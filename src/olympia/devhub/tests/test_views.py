@@ -191,7 +191,8 @@ class TestDashboard(HubTest):
     def test_dev_news(self):
         for i in range(7):
             bp = BlogPost(
-                title='hi %s' % i, date_posted=datetime.now() - timedelta(days=i)
+                title='hi %s' % i,
+                date_posted=datetime.now() - timedelta(days=i),
             )
             bp.save()
         response = self.client.get(self.url)
@@ -199,8 +200,20 @@ class TestDashboard(HubTest):
 
         assert doc('.blog-posts').length == 1
         assert doc('.blog-posts li').length == 5
-        assert doc('.blog-posts li a').eq(0).text() == 'hi 0'
-        assert doc('.blog-posts li a').eq(4).text() == 'hi 4'
+        assert doc('.blog-posts li a').eq(0).text() == 'hi < 0'
+        assert doc('.blog-posts li a').eq(4).text() == 'hi < 4'
+
+    def test_dev_news_xss(self):
+        BlogPost.objects.create(
+            title='<script>alert(42)</script>', date_posted=datetime.now()
+        )
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        assert doc('.blog-posts').length == 1
+        assert doc('.blog-posts li').length == 1
+        assert doc('.blog-posts li a').eq(0).text() == '<script>alert(42)</script>'
+        assert b'<script>alert(42)</script>' not in response.content
 
     def test_sort_created_filter(self):
         response = self.client.get(self.url + '?sort=created')
