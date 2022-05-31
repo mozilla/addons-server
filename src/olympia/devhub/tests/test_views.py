@@ -200,8 +200,8 @@ class TestDashboard(HubTest):
 
         assert doc('.blog-posts').length == 1
         assert doc('.blog-posts li').length == 5
-        assert doc('.blog-posts li a').eq(0).text() == 'hi < 0'
-        assert doc('.blog-posts li a').eq(4).text() == 'hi < 4'
+        assert doc('.blog-posts li a').eq(0).text() == 'hi 0'
+        assert doc('.blog-posts li a').eq(4).text() == 'hi 4'
 
     def test_dev_news_xss(self):
         BlogPost.objects.create(
