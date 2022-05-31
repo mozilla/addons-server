@@ -167,3 +167,8 @@ except ImportError:
     )
 
 SITEMAP_DEBUG_AVAILABLE = True
+
+# Recaptcha test keys from https://developers.google.com/recaptcha/docs/faq.
+# Will show the widget but no captcha, verification will always pass.
+RECAPTCHA_PUBLIC_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+RECAPTCHA_PRIVATE_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
