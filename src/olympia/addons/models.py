@@ -64,7 +64,6 @@ from olympia.translations.fields import (
     TranslatedField,
     save_signal,
 )
-from olympia.translations.hold import translation_saved
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -1816,11 +1815,7 @@ dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_transl
 @receiver(signals.version_changed, dispatch_uid='version_changed')
 def version_changed(sender, instance, **kw):
     from . import tasks
-    from olympia.amo.tasks import trigger_sync_objects_to_basket
 
-    # watch_changes() also does a sync when it detects a _current_version change, but it
-    # might not have fired, since it depends on on_change() being sent.
-    trigger_sync_objects_to_basket('addon', [instance.pk], 'version change')
     tasks.version_changed.delay(instance.pk)
 
 
@@ -1871,45 +1866,6 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
         # Calls `inherit_nomination` manually given that signals are
         # deactivated to avoid circular calls.
         inherit_nomination(None, latest_version)
-
-
-@Addon.on_change
-def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kwargs):
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-
-    changes = {
-        x for x in new_attr if not x.startswith('_') and new_attr[x] != old_attr.get(x)
-    }
-    basket_relevant_changes = (
-        # Some changes are not tracked here:
-        # - Any authors changes (separate model)
-        # - Creation/Deletion of unlisted version (separate model)
-        # - Name change (separate model/signal, see below)
-        # - Categories changes (separate model, ignored for now)
-        # - average_rating changes (ignored for now, happens too often)
-        # - average_daily_users changes (ignored for now, happens too often)
-        '_current_version',
-        'default_locale',
-        'slug',
-        'status',
-        'disabled_by_user',
-    )
-    if any(field in changes for field in basket_relevant_changes):
-        from olympia.amo.tasks import trigger_sync_objects_to_basket
-
-        trigger_sync_objects_to_basket('addon', [instance.pk], 'attribute change')
-
-
-@receiver(translation_saved, sender=Addon, dispatch_uid='watch_addon_name_changes')
-def watch_addon_name_changes(sender=None, instance=None, **kw):
-    field_name = kw.get('field_name')
-    if instance and field_name == 'name':
-        from olympia.amo.tasks import trigger_sync_objects_to_basket
-
-        trigger_sync_objects_to_basket('addon', [instance.pk], 'name change')
 
 
 def attach_translations_dict(addons):
@@ -2090,26 +2046,8 @@ def watch_addon_user(
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
 
 
-def addon_user_sync(sender=None, instance=None, **kwargs):
-    # Basket doesn't care what role authors have or whether they are listed
-    # or not, it just needs to be updated whenever an author is added/removed.
-    created_or_deleted = kwargs.get('created', True) or instance.is_deleted
-    if created_or_deleted and instance.addon.status != amo.STATUS_DELETED:
-        from olympia.amo.tasks import trigger_sync_objects_to_basket
-
-        trigger_sync_objects_to_basket('addon', [instance.addon.pk], 'addonuser change')
-
-
 models.signals.post_delete.connect(
     watch_addon_user, sender=AddonUser, dispatch_uid='delete_addon_user'
-)
-models.signals.post_delete.connect(
-    addon_user_sync, sender=AddonUser, dispatch_uid='delete_addon_user_sync'
-)
-
-
-models.signals.post_save.connect(
-    addon_user_sync, sender=AddonUser, dispatch_uid='save_addon_user_sync'
 )
 
 

@@ -10,10 +10,7 @@ from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
 from olympia import amo
-from olympia.accounts.serializers import (
-    BaseUserSerializer,
-    UserProfileBasketSyncSerializer,
-)
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -1473,53 +1470,6 @@ class LanguageToolsSerializer(AddonSerializer):
         if request and is_gate_active(request, 'addons-locale_disambiguation-shim'):
             data['locale_disambiguation'] = None
         return data
-
-
-class VersionBasketSerializer(SimpleVersionSerializer):
-    class Meta:
-        model = Version
-        fields = ('id', 'compatibility', 'is_strict_compatibility_enabled', 'version')
-
-
-class AddonBasketSyncSerializer(AddonSerializerWithUnlistedData):
-    # We want to send all authors to basket, not just listed ones, and have
-    # the full basket-specific serialization.
-    authors = UserProfileBasketSyncSerializer(many=True)
-    current_version = VersionBasketSerializer()
-    is_recommended = serializers.SerializerMethodField()
-    latest_unlisted_version = VersionBasketSerializer()
-    name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Addon
-        fields = (
-            'authors',
-            'average_daily_users',
-            'categories',
-            'current_version',
-            'default_locale',
-            'guid',
-            'id',
-            'is_disabled',
-            'is_recommended',
-            'last_updated',
-            'latest_unlisted_version',
-            'name',
-            'ratings',
-            'slug',
-            'status',
-            'type',
-        )
-        read_only_fields = fields
-
-    def get_name(self, obj):
-        # Basket doesn't want translations, we run the serialization task under
-        # the add-on default locale so we can just return the name as string.
-        return str(obj.name)
-
-    def get_is_recommended(self, obj):
-        # Borrow the logic from is_featured so we don't have to define it twice
-        return self.get_is_featured(obj)
 
 
 class ReplacementAddonSerializer(serializers.ModelSerializer):

@@ -1022,44 +1022,7 @@ def cleanup_version(sender, instance, **kw):
         cleanup_file(instance.file.__class__, instance.file)
 
 
-@Version.on_change
-def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kwargs):
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-    changes = {
-        x for x in new_attr if not x.startswith('_') and new_attr[x] != old_attr.get(x)
-    }
-
-    if instance.channel == amo.RELEASE_CHANNEL_UNLISTED and 'deleted' in changes:
-        # Sync the related add-on to basket when an unlisted version is
-        # deleted. (When a listed version is deleted, watch_changes() in
-        # olympia.addon.models should take care of it (since _current_version
-        # will change).
-        from olympia.amo.tasks import trigger_sync_objects_to_basket
-
-        trigger_sync_objects_to_basket(
-            'addon', [instance.addon.pk], 'unlisted version deleted'
-        )
-
-
-def watch_new_unlisted_version(sender=None, instance=None, **kwargs):
-    # Sync the related add-on to basket when an unlisted version is uploaded.
-    # Unlisted version deletion is handled by watch_changes() above, and new
-    # version approval changes are handled by watch_changes()
-    # in olympia.addon.models (since _current_version will change).
-    # What's left here is unlisted version upload.
-    if instance and instance.channel == amo.RELEASE_CHANNEL_UNLISTED:
-        from olympia.amo.tasks import trigger_sync_objects_to_basket
-
-        trigger_sync_objects_to_basket(
-            'addon', [instance.addon.pk], 'new unlisted version'
-        )
-
-
 version_uploaded = django.dispatch.Signal()
-version_uploaded.connect(watch_new_unlisted_version)
 models.signals.pre_save.connect(
     save_signal, sender=Version, dispatch_uid='version_translations'
 )
