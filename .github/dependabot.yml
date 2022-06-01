@@ -42,3 +42,6 @@ updates:
   - dependency-name: google-cloud-bigquery
     versions:
     - ">= 3.0.0"
+  - dependency-name: protobuf
+    versions:
+    - ">= 4.0.0"
