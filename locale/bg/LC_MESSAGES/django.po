@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-06-01 07:46+0000\n"
+"PO-Revision-Date: 2022-06-01 08:04+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -156,10 +156,10 @@ msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
+msgstr "Недействително име на категория."
 
 msgid "Invalid app name."
-msgstr ""
+msgstr "Недействително име на приложение."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "Домейнът трябва да е един от [{domains}]."
@@ -181,10 +181,10 @@ msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Недействителна стойност"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Посочено е недействително приложение"
 
 msgid "Unknown app version specified"
 msgstr ""
@@ -228,7 +228,7 @@ msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "Account not found."
-msgstr ""
+msgstr "Профилът не е намерен."
 
 #, fuzzy
 msgid "An author can only be present once."
