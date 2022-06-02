@@ -97,7 +97,10 @@ class Updater:
                 update['update_hash'] = version.file.hash
             if version.release_notes_id:
                 update['update_info_url'] = absolutify(
-                    reverse('addons.versions.update_info', args=('toto', '1.0'))
+                    reverse(
+                        'addons.versions.update_info',
+                        args=(version.addon_slug, version.version),
+                    )
                 )
         return {'addons': {self.guid: {'updates': [update]}}}
 
