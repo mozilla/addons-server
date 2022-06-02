@@ -153,9 +153,6 @@ class TestLookup(VersionCheckMixin, TestCase):
             '', '3000000001100', self.app, self.platform
         )
         assert version == self.version_1_0_2.version
-        import ipdb
-
-        ipdb.set_trace()
 
     def test_new_client(self):
         """
