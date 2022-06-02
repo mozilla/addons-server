@@ -10,7 +10,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
-from django.db.models import Q
+from django.db.models import Case, F, Q, When
 from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
@@ -88,22 +88,55 @@ class VersionManager(ManagerBase):
     def reviewed(self):
         return self.filter(file__status__in=amo.REVIEWED_STATUSES)
 
-    def latest_public_compatible_with(self, application, appversions):
+    def latest_public_compatible_with(
+        self, application, appversions, strict_compat_mode=False
+    ):
         """Return a queryset filtering the versions so that they are public,
         listed, and compatible with the application and appversions parameters
         passed. The queryset is ordered by creation date descending, allowing
         the caller to get the latest compatible version available.
 
-        application is an application id
-        appversions is a dict containing min and max values, as version ints.
+        `application` is an application id
+        `appversions` is a dict containing min and max values, as version ints.
+
+        By default, `appversions['max']` is only considered for versions that
+        have strict compatibility enabled, unless the `strict_compat_mode`
+        parameter is also True.
+
+        Regardless of whether appversions are passed or not, the queryset will
+        be annotated with min_compatible_version and max_compatible_version
+        values, corresponding to the min and max application version each
+        Version is compatible with.
         """
-        return Version.objects.filter(
-            apps__application=application,
-            apps__min__version_int__lte=appversions['min'],
-            apps__max__version_int__gte=appversions['max'],
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            file__status=amo.STATUS_APPROVED,
-        ).order_by('-created')
+        qs = self.all()
+        filters = {
+            'channel': amo.RELEASE_CHANNEL_LISTED,
+            'file__status': amo.STATUS_APPROVED,
+        }
+        filters = {
+            'channel': amo.RELEASE_CHANNEL_LISTED,
+            'file__status': amo.STATUS_APPROVED,
+            'apps__application': application,
+        }
+        annotations = {
+            'min_compatible_version': F('apps__min__version'),
+            'max_compatible_version': F('apps__max__version'),
+        }
+        if 'min' in appversions:
+            filters['apps__min__version_int__lte'] = appversions['min']
+
+        if 'max' in appversions:
+            if strict_compat_mode:
+                filters['apps__max__version_int__gte'] = appversions['max']
+            else:
+                filters['apps__max__version_int__gte'] = Case(
+                    When(file__strict_compatibility=True, then=appversions['max']),
+                    default=0,
+                )
+
+        # Note: the filter() needs to happen before the annotate(), otherwise
+        # it would create extra joins!
+        return qs.filter(**filters).annotate(**annotations).order_by('-created')
 
     def auto_approvable(self):
         """Returns a queryset filtered with just the versions that should

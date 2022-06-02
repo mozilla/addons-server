@@ -65,8 +65,8 @@ from olympia.versions.models import (
 pytestmark = pytest.mark.django_db
 
 
-class TestVersionManager(TestCase):
-    def test_latest_public_compatible_with(self):
+class TestVersionManagerLatestPublicCompatibleWith(TestCase):
+    def test_latest_public_compatible_with_multiple_addons(self):
         # Add compatible add-ons. We're going to request versions compatible
         # with 58.0.
         compatible_pack1 = addon_factory(
@@ -199,6 +199,159 @@ class TestVersionManager(TestCase):
         ]
         assert list(qs) == expected_versions
 
+    def test_latest_public_compatible_with(self):
+        addon = addon_factory(
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        # We should get 4 joins:
+        # - applications_versions
+        # - appversions (min)
+        # - appversions (max)
+        # - files (status and strict_compatibility)
+        assert str(qs.query).count('JOIN') == 4
+        # We're not in strict mode, and the add-on hasn't strict compatibility enabled,
+        # so we find a result.
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '57.*'
+
+    def test_latest_public_compatible_with_wrong_app(self):
+        addon = addon_factory(
+            version_kw={
+                'application': amo.ANDROID.id,
+                'min_app_version': '57.0',
+                'max_app_version': '*',
+            },
+        )
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert not qs.exists()
+
+        qs = Version.objects.latest_public_compatible_with(amo.ANDROID.id, appversions)
+        assert qs.exists()
+        assert str(qs.query).count('JOIN') == 4
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '*'
+
+        # Add a Firefox version, but don't let it be compatible with what we're
+        # requesting yet.
+        av_min, _ = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='59.0'
+        )
+        av_max, _ = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='*'
+        )
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.FIREFOX.id,
+            version=addon.current_version,
+            min=av_min,
+            max=av_max,
+        )
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert not qs.exists()
+
+        av_min.version = '58.0'
+        av_min.version_int = None
+        av_min.save()  # Will deal with version_intification behind the scenes.
+
+        # Now it should work!
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '58.0'
+        assert qs[0].max_compatible_version == '*'
+
+    def test_latest_public_compatible_with_no_max_argument(self):
+        addon = addon_factory(
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
+        appversions = {
+            'min': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert str(qs.query).count('JOIN') == 4
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '57.*'  # Still annotated.
+
+    def test_latest_public_compatible_with_strict_compat_mode(self):
+        addon = addon_factory(
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions, strict_compat_mode=True
+        )
+        assert str(qs.query).count('JOIN') == 4
+        assert not qs.exists()
+
+        appversions = {
+            'min': version_int('57.0'),
+            'max': version_int('57.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions, strict_compat_mode=True
+        )
+        assert str(qs.query).count('JOIN') == 4
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '57.*'
+
+    def test_latest_public_compatible_with_strict_compatibility_set(self):
+        addon = addon_factory(
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+            file_kw={'strict_compatibility': True},
+        )
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert str(qs.query).count('JOIN') == 4
+        assert not qs.exists()
+
+        # Strict mode shouldn't change anything.
+        qs = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions, strict_compat_mode=True
+        )
+        assert str(qs.query).count('JOIN') == 4
+        assert not qs.exists()
+
+        appversions = {
+            'min': version_int('57.0'),
+            'max': version_int('57.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert str(qs.query).count('JOIN') == 4
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '57.*'
+
+        # Strict mode shouldn't change anything.
+        qs2 = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions, strict_compat_mode=True
+        )
+        assert list(qs2) == list(qs)
+
+
+class TestVersionManager(TestCase):
     def test_version_hidden_from_related_manager_after_deletion(self):
         """Test that a version that has been deleted should be hidden from the
         reverse relations, unless using the specific unfiltered_for_relations

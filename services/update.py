@@ -98,7 +98,6 @@ class Update:
                 `files`.`hash`,
                 `files`.`filename`,
                 `files`.`id` AS `file_id`,
-                `versions`.`id` AS `version_id`,
                 `files`.`strict_compatibility` AS `strict_compat`,
                 `versions`.`releasenotes`,
                 `versions`.`version` AS `version`
@@ -116,14 +115,6 @@ class Update:
                 AND `appmax`.`application_id` = %(app_id)s
             INNER JOIN `files`
                 ON `files`.`version_id` = `versions`.`id`
-            -- Find a reference to the user's current version, if it exists.
-            -- These should never be inner joins. We need results even if we
-            -- can't find the current version.
-            LEFT JOIN `versions` `curver`
-                ON `curver`.`addon_id` = `addons`.`id`
-                AND `curver`.`version` = %(version)s
-            LEFT JOIN `files` `curfile`
-                ON `curfile`.`version_id` = `curver`.`id`
             WHERE
                 `versions`.`deleted` = 0
                 AND `versions`.`channel` = %(RELEASE_CHANNEL_LISTED)s
@@ -162,7 +153,6 @@ class Update:
                         'hash',
                         'filename',
                         'file_id',
-                        'version_id',
                         'strict_compat',
                         'releasenotes',
                         'version',
@@ -221,7 +211,7 @@ class Update:
         return {'addons': {self.data['guid']: {'updates': [update]}}}
 
     def format_date(self, secs):
-        return '%s GMT' % formatdate(time() + secs)[:25]
+        return formatdate(time() + secs, usegmt=True)
 
     def get_headers(self, length):
         content_type = 'application/json'
