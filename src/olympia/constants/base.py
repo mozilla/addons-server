@@ -147,7 +147,7 @@ ADDON_TYPES = {
     _ADDON_SEARCH: _('Search Tools'),
     ADDON_LPAPP: _('Language Packs (Application)'),
     ADDON_LPADDON: _('Language Packs (Add-on)'),
-    ADDON_PLUGIN: _('Plugins'),
+    _ADDON_PLUGIN: _('Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
     ADDON_SITE_PERMISSION: _('Site Permissions'),

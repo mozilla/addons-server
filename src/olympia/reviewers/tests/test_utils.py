@@ -1098,7 +1098,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_old_nomination_to_public_bonus_score(self):
         self.sign_file_mock.reset()
-        self.setup_data(amo.STATUS_NOMINATED, type=amo.ADDON_PLUGIN)
+        self.setup_data(amo.STATUS_NOMINATED, type=amo._ADDON_PLUGIN)
         self.version.update(nomination=self.days_ago(9))
 
         self.helper.handler.approve_latest_version()

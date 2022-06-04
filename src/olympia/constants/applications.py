@@ -144,7 +144,7 @@ class MOZILLA(App):
     shortername = 'mz'
     pretty = _('Mozilla')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, _ADDON_PLUGIN]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
 
 
