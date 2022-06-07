@@ -12,12 +12,13 @@ def fix_missing_denied_guids_for_blocked_addons(apps, schema_editor):
     DeniedGuid = apps.get_model('addons', 'DeniedGuid')
     missing_denied_guids = (
         Addon.unfiltered.filter(
-            guid__in=Block.objects.filter(
-                min_version=str(Block.MIN), max_version=str(Block.MAX)
-            ).values_list(guidc=Collate('guid', 'utf8mb4_unicode_ci'), flat=True),
+            guid__in=Block.objects.filter(min_version='0', max_version='*').values(
+                guidc=Collate('guid', 'utf8mb4_unicode_ci')
+            ),
             status=amo.STATUS_DELETED,
         )
         .exclude(guid__in=DeniedGuid.objects.values('guid'))
+        .values_list('guid', flat=True)
         .distinct()
     )
     DeniedGuid.objects.bulk_create(
