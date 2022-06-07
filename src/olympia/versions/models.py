@@ -108,7 +108,6 @@ class VersionManager(ManagerBase):
         values, corresponding to the min and max application version each
         Version is compatible with.
         """
-        qs = self.all()
         filters = {
             'channel': amo.RELEASE_CHANNEL_LISTED,
             'file__status': amo.STATUS_APPROVED,
@@ -136,7 +135,7 @@ class VersionManager(ManagerBase):
 
         # Note: the filter() needs to happen before the annotate(), otherwise
         # it would create extra joins!
-        return qs.filter(**filters).annotate(**annotations).order_by('-created')
+        return self.filter(**filters).annotate(**annotations).order_by('-created')
 
     def auto_approvable(self):
         """Returns a queryset filtered with just the versions that should

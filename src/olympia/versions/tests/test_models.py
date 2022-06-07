@@ -235,11 +235,11 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         }
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert not qs.exists()
+        assert str(qs.query).count('JOIN') == 4
 
         qs = Version.objects.latest_public_compatible_with(amo.ANDROID.id, appversions)
         assert qs.exists()
         assert str(qs.query).count('JOIN') == 4
-        assert qs.exists()
         assert qs[0] == addon.current_version
         assert qs[0].min_compatible_version == '57.0'
         assert qs[0].max_compatible_version == '*'
