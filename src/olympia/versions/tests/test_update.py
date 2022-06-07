@@ -336,6 +336,7 @@ class TestUpdate(TestCase):
         # the old service did that too. So should add-ons marked as having no
         # compatibility, like dictionaries, always have one recorded in the db
         # anyway ? It seems like they do in production.
+        # https://github.com/mozilla/addons-server/issues/19323
         self._check_ok(self.addon.current_version)
 
     def test_normal_mode(self):
