@@ -70,7 +70,7 @@ class Updater:
 
     def get_output(self):
         if not self.check_required_parameters():
-            return {}, 400
+            return self.get_error_output(), 400
         if addon_id := self.get_addon_id():
             if version := self.get_update(addon_id):
                 contents = self.get_success_output(version)
@@ -87,6 +87,11 @@ class Updater:
         return {'addons': {self.guid: {'updates': []}}}
 
     def get_success_output(self, version):
+        # The update service bypasses our URL prefixer so we need to override
+        # the values to send the right thing to the clients.
+        # For the locale we use the special `%APP_LOCALE%` that Firefox will
+        # replace with the current locale when using the URL. See
+        # mozilla-central/source/toolkit/mozapps/extensions/AddonManager.jsm
         with override_url_prefix(app_name=self.app.short, locale='%APP_LOCALE%'):
             update = {
                 'version': version.version,
