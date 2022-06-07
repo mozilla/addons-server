@@ -69,6 +69,7 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
+    'captcha.recaptcha_test_key_error',
 )
 
 # LESS CSS OPTIONS (Debug only).
@@ -525,7 +526,7 @@ INSTALLED_APPS = (
     'waffle',
     'django_jinja',
     'rangefilter',
-    'nobot',
+    'captcha',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -1058,10 +1059,7 @@ CSP_FONT_SRC = (
     "'self'",
     PROD_STATIC_URL,
 )
-CSP_CHILD_SRC = (
-    'https://www.google.com/recaptcha/',
-    'https://www.recaptcha.net/recaptcha/',
-)
+CSP_CHILD_SRC = ('https://www.recaptcha.net/recaptcha/',)
 CSP_FRAME_SRC = CSP_CHILD_SRC
 CSP_IMG_SRC = (
     "'self'",
@@ -1075,7 +1073,6 @@ CSP_OBJECT_SRC = ("'none'",)
 
 CSP_SCRIPT_SRC = (
     'https://www.google-analytics.com/analytics.js',
-    'https://www.google.com/recaptcha/',
     'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     'https://www.gstatic.cn/recaptcha/',
@@ -1133,12 +1130,9 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 
 # RECAPTCHA: overload the following key settings in local_settings.py
 # with your keys.
-# Old recaptcha V1
-RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY', default='')
-RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY', default='')
-# New Recaptcha V2
-NOBOT_RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY', default='')
-NOBOT_RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
+RECAPTCHA_PUBLIC_KEY = env('NOBOT_RECAPTCHA_PUBLIC_KEY', default='')
+RECAPTCHA_PRIVATE_KEY = env('NOBOT_RECAPTCHA_PRIVATE_KEY', default='')
+RECAPTCHA_DOMAIN = 'www.recaptcha.net'
 
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True

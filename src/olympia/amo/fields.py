@@ -8,7 +8,7 @@ from django.db import models
 from django.forms import fields
 from django.utils.translation import gettext_lazy as _
 
-from nobot.fields import HumanCaptchaField
+from captcha.fields import ReCaptchaField as UpstreamReCaptchaField
 
 
 class PositiveAutoField(models.AutoField):
@@ -50,7 +50,7 @@ class HttpHttpsOnlyURLField(fields.URLField):
         ]
 
 
-class ReCaptchaField(HumanCaptchaField):
+class ReCaptchaField(UpstreamReCaptchaField):
     # Sub-class so we can translate the strings.
     default_error_messages = {
         'captcha_invalid': _('Incorrect, please try again.'),

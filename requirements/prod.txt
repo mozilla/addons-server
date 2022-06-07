@@ -283,6 +283,9 @@ django-multidb-router==0.10 \
 django-post-request-task==0.5 \
     --hash=sha256:26c03b5d06eb1705b2438bb719575fac4aae7f34c32837480202acad556edb3c \
     --hash=sha256:91df3893c9551851cd10568ef3b2cf358bd87e8c65dce728c37196a8de34247c
+django-recaptcha==3.0.0 \
+    --hash=sha256:1aed69fd6ac8fd9e99e52665392ae6748f8b6339ace656fad779fe0c6c915a52 \
+    --hash=sha256:253197051288923cae675d7eff91b619e3775311292a5dbaf27a8a55ffebc670
 django-statsd-mozilla==0.4.0 \
     --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
     --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
@@ -376,9 +379,6 @@ mmh3==3.0.0 \
 pymemcache==3.5.2 \
     --hash=sha256:3fca0215845d7b2ecd5f4c627fcf4ce2345a703a897b7e116380115b5a197be2 \
     --hash=sha256:8923ab59840f0d5338f1c52dba229fa835545b91c3c2f691c118e678d0fb974e
-nobot==0.7 \
-    --hash=sha256:a724b877bbb6ad2c9614a6461c86125ab950c4e8a9ce27355d39703409dedb6a \
-    --hash=sha256:12c0ad7d62ad0eb65456ba88e796a5dcb21b13d940f71f4bcb28d4f84cb0106a
 # polib is required by dennis
 polib==1.1.1 \
     --hash=sha256:d3ee85e0c6788f789353416b1612c6c92d75fe6ccfac0029711974d6abd0f86d \
