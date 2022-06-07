@@ -1,3 +1,4 @@
+import html
 from datetime import datetime
 
 from django.conf import settings
@@ -31,7 +32,9 @@ def update_blog_posts():
     for item in latest_five:
         existing = existing_blogposts.get(item['id'])
         data = {
-            'title': item['title']['rendered'],
+            # Wordpress feed is HTML-escaped - we don't want that, we are
+            # escaping ourselves at render time.
+            'title': html.unescape(item['title']['rendered']),
             'date_posted': datetime.strptime(item['date'], '%Y-%m-%dT%H:%M:%S'),
             'date_modified': datetime.strptime(item['modified'], '%Y-%m-%dT%H:%M:%S'),
             'permalink': item['link'],
