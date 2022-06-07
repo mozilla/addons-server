@@ -546,10 +546,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         cls.objects.bulk_update(
             users, fields=('banned', 'deleted', 'modified') + cls.ANONYMIZED_FIELDS
         )
-        from olympia.amo.tasks import trigger_sync_objects_to_basket
-
-        trigger_sync_objects_to_basket('userprofile', ids, 'user ban')
-        trigger_sync_objects_to_basket('addon', addons_sole_ids, 'user ban content')
 
     def _prepare_delete_email(self):
         site_url = settings.EXTERNAL_SITE_URL
@@ -1133,19 +1129,6 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
-
-    basket_relevant_changes = (
-        'deleted',
-        'display_name',
-        'fxa_id',
-        'homepage',
-        'last_login',
-        'location',
-    )
-    if any(field in changes for field in basket_relevant_changes):
-        from olympia.amo.tasks import trigger_sync_objects_to_basket
-
-        trigger_sync_objects_to_basket('userprofile', [instance.pk], 'attribute change')
 
 
 user_logged_in.connect(UserProfile.user_logged_in)

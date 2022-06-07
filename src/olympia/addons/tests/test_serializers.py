@@ -17,7 +17,6 @@ from olympia.addons.models import (
 )
 from olympia.addons.serializers import (
     AddonAuthorSerializer,
-    AddonBasketSyncSerializer,
     AddonDeveloperSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
@@ -1584,110 +1583,6 @@ class TestAddonDeveloperSerializer(TestCase, BaseTestUserMixin):
         serialized = self.serialize()
         assert serialized['picture_url'] == absolutify(self.user.picture_url)
         assert '%s.png' % self.user.id in serialized['picture_url']
-
-
-class TestAddonBasketSyncSerializer(TestCase):
-    def serialize(self):
-        serializer = AddonBasketSyncSerializer(self.addon)
-        return serializer.to_representation(self.addon)
-
-    def test_basic(self):
-        category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
-        self.addon = addon_factory(category=category)
-        data = self.serialize()
-        expected_data = {
-            'authors': [],
-            'average_daily_users': self.addon.average_daily_users,
-            'categories': {'firefox': ['bookmarks']},
-            'current_version': {
-                'id': self.addon.current_version.pk,
-                'compatibility': {
-                    'firefox': {
-                        'min': '4.0.99',
-                        'max': '5.0.99',
-                    }
-                },
-                'is_strict_compatibility_enabled': False,
-                'version': self.addon.current_version.version,
-            },
-            'default_locale': 'en-US',
-            'guid': self.addon.guid,
-            'id': self.addon.pk,
-            'is_disabled': self.addon.is_disabled,
-            'is_recommended': False,
-            'last_updated': self.addon.last_updated.replace(microsecond=0).isoformat()
-            + 'Z',
-            'latest_unlisted_version': None,
-            'name': str(self.addon.name),  # No translations.
-            'ratings': {
-                'average': 0.0,
-                'bayesian_average': 0.0,
-                'count': 0,
-                'text_count': 0,
-            },
-            'slug': self.addon.slug,
-            'status': 'public',
-            'type': 'extension',
-        }
-        assert expected_data == data
-
-    def test_with_unlisted_version(self):
-        self.addon = addon_factory()
-        version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
-        data = self.serialize()
-        assert data['latest_unlisted_version'] == {
-            'id': version.pk,
-            'compatibility': {
-                'firefox': {
-                    'min': '4.0.99',
-                    'max': '5.0.99',
-                }
-            },
-            'is_strict_compatibility_enabled': False,
-            'version': version.version,
-        }
-
-    def test_non_listed_author(self):
-        self.addon = addon_factory()
-        user1 = user_factory(fxa_id='azerty')
-        user2 = user_factory(fxa_id=None)  # somehow no fxa_id.
-        AddonUser.objects.create(
-            addon=self.addon,
-            user=user1,
-            listed=True,
-            role=amo.AUTHOR_ROLE_OWNER,
-            position=1,
-        )
-        AddonUser.objects.create(
-            addon=self.addon,
-            user=user2,
-            listed=False,
-            role=amo.AUTHOR_ROLE_DEV,
-            position=2,
-        )
-        data = self.serialize()
-        assert data['authors'] == [
-            {
-                'id': user1.pk,
-                'deleted': False,
-                'display_name': '',
-                'fxa_id': user1.fxa_id,
-                'homepage': user1.homepage,
-                'last_login': user1.last_login,
-                'location': user1.location,
-            },
-            {
-                'id': user2.pk,
-                'deleted': False,
-                'display_name': '',
-                'fxa_id': user2.fxa_id,
-                'homepage': user2.homepage,
-                'last_login': user2.last_login,
-                'location': user2.location,
-            },
-        ]
 
 
 class TestReplacementAddonSerializer(TestCase):
