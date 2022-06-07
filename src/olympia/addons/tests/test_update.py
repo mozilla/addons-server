@@ -112,11 +112,11 @@ class TestLookup(VersionCheckMixin, TestCase):
         self.version_int = 3069900200100
 
         self.app = amo.APP_IDS[1]
-        self.version_1_0_2 = Version.objects.get(pk=66463)
-        self.version_1_1_3 = Version.objects.get(pk=90149)
-        self.version_1_2_0 = Version.objects.get(pk=105387)
-        self.version_1_2_1 = Version.objects.get(pk=112396)
-        self.version_1_2_2 = Version.objects.get(pk=115509)
+        self.version_1_0_2 = 66463
+        self.version_1_1_3 = 90149
+        self.version_1_2_0 = 105387
+        self.version_1_2_1 = 112396
+        self.version_1_2_2 = 115509
 
     def get_update_instance(self, *args):
         data = {
@@ -134,15 +134,19 @@ class TestLookup(VersionCheckMixin, TestCase):
         instance.data['version_int'] = args[1]
         instance.get_update()
         return (
-            instance.data['row'].get('version'),
+            instance.data['row'].get('version_id'),
             instance.data['row'].get('file_id'),
         )
 
     def change_status(self, version, status):
+        version = Version.objects.get(pk=version)
         file = version.file
         file.status = status
         file.save()
         return version
+
+    def change_version(self, version, name):
+        Version.objects.get(pk=version).update(version=name)
 
     def test_low_client(self):
         """
@@ -152,7 +156,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get_update_instance(
             '', '3000000001100', self.app, self.platform
         )
-        assert version == self.version_1_0_2.version
+        assert version == self.version_1_0_2
 
     def test_new_client(self):
         """
@@ -162,7 +166,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get_update_instance(
             '', self.version_int, self.app, self.platform
         )
-        assert version == self.version_1_2_2.version
+        assert version == self.version_1_2_2
 
     def test_min_client(self):
         """
@@ -170,7 +174,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         the add-on is returned, because all later ones are set to minimum
         version of 3.7a5.
         """
-        for version in Version.objects.filter(pk__gte=self.version_1_2_0.pk):
+        for version in Version.objects.filter(pk__gte=self.version_1_2_0):
             appversion = version.apps.all()[0]
             appversion.min = AppVersion.objects.get(pk=325)  # 3.7a5
             appversion.save()
@@ -178,7 +182,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get_update_instance(
             '', '3070000005000', self.app, self.platform
         )  # 3.7a5pre
-        assert version == self.version_1_1_3.version
+        assert version == self.version_1_1_3
 
     def test_new_client_ordering(self):
         """
@@ -200,7 +204,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get_update_instance(
             '', self.version_int, self.app, self.platform
         )
-        assert version == self.version_1_2_2.version
+        assert version == self.version_1_2_2
 
     def test_public(self):
         """
@@ -212,19 +216,21 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, self.platform
         )
-        assert version == self.version_1_2_1.version
+        assert version == self.version_1_2_1
 
     def test_no_unlisted(self):
         """
         Unlisted versions are always ignored, never served as updates.
         """
-        self.version_1_2_2.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        Version.objects.get(pk=self.version_1_2_2).update(
+            channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, self.platform
         )
-        assert version == self.version_1_2_1.version
+        assert version == self.version_1_2_1
 
     def test_can_downgrade(self):
         """
@@ -232,13 +238,13 @@ class TestLookup(VersionCheckMixin, TestCase):
         and the oldest public version is now 1.1.3.
         """
         self.change_status(self.version_1_2_0, amo.STATUS_AWAITING_REVIEW)
-        for v in Version.objects.filter(pk__gte=self.version_1_2_1.pk):
+        for v in Version.objects.filter(pk__gte=self.version_1_2_1):
             v.delete()
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, self.platform
         )
 
-        assert version == self.version_1_1_3.version
+        assert version == self.version_1_1_3
 
     def test_public_pending_exists(self):
         """
@@ -249,13 +255,13 @@ class TestLookup(VersionCheckMixin, TestCase):
         """
         self.change_status(self.version_1_2_2, amo.STATUS_AWAITING_REVIEW)
         self.change_status(self.version_1_2_0, amo.STATUS_AWAITING_REVIEW)
-        self.version_1_2_0.update(version='1.2beta')
+        self.change_version(self.version_1_2_0, '1.2beta')
 
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, self.platform
         )
 
-        assert version == self.version_1_2_1.version
+        assert version == self.version_1_2_1
 
     def test_not_public(self):
         """
@@ -267,7 +273,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get_update_instance(
             '1.2.1', self.version_int, self.app, self.platform
         )
-        assert version == self.version_1_2_1.version
+        assert version == self.version_1_2_1
 
     def test_platform_ignore(self):
         """Ignore platform passed by clients (all add-ons are now compatible
@@ -276,7 +282,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, 'Linux'
         )
-        assert version == self.version_1_2_2.version
+        assert version == self.version_1_2_2
 
 
 class TestDefaultToCompat(VersionCheckMixin, TestCase):
@@ -296,27 +302,27 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         self.app_version_int_6_0 = 6000000200100
         self.app_version_int_7_0 = 7000000200100
         self.app_version_int_8_0 = 8000000200100
-        self.ver_1_0 = Version.objects.get(pk=1268881)
-        self.ver_1_1 = Version.objects.get(pk=1268882)
-        self.ver_1_2 = Version.objects.get(pk=1268883)
-        self.ver_1_3 = Version.objects.get(pk=1268884)
+        self.ver_1_0 = 1268881
+        self.ver_1_1 = 1268882
+        self.ver_1_2 = 1268883
+        self.ver_1_3 = 1268884
 
         self.expected = {
-            '4.0-strict': self.ver_1_0.version,
-            '4.0-normal': self.ver_1_0.version,
-            '4.0-ignore': self.ver_1_0.version,
-            '5.0-strict': self.ver_1_2.version,
-            '5.0-normal': self.ver_1_2.version,
-            '5.0-ignore': self.ver_1_2.version,
-            '6.0-strict': self.ver_1_3.version,
-            '6.0-normal': self.ver_1_3.version,
-            '6.0-ignore': self.ver_1_3.version,
-            '7.0-strict': self.ver_1_3.version,
-            '7.0-normal': self.ver_1_3.version,
-            '7.0-ignore': self.ver_1_3.version,
+            '4.0-strict': self.ver_1_0,
+            '4.0-normal': self.ver_1_0,
+            '4.0-ignore': self.ver_1_0,
+            '5.0-strict': self.ver_1_2,
+            '5.0-normal': self.ver_1_2,
+            '5.0-ignore': self.ver_1_2,
+            '6.0-strict': self.ver_1_3,
+            '6.0-normal': self.ver_1_3,
+            '6.0-ignore': self.ver_1_3,
+            '7.0-strict': self.ver_1_3,
+            '7.0-normal': self.ver_1_3,
+            '7.0-ignore': self.ver_1_3,
             '8.0-strict': None,
-            '8.0-normal': self.ver_1_3.version,
-            '8.0-ignore': self.ver_1_3.version,
+            '8.0-normal': self.ver_1_3,
+            '8.0-ignore': self.ver_1_3,
         }
 
     def update_files(self, **kw):
@@ -336,7 +342,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         assert instance.is_valid()
         instance.compat_mode = kw.get('compat_mode', 'strict')
         instance.get_update()
-        return instance.data['row'].get('version')
+        return instance.data['row'].get('version_id')
 
     def check(self, expected):
         """
