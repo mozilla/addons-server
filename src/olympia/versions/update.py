@@ -4,7 +4,6 @@ from django.http import JsonResponse
 from django.views.decorators.cache import cache_control
 from django.urls import reverse
 
-import olympia.core.logger
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.reverse import override_url_prefix
@@ -13,40 +12,51 @@ from olympia.versions.compare import version_int
 from olympia.versions.models import Version
 
 
-log = olympia.core.logger.getLogger('z.update')
+# Valid compatMode parameters
+# (see mozilla-central/source/toolkit/mozapps/extensions/internal/XPIInstall.jsm)
+COMPAT_MODE_STRICT = 'strict'
+COMPAT_MODE_NORMAL = 'normal'
+COMPAT_MODE_IGNORE = 'ignore'
 
 
 class Updater:
     def __init__(self, data):
-        self.compat_mode = data.get('compatMode', 'strict')
+        self.compat_mode = data.get('compatMode', COMPAT_MODE_STRICT)
         self.app = applications.APP_GUIDS.get(data.get('appID'))
         self.guid = data.get('id')
         self.appversion = data.get('appVersion')
 
     def check_required_parameters(self):
-        if not self.app or not self.guid or not self.appversion:
-            return False
-        return True
+        return self.app and self.guid and self.appversion
 
     def get_addon_id(self):
-        try:
-            addon_id = (
-                Addon.objects.not_disabled_by_mozilla()
-                .filter(disabled_by_user=False)
-                .filter(guid=self.guid)
-                .values_list('id', flat=True)
-            )[0]
-
-        except IndexError:
-            return False
-        return addon_id
+        return (
+            Addon.objects.not_disabled_by_mozilla()
+            .filter(disabled_by_user=False)
+            .filter(guid=self.guid)
+            .values_list('id', flat=True)
+        ).first()
 
     def get_update(self, addon_id):
-        strict_compat_mode = self.compat_mode == 'strict'
-        appversions = {'min': version_int(self.appversion)}
-        if strict_compat_mode or self.compat_mode == 'normal':
-            appversions['max'] = appversions['min']
-        qs = (
+        # Compatibility-wise, clients pass appVersion and compatMode query
+        # parameters. The version we return _always_ need to have a min
+        # appversion set lower or equal to the appversion passed by the client.
+        # On top of this:
+        # - if compat mode is "strict", then the version also needs to have a
+        #   max appversion higher or equal to the appversion passed by the
+        #   client.
+        # - if compat mode is "normal", then the version also needs to have a
+        #   max appversion higher or equal to the appversion passed by the
+        #   client only if its file has strict compatibility set - otherwise
+        #   it just needs to have a max version set to a value higher than 0.
+        # - if compat mode is "ignore" or any other value, then all versions
+        #   are considered without looking at their max appversion.
+        strict_compat_mode = self.compat_mode == COMPAT_MODE_STRICT
+        client_appversion = version_int(self.appversion)
+        appversions = {'min': client_appversion}
+        if strict_compat_mode or self.compat_mode == COMPAT_MODE_NORMAL:
+            appversions['max'] = client_appversion
+        return (
             Version.objects.latest_public_compatible_with(
                 self.app.id, appversions, strict_compat_mode=strict_compat_mode
             )
@@ -55,12 +65,8 @@ class Updater:
             .no_transforms()
             .filter(addon_id=addon_id)
             .order_by('-pk')
+            .first()
         )
-        try:
-            version = qs[0]
-        except IndexError:
-            return False
-        return version
 
     def get_output(self):
         if not self.check_required_parameters():
@@ -99,6 +105,8 @@ class Updater:
                 update['update_info_url'] = absolutify(
                     reverse(
                         'addons.versions.update_info',
+                        # Use our addon_slug annotation instead of version.addon.slug
+                        # to avoid additional queries.
                         args=(version.addon_slug, version.version),
                     )
                 )

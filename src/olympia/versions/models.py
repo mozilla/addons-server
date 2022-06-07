@@ -89,7 +89,7 @@ class VersionManager(ManagerBase):
         return self.filter(file__status__in=amo.REVIEWED_STATUSES)
 
     def latest_public_compatible_with(
-        self, application, appversions, strict_compat_mode=False
+        self, application, appversions, *, strict_compat_mode=False
     ):
         """Return a queryset filtering the versions so that they are public,
         listed, and compatible with the application and appversions parameters
