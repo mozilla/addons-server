@@ -88,8 +88,6 @@ TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     default=('https://taarlite.prod.mozaws.net/taarlite/api/v1/addon_recommendations/'),
 )
 
-VAMO_URL = 'https://versioncheck.allizom.org'
-
 EXTENSION_WORKSHOP_URL = env(
     'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.allizom.org'
 )
