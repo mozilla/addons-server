@@ -2,6 +2,8 @@ import hashlib
 import os
 
 from django.db import transaction
+from django.db.models import Value
+from django.db.models.functions import Collate
 
 from elasticsearch import TransportError
 from elasticsearch_dsl import Search
@@ -54,7 +56,11 @@ def update_addon_average_daily_users(data, **kw):
 
     for addon_guid, count in data:
         try:
-            addon = Addon.unfiltered.get(guid=addon_guid)
+            # guids are technically case-insensitive in AMO, but not in
+            # BigQuery, so we may be receiving the same guid multiple times in
+            # different cases. We want to avoid accidentally overwriting the
+            # value in the database, so we force an exact match here.
+            addon = Addon.unfiltered.get(guid=Collate(Value(addon_guid), 'utf8mb4_bin'))
         except Addon.DoesNotExist:
             # The processing input comes from metrics which might be out of
             # date in regards to currently existing add-ons

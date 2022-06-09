@@ -177,6 +177,19 @@ def test_update_addon_average_daily_users():
 
 
 @pytest.mark.django_db
+def test_update_addon_average_daily_users_case_sensitive():
+    addon = addon_factory(average_daily_users=0)
+    count = 123
+    data = [(addon.guid.upper(), count)]
+    assert addon.average_daily_users == 0
+
+    update_addon_average_daily_users(data)
+    addon.refresh_from_db()
+
+    assert addon.average_daily_users == 0
+
+
+@pytest.mark.django_db
 @override_switch('local-statistics-processing', active=True)
 def test_update_deleted_addon_average_daily_users():
     addon = addon_factory(average_daily_users=0)
