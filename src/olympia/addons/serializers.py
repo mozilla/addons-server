@@ -21,6 +21,7 @@ from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
 from olympia.amo.validators import (
     CreateOnlyValidator,
     OneOrMoreLetterOrNumberCharacterValidator,
+    PreventPartialUpdateValidator,
 )
 from olympia.api.fields import (
     EmailTranslationField,
@@ -863,7 +864,11 @@ class AddonSerializer(serializers.ModelSerializer):
     version = DeveloperVersionSerializer(
         write_only=True,
         # Note: we're purposefully omitting VersionAddonMetadataValidator
-        validators=(CreateOnlyValidator(), VersionLicenseValidator()),
+        validators=(
+            PreventPartialUpdateValidator(),
+            VersionLicenseValidator(),
+            MatchingGuidValidator(),
+        ),
     )
     versions_url = serializers.SerializerMethodField()
 
@@ -1163,13 +1168,6 @@ class AddonSerializerWithUnlistedData(AddonSerializer):
         read_only_fields = tuple(
             set(fields) - set(AddonSerializer.Meta.writeable_fields)
         )
-
-
-class AddonSerializerFromPut(AddonSerializerWithUnlistedData):
-    version = DeveloperVersionSerializer(
-        write_only=True,
-        validators=(VersionLicenseValidator(), MatchingGuidValidator()),
-    )
 
 
 class SimpleAddonSerializer(AddonSerializer):

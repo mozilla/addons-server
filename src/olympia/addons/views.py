@@ -80,7 +80,6 @@ from .indexers import AddonIndexer
 from .models import Addon, AddonUser, AddonUserPendingConfirmation, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
-    AddonSerializerFromPut,
     AddonAuthorSerializer,
     AddonSerializer,
     AddonSerializerWithUnlistedData,
@@ -208,7 +207,7 @@ def find_replacement_addon(request):
 class AddonViewSet(
     CreateModelMixin,
     RetrieveModelMixin,
-    #  UpdateModelMixin, - we're implementing update ourselves
+    UpdateModelMixin,
     DestroyModelMixin,
     GenericViewSet,
 ):
@@ -284,10 +283,11 @@ class AddonViewSet(
         return Addon.get_lookup_field(identifier)
 
     def get_object(self):
-        identifier = self.kwargs.get('pk')
-        self.lookup_field = self.get_lookup_field(identifier)
-        self.kwargs[self.lookup_field] = identifier
-        self.instance = super().get_object()
+        if not hasattr(self, 'instance'):
+            identifier = self.kwargs.get('pk')
+            self.lookup_field = self.get_lookup_field(identifier)
+            self.kwargs[self.lookup_field] = identifier
+            self.instance = super().get_object()
         return self.instance
 
     def check_permissions(self, request):
@@ -363,43 +363,31 @@ class AddonViewSet(
 
         return super().destroy(request, *args, **kwargs)
 
-    def partial_update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        if getattr(instance, '_prefetched_objects_cache', None):
-            # If 'prefetch_related' has been applied to a queryset, we need to
-            # forcibly invalidate the prefetch cache on the instance.
-            instance._prefetched_objects_cache = {}
-
-        return Response(serializer.data)
-
     def update(self, request, *args, **kwargs):
+        if kwargs.get('partial'):
+            # PATCH uses the standard update always
+            return super().update(request, *args, **kwargs)
+
+        # for PUT we check if the object exists first
         try:
             instance = self.get_object()
         except http.Http404:
             instance = None
-            save_kwargs = {'guid': self.kwargs.get('guid')}
-        else:
-            save_kwargs = {}
+
+        # We only support guid style ids for PUT requests
         if self.lookup_field != 'guid':
             raise http.Http404
 
-        serializer = AddonSerializerFromPut(
-            instance=instance, data=request.data, context=self.get_serializer_context()
-        )
+        if instance:
+            # if the add-on exists we can use the standard update
+            return super().update(request, *args, **kwargs)
+
+        # otherwise we create a new add-on
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        serializer.save(**save_kwargs)
+        serializer.save(guid=self.kwargs['guid'])
 
-        if getattr(instance, '_prefetched_objects_cache', None):
-            # If 'prefetch_related' has been applied to a queryset, we need to
-            # forcibly invalidate the prefetch cache on the instance.
-            instance._prefetched_objects_cache = {}
-
-        status_code = status.HTTP_201_CREATED if not instance else status.HTTP_200_OK
-        return Response(serializer.data, status=status_code)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 class AddonChildMixin:
