@@ -179,8 +179,7 @@ def test_update_addon_average_daily_users():
 @pytest.mark.django_db
 def test_update_addon_average_daily_users_case_sensitive():
     addon = addon_factory(average_daily_users=0)
-    count = 123
-    data = [(addon.guid.upper(), count)]
+    data = [(addon.guid.upper(), 123)]
     assert addon.average_daily_users == 0
 
     update_addon_average_daily_users(data)
