@@ -821,10 +821,10 @@ CELERY_TASK_QUEUES = (
     Queue('zadmin', routing_key='zadmin'),
 )
 
-# We have separate celeryds for processing devhub & images as fast as possible
-# Some notes:
-# - always add routes here instead of @task(queue=<name>)
-# - when adding a queue, be sure to update deploy.py so that it gets restarted
+# We have separate workers for processing some tasks without waiting for others
+# Notes:
+# - Always add routes here instead of @task(queue=<name>)
+# - Make sure the queues exist by coordinating with cloudops-deployment repo.
 CELERY_TASK_ROUTES = {
     # Priority.
     # If your tasks need to be run as soon as possible, add them here so they
@@ -834,8 +834,52 @@ CELERY_TASK_ROUTES = {
     'olympia.blocklist.tasks.process_blocklistsubmission': {'queue': 'priority'},
     'olympia.blocklist.tasks.upload_filter': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {'queue': 'priority'},
-    # Other queues we prioritize below.
-    # 'Default' queue.
+    # Adhoc
+    # A queue to be used for one-off tasks that could be resource intensive or
+    # tasks we want completely separate from the rest.
+    'olympia.addons.tasks.find_inconsistencies_between_es_and_db': {'queue': 'adhoc'},
+    'olympia.lib.es.management.commands.reindex.create_new_index': {'queue': 'adhoc'},
+    'olympia.lib.es.management.commands.reindex.delete_indexes': {'queue': 'adhoc'},
+    'olympia.lib.es.management.commands.reindex.flag_database': {'queue': 'adhoc'},
+    'olympia.lib.es.management.commands.reindex.unflag_database': {'queue': 'adhoc'},
+    'olympia.lib.es.management.commands.reindex.update_aliases': {'queue': 'adhoc'},
+    'olympia.translations.tasks.reclean_collection_descriptions': {'queue': 'adhoc'},
+    'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
+    'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
+    # Misc AMO tasks.
+    'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
+    'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
+    'olympia.accounts.tasks.primary_email_change_event': {'queue': 'amo'},
+    'olympia.addons.tasks.delete_addons': {'queue': 'amo'},
+    'olympia.addons.tasks.delete_preview_files': {'queue': 'amo'},
+    'olympia.addons.tasks.disable_addons': {'queue': 'amo'},
+    'olympia.addons.tasks.extract_colors_from_static_themes': {'queue': 'amo'},
+    'olympia.addons.tasks.recreate_theme_previews': {'queue': 'amo'},
+    'olympia.addons.tasks.resize_icon': {'queue': 'amo'},
+    'olympia.addons.tasks.resize_preview': {'queue': 'amo'},
+    'olympia.addons.tasks.version_changed': {'queue': 'amo'},
+    'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
+    'olympia.amo.tasks.send_email': {'queue': 'amo'},
+    'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
+    'olympia.bandwagon.tasks.collection_meta': {'queue': 'amo'},
+    'olympia.blocklist.tasks.cleanup_old_files': {'queue': 'amo'},
+    'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'amo'},
+    'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'amo'},
+    'olympia.devhub.tasks.recreate_previews': {'queue': 'amo'},
+    'olympia.git.tasks.continue_git_extraction': {'queue': 'amo'},
+    'olympia.git.tasks.extract_versions_to_git': {'queue': 'amo'},
+    'olympia.git.tasks.on_extraction_error': {'queue': 'amo'},
+    'olympia.git.tasks.remove_git_extraction_entry': {'queue': 'amo'},
+    'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'amo'},
+    'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'amo'},
+    'olympia.ratings.tasks.update_denorm': {'queue': 'amo'},
+    'olympia.tags.tasks.update_all_tag_stats': {'queue': 'amo'},
+    'olympia.tags.tasks.update_tag_stat': {'queue': 'amo'},
+    'olympia.users.tasks.delete_photo': {'queue': 'amo'},
+    'olympia.users.tasks.resize_photo': {'queue': 'amo'},
+    'olympia.users.tasks.update_user_ratings_task': {'queue': 'amo'},
+    'olympia.versions.tasks.delete_preview_files': {'queue': 'amo'},
+    # 'Default' queue. In theory shouldn't be used, it's mostly a fallback.
     'celery.accumulate': {'queue': 'default'},
     'celery.backend_cleanup': {'queue': 'default'},
     'celery.chain': {'queue': 'default'},
@@ -844,7 +888,8 @@ CELERY_TASK_ROUTES = {
     'celery.group': {'queue': 'default'},
     'celery.map': {'queue': 'default'},
     'celery.starmap': {'queue': 'default'},
-    # AMO Devhub.
+    # Devhub & related.
+    'olympia.activity.tasks.process_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_site_permission_version': {'queue': 'devhub'},
@@ -858,83 +903,22 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
+    'olympia.scanners.tasks.call_mad_api': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
-    'olympia.scanners.tasks.call_mad_api': {'queue': 'devhub'},
-    # Activity (goes to devhub queue).
-    'olympia.activity.tasks.process_email': {'queue': 'devhub'},
-    # This is currently used only by validation tasks.
-    # This puts the chord_unlock task on the devhub queue. Which means anything
-    # that uses chord() or group() must also be running in this queue or must
-    # be on a worker that listens to the same queue.
-    'celery.chord_unlock': {'queue': 'devhub'},
-    # Images.
-    'olympia.users.tasks.resize_photo': {'queue': 'images'},
-    'olympia.devhub.tasks.recreate_previews': {'queue': 'images'},
-    'olympia.addons.tasks.resize_icon': {'queue': 'images'},
-    'olympia.addons.tasks.resize_preview': {'queue': 'images'},
-    # AMO
-    'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
-    'olympia.amo.tasks.send_email': {'queue': 'amo'},
-    'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
-    'olympia.blocklist.tasks.cleanup_old_files': {'queue': 'amo'},
-    # Addons
-    'olympia.addons.tasks.delete_addons': {'queue': 'addons'},
-    'olympia.addons.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.addons.tasks.disable_addons': {'queue': 'addons'},
-    'olympia.addons.tasks.version_changed': {'queue': 'addons'},
-    'olympia.versions.tasks.delete_preview_files': {'queue': 'addons'},
-    'olympia.git.tasks.continue_git_extraction': {'queue': 'addons'},
-    'olympia.git.tasks.extract_versions_to_git': {'queue': 'addons'},
-    'olympia.git.tasks.on_extraction_error': {'queue': 'addons'},
-    'olympia.git.tasks.remove_git_extraction_entry': {'queue': 'addons'},
-    # Additional image processing tasks that aren't as important go in the
-    # addons queue to leave the 'devhub' queue free to process validations etc.
-    'olympia.addons.tasks.extract_colors_from_static_themes': {'queue': 'addons'},
-    'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
-    'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
-    'olympia.addons.tasks.recreate_theme_previews': {'queue': 'addons'},
-    # Adhoc
-    # A queue to be used for one-off tasks that could be resource intensive.
-    'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
-    'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
-    'olympia.translations.tasks.reclean_collection_descriptions': {'queue': 'adhoc'},
-    # Crons
+    # Crons.
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
-    # Bandwagon
-    'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
-    # Reviewers
-    'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'reviewers'},
-    # Crypto
-    'olympia.lib.crypto.tasks.sign_addons': {'queue': 'crypto'},
-    # Search
-    'olympia.lib.es.management.commands.reindex.create_new_index': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.delete_indexes': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.flag_database': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.unflag_database': {'queue': 'search'},
-    'olympia.lib.es.management.commands.reindex.update_aliases': {'queue': 'search'},
-    'olympia.addons.tasks.find_inconsistencies_between_es_and_db': {'queue': 'search'},
-    # Ratings
-    'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'ratings'},
-    'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
-    'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
-    # Tags
-    'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
-    'olympia.tags.tasks.update_tag_stat': {'queue': 'tags'},
-    # Users
-    'olympia.accounts.tasks.clear_sessions_event': {'queue': 'users'},
-    'olympia.accounts.tasks.delete_user_event': {'queue': 'users'},
-    'olympia.accounts.tasks.primary_email_change_event': {'queue': 'users'},
-    'olympia.users.tasks.delete_photo': {'queue': 'users'},
-    'olympia.users.tasks.update_user_ratings_task': {'queue': 'users'},
-    # Zadmin
-    'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
-    'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {'queue': 'zadmin'},
+    'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'cron'},
+    # Reviewers.
+    'olympia.lib.crypto.tasks.sign_addons': {'queue': 'reviewers'},
+    # Admin.
     'olympia.scanners.tasks.mark_yara_query_rule_as_completed_or_aborted': {
         'queue': 'zadmin'
     },
+    'olympia.scanners.tasks.run_yara_query_rule': {'queue': 'zadmin'},
+    'olympia.scanners.tasks.run_yara_query_rule_on_versions_chunk': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
 }
 
