@@ -803,21 +803,13 @@ CELERY_IMPORTS = (
 )
 
 CELERY_TASK_QUEUES = (
-    Queue('addons', routing_key='addons'),
     Queue('adhoc', routing_key='adhoc'),
     Queue('amo', routing_key='amo'),
-    Queue('bandwagon', routing_key='bandwagon'),
     Queue('cron', routing_key='cron'),
-    Queue('crypto', routing_key='crypto'),
     Queue('default', routing_key='default'),
     Queue('devhub', routing_key='devhub'),
-    Queue('images', routing_key='images'),
     Queue('priority', routing_key='priority'),
-    Queue('ratings', routing_key='ratings'),
     Queue('reviewers', routing_key='reviewers'),
-    Queue('search', routing_key='search'),
-    Queue('tags', routing_key='tags'),
-    Queue('users', routing_key='users'),
     Queue('zadmin', routing_key='zadmin'),
 )
 
@@ -884,6 +876,7 @@ CELERY_TASK_ROUTES = {
     'celery.backend_cleanup': {'queue': 'default'},
     'celery.chain': {'queue': 'default'},
     'celery.chord': {'queue': 'default'},
+    'celery.chord_unlock': {'queue': 'default'},
     'celery.chunks': {'queue': 'default'},
     'celery.group': {'queue': 'default'},
     'celery.map': {'queue': 'default'},
