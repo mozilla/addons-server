@@ -383,6 +383,7 @@ class AddonViewSet(
             return super().update(request, *args, **kwargs)
 
         # otherwise we create a new add-on
+        self.action = 'create'
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(guid=self.kwargs['guid'])
