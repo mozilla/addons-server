@@ -229,11 +229,12 @@ class MatchingGuidValidator:
     requires_context = True
 
     def __call__(self, data, serializer):
-        if (
-            (manifest_guid := serializer.parsed_data.get('guid'))
-            and (view_guid := serializer.context['view'].kwargs.get('guid'))
-            and manifest_guid != view_guid
-        ):
-            raise exceptions.ValidationError(
-                gettext('GUID mismatch between the URL and manifest.')
-            )
+        if view_guid := serializer.context['view'].kwargs.get('guid'):
+            if not (manifest_guid := serializer.parsed_data.get('guid')):
+                raise exceptions.ValidationError(
+                    gettext('A GUID must be specified in the manifest.')
+                )
+            elif manifest_guid != view_guid:
+                raise exceptions.ValidationError(
+                    gettext('GUID mismatch between the URL and manifest.')
+                )

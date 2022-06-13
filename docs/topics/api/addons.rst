@@ -396,7 +396,7 @@ See the :ref:`Add-on Create <addon-create>` documentation for details of the req
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on if the add-on exists already.
 
     .. note::
-        If the add-on guid is specified in the manifest it must match the the guid in the url.
+        The guid in the url must match a guid specified in the manifest.
 
     .. note::
         A submission that results in a new add-on will have metadata defaults taken from the manifest (e.g. name), but a submission that updates an existing listing will not use data from the manifest.

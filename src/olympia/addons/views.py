@@ -381,14 +381,10 @@ class AddonViewSet(
         if instance:
             # if the add-on exists we can use the standard update
             return super().update(request, *args, **kwargs)
-
-        # otherwise we create a new add-on
-        self.action = 'create'
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save(guid=self.kwargs['guid'])
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            # otherwise we create a new add-on
+            self.action = 'create'
+            return self.create(request, *args, **kwargs)
 
 
 class AddonChildMixin:

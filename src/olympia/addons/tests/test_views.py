@@ -1429,6 +1429,19 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
             }
         }
 
+    def test_no_guid_in_manifest(self):
+        def parse_xpi_mock(pkg, addon, minimal, user):
+            return {**parse_xpi(pkg, addon, minimal, user), 'guid': None}
+
+        with patch('olympia.files.utils.parse_xpi', side_effect=parse_xpi_mock):
+            response = self.request()
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': {
+                'non_field_errors': ['A GUID must be specified in the manifest.']
+            }
+        }
+
     def test_only_guid_works_in_url(self):
         self.url = reverse_ns('addon-detail', kwargs={'pk': 'slug'}, api_version='v5')
         response = self.request()
