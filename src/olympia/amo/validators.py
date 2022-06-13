@@ -47,3 +47,16 @@ class CreateOnlyValidator:
     def __call__(self, value, serializer_field):
         if serializer_field.parent.instance is not None:
             raise fields.SkipField()
+
+
+class PreventPartialUpdateValidator:
+    """
+    This validator raises SkipField if the field is used in a partial=True
+    (partial_update / PATCH) serializer instance.
+    """
+
+    requires_context = True
+
+    def __call__(self, value, serializer_field):
+        if serializer_field.parent.partial:
+            raise fields.SkipField()

@@ -52,6 +52,7 @@ class UploadMixin(amo.tests.AMOPaths):
     """
 
     def setUp(self):
+        super().setUp()
         create_default_webext_appversion()
 
     def file_path(self, *args, **kw):
