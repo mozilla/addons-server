@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-18 08:08+0000\n"
+"POT-Creation-Date: 2022-06-14 17:24+0000\n"
 "PO-Revision-Date: 2022-04-07 21:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -169,6 +169,9 @@ msgstr "Shtegu URL për GitHub Sponsors duhet të përmbajë /sponsors/."
 msgid "URLs must start with https://."
 msgstr "URL-të duhet të fillojnë me https://."
 
+msgid "License with slug={value} does not exist."
+msgstr ""
+
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
@@ -259,6 +262,12 @@ msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "A GUID must be specified in the manifest."
+msgstr ""
+
+msgid "GUID mismatch between the URL and manifest."
 msgstr ""
 
 msgid "My Add-ons"
@@ -476,8 +485,8 @@ msgstr "Jo e passhme, për arsye ligjore."
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
-msgid "You must provide an object of {lang-code:value}."
-msgstr "Duhet të furnizoni një objekt {lang-code:value}."
+msgid "You must provide an object of {{lang-code:value}}."
+msgstr ""
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
@@ -4477,6 +4486,10 @@ msgstr "Krejt nevojat tuaja për emoji—përherë vetëm një klik larg."
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr "Reshtni së dhëni sajteve adresën tuaj email. Firefox Relay mbron identitetin tuaj & parandalon poshtë hedhurinë."
 
+#. editorial content for the discovery pane.
+msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Disa sajte kanë vështirësi të luajnë video nën Android. Ky zgjerim sjell zgjidhje."
@@ -4601,17 +4614,17 @@ msgid "See all extensions"
 msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Bllokues reklamash elitarë"
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy & anti-tracking"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Mjete përkthimi"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4667,6 +4680,10 @@ msgid "See more password manager staff picks"
 msgstr "Shihni më tepër zgjerime përgjegjës fjalëkalimesh të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Mjete përkthimi"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Shihni më tepër mjete përkthimi të zgjedhura nga stafi"
 
@@ -4693,10 +4710,6 @@ msgstr "Zgjerime të etiketuara me “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Shihni më tepër zgjerime të etiketuara me \"{tag}\""
-
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Bllokues reklamash elitarë"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"

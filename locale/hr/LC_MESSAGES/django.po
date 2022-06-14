@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-18 08:08+0000\n"
+"POT-Creation-Date: 2022-06-14 17:24+0000\n"
 "PO-Revision-Date: 2022-02-06 17:54+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -179,6 +179,9 @@ msgstr ""
 msgid "URLs must start with https://."
 msgstr ""
 
+msgid "License with slug={value} does not exist."
+msgstr ""
+
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
@@ -268,6 +271,12 @@ msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "A GUID must be specified in the manifest."
+msgstr ""
+
+msgid "GUID mismatch between the URL and manifest."
 msgstr ""
 
 # 80%
@@ -480,8 +489,8 @@ msgstr "Nedostupno iz pravnih razloga."
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
-msgid "You must provide an object of {lang-code:value}."
-msgstr "Moraš navesti objekt za {lang-code:value}."
+msgid "You must provide an object of {{lang-code:value}}."
+msgstr ""
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
@@ -4435,6 +4444,10 @@ msgstr ""
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Neke web stranice imaju poteškoće s reprodukcijom videozapisa na Androidu. Ovo ispravlja te poteškoće."
@@ -4556,17 +4569,18 @@ msgid "See all extensions"
 msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Aktualiziraj blokadu dodataka"
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy & anti-tracking"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Alati za prevođenje"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4623,6 +4637,10 @@ msgid "See more password manager staff picks"
 msgstr "Pogledaj još preporučenih proširenja"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Alati za prevođenje"
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "Pogledaj još alata za prevođenje"
@@ -4654,11 +4672,6 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Pogledaj još popularnih proširenja"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Aktualiziraj blokadu dodataka"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
