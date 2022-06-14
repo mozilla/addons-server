@@ -571,10 +571,7 @@ class Version(OnChangeMixin, ModelBase):
     def compatible_apps(self):
         """Returns a mapping of {APP: ApplicationsVersions}.  This may have been filled
         by the transformer already."""
-        # We override whatever compatibility information dictionaries have.
-        if self.addon and self.addon.type in amo.NO_COMPAT:
-            return {app: None for app in amo.APP_TYPE_SUPPORT[self.addon.type]}
-        # Otherwise calculate from the related compat instances.
+        # calculate from the related compat instances.
         if not hasattr(self, '_compatible_apps'):
             self._compatible_apps = self._create_compatible_apps(
                 self.apps.all().select_related('min', 'max')
@@ -588,8 +585,8 @@ class Version(OnChangeMixin, ModelBase):
     def set_compatible_apps(self, apps):
         from olympia.addons.tasks import index_addons  # circular import
 
-        # We shouldn't be trying to set compatiblity on addons that don't have them.
-        if self.addon and self.addon.type in amo.NO_COMPAT:
+        # We shouldn't be trying to set compatiblity on addons don't allow it.
+        if self.addon and not self.addon.can_set_compatibility:
             return
 
         # clear any removed applications
@@ -1157,10 +1154,13 @@ class ApplicationsVersions(models.Model):
         )
 
     def __str__(self):
-        if self.version.is_compatible_by_default:
-            return gettext('{app} {min} and later').format(
-                app=self.get_application_display(), min=self.min
-            )
+        try:
+            if self.version.is_compatible_by_default:
+                return gettext('{app} {min} and later').format(
+                    app=self.get_application_display(), min=self.min
+                )
+        except ObjectDoesNotExist:
+            pass
         return f'{self.get_application_display()} {self.min} - {self.max}'
 
 

@@ -544,13 +544,6 @@ class TestVersion(TestCase):
         version = version_factory(addon=addon)
         assert version.is_compatible_by_default
 
-    def test_is_compatible_by_default_type(self):
-        # Types in NO_COMPAT are compatible by default.
-        addon = Addon.objects.get(id=3615)
-        version = version_factory(addon=addon)
-        addon.update(type=amo.ADDON_DICT)
-        assert version.is_compatible_by_default
-
     def test_is_compatible_by_default_strict_opt_in(self):
         # Add-ons opting into strict compatibility should not be compatible
         # by default.
@@ -1895,15 +1888,6 @@ class TestApplicationsVersions(TestCase):
         )
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox 5.0 - 6.*'
-
-    def test_repr_when_type_in_no_compat(self):
-        # addon_factory() does not create ApplicationsVersions for types in
-        # NO_COMPAT, so create an extension first and change the type
-        # afterwards.
-        addon = addon_factory(version_kw=self.version_kw)
-        addon.update(type=amo.ADDON_DICT)
-        version = addon.current_version
-        assert str(version.apps.all()[0]) == 'Firefox 5.0 and later'
 
     def test_repr_when_unicode(self):
         addon = addon_factory(
