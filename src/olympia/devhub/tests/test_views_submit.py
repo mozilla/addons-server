@@ -38,7 +38,7 @@ from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
-from olympia.versions.models import License, VersionPreview
+from olympia.versions.models import AppVersion, License, VersionPreview
 from olympia.zadmin.models import Config, set_config
 
 
@@ -2323,6 +2323,8 @@ class TestVersionSubmitUploadListed(
         assert self.addon.status == amo.STATUS_NOMINATED
 
     def test_langpack_requires_permission(self):
+        self.addon.update(guid='langpack-de@firefox.mozilla.org')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='66.0a1')
         self.upload = self.get_upload(
             'webextension_langpack.xpi',
             validation=json.dumps(
