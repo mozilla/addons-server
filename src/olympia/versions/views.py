@@ -91,6 +91,7 @@ def download_file(request, file_id, download_type=None, **kwargs):
 
     if version.deleted or addon.is_deleted:
         # Only the appropriate reviewer can see deleted things.
+        require_permission = True
         has_permission = is_appropriate_reviewer(addon, channel)
         apply_georestrictions = False
     elif (
@@ -100,6 +101,7 @@ def download_file(request, file_id, download_type=None, **kwargs):
     ):
         # Only the appropriate reviewer or developers of the add-on can see
         # disabled or unlisted things.
+        require_permission = True
         has_permission = is_appropriate_reviewer(
             addon, channel
         ) or acl.check_addon_ownership(
@@ -114,6 +116,7 @@ def download_file(request, file_id, download_type=None, **kwargs):
         # Public case: we're either directly downloading the file or
         # redirecting, but in any case we have permission in the general sense,
         # though georestrictions are in effect.
+        require_permission = False
         has_permission = True
         apply_georestrictions = True
 
@@ -150,8 +153,10 @@ def download_file(request, file_id, download_type=None, **kwargs):
             content_type='application/x-xpinstall',
             attachment=attachment,
         )
-    # Always add a few headers to the response (even errors).
-    patch_cache_control(response, max_age=60 * 60 * 24)
+    # Always add a few headers to the response (even errors). Don't cache if
+    # the addon/version required permissions to access though.
+    if not require_permission:
+        patch_cache_control(response, max_age=60 * 60 * 24)
     patch_vary_headers(response, ['X-Country-Code'])
     response['Access-Control-Allow-Origin'] = '*'
     return response
