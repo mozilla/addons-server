@@ -5626,7 +5626,7 @@ class TestReview(ReviewBase):
         # Delete ActivityLog to make the query count easier to follow. We have
         # other tests for the ActivityLog related stuff.
         ActivityLog.objects.for_addons(self.addon).delete()
-        with self.assertNumQueries(67):
+        with self.assertNumQueries(51):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5685,7 +5685,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(69):
+        with self.assertNumQueries(53):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5882,12 +5882,12 @@ class TestAbuseReportsView(ReviewerTest):
         AbuseReport.objects.create(addon=self.addon, message='Two')
         AbuseReport.objects.create(addon=self.addon, message='Three')
         AbuseReport.objects.create(user=self.addon_developer, message='Four')
-        with self.assertNumQueries(21):
+        with self.assertNumQueries(20):
             # - 2 savepoint/release savepoint
             # - 2 for user and groups
             # - 1 for the add-on
             # - 1 for its translations
-            # - 7 for the add-on default transformer
+            # - 6 for the add-on / current version default transformer
             # - 1 for reviewer motd config
             # - 1 for site notice config
             # - 1 for add-ons from logged in user
@@ -7006,13 +7006,13 @@ class TestReviewAddonVersionViewSetDetail(
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(9):
             # - 2 savepoints because tests
             # - 2 user and groups
             # - 2 add-on and translations
             # - 1 add-on author check
-            # - 1 version
-            # - 2 file and file validation
+            # - 1 version + file
+            # - 1 file validation
             response = self.client.get(self.url + '?file=README.md&lang=en-US')
         assert response.status_code == 200
         result = json.loads(response.content)
@@ -7119,13 +7119,13 @@ class TestReviewAddonVersionViewSetDetail(
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(9):
             # - 2 savepoints because tests
             # - 2 user and groups
             # - 2 add-on and translations
             # - 1 add-on author check
-            # - 1 version
-            # - 2 file and file validation
+            # - 1 version + file
+            # - 1 file validation
             response = self.client.get(
                 self.url + '?file=README.md&lang=en-US&file_only=true'
             )
