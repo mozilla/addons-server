@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-06-15 15:34+0000\n"
+"PO-Revision-Date: 2022-06-15 16:31+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -376,11 +376,11 @@ msgstr ""
 msgid "Oops"
 msgstr "Opla"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>Opla! Prišlo je do napake.</h1> <p>Lotili se je bomo v kratkem.</p> <p> Poizkusite ponovno naložiti stran ali pa se vrnite na <a href=\"%(home)s\">domačo stran dodatkov</a>. </p>"
+msgstr ""
 
 msgid "Register or Log in"
 msgstr "Registrirajte se ali se prijavite"
@@ -766,9 +766,8 @@ msgstr "{addon} je sedaj na voljo pod licenco {0}."
 msgid "{addon} policy changed."
 msgstr "Pravilnik za {addon} spremenjen."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "Sličica za {addon} spremenjena."
+msgstr ""
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} za {addon} odobren."
@@ -806,9 +805,8 @@ msgstr "Račun posodobljen."
 msgid "Account {user} deleted."
 msgstr "Račun {user} izbrisan."
 
-#, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Račun posodobljen."
+msgstr ""
 
 msgid "Created: {0}."
 msgstr "Ustvarjeno: {0}."
@@ -1733,9 +1731,9 @@ msgstr[3] "Imate lahko samo {0} kategorij."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategorije razno ni mogoče kombinirati z dodatnimi kategorijami."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "Domena spletnega naslova mora biti ena od [%s] ali poddomena."
+msgstr ""
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -5102,9 +5100,8 @@ msgstr "Vodnik za pregledovanje dodatkov"
 msgid "Security Scanners"
 msgstr "Varnostni pregledovalniki"
 
-#, fuzzy
 msgid "Flagged By Scanners"
-msgstr "Preizkusi varnosti"
+msgstr ""
 
 msgid "Flagged for Human Review"
 msgstr "Označeno za človeški pregled"
