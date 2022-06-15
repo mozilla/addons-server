@@ -28,6 +28,7 @@ def update_info(request, addon, version_num):
     version = get_object_or_404(
         addon.versions.reviewed()
         .filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        .select_related(None)
         .only_translations(),
         version=version_num,
     )
@@ -46,6 +47,7 @@ def update_info_redirect(request, version_id):
     version = get_object_or_404(
         Version.objects.reviewed()
         .filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        .select_related(None)
         .no_transforms()
         .select_related('addon'),
         pk=version_id,

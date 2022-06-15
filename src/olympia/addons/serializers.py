@@ -140,6 +140,21 @@ class FileSerializer(serializers.ModelSerializer):
         return True
 
 
+class LanguageToolFileSerializer(FileSerializer):
+    permissions = serializers.SerializerMethodField()
+    optional_permissions = serializers.SerializerMethodField()
+
+    def get_permissions(self, obj):
+        # Language tools are not "real" webextensions, they don't have
+        # permissions.
+        return []
+
+    def get_optional_permissions(self, obj):
+        # Language tools are not "real" webextensions, they don't have
+        # optional permissions.
+        return []
+
+
 class ThisAddonDefault:
     requires_context = True
 
@@ -299,6 +314,10 @@ class MinimalVersionSerializer(serializers.ModelSerializer):
             # In v3/v4 files is expected to be a list but now we only have one file.
             repr['files'] = [repr.pop('file')]
         return repr
+
+
+class LanguageToolVersionSerializer(MinimalVersionSerializer):
+    file = LanguageToolFileSerializer(read_only=True)
 
 
 class SimpleVersionSerializer(MinimalVersionSerializer):
@@ -1459,7 +1478,7 @@ class LanguageToolsSerializer(AddonSerializer):
     def get_current_compatible_version(self, obj):
         compatible_versions = getattr(obj, 'compatible_versions', None)
         if compatible_versions is not None:
-            data = MinimalVersionSerializer(
+            data = LanguageToolVersionSerializer(
                 compatible_versions, context=self.context, many=True
             ).data
             try:

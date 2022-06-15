@@ -573,7 +573,7 @@ class AddonVersionViewSet(
             queryset = addon.versions.filter(
                 file__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
             )
-        # FIXME: we want to prefetch file.webext_permission instances in here
+        queryset = queryset.select_related('file___webext_permissions')
         if (
             self.action == 'list'
             and self.request
@@ -1099,8 +1099,7 @@ class LanguageToolsView(ListAPIView):
         # Version queryset we'll prefetch once for all results. We need to
         # find the ones compatible with the app+appversion requested, and we
         # can avoid loading translations by removing transforms and then
-        # re-applying the default one that takes care of the files and compat
-        # info.
+        # re-applying the default one that takes care of the compat info.
         versions_qs = (
             Version.objects.latest_public_compatible_with(application, appversions)
             .no_transforms()

@@ -555,16 +555,15 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse_ns('addon-detail', api_version='v5', kwargs={'pk': param})
 
     def test_queries(self):
-        with self.assertNumQueries(16):
-            # 16 queries
+        with self.assertNumQueries(15):
+            # 15 queries:
             # - 2 savepoints because of tests
             # - 1 for the add-on
             # - 1 for its translations
             # - 1 for its categories
-            # - 1 for its current_version
+            # - 1 for its current_version and file
             # - 1 for translations of that version
             # - 1 for applications versions of that version
-            # - 1 for files of that version
             # - 1 for authors
             # - 1 for previews
             # - 1 for license
@@ -574,7 +573,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             # - 1 for tags
             self._test_url(lang='en-US')
 
-        with self.assertNumQueries(17):
+        with self.assertNumQueries(16):
             # One additional query for region exclusions test
             self._test_url(lang='en-US', extra={'HTTP_X_COUNTRY_CODE': 'fr'})
 
@@ -3636,18 +3635,16 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse_ns('addon-version-list', kwargs={'addon_pk': param})
 
     def test_queries(self):
-        with self.assertNumQueries(13):
+        with self.assertNumQueries(10):
             # 11 queries:
             # - 2 savepoints because of tests
             # - 2 addon and its translations
             # - 1 count for pagination
-            # - 1 versions themselves
+            # - 1 versions themselves, their files and webext permissions
             # - 1 translations (release notes)
             # - 1 applications versions
-            # - 1 files
             # - 1 licenses
             # - 1 licenses translations
-            # - 2 queries for webext_permissions - FIXME - there should only be 1
             self._test_url(lang='en-US')
 
     def test_old_api_versions_have_license_text(self):
@@ -5531,16 +5528,13 @@ class TestLanguageToolsView(TestCase):
         )
 
         # Test it.
-        with self.assertNumQueries(9):
-            # 5 queries, regardless of how many add-ons are returned:
+        with self.assertNumQueries(4):
+            # 4 queries, regardless of how many add-ons are returned:
             # - 1 for the add-ons
+            # - 1 for the compatible version (through prefetch_related) and
+            #     its file
+            # - 1 for the applications versions
             # - 1 for the add-ons translations (name)
-            # - 1 for the compatible versions (through prefetch_related)
-            # - 1 for the applications versions for those versions
-            #     (we don't need it, but we're using the default Version
-            #      transformer to get the files... this could be improved.)
-            # - 1 for the files for those versions
-            # - 4 queries for webext_permissions - FIXME - there should only be 1
             response = self.client.get(
                 self.url,
                 {

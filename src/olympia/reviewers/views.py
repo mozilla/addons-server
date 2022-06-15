@@ -609,6 +609,7 @@ def review(request, addon, channel=None):
         .filter(channel=channel)
         .select_related('autoapprovalsummary')
         .select_related('reviewerflags')
+        .select_related('file___webext_permissions')
         # Prefetch scanner results... but without the results json as we don't
         # need it.
         .prefetch_related(
@@ -617,7 +618,6 @@ def review(request, addon, channel=None):
                 queryset=ScannerResult.objects.defer('results'),
             )
         )
-        # FIXME: we want to prefetch file.webext_permission instances in here
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
         .transform(Version.transformer_activity)
@@ -688,34 +688,32 @@ def review(request, addon, channel=None):
 
     actions = form.helper.actions.items()
 
-    try:
-        # Find the previously approved version to compare to.
-        base_version = version and (
-            addon.versions.exclude(id=version.id)
-            .filter(
-                # We're looking for a version that was either manually approved
-                # (either it has no auto approval summary, or it has one but
-                # with a negative verdict because it was locked by a reviewer
-                # who then approved it themselves), or auto-approved but then
-                # confirmed.
-                Q(autoapprovalsummary__isnull=True)
-                | Q(autoapprovalsummary__verdict=amo.NOT_AUTO_APPROVED)
-                | Q(
-                    autoapprovalsummary__verdict=amo.AUTO_APPROVED,
-                    autoapprovalsummary__confirmed=True,
-                )
+    # Find the previously approved version to compare to.
+    base_version_pk = version and (
+        addon.versions.exclude(id=version.id)
+        .filter(
+            # We're looking for a version that was either manually approved
+            # (either it has no auto approval summary, or it has one but
+            # with a negative verdict because it was locked by a reviewer
+            # who then approved it themselves), or auto-approved but then
+            # confirmed.
+            Q(autoapprovalsummary__isnull=True)
+            | Q(autoapprovalsummary__verdict=amo.NOT_AUTO_APPROVED)
+            | Q(
+                autoapprovalsummary__verdict=amo.AUTO_APPROVED,
+                autoapprovalsummary__confirmed=True,
             )
-            .filter(
-                channel=channel,
-                file__isnull=False,
-                created__lt=version.created,
-                file__status=amo.STATUS_APPROVED,
-            )
-            .latest()
         )
-    except Version.DoesNotExist:
-        base_version = None
-
+        .filter(
+            channel=channel,
+            file__isnull=False,
+            created__lt=version.created,
+            file__status=amo.STATUS_APPROVED,
+        )
+        .values_list('pk', flat=True)
+        .order_by('-created')
+        .first()
+    )
     # The actions we shouldn't show a minimal form for.
     actions_full = []
     # The actions we should show the comments form for (contrary to minimal
@@ -840,7 +838,7 @@ def review(request, addon, channel=None):
         addons_sharing_same_guid=addons_sharing_same_guid,
         approvals_info=approvals_info,
         auto_approval_info=auto_approval_info,
-        base_version=base_version,
+        base_version_pk=base_version_pk,
         channel=channel,
         content_review=content_review,
         count=count,
