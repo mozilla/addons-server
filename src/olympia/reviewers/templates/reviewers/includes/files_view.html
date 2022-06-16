@@ -15,11 +15,11 @@
       >
         {{ _('Contents') }}
     </a>
-    {% if base_version and version == latest_not_disabled_version %}
+    {% if base_version_pk and version == latest_not_disabled_version %}
     &middot;
     <a
       class="compare"
-      href="{{ code_manager_url('compare', addon.pk, version.pk, base_version.pk) }}"
+      href="{{ code_manager_url('compare', addon.pk, version.pk, base_version_pk) }}"
       title="{{ _('Compare this version to the last reviewed version') }}"
     >
       {{ _('Compare') }}

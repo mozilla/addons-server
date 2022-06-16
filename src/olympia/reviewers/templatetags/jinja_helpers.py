@@ -136,17 +136,17 @@ def reviewers_score_bar(context, types=None, addon_type=None):
 @jinja2.pass_context
 def file_view(context, version):
     return new_context(
-        dict(
+        {
             # We don't need the hashes in the template.
-            file=version.file,
-            amo=context.get('amo'),
-            addon=context.get('addon'),
-            latest_not_disabled_version=context.get('latest_not_disabled_version'),
+            'file': version.file,
+            'amo': context.get('amo'),
+            'addon': context.get('addon'),
+            'latest_not_disabled_version': context.get('latest_not_disabled_version'),
             # This allows the template to call waffle.flag().
-            request=context.get('request'),
-            base_version=context.get('base_version'),
-            version=version,
-        )
+            'request': context.get('request'),
+            'base_version_pk': context.get('base_version_pk'),
+            'version': version,
+        }
     )
 
 

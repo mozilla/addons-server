@@ -80,7 +80,7 @@ class VersionManager(ManagerBase):
         qs = super().get_queryset()
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)
-        return qs.transform(Version.transformer)
+        return qs.select_related('file').transform(Version.transformer)
 
     def valid(self):
         return self.filter(file__status__in=amo.VALID_FILE_STATUSES)
@@ -654,24 +654,17 @@ class Version(OnChangeMixin, ModelBase):
         avs = ApplicationsVersions.objects.filter(version__in=ids).select_related(
             'min', 'max'
         )
-        files = File.objects.filter(version__in=ids)
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
             return {k: list(vs) for k, vs in groups}
 
         av_dict = rollup(avs)
-        version_id_to_file = {file_.version_id: file_ for file_ in files}
 
         for version in versions:
-            v_id = version.id
             version.compatible_apps = version._create_compatible_apps(
-                av_dict.get(v_id, [])
+                av_dict.get(version.id, [])
             )
-
-            if file_ := version_id_to_file.get(v_id):
-                version.file = file_
-                version.file.version = version
 
     @classmethod
     def transformer_promoted(cls, versions):

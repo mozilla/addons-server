@@ -3082,7 +3082,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(71):
+        with self.assertNumQueries(55):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3097,62 +3097,55 @@ class TestReview(ReviewBase):
             # 4. add-on by slug
             # 5. add-on translations
             # 6. add-on categories
-            # 7. current version
-            # 8. version translations
-            # 9. applications versions
-            # 10. files
-            # 11. authors
-            # 12. previews
-            # 13. autoapprovalsummary for current version
-            # 14. promoted info for the add-on
-            # 15. latest version
-            # 16. latest version translations
-            # 17. latest version (repeated because different status filter)
-            # 18. latest version translations (repeated because different qs)
-            # 19. addon reviewer flags
-            # 20. version reviewer flags
-            # 21. version reviewer flags (repeated)
-            # 22. files
-            # 23. autoapprovalsummary (repeated)
-            # 24. addonreusedguid
-            # 25. blocklist
-            # 26. canned responses
-            # 27. abuse reports count against user or addon
-            # 28. low ratings count
-            # 29. base version for comparison
-            # 30. translations for base version
-            # 31. applications versions for base version
-            # 32. files for base version
-            # 33. count of all versions in channel
-            # 34. paginated list of versions in channel
-            # 35. scanner results for paginated list of versions
-            # 36. translations for  paginated list of versions
-            # 37. applications versions for  paginated list of versions
-            # 38. files for  paginated list of versions
-            # 39. activity log for  paginated list of versions
-            # 40. ready for auto-approval info for  paginated list of versions
-            # 41. versionreviewer flags exists to find out if pending rejection
-            # 42. count versions needing human review on other pages
-            # 43. count versions needing human review by mad on other pages
-            # 44. count versions pending rejection on other pages
-            # 45. whiteboard
-            # 46. reviewer subscriptions for listed
-            # 47. reviewer subscriptions for unlisted
-            # 48. config for motd
-            # 49. count add-ons the user is a developer of
-            # 50. config for site notice
-            # 51. translations for... (?! id=1)
-            # 52. important activity log about the add-on
-            # 53. user for the activity (from the ActivityLog foreignkey)
-            # 54. user for the activity (from the ActivityLog arguments)
-            # 55. add-on for the activity
-            # 56. translation for the add-on for the activity
-            # 57. reusedguid (repeated)
-            # 58. select all versions in channel for versions dropdown widget
-            # 59. select users by role for this add-on (?)
-            # 60. savepoint
-            # + 10! queries for webext_permissions - FIXME - there should only be 1
-            # + 1 for reviewers_reviewactionreason
+            # 7. current version + file
+            # 8. current version translations
+            # 9. current version applications versions
+            # 10. authors
+            # 11. previews
+            # 12. autoapprovalsummary for current version
+            # 13. promoted info for the add-on
+            # 14. latest version + file
+            # 15. latest version translations
+            # 16. latest version (repeated because different status filter)
+            # 17. latest version translations (repeated because different qs)
+            # 18. addon reviewer flags
+            # 19. version reviewer flags
+            # 20. version reviewer flags (repeated)
+            # 21. autoapprovalsummary (repeated)
+            # 22. addonreusedguid
+            # 23. blocklist
+            # 24. canned responses
+            # 25. abuse reports count against user or addon
+            # 26. low ratings count
+            # 27. base version pk for comparison
+            # 28. count of all versions in channel
+            # 29. paginated list of versions in channel
+            # 30. scanner results for paginated list of versions
+            # 31. translations for  paginated list of versions
+            # 32. applications versions for  paginated list of versions
+            # 33. files for  paginated list of versions
+            # 34. activity log for  paginated list of versions
+            # 35. ready for auto-approval info for  paginated list of versions
+            # 36. versionreviewer flags exists to find out if pending rejection
+            # 37. count versions needing human review on other pages
+            # 38. count versions needing human review by mad on other pages
+            # 39. count versions pending rejection on other pages
+            # 40. whiteboard
+            # 41. reviewer subscriptions for listed
+            # 42. reviewer subscriptions for unlisted
+            # 43. release savepoint (?)
+            # 44. config for motd
+            # 45. count add-ons the user is a developer of
+            # 46. config for site notice
+            # 47. translations for... (?! id=1)
+            # 48. important activity log about the add-on
+            # 49. user for the activity (from the ActivityLog foreignkey)
+            # 50. user for the activity (from the ActivityLog arguments)
+            # 51. add-on for the activity
+            # 52. translation for the add-on for the activity
+            # 53. select all versions in channel for versions dropdown widget
+            # 54. reviewer reasons for the reason dropdown
+            # 55. select users by role for this add-on (?)
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4326,7 +4319,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['base_version']
+        assert response.context['base_version_pk']
         links = doc('#versions-history .file-info .compare')
 
         expected = [
@@ -4360,7 +4353,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['base_version']
+        assert response.context['base_version_pk']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the first,
         # ignoring the interim version because it was auto-approved and not
@@ -4400,7 +4393,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['base_version']
+        assert response.context['base_version_pk']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the second,
         # ignoring the third version because it was auto-approved and not
@@ -4435,7 +4428,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert response.context['base_version']
+        assert response.context['base_version_pk']
         links = doc('#versions-history .file-info .compare')
         # Comparison should be between the last version and the second,
         # because second was approved by human before auto-approval ran on it
@@ -5633,7 +5626,7 @@ class TestReview(ReviewBase):
         # Delete ActivityLog to make the query count easier to follow. We have
         # other tests for the ActivityLog related stuff.
         ActivityLog.objects.for_addons(self.addon).delete()
-        with self.assertNumQueries(67):
+        with self.assertNumQueries(51):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5692,7 +5685,7 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(69):
+        with self.assertNumQueries(53):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5889,12 +5882,12 @@ class TestAbuseReportsView(ReviewerTest):
         AbuseReport.objects.create(addon=self.addon, message='Two')
         AbuseReport.objects.create(addon=self.addon, message='Three')
         AbuseReport.objects.create(user=self.addon_developer, message='Four')
-        with self.assertNumQueries(21):
+        with self.assertNumQueries(20):
             # - 2 savepoint/release savepoint
             # - 2 for user and groups
             # - 1 for the add-on
             # - 1 for its translations
-            # - 7 for the add-on default transformer
+            # - 6 for the add-on / current version default transformer
             # - 1 for reviewer motd config
             # - 1 for site notice config
             # - 1 for add-ons from logged in user
@@ -7013,13 +7006,13 @@ class TestReviewAddonVersionViewSetDetail(
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(9):
             # - 2 savepoints because tests
             # - 2 user and groups
             # - 2 add-on and translations
             # - 1 add-on author check
-            # - 1 version
-            # - 2 file and file validation
+            # - 1 version + file
+            # - 1 file validation
             response = self.client.get(self.url + '?file=README.md&lang=en-US')
         assert response.status_code == 200
         result = json.loads(response.content)
@@ -7126,13 +7119,13 @@ class TestReviewAddonVersionViewSetDetail(
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(9):
             # - 2 savepoints because tests
             # - 2 user and groups
             # - 2 add-on and translations
             # - 1 add-on author check
-            # - 1 version
-            # - 2 file and file validation
+            # - 1 version + file
+            # - 1 file validation
             response = self.client.get(
                 self.url + '?file=README.md&lang=en-US&file_only=true'
             )

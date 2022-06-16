@@ -256,7 +256,7 @@ class TestCollectionViewSetDetail(TestCase):
         self.collection.add_addon(addon_factory())
         self.collection.add_addon(addon_factory())
         # see TestCollectionAddonViewSetList.test_basic for the query breakdown
-        with self.assertNumQueries(30):
+        with self.assertNumQueries(29):
             response = self.client.get(self.url + '?with_addons')
         assert len(response.data['addons']) == 4
         patched_drf_setting = dict(settings.REST_FRAMEWORK)
@@ -1016,7 +1016,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_no_caching(expected_num_queries=27)
+        self._test_no_caching(expected_num_queries=26)
 
     def test_no_caching_authenticated_by_username(self):
         self.user.update(username='notmozilla')
@@ -1029,7 +1029,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_no_caching(expected_num_queries=27)
+        self._test_no_caching(expected_num_queries=26)
 
     def test_no_caching_anonymous_not_mozilla_collection(self):
         # No caching done by addons-server, but we get the Cache-Control set
@@ -1067,7 +1067,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self._test_caching()
 
-    def _test_no_caching(self, expected_num_queries=26, expected_max_age=None):
+    def _test_no_caching(self, expected_num_queries=25, expected_max_age=None):
         with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
         # We aren't caching so we should be swapping DRF's Response with HttpResponse.
@@ -1100,7 +1100,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         # See test_basic() below for the queries breakdown. What matters here
         # is that when we're being served a cached response we aren't doing
         # any queries besides the 2 savepoints.
-        with self.assertNumQueries(26):
+        with self.assertNumQueries(25):
             response = self.client.get(self.url)
         # For this API we're returning a HttpResponse directly, not a Response,
         # to improve pickled size to help caching.
@@ -1122,7 +1122,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
 
         # Any URL parameter added creates a separate cache key as well, so we
         # see the updated results with a new URL.
-        with self.assertNumQueries(26):
+        with self.assertNumQueries(25):
             response = self.client.get(self.url, {'foo': 'bar'})
         assert isinstance(response, HttpResponse)
         assert response['Content-Type'] == 'application/json'
@@ -1140,33 +1140,32 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         assert response['Cache-Control'] == 'max-age=3600'
 
     def test_basic(self):
-        with self.assertNumQueries(26):
-            # 1 start savepoint
-            # 2 get user
-            # 3 get collections of user
-            # 4 get collection object
-            # 5 get user (again)
-            # 6 collection addon count
-            # 7 collectionaddons
-            # 8 addons
-            # 9 l10n for addons
-            # 10 addon categories
-            # 11 addons current versions
-            # 12 addons current versions release notes l10n
-            # 13 applicationversions
-            # 14 addons current_version files
-            # 15 addons addon_users (authors)
-            # 16 previews
-            # 17 promoted addons
-            # 18 collectionaddons notes for addons
-            # 19 promoted approvals for versions
-            # 20 licenses for versions
-            # 21 l10n for licenses
-            # 22 user tags
-            # 23 l10n for addons in all locales
-            # 24 l10n for licenses in all locales
-            # 25 webext permissions for files
-            # 26 end savepoint
+        with self.assertNumQueries(25):
+            #  1. start savepoint
+            #  2. get user
+            #  3. get collections of user
+            #  4. get collection object
+            #  5. get user (again)
+            #  6. collection addon count
+            #  7. collectionaddons
+            #  8. addons
+            #  9. l10n for addons
+            # 10. addon categories
+            # 11. addons current versions, files
+            # 12. addons current versions release notes l10n
+            # 13. applicationversions
+            # 14. addons addon_users (authors)
+            # 15. previews
+            # 16. promoted addons
+            # 17. file permissions
+            # 18. collectionaddons notes for addons
+            # 19. promoted approvals for versions
+            # 20. licenses for versions
+            # 21. l10n for licenses
+            # 22. user tags
+            # 23. l10n for addons in all locales
+            # 24. l10n for licenses in all locales
+            # 25. end savepoint
             super().test_basic()
 
     def test_transforms(self):
