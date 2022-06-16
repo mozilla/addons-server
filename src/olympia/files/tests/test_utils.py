@@ -539,6 +539,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
+        assert parsed_data['target_locale'] == 'foo'
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Langpacks are not compatible with android.

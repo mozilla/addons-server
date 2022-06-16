@@ -1395,6 +1395,28 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert str(addon.homepage).startswith('https://github.com/mdn/')
         assert addon.homepage.locale == 'de'
 
+    def test_langpack(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='66.0a1')
+        upload = self.get_upload(
+            'webextension_langpack.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
+        self.minimal_data = {'version': {'upload': upload.uuid}}
+        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+
+        response = self.request()
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['name'] == {'en-US': 'My Language Pack'}
+        addon = Addon.objects.get()
+        assert addon.type == amo.ADDON_LPAPP
+        assert addon.target_locale == 'de'
+        version = addon.find_latest_version(channel=None)
+        assert version.file.strict_compatibility is True
+        assert version.apps.get().application == amo.FIREFOX.id
+
 
 class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
     client_request_verb = 'put'
@@ -1414,6 +1436,10 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
     def test_override_manifest_localization(self):
         self.set_guid('notify-link-clicks-i18n@notzilla.org')
         super().test_override_manifest_localization()
+
+    def test_langpack(self):
+        self.set_guid('langpack-de@firefox.mozilla.org')
+        return super().test_langpack()
 
     def test_guid_mismatch(self):
         def parse_xpi_mock(pkg, addon, minimal, user):
