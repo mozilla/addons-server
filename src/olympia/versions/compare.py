@@ -29,7 +29,7 @@ def dict_from_int(version_int):
     (rem, d['minor3']) = divmod(rem, 100)
     (rem, d['minor2']) = divmod(rem, 100)
     (rem, d['minor1']) = divmod(rem, 100)
-    (rem, d['major']) = divmod(rem, 100)
+    d['major'] = rem
     d['pre'] = None if d['pre'] else 'pre'
     d['alpha'] = {0: 'a', 1: 'b'}.get(d['alpha'])
 
@@ -51,7 +51,7 @@ def version_dict(version):
             d[letter] = d[letter] if d[letter] else None
         for num in numbers:
             if d[num] == '*':
-                d[num] = 99
+                d[num] = 999
             else:
                 d[num] = int(d[num]) if d[num] else None
     else:
