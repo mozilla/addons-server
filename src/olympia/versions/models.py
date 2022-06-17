@@ -571,8 +571,8 @@ class Version(OnChangeMixin, ModelBase):
     def compatible_apps(self):
         """Returns a mapping of {APP: ApplicationsVersions}.  This may have been filled
         by the transformer already."""
-        # calculate from the related compat instances.
         if not hasattr(self, '_compatible_apps'):
+            # Calculate from the related compat instances.
             self._compatible_apps = self._create_compatible_apps(
                 self.apps.all().select_related('min', 'max')
             )

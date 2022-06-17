@@ -276,7 +276,7 @@ SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 # to touch add-ons before removing anything from this list.
 VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.zip')
 
-# These types don't maintain app allow developer defined compatibility.
+# These types don't allow developer defined compatibility.
 NO_COMPAT_CHANGES = (ADDON_DICT,)
 
 # Validation.
