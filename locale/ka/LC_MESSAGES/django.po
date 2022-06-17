@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-06-17 20:38+0000\n"
+"PO-Revision-Date: 2022-06-17 21:28+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3270,7 +3270,7 @@ msgstr "ელფოსტის მისამართი"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr "თანახმა ვარ, რომ Mozilla-მ ჩემი მონაცემები გამოიყენოს, %(link_open)sპირადულობის დაცვის განაცხადის%(link_close)s შესაბამისად."
+msgstr "თანახმა ვარ, რომ Mozilla-მ ჩემი მონაცემები გამოიყენოს %(link_open)sპირადულობის დაცვის განაცხადის%(link_close)s შესაბამისად."
 
 msgid "Sign Up"
 msgstr "გამოწერა"
