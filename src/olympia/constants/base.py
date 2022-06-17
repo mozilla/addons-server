@@ -276,9 +276,8 @@ SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 # to touch add-ons before removing anything from this list.
 VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.zip')
 
-# These types don't maintain app compatibility in the db.  Instead, we look at
-# APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
-NO_COMPAT = (ADDON_DICT,)
+# These types don't allow developer defined compatibility.
+NO_COMPAT_CHANGES = (ADDON_DICT,)
 
 # Validation.
 
@@ -352,10 +351,7 @@ DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
 # The version of Android that first minimally supported static themes.
 DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID = '65.0'
 
-# The version of Firefox that first supported webext dictionaries. Note that
-# on AMO at the moment, dicts have no compatibility exposed - ADDON_DICT is in
-# NO_COMPAT. But this allows the compat information to be saved to the database
-# to change our mind later.
+# The version of Firefox that first supported webext dictionaries.
 # Dicts are not compatible with Firefox for Android, only desktop is relevant.
 DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 

@@ -196,7 +196,7 @@ def site_permission_generator(request):
 
 @dev_required
 def ajax_compat_status(request, addon_id, addon):
-    if not (addon.accepts_compatible_apps() and addon.current_version):
+    if not (addon.can_set_compatibility and addon.current_version):
         raise http.Http404()
     return TemplateResponse(
         request, 'devhub/addons/ajax_compat_status.html', context={'addon': addon}
@@ -205,7 +205,7 @@ def ajax_compat_status(request, addon_id, addon):
 
 @dev_required
 def ajax_compat_error(request, addon_id, addon):
-    if not (addon.accepts_compatible_apps() and addon.current_version):
+    if not (addon.can_set_compatibility and addon.current_version):
         raise http.Http404()
     return TemplateResponse(
         request, 'devhub/addons/ajax_compat_error.html', context={'addon': addon}
@@ -214,7 +214,7 @@ def ajax_compat_error(request, addon_id, addon):
 
 @dev_required
 def ajax_compat_update(request, addon_id, addon, version_id):
-    if not addon.accepts_compatible_apps():
+    if not addon.can_set_compatibility:
         raise http.Http404()
     version = get_object_or_404(addon.versions.all(), pk=version_id)
     compat_form = forms.CompatFormSet(
@@ -1117,7 +1117,7 @@ def version_edit(request, addon_id, addon, version_id):
 
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
-    if not static_theme and addon.accepts_compatible_apps():
+    if not static_theme and addon.can_set_compatibility:
         qs = version.apps.all().select_related('min', 'max')
         compat_form = forms.CompatFormSet(
             request.POST or None, queryset=qs, form_kwargs={'version': version}

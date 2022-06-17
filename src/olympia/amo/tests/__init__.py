@@ -902,7 +902,6 @@ def create_default_webext_appversion():
 def version_factory(file_kw=None, **kw):
     # We can't create duplicates of AppVersions, so make sure the versions are
     # not already created in fixtures (use fake versions).
-    addon_type = getattr(kw.get('addon'), 'type', None)
     min_app_version = kw.pop('min_app_version', '4.0.99')
     max_app_version = kw.pop('max_app_version', '5.0.99')
     version_str = kw.pop(
@@ -928,16 +927,15 @@ def version_factory(file_kw=None, **kw):
     ver = Version.objects.create(version=version_str, **kw)
     ver.created = _get_created(kw.pop('created', 'now'))
     ver.save()
-    if addon_type not in amo.NO_COMPAT:
-        av_min, _ = AppVersion.objects.get_or_create(
-            application=application, version=min_app_version
-        )
-        av_max, _ = AppVersion.objects.get_or_create(
-            application=application, version=max_app_version
-        )
-        ApplicationsVersions.objects.get_or_create(
-            application=application, version=ver, min=av_min, max=av_max
-        )
+    av_min, _ = AppVersion.objects.get_or_create(
+        application=application, version=min_app_version
+    )
+    av_max, _ = AppVersion.objects.get_or_create(
+        application=application, version=max_app_version
+    )
+    ApplicationsVersions.objects.get_or_create(
+        application=application, version=ver, min=av_min, max=av_max
+    )
     if file_kw is not False:
         file_kw = file_kw or {}
         file_factory(version=ver, **file_kw)

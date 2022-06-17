@@ -690,16 +690,6 @@ class AddonSerializerOutputTestMixin:
         assert result_version['is_strict_compatibility_enabled'] is False
         assert result_version['compatibility'] == {}
 
-        # Test with some compatibility info but that should be ignored because
-        # its type is in NO_COMPAT.
-        self.addon.update(type=amo.ADDON_DICT)
-        result_version = self.serialize()['current_version']
-        assert result_version['compatibility'] == {
-            'android': {'max': '65535', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
-            'firefox': {'max': '65535', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
-        }
-        assert result_version['is_strict_compatibility_enabled'] is False
-
     def test_static_theme_preview(self):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         # Attach some Preview instances do the add-on, they should be ignored
