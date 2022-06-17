@@ -1197,3 +1197,24 @@ class SitePermissionGeneratorTests(TestCase):
                 request=self.request,
             )
             assert form.is_valid()
+
+
+class TestVersionForm(TestCase):
+    def test_source_field(self):
+        version = addon_factory().current_version
+        mock_point = 'olympia.versions.models.Version.'
+        form = forms.VersionForm
+        with mock.patch(
+            f'{mock_point}has_been_human_reviewed', new_callable=mock.PropertyMock
+        ) as reviewed_mock, mock.patch(
+            f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
+        ) as pending_mock:
+            reviewed_mock.return_value = False
+            pending_mock.return_value = False
+            assert form(instance=version).fields['source'].disabled is False
+
+            reviewed_mock.return_value = True
+            assert form(instance=version).fields['source'].disabled is True
+
+            pending_mock.return_value = True
+            assert form(instance=version).fields['source'].disabled is False

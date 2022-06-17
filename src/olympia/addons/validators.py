@@ -238,3 +238,20 @@ class MatchingGuidValidator:
                 raise exceptions.ValidationError(
                     gettext('GUID mismatch between the URL and manifest.')
                 )
+
+
+class ReviewedSourceFileValidator:
+    requires_context = True
+
+    def __call__(self, value, serializer_field):
+        if (
+            (instance := serializer_field.parent.instance)
+            and instance.has_been_human_reviewed
+            and not instance.pending_rejection
+        ):
+            raise exceptions.ValidationError(
+                gettext(
+                    'Source cannot be changed because this version has been reviewed '
+                    'by Mozilla.'
+                )
+            )

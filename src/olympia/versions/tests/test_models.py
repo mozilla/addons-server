@@ -1118,6 +1118,32 @@ class TestVersion(TestCase):
         assert not License.objects.filter(pk=license.pk).exists()
         assert Version.objects.filter(pk=self.version.pk).exists()
 
+    def test_has_been_human_reviewed(self):
+        assert AutoApprovalSummary.objects.count() == 0
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        assert not self.version.has_been_human_reviewed
+
+        self.version.file.update(reviewed=datetime.now())
+        assert self.version.has_been_human_reviewed
+
+        self.version.file.update(status=amo.STATUS_NOMINATED)
+        assert not self.version.has_been_human_reviewed
+
+        self.version.file.update(status=amo.STATUS_APPROVED)
+        assert self.version.has_been_human_reviewed
+
+        summary = AutoApprovalSummary.objects.create(version=self.version)
+        assert self.version.has_been_human_reviewed
+
+        summary.update(verdict=amo.AUTO_APPROVED)
+        assert not self.version.has_been_human_reviewed
+
+        summary.update(verdict=amo.NOT_AUTO_APPROVED)
+        assert self.version.has_been_human_reviewed
+
+        summary.update(verdict=amo.AUTO_APPROVED, confirmed=True)
+        assert self.version.has_been_human_reviewed
+
 
 @pytest.mark.parametrize(
     'addon_status,file_status,is_unreviewed',
