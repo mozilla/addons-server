@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-19 19:52+0000\n"
+"PO-Revision-Date: 2022-06-17 20:38+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4434,7 +4434,7 @@ msgstr "ჩანართები და სანიშნები მოწ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Thousands of GIFs at your fingertips."
-msgstr "ათასობით GIF თქვენს ხელთ."
+msgstr "ხელთ იქონიეთ ათასობით GIF."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
