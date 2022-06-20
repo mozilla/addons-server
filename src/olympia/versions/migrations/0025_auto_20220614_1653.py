@@ -19,7 +19,7 @@ def update_dictionary_compat(apps, schema_editor):
             addon__status=amo.STATUS_DELETED,
             apps__min__version=amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             apps__max__version=amo.DEFAULT_WEBEXT_MAX_VERSION,
-        )
+        ).values_list('id', flat=True)
     )
     if version_ids:
         webext_dict_min, _ = AppVersion.objects.get_or_create(
