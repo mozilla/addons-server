@@ -15,11 +15,13 @@ def update_dictionary_compat(apps, schema_editor):
 
     # Find the versions without correct compatibility
     version_ids = list(
-        Version.unfiltered.filter(addon__type=amo.ADDON_DICT, deleted=False).exclude(
-            addon__status=amo.STATUS_DELETED,
+        Version.unfiltered.filter(addon__type=amo.ADDON_DICT, deleted=False)
+        .exclude(addon__status=amo.STATUS_DELETED)
+        .exclude(
             apps__min__version=amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             apps__max__version=amo.DEFAULT_WEBEXT_MAX_VERSION,
         )
+        .values_list('id', flat=True)
     )
     if version_ids:
         webext_dict_min, _ = AppVersion.objects.get_or_create(
