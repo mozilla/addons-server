@@ -14,7 +14,7 @@ def update_dictionary_compat(apps, schema_editor):
     Addon = apps.get_model('addons', 'Addon')
 
     # Find the versions without correct compatibility
-     version_ids = list(
+    version_ids = list(
         Version.unfiltered.filter(addon__type=amo.ADDON_DICT, deleted=False)
         .exclude(addon__status=amo.STATUS_DELETED)
         .exclude(
