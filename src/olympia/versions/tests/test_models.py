@@ -1144,6 +1144,9 @@ class TestVersion(TestCase):
         summary.update(verdict=amo.AUTO_APPROVED, confirmed=True)
         assert self.version.has_been_human_reviewed
 
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        assert self.version.has_been_human_reviewed
+
 
 @pytest.mark.parametrize(
     'addon_status,file_status,is_unreviewed',

@@ -866,7 +866,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log.details is None
         assert log.arguments == [self.addon, self.version]
 
-    def test_source_field_disabled_after_human_reviewed(self):
+    def test_source_field_disabled_after_human_review_no_source(self):
         self.version.autoapprovalsummary.update(confirmed=True)
         response = self.client.get(self.url)
         assert b'You cannot change attached sources' in response.content
@@ -887,8 +887,22 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert not version.source
 
-        # Check the existing source link still works if there *is* an existing source
+    def test_source_field_disabled_after_human_review_has_source(self):
+        self.version.autoapprovalsummary.update(confirmed=True)
+        # This test sets source and checks the link is present
         self.test_existing_source_link()
+
+        response = self.client.get(self.url)
+        assert b'You cannot change attached sources' in response.content
+        doc = pq(response.content)
+        assert not doc('#id_source')
+
+        # Try to clear anyway
+        response = self.client.post(
+            self.url, self.formset(**{'source': '', 'source-clear': 'on'})
+        )
+        assert response.status_code == 302
+        assert self.version.source  # still set
 
     @mock.patch('olympia.devhub.views.log')
     def test_logging(self, log_mock):
