@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-05-18 08:08+0000\n"
-"PO-Revision-Date: 2022-05-25 23:47+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"PO-Revision-Date: 2022-06-18 00:18+0000\n"
+"Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -4661,14 +4661,12 @@ msgid "See more YouTube extension staff picks"
 msgstr "YouTube 확장 기능 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending themes"
-msgstr "추천 테마"
+msgstr "인기 테마"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "추천 테마 더보기"
+msgstr "인기 테마 더보기"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4681,14 +4679,12 @@ msgid "See more top rated themes"
 msgstr "추천 테마 더보기"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "추천 테마"
+msgstr "인기 확장 기능"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "추천 확장 기능 더보기"
+msgstr "인기 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"

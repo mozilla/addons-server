@@ -179,13 +179,9 @@ class PromotedApproval(ModelBase):
 )
 def update_es_for_promoted(sender, instance, **kw):
     from olympia.addons.models import update_search_index
-    from olympia.amo.tasks import trigger_sync_objects_to_basket
 
     # Update ES because Addon.promoted depends on it.
     update_search_index(sender=sender, instance=instance.addon, **kw)
-
-    # Sync the related add-on to basket when promoted groups is changed
-    trigger_sync_objects_to_basket('addon', [instance.addon.pk], 'promoted change')
 
 
 @receiver(

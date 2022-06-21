@@ -271,10 +271,10 @@ class AddonViewSet(
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance', None)
         request = self.request
-        if acl.is_unlisted_addons_viewer_or_reviewer(request.user) or (
-            obj
-            and request.user.is_authenticated
-            and obj.authors.filter(pk=request.user.pk).exists()
+        if request.user.is_authenticated and (
+            self.action in ('create', 'update', 'partial_update')
+            or acl.is_unlisted_addons_viewer_or_reviewer(request.user)
+            or (obj and obj.authors.filter(pk=request.user.pk).exists())
         ):
             return self.serializer_class_with_unlisted_data
         return self.serializer_class
@@ -283,10 +283,11 @@ class AddonViewSet(
         return Addon.get_lookup_field(identifier)
 
     def get_object(self):
-        identifier = self.kwargs.get('pk')
-        self.lookup_field = self.get_lookup_field(identifier)
-        self.kwargs[self.lookup_field] = identifier
-        self.instance = super().get_object()
+        if not hasattr(self, 'instance'):
+            identifier = self.kwargs.get('pk')
+            self.lookup_field = self.get_lookup_field(identifier)
+            self.kwargs[self.lookup_field] = identifier
+            self.instance = super().get_object()
         return self.instance
 
     def check_permissions(self, request):
@@ -361,6 +362,29 @@ class AddonViewSet(
             raise exceptions.ValidationError('"delete_confirm" token is invalid.')
 
         return super().destroy(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        if kwargs.get('partial'):
+            # PATCH uses the standard update always
+            return super().update(request, *args, **kwargs)
+
+        # for PUT we check if the object exists first
+        try:
+            instance = self.get_object()
+        except http.Http404:
+            instance = None
+
+        # We only support guid style ids for PUT requests
+        if self.lookup_field != 'guid':
+            raise http.Http404
+
+        if instance:
+            # if the add-on exists we can use the standard update
+            return super().update(request, *args, **kwargs)
+        else:
+            # otherwise we create a new add-on
+            self.action = 'create'
+            return self.create(request, *args, **kwargs)
 
 
 class AddonChildMixin:
@@ -549,7 +573,7 @@ class AddonVersionViewSet(
             queryset = addon.versions.filter(
                 file__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
             )
-        # FIXME: we want to prefetch file.webext_permission instances in here
+        queryset = queryset.select_related('file___webext_permissions')
         if (
             self.action == 'list'
             and self.request
@@ -1075,8 +1099,7 @@ class LanguageToolsView(ListAPIView):
         # Version queryset we'll prefetch once for all results. We need to
         # find the ones compatible with the app+appversion requested, and we
         # can avoid loading translations by removing transforms and then
-        # re-applying the default one that takes care of the files and compat
-        # info.
+        # re-applying the default one that takes care of the compat info.
         versions_qs = (
             Version.objects.latest_public_compatible_with(application, appversions)
             .no_transforms()

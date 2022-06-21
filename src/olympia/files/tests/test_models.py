@@ -52,6 +52,7 @@ class UploadMixin(amo.tests.AMOPaths):
     """
 
     def setUp(self):
+        super().setUp()
         create_default_webext_appversion()
 
     def file_path(self, *args, **kw):
@@ -621,6 +622,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_parse_langpack(self):
         # You can only submit language packs with the proper permission
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='66.0a1')
         with self.assertRaises(ValidationError):
             result = self.parse(filename='webextension_langpack.xpi')
 

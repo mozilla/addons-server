@@ -19,7 +19,6 @@ Contents
    topics/install/index
    topics/development/index
    topics/third-party
-   topics/basket
    topics/blocklist
 
 Archived Contents

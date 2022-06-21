@@ -10,10 +10,7 @@ from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
 from olympia import amo
-from olympia.accounts.serializers import (
-    BaseUserSerializer,
-    UserProfileBasketSyncSerializer,
-)
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -21,6 +18,7 @@ from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
 from olympia.amo.validators import (
     CreateOnlyValidator,
     OneOrMoreLetterOrNumberCharacterValidator,
+    PreventPartialUpdateValidator,
 )
 from olympia.api.fields import (
     EmailTranslationField,
@@ -79,6 +77,7 @@ from .utils import fetch_translations_from_addon
 from .validators import (
     AddonMetadataValidator,
     AddonDefaultLocaleValidator,
+    MatchingGuidValidator,
     VersionAddonMetadataValidator,
     VersionLicenseValidator,
     VerifyMozillaTrademark,
@@ -139,6 +138,21 @@ class FileSerializer(serializers.ModelSerializer):
         # is_webextension is always True these days because all addons are webextensions
         # but fake it for older API clients.
         return True
+
+
+class LanguageToolFileSerializer(FileSerializer):
+    permissions = serializers.SerializerMethodField()
+    optional_permissions = serializers.SerializerMethodField()
+
+    def get_permissions(self, obj):
+        # Language tools are not "real" webextensions, they don't have
+        # permissions.
+        return []
+
+    def get_optional_permissions(self, obj):
+        # Language tools are not "real" webextensions, they don't have
+        # optional permissions.
+        return []
 
 
 class ThisAddonDefault:
@@ -300,6 +314,10 @@ class MinimalVersionSerializer(serializers.ModelSerializer):
             # In v3/v4 files is expected to be a list but now we only have one file.
             repr['files'] = [repr.pop('file')]
         return repr
+
+
+class LanguageToolVersionSerializer(MinimalVersionSerializer):
+    file = LanguageToolFileSerializer(read_only=True)
 
 
 class SimpleVersionSerializer(MinimalVersionSerializer):
@@ -862,7 +880,11 @@ class AddonSerializer(serializers.ModelSerializer):
     version = DeveloperVersionSerializer(
         write_only=True,
         # Note: we're purposefully omitting VersionAddonMetadataValidator
-        validators=(CreateOnlyValidator(), VersionLicenseValidator()),
+        validators=(
+            PreventPartialUpdateValidator(),
+            VersionLicenseValidator(),
+            MatchingGuidValidator(),
+        ),
     )
     versions_url = serializers.SerializerMethodField()
 
@@ -998,15 +1020,17 @@ class AddonSerializer(serializers.ModelSerializer):
     def get_is_source_public(self, obj):
         return False
 
-    def run_validation(self, *args, **kwargs):
+    def run_validation(self, data=serializers.empty):
         # We want name and summary to be required fields so they're not cleared, but
         # *only* if this is an existing add-on with listed versions.
         # - see AddonMetadataValidator for new add-ons/versions.
         if self.instance and self.instance.has_listed_versions():
-            self.fields['name'].required = True
-            self.fields['summary'].required = True
-            self.fields['categories'].required = True
-        return super().run_validation(*args, **kwargs)
+            for field in ('name', 'summary', 'categories'):
+                if field in data:
+                    self.fields[field].required = True
+        if self.instance:
+            self.fields['version'].addon = self.instance
+        return super().run_validation(data)
 
     def validate_slug(self, value):
         slug_validator(value)
@@ -1083,6 +1107,9 @@ class AddonSerializer(serializers.ModelSerializer):
         if 'tag_list' in validated_data:
             # Tag.add_tag and Tag.remove_tag have their own logging so don't repeat it.
             validated_data.pop('tag_list')
+        if 'version' in validated_data:
+            # version is always a new object, and not a property either
+            validated_data.pop('version')
 
         if validated_data:
             ActivityLog.create(
@@ -1140,6 +1167,11 @@ class AddonSerializer(serializers.ModelSerializer):
         if 'tag_list' in validated_data:
             del instance.tag_list  # super.update will have set it.
             instance.set_tag_list(validated_data['tag_list'])
+        if 'version' in validated_data:
+            self.fields['version'].create(
+                {**validated_data.get('version', {}), 'addon': instance}
+            )
+
         self.log(instance, validated_data)
         return instance
 
@@ -1446,7 +1478,7 @@ class LanguageToolsSerializer(AddonSerializer):
     def get_current_compatible_version(self, obj):
         compatible_versions = getattr(obj, 'compatible_versions', None)
         if compatible_versions is not None:
-            data = MinimalVersionSerializer(
+            data = LanguageToolVersionSerializer(
                 compatible_versions, context=self.context, many=True
             ).data
             try:
@@ -1473,53 +1505,6 @@ class LanguageToolsSerializer(AddonSerializer):
         if request and is_gate_active(request, 'addons-locale_disambiguation-shim'):
             data['locale_disambiguation'] = None
         return data
-
-
-class VersionBasketSerializer(SimpleVersionSerializer):
-    class Meta:
-        model = Version
-        fields = ('id', 'compatibility', 'is_strict_compatibility_enabled', 'version')
-
-
-class AddonBasketSyncSerializer(AddonSerializerWithUnlistedData):
-    # We want to send all authors to basket, not just listed ones, and have
-    # the full basket-specific serialization.
-    authors = UserProfileBasketSyncSerializer(many=True)
-    current_version = VersionBasketSerializer()
-    is_recommended = serializers.SerializerMethodField()
-    latest_unlisted_version = VersionBasketSerializer()
-    name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Addon
-        fields = (
-            'authors',
-            'average_daily_users',
-            'categories',
-            'current_version',
-            'default_locale',
-            'guid',
-            'id',
-            'is_disabled',
-            'is_recommended',
-            'last_updated',
-            'latest_unlisted_version',
-            'name',
-            'ratings',
-            'slug',
-            'status',
-            'type',
-        )
-        read_only_fields = fields
-
-    def get_name(self, obj):
-        # Basket doesn't want translations, we run the serialization task under
-        # the add-on default locale so we can just return the name as string.
-        return str(obj.name)
-
-    def get_is_recommended(self, obj):
-        # Borrow the logic from is_featured so we don't have to define it twice
-        return self.get_is_featured(obj)
 
 
 class ReplacementAddonSerializer(serializers.ModelSerializer):

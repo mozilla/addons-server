@@ -35,7 +35,7 @@ class TestUpdateBlogPosts(TestCase):
         assert BlogPost.objects.count() == 5
         post = BlogPost.objects.all()[0]
         assert post.post_id == 9022
-        assert post.title == 'Thank you, Recommended Extensions Community Board!'
+        assert post.title == 'Thank you, Recommended Extensions Community Board! <3'
         assert post.date_posted == date(2021, 8, 5)
         assert post.date_modified == datetime(2021, 8, 6, 11, 7, 11)
         assert post.permalink == (
@@ -67,7 +67,7 @@ class TestUpdateBlogPosts(TestCase):
 
         assert BlogPost.objects.count() == 5
         post = BlogPost.objects.all()[0]
-        assert post.title == 'Thank you, Recommended Extensions Community Board!'
+        assert post.title == 'Thank you, Recommended Extensions Community Board! <3'
 
         assert not BlogPost.objects.filter(id=old1.id).exists()
         assert not BlogPost.objects.filter(id=old2.id).exists()

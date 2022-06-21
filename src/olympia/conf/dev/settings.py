@@ -90,8 +90,6 @@ FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'local']
 
-VAMO_URL = 'https://versioncheck-dev.allizom.org'
-
 REMOTE_SETTINGS_IS_TEST_SERVER = True
 
 SITEMAP_DEBUG_AVAILABLE = True

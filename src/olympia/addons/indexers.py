@@ -584,27 +584,14 @@ class AddonIndexer:
         indexed in ES."""
         compatible_apps = {}
         for app, appver in version_obj.compatible_apps.items():
-            if appver:
-                min_, max_ = appver.min.version_int, appver.max.version_int
-                min_human, max_human = appver.min.version, appver.max.version
-                if not version_obj.file.strict_compatibility:
-                    # The files attached to this version are not using strict
-                    # compatibility, so the max version essentially needs to be
-                    # ignored - let's fake a super high one. We leave max_human
-                    # alone to leave the API representation intact.
-                    max_ = version_int('*')
-            else:
-                # Fake wide compatibility for add-ons with no info. We don't
-                # want to reindex every time a new version of the app is
-                # released, so we directly index a super high version as the
-                # max.
-                min_human, max_human = (
-                    amo.DEFAULT_WEBEXT_MIN_VERSIONS.get(
-                        app, amo.DEFAULT_WEBEXT_MIN_VERSION
-                    ),
-                    amo.FAKE_MAX_VERSION,
-                )
-                min_, max_ = version_int(min_human), version_int(max_human)
+            min_, max_ = appver.min.version_int, appver.max.version_int
+            min_human, max_human = appver.min.version, appver.max.version
+            if not version_obj.file.strict_compatibility:
+                # The files attached to this version are not using strict
+                # compatibility, so the max version essentially needs to be
+                # ignored - let's fake a super high one. We leave max_human
+                # alone to leave the API representation intact.
+                max_ = version_int('*')
             compatible_apps[app.id] = {
                 'min': min_,
                 'min_human': min_human,

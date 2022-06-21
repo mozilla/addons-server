@@ -65,8 +65,8 @@ from olympia.versions.models import (
 pytestmark = pytest.mark.django_db
 
 
-class TestVersionManager(TestCase):
-    def test_latest_public_compatible_with(self):
+class TestVersionManagerLatestPublicCompatibleWith(TestCase):
+    def test_latest_public_compatible_with_multiple_addons(self):
         # Add compatible add-ons. We're going to request versions compatible
         # with 58.0.
         compatible_pack1 = addon_factory(
@@ -199,6 +199,159 @@ class TestVersionManager(TestCase):
         ]
         assert list(qs) == expected_versions
 
+    def test_latest_public_compatible_with(self):
+        addon = addon_factory(
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        # We should get 4 joins:
+        # - applications_versions
+        # - appversions (min)
+        # - appversions (max)
+        # - files (status and strict_compatibility)
+        assert str(qs.query).count('JOIN') == 4
+        # We're not in strict mode, and the add-on hasn't strict compatibility enabled,
+        # so we find a result.
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '57.*'
+
+    def test_latest_public_compatible_with_wrong_app(self):
+        addon = addon_factory(
+            version_kw={
+                'application': amo.ANDROID.id,
+                'min_app_version': '57.0',
+                'max_app_version': '*',
+            },
+        )
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert not qs.exists()
+        assert str(qs.query).count('JOIN') == 4
+
+        qs = Version.objects.latest_public_compatible_with(amo.ANDROID.id, appversions)
+        assert qs.exists()
+        assert str(qs.query).count('JOIN') == 4
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '*'
+
+        # Add a Firefox version, but don't let it be compatible with what we're
+        # requesting yet.
+        av_min, _ = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='59.0'
+        )
+        av_max, _ = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='*'
+        )
+        ApplicationsVersions.objects.get_or_create(
+            application=amo.FIREFOX.id,
+            version=addon.current_version,
+            min=av_min,
+            max=av_max,
+        )
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert not qs.exists()
+
+        av_min.version = '58.0'
+        av_min.version_int = None
+        av_min.save()  # Will deal with version_intification behind the scenes.
+
+        # Now it should work!
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '58.0'
+        assert qs[0].max_compatible_version == '*'
+
+    def test_latest_public_compatible_with_no_max_argument(self):
+        addon = addon_factory(
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
+        appversions = {
+            'min': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert str(qs.query).count('JOIN') == 4
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '57.*'  # Still annotated.
+
+    def test_latest_public_compatible_with_strict_compat_mode(self):
+        addon = addon_factory(
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+        )
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions, strict_compat_mode=True
+        )
+        assert str(qs.query).count('JOIN') == 4
+        assert not qs.exists()
+
+        appversions = {
+            'min': version_int('57.0'),
+            'max': version_int('57.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions, strict_compat_mode=True
+        )
+        assert str(qs.query).count('JOIN') == 4
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '57.*'
+
+    def test_latest_public_compatible_with_strict_compatibility_set(self):
+        addon = addon_factory(
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'},
+            file_kw={'strict_compatibility': True},
+        )
+        appversions = {
+            'min': version_int('58.0'),
+            'max': version_int('58.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert str(qs.query).count('JOIN') == 4
+        assert not qs.exists()
+
+        # Strict mode shouldn't change anything.
+        qs = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions, strict_compat_mode=True
+        )
+        assert str(qs.query).count('JOIN') == 4
+        assert not qs.exists()
+
+        appversions = {
+            'min': version_int('57.0'),
+            'max': version_int('57.0'),
+        }
+        qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
+        assert str(qs.query).count('JOIN') == 4
+        assert qs.exists()
+        assert qs[0] == addon.current_version
+        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].max_compatible_version == '57.*'
+
+        # Strict mode shouldn't change anything.
+        qs2 = Version.objects.latest_public_compatible_with(
+            amo.FIREFOX.id, appversions, strict_compat_mode=True
+        )
+        assert list(qs2) == list(qs)
+
+
+class TestVersionManager(TestCase):
     def test_version_hidden_from_related_manager_after_deletion(self):
         """Test that a version that has been deleted should be hidden from the
         reverse relations, unless using the specific unfiltered_for_relations
@@ -389,13 +542,6 @@ class TestVersion(TestCase):
         # default.
         addon = Addon.objects.get(id=3615)
         version = version_factory(addon=addon)
-        assert version.is_compatible_by_default
-
-    def test_is_compatible_by_default_type(self):
-        # Types in NO_COMPAT are compatible by default.
-        addon = Addon.objects.get(id=3615)
-        version = version_factory(addon=addon)
-        addon.update(type=amo.ADDON_DICT)
         assert version.is_compatible_by_default
 
     def test_is_compatible_by_default_strict_opt_in(self):
@@ -694,63 +840,6 @@ class TestVersion(TestCase):
             for version in qs.transform(Version.transformer_license).all():
                 assert 'text_id' in version.license.get_deferred_fields()
                 assert version.license.name
-
-    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
-    def test_version_field_changes_not_synced_to_basket(
-        self, trigger_sync_objects_to_basket_mock
-    ):
-        addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        version.update(
-            approval_notes='Flôp',
-            reviewed=self.days_ago(1),
-            nomination=self.days_ago(2),
-            version='1.42',
-        )
-        assert trigger_sync_objects_to_basket_mock.call_count == 0
-
-    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
-    def test_version_promoted_changes_synced_to_basket(
-        self, trigger_sync_objects_to_basket_mock
-    ):
-        addon = Addon.objects.get(id=3615)
-        PromotedApproval.objects.create(
-            version=addon.current_version,
-            group_id=RECOMMENDED.id,
-            application_id=amo.FIREFOX.id,
-        )
-        assert trigger_sync_objects_to_basket_mock.call_count == 1
-        trigger_sync_objects_to_basket_mock.assert_called_with(
-            'addon', [addon.pk], 'promoted change'
-        )
-
-    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
-    def test_unlisted_version_deleted_synced_to_basket(
-        self, trigger_sync_objects_to_basket_mock
-    ):
-        addon = Addon.objects.get(id=3615)
-        version = addon.current_version
-        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        trigger_sync_objects_to_basket_mock.reset_mock()
-
-        version.delete()
-        assert trigger_sync_objects_to_basket_mock.call_count == 1
-        trigger_sync_objects_to_basket_mock.assert_called_with(
-            'addon', [addon.pk], 'unlisted version deleted'
-        )
-
-    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
-    def test_version_deleted_not_synced_to_basket(
-        self, trigger_sync_objects_to_basket_mock
-    ):
-        addon = Addon.objects.get(id=3615)
-        # We need to create a new version, if we delete current_version this
-        # would be synced to basket because _current_version would change.
-        new_version = version_factory(
-            addon=addon, file_kw={'status': amo.STATUS_NOMINATED}
-        )
-        new_version.delete()
-        assert trigger_sync_objects_to_basket_mock.call_count == 0
 
     def test_promoted_can_be_disabled_and_deleted(self):
         addon = Addon.objects.get(id=3615)
@@ -1409,42 +1498,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert upload_version.nomination == pending_version.nomination
 
-    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
-    def test_from_upload_unlisted_synced_with_basket(
-        self, trigger_sync_objects_to_basket_mock
-    ):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.RELEASE_CHANNEL_UNLISTED,
-            selected_apps=[amo.FIREFOX.id],
-            parsed_data=parsed_data,
-        )
-        # It's a new unlisted version, we should be syncing the add-on with
-        # basket.
-        assert trigger_sync_objects_to_basket_mock.call_count == 1
-        trigger_sync_objects_to_basket_mock.assert_called_with(
-            'addon', [self.addon.pk], 'new unlisted version'
-        )
-
-    @mock.patch('olympia.amo.tasks.trigger_sync_objects_to_basket')
-    def test_from_upload_listed_not_synced_with_basket(
-        self, trigger_sync_objects_to_basket_mock
-    ):
-        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
-        Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
-            selected_apps=[amo.FIREFOX.id],
-            parsed_data=parsed_data,
-        )
-        # It's a new listed version, we should *not* be syncing the add-on with
-        # basket through version_uploaded signal, but only when
-        # _current_version changes, which isn't the case here.
-        assert trigger_sync_objects_to_basket_mock.call_count == 0
-
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
         scanners_result = ScannerResult.objects.create(
@@ -1835,15 +1888,6 @@ class TestApplicationsVersions(TestCase):
         )
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox 5.0 - 6.*'
-
-    def test_repr_when_type_in_no_compat(self):
-        # addon_factory() does not create ApplicationsVersions for types in
-        # NO_COMPAT, so create an extension first and change the type
-        # afterwards.
-        addon = addon_factory(version_kw=self.version_kw)
-        addon.update(type=amo.ADDON_DICT)
-        version = addon.current_version
-        assert str(version.apps.all()[0]) == 'Firefox 5.0 and later'
 
     def test_repr_when_unicode(self):
         addon = addon_factory(

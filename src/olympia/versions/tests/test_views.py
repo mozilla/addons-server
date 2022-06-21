@@ -183,7 +183,7 @@ class TestDownloadsBase(TestCase):
             'downloads.latest', kwargs={'addon_id': self.addon.slug}
         )
 
-    def assert_served_internally(self, response, *, attachment=False):
+    def assert_served_successfully(self, response, *, attachment=False, cache=True):
         assert response.status_code == 200
         assert (
             decode_http_header_value(response[settings.XSENDFILE_HEADER])
@@ -196,7 +196,10 @@ class TestDownloadsBase(TestCase):
             assert response['Content-Disposition'] == 'attachment'
         else:
             assert not response.has_header('Content-Disposition')
-        assert response['Cache-Control'] == 'max-age=86400'
+        if cache:
+            assert response['Cache-Control'] == 'max-age=86400'
+        else:
+            assert response['Cache-Control'] == 's-maxage=0'
         assert response['Access-Control-Allow-Origin'] == '*'
         return response
 
@@ -230,20 +233,21 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
     @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_download_for_unlisted_addon_owner(self):
         """File downloading is allowed for addon owners."""
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
         # Even allowed to bypass georestrictions.
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
         )
-        self.assert_served_internally(
-            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
-            attachment=True,
+        self.assert_served_successfully(
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'), attachment=True, cache=False
         )
 
         # Latest shouldn't work as it's only for latest public listed version.
@@ -262,20 +266,21 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
     @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers."""
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
         # Even allowed to bypass georestrictions.
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
         )
-        self.assert_served_internally(
-            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
-            attachment=True,
+        self.assert_served_successfully(
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'), attachment=True, cache=False
         )
 
         # Latest shouldn't work as it's only for latest public listed version.
@@ -310,20 +315,21 @@ class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
     @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_unlisted_reviewer(self):
         """File downloading is allowed for unlisted reviewers."""
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
         # Even allowed to bypass georestrictions.
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
         )
-        self.assert_served_internally(
-            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'),
-            attachment=True,
+        self.assert_served_successfully(
+            self.client.get(url, HTTP_X_COUNTRY_CODE='fr'), attachment=True, cache=False
         )
 
         # Latest shouldn't work as it's only for latest public listed version.
@@ -338,38 +344,38 @@ class TestDownloads(TestDownloadsBase):
     def test_public(self):
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url))
 
     def test_public_addon_unreviewed_file(self):
         self.file.status = amo.STATUS_AWAITING_REVIEW
         self.file.save()
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url))
 
     def test_unreviewed_addon(self):
         self.addon.status = amo.STATUS_NULL
         self.addon.save()
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url))
 
     def test_type_attachment(self):
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url))
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(self.client.get(url), attachment=True)
 
     def test_trailing_filename(self):
         url = self.file_url + self.file.pretty_filename
-        self.assert_served_internally(self.client.get(url))
+        self.assert_served_successfully(self.client.get(url))
 
     def test_null_datestatuschanged(self):
         self.file.update(datestatuschanged=None)
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url))
 
     def test_unicode_url(self):
         self.file.file.name = f'{self.file.addon.pk}/图像浏览器-0.5.xpi'
         self.file.save()
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url))
 
     def test_deleted(self):
         self.addon.delete()
@@ -379,7 +385,7 @@ class TestDownloads(TestDownloadsBase):
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
         )
-        self.assert_served_internally(
+        self.assert_served_successfully(
             self.client.get(self.file_url, HTTP_X_COUNTRY_CODE='uk')
         )
 
@@ -412,111 +418,119 @@ class NonPublicFileDownloadsMixin:
     def test_file_disabled_ok_for_author(self):
         self.file.update(status=amo.STATUS_DISABLED)
         assert self.login(email='g@gmail.com')
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
     def test_file_disabled_ok_for_reviewer(self):
         self.file.update(status=amo.STATUS_DISABLED)
         self.login(email='reviewer@mozilla.com')
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
     def test_file_disabled_ok_for_admin(self):
         self.file.update(status=amo.STATUS_DISABLED)
         self.login(email='admin@mozilla.com')
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
     def test_ok_for_author(self):
-        # Addon should be disabled or the version unlisted at this point, so
-        # it should be served internally.
+        # Addon should be disabled or the version unlisted at this point.
         assert self.login(email='g@gmail.com')
-        self.assert_served_internally(
-            self.client.get(self.file_url),
-        )
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
     def test_ok_for_admin(self):
-        # Addon should be disabled or the version unlisted at this point, so
-        # it should be served internally.
+        # Addon should be disabled or the version unlisted at this point.
         self.login(email='admin@mozilla.com')
-        self.assert_served_internally(
-            self.client.get(self.file_url),
-        )
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
     def test_user_disabled_ok_for_author(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         assert self.login(email='g@gmail.com')
-        self.assert_served_internally(
-            self.client.get(self.file_url),
-        )
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
     def test_user_disabled_ok_for_admin(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         self.login(email='admin@mozilla.com')
-        self.assert_served_internally(
-            self.client.get(self.file_url),
-        )
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
 
 class DownloadsNonDisabledMixin:
     def test_ok_for_author(self):
         assert self.login(email='g@gmail.com')
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
     def test_ok_for_admin(self):
         self.login(email='admin@mozilla.com')
-        self.assert_served_internally(self.client.get(self.file_url))
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
             'downloads.file',
             kwargs={'file_id': self.file.id, 'download_type': 'attachment'},
         )
-        self.assert_served_internally(self.client.get(url), attachment=True)
+        self.assert_served_successfully(
+            self.client.get(url), attachment=True, cache=False
+        )
 
 
 class APILoginMixin:

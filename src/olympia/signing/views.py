@@ -44,7 +44,7 @@ def with_addon(allow_missing=False):
             try:
                 if guid is None:
                     raise Addon.DoesNotExist('No Add-on ID')
-                addon = Addon.unfiltered.get(guid=guid)
+                addon = Addon.objects.get(guid=guid)
             except Addon.DoesNotExist:
                 if allow_missing:
                     addon = None

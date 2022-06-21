@@ -9,6 +9,7 @@ from olympia.amo.utils import urlparams
 from olympia.amo.views import frontend_view
 from olympia.files.urls import upload_patterns
 from olympia.versions import views as version_views
+from olympia.versions.update import update
 from olympia.versions.urls import download_patterns
 
 
@@ -75,6 +76,11 @@ urlpatterns = [
     re_path(
         r'^addons/versions/(\d+)/?$',
         lambda r, id: redirect('addons.versions', id, permanent=True),
+    ),
+    re_path(
+        r'^update/(?:VersionCheck\.php)?$',
+        update,
+        name='addons.versions.update',
     ),
     # Legacy redirect. Doesn't receive the addon id/slug so it can't live with
     # the other version views that do.

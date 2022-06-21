@@ -52,16 +52,6 @@ SIGNED_RE = re.compile(r'^META\-INF/(\w+)\.(rsa|sf)$')
 # (see toolkit/components/extensions/ExtensionUtils.jsm)
 MSG_RE = re.compile(r'__MSG_(?P<msgid>[a-zA-Z0-9@_]+?)__')
 
-# The default update URL.
-default = (
-    'https://versioncheck.addons.mozilla.org/update/VersionCheck.php?'
-    'reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&'
-    'maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID=%APP_ID%&'
-    'appVersion=%APP_VERSION%&appOS=%APP_OS%&appABI=%APP_ABI%&'
-    'locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&'
-    'updateType=%UPDATE_TYPE%'
-)
-
 
 def get_filepath(fileorpath):
     """Resolve the actual file path of `fileorpath`.
@@ -387,8 +377,11 @@ class ManifestJSONExtractor:
             yield self.App(appdata=app, id=app.id, min=min_appver, max=max_appver)
 
     def target_locale(self):
-        """Guess target_locale for a dictionary from manifest contents."""
+        """Guess target_locale for a dictionary/langpack from manifest contents."""
         try:
+            if langpack_id := self.get('langpack_id'):
+                return force_str(langpack_id)[:255]
+
             dictionaries = self.get('dictionaries', {})
             key = force_str(list(dictionaries.keys())[0])
             return key[:255]
@@ -396,7 +389,7 @@ class ManifestJSONExtractor:
             # This shouldn't happen: the linter should prevent it, but
             # just in case, handle the error (without bothering with
             # translations as users should never see this).
-            raise forms.ValidationError('Invalid dictionaries object.')
+            raise forms.ValidationError('Invalid dictionaries object or langpack_id.')
 
     def parse(self, minimal=False):
         data = {
@@ -441,7 +434,7 @@ class ManifestJSONExtractor:
 
                 if self.get('devtools_page'):
                     data.update({'devtools_page': self.get('devtools_page')})
-            elif self.type == amo.ADDON_DICT:
+            elif self.type in (amo.ADDON_DICT, amo.ADDON_LPAPP):
                 data['target_locale'] = self.target_locale()
             elif self.type == amo.ADDON_SITE_PERMISSION:
                 data['site_permissions'] = self.get('site_permissions', [])

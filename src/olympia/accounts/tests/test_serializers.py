@@ -9,7 +9,6 @@ from olympia.accounts.serializers import (
     BaseUserSerializer,
     PublicUserProfileSerializer,
     UserNotificationSerializer,
-    UserProfileBasketSyncSerializer,
     UserProfileSerializer,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -267,42 +266,6 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
         assert data['site_status'] == {
             'read_only': True,
             'notice': None,
-        }
-
-
-class TestUserProfileBasketSyncSerializer(TestCase):
-    def setUp(self):
-        self.user = user_factory(
-            display_name=None, last_login=self.days_ago(1), fxa_id='qsdfghjklmù'
-        )
-
-    def test_basic(self):
-        serializer = UserProfileBasketSyncSerializer(self.user)
-        assert serializer.data == {
-            'deleted': False,
-            'display_name': None,
-            'fxa_id': self.user.fxa_id,
-            'homepage': '',
-            'id': self.user.pk,
-            'last_login': self.user.last_login.replace(microsecond=0).isoformat() + 'Z',
-            'location': '',
-        }
-
-        self.user.update(display_name='Dîsplay Mé!')
-        serializer = UserProfileBasketSyncSerializer(self.user)
-        assert serializer.data['display_name'] == 'Dîsplay Mé!'
-
-    def test_deleted(self):
-        self.user.delete()
-        serializer = UserProfileBasketSyncSerializer(self.user)
-        assert serializer.data == {
-            'deleted': True,
-            'display_name': '',
-            'fxa_id': self.user.fxa_id,
-            'homepage': '',
-            'id': self.user.pk,
-            'last_login': self.user.last_login.replace(microsecond=0).isoformat() + 'Z',
-            'location': '',
         }
 
 
