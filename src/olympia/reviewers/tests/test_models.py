@@ -271,7 +271,7 @@ class TestReviewerScore(TestCase):
             amo.ADDON_DICT: 'DICT',
             amo.ADDON_LPAPP: 'LP',
             amo.ADDON_LPADDON: 'LP',
-            amo.ADDON_PLUGIN: 'ADDON',
+            amo._ADDON_PLUGIN: 'ADDON',
             amo.ADDON_API: 'ADDON',
             amo.ADDON_STATICTHEME: 'STATICTHEME',
         }
