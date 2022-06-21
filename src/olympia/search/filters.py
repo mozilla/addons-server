@@ -1016,6 +1016,7 @@ class SortingFilter(BaseFilterBackend):
                             query.SF(
                                 'random_score',
                                 seed=date.today().toordinal(),
+                                field='id',
                             )
                         ],
                     )
