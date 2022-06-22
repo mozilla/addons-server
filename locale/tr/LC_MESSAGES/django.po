@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-18 08:08+0000\n"
+"POT-Creation-Date: 2022-06-22 12:56+0000\n"
 "PO-Revision-Date: 2022-05-07 11:40+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -170,6 +170,9 @@ msgstr "GitHub sponsorlarının URL yolu /sponsors/ içermelidir."
 msgid "URLs must start with https://."
 msgstr ""
 
+msgid "License with slug={value} does not exist."
+msgstr ""
+
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
@@ -260,6 +263,15 @@ msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "A GUID must be specified in the manifest."
+msgstr ""
+
+msgid "GUID mismatch between the URL and manifest."
+msgstr ""
+
+msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
 
 msgid "My Add-ons"
@@ -478,8 +490,8 @@ msgstr "Hukuki nedenlerden dolayı kullanılamıyor."
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
-msgid "You must provide an object of {lang-code:value}."
-msgstr "Bir {lang-code:value} nesnesi sağlamalısınız."
+msgid "You must provide an object of {{lang-code:value}}."
+msgstr ""
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
@@ -2580,6 +2592,9 @@ msgstr "Eklentiniz şu anda \"Görünmez\" olarak ayarlanmış."
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr "Bu durumdayken dağıtım yöntemi olarak sadece \"Kendi başınıza\"yı kullanabilirsiniz."
 
+msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
+msgstr ""
+
 msgid "General Tests"
 msgstr "Genel testler"
 
@@ -4443,6 +4458,10 @@ msgstr "Tüm emoji ihtiyaçlarınız bir tık uzağınızda."
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr "Sitelere e-posta adresinizi vermeyi bırakın. Firefox Relay, kimliğinizi korur ve istenmeyen e-postaları önler."
 
+#. editorial content for the discovery pane.
+msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Bazı web siteleri Android'de video oynatmakta zorluk çekiyor. İşte bir düzeltme."
@@ -4567,17 +4586,17 @@ msgid "See all extensions"
 msgstr "Tüm uzantılara bak"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Reklam engelleyiciler"
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy & anti-tracking"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Çeviri araçları"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4637,6 +4656,10 @@ msgid "See more password manager staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Çeviri araçları"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr ""
 
@@ -4667,10 +4690,6 @@ msgstr "“{tag}” etiketli uzantılar"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" etiketli diğer uzantılara bakın"
-
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Reklam engelleyiciler"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-18 08:08+0000\n"
+"POT-Creation-Date: 2022-06-22 12:56+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -175,6 +175,9 @@ msgstr "La ruta URL para los patrocinadores de GitHub debe contener /sponsors/."
 msgid "URLs must start with https://."
 msgstr ""
 
+msgid "License with slug={value} does not exist."
+msgstr ""
+
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
@@ -265,6 +268,15 @@ msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "A GUID must be specified in the manifest."
+msgstr ""
+
+msgid "GUID mismatch between the URL and manifest."
+msgstr ""
+
+msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
 
 msgid "My Add-ons"
@@ -484,8 +496,8 @@ msgstr "No disponible por razones legales."
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
-msgid "You must provide an object of {lang-code:value}."
-msgstr "Tienes que proporcionar un objeto de {lang-code:value}."
+msgid "You must provide an object of {{lang-code:value}}."
+msgstr ""
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
@@ -2604,6 +2616,9 @@ msgstr "Tu complemento está actualmente configurado en \"Invisible\"."
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr "Mientras esté en este estado, \"Por cuenta propia\" es el único método de distribución disponible."
 
+msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
+msgstr ""
+
 msgid "General Tests"
 msgstr "Pruebas generales"
 
@@ -4585,6 +4600,10 @@ msgstr "Mejora tus emojis. Elige entre decenas de sorprendentes emojis para cada
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4713,18 +4732,18 @@ msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy & anti-tracking"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Translation tools"
-msgstr "Organizadores de pestañas y herramientas"
+msgid "Elite ad blockers"
+msgstr "Actualizar bloqueadores de complementos"
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4785,6 +4804,11 @@ msgstr "Ver más extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
+msgid "Translation tools"
+msgstr "Organizadores de pestañas y herramientas"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "por versión del complemento"
 
@@ -4815,11 +4839,6 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Ver más extensiones populares"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Actualizar bloqueadores de complementos"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
