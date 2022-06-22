@@ -78,6 +78,7 @@ from .validators import (
     AddonMetadataValidator,
     AddonDefaultLocaleValidator,
     MatchingGuidValidator,
+    ReviewedSourceFileValidator,
     VersionAddonMetadataValidator,
     VersionLicenseValidator,
     VerifyMozillaTrademark,
@@ -403,7 +404,9 @@ class DeveloperVersionSerializer(VersionSerializer):
         required=False,
         source='license',
     )
-    source = SourceFileField(required=False, allow_null=True)
+    source = SourceFileField(
+        required=False, allow_null=True, validators=(ReviewedSourceFileValidator(),)
+    )
     upload = serializers.SlugRelatedField(
         slug_field='uuid',
         queryset=FileUpload.objects.all(),
@@ -504,6 +507,12 @@ class DeveloperVersionSerializer(VersionSerializer):
                             'disabled.'
                         )
                     )
+        elif 'source' in data:
+            # We need to manually trigger this as null/empty values aren't validated.
+            try:
+                ReviewedSourceFileValidator()(data['source'], self.fields['source'])
+            except exceptions.ValidationError as exc:
+                raise exceptions.ValidationError({'source': exc.detail})
 
         return data
 

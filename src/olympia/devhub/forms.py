@@ -808,6 +808,14 @@ class VersionForm(WithSourceMixin, forms.ModelForm):
             'source',
         )
 
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        if (
+            self.instance.has_been_human_reviewed
+            and not self.instance.pending_rejection
+        ):
+            self.fields['source'].disabled = True
+
 
 class AppVersionChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):

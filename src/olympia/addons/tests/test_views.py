@@ -59,6 +59,7 @@ from olympia.constants.promoted import (
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import AutoApprovalSummary
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.users.models import EmailUserRestriction, UserProfile
@@ -3270,6 +3271,9 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             api_version='v5',
         )
         self.client.login_api(self.user)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED
+        )
 
     def test_basic(self):
         response = self.client.patch(
@@ -3583,6 +3587,70 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             assert response.status_code == 400
         self.version.reload()
         return response, self.version
+
+    def test_cant_delete_source_for_reviewed_file(self):
+        mock_point = 'olympia.versions.models.Version.'
+        error = {
+            'source': [
+                'Source cannot be changed because this version has been reviewed by '
+                'Mozilla.'
+            ]
+        }
+        self.version.update(source='src.zip')
+
+        with mock.patch(
+            f'{mock_point}has_been_human_reviewed', new_callable=mock.PropertyMock
+        ) as reviewed_mock, mock.patch(
+            f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
+        ) as pending_mock:
+            reviewed_mock.return_value = True
+            pending_mock.return_value = False
+
+            response = self.client.patch(self.url, data={'source': None})
+            assert response.status_code == 400, response.content
+            assert response.data == error
+            self.version.reload()
+            assert self.version.source
+
+            response = self.client.patch(
+                self.url, data={'source': ''}, format='multipart'
+            )
+            assert response.status_code == 400, response.content
+            assert response.data == error
+            self.version.reload()
+            assert self.version.source
+
+            pending_mock.return_value = True
+            response = self.client.patch(self.url, data={'source': None})
+            assert response.status_code == 200, response.content
+            assert response.data != error
+            self.version.reload()
+            assert not self.version.source
+
+    def test_cant_upload_source_for_reviewed_file(self):
+        mock_point = 'olympia.versions.models.Version.'
+        error = {
+            'source': [
+                'Source cannot be changed because this version has been reviewed by '
+                'Mozilla.'
+            ]
+        }
+        new_source = self.file_path('webextension_with_image.zip')
+
+        assert not self.version.source
+        with mock.patch(
+            f'{mock_point}has_been_human_reviewed', new_callable=mock.PropertyMock
+        ) as reviewed_mock, mock.patch(
+            f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
+        ) as pending_mock:
+            reviewed_mock.return_value = True
+            pending_mock.return_value = False
+            assert self._submit_source(new_source, error=True)[0].data == error
+            assert not self.version.source
+
+            pending_mock.return_value = True
+            assert self._submit_source(new_source, error=False)[0].data != error
+            assert self.version.source
 
 
 class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):

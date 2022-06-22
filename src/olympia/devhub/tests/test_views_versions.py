@@ -27,6 +27,7 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
+from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import Group, UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
 
@@ -768,6 +769,9 @@ class TestVersionEditDetails(TestVersionEditBase):
         ctx = self.client.get(self.url).context
         compat = initial(ctx['compat_form'].forms[0])
         self.initial = formset(compat)
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED
+        )
 
     def formset(self, *args, **kw):
         return super().formset(*args, **{**self.initial, **kw})
@@ -861,6 +865,44 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log.user == self.user
         assert log.details is None
         assert log.arguments == [self.addon, self.version]
+
+    def test_source_field_disabled_after_human_review_no_source(self):
+        self.version.autoapprovalsummary.update(confirmed=True)
+        response = self.client.get(self.url)
+        assert b'You cannot change attached sources' in response.content
+        doc = pq(response.content)
+        # The file input isn't rendered
+        assert not doc('#id_source')
+        # There isn't a current file, so there shouldn't be a link to one
+        assert not doc('.current-source-link')
+
+        # Try to submit anyway
+        with temp.NamedTemporaryFile(
+            suffix='.zip', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2**21))
+            source_file.seek(0)
+            response = self.client.post(self.url, self.formset(source=source_file))
+        version = Version.objects.get(pk=self.version.pk)
+        assert not version.source
+
+    def test_source_field_disabled_after_human_review_has_source(self):
+        self.version.autoapprovalsummary.update(confirmed=True)
+        # This test sets source and checks the link is present
+        self.test_existing_source_link()
+
+        response = self.client.get(self.url)
+        assert b'You cannot change attached sources' in response.content
+        doc = pq(response.content)
+        assert not doc('#id_source')
+
+        # Try to clear anyway
+        response = self.client.post(
+            self.url, self.formset(**{'source': '', 'source-clear': 'on'})
+        )
+        assert response.status_code == 302
+        assert self.version.source  # still set
 
     @mock.patch('olympia.devhub.views.log')
     def test_logging(self, log_mock):

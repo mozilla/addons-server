@@ -828,6 +828,22 @@ class Version(OnChangeMixin, ModelBase):
             pass
         return False
 
+    @property
+    def has_been_human_reviewed(self):
+        """Return whether or not this version was reviewed by a human."""
+        from olympia.reviewers.models import AutoApprovalSummary
+
+        autoapproval = AutoApprovalSummary.objects.filter(version=self).first()
+
+        return (
+            self.file.status == amo.STATUS_APPROVED
+            and (
+                not autoapproval
+                or autoapproval.verdict == amo.NOT_AUTO_APPROVED
+                or autoapproval.confirmed is True
+            )
+        ) or (self.file.status == amo.STATUS_DISABLED and self.file.reviewed)
+
     def get_background_images_encoded(self, header_only=False):
         file_obj = self.file
         return {
