@@ -531,7 +531,7 @@ class TestSortingFilter(FilterTestsBase):
         # TestCombinedFilter.test_filter_featured_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
-            {'random_score': {'seed': 737481}}
+            {'random_score': {'seed': 737481, 'field': 'id'}}
         ]
 
     @freeze_time('2020-02-27')
@@ -542,7 +542,7 @@ class TestSortingFilter(FilterTestsBase):
         # TestCombinedFilter.test_filter_promoted_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
-            {'random_score': {'seed': 737482}}
+            {'random_score': {'seed': 737482, 'field': 'id'}}
         ]
 
     def test_sort_recommended_only(self):
@@ -1129,7 +1129,7 @@ class TestCombinedFilter(FilterTestsBase):
         assert qs['sort'] == ['_score']
 
         assert bool_['must'][0]['function_score']['functions'] == [
-            {'random_score': {'seed': 737481}}
+            {'random_score': {'seed': 737481, 'field': 'id'}}
         ]
 
     @freeze_time('2020-02-26')
@@ -1147,5 +1147,5 @@ class TestCombinedFilter(FilterTestsBase):
         assert qs['sort'] == ['_score']
 
         assert bool_['must'][0]['function_score']['functions'] == [
-            {'random_score': {'seed': 737481}}
+            {'random_score': {'seed': 737481, 'field': 'id'}}
         ]
