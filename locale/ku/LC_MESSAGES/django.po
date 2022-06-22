@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-18 08:08+0000\n"
+"POT-Creation-Date: 2022-06-22 12:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,6 +163,9 @@ msgstr ""
 msgid "URLs must start with https://."
 msgstr ""
 
+msgid "License with slug={value} does not exist."
+msgstr ""
+
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
@@ -252,6 +255,15 @@ msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "A GUID must be specified in the manifest."
+msgstr ""
+
+msgid "GUID mismatch between the URL and manifest."
+msgstr ""
+
+msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
 
 msgid "My Add-ons"
@@ -454,7 +466,7 @@ msgstr ""
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
-msgid "You must provide an object of {lang-code:value}."
+msgid "You must provide an object of {{lang-code:value}}."
 msgstr ""
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
@@ -2485,6 +2497,9 @@ msgstr ""
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
 
+msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
+msgstr ""
+
 msgid "General Tests"
 msgstr ""
 
@@ -4338,6 +4353,10 @@ msgstr ""
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4459,16 +4478,16 @@ msgid "See all extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy & anti-tracking"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4524,6 +4543,10 @@ msgid "See more password manager staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr ""
 
@@ -4549,10 +4572,6 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
-msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the homepage shelves.

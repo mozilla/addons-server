@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-18 08:08+0000\n"
+"POT-Creation-Date: 2022-06-22 12:56+0000\n"
 "PO-Revision-Date: 2022-05-18 18:47+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -171,6 +171,9 @@ msgstr ""
 msgid "URLs must start with https://."
 msgstr "קישורים חייבים להתחיל ב־https://‎."
 
+msgid "License with slug={value} does not exist."
+msgstr ""
+
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "סוג הקובץ לא נתמך, נא להעלות קובץ ארכיון ({extensions})."
 
@@ -261,6 +264,15 @@ msgid "This field is required for add-ons with listed versions."
 msgstr ""
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+msgstr ""
+
+msgid "A GUID must be specified in the manifest."
+msgstr ""
+
+msgid "GUID mismatch between the URL and manifest."
+msgstr ""
+
+msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
 
 msgid "My Add-ons"
@@ -364,10 +376,10 @@ msgstr "לא נמצא"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
@@ -378,8 +390,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>אופס! קרתה איזו תקלה.</h1> <p>אנו כבר נתפנה לטפל בה.</p> <p> אפשר לנסות לרענן את העמוד, או לחזור אל <a href=\"%(home)s\">דף הבית של התוספות</a>. ניתן גם לעזור לנו לתקן בעיה זו על־ידי <a "
-"href=\"https://github.com/mozilla/addons/issues/new\">הגשת דיווח על תקלה</a> עם הפרטים אודות כיצד הגעת לדף זה. </p>"
+"<h1>אופס! קרתה איזו תקלה.</h1> <p>אנו כבר נתפנה לטפל בה.</p> <p> אפשר לנסות לרענן את העמוד, או לחזור אל <a href=\"%(home)s\">דף הבית של התוספות</a>. ניתן גם לעזור לנו לתקן בעיה זו על־ידי <a href="
+"\"https://github.com/mozilla/addons/issues/new\">הגשת דיווח על תקלה</a> עם הפרטים אודות כיצד הגעת לדף זה. </p>"
 
 msgid "Register or Log in"
 msgstr "הרשמה או התחברות"
@@ -467,8 +479,8 @@ msgstr "לא זמין מסיבות משפטיות."
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
-msgid "You must provide an object of {lang-code:value}."
-msgstr "עליך לספק אובייקט מסוג {lang-code:value}."
+msgid "You must provide an object of {{lang-code:value}}."
+msgstr ""
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
@@ -508,8 +520,8 @@ msgstr "גרסאות"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr "אם היישום הנתמך שלך אינו דורש קובץ manifest, עדיין עליך לכלול אחד עם המאפיינים הנדרשים כפי שמצוין %(amo_manifests_mdn_link_open)sכאן%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -2172,8 +2184,12 @@ msgid ""
 msgstr "תוספת זו אינה נתמכת ב־<b>%(app_name)s %(app_version)s</b>, הגרסה העדכנית ביותר של %(app_name)s. מוטב לעדכן את פרטי התאימות של התוספת שלך או להעלות גרסה חדשה יותר של תוספת זו."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">עדכון תאימות</a> <a href=\"%(version_url)s\" class=\"button\">העלאת גרסה חדשה</a> או <a href=\"#\" class=\"close\">התעלמות</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
+msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">עדכון תאימות</a> <a href=\"%(version_url)s\" class=\"button\">העלאת גרסה חדשה</a> או <a href=\"#\" class=\"close"
+"\">התעלמות</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "הצגה ועדכון טווחי תאימות יישום"
@@ -2329,9 +2345,9 @@ msgstr "אם לתוספת שלך יש אתר בית נוסף, יש להקליד 
 msgid "Describe Add-on"
 msgstr "תיאור התוספת"
 
-#. {0} is the addon name
 # 75%
 # 100%
+#. {0} is the addon name
 msgid "Describe {0}"
 msgstr "תיאור {0}"
 
@@ -2398,8 +2414,8 @@ msgid "Email"
 msgstr "דוא״ל"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr "אם ברצונך להציג כתובת דוא״ל לפניות תמיכה, יש להקליד אותה כאן. אם יש לך כתובות נוספות לכל שפה ניתן להוסיף את השדה הזה בשפות נוספות. תקף רק לתוספות מוצגות."
 
 msgid "Website"
@@ -2428,8 +2444,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"כל מידע שיתכן שמשתמשי הקצה ירצו לדעת שאינו בהכרח שייך לתקציר או התיאור על התוספת. שימושים נפוצים כוללים תיעוד של באגים ידועים, מידע על אופן דיווח באגים, מועדי הוצאה לאור של גרסאות חדשות וכו׳. תקף רק"
-" לתוספות מוצגות."
+"כל מידע שיתכן שמשתמשי הקצה ירצו לדעת שאינו בהכרח שייך לתקציר או התיאור על התוספת. שימושים נפוצים כוללים תיעוד של באגים ידועים, מידע על אופן דיווח באגים, מועדי הוצאה לאור של גרסאות חדשות וכו׳. תקף "
+"רק לתוספות מוצגות."
 
 msgid "Universally unique identifier"
 msgstr "מזהה ייחודי אוניברסלי"
@@ -2446,8 +2462,8 @@ msgid "Whiteboard"
 msgstr "לוח לבן"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2549,6 +2565,9 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr ""
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
+msgstr ""
+
+msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
 msgstr ""
 
 msgid "General Tests"
@@ -2967,8 +2986,8 @@ msgstr "סוד JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr "כדי להגיש בקשות API, יש לשלוח <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> בתור כותרת האימות. יהיה עליך לייצר JWT לכל בקשה כפי שמסובר ב<a href=\"%(docs_url)s\">תיעוד ה־API</a>."
 
 #, python-format
@@ -3041,7 +3060,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3368,8 +3388,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "ניהול גרסה {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "ניהול {0}"
 
@@ -3540,15 +3560,15 @@ msgstr "ביטול בקשת הסקירה שלך תסמן את התוספת כל�
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "האם ברצונך לבטל את בקשת הסקירה שלך?"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "שגיאה אחת"
 msgstr[1] "{0} שגיאות"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "אזהרה אחת"
@@ -4443,6 +4463,10 @@ msgstr "עשרות אימוג׳ים מדהימים—תמיד במרחק נגי�
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "ישנם אתרים המתקשים בהפעלת סרטונים ב־Android. הרחבה זו מספקת את התיקון."
@@ -4564,17 +4588,17 @@ msgid "See all extensions"
 msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy & anti-tracking"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "כלי תרגום"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4604,8 +4628,8 @@ msgstr "הרחבות לשיפור הפרטיות"
 msgid "See more recommended privacy extensions"
 msgstr "הצגת הרחבות פרטיות מומלצות נוספות"
 
-#. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
 msgid "Popular extensions"
 msgstr "הרחבות פופולריות"
 
@@ -4628,6 +4652,10 @@ msgstr "מנהלי ססמאות חזקות"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "כלי תרגום"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4656,10 +4684,6 @@ msgstr ""
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "הצגת הרחבות נוספות המתויגות ב״{tag}״"
-
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -4888,8 +4912,8 @@ msgstr "התחלה"
 msgid "end"
 msgstr "סיום"
 
-#. L10n: Description of what can be searched for
 # 100%
+#. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
 msgstr "תוספת, סוקר או תגובה"
 
@@ -6204,8 +6228,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr "לפני שנתחיל, נא לקרוא ולאשר את הסכם הפצת התוספות של Firefox כמו גם הכללים והמדיניות שלנו לסקירה. הסכם הפצת התוספות של Firefox מקשר גם אל הצהרת הפרטיות שלנו שמסבירה איך אנחנו מטפלים במידע שלך."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6278,7 +6302,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

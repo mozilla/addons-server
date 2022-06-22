@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-05-18 08:08+0000\n"
+"POT-Creation-Date: 2022-06-22 12:56+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -181,6 +181,9 @@ msgstr "URL path for GitHub Sponsors must contain /sponsors/."
 msgid "URLs must start with https://."
 msgstr "URLs must start with https://."
 
+msgid "License with slug={value} does not exist."
+msgstr "License with slug={value} does not exist."
+
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Unsupported file type, please upload an archive file ({extensions})."
 
@@ -274,6 +277,15 @@ msgstr "This field is required for add-ons with listed versions."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
+
+msgid "A GUID must be specified in the manifest."
+msgstr "A GUID must be specified in the manifest."
+
+msgid "GUID mismatch between the URL and manifest."
+msgstr "GUID mismatch between the URL and manifest."
+
+msgid "Source cannot be changed because this version has been reviewed by Mozilla."
+msgstr "Source cannot be changed because this version has been reviewed by Mozilla."
 
 msgid "My Add-ons"
 msgstr "My Add-ons"
@@ -495,8 +507,8 @@ msgstr "Unavailable for legal reasons."
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr "The language code \"{lang_code}\" is invalid."
 
-msgid "You must provide an object of {lang-code:value}."
-msgstr "You must provide an object of {lang-code:value}."
+msgid "You must provide an object of {{lang-code:value}}."
+msgstr "You must provide an object of {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr "A value in the default locale of \"{lang_code}\" is required."
@@ -2742,6 +2754,9 @@ msgstr "Your add-on is currently set to \"Invisible\"."
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr "While in this state, \"On your own\" is the only distribution method available."
 
+msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
+msgstr "You cannot change attached sources because this version has been reviewed by Mozilla."
+
 msgid "General Tests"
 msgstr "General Tests"
 
@@ -4855,6 +4870,10 @@ msgstr "Dozens of amazing emojis—always a click away."
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
 
+#. editorial content for the discovery pane.
+msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr "Time--based theme changer. Make Firefox change colors as the time of day changes."
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4990,18 +5009,18 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Extension starter pack"
-
-#. editorial content for the secondary hero shelves.
-msgid "Privacy & anti-tracking"
-msgstr "Privacy & anti-tracking"
-
-#. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Translation tools"
-msgstr "Tab organizers and tools"
+msgid "Elite ad blockers"
+msgstr "Update add-on block"
+
+#. editorial content for the secondary hero shelves.
+msgid "Writing tools"
+msgstr "Writing tools"
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
+msgstr "Extension starter pack"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5068,6 +5087,11 @@ msgstr "Recommended Extensions program"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
+msgid "Translation tools"
+msgstr "Tab organizers and tools"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "by Add-on Version"
 
@@ -5098,11 +5122,6 @@ msgstr "“{tag}” tagged extensions"
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Browse all add-ons"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Update add-on block"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
