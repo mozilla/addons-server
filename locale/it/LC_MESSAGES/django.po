@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-22 13:24+0000\n"
+"PO-Revision-Date: 2022-06-22 13:28+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -269,10 +269,10 @@ msgid "A GUID must be specified in the manifest."
 msgstr "È necessario specificare un GUID nel manifesto."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Mancata corrispondenza del GUID tra URL e manifesto."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Il sorgente non può essere modificato perché questa versione è stata revisionata da Mozilla."
 
 msgid "My Add-ons"
 msgstr "I miei componenti aggiuntivi"
@@ -493,7 +493,7 @@ msgid "The language code \"{lang_code}\" is invalid."
 msgstr "Il codice della lingua “{lang_code}” non è valido."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "È necessario fornire un oggetto di {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr "È obbligatorio specificare un valore nel locale predefinito di “{lang_code}”."
@@ -2614,7 +2614,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "In questo stato, \"Su siti esterni\" è l’unico metodo di distribuzione disponibile."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Non è possibile modificare i sorgenti allegati perché questa versione è stata revisionata da Mozilla."
 
 msgid "General Tests"
 msgstr "Test generali"
@@ -4558,7 +4558,7 @@ msgstr "Smetti di dare ai siti il tuo indirizzo email. Firefox Relay protegge la
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Tema che cambia in base all’orario. Fai cambiare colore a Firefox nel corso della giornata."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4689,7 +4689,7 @@ msgstr "Strumenti esclusivi per il blocco delle pubblicità"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "Strumenti di scrittura"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
