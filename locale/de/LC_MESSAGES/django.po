@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-22 14:49+0000\n"
+"PO-Revision-Date: 2022-06-22 14:50+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4645,7 +4645,7 @@ msgstr "Leistungsfähige Werbeblocker"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "Schreibwerkzeuge"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
