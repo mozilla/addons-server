@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-23 21:30+0000\n"
+"PO-Revision-Date: 2022-06-23 21:34+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -4598,7 +4598,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Se medarbejdernes valg"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
