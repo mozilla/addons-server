@@ -22,10 +22,12 @@ class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField(allow_blank=True, required=False)
     url = serializers.SerializerMethodField()
-    # author is filled automatically through create() below - DRF provides a
-    # CurrentUserDefault() for that purpose but it doesn't play nice with
-    # nested serializer + read_only=True.
-    author = BaseUserSerializer(read_only=True)
+    # DRF's default=serializers.CurrentUserDefault() is necessary to pass
+    # validation but we also need the custom create() below for the author to
+    # be added to the created instance.
+    author = BaseUserSerializer(
+        read_only=True, default=serializers.CurrentUserDefault()
+    )
     public = serializers.BooleanField(source='listed', default=True)
     uuid = serializers.UUIDField(format='hex', required=False, read_only=True)
 
