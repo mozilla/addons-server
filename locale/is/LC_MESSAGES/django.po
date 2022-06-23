@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-23 17:30+0000\n"
+"PO-Revision-Date: 2022-06-23 17:38+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1261,13 +1261,13 @@ msgid "Sports & Games"
 msgstr "Íþróttir og leikir"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka til að bæta upplifun þína af afþreyingu með endurbótum á beinum streymum, íþróttafréttum og fleiru."
 
 msgid "User Interface"
 msgstr "Notandaviðmót"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka fyrir notendaviðmót sem breyta framsetningu vefsíðna til að auðvelda lestur, leit, vafur og fleira."
 
 msgid "Animals"
 msgstr "Dýr"
@@ -1300,13 +1300,13 @@ msgid "Abstract"
 msgstr "Óhlutbundið"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Sæktu listræn og hugmyndafræðileg þemu fyrir Firefox. Í þessum flokki eru litrík litastef og form, fantasíulandslag, fjörugir kettir, geðþekk blóm."
 
 msgid "Causes"
 msgstr "Málstaðir"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Sæktu Firefox-þemu fyrir þröng áhugasvið og efni. Þessi flokkur inniheldur íþróttaþemu, hátíðisdagaþemu, góðgerðarmálefni, þjóðleg þemu og margt fleira."
 
 msgid "Fashion"
 msgstr "Tíska"
@@ -1345,7 +1345,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Sæktu Firefox-þemu sem eru áhugaverð, skapandi og einstök."
 
 msgid "Scenery"
 msgstr "Landslag og náttúra"
@@ -1357,7 +1357,7 @@ msgid "Seasonal"
 msgstr "Árstíðabundið"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Sæktu Firefox-þemu fyrir allar fjórar árstíðirnar - vetur, sumar, vor og haust. Haustlauf, snjóþungir fjallatindar, sólríkir sumardagar og vorblóm."
 
 msgid "Solid"
 msgstr "Gegnheilt"
@@ -1366,13 +1366,13 @@ msgid "Download Firefox themes with solid and gradient colors to personalize you
 msgstr ""
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Sæktu Firefox-þemu sem innihalda ýmsar íþróttir. Þessi flokkur inniheldur landsfána, íþróttalið, fótbolta, íshokkí og fleira."
 
 msgid "Websites"
 msgstr "Vefsvæði"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Sæktu Firefox-þemu sem fanga kjarna vefsins - grípandi, óvenjuleg og áberandi."
 
 msgid "General"
 msgstr "Almennt"
