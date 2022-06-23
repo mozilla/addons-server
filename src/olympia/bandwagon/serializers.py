@@ -22,9 +22,12 @@ class CollectionSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField(allow_blank=True, required=False)
     url = serializers.SerializerMethodField()
-    author = BaseUserSerializer(default=serializers.CurrentUserDefault())
+    # author is filled automatically through create() below - DRF provides a
+    # CurrentUserDefault() for that purpose but it doesn't play nice with
+    # nested serializer + read_only=True.
+    author = BaseUserSerializer(read_only=True)
     public = serializers.BooleanField(source='listed', default=True)
-    uuid = serializers.UUIDField(format='hex', required=False)
+    uuid = serializers.UUIDField(format='hex', required=False, read_only=True)
 
     class Meta:
         model = Collection
@@ -41,7 +44,13 @@ class CollectionSerializer(serializers.ModelSerializer):
             'public',
             'default_locale',
         )
-        writeable_fields = ('description', 'name', 'slug', 'public', 'default_locale')
+        writeable_fields = (
+            'description',
+            'name',
+            'slug',
+            'public',
+            'default_locale',
+        )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
         validators = [
             UniqueTogetherValidator(
@@ -89,14 +98,17 @@ class CollectionSerializer(serializers.ModelSerializer):
 
         return value
 
+    def create(self, validated_data):
+        validated_data['author'] = self.context['request'].user
+        return super().create(validated_data)
+
 
 class ThisCollectionDefault:
     requires_context = True
 
     def __call__(self, serializer_field):
         viewset = serializer_field.context['view']
-        self.collection = viewset.get_collection()
-        return self.collection
+        return viewset.get_collection()
 
 
 class CollectionAddonSerializer(serializers.ModelSerializer):
@@ -121,7 +133,16 @@ class CollectionAddonSerializer(serializers.ModelSerializer):
                 fields=('addon', 'collection'),
             ),
         ]
-        writeable_fields = ('notes',)
+        writeable_fields = (
+            # addon is technically writeable but we ignore updates in
+            # validate() below.
+            'addon',
+            # collection is technically writeable but we should be ignoring any
+            # incoming data to always use the collection from the viewset,
+            # through HiddenField(default=ThisCollectionDefault()).
+            'collection',
+            'notes',
+        )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
     def validate(self, data):

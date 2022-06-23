@@ -332,13 +332,14 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
                 )
             }
         ),
+        read_only=True,
     )
     edit_url = serializers.SerializerMethodField()
     is_strict_compatibility_enabled = serializers.BooleanField(
         source='file.strict_compatibility', read_only=True
     )
-    license = CompactLicenseSerializer()
-    release_notes = TranslationSerializerField(required=False)
+    license = CompactLicenseSerializer(read_only=True)
+    release_notes = TranslationSerializerField(required=False, read_only=True)
 
     class Meta:
         model = Version
@@ -372,8 +373,7 @@ class VersionSerializer(SimpleVersionSerializer):
         choices=list(amo.CHANNEL_CHOICES_API.items()), read_only=True
     )
     license = SplitField(
-        LicenseSlugSerializerField(required=False),
-        LicenseSerializer(),
+        LicenseSlugSerializerField(required=False), LicenseSerializer(), read_only=True
     )
 
     class Meta:
@@ -438,6 +438,15 @@ class DeveloperVersionSerializer(VersionSerializer):
             'upload',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
+
+    def get_fields(self):
+        # We declare a bunch of fields as explicitly read_only in the parent
+        # serializers so we need to overwrite that. We have explicitly set
+        # read_only_fields just above so we use that as the source of truth.
+        fields = super().get_fields()
+        for name in fields:
+            fields[name].read_only = name in self.Meta.read_only_fields
+        return fields
 
     def to_representation(self, instance):
         # SourceFileField needs the version id to build the url.
@@ -610,7 +619,7 @@ class DeveloperVersionSerializer(VersionSerializer):
 class ListVersionSerializer(VersionSerializer):
     # When we're listing versions, we don't want to include the full license
     # text every time: we only do this for the version detail endpoint.
-    license = CompactLicenseSerializer()
+    license = CompactLicenseSerializer(read_only=True)
 
 
 class DeveloperListVersionSerializer(DeveloperVersionSerializer):
@@ -661,7 +670,7 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
 
 
 class ESCompactLicenseSerializer(BaseESSerializer, CompactLicenseSerializer):
-    name = ESLicenseNameSerializerField()
+    name = ESLicenseNameSerializerField(read_only=True)
 
     translated_fields = ('name',)
 
@@ -672,7 +681,7 @@ class ESCompactLicenseSerializer(BaseESSerializer, CompactLicenseSerializer):
 
 
 class ESCurrentVersionSerializer(BaseESSerializer, CurrentVersionSerializer):
-    license = ESCompactLicenseSerializer()
+    license = ESCompactLicenseSerializer(read_only=True)
 
     datetime_fields = ('reviewed',)
     translated_fields = ('release_notes',)

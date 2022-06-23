@@ -467,6 +467,21 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         assert collection.author.id == self.user.id
         assert collection.uuid
 
+    def test_cant_create_for_another_user(self):
+        self.client.login_api(self.user)
+        another_user = user_factory()
+        data = {
+            'name': {'en-US': 'this'},
+            'slug': 'minimal',
+            'author': {'id': another_user.pk},
+        }
+        response = self.send(data=data)
+        assert response.status_code == 201, response.content
+        collection = Collection.objects.get()
+        # self.check_data(collection, data, json.loads(response.content))
+        assert collection.author.id == self.user.id
+        assert collection.uuid
+
     def test_create_minimal(self):
         self.client.login_api(self.user)
         data = {
@@ -1351,6 +1366,15 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         assert response.data == {
             'non_field_errors': ['This add-on already belongs to the collection']
         }
+
+    def test_cant_add_to_another_collection(self):
+        another_collection = collection_factory(name='Bouh')
+        self.client.login_api(self.user)
+        response = self.send(self.url, data={'addon': self.addon.pk})
+        self.check_response(response)
+        assert not CollectionAddon.objects.filter(
+            collection=another_collection, addon=self.addon
+        ).exists()
 
 
 class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
