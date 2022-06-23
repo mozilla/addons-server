@@ -137,6 +137,23 @@ def test_resize_transparency_to_jpeg_has_white_background():
             os.remove(dest)
 
 
+@mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
+def test_resize_small_png_rgb():
+    src = os.path.join(
+        settings.ROOT, 'src', 'olympia', 'amo', 'tests', 'images', 'small_rgb.png'
+    )
+    dest = tempfile.mkstemp(dir=settings.TMP_PATH)[1]
+    expected = src.replace('.png', '-expected.jpg')
+    try:
+        resize_image(src, dest, (533, 400), format='jpg')
+        with open(dest, 'rb') as dfh:
+            with open(expected, 'rb') as efh:
+                assert dfh.read() == efh.read()
+    finally:
+        if os.path.exists(dest):
+            os.remove(dest)
+
+
 @pytest.mark.parametrize(
     'test_input,expected',
     [
