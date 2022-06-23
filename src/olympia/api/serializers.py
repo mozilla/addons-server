@@ -30,13 +30,6 @@ class BaseESSerializer(serializers.ModelSerializer):
     # datetime from the Elasticsearch datetime strings.
     datetime_fields = ()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Set all fields as read_only just in case.
-        for field_name in self.fields:
-            self.fields[field_name].read_only = True
-
     def get_fields(self):
         """
         Return all fields as normal, with one exception: replace every instance
@@ -48,6 +41,8 @@ class BaseESSerializer(serializers.ModelSerializer):
                 fields[key] = OutgoingURLESTranslationField(source=field.source)
             elif isinstance(field, TranslationSerializerField):
                 fields[key] = ESTranslationSerializerField(source=field.source)
+            # Set all fields as read_only just in case.
+            fields[key].read_only = True
         return fields
 
     def to_representation(self, data):

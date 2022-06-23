@@ -28,7 +28,7 @@ class ActivityLogSerializer(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.to_highlight = kwargs.get('context', []).get('to_highlight', [])
+        self.to_highlight = kwargs.get('context', {}).get('to_highlight', [])
 
     def get_comments(self, obj):
         comments = obj.details['comments'] if obj.details else ''

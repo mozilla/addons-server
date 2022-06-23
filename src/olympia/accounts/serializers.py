@@ -60,7 +60,9 @@ class BaseUserSerializer(serializers.ModelSerializer):
 
 class PublicUserProfileSerializer(BaseUserSerializer):
     picture_url = serializers.SerializerMethodField()
-    average_addon_rating = serializers.FloatField(source='averagerating')
+    average_addon_rating = serializers.FloatField(
+        source='averagerating', read_only=True
+    )
 
     class Meta(BaseUserSerializer.Meta):
         fields = BaseUserSerializer.Meta.fields + (
@@ -92,7 +94,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     permissions = serializers.SerializerMethodField()
     fxa_edit_email_url = serializers.SerializerMethodField()
     # Just Need to specify any field for the source - '*' is the entire obj.
-    site_status = SiteStatusSerializer(source='*')
+    site_status = SiteStatusSerializer(source='*', read_only=True)
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
