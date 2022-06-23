@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2021-12-03 13:28+0000\n"
-"Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
+"PO-Revision-Date: 2022-06-23 20:45+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -287,7 +287,7 @@ msgid "Sharing"
 msgstr "Deling"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Kategorisider"
 
 msgid "Collections"
 msgstr "Samlinger"
@@ -605,7 +605,7 @@ msgid "Changes Saved"
 msgstr "Ændringer gemt"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Indtast en ny udviklers mailadresse"
 
 msgid "There was an error uploading your file."
 msgstr ""
@@ -692,10 +692,10 @@ msgid "Status"
 msgstr "Status"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Alle tests bestået."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Disse tests blev ikke udført."
 
 msgid "Tests"
 msgstr "Tests"
