@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-23 18:00+0000\n"
+"PO-Revision-Date: 2022-06-23 18:56+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -3750,7 +3750,7 @@ msgstr "Tilgreindu sérsniðna upphafssíðu fyrir nýju flipana þína."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Umbreyttu öllum opnum flipum þínum í lista til að stýra þeim auðveldlega og flýta fyrir Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3826,7 +3826,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Finndu og lagfærðu skemmd bókamerki, tvítök og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
@@ -3843,7 +3843,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Fáðu ítarlegar upplýsingar um þátttöku og umferð um hvaða vefsíðu sem er."
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
@@ -3883,19 +3883,19 @@ msgstr "Fáðu tafarlausar þýðingar með því að velja texta og smella á h
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "Farðu beint á vefsíðuna sem þú vilt komast á án þess að vera endurbeint á milli vefja."
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "WhatsApp á vefnum. Fáðu aðgang frá WhatsApp í verkfærastiku Firefox að tilkynningum um ólesna þræði."
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Fáðu sérfræðiþýðingar af þýsku á ensku, frönsku, spænsku og öðrum tungumálum."
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
-msgstr ""
+msgstr "Takmarka aðgang Firefox að vefsíðum sem þú skilgreinir. Frábært tæki til að æfa sjálfsaga á netinu."
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
