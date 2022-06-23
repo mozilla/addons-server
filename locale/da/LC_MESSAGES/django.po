@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-23 21:21+0000\n"
+"PO-Revision-Date: 2022-06-23 21:30+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -2034,9 +2034,8 @@ msgstr "Farven på tekst i værktøjslinjen."
 msgid "Toolbar area background"
 msgstr ""
 
-#, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "Farven på tekst i værktøjslinjen."
+msgstr ""
 
 msgid "Toolbar area text and icons"
 msgstr ""
@@ -2131,7 +2130,7 @@ msgid "Add-ons Forum"
 msgstr "Add-ons Forum"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Flere ressourcer"
 
 msgid "Search Developer Docs"
 msgstr "Søg i Developer Docs"
@@ -2683,12 +2682,11 @@ msgstr "Annuller og deaktiver version"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "Er du sikker på, at du vil slette denne version?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Annuller"
+msgstr "Ja, annuller"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "Nej, annuller ikke"
 
 msgid "Name and Summary:"
 msgstr "Navn og sammendrag:"
@@ -2886,9 +2884,8 @@ msgstr ""
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "Kildekode"
+msgstr "Upload kildekode:"
 
 msgid "Add-on Distribution Agreement"
 msgstr ""
@@ -2900,7 +2897,7 @@ msgid "Where to Host Version"
 msgstr ""
 
 msgid "Change"
-msgstr ""
+msgstr "Skift"
 
 msgid "Upload Version"
 msgstr "Upload version"
@@ -3232,7 +3229,7 @@ msgid "Connect with us"
 msgstr ""
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #, fuzzy
 msgid "For developers"
@@ -3242,7 +3239,7 @@ msgid "For end users"
 msgstr ""
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
 #, fuzzy
 msgid "Community forum"
@@ -3262,22 +3259,21 @@ msgstr "Mailadresse"
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Log ud"
+msgstr "Tilmeld dig"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Tak!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Hvis du ikke tidligere har bekræftet et abonnement på et Mozilla-relateret nyhedsbrev, skal du muligvis gøre det nu. Tjek din indbakke eller dit spamfilter for at se, om du har fået en mail fra os."
 
 msgid "Resources"
 msgstr "Ressourcer"
 
-#, fuzzy
 msgid "WebExtensions API"
-msgstr "WebExtension"
+msgstr "WebExtensions-API"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
@@ -3322,7 +3318,7 @@ msgid "See how"
 msgstr "Læs hvordan"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Bliv involveret"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
@@ -4605,23 +4601,20 @@ msgid "See staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Kommenterede"
+msgstr "Anbefalede udvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Se alle udvidelser"
+msgstr "Se flere anbefalede udvidelser"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Populære temaer"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Vælg farver til dit tema"
+msgstr "Se flere populære temaer"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4635,23 +4628,20 @@ msgstr "Se alle udvidelser"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Udforsk udvidelser"
+msgstr "Populære udvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Se alle udvidelser"
+msgstr "Se flere populære udvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended themes"
-msgstr "Kommenterede"
+msgstr "Anbefalede temaer"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Se flere anbefalede temaer"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
@@ -4718,28 +4708,24 @@ msgid "Trending themes"
 msgstr "Trending temaer"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Vælg farver til dit tema"
+msgstr "Se flere trending temaer"
 
 #. editorial content for the homepage shelves.
 msgid "Top rated themes"
 msgstr "Bedst bedømte temaer"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Vælg farver til dit tema"
+msgstr "Se flere bedst bedømte temaer"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Kommenterede"
+msgstr "Trending udvidelser"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Se alle udvidelser"
+msgstr "Se flere trending udvidelser"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
