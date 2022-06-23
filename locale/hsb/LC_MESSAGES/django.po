@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-22 16:54+0000\n"
+"PO-Revision-Date: 2022-06-23 12:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2554,7 +2554,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "W tutym stawje móžeće swój přidatk jenož sam rozdźělić."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr "Njemóžeće připowjesnjene žórła změnić, dokelž tuta wersija je so wot Mozilla přepruwowała."
+msgstr "Njemóžeće připowěsnjene žórła změnić, dokelž tuta wersija je so wot Mozilla přepruwowała."
 
 msgid "General Tests"
 msgstr "Powšitkowne testy"
