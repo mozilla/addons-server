@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-23 17:50+0000\n"
+"PO-Revision-Date: 2022-06-23 18:00+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1333,16 +1333,16 @@ msgid "Holiday"
 msgstr "Frítími og hátíðir"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Sæktu Firefox-þemu fyrir ýmsa frídaga. Þessi flokkur inniheldur jólaþemu, hrekkjavöku, þakkargjörðar, dag heilags Patreks, páska, fjórða júlí og fleira."
 
 msgid "Music"
 msgstr "Tónlist"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Sæktu Firefox-þemu fyrir tónlistaráhugamál og listamenn. Þessi flokkur inniheldur myndefni fyrir vinsælar hljómsveitir eins og Nirvana og BTS, hljóðfæri, tónlistarmyndbönd og margt fleira."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Sæktu Firefox-þemu með dýrum og náttúrulegu landslagi. Þessi flokkur inniheldur blóm, sólsetur, refi, árstíðir, plánetur, kettlinga, fugla og fleira."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Sæktu Firefox-þemu sem eru áhugaverð, skapandi og einstök."
@@ -1351,7 +1351,7 @@ msgid "Scenery"
 msgstr "Landslag og náttúra"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Sæktu Firefox-þemu sem setja umhverfið og náttúruna á oddinn. Þessi flokkur inniheldur sólsetur, strendur, teikningar, borgarlandslag og fleira."
 
 msgid "Seasonal"
 msgstr "Árstíðabundið"
@@ -1363,7 +1363,7 @@ msgid "Solid"
 msgstr "Gegnheilt"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Sæktu Firefox-þemu meðheillitum og litstiglum til að sérsníða vafrann þinn. Þessi flokkur inniheldur feita rauða liti, pastelliti, mjúka gráa og margt fleira."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Sæktu Firefox-þemu sem innihalda ýmsar íþróttir. Þessi flokkur inniheldur landsfána, íþróttalið, fótbolta, íshokkí og fleira."
@@ -1726,7 +1726,7 @@ msgstr ""
 
 #, python-format
 msgid "URL domain must be one of [%s]."
-msgstr ""
+msgstr "Slóð léns verður að vera ein af [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -2075,16 +2075,16 @@ msgid "Community & Support"
 msgstr "Aðstoð og samfélag"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Blogg varðandi forritsauka"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Spjallsvæði varðandi forritsauka"
 
 msgid "More Resources"
 msgstr "Fleiri tilföng"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Leita í skjölum fyrir þróunaraðila"
 
 msgid "Search"
 msgstr "Leita"
@@ -2414,7 +2414,7 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Media for {0}"
-msgstr ""
+msgstr "Viðbótarefni fyrir {0}"
 
 msgid "Add-on icon"
 msgstr "Táknmynd viðbótar"
@@ -2756,7 +2756,7 @@ msgid ""
 msgstr ""
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "Sýsla með skráningu"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr ""
@@ -4132,7 +4132,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Nýttu þér getuna til að hlaða niður myndskeiðum og/eða hljóði á mörgum sniðum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
