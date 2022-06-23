@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-23 17:20+0000\n"
+"PO-Revision-Date: 2022-06-23 17:30+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1142,7 +1142,7 @@ msgid "Appearance"
 msgstr "Útlit"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr "Sæktu forritsauka sem breyta útliti vefsvæða og Firefox-vafrans. Þessi flokkur er með forritsaukum fyrir dökk þemu, stýringu flipa og ýmsu fleiru."
+msgstr "Sæktu Firefox-forritsauka sem breyta útliti vefsvæða og Firefox-vafrans. Þessi flokkur er með forritsaukum fyrir dökk þemu, stýringu flipa og ýmsu fleiru."
 
 msgid "Bookmarks"
 msgstr "Bókamerki"
@@ -1160,13 +1160,13 @@ msgid "Feeds, News & Blogging"
 msgstr "Streymi, fréttaveitur og blogg"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr "Sæktu forritsauka sem skipuleggja betur vinnusvæðið, þannig að þú sért með púlsinn á samfélagsmiðlum, fylgist með bloggum, RSS-fréttastreymum, minnkir álag á augun og ýmislegt fleira."
+msgstr "Sæktu Firefox-forritsauka sem skipuleggja betur vinnusvæðið, þannig að þú sért með púlsinn á samfélagsmiðlum, fylgist með bloggum, RSS-fréttastreymum, minnkir álag á augun og ýmislegt fleira."
 
 msgid "Games & Entertainment"
 msgstr "Leikir og afþreying"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr "Sæktu forritsauka sem auka skemmtigildið hjá þér. Þessi flokkur inniheldur forritsauka sem geta bætt leiki, stýrt afspilun myndskeiða og ýmislegt fleira."
+msgstr "Sæktu Firefox-forritsauka sem auka skemmtigildið hjá þér. Þessi flokkur inniheldur forritsauka sem geta bætt leiki, stýrt afspilun myndskeiða og ýmislegt fleira."
 
 msgid "Language Support"
 msgstr "Tungumálastuðningur"
@@ -1185,40 +1185,41 @@ msgstr "Gagnaleynd og öryggi"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"Sæktu forritsauka til að vafra öruggar og í friði fyrir eftirliti. Þessi flokkur inniheldur forritsauka til að loka á auglýsingar, koma í veg fyrir eftirlit, stýra endurbeiningum og ýmislegt fleira."
+"Sæktu Firefox-forritsauka til að vafra öruggar og í friði fyrir eftirliti. Þessi flokkur inniheldur forritsauka til að loka á auglýsingar, koma í veg fyrir eftirlit, stýra endurbeiningum og ýmislegt"
+" fleira."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "Sæktu forritsauka fyrir leit og uppflettingar. Þessi flokkur inniheldur forritsauka sem áherslulita texta og leita, fletta upp IP-vistföngum eða lénum og ýmislegt fleira."
+msgstr "Sæktu Firefox-forritsauka fyrir leit og uppflettingar. Þessi flokkur inniheldur forritsauka sem áherslulita texta og leita, fletta upp IP-vistföngum eða lénum og ýmislegt fleira."
 
 msgid "Shopping"
 msgstr "Verslun"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka sem geta bætt reynslu þína af verslun á netinu með leit að afsláttarmiðum, tilboðum, uppflettingu í umsögnum og fleira."
 
 msgid "Social & Communication"
 msgstr "Félagslegt og samskipti"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Sæktu forritsauka sem bæta samfélagsmiðla og skyndiskilaboð. Þessi flokkur inniheldur bætta tilkynningaflipa, forrit til niðurhals myndskeiða og ýmislegt fleira."
+msgstr "Sæktu Firefox-forritsauka sem bæta samfélagsmiðla og skyndiskilaboð. Þessi flokkur inniheldur bætta tilkynningaflipa, forrit til niðurhals myndskeiða og ýmislegt fleira."
 
 msgid "Tabs"
 msgstr "Flipar"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka til að sérsníða flipa og síðuna fyrir nýja flipa. Uppgötvaðu forritsauka sem geta stjórnað flipum, breytt því hvernig þú notar þá og fleira."
 
 msgid "Web Development"
 msgstr "Vefhönnun"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka sem eru með vefþróunarverkfæri. Þessi flokkur inniheldur forritsauka fyrir GitHub, skipti á kennistreng, stýringar á vefkökum og fleira."
 
 msgid "Other"
 msgstr "Annað"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka sem geta verið ófyrirsjáanlegir og skapandi en samt gagnlegir fyrir ýmis skrngileg verk."
 
 msgid "Device Features & Location"
 msgstr "Eiginleikar tækja og staðsetning"
@@ -1230,7 +1231,7 @@ msgid "Experimental"
 msgstr "Á tilraunastigi"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka sem eru uppfærðir reglulega og tilbúnir til opinberrar prófunar. Umsagnir þínar upplýsa þróunaraðila um breytingar sem þarf að gera í væntanlegum útgáfum."
 
 msgid "Performance"
 msgstr "Afköst"
@@ -1242,19 +1243,19 @@ msgid "Photos & Media"
 msgstr "Ljósmyndir og margmiðlun"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Sæktu forritsauka sem endurbæta myndir og margmiðlunargögn. Þessi flokkur inniheldur forritsauka til að leita afturkvæmt að myndum, taka skjámyndir af heilum síðum og ýmislegt fleira."
+msgstr "Sæktu Firefox-forritsauka sem endurbæta myndir og margmiðlunargögn. Þessi flokkur inniheldur forritsauka til að leita afturkvæmt að myndum, taka skjámyndir af heilum síðum og ýmislegt fleira."
 
 msgid "Security & Privacy"
 msgstr "Öryggi og gagnaleynd"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka til að vafra á öruggan hátt og án eftirlits. Finndu forritsauka sem geta stöðvað lúmskar rakningar í auglýsingum, hreinsað vafraferil á einfaldan máta og fleira."
 
 msgid "Social Networking"
 msgstr "Samfélagsmiðlar"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Sæktu Firefox-forritsauka til að bæta upplifun þína á vinsælum samfélagsmiðlasíðum eins og YouTube, GitHub, Reddit og fleira."
 
 msgid "Sports & Games"
 msgstr "Íþróttir og leikir"
