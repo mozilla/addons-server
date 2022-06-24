@@ -1378,6 +1378,21 @@ class TestUploadDetail(UploadMixin, TestCase):
         response = self.client.get(url)
         assert response.status_code == 404
 
+    def test_upload_detail_for_version_wrong_user(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        addon = addon_factory()
+        addon.addonuser_set.create(user=user)
+        self.post()
+        upload = FileUpload.objects.get()
+        self.client.login(email=user_factory().email)
+
+        response = self.client.get(
+            reverse(
+                'devhub.upload_detail_for_version', args=[addon.slug, upload.uuid.hex]
+            )
+        )
+        assert response.status_code == 403
+
     def test_upload_detail_for_version_unlisted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
@@ -1422,10 +1437,24 @@ class TestUploadDetail(UploadMixin, TestCase):
         expected = reverse('devhub.standalone_upload_detail', args=[upload.uuid.hex])
         assert suite.attr('data-validateurl') == expected
 
-    def test_not_an_uuid_standalon_upload_detail(self):
+    def test_not_an_uuid_standalone_upload_detail(self):
         url = reverse('devhub.standalone_upload_detail', args=['garbage'])
         response = self.client.get(url)
         assert response.status_code == 404
+
+    def test_wrong_user(self):
+        self.post()
+        upload = FileUpload.objects.filter().order_by('-created').first()
+        self.client.login(email=user_factory().email)
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex])
+        )
+        assert response.status_code == 403
+
+        response = self.client.get(
+            reverse('devhub.standalone_upload_detail', args=[upload.uuid.hex])
+        )
+        assert response.status_code == 403
 
     def test_no_servererror_on_missing_version(self):
         """https://github.com/mozilla/addons-server/issues/3779

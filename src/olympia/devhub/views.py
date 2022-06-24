@@ -87,12 +87,15 @@ log = olympia.core.logger.getLogger('z.devhub')
 MDN_BASE = 'https://developer.mozilla.org/en-US/Add-ons'
 
 
-def get_fileupload_by_uuid_or_404(value):
+def get_fileupload_by_uuid_or_40x(value, *, user):
     try:
         UUID(value)
     except ValueError:
         raise http.Http404()
-    return get_object_or_404(FileUpload, uuid=value)
+    upload = get_object_or_404(FileUpload, uuid=value)
+    if upload.user != user:
+        raise PermissionDenied
+    return upload
 
 
 class AddonFilter(BaseFilter):
@@ -697,7 +700,7 @@ def upload_for_version(request, addon_id, addon, channel):
 @login_required
 @json_view
 def standalone_upload_detail(request, uuid):
-    upload = get_fileupload_by_uuid_or_404(uuid)
+    upload = get_fileupload_by_uuid_or_40x(uuid, user=request.user)
     url = reverse('devhub.standalone_upload_detail', args=[uuid])
     return upload_validation_context(request, upload, url=url)
 
@@ -706,7 +709,7 @@ def standalone_upload_detail(request, uuid):
 @json_view
 def upload_detail_for_version(request, addon_id, addon, uuid):
     try:
-        upload = get_fileupload_by_uuid_or_404(uuid)
+        upload = get_fileupload_by_uuid_or_40x(uuid, user=request.user)
         response = json_upload_detail(request, upload, addon_slug=addon.slug)
         statsd.incr('devhub.upload_detail_for_addon.success')
         return response
@@ -822,10 +825,9 @@ def upload_validation_context(request, upload, addon=None, url=None):
     }
 
 
+@login_required
 def upload_detail(request, uuid, format='html'):
-    upload = get_fileupload_by_uuid_or_404(uuid)
-    if upload.user_id and not request.user.is_authenticated:
-        return redirect_for_login(request)
+    upload = get_fileupload_by_uuid_or_40x(uuid, user=request.user)
 
     if format == 'json':
         try:
