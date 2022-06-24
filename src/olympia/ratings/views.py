@@ -229,6 +229,12 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 except ValueError:
                     raise ParseError('user parameter should be an integer.')
                 qs = qs.filter(user=user_identifier)
+                if not addon_identifier:
+                    # If we're not filtering by addon too, which has it's own permission
+                    # checks, make sure we're only returning ratings for public add-ons.
+                    qs = qs.filter(
+                        addon__status=amo.STATUS_APPROVED, addon__disabled_by_user=False
+                    )
             if version_identifier:
                 try:
                     version_identifier = int(version_identifier)
