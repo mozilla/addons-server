@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-24 14:11+0000\n"
+"PO-Revision-Date: 2022-06-24 14:12+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -175,16 +175,16 @@ msgid "License with slug={value} does not exist."
 msgstr ""
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem ({extensions})."
 
 msgid "Invalid or broken archive."
 msgstr "Archiv je neplatný nebo rozbitý."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Tento typ doplňku neumožňuje vlastní kompatibilitu."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Neplatná hodnota"
 
 msgid "Invalid app specified"
 msgstr ""
@@ -194,23 +194,23 @@ msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Obrázky musí být menší než %d MB"
 
 # Column name in a table.
 msgid "Listed"
 msgstr "Zobrazení"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Cesty k doplňkům a sbírkám musí končit znakem \"/\""
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Pro motivy vzhledů nelze vytvářet náhledy."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Vestavěné licence nelze aktualizovat."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Nahrání není platné."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
