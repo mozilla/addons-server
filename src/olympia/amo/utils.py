@@ -639,13 +639,13 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
         with storage.open(source, 'rb') as fp:
             im = Image.open(fp)
             im.load()
+    im = im.convert('RGBA')
     original_size = im.size
     if size:
         target_width, target_height = size
         source_width, source_height = im.size
         scale = min(target_width / source_width, target_height / source_height)
         if scale <= 1:
-            im = im.convert('RGBA')
             im = im.resize(
                 (
                     int(round(source_width * scale)),
@@ -660,7 +660,6 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
             # Save the image to PNG in destination file path.
             # Don't keep the ICC profile as it can mess up pngcrush badly
             # (mozilla/addons/issues/697).
-            im = im.convert('RGBA')
             im.save(dest_file, 'png', icc_profile=None)
             pngcrush_image(destination)
         else:
