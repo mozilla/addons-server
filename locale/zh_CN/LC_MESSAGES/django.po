@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-25 07:49+0000\n"
+"PO-Revision-Date: 2022-06-25 07:59+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -262,7 +262,7 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr "需设置附加组件元数据以创建上架版本：{missing_addon_metadata}。"
 
 msgid "A GUID must be specified in the manifest."
-msgstr "须在清单文件中指定 GUID。"
+msgstr "必须在清单文件中指定 GUID。"
 
 msgid "GUID mismatch between the URL and manifest."
 msgstr "URL 与清单文件中的 GUID 不符。"
@@ -2509,7 +2509,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "此状态下，仅能“由您自行托管”附加组件的发布。"
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "由于此版本已通过 Mozilla 审核，无法更改附加的源文件。"
 
 msgid "General Tests"
 msgstr "常规测试"
@@ -4403,7 +4403,7 @@ msgstr "不必再向网站提供真实邮箱。Firefox Relay 可保护您的身�
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "定时切换主题，Firefox 的主题颜色将随着时间变化而改变，"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4532,7 +4532,7 @@ msgstr "王者级广告拦截工具"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "写作工具"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
