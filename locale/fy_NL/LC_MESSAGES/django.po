@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-27 14:40+0000\n"
+"PO-Revision-Date: 2022-06-27 14:42+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4494,7 +4494,7 @@ msgstr "Stopje mei it jaan fan jo e-mailadres oan websites. Firefox Relay besker
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Tiidbasearre temawikseler. Lit Firefox ôfhinklik fan de tiid fan de dei fan kleur feroarje."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4625,7 +4625,7 @@ msgstr "De bêste advertinsjeblokkearders"
 
 #. editorial content for the secondary hero shelves.
 msgid "Writing tools"
-msgstr ""
+msgstr "Skriuwhelpmiddelen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
