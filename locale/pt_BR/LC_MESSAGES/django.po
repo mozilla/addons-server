@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-27 11:38+0000\n"
+"PO-Revision-Date: 2022-06-27 17:03+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -170,7 +170,7 @@ msgid "URLs must start with https://."
 msgstr "URLs devem começar com https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Licença com slug={value} não existe."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Tipo de arquivo não suportado, envie um arquivo de arquivamento ({extensions})."
@@ -265,13 +265,13 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr "Metadados de extensão precisam ser definidos para criar uma versão listada: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Um GUID deve ser especificado no manifesto."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Incompatibilidade de GUID entre a URL e o manifesto."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "A fonte não pode ser alterada porque esta versão foi revisada pela Mozilla."
 
 msgid "My Add-ons"
 msgstr "Minhas extensões"
@@ -4543,7 +4543,7 @@ msgstr "Pare de expor aos sites seu endereço de email. O Firefox Relay protege 
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Alterador de tema com base na hora. Faça o Firefox mudar de cor conforme a hora do dia."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
