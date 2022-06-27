@@ -413,8 +413,18 @@ class TestRatingViewSetGet(TestCase):
             reply_to=other_review,
             user=self.user,
         )
+        Rating.objects.create(
+            addon=addon_factory(status=amo.STATUS_NULL),
+            body='addon not public',
+            user=self.user,
+        )
+        Rating.objects.create(
+            addon=addon_factory(status=amo.STATUS_APPROVED, disabled_by_user=True),
+            body='addon invisble',
+            user=self.user,
+        )
 
-        assert Rating.unfiltered.count() == 5
+        assert Rating.unfiltered.count() == 7
 
         params = {'user': self.user.pk}
         params.update(kwargs)
