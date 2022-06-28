@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-22 17:40+0000\n"
+"PO-Revision-Date: 2022-06-28 16:37+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -168,7 +168,7 @@ msgid "URLs must start with https://."
 msgstr "Le URLs debe initiar con https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Il non existe licentia con alias breve={value}."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Typo de file non tractate, per favor carga un file archivo ({extensions})."
@@ -262,13 +262,13 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr "Metadatos de additivo es necesse esser configurate pro crear un version publicate: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Un GUID debe esser specificate in le file manifesto."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Discordantia de GUID inter le URL e file manifesto."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Le surgente non pote esser cambiate perque iste version jam ha essite revidite per Mozilla."
 
 msgid "My Add-ons"
 msgstr "Mi additivos"
@@ -483,7 +483,7 @@ msgid "The language code \"{lang_code}\" is invalid."
 msgstr "Le codice de lingua \"{lang_code}\" non es valide."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Tu debe fornir un objecto de {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr "Un valor in le lingua predefinite de \"{lang_code}\" es necesse."
@@ -2551,7 +2551,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "Durante iste stato, \"Per conto tue\" es le solo methodo de distribution disponibile."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Tu non pote cambiar le surgentes attachate perque iste version ha essite revidite per Mozilla."
 
 msgid "General Tests"
 msgstr "Tests general"
@@ -4465,7 +4465,7 @@ msgstr "Cessa donar a sitos tu adresse e-mail. Firefox Relay protege tu identita
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Cambiator de thema basate sur tempore. Face cambiar colores de Firefox al cambiar del hora del die."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
