@@ -996,6 +996,20 @@ class TestRatingViewSetGet(TestCase):
         data = json.loads(force_str(response.content))
         assert 'flags' not in data
 
+    def test_detail_addon_not_public(self):
+        review = Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory()
+        )
+        self.url = reverse_ns(self.detail_url_name, kwargs={'pk': review.pk})
+
+        self.addon.update(status=amo.STATUS_NULL)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
     def test_list_by_admin_does_not_show_deleted_by_default(self):
         self.user = user_factory()
         self.grant_permission(self.user, 'Addons:Edit')
@@ -2396,7 +2410,7 @@ class TestRatingViewSetFlag(TestCase):
         self.user = user_factory()
         self.client.login_api(self.user)
         response = self.client.post(self.url, data={'flag': 'review_flag_reason_spam'})
-        assert response.status_code == 403
+        assert response.status_code == 404
         assert self.rating.reload().editorreview is False
 
     def test_flag_logged_in_no_such_review(self):
@@ -2624,7 +2638,7 @@ class TestRatingViewSetReply(TestCase):
         self.client.login_api(self.addon_author)
         self.addon.update(disabled_by_user=True)
         response = self.client.post(self.url, data={})
-        assert response.status_code == 403
+        assert response.status_code == 404
 
     def test_replying_to_a_reply_is_not_possible(self):
         self.addon_author = user_factory()

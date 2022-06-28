@@ -211,6 +211,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         return super().get_serializer(*args, **kwargs)
 
     def filter_queryset(self, qs):
+        addon_identifier = None
         if self.action == 'list':
             addon_identifier = self.request.GET.get('addon')
             user_identifier = self.request.GET.get('user')
@@ -229,12 +230,6 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 except ValueError:
                     raise ParseError('user parameter should be an integer.')
                 qs = qs.filter(user=user_identifier)
-                if not addon_identifier:
-                    # If we're not filtering by addon too, which has it's own permission
-                    # checks, make sure we're only returning ratings for public add-ons.
-                    qs = qs.filter(
-                        addon__status=amo.STATUS_APPROVED, addon__disabled_by_user=False
-                    )
             if version_identifier:
                 try:
                     version_identifier = int(version_identifier)
@@ -278,6 +273,13 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                         '(separated by a comma).'
                     )
                 qs = qs.exclude(pk__in=exclude_ratings)
+
+        if not addon_identifier:
+            # If we're not filtering by addon too, which has it's own permission
+            # checks, make sure we're only returning ratings for public add-ons.
+            qs = qs.filter(
+                addon__status=amo.STATUS_APPROVED, addon__disabled_by_user=False
+            )
         return super().filter_queryset(qs)
 
     def get_paginated_response(self, data):
