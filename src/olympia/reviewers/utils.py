@@ -675,7 +675,12 @@ class ReviewHelper:
             'method': self.handler.reject_multiple_versions,
             'label': _('Reject Multiple Versions'),
             'minimal': True,
-            'delayable': not version_is_unlisted,
+            'delayable': (
+                # Either the version is listed
+                (not version_is_unlisted)
+                # or (unlisted and) awaiting review
+                or (self.version.file.status == amo.STATUS_AWAITING_REVIEW)
+            ),
             'versions': True,
             'details': _(
                 'This will reject the selected versions. '
