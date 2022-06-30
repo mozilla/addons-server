@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-25 07:59+0000\n"
+"PO-Revision-Date: 2022-06-30 08:55+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4411,7 +4411,7 @@ msgstr "某些网站无法在 Android 上正常播放视频，此扩展可修正
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr "在网上发现了一个有趣的图片？用 TinEye 探索它的出处。"
+msgstr "在网上发现了一张有趣的图片？用 TinEye 探索它的出处。"
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
