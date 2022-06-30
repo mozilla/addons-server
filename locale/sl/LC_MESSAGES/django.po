@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-30 21:47+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"PO-Revision-Date: 2022-06-15 16:25+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -217,16 +217,16 @@ msgid "Version {version_string} already exists."
 msgstr "Različica {version_string} že obstaja."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Navedenih različic ni mogoče predložiti, ko je dodatek onemogočen."
 
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Dodatki morajo imeti vsaj enega lastnika."
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Dodatki morajo imeti vsaj enega navedenega avtorja."
 
 msgid "Account not found."
-msgstr ""
+msgstr "Računa ni bilo mogoče najti."
 
 msgid "An author can only be present once."
 msgstr "Avtor je lahko naveden le enkrat."
@@ -247,7 +247,7 @@ msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "'license' in 'custom_license' ne moreta biti istočasno določeni."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "To polje ali custom_license je obvezno za navedene različice."
 
 msgid "Wrong add-on type for this license."
 msgstr "Napačna vrsta dodatka za to licenco."
@@ -256,10 +256,10 @@ msgid "Custom licenses are not supported for themes."
 msgstr "Za teme licence po meri niso podprte."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "To polje je obvezno za dodatke z navedenimi različicami."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Za ustvarjanje navedene različice je treba nastaviti metapodatke dodatka: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
 msgstr "GUID mora biti določen v manifestu."
