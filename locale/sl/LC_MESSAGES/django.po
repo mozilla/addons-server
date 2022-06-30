@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-15 15:33+0000\n"
+"PO-Revision-Date: 2022-06-30 20:01+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -262,13 +262,13 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr ""
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "GUID mora biti določen v manifestu."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Neujemanje GUID med URL-jem in manifestom."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Vira ni mogoče spremeniti, ker je to različico pregledala Mozilla."
 
 msgid "My Add-ons"
 msgstr "Moji dodatki"
@@ -545,7 +545,7 @@ msgstr ""
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s je v prispevku na čakanju"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -4162,7 +4162,7 @@ msgstr "Preprosto orodje za zavračanje oglasov, ki prikazuje samo želeno vsebi
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Sledite zgodovini cen na Amazonu. Sprejemajte informirane odločitve o nakupih."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
