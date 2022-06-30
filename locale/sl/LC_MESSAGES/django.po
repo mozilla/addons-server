@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-30 20:01+0000\n"
+"PO-Revision-Date: 2022-06-30 20:07+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2554,7 +2554,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr ""
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Pripetih virov ne morete spremeniti, ker je to različico pregledala Mozilla."
 
 msgid "General Tests"
 msgstr "Splošni preizkusi"
@@ -2587,7 +2587,7 @@ msgid "The add-on ID will continue to be linked to your account, so others won't
 msgstr "ID dodatka bo še naprej povezan z vašim računom, tako da drugi ne bodo mogli pošiljati različic z enakim ID-jem."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "ID-ja dodatka ni mogoče obnoviti in bo za vedno neuporaben za predložitev."
 
 msgid "Delete Add-on"
 msgstr "Izbriši dodatek"
@@ -2771,7 +2771,7 @@ msgstr ""
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Več o teh možnostih lahko izveste v članku <a %(a_attrs)s>Distribucija in podpisovanje dodatkov</a> na spletni strani delavnice razširitev za Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
@@ -2813,7 +2813,7 @@ msgid "Edit version {0}"
 msgstr "Uredi različico {0}"
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Ne pozabite, da se lahko vaš dodatek kadar koli ročno pregleda."
 
 msgid "Go to My Submissions"
 msgstr "Moji prispevki"
@@ -2825,7 +2825,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Ali morate poslati izvorno kodo?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Mozillini pregledovalci dodatkov morajo biti sposobni prebrati in reproducirati kodo v vaši razširitvi. Če tega ne bodo mogli, bo vaša razširitev morda zavrnjena."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Ali v svoji razširitvi uporabljate kaj od naslednjega?"
