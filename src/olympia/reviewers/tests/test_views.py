@@ -2654,22 +2654,26 @@ class TestPendingRejectionReviewQueue(QueueTest):
             pending_rejection=datetime.now() + timedelta(days=2),
         )
 
-        # Extra add-ons without pending rejection on their current version,
-        # they shouldn't appear.
-        addon_factory()
-
-        addon = addon_factory(
+        unlisted_addon = addon_factory(
             name='Has a version pending rejection but it is not the current',
-            version_kw={'created': self.days_ago(1), 'version': '0.1'},
         )
-        version_review_flags_factory(
-            version=addon.current_version, pending_rejection=datetime.now()
+        version1 = version_factory(
+            addon=unlisted_addon,
+            created=self.days_ago(1),
+            version='0.1',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
-        version_factory(addon=addon, version='0.2')
+        version_review_flags_factory(version=version1, pending_rejection=datetime.now())
+        version_factory(
+            addon=unlisted_addon, version='0.2', channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
+
+        # Extra add-ons without pending rejection, they shouldn't appear.
+        addon_factory()
 
         # Addon 2 has an older creation date, but what matters for the ordering
         # is the pending rejection deadline.
-        self.expected_addons = [addon1, addon2]
+        self.expected_addons = [unlisted_addon, addon1, addon2]
 
     def test_results(self):
         self.login_as_admin()
