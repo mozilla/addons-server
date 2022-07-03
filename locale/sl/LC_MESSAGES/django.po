@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-07-03 11:31+0000\n"
+"PO-Revision-Date: 2022-07-03 11:41+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2303,7 +2303,7 @@ msgid "Tags"
 msgstr "Oznake"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Oznake pomagajo uporabnikom najti vaš dodatek. Imate lahko največ {0} oznak. Izberite samo oznake, ki ustrezajo vašemu dodatku."
 
 msgid "Limit {0} tags."
 msgstr "Omeji {0} oznak."
@@ -2873,7 +2873,7 @@ msgstr "Izvorne datoteke (razen odprtokodnih knjižnic tretjih ponudnikov) ne sm
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Za več informacij preberite <a %(a_attrs)s>Predložitev izvorne kode</a> na spletni strani delavnice razširitev za Firefox."
 
 msgid "Upload source code:"
 msgstr "Naložite izvorno kodo:"
@@ -4044,7 +4044,7 @@ msgstr "Počistite predpomnilnik brskalnika s klikom ali pritiskom tipke."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
-msgstr ""
+msgstr "Označite besedilo na spletnih straneh za shranjevanje in poznejši dostop do njega."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4104,9 +4104,8 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr "Označite besedilo na katerikoli spletni strani in z desnim klikom poiščite povezano predstavnost na YouTubu."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr "Pri brskanju po drugih spletnih trgovinah z enim klikom preverite, po kakšni ceni je isti izdelek na voljo na Amazonu."
+msgstr "Priskrbite si ugodnosti na Amazonu. Pri brskanju po drugih spletnih trgovinah z enim klikom preverite, po kakšni ceni je isti izdelek na voljo na Amazonu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4488,7 +4487,7 @@ msgstr "Spletne strani, ki se preberejo naglas. Več kot 40 podprtih jezikov."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Odstrani dolge sledilne parametre iz URL-jev Googlovih rezultatov iskanja."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
@@ -4676,9 +4675,8 @@ msgid "“{tag}” tagged extensions"
 msgstr "Razširitve z oznako \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Več priljubljenih razširitev"
+msgstr "Več razširitev z oznako \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -4730,9 +4728,8 @@ msgid "Creativity extensions"
 msgstr "Trenutno priljubljene razširitve"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "Več orodij za prevajanje"
+msgstr "Več osebno izbranih ustvarjalnih razširitev"
 
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
