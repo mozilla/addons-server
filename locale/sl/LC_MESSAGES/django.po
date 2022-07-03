@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-06-15 16:22+0000\n"
+"PO-Revision-Date: 2022-07-03 11:31+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -454,10 +454,10 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr "Neveljavna glava pooblastitve. Niz poverilnice ne sme vsebovati presledkov."
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Ni bilo mogoče najti veljavne uporabniške seje, ki bi se ujemala s podanim ključem seje."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Osvežitev žetona za dostop ni uspela; uporabnik se mora znova prijaviti v Firefox Račun."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr "Napačen tip enega ali več ključev koristne vsebine"
@@ -4595,7 +4595,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "Oglej si izbor osebja"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4642,18 +4642,16 @@ msgid "Strong password managers"
 msgstr "Močni upravitelji gesel"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Več razširitev za upravljanje zavihkov"
+msgstr "Več osebno izbranih razširitev za upravljanje gesel"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr "Orodja za prevajanje"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Več orodij za prevajanje"
+msgstr "Več osebno izbranih orodij za prevajanje"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4670,9 +4668,8 @@ msgid "Tab managers"
 msgstr "Upravitelji zavihkov"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Več razširitev za upravljanje zavihkov"
+msgstr "Več osebno izbranih razširitev za upravljanje zavihkov"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
@@ -4684,18 +4681,16 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Več priljubljenih razširitev"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Več razširitev za upravljanje zavihkov"
+msgstr "Več osebno izbranih razširitev za zavračanje oglasov"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
 msgstr "Prilagajanje YouTuba"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Več orodij za prevajanje"
+msgstr "Več osebno izbranih razširitev za YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
@@ -4726,9 +4721,8 @@ msgid "Steam enhancers"
 msgstr "Izboljšave za Steam"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Prikaži vse razširitve"
+msgstr "Več osebno izbranih razširitev za Steam"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
