@@ -491,9 +491,7 @@ class AddonManager(ManagerBase):
         )
 
     def get_pending_rejection_queue(self, admin_reviewer=False):
-        filter_kwargs = {
-            '_current_version__reviewerflags__pending_rejection__isnull': False
-        }
+        filter_kwargs = {'versions__reviewerflags__pending_rejection__isnull': False}
         return (
             self.get_base_queryset_for_queue(
                 admin_reviewer=admin_reviewer,
@@ -501,6 +499,7 @@ class AddonManager(ManagerBase):
             )
             .filter(**filter_kwargs)
             .order_by('_current_version__reviewerflags__pending_rejection')
+            .distinct()
         )
 
 

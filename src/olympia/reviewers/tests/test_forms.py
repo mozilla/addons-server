@@ -407,3 +407,8 @@ class TestReviewForm(TestCase):
             'min': 1,
             'max': 99,
         }
+
+    def test_delayed_rejection_showing_for_unlisted_awaiting(self):
+        self.addon.update(status=amo.STATUS_NULL)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.test_delayed_rejection_days_widget_attributes()

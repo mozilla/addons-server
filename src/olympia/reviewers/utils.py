@@ -317,6 +317,17 @@ class PendingRejectionTable(AddonQueueTable):
     def render_deadline(self, value):
         return naturaltime(value) if value else ''
 
+    def render_addon_name(self, record):
+        url = self._get_addon_name_url(record)
+        self.increment_item()
+        return markupsafe.Markup(
+            '<a href="%s">%s'
+            % (
+                url,
+                markupsafe.escape(record.name),
+            )
+        )
+
 
 class AutoApprovedTable(AddonQueueTable):
     @classmethod
@@ -675,7 +686,12 @@ class ReviewHelper:
             'method': self.handler.reject_multiple_versions,
             'label': _('Reject Multiple Versions'),
             'minimal': True,
-            'delayable': not version_is_unlisted,
+            'delayable': (
+                # Either the version is listed
+                not version_is_unlisted
+                # or (unlisted and) awaiting review
+                or self.version.file.status == amo.STATUS_AWAITING_REVIEW
+            ),
             'versions': True,
             'details': _(
                 'This will reject the selected versions. '

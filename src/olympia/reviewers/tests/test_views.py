@@ -1232,7 +1232,7 @@ class QueueTest(ReviewerTest):
                 f'Results {per_page}\u20131 of {total_addons}'
             )
 
-    def _test_results(self):
+    def _test_results(self, dont_expect_version_number=False):
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected = []
@@ -1242,7 +1242,7 @@ class QueueTest(ReviewerTest):
         # default one, 'listed'.
         channel = [] if self.channel_name == 'listed' else [self.channel_name]
         for idx, addon in enumerate(self.expected_addons):
-            if self.channel_name == 'unlisted':
+            if self.channel_name == 'unlisted' or dont_expect_version_number:
                 # In unlisted queue we don't display latest version number.
                 name = str(addon.name)
             else:
@@ -1252,6 +1252,8 @@ class QueueTest(ReviewerTest):
             url = reverse('reviewers.review', args=channel + [addon.pk])
             expected.append((name, url))
         doc = pq(response.content)
+        rows = doc('#addon-queue tr.addon-row')
+        assert len(rows) == len(self.expected_addons)
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
         assert len(links) == len(self.expected_addons)
         check_links(expected, links, verify=False)
@@ -2654,27 +2656,42 @@ class TestPendingRejectionReviewQueue(QueueTest):
             pending_rejection=datetime.now() + timedelta(days=2),
         )
 
-        # Extra add-ons without pending rejection on their current version,
-        # they shouldn't appear.
-        addon_factory()
-
-        addon = addon_factory(
+        unlisted_addon = addon_factory(
             name='Has a version pending rejection but it is not the current',
-            version_kw={'created': self.days_ago(1), 'version': '0.1'},
+        )
+        pending_version1 = version_factory(
+            addon=unlisted_addon,
+            created=self.days_ago(1),
+            version='0.1',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
         version_review_flags_factory(
-            version=addon.current_version, pending_rejection=datetime.now()
+            version=pending_version1, pending_rejection=datetime.now()
         )
-        version_factory(addon=addon, version='0.2')
+        pending_version2 = version_factory(
+            addon=unlisted_addon,
+            created=self.days_ago(1),
+            version='0.2',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
+        version_review_flags_factory(
+            version=pending_version2, pending_rejection=datetime.now()
+        )
+        version_factory(
+            addon=unlisted_addon, version='0.3', channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
+
+        # Extra add-ons without pending rejection, they shouldn't appear.
+        addon_factory()
 
         # Addon 2 has an older creation date, but what matters for the ordering
         # is the pending rejection deadline.
-        self.expected_addons = [addon1, addon2]
+        self.expected_addons = [unlisted_addon, addon1, addon2]
 
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        self._test_results()
+        self._test_results(dont_expect_version_number=True)
 
 
 class ReviewBase(QueueTest):
