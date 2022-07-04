@@ -2800,14 +2800,20 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
     def test_compatibility_invalid_versions(self):
         # 99 doesn't exist as an appversion
-        response = self.request(compatibility={'firefox': {'min': '99.0'}})
+        response = self.request(compatibility={'firefox': {'max': '99.0'}})
         assert response.status_code == 400, response.content
-        assert response.data == {'compatibility': ['Unknown app version specified']}
+        assert response.data == {'compatibility': ['Unknown max app version specified']}
 
         # `*` isn't a valid min
         response = self.request(compatibility={'firefox': {'min': '*'}})
         assert response.status_code == 400, response.content
-        assert response.data == {'compatibility': ['Unknown app version specified']}
+        assert response.data == {'compatibility': ['Unknown min app version specified']}
+
+        # Even when it exists, any version ending in `.*` isn't a valid min either
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='61.*')
+        response = self.request(compatibility={'firefox': {'min': '61.*'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Unknown min app version specified']}
 
     @staticmethod
     def _parse_xpi_mock(pkg, addon, minimal, user):
