@@ -1530,10 +1530,14 @@ class Addon(OnChangeMixin, ModelBase):
         else:
             return {}
 
+    @classmethod
+    def type_can_set_compatibility(cls, addon_type):
+        """True if this add-on type allows compatiblity changes."""
+        return addon_type not in amo.NO_COMPAT_CHANGES
+
     @property
     def can_set_compatibility(self):
-        """True if this add-on allows compatiblity changes."""
-        return self.type not in amo.NO_COMPAT_CHANGES
+        return self.type_can_set_compatibility(self.type)
 
     def incompatible_latest_apps(self):
         """Returns a list of applications with which this add-on is

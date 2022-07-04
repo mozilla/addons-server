@@ -253,10 +253,6 @@ class VersionCompatibilityField(serializers.Field):
         for new Version instances. (As intended - we want to be able to partially
         specify min or max and have the manifest or defaults be instead used).
         """
-        if self.parent.addon and not self.parent.addon.can_set_compatibility:
-            raise exceptions.ValidationError(
-                gettext('This type of add-on does not allow custom compatibility.')
-            )
         try:
             if isinstance(data, list):
                 # if it's a list of apps, normalize into a dict first
