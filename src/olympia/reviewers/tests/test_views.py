@@ -1232,7 +1232,7 @@ class QueueTest(ReviewerTest):
                 f'Results {per_page}\u20131 of {total_addons}'
             )
 
-    def _test_results(self, queue_name=None):
+    def _test_results(self, dont_expect_version_number=False):
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected = []
@@ -1242,7 +1242,7 @@ class QueueTest(ReviewerTest):
         # default one, 'listed'.
         channel = [] if self.channel_name == 'listed' else [self.channel_name]
         for idx, addon in enumerate(self.expected_addons):
-            if self.channel_name == 'unlisted' or queue_name == 'pending_rejection':
+            if self.channel_name == 'unlisted' or dont_expect_version_number:
                 # In unlisted queue we don't display latest version number.
                 name = str(addon.name)
             else:
@@ -2691,7 +2691,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        self._test_results(queue_name='pending_rejection')
+        self._test_results(dont_expect_version_number=True)
 
 
 class ReviewBase(QueueTest):
