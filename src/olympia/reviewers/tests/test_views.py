@@ -1252,6 +1252,8 @@ class QueueTest(ReviewerTest):
             url = reverse('reviewers.review', args=channel + [addon.pk])
             expected.append((name, url))
         doc = pq(response.content)
+        rows = doc('#addon-queue tr.addon-row')
+        assert len(rows) == len(self.expected_addons)
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
         assert len(links) == len(self.expected_addons)
         check_links(expected, links, verify=False)
@@ -2657,15 +2659,26 @@ class TestPendingRejectionReviewQueue(QueueTest):
         unlisted_addon = addon_factory(
             name='Has a version pending rejection but it is not the current',
         )
-        version1 = version_factory(
+        pending_version1 = version_factory(
             addon=unlisted_addon,
             created=self.days_ago(1),
             version='0.1',
             channel=amo.RELEASE_CHANNEL_UNLISTED,
         )
-        version_review_flags_factory(version=version1, pending_rejection=datetime.now())
+        version_review_flags_factory(
+            version=pending_version1, pending_rejection=datetime.now()
+        )
+        pending_version2 = version_factory(
+            addon=unlisted_addon,
+            created=self.days_ago(1),
+            version='0.2',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+        )
+        version_review_flags_factory(
+            version=pending_version2, pending_rejection=datetime.now()
+        )
         version_factory(
-            addon=unlisted_addon, version='0.2', channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=unlisted_addon, version='0.3', channel=amo.RELEASE_CHANNEL_UNLISTED
         )
 
         # Extra add-ons without pending rejection, they shouldn't appear.

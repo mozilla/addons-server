@@ -499,6 +499,7 @@ class AddonManager(ManagerBase):
             )
             .filter(**filter_kwargs)
             .order_by('_current_version__reviewerflags__pending_rejection')
+            .distinct()
         )
 
 
