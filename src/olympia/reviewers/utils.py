@@ -317,6 +317,17 @@ class PendingRejectionTable(AddonQueueTable):
     def render_deadline(self, value):
         return naturaltime(value) if value else ''
 
+    def render_addon_name(self, record):
+        url = self._get_addon_name_url(record)
+        self.increment_item()
+        return markupsafe.Markup(
+            '<a href="%s">%s'
+            % (
+                url,
+                markupsafe.escape(record.name),
+            )
+        )
+
 
 class AutoApprovedTable(AddonQueueTable):
     @classmethod
