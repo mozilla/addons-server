@@ -677,9 +677,9 @@ class ReviewHelper:
             'minimal': True,
             'delayable': (
                 # Either the version is listed
-                (not version_is_unlisted)
+                not version_is_unlisted
                 # or (unlisted and) awaiting review
-                or (self.version.file.status == amo.STATUS_AWAITING_REVIEW)
+                or self.version.file.status == amo.STATUS_AWAITING_REVIEW
             ),
             'versions': True,
             'details': _(
