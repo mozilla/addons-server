@@ -377,6 +377,29 @@ class TestRunAction(TestCase):
         assert _delay_auto_approval_indefinitely_mock.called
         _delay_auto_approval_indefinitely_mock.assert_called_with(self.version)
 
+    @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
+    def test_returns_for_non_extension_addons(
+        self, _delay_auto_approval_indefinitely_mock
+    ):
+        self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
+        self.version.addon.update(type=amo.ADDON_DICT)
+
+        ScannerResult.run_action(self.version)
+
+        assert not _delay_auto_approval_indefinitely_mock.called
+
+        self.version.addon.update(type=amo.ADDON_LPAPP)
+
+        ScannerResult.run_action(self.version)
+
+        assert not _delay_auto_approval_indefinitely_mock.called
+
+        self.version.addon.update(type=amo.ADDON_STATICTHEME)
+
+        ScannerResult.run_action(self.version)
+
+        assert not _delay_auto_approval_indefinitely_mock.called
+
     @mock.patch('olympia.scanners.models.log.info')
     def test_returns_when_no_action_found(self, log_mock):
         self.scanner_rule.delete()

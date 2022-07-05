@@ -395,7 +395,8 @@ def _queue(request, tab, unlisted=False):
         per_page = REVIEWS_PER_PAGE
     if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
         per_page = REVIEWS_PER_PAGE
-    page = paginate(request, table.rows, per_page=per_page, count=qs.count())
+    count = construct_count_queryset_from_queryset(qs)()
+    page = paginate(request, table.rows, per_page=per_page, count=count)
     table.set_page(page)
 
     return TemplateResponse(
@@ -426,15 +427,16 @@ reviewer_tables_registry = {
 }
 
 
-def fetch_queue_counts(admin_reviewer):
-    def construct_count_queryset_from_queryset(qs):
-        # Some of our querysets can have distinct, which causes django to run
-        # the full select in a subquery and then count() on it. That's tracked
-        # in https://code.djangoproject.com/ticket/30685
-        # We can't easily fix the fact that there is a subquery, but we can
-        # avoid selecting all fields and ordering needlessly.
-        return qs.values('pk').order_by().count
+def construct_count_queryset_from_queryset(qs):
+    # Some of our querysets can have distinct, which causes django to run
+    # the full select in a subquery and then count() on it. That's tracked
+    # in https://code.djangoproject.com/ticket/30685
+    # We can't easily fix the fact that there is a subquery, but we can
+    # avoid selecting all fields and ordering needlessly.
+    return qs.values('pk').order_by().count
 
+
+def fetch_queue_counts(admin_reviewer):
     def count_from_registered_table(table, *, admin_reviewer):
         return construct_count_queryset_from_queryset(
             table.get_queryset(admin_reviewer=admin_reviewer)
