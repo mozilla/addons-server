@@ -427,39 +427,24 @@ class AddonManager(ManagerBase):
         )
         return qs
 
-    def get_scanners_queue(self, admin_reviewer=False):
-        """Return a queryset of Addon objects that have been approved but
-        contain versions that were automatically flagged as needing human
-        review (regardless of channel)."""
+    def get_base_extensions_queue_with_non_disabled_versions(
+        self, *q_filters, admin_reviewer=False
+    ):
+        """Return base queryset for all queues that look at extensions with non
+        disabled versions - typically scanners queues, where anything could be
+        flagged, approved or waiting for review."""
         return (
             self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
-            # All valid statuses, plus incomplete as well because the add-on
-            # could be purely unlisted (so we can't use valid_q(), which
-            # filters out current_version=None). We know the add-ons are likely
-            # to have a version since they got the needs_human_review flag, so
-            # returning incomplete ones is acceptable.
             .filter(
-                status__in=[amo.STATUS_APPROVED, amo.STATUS_NOMINATED, amo.STATUS_NULL],
-                versions__file__status__in=[
-                    amo.STATUS_APPROVED,
-                    amo.STATUS_AWAITING_REVIEW,
-                ],
-                versions__needs_human_review=True,
-            ).order_by('created')
-            # There could be several versions matching for a single add-on so
-            # we need a distinct.
-            .distinct()
-        )
-
-    def get_mad_queue(self, admin_reviewer=False):
-        return (
-            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
-            # All valid statuses, plus incomplete as well because the add-on
-            # could be purely unlisted (so we can't use valid_q(), which
-            # filters out current_version=None). We know the add-ons are likely
-            # to have a version since they got the needs_human_review_by_mad
-            # flag, so returning incomplete ones is acceptable.
-            .filter(
+                # Only extensions to avoid looking at themes etc, which slows
+                # the query down.
+                Q(type=amo.ADDON_EXTENSION),
+                # All valid statuses, plus incomplete as well because the
+                # add-on could be purely unlisted (so we can't use valid_q(),
+                # which filters out current_version=None). We know the add-ons
+                # are likely to have a version since they got the
+                # needs_human_review_by_mad flag, so returning incomplete ones
+                # is acceptable.
                 Q(
                     status__in=[
                         amo.STATUS_APPROVED,
@@ -473,21 +458,35 @@ class AddonManager(ManagerBase):
                         amo.STATUS_AWAITING_REVIEW,
                     ]
                 ),
-                (
-                    Q(
-                        versions__reviewerflags__needs_human_review_by_mad=True,
-                        versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
-                    )
-                    | Q(
-                        _current_version__reviewerflags__needs_human_review_by_mad=(  # noqa
-                            True
-                        )
-                    )
-                ),
-            ).order_by('created')
+                *q_filters,
+            )
+            .order_by('created')
             # There could be several versions matching for a single add-on so
             # we need a distinct.
             .distinct()
+        )
+
+    def get_scanners_queue(self, admin_reviewer=False):
+        """Return a queryset of Addon objects that contain versions that were
+        automatically flagged as needing human review (regardless of channel).
+        """
+        return self.get_base_extensions_queue_with_non_disabled_versions(
+            Q(versions__needs_human_review=True), admin_reviewer=admin_reviewer
+        )
+
+    def get_mad_queue(self, admin_reviewer=False):
+        """Return a queryset of Addon objects that contain unlisted versions or
+        had their current listed version flagged by MAD.
+        """
+        return self.get_base_extensions_queue_with_non_disabled_versions(
+            (
+                Q(
+                    versions__reviewerflags__needs_human_review_by_mad=True,
+                    versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
+                )
+                | Q(_current_version__reviewerflags__needs_human_review_by_mad=True)
+            ),
+            admin_reviewer=admin_reviewer,
         )
 
     def get_pending_rejection_queue(self, admin_reviewer=False):

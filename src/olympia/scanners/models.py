@@ -14,6 +14,7 @@ from django.utils.translation import gettext_lazy as _
 import olympia.core.logger
 
 from olympia.amo.models import ModelBase
+from olympia.constants.base import ADDON_EXTENSION
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -141,6 +142,13 @@ class AbstractScannerResult(ModelBase):
         a task.
         """
         log.info('Checking rules and actions for version %s.', version.pk)
+
+        if version.addon.type != ADDON_EXTENSION:
+            log.info(
+                'Not running action(s) on version %s which belongs to a non-extension.',
+                version.pk,
+            )
+            return
 
         try:
             mad_result = cls.objects.filter(version=version, scanner=MAD).get()

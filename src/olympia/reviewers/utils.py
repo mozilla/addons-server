@@ -360,7 +360,7 @@ class ContentReviewTable(AutoApprovedTable):
         return reverse('reviewers.review', args=['content', record.id])
 
 
-class ScannersReviewTable(AutoApprovedTable):
+class ScannersReviewTable(AddonQueueTable):
     listed_text = _('Listed versions needing human review ({0})')
     unlisted_text = _('Unlisted versions needing human review ({0})')
     show_count_in_dashboard = False
