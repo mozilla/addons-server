@@ -1168,9 +1168,9 @@ class ApplicationsVersions(models.Model):
                 return gettext('{app} {min} and later').format(
                     app=self.get_application_display(), min=self.min
                 )
+            return f'{self.get_application_display()} {self.min} - {self.max}'
         except ObjectDoesNotExist:
-            pass
-        return f'{self.get_application_display()} {self.min} - {self.max}'
+            return self.get_application_display()
 
 
 class InstallOrigin(ModelBase):

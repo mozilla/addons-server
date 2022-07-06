@@ -1418,6 +1418,32 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert version.file.strict_compatibility is True
         assert version.apps.get().application == amo.FIREFOX.id
 
+    def test_dictionary_compat(self):
+        def _parse_xpi_mock(pkg, addon, minimal, user):
+            return {**parse_xpi(pkg, addon, minimal, user), 'type': amo.ADDON_DICT}
+
+        with patch('olympia.files.utils.parse_xpi', side_effect=_parse_xpi_mock):
+            response = self.request(
+                data={
+                    'version': {
+                        **self.minimal_data['version'],
+                        'compatibility': ['android'],
+                    }
+                }
+            )
+            assert response.status_code == 400, response.content
+            assert response.data == {
+                'version': {
+                    'compatibility': [
+                        'This type of add-on does not allow custom compatibility.'
+                    ]
+                }
+            }
+
+            response = self.request()
+            assert response.status_code == 201, response.content
+            assert response.data['type'] == 'dictionary'
+
 
 class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
     client_request_verb = 'put'
@@ -2774,30 +2800,27 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
     def test_compatibility_invalid_versions(self):
         # 99 doesn't exist as an appversion
-        response = self.request(compatibility={'firefox': {'min': '99.0'}})
+        response = self.request(compatibility={'firefox': {'max': '99.0'}})
         assert response.status_code == 400, response.content
-        assert response.data == {'compatibility': ['Unknown app version specified']}
+        assert response.data == {'compatibility': ['Unknown max app version specified']}
 
         # `*` isn't a valid min
         response = self.request(compatibility={'firefox': {'min': '*'}})
         assert response.status_code == 400, response.content
-        assert response.data == {'compatibility': ['Unknown app version specified']}
+        assert response.data == {'compatibility': ['Unknown min app version specified']}
+
+        # Even when it exists, any version ending in `.*` isn't a valid min either
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='61.*')
+        response = self.request(compatibility={'firefox': {'min': '61.*'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {'compatibility': ['Unknown min app version specified']}
 
     @staticmethod
     def _parse_xpi_mock(pkg, addon, minimal, user):
-        return {**parse_xpi(pkg, addon, minimal, user), 'type': amo.ADDON_DICT}
+        return {**parse_xpi(pkg, addon, minimal, user), 'type': addon.type}
 
     def test_compatibility_dictionary_list(self):
         self.addon.update(type=amo.ADDON_DICT)
-        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
-            response = self.request(compatibility=[])
-        assert response.status_code == 400, response.content
-        assert response.data == {
-            'compatibility': [
-                'This type of add-on does not allow custom compatibility.'
-            ]
-        }
-
         with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
             response = self.request(compatibility=['firefox', 'android'])
         assert response.status_code == 400, response.content
@@ -2809,14 +2832,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
     def test_compatibility_dictionary_dict(self):
         self.addon.update(type=amo.ADDON_DICT)
-        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
-            response = self.request(compatibility={})
-        assert response.status_code == 400, response.content
-        assert response.data == {
-            'compatibility': [
-                'This type of add-on does not allow custom compatibility.'
-            ]
-        }
 
         with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
             response = self.request(

@@ -6,6 +6,7 @@ import zipfile
 from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
+from django.db.models import Q
 from django.http.request import QueryDict
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext, gettext_lazy as _
@@ -253,49 +254,54 @@ class VersionCompatibilityField(serializers.Field):
         for new Version instances. (As intended - we want to be able to partially
         specify min or max and have the manifest or defaults be instead used).
         """
-        if self.parent.addon and not self.parent.addon.can_set_compatibility:
-            raise exceptions.ValidationError(
-                gettext('This type of add-on does not allow custom compatibility.')
-            )
-        try:
-            if isinstance(data, list):
-                # if it's a list of apps, normalize into a dict first
-                data = {key: {} for key in data}
-            if not isinstance(data, dict) or data == {}:
-                # if it's neither it's not a valid input
-                raise exceptions.ValidationError(gettext('Invalid value'))
+        if isinstance(data, list):
+            # if it's a list of apps, normalize into a dict first
+            data = {key: {} for key in data}
+        if not isinstance(data, dict) or data == {}:
+            # if it's neither it's not a valid input
+            raise exceptions.ValidationError(gettext('Invalid value'))
 
-            version = self.parent.instance
-            existing = version.compatible_apps if version else {}
-            internal = {}
-            for app_name, min_max in data.items():
+        version = self.parent.instance
+        existing = version.compatible_apps if version else {}
+        internal = {}
+        for app_name, min_max in data.items():
+            try:
                 app = amo.APPS[app_name]
-                # we need to copy() to avoid changing the instance before save
-                apps_versions = copy.copy(existing.get(app)) or ApplicationsVersions(
-                    application=app.id
-                )
+            except KeyError:
+                raise exceptions.ValidationError(gettext('Invalid app specified'))
 
-                app_version_qs = AppVersion.objects.filter(application=app.id)
+            # we need to copy() to avoid changing the instance before save
+            apps_versions = copy.copy(existing.get(app)) or ApplicationsVersions(
+                application=app.id
+            )
+
+            app_version_qs = AppVersion.objects.filter(application=app.id)
+            try:
                 if 'max' in min_max:
                     apps_versions.max = app_version_qs.get(version=min_max['max'])
                 elif version:
                     apps_versions.max = app_version_qs.get(
                         version=amo.DEFAULT_WEBEXT_MAX_VERSION
                     )
+            except AppVersion.DoesNotExist:
+                raise exceptions.ValidationError(
+                    gettext('Unknown max app version specified')
+                )
 
-                app_version_qs = app_version_qs.exclude(version='*')
+            try:
+                app_version_qs = app_version_qs.filter(~Q(version__contains='*'))
                 if 'min' in min_max:
                     apps_versions.min = app_version_qs.get(version=min_max['min'])
                 elif version:
                     apps_versions.min = app_version_qs.get(
                         version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[app]
                     )
+            except AppVersion.DoesNotExist:
+                raise exceptions.ValidationError(
+                    gettext('Unknown min app version specified')
+                )
 
-                internal[app] = apps_versions
-        except KeyError:
-            raise exceptions.ValidationError(gettext('Invalid app specified'))
-        except AppVersion.DoesNotExist:
-            raise exceptions.ValidationError(gettext('Unknown app version specified'))
+            internal[app] = apps_versions
 
         return internal
 

@@ -77,6 +77,7 @@ from .utils import fetch_translations_from_addon
 from .validators import (
     AddonMetadataValidator,
     AddonDefaultLocaleValidator,
+    CanSetCompatibilityValidator,
     MatchingGuidValidator,
     ReviewedSourceFileValidator,
     VersionAddonMetadataValidator,
@@ -416,7 +417,11 @@ class DeveloperVersionSerializer(VersionSerializer):
 
     class Meta:
         model = Version
-        validators = (VersionLicenseValidator(), VersionAddonMetadataValidator())
+        validators = (
+            CanSetCompatibilityValidator(),
+            VersionLicenseValidator(),
+            VersionAddonMetadataValidator(),
+        )
         fields = (
             'id',
             'channel',
@@ -456,6 +461,11 @@ class DeveloperVersionSerializer(VersionSerializer):
         if 'source' in self.fields and instance.source:
             self.id = instance.id
         return super().to_representation(instance)
+
+    @property
+    def addon_type(self):
+        # This will purposefully raise if we don't have the addon type yet.
+        return (self.addon and self.addon.type) or self.parsed_data['type']
 
     def validate_upload(self, value):
         request = self.context.get('request')
@@ -897,11 +907,16 @@ class AddonSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     version = DeveloperVersionSerializer(
         write_only=True,
-        # Note: we're purposefully omitting VersionAddonMetadataValidator
         validators=(
             PreventPartialUpdateValidator(),
-            VersionLicenseValidator(),
             MatchingGuidValidator(),
+            # Include the default validators, except for VersionAddonMetadataValidator,
+            # because we're using AddonMetadataValidator instead.
+            *(
+                val
+                for val in DeveloperVersionSerializer.Meta.validators
+                if val.__class__ != VersionAddonMetadataValidator
+            ),
         ),
     )
     versions_url = serializers.SerializerMethodField()
@@ -1067,11 +1082,7 @@ class AddonSerializer(serializers.ModelSerializer):
             # We can't do this in a validate_categories function because we need
             # parsed_data from the version field; and we can't move this functionality
             # out into a validator class because we need to change `data` to drop dupes.
-            addon_type = (
-                self.instance.type
-                if self.instance
-                else self.fields['version'].parsed_data['type']
-            )
+            addon_type = self.fields['version'].addon_type
             # filter out categories for the wrong type.
             # There might be dupes, e.g. "other" is a category for 2 types
             slugs = {cat.slug for cat in data['all_categories']}

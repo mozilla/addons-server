@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext
 
-from rest_framework import exceptions
+from rest_framework import exceptions, fields
 
 from olympia import amo
 from olympia.amo.utils import find_language
@@ -67,7 +67,6 @@ class VersionLicenseValidator:
                         },
                         code='required',
                     )
-            addon_type = serializer.parsed_data['type']
         else:
             # In the case where:
             # - we are updating the version;
@@ -84,9 +83,8 @@ class VersionLicenseValidator:
                 raise exceptions.ValidationError(
                     {'custom_license': custom_license.errors}
                 )
-            addon_type = serializer.addon.type
 
-        is_theme = addon_type == amo.ADDON_STATICTHEME
+        is_theme = serializer.addon_type == amo.ADDON_STATICTHEME
         if isinstance(license_, License) and license_.creative_commons != is_theme:
             raise exceptions.ValidationError(
                 {'license': gettext('Wrong add-on type for this license.')},
@@ -254,4 +252,28 @@ class ReviewedSourceFileValidator:
                     'Source cannot be changed because this version has been reviewed '
                     'by Mozilla.'
                 )
+            )
+
+
+class CanSetCompatibilityValidator:
+    requires_context = True
+
+    def __call__(self, data, serializer):
+        def field_default():
+            try:
+                return serializer.fields['compatibility'].get_default()
+            except fields.SkipField:
+                return None
+
+        if (
+            not Addon.type_can_set_compatibility(serializer.addon_type)
+            and 'compatible_apps' in data
+            and data.get('compatible_apps') != field_default()
+        ):
+            raise exceptions.ValidationError(
+                {
+                    'compatibility': gettext(
+                        'This type of add-on does not allow custom compatibility.'
+                    )
+                }
             )
