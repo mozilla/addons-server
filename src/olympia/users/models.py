@@ -1102,6 +1102,9 @@ class UserHistory(ModelBase):
             models.Index(fields=('user',), name='users_history_user_idx'),
         ]
 
+    def __str__(self):
+        return f'{self.user_id}: {self.email}'
+
 
 @UserProfile.on_change
 def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw):
