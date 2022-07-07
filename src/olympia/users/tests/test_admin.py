@@ -31,6 +31,7 @@ from olympia.users.admin import UserAdmin
 from olympia.users.models import (
     EmailUserRestriction,
     IPNetworkUserRestriction,
+    UserHistory,
     UserProfile,
     UserRestrictionHistory,
 )
@@ -858,6 +859,17 @@ class TestUserAdmin(TestCase):
         response = self.client.get(detail_url_by_email, follow=False)
         self.assert3xx(response, detail_url_final, 301)
 
+    def test_user_history(self):
+        UserHistory.objects.create(email='old@example.com', user=self.user)
+        UserHistory.objects.create(email='old2@example.com', user=self.user)
+        UserHistory.objects.create(email='old3@example.com', user=user_factory())
+        url, text = self._call_related_content_method('history_for_this_user')
+        expected_url = (
+            reverse('admin:users_userhistory_changelist') + '?user=%d' % self.user.pk
+        )
+        assert url == expected_url
+        assert text == '2'
+
 
 class TestEmailUserRestrictionAdmin(TestCase):
     def setUp(self):
@@ -910,3 +922,45 @@ class TestUserRestrictionHistoryAdmin(TestCase):
         content = response.content.decode('utf-8')
         assert str(self.user) in content
         assert str(other_user) not in content
+
+
+class TestUserHistoryAdmin(TestCase):
+    def setUp(self):
+        self.user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(self.user, 'Admin:Advanced')
+
+        self.client.login(email=self.user.email)
+        self.list_url = reverse('admin:users_userhistory_changelist')
+
+    def test_list(self):
+        other_user = user_factory()
+        UserHistory.objects.create(user=self.user, email='old@example.com')
+        UserHistory.objects.create(user=other_user, email='old_other@example.com')
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'old@example.com' in content
+        assert 'old_other@example.com' in content
+
+        # direct user lookup
+        response = self.client.get(self.list_url + f'?user={self.user.pk}')
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'old@example.com' in content
+        assert 'old_other@example.com' not in content
+
+    def test_search(self):
+        other_user = user_factory()
+        UserHistory.objects.create(user=self.user, email='old@example.com')
+        UserHistory.objects.create(user=other_user, email='old_other@example.com')
+        response = self.client.get(self.list_url + f'?q={self.user.pk}')
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'old@example.com' in content
+        assert 'old_other@example.com' not in content
+
+        response = self.client.get(self.list_url + '?q=old_other')
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'old@example.com' not in content
+        assert 'old_other@example.com' in content

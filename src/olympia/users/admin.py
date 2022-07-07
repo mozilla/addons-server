@@ -37,6 +37,7 @@ from .models import (
     EmailUserRestriction,
     GroupUser,
     IPNetworkUserRestriction,
+    UserHistory,
     UserProfile,
     UserRestrictionHistory,
 )
@@ -72,24 +73,25 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     show_full_result_count = False  # Turn off to avoid the query.
 
     readonly_fields = (
-        'id',
-        'created',
-        'modified',
-        'picture_img',
-        'banned',
-        'deleted',
-        'is_public',
-        'last_login',
-        'last_login_ip',
-        'known_ip_adresses',
-        'last_known_activity_time',
-        'ratings_authorship',
-        'collections_authorship',
-        'addons_authorship',
-        'activity',
         'abuse_reports_by_this_user',
         'abuse_reports_for_this_user',
+        'activity',
+        'addons_authorship',
+        'banned',
+        'collections_authorship',
+        'created',
+        'deleted',
         'has_active_api_key',
+        'history_for_this_user',
+        'id',
+        'is_public',
+        'known_ip_adresses',
+        'last_known_activity_time',
+        'last_login',
+        'last_login_ip',
+        'modified',
+        'picture_img',
+        'ratings_authorship',
         'restriction_history_for_this_user',
     )
     fieldsets = (
@@ -101,6 +103,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                     'created',
                     'modified',
                     'email',
+                    'history_for_this_user',
                     'fxa_id',
                     'username',
                     'display_name',
@@ -522,6 +525,11 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def restriction_history_for_this_user(self, obj):
         return related_content_link(obj, UserRestrictionHistory, 'user')
 
+    def history_for_this_user(self, obj):
+        return related_content_link(obj, UserHistory, 'user')
+
+    history_for_this_user.short_description = 'User History'
+
 
 @admin.register(DeniedName)
 class DeniedNameAdmin(admin.ModelAdmin):
@@ -631,3 +639,18 @@ class UserRestrictionHistoryAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         base_qs = UserRestrictionHistory.objects.all()
         return base_qs.prefetch_related('user')
+
+
+@admin.register(UserHistory)
+class UserHistoryAdmin(admin.ModelAdmin):
+    view_on_site = False
+    search_fields = ('=user__id', '^email')
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_add_permission(self, request):
+        return False
