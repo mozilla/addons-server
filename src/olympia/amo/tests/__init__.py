@@ -978,8 +978,8 @@ class ESTestCaseMixin:
             if key.startswith('test_'):
                 if cls.es.indices.exists_alias(name=key):
                     cls.es.indices.delete_alias(index='*', name=key, ignore=[404])
-                elif cls.es.indices.exists(key):
-                    cls.es.indices.delete(key, ignore=[404])
+                elif cls.es.indices.exists(index=key):
+                    cls.es.indices.delete(index=key, ignore=[404])
 
         # Figure out the name of the indices we're going to create from the
         # suffixes generated at import time. Like the aliases later, the name
@@ -1005,7 +1005,7 @@ class ESTestCaseMixin:
             },
         ]
 
-        cls.es.indices.update_aliases({'actions': actions})
+        cls.es.indices.update_aliases(body={'actions': actions})
         super().setUpClass()
 
     def setUp(self):
@@ -1016,21 +1016,21 @@ class ESTestCaseMixin:
 
     @classmethod
     def refresh(cls, index='default'):
-        cls.es.indices.refresh(settings.ES_INDEXES.get(index, index))
+        cls.es.indices.refresh(index=settings.ES_INDEXES.get(index, index))
 
     @classmethod
     def reindex(cls, model, index='default'):
         # Emit post-save signal so all of the objects get reindexed.
         manager = getattr(model, 'unfiltered', model.objects)
         [post_save.send(model, instance=o, created=False) for o in manager.all()]
-        cls.refresh(index)
+        cls.refresh(index=index)
 
     @classmethod
     def empty_index(cls, index):
         # Try to make sure that all changes are properly flushed.
-        cls.refresh(index)
+        cls.refresh(index=index)
         cls.es.delete_by_query(
-            settings.ES_INDEXES[index],
+            index=settings.ES_INDEXES[index],
             body={'query': {'match_all': {}}},
             conflicts='proceed',
         )
