@@ -1,5 +1,3 @@
-import copy
-
 from django.conf import settings
 from olympia.constants.promoted import RECOMMENDED
 
