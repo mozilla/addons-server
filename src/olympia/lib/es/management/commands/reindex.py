@@ -38,13 +38,13 @@ def get_indexer(alias):
 def delete_indexes(indexes):
     indices = ','.join(indexes)
     logger.info('Removing indices %r' % indices)
-    ES.indices.delete(indices, ignore=[404, 500])
+    ES.indices.delete(index=indices, ignore=[404, 500])
 
 
 @task
 def update_aliases(actions):
     logger.info('Rebuilding aliases with actions: %s' % actions)
-    ES.indices.update_aliases({'actions': actions})
+    ES.indices.update_aliases(body={'actions': actions})
 
 
 @task(ignore_result=False)
@@ -162,8 +162,8 @@ class Command(BaseCommand):
                 # happens if data was indexed before the first reindex was
                 # done) doesn't matter.
                 try:
-                    index = next(iter(ES.indices.get(alias)))
-                    ES.indices.delete(index)
+                    index = next(iter(ES.indices.get(index=alias)))
+                    ES.indices.delete(index=index)
                 except NotFoundError:
                     pass
             else:
@@ -190,7 +190,7 @@ class Command(BaseCommand):
         old_index = None
 
         try:
-            olds = ES.indices.get_alias(alias)
+            olds = ES.indices.get_alias(index=alias)
             for old_index in olds:
                 # Mark the index to be removed later.
                 to_remove.append(old_index)
@@ -208,7 +208,7 @@ class Command(BaseCommand):
 
         # If old_index is None that could mean it's a full index.
         # In that case we want to continue index in it.
-        if ES.indices.exists(alias):
+        if ES.indices.exists(index=alias):
             old_index = alias
 
         # Main chain for this alias that:
