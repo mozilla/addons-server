@@ -4083,7 +4083,7 @@ class TestAddonSearchView(ESTestCase):
 
         response = qset.execute()
 
-        source_keys = response.hits.hits[0]['_source'].keys()
+        source_keys = response.hits.hits[0]['_source'].to_dict().keys()
 
         assert not any(
             key in source_keys
@@ -5170,7 +5170,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         # Sort by type to avoid sorting problems before picking the
         # first result. (We have a theme and an add-on)
         hit = sorted(response.hits.hits, key=lambda x: x['_source']['type'])
-        assert set(hit[1]['_source'].keys()) == includes
+        assert set(hit[1]['_source'].to_dict().keys()) == includes
 
     def test_no_unlisted(self):
         addon_factory(

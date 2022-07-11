@@ -1,5 +1,3 @@
-import copy
-
 from django.conf import settings
 from olympia.constants.promoted import RECOMMENDED
 
@@ -728,17 +726,15 @@ class AddonIndexer:
         Intended to be used by reindexation (and tests), generally a bad idea
         to call manually.
         """
-        index_settings = copy.deepcopy(cls.index_settings)
-
-        config = {
-            'mappings': cls.get_mapping(),
-            'settings': {
-                # create_index will add its own index settings like number of
+        create_index(
+            index=index_name,
+            mappings=cls.get_mapping(),
+            index_settings={
+                # create_index() will add its own index settings like number of
                 # shards and replicas.
-                'index': index_settings
+                'index': cls.index_settings
             },
-        }
-        create_index(index_name, config)
+        )
 
     @classmethod
     def reindex_tasks_group(cls, index_name):

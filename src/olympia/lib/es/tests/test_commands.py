@@ -48,7 +48,7 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         current_indices = self.es.indices.stats()['indices'].keys()
         for index in current_indices:
             if index not in self.indices:
-                self.es.indices.delete(index, ignore=404)
+                self.es.indices.delete(index=index, ignore=404)
         super().tearDown()
 
     @classmethod
@@ -64,7 +64,7 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         """Make sure the indices settings are properly set."""
 
         for index, alias in new_indices:
-            settings = self.es.indices.get_settings(alias)[index]['settings']
+            settings = self.es.indices.get_settings(index=alias)[index]['settings']
 
             # These should be set in settings_test.
             assert int(settings['index']['number_of_replicas']) == 0

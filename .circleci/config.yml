@@ -284,9 +284,9 @@ references:
   docker-images:
     # These versions should try to match what we run in production.
     - &python "cimg/python:3.9"
-    - &redis "redis:2.8"
+    - &redis "redis:6.2"
     - &memcached "memcached:1.4"
-    - &mysql "mysql:8.0.21"
+    - &mysql "mysql:8.0.28"
 
   mysql-config: &mysql-config
     environment:
@@ -314,16 +314,13 @@ references:
 
   defaults-with-elasticsearch: &defaults-with-elasticsearch
     <<: *defaults
-    parameters:
-      elasticsearchversion:
-        type: string
     docker:
       - image: *python
       - image: *redis
       - image: *memcached
       - image: *mysql
         <<: *mysql-config
-      - image: docker.elastic.co/elasticsearch/elasticsearch:<< parameters.elasticsearchversion >>
+      - image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
         environment:
           # Disable all xpack related features to avoid unrelated logging in
           # docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -660,12 +657,7 @@ workflows:
       - docs
       - main
       - reviewers-and-zadmin
-      - es-tests:
-          matrix:
-            parameters:
-              elasticsearchversion:
-                - 6.8.23
-                - 7.17.2
+      - es-tests
       - release-master:
           filters:
             branches:

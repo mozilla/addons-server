@@ -18,10 +18,6 @@ from .models import Reindexing
 log = olympia.core.logger.getLogger('z.es')
 
 
-def get_major_version(es):
-    return int(es.info()['version']['number'].split('.')[0])
-
-
 def index_objects(
     *, ids, indexer_class, index=None, transforms=None, manager_name=None
 ):
@@ -64,7 +60,6 @@ def index_objects(
     bulk = []
     es = amo_search.get_es()
 
-    major_version = get_major_version(es)
     for obj in qs.order_by('pk'):
         data = indexer_class.extract_document(obj)
         for index in indices:
@@ -73,13 +68,6 @@ def index_objects(
                 '_id': obj.id,
                 '_index': index,
             }
-            if major_version < 7:
-                # While on 6.x, we use the `addons` type when creating indices
-                # and when bulk-indexing. We completely ignore it on searches.
-                # When on 7.x, we don't pass type at all at creation or
-                # indexing, and continue to ignore it on searches.
-                # That should ensure we're compatible with both transparently.
-                item['_type'] = 'addons'
             bulk.append(item)
 
     return helpers.bulk(es, bulk)
@@ -105,7 +93,7 @@ def timestamp_index(index):
     return '{}-{}'.format(index, datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
 
 
-def create_index(index, config=None):
+def create_index(*, index, mappings, index_settings=None):
     """Create an index if it's not present.
 
     Return the index name.
@@ -113,34 +101,26 @@ def create_index(index, config=None):
     Options:
 
     - index: name of the index.
-    - config: if provided, used when passing the configuration of the index to
-    ES.
+    - mappings and index_settings: if provided, used when passing the
+    configuration of the index to ES.
     """
     es = amo_search.get_es()
 
-    if config is None:
-        config = {}
-
-    if 'settings' not in config:
-        config['settings'] = {'index': {}}
+    if index_settings is None:
+        index_settings = {'index': {}}
     else:
-        # Make a deepcopy of the settings in the config that was passed, so
-        # that we can modify it freely to add shards and replicas settings.
-        config['settings'] = deepcopy(config['settings'])
+        # Make a deepcopy of the settings that was passed, so that we can
+        # modify it freely to add shards and replicas settings.
+        index_settings = deepcopy(index_settings)
 
-    config['settings']['index'].update(
+    index_settings['index'].update(
         {
             'number_of_shards': settings.ES_DEFAULT_NUM_SHARDS,
             'number_of_replicas': settings.ES_DEFAULT_NUM_REPLICAS,
             'max_result_window': settings.ES_MAX_RESULT_WINDOW,
         }
     )
-    major_version = get_major_version(es)
-    if not es.indices.exists(index):
-        # See above, while on 6.x the mapping needs to include the `addons` doc
-        # type.
-        if major_version < 7:
-            config['mappings'] = {'addons': config['mappings']}
-        es.indices.create(index, body=config)
+    if not es.indices.exists(index=index):
+        es.indices.create(index=index, mappings=mappings, settings=index_settings)
 
     return index
