@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-06-22 12:56+0000\n"
-"PO-Revision-Date: 2022-07-08 20:58+0000\n"
+"PO-Revision-Date: 2022-07-11 15:25+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -268,7 +268,7 @@ msgid "GUID mismatch between the URL and manifest."
 msgstr "GUID mismatch between the URL and manifest."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Source cannot be changed because this version has been reviewed by Mozilla."
 
 msgid "My Add-ons"
 msgstr "My Add-ons"
@@ -482,7 +482,7 @@ msgid "The language code \"{lang_code}\" is invalid."
 msgstr "The language code \"{lang_code}\" is invalid."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "You must provide an object of {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr "A value in the default locale of \"{lang_code}\" is required."
@@ -2534,7 +2534,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "While in this state, “On your own” is the only distribution method available."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "You cannot change attached sources because this version has been reviewed by Mozilla."
 
 msgid "General Tests"
 msgstr "General Tests"
