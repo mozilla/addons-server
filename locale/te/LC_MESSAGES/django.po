@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2022-05-04 11:48+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -176,16 +176,16 @@ msgstr ""
 msgid "Invalid or broken archive."
 msgstr "చెల్లని లేదా పాడైన ఆర్కైవ్."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
 msgid "Invalid value"
 msgstr "చెల్లని విలువ"
 
 msgid "Invalid app specified"
 msgstr ""
 
-msgid "Unknown app version specified"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
 msgstr ""
 
 #, python-format
@@ -268,6 +268,9 @@ msgid "GUID mismatch between the URL and manifest."
 msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
+msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "My Add-ons"
@@ -4486,16 +4489,16 @@ msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4571,10 +4574,6 @@ msgid "See more social streaming staff picks"
 msgstr "మరిన్ని సామాజిక స్ట్రీమింగ్ పొడగింతలను చూడండి"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "మరిన్ని ట్యాబు నిర్వహణ పొడగింతలను చూడండి"
@@ -4587,6 +4586,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "మరిన్ని ప్రాచుర్య పొడగింతలను చూడండి"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

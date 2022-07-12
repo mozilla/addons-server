@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2022-05-23 04:41+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -177,16 +177,16 @@ msgstr "Loại tập tin không được hỗ trợ, vui lòng tải lên tập 
 msgid "Invalid or broken archive."
 msgstr "Gói lưu trữ không hợp lệ hoặc bị hỏng."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr "Loại tiện ích này không cho phép khả năng tương thích tùy chỉnh."
-
 msgid "Invalid value"
 msgstr "Giá trị không hợp lệ"
 
 msgid "Invalid app specified"
 msgstr ""
 
-msgid "Unknown app version specified"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
 msgstr ""
 
 #, python-format
@@ -271,6 +271,9 @@ msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
+msgstr "Loại tiện ích này không cho phép khả năng tương thích tùy chỉnh."
 
 msgid "My Add-ons"
 msgstr "Tiện ích của tôi"
@@ -4619,17 +4622,17 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Trình chặn quảng cáo ưu tú"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Quản lý thẻ"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4701,10 +4704,6 @@ msgid "See more social streaming staff picks"
 msgstr "Xem thêm phát trực tuyến và xã hội được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Quản lý thẻ"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Xem thêm các trình quản lý thẻ được lựa chọn bởi biên tập viên"
 
@@ -4715,6 +4714,10 @@ msgstr "Tiện ích mở rộng được gắn thẻ “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Xem các tiện ích mở rộng khác được gắn thẻ \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Trình chặn quảng cáo ưu tú"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"

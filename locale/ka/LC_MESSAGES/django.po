@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2022-06-19 17:27+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,17 +176,17 @@ msgstr "მხარდაუჭერელი სახის ფაილი,
 msgid "Invalid or broken archive."
 msgstr "უმართებულო ან დაზიანებული არქივი."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr "ამ სახის დამატება არ იძლევა თავსებადობის მორგების საშუალებას."
-
 msgid "Invalid value"
 msgstr "არასწორი მნიშვნელობა"
 
 msgid "Invalid app specified"
 msgstr "არასწორი აპია მითითებული"
 
-msgid "Unknown app version specified"
-msgstr "აპის არასწორი ვერსიაა მითითებული"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
+msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -269,6 +269,9 @@ msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
+msgstr "ამ სახის დამატება არ იძლევა თავსებადობის მორგების საშუალებას."
 
 msgid "My Add-ons"
 msgstr "ჩემი დამატებები"
@@ -4611,17 +4614,17 @@ msgid "See all extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "რეკლამის საუკეთესო შემზღუდავები"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "საწყისი გაფართოებების ნაკრები"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "ჩანართის მმართველები"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4692,10 +4695,6 @@ msgid "See more social streaming staff picks"
 msgstr "სოციალური ნაკადისთვის, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "ჩანართის მმართველები"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "ჩანართის სხვა მმართველები, თანამშრომლების შერჩეული"
 
@@ -4706,6 +4705,10 @@ msgstr "გაფართოებები „{tag}“ მონიშვნ�
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "სხვა გავრცელებული, მონიშვნით „{tag}“"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "რეკლამის საუკეთესო შემზღუდავები"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
