@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -191,17 +191,17 @@ msgstr "Unsupported file type, please upload an archive file ({extensions})."
 msgid "Invalid or broken archive."
 msgstr "Invalid archive."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr "This type of add-on does not allow custom compatibility."
-
 msgid "Invalid value"
 msgstr "Invalid value"
 
 msgid "Invalid app specified"
 msgstr "Invalid app specified"
 
-msgid "Unknown app version specified"
-msgstr "Unknown app version specified"
+msgid "Unknown max app version specified"
+msgstr "Unknown max app version specified"
+
+msgid "Unknown min app version specified"
+msgstr "Unknown min app version specified"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -286,6 +286,9 @@ msgstr "GUID mismatch between the URL and manifest."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr "Source cannot be changed because this version has been reviewed by Mozilla."
+
+msgid "This type of add-on does not allow custom compatibility."
+msgstr "This type of add-on does not allow custom compatibility."
 
 msgid "My Add-ons"
 msgstr "My Add-ons"
@@ -5009,18 +5012,17 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Update add-on block"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
-msgstr "Writing tools"
+msgid "Top anti-tracking extensions"
+msgstr "Top anti-tracking extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Extension starter pack"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Tab managers"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5106,10 +5108,6 @@ msgid "See more social streaming staff picks"
 msgstr "Browse all add-ons"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Tab managers"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Recommended Extensions program"
@@ -5122,6 +5120,11 @@ msgstr "“{tag}” tagged extensions"
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Browse all add-ons"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Update add-on block"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

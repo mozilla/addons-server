@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2022-06-01 08:04+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -180,16 +180,16 @@ msgstr ""
 msgid "Invalid or broken archive."
 msgstr "Невалиден обхват на версиите."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
 msgid "Invalid value"
 msgstr "Недействителна стойност"
 
 msgid "Invalid app specified"
 msgstr "Посочено е недействително приложение"
 
-msgid "Unknown app version specified"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
 msgstr ""
 
 #, python-format
@@ -274,6 +274,9 @@ msgid "GUID mismatch between the URL and manifest."
 msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
+msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "My Add-ons"
@@ -4665,16 +4668,16 @@ msgid "See all extensions"
 msgstr "Преглед на всички разширения"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4759,10 +4762,6 @@ msgid "See more social streaming staff picks"
 msgstr "Преглед на всички разширения"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Преглед на всички разширения"
@@ -4775,6 +4774,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Преглед на всички разширения"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

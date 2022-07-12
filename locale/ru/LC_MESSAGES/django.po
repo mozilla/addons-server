@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2022-05-22 11:32+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -181,17 +181,17 @@ msgstr "Неподдерживаемый тип файла, пожалуйста
 msgid "Invalid or broken archive."
 msgstr "Некорректный или повреждённый архив."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr "Этот тип дополнения не допускает настраиваемую совместимость."
-
 msgid "Invalid value"
 msgstr "Недопустимое значение"
 
 msgid "Invalid app specified"
 msgstr "Указано недопустимое приложение"
 
-msgid "Unknown app version specified"
-msgstr "Указана неизвестная версия приложения"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
+msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -275,6 +275,9 @@ msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
+msgstr "Этот тип дополнения не допускает настраиваемую совместимость."
 
 msgid "My Add-ons"
 msgstr "Мои дополнения"
@@ -4649,17 +4652,17 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Элитные блокировщики рекламы"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Менеджеры вкладок"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4731,10 +4734,6 @@ msgid "See more social streaming staff picks"
 msgstr "Больше средств вещания в социальных сетях отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Менеджеры вкладок"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Больше расширений для управления вкладками отобранных нашими сотрудниками"
 
@@ -4745,6 +4744,10 @@ msgstr "Расширения с тегами “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Больше расширений с тегом \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Элитные блокировщики рекламы"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"

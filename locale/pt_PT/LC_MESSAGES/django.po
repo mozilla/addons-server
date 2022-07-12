@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2022-05-30 16:17+0000\n"
 "Last-Translator: Pedro Coelho <pedrozc99@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -179,17 +179,17 @@ msgstr "Tipo de ficheiro não suportado, por favor, carregue um ficheiro de arqu
 msgid "Invalid or broken archive."
 msgstr "Arquivo inválido ou corrompido."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr "Este tipo de extra não permite customização de compatibilidade."
-
 msgid "Invalid value"
 msgstr "Valor inválido"
 
 msgid "Invalid app specified"
 msgstr "Aplicação inválida especificada"
 
-msgid "Unknown app version specified"
-msgstr "Versão desconhecida da aplicação especificada"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
+msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -273,6 +273,9 @@ msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
+msgstr "Este tipo de extra não permite customização de compatibilidade."
 
 msgid "My Add-ons"
 msgstr "Os meus Extras"
@@ -4640,17 +4643,17 @@ msgid "See all extensions"
 msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Bloqueadores de anúncios de elite"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Gestores de marcadores"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4722,10 +4725,6 @@ msgid "See more social streaming staff picks"
 msgstr "Ver mais escolhas da equipa para transmissão social"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Gestores de marcadores"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Ver mais escolhas da equipa para gestores de separadores"
 
@@ -4736,6 +4735,10 @@ msgstr "Extensões etiquetas com “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Ver mais extensões etiquetadas com \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Bloqueadores de anúncios de elite"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"

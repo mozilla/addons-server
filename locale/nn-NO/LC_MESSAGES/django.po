@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2022-05-15 12:00+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,16 +177,16 @@ msgstr ""
 msgid "Invalid or broken archive."
 msgstr "Ugyldig eller øydelagt arkiv."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
 msgid "Invalid value"
 msgstr ""
 
 msgid "Invalid app specified"
 msgstr ""
 
-msgid "Unknown app version specified"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
 msgstr ""
 
 #, python-format
@@ -269,6 +269,9 @@ msgid "GUID mismatch between the URL and manifest."
 msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
+msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "My Add-ons"
@@ -4564,17 +4567,17 @@ msgid "See all extensions"
 msgstr "Vis alle utvidingar"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Fanehandterarar"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4650,10 +4653,6 @@ msgid "See more social streaming staff picks"
 msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Fanehandterarar"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Vis fleire tilrådde utvidingar"
@@ -4666,6 +4665,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Vis fleire populære utvidingar"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

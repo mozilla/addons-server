@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -184,16 +184,16 @@ msgstr ""
 msgid "Invalid or broken archive."
 msgstr "Archivo no válido o efectivo."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
 msgid "Invalid value"
 msgstr ""
 
 msgid "Invalid app specified"
 msgstr ""
 
-msgid "Unknown app version specified"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
 msgstr ""
 
 #, python-format
@@ -277,6 +277,9 @@ msgid "GUID mismatch between the URL and manifest."
 msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
+msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "My Add-ons"
@@ -4732,17 +4735,16 @@ msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Actualizar bloqueadores de complementos"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4823,10 +4825,6 @@ msgid "See more social streaming staff picks"
 msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Ver más extensiones recomendadas"
@@ -4839,6 +4837,11 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Ver más extensiones populares"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Actualizar bloqueadores de complementos"
 
 #. editorial content for the homepage shelves.
 #, fuzzy

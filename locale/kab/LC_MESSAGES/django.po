@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-22 12:56+0000\n"
+"POT-Creation-Date: 2022-07-12 16:16+0000\n"
 "PO-Revision-Date: 2022-05-19 07:08+0000\n"
 "Last-Translator: Selyan Slimane Amiri <selyan.kab@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,17 +176,17 @@ msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz (
 msgid "Invalid or broken archive."
 msgstr "Taṛcivt diri-tt neɣ ahat texseṛ."
 
-msgid "This type of add-on does not allow custom compatibility."
-msgstr "Anaw-a n uzegrir ur issirig ara amṣada udmawan."
-
 msgid "Invalid value"
 msgstr "Azal d arameɣtu"
 
 msgid "Invalid app specified"
 msgstr "Asnas yettwafernen d arameɣtu"
 
-msgid "Unknown app version specified"
-msgstr "Lqem n usnas i yettwafernen d arameɣtu"
+msgid "Unknown max app version specified"
+msgstr ""
+
+msgid "Unknown min app version specified"
+msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -269,6 +269,9 @@ msgstr ""
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr ""
+
+msgid "This type of add-on does not allow custom compatibility."
+msgstr "Anaw-a n uzegrir ur issirig ara amṣada udmawan."
 
 msgid "My Add-ons"
 msgstr "Izegrar-iw"
@@ -4571,17 +4574,17 @@ msgid "See all extensions"
 msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Ẓreg amsewḥel n yizegrar"
-
-#. editorial content for the secondary hero shelves.
-msgid "Writing tools"
+msgid "Top anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Imsefraken n waccaren"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4652,10 +4655,6 @@ msgid "See more social streaming staff picks"
 msgstr "Wali ugar n yisiɣzaf n usuddem anmetti"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Imsefraken n waccaren"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Wali ugar n yisiɣzaf i usefrek n waccaren yettwafernen sɣur terbaεt"
 
@@ -4666,6 +4665,10 @@ msgstr "Isiɣzaf yettwacerḍen s “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Wali ugar n yisiɣzaf d-yettwabedren \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Ẓreg amsewḥel n yizegrar"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
