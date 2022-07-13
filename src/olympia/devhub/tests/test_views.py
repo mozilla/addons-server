@@ -1563,7 +1563,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     ):
         user = user_factory()
         self.grant_permission(user, 'SystemAddon:Submit')
-        assert self.client.force_login(user)
+        self.client.force_login(user)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid_signed.xpi')
         upload = FileUpload.objects.get()
@@ -1579,7 +1579,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     ):
         user = user_factory()
         self.grant_permission(user, 'SystemAddon:Submit')
-        assert self.client.force_login(user)
+        self.client.force_login(user)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
@@ -1602,7 +1602,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_restricted_guid_addon_not_allowed(self, run_addons_linter_mock):
         user = user_factory()
-        assert self.client.force_login(user)
+        self.client.force_login(user)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
@@ -1625,7 +1625,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_allowed(self, get_signer_mock, run_addons_linter_mock):
         user = user_factory()
-        assert self.client.force_login(user)
+        self.client.force_login(user)
         self.grant_permission(user, 'SystemAddon:Submit')
         run_addons_linter_mock.return_value = self.validation_ok()
         get_signer_mock.return_value = 'Mozilla Extensions'

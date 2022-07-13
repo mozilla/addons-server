@@ -28,7 +28,7 @@ class TestUploadValidation(ValidatorTestCase, UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        assert self.client.force_login(self.user)
+        self.client.force_login(self.user)
         self.validation = {
             'errors': 1,
             'detected_type': 'extension',

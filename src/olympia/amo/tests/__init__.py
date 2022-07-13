@@ -1073,9 +1073,9 @@ class TestXss(TestCase):
         )
         self.addon.name = self.name
         self.addon.save()
-        u = UserProfile.objects.get(email='del@icio.us')
-        GroupUser.objects.create(group=Group.objects.get(name='Admins'), user=u)
-        self.client.login(email='del@icio.us')
+        user = UserProfile.objects.get(email='del@icio.us')
+        GroupUser.objects.create(group=Group.objects.get(name='Admins'), user=user)
+        self.client.force_login(user)
 
     def assertNameAndNoXSS(self, url):
         response = self.client.get(url)

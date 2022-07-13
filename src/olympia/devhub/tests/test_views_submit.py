@@ -1985,7 +1985,7 @@ class VersionSubmitUploadMixin:
         self.version = self.addon.current_version
         self.addon.update(guid='@webextension-guid')
         self.user = UserProfile.objects.get(email='del@icio.us')
-        assert self.client.force_login(self.user)
+        self.client.force_login(self.user)
         self.user.update(last_login_ip='192.168.1.1')
         self.addon.versions.update(channel=self.channel)
         channel = 'listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted'
