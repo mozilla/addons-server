@@ -75,12 +75,12 @@ class TestAbuse(TestCase):
         )
 
     def setUp(self):
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         self.list_url = reverse('admin:abuse_abusereport_changelist')
 
     def test_list_no_permission(self):
         user = user_factory(email='nobody@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
 

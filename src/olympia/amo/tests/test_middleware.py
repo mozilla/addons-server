@@ -402,7 +402,7 @@ class TestGraphiteMiddlewareNoAuth(TestCase):
 
     @override_settings(ENV='dev')
     def test_functional_middleware_used(self, statsd_mock):
-        self.client.login(email=user_factory().email)
+        self.client.force_login(user_factory())
         with self.assertNumQueries(0):
             response = self.client.get(reverse_ns('amo.client_info'))
         assert response.status_code == 200

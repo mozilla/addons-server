@@ -15,7 +15,7 @@ class TestCollectionAdmin(TestCase):
     def test_can_see_bandwagon_module_in_admin_with_collections_edit(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Collections:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -25,7 +25,7 @@ class TestCollectionAdmin(TestCase):
     def test_can_see_bandwagon_module_in_admin_with_admin_curation(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -35,7 +35,7 @@ class TestCollectionAdmin(TestCase):
 
     def test_can_not_see_bandwagon_module_in_admin_without_permissions(self):
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -46,7 +46,7 @@ class TestCollectionAdmin(TestCase):
         collection = Collection.objects.create(slug='floob')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Collections:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert collection.slug in response.content.decode('utf-8')
@@ -55,7 +55,7 @@ class TestCollectionAdmin(TestCase):
         collection = Collection.objects.create(slug='floob')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert collection.slug in response.content.decode('utf-8')
@@ -63,7 +63,7 @@ class TestCollectionAdmin(TestCase):
     def test_cant_list_without_special_permission(self):
         collection = Collection.objects.create(slug='floob')
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
         assert collection.slug not in response.content.decode('utf-8')
@@ -80,7 +80,7 @@ class TestCollectionAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Collections:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
@@ -117,7 +117,7 @@ class TestCollectionAdmin(TestCase):
     def test_can_not_list_without_collections_edit_permission(self):
         collection = Collection.objects.create(slug='floob')
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
         assert collection.slug not in response.content.decode('utf-8')
@@ -128,7 +128,7 @@ class TestCollectionAdmin(TestCase):
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
         assert collection.slug not in response.content.decode('utf-8')
@@ -156,7 +156,7 @@ class TestCollectionAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
         assert collection.slug not in response.content.decode('utf-8')
@@ -289,7 +289,7 @@ class TestCollectionAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Collections:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
@@ -303,7 +303,7 @@ class TestCollectionAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
@@ -326,7 +326,7 @@ class TestCollectionAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
         assert not Collection.objects.filter(pk=collection.pk).exists()

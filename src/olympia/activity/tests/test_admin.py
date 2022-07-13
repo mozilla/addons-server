@@ -16,7 +16,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
     def test_can_see_module_in_admin_with_super_access(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -24,7 +24,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
 
     def test_can_not_see_module_in_admin_without_permissions(self):
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -41,7 +41,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         activity_log = ActivityLog.objects.create(action=amo.LOG.APPROVE_VERSION.id)
         reason_log = ReviewActionReasonLog.objects.create(
             activity_log=activity_log,

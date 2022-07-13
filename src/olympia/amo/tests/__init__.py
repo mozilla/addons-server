@@ -561,12 +561,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def days_ago(self, days):
         return days_ago(days)
 
-    def login(self, profile):
-        email = getattr(profile, 'email', profile)
-        if '@' not in email:
-            email += '@mozilla.com'
-        assert self.client.login(email=email)
-
     def enable_messages(self, request):
         setattr(request, 'session', {})
         messages = FallbackStorage(request)

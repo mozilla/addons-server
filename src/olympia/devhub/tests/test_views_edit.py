@@ -40,7 +40,7 @@ class BaseTestEdit(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
 
         addon = self.get_addon()
         self.tags = ['tag3', 'tag2', 'tag1']
@@ -158,7 +158,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert html.strip() == '<b>oh my</b>'
 
     def test_edit_as_developer(self):
-        self.login('regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         data = self.get_dict()
         response = self.client.post(self.describe_edit_url, data)
         # Make sure we get errors when they are just regular users.
@@ -599,7 +599,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         )
 
     def test_nav_links_admin(self):
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
         response = self.client.get(self.url)
         doc = pq(response.content)('#edit-addon-nav')
         links = doc('ul:last').find('li a')
@@ -1638,7 +1638,7 @@ class TestStatsLinkInSidePanel(TestCase):
         self.user = user_factory()
         self.addon = addon_factory(users=[self.user])
         self.url = reverse('devhub.addons.edit', args=[self.addon.slug])
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
 
     def test_link_to_stats(self):
         response = self.client.get(self.url)

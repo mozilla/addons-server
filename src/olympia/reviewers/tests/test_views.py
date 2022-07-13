@@ -92,7 +92,7 @@ EMPTY_PNG = (
 class TestRedirectsOldPaths(TestCase):
     def setUp(self):
         user = user_factory()
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
     def test_redirect_old_queue(self):
         response = self.client.get('/en-US/editors/queue/new')
@@ -107,10 +107,10 @@ class ReviewerTest(TestCase):
     fixtures = ['base/users', 'base/approvals']
 
     def login_as_admin(self):
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
 
     def login_as_reviewer(self):
-        assert self.client.login(email='reviewer@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
 
     def make_review(self, username='a'):
         u = UserProfile.objects.create(username=username)
@@ -123,7 +123,7 @@ class TestRatingsModerationLog(ReviewerTest):
         super().setUp()
         user = user_factory()
         self.grant_permission(user, 'Ratings:Moderate')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.url = reverse('reviewers.ratings_moderation_log')
         core.set_user(user)
 
@@ -578,7 +578,7 @@ class TestDashboard(TestCase):
     def setUp(self):
         self.url = reverse('reviewers.dashboard')
         self.user = user_factory()
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
 
     def test_old_temporary_url_redirect(self):
         response = self.client.get('/en-US/reviewers/dashboard')
@@ -1268,13 +1268,15 @@ class TestQueueBasics(QueueTest):
 
         # Regular user doesn't have access.
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 403
 
         # Theme reviewer doesn't have access either.
         self.client.logout()
-        assert self.client.login(email='theme_reviewer@mozilla.com')
+        self.client.force_login(
+            UserProfile.objects.get(email='theme_reviewer@mozilla.com')
+        )
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -2116,7 +2118,7 @@ class TestUnlistedPendingManualApproval(QueueTest):
             self._test_results()
 
     def test_results_admin_reviewer(self):
-        self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
         # Add back the add-on set as needing an admin code review to the
         # expected list since we are now an admin reviewer.
         self.expected_addons.append(self.reserved_addon)
@@ -2140,7 +2142,7 @@ class TestUnlistedPendingManualApproval(QueueTest):
 
         # Regular user doesn't have access.
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -2154,7 +2156,7 @@ class TestAutoApprovedQueue(QueueTest):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.user.groupuser_set.all().delete()  # Remove all permissions
         self.grant_permission(user, 'Addons:Review')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
     def get_addon_latest_version(self, addon):
         """Method used by _test_results() to fetch the version that the queue
@@ -2260,7 +2262,7 @@ class TestAutoApprovedQueue(QueueTest):
 
         # Regular user doesn't have access.
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -2330,7 +2332,7 @@ class TestContentReviewQueue(QueueTest):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.user.groupuser_set.all().delete()  # Remove all permissions
         self.grant_permission(user, 'Addons:ContentReview')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         return user
 
     def get_addon_latest_version(self, addon):
@@ -2442,7 +2444,7 @@ class TestContentReviewQueue(QueueTest):
 
         # Regular user doesn't have access.
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -2603,7 +2605,7 @@ class TestScannersReviewQueue(QueueTest):
 
         # Regular user doesn't have access.
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -4472,14 +4474,14 @@ class TestReview(ReviewBase):
 
         # Admin reviewer: able to download sources.
         user = UserProfile.objects.get(email='admin@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
         assert b'Download files' in response.content
 
         # Standard reviewer: should know that sources were provided.
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
         assert b'The developer has provided source code.' in response.content
@@ -5414,7 +5416,7 @@ class TestReview(ReviewBase):
         unlisted_viewer = user_factory(email='unlisted_viewer@mozilla.com')
         self.grant_permission(unlisted_viewer, 'ReviewerTools:ViewUnlisted')
         self.client.logout()
-        self.client.login(email='unlisted_viewer@mozilla.com')
+        self.client.force_login(unlisted_viewer)
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
 
@@ -6043,7 +6045,9 @@ class TestWhiteboard(ReviewBase):
         public_whiteboard_info = 'Public whiteboard info.'
         private_whiteboard_info = 'Private whiteboard info.'
         url = reverse('reviewers.whiteboard', args=['listed', self.addon.pk])
-        self.client.login(email='regular@mozilla.com')  # No permissions.
+        self.client.force_login(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )  # No permissions.
         response = self.client.post(
             url,
             {
@@ -6073,7 +6077,9 @@ class TestWhiteboard(ReviewBase):
         public_whiteboard_info = 'Public whiteboard info for content.'
         private_whiteboard_info = 'Private whiteboard info for content.'
         url = reverse('reviewers.whiteboard', args=['content', self.addon.pk])
-        self.client.login(email='regular@mozilla.com')  # No permissions.
+        self.client.force_login(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )  # No permissions.
         response = self.client.post(
             url,
             {
@@ -6124,7 +6130,9 @@ class TestWhiteboard(ReviewBase):
         private_whiteboard_info = 'Private whiteboard info unlisted.'
         url = reverse('reviewers.whiteboard', args=['unlisted', self.addon.pk])
 
-        self.client.login(email='regular@mozilla.com')  # No permissions.
+        self.client.force_login(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )  # No permissions.
         response = self.client.post(
             url,
             {
@@ -6336,7 +6344,7 @@ class TestPolicyView(ReviewerTest):
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.eula_url + '?channel=unlisted')
         assert response.status_code == 200
         self.assertContains(response, 'Eulá!')
@@ -6374,7 +6382,7 @@ class TestPolicyView(ReviewerTest):
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.privacy_url + '?channel=unlisted')
         assert response.status_code == 200
         self.assertContains(response, 'Prívacy Pólicy?')
@@ -8289,7 +8297,7 @@ class TestDownloadGitFileView(TestCase):
     def test_download_basic(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         url = reverse(
             'reviewers.download_git_file',
@@ -8308,7 +8316,7 @@ class TestDownloadGitFileView(TestCase):
     def test_download_respects_csp(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         url = reverse(
             'reviewers.download_git_file',
@@ -8349,7 +8357,7 @@ class TestDownloadGitFileView(TestCase):
 
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         url = reverse(
             'reviewers.download_git_file',
@@ -8366,7 +8374,7 @@ class TestDownloadGitFileView(TestCase):
     def test_download_notfound(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         url = reverse(
             'reviewers.download_git_file',
@@ -8392,27 +8400,27 @@ class TestDownloadGitFileView(TestCase):
     def test_disabled_version_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
     def test_disabled_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_success()
 
     def test_disabled_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
 
         url = reverse(
@@ -8426,7 +8434,7 @@ class TestDownloadGitFileView(TestCase):
     def test_unlisted_version_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         url = reverse(
@@ -8440,34 +8448,34 @@ class TestDownloadGitFileView(TestCase):
     def test_unlisted_version_unlisted_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
     def test_unlisted_version_unlisted_viewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
     def test_unlisted_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self._test_url_success()
 
     def test_unlisted_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
 
         url = reverse(
@@ -8561,7 +8569,7 @@ class TestThemeBackgroundImages(ReviewBase):
 
     def test_not_reviewer(self):
         user_factory(email='irregular@mozilla.com')
-        assert self.client.login(email='irregular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='irregular@mozilla.com'))
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 403
 
@@ -8796,7 +8804,7 @@ class TestMadQueue(QueueTest):
 
         # Regular user doesn't have access.
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 403
 

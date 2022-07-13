@@ -13,7 +13,7 @@ class TestFileAdmin(TestCase):
         file_ = addon.current_version.file
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert str(file_.pk) in force_str(response.content)
@@ -24,7 +24,7 @@ class TestFileAdmin(TestCase):
         detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
         assert str(file_.id) in force_str(response.content)
@@ -47,7 +47,7 @@ class TestFileAdmin(TestCase):
 
     def test_can_not_list_without_admin_advanced_permission(self):
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
 
@@ -63,7 +63,7 @@ class TestFileAdmin(TestCase):
         detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
 

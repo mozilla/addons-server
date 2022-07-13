@@ -37,7 +37,7 @@ class TestVersion(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.addon = self.get_addon()
         self.version = Version.objects.get(id=81551)
@@ -398,7 +398,7 @@ class TestVersion(TestCase):
     def test_non_owner_cant_disable_addon(self):
         self.addon.update(disabled_by_user=False)
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.post(self.disable_url)
         assert response.status_code == 403
         assert not Addon.objects.get(id=3615).disabled_by_user
@@ -406,7 +406,7 @@ class TestVersion(TestCase):
     def test_non_owner_cant_enable_addon(self):
         self.addon.update(disabled_by_user=False)
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.enable_url)
         assert response.status_code == 403
         assert not Addon.objects.get(id=3615).disabled_by_user
@@ -415,7 +415,7 @@ class TestVersion(TestCase):
         """A non-owner can't use the radio buttons."""
         self.addon.update(disabled_by_user=False)
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -742,7 +742,7 @@ class TestVersionEditBase(TestCase):
     def setUp(self):
         super().setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         self.addon = self.get_addon()
         self.version = self.get_version()
         self.url = reverse('devhub.versions.edit', args=['a3615', self.version.id])

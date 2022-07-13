@@ -28,7 +28,7 @@ class TestUploadValidation(ValidatorTestCase, UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        assert self.client.login(email=self.user.email)
+        assert self.client.force_login(self.user)
         self.validation = {
             'errors': 1,
             'detected_type': 'extension',
@@ -151,7 +151,7 @@ class TestUploadErrors(UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
 
     @mock.patch.object(waffle, 'flag_is_active')
     def test_dupe_uuid(self, flag_is_active):
@@ -208,7 +208,7 @@ class TestFileValidation(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
@@ -239,27 +239,27 @@ class TestFileValidation(TestCase):
 
     def test_only_dev_can_see_results(self):
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         assert self.client.head(self.url, follow=False).status_code == 403
 
     def test_only_dev_can_see_json_results(self):
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         assert self.client.head(self.json_url, follow=False).status_code == 403
 
     def test_reviewer_can_see_results(self):
         self.client.logout()
-        assert self.client.login(email='reviewer@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
         assert self.client.head(self.url, follow=False).status_code == 200
 
     def test_reviewer_can_see_json_results(self):
         self.client.logout()
-        assert self.client.login(email='reviewer@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
         assert self.client.head(self.json_url, follow=False).status_code == 200
 
     def test_reviewer_tools_view_can_see_results(self):
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.grant_permission(
             UserProfile.objects.get(email='regular@mozilla.com'), 'ReviewerTools:View'
         )
@@ -267,7 +267,7 @@ class TestFileValidation(TestCase):
 
     def test_reviewer_tools_view_can_see_json_results(self):
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.grant_permission(
             UserProfile.objects.get(email='regular@mozilla.com'), 'ReviewerTools:View'
         )
@@ -277,7 +277,7 @@ class TestFileValidation(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         assert self.addon.should_redirect_to_submit_flow()
         self.client.logout()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.grant_permission(
             UserProfile.objects.get(email='regular@mozilla.com'), 'ReviewerTools:View'
         )
@@ -287,7 +287,7 @@ class TestFileValidation(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         assert self.addon.should_redirect_to_submit_flow()
         self.client.logout()
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
         assert self.client.head(self.json_url, follow=False).status_code == 200
 
     def test_reviewer_cannot_see_files_not_validated(self):
@@ -296,7 +296,7 @@ class TestFileValidation(TestCase):
             'devhub.json_file_validation', args=[self.addon.slug, file_not_validated.id]
         )
         self.client.logout()
-        assert self.client.login(email='reviewer@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
         assert self.client.head(json_url, follow=False).status_code == 404
 
     def test_developer_cant_see_results_from_other_addon(self):
@@ -377,7 +377,7 @@ class TestFileValidation(TestCase):
 
     def test_reviewers_can_see_json_results_for_deleted_addon(self):
         self.client.logout()
-        assert self.client.login(email='reviewer@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
         self.grant_permission(
             UserProfile.objects.get(email='reviewer@mozilla.com'),
             'Addons:ReviewUnlisted',
@@ -393,7 +393,9 @@ class TestFileValidation(TestCase):
         unlisted_viewer = user_factory(email='unlisted_viewer@mozilla.com')
         self.grant_permission(unlisted_viewer, 'ReviewerTools:ViewUnlisted')
         self.client.logout()
-        self.client.login(email='unlisted_viewer@mozilla.com')
+        self.client.force_login(
+            UserProfile.objects.get(email='unlisted_viewer@mozilla.com')
+        )
 
         self.addon.versions.all()[0].update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.delete()
@@ -408,7 +410,7 @@ class TestValidateAddon(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
 
     def test_login_required(self):
         self.client.logout()
@@ -485,7 +487,7 @@ class TestUploadURLs(TestCase):
     def setUp(self):
         super().setUp()
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
 
         self.addon = Addon.objects.create(
             guid='thing@stuff', slug='thing-stuff', status=amo.STATUS_APPROVED

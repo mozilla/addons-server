@@ -17,7 +17,7 @@ class TestHomeAndIndex(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
 
     def test_get_home(self):
         url = reverse('admin:index')
@@ -42,13 +42,13 @@ class TestHomeAndIndex(TestCase):
 
         # Redirected when logged in without enough permissions.
         user = user_factory(username='staffperson', email='staffperson@m.c')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(url)
         self.assert3xx(response, '/en-US/admin/models/login/?next=/en-US/admin/models/')
 
         # Can access with a "is_staff" user.
         user.update(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -74,7 +74,7 @@ class TestHomeAndIndex(TestCase):
 
         # But if logged in and not enough permissions return a 403.
         user = user_factory(username='staffperson', email='staffperson@m.c')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(url)
         assert response.status_code == 403
 
@@ -96,7 +96,7 @@ class TestHomeAndIndex(TestCase):
 
         # Same with an "is_staff" user.
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(url)
         self.assert3xx(response, '/en-US/admin/models/addon/')
 
@@ -112,7 +112,7 @@ class TestRecalculateHash(TestCase):
     def setUp(self):
         super().setUp()
         self.addon = Addon.objects.get(pk=3615)
-        self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
 
     def test_regenerate_hash(self):
         file = version_factory(
@@ -151,7 +151,7 @@ class TestPerms(TestCase):
 
     def test_admin_user(self):
         # Admin should see views with Django's perm decorator and our own.
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
         self.assert_status('admin:index', 200, follow=True)
 
     def test_staff_user(self):
@@ -159,12 +159,12 @@ class TestPerms(TestCase):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         group = Group.objects.create(name='Staff', rules='Admin:*')
         GroupUser.objects.create(group=group, user=user)
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.assert_status('admin:index', 200, follow=True)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
-        assert self.client.login(email='clouserw@gmail.com')
+        self.client.force_login(UserProfile.objects.get(email='clouserw@gmail.com'))
         self.assert_status('admin:index', 403, follow=True)
         # Anonymous users should get a login redirect.
         self.client.logout()

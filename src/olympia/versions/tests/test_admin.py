@@ -13,7 +13,7 @@ class TestVersionAdmin(TestCase):
         detail_url = reverse('admin:versions_version_change', args=(version.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
 
@@ -25,7 +25,7 @@ class TestVersionAdmin(TestCase):
         version = addon.current_version
         detail_url = reverse('admin:versions_version_change', args=(version.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 403
 
@@ -50,7 +50,7 @@ class TestInstallOriginAdmin(TestCase):
         list_url = reverse('admin:versions_installorigin_changelist')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         with self.assertNumQueries(7):
             # - 2 SAVEPOINTs
             # - 2 user & groups
@@ -92,7 +92,7 @@ class TestInstallOriginAdmin(TestCase):
         add_url = reverse('admin:versions_installorigin_add')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 403
 
@@ -107,7 +107,7 @@ class TestInstallOriginAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(delete_url, follow=True)
         assert response.status_code == 403
 
@@ -122,7 +122,7 @@ class TestInstallOriginAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)

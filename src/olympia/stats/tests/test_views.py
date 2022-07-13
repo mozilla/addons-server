@@ -75,11 +75,13 @@ class StatsTestCase(TestCase):
 
     def login_as_admin(self):
         self.client.logout()
-        self.client.login(email='jbalogh@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='jbalogh@mozilla.com'))
 
     def login_as_visitor(self):
         self.client.logout()
-        self.client.login(email='nobodyspecial@mozilla.com')
+        self.client.force_login(
+            UserProfile.objects.get(email='nobodyspecial@mozilla.com')
+        )
 
     def get_view_response(self, view, **kwargs):
         view_args = self.url_args.copy()
@@ -137,7 +139,7 @@ class TestUnlistedAddons(StatsTestCase):
 
     def test_stats_available_for_authors(self):
         self.client.logout()
-        self.client.login(email=self.author.email)
+        self.client.force_login(self.author)
         self._check_it(self.public_views_gen(format='json'), 200)
 
 
@@ -152,7 +154,7 @@ class TestListedAddons(StatsTestCase):
         self.client.logout()
         self._check_it(self.public_views_gen(format='json'), 403)
 
-        self.client.login(email=self.someuser.email)
+        self.client.force_login(self.someuser)
         self._check_it(self.public_views_gen(format='json'), 200)
 
     def test_stats_for_mozilla_disabled_addon(self):
@@ -165,7 +167,7 @@ class TestListedAddons(StatsTestCase):
         self._check_it(self.public_views_gen(format='json'), 404)
 
         # Developers should not see stats
-        self.client.login(email=self.someuser.email)
+        self.client.force_login(self.someuser)
         self._check_it(self.public_views_gen(format='json'), 404)
 
         # Admins should see stats
@@ -180,7 +182,7 @@ class TestListedAddons(StatsTestCase):
         self._check_it(self.public_views_gen(format='json'), 403)
 
         # Developers should see stats
-        self.client.login(email=self.someuser.email)
+        self.client.force_login(self.someuser)
         self._check_it(self.public_views_gen(format='json'), 200)
 
         # Admins should see stats
@@ -197,7 +199,7 @@ class TestListedAddons(StatsTestCase):
         self._check_it(self.public_views_gen(format='json'), 404)
 
         # Developers should not see stats
-        self.client.login(email=self.someuser.email)
+        self.client.force_login(self.someuser)
         self._check_it(self.public_views_gen(format='json'), 404)
 
         # Admins should see stats
@@ -985,7 +987,7 @@ class TestStatsWithBigQuery(TestCase):
             self.end_date.strftime('%Y%m%d'),
             'json',
         ]
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
 
     def test_overview_shows_link_to_stats_by_country(self):
         url = reverse('stats.overview', args=[self.addon.slug])
@@ -1160,7 +1162,7 @@ class TestStatsWithBigQuery(TestCase):
         # Login as privileged user to be able to access the stats for a deleted add-on.
         self.client.logout()
         self.grant_permission(self.user, '*:*')
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
 
         response = self.client.get(url)
 

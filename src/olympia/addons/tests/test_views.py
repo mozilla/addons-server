@@ -4286,7 +4286,7 @@ class TestAddonSearchView(ESTestCase):
     def test_with_session_cookie(self):
         # Session cookie should be ignored, therefore a request with it should
         # not cause more database queries.
-        self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         data = self.perform_search(self.url)
         assert data['count'] == 0
         assert len(data['results']) == 0
