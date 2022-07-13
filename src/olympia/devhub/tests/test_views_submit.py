@@ -62,8 +62,8 @@ class TestSubmitBase(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='del@icio.us')
         self.user = UserProfile.objects.get(email='del@icio.us')
+        self.client.force_login(self.user)
         self.user.update(last_login_ip='192.168.1.1')
         self.addon = self.get_addon()
 
@@ -374,7 +374,7 @@ class TestAddonSubmitDistribution(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.user.update(last_login_ip='192.168.1.1')
 
@@ -452,7 +452,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.user.update(last_login_ip='192.168.1.1')
         self.client.post(reverse('devhub.submit.agreement'))
@@ -1985,7 +1985,7 @@ class VersionSubmitUploadMixin:
         self.version = self.addon.current_version
         self.addon.update(guid='@webextension-guid')
         self.user = UserProfile.objects.get(email='del@icio.us')
-        assert self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         self.user.update(last_login_ip='192.168.1.1')
         self.addon.versions.update(channel=self.channel)
         channel = 'listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted'

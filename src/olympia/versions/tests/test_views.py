@@ -203,8 +203,8 @@ class TestDownloadsBase(TestCase):
         assert response['Access-Control-Allow-Origin'] == '*'
         return response
 
-    def login(self, **kwargs):
-        return self.client.login(**kwargs)
+    def login(self, user):
+        return self.client.force_login(user)
 
 
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
@@ -412,12 +412,12 @@ class NonPublicFileDownloadsMixin:
 
     def test_file_disabled_unprivileged_404(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        assert self.login(email='regular@mozilla.com')
+        self.login(UserProfile.objects.get(email='regular@mozilla.com'))
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_ok_for_author(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        assert self.login(email='g@gmail.com')
+        self.login(UserProfile.objects.get(email='g@gmail.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -430,7 +430,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_file_disabled_ok_for_reviewer(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.login(email='reviewer@mozilla.com')
+        self.login(UserProfile.objects.get(email='reviewer@mozilla.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -443,7 +443,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_file_disabled_ok_for_admin(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        self.login(email='admin@mozilla.com')
+        self.login(UserProfile.objects.get(email='admin@mozilla.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -456,7 +456,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_ok_for_author(self):
         # Addon should be disabled or the version unlisted at this point.
-        assert self.login(email='g@gmail.com')
+        self.login(UserProfile.objects.get(email='g@gmail.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -469,7 +469,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_ok_for_admin(self):
         # Addon should be disabled or the version unlisted at this point.
-        self.login(email='admin@mozilla.com')
+        self.login(UserProfile.objects.get(email='admin@mozilla.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -482,7 +482,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_user_disabled_ok_for_author(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
-        assert self.login(email='g@gmail.com')
+        self.login(UserProfile.objects.get(email='g@gmail.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -495,7 +495,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_user_disabled_ok_for_admin(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
-        self.login(email='admin@mozilla.com')
+        self.login(UserProfile.objects.get(email='admin@mozilla.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -509,7 +509,7 @@ class NonPublicFileDownloadsMixin:
 
 class DownloadsNonDisabledMixin:
     def test_ok_for_author(self):
-        assert self.login(email='g@gmail.com')
+        self.login(UserProfile.objects.get(email='g@gmail.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -521,7 +521,7 @@ class DownloadsNonDisabledMixin:
         )
 
     def test_ok_for_admin(self):
-        self.login(email='admin@mozilla.com')
+        self.login(UserProfile.objects.get(email='admin@mozilla.com'))
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
         url = reverse(
@@ -534,9 +534,8 @@ class DownloadsNonDisabledMixin:
 
 
 class APILoginMixin:
-    def login(self, **kwargs):
+    def login(self, user):
         try:
-            user = UserProfile.objects.get(**kwargs)
             user.update(read_dev_agreement=self.days_ago(0))
             self.client.login_api(user)
         except UserProfile.DoesNotExist:
@@ -638,17 +637,17 @@ class TestUnlistedDisabledAndDeletedFileDownloads(TestDisabledFileDownloads):
 
     def test_user_disabled_ok_for_author(self):
         self.addon.update(disabled_by_user=True)
-        assert self.login(email='g@gmail.com')
+        self.login(UserProfile.objects.get(email='g@gmail.com'))
         assert self.client.get(self.file_url).status_code == 404
 
     def test_ok_for_author(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert self.login(email='g@gmail.com')
+        self.login(UserProfile.objects.get(email='g@gmail.com'))
         assert self.client.get(self.file_url).status_code == 404
 
     def test_file_disabled_ok_for_author(self):
         self.file.update(status=amo.STATUS_DISABLED)
-        assert self.login(email='g@gmail.com')
+        self.login(UserProfile.objects.get(email='g@gmail.com'))
         assert self.client.get(self.file_url).status_code == 404
 
 
@@ -700,7 +699,7 @@ class TestDownloadsAPIAuthFailure(APILoginMixin, TestDownloadsBase):
         self.client = TestClientClass()
         authenticate_mock.side_effect = drf_exceptions.AuthenticationFailed
 
-        assert self.login(email='g@gmail.com')
+        self.login(UserProfile.objects.get(email='g@gmail.com'))
 
         response = self.client.get(self.file_url)
         assert response.status_code == 401
@@ -879,7 +878,7 @@ class TestDownloadSource(TestCase):
         self.url = reverse('downloads.source', args=(self.version.pk,))
 
     def test_owner_should_be_allowed(self):
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
@@ -898,13 +897,13 @@ class TestDownloadSource(TestCase):
     def test_deleted_version(self):
         self.version.delete()
         GroupUser.objects.create(user=self.user, group=self.group)
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 404
 
     def test_group_binarysource_should_be_allowed(self):
         GroupUser.objects.create(user=self.user, group=self.group)
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
@@ -962,7 +961,7 @@ class TestDownloadSource(TestCase):
         """File downloading is allowed for admins."""
         self.grant_permission(self.user, 'Reviews:Admin')
         self.addon.authors.clear()
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         assert self.client.get(self.url).status_code == 200
 
         # Even unlisted.

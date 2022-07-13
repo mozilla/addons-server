@@ -49,7 +49,7 @@ class Test403(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='clouserw@gmail.com')
+        self.client.force_login(UserProfile.objects.get(email='clouserw@gmail.com'))
 
     def test_403_no_app(self):
         response = self.client.get('/en-US/admin/', follow=True)
@@ -112,7 +112,7 @@ class Test500(TestCase):
     def test_500_renders_correctly_with_no_queries_or_auth_even_when_logged_in(self):
         # Being logged in shouldn't matter for the 500 page.
         user = user_factory()
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         content = self.test_500_renders_correctly_with_no_queries_or_auth()
         assert user.email not in content
 
@@ -147,14 +147,8 @@ class TestCommon(TestCase):
         super().setUp()
         self.url = reverse('apps.appversions')
 
-    def login(self, user=None, get=False):
-        email = '%s@mozilla.com' % user
-        super().login(email)
-        if get:
-            return UserProfile.objects.get(email=email)
-
     def test_tools_regular_user(self):
-        self.login('regular')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url, follow=True)
         assert not response.context['request'].user.is_developer
 
@@ -169,7 +163,8 @@ class TestCommon(TestCase):
 
     def test_tools_developer(self):
         # Make them a developer.
-        user = self.login('regular', get=True)
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.force_login(user)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
         group = Group.objects.create(name='Staff', rules='Admin:Advanced')
@@ -189,7 +184,8 @@ class TestCommon(TestCase):
         check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_reviewer(self):
-        self.login('reviewer')
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.client.force_login(user)
         response = self.client.get(self.url, follow=True)
         request = response.context['request']
         assert not request.user.is_developer
@@ -207,7 +203,8 @@ class TestCommon(TestCase):
 
     def test_tools_developer_and_reviewer(self):
         # Make them a developer.
-        user = self.login('reviewer', get=True)
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.client.force_login(user)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
         response = self.client.get(self.url, follow=True)
@@ -227,7 +224,8 @@ class TestCommon(TestCase):
         check_links(expected, pq(response.content)('#aux-nav .tools a'), verify=False)
 
     def test_tools_admin(self):
-        self.login('admin')
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        self.client.force_login(user)
         response = self.client.get(self.url, follow=True)
         assert response.status_code == 200
         request = response.context['request']
@@ -249,7 +247,8 @@ class TestCommon(TestCase):
 
     def test_tools_developer_and_admin(self):
         # Make them a developer.
-        user = self.login('admin', get=True)
+        user = UserProfile.objects.get(email='admin@mozilla.com')
+        self.client.force_login(user)
         AddonUser.objects.create(user=user, addon=Addon.objects.all()[0])
 
         response = self.client.get(self.url, follow=True)

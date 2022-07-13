@@ -23,7 +23,7 @@ class TestOwnership(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.url = self.addon.get_dev_url('owner')
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
 
     def build_form_data(self, data):
         """Build dict containing data that would be submitted by clients."""
@@ -721,7 +721,7 @@ class TestEditAuthor(TestOwnership):
             listed=True,
             position=1,
         )
-        self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -738,7 +738,7 @@ class TestEditAuthor(TestOwnership):
             role=amo.AUTHOR_ROLE_OWNER,
             listed=True,
         )
-        self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         data = self.build_form_data({})
         response = self.client.post(self.url, data, follow=True)
         assert response.status_code == 403
@@ -831,7 +831,7 @@ class TestAuthorInvitation(TestCase):
             addon=self.addon, user=self.user, role=amo.AUTHOR_ROLE_OWNER, listed=True
         )
         self.url = reverse('devhub.addons.invitation', args=(self.addon.slug,))
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
 
     def test_non_existent_addon(self):
         self.url = reverse('devhub.addons.invitation', args=('nopenopenope',))

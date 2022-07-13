@@ -32,7 +32,7 @@ class TestLogin(UserViewBase):
         This is just here to make sure Test Client's login() works with
         our custom code.
         """
-        assert self.client.login(email='jbalogh@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='jbalogh@mozilla.com'))
 
     def test_login_link(self):
         r = self.client.get(reverse('apps.appversions'))
@@ -52,7 +52,7 @@ class TestSessionLength(UserViewBase):
         expire at browser session end. See:
         https://github.com/mozilla/addons-server/issues/1789
         """
-        self.client.login(email='jbalogh@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='jbalogh@mozilla.com'))
         r = self.client.get('/developers/', follow=True)
         cookie = r.cookies[settings.SESSION_COOKIE_NAME]
 

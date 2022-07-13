@@ -57,7 +57,7 @@ class HubTest(TestCase):
     def setUp(self):
         super().setUp()
         self.url = reverse('devhub.index')
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         assert self.client.get(self.url).status_code == 200
         self.user_profile = UserProfile.objects.get(id=999)
         not_their_addon = addon_factory(users=[user_factory()])
@@ -278,7 +278,7 @@ class TestUpdateCompatibility(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.url = reverse('devhub.addons')
 
         # These aren't realistic but work with existing tests and the 3615 addon
@@ -294,7 +294,7 @@ class TestUpdateCompatibility(TestCase):
         addon = Addon.objects.get(pk=3615)
         addon.update(type=amo.ADDON_DICT)
         self.client.logout()
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert not doc('.item[data-addonid="3615"] li.compat')
@@ -364,7 +364,7 @@ class TestDevRequired(TestCase):
         self.edit_page_url = self.addon.get_dev_url('edit')
         self.get_url = self.addon.get_dev_url('versions')
         self.delete_url = self.addon.get_dev_url('delete')
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.au = self.addon.addonuser_set.get(user__email='del@icio.us')
         assert self.au.role == amo.AUTHOR_ROLE_OWNER
 
@@ -410,7 +410,7 @@ class TestDevRequired(TestCase):
 
     def test_disabled_post_admin(self):
         self.addon.update(status=amo.STATUS_DISABLED)
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
         response = self.client.get(self.get_url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -423,7 +423,7 @@ class TestVersionStats(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
 
     def test_counts(self):
         addon = Addon.objects.get(id=3615)
@@ -451,7 +451,7 @@ class TestDelete(TestCase):
     def setUp(self):
         super().setUp()
         self.get_addon = lambda: Addon.objects.filter(id=3615)
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.get_url = lambda: self.get_addon()[0].get_dev_url('delete')
 
@@ -529,7 +529,7 @@ class TestHome(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.url = reverse('devhub.index')
         self.addon = Addon.objects.get(pk=3615)
 
@@ -558,7 +558,7 @@ class TestHome(TestCase):
         assert b'My Add-ons' in response.content
 
     def test_my_addons_addon_versions_link(self):
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
 
         doc = self.get_pq()
         addon_list = doc('.DevHub-MyAddons-list')
@@ -668,7 +668,7 @@ class TestActivityFeed(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.versions.first()
         self.action_user = UserProfile.objects.get(email='reviewer@mozilla.com')
@@ -787,7 +787,7 @@ class TestDeveloperAgreement(TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
 
@@ -957,7 +957,7 @@ class TestAPIKeyPage(TestCase):
     def setUp(self):
         super().setUp()
         self.url = reverse('devhub.api_key')
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
 
@@ -1212,7 +1212,7 @@ class TestUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.url = reverse('devhub.upload')
         self.image_path = get_image_path('animated.png')
 
@@ -1236,7 +1236,7 @@ class TestUpload(UploadMixin, TestCase):
 
     def test_fileupload_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         self.post(REMOTE_ADDR='4.8.15.16.23.42')
         upload = FileUpload.objects.get()
         assert upload.user == user
@@ -1300,7 +1300,7 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
 
     @classmethod
     def create_appversion(cls, application_name, version):
@@ -1384,7 +1384,7 @@ class TestUploadDetail(UploadMixin, TestCase):
         addon.addonuser_set.create(user=user)
         self.post()
         upload = FileUpload.objects.get()
-        self.client.login(email=user_factory().email)
+        self.client.force_login(user_factory())
 
         response = self.client.get(
             reverse(
@@ -1445,7 +1445,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     def test_wrong_user(self):
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
-        self.client.login(email=user_factory().email)
+        self.client.force_login(user_factory())
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex])
         )
@@ -1563,7 +1563,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     ):
         user = user_factory()
         self.grant_permission(user, 'SystemAddon:Submit')
-        assert self.client.login(email=user.email)
+        self.client.force_login(user)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid_signed.xpi')
         upload = FileUpload.objects.get()
@@ -1579,7 +1579,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     ):
         user = user_factory()
         self.grant_permission(user, 'SystemAddon:Submit')
-        assert self.client.login(email=user.email)
+        self.client.force_login(user)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
@@ -1602,7 +1602,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_restricted_guid_addon_not_allowed(self, run_addons_linter_mock):
         user = user_factory()
-        assert self.client.login(email=user.email)
+        self.client.force_login(user)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
@@ -1625,7 +1625,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_allowed(self, get_signer_mock, run_addons_linter_mock):
         user = user_factory()
-        assert self.client.login(email=user.email)
+        self.client.force_login(user)
         self.grant_permission(user, 'SystemAddon:Submit')
         run_addons_linter_mock.return_value = self.validation_ok()
         get_signer_mock.return_value = 'Mozilla Extensions'
@@ -1642,7 +1642,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_not_allowed_not_allowed(self, get_signer_mock):
         user_factory(email='redpanda@mozilla.com')
-        assert self.client.login(email='redpanda@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='redpanda@mozilla.com'))
         get_signer_mock.return_value = 'Mozilla Extensions'
         self.upload_file(
             '../../../files/fixtures/files/webextension_signed_already.xpi'
@@ -1667,7 +1667,7 @@ class TestUploadDetail(UploadMixin, TestCase):
         user = user_factory(email='pinkpanda@notzilla.com')
         addon = addon_factory(guid='systemaddon@mozilla.org')
         AddonUser.objects.create(addon=addon, user=user)
-        assert self.client.login(email='pinkpanda@notzilla.com')
+        self.client.force_login(UserProfile.objects.get(email='pinkpanda@notzilla.com'))
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
         upload = FileUpload.objects.get()
@@ -1718,7 +1718,7 @@ class TestVersionXSS(TestCase):
     def setUp(self):
         super().setUp()
         self.version = Addon.objects.get(id=3615).current_version
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
 
     def test_unique_version_num(self):
         # Can't use a "/" to close the tag, as we're doing a get_url_path on
@@ -1738,7 +1738,7 @@ class TestDeleteAddon(TestCase):
         super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_dev_url('delete')
-        self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
 
     def test_bad_password(self):
         response = self.client.post(self.url, {'slug': 'nope'})
@@ -1766,7 +1766,7 @@ class TestRequestReview(TestCase):
         )
         self.redirect_url = self.addon.get_dev_url('versions')
         self.public_url = reverse('devhub.request-review', args=[self.addon.slug])
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
 
     def get_addon(self):
         return Addon.objects.get(id=self.addon.id)
@@ -1807,7 +1807,7 @@ class TestRedirects(TestCase):
     def setUp(self):
         super().setUp()
         self.base = reverse('devhub.index')
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
         self.user = UserProfile.objects.get(email='admin@mozilla.com')
         self.user.update(last_login_ip='192.168.1.1')
 
@@ -1854,7 +1854,7 @@ class TestHasCompleteMetadataRedirects(TestCase):
         assert self.addon.has_complete_metadata(), self.addon.get_required_metadata()
         assert not self.addon.should_redirect_to_submit_flow()
         # We need to be logged in for any redirection into real views.
-        assert self.client.login(email='admin@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
 
     def _test_redirect(self):
         func = dev_required(self.f)
@@ -1918,7 +1918,7 @@ class TestRemoveLocale(TestCase):
         super().setUp()
         self.addon = Addon.objects.get(id=3615)
         self.url = reverse('devhub.addons.remove-locale', args=['a3615'])
-        assert self.client.login(email='del@icio.us')
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
 
     def test_bad_request(self):
         response = self.client.post(self.url)
@@ -2000,7 +2000,7 @@ def test_get_next_version_number():
 class TestThemeBackgroundImage(TestCase):
     def setUp(self):
         user = user_factory(email='regular@mozilla.com')
-        assert self.client.login(email='regular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.addon = addon_factory(
             users=[user],
             type=amo.ADDON_STATICTHEME,
@@ -2017,7 +2017,7 @@ class TestThemeBackgroundImage(TestCase):
 
     def test_wrong_user(self):
         user_factory(email='irregular@mozilla.com')
-        assert self.client.login(email='irregular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='irregular@mozilla.com'))
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 403
 
@@ -2041,7 +2041,7 @@ class TestThemeBackgroundImage(TestCase):
 class TestLogout(UserViewBase):
     def test_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         assert user.auth_id
         response = self.client.get(reverse('devhub.index'), follow=True)
         assert pq(response.content)('li a.avatar').attr('href') == (user.get_url_path())
@@ -2055,7 +2055,7 @@ class TestLogout(UserViewBase):
         assert not user.auth_id
 
     def test_redirect(self):
-        self.client.login(email='jbalogh@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='jbalogh@mozilla.com'))
         self.client.get(reverse('devhub.index'), follow=True)
         # Just picking a random target URL that works without auth and won't redirect
         # itself.
@@ -2073,7 +2073,7 @@ class TestLogout(UserViewBase):
         self.assert3xx(response, '/__version__', status_code=302)
 
     def test_session_cookie_deleted_on_logout(self):
-        self.client.login(email='jbalogh@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='jbalogh@mozilla.com'))
         response = self.client.get(reverse('devhub.logout'))
         cookie = response.cookies[settings.SESSION_COOKIE_NAME]
         cookie_date_string = 'Thu, 01 Jan 1970 00:00:00 GMT'
@@ -2089,7 +2089,7 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
         self.user = user_factory()
         self.addon = addon_factory(users=[self.user])
         self.url = reverse('devhub.addons')
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
 
     def test_link_to_stats(self):
         response = self.client.get(self.url)
@@ -2150,7 +2150,7 @@ class TestSitePermissionGenerator(TestCase):
     def setUp(self):
         self.url = reverse('devhub.site_permission_generator')
         self.user = user_factory()
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         self.user.update(last_login_ip='192.168.1.1')
         set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
 

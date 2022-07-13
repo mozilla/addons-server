@@ -11,7 +11,8 @@ INSTALLED_APPS += (
 # Make sure the debug toolbar isn't used during the tests.
 INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
 MIDDLEWARE = tuple(
-    middleware for middleware in MIDDLEWARE
+    middleware
+    for middleware in MIDDLEWARE
     if middleware != 'debug_toolbar.middleware.DebugToolbarMiddleware'
 )
 
@@ -19,11 +20,6 @@ INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
 
 # See settings.py for documentation:
 IN_TEST_SUITE = True
-
-# Don't call out to persona in tests.
-AUTHENTICATION_BACKENDS = (
-    'olympia.users.backends.TestUserBackend',
-)
 
 DEBUG = False
 
@@ -68,7 +64,7 @@ for logger in list(LOGGING['loggers'].keys()):
 LOGGING['loggers']['celery'] = {
     'handlers': ['null'],
     'level': logging.DEBUG,
-    'propagate': False
+    'propagate': False,
 }
 
 # To speed tests up, crushing uploaded images is disabled in tests except
@@ -86,13 +82,15 @@ CELERY_IMPORTS += (
     'olympia.lib.es.tests.test_commands',
 )
 
-CELERY_TASK_ROUTES.update({
-    # Test tasks that will never really be triggered in prod.
-    'olympia.amo.tests.test_celery.fake_task': {'queue': 'amo'},
-    'olympia.amo.tests.test_celery.fake_task_with_result': {'queue': 'amo'},
-    'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
-    'olympia.lib.es.tests.test_commands.dummy_task': {'queue': 'amo'},
-})
+CELERY_TASK_ROUTES.update(
+    {
+        # Test tasks that will never really be triggered in prod.
+        'olympia.amo.tests.test_celery.fake_task': {'queue': 'amo'},
+        'olympia.amo.tests.test_celery.fake_task_with_result': {'queue': 'amo'},
+        'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
+        'olympia.lib.es.tests.test_commands.dummy_task': {'queue': 'amo'},
+    }
+)
 
 # switch cached_db out for just cache sessions to avoid extra db queries
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'

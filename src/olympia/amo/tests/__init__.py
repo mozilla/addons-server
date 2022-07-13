@@ -561,12 +561,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def days_ago(self, days):
         return days_ago(days)
 
-    def login(self, profile):
-        email = getattr(profile, 'email', profile)
-        if '@' not in email:
-            email += '@mozilla.com'
-        assert self.client.login(email=email)
-
     def enable_messages(self, request):
         setattr(request, 'session', {})
         messages = FallbackStorage(request)
@@ -1079,9 +1073,9 @@ class TestXss(TestCase):
         )
         self.addon.name = self.name
         self.addon.save()
-        u = UserProfile.objects.get(email='del@icio.us')
-        GroupUser.objects.create(group=Group.objects.get(name='Admins'), user=u)
-        self.client.login(email='del@icio.us')
+        user = UserProfile.objects.get(email='del@icio.us')
+        GroupUser.objects.create(group=Group.objects.get(name='Admins'), user=user)
+        self.client.force_login(user)
 
     def assertNameAndNoXSS(self, url):
         response = self.client.get(url)

@@ -57,7 +57,7 @@ class TestPromotedAddonAdmin(TestCase):
     def test_can_see_in_admin_with_discovery_edit(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         url = reverse('admin:index')
         response = self.client.get(url)
         assert response.status_code == 200
@@ -71,7 +71,7 @@ class TestPromotedAddonAdmin(TestCase):
         PromotedAddon.objects.create(addon=addon_factory(name='FooBâr'))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         with self.assertNumQueries(10):
             # 1. select current user
@@ -131,7 +131,7 @@ class TestPromotedAddonAdmin(TestCase):
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
@@ -188,7 +188,7 @@ class TestPromotedAddonAdmin(TestCase):
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         # try to change the approval group
         response = self.client.post(
@@ -239,7 +239,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert item.approved_applications
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         # can't access
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 403
@@ -283,7 +283,7 @@ class TestPromotedAddonAdmin(TestCase):
         delete_url = reverse('admin:discovery_promotedaddon_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         # Can access delete confirmation page.
         response = self.client.get(delete_url, follow=True)
         assert response.status_code == 200
@@ -303,7 +303,7 @@ class TestPromotedAddonAdmin(TestCase):
         item = self.make_addon_promoted(addon, RECOMMENDED, approve_version=True)
         delete_url = reverse('admin:discovery_promotedaddon_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         # Can't access delete confirmation page.
         response = self.client.get(delete_url, follow=True)
         assert response.status_code == 403
@@ -321,7 +321,7 @@ class TestPromotedAddonAdmin(TestCase):
         add_url = reverse('admin:discovery_promotedaddon_add')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
         assert PromotedAddon.objects.count() == 0
@@ -353,7 +353,7 @@ class TestPromotedAddonAdmin(TestCase):
         add_url = reverse('admin:discovery_promotedaddon_add')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         # create an approval that doesn't have a matching PromotedAddon yet
         PromotedApproval.objects.create(
             version=addon.current_version,
@@ -387,7 +387,7 @@ class TestPromotedAddonAdmin(TestCase):
         addon = addon_factory()
         add_url = reverse('admin:discovery_promotedaddon_add')
         user = user_factory(email='someone@mozilla.com')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 403
         # try to add anyway
@@ -412,7 +412,7 @@ class TestPromotedAddonAdmin(TestCase):
         self.detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
@@ -450,7 +450,7 @@ class TestPromotedAddonAdmin(TestCase):
         self.detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
@@ -490,7 +490,7 @@ class TestPromotedAddonAdmin(TestCase):
         delete_url = reverse('admin:discovery_promotedaddon_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         # Can access delete confirmation page.
         response = self.client.get(delete_url, follow=True)
         assert response.status_code == 200
@@ -530,7 +530,7 @@ class TestPromotedAddonAdmin(TestCase):
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Discovery:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         response = self.client.post(
             detail_url,

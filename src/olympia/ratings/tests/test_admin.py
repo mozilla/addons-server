@@ -44,7 +44,7 @@ class TestRatingAdmin(TestCase):
 
         self.grant_permission(user, 'Ratings:Moderate')
 
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -94,7 +94,7 @@ class TestRatingAdmin(TestCase):
 
         self.grant_permission(user, 'Ratings:Moderate')
 
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         with self.assertNumQueries(10):
             # - 2 Savepoint/release
             # - 2 user and its groups
@@ -110,7 +110,7 @@ class TestRatingAdmin(TestCase):
     def test_can_not_access_detail_without_ratings_moderate_permission(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
 
@@ -118,7 +118,7 @@ class TestRatingAdmin(TestCase):
         assert Rating.objects.count() == 1
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Ratings:Moderate')  # Not enough!
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(self.delete_url, {'post': 'yes'}, follow=True)
@@ -132,7 +132,7 @@ class TestRatingAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Admin:Advanced')
         self.grant_permission(user, 'Ratings:Moderate')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -151,7 +151,7 @@ class TestRatingAdmin(TestCase):
         user = UserProfile.objects.get(pk=999)
         self.grant_permission(user, 'Admin:Advanced')
         self.grant_permission(user, 'Ratings:Moderate')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
 
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200

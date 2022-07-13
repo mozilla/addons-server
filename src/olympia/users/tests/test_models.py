@@ -1197,7 +1197,7 @@ def test_get_session_auth_hash_is_used_for_session_auth():
     user = user_factory()
     client = amo.tests.TestClient()
     assert not client.session.items()
-    assert client.login(email=user.email)
+    client.force_login(user)
     assert client.session.items()
 
     request = RequestFactory().get('/')

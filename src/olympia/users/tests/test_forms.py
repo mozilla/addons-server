@@ -20,7 +20,7 @@ class UserFormBase(TestCase):
 
 class TestDeniedNameAdminAddForm(UserFormBase):
     def test_no_usernames(self):
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         url = reverse('admin:users_deniedname_add')
         data = {
             'names': '\n\n',
@@ -29,7 +29,7 @@ class TestDeniedNameAdminAddForm(UserFormBase):
         self.assertFormError(r, 'form', 'names', 'This field is required.')
 
     def test_add(self):
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         url = reverse('admin:users_deniedname_add')
         data = {
             'names': 'IE6Fan\nfubar\n\n',
@@ -43,7 +43,7 @@ class TestDeniedNameAdminAddForm(UserFormBase):
 
 class TestIPNetworkUserRestrictionForm(UserFormBase):
     def test_add_converts_ipaddress_to_network(self):
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         url = reverse('admin:users_ipnetworkuserrestriction_add')
         data = {
             'ip_address': '192.168.1.32',
@@ -57,7 +57,7 @@ class TestIPNetworkUserRestrictionForm(UserFormBase):
         assert restriction.network == ipaddress.IPv4Network('192.168.1.32/32')
 
     def test_add_validates_ip_address(self):
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         url = reverse('admin:users_ipnetworkuserrestriction_add')
         data = {
             'ip_address': '192.168.1.0/28',

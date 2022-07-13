@@ -14,7 +14,7 @@ class TestGitExtractionEntryAdmin(TestCase):
 
         self.user = user_factory(email='someone@mozilla.com')
         self.grant_permission(self.user, 'Admin:GitExtractionEdit')
-        self.client.login(email=self.user.email)
+        self.client.force_login(self.user)
         self.list_url = reverse('admin:git_gitextractionentry_changelist')
 
         self.admin = GitExtractionEntryAdmin(
@@ -48,7 +48,7 @@ class TestGitExtractionEntryAdmin(TestCase):
     def test_list_view_is_restricted(self):
         user = user_factory(email='nobody@mozilla.com')
         self.grant_permission(user, 'Admin:Curation')
-        self.client.login(email=user.email)
+        self.client.force_login(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
 
