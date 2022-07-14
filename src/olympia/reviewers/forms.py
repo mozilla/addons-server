@@ -19,6 +19,7 @@ from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import CannedResponse, ReviewActionReason, Whiteboard
 from olympia.versions.models import Version
 
+import markupsafe
 
 log = olympia.core.logger.getLogger('z.reviewers.forms')
 
@@ -114,6 +115,28 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         amo.STATUS_AWAITING_REVIEW: ('reject_multiple_versions',),
     }
 
+    def get_extended_status(self, obj):
+        if not obj or not obj.file:
+            return
+        # This is the default status
+        status = obj.file.get_status_display()
+        # But we override with more a specific status if available
+        if (
+            reviewer_flags := getattr(obj, 'reviewerflags', None)
+        ) and reviewer_flags.pending_rejection:
+            status = 'Delayed Rejection'
+        elif obj.file.status == amo.STATUS_APPROVED:
+            summary = getattr(obj, 'autoapprovalsummary', None)
+            if summary and summary.verdict == amo.AUTO_APPROVED:
+                status = (
+                    'AutoApproved, Confirmed'
+                    if summary.confirmed is True
+                    else 'AutoApproved, not Confirmed'
+                )
+            else:
+                status = 'Approved, Manual'
+        return status
+
     def create_option(self, *args, **kwargs):
         option = super().create_option(*args, **kwargs)
         # label_from_instance() on VersionsChoiceField returns the full object,
@@ -131,7 +154,9 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             )
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
-        option['label'] = str(obj)
+        option['label'] = str(obj) + markupsafe.Markup(
+            f' - {extended}' if (extended := self.get_extended_status(obj)) else ''
+        )
         return option
 
 
@@ -254,6 +279,8 @@ class ReviewForm(forms.Form):
                 .filter(channel=channel, file__status__in=statuses)
                 .no_transforms()
                 .select_related('file')
+                .select_related('autoapprovalsummary')
+                .select_related('reviewerflags')
                 .order_by('created')
             )
             # Reset data-value depending on widget depending on actions
