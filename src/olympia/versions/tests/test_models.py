@@ -1140,6 +1140,30 @@ class TestVersion(TestCase):
         self.version.file.update(status=amo.STATUS_DISABLED)
         assert self.version.has_been_human_reviewed
 
+    def test_get_review_status_display(self):
+        assert (
+            self.version.get_review_status_display()
+            == 'Approved'
+            == self.version.file.get_review_status_display()
+        )
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        assert self.version.get_review_status_display() == 'Rejected or Unreviewed'
+        self.version.file.update(original_status=amo.STATUS_APPROVED)
+        assert self.version.get_review_status_display() == 'Disabled by Developer'
+        self.version.update(deleted=True)
+        assert self.version.get_review_status_display() == 'Deleted'
+
+        # Testing show_auto_approval_and_delay_reject:
+        # See test_version_get_review_status_for_auto_approval_and_delay_reject for full
+        # testing of the combinations when show_auto_approval_and_delay_reject is True.
+        self.version.update(deleted=False)
+        self.version.file.update(
+            status=amo.STATUS_APPROVED, original_status=amo.STATUS_NULL
+        )
+        AutoApprovalSummary.objects.create(version=self.version)
+        assert self.version.get_review_status_display(False) == 'Approved'
+        assert self.version.get_review_status_display(True) == 'Approved, Manual'
+
 
 @pytest.mark.parametrize(
     'addon_status,file_status,is_unreviewed',
@@ -1165,6 +1189,83 @@ def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
     addon.update(status=addon_status)
     assert addon.reload().status == addon_status
     assert file_.reload().status == file_status
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    'file_status, pending_rejection, auto_summary, verdict, confirmed, output',
+    (
+        (
+            amo.STATUS_AWAITING_REVIEW,
+            datetime(2022, 7, 7, 7, 7, 7),
+            True,
+            amo.AUTO_APPROVED,
+            False,
+            'Delay-rejected, scheduled for 2022-07-07',
+        ),
+        (
+            amo.STATUS_APPROVED,
+            datetime(2022, 8, 8, 8, 8, 8),
+            True,
+            amo.AUTO_APPROVED,
+            False,
+            'Delay-rejected, scheduled for 2022-08-08',
+        ),
+        (
+            amo.STATUS_APPROVED,
+            None,
+            True,
+            amo.AUTO_APPROVED,
+            False,
+            'Auto-approved, not Confirmed',
+        ),
+        (
+            amo.STATUS_APPROVED,
+            None,
+            True,
+            amo.AUTO_APPROVED,
+            True,
+            'Auto-approved, Confirmed',
+        ),
+        (
+            amo.STATUS_APPROVED,
+            None,
+            True,  # there is an AutoApprovalSummary
+            amo.NOT_AUTO_APPROVED,
+            False,
+            'Approved, Manual',
+        ),
+        (
+            amo.STATUS_APPROVED,
+            None,
+            False,  # there isn't an AutoApprovalSummary
+            amo.NOT_AUTO_APPROVED,
+            False,
+            'Approved, Manual',
+        ),
+        (
+            amo.STATUS_AWAITING_REVIEW,
+            None,
+            False,
+            amo.NOT_AUTO_APPROVED,
+            False,
+            None,
+        ),
+    ),
+)
+def test_version_get_review_status_for_auto_approval_and_delay_reject(
+    file_status, pending_rejection, auto_summary, verdict, confirmed, output
+):
+    version = addon_factory(file_kw={'status': file_status}).find_latest_version(None)
+    if pending_rejection:
+        VersionReviewerFlags.objects.create(
+            version=version, pending_rejection=pending_rejection
+        )
+    if auto_summary:
+        AutoApprovalSummary.objects.create(
+            version=version, verdict=verdict, confirmed=confirmed
+        )
+    assert output == version.get_review_status_for_auto_approval_and_delay_reject()
 
 
 class TestVersionFromUpload(UploadMixin, TestCase):

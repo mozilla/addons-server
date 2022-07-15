@@ -935,6 +935,39 @@ class Version(OnChangeMixin, ModelBase):
             if approval.group_id in PROMOTED_GROUPS_BY_ID
         ]
 
+    def get_review_status_for_auto_approval_and_delay_reject(self):
+        status = None
+        if (reviewer_flags := getattr(self, 'reviewerflags', None)) and (
+            rejection_date := reviewer_flags.pending_rejection
+        ):
+            status = gettext('Delay-rejected, scheduled for %s') % rejection_date.date()
+        elif self.file.status == amo.STATUS_APPROVED:
+            summary = getattr(self, 'autoapprovalsummary', None)
+            if summary and summary.verdict == amo.AUTO_APPROVED:
+                status = (
+                    gettext('Auto-approved, Confirmed')
+                    if summary.confirmed is True
+                    else gettext('Auto-approved, not Confirmed')
+                )
+            else:
+                status = gettext('Approved, Manual')
+        return status
+
+    def get_review_status_display(self, show_auto_approval_and_delay_reject=False):
+        if self.deleted:
+            return gettext('Deleted')
+        if self.is_user_disabled:
+            return gettext('Disabled by Developer')
+
+        # This is the default status
+        status = self.file.get_review_status_display()
+        # But optionally, we override with more a specific status if available
+        return (
+            show_auto_approval_and_delay_reject
+            and self.get_review_status_for_auto_approval_and_delay_reject()
+            or status
+        )
+
 
 class VersionReviewerFlags(ModelBase):
     version = models.OneToOneField(

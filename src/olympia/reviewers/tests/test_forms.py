@@ -1,15 +1,12 @@
-from datetime import datetime
-
 from django.utils.encoding import force_str
 
-import pytest
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-from olympia.reviewers.forms import ReviewForm, VersionsChoiceWidget
+from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     CannedResponse,
@@ -17,7 +14,7 @@ from olympia.reviewers.models import (
 )
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version, VersionReviewerFlags
+from olympia.versions.models import Version
 
 
 class TestReviewForm(TestCase):
@@ -415,80 +412,3 @@ class TestReviewForm(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.test_delayed_rejection_days_widget_attributes()
-
-
-@pytest.mark.django_db
-@pytest.mark.parametrize(
-    'file_status, pending_rejection, auto_summary, verdict, confirmed, output',
-    (
-        (
-            amo.STATUS_AWAITING_REVIEW,
-            datetime(2022, 7, 7, 7, 7, 7),
-            True,
-            amo.AUTO_APPROVED,
-            False,
-            'Delay-rejected, scheduled for 2022-07-07',
-        ),
-        (
-            amo.STATUS_APPROVED,
-            datetime(2022, 8, 8, 8, 8, 8),
-            True,
-            amo.AUTO_APPROVED,
-            False,
-            'Delay-rejected, scheduled for 2022-08-08',
-        ),
-        (
-            amo.STATUS_APPROVED,
-            None,
-            True,
-            amo.AUTO_APPROVED,
-            False,
-            'Auto-approved, not Confirmed',
-        ),
-        (
-            amo.STATUS_APPROVED,
-            None,
-            True,
-            amo.AUTO_APPROVED,
-            True,
-            'Auto-approved, Confirmed',
-        ),
-        (
-            amo.STATUS_APPROVED,
-            None,
-            True,
-            amo.NOT_AUTO_APPROVED,
-            False,
-            'Approved, Manual',
-        ),
-        (
-            amo.STATUS_APPROVED,
-            None,
-            False,
-            amo.NOT_AUTO_APPROVED,
-            False,
-            'Approved, Manual',
-        ),
-        (
-            amo.STATUS_AWAITING_REVIEW,
-            None,
-            False,
-            amo.NOT_AUTO_APPROVED,
-            False,
-            'Awaiting Review',
-        ),
-    ),
-)
-def test_version_choice_widget_extended_status(
-    file_status, pending_rejection, auto_summary, verdict, confirmed, output
-):
-    version = addon_factory(file_kw={'status': file_status}).find_latest_version(None)
-    if pending_rejection:
-        VersionReviewerFlags.objects.create(
-            version=version, pending_rejection=pending_rejection
-        )
-    if auto_summary:
-        AutoApprovalSummary.objects.create(
-            version=version, verdict=verdict, confirmed=confirmed
-        )
-    assert output == VersionsChoiceWidget().get_extended_status(version)

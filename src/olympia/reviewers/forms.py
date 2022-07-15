@@ -115,28 +115,6 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         amo.STATUS_AWAITING_REVIEW: ('reject_multiple_versions',),
     }
 
-    def get_extended_status(self, obj):
-        if not obj or not obj.file:
-            return
-        # This is the default status
-        status = obj.file.get_status_display()
-        # But we override with more a specific status if available
-        if (reviewer_flags := getattr(obj, 'reviewerflags', None)) and (
-            rejection_date := reviewer_flags.pending_rejection
-        ):
-            status = gettext('Delay-rejected, scheduled for %s') % rejection_date.date()
-        elif obj.file.status == amo.STATUS_APPROVED:
-            summary = getattr(obj, 'autoapprovalsummary', None)
-            if summary and summary.verdict == amo.AUTO_APPROVED:
-                status = (
-                    gettext('Auto-approved, Confirmed')
-                    if summary.confirmed is True
-                    else gettext('Auto-approved, not Confirmed')
-                )
-            else:
-                status = gettext('Approved, Manual')
-        return status
-
     def create_option(self, *args, **kwargs):
         option = super().create_option(*args, **kwargs)
         # label_from_instance() on VersionsChoiceField returns the full object,
@@ -155,7 +133,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
         option['label'] = str(obj) + markupsafe.Markup(
-            f' - {extended}' if (extended := self.get_extended_status(obj)) else ''
+            f' - {obj.get_review_status_display(True)}' if obj else ''
         )
         return option
 
