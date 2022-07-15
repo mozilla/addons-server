@@ -121,20 +121,20 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         # This is the default status
         status = obj.file.get_status_display()
         # But we override with more a specific status if available
-        if (
-            reviewer_flags := getattr(obj, 'reviewerflags', None)
-        ) and reviewer_flags.pending_rejection:
-            status = 'Delayed Rejection'
+        if (reviewer_flags := getattr(obj, 'reviewerflags', None)) and (
+            rejection_date := reviewer_flags.pending_rejection
+        ):
+            status = gettext('Delay-rejected, scheduled for %s') % rejection_date.date()
         elif obj.file.status == amo.STATUS_APPROVED:
             summary = getattr(obj, 'autoapprovalsummary', None)
             if summary and summary.verdict == amo.AUTO_APPROVED:
                 status = (
-                    'AutoApproved, Confirmed'
+                    gettext('Auto-approved, Confirmed')
                     if summary.confirmed is True
-                    else 'AutoApproved, not Confirmed'
+                    else gettext('Auto-approved, not Confirmed')
                 )
             else:
-                status = 'Approved, Manual'
+                status = gettext('Approved, Manual')
         return status
 
     def create_option(self, *args, **kwargs):

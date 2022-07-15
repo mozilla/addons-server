@@ -423,39 +423,39 @@ class TestReviewForm(TestCase):
     (
         (
             amo.STATUS_AWAITING_REVIEW,
-            True,
-            True,
-            amo.AUTO_APPROVED,
-            False,
-            'Delayed Rejection',
-        ),
-        (
-            amo.STATUS_APPROVED,
-            True,
+            datetime(2022, 7, 7, 7, 7, 7),
             True,
             amo.AUTO_APPROVED,
             False,
-            'Delayed Rejection',
+            'Delay-rejected, scheduled for 2022-07-07',
         ),
         (
             amo.STATUS_APPROVED,
-            False,
+            datetime(2022, 8, 8, 8, 8, 8),
             True,
             amo.AUTO_APPROVED,
             False,
-            'AutoApproved, not Confirmed',
+            'Delay-rejected, scheduled for 2022-08-08',
         ),
         (
             amo.STATUS_APPROVED,
+            None,
+            True,
+            amo.AUTO_APPROVED,
             False,
+            'Auto-approved, not Confirmed',
+        ),
+        (
+            amo.STATUS_APPROVED,
+            None,
             True,
             amo.AUTO_APPROVED,
             True,
-            'AutoApproved, Confirmed',
+            'Auto-approved, Confirmed',
         ),
         (
             amo.STATUS_APPROVED,
-            False,
+            None,
             True,
             amo.NOT_AUTO_APPROVED,
             False,
@@ -463,7 +463,7 @@ class TestReviewForm(TestCase):
         ),
         (
             amo.STATUS_APPROVED,
-            False,
+            None,
             False,
             amo.NOT_AUTO_APPROVED,
             False,
@@ -471,7 +471,7 @@ class TestReviewForm(TestCase):
         ),
         (
             amo.STATUS_AWAITING_REVIEW,
-            False,
+            None,
             False,
             amo.NOT_AUTO_APPROVED,
             False,
@@ -485,7 +485,7 @@ def test_version_choice_widget_extended_status(
     version = addon_factory(file_kw={'status': file_status}).find_latest_version(None)
     if pending_rejection:
         VersionReviewerFlags.objects.create(
-            version=version, pending_rejection=datetime.now()
+            version=version, pending_rejection=pending_rejection
         )
     if auto_summary:
         AutoApprovalSummary.objects.create(

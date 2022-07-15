@@ -5343,7 +5343,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('select#id_versions.data-toggle option')[0].text
-            == f'{self.version.version} - AutoApproved, not Confirmed'
+            == f'{self.version.version} - Auto-approved, not Confirmed'
         )
 
         assert (
