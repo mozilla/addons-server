@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-12 16:16+0000\n"
-"PO-Revision-Date: 2022-07-14 12:39+0000\n"
-"Last-Translator: tn0562260 <tn0562260@gmail.com>\n"
+"PO-Revision-Date: 2022-07-15 05:51+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -4794,7 +4794,7 @@ msgstr "Tên tập tin không hợp lệ trong tập tin nén: {0}"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Tập tin có kích cỡ vượt quá giới hạn: {0}"
 
 msgid "Uncompressed size is too large"
 msgstr "Kích thước đã giải nén quá lớn"
@@ -4847,7 +4847,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Thiếu tham số \"channel\"."
 
 msgid "User"
 msgstr "Người dùng"
@@ -4874,7 +4874,7 @@ msgid "You can't change the add-on of a review once it has been created."
 msgstr "Bạn không thể thay đổi tiện ích của xét duyệt khi nó đã được tạo."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Bạn không thể trả lời một bài đánh giá đã có câu trả lời."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
 msgstr "Bạn không thể thay đổi phiên bản của tiện ích đã được xét duyệt sau khi đã tạo xét duyệt."
