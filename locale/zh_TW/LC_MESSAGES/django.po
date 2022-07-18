@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-12 16:16+0000\n"
-"PO-Revision-Date: 2022-07-13 03:24+0000\n"
+"PO-Revision-Date: 2022-07-18 03:13+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1198,7 +1198,7 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "下載用來在網路上搜尋資料的 Firefox 擴充套件。此類套件包含能夠強調與搜尋文字、查詢 IP 地址或網域與更多功能的擴充套件。"
 
 msgid "Shopping"
 msgstr "購物"
