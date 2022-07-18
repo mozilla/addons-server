@@ -59,7 +59,6 @@ from olympia.api.permissions import (
     AnyOf,
     GroupPermission,
 )
-from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
@@ -563,11 +562,6 @@ def review(request, addon, channel=None):
     )
     channel, content_review = determine_channel(channel)
 
-    was_auto_approved = (
-        channel == amo.RELEASE_CHANNEL_LISTED
-        and addon.current_version
-        and addon.current_version.was_auto_approved
-    )
     is_static_theme = addon.type == amo.ADDON_STATICTHEME
     promoted_group = addon.promoted_group(currently_approved=False)
 
@@ -640,7 +634,6 @@ def review(request, addon, channel=None):
     )
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
-    approvals_info = None
     reports = Paginator(AbuseReport.objects.for_addon(addon), 5).page(1)
     user_ratings = Paginator(
         (
@@ -650,26 +643,13 @@ def review(request, addon, channel=None):
         ),
         5,
     ).page(1)
-    if channel == amo.RELEASE_CHANNEL_LISTED:
-        if was_auto_approved:
-            try:
-                approvals_info = addon.addonapprovalscounter
-            except AddonApprovalsCounter.DoesNotExist:
-                pass
-
-        if content_review:
-            queue_type = 'content_review'
-        elif promoted_group == RECOMMENDED:
-            queue_type = 'recommended'
-        elif was_auto_approved:
-            queue_type = 'auto_approved'
-        elif is_static_theme:
-            queue_type = form.helper.handler.review_type
-        else:
-            queue_type = 'extension'
-        redirect_url = reverse('reviewers.queue_%s' % queue_type)
+    if channel == amo.RELEASE_CHANNEL_LISTED and is_static_theme:
+        redirect_url = reverse(f'reviewers.queue_{form.helper.handler.review_type}')
     else:
-        redirect_url = reverse('reviewers.review', args=['unlisted', addon.pk])
+        channel_arg = (
+            amo.CHANNEL_CHOICES_API.get(channel) if not content_review else 'content'
+        )
+        redirect_url = reverse('reviewers.review', args=[channel_arg, addon.pk])
 
     if request.method == 'POST' and form.is_valid():
         # Execute the action (is_valid() ensures the action is available to the
@@ -746,6 +726,16 @@ def review(request, addon, channel=None):
         if addon.addonguid_guid
         else []
     )
+    approvals_info = None
+    if (
+        channel == amo.RELEASE_CHANNEL_LISTED
+        and addon.current_version
+        and addon.current_version.was_auto_approved
+    ):
+        try:
+            approvals_info = addon.addonapprovalscounter
+        except AddonApprovalsCounter.DoesNotExist:
+            pass
 
     pager = paginate(request, versions_qs, 10)
     num_pages = pager.paginator.num_pages

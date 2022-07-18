@@ -2708,6 +2708,7 @@ class ReviewBase(QueueTest):
         self.reviewer = UserProfile.objects.get(username='reviewer')
         self.reviewer.update(display_name='A Reviêwer')
         self.url = reverse('reviewers.review', args=[self.addon.pk])
+        self.listed_url = reverse('reviewers.review', args=['listed', self.addon.pk])
 
         AddonUser.objects.create(addon=self.addon, user_id=999)
 
@@ -4066,7 +4067,7 @@ class TestReview(ReviewBase):
             self.url, {'action': 'comment', 'comments': 'hello sailor'}
         )
         assert response.status_code == 302
-        self.assert3xx(response, reverse('reviewers.queue_extension'), status_code=302)
+        self.assert3xx(response, self.listed_url, status_code=302)
 
         self.version.delete()
         # Regular reviewer can still see it since the deleted version was
@@ -4076,7 +4077,7 @@ class TestReview(ReviewBase):
             self.url, {'action': 'comment', 'comments': 'hello sailor'}
         )
         assert response.status_code == 302
-        self.assert3xx(response, reverse('reviewers.queue_extension'), status_code=302)
+        self.assert3xx(response, self.listed_url, status_code=302)
 
         # Now they need unlisted permission cause we can't find a listed
         # version, even deleted.
@@ -4098,7 +4099,7 @@ class TestReview(ReviewBase):
             self.url, {'action': 'comment', 'comments': 'hello sailor'}
         )
         assert response.status_code == 302
-        self.assert3xx(response, reverse('reviewers.queue_extension'), status_code=302)
+        self.assert3xx(response, self.listed_url, status_code=302)
 
     def test_addon_deleted(self):
         """The review page should still load for deleted addons."""
@@ -4110,7 +4111,7 @@ class TestReview(ReviewBase):
             self.url, {'action': 'comment', 'comments': 'hello sailor'}
         )
         assert response.status_code == 302
-        self.assert3xx(response, reverse('reviewers.queue_extension'), status_code=302)
+        self.assert3xx(response, self.listed_url, status_code=302)
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def review_version(self, version, url, mock_sign):
@@ -4517,7 +4518,7 @@ class TestReview(ReviewBase):
             {'action': 'public', 'comments': 'all good', 'reasons': [reason.id]},
         )
         assert response.status_code == 302
-        self.assert3xx(response, reverse('reviewers.queue_recommended'))
+        self.assert3xx(response, self.listed_url)
         addon = self.get_addon()
         assert addon.status == amo.STATUS_APPROVED
         assert addon.current_version
@@ -4600,8 +4601,10 @@ class TestReview(ReviewBase):
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
-        response = self.client.post(self.url, self.get_dict(action='approve_content'))
+        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
+        response = self.client.post(
+            content_url, self.get_dict(action='approve_content')
+        )
         assert response.status_code == 302
         summary.reload()
         assert summary.confirmed is None  # We're only doing a content review.
@@ -4615,17 +4618,17 @@ class TestReview(ReviewBase):
         a_log = ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).get()
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
-        self.assert3xx(response, reverse('reviewers.queue_content_review'))
+        self.assert3xx(response, content_url)
 
     def test_approve_content_content_review(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
+        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(
-            self.url,
+            content_url,
             {
                 'action': 'approve_content',
                 'comments': 'ignore me this action does not support comments',
@@ -4644,11 +4647,11 @@ class TestReview(ReviewBase):
         a_log = ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).get()
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
-        self.assert3xx(response, reverse('reviewers.queue_content_review'))
+        self.assert3xx(response, content_url)
 
     def test_cant_contentreview_if_admin_content_review_flag_is_set(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
+        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
@@ -4657,7 +4660,7 @@ class TestReview(ReviewBase):
         )
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         response = self.client.post(
-            self.url,
+            content_url,
             {
                 'action': 'approve_content',
                 'comments': 'ignore me this action does not support comments',
@@ -4671,16 +4674,14 @@ class TestReview(ReviewBase):
     def test_content_review_redirect_if_only_permission(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        content_review_url = reverse(
-            'reviewers.review', args=['content', self.addon.pk]
-        )
+        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
         response = self.client.get(self.url)
         assert response.status_code == 302
-        self.assert3xx(response, content_review_url)
+        self.assert3xx(response, content_url)
 
         response = self.client.post(self.url, {'action': 'anything'})
         assert response.status_code == 302
-        self.assert3xx(response, content_review_url)
+        self.assert3xx(response, content_url)
 
     def test_dont_content_review_redirect_if_theme_reviewer_only(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
@@ -4778,7 +4779,7 @@ class TestReview(ReviewBase):
 
     def test_admin_can_contentreview_if_admin_content_review_flag_is_set(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.url = reverse('reviewers.review', args=['content', self.addon.pk])
+        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
@@ -4788,7 +4789,7 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         response = self.client.post(
-            self.url,
+            content_url,
             {
                 'action': 'approve_content',
                 'comments': 'ignore me this action does not support comments',
@@ -4807,7 +4808,7 @@ class TestReview(ReviewBase):
         a_log = ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).get()
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
-        self.assert3xx(response, reverse('reviewers.queue_content_review'))
+        self.assert3xx(response, content_url)
 
     def test_confirm_auto_approval_with_permission(self):
         summary = AutoApprovalSummary.objects.create(
@@ -4834,7 +4835,7 @@ class TestReview(ReviewBase):
         ).get()
         assert a_log.details['version'] == self.addon.current_version.version
         assert a_log.details['comments'] == ''
-        self.assert3xx(response, reverse('reviewers.queue_auto_approved'))
+        self.assert3xx(response, self.listed_url)
 
     def test_reject_multiple_versions(self):
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
@@ -5938,7 +5939,7 @@ class TestReviewPending(ReviewBase):
             self.url, self.get_dict(action='public', reasons=[reason.id])
         )
         assert self.get_addon().status == amo.STATUS_APPROVED
-        self.assert3xx(response, reverse('reviewers.queue_extension'))
+        self.assert3xx(response, self.listed_url)
 
         assert self.version.file.reload().status == amo.STATUS_APPROVED
 
