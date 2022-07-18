@@ -792,16 +792,18 @@ class Version(OnChangeMixin, ModelBase):
             self.update(nomination=nomination, _signal=False)
 
     def inherit_nomination(self, from_statuses=None):
-        last_ver = (
+        qs = (
             Version.objects.filter(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
             .exclude(nomination=None)
             .exclude(id=self.pk)
+            .exclude(reviewerflags__pending_rejection__isnull=False)
+            .values_list('nomination', flat=True)
             .order_by('-nomination')
         )
         if from_statuses:
-            last_ver = last_ver.filter(file__status__in=from_statuses)
-        if last_ver.exists():
-            self.reset_nomination_time(nomination=last_ver[0].nomination)
+            qs = qs.filter(file__status__in=from_statuses)
+        if qs.exists():
+            self.reset_nomination_time(nomination=qs[0])
 
     @cached_property
     def is_ready_for_auto_approval(self):

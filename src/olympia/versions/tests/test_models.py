@@ -1527,6 +1527,29 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
         assert upload_version.nomination == pending_version.nomination
 
+    def test_nomination_not_inherited_if_pending_rejection(self):
+        assert self.addon.status == amo.STATUS_APPROVED
+        self.addon.current_version.update(nomination=self.days_ago(2))
+        pending_version = version_factory(
+            addon=self.addon,
+            nomination=self.days_ago(1),
+            version='9.9',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        VersionReviewerFlags.objects.create(
+            version=pending_version,
+            pending_rejection=datetime.now() + timedelta(days=1),
+        )
+        assert pending_version.nomination
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert upload_version.nomination is None
+
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
         scanners_result = ScannerResult.objects.create(
