@@ -4837,6 +4837,47 @@ class TestReview(ReviewBase):
         assert a_log.details['comments'] == ''
         self.assert3xx(response, self.listed_url)
 
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_approve_multiple_versions(self, sign_file_mock):
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
+        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        old_version = self.version
+        old_version.update(
+            needs_human_review=True, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
+        old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version = version_factory(
+            addon=self.addon,
+            version='3.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'approve_multiple_versions',
+                'comments': 'multi approve!',
+                'reasons': [reason.id],
+                'versions': [old_version.pk, self.version.pk],
+            },
+        )
+
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            assert not version.needs_human_review
+            file_ = version.file.reload()
+            assert file_.status == amo.STATUS_APPROVED
+            assert not version.pending_rejection
+
+        sign_file_mock.assert_has_calls(
+            (mock.call(old_version.file), mock.call(self.version.file))
+        )
+
     def test_reject_multiple_versions(self):
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         old_version = self.version
@@ -5377,6 +5418,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
+            'approve_multiple_versions|',
             'reject_multiple_versions|',
             'block_multiple_versions|',
             'confirm_multiple_versions|',
@@ -5390,19 +5432,20 @@ class TestReview(ReviewBase):
 
         assert (
             doc('select#id_versions.data-toggle')[0].attrib['data-value']
-            == 'reject_multiple_versions|'
+            == 'approve_multiple_versions|'
+            'reject_multiple_versions|'
             'block_multiple_versions|'
             'confirm_multiple_versions|'
         )
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == 'reject_multiple_versions|reply|super|comment|'
+            == 'approve_multiple_versions|reject_multiple_versions|reply|super|comment|'
         )
 
         assert (
             doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == 'reject_multiple_versions|reply|'
+            == 'approve_multiple_versions|reject_multiple_versions|reply|'
         )
 
         # We don't have approve/reject actions so these have an empty

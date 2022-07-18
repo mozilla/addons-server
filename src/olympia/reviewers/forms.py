@@ -112,7 +112,10 @@ class VersionsChoiceWidget(forms.SelectMultiple):
 
     actions_filters = {
         amo.STATUS_APPROVED: ('confirm_multiple_versions', 'block_multiple_versions'),
-        amo.STATUS_AWAITING_REVIEW: ('reject_multiple_versions',),
+        amo.STATUS_AWAITING_REVIEW: (
+            'reject_multiple_versions',
+            'approve_multiple_versions',
+        ),
     }
 
     def create_option(self, *args, **kwargs):

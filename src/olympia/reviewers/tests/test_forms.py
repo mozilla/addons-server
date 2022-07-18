@@ -343,8 +343,8 @@ class TestReviewForm(TestCase):
         select = doc('select')[0]
         select.attrib.get('class') == 'data-toggle'
         assert select.attrib.get('data-value') == (
-            'reject_multiple_versions|block_multiple_versions|'
-            'confirm_multiple_versions|'
+            'approve_multiple_versions|reject_multiple_versions|'
+            'block_multiple_versions|confirm_multiple_versions|'
         )
 
         # <option>s should as well, and the value depends on which version:
@@ -362,7 +362,7 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('class') == 'data-toggle'
         assert option2.attrib.get('data-value') == (
             # That version is pending.
-            'reject_multiple_versions|'
+            'reject_multiple_versions|approve_multiple_versions|'
         )
         assert option2.attrib.get('value') == str(pending_version.pk)
 
