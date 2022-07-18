@@ -19,6 +19,7 @@ from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import CannedResponse, ReviewActionReason, Whiteboard
 from olympia.versions.models import Version
 
+import markupsafe
 
 log = olympia.core.logger.getLogger('z.reviewers.forms')
 
@@ -131,7 +132,9 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             )
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
-        option['label'] = str(obj)
+        option['label'] = str(obj) + markupsafe.Markup(
+            f' - {obj.get_review_status_display(True)}' if obj else ''
+        )
         return option
 
 
@@ -254,6 +257,8 @@ class ReviewForm(forms.Form):
                 .filter(channel=channel, file__status__in=statuses)
                 .no_transforms()
                 .select_related('file')
+                .select_related('autoapprovalsummary')
+                .select_related('reviewerflags')
                 .order_by('created')
             )
             # Reset data-value depending on widget depending on actions

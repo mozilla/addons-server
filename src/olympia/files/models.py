@@ -11,6 +11,7 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils.translation import gettext
 from django.utils.crypto import get_random_string
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
@@ -290,6 +291,19 @@ class File(OnChangeMixin, ModelBase):
 
         except WebextPermission.DoesNotExist:
             return []
+
+    def get_review_status_display(self):
+        # Like .get_file_status_display but with logic to make the status more accurate
+        if self.status == amo.STATUS_DISABLED:
+            return (
+                gettext('Rejected')
+                if self.reviewed is not None
+                # We can't assume that a missing reviewed date means it is unreviewed.
+                else gettext('Rejected or Unreviewed')
+            )
+        return self.STATUS_CHOICES.get(
+            self.status, gettext('[status:%s]') % self.status
+        )
 
 
 @use_primary_db

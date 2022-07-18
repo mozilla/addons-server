@@ -5343,6 +5343,11 @@ class TestReview(ReviewBase):
         )
 
         assert (
+            doc('select#id_versions.data-toggle option')[0].text
+            == f'{self.version.version} - Auto-approved, not Confirmed'
+        )
+
+        assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
             == 'reject_multiple_versions|reply|super|comment|'
         )

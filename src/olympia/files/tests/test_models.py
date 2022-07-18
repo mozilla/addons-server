@@ -4,7 +4,7 @@ import os
 import re
 import tempfile
 import zipfile
-
+from datetime import datetime
 from unittest import mock
 from unittest.mock import patch
 
@@ -348,6 +348,16 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_has_been_validated_returns_true_when_validation_exists(self):
         file = File(validation=FileValidation())
         assert file.has_been_validated
+
+    def test_get_review_status_display(self):
+        file = File(status=amo.STATUS_NULL)
+        assert file.get_review_status_display() == '[status:0]'
+        file.update(status=amo.STATUS_DISABLED)
+        assert file.get_review_status_display() == 'Rejected or Unreviewed'
+        file.update(reviewed=datetime.now())
+        assert file.get_review_status_display() == 'Rejected'
+        file.update(status=amo.STATUS_APPROVED)
+        assert file.get_review_status_display() == 'Approved'
 
 
 class TestTrackFileStatusChange(TestCase):
