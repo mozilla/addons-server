@@ -643,16 +643,6 @@ def review(request, addon, channel=None):
         ),
         5,
     ).page(1)
-    approvals_info = None
-    if (
-        channel == amo.RELEASE_CHANNEL_LISTED
-        and addon.current_version
-        and addon.current_version.was_auto_approved
-    ):
-        try:
-            approvals_info = addon.addonapprovalscounter
-        except AddonApprovalsCounter.DoesNotExist:
-            pass
     if channel == amo.RELEASE_CHANNEL_LISTED and is_static_theme:
         redirect_url = reverse(f'reviewers.queue_{form.helper.handler.review_type}')
     else:
@@ -736,6 +726,16 @@ def review(request, addon, channel=None):
         if addon.addonguid_guid
         else []
     )
+    approvals_info = None
+    if (
+        channel == amo.RELEASE_CHANNEL_LISTED
+        and addon.current_version
+        and addon.current_version.was_auto_approved
+    ):
+        try:
+            approvals_info = addon.addonapprovalscounter
+        except AddonApprovalsCounter.DoesNotExist:
+            pass
 
     pager = paginate(request, versions_qs, 10)
     num_pages = pager.paginator.num_pages
