@@ -802,8 +802,8 @@ class Version(OnChangeMixin, ModelBase):
         )
         if from_statuses:
             qs = qs.filter(file__status__in=from_statuses)
-        if qs.exists():
-            self.reset_nomination_time(nomination=qs[0])
+        if nomination := qs.first():
+            self.reset_nomination_time(nomination=nomination)
 
     @cached_property
     def is_ready_for_auto_approval(self):
