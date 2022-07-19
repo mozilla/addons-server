@@ -1456,7 +1456,7 @@ class ReviewUnlisted(ReviewBase):
                 self.clear_specific_needs_human_review_flags(version)
 
     def approve_multiple_versions(self):
-        """Set an unlisted addon version files to public."""
+        """Set multiple unlisted add-on versions files to public."""
         assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
         latest_version = self.version
         self.version = None
