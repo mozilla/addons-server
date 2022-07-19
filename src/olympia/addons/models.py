@@ -434,7 +434,12 @@ class AddonManager(ManagerBase):
         disabled versions - typically scanners queues, where anything could be
         flagged, approved or waiting for review."""
         return (
-            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
+            self.get_base_queryset_for_queue(
+                admin_reviewer=admin_reviewer,
+                # We'll filter on pending_rejection below without limiting
+                # ourselves to the current_version.
+                exclude_listed_pending_rejection=False,
+            )
             .filter(
                 # Only extensions to avoid looking at themes etc, which slows
                 # the query down.
@@ -458,6 +463,7 @@ class AddonManager(ManagerBase):
                         amo.STATUS_AWAITING_REVIEW,
                     ]
                 ),
+                Q(versions__reviewerflags__pending_rejection__isnull=True),
                 *q_filters,
             )
             .order_by('created')
