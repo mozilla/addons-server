@@ -2188,7 +2188,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'Mozilla Add-ons: Delicious Bookmarks signed and ready to download'
         )
         assert (
-            'versions of your add-on Delicious Bookmarks, are now signed '
+            'versions of your add-on Delicious Bookmarks are now signed '
             in message.body
         )
         log_token = ActivityLogToken.objects.get()
