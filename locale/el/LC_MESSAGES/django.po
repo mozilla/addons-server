@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-12 16:16+0000\n"
-"PO-Revision-Date: 2022-07-16 07:32+0000\n"
+"PO-Revision-Date: 2022-07-19 12:54+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -263,13 +263,13 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr "Απαιτείται ορισμός μεταδεδομένων προσθέτου για τη δημιουργία μιας καταχωρισμένης έκδοσης: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Πρέπει να καθοριστεί ένα GUID στη δήλωση."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Αναντιστοιχία GUID μεταξύ του URL και της δήλωσης."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Η πηγή δεν μπορεί να αλλάξει, επειδή αυτή η έκδοση έχει ελεγχθεί από τη Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Αυτός ο τύπος πρόσθετου δεν επιτρέπει προσαρμοσμένη συμβατότητα."
@@ -4543,7 +4543,7 @@ msgstr "Σταματήστε να δίνετε στους ιστοτόπους �
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Αλλαγή θεμάτων με βάση την ώρα. Ρυθμίστε το Firefox έτσι, ώστε να αλλάζει τα χρώματά του κατά τη διάρκεια της ημέρας."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4669,7 +4669,7 @@ msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "Top anti-tracking extensions"
-msgstr ""
+msgstr "Κορυφαίες επεκτάσεις προστασίας από καταγραφή"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
