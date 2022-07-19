@@ -353,14 +353,6 @@ geoip2==4.6.0 \
 html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
     --hash=sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f
-# importlib-metadata is required by kombu
-importlib-metadata==4.12.0 \
-    --hash=sha256:637245b8bab2b6502fcbc752cc4b7a6f6243bb02b31c5c26156ad103d3d45670 \
-    --hash=sha256:7401a975809ea1fdc658c3aa4f78cc2195a0e019c5cbc4c06122884e9ae80c23
-# isodate is required by kombu
-isodate==0.6.1 \
-    --hash=sha256:0751eece944162659049d35f4f549ed815792b38793f07cf73381c1c87cbed96 \
-    --hash=sha256:48c5881de7e8b0a0d648cb024c8062dc84e7b840ed81e864c7614fd3c127bde9
 # kombu is required by celery
 kombu==5.2.4 \
     --hash=sha256:37cee3ee725f94ea8bb173eaab7c1760203ea53bbebae226328600f9d2799610 \
@@ -473,10 +465,6 @@ yara-python==4.2.0 \
     --hash=sha256:cabef9144d35357ba9815f6ecacfaeed05fa2cc2a2ae0a0c37766839500555d9 \
     --hash=sha256:d02f239f429c6c94e60b500246d376595fbed8d9124209d332b6f8e7cfb5ec6e \
     --hash=sha256:e5adfdcf01e2cc6bc07603eaadb314cf3515cab577e529db86c4de7bf9b327dd
-# zipp is required by importlib-metadata
-zipp==3.8.0 \
-    --hash=sha256:56bf8aadb83c24db6c4b577e13de374ccfb67da2078beba1d037c17980bf43ad \
-    --hash=sha256:c4f6e5bbf48e74f7a38e7cc5b0480ff42b0ae5178957d564d18932525d5cf099
 google-cloud-bigquery==2.34.4 \
     --hash=sha256:14a4f996411556757b5d32f11a0ebf34257d6fc5c60d53fb66e674a63a7bf9ca \
     --hash=sha256:7c6dc11e6bd65a5981a8bc18a472e6132e9aaa1fa5363f1680a9425dd3868660
