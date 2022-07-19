@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -4764,6 +4764,13 @@ msgstr "流行の拡張機能"
 msgid "See more creativity staff picks"
 msgstr "翻訳ツールをもっと見る"
 
+msgid "Rejected or Unreviewed"
+msgstr "却下もしくは未審査"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[状態:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
 
@@ -5088,6 +5095,12 @@ msgstr "承認を確認"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "このアドオンの最新公開バージョンは自動承認されました。これにより、開発者に通知することなく、あなたによるこのバージョンの承認確認が記録されます。"
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "複数のバージョンを却下"
@@ -5733,13 +5746,6 @@ msgstr "このバージョンに対してまだ自動承認スクリプトが実
 msgid "This version has not been reviewed."
 msgstr "このバージョンはまだ審査を受けていません。"
 
-msgid "Rejected or Unreviewed"
-msgstr "却下もしくは未審査"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[状態:%s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "その他の保留中のレビュー ({0})"
@@ -6358,6 +6364,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "その他"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} 以降"

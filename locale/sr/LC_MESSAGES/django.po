@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4976,6 +4976,13 @@ msgstr "Коментариши"
 msgid "See more creativity staff picks"
 msgstr "по верзији додатка"
 
+msgid "Rejected or Unreviewed"
+msgstr "Одбијено или непрегледано"
+
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Статус:"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5320,6 +5327,12 @@ msgid "Confirm Approval"
 msgstr "Одобрење у току"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 #, fuzzy
@@ -6018,13 +6031,6 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr "Ова верзија није прегледана."
 
-msgid "Rejected or Unreviewed"
-msgstr "Одбијено или непрегледано"
-
-#, fuzzy, python-format
-msgid "[status:%s]"
-msgstr "Статус:"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Конторлисан преглед ({0})"
@@ -6654,6 +6660,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "остали"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} и касније"

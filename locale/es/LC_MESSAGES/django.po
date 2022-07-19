@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2021-08-22 17:10+0000\n"
 "Last-Translator: cfatls <cfatls@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4906,6 +4906,13 @@ msgstr "Temas recomendados"
 msgid "See more creativity staff picks"
 msgstr "por versión del complemento"
 
+msgid "Rejected or Unreviewed"
+msgstr "Rechazados o sin revisar"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "No se pudo analizar el archivo de manifiesto."
 
@@ -5233,6 +5240,12 @@ msgstr "Confirmar aprobación"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "La última versión publicada de este complemento se aprobó automáticamente. Esto registra tu confirmación de la aprobación de esa versión, sin notificárselo al desarrollador."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Rechazar varias versiones"
@@ -5890,13 +5903,6 @@ msgstr "El comando de autoaprobación aún no se ha ejecutado en esta versión."
 msgid "This version has not been reviewed."
 msgstr "Esta versión no se ha revisado."
 
-msgid "Rejected or Unreviewed"
-msgstr "Rechazados o sin revisar"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Otras revisiones pendientes ({0})"
@@ -6542,6 +6548,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "otros"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} y posterior"

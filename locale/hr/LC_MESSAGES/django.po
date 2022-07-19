@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-02-06 17:54+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -4745,6 +4745,13 @@ msgstr "Preporučene teme"
 msgid "See more creativity staff picks"
 msgstr "Pogledaj još alata za prevođenje"
 
+msgid "Rejected or Unreviewed"
+msgstr "Odbijeno ili nepregledano"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5069,6 +5076,12 @@ msgstr "Potvrdi odobrenje"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Najnovija javna verzija ovog dodatka automatski je odobrena. Ovime se zapisuje tvoja potvrda o odobrenju te verzije, bez obavještavanja programera."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Odbaci višestruke verzije"
@@ -5698,13 +5711,6 @@ msgstr "Skripta automatskog odobravanja još nije pokrenuta na ovu verziju."
 msgid "This version has not been reviewed."
 msgstr "Ova verzija nije pregledna."
 
-msgid "Rejected or Unreviewed"
-msgstr "Odbijeno ili nepregledano"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
 msgid "Other Pending Review"
 msgstr "Ostali pregled na čekanju"
 
@@ -6304,6 +6310,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "drugi"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} i noviji"

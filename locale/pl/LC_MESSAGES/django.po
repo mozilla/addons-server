@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -4930,6 +4930,13 @@ msgstr "Skomentowano"
 msgid "See more creativity staff picks"
 msgstr "wg wersji dodatku"
 
+msgid "Rejected or Unreviewed"
+msgstr "Odrzucone lub niesprawdzone"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Nie można przetworzyć pliku manifestu."
 
@@ -5270,6 +5277,12 @@ msgstr "Potwierdź zatwierdzenie"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Najnowsza wersja publiczna tego dodatku została automatycznie zatwierdzona. Stanowi to potwierdzenie Twojego zatwierdzenia tej wersji bez powiadamiania autora."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Odrzuć wiele wersji"
@@ -5932,13 +5945,6 @@ msgstr "Skrypt automatycznego zatwierdzania nie został jeszcze uruchomiony dla 
 msgid "This version has not been reviewed."
 msgstr "Ta wersja nie została sprawdzona."
 
-msgid "Rejected or Unreviewed"
-msgstr "Odrzucone lub niesprawdzone"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Ocena opinii ({0})"
@@ -6572,6 +6578,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "inni"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} i późniejsze"

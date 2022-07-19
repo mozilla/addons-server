@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4974,6 +4974,13 @@ msgstr "comentado"
 msgid "See more creativity staff picks"
 msgstr "por Versão do extra"
 
+msgid "Rejected or Unreviewed"
+msgstr "Rejeitado ou não revisto"
+
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Estado:"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5318,6 +5325,12 @@ msgid "Confirm Approval"
 msgstr "A aguardar pela aprovação"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 #, fuzzy
@@ -6019,13 +6032,6 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr "Esta versão ainda não foi revista."
 
-msgid "Rejected or Unreviewed"
-msgstr "Rejeitado ou não revisto"
-
-#, fuzzy, python-format
-msgid "[status:%s]"
-msgstr "Estado:"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Revisão moderada ({0})"
@@ -6659,6 +6665,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "outros"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} e superiores"

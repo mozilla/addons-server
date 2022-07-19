@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-06-20 02:42+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -4824,6 +4824,13 @@ msgstr "Disarankan"
 msgid "See more creativity staff picks"
 msgstr "berdasarkan Versi Pengaya"
 
+msgid "Rejected or Unreviewed"
+msgstr "Ditolak atau Tidak Diulas"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status: %s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Tidak bisa mengurai berkas manifest."
 
@@ -5157,6 +5164,12 @@ msgstr "Konfirmasi Persetujuan"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Versi publik terakhir pengaya ini telah disetujui secara otomatis. Hal ini merekam konfirmasi Anda atas persetujuan versi ini, tanpa memberi tahu pengembangnya."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Tolak Beberapa Versi"
@@ -5815,13 +5828,6 @@ msgstr "Skrip Persetujuan Otomatis belum berjalan di versi ini."
 msgid "This version has not been reviewed."
 msgstr "Versi ini belum diulas."
 
-msgid "Rejected or Unreviewed"
-msgstr "Ditolak atau Tidak Diulas"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status: %s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Ulasan Tertunda Lainnya ({0})"
@@ -6452,6 +6458,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "lainnya"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} dan kemudian"

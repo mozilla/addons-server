@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-07-11 15:25+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4722,6 +4722,13 @@ msgstr "Creativity extensions"
 msgid "See more creativity staff picks"
 msgstr "See more creativity staff picks"
 
+msgid "Rejected or Unreviewed"
+msgstr "Rejected or Unreviewed"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
 
@@ -5042,6 +5049,12 @@ msgstr "Confirm Approval"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Reject Multiple Versions"
@@ -5656,13 +5669,6 @@ msgstr "Auto-Approval script has not run yet on this version."
 
 msgid "This version has not been reviewed."
 msgstr "This version has not been reviewed."
-
-msgid "Rejected or Unreviewed"
-msgstr "Rejected or Unreviewed"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
 
 msgid "Other Pending Review"
 msgstr "Other Pending Review"
@@ -6297,6 +6303,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "others"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} and later"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-06-19 17:27+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4762,6 +4762,13 @@ msgstr "შემოქმედებითი გაფართოებე�
 msgid "See more creativity staff picks"
 msgstr "ხელსაწყოები შემოქმედებისთვის, თანამშრომლების შერჩეული"
 
+msgid "Rejected or Unreviewed"
+msgstr "უარყოფილი ან განუხილველი"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[მდგომარეობა:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "მანიფესტის ფაილის დამუშავება ვერ მოხერხდა."
 
@@ -5082,6 +5089,12 @@ msgstr "დამოწმების დადასტურება"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "დამატების ბოლო გამოქვეყნებული ვერსია თვითდამოწმებულია. ამის შედეგად, თქვენი დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "რამდენიმე ვერსიის უარყოფა"
@@ -5696,13 +5709,6 @@ msgstr "მისაღებად ავტომატური სკრი�
 
 msgid "This version has not been reviewed."
 msgstr "ეს ვერსია, ჯერ არ განხილულა."
-
-msgid "Rejected or Unreviewed"
-msgstr "უარყოფილი ან განუხილველი"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[მდგომარეობა:%s]"
 
 msgid "Other Pending Review"
 msgstr "სხვა მომლოდინე განხილვა"
@@ -6338,6 +6344,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "და სხვები"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} და უფრო ახალ ვერსიებთან"

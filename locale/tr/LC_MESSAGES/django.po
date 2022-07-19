@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-07-12 14:14+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -4748,6 +4748,13 @@ msgstr "Gündemdeki uzantılar"
 msgid "See more creativity staff picks"
 msgstr "Editörün seçtiklerini görün"
 
+msgid "Rejected or Unreviewed"
+msgstr "Reddedildi veya incelenmedi"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[durum:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifest dosyası ayrıştırılamadı."
 
@@ -5072,6 +5079,12 @@ msgid "Confirm Approval"
 msgstr "Onayı doğrula"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 # 78%
@@ -5712,13 +5725,6 @@ msgstr "Otomatik onay betiği bu sürümde henüz çalıştırılmadı."
 msgid "This version has not been reviewed."
 msgstr "Bu sürüm henüz incelenmemiş."
 
-msgid "Rejected or Unreviewed"
-msgstr "Reddedildi veya incelenmedi"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[durum:%s]"
-
 msgid "Other Pending Review"
 msgstr "Diğer inceleme bekleyen"
 
@@ -6333,6 +6339,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "diğerleri"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} ve sonrası"

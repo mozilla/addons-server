@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-06-23 19:30+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4650,6 +4650,13 @@ msgstr "Forritsaukar fyrir sköpunargleði"
 msgid "See more creativity staff picks"
 msgstr "Skoðaðu fleiri sköpunartól sem starfsfólk hefur valið"
 
+msgid "Rejected or Unreviewed"
+msgstr "Hafnað eða óyfirfarið"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[staða:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4969,6 +4976,12 @@ msgid "Confirm Approval"
 msgstr "Staðfesta samþykki"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -5585,13 +5598,6 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr "Ekki er búið að yfirfara þessa útgáfu."
 
-msgid "Rejected or Unreviewed"
-msgstr "Hafnað eða óyfirfarið"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[staða:%s]"
-
 msgid "Other Pending Review"
 msgstr "Annað sem bíður eftir yfirlestri"
 
@@ -6188,6 +6194,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "aðrir"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} og nýrra"
