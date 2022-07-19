@@ -589,13 +589,15 @@ class ReviewHelper:
         )
         version_is_blocked = self.version and self.version.is_blocked
 
-        # Special logic for availability of reject multiple action:
+        # Special logic for availability of reject/approve multiple action:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
+            can_approve_multiple = is_appropriate_reviewer
         elif self.content_review or promoted_group.pre_review or is_static_theme:
             can_reject_multiple = (
                 addon_is_valid_and_version_is_listed and is_appropriate_reviewer
             )
+            can_approve_multiple = False
         else:
             # When doing a code review, this action is also available to
             # users with Addons:PostReview even if the current version hasn't
@@ -606,6 +608,7 @@ class ReviewHelper:
                 or is_appropriate_reviewer_post_review
                 or not self.human_review
             )
+            can_approve_multiple = False
 
         # Definitions for all actions.
         actions['public'] = {
@@ -681,6 +684,19 @@ class ReviewHelper:
                 and current_version_is_listed_and_auto_approved
                 and is_appropriate_reviewer_post_review
             ),
+        }
+        actions['approve_multiple_versions'] = {
+            'method': self.handler.approve_multiple_versions,
+            'label': _('Approve Multiple Versions'),
+            'minimal': True,
+            'versions': True,
+            'details': _(
+                'This will approve the selected versions. '
+                'The comments will be sent to the developer.'
+            ),
+            'available': (can_approve_multiple),
+            'allows_reasons': not is_static_theme,
+            'requires_reasons': not is_static_theme,
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
@@ -1338,6 +1354,9 @@ class ReviewBase:
     def confirm_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
 
+    def approve_multiple_versions(self):
+        raise NotImplementedError  # only implemented for unlisted below.
+
     def block_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
 
@@ -1435,3 +1454,47 @@ class ReviewUnlisted(ReviewBase):
                 # Clear needs_human_review on rejected versions, we consider
                 # that the reviewer looked at all versions they are approving.
                 self.clear_specific_needs_human_review_flags(version)
+
+    def approve_multiple_versions(self):
+        """Set multiple unlisted add-on versions files to public."""
+        assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        latest_version = self.version
+        self.version = None
+        self.file = None
+
+        if not self.data['versions']:
+            return
+
+        timestamp = datetime.now()
+        for version in self.data['versions']:
+            # Sign addon.
+            assert not version.is_blocked
+            if version.file.status == amo.STATUS_AWAITING_REVIEW:
+                sign_file(version.file)
+            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, version.file, user=self.user)
+            self.set_file(amo.STATUS_APPROVED, version.file)
+            self.log_action(
+                amo.LOG.APPROVE_VERSION, version, version.file, timestamp=timestamp
+            )
+            if self.human_review:
+                self.clear_specific_needs_human_review_flags(version)
+
+            log.info('Making %s files %s public' % (self.addon, version.file.filename))
+
+        if self.human_review:
+            template = 'approve_multiple_versions'
+            subject = 'Mozilla Add-ons: %s%s signed and ready to download'
+            self.data['version_numbers'] = ', '.join(
+                str(v.version) for v in self.data['versions']
+            )
+
+            self.notify_email(
+                template, subject, perm_setting=None, version=latest_version
+            )
+            log.info('Sending email(s) for %s' % (self.addon))
+
+            # An approval took place so we can reset this.
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon,
+                defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
+            )

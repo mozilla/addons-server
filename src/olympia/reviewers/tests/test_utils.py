@@ -589,6 +589,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         expected = [
             'public',
+            'approve_multiple_versions',
             'reject_multiple_versions',
             'block_multiple_versions',
             'confirm_multiple_versions',
@@ -2140,6 +2141,66 @@ class TestReviewHelper(TestReviewHelperBase):
         assert ReviewerSubscription.objects.filter(
             addon=self.addon, user=self.user, channel=self.version.channel
         ).exists()
+
+    def test_approve_multiple_versions_unlisted(self):
+        old_version = self.version
+        self.make_addon_unlisted(self.addon)
+        self.version = version_factory(
+            addon=self.addon,
+            version='3.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            auto_approval_disabled_until_next_approval=True,
+            auto_approval_disabled_until_next_approval_unlisted=True,
+        )
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewUnlisted)
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_AWAITING_REVIEW
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper.set_data(data)
+        self.helper.handler.approve_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.file.status == amo.STATUS_APPROVED
+
+        # unlisted auto approvals should be enabled again
+        flags = self.addon.reviewerflags
+        flags.reload()
+        assert flags.auto_approval_disabled_until_next_approval
+        assert not flags.auto_approval_disabled_until_next_approval_unlisted
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.addon.authors.all()[0].email]
+        assert message.subject == (
+            'Mozilla Add-ons: Delicious Bookmarks signed and ready to download'
+        )
+        assert (
+            'versions of your add-on Delicious Bookmarks are now signed '
+            in message.body
+        )
+        log_token = ActivityLogToken.objects.get()
+        assert log_token.uuid.hex in message.reply_to[0]
+
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
+
+        logs = ActivityLog.objects.for_addons(self.addon).filter(
+            action=amo.LOG.APPROVE_VERSION.id
+        )
+        assert logs[0].created == logs[1].created
 
     def test_reject_multiple_versions_unlisted(self):
         old_version = self.version
