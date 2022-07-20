@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-19 20:17+0000\n"
-"PO-Revision-Date: 2022-07-20 12:22+0000\n"
+"PO-Revision-Date: 2022-07-20 12:39+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -5103,7 +5103,7 @@ msgid "Approve Multiple Versions"
 msgstr "Meerdere versies goedkeuren"
 
 msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Hierdoor worden de geselecteerde versies goedgekeurd. De opmerkingen worden naar de ontwikkelaar gestuurd."
 
 msgid "Reject Multiple Versions"
 msgstr "Meerdere versies afwijzen"
@@ -6358,19 +6358,19 @@ msgstr "overigen"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Vertraagd afgewezen, gepland voor %s"
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Automatisch goedgekeurd, bevestigd"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Automatisch goedgekeurd, niet bevestigd"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Goedgekeurd, handmatig"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Uitgeschakeld door ontwikkelaar"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} en hoger"
