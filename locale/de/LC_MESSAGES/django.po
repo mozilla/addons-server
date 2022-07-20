@@ -6394,7 +6394,7 @@ msgid "Approved, Manual"
 msgstr "Freigeschaltet, manuell"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Vom Entwickler deaktiviert"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} und neuer"
