@@ -152,7 +152,7 @@ class TestSigning(TestCase):
         # we can read the file afterwards details don't matter.
         old_file_path = self.file_.file_path
         old_file_dirs = os.path.dirname(self.file_.file.name)
-        self.file_.file.name = f'{old_file_dirs}/wébextension.zip'
+        self.file_.file.name = os.path.join(old_file_dirs, 'wébextension.zip')
         os.rename(old_file_path, self.file_.file_path)
         self.assert_not_signed()
         signing.sign_file(self.file_)
@@ -603,7 +603,7 @@ class TestTasks(TestCase):
         """Sign files which have non-ascii filenames."""
         old_file_path = self.file_.file_path
         old_file_dirs = os.path.dirname(self.file_.file.name)
-        self.file_.file.name = f'{old_file_dirs}/wébextension.zip'
+        self.file_.file.name = os.path.join(old_file_dirs, 'wébextension.zip')
         self.file_.save()
         os.rename(old_file_path, self.file_.file_path)
         file_hash = self.file_.generate_hash()
