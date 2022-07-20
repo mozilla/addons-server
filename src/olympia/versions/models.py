@@ -985,6 +985,7 @@ class VersionReviewerFlags(ModelBase):
     pending_rejection_by = models.ForeignKey(
         UserProfile, null=True, on_delete=models.CASCADE
     )
+    pending_content_rejection = models.BooleanField(default=False, db_index=False)
 
     class Meta:
         constraints = [

@@ -53,6 +53,7 @@ class Command(BaseCommand):
         return (
             addon.versions(manager='unfiltered_for_relations')
             .filter(reviewerflags__pending_rejection__lt=now)
+            .select_related('reviewerflags')
             .order_by('id')
         )
 
@@ -109,7 +110,7 @@ class Command(BaseCommand):
                 locked_by,
             )
             return
-            set_reviewing_cache(addon.pk, settings.TASK_USER_ID)
+        set_reviewing_cache(addon.pk, settings.TASK_USER_ID)
         try:
             self.reject_versions(
                 addon=addon, versions=versions, latest_version=latest_version

@@ -1251,6 +1251,15 @@ class ReviewBase:
             file = version.file
             if not pending_rejection_deadline:
                 self.set_file(amo.STATUS_DISABLED, file)
+
+            if not self.human_review and (
+                flags := getattr(version, 'reviewerflags', None)
+            ):
+                action_id = (
+                    amo.LOG.REJECT_CONTENT
+                    if flags.pending_content_rejection
+                    else amo.LOG.REJECT_VERSION
+                )
             self.log_action(
                 action_id,
                 version=version,
@@ -1271,6 +1280,7 @@ class ReviewBase:
                         'pending_rejection_by': self.user
                         if pending_rejection_deadline
                         else None,
+                        'pending_content_rejection': self.content_review,
                     },
                 )
 
