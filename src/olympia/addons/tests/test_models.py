@@ -1939,41 +1939,42 @@ class TestAddonNomination(TestCase):
     fixtures = ['base/addon_3615']
 
     def test_set_nomination(self):
-        a = Addon.objects.get(id=3615)
-        a.update(status=amo.STATUS_NULL)
-        a.versions.latest().update(nomination=None)
-        a.update(status=amo.STATUS_NOMINATED)
-        assert a.versions.latest().nomination
+        addon = Addon.objects.get(id=3615)
+        addon.update(status=amo.STATUS_NULL)
+        addon.versions.latest().update(nomination=None)
+        addon.update(status=amo.STATUS_NOMINATED)
+        assert addon.versions.latest().nomination
 
     def test_new_version_inherits_nomination(self):
-        a = Addon.objects.get(id=3615)
-        ver = 10
-        a.update(status=amo.STATUS_NOMINATED)
-        old_ver = a.versions.latest()
-        v = Version.objects.create(addon=a, version=str(ver))
-        assert v.nomination == old_ver.nomination
-        ver += 1
+        addon = Addon.objects.get(id=3615)
+        old_version = addon.versions.latest()
+        addon.update(status=amo.STATUS_NOMINATED)
+        old_version.reload()
+        old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        assert old_version.nomination
+        version = Version.objects.create(addon=addon, version=str('10.0'))
+        assert version.nomination == old_version.nomination
 
     def test_lone_version_does_not_inherit_nomination(self):
-        a = Addon.objects.get(id=3615)
+        addon = Addon.objects.get(id=3615)
         Version.objects.all().delete()
-        v = Version.objects.create(addon=a, version='1.0')
-        assert v.nomination is None
+        version = Version.objects.create(addon=addon, version='1.0')
+        assert version.nomination is None
 
     def test_reviewed_addon_does_not_inherit_nomination(self):
-        a = Addon.objects.get(id=3615)
-        ver = 10
-        for st in (amo.STATUS_APPROVED, amo.STATUS_NULL):
-            a.update(status=st)
-            v = Version.objects.create(addon=a, version=str(ver))
-            assert v.nomination is None
-            ver += 1
+        addon = Addon.objects.get(id=3615)
+        version_number = 10.0
+        for status in (amo.STATUS_APPROVED, amo.STATUS_NULL):
+            addon.update(status=status)
+            version = Version.objects.create(addon=addon, version=str(version_number))
+            assert version.nomination is None
+            version_number += 1
 
     def test_nomination_no_version(self):
         # Check that the on_change method still works if there are no versions.
-        a = Addon.objects.get(id=3615)
-        a.versions.all().delete()
-        a.update(status=amo.STATUS_NOMINATED)
+        addon = Addon.objects.get(id=3615)
+        addon.versions.all().delete()
+        addon.update(status=amo.STATUS_NOMINATED)
 
     def test_nomination_already_set(self):
         addon = Addon.objects.get(id=3615)
