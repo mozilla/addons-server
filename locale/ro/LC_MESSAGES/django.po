@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4846,6 +4846,13 @@ msgstr "Teme recomandate"
 msgid "See more creativity staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
 
+msgid "Rejected or Unreviewed"
+msgstr "Respinse sau fără recenzii"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
 
@@ -5176,6 +5183,12 @@ msgid "The latest public version of this add-on was automatically approved. This
 msgstr ""
 "Cea mai recentă versiune publică a acestui supliment a fost aprobată automat. Aceasta este înregistrarea confirmării pe care ai dat-o pentru aprobarea versiunii respective, fără notificarea "
 "dezvoltatorului."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Respinge multiple versiuni"
@@ -5813,13 +5826,6 @@ msgstr "Scriptul de aprobare automată nu a fost rulat încă pe această versiu
 msgid "This version has not been reviewed."
 msgstr "Această versiune nu a primit o recenzie."
 
-msgid "Rejected or Unreviewed"
-msgstr "Respinse sau fără recenzii"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "O altă recenzie în așteptare ({0})"
@@ -6455,6 +6461,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "altele"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} și versiunile ulterioare"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-07-03 15:44+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -4737,6 +4737,13 @@ msgstr "Razširitve za ustvarjalnost"
 msgid "See more creativity staff picks"
 msgstr "Več osebno izbranih ustvarjalnih razširitev"
 
+msgid "Rejected or Unreviewed"
+msgstr "Zavrnjeno ali nepregledano"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[stanje: %s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
 
@@ -5063,6 +5070,12 @@ msgstr "Potrdi odobritev"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Najnovejša javna različica tega dodatka je bila samodejno odobrena. To zabeleži vašo potrditev odobritve te različice, brez obveščanja razvijalca."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Zavrni več različic"
@@ -5698,13 +5711,6 @@ msgstr "skript za samodejno odobritev še ni bil zagnan v tej različici."
 msgid "This version has not been reviewed."
 msgstr "Te različice se ni pregledalo."
 
-msgid "Rejected or Unreviewed"
-msgstr "Zavrnjeno ali nepregledano"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[stanje: %s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Drugi čakajoči na pregled ({0})"
@@ -6335,6 +6341,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "drugi"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} in novejšimi"

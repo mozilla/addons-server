@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-02-08 18:40+0000\n"
 "Last-Translator: Vlado Valaštiak <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -4731,6 +4731,13 @@ msgstr "Zobraziť všetky rozšírenia"
 msgid "See more creativity staff picks"
 msgstr "Ďalšie aplikácie&hellip;"
 
+msgid "Rejected or Unreviewed"
+msgstr "Zamietnuté a neskontrolované"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5055,6 +5062,12 @@ msgid "Confirm Approval"
 msgstr ""
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -5682,13 +5695,6 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr "Táto verzia nebola skontrolovaná."
 
-msgid "Rejected or Unreviewed"
-msgstr "Zamietnuté a neskontrolované"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status:%s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Čaká na kontrolu"
@@ -6299,6 +6305,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "iné"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} a vyššie"

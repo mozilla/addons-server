@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4789,6 +4789,13 @@ msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
 msgid "See more creativity staff picks"
 msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
 
+msgid "Rejected or Unreviewed"
+msgstr "ਰੱਦ ਹੋਇਆ ਜਾਂ ਬਿਨਾਂ-ਸਮੀਖਿਆ"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[ਸਥਿਤੀ:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
@@ -5124,6 +5131,12 @@ msgstr "ਮਨਜ਼ੂਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "ਇਸ ਐਡ-ਓਨ ਦਾ ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਆਪਣੇ ਆਪ ਮਨਜ਼ੂਰ ਹੋ ਗਿਆ ਸੀ। ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਉਸ ਵਰਜਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰਦਾ ਹੈ।"
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "ਬਹੁ ਵਰਜਨ ਨੂੰ ਰੱਦ ਕਰੋ"
@@ -5778,13 +5791,6 @@ msgstr "ਆਟੋ-ਪ੍ਰਵਾਨਗੀ ਲਿਪੀ ਅਜੇ ਵੀ ਇਸ 
 msgid "This version has not been reviewed."
 msgstr "ਇਸ ਵਰਜਨ ਦੀ ਸਮੀਖਿਆ ਨਹੀਂ ਕੀਤੀ ਗਈ।"
 
-msgid "Rejected or Unreviewed"
-msgstr "ਰੱਦ ਹੋਇਆ ਜਾਂ ਬਿਨਾਂ-ਸਮੀਖਿਆ"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[ਸਥਿਤੀ:%s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "ਹੋਰ ਬਕਾਇਆ ਸਮੀਖਿਆ ({0})"
@@ -6410,6 +6416,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "ਹੋਰ"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} and ਬਾਅਦ"

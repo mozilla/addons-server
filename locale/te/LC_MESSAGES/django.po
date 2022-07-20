@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-05-04 11:48+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -4653,6 +4653,13 @@ msgstr "ట్రెండవుతూన్న అలంకారాలు"
 msgid "See more creativity staff picks"
 msgstr "మరిన్ని అనువాద పనిముట్లను చూడండి"
 
+msgid "Rejected or Unreviewed"
+msgstr "తిరస్కరించబడింది లేదా సమీక్షించబడలేదు"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[స్థితి:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "మానిఫెస్ట్ ఫైల్‌ను చదవడం సాధ్యంకాలేదు."
 
@@ -4972,6 +4979,12 @@ msgid "Confirm Approval"
 msgstr "ఆమోదాన్ని నిర్ధారించండి"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 msgid "Reject Multiple Versions"
@@ -5588,13 +5601,6 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr "ఈ వెర్షను సమీక్షించబడి లేదు."
 
-msgid "Rejected or Unreviewed"
-msgstr "తిరస్కరించబడింది లేదా సమీక్షించబడలేదు"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[స్థితి:%s]"
-
 msgid "Other Pending Review"
 msgstr "ఇతర వేచివున్న సమీక్ష"
 
@@ -6190,6 +6196,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "ఇతరులు"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} మరియు తరువాత"

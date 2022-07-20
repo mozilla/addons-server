@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-06-23 00:36+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -4755,6 +4755,13 @@ msgstr "Kreativitetstillägg"
 msgid "See more creativity staff picks"
 msgstr "Se fler kreativitetstillägg som valts av anställda"
 
+msgid "Rejected or Unreviewed"
+msgstr "Avvisad och ogranskad"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status: %s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Kunde inte tolka manifest-filen."
 
@@ -5075,6 +5082,12 @@ msgstr "Bekräfta godkännande"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Den senaste offentliga versionen av detta tillägg godkändes automatiskt. Detta registrerar din bekräftelse av godkännande av den versionen, utan att meddela utvecklaren."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Avvisa flera versioner"
@@ -5689,13 +5702,6 @@ msgstr "Automatiskt godkännande skript har inte körts ännu på den här versi
 
 msgid "This version has not been reviewed."
 msgstr "Denna version har inte granskats."
-
-msgid "Rejected or Unreviewed"
-msgstr "Avvisad och ogranskad"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status: %s]"
 
 msgid "Other Pending Review"
 msgstr "Annan väntande granskning"
@@ -6332,6 +6338,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "andra"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} och senare"

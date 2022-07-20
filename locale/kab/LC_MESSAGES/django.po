@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-05-19 07:08+0000\n"
 "Last-Translator: Selyan Slimane Amiri <selyan.kab@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4722,6 +4722,13 @@ msgstr "Isiɣzaf n usnulfu"
 msgid "See more creativity staff picks"
 msgstr "Wali ugar n usumer n terbaεt n usnulfu"
 
+msgid "Rejected or Unreviewed"
+msgstr "Yettwagi neɣ ur ittucegger ara"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[addad:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
 
@@ -5042,6 +5049,12 @@ msgstr "Sentem aqbal"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Lqem aneggaru azayaz n uzegrir-a yettwaqbel s wudem awurman. Aya ad isekles asentel-ik n uqbal n lqem-nni, wa ma tneremseḍ aneflay."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Aggwi aṭas n ilqman"
@@ -5656,13 +5669,6 @@ msgstr "Askript n uqbal awurman ur yettwaselkem ara yakan i lqem-a."
 
 msgid "This version has not been reviewed."
 msgstr "Lqem-agi ur yettwacegger ara yakan."
-
-msgid "Rejected or Unreviewed"
-msgstr "Yettwagi neɣ ur ittucegger ara"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[addad:%s]"
 
 msgid "Other Pending Review"
 msgstr "Isenqaden-nniḍen yettṛaǧun"
@@ -6296,6 +6302,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "wiyaḍ"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} neɣ ugar"
