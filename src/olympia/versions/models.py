@@ -409,7 +409,7 @@ class Version(OnChangeMixin, ModelBase):
             parsed_data=parsed_data,
         )
 
-        version.inherit_nomination(from_statuses=[amo.STATUS_AWAITING_REVIEW])
+        version.inherit_nomination()
         version.disable_old_files()
 
         # After the upload has been copied to its permanent location, delete it
@@ -791,19 +791,20 @@ class Version(OnChangeMixin, ModelBase):
             # We need signal=False not to call update_status (which calls us).
             self.update(nomination=nomination, _signal=False)
 
-    def inherit_nomination(self, from_statuses=None):
+    def inherit_nomination(self):
         qs = (
             Version.objects.filter(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
             .exclude(nomination=None)
             .exclude(id=self.pk)
+            .filter(file__status=amo.STATUS_AWAITING_REVIEW)
             .exclude(reviewerflags__pending_rejection__isnull=False)
             .values_list('nomination', flat=True)
             .order_by('-nomination')
         )
-        if from_statuses:
-            qs = qs.filter(file__status__in=from_statuses)
-        if nomination := qs.first():
-            self.reset_nomination_time(nomination=nomination)
+        # If no matching version is found, we end up passing nomination=None
+        # which will update the nomination to datetime.now() if it wasn't
+        # already set on the instance.
+        self.reset_nomination_time(nomination=qs.first())
 
     @cached_property
     def is_ready_for_auto_approval(self):
@@ -1082,7 +1083,7 @@ def inherit_nomination(sender, instance, **kw):
     if kw.get('raw'):
         return
     addon = instance.addon
-    if instance.nomination is None and addon.status in amo.UNREVIEWED_ADDON_STATUSES:
+    if instance.nomination is None and addon.status == amo.STATUS_NOMINATED:
         instance.inherit_nomination()
 
 

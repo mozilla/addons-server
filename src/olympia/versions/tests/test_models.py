@@ -1626,11 +1626,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        assert upload_version.nomination == pending_version.nomination
+        upload_version.reload()
         assert upload_version.nomination == pending_version.nomination
 
     def test_nomination_inherit_from_most_recent(self):
         self.addon.current_version.update(nomination=self.days_ago(3))
-        # In theoery it isn't possible to get 2 listed versions awaiting review,
+        # In theory it isn't possible to get 2 listed versions awaiting review,
         # but this test ensures we inherit from the most recent version if
         # somehow this was to happen.
         pending_version = version_factory(
@@ -1654,6 +1659,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        assert upload_version.nomination == pending_version2.nomination
+        upload_version.reload()
         assert upload_version.nomination == pending_version2.nomination
 
     def test_nomination_not_inherited_if_pending_rejection(self):
@@ -1677,7 +1687,38 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
-        assert upload_version.nomination is None
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        self.assertCloseToNow(upload_version.nomination)
+        upload_version.reload()
+        self.assertCloseToNow(upload_version.nomination)
+
+    def test_nomination_not_inherited_with_addon_in_nominated_state_pending_rejection(
+        self,
+    ):
+        pending_version = self.addon.current_version
+        pending_version.update(nomination=self.days_ago(2))
+        pending_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NOMINATED
+        VersionReviewerFlags.objects.create(
+            version=pending_version,
+            pending_rejection=datetime.now() + timedelta(days=1),
+        )
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.RELEASE_CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        self.assertCloseToNow(upload_version.nomination)
+        upload_version.reload()
+        self.assertCloseToNow(upload_version.nomination)
 
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
