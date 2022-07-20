@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-19 20:17+0000\n"
-"PO-Revision-Date: 2022-07-20 11:48+0000\n"
+"PO-Revision-Date: 2022-07-20 11:50+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6430,19 +6430,19 @@ msgstr "outros"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Rejeitado com atraso, agendado para %s"
 
 msgid "Auto-approved, Confirmed"
 msgstr "Aprovado automaticamente, confirmado"
 
 msgid "Auto-approved, not Confirmed"
-msgstr "Aprovação automática, não confirmada"
+msgstr "Aprovado automaticamente, não confirmado"
 
 msgid "Approved, Manual"
 msgstr "Aprovado, manual"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Desativado pelo desenvolvedor"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} e superiores"
