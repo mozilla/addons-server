@@ -22,12 +22,11 @@ from olympia.addons.models import (
 from olympia.addons.utils import compute_last_updated
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
-from olympia.amo.search import get_es
 from olympia.amo.utils import extract_colors_from_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
-from olympia.lib.es.utils import index_objects
+from olympia.search.utils import get_es, index_objects
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
@@ -121,7 +120,7 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
     es_addons = (
         Search(
             index=AddonIndexer.get_index_alias(),
-            using=amo.search.get_es(),
+            using=get_es(),
         )
         .filter('ids', values=ids)[:length]
         .execute()

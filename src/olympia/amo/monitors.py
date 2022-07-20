@@ -12,7 +12,7 @@ from PIL import Image
 
 import olympia.core.logger
 
-from olympia.amo import search
+from olympia.search.utils import get_es
 from olympia.amo.models import use_primary_db
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 
@@ -82,7 +82,7 @@ def elastic():
     elastic_results = None
     status = ''
     try:
-        es = search.get_es()
+        es = get_es()
         health = es.cluster.health()
         if health['status'] == 'red':
             status = 'ES is red'

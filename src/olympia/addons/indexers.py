@@ -7,7 +7,7 @@ from olympia.amo.utils import attach_trans_dict
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.utils import to_language
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
-from olympia.lib.es.utils import create_index
+from olympia.search.utils import create_index
 from olympia.versions.compare import version_int
 
 

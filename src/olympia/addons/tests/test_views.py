@@ -60,6 +60,7 @@ from olympia.files.utils import parse_addon, parse_xpi
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
+from olympia.search.utils import get_es
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.users.models import EmailUserRestriction, UserProfile
@@ -4148,7 +4149,7 @@ class TestAddonSearchView(ESTestCase):
 
     def test_es_queries_made_no_results(self):
         with patch.object(
-            Elasticsearch, 'search', wraps=amo.search.get_es().search
+            Elasticsearch, 'search', wraps=get_es().search
         ) as search_mock:
             data = self.perform_search(self.url, data={'q': 'foo'})
             assert data['count'] == 0
@@ -4161,7 +4162,7 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
 
         with patch.object(
-            Elasticsearch, 'search', wraps=amo.search.get_es().search
+            Elasticsearch, 'search', wraps=get_es().search
         ) as search_mock:
             data = self.perform_search(self.url, data={'q': 'foo', 'page_size': 1})
             assert data['count'] == 2
@@ -5902,10 +5903,10 @@ class TestAddonRecommendationView(ESTestCase):
     def test_es_queries_made_no_results(self):
         self.get_addon_recommendations_mock.return_value = (['@a', '@b'], 'foo', 'baa')
         with patch.object(
-            Elasticsearch, 'search', wraps=amo.search.get_es().search
+            Elasticsearch, 'search', wraps=get_es().search
         ) as search_mock:
             with patch.object(
-                Elasticsearch, 'count', wraps=amo.search.get_es().count
+                Elasticsearch, 'count', wraps=get_es().count
             ) as count_mock:
                 data = self.perform_search(self.url, data={'guid': '@foo'})
                 assert data['count'] == 0
@@ -5926,10 +5927,10 @@ class TestAddonRecommendationView(ESTestCase):
             None,
         )
         with patch.object(
-            Elasticsearch, 'search', wraps=amo.search.get_es().search
+            Elasticsearch, 'search', wraps=get_es().search
         ) as search_mock:
             with patch.object(
-                Elasticsearch, 'count', wraps=amo.search.get_es().count
+                Elasticsearch, 'count', wraps=get_es().count
             ) as count_mock:
                 data = self.perform_search(
                     self.url, data={'guid': '@foo', 'recommended': 'true'}

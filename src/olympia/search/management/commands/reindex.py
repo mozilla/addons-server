@@ -11,9 +11,8 @@ import olympia.core.logger
 
 from olympia.addons.indexers import AddonIndexer
 from olympia.amo.celery import task
-from olympia.amo.search import get_es
-from olympia.lib.es.models import Reindexing
-from olympia.lib.es.utils import timestamp_index
+from olympia.search.models import Reindexing
+from olympia.search.utils import get_es, timestamp_index
 
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')

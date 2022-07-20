@@ -67,6 +67,7 @@ from olympia.search.filters import (
     SearchQueryFilter,
     SortingFilter,
 )
+from olympia.search.utils import get_es
 from olympia.translations.query import order_by_translation
 from olympia.users.utils import (
     send_addon_author_add_mail,
@@ -850,7 +851,7 @@ class AddonSearchView(ListAPIView):
     def get_queryset(self):
         qset = (
             Search(
-                using=amo.search.get_es(),
+                using=get_es(),
                 index=AddonIndexer.get_index_alias(),
             )
             .extra(
@@ -903,7 +904,7 @@ class AddonAutoCompleteSearchView(AddonSearchView):
         )
 
         qset = Search(
-            using=amo.search.get_es(),
+            using=get_es(),
             index=AddonIndexer.get_index_alias(),
         ).extra(_source={'includes': included_fields})
 

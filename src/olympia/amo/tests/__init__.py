@@ -37,7 +37,6 @@ from rest_framework.test import APIClient, APIRequestFactory
 from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
-from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
 from olympia.addons.indexers import AddonIndexer
@@ -56,13 +55,13 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File
-from olympia.lib.es.utils import timestamp_index
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
     update_es_for_promoted,
     update_es_for_promoted_approval,
 )
+from olympia.search.utils import get_es, timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
 from olympia.versions.models import (
@@ -354,7 +353,7 @@ ES_patchers = [
     # made in non-es tests, but by mocking the specific tasks as well, we gain
     # some significant execution time by avoiding a round-trip through celery
     # task handling code.
-    mock.patch('olympia.amo.search.get_es', spec=True),
+    mock.patch('olympia.search.utils.get_es', spec=True),
     mock.patch('elasticsearch.Elasticsearch'),
     mock.patch('olympia.addons.models.update_search_index', spec=True),
     mock.patch('olympia.addons.tasks.index_addons', spec=True),
@@ -949,7 +948,7 @@ class ESTestCaseMixin:
         # Stop the mock temporarily, the pytest fixture will start them
         # right before each test.
         stop_es_mocks()
-        cls.es = amo_search.get_es()
+        cls.es = get_es()
         # Make sure ES cluster is in a good state, resetting the index if
         # necessary.
         try:

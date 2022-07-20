@@ -1,5 +1,5 @@
 from olympia.amo.tests import TestCase
-from olympia.lib.es.models import Reindexing
+from olympia.search.models import Reindexing
 
 
 class TestReindexManager(TestCase):

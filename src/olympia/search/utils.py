@@ -6,16 +6,18 @@ from copy import deepcopy
 from django.conf import settings
 from django.core.management.base import CommandError
 
+from elasticsearch import Elasticsearch
 from elasticsearch import helpers
-
-import olympia.core.logger
-
-from olympia.amo import search as amo_search
 
 from .models import Reindexing
 
 
-log = olympia.core.logger.getLogger('z.es')
+def get_es():
+    """Create an ES object and return it."""
+    return Elasticsearch(
+        settings.ES_HOSTS,
+        timeout=settings.ES_TIMEOUT,
+    )
 
 
 def index_objects(
@@ -58,7 +60,7 @@ def index_objects(
         qs = qs.transform(transform)
 
     bulk = []
-    es = amo_search.get_es()
+    es = get_es()
 
     for obj in qs.order_by('pk'):
         data = indexer_class.extract_document(obj)
@@ -104,7 +106,7 @@ def create_index(*, index, mappings, index_settings=None):
     - mappings and index_settings: if provided, used when passing the
     configuration of the index to ES.
     """
-    es = amo_search.get_es()
+    es = get_es()
 
     if index_settings is None:
         index_settings = {'index': {}}
