@@ -919,19 +919,6 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             gettext('You cannot submit a Mozilla Signed Extension')
         )
 
-    if (
-        not addon
-        and guid
-        and guid.lower().endswith(amo.RESERVED_ADDON_GUIDS)
-        and not xpi_info.get('is_mozilla_signed_extension')
-    ):
-        raise forms.ValidationError(
-            gettext(
-                'Add-ons using an ID ending with this suffix need to be signed with '
-                'privileged certificate before being submitted'
-            )
-        )
-
     if not acl.langpack_submission_allowed(user, xpi_info):
         raise forms.ValidationError(gettext('You cannot submit a language pack'))
 

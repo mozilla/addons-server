@@ -337,27 +337,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'You cannot submit a Mozilla Signed Extension'
         )
 
-    def test_restricted_guid_addon_allowed_because_signed_and_has_permission(self):
-        guid = 'systemaddon@mozilla.org'
-        self.grant_permission(self.user, 'SystemAddon:Submit')
-        qs = Addon.unfiltered.filter(guid=guid)
-        assert not qs.exists()
-        response = self.request(
-            'PUT',
-            guid=guid,
-            version='0.0.1',
-            filename='src/olympia/files/fixtures/files/mozilla_guid_signed.xpi',
-        )
-        assert response.status_code == 201
-        assert qs.exists()
-        addon = qs.get()
-        assert addon.has_author(self.user)
-        assert addon.status == amo.STATUS_NULL
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
-
-    def test_restricted_guid_addon_not_allowed_because_not_signed(self):
+    def test_restricted_guid_addon_allowed(self):
         guid = 'systemaddon@mozilla.org'
         self.grant_permission(self.user, 'SystemAddon:Submit')
         qs = Addon.unfiltered.filter(guid=guid)
@@ -368,13 +348,16 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             version='0.0.1',
             filename='src/olympia/files/fixtures/files/mozilla_guid.xpi',
         )
-        assert response.status_code == 400
-        assert response.data['error'] == (
-            'Add-ons using an ID ending with this suffix need to be signed with '
-            'privileged certificate before being submitted'
-        )
+        assert response.status_code == 201
+        assert qs.exists()
+        addon = qs.get()
+        assert addon.has_author(self.user)
+        assert addon.status == amo.STATUS_NULL
+        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
 
-    def test_restricted_guid_addon_not_allowed_because_lacking_permission(self):
+    def test_restricted_guid_addon_not_allowed(self):
         guid = 'systemaddon@mozilla.com'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
