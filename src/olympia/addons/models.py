@@ -1423,7 +1423,7 @@ class Addon(OnChangeMixin, ModelBase):
         return self.status == amo.STATUS_DELETED
 
     def is_unreviewed(self):
-        return self.status in amo.UNREVIEWED_ADDON_STATUSES
+        return self.status == amo.STATUS_NOMINATED
 
     def is_public(self):
         return self.status == amo.STATUS_APPROVED and not self.disabled_by_user
@@ -1867,7 +1867,7 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
     ):
         return
 
-    if old_status not in amo.UNREVIEWED_ADDON_STATUSES:
+    if old_status != amo.STATUS_NOMINATED:
         # New: will (re)set nomination only if it's None.
         latest_version.reset_nomination_time()
     else:
