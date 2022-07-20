@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
-"PO-Revision-Date: 2022-07-12 18:28+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"PO-Revision-Date: 2022-07-20 13:41+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4759,6 +4759,13 @@ msgstr "Розширення для творчості"
 msgid "See more creativity staff picks"
 msgstr "Переглядайте більше добірок для творчості"
 
+msgid "Rejected or Unreviewed"
+msgstr "Відхилено чи не розглянуто"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[статус:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Не вдалося обробити файл маніфесту."
 
@@ -5080,6 +5087,12 @@ msgstr "Підтвердити схвалення"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Остання публічна версія цього додатку була схвалена автоматично. Це записує ваше підтвердження про схвалення тієї версії, без сповіщення розробника."
+
+msgid "Approve Multiple Versions"
+msgstr "Схвалити кілька версій"
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr "Ця дія схвалить вибрані версії. Коментарі буде надіслано розробнику."
 
 msgid "Reject Multiple Versions"
 msgstr "Відхилити кілька версій"
@@ -5694,13 +5707,6 @@ msgstr "Скрипт Автосхвалення ще не перевіряв ц�
 
 msgid "This version has not been reviewed."
 msgstr "Ця версія не була розглянута."
-
-msgid "Rejected or Unreviewed"
-msgstr "Відхилено чи не розглянуто"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[статус:%s]"
 
 msgid "Other Pending Review"
 msgstr "Інші, що очікують розгляду"
@@ -6335,6 +6341,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "інші"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr "Відкладено-відхилено, заплановано на %s"
+
+msgid "Auto-approved, Confirmed"
+msgstr "Автоматично схвалено, підтверджено"
+
+msgid "Auto-approved, not Confirmed"
+msgstr "Автоматично схвалено, а не підтверджено"
+
+msgid "Approved, Manual"
+msgstr "Схвалено, вручну"
+
+msgid "Disabled by Developer"
+msgstr "Вимкнено розробником"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} і вище"

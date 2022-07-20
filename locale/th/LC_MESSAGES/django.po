@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2021-05-26 05:01+0000\n"
 "Last-Translator: yotanutmaliwan <yotanutmaliwan@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -4739,6 +4739,13 @@ msgstr "แสดงความคิดเห็นแล้ว"
 msgid "See more creativity staff picks"
 msgstr "ตัวตรวจสอบส่วนเสริม"
 
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[สถานะ:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "ไม่สามารถแยกวิเคราะห์ไฟล์กำกับ"
 
@@ -5067,6 +5074,12 @@ msgid "Confirm Approval"
 msgstr "ยืนยันการอนุมัติ"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 #, fuzzy
@@ -5722,13 +5735,6 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr "รุ่นนี้ยังไม่ถูกตรวจสอบ"
 
-msgid "Rejected or Unreviewed"
-msgstr ""
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[สถานะ:%s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "ยังไม่ถูกตรวจสอบ"
@@ -6346,6 +6352,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "อื่น ๆ"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr ""

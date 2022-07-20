@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-04-07 21:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -4775,6 +4775,13 @@ msgstr "Zgjerime në modë"
 msgid "See more creativity staff picks"
 msgstr "Shihni më tepër mjete përkthimi të zgjedhura nga stafi"
 
+msgid "Rejected or Unreviewed"
+msgstr "Hedhur Tej ose e Pashqyrtuar"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[gjendje:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "S’përtypi dot kartelën manifest."
 
@@ -5095,6 +5102,12 @@ msgstr "Ripohoni Miratimin"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Versioni publik më i ri i kësaj shtese u miratuar vetvetiu. Ky hap regjistron konfirmimin tuaj të miratimit të atij versioni, pa e njoftuar zhvilluesin."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Hidhi tej Versionet e Shumëfishtë"
@@ -5709,13 +5722,6 @@ msgstr "Programthi i Vetëmiratimit s’ka xhiruar ende mbi këtë version."
 
 msgid "This version has not been reviewed."
 msgstr "Ky version s’është shqyrtuar."
-
-msgid "Rejected or Unreviewed"
-msgstr "Hedhur Tej ose e Pashqyrtuar"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[gjendje:%s]"
 
 msgid "Other Pending Review"
 msgstr "Tjetër Në Pritje të Shqyrtimit"
@@ -6344,6 +6350,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "të tjera"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} dhe më të vonshëm"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
-"PO-Revision-Date: 2022-07-13 10:11+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"PO-Revision-Date: 2022-07-20 12:42+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4771,6 +4771,13 @@ msgstr "Kreativiteitsútwreidingen"
 msgid "See more creativity staff picks"
 msgstr "Mear stêfkarren foar kreativiteit besjen"
 
+msgid "Rejected or Unreviewed"
+msgstr "Ofwezen of net beoardield"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[steat:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Kin it manifest-bestân net ferwurkje."
 
@@ -5091,6 +5098,12 @@ msgstr "Goedkarring befêstigje"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "De lêste publike ferzje fan dizze add-on is automatysk goedkard. Dit hâldt jo befêstiging fan de goedkarring fan de ferzje by, sûnder de ûntwikkeler te ynformearjen."
+
+msgid "Approve Multiple Versions"
+msgstr "Meardere ferzjes goedkarre"
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr "Hjirtroch wurde de selektearre ferzjes goedkard. De opmerkingen wurde nei de ûntwikkeler stjoerd."
 
 msgid "Reject Multiple Versions"
 msgstr "Mear ferzjes ôfwize"
@@ -5709,13 +5722,6 @@ msgstr "Script foar automatyske goedkarring is noch net op dizze ferzje útfierd
 
 msgid "This version has not been reviewed."
 msgstr "Dizze ferzje is net beoardiele."
-
-msgid "Rejected or Unreviewed"
-msgstr "Ofwezen of net beoardield"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[steat:%s]"
 
 msgid "Other Pending Review"
 msgstr "Oare wachtsjend op beoardieling"
@@ -6351,6 +6357,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "oaren"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr "Fertraagd ôfwiisd, pland foar %s"
+
+msgid "Auto-approved, Confirmed"
+msgstr "Automatysk goedkard, befêstige"
+
+msgid "Auto-approved, not Confirmed"
+msgstr "Automatysk goedkard, net befêstige"
+
+msgid "Approved, Manual"
+msgstr "Goedkard, hânmjittich"
+
+msgid "Disabled by Developer"
+msgstr "Utskeakele troch ûntwikkeler"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} en heger"

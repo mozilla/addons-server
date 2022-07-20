@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
-"PO-Revision-Date: 2022-07-13 07:33+0000\n"
-"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"PO-Revision-Date: 2022-07-20 11:01+0000\n"
+"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4835,6 +4835,13 @@ msgstr "Estensioni per la creatività"
 msgid "See more creativity staff picks"
 msgstr "Visualizza altri strumenti per la creatività scelti dallo staff"
 
+msgid "Rejected or Unreviewed"
+msgstr "Rifiutato o non revisionato"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[Stato:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Impossibile analizzare il file manifesto."
 
@@ -5139,10 +5146,10 @@ msgid "Unlisted versions ({0})"
 msgstr "Versioni non elencate ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. Il commento verrà inviato allo sviluppatore."
+msgstr "Questa azione approverà, firmerà digitalmente e renderà disponibile sul sito l’attuale versione. I commenti verranno inviati allo sviluppatore."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Questa azione rifiuterà l’attuale versione del componente aggiuntivo e lo rimuoverà dalla lista dei nuovi componenti aggiuntivi. Il commento verrà inviato allo sviluppatore."
+msgstr "Questa azione rifiuterà l’attuale versione del componente aggiuntivo e lo rimuoverà dalla lista dei nuovi componenti aggiuntivi. I commenti verranno inviati allo sviluppatore."
 
 msgid "Approve Content"
 msgstr "Approva contenuti"
@@ -5157,6 +5164,12 @@ msgid "The latest public version of this add-on was automatically approved. This
 msgstr ""
 "L’ultima versione pubblica di questo componente aggiuntivo è stata approvata automaticamente. Questo è un semplice promemoria dell’avvenuta approvazione. Nessuna notifica verrà inviata allo "
 "sviluppatore."
+
+msgid "Approve Multiple Versions"
+msgstr "Approva più versioni"
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr "Questa azione approverà le versioni selezionate. I commenti verranno inviati allo sviluppatore."
 
 msgid "Reject Multiple Versions"
 msgstr "Rifiuta più versioni"
@@ -5777,13 +5790,6 @@ msgstr "Lo script per l’approvazione automatica non ha ancora analizzato quest
 
 msgid "This version has not been reviewed."
 msgstr "Questa versione non è stata revisionata."
-
-msgid "Rejected or Unreviewed"
-msgstr "Rifiutato o non revisionato"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[Stato:%s]"
 
 msgid "Other Pending Review"
 msgstr "Altre revisioni in attesa"
@@ -6419,6 +6425,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "altri"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr "Rifiutata con ritardo, programmata per il %s"
+
+msgid "Auto-approved, Confirmed"
+msgstr "Approvata automaticamente, confermata"
+
+msgid "Auto-approved, not Confirmed"
+msgstr "Approvata automaticamente, non confermata"
+
+msgid "Approved, Manual"
+msgstr "Approvata, manuale"
+
+msgid "Disabled by Developer"
+msgstr "Disattivata dallo sviluppatore"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} e seguenti"

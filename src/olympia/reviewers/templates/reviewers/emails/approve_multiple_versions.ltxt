@@ -1,0 +1,15 @@
+{% extends "reviewers/emails/base.ltxt" %}{% block content %}
+Hi there,
+
+One or more versions of your add-on {{ name }} are now signed and ready for you to download at {{ dev_versions_url }} . Note that you need to be logged in as a developer of the add-on before downloading.
+
+********
+Details:
+{{ comments }}
+
+Version(s) signed:
+{{ version_numbers }}
+********
+
+Thanks
+{% endblock %}

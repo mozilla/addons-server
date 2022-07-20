@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
-"PO-Revision-Date: 2022-07-12 18:07+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"PO-Revision-Date: 2022-07-20 10:56+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -4791,6 +4791,13 @@ msgstr "Kreativitäts-Erweiterungen"
 msgid "See more creativity staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte soziale Kreativitäts-Erweiterungen ansehen"
 
+msgid "Rejected or Unreviewed"
+msgstr "Abgelehnt oder nicht überprüt"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[Status: %s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Manifest-Datei konnte nicht verarbeitet werden."
 
@@ -5111,6 +5118,12 @@ msgstr "Freischaltung bestätigt"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Die neueste öffentliche Version dieses Add-ons wurde automatisch freigeschaltet. Dies zeichnet Ihre Bestätigung der Freischaltung dieser Version auf, ohne den Entwickler zu benachrichtigen."
+
+msgid "Approve Multiple Versions"
+msgstr "Mehrere Versionen freischalten"
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr "Dadurch werden die gewählten Versionen freigeschaltet. Die Kommentare werden an den Entwickler geschickt."
 
 msgid "Reject Multiple Versions"
 msgstr "Mehrere Versionen ablehnen"
@@ -5725,13 +5738,6 @@ msgstr "Auto-Freischaltungs-Skript wurde auf dieser Version noch nicht ausgefüh
 
 msgid "This version has not been reviewed."
 msgstr "Diese Version wurde nicht überprüft."
-
-msgid "Rejected or Unreviewed"
-msgstr "Abgelehnt oder nicht überprüt"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[Status: %s]"
 
 msgid "Other Pending Review"
 msgstr "Andere ausstehende Überprüfung"
@@ -6373,6 +6379,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "Andere"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr "Verzögert abgelehnt, für %s geplant"
+
+msgid "Auto-approved, Confirmed"
+msgstr "Automatische Freischaltung, bestätigt"
+
+msgid "Auto-approved, not Confirmed"
+msgstr "Automatische Freischaltung, nicht bestätigt"
+
+msgid "Approved, Manual"
+msgstr "Freigeschaltet, manuell"
+
+msgid "Disabled by Developer"
+msgstr "Vom Entwickler deaktiviert"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} und neuer"

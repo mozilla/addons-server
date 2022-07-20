@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -5189,6 +5189,13 @@ msgstr "Recommended ({0})"
 msgid "See more creativity staff picks"
 msgstr "by Add-on Version"
 
+msgid "Rejected or Unreviewed"
+msgstr "Rejected or Unreviewed"
+
+#, fuzzy, python-format
+msgid "[status:%s]"
+msgstr "Status:"
+
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
 
@@ -5547,6 +5554,12 @@ msgstr "Pending approval"
 #, fuzzy
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
+
+msgid "Approve Multiple Versions"
+msgstr "Approve Multiple Versions"
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr "This will approve the selected versions. The comments will be sent to the developer."
 
 #, fuzzy
 msgid "Reject Multiple Versions"
@@ -6251,13 +6264,6 @@ msgstr "Auto-Approval script has not run yet on this version."
 msgid "This version has not been reviewed."
 msgstr "This version has not been reviewed."
 
-msgid "Rejected or Unreviewed"
-msgstr "Rejected or Unreviewed"
-
-#, fuzzy, python-format
-msgid "[status:%s]"
-msgstr "Status:"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Moderated Review ({0})"
@@ -6934,6 +6940,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "others"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr "Delay-rejected, scheduled for %s"
+
+msgid "Auto-approved, Confirmed"
+msgstr "Auto-approved, Confirmed"
+
+msgid "Auto-approved, not Confirmed"
+msgstr "Auto-approved, not Confirmed"
+
+msgid "Approved, Manual"
+msgstr "Approved, Manual"
+
+msgid "Disabled by Developer"
+msgstr "Disabled by Developer"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} and later"

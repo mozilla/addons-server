@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -4878,6 +4878,13 @@ msgstr "Opkomende temas"
 msgid "See more creativity staff picks"
 msgstr "Blaai deur alle byvoegings"
 
+msgid "Rejected or Unreviewed"
+msgstr ""
+
+#, python-format
+msgid "[status:%s]"
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5216,6 +5223,12 @@ msgid "Confirm Approval"
 msgstr "Wag op goedkeuring"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
+msgstr ""
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
 
 #, fuzzy
@@ -5920,13 +5933,6 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr ""
 
-msgid "Rejected or Unreviewed"
-msgstr ""
-
-#, python-format
-msgid "[status:%s]"
-msgstr ""
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Nie nagegaan nie"
@@ -6551,6 +6557,22 @@ msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"
+msgstr ""
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
 msgstr ""
 
 msgid "{app} {min} and later"

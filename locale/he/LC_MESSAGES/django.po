@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-06-25 18:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -4740,6 +4740,13 @@ msgstr ""
 msgid "See more creativity staff picks"
 msgstr ""
 
+msgid "Rejected or Unreviewed"
+msgstr "נדחה או לא נסקר"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[מצב:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "לא ניתן לפענח את קובץ ה־manifest."
 
@@ -5068,6 +5075,12 @@ msgstr "אימות האישור"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "הגרסה הציבורית העדכנית ביותר של תוסף זה אושרה אוטומטית. תהליך זה מתעד את אימות האישור של גרסה זו, מבלי להודיע למפתח."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 # 75%
 # 100%
@@ -5722,13 +5735,6 @@ msgstr "תסריט לאישור אוטומטי עוד לא הופעל על גר�
 msgid "This version has not been reviewed."
 msgstr "גרסה זו לא עברה סקירה."
 
-msgid "Rejected or Unreviewed"
-msgstr "נדחה או לא נסקר"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[מצב:%s]"
-
 msgid "Other Pending Review"
 msgstr "סקירה ממתינה אחרת"
 
@@ -6375,6 +6381,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "אחרים"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} ומעלה"

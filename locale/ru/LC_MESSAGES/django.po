@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2022-05-22 11:32+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4803,6 +4803,13 @@ msgstr "Расширения для творчества"
 msgid "See more creativity staff picks"
 msgstr "Больше инструментов перевода отобранных нашими сотрудниками"
 
+msgid "Rejected or Unreviewed"
+msgstr "Отклонено или не проверено"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[статус:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."
 
@@ -5124,6 +5131,12 @@ msgstr "Подтвердить одобрение"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Последняя публичная версия этого дополнения была автоматически одобрена. Это действие записывает ваше подтверждение одобрения этой версии, без уведомления разработчика."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Отклонить несколько версий"
@@ -5738,13 +5751,6 @@ msgstr "Скрипт автоодобрения ещё не проверял э�
 
 msgid "This version has not been reviewed."
 msgstr "Эта версия не была проверена."
-
-msgid "Rejected or Unreviewed"
-msgstr "Отклонено или не проверено"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[статус:%s]"
 
 msgid "Other Pending Review"
 msgstr "Другие ожидающие проверки"
@@ -6379,6 +6385,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "другие"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} и выше"

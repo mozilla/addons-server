@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
-"PO-Revision-Date: 2022-07-12 17:37+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"PO-Revision-Date: 2022-07-20 11:50+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4820,6 +4820,13 @@ msgstr "Extensões de criatividade"
 msgid "See more creativity staff picks"
 msgstr "Mais escolhas da equipe de criatividade"
 
+msgid "Rejected or Unreviewed"
+msgstr "Rejeitados ou não revisados"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[status: %s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
 
@@ -5144,6 +5151,12 @@ msgstr "Confirmar aprovação"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "A última versão pública desta extensão foi aprovada automaticamente. Isto registra sua confirmação de aprovação dessa versão, sem notificar o desenvolvedor."
+
+msgid "Approve Multiple Versions"
+msgstr "Aprovar várias versões"
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr "Isso irá aprovar as versões selecionadas. Os comentários serão enviados ao desenvolvedor."
 
 msgid "Reject Multiple Versions"
 msgstr "Rejeitar várias versões"
@@ -5773,13 +5786,6 @@ msgstr "O script de aprovação automática ainda não foi executado nesta vers�
 
 msgid "This version has not been reviewed."
 msgstr "Esta versão não foi analisada."
-
-msgid "Rejected or Unreviewed"
-msgstr "Rejeitados ou não revisados"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[status: %s]"
 
 # %1 is the review count
 msgid "Other Pending Review"
@@ -6421,6 +6427,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "outros"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr "Rejeitado com atraso, agendado para %s"
+
+msgid "Auto-approved, Confirmed"
+msgstr "Aprovado automaticamente, confirmado"
+
+msgid "Auto-approved, not Confirmed"
+msgstr "Aprovado automaticamente, não confirmado"
+
+msgid "Approved, Manual"
+msgstr "Aprovado, manual"
+
+msgid "Disabled by Developer"
+msgstr "Desativado pelo desenvolvedor"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} e superiores"

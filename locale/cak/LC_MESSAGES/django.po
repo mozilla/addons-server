@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-12 16:16+0000\n"
+"POT-Creation-Date: 2022-07-19 20:17+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4838,6 +4838,13 @@ msgstr "Xchilab'ëx"
 msgid "See more creativity staff picks"
 msgstr "chi Ruwäch Tz'aqat"
 
+msgid "Rejected or Unreviewed"
+msgstr "Exutun o Man Enik'on ta"
+
+#, python-format
+msgid "[status:%s]"
+msgstr "[rub'anikil:%s]"
+
 msgid "Could not parse the manifest file."
 msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
 
@@ -5170,6 +5177,12 @@ msgstr "Tijikib'äx Ütz Tz'etoj"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr "Ri ruk'isib'äl ruwäch re tz'aqat re' ri elesan rutzijol ruyonil ütz xtz'et. Re re' nuyäk ri ajikib'anik richin ütz rutz'etik re ruwäch re', akuchi' man xya' ta rutzijol chi re ri b'anonel."
+
+msgid "Approve Multiple Versions"
+msgstr ""
+
+msgid "This will approve the selected versions. The comments will be sent to the developer."
+msgstr ""
 
 msgid "Reject Multiple Versions"
 msgstr "Kexutüx K'ïy taq Ruwäch"
@@ -5830,13 +5843,6 @@ msgstr "K'a man samajib'en ta ri runuk' ruyon ütz nitz'et pa re ruwäch re'."
 msgid "This version has not been reviewed."
 msgstr "Man nik'on ta re ruwäch re'."
 
-msgid "Rejected or Unreviewed"
-msgstr "Exutun o Man Enik'on ta"
-
-#, python-format
-msgid "[status:%s]"
-msgstr "[rub'anikil:%s]"
-
 #, fuzzy
 msgid "Other Pending Review"
 msgstr "Runik'oxik Rajil ({0})"
@@ -6468,6 +6474,22 @@ msgstr ""
 msgctxt "user_list_others"
 msgid "others"
 msgstr "juley chik"
+
+#, python-format
+msgid "Delay-rejected, scheduled for %s"
+msgstr ""
+
+msgid "Auto-approved, Confirmed"
+msgstr ""
+
+msgid "Auto-approved, not Confirmed"
+msgstr ""
+
+msgid "Approved, Manual"
+msgstr ""
+
+msgid "Disabled by Developer"
+msgstr ""
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} chuqa' ri nipe"
