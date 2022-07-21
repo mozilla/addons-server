@@ -233,6 +233,15 @@ class TestBlocklistSubmissionAdmin(TestCase):
             guid='guid@', name='Danger Danger', version_kw={'version': '1.2a'}
         )
         first_version = addon.current_version
+        disabled_version = version_factory(
+            addon=addon, version='2.5', file_kw={'status': amo.STATUS_DISABLED}
+        )
+        deleted_version = version_factory(
+            addon=addon,
+            version='2.5.1',
+            deleted=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
         second_version = version_factory(addon=addon, version='3')
         pending_version = version_factory(
             addon=addon, version='5.999', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
@@ -304,6 +313,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
             f'The blocklist submission {FANCY_QUOTE_OPEN}No Sign-off: guid@; '
             f'dfd; some reason{FANCY_QUOTE_CLOSE} was added successfully.'
         ]
+        # The disabled and deleted versions should only have the block activity,
+        # not a reject activity
+        log_disabled_version = ActivityLog.objects.for_versions(disabled_version)
+        assert len(log_disabled_version) == 1
+        assert log == log_disabled_version.last()
+        log_deleted_version = ActivityLog.objects.for_versions(deleted_version)
+        assert len(log_deleted_version) == 1
+        assert log == log_deleted_version.last()
 
         response = self.client.get(
             reverse('admin:blocklist_block_change', args=(block.pk,))

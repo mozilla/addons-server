@@ -119,7 +119,10 @@ def disable_addon_for_block(block):
                 ver
                 for ver in block.addon_versions
                 # We don't need to reject versions from older deleted instances
-                if ver.addon == block.addon and block.is_version_blocked(ver.version)
+                # and already disabled files
+                if ver.addon == block.addon
+                and block.is_version_blocked(ver.version)
+                and ver.file.status != amo.STATUS_DISABLED
             ]
         }
     )
