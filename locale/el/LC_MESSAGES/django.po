@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-19 20:17+0000\n"
-"PO-Revision-Date: 2022-07-21 16:16+0000\n"
+"PO-Revision-Date: 2022-07-21 16:41+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5149,7 +5149,7 @@ msgid "Approve Multiple Versions"
 msgstr "Αποδοχή πολλαπλών εκδόσεων"
 
 msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Αυτό θα εγκρίνει τις επιλεγμένες εκδόσεις. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
 
 msgid "Reject Multiple Versions"
 msgstr "Απόρριψη πολλαπλών εκδόσεων"
@@ -6414,19 +6414,19 @@ msgstr "άλλοι"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Καθυστερημένη απόρριψη, προγραμματίστηκε για τις %s"
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Αυτόματη έγκριση, επιβεβαιώθηκε"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Αυτόματη έγκριση, δεν επιβεβαιώθηκε"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Έγκριση, χειροκίνητη"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Απενεργοποιήθηκε από τον προγραμματιστή"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} και νεότερα"
