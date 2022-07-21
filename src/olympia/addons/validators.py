@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from django.utils.translation import gettext
 
 from rest_framework import exceptions, fields
@@ -170,29 +171,33 @@ class AddonDefaultLocaleValidator:
     def __call__(self, data, serializer):
         from olympia.api.fields import TranslationSerializerField
 
-        if 'default_locale' not in data:
+        new_default = data.get('default_locale')
+
+        if serializer.instance and not new_default:
+            # We can skip updates to existing add-ons with no default_locale changes.
             return
-        new_default = data['default_locale']
+        if not serializer.instance:
+            parsed_data = serializer.fields['version'].parsed_data
+            # Addon.resolve_webext_translations does find_language to check if l10n
+            if lang := find_language(parsed_data.get('default_locale')):
+                xpi_trans = Addon.resolve_webext_translations(
+                    parsed_data,
+                    data['version']['upload'],
+                    use_default_locale_fallback=False,
+                )
+                new_default = new_default or lang
+            else:
+                xpi_trans = None
+                new_default = new_default or settings.LANGUAGE_CODE
+
         fields = [
             (name, field)
             for name, field in serializer.fields.items()
             if isinstance(field, TranslationSerializerField)
         ]
         errors = {}
-        if not serializer.instance:
-            parsed_data = serializer.fields['version'].parsed_data
-            # Addon.resolve_webext_translations does find_language to check if l10n
-            if find_language(parsed_data.get('default_locale')):
-                xpi_trans = Addon.resolve_webext_translations(
-                    parsed_data,
-                    data['version']['upload'],
-                    use_default_locale_fallback=False,
-                )
-            else:
-                xpi_trans = None
-
         # confirm all the translated fields have a value in this new locale
-        for name, field in fields:
+        for field_name, field in fields:
             if serializer.instance:
                 # for an existing addon we need to consider all the existing values
                 existing = field.fetch_all_translations(
@@ -200,22 +205,24 @@ class AddonDefaultLocaleValidator:
                 )
                 all_translations = {
                     loc: val
-                    for loc, val in {**existing, **data.get(name, {})}.items()
+                    for loc, val in {**existing, **data.get(field_name, {})}.items()
                     if val is not None
                 }
-            elif name in data:
+            elif field_name in data:
                 # for a new addon a value in data overrides the xpi value/translations
                 all_translations = {
                     loc: val
-                    for loc, val in data.get(name, {}).items()
+                    for loc, val in data.get(field_name, {}).items()
                     if val is not None
                 }
-            else:
+            elif xpi_trans:
                 # else we need to check the xpi localization - if there is xpi l10n
-                all_translations = xpi_trans.get(name) if xpi_trans else None
+                all_translations = xpi_trans.get(field_name)
+            else:
+                all_translations = None
 
             if all_translations and new_default not in all_translations:
-                errors[name] = TranslationSerializerField.default_error_messages[
+                errors[field_name] = TranslationSerializerField.default_error_messages[
                     'default_locale_required'
                 ].format(lang_code=new_default)
 
