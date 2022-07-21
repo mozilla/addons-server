@@ -799,7 +799,7 @@ CELERY_TASK_SOFT_TIME_LIMIT = 60 * 30
 # INSTALLED_APPS, or modules not called `tasks`.
 CELERY_IMPORTS = (
     'olympia.lib.crypto.tasks',
-    'olympia.lib.es.management.commands.reindex',
+    'olympia.search.management.commands.reindex',
 )
 
 CELERY_TASK_QUEUES = (
@@ -830,11 +830,11 @@ CELERY_TASK_ROUTES = {
     # A queue to be used for one-off tasks that could be resource intensive or
     # tasks we want completely separate from the rest.
     'olympia.addons.tasks.find_inconsistencies_between_es_and_db': {'queue': 'adhoc'},
-    'olympia.lib.es.management.commands.reindex.create_new_index': {'queue': 'adhoc'},
-    'olympia.lib.es.management.commands.reindex.delete_indexes': {'queue': 'adhoc'},
-    'olympia.lib.es.management.commands.reindex.flag_database': {'queue': 'adhoc'},
-    'olympia.lib.es.management.commands.reindex.unflag_database': {'queue': 'adhoc'},
-    'olympia.lib.es.management.commands.reindex.update_aliases': {'queue': 'adhoc'},
+    'olympia.search.management.commands.reindex.create_new_index': {'queue': 'adhoc'},
+    'olympia.search.management.commands.reindex.delete_indexes': {'queue': 'adhoc'},
+    'olympia.search.management.commands.reindex.flag_database': {'queue': 'adhoc'},
+    'olympia.search.management.commands.reindex.unflag_database': {'queue': 'adhoc'},
+    'olympia.search.management.commands.reindex.update_aliases': {'queue': 'adhoc'},
     'olympia.translations.tasks.reclean_collection_descriptions': {'queue': 'adhoc'},
     'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},

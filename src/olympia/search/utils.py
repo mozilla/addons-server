@@ -6,16 +6,29 @@ from copy import deepcopy
 from django.conf import settings
 from django.core.management.base import CommandError
 
-from elasticsearch import helpers
-
-import olympia.core.logger
-
-from olympia.amo import search as amo_search
+from elasticsearch import Elasticsearch
+from elasticsearch import helpers, transport
 
 from .models import Reindexing
 
 
-log = olympia.core.logger.getLogger('z.es')
+class AlreadyVerifiedTransport(transport.Transport):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Pretend we've already done the verification request that would
+        # normally be made by elasticsearch client 7.14+ once per connection
+        # before the first request. We're using a genuine ES cluster but we
+        # don't want the extra request.
+        self._verified_elasticsearch = True
+
+
+def get_es():
+    """Create an ES object and return it."""
+    return Elasticsearch(
+        settings.ES_HOSTS,
+        timeout=settings.ES_TIMEOUT,
+        transport_class=AlreadyVerifiedTransport,
+    )
 
 
 def index_objects(
@@ -58,7 +71,7 @@ def index_objects(
         qs = qs.transform(transform)
 
     bulk = []
-    es = amo_search.get_es()
+    es = get_es()
 
     for obj in qs.order_by('pk'):
         data = indexer_class.extract_document(obj)
@@ -104,7 +117,7 @@ def create_index(*, index, mappings, index_settings=None):
     - mappings and index_settings: if provided, used when passing the
     configuration of the index to ES.
     """
-    es = amo_search.get_es()
+    es = get_es()
 
     if index_settings is None:
         index_settings = {'index': {}}

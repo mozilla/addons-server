@@ -1,12 +1,18 @@
 from unittest import mock
 
 from olympia.addons.indexers import AddonIndexer
-from olympia.amo.tests import addon_factory, TestCase
-from olympia.lib.es.models import Reindexing
-from olympia.lib.es.utils import index_objects
+from olympia.amo.tests import addon_factory, ESTestCase, TestCase
+from olympia.search.models import Reindexing
+from olympia.search.utils import get_es, index_objects
 
 
-@mock.patch('olympia.lib.es.utils.helpers')
+class TestGetES(ESTestCase):
+    def test_get_es(self):
+        es = get_es()
+        assert es.transport._verified_elasticsearch
+
+
+@mock.patch('olympia.search.utils.helpers')
 class TestIndexObjects(TestCase):
     def test_index_objects(self, helpers_mock):
         addon1 = addon_factory()

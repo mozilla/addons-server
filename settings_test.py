@@ -79,7 +79,7 @@ CELERY_TASK_ALWAYS_EAGER = True
 
 CELERY_IMPORTS += (
     'olympia.amo.tests.test_celery',
-    'olympia.lib.es.tests.test_commands',
+    'olympia.search.tests.test_commands',
 )
 
 CELERY_TASK_ROUTES.update(
@@ -88,7 +88,7 @@ CELERY_TASK_ROUTES.update(
         'olympia.amo.tests.test_celery.fake_task': {'queue': 'amo'},
         'olympia.amo.tests.test_celery.fake_task_with_result': {'queue': 'amo'},
         'olympia.amo.tests.test_celery.sleeping_task': {'queue': 'amo'},
-        'olympia.lib.es.tests.test_commands.dummy_task': {'queue': 'amo'},
+        'olympia.search.tests.test_commands.dummy_task': {'queue': 'amo'},
     }
 )
 

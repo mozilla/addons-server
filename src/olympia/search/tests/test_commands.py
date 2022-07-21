@@ -15,8 +15,8 @@ from celery.canvas import _chain
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, ESTestCaseMixin, PatchMixin, reverse_ns
 from olympia.amo.utils import urlparams
-from olympia.lib.es.management.commands import reindex
-from olympia.lib.es.models import Reindexing
+from olympia.search.management.commands import reindex
+from olympia.search.models import Reindexing
 
 
 @shared_task
@@ -202,20 +202,20 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         assert isinstance(workflow, _chain)
 
         expected_tasks = [
-            'olympia.lib.es.management.commands.reindex.create_new_index',
-            'olympia.lib.es.management.commands.reindex.flag_database',
+            'olympia.search.management.commands.reindex.create_new_index',
+            'olympia.search.management.commands.reindex.flag_database',
             'celery.chord',
         ]
         assert expected_tasks == [task.name for task in workflow.tasks]
 
         reindex_chord = workflow.tasks[2]
 
-        expected_header = ['olympia.lib.es.tests.test_commands.dummy_task'] * 42
+        expected_header = ['olympia.search.tests.test_commands.dummy_task'] * 42
         assert expected_header == [task.name for task in reindex_chord.tasks]
 
         expected_body = [
-            'olympia.lib.es.management.commands.reindex.update_aliases',
-            'olympia.lib.es.management.commands.reindex.unflag_database',
+            'olympia.search.management.commands.reindex.update_aliases',
+            'olympia.search.management.commands.reindex.unflag_database',
         ]
         assert isinstance(reindex_chord.body, _chain)
         for i, task_name in enumerate(expected_body):
