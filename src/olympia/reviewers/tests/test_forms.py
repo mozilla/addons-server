@@ -412,3 +412,18 @@ class TestReviewForm(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.test_delayed_rejection_days_widget_attributes()
+
+    def test_version_pk(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        data = {'action': 'comment', 'comments': 'lol'}
+        form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
+
+        form = self.get_form(data={**data, 'version_pk': 99999})
+        assert not form.is_valid()
+        assert form.errors == {
+            'version_pk': ['Version mismatch - the latest version has changed!']
+        }
+
+        form = self.get_form(data={**data, 'version_pk': self.version.pk})
+        assert form.is_valid(), form.errors

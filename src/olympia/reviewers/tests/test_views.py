@@ -5879,6 +5879,47 @@ class TestReview(ReviewBase):
 
         self.assertRedirects(response, self.url)
 
+    def test_version_mismatch(self):
+        response = self.client.get(self.url)
+        assert (
+            bytes(
+                '<input type="hidden" name="version_pk" '
+                f'value="{self.addon.current_version.pk}"/>',
+                'utf-8',
+            )
+            in response.content
+        )
+        data = {
+            'action': 'comment',
+            'comments': 'random comment',
+            'version_pk': self.addon.current_version.pk,
+        }
+        # A new version is created between the page being rendered and form submitted.
+        version_factory(addon=self.addon)
+
+        response = self.client.post(self.url, data, follow=True)
+        assert response.status_code == 200
+        self.assertFormError(
+            response,
+            'form',
+            'version_pk',
+            'Version mismatch - the latest version has changed!',
+        )
+        assert b'Version mismatch' in response.content
+        assert (
+            bytes(
+                '<input type="hidden" name="version_pk" '
+                f'value="{self.addon.current_version.pk}"/>',
+                'utf-8',
+            )
+            in response.content
+        )
+
+        response = self.client.post(
+            self.url, {**data, 'version_pk': self.addon.current_version.pk}, follow=True
+        )
+        self.assert3xx(response, self.listed_url)
+
 
 class TestAbuseReportsView(ReviewerTest):
     def setUp(self):

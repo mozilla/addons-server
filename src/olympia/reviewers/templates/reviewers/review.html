@@ -38,6 +38,9 @@
 <form method="POST" action="#review-actions" class="review-form">
   {% csrf_token %}
 
+  <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
+  {{ form.version_pk.errors }}
+
   {% include 'reviewers/addon_details_box.html' %}
 
   {% if important_changes_log %}

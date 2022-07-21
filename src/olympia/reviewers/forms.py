@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.forms.models import (
     BaseModelFormSet,
@@ -209,6 +210,7 @@ class ReviewForm(forms.Form):
         queryset=ReviewActionReason.objects.filter(is_active__exact=True),
         required=True,
     )
+    version_pk = forms.IntegerField(required=False, min_value=1)
 
     def is_valid(self):
         # Some actions do not require comments and reasons.
@@ -224,6 +226,13 @@ class ReviewForm(forms.Form):
         if result:
             self.helper.set_data(self.cleaned_data)
         return result
+
+    def clean_version_pk(self):
+        version_pk = self.cleaned_data.get('version_pk')
+        if version_pk and version_pk != self.helper.version.pk:
+            raise ValidationError(
+                gettext('Version mismatch - the latest version has changed!')
+            )
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
