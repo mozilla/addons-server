@@ -1058,6 +1058,7 @@ class TestReviewHelper(TestReviewHelperBase):
             needs_human_review_by_mad=True,
             pending_rejection=datetime.now() + timedelta(days=2),
             pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
         )
         assert flags.needs_human_review_by_mad
 
@@ -1068,6 +1069,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not flags.needs_human_review_by_mad
         assert not flags.pending_rejection
         assert not flags.pending_rejection_by
+        assert flags.pending_content_rejection is None
 
     def test_nomination_to_public(self):
         self.sign_file_mock.reset()
@@ -1459,6 +1461,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 version=version,
                 pending_rejection=datetime.now() + timedelta(days=7),
                 pending_rejection_by=user_factory(),
+                pending_content_rejection=False,
             )
 
         self.helper = self.get_helper()  # To make it pick up the new version.
@@ -1490,6 +1493,10 @@ class TestReviewHelper(TestReviewHelperBase):
         # pending_rejection_by should be cleared as well.
         assert not VersionReviewerFlags.objects.filter(
             version__addon=self.addon, pending_rejection_by__isnull=False
+        ).exists()
+        # pending_content_rejection should be cleared too
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=self.addon, pending_content_rejection__isnull=False
         ).exists()
 
         # Check points awarded.
@@ -1838,6 +1845,7 @@ class TestReviewHelper(TestReviewHelperBase):
         for version in self.addon.versions.all():
             assert version.pending_rejection is None
             assert version.pending_rejection_by is None
+            assert version.reviewerflags.pending_content_rejection is None
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
@@ -1913,6 +1921,7 @@ class TestReviewHelper(TestReviewHelperBase):
             assert version.pending_rejection
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
             assert version.pending_rejection_by == self.user
+            assert version.reviewerflags.pending_content_rejection is False
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]

@@ -6872,6 +6872,7 @@ class TestAddonReviewerViewSet(TestCase):
                 version=version,
                 pending_rejection=datetime.now() + timedelta(days=7),
                 pending_rejection_by=user_factory(),
+                pending_content_rejection=False,
             )
         response = self.client.post(self.clear_pending_rejections_url)
         assert response.status_code == 202
@@ -6880,6 +6881,9 @@ class TestAddonReviewerViewSet(TestCase):
         ).exists()
         assert not VersionReviewerFlags.objects.filter(
             version__addon=self.addon, pending_rejection_by__isnull=False
+        ).exists()
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=self.addon, pending_content_rejection__isnull=False
         ).exists()
 
 

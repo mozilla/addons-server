@@ -1215,6 +1215,7 @@ class TestAutoReject(TestCase):
             version=self.version,
             pending_rejection=self.yesterday,
             pending_rejection_by=self.user,
+            pending_content_rejection=True,
         )
 
     def test_prevent_multiple_runs_in_parallel(self):
@@ -1329,6 +1330,7 @@ class TestAutoReject(TestCase):
             version=another_pending_rejection,
             pending_rejection=self.yesterday,
             pending_rejection_by=self.user,
+            pending_content_rejection=False,
         )
         ActivityLog.objects.for_addons(self.addon).delete()
 
@@ -1353,7 +1355,7 @@ class TestAutoReject(TestCase):
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
-        assert logs[1].action == amo.LOG.REJECT_VERSION.id
+        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
         assert logs[1].arguments == [self.addon, self.version]
         assert logs[2].action == amo.LOG.REJECT_VERSION.id
         assert logs[2].arguments == [self.addon, another_pending_rejection]
@@ -1367,6 +1369,10 @@ class TestAutoReject(TestCase):
         # The pending_rejection_by should also have been cleared.
         assert not VersionReviewerFlags.objects.filter(
             pending_rejection_by__isnull=False
+        ).exists()
+        # And pending_content_rejection too
+        assert not VersionReviewerFlags.objects.filter(
+            pending_content_rejection__isnull=False
         ).exists()
 
         # No mail should have gone out.

@@ -74,7 +74,9 @@ class Command(BaseCommand):
         }
         helper.handler.reject_multiple_versions()
         VersionReviewerFlags.objects.filter(version__in=list(versions)).update(
-            pending_rejection=None, pending_rejection_by=None
+            pending_rejection=None,
+            pending_rejection_by=None,
+            pending_content_rejection=None,
         )
 
     def process_addon(self, *, addon, now):
