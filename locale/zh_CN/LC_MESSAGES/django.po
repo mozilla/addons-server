@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-19 20:17+0000\n"
-"PO-Revision-Date: 2022-07-22 07:51+0000\n"
+"PO-Revision-Date: 2022-07-22 07:59+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -985,16 +985,16 @@ msgid "User {user} throttled for scope \"{0}\""
 msgstr "用户 {user} 在 \"{0}\" 范围内受限"
 
 msgid "{addon} {version} content reject scheduled."
-msgstr "已计划驳回 {addon} {version} 内容。"
+msgstr "已安排驳回 {addon} {version} 内容。"
 
 msgid "Content reject scheduled"
-msgstr "已计划驳回内容"
+msgstr "已安排驳回内容"
 
 msgid "{addon} {version} reject scheduled."
-msgstr "已计划驳回 {addon} {version}。"
+msgstr "已安排驳回 {addon} {version}。"
 
 msgid "Rejection scheduled"
-msgstr "已计划驳回"
+msgstr "已安排驳回"
 
 msgid "{addon} {version} re-signed (previously {0})."
 msgstr "{addon} {version} 已重新签名（先前为 {0}）。"
@@ -1691,7 +1691,7 @@ msgid "Completed"
 msgstr "已完成"
 
 msgid "Scheduled"
-msgstr "已计划"
+msgstr "已安排"
 
 msgid "Core"
 msgstr "核心"
@@ -5006,10 +5006,10 @@ msgid "The latest public version of this add-on was automatically approved. This
 msgstr "此附加组件的最新公开版本已自动通过审核。这将记录您对此的确认（不会通知开发人员）。"
 
 msgid "Approve Multiple Versions"
-msgstr ""
+msgstr "通过多个版本"
 
 msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "这将通过选定的版本。该评论将发送给开发者。"
 
 msgid "Reject Multiple Versions"
 msgstr "驳回多个版本"
@@ -6253,19 +6253,19 @@ msgstr "等"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "推迟驳回，安排于 %s"
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "自动通过审核，已确认"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "自动通过审核，未确认"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "已通过审核，手动"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "被开发者禁用"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新的版本"

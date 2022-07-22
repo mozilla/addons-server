@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-19 20:18+0000\n"
-"PO-Revision-Date: 2022-01-30 08:02+0000\n"
+"PO-Revision-Date: 2022-07-22 07:51+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -654,7 +654,7 @@ msgid "Rejected"
 msgstr "被驳回"
 
 msgid "Approved"
-msgstr "已核准"
+msgstr "已通过审核"
 
 msgid "No results found"
 msgstr "未找到结果"
