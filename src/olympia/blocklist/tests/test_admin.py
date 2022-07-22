@@ -233,6 +233,15 @@ class TestBlocklistSubmissionAdmin(TestCase):
             guid='guid@', name='Danger Danger', version_kw={'version': '1.2a'}
         )
         first_version = addon.current_version
+        disabled_version = version_factory(
+            addon=addon, version='2.5', file_kw={'status': amo.STATUS_DISABLED}
+        )
+        deleted_version = version_factory(
+            addon=addon,
+            version='2.5.1',
+            deleted=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
         second_version = version_factory(addon=addon, version='3')
         pending_version = version_factory(
             addon=addon, version='5.999', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
@@ -270,40 +279,48 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert Block.objects.count() == 1
         block = Block.objects.first()
         assert block.addon == addon
-        logs = ActivityLog.objects.for_addons(addon)
         # Multiple versions rejection somehow forces us to go through multiple
         # add-on status updates, it all turns out to be ok in the end though...
-        log = logs[0]
-        assert log.action == amo.LOG.CHANGE_STATUS.id
-        log = logs[1]
-        assert log.action == amo.LOG.CHANGE_STATUS.id
-        log = logs[2]
-        assert log.action == amo.LOG.REJECT_VERSION.id
-        log = logs[3]
-        assert log.action == amo.LOG.REJECT_VERSION.id
-        log = logs[4]
-        assert log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
-        assert log.arguments == [addon, addon.guid, block]
-        assert log.details['min_version'] == '0'
-        assert log.details['max_version'] == addon.current_version.version
-        assert log.details['reason'] == 'some reason'
-        block_log = (
-            ActivityLog.objects.for_block(block).filter(action=log.action).first()
+        logs = ActivityLog.objects.for_addons(addon)
+        assert len(logs) == 5
+        assert logs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert logs[1].action == amo.LOG.CHANGE_STATUS.id
+        reject_log1 = logs[2]
+        assert reject_log1.action == amo.LOG.REJECT_VERSION.id
+        reject_log2 = logs[3]
+        assert reject_log2.action == amo.LOG.REJECT_VERSION.id
+        block_log = logs[4]
+        assert block_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
+        assert block_log.arguments == [addon, addon.guid, block]
+        assert block_log.details['min_version'] == '0'
+        assert block_log.details['max_version'] == addon.current_version.version
+        assert block_log.details['reason'] == 'some reason'
+        assert block_log == (
+            ActivityLog.objects.for_block(block).filter(action=block_log.action).get()
         )
-        assert block_log == log
-        block_log_by_guid = (
-            ActivityLog.objects.for_guidblock('guid@').filter(action=log.action).first()
+        assert block_log == (
+            ActivityLog.objects.for_guidblock('guid@')
+            .filter(action=block_log.action)
+            .get()
         )
-        assert block_log_by_guid == log
-
-        assert log == ActivityLog.objects.for_versions(first_version).last()
-        assert log == ActivityLog.objects.for_versions(second_version).last()
-        assert log == ActivityLog.objects.for_versions(deleted_addon_version).last()
+        assert [reject_log1, block_log] == list(
+            ActivityLog.objects.for_versions(first_version)
+        )
+        assert [reject_log2, block_log] == list(
+            ActivityLog.objects.for_versions(second_version)
+        )
+        assert [block_log] == list(
+            ActivityLog.objects.for_versions(deleted_addon_version)
+        )
         assert not ActivityLog.objects.for_versions(pending_version).exists()
         assert [msg.message for msg in response.context['messages']] == [
             f'The blocklist submission {FANCY_QUOTE_OPEN}No Sign-off: guid@; '
             f'dfd; some reason{FANCY_QUOTE_CLOSE} was added successfully.'
         ]
+        # The disabled and deleted versions should only have the block activity,
+        # not a reject activity
+        assert [block_log] == list(ActivityLog.objects.for_versions(disabled_version))
+        assert [block_log] == list(ActivityLog.objects.for_versions(deleted_version))
 
         response = self.client.get(
             reverse('admin:blocklist_block_change', args=(block.pk,))
@@ -318,12 +335,16 @@ class TestBlocklistSubmissionAdmin(TestCase):
         first_version.file.reload()
         second_version.file.reload()
         pending_version.file.reload()
+        disabled_version.file.reload()
+        deleted_version.file.reload()
         assert addon.status != amo.STATUS_DISABLED  # not 0 - * so no change
         assert first_version.file.status == amo.STATUS_DISABLED
         assert second_version.file.status == amo.STATUS_DISABLED
         assert pending_version.file.status == (
             amo.STATUS_AWAITING_REVIEW
         )  # no change because not in Block
+        assert disabled_version.file.status == amo.STATUS_DISABLED  # no change
+        assert deleted_version.file.status == amo.STATUS_DISABLED  # no change
 
     def _test_add_multiple_submit(self, addon_adu):
         """addon_adu is important because whether dual signoff is needed is
