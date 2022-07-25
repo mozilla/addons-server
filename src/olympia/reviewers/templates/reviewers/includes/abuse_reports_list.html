@@ -14,10 +14,10 @@
     <thead>
       <tr>
         <td>
-          {% if report.addon %}
-            {% set object_name = report.addon.name %}
-          {% else %}
+          {% if report.user %}
             {% set object_name = report.user|user_link %}
+          {% else %}
+            {% set object_name = report.addon_name %}
           {% endif %}
           {{ object_name }} {{ report.addon_version }}
         </td>

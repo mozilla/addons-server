@@ -55,22 +55,15 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
     def get_guid_and_addon(self):
         data = {
             'guid': None,
-            'addon': None,
         }
-        # See if the addon parameter looks like a guid. If it does, record the
-        # guid without trying linking to an add-on in the database.
         if self.get_addon_viewset().get_lookup_field(self.kwargs['addon_pk']) == 'guid':
             data['guid'] = self.kwargs['addon_pk']
-            # So that get_addon_object() doesn't raise a 404.
-            self.addon_object = None
-        # At this point get_addon_object() will either return None because we
-        # set self.addon_object earlier, or find an add-on with its pk/slug,
-        # or raise a 404.
-        data['addon'] = self.get_addon_object()
-        if data['addon']:
-            # If we did find an add-on in database, regardless of how, make
-            # sure we always store the guid as well.
-            data['guid'] = data['addon'].guid
+        else:
+            # At this point the parameter is a slug or pk. For backwards-compatibility
+            # we accept that, but ultimately record only the guid.
+            self.get_addon_object()
+            if self.addon_object:
+                data['guid'] = self.addon_object.guid
         return data
 
 

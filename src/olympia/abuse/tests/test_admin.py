@@ -32,39 +32,40 @@ class TestAbuse(TestCase):
         cls.addon1.name.__class__.objects.create(
             id=cls.addon1.name_id, locale='fr', localized_string='Elu'
         )
-        cls.addon2 = addon_factory(guid='@guid2', name='Two')
-        cls.addon3 = addon_factory(guid='@guid3', name='Three')
+        cls.addon2 = addon_factory(guid='@guid2', name='Owt')
+        cls.addon3 = addon_factory(guid='@guid3', name='Eerth')
         cls.user = user_factory(email='someone@mozilla.com')
         grant_permission(cls.user, 'AbuseReports:Edit', 'Abuse Report Triage')
         # Create a few abuse reports.
         cls.report1 = AbuseReport.objects.create(
-            addon=cls.addon1,
-            guid='@guid1',
+            addon_name='The One',
+            guid=cls.addon1.guid,
             message='Foo',
             state=AbuseReport.STATES.VALID,
             created=days_ago(98),
         )
         AbuseReport.objects.create(
-            addon=cls.addon2,
-            guid='@guid2',
+            addon_name='The Two',
+            guid=cls.addon2.guid,
             message='Bar',
             state=AbuseReport.STATES.VALID,
         )
         AbuseReport.objects.create(
-            addon=cls.addon3,
-            guid='@guid3',
+            addon_name='The Three',
+            guid=cls.addon3.guid,
             message='Soap',
             reason=AbuseReport.REASONS.OTHER,
             created=days_ago(100),
         )
         AbuseReport.objects.create(
-            addon=cls.addon1,
-            guid='@guid1',
+            addon_name='The One',
+            guid=cls.addon1.guid,
             message='With Addon',
             reporter=user_factory(),
         )
-        # This one is against addon1 but without a FK, just the guid.
-        AbuseReport.objects.create(guid='@guid1', message='', reporter=user_factory())
+        AbuseReport.objects.create(
+            guid=cls.addon1.guid, message='', reporter=user_factory()
+        )
         # This is a report for an addon not in the database.
         cls.report2 = AbuseReport.objects.create(
             guid='@unknown_guid', addon_name='Mysterious Addon', message='Doo'
@@ -85,14 +86,12 @@ class TestAbuse(TestCase):
         assert response.status_code == 403
 
     def test_list(self):
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(9):
             # - 2 queries to get the user and their permissions
             # - 2 queries for a count of the total number of items
             #   (duplicated by django itself)
             # - 2 savepoints
             # - 1 to get the abuse reports
-            # - 2 to get all add-ons displayed and their translations
-            #   (regardless of how many there are, thanks to prefetch_related)
             # - 2 for the date hierarchy
             response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -184,13 +183,16 @@ class TestAbuse(TestCase):
         assert 'Mysterious' in doc('#result_list').text()
 
         response = self.client.get(
-            self.list_url, {'q': str(self.addon1.pk), 'type': 'addon'}, follow=True
+            self.list_url, {'q': str(self.addon1.guid), 'type': 'addon'}, follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
-        assert doc('#result_list tbody tr').length == 2
-        assert 'Neo' in doc('#result_list').text()
+        assert doc('#result_list tbody tr').length == 3
+        # We're not loading names from the database (no FK to addon anymore).
+        assert 'Neo' not in doc('#result_list').text()
+        # We're displaying the submitted addon name instead.
+        assert 'The One' in doc('#result_list').text()
 
         response = self.client.get(
             self.list_url, {'q': 'NotGoingToFindAnything', 'type': 'addon'}, follow=True
@@ -199,20 +201,22 @@ class TestAbuse(TestCase):
         doc = pq(response.content)
         assert doc('#changelist-search')
         assert doc('#result_list tbody tr').length == 0
+        assert 'The One' not in doc('#result_list').text()
         assert 'Néo' not in doc('#result_list').text()
         assert 'Mysterious' not in doc('#result_list').text()
 
     def test_search_multiple_addons(self):
         response = self.client.get(
             self.list_url,
-            {'q': f'{self.addon1.pk},{self.addon2.pk}', 'type': 'addon'},
+            {'q': f'{self.addon1.guid},{self.addon2.guid}', 'type': 'addon'},
             follow=True,
         )
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#changelist-search')
-        assert doc('#result_list tbody tr').length == 3
-        assert 'Neo' in doc('#result_list').text()
+        assert doc('#result_list tbody tr').length == 4
+        assert 'The One' in doc('#result_list').text()
+        assert 'The Two' in doc('#result_list').text()
 
     def test_search_multiple_users(self):
         user1 = AbuseReport.objects.get(message='Ehehehehe').user
