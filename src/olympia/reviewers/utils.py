@@ -696,7 +696,7 @@ class ReviewHelper:
             ),
             'available': (can_approve_multiple),
             'allows_reasons': not is_static_theme,
-            'requires_reasons': not is_static_theme,
+            'requires_reasons': False,
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
