@@ -4878,6 +4878,45 @@ class TestReview(ReviewBase):
             (mock.call(old_version.file), mock.call(self.version.file))
         )
 
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_reasons_optional_for_multiple_approve(self, sign_file_mock):
+        self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
+        old_version = self.version
+        old_version.update(
+            needs_human_review=True, channel=amo.RELEASE_CHANNEL_UNLISTED
+        )
+        old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version = version_factory(
+            addon=self.addon,
+            version='3.0',
+            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+
+        response = self.client.post(
+            self.url,
+            {
+                'action': 'approve_multiple_versions',
+                'comments': 'multi approve!',
+                'versions': [old_version.pk, self.version.pk],
+            },
+        )
+
+        assert response.status_code == 302
+        for version in [old_version, self.version]:
+            version.reload()
+            assert not version.needs_human_review
+            file_ = version.file.reload()
+            assert file_.status == amo.STATUS_APPROVED
+            assert not version.pending_rejection
+
+        sign_file_mock.assert_has_calls(
+            (mock.call(old_version.file), mock.call(self.version.file))
+        )
+
     def test_reject_multiple_versions(self):
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         old_version = self.version
