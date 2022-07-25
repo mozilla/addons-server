@@ -1058,6 +1058,7 @@ class TestReviewHelper(TestReviewHelperBase):
             needs_human_review_by_mad=True,
             pending_rejection=datetime.now() + timedelta(days=2),
             pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
         )
         assert flags.needs_human_review_by_mad
 
@@ -1068,6 +1069,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not flags.needs_human_review_by_mad
         assert not flags.pending_rejection
         assert not flags.pending_rejection_by
+        assert flags.pending_content_rejection is None
 
     def test_nomination_to_public(self):
         self.sign_file_mock.reset()
@@ -1459,6 +1461,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 version=version,
                 pending_rejection=datetime.now() + timedelta(days=7),
                 pending_rejection_by=user_factory(),
+                pending_content_rejection=False,
             )
 
         self.helper = self.get_helper()  # To make it pick up the new version.
@@ -1490,6 +1493,10 @@ class TestReviewHelper(TestReviewHelperBase):
         # pending_rejection_by should be cleared as well.
         assert not VersionReviewerFlags.objects.filter(
             version__addon=self.addon, pending_rejection_by__isnull=False
+        ).exists()
+        # pending_content_rejection should be cleared too
+        assert not VersionReviewerFlags.objects.filter(
+            version__addon=self.addon, pending_content_rejection__isnull=False
         ).exists()
 
         # Check points awarded.
@@ -1838,6 +1845,7 @@ class TestReviewHelper(TestReviewHelperBase):
         for version in self.addon.versions.all():
             assert version.pending_rejection is None
             assert version.pending_rejection_by is None
+            assert version.reviewerflags.pending_content_rejection is None
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
@@ -1913,6 +1921,7 @@ class TestReviewHelper(TestReviewHelperBase):
             assert version.pending_rejection
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
             assert version.pending_rejection_by == self.user
+            assert version.reviewerflags.pending_content_rejection is False
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
@@ -2263,14 +2272,18 @@ class TestReviewHelper(TestReviewHelperBase):
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
-    def test_reject_multiple_versions_delayed_uses_original_user(self):
+    def _test_reject_multiple_versions_delayed(self, content_review):
         # Do a rejection with delay.
         original_user = self.user
         self.version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED, weight=101
         )
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.setup_data(
+            amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            content_review=content_review,
+        )
 
         assert self.addon.status == amo.STATUS_APPROVED
 
@@ -2293,13 +2306,20 @@ class TestReviewHelper(TestReviewHelperBase):
         for version in self.addon.versions.all():
             assert version.pending_rejection
             assert version.pending_rejection_by == original_user
+            assert version.reviewerflags.pending_content_rejection == content_review
 
-        assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 2
+        delayed_action = (
+            amo.LOG.REJECT_VERSION_DELAYED
+            if not content_review
+            else amo.LOG.REJECT_CONTENT_DELAYED
+        )
+        assert self.check_log_count(delayed_action.id) == 2
 
+        action = (
+            amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
+        )
         # The request user is recorded as scheduling the rejection.
-        for log in ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_VERSION.id
-        ):
+        for log in ActivityLog.objects.for_addons(self.addon).filter(action=action.id):
             assert log.user == original_user
 
         # Now reject without delay, running as the task user.
@@ -2307,7 +2327,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.user = task_user
         data = self.get_data().copy()
         data['versions'] = self.addon.versions.all()
-        self.helper = self.get_helper()
+        self.helper = self.get_helper(human_review=False)
         self.helper.set_data(data)
 
         # Clear our the ActivityLogs.
@@ -2318,18 +2338,17 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NULL
 
-        # The versions are not pending rejection.
-        for version in self.addon.versions.all():
-            assert version.pending_rejection is None
-            assert version.pending_rejection_by is None
-
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(action.id) == 2
 
         # The request user is recorded as scheduling the rejection.
-        for log in ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_VERSION.id
-        ):
+        for log in ActivityLog.objects.for_addons(self.addon).filter(action=action.id):
             assert log.user == original_user
+
+    def test_reject_multiple_versions_delayed_code_review(self):
+        self._test_reject_multiple_versions_delayed(content_review=False)
+
+    def test_reject_multiple_versions_delayed_content_review(self):
+        self._test_reject_multiple_versions_delayed(content_review=True)
 
     def test_approve_content_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')

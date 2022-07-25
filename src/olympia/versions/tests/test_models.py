@@ -471,6 +471,7 @@ class TestVersion(TestCase):
             version=version,
             pending_rejection=datetime.now() + timedelta(days=1),
             pending_rejection_by=user,
+            pending_content_rejection=False,
         )
         flags = VersionReviewerFlags.objects.get(version=version)
         assert flags.pending_rejection
@@ -478,6 +479,7 @@ class TestVersion(TestCase):
         flags.reload()
         assert not flags.pending_rejection
         assert not flags.pending_rejection_by
+        assert flags.pending_content_rejection is None
 
     def test_version_disable_and_reenable(self):
         version = Version.objects.get(pk=81551)

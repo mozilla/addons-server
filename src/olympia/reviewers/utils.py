@@ -1026,9 +1026,11 @@ class ReviewBase:
             self.clear_all_needs_human_review_flags_in_channel()
 
             # Clear pending rejection since we approved that version.
-            VersionReviewerFlags.objects.filter(
-                version=self.version,
-            ).update(pending_rejection=None, pending_rejection_by=None)
+            VersionReviewerFlags.objects.filter(version=self.version,).update(
+                pending_rejection=None,
+                pending_rejection_by=None,
+                pending_content_rejection=None,
+            )
 
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
@@ -1194,7 +1196,11 @@ class ReviewBase:
             VersionReviewerFlags.objects.filter(
                 version__addon=self.addon,
                 version__channel=channel,
-            ).update(pending_rejection=None, pending_rejection_by=None)
+            ).update(
+                pending_rejection=None,
+                pending_rejection_by=None,
+                pending_content_rejection=None,
+            )
 
             # Assign reviewer incentive scores.
             is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
@@ -1251,6 +1257,17 @@ class ReviewBase:
             file = version.file
             if not pending_rejection_deadline:
                 self.set_file(amo.STATUS_DISABLED, file)
+
+            if (
+                not self.human_review
+                and (flags := getattr(version, 'reviewerflags', None))
+                and flags.pending_rejection
+            ):
+                action_id = (
+                    amo.LOG.REJECT_CONTENT
+                    if flags.pending_content_rejection
+                    else amo.LOG.REJECT_VERSION
+                )
             self.log_action(
                 action_id,
                 version=version,
@@ -1269,6 +1286,9 @@ class ReviewBase:
                     defaults={
                         'pending_rejection': pending_rejection_deadline,
                         'pending_rejection_by': self.user
+                        if pending_rejection_deadline
+                        else None,
+                        'pending_content_rejection': self.content_review
                         if pending_rejection_deadline
                         else None,
                     },

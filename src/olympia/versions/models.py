@@ -518,7 +518,9 @@ class Version(OnChangeMixin, ModelBase):
             # records purposes, the flag serves no purpose anymore if the
             # version is deleted).
             VersionReviewerFlags.objects.filter(version=self).update(
-                pending_rejection=None, pending_rejection_by=None
+                pending_rejection=None,
+                pending_rejection_by=None,
+                pending_content_rejection=None,
             )
 
             previews_pks = list(
@@ -986,21 +988,23 @@ class VersionReviewerFlags(ModelBase):
     pending_rejection_by = models.ForeignKey(
         UserProfile, null=True, on_delete=models.CASCADE
     )
+    pending_content_rejection = models.BooleanField(null=True)
 
     class Meta:
         constraints = [
             models.CheckConstraint(
-                name='pending_rejection_both_none',
+                name='pending_rejection_all_none',
                 check=(
                     models.Q(
                         pending_rejection__isnull=True,
                         pending_rejection_by__isnull=True,
+                        pending_content_rejection__isnull=True,
                     )
                     | models.Q(
                         pending_rejection__isnull=False,
                     )
                 ),
-            )
+            ),
         ]
 
 
