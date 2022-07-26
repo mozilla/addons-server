@@ -801,8 +801,8 @@ class TestUserAdmin(TestCase):
         addon = addon_factory()
         AbuseReport.objects.create(user=self.user)
         AbuseReport.objects.create(user=self.user)
-        AbuseReport.objects.create(addon=addon)
-        AbuseReport.objects.create(addon=addon, reporter=self.user)
+        AbuseReport.objects.create(guid=addon.guid)
+        AbuseReport.objects.create(guid=addon.guid, reporter=self.user)
         AbuseReport.objects.create(user=user_factory(), reporter=self.user)
 
         url, text = self._call_related_content_method('abuse_reports_by_this_user')
@@ -819,7 +819,7 @@ class TestUserAdmin(TestCase):
         AbuseReport.objects.create(user=self.user)
         AbuseReport.objects.create(user=other_user)
         AbuseReport.objects.create(user=other_user, reporter=self.user)
-        AbuseReport.objects.create(addon=addon, reporter=self.user)
+        AbuseReport.objects.create(guid=addon.guid, reporter=self.user)
         AbuseReport.objects.create(user=self.user, reporter=user_factory())
 
         url, text = self._call_related_content_method('abuse_reports_for_this_user')

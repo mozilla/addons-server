@@ -347,7 +347,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
     def test_full_with_weights_and_score(self):
         ScannerResult.objects.create(score=0.314, scanner=MAD, version=self.version)
-        AbuseReport.objects.create(addon=self.addon)
+        AbuseReport.objects.create(guid=self.addon.guid)
         Rating.objects.create(
             addon=self.addon, version=self.version, user=user_factory(), rating=2
         )

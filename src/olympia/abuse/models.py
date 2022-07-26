@@ -1,15 +1,12 @@
 from django import forms
-from django.conf import settings
 from django.contrib.gis.geoip2 import GeoIP2, GeoIP2Exception
 from django.core.validators import validate_ipv46_address
 from django.db import models
-from django.utils import translation
 
 from extended_choices import Choices
 from geoip2.errors import GeoIP2Error
 
 from olympia import amo
-from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoicesWithNone
 from olympia.users.models import UserProfile
@@ -20,19 +17,9 @@ class AbuseReportQuerySet(BaseQuerySet):
         return (
             self.filter(
                 models.Q(guid=addon.addonguid_guid)
-                | models.Q(addon=addon)
                 | models.Q(user__in=addon.listed_authors)
             )
             .select_related('user')
-            .prefetch_related(
-                # Should only need translations for addons on abuse reports,
-                # so let's prefetch the add-on with them and avoid repeating
-                # a ton of potentially duplicate queries with all the useless
-                # Addon transforms.
-                models.Prefetch(
-                    'addon', queryset=Addon.unfiltered.all().only_translations()
-                ),
-            )
             .order_by('-created')
         )
 
@@ -176,13 +163,8 @@ class AbuseReport(ModelBase):
     )
     country_code = models.CharField(max_length=2, default=None, null=True)
     # An abuse report can be for an addon or a user.
-    # If user is non-null then both addon and guid should be null.
-    # If user is null then addon should be non-null if guid was in our DB,
-    # otherwise addon will be null also.
-    # If both addon and user is null guid should be set.
-    addon = models.ForeignKey(
-        Addon, null=True, related_name='abuse_reports', on_delete=models.CASCADE
-    )
+    # If user is set then guid should be null.
+    # If user is null then guid should be set.
     guid = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(
         UserProfile, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
@@ -289,20 +271,13 @@ class AbuseReport(ModelBase):
         return value
 
     @property
-    def target(self):
-        return self.addon or self.user
-
-    @property
     def type(self):
-        with translation.override(settings.LANGUAGE_CODE):
-            if self.addon and self.addon.type in amo.ADDON_TYPE:
-                type_ = translation.gettext(amo.ADDON_TYPE[self.addon.type])
-            elif self.user:
-                type_ = 'User'
-            else:
-                type_ = 'Addon'
+        if self.guid:
+            type_ = 'Addon'
+        else:
+            type_ = 'User'
         return type_
 
     def __str__(self):
-        name = self.target.name if self.target else self.guid
-        return f'[{self.type}] Abuse Report for {name}'
+        name = self.guid if self.guid else self.user
+        return f'Abuse Report for {self.type} {name}'

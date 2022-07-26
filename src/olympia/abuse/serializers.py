@@ -161,13 +161,10 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         return output
 
     def get_addon(self, obj):
-        addon = obj.addon
-        if not addon and not obj.guid:
-            return None
         return {
-            'guid': addon.guid if addon else obj.guid,
-            'id': addon.id if addon else None,
-            'slug': addon.slug if addon else None,
+            'guid': obj.guid,
+            'id': None,  # For backwards-compatibility.
+            'slug': None,  # For backwards-compatibility.
         }
 
 

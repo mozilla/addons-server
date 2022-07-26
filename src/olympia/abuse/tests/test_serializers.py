@@ -19,13 +19,13 @@ class TestAddonAbuseReportSerializer(TestCase):
     def serialize(self, report, **extra_context):
         return AddonAbuseReportSerializer(report, context=extra_context).data
 
-    def test_addon_report(self):
+    def test_guid_report_addon_exists_doesnt_matter(self):
         addon = addon_factory(guid='@guid')
-        report = AbuseReport(addon=addon, message='bad stuff')
+        report = AbuseReport(guid=addon.guid, message='bad stuff')
         serialized = self.serialize(report)
         assert serialized == {
             'reporter': None,
-            'addon': {'guid': addon.guid, 'id': addon.id, 'slug': addon.slug},
+            'addon': {'guid': addon.guid, 'id': None, 'slug': None},
             'message': 'bad stuff',
             'addon_install_method': None,
             'addon_install_origin': None,

@@ -3,7 +3,7 @@ from collections import OrderedDict
 from django import forms
 from django.contrib import admin
 from django.core.paginator import Paginator
-from django.db.models import Count, Q, Prefetch
+from django.db.models import Count
 from django.template import loader
 from django.utils.translation import gettext
 
@@ -49,7 +49,7 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         if self.value() == 'user':
             return queryset.filter(user__isnull=False)
         elif self.value() == 'addon':
-            return queryset.filter(Q(addon__isnull=False) | Q(guid__isnull=False))
+            return queryset.filter(guid__isnull=False)
         return queryset
 
 
@@ -182,11 +182,11 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         ('created', DateRangeFilter),
         MinimumReportsCountFilter,
     )
-    list_select_related = ('user',)  # For `addon` see get_queryset() below.
+    list_select_related = ('user',)
     # Shouldn't be needed because those fields should all be readonly, but just
     # in case we change our mind, FKs should be raw id fields as usual in our
     # admin tools.
-    raw_id_fields = ('addon', 'user', 'reporter')
+    raw_id_fields = ('user', 'reporter')
     # All fields except state must be readonly - the submitted data should
     # not be changed, only the state for triage.
     readonly_fields = (
@@ -194,7 +194,6 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         'modified',
         'reporter',
         'country_code',
-        'addon',
         'guid',
         'user',
         'message',
@@ -247,21 +246,15 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     # get_fieldsets() depending on the target (add-on, user or unknown add-on),
     # using the fields below:
     dynamic_fieldset_fields = {
-        # Known add-on in database
-        'addon': (
+        # User
+        'user': (('User', {'fields': ('user',)}),),
+        # Add-on, we only have the guid and maybe some extra addon_*
+        # fields that were submitted with the report, we'll try to display the
+        # addon card if we can find a matching add-on in the database though.
+        'guid': (
             ('Add-on', {'fields': ('addon_card',)}),
             (
                 'Submitted Info',
-                {'fields': ('addon_name', 'addon_version', 'guid', 'addon_summary')},
-            ),
-        ),
-        # User
-        'user': (('User', {'fields': ('user',)}),),
-        # Unknown add-on, we only have the guid and maybe some extra addon_*
-        # fields that were submitted with the report.
-        'guid': (
-            (
-                'Unknown Add-on',
                 {'fields': ('addon_name', 'addon_version', 'guid', 'addon_summary')},
             ),
         ),
@@ -302,12 +295,9 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         type_ = request.GET.get('type')
         if type_ == 'addon':
             search_fields = (
-                'addon__name__localized_string',
-                'addon__slug',
                 'addon_name',
                 '=guid',
                 'message',
-                '=addon__id',
             )
         elif type_ == 'user':
             search_fields = (
@@ -326,9 +316,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         the type filter.
         """
         type_ = request.GET.get('type')
-        if type_ == 'addon':
-            search_field = 'addon_id'
-        elif type_ == 'user':
+        if type_ == 'user':
             search_field = 'user_id'
         else:
             search_field = super().get_search_id_field(request)
@@ -355,36 +343,32 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         qs, use_distinct = super().get_search_results(request, qs, search_term)
         return qs, use_distinct
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        # Minimize number of queries : for users linked to abuse reports, we
-        # don't have transformers, so we can directly make a JOIN, and that's
-        # taken care of by list_select_related. For addons, we want the
-        # translations transformer, so the most efficient way to load them is
-        # through prefetch_related() + only_translations() (we don't care about
-        # the other transforms).
-        return qs.prefetch_related(
-            Prefetch('addon', queryset=Addon.unfiltered.all().only_translations()),
-        )
-
     def get_fieldsets(self, request, obj=None):
-        if obj.addon:
-            target = 'addon'
-        elif obj.user:
+        if obj.user:
             target = 'user'
         else:
             target = 'guid'
         return self.dynamic_fieldset_fields[target] + self.fieldsets
 
     def target_name(self, obj):
-        name = obj.target.name if obj.target else obj.addon_name
+        name = obj.user.name if obj.user else obj.addon_name
         return '{} {}'.format(name, obj.addon_version or '')
 
     target_name.short_description = gettext('User / Add-on')
 
     def addon_card(self, obj):
+        # Note: this assumes we don't allow guids to be reused by developers
+        # when deleting add-ons. That used to be true, so for historical data
+        # it may not be the right add-on (for those cases, we don't know for
+        # sure what the right add-on is).
+        if not obj.guid:
+            return ''
+        try:
+            addon = Addon.unfiltered.get(guid=obj.guid)
+        except Addon.DoesNotExist:
+            return ''
+
         template = loader.get_template('reviewers/addon_details_box.html')
-        addon = obj.addon
         try:
             approvals_info = addon.addonapprovalscounter
         except AddonApprovalsCounter.DoesNotExist:

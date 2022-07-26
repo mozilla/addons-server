@@ -1739,7 +1739,7 @@ class Addon(OnChangeMixin, ModelBase):
     @classmethod
     def get_lookup_field(cls, identifier):
         lookup_field = 'pk'
-        if identifier and not identifier.isdigit():
+        if identifier and not str(identifier).isdigit():
             # If the identifier contains anything other than a digit, it's
             # either a slug or a guid. guids need to contain either {} or @,
             # which are invalid in a slug.
