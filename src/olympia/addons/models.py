@@ -20,8 +20,6 @@ from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, gettext_lazy as _
 
-import waffle
-
 from django_statsd.clients import statsd
 
 import olympia.core.logger

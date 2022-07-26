@@ -23,8 +23,6 @@ from django.utils.encoding import force_str
 from django.utils.jslex import JsLexer
 from django.utils.translation import gettext
 
-import waffle
-
 import olympia.core.logger
 
 from olympia import amo

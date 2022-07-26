@@ -11,8 +11,6 @@ from django.utils import translation
 
 import pytest
 
-from waffle.testutils import override_switch
-
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models

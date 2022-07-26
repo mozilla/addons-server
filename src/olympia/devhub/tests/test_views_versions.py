@@ -10,7 +10,6 @@ from django.urls import reverse
 from unittest import mock
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog

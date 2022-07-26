@@ -18,7 +18,6 @@ from django.urls import reverse
 from django.utils.encoding import force_str
 
 import pytest
-from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.addons.models import Addon
