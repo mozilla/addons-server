@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2622,12 +2622,6 @@ msgstr ""
 "Brisanje vašeg dodatka će zauvijek izbrisati sve verzije i datoteke koje ste poslali za ovaj dodatak, navedene ili ne. ID dodatka će i dalje biti povezan sa vašim računom, tako da drugi neće biti u "
 "mogućnosti poslati verzije koristeći isti ID."
 
-#, fuzzy
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Brisanje vašeg dodatka će zauvijek izbrisati sve verzije i datoteke koje ste poslali za ovaj dodatak, navedene ili ne. ID dodatka će i dalje biti povezan sa vašim računom, tako da drugi neće biti u "
-"mogućnosti poslati verzije koristeći isti ID."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4862,9 +4856,6 @@ msgstr "Ne možete poslati dodatak sa završnom vezom %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ne možete poslati Mozilla potpisana proširenja"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 #, fuzzy
 msgid "You cannot submit a language pack"
 msgstr "Ne možete poslati Mozilla potpisana proširenja"
@@ -4998,6 +4989,9 @@ msgid "days"
 msgstr ""
 
 msgid "Choose one or more reasons:"
+msgstr ""
+
+msgid "Version mismatch - the latest version has changed!"
 msgstr ""
 
 msgid "Choose a canned response..."

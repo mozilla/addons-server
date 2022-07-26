@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2674,12 +2674,6 @@ msgstr ""
 "Usunięcie dodatku spowoduje trwałe usunięcie wszystkich wersji i plików przesłanych dla tego dodatku, niezależnie od tego, czy jest wyświetlany w spisach. Identyfikator dodatku pozostanie powiązany "
 "z Twoim kontem, dzięki czemu inni nie będą mogli przesyłać wersji przy użyciu tego samego identyfikatora."
 
-#, fuzzy
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Usunięcie dodatku spowoduje trwałe usunięcie wszystkich wersji i plików przesłanych dla tego dodatku, niezależnie od tego, czy jest wyświetlany w spisach. Identyfikator dodatku pozostanie powiązany "
-"z Twoim kontem, dzięki czemu inni nie będą mogli przesyłać wersji przy użyciu tego samego identyfikatora."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4999,9 +4993,6 @@ msgstr "Nie można przesłać dodatku z GUID kończącym się %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nie można przesłać podpisanego rozszerzenia Mozilla"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 #, fuzzy
 msgid "You cannot submit a language pack"
 msgstr "Nie można przesłać podpisanego rozszerzenia Mozilla"
@@ -5138,6 +5129,9 @@ msgid "days"
 msgstr "dni"
 
 msgid "Choose one or more reasons:"
+msgstr ""
+
+msgid "Version mismatch - the latest version has changed!"
 msgstr ""
 
 msgid "Choose a canned response..."

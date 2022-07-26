@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2579,10 +2579,6 @@ msgstr "ਚੋਟੀ ਦੇ"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
 
-#, fuzzy
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਮਿਟਾਉਣ ਨਾਲ ਤੁਸੀਂ ਇਸ ਐਡ-ਆਨ ਲਈ ਸੂਚੀਬੱਧ ਸਾਰੇ ਸੰਸਕਰਣ ਅਤੇ ਫਾਈਲਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਮਿਟਾ ਦੇਗੇ। ਐਡ-ਆਨ ਆਈਡੀ ਤੁਹਾਡੇ ਖਾਤੇ ਨਾਲ ਜੋੜਿਆ ਜਾਣਾ ਜਾਰੀ ਰੱਖੇਗਾ, ਤਾਂ ਕਿ ਹੋਰ ਉਹੀ ਆਈਡੀ ਦੀ ਵਰਤੋਂ ਨਾਲ ਵਰਜਨ ਨੂੰ ਜਮ੍ਹਾਂ ਨਾ ਕਰ ਸਕਣ।"
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4859,9 +4855,6 @@ msgstr "ਤੁਸੀਂ ਇੱਕ ਗਾਈਡ ਅੰਤ %s ਨਾਲ ਐਡਆ�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 msgid "You cannot submit a language pack"
 msgstr "ਤੁਸੀਂ ਭਾਸ਼ਾ ਪੈਕ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
@@ -4994,6 +4987,9 @@ msgid "days"
 msgstr "ਦਿਨਾਂ"
 
 msgid "Choose one or more reasons:"
+msgstr ""
+
+msgid "Version mismatch - the latest version has changed!"
 msgstr ""
 
 msgid "Choose a canned response..."

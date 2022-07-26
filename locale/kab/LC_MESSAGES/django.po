@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2022-05-19 07:08+0000\n"
 "Last-Translator: Selyan Slimane Amiri <selyan.kab@protonmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2569,9 +2569,6 @@ msgstr "Afella n usebter"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr "Tukksa n uzegrir-inek·inem ad yekkes i lebda akk ileqman d yifuyla i tuzneḍ i uzegrir-a, ama ttwabedren-d neɣ ala."
 
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr "Asulay n uzegrir ad yeqqim yeqqen ɣer umiḍan-ik·im, akka wiyaḍ ur ttizmiren ara ad sqedcen asulay-a i yileqman nniḍen."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr "Asulay n uzegrir ur yezmir ara ad yettwarr, ad yuɣal dayen ur yettuseqdac ara i tuzna."
 
@@ -4789,9 +4786,6 @@ msgstr "Ur tezmireḍ ara ad tazneḍ azegrir s useqdec n usulay yettfakkan s ud
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 msgid "You cannot submit a language pack"
 msgstr "Ur tezmireḍ ara ad tazneḍ akemmus n tutlayt"
 
@@ -4923,6 +4917,9 @@ msgstr "ussan"
 
 msgid "Choose one or more reasons:"
 msgstr "Fren yiwet neɣ ugar n ssebbat"
+
+msgid "Version mismatch - the latest version has changed!"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Fren tiririt yettwakelsen..."

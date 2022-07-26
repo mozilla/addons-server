@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2022-06-20 02:42+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -2632,12 +2632,6 @@ msgstr ""
 "Anda akan secara permanen menghapus semua versi pengaya dan berkas yang telah Anda kirimkan untuk pengaya ini, terdaftar maupun tidak. ID pengaya akan terus dikaitkan dengan akun anda, sehingga "
 "orang lain tidak akan dapat mengirimkan versi mereka menggunakan ID yang sama."
 
-#, fuzzy
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Anda akan secara permanen menghapus semua versi pengaya dan berkas yang telah Anda kirimkan untuk pengaya ini, terdaftar maupun tidak. ID pengaya akan terus dikaitkan dengan akun anda, sehingga "
-"orang lain tidak akan dapat mengirimkan versi mereka menggunakan ID yang sama."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4893,9 +4887,6 @@ msgstr "Anda tidak dapat memasukkan pengaya dengan akhiran guid %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak dapat mengajukan Ekstensi Resmi Mozilla"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 msgid "You cannot submit a language pack"
 msgstr "Anda tidak dapat mengirimkan paket bahasa"
 
@@ -5026,6 +5017,9 @@ msgid "days"
 msgstr "hari"
 
 msgid "Choose one or more reasons:"
+msgstr ""
+
+msgid "Version mismatch - the latest version has changed!"
 msgstr ""
 
 msgid "Choose a canned response..."

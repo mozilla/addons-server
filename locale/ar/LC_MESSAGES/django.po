@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -2636,9 +2636,6 @@ msgstr "فوق"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr ""
 
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4923,9 +4920,6 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 msgid "You cannot submit a language pack"
 msgstr ""
 
@@ -5065,6 +5059,9 @@ msgid "days"
 msgstr "7 أيام"
 
 msgid "Choose one or more reasons:"
+msgstr ""
+
+msgid "Version mismatch - the latest version has changed!"
 msgstr ""
 
 msgid "Choose a canned response..."

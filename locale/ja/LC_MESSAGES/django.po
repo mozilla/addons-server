@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2574,9 +2574,6 @@ msgstr "トップ"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr "アドオンを削除すると、このアドオンのために登録されたすべてのバージョンとファイルが、公開かどうかに関わらず永久に削除されます。"
 
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr "アドオンの ID は、第三者が同じ ID を使って登録できないよう、引き続きあなたのアカウントに紐付けられます。"
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4831,9 +4828,6 @@ msgstr "このサフィックスで終わる ID が設定されたアドオン�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "あなたは Mozilla Signed Extension を登録できません"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 msgid "You cannot submit a language pack"
 msgstr "あなたは言語パックを登録できません"
 
@@ -4963,6 +4957,9 @@ msgid "days"
 msgstr "日"
 
 msgid "Choose one or more reasons:"
+msgstr ""
+
+msgid "Version mismatch - the latest version has changed!"
 msgstr ""
 
 msgid "Choose a canned response..."

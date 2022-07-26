@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2022-07-03 15:44+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -2592,9 +2592,6 @@ msgstr "Vrh"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr "Izbris dodatka bo trajno izbrisal vse različice in datoteke, ki ste jih oddali za ta dodatek (na seznamu ali objavljen drugje)."
 
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr "ID dodatka bo še naprej povezan z vašim računom, tako da drugi ne bodo mogli pošiljati različic z enakim ID-jem."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr "ID-ja dodatka ni mogoče obnoviti in bo za vedno neuporaben za predložitev."
 
@@ -4804,9 +4801,6 @@ msgstr "Ne morete oddati dodatka, katerega ID se končuje s to pripono"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ne morete poslati Mozilline podpisane razširitve"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 msgid "You cannot submit a language pack"
 msgstr "Ne morete poslati jezikovnega paketa"
 
@@ -4942,6 +4936,9 @@ msgstr "dni"
 
 msgid "Choose one or more reasons:"
 msgstr "Izberite enega ali več razlogov:"
+
+msgid "Version mismatch - the latest version has changed!"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Izberi pripravljen odgovor ..."

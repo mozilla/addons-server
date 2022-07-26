@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2638,12 +2638,6 @@ msgstr ""
 "Menghapuskan add-on akan turut menghapuskan semua versi dan fail yang anda kemukakan bersama add-on ini, samada disenaraikan atau tidak. ID add-on akan terus dihubungkan dengan akaun anda supaya "
 "orang lain tidak boleh menghantar versi menggunakan ID yang sama."
 
-#, fuzzy
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Menghapuskan add-on akan turut menghapuskan semua versi dan fail yang anda kemukakan bersama add-on ini, samada disenaraikan atau tidak. ID add-on akan terus dihubungkan dengan akaun anda supaya "
-"orang lain tidak boleh menghantar versi menggunakan ID yang sama."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4954,9 +4948,6 @@ msgstr "Anda tidak boleh kemukakan add-on dengan guid yang berakhir dengan %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 #, fuzzy
 msgid "You cannot submit a language pack"
 msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
@@ -5091,6 +5082,9 @@ msgid "days"
 msgstr "hari"
 
 msgid "Choose one or more reasons:"
+msgstr ""
+
+msgid "Version mismatch - the latest version has changed!"
 msgstr ""
 
 msgid "Choose a canned response..."
