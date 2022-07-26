@@ -18,7 +18,6 @@ from django.urls import reverse
 from django.utils.encoding import force_str
 
 import pytest
-from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.addons.models import Addon
@@ -553,13 +552,6 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(filename='webextension.xpi')
         assert e.exception.messages == ['Duplicate add-on ID found.']
-
-    @override_switch('allow-deleted-guid-reuse', active=True)
-    def test_guid_dupe_deleted_addon_allowed_if_same_author_and_switch_is_on(self):
-        addon = addon_factory(guid='@webextension-guid', users=[self.user])
-        addon.delete()
-        data = self.parse(filename='webextension.xpi')
-        assert data['guid'] == '@webextension-guid'
 
     def test_guid_dupe_deleted_addon_not_allowed_if_same_author_and_switch_is_off(self):
         addon = addon_factory(guid='@webextension-guid', users=[self.user])

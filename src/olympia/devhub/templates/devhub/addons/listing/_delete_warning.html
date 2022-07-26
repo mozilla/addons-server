@@ -2,12 +2,7 @@
   Deleting your add-on will permanently delete all versions and files you
   have submitted for this add-on, listed or not.
 {% endtrans %}
-{% if waffle.switch('allow-deleted-guid-reuse') %}
-  {% trans %}
-    The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID.
-  {% endtrans %}
-{% else %}
-  {% trans %}
-    The add-on ID cannot be restored and will forever be unusable for submission.
-  {% endtrans %}
-{% endif %}
+
+{% trans %}
+  The add-on ID cannot be restored and will forever be unusable for submission.
+{% endtrans %}

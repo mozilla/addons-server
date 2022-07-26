@@ -11,8 +11,6 @@ from django.utils import translation
 
 import pytest
 
-from waffle.testutils import override_switch
-
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
@@ -2313,8 +2311,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             parse_addon(self.upload, user=self.user)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
-    @override_switch('allow-deleted-guid-reuse', active=True)
-    def test_existing_guid_same_author(self):
+    def test_existing_guid_same_author_still_forbidden(self):
         # Upload addon so we can delete it.
         self.upload = self.get_upload('webextension.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
@@ -2328,41 +2325,27 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         deleted.delete()
         assert deleted.guid == '@webextension-guid'
 
-        # Now upload the same add-on again (so same guid), checking no
-        # validationError is raised this time.
+        # Now upload the same add-on again (so same guid). We're building
+        # parsed_data manually to avoid the ValidationError from parse_addon()
+        # because we're interested in the error coming after that.
         self.upload = self.get_upload('webextension.xpi')
-        parsed_data = parse_addon(self.upload, user=self.user)
-        addon = Addon.from_upload(
-            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
-        )
-        deleted.reload()
-        assert addon.guid == '@webextension-guid'
-        assert deleted.guid == 'guid-reused-by-pk-%s' % addon.pk
-        assert AddonGUID.objects.filter(guid='@webextension-guid').count() == 2
-        assert AddonGUID.objects.filter(guid='@webextension-guid').first().addon == (
-            deleted
-        )
-
-    def test_existing_guid_same_author_but_switch_allowing_reuse_is_off(self):
-        # Upload addon so we can delete it.
-        self.upload = self.get_upload('webextension.xpi')
-        parsed_data = parse_addon(self.upload, user=self.user)
-        deleted = Addon.from_upload(
-            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
-        )
-        assert AddonGUID.objects.filter(guid='@webextension-guid').count() == 1
-        # Claim the add-on.
-        AddonUser(addon=deleted, user=self.user).save()
-        deleted.update(status=amo.STATUS_APPROVED)
-        deleted.delete()
-        assert deleted.guid == '@webextension-guid'
-
-        # Now upload the same add-on again (so same guid). ValidationError
-        # would be raised if we didn't override the switch, we're bypassing
-        # it because we're interested in the error coming after that.
-        with override_switch('allow-deleted-guid-reuse', active=True):
-            self.upload = self.get_upload('webextension.xpi')
-            parsed_data = parse_addon(self.upload, user=self.user)
+        parsed_data = {
+            'guid': '@webextension-guid',
+            'type': 1,
+            'version': '0.0.1',
+            'name': 'My WebExtension Addon',
+            'summary': 'just a test addon with the manifest.json format',
+            'homepage': None,
+            'default_locale': None,
+            'manifest_version': 2,
+            'install_origins': [],
+            'apps': [],
+            'strict_compatibility': False,
+            'is_experiment': False,
+            'optional_permissions': [],
+            'permissions': [],
+            'content_scripts': [],
+        }
 
         with self.assertRaises(IntegrityError):
             Addon.from_upload(

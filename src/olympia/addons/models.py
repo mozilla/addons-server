@@ -20,8 +20,6 @@ from django.utils import translation
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, gettext_lazy as _
 
-import waffle
-
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -846,17 +844,7 @@ class Addon(OnChangeMixin, ModelBase):
         timer.start()
         fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
-        old_guid_addon = None
-        if guid:  # It's an extension.
-            if waffle.switch_is_active('allow-deleted-guid-reuse'):
-                # Reclaim GUID from deleted add-on.
-                try:
-                    old_guid_addon = Addon.unfiltered.get(guid=guid)
-                    old_guid_addon.update(guid=None)
-                except ObjectDoesNotExist:
-                    pass
-
-        if not data.get('guid'):
+        if not guid:
             data['guid'] = guid = generate_addon_guid()
         timer.log_interval('1.guids')
 
@@ -880,24 +868,16 @@ class Addon(OnChangeMixin, ModelBase):
             addon.default_locale = to_language(trans_real.get_language())
         timer.log_interval('5.default_locale')
 
-        # Note: if 'allow-deleted-guid-reuse' waffle switch check above is
-        # falsy (or there is a race condition with an add-on with the same guid
-        # added in the meantime), then trying to create an add-on with a guid
-        # that is already used will trigger an IntegrityError here, which is
-        # fine: we want to prevent the creation in that case and it's too late
-        # to handle the error elegantly as we'll likely be in a task - this
-        # should happen before, at validation.
+        # Note: Trying to create an add-on with a guid that is already used
+        # will trigger an IntegrityError here, which is fine: we want to
+        # prevent the creation in that case and it's too late to handle the
+        # error elegantly as we'll likely be in a task - this should happen
+        # before, at validation.
         addon.save()
         timer.log_interval('6.addon_save')
 
-        if guid:
-            AddonGUID.objects.create(addon=addon, guid=guid)
-        if old_guid_addon:
-            old_guid_addon.update(guid=GUID_REUSE_FORMAT.format(addon.pk))
-            log.info(
-                f'GUID {guid} from addon [{old_guid_addon.pk}] reused '
-                f'by addon [{addon.pk}].'
-            )
+        AddonGUID.objects.create(addon=addon, guid=guid)
+
         AddonUser(addon=addon, user=user).save()
         activity.log_create(amo.LOG.CREATE_ADDON, addon, user=user)
         log.info(f'New addon {addon!r} from {upload!r}')
