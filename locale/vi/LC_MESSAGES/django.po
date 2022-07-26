@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-19 20:17+0000\n"
-"PO-Revision-Date: 2022-07-14 12:33+0000\n"
-"Last-Translator: tn0562260 <tn0562260@gmail.com>\n"
+"PO-Revision-Date: 2022-07-26 07:50+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgid "URLs must start with https://."
 msgstr "URL phải bắt đầu bằng https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Giấy phép có slug={value} không tồn tại."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Loại tập tin không được hỗ trợ, vui lòng tải lên tập tin lưu trữ ({extensions})."
@@ -183,10 +183,10 @@ msgid "Invalid app specified"
 msgstr "Ứng dụng được chỉ định không hợp lệ"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Đã chỉ định phiên bản ứng dụng tối đa không xác định"
 
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Đã chỉ định phiên bản ứng dụng tối thiểu không xác định"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -492,10 +492,10 @@ msgid "You must provide an object of {{lang-code:value}}."
 msgstr ""
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Giá trị trong ngôn ngữ mặc định của \"{lang_code}\" là bắt buộc."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Giá trị trong ngôn ngữ mặc định của \"{lang_code}\" là bắt buộc nếu các bản dịch khác được đặt."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1766,7 +1766,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Trước khi thay đổi bản địa mặc định, bạn phải có tên, tóm tắt và mô tả trong bản địa đó. Bạn đang thiếu %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Không thể thêm trực tiếp người dùng"
 
 msgid "Must have at least one owner."
 msgstr "Phải có ít nhất một người sở hữu."
@@ -5097,10 +5097,10 @@ msgid "The latest public version of this add-on was automatically approved. This
 msgstr ""
 
 msgid "Approve Multiple Versions"
-msgstr ""
+msgstr "Phê duyệt nhiều phiên bản"
 
 msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Điều này sẽ phê duyệt các phiên bản đã chọn. Các ý kiến sẽ được gửi đến nhà phát triển."
 
 msgid "Reject Multiple Versions"
 msgstr "Từ chối nhiều phiên bản"
@@ -5378,13 +5378,13 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
+msgstr "Hoàn tác xóa"
 
 msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr " – Công cụ xét duyệt – Tiện ích cho Firefox"
 
 msgid "Back to review"
-msgstr ""
+msgstr "Quay lại xét duyệt"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr "Đánh giá nội dung – Tiện ích cho Firefox"
@@ -5475,7 +5475,7 @@ msgid "The private whiteboard is used for exchanging information between reviewe
 msgstr ""
 
 msgid "Update whiteboards"
-msgstr ""
+msgstr "Cập nhật bảng trắng"
 
 msgid "More Actions"
 msgstr "Hành động thêm"
@@ -5495,7 +5495,7 @@ msgid "Deny resubmission"
 msgstr "Từ chối gửi lại"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Buộc vô hiệu hóa tiện ích"
 
 msgid "Force-enable add-on"
 msgstr "Buộc kích hoạt tiện ích mở rộng"
@@ -6244,25 +6244,25 @@ msgid "User Restriction History"
 msgstr ""
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "một nhà phát triển tiện ích trả lời đánh giá của tôi"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "tiện ích mở rộng mới hoặc các tính năng Firefox có sẵn"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "khả năng tương thích của tiện ích của tôi được nâng cấp thành công"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "ai đó viết đánh giá về tiện ích của tôi"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "luôn cập nhật các tin tức và sự kiện liên quan đến các nhà phát triển bổ trợ (bao gồm cả bản tin về about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "khả năng tương thích của tiện ích của tôi không thể được nâng cấp"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "tiện ích của tôi được xem xét bởi người đánh giá"
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla cần liên hệ với tôi về tiện ích cá nhân của tôi"
@@ -6377,16 +6377,16 @@ msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Được tự động phê duyệt, đã xác nhận"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Được tự động phê duyệt, chưa được xác nhận"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Đã được phê duyệt, thủ công"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Bị nhà phát triển vô hiệu hóa"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} trở lên"
