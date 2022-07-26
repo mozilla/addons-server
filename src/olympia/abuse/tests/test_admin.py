@@ -33,7 +33,7 @@ class TestAbuse(TestCase):
             id=cls.addon1.name_id, locale='fr', localized_string='Elu'
         )
         cls.addon2 = addon_factory(guid='@guid2', name='Owt')
-        cls.addon3 = addon_factory(guid='@guid3', name='Eerth')
+        cls.addon3 = addon_factory(guid='@guid3', name='Eerht')
         cls.user = user_factory(email='someone@mozilla.com')
         grant_permission(cls.user, 'AbuseReports:Edit', 'Abuse Report Triage')
         # Create a few abuse reports.
