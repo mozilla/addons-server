@@ -818,18 +818,18 @@ class TestAutoApprovalSummary(TestCase):
 
     def test_calculate_weight_abuse_reports(self):
         # Extra abuse report for a different add-on, does not count.
-        AbuseReport.objects.create(addon=addon_factory())
+        AbuseReport.objects.create(guid=addon_factory().guid)
 
         # Extra abuse report for a different user, does not count.
         AbuseReport.objects.create(user=user_factory())
 
         # Extra old abuse report, does not count either.
-        old_report = AbuseReport.objects.create(addon=self.addon)
+        old_report = AbuseReport.objects.create(guid=self.addon.guid)
         old_report.update(created=self.days_ago(43))
 
         # Recent abuse reports.
-        AbuseReport.objects.create(addon=self.addon)
-        recent_report = AbuseReport.objects.create(addon=self.addon)
+        AbuseReport.objects.create(guid=self.addon.guid)
+        recent_report = AbuseReport.objects.create(guid=self.addon.guid)
         recent_report.update(created=self.days_ago(41))
 
         # Recent abuse report for one of the developers of the add-on.
@@ -848,7 +848,7 @@ class TestAutoApprovalSummary(TestCase):
         # Should be capped at 100. We're already at 45, adding 4 more should
         # result in a weight of 100 instead of 105.
         for i in range(0, 4):
-            AbuseReport.objects.create(addon=self.addon)
+            AbuseReport.objects.create(guid=self.addon.guid)
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
         assert weight_info['abuse_reports'] == 100
@@ -857,7 +857,7 @@ class TestAutoApprovalSummary(TestCase):
         # Create an abuse report 60 days in the past. It should be ignored it
         # we were calculating from today, but use an AutoApprovalSummary
         # instance that is 20 days old, making the abuse report count.
-        report = AbuseReport.objects.create(addon=self.addon)
+        report = AbuseReport.objects.create(guid=self.addon.guid)
         report.update(created=self.days_ago(60))
 
         summary = AutoApprovalSummary.objects.create(version=self.version)

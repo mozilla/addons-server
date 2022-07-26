@@ -1,9 +1,10 @@
 from datetime import datetime
 
-from django.db.models import Q, F
+from django.db.models import Exists, F, OuterRef, Q
 from django.db.models.functions import Collate
 
 from olympia import amo
+from olympia.abuse.models import AbuseReport
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     delete_addons,
@@ -12,7 +13,6 @@ from olympia.addons.tasks import (
     find_inconsistencies_between_es_and_db,
     recreate_theme_previews,
 )
-from olympia.abuse.models import AbuseReport
 from olympia.blocklist.models import Block
 from olympia.constants.base import _ADDON_PERSONA, _ADDON_THEME, _ADDON_WEBAPP
 from olympia.amo.management import ProcessObjectsCommand
@@ -29,7 +29,7 @@ class Command(ProcessObjectsCommand):
 
     def get_tasks(self):
         def get_recalc_needed_filters():
-            summary_modified = F('_current_version__autoapprovalsummary__modified')
+            summary_modified_field = '_current_version__autoapprovalsummary__modified'
             # We don't take deleted reports into account
             valid_abuse_report_states = (
                 AbuseReport.STATES.UNTRIAGED,
@@ -37,21 +37,26 @@ class Command(ProcessObjectsCommand):
                 AbuseReport.STATES.SUSPICIOUS,
             )
 
+            recent_abuse_reports_subquery = AbuseReport.objects.filter(
+                state__in=valid_abuse_report_states,
+                created__gte=OuterRef(summary_modified_field),
+                guid=OuterRef('guid'),
+            )
+
             return [
                 # Only recalculate add-ons that received recent abuse reports
                 # possibly through their authors.
                 Q(
-                    abuse_reports__state__in=valid_abuse_report_states,
-                    abuse_reports__created__gte=summary_modified,
+                    Exists(recent_abuse_reports_subquery),
                 )
                 | Q(
                     authors__abuse_reports__state__in=valid_abuse_report_states,
-                    authors__abuse_reports__created__gte=summary_modified,
+                    authors__abuse_reports__created__gte=F(summary_modified_field),
                 )
                 # And check ratings that have a rating of 3 or less
                 | Q(
                     _current_version__ratings__deleted=False,
-                    _current_version__ratings__created__gte=summary_modified,
+                    _current_version__ratings__created__gte=F(summary_modified_field),
                     _current_version__ratings__rating__lte=3,
                 )
             ]

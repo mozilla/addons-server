@@ -258,7 +258,7 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             version=auto_approved_addon5.current_version, verdict=amo.AUTO_APPROVED
         )
         AbuseReport.objects.create(
-            addon=auto_approved_addon5, created=summary.modified + timedelta(days=3)
+            guid=auto_approved_addon5.guid, created=summary.modified + timedelta(days=3)
         )
 
         # *not considered* - current version is auto-approved but
@@ -268,7 +268,7 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             version=auto_approved_addon6.current_version, verdict=amo.AUTO_APPROVED
         )
         AbuseReport.objects.create(
-            addon=auto_approved_addon6, created=summary.modified - timedelta(days=3)
+            guid=auto_approved_addon6.guid, created=summary.modified - timedelta(days=3)
         )
 
         # *considered* - current version is auto-approved and

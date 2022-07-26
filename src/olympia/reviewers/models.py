@@ -736,7 +736,7 @@ class AutoApprovalSummary(ModelBase):
             # 100.
             'abuse_reports': min(
                 AbuseReport.objects.filter(
-                    Q(addon=addon) | Q(user__in=addon.listed_authors)
+                    Q(guid=addon.guid) | Q(user__in=addon.listed_authors)
                 )
                 .filter(created__gte=six_weeks_ago)
                 .count()

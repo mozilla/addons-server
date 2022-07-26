@@ -5166,12 +5166,12 @@ class TestReview(ReviewBase):
 
     def test_abuse_reports(self):
         report = AbuseReport.objects.create(
-            addon=self.addon,
+            guid=self.addon.guid,
             message='Et mël mazim ludus.',
             country_code='FR',
             client_id='4815162342',
-            addon_name='Unused here',
-            addon_summary='Not used either',
+            addon_name='Nâme',
+            addon_summary='Not used here',
             addon_version='42.0',
             addon_signature=AbuseReport.ADDON_SIGNATURES.UNSIGNED,
             application=amo.ANDROID.id,
@@ -5199,7 +5199,7 @@ class TestReview(ReviewBase):
             'Category',
             'Date',
             'Reporter',
-            'Public 42.0',
+            'Nâme 42.0',  # We use the name as submitted in the abuse report.
             'Firefox for Android fr_FR Løst OS 20040922',
             '1\xa0day ago',
             'Origin: https://example.com/',
@@ -5930,12 +5930,12 @@ class TestAbuseReportsView(ReviewerTest):
 
     def test_abuse_reports(self):
         report = AbuseReport.objects.create(
-            addon=self.addon,
+            guid=self.addon.guid,
             message='Et mël mazim ludus.',
             country_code='FR',
             client_id='4815162342',
-            addon_name='Unused here',
-            addon_summary='Not used either',
+            addon_name='Nâme',
+            addon_summary='Not used here',
             addon_version='42.0',
             addon_signature=AbuseReport.ADDON_SIGNATURES.UNSIGNED,
             application=amo.ANDROID.id,
@@ -5963,7 +5963,7 @@ class TestAbuseReportsView(ReviewerTest):
             'Category',
             'Date',
             'Reporter',
-            'Flôp 42.0',
+            'Nâme 42.0',  # We use the name as submitted in the abuse report.
             'Firefox for Android fr_FR Løst OS 20040922',
             '1\xa0day ago',
             'Origin: https://example.com/',
@@ -5987,11 +5987,11 @@ class TestAbuseReportsView(ReviewerTest):
         assert doc('.abuse_reports').text().split('\n') == expected
 
     def test_queries(self):
-        AbuseReport.objects.create(addon=self.addon, message='One')
-        AbuseReport.objects.create(addon=self.addon, message='Two')
-        AbuseReport.objects.create(addon=self.addon, message='Three')
+        AbuseReport.objects.create(guid=self.addon.guid, message='One')
+        AbuseReport.objects.create(guid=self.addon.guid, message='Two')
+        AbuseReport.objects.create(guid=self.addon.guid, message='Three')
         AbuseReport.objects.create(user=self.addon_developer, message='Four')
-        with self.assertNumQueries(20):
+        with self.assertNumQueries(18):
             # - 2 savepoint/release savepoint
             # - 2 for user and groups
             # - 1 for the add-on
@@ -6003,9 +6003,6 @@ class TestAbuseReportsView(ReviewerTest):
             # - 1 for finding the original guid
             # - 1 for abuse reports count (pagination)
             # - 1 for the abuse reports
-            # - 2 for the add-on and its translations (duplicate, but it's
-            #     coming from the abuse reports queryset, annoying to get rid
-            #     of)
             response = self.client.get(self.url)
         assert response.status_code == 200
 
