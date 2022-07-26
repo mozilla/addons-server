@@ -109,17 +109,6 @@ class TestVersion(TestCase):
             'for submission.'
         )
 
-    @override_switch('allow-deleted-guid-reuse', active=True)
-    def test_delete_message_if_allow_deleted_guid_reuse_is_on(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('#modal-delete p').eq(0).text() == (
-            'Deleting your add-on will permanently delete all versions and '
-            'files you have submitted for this add-on, listed or not. '
-            'The add-on ID will continue to be linked to your account, so '
-            "others won't be able to submit versions using the same ID."
-        )
-
     def test_delete_message_incomplete(self):
         """
         If an addon has status = 0, they shouldn't be bothered with a

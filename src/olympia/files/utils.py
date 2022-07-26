@@ -854,13 +854,6 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
         xpi_info['guid'] = guid = addon.guid
 
     if guid:
-        if user and waffle.switch_is_active('allow-deleted-guid-reuse'):
-            deleted_guid_clashes = Addon.unfiltered.exclude(authors__id=user.id).filter(
-                guid=guid
-            )
-        else:
-            deleted_guid_clashes = Addon.unfiltered.filter(guid=guid)
-
         if addon and addon.guid != guid:
             msg = gettext(
                 'The add-on ID in your manifest.json (%s) '
@@ -868,14 +861,8 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             )
             raise forms.ValidationError(msg % (guid, addon.guid))
         if not addon and (
-            # Non-deleted add-ons.
-            Addon.objects.filter(guid=guid).exists()
-            # DeniedGuid objects for deletions for Mozilla disabled add-ons
+            Addon.unfiltered.filter(guid=guid).exists()
             or DeniedGuid.objects.filter(guid=guid).exists()
-            # Deleted add-ons that don't belong to the uploader (or deleted
-            # add-ons period if `allow-deleted-guid-reuse` waffle switch is
-            # inactive).
-            or deleted_guid_clashes.exists()
         ):
             raise forms.ValidationError(gettext('Duplicate add-on ID found.'))
     if len(xpi_info['version']) > 32:
