@@ -1,7 +1,6 @@
 from unittest import mock
 
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
-from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 
 

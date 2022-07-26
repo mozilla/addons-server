@@ -3,7 +3,7 @@ from collections import OrderedDict
 from django import forms
 from django.contrib import admin
 from django.core.paginator import Paginator
-from django.db.models import Count, Q, Prefetch
+from django.db.models import Count
 from django.template import loader
 from django.utils.translation import gettext
 
