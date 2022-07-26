@@ -1,6 +1,7 @@
 from unittest import mock
 
 from olympia.addons.indexers import AddonIndexer
+from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.search.models import Reindexing
 from olympia.search.utils import get_es, index_objects
@@ -24,7 +25,10 @@ class TestIndexObjects(TestCase):
         with mock.patch.object(
             AddonIndexer, 'extract_document', lambda a: fake_extract[a.pk]
         ):
-            index_objects(ids=[addon1.pk, addon2.pk], indexer_class=AddonIndexer)
+            index_objects(
+                queryset=Addon.objects.filter(id__in=(addon1.pk, addon2.pk)),
+                indexer_class=AddonIndexer,
+            )
         bulk_mock = helpers_mock.bulk
         assert bulk_mock.call_count == 1
         assert bulk_mock.call_args[0][1] == [
@@ -52,7 +56,7 @@ class TestIndexObjects(TestCase):
             AddonIndexer, 'extract_document', lambda a: fake_extract[a.pk]
         ):
             index_objects(
-                ids=[addon1.pk, addon2.pk],
+                queryset=Addon.objects.filter(id__in=(addon1.pk, addon2.pk)),
                 indexer_class=AddonIndexer,
                 index=target_index,
             )
@@ -86,7 +90,7 @@ class TestIndexObjects(TestCase):
             AddonIndexer, 'extract_document', lambda a: fake_extract[a.pk]
         ):
             index_objects(
-                ids=[addon1.pk, addon2.pk],
+                queryset=Addon.objects.filter(id__in=(addon1.pk, addon2.pk)),
                 indexer_class=AddonIndexer,
             )
         bulk_mock = helpers_mock.bulk
@@ -132,7 +136,7 @@ class TestIndexObjects(TestCase):
             AddonIndexer, 'extract_document', lambda a: fake_extract[a.pk]
         ):
             index_objects(
-                ids=[addon1.pk, addon2.pk],
+                queryset=Addon.objects.filter(id__in=(addon1.pk, addon2.pk)),
                 indexer_class=AddonIndexer,
                 index=target_index,
             )

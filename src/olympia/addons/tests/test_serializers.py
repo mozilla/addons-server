@@ -729,8 +729,16 @@ class AddonSerializerOutputTestMixin:
             current_preview.thumbnail_dimensions
         )
 
+    def test_static_theme_preview_no_current_version(self):
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         # Make sure we don't fail if somehow there is no current version.
         self.addon.update(_current_version=None)
+        Preview.objects.create(
+            addon=self.addon,
+            position=1,
+            caption={'en-US': 'My câption', 'fr': 'Mön tîtré'},
+            sizes={'thumbnail': [123, 45], 'image': [678, 910]},
+        )
         result = self.serialize()
         assert result['current_version'] is None
         assert result['previews'] == []
@@ -1053,6 +1061,22 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         self.request = self.get_request('/', {'show_grouped_ratings': 1})
         result = self.serialize()
         assert 'grouped_counts' not in result['ratings']
+
+    def test_is_disabled(self):
+        # disabled add-ons aren't in the ES index, so won't ever be serialized
+        pass
+
+    def test_deleted(self):
+        # deleted add-ons aren't in the ES index, so won't ever be serialized
+        pass
+
+    def test_no_current_version(self):
+        # add-ons with no current version aren't in the ES index, so won't be serialized
+        pass
+
+    def test_static_theme_preview_no_current_version(self):
+        # add-ons with no current version aren't in the ES index, so won't be serialized
+        pass
 
 
 class TestVersionSerializerOutput(TestCase):

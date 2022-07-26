@@ -79,14 +79,24 @@ def delete_preview_files(id, **kw):
 @use_primary_db
 def index_addons(ids, **kw):
     log.info(f'Indexing addons {ids[0]}-{ids[-1]}. [{len(ids)}]')
-    transforms = (attach_tags, attach_translations_dict)
-    index_objects(
-        ids=ids,
-        indexer_class=AddonIndexer,
-        index=kw.pop('index', None),
-        transforms=transforms,
-        manager_name='unfiltered',
+
+    queryset = (
+        Addon.objects.public()
+        .filter(id__in=ids)
+        .transform(attach_tags)
+        .transform(attach_translations_dict)
     )
+    ids_in_qs = list(queryset.values_list('pk', flat=True))
+    excluded_ids = [pk for pk in ids if pk not in ids_in_qs]
+
+    if queryset:
+        index_objects(
+            queryset=queryset,
+            indexer_class=AddonIndexer,
+            index=kw.pop('index', None),
+        )
+    if excluded_ids:
+        unindex_addons(excluded_ids)
 
 
 @task
@@ -96,11 +106,7 @@ def unindex_addons(ids, **kw):
     for addon_id in ids:
         log.info('Removing addon [%s] from search index.' % addon_id)
         try:
-            es.delete(
-                AddonIndexer.get_index_alias(),
-                AddonIndexer.get_doctype_name(),
-                addon_id,
-            )
+            es.delete(index=AddonIndexer.get_index_alias(), id=addon_id)
         except TransportError:
             # We ignore already deleted add-ons.
             pass

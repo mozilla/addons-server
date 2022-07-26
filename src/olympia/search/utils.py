@@ -31,18 +31,13 @@ def get_es():
     )
 
 
-def index_objects(
-    *, ids, indexer_class, index=None, transforms=None, manager_name=None
-):
+def index_objects(*, queryset, indexer_class, index=None):
     """
-    Index specified `ids` in ES using `indexer_class`. This is done in a single
-    bulk action.
+    Index objects in provided queryset in ES using `indexer_class`. This is done in a
+    single bulk action.
 
     Pass `index` to index on the specific index instead of the default index
     alias from the `indexed_class`.
-
-    Pass `transforms` or `manager_name` to change the queryset used to fetch
-    the objects to index.
 
     Unless an `index` is specified, if a reindexing is taking place for the
     default index then this function will index on both the old and new indices
@@ -58,22 +53,10 @@ def index_objects(
         # consider the index they specified, so we only consider that one.
         indices = [index]
 
-    if manager_name is None:
-        manager_name = 'objects'
-
-    manager = getattr(indexer_class.get_model(), manager_name)
-
-    if transforms is None:
-        transforms = []
-
-    qs = manager.filter(id__in=ids)
-    for transform in transforms:
-        qs = qs.transform(transform)
-
     bulk = []
     es = get_es()
 
-    for obj in qs.order_by('pk'):
+    for obj in queryset.order_by('pk'):
         data = indexer_class.extract_document(obj)
         for index in indices:
             item = {
@@ -83,7 +66,7 @@ def index_objects(
             }
             bulk.append(item)
 
-    return helpers.bulk(es, bulk)
+    helpers.bulk(es, bulk)
 
 
 def raise_if_reindex_in_progress(site):
