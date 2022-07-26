@@ -1183,7 +1183,6 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'ja': 'リンクを通知する',
             'nb-NO': 'Varsling ved trykk på lenke i18n',
             'nl': 'Meld klikken op hyperlinks',
-            'ru': '__MSG_extensionName__',
             'sv-SE': 'Meld klikken op hyperlinks',
         }
         assert addon.name == 'Notify link clicks i18n'
@@ -1338,7 +1337,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         # and there is no description either in the manifest or provided in post
         assert addon.description is None
 
-    def test_default_locale_localized_xpi(self):
+    def test_localized_xpi_default_locale_override(self):
         # This xpi has localized values in the xpi, but has been crafted to not have a
         # name translation for de, which is valid if the default_locale is another lang,
         # but won't be valid if the default_locale is de.
@@ -1396,6 +1395,70 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         # testing the mix of translated and not translated is working as expected
         assert str(addon.homepage).startswith('https://github.com/mdn/')
         assert addon.homepage.locale == 'de'
+
+    def test_localized_xpi(self):
+        upload = self.get_upload(
+            'notify-link-clicks-i18n-missing.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.RELEASE_CHANNEL_LISTED,
+        )
+
+        # the default_locale isn't overriden from the xpi - it's en-US
+        response = self.request(
+            data={
+                'version': {
+                    'upload': upload.uuid,
+                    # This should also fail (but doesn't currently):
+                    # https://github.com/mozilla/addons-server/issues/19313
+                    'custom_license': {'name': {'it': 'test'}, 'text': {'it': 'test'}},
+                },
+                'categories': {'firefox': ['other']},
+                'support_email': {  # this field has the required locales
+                    'it': 'rusiczki.ioana@gmail.com',
+                    'ro': 'rusiczki.ioana@gmail.com',
+                    'en-US': 'rusiczki.ioana@gmail.com',
+                },
+                # The following fields are missing en-US localizations
+                'name': {'it': 'test'},
+                'developer_comments': {'it': 'test'},
+                'summary': {'it': 'summaria italiano'},
+            },
+        )
+        assert response.status_code == 400, response.data
+        error_string = 'A value in the default locale of "en-US" is required.'
+        assert response.data == {
+            'name': [error_string],
+            'developer_comments': [error_string],
+            'summary': [error_string],
+        }
+
+        # compared to previous request:
+        #  - omitted developer comments as not a required field
+        #  - changed name to be en-US only
+        #  - added a summary value in en-US in addition to it
+        response = self.request(
+            data={
+                'version': {
+                    'upload': upload.uuid,
+                    'custom_license': {'name': {'it': 'test'}, 'text': {'it': 'test'}},
+                },
+                'categories': {'firefox': ['other']},
+                'support_email': {
+                    'it': 'rusiczki.ioana@gmail.com',
+                    'ro': 'rusiczki.ioana@gmail.com',
+                    'en-US': 'rusiczki.ioana@gmail.com',
+                },
+                'name': {'en-US': 'name'},
+                'summary': {'en-US': 'summary', 'it': 'summaria italiano'},
+            },
+        )
+        assert response.status_code == 201, response.data
+        assert response.data['name'] == {'en-US': 'name'}
+        assert response.data['summary'] == {
+            'en-US': 'summary',
+            'it': 'summaria italiano',
+        }
 
     def test_langpack(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='66.0a1')
@@ -1457,9 +1520,13 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
         self.guid = guid
         self.url = reverse_ns('addon-detail', kwargs={'pk': guid}, api_version='v5')
 
-    def test_default_locale_localized_xpi(self):
+    def test_localized_xpi_default_locale_override(self):
         self.set_guid('notify-link-clicks-i18n@notzilla.org')
-        super().test_default_locale_localized_xpi()
+        super().test_localized_xpi_default_locale_override()
+
+    def test_localized_xpi(self):
+        self.set_guid('notify-link-clicks-i18n@notzilla.org')
+        super().test_localized_xpi()
 
     def test_override_manifest_localization(self):
         self.set_guid('notify-link-clicks-i18n@notzilla.org')
