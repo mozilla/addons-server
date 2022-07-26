@@ -1,16 +1,58 @@
 from unittest import mock
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+from importlib import import_module
+import pytest
+
 from freezegun import freeze_time
 from rest_framework.test import APIRequestFactory, force_authenticate
+from rest_framework.throttling import BaseThrottle
+from rest_framework.viewsets import GenericViewSet
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, user_factory
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
+
+
+def find_all_throttle_classes():
+    def yield_all_throttles_from_module(module):
+        for name in dir(module):
+            item = getattr(module, name)
+            if hasattr(item, 'mro'):
+                mro = item.mro()
+                # Our own throttle classes we've defined.
+                if BaseThrottle in mro and item.__module__.startswith('olympia.'):
+                    yield item
+                # Every throttle class referenced in viewsets.
+                if GenericViewSet in mro:
+                    for throttle in getattr(item, 'throttle_classes', []):
+                        if throttle:
+                            yield throttle
+
+    def yield_all_throttles():
+        for app in settings.INSTALLED_APPS:
+            if not app.startswith('olympia'):
+                continue
+            for module_name in ('throttling', 'views'):
+                try:
+                    module = import_module(f'{app}.{module_name}')
+                    yield from yield_all_throttles_from_module(module)
+                except ModuleNotFoundError:
+                    continue
+
+    return set(yield_all_throttles())
+
+
+@pytest.mark.parametrize('throttle_class', find_all_throttle_classes())
+def test_ensure_throttles_inherit_from_granular_user_rate_throttle(throttle_class):
+    # All throttling classes we can find in addons-server should also be
+    # children of GranularUserRateThrottle.
+    assert GranularUserRateThrottle in throttle_class.mro()
 
 
 class TestGranularUserRateThrottle(TestCase):
@@ -52,6 +94,36 @@ class TestGranularUserRateThrottle(TestCase):
         assert settings.API_THROTTLING is True
         assert self.throttle.allow_request(request, view) is False
         assert allow_request_mock.call_count == 2
+
+    @mock.patch('rest_framework.throttling.UserRateThrottle.allow_request')
+    def test_bypass_if_user_has_permission(self, allow_request_mock):
+        request = RequestFactory().get('/test')
+        view = object()
+
+        # Pretend the parent class would always throttle requests if called.
+        allow_request_mock.return_value = False
+
+        # No user: throttle as normal.
+        assert self.throttle.allow_request(request, view) is False
+        assert allow_request_mock.call_count == 1
+
+        # AnonymousUser: throttle as normal.
+        request.user = AnonymousUser()
+        allow_request_mock.reset_mock()
+        assert self.throttle.allow_request(request, view) is False
+        assert allow_request_mock.call_count == 1
+
+        # Regular user: throttle as normal.
+        request.user = user_factory()
+        allow_request_mock.reset_mock()
+        assert self.throttle.allow_request(request, view) is False
+        assert allow_request_mock.call_count == 1
+
+        # User with the right permission: bypass throttling.
+        self.grant_permission(request.user, 'API:BypassThrottling')
+        allow_request_mock.reset_mock()
+        assert self.throttle.allow_request(request, view) is True
+        assert allow_request_mock.call_count == 0
 
     def test_freeze_time_works_with_throttling(self):
         old_time = self.throttle.timer()

@@ -82,14 +82,6 @@ class VersionView(APIView):
     permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
     throttle_classes = addon_submission_throttles
 
-    def check_throttles(self, request):
-        # Let users with LanguagePack:Submit permission bypass throttles.
-        # Used by releng automated signing scripts so that they can sign a
-        # bunch of langpacks at once.
-        if acl.action_allowed_for(request.user, amo.permissions.LANGPACK_SUBMIT):
-            return
-        super().check_throttles(request)
-
     def post(self, request, *args, **kwargs):
         version_string = request.data.get('version', None)
 

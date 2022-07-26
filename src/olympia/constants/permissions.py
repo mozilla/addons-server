@@ -15,6 +15,10 @@ ANY_ADMIN = AclPermission('Admin', '%')
 # access to anything.
 SUPERPOWERS = AclPermission('*', '*')
 
+# Can bypass all API throttles on the site. User used by releng scripts have
+# this, as well as some QA on dev/stage.
+API_BYPASS_THROTTLING = AclPermission('API', 'BypassThrottling')
+
 # Can modify editorial content on the site.
 ADMIN_CURATION = AclPermission('Admin', 'Curation')
 # Can edit the properties of any add-on (pseduo-admin).
@@ -65,9 +69,6 @@ USERS_EDIT = AclPermission('Users', 'Edit')
 
 # Can moderate add-on ratings submitted by users.
 RATINGS_MODERATE = AclPermission('Ratings', 'Moderate')
-
-# Can bypass ratings throttling
-RATINGS_BYPASS_THROTTLING = AclPermission('Ratings', 'BypassThrottling')
 
 # Can access advanced reviewer features meant for admins, such as disabling an
 # add-on or clearing needs admin review flags.
