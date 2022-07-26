@@ -19,7 +19,6 @@ from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
 from django.core.files import File as DjangoFile
-from django.core.management import call_command
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
 from django.test.client import Client, RequestFactory
@@ -49,7 +48,7 @@ from olympia.addons.models import (
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
 from olympia.amo.urlresolvers import Prefixer
 from olympia.amo.utils import SafeStorage, use_fake_fxa
-from olympia.addons.tasks import compute_last_updated, unindex_addons
+from olympia.addons.tasks import compute_last_updated
 from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -1033,30 +1032,6 @@ class ESTestCaseMixin:
 
 class ESTestCase(ESTestCaseMixin, TestCase):
     pass
-
-
-class ESTestCaseWithAddons(ESTestCase):
-    @classmethod
-    def setUpTestData(cls):
-        super().setUpTestData()
-        # Load the fixture here, to not be overloaded by a child class'
-        # fixture attribute.
-        call_command('loaddata', 'addons/base_es')
-        addon_ids = [1, 2, 3, 4, 5, 6]  # From the addons/base_es fixture.
-        cls._addons = list(Addon.objects.filter(pk__in=addon_ids).order_by('id'))
-        from olympia.addons.tasks import index_addons
-
-        index_addons(addon_ids)
-        # Refresh ES.
-        cls.refresh()
-
-    @classmethod
-    def tearDownClass(cls):
-        try:
-            unindex_addons([a.id for a in cls._addons])
-            cls._addons = []
-        finally:
-            super().tearDownClass()
 
 
 class TestXss(TestCase):
