@@ -1,32 +1,9 @@
 import pytest
 
-from olympia import amo
-from olympia.amo.tests import addon_factory
-from olympia.files.models import File
 from olympia.reviewers.templatetags import code_manager, jinja_helpers
 
 
 pytestmark = pytest.mark.django_db
-
-
-def test_version_status():
-    addon = addon_factory(file_kw={'status': amo.STATUS_APPROVED})
-    version = addon.current_version
-    assert 'Approved' == (jinja_helpers.version_status(addon, version))
-
-    version.file = File(status=amo.STATUS_AWAITING_REVIEW)
-    assert 'Awaiting Review' == (jinja_helpers.version_status(addon, version))
-
-
-def test_file_review_status_handles_invalid_status_id():
-    # When status is a valid one, one of STATUS_CHOICES_FILE return label.
-    assert amo.STATUS_CHOICES_FILE[amo.STATUS_APPROVED] == (
-        jinja_helpers.file_review_status(None, File(status=amo.STATUS_APPROVED))
-    )
-
-    # 99 isn't a valid status, so return the status code for reference.
-    status = jinja_helpers.file_review_status(None, File(status=99))
-    assert '[status:99]' == status
 
 
 def test_create_a_code_manager_url():

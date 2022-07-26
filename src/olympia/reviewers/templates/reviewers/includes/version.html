@@ -1,6 +1,6 @@
 <tr class="listing-header{% if version.needs_human_review %} flagged-by-scanners{% elif version.needs_human_review_by_mad %} flagged-for-human-review{%endif %}">
   <th colspan="2">
-    {% trans version = version.version, created = version.created|date, version_status = version_status(addon, version) %}
+    {% trans version = version.version, created = version.created|date, version_status = version.get_review_status_display() %}
     Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
     {% endtrans %}
 
@@ -83,7 +83,7 @@
             <strong><a href="{{ version.file.get_url_path() }}" class="reviewers-install"
               data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></strong>
             <div>
-              {{ file_review_status(addon, version.file) }}
+              {{ version.file.get_review_status_display() }}
             </div>
           </span>
         </li>
