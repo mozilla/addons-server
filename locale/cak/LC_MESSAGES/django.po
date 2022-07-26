@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2623,12 +2623,6 @@ msgstr ""
 "Toq nayüj ri tz'aqat xkeyuj el konojel ri taq ruwäch chuqa' taq yakb'äl xe'atäq richin re tz'aqat re', echolajin o manäq. Ri tz'aqat ID k'a xtixim na rik'in ri rub'i' ataqoya'l, richin chi ri "
 "ch'aqa' chik man yetikïr ta yekitäq taq ruwäch rik'in rokisaxik ri junam ID."
 
-#, fuzzy
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Toq nayüj ri tz'aqat xkeyuj el konojel ri taq ruwäch chuqa' taq yakb'äl xe'atäq richin re tz'aqat re', echolajin o manäq. Ri tz'aqat ID k'a xtixim na rik'in ri rub'i' ataqoya'l, richin chi ri "
-"ch'aqa' chik man yetikïr ta yekitäq taq ruwäch rik'in rokisaxik ri junam ID."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4907,9 +4901,6 @@ msgstr "Man yatikïr ta natäq jun tz'aqat rik'in jun guid k'isinäq rik'in %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 #, fuzzy
 msgid "You cannot submit a language pack"
 msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
@@ -5043,6 +5034,9 @@ msgid "days"
 msgstr "taq q'ij"
 
 msgid "Choose one or more reasons:"
+msgstr ""
+
+msgid "Version mismatch - the latest version has changed!"
 msgstr ""
 
 msgid "Choose a canned response..."

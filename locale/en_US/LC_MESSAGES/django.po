@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2790,12 +2790,6 @@ msgstr ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
 "able to submit versions using the same ID."
 
-#, fuzzy
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr ""
-"Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
-"able to submit versions using the same ID."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr "The add-on ID cannot be restored and will forever be unusable for submission."
 
@@ -5259,9 +5253,6 @@ msgstr "You cannot submit an add-on with a guid ending \"@mozilla.org\""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "You cannot submit a Mozilla Signed Extension"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-
 #, fuzzy
 msgid "You cannot submit a language pack"
 msgstr "You cannot submit a Mozilla Signed Extension"
@@ -5406,6 +5397,9 @@ msgstr "7 days"
 
 msgid "Choose one or more reasons:"
 msgstr "Choose one or more reasons:"
+
+msgid "Version mismatch - the latest version has changed!"
+msgstr "Version mismatch - the latest version has changed!"
 
 msgid "Choose a canned response..."
 msgstr "Choose a canned response..."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-19 20:17+0000\n"
+"POT-Creation-Date: 2022-07-26 17:19+0000\n"
 "PO-Revision-Date: 2022-06-24 14:12+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -2587,9 +2587,6 @@ msgstr "Nahoru"
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
 msgstr "Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, které jste kdy v souvislosti s tímto doplňkem odeslali, ať už veřejně nebo ne."
 
-msgid "The add-on ID will continue to be linked to your account, so others won't be able to submit versions using the same ID."
-msgstr "ID doplňku bude stále spojeno s vaším účtem, takže nikdo jiný nebude moci odeslat doplněk se stejným ID."
-
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
@@ -4825,9 +4822,6 @@ msgstr "Nemůžete odeslat doplněk pomocí ID končícího touto příponou"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
 
-msgid "Add-ons using an ID ending with this suffix need to be signed with privileged certificate before being submitted"
-msgstr ""
-
 msgid "You cannot submit a language pack"
 msgstr "Nemůžete odeslat jazykový balíček"
 
@@ -4960,6 +4954,9 @@ msgstr "dnů"
 
 msgid "Choose one or more reasons:"
 msgstr "Vyberte jeden nebo více důvodů:"
+
+msgid "Version mismatch - the latest version has changed!"
+msgstr ""
 
 msgid "Choose a canned response..."
 msgstr "Volba předpřipravené odpovědi..."
