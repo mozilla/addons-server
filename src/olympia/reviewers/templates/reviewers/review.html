@@ -142,7 +142,7 @@
           {% for file in form.unreviewed_files %}
           <li>
             {{ file.pretty_filename }} &middot;
-            {{ file_review_status(addon, file) }}
+            {{ file.get_review_status_display() }}
           </li>
           {% endfor %}
         </ul>

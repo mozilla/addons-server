@@ -5,7 +5,7 @@
     <strong><a href="{{ file.get_absolute_url(attachment=True) }}" class="reviewers-install"
         data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('All Platforms') }}</a></strong>
     <div>
-      {{ file_review_status(addon, file) }}
+      {{ file.get_review_status_display() }}
     </div>
     <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation') }}</a>
     &middot;
