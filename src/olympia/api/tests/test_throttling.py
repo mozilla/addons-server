@@ -45,7 +45,7 @@ def find_all_throttle_classes():
                 except ModuleNotFoundError:
                     continue
 
-    return set(yield_all_throttles())
+    return sorted(set(yield_all_throttles()))
 
 
 @pytest.mark.parametrize('throttle_class', find_all_throttle_classes())

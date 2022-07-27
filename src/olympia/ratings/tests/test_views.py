@@ -1558,7 +1558,7 @@ class TestRatingViewSetEdit(TestCase):
             assert self.rating.rating == 5
 
             # Now with the permission we should be ok.
-            self.grant_permission(self.user, 'Ratings:BypassThrottling')
+            self.grant_permission(self.user, 'API:BypassThrottling')
             response = self.client.patch(
                 self.url,
                 {'score': 1, 'body': 'Eheheh'},
