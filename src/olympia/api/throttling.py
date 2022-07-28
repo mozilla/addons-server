@@ -8,22 +8,25 @@ from rest_framework.throttling import UserRateThrottle
 
 import olympia
 from olympia import amo
+from olympia.access import acl
 from olympia.activity.models import ActivityLog
 
 
 log = olympia.core.logger.getLogger('z.api.throttling')
 
 
-# Note: all classes defined in this module should obey API_THROTTLING and
-# deactivate throttling when this setting is False. This allows us to
-# deactivate throttling on dev easily.
+# Note: for consistency, all classes defined in this module should inherit
+# GranularUserRateThrottle - it adds features we want to have across all our
+# throttles.
 
 
 class GranularUserRateThrottle(UserRateThrottle):
     """
-    Throttling class that works like DRF's UserRateThrottle but supports
-    granular rates like 1/5second, and can be deactivated through a
-    API_THROTTLING django setting.
+    Base throttling class all our throttles should inherit from.
+
+    Works like DRF's UserRateThrottle but supports granular rates like
+    1/5second, can be deactivated through a API_THROTTLING django setting, and
+    can by bypassed by users with the API_BYPASS_THROTTLING permission.
 
     Its scope defaults to `user` but in most cases we'll want the child class
     to override that and add a custom rate.
@@ -43,13 +46,13 @@ class GranularUserRateThrottle(UserRateThrottle):
 
     def allow_request(self, request, view):
         if settings.API_THROTTLING:
+            user = getattr(request, 'user', None)
+            if acl.action_allowed_for(user, amo.permissions.API_BYPASS_THROTTLING):
+                return True
             request_allowed = super().allow_request(request, view)
-
-            if not request_allowed:
-                user = getattr(request, 'user', None)
-                if user and request.user.is_authenticated:
-                    log.info('User %s throttled for scope %s', request.user, self.scope)
-                    ActivityLog.create(amo.LOG.THROTTLED, self.scope, user=user)
+            if not request_allowed and user and user.is_authenticated:
+                log.info('User %s throttled for scope %s', user, self.scope)
+                ActivityLog.create(amo.LOG.THROTTLED, self.scope, user=user)
 
             return request_allowed
         else:

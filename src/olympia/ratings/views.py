@@ -123,15 +123,6 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         RatingEditDeleteUserThrottle,
     )
 
-    def check_throttles(self, request):
-        # Let users with Ratings:BypassThrottling bypass rate-limiting
-        # completely. Used by QA automated release tests on stage.
-        if acl.action_allowed_for(
-            request.user, amo.permissions.RATINGS_BYPASS_THROTTLING
-        ):
-            return
-        super().check_throttles(request)
-
     def set_addon_object_from_rating(self, rating):
         """Set addon object on the instance from a rating object."""
         # At this point it's likely we didn't have an addon in the request, so

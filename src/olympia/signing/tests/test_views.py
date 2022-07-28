@@ -843,7 +843,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self._test_throttling_verb_user_daily('PUT', url, expected_status=202)
 
     def test_throttling_ignored_for_special_users(self):
-        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(
+            self.user, ':'.join(amo.permissions.API_BYPASS_THROTTLING)
+        )
         url = self.url(self.guid, '1.0')
         with freeze_time('2019-04-08 15:16:23.42'):
             for x in range(0, 60):

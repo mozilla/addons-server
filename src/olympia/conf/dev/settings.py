@@ -13,7 +13,7 @@ EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
 ENV = env('ENV')
 RAISE_ON_SIGNAL_ERROR = True
 
-API_THROTTLING = False
+API_THROTTLING = True
 
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
