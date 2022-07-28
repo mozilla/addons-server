@@ -4,7 +4,7 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.search.models import Reindexing
-from olympia.search.utils import get_es, index_objects
+from olympia.search.utils import get_es, index_objects, unindex_objects
 
 
 class TestGetES(ESTestCase):
@@ -156,3 +156,29 @@ class TestIndexObjects(TestCase):
                 '_index': 'amazing_index',
             },
         ]
+
+
+class TestUnindexObjects(ESTestCase):
+    def test_unindex_objects(self):
+        def _es_search_ids():
+            return [
+                o['_id'] for o in es.search(query={"match_all": {}})['hits']['hits']
+            ]
+
+        es = get_es()
+        addon1 = addon_factory()
+        addon2 = addon_factory()
+        addon3 = addon_factory()
+        assert list(Addon.objects.all().values_list('id', flat=True)) == [
+            addon1.pk, addon2.pk, addon3.pk
+        ]
+        self.reindex(Addon)
+        assert es.count()['count'] == 3, _es_search_ids()
+
+        unindex_objects((addon1.id,), indexer_class=AddonIndexer)
+        self.refresh()
+        assert es.count()['count'] == 2, _es_search_ids()
+
+        unindex_objects((addon1.id, addon2.id), indexer_class=AddonIndexer)
+        self.refresh()
+        assert es.count()['count'] == 1, _es_search_ids()

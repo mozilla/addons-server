@@ -369,9 +369,9 @@ def test_disable_addons(index_addons_mock):
     index_addons_mock.assert_called_with([addon.id])
 
 
-@mock.patch('olympia.addons.tasks.unindex_addons')
+@mock.patch('olympia.addons.tasks.unindex_objects')
 @mock.patch('olympia.addons.tasks.index_objects')
-def test_index_addons(index_objects_mock, unindex_addons_mock):
+def test_index_addons(index_objects_mock, unindex_objects_mock):
     public_addon = addon_factory()
     incomplete_addon = addon_factory(status=amo.STATUS_NULL)
     disabled_addon = addon_factory(disabled_by_user=True)
@@ -384,18 +384,20 @@ def test_index_addons(index_objects_mock, unindex_addons_mock):
     assert list(call.kwargs['queryset']) == [public_addon]
     assert call.kwargs['indexer_class'] == AddonIndexer
     assert call.kwargs['index'] is None
-    unindex_addons_mock.assert_called_with([incomplete_addon.id, disabled_addon.id])
+    unindex_objects_mock.assert_called_with(
+        [incomplete_addon.id, disabled_addon.id], indexer_class=AddonIndexer
+    )
 
-    # Confirm that we don't make unnessecary calls to index_objects/unindex_addons when
+    # Confirm that we don't make unnessecary calls to index_objects/unindex_objects when
     # there are no addons to index/unindex
     index_objects_mock.reset_mock()
-    unindex_addons_mock.reset_mock()
+    unindex_objects_mock.reset_mock()
     index_addons((public_addon.id,))
     index_objects_mock.assert_called_once()
-    unindex_addons_mock.assert_not_called()
+    unindex_objects_mock.assert_not_called()
 
     index_objects_mock.reset_mock()
-    unindex_addons_mock.reset_mock()
+    unindex_objects_mock.reset_mock()
     index_addons((incomplete_addon.id,))
     index_objects_mock.assert_not_called()
-    unindex_addons_mock.assert_called_once()
+    unindex_objects_mock.assert_called_once()

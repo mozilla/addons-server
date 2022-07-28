@@ -6,8 +6,7 @@ from copy import deepcopy
 from django.conf import settings
 from django.core.management.base import CommandError
 
-from elasticsearch import Elasticsearch
-from elasticsearch import helpers, transport
+from elasticsearch import Elasticsearch, helpers, transport, TransportError
 
 from .models import Reindexing
 
@@ -67,6 +66,17 @@ def index_objects(*, queryset, indexer_class, index=None):
             bulk.append(item)
 
     helpers.bulk(es, bulk)
+
+
+def unindex_objects(ids, indexer_class):
+    es = get_es()
+    index = indexer_class.get_index_alias()
+    for id_ in ids:
+        try:
+            es.delete(index=index, id=id_)
+        except TransportError:
+            # We ignore already deleted objects.
+            pass
 
 
 def raise_if_reindex_in_progress(site):

@@ -822,7 +822,6 @@ CELERY_TASK_ROUTES = {
     # If your tasks need to be run as soon as possible, add them here so they
     # are routed to the priority queue.
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
-    'olympia.addons.tasks.unindex_addons': {'queue': 'priority'},
     'olympia.blocklist.tasks.process_blocklistsubmission': {'queue': 'priority'},
     'olympia.blocklist.tasks.upload_filter': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {'queue': 'priority'},
