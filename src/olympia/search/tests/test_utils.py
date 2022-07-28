@@ -170,7 +170,9 @@ class TestUnindexObjects(ESTestCase):
         addon2 = addon_factory()
         addon3 = addon_factory()
         assert list(Addon.objects.all().values_list('id', flat=True)) == [
-            addon1.pk, addon2.pk, addon3.pk
+            addon1.pk,
+            addon2.pk,
+            addon3.pk,
         ]
         self.reindex(Addon)
         assert es.count()['count'] == 3, _es_search_ids()
