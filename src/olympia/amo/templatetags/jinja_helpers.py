@@ -207,17 +207,6 @@ def user_media_path(what):
     return getattr(settings, key, default)
 
 
-# A (temporary?) copy of this is in services/utils.py. See bug 1055654.
-def user_media_url(what):
-    """
-    Generate default media url, and make possible to override it from
-    settings.
-    """
-    default = f'{settings.MEDIA_URL}{what}/'
-    key = '{}_URL'.format(what.upper().replace('-', '_'))
-    return getattr(settings, key, default)
-
-
 @library.filter
 def format_html(string, *args, **kwargs):
     """Uses ``str.format`` for string interpolation.

@@ -356,8 +356,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_url(self):
-        from olympia.amo.templatetags.jinja_helpers import user_media_url
-
         if not self.picture_type:
             return static('img/zamboni/anon_user.png')
         else:
@@ -370,7 +368,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                     f'{self.id}.png?modified={modified}',
                 ]
             )
-            return user_media_url('userpics') + path
+            return f'{settings.MEDIA_URL}userpics/{path}'
 
     @cached_property
     def cached_developer_status(self):

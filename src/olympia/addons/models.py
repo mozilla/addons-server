@@ -1174,7 +1174,7 @@ class Addon(OnChangeMixin, ModelBase):
                     f'{self.id}-{size}.png?modified={suffix}',
                 ]
             )
-            return jinja_helpers.user_media_url('addon_icons') + path
+            return f'{settings.MEDIA_URL}addon_icons/{path}'
 
     def get_default_icon_url(self, size):
         return staticfiles_storage.url(f'img/addon-icons/default-{size}.png')

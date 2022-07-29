@@ -467,8 +467,6 @@ class BasePreview:
     media_folder = 'previews'
 
     def _image_url(self, folder, file_ext):
-        from olympia.amo.templatetags.jinja_helpers import user_media_url
-
         modified = int(time.mktime(self.modified.timetuple())) if self.modified else 0
 
         url = '/'.join(
@@ -478,7 +476,7 @@ class BasePreview:
                 f'{self.id}.{file_ext}?modified={modified}',
             )
         )
-        return user_media_url(self.media_folder) + url
+        return f'{settings.MEDIA_URL}{self.media_folder}/{url}'
 
     def _image_path(self, folder, file_ext):
         from olympia.amo.templatetags.jinja_helpers import user_media_path

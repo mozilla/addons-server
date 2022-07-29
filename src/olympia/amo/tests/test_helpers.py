@@ -425,15 +425,6 @@ class TestStoragePath(TestCase):
         assert path == '/another/path/'
 
 
-class TestMediaUrl(TestCase):
-    @override_settings(USERPICS_URL=None)
-    def test_without_settings(self):
-        del settings.USERPICS_URL
-        settings.MEDIA_URL = '/mediapath/'
-        url = jinja_helpers.user_media_url('userpics')
-        assert url == '/mediapath/userpics/'
-
-
 SPACELESS_TEMPLATE = """
 <div>    <div>outside</div>
 
