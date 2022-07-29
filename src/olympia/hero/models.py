@@ -106,7 +106,7 @@ def hero_image_directory(instance, filename):
 
 
 def hero_image_storage():
-    return SafeStorage(user_media='')
+    return SafeStorage(root_setting='MEDIA_ROOT')
 
 
 class PrimaryHeroImage(ModelBase):

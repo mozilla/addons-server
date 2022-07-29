@@ -81,7 +81,7 @@ def upload_filter(generation_time, is_base=True):
             'generation_time': generation_time,
             'attachment_type': BLOCKLIST_RECORD_MLBF_BASE,
         }
-        storage = SafeStorage(user_media='mlbf_storage')
+        storage = SafeStorage(root_setting='MLBF_STORAGE_PATH')
         with storage.open(mlbf.filter_path, 'rb') as filter_file:
             attachment = ('filter.bin', filter_file, 'application/octet-stream')
             server.publish_attachment(data, attachment)
@@ -108,7 +108,7 @@ def cleanup_old_files(*, base_filter_id):
     log.info('Starting clean up of old MLBF folders...')
     six_months_ago = datetime_to_ts(datetime.now() - timedelta(weeks=26))
     base_filter_ts = int(base_filter_id)
-    storage = SafeStorage(user_media='mlbf_storage')
+    storage = SafeStorage(root_setting='MLBF_STORAGE_PATH')
     for dir in storage.listdir(settings.MLBF_STORAGE_PATH)[0]:
         dir = force_str(dir)
         # skip non-numeric folder names

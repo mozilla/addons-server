@@ -130,7 +130,9 @@ def render_to_svg(template, context, preview, thumbnail_dimensions, theme_manife
     finished_svg = template.render(with_ui_context).encode('utf-8')
 
     # and write that svg to preview.image_path
-    storage = SafeStorage(user_media=VersionPreview.media_folder)
+    storage = SafeStorage(
+        root_setting='MEDIA_ROOT', rel_location=VersionPreview.media_folder
+    )
     with storage.open(preview.image_path, 'wb') as image_path:
         image_path.write(finished_svg)
 

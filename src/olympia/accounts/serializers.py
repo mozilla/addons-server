@@ -176,7 +176,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if photo:
             original = instance.picture_path_original
 
-            storage = SafeStorage(user_media='userpics')
+            storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
             with storage.open(original, 'wb') as original_file:
                 for chunk in photo.chunks():
                     original_file.write(chunk)

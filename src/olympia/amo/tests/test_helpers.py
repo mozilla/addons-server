@@ -8,7 +8,6 @@ from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import NoReverseMatch
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 from django.utils.encoding import force_bytes
 
 import pytest
@@ -410,19 +409,6 @@ def test_format_unicode():
     # This makes sure there's no UnicodeEncodeError when doing the string
     # interpolation.
     assert render('{{ "foo {0}"|format_html("baré") }}') == 'foo baré'
-
-
-class TestStoragePath(TestCase):
-    @override_settings(ADDONS_PATH=None, MEDIA_ROOT='/path/')
-    def test_without_settings(self):
-        del settings.ADDONS_PATH
-        path = jinja_helpers.user_media_path('addons')
-        assert path == '/path/addons'
-
-    @override_settings(ADDONS_PATH='/another/path/')
-    def test_with_settings(self):
-        path = jinja_helpers.user_media_path('addons')
-        assert path == '/another/path/'
 
 
 SPACELESS_TEMPLATE = """

@@ -1,5 +1,4 @@
 import json as jsonlib
-import os
 
 from urllib.parse import urljoin
 
@@ -191,20 +190,6 @@ def is_choice_field(value):
         return isinstance(value.field.widget, CheckboxInput)
     except AttributeError:
         pass
-
-
-# A (temporary?) copy of this is in services/utils.py. See bug 1055654.
-def user_media_path(what):
-    """Make it possible to override storage paths in settings.
-
-    By default, all storage paths are in the MEDIA_ROOT.
-
-    This is backwards compatible.
-
-    """
-    default = os.path.join(settings.MEDIA_ROOT, what)
-    key = f'{what.upper()}_PATH'
-    return getattr(settings, key, default)
 
 
 @library.filter

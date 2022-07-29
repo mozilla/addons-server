@@ -479,10 +479,9 @@ class BasePreview:
         return f'{settings.MEDIA_URL}{self.media_folder}/{url}'
 
     def _image_path(self, folder, file_ext):
-        from olympia.amo.templatetags.jinja_helpers import user_media_path
-
         url = os.path.join(
-            user_media_path(self.media_folder),
+            settings.MEDIA_ROOT,
+            self.media_folder,
             folder,
             str(self.id // 1000),
             f'{self.id}.{file_ext}',

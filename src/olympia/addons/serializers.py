@@ -212,7 +212,7 @@ class PreviewSerializer(serializers.ModelSerializer):
         image = validated_data.pop('image')
         instance = super().create(validated_data)
 
-        storage = SafeStorage(user_media='previews')
+        storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='previews')
         with storage.open(instance.original_path, 'wb') as original_file:
             for chunk in image.chunks():
                 original_file.write(chunk)
@@ -1103,7 +1103,7 @@ class AddonSerializer(serializers.ModelSerializer):
         if uploaded_icon:
             original = f'{destination}-original.png'
 
-            storage = SafeStorage(user_media='addon_icons')
+            storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='addon_icons')
             with storage.open(original, 'wb') as original_file:
                 for chunk in uploaded_icon.chunks():
                     original_file.write(chunk)

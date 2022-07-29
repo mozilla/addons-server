@@ -19,7 +19,7 @@ pytestmark = pytest.mark.django_db
 def test_storage_walk():
     tmp = force_str(tempfile.mkdtemp(dir=settings.TMP_PATH))
     jn = partial(os.path.join, tmp)
-    storage = SafeStorage(user_media='tmp')
+    storage = SafeStorage(root_setting='TMP_PATH')
     try:
         storage.save(jn('file1.txt'), ContentFile(''))
         storage.save(jn('one/file1.txt'), ContentFile(''))
@@ -57,7 +57,7 @@ def test_storage_walk():
 def test_rm_stored_dir():
     tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
     jn = partial(os.path.join, tmp)
-    storage = SafeStorage(user_media='tmp')
+    storage = SafeStorage(root_setting='TMP_PATH')
     try:
         storage.save(jn('file1.txt'), ContentFile('<stuff>'))
         storage.save(jn('one/file1.txt'), ContentFile(''))
@@ -80,7 +80,7 @@ class TestFileOps(TestCase):
     def setUp(self):
         super().setUp()
         self.tmp = tempfile.mkdtemp(dir=settings.TMP_PATH)
-        self.storage = SafeStorage(user_media='tmp')
+        self.storage = SafeStorage(root_setting='TMP_PATH')
 
     def tearDown(self):
         rm_local_tmp_dir(self.tmp)

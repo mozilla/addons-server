@@ -1141,7 +1141,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def get_icon_dir(self):
         return os.path.join(
-            jinja_helpers.user_media_path('addon_icons'), '%s' % (self.id // 1000)
+            settings.MEDIA_ROOT, 'addon_icons', '%s' % (self.id // 1000)
         )
 
     def get_icon_url(self, size):

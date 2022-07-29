@@ -1,6 +1,7 @@
 import json
 import os
 
+from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.urls import reverse
 from django.utils.encoding import force_str
@@ -11,7 +12,6 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonCategory
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import (
     addon_factory,
     formset,
@@ -860,7 +860,7 @@ class TestEditMedia(BaseTestEdit):
 
         # Check that it was actually uploaded
         dirname = os.path.join(
-            user_media_path('addon_icons'), '%s' % (addon.id // 1000)
+            settings.MEDIA_ROOT, 'addon_icons', '%s' % (addon.id // 1000)
         )
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
@@ -908,7 +908,7 @@ class TestEditMedia(BaseTestEdit):
 
         # Check that it was actually uploaded
         dirname = os.path.join(
-            user_media_path('addon_icons'), '%s' % (addon.id // 1000)
+            settings.MEDIA_ROOT, 'addon_icons', '%s' % (addon.id // 1000)
         )
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
 
