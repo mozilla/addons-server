@@ -862,7 +862,9 @@ def version_review_flags_factory(**kw):
     pending_rejection_by = kw.pop(
         'pending_rejection_by', user_factory() if pending_rejection else None
     )
-    pending_content_rejection = kw.pop('pending_content_rejection', None)
+    pending_content_rejection = kw.pop(
+        'pending_content_rejection', False if pending_rejection else None
+    )
     flags = VersionReviewerFlags.objects.create(
         pending_rejection=pending_rejection,
         pending_rejection_by=pending_rejection_by,
