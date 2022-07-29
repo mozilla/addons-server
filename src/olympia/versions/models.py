@@ -1013,6 +1013,7 @@ class VersionReviewerFlags(ModelBase):
 def version_review_flags_save_signal(sender, instance, **kw):
     if not instance.pending_rejection:
         instance.pending_rejection_by = None
+        instance.pending_content_rejection = None
 
 
 models.signals.pre_save.connect(

@@ -4,7 +4,9 @@ from unittest import mock
 import pytest
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase, addon_factory, user_factory, version_factory, version_review_flags_factory
+)
 from olympia.constants.scanners import (
     CUSTOMS,
     DELAY_AUTO_APPROVAL,
@@ -309,7 +311,7 @@ class TestActions(TestCase):
 
     def test_flag_for_human_review_by_scanner_with_existing_flags(self):
         version = version_factory(addon=addon_factory())
-        VersionReviewerFlags.objects.create(version=version)
+        version_review_flags_factory(version=version)
 
         assert not version.reviewerflags.needs_human_review_by_mad
 
