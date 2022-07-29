@@ -1002,6 +1002,8 @@ class VersionReviewerFlags(ModelBase):
                     )
                     | models.Q(
                         pending_rejection__isnull=False,
+                        pending_rejection_by__isnull=False,
+                        pending_content_rejection__isnull=False,
                     )
                 ),
             ),
