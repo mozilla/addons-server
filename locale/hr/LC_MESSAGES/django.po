@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-26 17:19+0000\n"
-"PO-Revision-Date: 2022-07-29 16:21+0000\n"
+"PO-Revision-Date: 2022-07-29 16:22+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -828,13 +828,11 @@ msgstr "Odobren, ali na čekanju"
 msgid "Account updated."
 msgstr "Račun aktualiziran."
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "Račun aktualiziran."
+msgstr "Račun korisnika {user} je izbrisan."
 
-#, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Račun aktualiziran."
+msgstr "Račun korisnika {user} je izbrisan iz događaja Firefox računa."
 
 msgid "Created: {0}."
 msgstr "Izrađeno: {0}."
