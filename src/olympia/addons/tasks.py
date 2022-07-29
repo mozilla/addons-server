@@ -5,7 +5,7 @@ from django.db import transaction
 from django.db.models import Value
 from django.db.models.functions import Collate
 
-from elasticsearch import TransportError
+
 from elasticsearch_dsl import Search
 
 import olympia.core
@@ -26,7 +26,7 @@ from olympia.amo.utils import extract_colors_from_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
-from olympia.search.utils import get_es, index_objects
+from olympia.search.utils import get_es, index_objects, unindex_objects
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
@@ -78,32 +78,28 @@ def delete_preview_files(id, **kw):
 @task(acks_late=True)
 @use_primary_db
 def index_addons(ids, **kw):
-    log.info(f'Indexing addons {ids[0]}-{ids[-1]}. [{len(ids)}]')
-    transforms = (attach_tags, attach_translations_dict)
-    index_objects(
-        ids=ids,
-        indexer_class=AddonIndexer,
-        index=kw.pop('index', None),
-        transforms=transforms,
-        manager_name='unfiltered',
+    """Adds, removes, or updates, add-on objects in the elasticsearch index(es)."""
+    queryset = (
+        Addon.objects.public()
+        .filter(id__in=ids)
+        .transform(attach_tags)
+        .transform(attach_translations_dict)
     )
+    index_ids = list(queryset.values_list('pk', flat=True))
+    exclude_ids = [pk for pk in ids if pk not in index_ids]
 
-
-@task
-@use_primary_db
-def unindex_addons(ids, **kw):
-    es = get_es()
-    for addon_id in ids:
-        log.info('Removing addon [%s] from search index.' % addon_id)
-        try:
-            es.delete(
-                AddonIndexer.get_index_alias(),
-                AddonIndexer.get_doctype_name(),
-                addon_id,
-            )
-        except TransportError:
-            # We ignore already deleted add-ons.
-            pass
+    if queryset:
+        log.info(f'Indexing addons {index_ids[0]}-{index_ids[-1]}. [{len(index_ids)}]')
+        index_objects(
+            queryset=queryset,
+            indexer_class=AddonIndexer,
+            index=kw.pop('index', None),
+        )
+    if exclude_ids:
+        log.info(
+            f'Removing addons {exclude_ids[0]}-{exclude_ids[-1]}. [{len(exclude_ids)}]'
+        )
+        unindex_objects(exclude_ids, indexer_class=AddonIndexer)
 
 
 @task

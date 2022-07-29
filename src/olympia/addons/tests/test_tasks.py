@@ -11,6 +11,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.addons.indexers import AddonIndexer
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_image_path
@@ -20,6 +21,7 @@ from olympia.versions.models import VersionPreview
 
 from ..tasks import (
     disable_addons,
+    index_addons,
     recreate_theme_previews,
     resize_icon,
     update_addon_average_daily_users,
@@ -365,3 +367,37 @@ def test_disable_addons(index_addons_mock):
         action=amo.LOG.FORCE_DISABLE.id, addonlog__addon=addon
     ).exists()
     index_addons_mock.assert_called_with([addon.id])
+
+
+@mock.patch('olympia.addons.tasks.unindex_objects')
+@mock.patch('olympia.addons.tasks.index_objects')
+def test_index_addons(index_objects_mock, unindex_objects_mock):
+    public_addon = addon_factory()
+    incomplete_addon = addon_factory(status=amo.STATUS_NULL)
+    disabled_addon = addon_factory(disabled_by_user=True)
+
+    index_addons((public_addon.id, incomplete_addon.id, disabled_addon.id))
+
+    index_objects_mock.assert_called_once()
+    call = index_objects_mock.mock_calls[0]
+    assert list(call.kwargs.keys()) == ['queryset', 'indexer_class', 'index']
+    assert list(call.kwargs['queryset']) == [public_addon]
+    assert call.kwargs['indexer_class'] == AddonIndexer
+    assert call.kwargs['index'] is None
+    unindex_objects_mock.assert_called_with(
+        [incomplete_addon.id, disabled_addon.id], indexer_class=AddonIndexer
+    )
+
+    # Confirm that we don't make unnessecary calls to index_objects/unindex_objects when
+    # there are no addons to index/unindex
+    index_objects_mock.reset_mock()
+    unindex_objects_mock.reset_mock()
+    index_addons((public_addon.id,))
+    index_objects_mock.assert_called_once()
+    unindex_objects_mock.assert_not_called()
+
+    index_objects_mock.reset_mock()
+    unindex_objects_mock.reset_mock()
+    index_addons((incomplete_addon.id,))
+    index_objects_mock.assert_not_called()
+    unindex_objects_mock.assert_called_once()
