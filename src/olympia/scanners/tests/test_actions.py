@@ -5,7 +5,11 @@ import pytest
 
 from olympia import amo
 from olympia.amo.tests import (
-    TestCase, addon_factory, user_factory, version_factory, version_review_flags_factory
+    TestCase,
+    addon_factory,
+    user_factory,
+    version_factory,
+    version_review_flags_factory,
 )
 from olympia.constants.scanners import (
     CUSTOMS,
