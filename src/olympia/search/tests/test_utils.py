@@ -162,7 +162,7 @@ class TestUnindexObjects(ESTestCase):
     def test_unindex_objects(self):
         def _es_search_ids():
             return [
-                o['_id'] for o in es.search(query={"match_all": {}})['hits']['hits']
+                o['_id'] for o in es.search(query={'match_all': {}})['hits']['hits']
             ]
 
         es = get_es()
