@@ -238,7 +238,7 @@ class File(OnChangeMixin, ModelBase):
 
     def latest_xpi_url(self, attachment=False):
         addon = self.addon
-        extension = os.path.splitext(self.filename)[-1] or 'xpi'
+        extension = os.path.splitext(self.file.name)[-1] or 'xpi'
         kw = {
             'addon_id': addon.slug,
             'filename': f'addon-{addon.pk}-latest{extension}',
@@ -246,14 +246,6 @@ class File(OnChangeMixin, ModelBase):
         if attachment:
             kw['download_type'] = 'attachment'
         return reverse('downloads.latest', kwargs=kw)
-
-    @property
-    def file_path(self):
-        return self.file.path if self.file else ''
-
-    @property
-    def filename(self):
-        return self.file.name if self.file else ''
 
     @property
     def addon(self):
@@ -338,7 +330,7 @@ def cleanup_file(sender, instance, **kw):
     try:
         if kw.get('raw') or not instance.file:
             return
-        if storage.exists(instance.file_path):
+        if storage.exists(instance.file.path):
             log.info(
                 f'Removing filename: {instance.pretty_filename} for file: {instance.pk}'
             )

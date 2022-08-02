@@ -978,9 +978,9 @@ def get_sha256(file_obj):
 def update_version_number(file_obj, new_version_number):
     """Update the manifest to have the new version number."""
     # Create a new xpi with the updated version.
-    updated = f'{file_obj.file_path}.updated_version_number'
+    updated = f'{file_obj.file.path}.updated_version_number'
     # Copy the original XPI, with the updated manifest.json.
-    with zipfile.ZipFile(file_obj.file_path, 'r') as source:
+    with zipfile.ZipFile(file_obj.file.path, 'r') as source:
         file_list = source.infolist()
         with zipfile.ZipFile(updated, 'w', zipfile.ZIP_DEFLATED) as dest:
             for file_ in file_list:
@@ -991,7 +991,7 @@ def update_version_number(file_obj, new_version_number):
                     )
                 dest.writestr(file_, content)
     # Move the updated file to the original file.
-    os.replace(updated, file_obj.file_path)
+    os.replace(updated, file_obj.file.path)
 
 
 class InvalidOrUnsupportedCrx(Exception):
