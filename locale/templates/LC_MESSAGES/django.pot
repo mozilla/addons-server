@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-07-26 17:19+0000\n"
+"POT-Creation-Date: 2022-08-02 17:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -283,7 +283,7 @@ msgid "Upload is not valid."
 msgstr ""
 
 #: src/olympia/addons/serializers.py:483 src/olympia/devhub/forms.py:1044
-#: src/olympia/signing/views.py:195
+#: src/olympia/signing/views.py:187
 msgid ""
 "Version {version} matches {block_link} for this add-on. You can contact "
 "{amo_admins} for additional information."
@@ -623,12 +623,12 @@ msgid ""
 "maintenance. Please try again a little later."
 msgstr ""
 
-#: src/olympia/amo/templatetags/jinja_helpers.py:147
+#: src/olympia/amo/templatetags/jinja_helpers.py:146
 msgid "Add-ons for {0}"
 msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
-#: src/olympia/amo/templatetags/jinja_helpers.py:180
+#: src/olympia/amo/templatetags/jinja_helpers.py:179
 msgid "{0} ago"
 msgstr ""
 
@@ -990,8 +990,7 @@ msgstr ""
 msgid "{addon} {version} rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:164 src/olympia/files/models.py:299
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:22
+#: src/olympia/constants/activity.py:164 src/olympia/files/models.py:298
 msgid "Rejected"
 msgstr ""
 
@@ -1471,9 +1470,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:33
-#: src/olympia/versions/models.py:963
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:963
 msgid "Deleted"
 msgstr ""
 
@@ -2115,7 +2112,7 @@ msgid "Not Promoted"
 msgstr ""
 
 #: src/olympia/constants/promoted.py:54
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:54
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:33
 msgid "Recommended"
 msgstr ""
 
@@ -2415,7 +2412,7 @@ msgid "Inconclusive"
 msgstr ""
 
 #: src/olympia/constants/scanners.py:56
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:73
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:52
 msgid "New"
 msgstr ""
 
@@ -6851,14 +6848,11 @@ msgstr ""
 msgid "See more creativity staff picks"
 msgstr ""
 
-#: src/olympia/files/models.py:302
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:26
+#: src/olympia/files/models.py:301
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#: src/olympia/files/models.py:305
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:27
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:35
+#: src/olympia/files/models.py:304
 #, python-format
 msgid "[status:%s]"
 msgstr ""
@@ -6965,7 +6959,7 @@ msgstr ""
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/views.py:81 src/olympia/signing/views.py:132
+#: src/olympia/files/views.py:81 src/olympia/signing/views.py:124
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
@@ -7406,12 +7400,12 @@ msgstr ""
 msgid "Security Scanners"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:64
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:43
 #: src/olympia/reviewers/views.py:231
 msgid "Flagged By Scanners"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:66
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:45
 #: src/olympia/reviewers/views.py:235
 msgid "Flagged for Human Review"
 msgstr ""
@@ -7433,7 +7427,7 @@ msgstr ""
 msgid "Review Guide"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:92
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:71
 #: src/olympia/reviewers/views.py:256
 msgid "Content Review"
 msgstr ""
@@ -7475,12 +7469,12 @@ msgstr ""
 msgid "Unlisted Add-ons"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:105
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:84
 #: src/olympia/reviewers/views.py:303
 msgid "All Unlisted Add-ons"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:109
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:88
 #: src/olympia/reviewers/views.py:305
 msgid "Unlisted Add-ons Pending Manual Approval"
 msgstr ""
@@ -8183,23 +8177,23 @@ msgstr ""
 msgid "This version has not been reviewed."
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:60
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:39
 msgid "Other Pending Review"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:78
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:57
 msgid "Updates"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:83
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:62
 msgid "Rating Reviews"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:87
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:66
 msgid "Auto Approved"
 msgstr ""
 
-#: src/olympia/reviewers/templatetags/jinja_helpers.py:100
+#: src/olympia/reviewers/templatetags/jinja_helpers.py:79
 msgid "Pending Rejection"
 msgstr ""
 
@@ -8321,41 +8315,41 @@ msgstr ""
 msgid "You do not own this add-on."
 msgstr ""
 
-#: src/olympia/signing/views.py:140
+#: src/olympia/signing/views.py:132
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:150
+#: src/olympia/signing/views.py:142
 msgid "Version does not match the manifest file."
 msgstr ""
 
-#: src/olympia/signing/views.py:159
+#: src/olympia/signing/views.py:151
 #, python-format
 msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
-#: src/olympia/signing/views.py:174
+#: src/olympia/signing/views.py:166
 msgid ""
 "Please specify your Add-on ID in the manifest if it's longer than 64 "
 "characters."
 msgstr ""
 
-#: src/olympia/signing/views.py:189
+#: src/olympia/signing/views.py:181
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-#: src/olympia/signing/views.py:228
+#: src/olympia/signing/views.py:220
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""
 
-#: src/olympia/signing/views.py:237
+#: src/olympia/signing/views.py:229
 msgid ""
 "You cannot add a listed version to this add-on via the API due to missing "
 "metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:285
+#: src/olympia/signing/views.py:277
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
@@ -8825,43 +8819,43 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#: src/olympia/users/models.py:422
+#: src/olympia/users/models.py:419
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:698
+#: src/olympia/users/models.py:695
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
-#: src/olympia/users/models.py:701
+#: src/olympia/users/models.py:698
 msgid ""
 "Multiple add-ons violating our policies have been submitted from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:800
+#: src/olympia/users/models.py:797
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:802
+#: src/olympia/users/models.py:799
 msgid ""
 "Enter full email that should be blocked or use unix-style wildcards, e.g. "
 "\"*@example.com\". If you need to block a domain incl subdomains, add a "
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:809
+#: src/olympia/users/models.py:806
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr ""
 
-#: src/olympia/users/models.py:874
+#: src/olympia/users/models.py:871
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1011
+#: src/olympia/users/models.py:1008
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -8869,13 +8863,13 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1028
+#: src/olympia/users/models.py:1025
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#: src/olympia/users/models.py:1077
+#: src/olympia/users/models.py:1074
 msgid "User Restriction History"
 msgstr ""
 
@@ -9033,11 +9027,11 @@ msgstr ""
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1208
+#: src/olympia/versions/models.py:1211
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1247
+#: src/olympia/versions/models.py:1250
 msgid "The install origin {origin} is not permitted."
 msgstr ""
 
