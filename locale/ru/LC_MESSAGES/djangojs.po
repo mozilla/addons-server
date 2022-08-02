@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-07-26 17:20+0000\n"
-"PO-Revision-Date: 2022-01-29 13:44+0000\n"
+"PO-Revision-Date: 2022-01-29 13:43+0000\n"
 "Last-Translator: jankonstanta <jankonstanta@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -16,10 +16,10 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "There was a problem contacting the server."
-msgstr "При соединении с сервером произошла ошибка."
+msgstr "Проблема связи с сервером."
 
 msgid "Select a file..."
-msgstr "Выбрать файл..."
+msgstr "Выберите файл..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Расширение файла дополнения должно заканчиваться на .zip, .xpi или .crx"
