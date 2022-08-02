@@ -14,7 +14,6 @@ import olympia.core.logger
 
 from olympia.search.utils import get_es
 from olympia.amo.models import use_primary_db
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 
 
 monitor_log = olympia.core.logger.getLogger('z.monitor')
@@ -98,10 +97,10 @@ def path():
     read_and_write = (
         settings.TMP_PATH,
         settings.MEDIA_ROOT,
-        user_media_path('addons'),
-        user_media_path('addon_icons'),
-        user_media_path('previews'),
-        user_media_path('userpics'),
+        settings.ADDONS_PATH,
+        os.path.join(settings.MEDIA_ROOT, 'addon_icons'),
+        os.path.join(settings.MEDIA_ROOT, 'previews'),
+        os.path.join(settings.MEDIA_ROOT, 'userpics'),
     )
     read_only = [os.path.join(settings.ROOT, 'locale')]
     filepaths = [

@@ -25,7 +25,6 @@ from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import SafeStorage
 from olympia.files.fields import FilenameFileField
 from olympia.files.utils import (
@@ -84,7 +83,7 @@ def files_upload_to_callback(instance, filename):
 
 
 def files_storage():
-    return SafeStorage(user_media='addons')
+    return SafeStorage(root_setting='ADDONS_PATH')
 
 
 class File(OnChangeMixin, ModelBase):
@@ -444,9 +443,7 @@ class FileUpload(ModelBase):
 
     @classmethod
     def generate_path(cls, ext='.zip'):
-        return os.path.join(
-            user_media_path('addons'), 'temp', f'{uuid.uuid4().hex}{ext}'
-        )
+        return os.path.join(settings.ADDONS_PATH, 'temp', f'{uuid.uuid4().hex}{ext}')
 
     def add_file(self, chunks, filename, size):
         if not self.uuid:

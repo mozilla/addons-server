@@ -43,7 +43,7 @@ class TestUserProfile(TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'users/test_backends')
 
     def setUp(self):
-        self.storage = SafeStorage(user_media='userpics')
+        self.storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
 
     def test_is_addon_developer(self):
         user = user_factory()

@@ -2,7 +2,6 @@ import olympia.core.logger
 
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import resize_image, SafeStorage
 
 from .models import UserProfile
@@ -15,12 +14,8 @@ task_log = olympia.core.logger.getLogger('z.task')
 def delete_photo(dst, **kw):
     task_log.info('[1@None] Deleting photo: %s.' % dst)
 
-    if not dst.startswith(user_media_path('userpics')):
-        task_log.error("Someone tried deleting something they shouldn't: %s" % dst)
-        return
-
     try:
-        SafeStorage(user_media='userpics').delete(dst)
+        SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics').delete(dst)
     except Exception as e:
         task_log.error('Error deleting userpic: %s' % e)
 

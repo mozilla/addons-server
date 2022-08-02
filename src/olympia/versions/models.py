@@ -195,7 +195,7 @@ def source_upload_path(instance, filename):
 
 
 def source_upload_storage():
-    return SafeStorage(user_media='')
+    return SafeStorage(root_setting='MEDIA_ROOT')
 
 
 class VersionCreateError(ValueError):

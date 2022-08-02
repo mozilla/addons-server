@@ -4,6 +4,7 @@ import tempfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 import pytest
 
@@ -17,15 +18,15 @@ pytestmark = pytest.mark.django_db
 
 
 def test_delete_photo():
-    dst_path = tempfile.mktemp(suffix='.png', dir=settings.TMP_PATH)
-    dst = storage.open(dst_path, mode='wb')
-    with dst:
-        dst.write(b'test data\n')
-    path = os.path.dirname(dst_path)
-    settings.USERPICS_PATH = path
-    delete_photo(dst_path)
+    with tempfile.TemporaryDirectory(dir=settings.TMP_PATH) as tmp_media_path:
+        os.mkdir(os.path.join(tmp_media_path, 'userpics'))
+        dst_path = os.path.join(tmp_media_path, 'userpics', 'foo.png')
+        with storage.open(dst_path, mode='wb') as dst:
+            dst.write(b'test data\n')
+        with override_settings(MEDIA_ROOT=tmp_media_path):
+            delete_photo(dst_path)
 
-    assert not storage.exists(dst_path)
+        assert not storage.exists(dst_path)
 
 
 def test_resize_photo():

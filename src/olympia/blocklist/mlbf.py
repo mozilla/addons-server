@@ -99,7 +99,7 @@ class MLBF:
     def __init__(self, id_):
         # simplify later code by assuming always a string
         self.id = str(id_)
-        self.storage = SafeStorage(user_media='mlbf_storage')
+        self.storage = SafeStorage(root_setting='MLBF_STORAGE_PATH')
 
     @classmethod
     def hash_filter_inputs(cls, input_list):

@@ -861,21 +861,37 @@ class SafeStorage(FileSystemStorage):
 
     DEFAULT_CHUNK_SIZE = 64 * 2**10  # 64kB
 
-    def __init__(self, *args, **kwargs):
-        """If `user_media` arg is provided, location will be lazily resolved under the
-        appropriate user_media_path. If `user_media` is falsey MEDIA_ROOT is used - see
-        user_media_path for the resolution logic."""
-        if 'user_media' in kwargs:
-            self._user_media = kwargs.pop('user_media')
+    root_setting = 'STORAGE_ROOT'
+
+    def __init__(self, *args, rel_location=None, **kwargs):
+        """Default storage root can be changed with `root_setting` kwarg.
+
+        If `location` kwarg is provided then that will be used instead of default root.
+        If `rel_location` kwarg is provided then a relative path under `root_setting` is
+        used. It is an error to provide both `location` and `rel_location`.
+        """
+        if 'root_setting' in kwargs:
+            self.root_setting = kwargs.pop('root_setting')
+        self.rel_location = rel_location
+        assert not (
+            rel_location is not None and kwargs.get('location') is not None
+        ), "Don't provide both location and rel_location"
         super().__init__(*args, **kwargs)
+
+    def _clear_cached_properties(self, setting, **kwargs):
+        """Reset setting based property values."""
+        if setting == self.root_setting:
+            self.__dict__.pop('base_location', None)
+            self.__dict__.pop('location', None)
+        else:
+            super()._clear_cached_properties(setting, **kwargs)
 
     @cached_property
     def base_location(self):
-        from olympia.amo.templatetags.jinja_helpers import user_media_path
-
-        if hasattr(self, '_user_media'):
-            return user_media_path(self._user_media or '')
-        return self._value_or_setting(self._location, settings.STORAGE_ROOT)
+        return self._value_or_setting(
+            self._location,
+            os.path.join(getattr(settings, self.root_setting), self.rel_location or ''),
+        )
 
     def _open(self, name, mode='rb'):
         if mode.startswith('w'):

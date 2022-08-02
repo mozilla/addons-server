@@ -337,11 +337,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_dir(self):
-        from olympia.amo.templatetags.jinja_helpers import user_media_path
-
         split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
         return os.path.join(
-            user_media_path('userpics'),
+            settings.MEDIA_ROOT,
+            'userpics',
             split_id.group(2) or '0',
             split_id.group(1) or '0',
         )
@@ -356,8 +355,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_url(self):
-        from olympia.amo.templatetags.jinja_helpers import user_media_url
-
         if not self.picture_type:
             return static('img/zamboni/anon_user.png')
         else:
@@ -370,7 +367,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                     f'{self.id}.png?modified={modified}',
                 ]
             )
-            return user_media_url('userpics') + path
+            return f'{settings.MEDIA_URL}userpics/{path}'
 
     @cached_property
     def cached_developer_status(self):
@@ -458,7 +455,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # Recursive import
         from olympia.users.tasks import delete_photo
 
-        storage = SafeStorage(user_media='userpics')
+        storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
 
         if storage.exists(self.picture_path):
             delete_photo.delay(self.picture_path)

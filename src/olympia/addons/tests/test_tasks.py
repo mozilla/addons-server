@@ -12,7 +12,6 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.indexers import AddonIndexer
-from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
@@ -284,7 +283,7 @@ class TestResizeIcon(TestCase):
         if not isinstance(final_size, list):
             final_size = [final_size]
             resize_size = [resize_size]
-        uploadto = user_media_path('addon_icons')
+        uploadto = os.path.join(settings.MEDIA_ROOT, 'addon_icons')
         try:
             os.makedirs(uploadto)
         except OSError:
