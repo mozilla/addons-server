@@ -958,7 +958,11 @@ class TestVersion(TestCase):
         assert version.pending_rejection is None
         # Flag present, value is a date.
         in_the_past = self.days_ago(1)
-        flags.update(pending_rejection=in_the_past)
+        flags.update(
+            pending_rejection=in_the_past,
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
         assert version.pending_rejection == in_the_past
 
     def test_pending_rejection_by_property(self):
@@ -972,7 +976,11 @@ class TestVersion(TestCase):
         assert flags.pending_rejection_by is None
         assert version.pending_rejection_by is None
         # Flag present, value is a user.
-        flags.update(pending_rejection=self.days_ago(1), pending_rejection_by=user)
+        flags.update(
+            pending_rejection=self.days_ago(1),
+            pending_rejection_by=user,
+            pending_content_rejection=False,
+        )
         assert version.pending_rejection_by == user
 
     def test_pending_rejection_by_cleared_when_pending_rejection_cleared(self):
@@ -997,6 +1005,28 @@ class TestVersion(TestCase):
         flags.update(pending_rejection=None)
         assert flags.pending_rejection is None
         assert flags.pending_rejection_by is None
+
+    def test_pending_content_rejection_cleared_when_pending_rejection_cleared(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        flags = version_review_flags_factory(
+            version=version,
+            pending_rejection=self.days_ago(1),
+            pending_content_rejection=True,
+        )
+        assert flags.pending_rejection
+        assert flags.pending_content_rejection is True
+        assert not flags.needs_human_review_by_mad
+
+        # Update, but do not clear pending_rejection. Both should remain.
+        flags.update(needs_human_review_by_mad=True)
+        assert flags.pending_rejection
+        assert flags.pending_content_rejection is True
+
+        # Clear pending_rejection. pending_content_rejection should be cleared as well.
+        flags.update(pending_rejection=None)
+        assert flags.pending_rejection is None
+        assert flags.pending_content_rejection is None
 
     def test_needs_human_review_by_mad(self):
         addon = Addon.objects.get(id=3615)
@@ -1260,7 +1290,7 @@ def test_version_get_review_status_for_auto_approval_and_delay_reject(
 ):
     version = addon_factory(file_kw={'status': file_status}).find_latest_version(None)
     if pending_rejection:
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=version, pending_rejection=pending_rejection
         )
     if auto_summary:
@@ -1677,7 +1707,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=pending_version,
             pending_rejection=datetime.now() + timedelta(days=1),
         )
@@ -1704,7 +1734,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         pending_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NOMINATED
-        VersionReviewerFlags.objects.create(
+        version_review_flags_factory(
             version=pending_version,
             pending_rejection=datetime.now() + timedelta(days=1),
         )
