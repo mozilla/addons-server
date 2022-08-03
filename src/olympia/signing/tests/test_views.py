@@ -1431,6 +1431,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
             user=self.user,
             source=amo.UPLOAD_SOURCE_SIGNING_API,
             ip_address='127.0.0.70',
+            channel=amo.CHANNEL_LISTED,
         )
         self.create_version('3.0')
         response = self.get(self.url(self.guid, '3.0'))

@@ -298,6 +298,7 @@ class TestRestrictionChecker(TestCase):
             user=self.request.user,
             ip_address='10.0.0.2',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -317,6 +318,7 @@ class TestRestrictionChecker(TestCase):
             user=self.request.user,
             ip_address='10.0.0.2',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -375,6 +377,7 @@ class TestRestrictionChecker(TestCase):
             user=self.request.user,
             ip_address='10.0.0.2',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         checker = RestrictionChecker(upload=upload)
         with ExitStack() as stack:

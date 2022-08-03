@@ -887,7 +887,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         self.statsd_incr_mock.assert_any_call('addons.submission.addon.unlisted')
 
     def test_basic_listed(self):
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.request(
             data={
                 'categories': {'firefox': ['bookmarks']},
@@ -918,7 +918,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         self.statsd_incr_mock.assert_any_call('addons.submission.addon.listed')
 
     def test_listed_metadata_missing(self):
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.request(
             data={
                 'version': {'upload': self.upload.uuid},
@@ -960,7 +960,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
 
     def test_listed_metadata_null(self):
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         # name and summary are defined in the manifest but we're trying override them
         response = self.request(
             data={
@@ -1112,7 +1112,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert response.data == {'slug': ['addon with this slug already exists.']}
 
     def test_set_extra_data(self):
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         data = {
             'categories': {'firefox': ['bookmarks']},
             'description': {'en-US': 'new description'},
@@ -3008,7 +3008,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert log_mock.info.call_count == 0
 
     def test_basic(self):
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
         self.addon.update_status()
         assert self.addon.status == amo.STATUS_NULL
@@ -3102,7 +3102,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     def test_listed_metadata_missing(self):
         self.addon.current_version.update(license=None)
         self.addon.set_categories([])
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.client.post(
             self.url,
             data={'upload': self.upload.uuid},
@@ -3132,7 +3132,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def test_license_inherited_from_previous_version(self):
         previous_license = self.addon.current_version.license
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.client.post(
             self.url,
             data={'upload': self.upload.uuid},
@@ -3184,7 +3184,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         )
 
     def test_custom_license(self):
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
         self.addon.update_status()
         assert self.addon.status == amo.STATUS_NULL
@@ -3239,7 +3239,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def test_cannot_submit_listed_to_disabled_(self):
         self.addon.update(disabled_by_user=True)
-        self.upload.update(automated_signing=False)
+        self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.client.post(
             self.url,
             data=self.minimal_data,
@@ -3252,7 +3252,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         }
 
         # but we can submit an unlisted version though
-        self.upload.update(automated_signing=True)
+        self.upload.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.post(
             self.url,
             data=self.minimal_data,

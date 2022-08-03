@@ -699,7 +699,10 @@ class TestFileUpload(UploadMixin, TestCase):
 
     def test_save_without_validation(self):
         upload = FileUpload.objects.create(
-            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.46',
+            channel=amo.CHANNEL_LISTED,
         )
         assert not upload.valid
 
@@ -709,6 +712,7 @@ class TestFileUpload(UploadMixin, TestCase):
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.46',
+            channel=amo.CHANNEL_LISTED,
         )
         assert upload.valid
 
@@ -717,6 +721,7 @@ class TestFileUpload(UploadMixin, TestCase):
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.46',
+            channel=amo.CHANNEL_LISTED,
         )
         assert not upload.valid
 
@@ -726,11 +731,15 @@ class TestFileUpload(UploadMixin, TestCase):
                 user=self.user,
                 source=amo.UPLOAD_SOURCE_DEVHUB,
                 ip_address='127.0.0.46',
+                channel=amo.CHANNEL_LISTED,
             )
 
     def test_update_with_validation(self):
         upload = FileUpload.objects.create(
-            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.46',
+            channel=amo.CHANNEL_LISTED,
         )
         upload.validation = '{"errors": 0, "metadata": {}}'
         upload.save()
@@ -738,7 +747,10 @@ class TestFileUpload(UploadMixin, TestCase):
 
     def test_update_without_validation(self):
         upload = FileUpload.objects.create(
-            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.46',
+            channel=amo.CHANNEL_LISTED,
         )
         upload.save()
         assert not upload.valid
@@ -1030,7 +1042,10 @@ class TestFileUpload(UploadMixin, TestCase):
 
     def test_generate_access_token_on_save(self):
         upload = FileUpload(
-            user=self.user, source=amo.UPLOAD_SOURCE_DEVHUB, ip_address='127.0.0.46'
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.46',
+            channel=amo.CHANNEL_LISTED,
         )
         assert not upload.access_token
         upload.save()
@@ -1043,6 +1058,7 @@ class TestFileUpload(UploadMixin, TestCase):
             user=UserProfile.objects.latest('pk'),
             ip_address='127.0.0.45',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         assert upload.access_token == access_token
 
@@ -1057,6 +1073,7 @@ class TestFileUpload(UploadMixin, TestCase):
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.48',
+            channel=amo.CHANNEL_LISTED,
         )
         site_url = 'https://example.com'
         relative_url = reverse(
@@ -1128,16 +1145,16 @@ class TestFileFromUpload(UploadMixin, TestCase):
         src_path = self.file_fixture_path(name)
         dest_path = FileUpload.generate_path()
         self.root_storage.copy_stored_file(src_path, dest_path)
-        data = {
-            'path': dest_path,
-            'name': name,
-            'hash': 'sha256:fake_hash',
-            'validation': validation_data,
-            'source': amo.UPLOAD_SOURCE_DEVHUB,
-            'ip_address': '127.0.0.50',
-            'user': user_factory(),
-        }
-        return FileUpload.objects.create(**data)
+        return FileUpload.objects.create(
+            path=dest_path,
+            name=name,
+            hash='sha256:fake_hash',
+            validation=validation_data,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            ip_address='127.0.0.50',
+            user=user_factory(),
+            channel=amo.CHANNEL_LISTED,
+        )
 
     def test_filename(self):
         upload = self.upload('webextension.xpi')

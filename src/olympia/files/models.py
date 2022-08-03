@@ -405,7 +405,9 @@ class FileUpload(ModelBase):
     user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
-    automated_signing = models.BooleanField(default=False)
+    channel = models.PositiveSmallIntegerField(
+        choices=amo.CHANNEL_CHOICES
+    )
     # Not all FileUploads will have a version and addon but it will be set
     # if the file was uploaded using the new API.
     version = models.CharField(max_length=255, null=True)
@@ -522,7 +524,7 @@ class FileUpload(ModelBase):
             addon=addon,
             user=user,
             source=source,
-            automated_signing=channel == amo.RELEASE_CHANNEL_UNLISTED,
+            channel=channel,
             ip_address=ip_address,
             version=version,
         )
@@ -575,14 +577,6 @@ class FileUpload(ModelBase):
         if len(parts) > 1:
             return parts[1]
         return self.name
-
-    @property
-    def channel(self):
-        return (
-            amo.RELEASE_CHANNEL_UNLISTED
-            if self.automated_signing
-            else amo.RELEASE_CHANNEL_LISTED
-        )
 
 
 class FileValidation(ModelBase):

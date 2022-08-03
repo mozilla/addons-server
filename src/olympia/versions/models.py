@@ -230,7 +230,7 @@ class Version(OnChangeMixin, ModelBase):
     )
 
     channel = models.IntegerField(
-        choices=amo.RELEASE_CHANNEL_CHOICES, default=amo.CHANNEL_LISTED
+        choices=amo.CHANNEL_CHOICES, default=amo.CHANNEL_LISTED
     )
 
     git_hash = models.CharField(max_length=40, blank=True)

@@ -88,6 +88,7 @@ class TestActions(TestCase):
             version=addon.current_version.version,
             ip_address='1.2.3.4',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         version = addon.current_version
         assert not version.needs_human_review
@@ -138,6 +139,7 @@ class TestActions(TestCase):
             version=addon.current_version.version,
             ip_address='1.2.3.4',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         version = addon.current_version
         assert not version.needs_human_review
@@ -190,6 +192,7 @@ class TestActions(TestCase):
             version=addon.current_version.version,
             ip_address='1.2.3.4',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         version = addon.current_version
         assert not version.needs_human_review
@@ -253,6 +256,7 @@ class TestActions(TestCase):
             version=addon.current_version.version,
             ip_address='1.2.3.4',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         version = addon.current_version
         assert not version.needs_human_review

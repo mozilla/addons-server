@@ -463,7 +463,7 @@ class TestValidateAddon(TestCase):
 
         assert validate_mock.call_args[1]['channel'] == amo.CHANNEL_LISTED
         # No automated signing for listed add-ons.
-        assert FileUpload.objects.get().automated_signing is False
+        assert FileUpload.objects.get().channel == amo.CHANNEL_LISTED
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_upload_unlisted_addon(self, validate_mock):
@@ -478,7 +478,7 @@ class TestValidateAddon(TestCase):
 
         assert validate_mock.call_args[1]['channel'] == amo.CHANNEL_UNLISTED
         # Automated signing enabled for unlisted add-ons.
-        assert FileUpload.objects.get().automated_signing is True
+        assert FileUpload.objects.get().channel == amo.CHANNEL_UNLISTED
 
 
 class TestUploadURLs(TestCase):
@@ -507,13 +507,11 @@ class TestUploadURLs(TestCase):
         self.addCleanup(patcher.stop)
         return patcher.start()
 
-    def expect_validation(self, listed, automated_signing):
+    def expect_validation(self, channel):
         call_keywords = self.run_addons_linter.call_args[1]
 
-        channel = amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
-
         assert call_keywords['channel'] == channel
-        assert self.file_upload.automated_signing == automated_signing
+        assert self.file_upload.channel == channel
 
     def upload(self, view, **kw):
         """Send an upload request to the given view, and save the FileUpload
@@ -542,26 +540,26 @@ class TestUploadURLs(TestCase):
         """Test that the standalone upload URLs result in file uploads with
         the correct flags."""
         self.upload('devhub.standalone_upload')
-        self.expect_validation(listed=True, automated_signing=False)
+        self.expect_validation(channel=amo.CHANNEL_LISTED)
 
         self.upload('devhub.standalone_upload_unlisted'),
-        self.expect_validation(listed=False, automated_signing=True)
+        self.expect_validation(channel=amo.CHANNEL_UNLISTED)
 
     def test_upload_submit(self):
         """Test that the add-on creation upload URLs result in file uploads
         with the correct flags."""
         self.upload('devhub.upload')
-        self.expect_validation(listed=True, automated_signing=False)
+        self.expect_validation(channel=amo.CHANNEL_LISTED)
 
         self.upload('devhub.upload_unlisted'),
-        self.expect_validation(listed=False, automated_signing=True)
+        self.expect_validation(channel=amo.CHANNEL_UNLISTED)
 
     def test_upload_addon_version(self):
         """Test that the add-on update upload URLs result in file uploads
         with the correct flags."""
         for status in amo.VALID_ADDON_STATUSES:
             self.upload_addon(listed=True, status=status)
-            self.expect_validation(listed=True, automated_signing=False)
+            self.expect_validation(channel=amo.CHANNEL_LISTED)
 
         self.upload_addon(listed=False, status=amo.STATUS_APPROVED)
-        self.expect_validation(listed=False, automated_signing=True)
+        self.expect_validation(channel=amo.CHANNEL_UNLISTED)

@@ -16,6 +16,7 @@ class SigningFileUploadSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     files = serializers.SerializerMethodField()
     passed_review = serializers.SerializerMethodField()
+    automated_signing = serializers.SerializerMethodField()
 
     # For backwards-compatibility reasons, we return the uuid as "pk".
     pk = serializers.UUIDField(source='uuid', format='hex')
@@ -96,3 +97,6 @@ class SigningFileUploadSerializer(serializers.ModelSerializer):
 
     def get_passed_review(self, instance):
         return self.get_reviewed(instance) and self.get_active(instance)
+
+    def get_automated_signing(self, instance):
+        return instance.channel == amo.CHANNEL_UNLISTED
