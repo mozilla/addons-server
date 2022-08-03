@@ -27,7 +27,7 @@ log = olympia.core.logger.getLogger('z.versions')
 def update_info(request, addon, version_num):
     version = get_object_or_404(
         addon.versions.reviewed()
-        .filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        .filter(channel=amo.CHANNEL_LISTED)
         .select_related(None)
         .only_translations(),
         version=version_num,
@@ -46,7 +46,7 @@ def update_info(request, addon, version_num):
 def update_info_redirect(request, version_id):
     version = get_object_or_404(
         Version.objects.reviewed()
-        .filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        .filter(channel=amo.CHANNEL_LISTED)
         .select_related(None)
         .no_transforms()
         .select_related('addon'),
@@ -79,7 +79,7 @@ def download_file(request, file_id, download_type=None, **kwargs):
     def is_appropriate_reviewer(addon, channel):
         return (
             acl.is_reviewer(request.user, addon)
-            if channel == amo.RELEASE_CHANNEL_LISTED
+            if channel == amo.CHANNEL_LISTED
             else acl.is_unlisted_addons_viewer_or_reviewer(request.user)
         )
 
@@ -99,7 +99,7 @@ def download_file(request, file_id, download_type=None, **kwargs):
     elif (
         addon.is_disabled
         or file_.status == amo.STATUS_DISABLED
-        or channel == amo.RELEASE_CHANNEL_UNLISTED
+        or channel == amo.CHANNEL_UNLISTED
     ):
         # Only the appropriate reviewer or developers of the add-on can see
         # disabled or unlisted things.

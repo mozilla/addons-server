@@ -144,7 +144,7 @@ class TestMeasureValidationTime(UploadMixin, TestCase):
             calculated_ms + fuzz
         )
 
-    def handle_upload_validation_result(self, channel=amo.RELEASE_CHANNEL_LISTED):
+    def handle_upload_validation_result(self, channel=amo.CHANNEL_LISTED):
         results = amo.VALIDATOR_SKELETON_RESULTS.copy()
         tasks.handle_upload_validation_result(results, self.upload.pk, channel, False)
 
@@ -353,7 +353,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
     def test_run_linter_path_doesnt_exist(self):
         with pytest.raises(ValueError) as exc:
-            tasks.run_addons_linter('doesntexist', amo.RELEASE_CHANNEL_LISTED)
+            tasks.run_addons_linter('doesntexist', amo.CHANNEL_LISTED)
 
         assert str(exc.value) == (
             'Path "doesntexist" is not a file or directory or does not exist.'
@@ -369,7 +369,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
             # we're using a temporary file for all our linter output.
             result = tasks.run_addons_linter(
                 get_addon_file('webextension_containing_binary_files.xpi'),
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
             )
 
             assert tmpf.call_count == 2
@@ -409,7 +409,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
         subprocess_mock.Popen = self.FakePopen
 
         tasks.run_addons_linter(
-            path=self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+            path=self.valid_path, channel=amo.CHANNEL_LISTED
         )
 
         assert '--disable-xpi-autoclose' in self.FakePopen.get_args()
@@ -420,7 +420,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
         subprocess_mock.Popen = self.FakePopen
 
         tasks.run_addons_linter(
-            path=self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+            path=self.valid_path, channel=amo.CHANNEL_LISTED
         )
 
         assert '--disable-xpi-autoclose' not in self.FakePopen.get_args()
@@ -431,14 +431,14 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
             subprocess_mock.Popen = self.FakePopen
 
             tasks.run_addons_linter(
-                path=self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+                path=self.valid_path, channel=amo.CHANNEL_LISTED
             )
 
             assert '--max-manifest-version=3' not in self.FakePopen.get_args()
             assert '--max-manifest-version=2' in self.FakePopen.get_args()
 
         mv3_path = get_addon_file('webextension_mv3.xpi')
-        result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
+        result = tasks.run_addons_linter(mv3_path, channel=amo.CHANNEL_LISTED)
         assert result.get('errors') == 1
 
     @override_switch('enable-mv3-submissions', active=True)
@@ -447,19 +447,19 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
             subprocess_mock.Popen = self.FakePopen
 
             tasks.run_addons_linter(
-                path=self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+                path=self.valid_path, channel=amo.CHANNEL_LISTED
             )
 
             assert '--max-manifest-version=3' in self.FakePopen.get_args()
             assert '--max-manifest-version=2' not in self.FakePopen.get_args()
 
         mv3_path = get_addon_file('webextension_mv3.xpi')
-        result = tasks.run_addons_linter(mv3_path, channel=amo.RELEASE_CHANNEL_LISTED)
+        result = tasks.run_addons_linter(mv3_path, channel=amo.CHANNEL_LISTED)
         assert result.get('errors') == 0
 
         # double check v2 manifests still work
         result = tasks.run_addons_linter(
-            self.valid_path, channel=amo.RELEASE_CHANNEL_LISTED
+            self.valid_path, channel=amo.CHANNEL_LISTED
         )
         assert result.get('errors') == 0
 
@@ -477,7 +477,7 @@ class TestValidateFilePath(ValidatorTestCase):
         result = json.loads(
             tasks.validate_file_path(
                 self.copy_addon_file('valid_webextension.xpi'),
-                channel=amo.RELEASE_CHANNEL_LISTED,
+                channel=amo.CHANNEL_LISTED,
             )
         )
         assert result['success']
@@ -488,7 +488,7 @@ class TestValidateFilePath(ValidatorTestCase):
         result = json.loads(
             tasks.validate_file_path(
                 self.copy_addon_file('valid_webextension_warning.xpi'),
-                channel=amo.RELEASE_CHANNEL_LISTED,
+                channel=amo.CHANNEL_LISTED,
             )
         )
         assert result['success']
@@ -499,7 +499,7 @@ class TestValidateFilePath(ValidatorTestCase):
         result = json.loads(
             tasks.validate_file_path(
                 self.copy_addon_file('invalid_webextension_invalid_id.xpi'),
-                channel=amo.RELEASE_CHANNEL_LISTED,
+                channel=amo.CHANNEL_LISTED,
             )
         )
         assert not result['success']
@@ -515,7 +515,7 @@ class TestValidateFilePath(ValidatorTestCase):
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
             self.copy_addon_file('valid_webextension.xpi'),
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
         )
         assert run_addons_linter_mock.call_count == 1
 
@@ -530,7 +530,7 @@ class TestValidateFilePath(ValidatorTestCase):
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
             self.copy_addon_file('invalid_manifest_webextension.xpi'),
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
         )
         assert run_addons_linter_mock.call_count == 1
 
@@ -544,7 +544,7 @@ class TestValidateFilePath(ValidatorTestCase):
         run_addons_linter_mock.return_value = {'fake_results': True}
         tasks.validate_file_path(
             self.copy_addon_file('valid_webextension.xpi'),
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         assert parse_addon_mock.call_count == 1
         assert run_addons_linter_mock.call_count == 1
@@ -583,16 +583,16 @@ class TestSubmitFile(UploadMixin, TestCase):
     def test_file_passed_all_validations(self):
         file_ = get_addon_file('valid_webextension.xpi')
         upload = self.get_upload(abspath=file_, addon=self.addon, version='1.0')
-        tasks.submit_file(self.addon.pk, upload.pk, amo.RELEASE_CHANNEL_LISTED)
+        tasks.submit_file(self.addon.pk, upload.pk, amo.CHANNEL_LISTED)
         self.create_version_for_upload.assert_called_with(
-            self.addon, upload, amo.RELEASE_CHANNEL_LISTED
+            self.addon, upload, amo.CHANNEL_LISTED
         )
 
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', False)
     def test_file_not_passed_all_validations(self):
         file_ = get_addon_file('valid_webextension.xpi')
         upload = self.get_upload(abspath=file_, addon=self.addon, version='1.0')
-        tasks.submit_file(self.addon.pk, upload.pk, amo.RELEASE_CHANNEL_LISTED)
+        tasks.submit_file(self.addon.pk, upload.pk, amo.CHANNEL_LISTED)
         assert not self.create_version_for_upload.called
 
 

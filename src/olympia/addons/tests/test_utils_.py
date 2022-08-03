@@ -513,7 +513,7 @@ class TestSitePermissionVersionCreator(TestCase):
         addon.reload()
         file_.reload()
         assert version.pk
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.channel == amo.CHANNEL_UNLISTED
         assert version.version == '1.0'
         assert sorted(
             version.installorigin_set.all().values_list('origin', flat=True)
@@ -583,7 +583,7 @@ class TestSitePermissionVersionCreator(TestCase):
         addon.reload()
         file_.reload()
         assert version.pk
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.channel == amo.CHANNEL_UNLISTED
         assert version.version == '2.0'
         assert sorted(
             version.installorigin_set.all().values_list('origin', flat=True)

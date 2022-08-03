@@ -58,7 +58,7 @@ def get_id(addon):
 
 def use_promoted_signer(file_obj, promo_group):
     return (
-        file_obj.version.channel == amo.RELEASE_CHANNEL_LISTED
+        file_obj.version.channel == amo.CHANNEL_LISTED
         and promo_group.autograph_signing_states
     )
 

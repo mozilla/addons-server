@@ -226,7 +226,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         )
         self.user = user_factory()
         self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
+            channel=amo.CHANNEL_LISTED
         )
         self.note = self.log('noôo!', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0))
         self._set_tested_url()
@@ -273,7 +273,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
         self.note3 = self.log('yéss!', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(1))
 
         self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
+            channel=amo.CHANNEL_LISTED
         )
         self._set_tested_url()
 
@@ -345,7 +345,7 @@ class TestReviewNotesViewSetCreate(TestCase):
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
+            channel=amo.CHANNEL_LISTED
         )
         self.url = reverse_ns(
             'version-reviewnotes-list',
@@ -434,13 +434,13 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert not self.get_review_activity_queryset().exists()
 
     def test_reply_to_deleted_version_is_400(self):
-        old_version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        old_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         new_version = version_factory(addon=self.addon)
         old_version.delete()
         # Just in case, make sure the add-on is still public.
         self.addon.reload()
         assert new_version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
+            channel=amo.CHANNEL_LISTED
         )
         assert self.addon.status
 
@@ -452,11 +452,11 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert not self.get_review_activity_queryset().exists()
 
     def test_cant_reply_to_old_version(self):
-        old_version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        old_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         old_version.update(created=self.days_ago(1))
         new_version = version_factory(addon=self.addon)
         assert new_version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
+            channel=amo.CHANNEL_LISTED
         )
         self.user = user_factory()
         self.grant_permission(self.user, 'Addons:Review')
@@ -517,7 +517,7 @@ class TestEmailApi(TestCase):
         user = user_factory()
         self.grant_permission(user, '*:*')
         addon = addon_factory()
-        version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         req = self.get_request(sample_message_content)
 
         ActivityLogToken.objects.create(

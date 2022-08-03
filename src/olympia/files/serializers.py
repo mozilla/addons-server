@@ -12,8 +12,8 @@ class FileUploadSerializer(serializers.ModelSerializer):
     uuid = serializers.UUIDField(format='hex')
     channel = ReverseChoiceField(
         choices=[
-            (True, amo.CHANNEL_CHOICES_API[amo.RELEASE_CHANNEL_UNLISTED]),
-            (False, amo.CHANNEL_CHOICES_API[amo.RELEASE_CHANNEL_LISTED]),
+            (True, amo.CHANNEL_CHOICES_API[amo.CHANNEL_UNLISTED]),
+            (False, amo.CHANNEL_CHOICES_API[amo.CHANNEL_LISTED]),
         ],
         source='automated_signing',
     )

@@ -140,9 +140,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert addon.guid == guid
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert latest_version.channel == amo.CHANNEL_UNLISTED
         assert (
             ActivityLog.objects.for_addons(addon)
             .filter(action=amo.LOG.CREATE_ADDON.id)
@@ -211,7 +211,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert not qs.exists()
         existing = Version.objects.filter(addon__guid=self.guid)
         assert existing.count() == 1
-        assert existing[0].channel == amo.RELEASE_CHANNEL_LISTED
+        assert existing[0].channel == amo.CHANNEL_LISTED
 
         response = self.request(
             'PUT', self.url(self.guid, '3.0'), extra_kwargs={'REMOTE_ADDR': '127.0.2.1'}
@@ -229,7 +229,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert version.version == '3.0'
         assert version.file.status == amo.STATUS_AWAITING_REVIEW
         assert version.addon.status == amo.STATUS_APPROVED
-        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert version.channel == amo.CHANNEL_LISTED
         assert not version.file.is_mozilla_signed_extension
 
     def test_version_already_uploaded(self):
@@ -281,9 +281,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert latest_version.channel == amo.CHANNEL_UNLISTED
 
     def test_version_added_is_experiment_reject_no_perm(self):
         guid = '@experiment-inside-webextension-guid'
@@ -316,9 +316,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert latest_version.channel == amo.CHANNEL_UNLISTED
         assert latest_version.file.is_mozilla_signed_extension
 
     def test_mozilla_signed_not_allowed(self):
@@ -353,9 +353,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         addon = qs.get()
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert latest_version.channel == amo.CHANNEL_UNLISTED
 
     def test_restricted_guid_addon_not_allowed(self):
         guid = 'systemaddon@mozilla.com'
@@ -378,7 +378,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self.user.update(email='pinkpanda@notzilla.com')
         orig_addon = addon_factory(
             guid='systemaddon@mozilla.org',
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         AddonUser.objects.create(addon=orig_addon, user=self.user)
         response = self.request(
@@ -390,9 +390,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 202
         addon = Addon.unfiltered.filter(guid=guid).get()
         assert addon.versions.count() == 2
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert latest_version.channel == amo.CHANNEL_UNLISTED
 
     def test_invalid_version_response_code(self):
         # This raises an error in parse_addon which is not covered by
@@ -426,7 +426,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
     def test_no_listed_version_upload_for_user_disabled_addon(self):
         addon = Addon.objects.get(guid=self.guid)
         addon.update(disabled_by_user=True)
-        assert not addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert not addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
 
         response = self.request('PUT', self.url(self.guid, '3.0'), version='3.0')
         assert response.status_code == 400
@@ -443,7 +443,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT', self.url(self.guid, '3.0'), version='3.0', channel='unlisted'
         )
         assert response.status_code == 202
-        assert addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
 
     def test_channel_ignored_for_new_addon(self):
         guid = '@create-version'
@@ -452,21 +452,21 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request('PUT', guid=guid, version='1.0', channel='listed')
         assert response.status_code == 201
         addon = qs.get()
-        assert addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        assert addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
 
     def test_no_channel_selects_last_channel(self):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_APPROVED
         assert addon.versions.count() == 1
-        assert addon.versions.all()[0].channel == amo.RELEASE_CHANNEL_LISTED
+        assert addon.versions.all()[0].channel == amo.CHANNEL_LISTED
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 202, response.data['error']
         assert 'processed' in response.data
         new_version = addon.versions.latest()
-        assert new_version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert new_version.channel == amo.CHANNEL_LISTED
 
-        new_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        new_version.update(channel=amo.CHANNEL_UNLISTED)
 
         response = self.request(
             'PUT', self.url(self.guid, '4.0-beta1'), version='4.0-beta1'
@@ -474,18 +474,18 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 202, response.data['error']
         assert 'processed' in response.data
         third_version = addon.versions.latest()
-        assert third_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert third_version.channel == amo.CHANNEL_UNLISTED
 
     def test_unlisted_channel_for_listed_addon(self):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_APPROVED
         assert addon.versions.count() == 1
-        assert addon.versions.all()[0].channel == amo.RELEASE_CHANNEL_LISTED
+        assert addon.versions.all()[0].channel == amo.CHANNEL_LISTED
 
         response = self.request('PUT', self.url(self.guid, '3.0'), channel='unlisted')
         assert response.status_code == 202, response.data['error']
         assert 'processed' in response.data
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert addon.versions.latest().channel == amo.CHANNEL_UNLISTED
 
     def test_listed_channel_for_complete_listed_addon(self):
         addon = Addon.objects.get(guid=self.guid)
@@ -496,14 +496,14 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
         assert response.status_code == 202, response.data['error']
         assert 'processed' in response.data
-        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert addon.versions.latest().channel == amo.CHANNEL_LISTED
 
     def test_listed_channel_fails_for_incomplete_addon(self):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_APPROVED
         assert addon.versions.count() == 1
         addon.current_version.update(license=None)  # Make addon incomplete.
-        addon.versions.latest().update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon.versions.latest().update(channel=amo.CHANNEL_UNLISTED)
         assert not addon.has_complete_metadata(has_listed_versions=True)
 
         response = self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
@@ -984,9 +984,9 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
 
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert latest_version.channel == amo.CHANNEL_UNLISTED
 
     def test_post_addon_restricted(self):
         Addon.objects.all().get().delete()
@@ -1105,9 +1105,9 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
 
         assert addon.has_author(self.user)
         assert addon.status == amo.STATUS_NULL
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert latest_version
-        assert latest_version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert latest_version.channel == amo.CHANNEL_UNLISTED
 
     def test_addon_does_not_exist_webextension_with_invalid_guid_in_url(self):
         guid = 'custom-invalid-guid-provided'
@@ -1474,7 +1474,7 @@ class TestSignedFile(SigningAPITestMixin, TestCase):
     def create_file(self):
         addon = addon_factory(
             name='thing',
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
             users=[self.user],
             file_kw={'filename': 'webextension.xpi'},
         )

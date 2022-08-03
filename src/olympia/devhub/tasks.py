@@ -86,7 +86,7 @@ def validate(file_, listed=None, final_task=None):
 def validate_and_submit(addon, file_, channel):
     return validate(
         file_,
-        listed=(channel == amo.RELEASE_CHANNEL_LISTED),
+        listed=(channel == amo.CHANNEL_LISTED),
         final_task=submit_file.si(addon.pk, file_.pk, channel),
     )
 
@@ -442,7 +442,7 @@ def run_addons_linter(path, channel):
 
     args = [settings.ADDONS_LINTER_BIN, path, '--boring', '--output=json']
 
-    if channel == amo.RELEASE_CHANNEL_UNLISTED:
+    if channel == amo.CHANNEL_UNLISTED:
         args.append('--self-hosted')
 
     if waffle.switch_is_active('disable-linter-xpi-autoclose'):

@@ -149,10 +149,10 @@ class TestFileUploadViewSet(TestCase):
         assert data['channel'] == channel_name
 
     def test_create_listed(self):
-        self._test_create(amo.RELEASE_CHANNEL_LISTED, 'listed')
+        self._test_create(amo.CHANNEL_LISTED, 'listed')
 
     def test_create_unlisted(self):
-        self._test_create(amo.RELEASE_CHANNEL_UNLISTED, 'unlisted')
+        self._test_create(amo.CHANNEL_UNLISTED, 'unlisted')
 
     def test_list(self):
         response = self.client.get(

@@ -547,7 +547,7 @@ class TestAddonIndexer(TestCase):
             addon_factory(status=amo.STATUS_DELETED).pk,
             addon_factory(
                 status=amo.STATUS_NULL,
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
             ).pk,
         ]
         rval = AddonIndexer.reindex_tasks_group('addons-1234567890')

@@ -190,7 +190,7 @@ def test_extract_and_commit_from_version(settings):
     assert 'unlisted' not in output
 
     # Test that a new "unlisted" branch is created only if needed
-    addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+    addon.current_version.update(channel=amo.CHANNEL_UNLISTED)
     repo = AddonGitRepository.extract_and_commit_from_version(
         version=addon.current_version
     )

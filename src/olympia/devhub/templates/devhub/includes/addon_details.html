@@ -74,7 +74,7 @@
       </li>
     {% endif %}
 
-    {% set latest_listed_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
+    {% set latest_listed_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED) %}
     {% if latest_listed_version and latest_listed_version != addon.current_version %}
       <li>
         <strong>{{ _('Next Listed Version:') }}</strong>
@@ -92,7 +92,7 @@
       </li>
 {% endif %}
 
-{% set latest_unlisted_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED) %}
+{% set latest_unlisted_version=addon.find_latest_version(channel=amo.CHANNEL_UNLISTED) %}
 {% if latest_unlisted_version %}
     {% if addon.has_listed_versions() %}
       <li class="distribution-tag-unlisted">

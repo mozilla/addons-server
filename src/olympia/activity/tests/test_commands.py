@@ -11,7 +11,7 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 class TestRepudiateActivityLogToken(TestCase):
     def setUp(self):
         addon = addon_factory()
-        self.version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        self.version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.token1 = ActivityLogToken.objects.create(
             uuid='5a0b8a83d501412589cc5d562334b46b',
             version=self.version,
@@ -28,7 +28,7 @@ class TestRepudiateActivityLogToken(TestCase):
             user=user_factory(),
         )
         addon2 = addon_factory()
-        addon2_version = addon2.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        addon2_version = addon2.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.token_diff_version = ActivityLogToken.objects.create(
             uuid='470023efdac5730773340eaf3080b589',
             version=addon2_version,

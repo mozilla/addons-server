@@ -8,7 +8,7 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 class LogMixin:
     def log(self, comments, action, created=None):
-        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         details = {'comments': comments, 'version': version.version}
         kwargs = {'user': self.user, 'details': details}
         al = ActivityLog.create(action, self.addon, version, **kwargs)
@@ -92,7 +92,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         self.entry = ActivityLog.create(
             amo.LOG.APPROVAL_NOTES_CHANGED,
             self.addon,
-            self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED),
+            self.addon.find_latest_version(channel=amo.CHANNEL_LISTED),
             user=self.user,
         )
         result = self.serialize()

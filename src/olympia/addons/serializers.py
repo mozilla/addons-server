@@ -517,7 +517,7 @@ class DeveloperVersionSerializer(VersionSerializer):
 
                 # Also check for submitting listed versions when disabled.
                 if (
-                    data['upload'].channel == amo.RELEASE_CHANNEL_LISTED
+                    data['upload'].channel == amo.CHANNEL_LISTED
                     and self.addon.disabled_by_user
                 ):
                     raise exceptions.ValidationError(
@@ -577,7 +577,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             if (
                 self.addon.status == amo.STATUS_NULL
                 and self.addon.has_complete_metadata()
-                and upload.channel == amo.RELEASE_CHANNEL_LISTED
+                and upload.channel == amo.CHANNEL_LISTED
             ):
                 self.addon.update(status=amo.STATUS_NOMINATED)
         else:
@@ -1168,7 +1168,7 @@ class AddonSerializer(serializers.ModelSerializer):
         if (
             addon.status == amo.STATUS_NULL
             and addon.has_complete_metadata()
-            and upload.channel == amo.RELEASE_CHANNEL_LISTED
+            and upload.channel == amo.CHANNEL_LISTED
         ):
             addon.update(status=amo.STATUS_NOMINATED)
 
@@ -1378,7 +1378,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # begins with an underscore.
         data_version = data.get('current_version') or {}
         obj._current_version = self.fake_version_object(
-            obj, data_version, amo.RELEASE_CHANNEL_LISTED
+            obj, data_version, amo.CHANNEL_LISTED
         )
         obj._current_version_id = data_version.get('id')
 

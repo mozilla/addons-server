@@ -600,7 +600,7 @@ class ActivityLog(ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = gettext('Version {0}')
-                if arg.channel == amo.RELEASE_CHANNEL_LISTED:
+                if arg.channel == amo.CHANNEL_LISTED:
                     version = self.f(
                         '<a href="{1}">%s</a>' % text,
                         arg.version,

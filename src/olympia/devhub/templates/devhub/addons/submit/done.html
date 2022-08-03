@@ -6,7 +6,7 @@
 
 {% block primary %}
 {% set version_edit_url = url('devhub.versions.edit', addon.slug, uploaded_version.id) %}
-{% if uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED %}
+{% if uploaded_version.channel == amo.CHANNEL_LISTED %}
   <h3>{{ _("Version Submitted") }}</h3>
   {% if addon.type == amo.ADDON_STATICTHEME %}
     <p>

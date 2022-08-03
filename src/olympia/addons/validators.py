@@ -46,7 +46,7 @@ class VersionLicenseValidator:
         is_custom = isinstance(license_, dict)
         if not serializer.instance:
             channel = data['upload'].channel
-            if channel == amo.RELEASE_CHANNEL_LISTED and not license_:
+            if channel == amo.CHANNEL_LISTED and not license_:
                 # If the previous version has a license we can use that, otherwise its
                 # required. This is what we do in Version.from_upload to get the
                 # license.
@@ -126,7 +126,7 @@ class AddonMetadataValidator:
     def __call__(self, data, serializer):
         if (
             not serializer.partial
-            and self.get_channel(data) == amo.RELEASE_CHANNEL_LISTED
+            and self.get_channel(data) == amo.CHANNEL_LISTED
         ):
             # Check that the required metadata is set for an addon with listed versions
             addon_data = self.get_addon_data(serializer)

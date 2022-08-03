@@ -4,9 +4,9 @@
 {% block title %}{{ dev_page_title(title, addon) }}{% endblock %}
 
 {% set current_version=addon.current_version %}
-{% set latest_listed_version_including_disabled = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED, exclude=()) %}
-{% set latest_unlisted_version_including_disabled = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED, exclude=()) %}
-{% set latest_listed_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) %}
+{% set latest_listed_version_including_disabled = addon.find_latest_version(channel=amo.CHANNEL_LISTED, exclude=()) %}
+{% set latest_unlisted_version_including_disabled = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED, exclude=()) %}
+{% set latest_listed_version=addon.find_latest_version(channel=amo.CHANNEL_LISTED) %}
 
 {% if latest_listed_version_including_disabled %}
   {% set has_listed_versions = True %}
@@ -17,11 +17,11 @@
 
 {% if has_listed_versions and has_unlisted_versions %}
   {% macro distro_tag(channel) %}
-    {% if channel == amo.RELEASE_CHANNEL_LISTED %}
+    {% if channel == amo.CHANNEL_LISTED %}
       <span class="distribution-tag-listed tooltip"
             title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
             >AMO</span>
-    {% elif channel == amo.RELEASE_CHANNEL_UNLISTED %}
+    {% elif channel == amo.CHANNEL_UNLISTED %}
       <span class="distribution-tag-unlisted tooltip"
             title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
             >Self</span>
@@ -32,7 +32,7 @@
 {% endif %}
 
 {% macro version_details(version, full_info=False) %}
-{% set latest_version_in_channel_including_disabled = latest_listed_version_including_disabled if version.channel == amo.RELEASE_CHANNEL_LISTED else latest_unlisted_version_including_disabled %}
+{% set latest_version_in_channel_including_disabled = latest_listed_version_including_disabled if version.channel == amo.CHANNEL_LISTED else latest_unlisted_version_including_disabled %}
   <tr{% if version.file.status == amo.STATUS_DISABLED %} class="version-disabled"{% endif %}>
     <td>
       <strong>
@@ -91,7 +91,7 @@
   </tr>
   {% set can_request_review=addon.can_request_review() %}
   {% set can_cancel=(not addon.is_disabled and addon.status==amo.STATUS_NOMINATED) %}
-  {% if full_info and check_addon_ownership(request.user, addon, allow_developer=True) and version.channel == amo.RELEASE_CHANNEL_LISTED and (can_request_review or can_cancel) %}
+  {% if full_info and check_addon_ownership(request.user, addon, allow_developer=True) and version.channel == amo.CHANNEL_LISTED and (can_request_review or can_cancel) %}
     <tr>
       <td colspan="0" class="version-status-actions item-actions">
         {% if can_request_review %}
@@ -148,7 +148,7 @@
   {# Only show listing visibility if there are listed versions... or if somehow the add-on is already invisible,
      to allow developers to toggle it back so that they can upload listed versions #}
   {% if has_listed_versions or addon.disabled_by_user %}
-    <h3>{{ distro_tag(amo.RELEASE_CHANNEL_LISTED)}} {{ _('Listing visibility') }}</h3>
+    <h3>{{ distro_tag(amo.CHANNEL_LISTED)}} {{ _('Listing visibility') }}</h3>
     <div class="item" id="addon-current-state">
       <div class="item_wrapper">
         {% set owner = check_addon_ownership(request.user, addon, allow_developer=True) %}
@@ -172,7 +172,7 @@
       </div>
     </div>
     {% if latest_listed_version or current_version %}
-        <h3>{{ distro_tag(amo.RELEASE_CHANNEL_LISTED)}} {{ _('Listed versions') }}</h3>
+        <h3>{{ distro_tag(amo.CHANNEL_LISTED)}} {{ _('Listed versions') }}</h3>
     {% endif %}
     {% if current_version %}
       <div class="item" id="current-version-status">

@@ -67,7 +67,7 @@ class UploadMixin(amo.tests.AMOPaths):
         version=None,
         with_validation=True,
         source=amo.UPLOAD_SOURCE_DEVHUB,
-        channel=amo.RELEASE_CHANNEL_LISTED,
+        channel=amo.CHANNEL_LISTED,
     ):
         if user is None:
             user = user_factory()
@@ -672,7 +672,7 @@ class TestFileUpload(UploadMixin, TestCase):
         data = [bytes(bytearray(s)) for s in chunked(self.data, 3)]
         params.setdefault('user', self.user)
         params.setdefault('source', amo.UPLOAD_SOURCE_DEVHUB)
-        params.setdefault('channel', amo.RELEASE_CHANNEL_UNLISTED)
+        params.setdefault('channel', amo.CHANNEL_UNLISTED)
         return FileUpload.from_post(
             data, filename='filenamé.xpi', size=len(self.data), **params
         )
@@ -750,7 +750,7 @@ class TestFileUpload(UploadMixin, TestCase):
             size=0,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         assert 'xpi' in upload.name
 
@@ -760,7 +760,7 @@ class TestFileUpload(UploadMixin, TestCase):
             size=0,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         assert 'xpi' in upload.name
 
@@ -770,7 +770,7 @@ class TestFileUpload(UploadMixin, TestCase):
             size=0,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         assert 'xpi' in upload.name
 
@@ -780,7 +780,7 @@ class TestFileUpload(UploadMixin, TestCase):
             size=0,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         assert 'xpi' in upload.name
 
@@ -975,7 +975,7 @@ class TestFileUpload(UploadMixin, TestCase):
             size=1234,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         # We couldn't convert it as it's an invalid or unsupported crx, so
         # re storing the file as-is.
@@ -993,7 +993,7 @@ class TestFileUpload(UploadMixin, TestCase):
             size=1234,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         # We couldn't convert it as it's an invalid or unsupported crx, so
         # re storing the file as-is.
@@ -1010,7 +1010,7 @@ class TestFileUpload(UploadMixin, TestCase):
             size=1234,
             user=self.user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         # We're storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()

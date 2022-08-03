@@ -60,7 +60,7 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
         # Run validator.
         utils.Validator(file_upload, listed=listed)
 
-        channel = amo.RELEASE_CHANNEL_LISTED if listed else amo.RELEASE_CHANNEL_UNLISTED
+        channel = amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
 
         # Make sure we setup the correct validation task.
         self.mock_chain.assert_called_once_with(
@@ -219,7 +219,7 @@ class TestFixAddonsLinterOutput(TestCase):
         }
 
         fixed = utils.fix_addons_linter_output(
-            original_output, amo.RELEASE_CHANNEL_LISTED
+            original_output, amo.CHANNEL_LISTED
         )
 
         assert fixed['success']
@@ -322,7 +322,7 @@ class TestValidator(UploadMixin, TestCase):
     def test_appends_final_task_for_file_uploads(self, mock_chain):
         final_task = mock.Mock()
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.RELEASE_CHANNEL_LISTED
+        channel = amo.CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True, final_task=final_task)
 
@@ -357,7 +357,7 @@ class TestValidator(UploadMixin, TestCase):
     def test_adds_run_yara_when_enabled(self, mock_chain):
         self.create_switch('enable-yara', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.RELEASE_CHANNEL_LISTED
+        channel = amo.CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
 
@@ -380,7 +380,7 @@ class TestValidator(UploadMixin, TestCase):
     def test_does_not_add_run_yara_when_disabled(self, mock_chain):
         self.create_switch('enable-yara', active=False)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.RELEASE_CHANNEL_LISTED
+        channel = amo.CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
 
@@ -400,7 +400,7 @@ class TestValidator(UploadMixin, TestCase):
     def test_adds_run_customs_when_enabled(self, mock_chain):
         self.create_switch('enable-customs', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.RELEASE_CHANNEL_LISTED
+        channel = amo.CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
 
@@ -423,7 +423,7 @@ class TestValidator(UploadMixin, TestCase):
     def test_does_not_add_run_customs_when_disabled(self, mock_chain):
         self.create_switch('enable-customs', active=False)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.RELEASE_CHANNEL_LISTED
+        channel = amo.CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
 
@@ -444,7 +444,7 @@ class TestValidator(UploadMixin, TestCase):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-yara', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.RELEASE_CHANNEL_LISTED
+        channel = amo.CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
 
@@ -469,7 +469,7 @@ class TestValidator(UploadMixin, TestCase):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-yara', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.RELEASE_CHANNEL_LISTED
+        channel = amo.CHANNEL_LISTED
 
         utils.Validator(file_upload, listed=True)
 
@@ -493,7 +493,7 @@ class TestValidator(UploadMixin, TestCase):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-yara', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.RELEASE_CHANNEL_LISTED
+        channel = amo.CHANNEL_LISTED
         validator = utils.Validator(file_upload, listed=True)
 
         tasks = validator.create_file_upload_tasks(
@@ -588,7 +588,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         )
         parsed_data = mock.Mock()
         utils.create_version_for_upload(
-            empty_addon, upload, amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data
+            empty_addon, upload, amo.CHANNEL_LISTED, parsed_data=parsed_data
         )
         assert self.mocks['parse_addon'].call_count == 0
         self.mocks['Version.from_upload'].assert_called()
@@ -601,7 +601,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         )
         parsed_data = mock.Mock()
         utils.create_version_for_upload(
-            self.addon, upload, amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data
+            self.addon, upload, amo.CHANNEL_LISTED, parsed_data=parsed_data
         )
         assert self.mocks['parse_addon'].call_count == 0
         self.mocks['Version.from_upload'].assert_called()
@@ -618,17 +618,17 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         newer_upload.update(created=datetime.today() + timedelta(hours=1))
 
         # Check that the older file won't turn into a Version.
-        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
         assert not self.mocks['Version.from_upload'].called
 
         # But the newer one will.
         utils.create_version_for_upload(
-            self.addon, newer_upload, amo.RELEASE_CHANNEL_LISTED
+            self.addon, newer_upload, amo.CHANNEL_LISTED
         )
         self.mocks['Version.from_upload'].assert_called_with(
             newer_upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=self.mocks['parse_addon'].return_value,
         )
@@ -641,7 +641,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         Version.objects.create(addon=upload.addon, version=upload.version)
 
         # Check that the older file won't turn into a Version.
-        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
         assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent_failed(self):
@@ -658,7 +658,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
             validation=json.dumps({'errors': 5}),
         )
 
-        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
         assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent(self):
@@ -673,12 +673,12 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
 
         # The Version is created because the newer upload is for a different
         # version_string.
-        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
         self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=self.mocks['parse_addon'].return_value,
         )
@@ -688,12 +688,12 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         upload = self.get_upload(
             abspath=file_, user=self.user, addon=self.addon, version='1.0beta1'
         )
-        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
         self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=self.mocks['parse_addon'].return_value,
         )
@@ -703,12 +703,12 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         upload = self.get_upload(
             abspath=file_, user=self.user, addon=self.addon, version=None
         )
-        utils.create_version_for_upload(self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
+        utils.create_version_for_upload(self.addon, upload, amo.CHANNEL_LISTED)
         self.mocks['parse_addon'].assert_called_with(upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=self.mocks['parse_addon'].return_value,
         )
@@ -720,13 +720,13 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         )
         parsed_data = mock.Mock()
         utils.create_version_for_upload(
-            self.addon, upload, amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data
+            self.addon, upload, amo.CHANNEL_LISTED, parsed_data=parsed_data
         )
         assert self.mocks['parse_addon'].call_count == 0
         self.mocks['Version.from_upload'].assert_called_with(
             upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[amo.FIREFOX.id, amo.ANDROID.id],
             parsed_data=parsed_data,
         )

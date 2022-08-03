@@ -453,7 +453,7 @@ class TestSigning(TestCase):
         # Unlisted versions, even when the add-on is in promoted group, should
         # never be signed as promoted.
         self.make_addon_promoted(self.file_.version.addon, RECOMMENDED)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
 
         assert signing.sign_file(self.file_)
 

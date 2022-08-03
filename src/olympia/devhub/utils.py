@@ -27,7 +27,7 @@ from . import tasks
 log = olympia.core.logger.getLogger('z.devhub')
 
 
-def process_validation(validation, file_hash=None, channel=amo.RELEASE_CHANNEL_LISTED):
+def process_validation(validation, file_hash=None, channel=amo.CHANNEL_LISTED):
     """Process validation results into the format expected by the web
     frontend, including transforming certain fields into HTML,  mangling
     compatibility messages, and limiting the number of messages displayed."""
@@ -149,7 +149,7 @@ def fix_addons_linter_output(validation, channel):
 
     # Essential metadata.
     metadata = {
-        'listed': channel == amo.RELEASE_CHANNEL_LISTED,
+        'listed': channel == amo.CHANNEL_LISTED,
         'identified_files': identified_files,
     }
     # Add metadata already set by the linter.
@@ -189,7 +189,7 @@ class Validator:
         if isinstance(file_, FileUpload):
             assert listed is not None
             channel = (
-                amo.RELEASE_CHANNEL_LISTED if listed else amo.RELEASE_CHANNEL_UNLISTED
+                amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
             )
             is_mozilla_signed = False
 
@@ -386,6 +386,6 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
         # The add-on's status will be STATUS_NULL when its first version is
         # created because the version has no files when it gets added and it
         # gets flagged as invalid. We need to manually set the status.
-        if addon.status == amo.STATUS_NULL and channel == amo.RELEASE_CHANNEL_LISTED:
+        if addon.status == amo.STATUS_NULL and channel == amo.CHANNEL_LISTED:
             addon.update(status=amo.STATUS_NOMINATED)
         return version

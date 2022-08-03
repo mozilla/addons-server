@@ -906,7 +906,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # And an unlisted version
         version_factory(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='0.2'
+            addon=addon, channel=amo.CHANNEL_UNLISTED, version='0.2'
         )
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content

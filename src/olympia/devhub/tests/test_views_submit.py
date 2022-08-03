@@ -526,7 +526,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
     def test_unlisted_name_not_unique(self):
         """We don't enforce name uniqueness for unlisted add-ons."""
         addon_factory(
-            name='Beastify', version_kw={'channel': amo.RELEASE_CHANNEL_LISTED}
+            name='Beastify', version_kw={'channel': amo.CHANNEL_LISTED}
         )
         assert get_addon_count('Beastify') == 1
         # We're not passing `expected_errors=True`, so if there was any errors
@@ -575,9 +575,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert Addon.objects.count() == 0
         response = self.post()
         addon = Addon.objects.get()
-        version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         assert version
-        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert version.channel == amo.CHANNEL_LISTED
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
         )
@@ -602,10 +602,10 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         )
         response = self.post(listed=False)
         addon = Addon.objects.get()
-        version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert version
         assert version.file.status == amo.STATUS_AWAITING_REVIEW
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.channel == amo.CHANNEL_UNLISTED
         assert addon.status == amo.STATUS_NULL
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug, 'unlisted'])
@@ -671,7 +671,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         self.upload = self.get_upload(abspath=path, user=self.user)
         response = self.post(listed=False)
         addon = Addon.unfiltered.get()
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
         assert latest_version.file.filename.endswith(f'{addon.pk}/{addon.slug}-1.0.zip')
         assert addon.type == amo.ADDON_STATICTHEME
@@ -727,7 +727,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         self.upload = self.get_upload(abspath=path, user=self.user)
         response = self.post(url=url, listed=False)
         addon = Addon.unfiltered.get()
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
         assert latest_version.file.filename.endswith(f'{addon.pk}/{addon.slug}-1.0.zip')
@@ -1014,7 +1014,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         )
 
     def test_cancel_button_present_unlisted(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
         self.url = reverse('devhub.submit.source', args=[self.addon.slug, 'unlisted'])
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -1136,7 +1136,7 @@ class DetailsPageMixin:
 
     def test_submit_details_unlisted_should_redirect(self):
         version = self.get_addon().versions.latest()
-        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         self.assert3xx(response, self.next_step)
 
@@ -1670,7 +1670,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
     @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
     @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
     def test_welcome_email_first_listed_addon(self, send_welcome_email_mock):
-        new_addon = addon_factory(version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        new_addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
         new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
         self.client.get(self.url)
         context = {
@@ -1721,7 +1721,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert not send_welcome_email_mock.called
 
     def test_finish_submitting_listed_addon(self):
-        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1745,7 +1745,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
     def test_finish_submitting_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
 
-        self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1777,7 +1777,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
 
     def test_finish_submitting_listed_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         VersionPreview.objects.create(version=version)
 
         response = self.client.get(self.url)
@@ -1805,7 +1805,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.make_addon_unlisted(self.addon)
 
-        self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1933,25 +1933,25 @@ class TestVersionSubmitAutoChannel(AddonSubmitSitePermissionMixin, TestSubmitBas
 
     @mock.patch('olympia.devhub.views._submit_upload', side_effect=views._submit_upload)
     def test_listed_last_uses_listed_upload(self, _submit_upload_mock):
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
         self.client.post(self.url)
         assert _submit_upload_mock.call_count == 1
         args, _ = _submit_upload_mock.call_args
         assert args[1:] == (
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             'devhub.submit.version.source',
         )
 
     @mock.patch('olympia.devhub.views._submit_upload', side_effect=views._submit_upload)
     def test_unlisted_last_uses_unlisted_upload(self, _submit_upload_mock):
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
         self.client.post(self.url)
         assert _submit_upload_mock.call_count == 1
         args, _ = _submit_upload_mock.call_args
         assert args[1:] == (
             self.addon,
-            amo.RELEASE_CHANNEL_UNLISTED,
+            amo.CHANNEL_UNLISTED,
             'devhub.submit.version.source',
         )
 
@@ -1988,7 +1988,7 @@ class VersionSubmitUploadMixin:
         self.client.force_login(self.user)
         self.user.update(last_login_ip='192.168.1.1')
         self.addon.versions.update(channel=self.channel)
-        channel = 'listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted'
+        channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.url = reverse(
             'devhub.submit.version.upload', args=[self.addon.slug, channel]
         )
@@ -2090,7 +2090,7 @@ class VersionSubmitUploadMixin:
     def test_distribution_link(self):
         response = self.client.get(self.url)
         channel_text = (
-            'listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted'
+            'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         )
         distribution_url = reverse(
             'devhub.submit.version.distribution', args=[self.addon.slug]
@@ -2120,7 +2120,7 @@ class VersionSubmitUploadMixin:
         assert not doc('#wizardlink')
 
     def test_static_theme_wizard_button_shown(self):
-        channel = 'listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted'
+        channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2131,7 +2131,7 @@ class VersionSubmitUploadMixin:
         )
 
     def test_static_theme_wizard(self):
-        channel = 'listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted'
+        channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.addon.update(type=amo.ADDON_STATICTHEME)
         # Get the correct template.
         self.url = reverse(
@@ -2176,7 +2176,7 @@ class VersionSubmitUploadMixin:
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
-        if self.channel == amo.RELEASE_CHANNEL_LISTED:
+        if self.channel == amo.CHANNEL_LISTED:
             previews = list(version.previews.all())
             assert len(previews) == 2
             assert storage.exists(previews[0].image_path)
@@ -2185,7 +2185,7 @@ class VersionSubmitUploadMixin:
             assert version.previews.all().count() == 0
 
     def test_static_theme_wizard_unsupported_properties(self):
-        channel = 'listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted'
+        channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.addon.update(type=amo.ADDON_STATICTHEME)
         # Get the correct template.
         self.url = reverse(
@@ -2235,7 +2235,7 @@ class VersionSubmitUploadMixin:
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
-        if self.channel == amo.RELEASE_CHANNEL_LISTED:
+        if self.channel == amo.CHANNEL_LISTED:
             previews = list(version.previews.all())
             assert len(previews) == 2
             assert storage.exists(previews[0].image_path)
@@ -2247,12 +2247,12 @@ class VersionSubmitUploadMixin:
 class TestVersionSubmitUploadListed(
     AddonSubmitSitePermissionMixin, VersionSubmitUploadMixin, UploadMixin, TestCase
 ):
-    channel = amo.RELEASE_CHANNEL_LISTED
+    channel = amo.CHANNEL_LISTED
 
     def test_success(self):
         response = self.post()
-        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
-        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
+        assert version.channel == amo.CHANNEL_LISTED
         assert version.file.status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
         logs_qs = ActivityLog.objects.for_addons(self.addon).filter(
@@ -2350,7 +2350,7 @@ class TestVersionSubmitUploadListed(
 
         response = self.post(expected_status=302)
 
-        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
 
         self.assert3xx(
             response,
@@ -2380,7 +2380,7 @@ class TestVersionSubmitUploadListed(
 class TestVersionSubmitUploadUnlisted(
     AddonSubmitSitePermissionMixin, VersionSubmitUploadMixin, UploadMixin, TestCase
 ):
-    channel = amo.RELEASE_CHANNEL_UNLISTED
+    channel = amo.CHANNEL_UNLISTED
 
     def test_success(self):
         # No validation errors or warning.
@@ -2397,8 +2397,8 @@ class TestVersionSubmitUploadUnlisted(
             user=self.user,
         )
         response = self.post()
-        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
+        assert version.channel == amo.CHANNEL_UNLISTED
         assert version.file.status == amo.STATUS_AWAITING_REVIEW
         self.assert3xx(response, self.get_next_url(version))
         self.statsd_incr_mock.assert_any_call('devhub.submission.version.unlisted')
@@ -2421,7 +2421,7 @@ class TestVersionSubmitSource(TestAddonSubmitSource):
         addon = self.get_addon()
         self.version = version_factory(
             addon=addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             license_id=addon.versions.latest().license_id,
         )
         self.url = reverse(
@@ -2439,7 +2439,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         addon = self.get_addon()
         self.version = version_factory(
             addon=addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             license_id=addon.versions.latest().license_id,
         )
         self.url = reverse(
@@ -2490,7 +2490,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         assert self.version.release_notes == 'loadsa stuff'
 
     def test_submit_details_unlisted_should_redirect(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         assert all(self.get_addon().get_required_metadata())
         response = self.client.get(self.url)
         self.assert3xx(
@@ -2572,9 +2572,9 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
 
     def setUp(self):
         super().setUp()
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
         self.version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED
+            addon=self.addon, channel=amo.CHANNEL_LISTED
         )
         self.version.update(license=None)  # Addon needs to be missing data.
         self.url = reverse(
@@ -2591,7 +2591,7 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
         addon = self.get_addon()
         self.version = version_factory(
             addon=addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             license_id=addon.versions.latest().license_id,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
@@ -2606,7 +2606,7 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
         assert not send_welcome_email_mock.called
 
     def test_finish_submitting_listed_addon(self):
-        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
 
         response = self.client.get(self.url)
         assert response.status_code == 200

@@ -59,7 +59,7 @@ def dev_required(
                     file_id = kw.get('file_id')
                     if file_id:
                         is_unlisted = Version.unfiltered.filter(
-                            file__id=file_id, channel=amo.RELEASE_CHANNEL_UNLISTED
+                            file__id=file_id, channel=amo.CHANNEL_UNLISTED
                         ).exists()
                         has_required_permission = (
                             acl.is_unlisted_addons_viewer_or_reviewer(request.user)

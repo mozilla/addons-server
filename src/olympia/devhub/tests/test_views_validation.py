@@ -397,7 +397,7 @@ class TestFileValidation(TestCase):
             UserProfile.objects.get(email='unlisted_viewer@mozilla.com')
         )
 
-        self.addon.versions.all()[0].update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.versions.all()[0].update(channel=amo.CHANNEL_UNLISTED)
         self.addon.delete()
         args = [self.addon.pk, self.file.id]
         json_url = reverse('devhub.json_file_validation', args=args)
@@ -461,7 +461,7 @@ class TestValidateAddon(TestCase):
         with open(fpath, 'rb') as file_:
             self.client.post(url, {'upload': file_})
 
-        assert validate_mock.call_args[1]['channel'] == amo.RELEASE_CHANNEL_LISTED
+        assert validate_mock.call_args[1]['channel'] == amo.CHANNEL_LISTED
         # No automated signing for listed add-ons.
         assert FileUpload.objects.get().automated_signing is False
 
@@ -476,7 +476,7 @@ class TestValidateAddon(TestCase):
         with open(fpath, 'rb') as file_:
             self.client.post(url, {'upload': file_})
 
-        assert validate_mock.call_args[1]['channel'] == amo.RELEASE_CHANNEL_UNLISTED
+        assert validate_mock.call_args[1]['channel'] == amo.CHANNEL_UNLISTED
         # Automated signing enabled for unlisted add-ons.
         assert FileUpload.objects.get().automated_signing is True
 
@@ -510,7 +510,7 @@ class TestUploadURLs(TestCase):
     def expect_validation(self, listed, automated_signing):
         call_keywords = self.run_addons_linter.call_args[1]
 
-        channel = amo.RELEASE_CHANNEL_LISTED if listed else amo.RELEASE_CHANNEL_UNLISTED
+        channel = amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
 
         assert call_keywords['channel'] == channel
         assert self.file_upload.automated_signing == automated_signing

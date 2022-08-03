@@ -743,7 +743,7 @@ class TestUserAdmin(TestCase):
         addon_factory(users=[self.user], status=amo.STATUS_NOMINATED)
         addon_factory(users=[self.user], status=amo.STATUS_DELETED)
         addon_factory(
-            users=[self.user], version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}
+            users=[self.user], version_kw={'channel': amo.CHANNEL_UNLISTED}
         )
         # This next add-on shouldn't be counted.
         addon_where_user_has_deleted_role = addon_factory(

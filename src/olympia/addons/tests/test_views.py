@@ -586,7 +586,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_hide_latest_unlisted_version_anonymous(self):
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
@@ -598,7 +598,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
 
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
@@ -610,7 +610,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
 
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
@@ -623,7 +623,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
 
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
@@ -636,7 +636,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
 
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         unlisted_version.update(created=self.days_ago(1))
         result = self._test_url()
@@ -853,7 +853,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'webextension.xpi',
             user=self.user,
             source=amo.UPLOAD_SOURCE_ADDON_API,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         self.url = reverse_ns('addon-list', api_version='v5')
         self.client.login_api(self.user)
@@ -876,7 +876,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         ).to_representation(addon)
         assert (
             addon.find_latest_version(channel=None).channel
-            == amo.RELEASE_CHANNEL_UNLISTED
+            == amo.CHANNEL_UNLISTED
         )
         assert (
             ActivityLog.objects.for_addons(addon)
@@ -908,7 +908,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert data == AddonSerializerWithUnlistedData(
             context={'request': request}
         ).to_representation(addon)
-        assert addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert addon.current_version.channel == amo.CHANNEL_LISTED
         assert (
             ActivityLog.objects.for_addons(addon)
             .filter(action=amo.LOG.CREATE_ADDON.id)
@@ -1165,7 +1165,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'notify-link-clicks-i18n.xpi',
             user=self.user,
             source=amo.UPLOAD_SOURCE_ADDON_API,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         data = {
             # 'name'  # don't update - should retain name from the manifest
@@ -1345,7 +1345,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'notify-link-clicks-i18n-missing.xpi',
             user=self.user,
             source=amo.UPLOAD_SOURCE_ADDON_API,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
 
         # failure cases:
@@ -1401,7 +1401,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'notify-link-clicks-i18n-missing.xpi',
             user=self.user,
             source=amo.UPLOAD_SOURCE_ADDON_API,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
         )
 
         # the default_locale isn't overriden from the xpi - it's en-US
@@ -1466,7 +1466,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'webextension_langpack.xpi',
             user=self.user,
             source=amo.UPLOAD_SOURCE_ADDON_API,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         self.minimal_data = {'version': {'upload': upload.uuid}}
         self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
@@ -2137,7 +2137,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
 
         # this requirement isn't enforced for addons without listed versions though
-        self.addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.current_version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.request(data=data)
         assert response.status_code == 200
 
@@ -2210,7 +2210,7 @@ class TestAddonViewSetUpdatePut(UploadMixin, TestAddonViewSetUpdate):
             'webextension.xpi',
             user=self.user,
             source=amo.UPLOAD_SOURCE_ADDON_API,
-            channel=getattr(self, 'channel', amo.RELEASE_CHANNEL_UNLISTED),
+            channel=getattr(self, 'channel', amo.CHANNEL_UNLISTED),
         )
         return {'version': {'upload': upload.uuid}}
 
@@ -2223,12 +2223,12 @@ class TestAddonViewSetUpdatePut(UploadMixin, TestAddonViewSetUpdate):
         }
         assert self.addon.versions.count() == 2
         version = self.addon.find_latest_version(channel=None)
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.channel == amo.CHANNEL_UNLISTED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
 
     def test_basic_listed(self):
         license = self.addon.current_version.license
-        self.channel = amo.RELEASE_CHANNEL_LISTED
+        self.channel = amo.CHANNEL_LISTED
         self.addon.current_version.file.update(status=amo.STATUS_DISABLED)
         self.addon.update_status()
         assert self.addon.status == amo.STATUS_NULL
@@ -2242,12 +2242,12 @@ class TestAddonViewSetUpdatePut(UploadMixin, TestAddonViewSetUpdate):
         }
         assert self.addon.versions.count() == 2
         version = self.addon.find_latest_version(channel=None)
-        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert version.channel == amo.CHANNEL_LISTED
         assert self.addon.status == amo.STATUS_NOMINATED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.listed')
 
     def test_listed_metadata_missing(self):
-        self.channel = amo.RELEASE_CHANNEL_LISTED
+        self.channel = amo.CHANNEL_LISTED
         self.addon.current_version.update(license=None)
         self.addon.set_categories([])
         response = self.request()
@@ -2280,7 +2280,7 @@ class TestAddonViewSetUpdatePut(UploadMixin, TestAddonViewSetUpdate):
         assert self.addon.reload().versions.count() == 1
 
     def test_license_inherited_from_previous_version(self):
-        self.channel = amo.RELEASE_CHANNEL_LISTED
+        self.channel = amo.CHANNEL_LISTED
         previous_license = self.addon.current_version.license
         super().test_basic()
         assert self.addon.versions.count() == 2
@@ -2501,7 +2501,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -2509,39 +2509,39 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
 
     def test_unlisted_version_unlisted_viewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
 
     def test_unlisted_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
 
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
 
     def test_unlisted_version_anonymous(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 401
 
     def test_unlisted_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
@@ -2962,7 +2962,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'webextension.xpi',
             user=self.user,
             source=amo.UPLOAD_SOURCE_ADDON_API,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         self.addon = addon_factory(users=(self.user,), guid='@webextension-guid')
         self.url = reverse_ns(
@@ -2995,7 +2995,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert data == DeveloperVersionSerializer(
             context={'request': request}
         ).to_representation(version)
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.channel == amo.CHANNEL_UNLISTED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
 
     @mock.patch('olympia.addons.views.log')
@@ -3028,7 +3028,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert data == DeveloperVersionSerializer(
             context={'request': request}
         ).to_representation(version)
-        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert version.channel == amo.CHANNEL_LISTED
         assert self.addon.status == amo.STATUS_NOMINATED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.listed')
 
@@ -3202,7 +3202,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         self.addon.reload()
         assert self.addon.versions.count() == 2
         version = self.addon.find_latest_version(channel=None)
-        assert version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert version.channel == amo.CHANNEL_LISTED
         assert self.addon.status == amo.STATUS_NOMINATED
 
         new_license = License.objects.latest('created')
@@ -3760,7 +3760,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         # shown when requesting to see unlisted stuff explicitly, with the
         # right permissions.
         self.unlisted_version = version_factory(
-            addon=self.addon, version='42.0', channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, version='42.0', channel=amo.CHANNEL_UNLISTED
         )
 
         self._set_tested_url(self.addon.pk)
@@ -4242,7 +4242,7 @@ class TestAddonSearchView(ESTestCase):
             name='My Addôn',
             status=amo.STATUS_NULL,
             popularity=666,
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         self.refresh()
         data = self.perform_search(self.url)
@@ -4319,7 +4319,7 @@ class TestAddonSearchView(ESTestCase):
         addon_factory(
             slug='my-unlisted-addon',
             name='My unlisted Addôn',
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         addon_factory(
             slug='my-disabled-by-user-addon',
@@ -5246,7 +5246,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
             name='My Addôn',
             status=amo.STATUS_NULL,
             popularity=666,
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         self.refresh()
         data = self.perform_search(self.url)
@@ -5482,7 +5482,7 @@ class TestLanguageToolsView(TestCase):
         addon_factory(
             type=amo.ADDON_DICT,
             target_locale='fr',
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         addon_factory(
             type=amo.ADDON_LPAPP,
@@ -5624,7 +5624,7 @@ class TestLanguageToolsView(TestCase):
             file_kw={'strict_compatibility': True},
             min_app_version='58.0',
             max_app_version='58.*',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         version_factory(
             addon=compatible_pack2,
@@ -5700,7 +5700,7 @@ class TestLanguageToolsView(TestCase):
             addon=incompatible_pack3,
             min_app_version='58.0',
             max_app_version='58.*',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'strict_compatibility': True},
         )
 

@@ -132,7 +132,7 @@ class ReviewerSubscription(ModelBase):
             % (self.user.email, self.addon.pk)
         )
 
-        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+        if version.channel == amo.CHANNEL_LISTED:
             listing_url = absolutify(
                 reverse('addons.detail', args=[self.addon.pk], add_prefix=False)
             )
@@ -191,13 +191,13 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
         user = subscriber.user
         is_active_user = user and not user.deleted and user.email
         is_reviewer_and_listed_submission = (
-            subscriber.channel == amo.RELEASE_CHANNEL_LISTED
-            and instance.channel == amo.RELEASE_CHANNEL_LISTED
+            subscriber.channel == amo.CHANNEL_LISTED
+            and instance.channel == amo.CHANNEL_LISTED
             and any(acl.action_allowed_for(user, perm) for perm in listed_perms)
         )
         is_unlisted_reviewer_and_unlisted_submission = (
-            subscriber.channel == amo.RELEASE_CHANNEL_UNLISTED
-            and instance.channel == amo.RELEASE_CHANNEL_UNLISTED
+            subscriber.channel == amo.CHANNEL_UNLISTED
+            and instance.channel == amo.CHANNEL_UNLISTED
             and any(acl.action_allowed_for(user, perm) for perm in unlisted_perms)
         )
         if is_active_user and (
@@ -1013,7 +1013,7 @@ class AutoApprovalSummary(ModelBase):
           unlisted)
         """
         addon = version.addon
-        is_listed = version.channel == amo.RELEASE_CHANNEL_LISTED
+        is_listed = version.channel == amo.CHANNEL_LISTED
         if is_listed:
             auto_approval_disabled = bool(
                 addon.auto_approval_disabled
@@ -1036,7 +1036,7 @@ class AutoApprovalSummary(ModelBase):
         pre-review.
 
         Only applies to listed versions."""
-        if not version.channel == amo.RELEASE_CHANNEL_LISTED:
+        if not version.channel == amo.CHANNEL_LISTED:
             return False
         promo_group = version.addon.promoted_group(currently_approved=False)
         return bool(promo_group and promo_group.pre_review)
@@ -1060,7 +1060,7 @@ class AutoApprovalSummary(ModelBase):
             content_review = None
         return (
             not is_langpack
-            and version.channel == amo.RELEASE_CHANNEL_LISTED
+            and version.channel == amo.CHANNEL_LISTED
             and version.addon.status == amo.STATUS_NOMINATED
             and now - nomination < timedelta(hours=24)
             and content_review is None

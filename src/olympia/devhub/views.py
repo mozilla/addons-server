@@ -466,7 +466,7 @@ def cancel(request, addon_id, addon, channel):
     if latest_version:
         if (
             addon.status == amo.STATUS_NOMINATED
-            and channel == amo.RELEASE_CHANNEL_LISTED
+            and channel == amo.CHANNEL_LISTED
         ):
             addon.update(status=amo.STATUS_NULL)
             ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
@@ -480,7 +480,7 @@ def cancel(request, addon_id, addon, channel):
 def disable(request, addon_id, addon):
     # Also set the latest listed version to STATUS_DISABLED if it was
     # AWAITING_REVIEW, to not waste reviewers time.
-    latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+    latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
     if latest_version and latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
         latest_version.file.update(status=amo.STATUS_DISABLED)
     addon.update_version()
@@ -666,7 +666,7 @@ def handle_upload(
     if submit:
         tasks.validate_and_submit(addon, upload, channel=channel)
     else:
-        tasks.validate(upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
+        tasks.validate(upload, listed=(channel == amo.CHANNEL_LISTED))
 
     return upload
 
@@ -1452,7 +1452,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
 
     next_view is the view that will be redirected to.
     """
-    if addon and addon.disabled_by_user and channel == amo.RELEASE_CHANNEL_LISTED:
+    if addon and addon.disabled_by_user and channel == amo.CHANNEL_LISTED:
         # Listed versions can not be submitted while the add-on is set to
         # "invisible" (disabled_by_user).
         return redirect('devhub.submit.version.distribution', addon.slug)
@@ -1488,7 +1488,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
         if (
             addon.status == amo.STATUS_NULL
             and addon.has_complete_metadata()
-            and channel == amo.RELEASE_CHANNEL_LISTED
+            and channel == amo.CHANNEL_LISTED
         ):
             addon.update(status=amo.STATUS_NOMINATED)
         return redirect(next_view, *url_args)
@@ -1496,7 +1496,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
     if addon:
         channel_choice_text = (
             forms.DistributionChoiceForm().LISTED_LABEL
-            if channel == amo.RELEASE_CHANNEL_LISTED
+            if channel == amo.CHANNEL_LISTED
             else forms.DistributionChoiceForm().UNLISTED_LABEL
         )
     else:
@@ -1564,7 +1564,7 @@ def submit_version_auto(request, addon_id, addon):
     # would be listed and addon is set to "Invisible".
     last_version = addon.find_latest_version(None, exclude=())
     if not last_version or (
-        last_version.channel == amo.RELEASE_CHANNEL_LISTED and addon.disabled_by_user
+        last_version.channel == amo.CHANNEL_LISTED and addon.disabled_by_user
     ):
         return redirect('devhub.submit.version.distribution', addon.slug)
     channel = last_version.channel
@@ -1698,7 +1698,7 @@ def submit_version_source(request, addon_id, addon, version_id):
 def _submit_details(request, addon, version):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
-        skip_details_step = version.channel == amo.RELEASE_CHANNEL_UNLISTED or (
+        skip_details_step = version.channel == amo.CHANNEL_UNLISTED or (
             static_theme and addon.has_complete_metadata()
         )
         if skip_details_step:
@@ -1709,7 +1709,7 @@ def _submit_details(request, addon, version):
         # Figure out the latest version early in order to pass the same
         # instance to each form that needs it (otherwise they might overwrite
         # each other).
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         if not latest_version:
             # No listed version ? Then nothing to do in the listed submission
             # flow.
@@ -1805,9 +1805,9 @@ def _submit_finish(request, addon, version):
     if (
         not version
         and author
-        and uploaded_version.channel == amo.RELEASE_CHANNEL_LISTED
+        and uploaded_version.channel == amo.CHANNEL_LISTED
         and not Version.objects.exclude(pk=uploaded_version.pk)
-        .filter(addon__authors=author, channel=amo.RELEASE_CHANNEL_LISTED)
+        .filter(addon__authors=author, channel=amo.CHANNEL_LISTED)
         .exclude(addon__status=amo.STATUS_NULL)
         .exists()
     ):
@@ -1842,7 +1842,7 @@ def _submit_finish(request, addon, version):
 def submit_addon_finish(request, addon_id, addon):
     # Bounce to the details step if incomplete
     if not addon.has_complete_metadata() and addon.find_latest_version(
-        channel=amo.RELEASE_CHANNEL_LISTED
+        channel=amo.CHANNEL_LISTED
     ):
         return redirect('devhub.submit.details', addon.slug)
     # Bounce to the versions page if they don't have any versions.
@@ -1873,7 +1873,7 @@ def request_review(request, addon_id, addon):
     if not addon.can_request_review():
         return http.HttpResponseBadRequest()
 
-    latest_version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED, exclude=())
+    latest_version = addon.find_latest_version(amo.CHANNEL_LISTED, exclude=())
     if latest_version:
         if latest_version.file.status == amo.STATUS_DISABLED:
             latest_version.file.update(status=amo.STATUS_AWAITING_REVIEW)

@@ -126,7 +126,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         obj = option['label']
         status = obj.file.status if obj.file else None
         versions_actions = getattr(self, 'versions_actions', None)
-        if versions_actions and obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if versions_actions and obj.channel == amo.CHANNEL_UNLISTED:
             # For unlisted, some actions should only apply to approved/pending
             # versions, so we add our special `data-toggle` class and the
             # right `data-value` depending on status.
@@ -261,7 +261,7 @@ class ReviewForm(forms.Form):
             if self.helper.version:
                 channel = self.helper.version.channel
             else:
-                channel = amo.RELEASE_CHANNEL_LISTED
+                channel = amo.CHANNEL_LISTED
             statuses = (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)
             self.fields['versions'].widget.versions_actions = versions_actions
             self.fields['versions'].queryset = (

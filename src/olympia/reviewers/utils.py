@@ -372,14 +372,14 @@ class ScannersReviewTable(AddonQueueTable):
                 'versions',
                 filter=Q(
                     versions__needs_human_review=True,
-                    versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
+                    versions__channel=amo.CHANNEL_UNLISTED,
                 ),
             ),
             listed_versions_that_need_human_review=Count(
                 'versions',
                 filter=Q(
                     versions__needs_human_review=True,
-                    versions__channel=amo.RELEASE_CHANNEL_LISTED,
+                    versions__channel=amo.CHANNEL_LISTED,
                 ),
             ),
         )
@@ -426,7 +426,7 @@ class MadReviewTable(ScannersReviewTable):
                 'versions',
                 filter=Q(
                     versions__reviewerflags__needs_human_review_by_mad=True,
-                    versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
+                    versions__channel=amo.CHANNEL_UNLISTED,
                 ),
             ),
             listed_versions_that_need_human_review=F(
@@ -469,7 +469,7 @@ class ReviewHelper:
 
     def set_review_handler(self):
         """Set the handler property."""
-        if self.version and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
             self.handler = ReviewUnlisted(
                 addon=self.addon,
                 version=self.version,
@@ -506,7 +506,7 @@ class ReviewHelper:
         #   their availability while not affecting whether the user can see
         #   the review page or not.
         version_is_unlisted = (
-            self.version and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+            self.version and self.version.channel == amo.CHANNEL_UNLISTED
         )
         promoted_group = self.addon.promoted_group(currently_approved=False)
         is_static_theme = self.addon.type == amo.ADDON_STATICTHEME
@@ -579,11 +579,11 @@ class ReviewHelper:
         addon_is_valid_and_version_is_listed = (
             addon_is_valid
             and self.version
-            and self.version.channel == amo.RELEASE_CHANNEL_LISTED
+            and self.version.channel == amo.CHANNEL_LISTED
         )
         current_version_is_listed_and_auto_approved = (
             self.version
-            and self.version.channel == amo.RELEASE_CHANNEL_LISTED
+            and self.version.channel == amo.CHANNEL_LISTED
             and self.addon.current_version
             and self.addon.current_version.was_auto_approved
         )
@@ -944,7 +944,7 @@ class ReviewBase:
         else:
             addon = self.addon
         review_url_kw = {'addon_id': self.addon.pk}
-        if self.version and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
             review_url_kw['channel'] = 'unlisted'
             dev_ver_url = reverse('devhub.addons.versions', args=[self.addon.id])
         else:
@@ -966,7 +966,7 @@ class ReviewBase:
         action = amo.LOG.REVIEWER_REPLY_VERSION
         if self.version:
             if (
-                self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+                self.version.channel == amo.CHANNEL_UNLISTED
                 and not self.version.reviewed
             ):
                 self.version.update(reviewed=datetime.now())
@@ -991,7 +991,7 @@ class ReviewBase:
         self.log_action(amo.LOG.COMMENT_VERSION)
         update_reviewed = (
             self.version
-            and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+            and self.version.channel == amo.CHANNEL_UNLISTED
             and not self.version.reviewed
         )
         if update_reviewed:
@@ -1002,7 +1002,7 @@ class ReviewBase:
         approved if it was awaiting its first review)."""
         # Safeguard to force implementation for unlisted add-ons to completely
         # override this method.
-        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert self.version.channel == amo.CHANNEL_LISTED
 
         # Safeguard to make sure this action is not used for content review
         # (it should use confirm_auto_approved instead).
@@ -1065,7 +1065,7 @@ class ReviewBase:
         back to incomplete if it was awaiting its first review)."""
         # Safeguard to force implementation for unlisted add-ons to completely
         # override this method.
-        assert self.version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert self.version.channel == amo.CHANNEL_LISTED
 
         # Safeguard to make sure this action is not used for content review
         # (it should use reject_multiple_versions instead).
@@ -1127,7 +1127,7 @@ class ReviewBase:
         assert self.content_review
 
         # Doesn't make sense for unlisted versions.
-        assert channel == amo.RELEASE_CHANNEL_LISTED
+        assert channel == amo.CHANNEL_LISTED
 
         # Like confirm auto approval, the approve content action should not
         # show the comment box, so override the text in case the reviewer
@@ -1142,7 +1142,7 @@ class ReviewBase:
 
         # Assign reviewer incentive scores.
         if self.human_review:
-            is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
+            is_post_review = channel == amo.CHANNEL_LISTED
             ReviewerScore.award_points(
                 self.user,
                 self.addon,
@@ -1156,7 +1156,7 @@ class ReviewBase:
         """Confirm an auto-approval decision."""
 
         channel = self.version.channel
-        if channel == amo.RELEASE_CHANNEL_LISTED:
+        if channel == amo.CHANNEL_LISTED:
             # When doing an approval in listed channel, the version we care
             # about is always current_version and *not* self.version.
             # This allows reviewers to confirm approval of a public add-on even
@@ -1181,7 +1181,7 @@ class ReviewBase:
             except AutoApprovalSummary.DoesNotExist:
                 pass
 
-            if channel == amo.RELEASE_CHANNEL_LISTED:
+            if channel == amo.CHANNEL_LISTED:
                 # Clear needs human review flags on past versions in channel.
                 self.clear_all_needs_human_review_flags_in_channel()
                 AddonApprovalsCounter.increment_for_addon(addon=self.addon)
@@ -1203,7 +1203,7 @@ class ReviewBase:
             )
 
             # Assign reviewer incentive scores.
-            is_post_review = channel == amo.RELEASE_CHANNEL_LISTED
+            is_post_review = channel == amo.CHANNEL_LISTED
             ReviewerScore.award_points(
                 self.user,
                 self.addon,
@@ -1298,7 +1298,7 @@ class ReviewBase:
         # manually reviewed.
         auto_approval_disabled_until_next_approval_flag = (
             'auto_approval_disabled_until_next_approval'
-            if channel == amo.RELEASE_CHANNEL_LISTED
+            if channel == amo.CHANNEL_LISTED
             else 'auto_approval_disabled_until_next_approval_unlisted'
         )
         addonreviewerflags = {
@@ -1333,7 +1333,7 @@ class ReviewBase:
                 subject = 'Mozilla Add-ons: %s%s will be disabled on addons.mozilla.org'
             elif (
                 self.addon.status != amo.STATUS_APPROVED
-                and channel == amo.RELEASE_CHANNEL_LISTED
+                and channel == amo.CHANNEL_LISTED
             ):
                 template = 'reject_multiple_versions_disabled_addon'
                 subject = (
@@ -1410,7 +1410,7 @@ class ReviewFiles(ReviewBase):
 class ReviewUnlisted(ReviewBase):
     def approve_latest_version(self):
         """Set an unlisted addon version files to public."""
-        assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert self.version.channel == amo.CHANNEL_UNLISTED
 
         # Sign addon.
         self.sign_file()
@@ -1477,7 +1477,7 @@ class ReviewUnlisted(ReviewBase):
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
-        assert self.version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert self.version.channel == amo.CHANNEL_UNLISTED
         latest_version = self.version
         self.version = None
         self.file = None

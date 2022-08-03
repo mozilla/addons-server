@@ -223,7 +223,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         Unlisted versions are always ignored, never served as updates.
         """
         Version.objects.get(pk=self.version_1_2_2).update(
-            channel=amo.RELEASE_CHANNEL_UNLISTED
+            channel=amo.CHANNEL_UNLISTED
         )
         self.addon.reload()
         assert self.addon.status == amo.STATUS_APPROVED

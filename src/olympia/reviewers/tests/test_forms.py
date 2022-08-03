@@ -254,7 +254,7 @@ class TestReviewForm(TestCase):
         self.grant_permission(self.request.user, 'Addons:Review')
         # Add a bunch of extra data that shouldn't be picked up.
         addon_factory()
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
@@ -271,7 +271,7 @@ class TestReviewForm(TestCase):
         addon_factory()  # Extra add-on, shouldn't be included.
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # auto-approve everything (including self.addon.current_version)
@@ -311,10 +311,10 @@ class TestReviewForm(TestCase):
         addon_factory()  # Extra add-on, shouldn't be included.
         pending_version = version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         # auto-approve everything
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
@@ -410,7 +410,7 @@ class TestReviewForm(TestCase):
 
     def test_delayed_rejection_showing_for_unlisted_awaiting(self):
         self.addon.update(status=amo.STATUS_NULL)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.test_delayed_rejection_days_widget_attributes()
 
     def test_version_pk(self):

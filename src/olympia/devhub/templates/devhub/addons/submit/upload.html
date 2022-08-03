@@ -4,7 +4,7 @@
 
 {% block primary %}
 
-{% set channel_param = 'listed' if channel == amo.RELEASE_CHANNEL_LISTED else 'unlisted' %}
+{% set channel_param = 'listed' if channel == amo.CHANNEL_LISTED else 'unlisted' %}
 
 <form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
     data-addon-is-listed="{% if channel_param == 'listed' %}true{% else %}false{% endif %}">
@@ -41,7 +41,7 @@
   {% if addon %}
       data-upload-url="{{ url('devhub.upload_for_version', addon.slug, channel_param) }}"
   {% else %}
-    {% if channel == amo.RELEASE_CHANNEL_LISTED %}
+    {% if channel == amo.CHANNEL_LISTED %}
       data-upload-url="{{ url('devhub.upload') }}"
     {% else %}
       data-upload-url="{{ url('devhub.upload_unlisted') }}"

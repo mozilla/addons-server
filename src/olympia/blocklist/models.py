@@ -126,7 +126,7 @@ class Block(ModelBase):
         has_listed = any(
             True
             for version in self.addon_versions
-            if version.channel == amo.RELEASE_CHANNEL_LISTED
+            if version.channel == amo.CHANNEL_LISTED
         )
         if has_listed:
             url = absolutify(
@@ -139,7 +139,7 @@ class Block(ModelBase):
         has_unlisted = any(
             True
             for version in self.addon_versions
-            if version.channel == amo.RELEASE_CHANNEL_UNLISTED
+            if version.channel == amo.CHANNEL_UNLISTED
         )
         if has_unlisted:
             url = absolutify(

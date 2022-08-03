@@ -110,7 +110,7 @@ class Command(BaseCommand):
         )
 
     def process_addon(self, *, addon, deadline):
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         if latest_version and not latest_version.pending_rejection:
             # If the latest version for this add-on in this channel is not
             # pending rejection, we don't need to warn the developer: they have

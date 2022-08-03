@@ -99,7 +99,7 @@ class TestReviewHelperBase(TestCase):
         self,
         status,
         file_status=amo.STATUS_AWAITING_REVIEW,
-        channel=amo.RELEASE_CHANNEL_LISTED,
+        channel=amo.CHANNEL_LISTED,
         content_review=False,
         type=amo.ADDON_EXTENSION,
         human_review=True,
@@ -108,7 +108,7 @@ class TestReviewHelperBase(TestCase):
         ActivityLog.objects.for_addons(self.helper.addon).delete()
         self.addon.update(status=status, type=type)
         self.file.update(status=file_status)
-        if channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if channel == amo.CHANNEL_UNLISTED:
             self.make_addon_unlisted(self.addon)
             self.version.reload()
             self.file.reload()
@@ -573,7 +573,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_unlisted(self):
         # Just regular review permissions don't let you do much on an unlisted
         # review page.
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.grant_permission(self.user, 'Addons:Review')
         expected = ['reply', 'super', 'comment']
         assert (
@@ -1006,7 +1006,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.version.needs_human_review
 
     def test_unlisted_approve_latest_version_need_human_review(self):
-        self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.setup_data(amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED)
         self.version.update(needs_human_review=True)
         flags = version_review_flags_factory(
             version=self.version,
@@ -1029,7 +1029,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_unlisted_approve_latest_version_need_human_review_not_human(self):
         self.setup_data(
-            amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED, human_review=False
+            amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=False
         )
         self.version.update(needs_human_review=True)
         flags = version_review_flags_factory(
@@ -1162,7 +1162,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.current_version.update(created=self.days_ago(1))
         self.version = version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             version='3.0.42',
             file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
@@ -1219,7 +1219,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.old_version.update(created=self.days_ago(1), needs_human_review=True)
         self.version = version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             version='3.0.42',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
@@ -1241,7 +1241,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         self.version = version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             version='3.0.42',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
@@ -1262,7 +1262,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.current_version.update(created=self.days_ago(1))
         self.version = version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             version='3.0.42',
             file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW,
@@ -1310,7 +1310,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.old_version.update(created=self.days_ago(1), needs_human_review=True)
         self.version = version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             version='3.0.42',
             needs_human_review=True,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -1523,7 +1523,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_confirm_multiple_versions_with_version_scanner_flags(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         flags = version_review_flags_factory(
             version=self.version,
             needs_human_review_by_mad=True,
@@ -1552,7 +1552,7 @@ class TestReviewHelper(TestReviewHelperBase):
         first_unlisted = version_factory(
             addon=self.addon,
             version='3.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             created=self.days_ago(7),
         )
         summary = AutoApprovalSummary.objects.create(
@@ -1561,14 +1561,14 @@ class TestReviewHelper(TestReviewHelperBase):
         second_unlisted = version_factory(
             addon=self.addon,
             version='4.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             needs_human_review=True,
             created=self.days_ago(6),
         )
         self.version = version_factory(
             addon=self.addon,
             version='5.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             needs_human_review=True,
             created=self.days_ago(5),
         )
@@ -1612,7 +1612,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_null_to_public_unlisted(self):
         self.sign_file_mock.reset()
-        self.setup_data(amo.STATUS_NULL, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.setup_data(amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED)
 
         self.helper.handler.approve_latest_version()
 
@@ -1809,7 +1809,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.version.reload()
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -2157,7 +2157,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.version = version_factory(
             addon=self.addon,
             version='3.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW)
@@ -2217,7 +2217,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.version = version_factory(
             addon=self.addon,
             version='3.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         AutoApprovalSummary.objects.create(
@@ -2393,7 +2393,7 @@ class TestReviewHelper(TestReviewHelperBase):
             self.addon.get_dev_url('versions')
         )
 
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         context_data = self.helper.handler.get_context_data()
         assert context_data['dev_versions_url'] == absolutify(
             reverse('devhub.addons.versions', args=[self.addon.id])
@@ -2474,7 +2474,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(
             amo.STATUS_NULL,
             file_status=amo.STATUS_APPROVED,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         # Add a needs_human_review_by_mad flag that should be cleared later.
         version_review_flags_factory(

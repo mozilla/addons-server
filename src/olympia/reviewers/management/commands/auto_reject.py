@@ -80,7 +80,7 @@ class Command(BaseCommand):
         )
 
     def process_addon(self, *, addon, now):
-        latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         if (
             latest_version
             and latest_version.is_unreviewed

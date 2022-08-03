@@ -149,7 +149,7 @@ class AutoApproveTestsMixin:
             nomination=self.days_ago(8),
             created=self.days_ago(8),
             addon=complex_addon,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 
@@ -162,7 +162,7 @@ class AutoApproveTestsMixin:
         user_disabled_addon_version = version_factory(
             nomination=self.days_ago(11),
             created=self.days_ago(11),
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             addon=user_disabled_addon,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
@@ -173,7 +173,7 @@ class AutoApproveTestsMixin:
         pure_unlisted = addon_factory(
             name='Pure unlisted',
             version_kw={
-                'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                'channel': amo.CHANNEL_UNLISTED,
                 'nomination': self.days_ago(12),
                 'created': self.days_ago(12),
             },
@@ -186,7 +186,7 @@ class AutoApproveTestsMixin:
         unlisted_theme = addon_factory(
             name='Unlisted theme',
             version_kw={
-                'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                'channel': amo.CHANNEL_UNLISTED,
                 'nomination': self.days_ago(13),
                 'created': self.days_ago(13),
             },
@@ -559,7 +559,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         check_assertions()
 
     def test_run_action_delay_approval_unlisted(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.test_run_action_delay_approval()
 
 
@@ -1102,7 +1102,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         self.create_base_test_addon()
         old_version = self.version
         old_version.update(
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             created=self.days_ago(2),
             nomination=self.days_ago(2),
         )
@@ -1115,7 +1115,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         # it "resets" the waiting period.
         new_version = version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
 

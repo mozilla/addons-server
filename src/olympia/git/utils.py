@@ -33,8 +33,8 @@ log = olympia.core.logger.getLogger('z.git_storage')
 TreeEntryWrapper = namedtuple('Entry', 'tree_entry, path, blob')
 
 BRANCHES = {
-    amo.RELEASE_CHANNEL_LISTED: 'listed',
-    amo.RELEASE_CHANNEL_UNLISTED: 'unlisted',
+    amo.CHANNEL_LISTED: 'listed',
+    amo.CHANNEL_UNLISTED: 'unlisted',
 }
 
 # Constants from libgit2 includes/git2/diff.h

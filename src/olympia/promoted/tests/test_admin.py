@@ -94,7 +94,7 @@ class TestPromotedAddonAdmin(TestCase):
         # throw in a promoted addon that doesn't have a current_version
         unlisted = PromotedAddon.objects.create(
             addon=addon_factory(
-                name='FooBâr', version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}
+                name='FooBâr', version_kw={'channel': amo.CHANNEL_UNLISTED}
             )
         )
         assert not unlisted.addon.current_version
