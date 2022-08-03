@@ -205,7 +205,7 @@ class TestAbuse(TestCase):
         assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == ''
 
     def test_save_soft_deleted(self):
-        report = AbuseReport.objects.create()
+        report = AbuseReport.objects.create(guid='@foo')
         report.delete()
         report.reason = AbuseReport.REASONS.SPAM
         report.save()
@@ -214,8 +214,8 @@ class TestAbuse(TestCase):
 
 class TestAbuseManager(TestCase):
     def test_deleted(self):
-        report = AbuseReport.objects.create()
-        deleted_report = AbuseReport.objects.create()
+        report = AbuseReport.objects.create(guid='@foo')
+        deleted_report = AbuseReport.objects.create(guid='@baa')
         assert AbuseReport.objects.count() == 2
         assert AbuseReport.unfiltered.count() == 2
 

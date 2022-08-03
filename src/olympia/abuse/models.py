@@ -248,6 +248,22 @@ class AbuseReport(ModelBase):
             models.Index(fields=('created',), name='abuse_reports_created_idx'),
             models.Index(fields=('guid',), name='guid_idx'),
         ]
+        constraints = [
+            models.CheckConstraint(
+                name='just_one_of_guid_and_user_must_be_set',
+                check=(
+                    models.Q(
+                        ~models.Q(guid=''),
+                        guid__isnull=False,
+                        user__isnull=True,
+                    )
+                    | models.Q(
+                        guid__isnull=True,
+                        user__isnull=False,
+                    )
+                ),
+            ),
+        ]
 
     def delete(self, *args, **kwargs):
         # AbuseReports are soft-deleted. Note that we keep relations, because
