@@ -436,9 +436,7 @@ class AddonSerializerOutputTestMixin:
 
     def test_latest_unlisted_version(self):
         self.addon = addon_factory()
-        version_factory(
-            addon=self.addon, channel=amo.CHANNEL_UNLISTED, version='1.1'
-        )
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED, version='1.1')
         assert self.addon.latest_unlisted_version
 
         result = self.serialize()
@@ -1180,9 +1178,7 @@ class TestVersionSerializerOutput(TestCase):
 
     def test_unlisted(self):
         addon = addon_factory()
-        self.version = version_factory(
-            addon=addon, channel=amo.CHANNEL_UNLISTED
-        )
+        self.version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         result = self.serialize()
         assert result['channel'] == 'unlisted'
 

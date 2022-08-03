@@ -1733,9 +1733,7 @@ class TestRequestReview(TestCase):
     def setUp(self):
         super().setUp()
         self.addon = addon_factory()
-        self.version = self.addon.find_latest_version(
-            channel=amo.CHANNEL_LISTED
-        )
+        self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.redirect_url = self.addon.get_dev_url('versions')
         self.public_url = reverse('devhub.request-review', args=[self.addon.slug])
         self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))

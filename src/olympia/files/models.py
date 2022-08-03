@@ -405,9 +405,7 @@ class FileUpload(ModelBase):
     user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
-    channel = models.PositiveSmallIntegerField(
-        choices=amo.CHANNEL_CHOICES
-    )
+    channel = models.PositiveSmallIntegerField(choices=amo.CHANNEL_CHOICES)
     # Not all FileUploads will have a version and addon but it will be set
     # if the file was uploaded using the new API.
     version = models.CharField(max_length=255, null=True)

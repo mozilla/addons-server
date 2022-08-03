@@ -480,9 +480,7 @@ class TestReviewLog(ReviewerTest):
     def test_review_url(self):
         self.login_as_admin()
         addon = addon_factory()
-        unlisted_version = version_factory(
-            addon=addon, channel=amo.CHANNEL_UNLISTED
-        )
+        unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
 
         ActivityLog.create(
             amo.LOG.APPROVE_VERSION,
@@ -1090,9 +1088,7 @@ class QueueTest(ReviewerTest):
     def generate_files(self, subset=None, files=None, auto_approve_disabled=False):
         if subset is None:
             subset = []
-        channel = (
-            amo.CHANNEL_LISTED if self.listed else amo.CHANNEL_UNLISTED
-        )
+        channel = amo.CHANNEL_LISTED if self.listed else amo.CHANNEL_UNLISTED
         files = files or OrderedDict(
             [
                 (
@@ -2772,9 +2768,7 @@ class TestReview(ReviewBase):
         # decorator that only depends on the addon being purely unlisted or
         # not, but still fail the check inside the view because we're looking
         # at the unlisted channel specifically.
-        version_factory(
-            addon=self.addon, channel=amo.CHANNEL_LISTED, version='9.9'
-        )
+        version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED, version='9.9')
         assert self.client.head(self.url).status_code == 403
         assert self.client.post(self.url).status_code == 403
 
@@ -2792,9 +2786,7 @@ class TestReview(ReviewBase):
         # decorator that only depends on the addon being purely unlisted or
         # not, but still fail the check inside the view because we're looking
         # at the unlisted channel specifically.
-        version_factory(
-            addon=self.addon, channel=amo.CHANNEL_LISTED, version='9.9'
-        )
+        version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED, version='9.9')
         assert self.client.head(self.url).status_code == 403
         assert self.client.post(self.url).status_code == 403
 
@@ -2803,9 +2795,7 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_dont_need_unlisted_reviewer_for_mixed_channels(self):
-        version_factory(
-            addon=self.addon, channel=amo.CHANNEL_UNLISTED, version='9.9'
-        )
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED, version='9.9')
 
         assert self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert self.addon.current_version.channel == amo.CHANNEL_LISTED
@@ -4842,9 +4832,7 @@ class TestReview(ReviewBase):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         old_version = self.version
-        old_version.update(
-            needs_human_review=True, channel=amo.CHANNEL_UNLISTED
-        )
+        old_version.update(needs_human_review=True, channel=amo.CHANNEL_UNLISTED)
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version = version_factory(
             addon=self.addon,
@@ -4882,9 +4870,7 @@ class TestReview(ReviewBase):
     def test_reasons_optional_for_multiple_approve(self, sign_file_mock):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         old_version = self.version
-        old_version.update(
-            needs_human_review=True, channel=amo.CHANNEL_UNLISTED
-        )
+        old_version.update(needs_human_review=True, channel=amo.CHANNEL_UNLISTED)
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version = version_factory(
             addon=self.addon,
@@ -6282,9 +6268,7 @@ class TestWhiteboard(ReviewBase):
         # Now the addon is not purely unlisted, but because we've requested the
         # unlisted channel we'll still get an error - this time it's a 403 from
         # the view itself
-        version_factory(
-            addon=self.addon, version='9.99', channel=amo.CHANNEL_LISTED
-        )
+        version_factory(addon=self.addon, version='9.99', channel=amo.CHANNEL_LISTED)
         response = self.client.post(
             url,
             {
@@ -8744,30 +8728,22 @@ class TestMadQueue(QueueTest):
         # This add-on should be listed once, even with two versions.
         listed_addon = addon_factory(created=self.days_ago(15))
         version_review_flags_factory(
-            version=version_factory(
-                addon=listed_addon, channel=amo.CHANNEL_LISTED
-            ),
+            version=version_factory(addon=listed_addon, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=listed_addon, channel=amo.CHANNEL_LISTED
-            ),
+            version=version_factory(addon=listed_addon, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
 
         # This add-on should be listed once, even with two versions.
         unlisted_addon = addon_factory(created=self.days_ago(5))
         version_review_flags_factory(
-            version=version_factory(
-                addon=unlisted_addon, channel=amo.CHANNEL_UNLISTED
-            ),
+            version=version_factory(addon=unlisted_addon, channel=amo.CHANNEL_UNLISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=unlisted_addon, channel=amo.CHANNEL_UNLISTED
-            ),
+            version=version_factory(addon=unlisted_addon, channel=amo.CHANNEL_UNLISTED),
             needs_human_review_by_mad=True,
         )
 
@@ -8809,42 +8785,30 @@ class TestMadQueue(QueueTest):
         # Mixed listed and unlisted versions. Should not show up in queue.
         mixed_addon = addon_factory(created=self.days_ago(5))
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon, channel=amo.CHANNEL_UNLISTED
-            ),
+            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_UNLISTED),
             needs_human_review_by_mad=False,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon, channel=amo.CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon, channel=amo.CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=False,
         )
 
         # Mixed listed and unlisted versions. Only the unlisted should show up.
         mixed_addon2 = addon_factory(created=self.days_ago(4))
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon2, channel=amo.CHANNEL_UNLISTED
-            ),
+            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_UNLISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon2, channel=amo.CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon2, channel=amo.CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=False,
         )
 
@@ -8857,9 +8821,7 @@ class TestMadQueue(QueueTest):
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon_both, channel=amo.CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon_both, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
 

@@ -188,9 +188,7 @@ class Validator:
 
         if isinstance(file_, FileUpload):
             assert listed is not None
-            channel = (
-                amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
-            )
+            channel = amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
             is_mozilla_signed = False
 
             # We're dealing with a bare file upload. Try to extract the

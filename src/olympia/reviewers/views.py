@@ -546,9 +546,7 @@ def determine_channel(channel_as_text):
     else:
         content_review = False
     # channel is passed in as text, but we want the constant.
-    channel = amo.CHANNEL_CHOICES_LOOKUP.get(
-        channel_as_text, amo.CHANNEL_LISTED
-    )
+    channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_as_text, amo.CHANNEL_LISTED)
     return channel, content_review
 
 
@@ -567,9 +565,8 @@ def review(request, addon, channel=None):
 
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?
-    unlisted_only = (
-        channel == amo.CHANNEL_UNLISTED
-        or not addon.has_listed_versions(include_deleted=True)
+    unlisted_only = channel == amo.CHANNEL_UNLISTED or not addon.has_listed_versions(
+        include_deleted=True
     )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
@@ -977,9 +974,7 @@ def reviewlog(request):
     if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         # Only display logs related to unlisted versions to users with the
         # right permission.
-        approvals = approvals.exclude(
-            versionlog__version__channel=amo.CHANNEL_UNLISTED
-        )
+        approvals = approvals.exclude(versionlog__version__channel=amo.CHANNEL_UNLISTED)
     if not acl.is_listed_addons_reviewer(request.user):
         approvals = approvals.exclude(
             versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON
@@ -1032,9 +1027,8 @@ def whiteboard(request, addon, channel):
     channel_as_text = channel
     channel, content_review = determine_channel(channel)
 
-    unlisted_only = (
-        channel == amo.CHANNEL_UNLISTED
-        or not addon.has_listed_versions(include_deleted=True)
+    unlisted_only = channel == amo.CHANNEL_UNLISTED or not addon.has_listed_versions(
+        include_deleted=True
     )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied

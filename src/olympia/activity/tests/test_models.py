@@ -35,9 +35,7 @@ class TestActivityLogToken(TestCase):
     def setUp(self):
         super().setUp()
         self.addon = addon_factory()
-        self.version = self.addon.find_latest_version(
-            channel=amo.CHANNEL_LISTED
-        )
+        self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.version.update(created=self.days_ago(1))
         self.user = user_factory()
         self.token = ActivityLogToken.objects.create(

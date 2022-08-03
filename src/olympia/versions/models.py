@@ -436,10 +436,7 @@ class Version(OnChangeMixin, ModelBase):
             transaction.on_commit(lambda: create_git_extraction_entry(version=version))
 
         # Generate a preview and icon for listed static themes
-        if (
-            addon.type == amo.ADDON_STATICTHEME
-            and channel == amo.CHANNEL_LISTED
-        ):
+        if addon.type == amo.ADDON_STATICTHEME and channel == amo.CHANNEL_LISTED:
             theme_data = parsed_data.get('theme', {})
             generate_static_theme_preview(theme_data, version.pk)
 

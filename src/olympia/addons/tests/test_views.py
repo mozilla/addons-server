@@ -874,10 +874,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert data == AddonSerializerWithUnlistedData(
             context={'request': request}
         ).to_representation(addon)
-        assert (
-            addon.find_latest_version(channel=None).channel
-            == amo.CHANNEL_UNLISTED
-        )
+        assert addon.find_latest_version(channel=None).channel == amo.CHANNEL_UNLISTED
         assert (
             ActivityLog.objects.for_addons(addon)
             .filter(action=amo.LOG.CREATE_ADDON.id)

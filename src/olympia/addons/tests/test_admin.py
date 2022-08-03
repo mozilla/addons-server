@@ -228,9 +228,7 @@ class TestAddonAdmin(TestCase):
     def test_show_links_to_reviewer_tools_with_both_channels(self):
         addon = addon_factory(guid='@foo')
         version_factory(addon=addon, version='0.1', channel=amo.CHANNEL_LISTED)
-        version_factory(
-            addon=addon, version='0.2', channel=amo.CHANNEL_UNLISTED
-        )
+        version_factory(addon=addon, version='0.2', channel=amo.CHANNEL_UNLISTED)
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -412,9 +410,7 @@ class TestAddonAdmin(TestCase):
 
     def test_can_manage_unlisted_versions_and_change_addon_status(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
-        unlisted_version = version_factory(
-            addon=addon, channel=amo.CHANNEL_UNLISTED
-        )
+        unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         listed_version = addon.current_version
         addonuser = addon.addonuser_set.get()
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))

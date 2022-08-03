@@ -276,9 +276,7 @@ class TestLogAndNotify(TestCase):
         self.grant_permission(self.reviewer, 'Addons:Review', 'Addon Reviewers')
 
         self.addon = addon_factory()
-        self.version = self.addon.find_latest_version(
-            channel=amo.CHANNEL_LISTED
-        )
+        self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.addon.addonuser_set.create(user=self.developer)
         self.addon.addonuser_set.create(user=self.developer2)
         self.task_user = user_factory(id=settings.TASK_USER_ID)

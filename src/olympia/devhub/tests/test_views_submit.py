@@ -525,9 +525,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def test_unlisted_name_not_unique(self):
         """We don't enforce name uniqueness for unlisted add-ons."""
-        addon_factory(
-            name='Beastify', version_kw={'channel': amo.CHANNEL_LISTED}
-        )
+        addon_factory(name='Beastify', version_kw={'channel': amo.CHANNEL_LISTED})
         assert get_addon_count('Beastify') == 1
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
@@ -2089,9 +2087,7 @@ class VersionSubmitUploadMixin:
 
     def test_distribution_link(self):
         response = self.client.get(self.url)
-        channel_text = (
-            'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
-        )
+        channel_text = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         distribution_url = reverse(
             'devhub.submit.version.distribution', args=[self.addon.slug]
         )
@@ -2573,9 +2569,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
     def setUp(self):
         super().setUp()
         self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
-        self.version = version_factory(
-            addon=self.addon, channel=amo.CHANNEL_LISTED
-        )
+        self.version = version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
         self.version.update(license=None)  # Addon needs to be missing data.
         self.url = reverse(
             'devhub.submit.version.details', args=['a3615', self.version.pk]

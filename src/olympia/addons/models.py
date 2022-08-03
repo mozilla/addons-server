@@ -1207,9 +1207,7 @@ class Addon(OnChangeMixin, ModelBase):
                 status = amo.STATUS_NULL
                 reason = 'no reviewed files'
         elif self.status == amo.STATUS_APPROVED:
-            latest_version = self.find_latest_version(
-                channel=amo.CHANNEL_LISTED
-            )
+            latest_version = self.find_latest_version(channel=amo.CHANNEL_LISTED)
             if (
                 latest_version
                 and latest_version.file.status == amo.STATUS_AWAITING_REVIEW
@@ -1385,9 +1383,7 @@ class Addon(OnChangeMixin, ModelBase):
         ):
             return False
 
-        latest_version = self.find_latest_version(
-            amo.CHANNEL_LISTED, exclude=()
-        )
+        latest_version = self.find_latest_version(amo.CHANNEL_LISTED, exclude=())
 
         return latest_version is not None and not latest_version.file.reviewed
 

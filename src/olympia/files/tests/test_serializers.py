@@ -5,6 +5,7 @@ from django.conf import settings
 from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
+from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.reverse import reverse
 

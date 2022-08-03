@@ -408,9 +408,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
     def test_xpi_autoclose_is_disabled(self, subprocess_mock):
         subprocess_mock.Popen = self.FakePopen
 
-        tasks.run_addons_linter(
-            path=self.valid_path, channel=amo.CHANNEL_LISTED
-        )
+        tasks.run_addons_linter(path=self.valid_path, channel=amo.CHANNEL_LISTED)
 
         assert '--disable-xpi-autoclose' in self.FakePopen.get_args()
 
@@ -419,9 +417,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
     def test_xpi_autoclose_is_enabled(self, subprocess_mock):
         subprocess_mock.Popen = self.FakePopen
 
-        tasks.run_addons_linter(
-            path=self.valid_path, channel=amo.CHANNEL_LISTED
-        )
+        tasks.run_addons_linter(path=self.valid_path, channel=amo.CHANNEL_LISTED)
 
         assert '--disable-xpi-autoclose' not in self.FakePopen.get_args()
 
@@ -430,9 +426,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
         with mock.patch('olympia.devhub.tasks.subprocess') as subprocess_mock:
             subprocess_mock.Popen = self.FakePopen
 
-            tasks.run_addons_linter(
-                path=self.valid_path, channel=amo.CHANNEL_LISTED
-            )
+            tasks.run_addons_linter(path=self.valid_path, channel=amo.CHANNEL_LISTED)
 
             assert '--max-manifest-version=3' not in self.FakePopen.get_args()
             assert '--max-manifest-version=2' in self.FakePopen.get_args()
@@ -446,9 +440,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
         with mock.patch('olympia.devhub.tasks.subprocess') as subprocess_mock:
             subprocess_mock.Popen = self.FakePopen
 
-            tasks.run_addons_linter(
-                path=self.valid_path, channel=amo.CHANNEL_LISTED
-            )
+            tasks.run_addons_linter(path=self.valid_path, channel=amo.CHANNEL_LISTED)
 
             assert '--max-manifest-version=3' in self.FakePopen.get_args()
             assert '--max-manifest-version=2' not in self.FakePopen.get_args()
@@ -458,9 +450,7 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
         assert result.get('errors') == 0
 
         # double check v2 manifests still work
-        result = tasks.run_addons_linter(
-            self.valid_path, channel=amo.CHANNEL_LISTED
-        )
+        result = tasks.run_addons_linter(self.valid_path, channel=amo.CHANNEL_LISTED)
         assert result.get('errors') == 0
 
 

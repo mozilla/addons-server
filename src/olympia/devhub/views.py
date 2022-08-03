@@ -464,10 +464,7 @@ def cancel(request, addon_id, addon, channel):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     latest_version = addon.find_latest_version(channel=channel)
     if latest_version:
-        if (
-            addon.status == amo.STATUS_NOMINATED
-            and channel == amo.CHANNEL_LISTED
-        ):
+        if addon.status == amo.STATUS_NOMINATED and channel == amo.CHANNEL_LISTED:
             addon.update(status=amo.STATUS_NULL)
             ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
         if latest_version.file.status == amo.STATUS_AWAITING_REVIEW:

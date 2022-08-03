@@ -414,12 +414,9 @@ class TestAddonModels(TestCase):
             addon=addon, version='3.0', channel=amo.CHANNEL_UNLISTED
         )
 
+        assert addon.find_latest_version(channel=amo.CHANNEL_LISTED) == new_version
         assert (
-            addon.find_latest_version(channel=amo.CHANNEL_LISTED) == new_version
-        )
-        assert (
-            addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
-            == unlisted_version
+            addon.find_latest_version(channel=amo.CHANNEL_UNLISTED) == unlisted_version
         )
 
     def test_find_latest_version_no_version(self):
@@ -463,26 +460,18 @@ class TestAddonModels(TestCase):
         v1 = version_factory(addon=addon, version='1.0')
         v1.update(created=self.days_ago(3))
 
-        assert (
-            addon.find_latest_version(amo.CHANNEL_LISTED, exclude=()).id
-            == v1.id
-        )
+        assert addon.find_latest_version(amo.CHANNEL_LISTED, exclude=()).id == v1.id
 
         v2 = version_factory(
             addon=addon, version='2.0', file_kw={'status': amo.STATUS_DISABLED}
         )
         v2.update(created=self.days_ago(1))
 
-        version_factory(
-            addon=addon, version='4.0', channel=amo.CHANNEL_UNLISTED
-        )
+        version_factory(addon=addon, version='4.0', channel=amo.CHANNEL_UNLISTED)
 
         # Should be v2 since we don't exclude anything, but do have a channel
         # set to listed, and version 4.0 is unlisted.
-        assert (
-            addon.find_latest_version(amo.CHANNEL_LISTED, exclude=()).id
-            == v2.id
-        )
+        assert addon.find_latest_version(amo.CHANNEL_LISTED, exclude=()).id == v2.id
 
     def test_current_version_unsaved(self):
         addon = Addon()
@@ -1884,9 +1873,7 @@ class TestShouldRedirectToSubmitFlow(TestCase):
 class TestHasListedAndUnlistedVersions(TestCase):
     def setUp(self):
         self.addon = addon_factory()
-        latest_version = self.addon.find_latest_version(
-            channel=amo.CHANNEL_LISTED
-        )
+        latest_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         latest_version.delete(hard=True)
         assert self.addon.versions.count() == 0
 
@@ -1917,17 +1904,13 @@ class TestHasListedAndUnlistedVersions(TestCase):
         assert self.addon.has_listed_versions()
 
     def test_has_listed_versions_soft_delete(self):
-        version_factory(
-            channel=amo.CHANNEL_LISTED, addon=self.addon, deleted=True
-        )
+        version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon, deleted=True)
         version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon)
         assert not self.addon.has_listed_versions()
         assert self.addon.has_listed_versions(include_deleted=True)
 
     def test_has_unlisted_versions_soft_delete(self):
-        version_factory(
-            channel=amo.CHANNEL_UNLISTED, addon=self.addon, deleted=True
-        )
+        version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon, deleted=True)
         version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon)
         assert not self.addon.has_unlisted_versions()
         assert self.addon.has_unlisted_versions(include_deleted=True)
@@ -2154,9 +2137,7 @@ class TestAddonGetURLPath(TestCase):
         assert addon.get_url_path() == '/en-US/firefox/addon/woo/'
 
     def test_unlisted_addon_get_url_path(self):
-        addon = addon_factory(
-            slug='woo', version_kw={'channel': amo.CHANNEL_UNLISTED}
-        )
+        addon = addon_factory(slug='woo', version_kw={'channel': amo.CHANNEL_UNLISTED})
         assert addon.get_url_path() == ''
 
 

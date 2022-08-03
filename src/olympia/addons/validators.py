@@ -124,10 +124,7 @@ class AddonMetadataValidator:
         return upload.channel if upload else None
 
     def __call__(self, data, serializer):
-        if (
-            not serializer.partial
-            and self.get_channel(data) == amo.CHANNEL_LISTED
-        ):
+        if not serializer.partial and self.get_channel(data) == amo.CHANNEL_LISTED:
             # Check that the required metadata is set for an addon with listed versions
             addon_data = self.get_addon_data(serializer)
             # This is replicating what Addon.get_required_metadata does

@@ -321,10 +321,7 @@ class TestVersion(TestCase):
     def test_user_can_disable_addon_pending_version(self):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=False)
         (new_version, _) = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
-        assert (
-            self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
-            == new_version
-        )
+        assert self.addon.find_latest_version(channel=amo.CHANNEL_LISTED) == new_version
 
         response = self.client.post(self.disable_url)
         assert response.status_code == 302
@@ -336,10 +333,7 @@ class TestVersion(TestCase):
         new_version.file.reload()
         assert new_version.file.status == amo.STATUS_DISABLED
         # latest version should be reset when the file/version was disabled.
-        assert (
-            self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
-            != new_version
-        )
+        assert self.addon.find_latest_version(channel=amo.CHANNEL_LISTED) != new_version
 
         entry = ActivityLog.objects.latest('pk')
         assert entry.action == amo.LOG.USER_DISABLE.id
@@ -559,9 +553,7 @@ class TestVersion(TestCase):
 
     def test_in_submission_can_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
-        latest_version = self.addon.find_latest_version(
-            channel=amo.CHANNEL_LISTED
-        )
+        latest_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         latest_version.file.update(status=amo.STATUS_DISABLED)
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         doc = pq(self.client.get(self.url).content)
@@ -572,9 +564,7 @@ class TestVersion(TestCase):
 
     def test_reviewed_cannot_request_review(self):
         self.addon.update(status=amo.STATUS_NULL)
-        latest_version = self.addon.find_latest_version(
-            channel=amo.CHANNEL_LISTED
-        )
+        latest_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         latest_version.file.update(
             reviewed=datetime.datetime.now(), status=amo.STATUS_DISABLED
         )

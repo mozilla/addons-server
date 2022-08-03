@@ -218,9 +218,7 @@ class TestFixAddonsLinterOutput(TestCase):
             ],
         }
 
-        fixed = utils.fix_addons_linter_output(
-            original_output, amo.CHANNEL_LISTED
-        )
+        fixed = utils.fix_addons_linter_output(original_output, amo.CHANNEL_LISTED)
 
         assert fixed['success']
         assert fixed['warnings'] == 4
@@ -622,9 +620,7 @@ class TestCreateVersionForUpload(UploadMixin, TestCase):
         assert not self.mocks['Version.from_upload'].called
 
         # But the newer one will.
-        utils.create_version_for_upload(
-            self.addon, newer_upload, amo.CHANNEL_LISTED
-        )
+        utils.create_version_for_upload(self.addon, newer_upload, amo.CHANNEL_LISTED)
         self.mocks['Version.from_upload'].assert_called_with(
             newer_upload,
             self.addon,
