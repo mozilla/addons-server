@@ -14,7 +14,12 @@ from olympia.addons.tasks import (
     recreate_theme_previews,
 )
 from olympia.blocklist.models import Block
-from olympia.constants.base import _ADDON_PERSONA, _ADDON_THEME, _ADDON_WEBAPP
+from olympia.constants.base import (
+    _ADDON_PERSONA,
+    _ADDON_PLUGIN,
+    _ADDON_THEME,
+    _ADDON_WEBAPP,
+)
 from olympia.amo.management import ProcessObjectsCommand
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -132,7 +137,7 @@ class Command(ProcessObjectsCommand):
                         type__in=(
                             _ADDON_THEME,
                             amo.ADDON_LPADDON,
-                            amo.ADDON_PLUGIN,
+                            _ADDON_PLUGIN,
                             _ADDON_PERSONA,
                             _ADDON_WEBAPP,
                         )

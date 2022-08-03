@@ -304,10 +304,7 @@ class ReviewerScore(ModelBase):
             else:
                 queue = ''
 
-            if (
-                addon.type in [amo.ADDON_EXTENSION, amo.ADDON_PLUGIN, amo.ADDON_API]
-                and queue
-            ):
+            if addon.type in [amo.ADDON_EXTENSION, amo.ADDON_API] and queue:
                 reviewed_score_name = 'REVIEWED_ADDON_%s' % queue
             elif addon.type == amo.ADDON_DICT and queue:
                 reviewed_score_name = 'REVIEWED_DICT_%s' % queue

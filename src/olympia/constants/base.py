@@ -107,12 +107,12 @@ AUTHOR_CHOICES_UNFILTERED = AUTHOR_CHOICES + ((AUTHOR_ROLE_DELETED, _('(Deleted)
 # Addon types
 ADDON_ANY = 0
 ADDON_EXTENSION = 1
-_ADDON_THEME = 2
+_ADDON_THEME = 2  # Deprecated.  XUL Theme.
 ADDON_DICT = 3
-_ADDON_SEARCH = 4  # Deprecated (Opensearch).
+_ADDON_SEARCH = 4  # Deprecated.  Opensearch.
 ADDON_LPAPP = 5
 ADDON_LPADDON = 6
-ADDON_PLUGIN = 7
+_ADDON_PLUGIN = 7  # Deprecated.  Binary plugin, e.g. Flash.
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
 _ADDON_PERSONA = 9  # Deprecated.  Aka Lightweight Themes.
 ADDON_STATICTHEME = 10
@@ -129,10 +129,10 @@ ADDON_TYPE = {
     ADDON_EXTENSION: _('Extension'),
     _ADDON_THEME: _('Deprecated Complete Theme'),
     ADDON_DICT: _('Dictionary'),
-    _ADDON_SEARCH: _('Search Engine'),
+    _ADDON_SEARCH: _('Deprecated Search Engine'),
     ADDON_LPAPP: _('Language Pack (Application)'),
     ADDON_LPADDON: _('Language Pack (Add-on)'),
-    ADDON_PLUGIN: _('Plugin'),
+    _ADDON_PLUGIN: _('Deprecated Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
     ADDON_SITE_PERMISSION: _('Site Permission'),
@@ -143,10 +143,10 @@ ADDON_TYPES = {
     ADDON_EXTENSION: _('Extensions'),
     _ADDON_THEME: _('Deprecated Complete Themes'),
     ADDON_DICT: _('Dictionaries'),
-    _ADDON_SEARCH: _('Search Tools'),
+    _ADDON_SEARCH: _('Deprecated Search Tools'),
     ADDON_LPAPP: _('Language Packs (Application)'),
     ADDON_LPADDON: _('Language Packs (Add-on)'),
-    ADDON_PLUGIN: _('Plugins'),
+    _ADDON_PLUGIN: _('Deprecated Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
     ADDON_SITE_PERMISSION: _('Site Permissions'),

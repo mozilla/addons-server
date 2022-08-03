@@ -6,7 +6,6 @@ from .base import (
     ADDON_DICT,
     ADDON_EXTENSION,
     ADDON_LPAPP,
-    ADDON_PLUGIN,
     ADDON_STATICTHEME,
     DEFAULT_WEBEXT_MIN_VERSION,
     DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
@@ -28,7 +27,7 @@ class FIREFOX(App):
     short = 'firefox'
     pretty = _('Firefox')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN, ADDON_STATICTHEME]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_STATICTHEME]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.
@@ -61,7 +60,7 @@ class SEAMONKEY(App):
     shortername = 'sm'
     pretty = _('SeaMonkey')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
     min_display_version = 1.0
     exclude_versions = (1.5,)
@@ -144,7 +143,7 @@ class MOZILLA(App):
     shortername = 'mz'
     pretty = _('Mozilla')
     browser = True
-    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP, ADDON_PLUGIN]
+    types = [ADDON_EXTENSION, ADDON_DICT, ADDON_LPAPP]
     guid = '{86c18b42-e466-45a9-ae7a-9b95ba6f5640}'
 
 
