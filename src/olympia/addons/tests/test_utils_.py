@@ -298,6 +298,7 @@ class TestRestrictionChecker(TestCase):
             user=self.request.user,
             ip_address='10.0.0.2',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -317,6 +318,7 @@ class TestRestrictionChecker(TestCase):
             user=self.request.user,
             ip_address='10.0.0.2',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         incr_mock.reset_mock()
         checker = RestrictionChecker(upload=upload)
@@ -375,6 +377,7 @@ class TestRestrictionChecker(TestCase):
             user=self.request.user,
             ip_address='10.0.0.2',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         checker = RestrictionChecker(upload=upload)
         with ExitStack() as stack:
@@ -513,7 +516,7 @@ class TestSitePermissionVersionCreator(TestCase):
         addon.reload()
         file_.reload()
         assert version.pk
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.channel == amo.CHANNEL_UNLISTED
         assert version.version == '1.0'
         assert sorted(
             version.installorigin_set.all().values_list('origin', flat=True)
@@ -583,7 +586,7 @@ class TestSitePermissionVersionCreator(TestCase):
         addon.reload()
         file_.reload()
         assert version.pk
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.channel == amo.CHANNEL_UNLISTED
         assert version.version == '2.0'
         assert sorted(
             version.installorigin_set.all().values_list('origin', flat=True)

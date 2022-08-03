@@ -75,7 +75,7 @@ class TestPrimaryHeroShelfSerializer(TestCase):
         addon = addon_factory(
             summary='Summary',
             homepage='https://foo.baa',
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
         hero = PrimaryHero.objects.create(
             promoted_addon=PromotedAddon.objects.create(addon=addon),

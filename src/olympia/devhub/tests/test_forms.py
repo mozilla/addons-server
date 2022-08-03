@@ -42,6 +42,7 @@ class TestNewUploadForm(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
+            channel=amo.CHANNEL_LISTED,
         )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
@@ -68,6 +69,7 @@ class TestNewUploadForm(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
+            channel=amo.CHANNEL_LISTED,
         )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
@@ -97,6 +99,7 @@ class TestNewUploadForm(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
+            channel=amo.CHANNEL_LISTED,
         )
         data = {'upload': upload.uuid}
         request = req_factory_factory('/', post=True, data=data)
@@ -121,6 +124,7 @@ class TestNewUploadForm(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
+            channel=amo.CHANNEL_LISTED,
         )
         upload = FileUpload.objects.create(
             valid=False,
@@ -128,6 +132,7 @@ class TestNewUploadForm(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
+            channel=amo.CHANNEL_LISTED,
         )
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
@@ -169,6 +174,7 @@ class TestNewUploadForm(TestCase):
             user=user_factory(),
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
+            channel=amo.CHANNEL_LISTED,
         )
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
@@ -206,6 +212,7 @@ class TestNewUploadForm(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
+            channel=amo.CHANNEL_LISTED,
         )
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
         request = req_factory_factory('/', post=True, data=data)
@@ -256,6 +263,7 @@ class TestNewUploadForm(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.64',
+            channel=amo.CHANNEL_LISTED,
         )
         addon = Addon.objects.create()
         data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}

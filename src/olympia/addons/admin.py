@@ -256,10 +256,10 @@ class AddonAdmin(admin.ModelAdmin):
         # sub_qs = Version.unfiltered.filter(addon=OuterRef('pk')).values_list('id')
         # (...).annotate(
         #     _unlisted_versions_exists=Exists(
-        #         sub_qs.filter(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        #         sub_qs.filter(channel=amo.CHANNEL_UNLISTED)
         #     ),
         #     _listed_versions_exists=Exists(
-        #         sub_qs.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        #         sub_qs.filter(channel=amo.CHANNEL_LISTED)
         #     ),
         # )
         # But while this works, the subquery is a lot less optimized (it does a full
@@ -278,8 +278,8 @@ class AddonAdmin(admin.ModelAdmin):
                 '_listed_versions_exists': subquery,
             },
             'select_params': (
-                amo.RELEASE_CHANNEL_UNLISTED,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_UNLISTED,
+                amo.CHANNEL_LISTED,
             ),
         }
         return (

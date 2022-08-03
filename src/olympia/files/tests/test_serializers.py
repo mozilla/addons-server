@@ -5,6 +5,7 @@ from django.conf import settings
 from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
+from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.reverse import reverse
 
@@ -20,7 +21,7 @@ class TestFileUploadSerializer(TestCase):
         self.request.version = api_version
 
     def test_basic(self):
-        file_upload = FileUpload(version='123', automated_signing=True)
+        file_upload = FileUpload(version='123', channel=amo.CHANNEL_UNLISTED)
         data = FileUploadSerializer(
             instance=file_upload, context={'request': self.request}
         ).data
@@ -40,7 +41,7 @@ class TestFileUploadSerializer(TestCase):
         }
 
         file_upload.update(
-            automated_signing=False,
+            channel=amo.CHANNEL_LISTED,
             validation=json.dumps([{'something': 'happened'}]),
         )
         data = FileUploadSerializer(

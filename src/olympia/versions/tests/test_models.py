@@ -106,7 +106,7 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
             file_kw={'strict_compatibility': True},
             min_app_version='58.0',
             max_app_version='58.*',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         version_factory(
             addon=compatible_pack2,
@@ -181,7 +181,7 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
             addon=incompatible_pack3,
             min_app_version='58.0',
             max_app_version='58.*',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'strict_compatibility': True},
         )
 
@@ -435,7 +435,7 @@ class TestVersion(TestCase):
 
     def test_version_delete_unlisted(self):
         version = Version.objects.get(pk=81551)
-        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version.update(channel=amo.CHANNEL_UNLISTED)
         self.test_version_delete()
 
     def test_version_hard_delete(self):
@@ -608,7 +608,7 @@ class TestVersion(TestCase):
 
         del version.is_ready_for_auto_approval
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        version.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        version.update(channel=amo.CHANNEL_LISTED)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -657,7 +657,7 @@ class TestVersion(TestCase):
         # Test with an unlisted version. Note that it's the only version, so
         # the add-on status is reset to STATUS_NULL at this point.
         del version.is_ready_for_auto_approval
-        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version.update(channel=amo.CHANNEL_UNLISTED)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -716,7 +716,7 @@ class TestVersion(TestCase):
 
         del version.is_ready_for_auto_approval
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        version.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        version.update(channel=amo.CHANNEL_LISTED)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Test it.
@@ -773,7 +773,7 @@ class TestVersion(TestCase):
         # Test with an unlisted version. Note that it's the only version, so
         # the add-on status is reset to STATUS_NULL at this point.
         del version.is_ready_for_auto_approval
-        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version.update(channel=amo.CHANNEL_UNLISTED)
         # Ensure the cached_property has not been set yet
         assert 'is_ready_for_auto_approval' not in version.__dict__
         # Set it.
@@ -1342,7 +1342,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1358,7 +1358,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
@@ -1371,7 +1371,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
@@ -1381,7 +1381,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1395,7 +1395,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
@@ -1406,7 +1406,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
@@ -1417,7 +1417,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
@@ -1434,7 +1434,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version = Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
@@ -1472,7 +1472,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1483,7 +1483,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1497,7 +1497,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1508,7 +1508,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
@@ -1522,7 +1522,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             compatibility={
                 amo.FIREFOX: ApplicationsVersions(application=amo.FIREFOX.id)
             },
@@ -1538,7 +1538,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             compatibility={
                 amo.ANDROID: ApplicationsVersions(
                     application=amo.ANDROID.id,
@@ -1570,7 +1570,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version = Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=parsed_data,
             )
@@ -1599,7 +1599,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
@@ -1610,7 +1610,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
@@ -1626,7 +1626,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
@@ -1654,7 +1654,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1687,7 +1687,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1715,7 +1715,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1741,7 +1741,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1762,7 +1762,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1777,7 +1777,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1796,7 +1796,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1812,7 +1812,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1827,7 +1827,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1842,7 +1842,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1858,7 +1858,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_UNLISTED,
+            amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -1873,7 +1873,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_UNLISTED,
+            amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
@@ -1886,7 +1886,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_UNLISTED,
+            amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
@@ -1907,7 +1907,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_UNLISTED,
+            amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
             parsed_data=parsed_data,
         )
@@ -1928,7 +1928,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             Version.from_upload(
                 self.upload,
                 self.addon,
-                amo.RELEASE_CHANNEL_UNLISTED,
+                amo.CHANNEL_UNLISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=parsed_data,
             )
@@ -1957,7 +1957,7 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
             version = Version.from_upload(
                 upload,
                 addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[amo.FIREFOX.id],
                 parsed_data=parsed_data,
             )
@@ -1977,7 +1977,7 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
             version = Version.from_upload(
                 upload,
                 addon,
-                amo.RELEASE_CHANNEL_LISTED,
+                amo.CHANNEL_LISTED,
                 selected_apps=[amo.FIREFOX.id],
                 parsed_data=parsed_data,
             )
@@ -2004,7 +2004,7 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
                 Version.from_upload(
                     upload,
                     addon,
-                    amo.RELEASE_CHANNEL_LISTED,
+                    amo.CHANNEL_LISTED,
                     selected_apps=[amo.FIREFOX.id],
                     parsed_data=parsed_data,
                 )
@@ -2024,7 +2024,7 @@ class TestStatusFromUpload(TestVersionFromUpload):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
@@ -2046,7 +2046,7 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
         version = Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_UNLISTED,
+            amo.CHANNEL_UNLISTED,
             selected_apps=[amo.FIREFOX.id],
             parsed_data=parsed_data,
         )
@@ -2087,7 +2087,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[],
             parsed_data=parsed_data,
         )
@@ -2100,7 +2100,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[],
             parsed_data=parsed_data,
         )
@@ -2119,7 +2119,7 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
         Version.from_upload(
             self.upload,
             self.addon,
-            amo.RELEASE_CHANNEL_LISTED,
+            amo.CHANNEL_LISTED,
             selected_apps=[],
             parsed_data=parsed_data,
         )

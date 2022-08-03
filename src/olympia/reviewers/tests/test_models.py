@@ -47,7 +47,7 @@ class TestReviewerSubscription(TestCase):
         self.addon = addon_factory(name='SubscribingTest')
         self.listed_version = version_factory(addon=self.addon)
         self.unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
 
         self.listed_reviewer = user_factory(email='listed@reviewer')
@@ -60,7 +60,7 @@ class TestReviewerSubscription(TestCase):
         ReviewerSubscription.objects.create(
             addon=self.addon,
             user=self.listed_reviewer,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
         )
 
         self.unlisted_reviewer = user_factory(email='unlisted@reviewer')
@@ -73,7 +73,7 @@ class TestReviewerSubscription(TestCase):
         ReviewerSubscription.objects.create(
             addon=self.addon,
             user=self.unlisted_reviewer,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
 
         self.admin_reviewer = user_factory(email='admin@reviewer')
@@ -100,7 +100,7 @@ class TestReviewerSubscription(TestCase):
         ReviewerSubscription.objects.create(
             addon=self.addon,
             user=another_listed_reviewer,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
         )
 
         send_notifications(sender=Version, instance=self.listed_version)
@@ -137,7 +137,7 @@ class TestReviewerSubscription(TestCase):
         ReviewerSubscription.objects.create(
             addon=self.addon,
             user=self.listed_reviewer,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
         # No email should be sent since the reviewer does not have access
@@ -150,7 +150,7 @@ class TestReviewerSubscription(TestCase):
         ReviewerSubscription.objects.create(
             addon=self.addon,
             user=self.admin_reviewer,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
         )
         version_uploaded.send(sender=Version, instance=self.listed_version)
         assert len(mail.outbox) == 2
@@ -167,7 +167,7 @@ class TestReviewerSubscription(TestCase):
         ReviewerSubscription.objects.create(
             addon=self.addon,
             user=self.admin_reviewer,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
         assert len(mail.outbox) == 2
@@ -184,12 +184,12 @@ class TestReviewerSubscription(TestCase):
         ReviewerSubscription.objects.create(
             addon=self.addon,
             user=self.admin_reviewer,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
         )
         ReviewerSubscription.objects.create(
             addon=self.addon,
             user=self.admin_reviewer,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         version_uploaded.send(sender=Version, instance=self.listed_version)
         version_uploaded.send(sender=Version, instance=self.unlisted_version)
@@ -1567,13 +1567,13 @@ class TestAutoApprovalSummary(TestCase):
         )
 
         # The auto_approval_disabled flag only applies to listed.
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
 
     def test_check_has_auto_approval_disabled_unlisted(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
@@ -1589,7 +1589,7 @@ class TestAutoApprovalSummary(TestCase):
         )
 
         # The auto_approval_disabled_unlisted flag only applies to unlisted.
-        self.version.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        self.version.update(channel=amo.CHANNEL_LISTED)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
@@ -1610,13 +1610,13 @@ class TestAutoApprovalSummary(TestCase):
         )
 
         # That flag only applies to listed.
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
 
     def test_check_has_auto_approval_disabled_until_next_approval_unlisted(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
@@ -1631,7 +1631,7 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is True
         )
         # That flag only applies to unlisted.
-        self.version.update(channel=amo.RELEASE_CHANNEL_LISTED)
+        self.version.update(channel=amo.CHANNEL_LISTED)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
@@ -1659,7 +1659,7 @@ class TestAutoApprovalSummary(TestCase):
         )
 
         # *That* flag applies to both listed and unlisted.
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is True
         )
@@ -1710,7 +1710,7 @@ class TestAutoApprovalSummary(TestCase):
         # Unlisted shouldn't be affected.
         self.version.update(
             nomination=datetime.now() - timedelta(hours=22),
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False

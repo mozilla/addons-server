@@ -27,6 +27,7 @@ class TestGC(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.8',
+            channel=amo.CHANNEL_LISTED,
         )
         fu_new.update(created=self.days_ago(6))
         fu_old = FileUpload.objects.create(
@@ -35,6 +36,7 @@ class TestGC(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.8',
+            channel=amo.CHANNEL_LISTED,
         )
         fu_old.update(created=self.days_ago(16))
 
@@ -52,6 +54,7 @@ class TestGC(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.8',
+            channel=amo.CHANNEL_LISTED,
         )
         fu_old.update(created=self.days_ago(16))
 
@@ -68,6 +71,7 @@ class TestGC(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.8',
+            channel=amo.CHANNEL_LISTED,
         )
         fu_older.update(created=self.days_ago(300))
         fu_old = FileUpload.objects.create(
@@ -76,6 +80,7 @@ class TestGC(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.8',
+            channel=amo.CHANNEL_LISTED,
         )
         fu_old.update(created=self.days_ago(16))
 
@@ -110,6 +115,7 @@ class TestGC(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.8',
+            channel=amo.CHANNEL_LISTED,
         )
         old_upload.update(created=self.days_ago(16))
 
@@ -119,6 +125,7 @@ class TestGC(TestCase):
             user=user,
             source=amo.UPLOAD_SOURCE_DEVHUB,
             ip_address='127.0.0.8',
+            channel=amo.CHANNEL_LISTED,
         )
         new_upload.update(created=self.days_ago(6))
 

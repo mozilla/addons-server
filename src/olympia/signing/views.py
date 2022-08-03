@@ -200,7 +200,7 @@ class VersionView(APIView):
 
         # channel will be ignored for new addons.
         if addon is None:
-            channel = amo.RELEASE_CHANNEL_UNLISTED  # New is always unlisted.
+            channel = amo.CHANNEL_UNLISTED  # New is always unlisted.
             addon = Addon.initialize_addon_from_upload(
                 data=parsed_data, upload=filedata, channel=channel, user=request.user
             )
@@ -214,16 +214,16 @@ class VersionView(APIView):
                 if last_version:
                     channel = last_version.channel
                 else:
-                    channel = amo.RELEASE_CHANNEL_UNLISTED  # Treat as new.
+                    channel = amo.CHANNEL_UNLISTED  # Treat as new.
 
-            if addon.disabled_by_user and channel == amo.RELEASE_CHANNEL_LISTED:
+            if addon.disabled_by_user and channel == amo.CHANNEL_LISTED:
                 msg = gettext(
                     'You cannot add listed versions to an add-on set to '
                     '"Invisible" state.'
                 )
                 raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
 
-            will_have_listed = channel == amo.RELEASE_CHANNEL_LISTED
+            will_have_listed = channel == amo.CHANNEL_LISTED
             if not addon.has_complete_metadata(has_listed_versions=will_have_listed):
                 raise forms.ValidationError(
                     gettext(

@@ -283,6 +283,7 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
             user=user_factory(),
             ip_address='1.2.3.4',
             source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
 
     def create_customs_result(self):

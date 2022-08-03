@@ -139,7 +139,7 @@ class RecalculateWeightTestCase(TestCase):
         version_factory(
             addon=auto_approved_addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
-        version_factory(addon=auto_approved_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=auto_approved_addon, channel=amo.CHANNEL_UNLISTED)
 
         with count_subtask_calls(
             process_addons.recalculate_post_review_weight

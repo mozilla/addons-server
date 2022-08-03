@@ -86,7 +86,7 @@ class Update:
         data = self.data
 
         data['STATUS_APPROVED'] = base.STATUS_APPROVED
-        data['RELEASE_CHANNEL_LISTED'] = base.RELEASE_CHANNEL_LISTED
+        data['CHANNEL_LISTED'] = base.CHANNEL_LISTED
 
         sql = [
             """
@@ -126,7 +126,7 @@ class Update:
                 ON `curfile`.`version_id` = `curver`.`id`
             WHERE
                 `versions`.`deleted` = 0
-                AND `versions`.`channel` = %(RELEASE_CHANNEL_LISTED)s
+                AND `versions`.`channel` = %(CHANNEL_LISTED)s
                 AND `files`.`status` = %(STATUS_APPROVED)s
                 AND `appmin`.`version_int` <= %(version_int)s
         """

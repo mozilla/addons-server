@@ -624,7 +624,7 @@ class TestRunYaraQueryRule(TestCase):
             # Unlisted webextension version of this add-on.
             addon_factory(
                 disabled_by_user=True,  # Doesn't matter.
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
                 file_kw={'filename': 'webextension.xpi'},
             ).versions.get(),
             # Unlisted webextension version of an add-on that has multiple
@@ -632,7 +632,7 @@ class TestRunYaraQueryRule(TestCase):
             version_factory(
                 addon=other_addon,
                 created=self.days_ago(42),
-                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                channel=amo.CHANNEL_UNLISTED,
                 file_kw={'filename': 'webextension.xpi'},
             ),
             # Listed webextension versions of an add-on that has multiple

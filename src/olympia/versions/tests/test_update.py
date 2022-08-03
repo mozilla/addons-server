@@ -271,7 +271,7 @@ class TestUpdate(TestCase):
             min_app_version='58.0',
             max_app_version='*',
             version='1.1',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'hash': 'fakehash1.1'},
         )
         # The newer version is unlisted, so it won't be picked up.

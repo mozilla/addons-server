@@ -97,7 +97,7 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
             user=request.user,
         )
 
-        devhub_tasks.validate(upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED))
+        devhub_tasks.validate(upload, listed=(channel == amo.CHANNEL_LISTED))
         headers = self.get_success_headers({})
         data = self.get_serializer(instance=upload).data
         return Response(data, status=status.HTTP_201_CREATED, headers=headers)

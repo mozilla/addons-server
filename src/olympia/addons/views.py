@@ -519,7 +519,7 @@ class AddonVersionViewSet(
         ).has_object_permission(request, self, obj):
             raise http.Http404
 
-        if obj.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if obj.channel == amo.CHANNEL_UNLISTED:
             # If the instance is unlisted, only allow unlisted reviewers and
             # authors..
             self.permission_classes = [
@@ -569,10 +569,10 @@ class AddonVersionViewSet(
         elif requested == 'all_with_unlisted':
             queryset = addon.versions.all()
         elif requested == 'all_without_unlisted':
-            queryset = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+            queryset = addon.versions.filter(channel=amo.CHANNEL_LISTED)
         else:
             queryset = addon.versions.filter(
-                file__status=amo.STATUS_APPROVED, channel=amo.RELEASE_CHANNEL_LISTED
+                file__status=amo.STATUS_APPROVED, channel=amo.CHANNEL_LISTED
             )
         queryset = queryset.select_related('file___webext_permissions')
         if (
@@ -1116,7 +1116,7 @@ class LanguageToolsView(ListAPIView):
                 versions__apps__application=application,
                 versions__apps__min__version_int__lte=appversions['min'],
                 versions__apps__max__version_int__gte=appversions['max'],
-                versions__channel=amo.RELEASE_CHANNEL_LISTED,
+                versions__channel=amo.CHANNEL_LISTED,
                 versions__file__status=amo.STATUS_APPROVED,
             )
             .distinct()

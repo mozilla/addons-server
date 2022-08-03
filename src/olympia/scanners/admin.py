@@ -398,7 +398,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                         args=[
                             (
                                 'listed'
-                                if obj.version.channel == amo.RELEASE_CHANNEL_LISTED
+                                if obj.version.channel == amo.CHANNEL_LISTED
                                 else 'unlisted'
                             ),
                             obj.version.addon.id,
@@ -817,7 +817,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
                         args=[
                             (
                                 'listed'
-                                if obj.version.channel == amo.RELEASE_CHANNEL_LISTED
+                                if obj.version.channel == amo.CHANNEL_LISTED
                                 else 'unlisted'
                             ),
                             obj.version.addon.id,

@@ -35,9 +35,7 @@ class TestActivityLogToken(TestCase):
     def setUp(self):
         super().setUp()
         self.addon = addon_factory()
-        self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        )
+        self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.version.update(created=self.days_ago(1))
         self.user = user_factory()
         self.token = ActivityLogToken.objects.create(
@@ -59,7 +57,7 @@ class TestActivityLogToken(TestCase):
         assert self.token.is_expired()
         # But the version is still the latest version.
         assert self.version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
+            channel=amo.CHANNEL_LISTED
         )
         assert not self.token.is_valid()
 
@@ -73,16 +71,16 @@ class TestActivityLogToken(TestCase):
         assert token_from_db.use_count == 1
 
     def test_validity_version_out_of_date(self):
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
         # The token isn't expired.
         assert not self.token.is_expired()
         # But is invalid, because the version isn't the latest version.
         assert not self.token.is_valid()
 
     def test_validity_still_valid_if_new_version_in_different_channel(self):
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
         assert self.version == self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
+            channel=amo.CHANNEL_LISTED
         )
 
         # The token isn't expired.

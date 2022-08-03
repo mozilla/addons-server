@@ -617,7 +617,7 @@ class LicenseForm(AMOModelForm):
             # creative commons licenses don't have an 'other' option.
             cs.append((License.OTHER, gettext('Other')))
         self.fields['builtin'].choices = cs
-        if self.version and self.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
             self.fields['builtin'].required = False
 
     class Meta:

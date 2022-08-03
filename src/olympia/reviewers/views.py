@@ -546,9 +546,7 @@ def determine_channel(channel_as_text):
     else:
         content_review = False
     # channel is passed in as text, but we want the constant.
-    channel = amo.CHANNEL_CHOICES_LOOKUP.get(
-        channel_as_text, amo.RELEASE_CHANNEL_LISTED
-    )
+    channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_as_text, amo.CHANNEL_LISTED)
     return channel, content_review
 
 
@@ -567,9 +565,8 @@ def review(request, addon, channel=None):
 
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?
-    unlisted_only = (
-        channel == amo.RELEASE_CHANNEL_UNLISTED
-        or not addon.has_listed_versions(include_deleted=True)
+    unlisted_only = channel == amo.CHANNEL_UNLISTED or not addon.has_listed_versions(
+        include_deleted=True
     )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
@@ -577,7 +574,7 @@ def review(request, addon, channel=None):
     # Are we looking at a listed review page while only having content review
     # permissions ? Redirect to content review page, it will be more useful.
     if (
-        channel == amo.RELEASE_CHANNEL_LISTED
+        channel == amo.CHANNEL_LISTED
         and content_review is False
         and acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW)
         and not acl.is_reviewer(request.user, addon, allow_content_reviewers=False)
@@ -643,7 +640,7 @@ def review(request, addon, channel=None):
         ),
         5,
     ).page(1)
-    if channel == amo.RELEASE_CHANNEL_LISTED and is_static_theme:
+    if channel == amo.CHANNEL_LISTED and is_static_theme:
         redirect_url = reverse(f'reviewers.queue_{form.helper.handler.review_type}')
     else:
         channel_arg = (
@@ -728,7 +725,7 @@ def review(request, addon, channel=None):
     )
     approvals_info = None
     if (
-        channel == amo.RELEASE_CHANNEL_LISTED
+        channel == amo.CHANNEL_LISTED
         and addon.current_version
         and addon.current_version.was_auto_approved
     ):
@@ -843,7 +840,7 @@ def review(request, addon, channel=None):
         latest_not_disabled_version=latest_not_disabled_version,
         latest_version_is_unreviewed_and_not_pending_rejection=(
             version
-            and version.channel == amo.RELEASE_CHANNEL_LISTED
+            and version.channel == amo.CHANNEL_LISTED
             and version.is_unreviewed
             and not version.pending_rejection
         ),
@@ -855,12 +852,12 @@ def review(request, addon, channel=None):
         reports=reports,
         session_id=request.session.session_key,
         subscribed_listed=ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
         ).exists(),
         subscribed_unlisted=ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
         ).exists(),
-        unlisted=(channel == amo.RELEASE_CHANNEL_UNLISTED),
+        unlisted=(channel == amo.CHANNEL_UNLISTED),
         user_ratings=user_ratings,
         version=version,
         versions_flagged_by_scanners_other=versions_flagged_by_scanners_other,
@@ -977,9 +974,7 @@ def reviewlog(request):
     if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         # Only display logs related to unlisted versions to users with the
         # right permission.
-        approvals = approvals.exclude(
-            versionlog__version__channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
+        approvals = approvals.exclude(versionlog__version__channel=amo.CHANNEL_UNLISTED)
     if not acl.is_listed_addons_reviewer(request.user):
         approvals = approvals.exclude(
             versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON
@@ -1032,9 +1027,8 @@ def whiteboard(request, addon, channel):
     channel_as_text = channel
     channel, content_review = determine_channel(channel)
 
-    unlisted_only = (
-        channel == amo.RELEASE_CHANNEL_UNLISTED
-        or not addon.has_listed_versions(include_deleted=True)
+    unlisted_only = channel == amo.CHANNEL_UNLISTED or not addon.has_listed_versions(
+        include_deleted=True
     )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
@@ -1141,7 +1135,7 @@ def download_git_stored_file(request, version_id, filename):
     except Addon.DoesNotExist:
         raise http.Http404
 
-    if version.channel == amo.RELEASE_CHANNEL_LISTED:
+    if version.channel == amo.CHANNEL_LISTED:
         is_owner = acl.check_addon_ownership(request.user, addon, allow_developer=True)
         if not (acl.is_reviewer(request.user, addon) or is_owner):
             raise PermissionDenied
@@ -1202,7 +1196,7 @@ class AddonReviewerViewSet(GenericViewSet):
     def subscribe_listed(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.get_or_create(
-            user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
         )
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -1218,7 +1212,7 @@ class AddonReviewerViewSet(GenericViewSet):
     def unsubscribe_listed(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
         ).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -1230,7 +1224,7 @@ class AddonReviewerViewSet(GenericViewSet):
     def subscribe_unlisted(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.get_or_create(
-            user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
         )
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -1242,7 +1236,7 @@ class AddonReviewerViewSet(GenericViewSet):
     def unsubscribe_unlisted(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
         ).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -1333,7 +1327,7 @@ class AddonReviewerViewSet(GenericViewSet):
     def json_file_validation(self, request, **kwargs):
         addon = get_object_or_404(Addon.unfiltered.id_or_slug(kwargs['pk']))
         file = get_object_or_404(File, version__addon=addon, id=kwargs['file_id'])
-        if file.version.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if file.version.channel == amo.CHANNEL_UNLISTED:
             if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
                 raise PermissionDenied
         elif not acl.is_reviewer(request.user, addon):
@@ -1370,7 +1364,7 @@ class ReviewAddonVersionMixin:
         )
 
         if not self.can_access_unlisted():
-            qs = qs.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+            qs = qs.filter(channel=amo.CHANNEL_LISTED)
 
         return qs
 

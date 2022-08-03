@@ -362,24 +362,24 @@ class TestAddonModels(TestCase):
     def test_latest_unlisted_version(self):
         addon = Addon.objects.get(pk=3615)
         an_unlisted_version = version_factory(
-            addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=addon, version='3.0', channel=amo.CHANNEL_UNLISTED
         )
         an_unlisted_version.update(created=self.days_ago(2))
         a_newer_unlisted_version = version_factory(
-            addon=addon, version='4.0', channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=addon, version='4.0', channel=amo.CHANNEL_UNLISTED
         )
         a_newer_unlisted_version.update(created=self.days_ago(1))
         version_factory(
             addon=addon,
             version='5.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
         assert addon.latest_unlisted_version == a_newer_unlisted_version
 
         # Make sure the property is cached.
         an_even_newer_unlisted_version = version_factory(
-            addon=addon, version='6.0', channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=addon, version='6.0', channel=amo.CHANNEL_UNLISTED
         )
         assert addon.latest_unlisted_version == a_newer_unlisted_version
 
@@ -401,7 +401,7 @@ class TestAddonModels(TestCase):
         new_version.update(created=self.days_ago(1))
         assert addon.find_latest_version(None) == new_version
         another_new_version = version_factory(
-            addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=addon, version='3.0', channel=amo.CHANNEL_UNLISTED
         )
         assert addon.find_latest_version(None) == another_new_version
 
@@ -411,15 +411,12 @@ class TestAddonModels(TestCase):
         new_version = version_factory(addon=addon, version='2.0')
         new_version.update(created=self.days_ago(1))
         unlisted_version = version_factory(
-            addon=addon, version='3.0', channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=addon, version='3.0', channel=amo.CHANNEL_UNLISTED
         )
 
+        assert addon.find_latest_version(channel=amo.CHANNEL_LISTED) == new_version
         assert (
-            addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED) == new_version
-        )
-        assert (
-            addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
-            == unlisted_version
+            addon.find_latest_version(channel=amo.CHANNEL_UNLISTED) == unlisted_version
         )
 
     def test_find_latest_version_no_version(self):
@@ -463,26 +460,18 @@ class TestAddonModels(TestCase):
         v1 = version_factory(addon=addon, version='1.0')
         v1.update(created=self.days_ago(3))
 
-        assert (
-            addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED, exclude=()).id
-            == v1.id
-        )
+        assert addon.find_latest_version(amo.CHANNEL_LISTED, exclude=()).id == v1.id
 
         v2 = version_factory(
             addon=addon, version='2.0', file_kw={'status': amo.STATUS_DISABLED}
         )
         v2.update(created=self.days_ago(1))
 
-        version_factory(
-            addon=addon, version='4.0', channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
+        version_factory(addon=addon, version='4.0', channel=amo.CHANNEL_UNLISTED)
 
         # Should be v2 since we don't exclude anything, but do have a channel
         # set to listed, and version 4.0 is unlisted.
-        assert (
-            addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED, exclude=()).id
-            == v2.id
-        )
+        assert addon.find_latest_version(amo.CHANNEL_LISTED, exclude=()).id == v2.id
 
     def test_current_version_unsaved(self):
         addon = Addon()
@@ -1319,7 +1308,7 @@ class TestAddonModels(TestCase):
 
     def test_can_request_review_rejected(self):
         addon = Addon.objects.get(pk=3615)
-        latest_version = addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
+        latest_version = addon.find_latest_version(amo.CHANNEL_LISTED)
         latest_version.file.update(
             status=amo.STATUS_DISABLED, reviewed=datetime.today()
         )
@@ -1884,9 +1873,7 @@ class TestShouldRedirectToSubmitFlow(TestCase):
 class TestHasListedAndUnlistedVersions(TestCase):
     def setUp(self):
         self.addon = addon_factory()
-        latest_version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        )
+        latest_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         latest_version.delete(hard=True)
         assert self.addon.versions.count() == 0
 
@@ -1895,18 +1882,18 @@ class TestHasListedAndUnlistedVersions(TestCase):
         assert not self.addon.has_unlisted_versions()
 
     def test_listed_version(self):
-        version_factory(channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
+        version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon)
         assert self.addon.has_listed_versions()
         assert not self.addon.has_unlisted_versions()
 
     def test_unlisted_version(self):
-        version_factory(channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
+        version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon)
         assert not self.addon.has_listed_versions()
         assert self.addon.has_unlisted_versions()
 
     def test_unlisted_and_listed_versions(self):
-        version_factory(channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
-        version_factory(channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
+        version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon)
+        version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon)
         assert self.addon.has_listed_versions()
         assert self.addon.has_unlisted_versions()
 
@@ -1917,18 +1904,14 @@ class TestHasListedAndUnlistedVersions(TestCase):
         assert self.addon.has_listed_versions()
 
     def test_has_listed_versions_soft_delete(self):
-        version_factory(
-            channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon, deleted=True
-        )
-        version_factory(channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon)
+        version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon, deleted=True)
+        version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon)
         assert not self.addon.has_listed_versions()
         assert self.addon.has_listed_versions(include_deleted=True)
 
     def test_has_unlisted_versions_soft_delete(self):
-        version_factory(
-            channel=amo.RELEASE_CHANNEL_UNLISTED, addon=self.addon, deleted=True
-        )
-        version_factory(channel=amo.RELEASE_CHANNEL_LISTED, addon=self.addon)
+        version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon, deleted=True)
+        version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon)
         assert not self.addon.has_unlisted_versions()
         assert self.addon.has_unlisted_versions(include_deleted=True)
 
@@ -2103,7 +2086,7 @@ class TestUpdateStatus(TestCase):
         addon.update_status()
         assert Addon.objects.get(pk=addon.pk).status == (amo.STATUS_APPROVED)
 
-        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        addon.current_version.update(channel=amo.CHANNEL_UNLISTED)
         # update_status will have been called via versions.models.update_status
         assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL
@@ -2139,7 +2122,7 @@ class TestGetVersion(TestCase):
     def test_should_be_listed(self):
         new_version = version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_APPROVED},
         )
         assert new_version != self.version
@@ -2154,9 +2137,7 @@ class TestAddonGetURLPath(TestCase):
         assert addon.get_url_path() == '/en-US/firefox/addon/woo/'
 
     def test_unlisted_addon_get_url_path(self):
-        addon = addon_factory(
-            slug='woo', version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}
-        )
+        addon = addon_factory(slug='woo', version_kw={'channel': amo.CHANNEL_UNLISTED})
         assert addon.get_url_path() == ''
 
 
@@ -2183,7 +2164,7 @@ class TestBackupVersion(TestCase):
 
     def test_current_version_listed_only(self):
         version = self.addon.current_version
-        version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version.update(channel=amo.CHANNEL_UNLISTED)
         # The call above should have triggerred update_version().
         assert self.addon.current_version != version
         # new current_version should be version 1.2.1, since 1.2.2 is unlisted.
@@ -2852,7 +2833,7 @@ class TestExtensionsQueues(TestCase):
         )
         unexpected_addons['addon_with_unlisted_pending_rejection'] = addon_factory(
             version_kw={
-                'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                'channel': amo.CHANNEL_UNLISTED,
             }
         )
         version_review_flags_factory(
@@ -2885,7 +2866,7 @@ class TestExtensionsQueues(TestCase):
         unexpected_addons['disabled_version_addon'] = addon_factory()
         version = version_factory(
             addon=unexpected_addons['disabled_version_addon'],
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
         version_review_flags_factory(version=version, needs_human_review_by_mad=True)
@@ -2926,7 +2907,7 @@ class TestExtensionsQueues(TestCase):
         )
         unexpected_addons['addon_with_unlisted_pending_rejection'] = addon_factory(
             version_kw={
-                'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                'channel': amo.CHANNEL_UNLISTED,
                 'needs_human_review': True,
             }
         )
@@ -2954,7 +2935,7 @@ class TestExtensionsQueues(TestCase):
         unexpected_addons['disabled_version_addon'] = addon_factory()
         version_factory(
             addon=unexpected_addons['disabled_version_addon'],
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             needs_human_review=True,
             file_kw={'status': amo.STATUS_DISABLED},
         )
@@ -2984,29 +2965,29 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
     def test_basic(self):
         # Shouldn't be in the queue:
         addon_factory()
-        addon_factory(version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
         addon_factory(
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         AddonReviewerFlags.objects.create(
             addon=addon_factory(
                 type=amo.ADDON_STATICTHEME,
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
             auto_approval_disabled_unlisted=True,
         )
         AddonReviewerFlags.objects.create(
             addon=addon_factory(
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
             auto_approval_disabled=True,
         )
         deleted_addon = AddonReviewerFlags.objects.create(
             addon=addon_factory(
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
             auto_approval_disabled_until_next_approval_unlisted=True,
@@ -3018,21 +2999,21 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
             AddonReviewerFlags.objects.create(
                 addon=version_factory(
                     addon=addon_factory(),
-                    channel=amo.RELEASE_CHANNEL_UNLISTED,
+                    channel=amo.CHANNEL_UNLISTED,
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                 ).addon,
                 auto_approval_disabled_unlisted=True,
             ).addon,
             AddonReviewerFlags.objects.create(
                 addon=addon_factory(
-                    version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                    version_kw={'channel': amo.CHANNEL_UNLISTED},
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                 ),
                 auto_approval_disabled_until_next_approval_unlisted=True,
             ).addon,
             AddonReviewerFlags.objects.create(
                 addon=addon_factory(
-                    version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                    version_kw={'channel': amo.CHANNEL_UNLISTED},
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                 ),
                 auto_approval_delayed_until=datetime.now() + timedelta(days=99),
@@ -3048,7 +3029,7 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         addon = AddonReviewerFlags.objects.create(
             addon=addon_factory(
                 version_kw={
-                    'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                    'channel': amo.CHANNEL_UNLISTED,
                     'created': self.days_ago(1),
                 },
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -3059,7 +3040,7 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         AutoApprovalSummary.objects.create(
             version=version_factory(
                 addon=addon,
-                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                channel=amo.CHANNEL_UNLISTED,
                 created=expected_first_created_date,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
@@ -3077,7 +3058,7 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         AutoApprovalSummary.objects.create(
             version=version_factory(
                 addon=addon,
-                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                channel=amo.CHANNEL_UNLISTED,
                 created=self.days_ago(98),
                 file_kw={'status': amo.STATUS_APPROVED},
             ),
@@ -3111,12 +3092,12 @@ class TestListedPendingManualApprovalQueue(TestCase):
         )
         addon_factory(
             status=amo.STATUS_NULL,
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         version_factory(
             addon=addon_factory(),
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         addon_factory(

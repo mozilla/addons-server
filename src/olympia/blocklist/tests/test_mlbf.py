@@ -41,7 +41,7 @@ class TestMLBF(TestCase):
         # one version, 0 - *, unlisted
         Block.objects.create(
             addon=addon_factory(
-                version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
                 file_kw={'is_signed': True},
             ),
             updated_by=user,

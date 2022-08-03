@@ -313,7 +313,7 @@ class AddonManager(ManagerBase):
         filters = Q(
             status__in=statuses,
             type__in=types,
-            versions__channel=amo.RELEASE_CHANNEL_LISTED,
+            versions__channel=amo.CHANNEL_LISTED,
             versions__file__status=amo.STATUS_AWAITING_REVIEW,
             versions__reviewerflags__pending_rejection=None,
         ) & ~Q(disabled_by_user=True)
@@ -357,7 +357,7 @@ class AddonManager(ManagerBase):
             admin_reviewer=admin_reviewer,
         )
         return (
-            qs.filter(versions__channel=amo.RELEASE_CHANNEL_UNLISTED).exclude(
+            qs.filter(versions__channel=amo.CHANNEL_UNLISTED).exclude(
                 status=amo.STATUS_DISABLED
             )
             # Reset select_related() made by get_base_queryset_for_queue(), we
@@ -372,7 +372,7 @@ class AddonManager(ManagerBase):
             admin_reviewer=admin_reviewer,
         )
         filters = Q(
-            versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
+            versions__channel=amo.CHANNEL_UNLISTED,
             versions__file__status=amo.STATUS_AWAITING_REVIEW,
             type__in=amo.GROUP_TYPE_ADDON,
             versions__reviewerflags__pending_rejection__isnull=True,
@@ -486,7 +486,7 @@ class AddonManager(ManagerBase):
             (
                 Q(
                     versions__reviewerflags__needs_human_review_by_mad=True,
-                    versions__channel=amo.RELEASE_CHANNEL_UNLISTED,
+                    versions__channel=amo.CHANNEL_UNLISTED,
                 )
                 | Q(_current_version__reviewerflags__needs_human_review_by_mad=True)
             ),
@@ -851,7 +851,7 @@ class Addon(OnChangeMixin, ModelBase):
         data = cls.resolve_webext_translations(data, upload)
         timer.log_interval('2.resolve_translations')
 
-        if channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if channel == amo.CHANNEL_UNLISTED:
             data['slug'] = get_random_slug()
         timer.log_interval('3.get_random_slug')
 
@@ -891,7 +891,7 @@ class Addon(OnChangeMixin, ModelBase):
         *,
         selected_apps,
         parsed_data,
-        channel=amo.RELEASE_CHANNEL_LISTED,
+        channel=amo.CHANNEL_LISTED,
     ):
         """
         Create an Addon instance, a Version and corresponding File(s) from a
@@ -1023,7 +1023,7 @@ class Addon(OnChangeMixin, ModelBase):
         review (since non-public add-ons should not have public versions)."""
         return (
             self.versions.filter(
-                channel=amo.RELEASE_CHANNEL_LISTED,
+                channel=amo.CHANNEL_LISTED,
                 file__status__in=self.valid_file_statuses,
             )
             .order_by('created')
@@ -1136,8 +1136,8 @@ class Addon(OnChangeMixin, ModelBase):
     @cached_property
     def latest_unlisted_version(self):
         """Shortcut property for Addon.find_latest_version(
-        channel=RELEASE_CHANNEL_UNLISTED)."""
-        return self.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        channel=CHANNEL_UNLISTED)."""
+        return self.find_latest_version(channel=amo.CHANNEL_UNLISTED)
 
     def get_icon_dir(self):
         return os.path.join(
@@ -1187,7 +1187,7 @@ class Addon(OnChangeMixin, ModelBase):
             self.update_version(ignore=ignore_version)
             return
 
-        versions = self.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        versions = self.versions.filter(channel=amo.CHANNEL_LISTED)
         status = None
         reason = ''
         if not versions.exists():
@@ -1207,9 +1207,7 @@ class Addon(OnChangeMixin, ModelBase):
                 status = amo.STATUS_NULL
                 reason = 'no reviewed files'
         elif self.status == amo.STATUS_APPROVED:
-            latest_version = self.find_latest_version(
-                channel=amo.RELEASE_CHANNEL_LISTED
-            )
+            latest_version = self.find_latest_version(channel=amo.CHANNEL_LISTED)
             if (
                 latest_version
                 and latest_version.file.status == amo.STATUS_AWAITING_REVIEW
@@ -1385,9 +1383,7 @@ class Addon(OnChangeMixin, ModelBase):
         ):
             return False
 
-        latest_version = self.find_latest_version(
-            amo.RELEASE_CHANNEL_LISTED, exclude=()
-        )
+        latest_version = self.find_latest_version(amo.CHANNEL_LISTED, exclude=())
 
         return latest_version is not None and not latest_version.file.reviewed
 
@@ -1429,7 +1425,7 @@ class Addon(OnChangeMixin, ModelBase):
         # check the current_version first because that's what would be used for
         # public pages, but if there isn't any listed version will do.
         version = self.current_version or self.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED, exclude=()
+            channel=amo.CHANNEL_LISTED, exclude=()
         )
         return [
             self.all_categories,
@@ -1442,7 +1438,7 @@ class Addon(OnChangeMixin, ModelBase):
         return (
             self.status == amo.STATUS_NULL
             and not self.has_complete_metadata()
-            and self.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+            and self.find_latest_version(channel=amo.CHANNEL_LISTED)
         )
 
     def can_be_deleted(self):
@@ -1455,7 +1451,7 @@ class Addon(OnChangeMixin, ModelBase):
             manager = self.versions
         return (
             self._current_version_id
-            or manager.filter(channel=amo.RELEASE_CHANNEL_LISTED).exists()
+            or manager.filter(channel=amo.CHANNEL_LISTED).exists()
         )
 
     def has_unlisted_versions(self, include_deleted=False):
@@ -1463,7 +1459,7 @@ class Addon(OnChangeMixin, ModelBase):
             manager = self.versions(manager='unfiltered_for_relations')
         else:
             manager = self.versions
-        return manager.filter(channel=amo.RELEASE_CHANNEL_UNLISTED).exists()
+        return manager.filter(channel=amo.CHANNEL_UNLISTED).exists()
 
     def _is_recommended_theme(self):
         from olympia.bandwagon.models import CollectionAddon
@@ -1835,7 +1831,7 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
         new_attr = {}
     new_status = new_attr.get('status')
     old_status = old_attr.get('status')
-    latest_version = instance.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+    latest_version = instance.find_latest_version(channel=amo.CHANNEL_LISTED)
 
     # Update the author's account profile visibility
     if new_status != old_status:

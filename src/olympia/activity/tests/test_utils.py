@@ -100,7 +100,7 @@ class TestEmailBouncing(TestCase):
     def test_no_note_logged(self, log_mock):
         # First set everything up so it's working
         addon = addon_factory()
-        version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         user = user_factory()
         self.grant_permission(user, '*:*')
         ActivityLogToken.objects.create(
@@ -215,7 +215,7 @@ class TestEmailBouncing(TestCase):
 class TestAddEmailToActivityLog(TestCase):
     def setUp(self):
         self.addon = addon_factory(name='Badger', status=amo.STATUS_NOMINATED)
-        version = self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.profile = user_factory()
         self.token = ActivityLogToken.objects.create(version=version, user=self.profile)
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
@@ -276,9 +276,7 @@ class TestLogAndNotify(TestCase):
         self.grant_permission(self.reviewer, 'Addons:Review', 'Addon Reviewers')
 
         self.addon = addon_factory()
-        self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        )
+        self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.addon.addonuser_set.create(user=self.developer)
         self.addon.addonuser_set.create(user=self.developer2)
         self.task_user = user_factory(id=settings.TASK_USER_ID)
@@ -563,7 +561,7 @@ class TestLogAndNotify(TestCase):
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_review_url_unlisted(self, send_mail_mock):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted', 'Addon Reviewers')
 
         # One from the reviewer.
@@ -676,7 +674,7 @@ def test_send_activity_mail():
     subject = 'This ïs ã subject'
     message = 'And... this ïs a messãge!'
     addon = addon_factory()
-    latest_version = addon.find_latest_version(channel=amo.RELEASE_CHANNEL_LISTED)
+    latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
     user = user_factory()
     recipients = [
         user,

@@ -109,11 +109,11 @@ class VersionManager(ManagerBase):
         Version is compatible with.
         """
         filters = {
-            'channel': amo.RELEASE_CHANNEL_LISTED,
+            'channel': amo.CHANNEL_LISTED,
             'file__status': amo.STATUS_APPROVED,
         }
         filters = {
-            'channel': amo.RELEASE_CHANNEL_LISTED,
+            'channel': amo.CHANNEL_LISTED,
             'file__status': amo.STATUS_APPROVED,
             'apps__application': application,
         }
@@ -145,14 +145,14 @@ class VersionManager(ManagerBase):
             # It also cannot be disabled by user ("invisible"), and can not
             # be a theme either.
             Q(
-                channel=amo.RELEASE_CHANNEL_LISTED,
+                channel=amo.CHANNEL_LISTED,
                 addon__status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
                 addon__disabled_by_user=False,
                 addon__type__in=(amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT),
             )
             # For unlisted, add-on can't be deleted or disabled.
             | Q(
-                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                channel=amo.CHANNEL_UNLISTED,
                 addon__status__in=(
                     amo.STATUS_NULL,
                     amo.STATUS_NOMINATED,
@@ -230,7 +230,7 @@ class Version(OnChangeMixin, ModelBase):
     )
 
     channel = models.IntegerField(
-        choices=amo.RELEASE_CHANNEL_CHOICES, default=amo.RELEASE_CHANNEL_LISTED
+        choices=amo.CHANNEL_CHOICES, default=amo.CHANNEL_LISTED
     )
 
     git_hash = models.CharField(max_length=40, blank=True)
@@ -335,7 +335,7 @@ class Version(OnChangeMixin, ModelBase):
             raise VersionCreateError('install_origins was not validated properly')
 
         license_id = parsed_data.get('license_id')
-        if not license_id and channel == amo.RELEASE_CHANNEL_LISTED:
+        if not license_id and channel == amo.CHANNEL_LISTED:
             previous_version = addon.find_latest_version(channel=channel, exclude=())
             if previous_version and previous_version.license_id:
                 license_id = previous_version.license_id
@@ -436,10 +436,7 @@ class Version(OnChangeMixin, ModelBase):
             transaction.on_commit(lambda: create_git_extraction_entry(version=version))
 
         # Generate a preview and icon for listed static themes
-        if (
-            addon.type == amo.ADDON_STATICTHEME
-            and channel == amo.RELEASE_CHANNEL_LISTED
-        ):
+        if addon.type == amo.ADDON_STATICTHEME and channel == amo.CHANNEL_LISTED:
             theme_data = parsed_data.get('theme', {})
             generate_static_theme_preview(theme_data, version.pk)
 
@@ -457,7 +454,7 @@ class Version(OnChangeMixin, ModelBase):
         if not RestrictionChecker(upload=upload).is_auto_approval_allowed():
             flag = (
                 'auto_approval_disabled'
-                if channel == amo.RELEASE_CHANNEL_LISTED
+                if channel == amo.CHANNEL_LISTED
                 else 'auto_approval_disabled_unlisted'
             )
             reviewer_flags_defaults[flag] = True
@@ -492,7 +489,7 @@ class Version(OnChangeMixin, ModelBase):
         return reverse('addons.license', args=[self.addon.slug, self.version])
 
     def get_url_path(self):
-        if self.channel == amo.RELEASE_CHANNEL_UNLISTED:
+        if self.channel == amo.CHANNEL_UNLISTED:
             return ''
         return reverse('addons.versions', args=[self.addon.slug])
 
@@ -775,7 +772,7 @@ class Version(OnChangeMixin, ModelBase):
 
         Does nothing if the current instance is unlisted.
         """
-        if self.channel == amo.RELEASE_CHANNEL_LISTED:
+        if self.channel == amo.CHANNEL_LISTED:
             qs = File.objects.filter(
                 version__addon=self.addon_id,
                 version__lt=self.id,
@@ -795,7 +792,7 @@ class Version(OnChangeMixin, ModelBase):
 
     def inherit_nomination(self):
         qs = (
-            Version.objects.filter(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+            Version.objects.filter(addon=self.addon, channel=amo.CHANNEL_LISTED)
             .exclude(nomination=None)
             .exclude(id=self.pk)
             .filter(file__status=amo.STATUS_AWAITING_REVIEW)

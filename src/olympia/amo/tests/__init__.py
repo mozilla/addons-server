@@ -572,7 +572,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         self.change_channel_for_addon(addon, True)
 
     def change_channel_for_addon(self, addon, listed):
-        channel = amo.RELEASE_CHANNEL_LISTED if listed else amo.RELEASE_CHANNEL_UNLISTED
+        channel = amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
         for version in addon.versions(manager='unfiltered_for_relations').all():
             version.update(channel=channel)
 

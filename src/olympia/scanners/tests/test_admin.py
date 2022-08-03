@@ -112,7 +112,7 @@ class TestScannerResultAdmin(TestCase):
 
     def test_formatted_listed_addon(self):
         addon = addon_factory()
-        version = version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version = version_factory(addon=addon, channel=amo.CHANNEL_LISTED)
         result = ScannerResult(version=version)
 
         formatted_addon = self.admin.formatted_addon(result)
@@ -131,7 +131,7 @@ class TestScannerResultAdmin(TestCase):
 
     def test_formatted_unlisted_addon(self):
         addon = addon_factory()
-        version = version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         result = ScannerResult(version=version)
 
         formatted_addon = self.admin.formatted_addon(result)
@@ -165,17 +165,13 @@ class TestScannerResultAdmin(TestCase):
         assert self.admin.guid(result) == '-'
 
     def test_listed_channel(self):
-        version = version_factory(
-            addon=addon_factory(), channel=amo.RELEASE_CHANNEL_LISTED
-        )
+        version = version_factory(addon=addon_factory(), channel=amo.CHANNEL_LISTED)
         result = ScannerResult(version=version)
 
         assert self.admin.channel(result) == 'Listed'
 
     def test_unlisted_channel(self):
-        version = version_factory(
-            addon=addon_factory(), channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
+        version = version_factory(addon=addon_factory(), channel=amo.CHANNEL_UNLISTED)
         result = ScannerResult(version=version)
 
         assert self.admin.channel(result) == 'Unlisted'
@@ -920,7 +916,10 @@ class TestScannerResultAdmin(TestCase):
 
     def test_change_page(self):
         upload = FileUpload.objects.create(
-            user=user_factory(), ip_address='1.2.3.4', source=amo.UPLOAD_SOURCE_DEVHUB
+            user=user_factory(),
+            ip_address='1.2.3.4',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
         )
         version = addon_factory().current_version
         result = ScannerResult.objects.create(
@@ -1569,7 +1568,7 @@ class TestScannerQueryResultAdmin(TestCase):
         addon = addon_factory()
         ScannerQueryResult.objects.create(scanner=YARA, version=addon.versions.all()[0])
         unlisted_addon = addon_factory(
-            version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED}, status=amo.STATUS_NULL
+            version_kw={'channel': amo.CHANNEL_UNLISTED}, status=amo.STATUS_NULL
         )
         ScannerQueryResult.objects.create(
             scanner=YARA, version=unlisted_addon.versions.all()[0]
@@ -1578,7 +1577,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__channel__exact': amo.RELEASE_CHANNEL_UNLISTED,
+                'version__channel__exact': amo.CHANNEL_UNLISTED,
             },
         )
         assert response.status_code == 200
@@ -1589,7 +1588,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'version__channel__exact': amo.RELEASE_CHANNEL_LISTED,
+                'version__channel__exact': amo.CHANNEL_LISTED,
             },
         )
         assert response.status_code == 200

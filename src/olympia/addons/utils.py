@@ -347,7 +347,7 @@ class SitePermissionVersionCreator:
                 )
             # Changing the origins isn't supported at the moment.
             latest_version = addon.find_latest_version(
-                exclude=(), channel=amo.RELEASE_CHANNEL_UNLISTED
+                exclude=(), channel=amo.CHANNEL_UNLISTED
             )
             previous_origins = sorted(
                 latest_version.installorigin_set.all().values_list('origin', flat=True)
@@ -382,7 +382,7 @@ class SitePermissionVersionCreator:
                 addon = Addon.initialize_addon_from_upload(
                     data=parsed_data,
                     upload=file_obj,
-                    channel=amo.RELEASE_CHANNEL_UNLISTED,
+                    channel=amo.CHANNEL_UNLISTED,
                     user=self.user,
                 )
 
@@ -393,7 +393,7 @@ class SitePermissionVersionCreator:
                 size=file_obj.size,
                 addon=addon,
                 version=version_number,
-                channel=amo.RELEASE_CHANNEL_UNLISTED,
+                channel=amo.CHANNEL_UNLISTED,
                 user=self.user,
                 source=amo.UPLOAD_SOURCE_GENERATED,
             )
@@ -402,7 +402,7 @@ class SitePermissionVersionCreator:
         return Version.from_upload(
             upload,
             addon,
-            amo.RELEASE_CHANNEL_UNLISTED,
+            amo.CHANNEL_UNLISTED,
             selected_apps=[x[0] for x in amo.APPS_CHOICES],
             parsed_data=parsed_data,
         )

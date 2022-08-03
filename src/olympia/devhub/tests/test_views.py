@@ -249,7 +249,7 @@ class TestDashboard(HubTest):
 
     def test_mixed_versions_addon_with_incomplete_metadata(self):
         self.make_addon_unlisted(self.addon)
-        version = version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version = version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
         version.update(license=None)
         self.addon.reload()
         assert not self.addon.has_complete_metadata()
@@ -573,7 +573,7 @@ class TestHome(TestCase):
             (amo.STATUS_DISABLED, amo.STATUS_APPROVED, 'Disabled by Mozilla'),
         ]
 
-        latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
+        latest_version = self.addon.find_latest_version(amo.CHANNEL_LISTED)
         latest_file = latest_version.file
 
         for addon_status, file_status, status_str in statuses:
@@ -602,7 +602,7 @@ class TestHome(TestCase):
 
     def test_my_addons_recommended(self):
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
-        latest_version = self.addon.find_latest_version(amo.RELEASE_CHANNEL_LISTED)
+        latest_version = self.addon.find_latest_version(amo.CHANNEL_LISTED)
         latest_file = latest_version.file
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'Awaiting Review'),
@@ -1395,7 +1395,7 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     def test_upload_detail_for_version_unlisted(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        addon = addon_factory(version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})
+        addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
         addon.addonuser_set.create(user=user)
         self.post()
 
@@ -1733,9 +1733,7 @@ class TestRequestReview(TestCase):
     def setUp(self):
         super().setUp()
         self.addon = addon_factory()
-        self.version = self.addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_LISTED
-        )
+        self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.redirect_url = self.addon.get_dev_url('versions')
         self.public_url = reverse('devhub.request-review', args=[self.addon.slug])
         self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
@@ -2188,7 +2186,7 @@ class TestSitePermissionGenerator(TestCase):
         version = addon.versions.all()[0]
         file_ = version.file
         assert version.pk
-        assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
+        assert version.channel == amo.CHANNEL_UNLISTED
         assert version.version == '1.0'
         assert sorted(
             version.installorigin_set.all().values_list('origin', flat=True)

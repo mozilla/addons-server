@@ -64,7 +64,7 @@ class UpdateInfoMixin:
         # Add another listed version before making the first one unlisted,
         # ensuring the add-on would stay public.
         version_factory(addon=self.addon)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 404
 

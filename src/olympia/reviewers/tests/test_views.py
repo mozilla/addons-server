@@ -480,9 +480,7 @@ class TestReviewLog(ReviewerTest):
     def test_review_url(self):
         self.login_as_admin()
         addon = addon_factory()
-        unlisted_version = version_factory(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
+        unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
 
         ActivityLog.create(
             amo.LOG.APPROVE_VERSION,
@@ -1090,9 +1088,7 @@ class QueueTest(ReviewerTest):
     def generate_files(self, subset=None, files=None, auto_approve_disabled=False):
         if subset is None:
             subset = []
-        channel = (
-            amo.RELEASE_CHANNEL_LISTED if self.listed else amo.RELEASE_CHANNEL_UNLISTED
-        )
+        channel = amo.CHANNEL_LISTED if self.listed else amo.CHANNEL_UNLISTED
         files = files or OrderedDict(
             [
                 (
@@ -1199,9 +1195,9 @@ class QueueTest(ReviewerTest):
 
     def get_addon_latest_version(self, addon):
         if self.listed:
-            channel = amo.RELEASE_CHANNEL_LISTED
+            channel = amo.CHANNEL_LISTED
         else:
-            channel = amo.RELEASE_CHANNEL_UNLISTED
+            channel = amo.CHANNEL_UNLISTED
         return addon.find_latest_version(channel=channel)
 
     def get_expected_addons_by_names(self, names, auto_approve_disabled=False):
@@ -1997,7 +1993,7 @@ class TestModeratedQueue(QueueTest):
 
         # Add a review associated to an unlisted version
         addon = addon_factory()
-        version = version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         rating = Rating.objects.create(
             addon=addon_factory(),
             version=version,
@@ -2064,7 +2060,7 @@ class TestUnlistedAllList(QueueTest):
 
     def test_review_notes_json(self):
         latest_version = self.expected_addons[0].find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED
+            channel=amo.CHANNEL_UNLISTED
         )
         log = ActivityLog.create(
             amo.LOG.APPROVE_VERSION,
@@ -2505,7 +2501,7 @@ class TestScannersReviewQueue(QueueTest):
     def generate_files(self):
         # Has no versions needing human review.
         extra_addon = addon_factory()
-        version_factory(addon=extra_addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=extra_addon, channel=amo.CHANNEL_UNLISTED)
 
         # Has 3 listed versions, 2 needing human review, 1 unlisted but not
         # needing human review.
@@ -2514,7 +2510,7 @@ class TestScannersReviewQueue(QueueTest):
         addon1_v1.update(needs_human_review=True)
         version_factory(addon=addon1, needs_human_review=True)
         version_factory(addon=addon1)
-        version_factory(addon=addon1, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=addon1, channel=amo.CHANNEL_UNLISTED)
         AddonApprovalsCounter.objects.create(
             addon=addon1, counter=1, last_human_review=self.days_ago(1)
         )
@@ -2525,7 +2521,7 @@ class TestScannersReviewQueue(QueueTest):
         )
         addon2.current_version
         version_factory(
-            addon=addon2, channel=amo.RELEASE_CHANNEL_UNLISTED, needs_human_review=True
+            addon=addon2, channel=amo.CHANNEL_UNLISTED, needs_human_review=True
         )
 
         # Has 2 unlisted versions, 1 needing human review. Needs admin content
@@ -2533,12 +2529,12 @@ class TestScannersReviewQueue(QueueTest):
         addon3 = addon_factory(
             created=self.days_ago(7),
             version_kw={
-                'channel': amo.RELEASE_CHANNEL_UNLISTED,
+                'channel': amo.CHANNEL_UNLISTED,
                 'needs_human_review': True,
             },
         )
         addon3.versions.get()
-        version_factory(addon=addon3, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=addon3, channel=amo.CHANNEL_UNLISTED)
         AddonReviewerFlags.objects.create(addon=addon3, needs_admin_content_review=True)
 
         # Needs admin code review, so wouldn't show up for regular reviewers.
@@ -2665,7 +2661,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
             addon=unlisted_addon,
             created=self.days_ago(1),
             version='0.1',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         version_review_flags_factory(
             version=pending_version1, pending_rejection=datetime.now()
@@ -2674,13 +2670,13 @@ class TestPendingRejectionReviewQueue(QueueTest):
             addon=unlisted_addon,
             created=self.days_ago(1),
             version='0.2',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
         )
         version_review_flags_factory(
             version=pending_version2, pending_rejection=datetime.now()
         )
         version_factory(
-            addon=unlisted_addon, version='0.3', channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=unlisted_addon, version='0.3', channel=amo.CHANNEL_UNLISTED
         )
 
         # Extra add-ons without pending rejection, they shouldn't appear.
@@ -2742,7 +2738,7 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
@@ -2754,7 +2750,7 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
@@ -2763,7 +2759,7 @@ class TestReview(ReviewBase):
         assert self.client.get(self.url).status_code == 200
 
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
         self.addon.update_version()
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         assert self.client.head(self.url).status_code == 403
@@ -2772,9 +2768,7 @@ class TestReview(ReviewBase):
         # decorator that only depends on the addon being purely unlisted or
         # not, but still fail the check inside the view because we're looking
         # at the unlisted channel specifically.
-        version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED, version='9.9'
-        )
+        version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED, version='9.9')
         assert self.client.head(self.url).status_code == 403
         assert self.client.post(self.url).status_code == 403
 
@@ -2783,7 +2777,7 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_needs_unlisted_viewer_for_only_unlisted(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
         self.addon.update_version()
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         assert self.client.head(self.url).status_code == 403
@@ -2792,9 +2786,7 @@ class TestReview(ReviewBase):
         # decorator that only depends on the addon being purely unlisted or
         # not, but still fail the check inside the view because we're looking
         # at the unlisted channel specifically.
-        version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED, version='9.9'
-        )
+        version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED, version='9.9')
         assert self.client.head(self.url).status_code == 403
         assert self.client.post(self.url).status_code == 403
 
@@ -2803,12 +2795,10 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_dont_need_unlisted_reviewer_for_mixed_channels(self):
-        version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, version='9.9'
-        )
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED, version='9.9')
 
-        assert self.addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        assert self.addon.current_version.channel == amo.RELEASE_CHANNEL_LISTED
+        assert self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
+        assert self.addon.current_version.channel == amo.CHANNEL_LISTED
         assert self.client.head(self.url).status_code == 200
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
         assert self.client.head(self.url).status_code == 200
@@ -2935,7 +2925,7 @@ class TestReview(ReviewBase):
 
         # Unlisted review.
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
         self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3034,7 +3024,7 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, items.find('a'), verify=False)
 
-    def test_item_history(self, channel=amo.RELEASE_CHANNEL_LISTED):
+    def test_item_history(self, channel=amo.CHANNEL_LISTED):
         self.addons['something'] = addon_factory(
             status=amo.STATUS_APPROVED,
             name='something',
@@ -3191,38 +3181,38 @@ class TestReview(ReviewBase):
         version_factory(
             version='0.3',
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_APPROVED},
         )
         self.test_item_history()
 
     def test_item_history_with_unlisted_review_page(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
         self.version.reload()
         # Throw in an listed version to be ignored.
         version_factory(
             version='0.3',
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_APPROVED},
         )
         self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
-        self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.test_item_history(channel=amo.CHANNEL_UNLISTED)
 
     def test_item_history_with_unlisted_review_page_viewer(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
         self.version.reload()
         # Throw in an listed version to be ignored.
         version_factory(
             version='0.3',
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_APPROVED},
         )
         self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
-        self.test_item_history(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.test_item_history(channel=amo.CHANNEL_UNLISTED)
 
     def test_item_history_compat_ordered(self):
         """Make sure that apps in compatibility are ordered."""
@@ -3466,7 +3456,7 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -3490,7 +3480,7 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -3512,7 +3502,7 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -3536,7 +3526,7 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -3557,7 +3547,7 @@ class TestReview(ReviewBase):
         self.make_addon_unlisted(self.addon)
         version_factory(
             addon=self.addon,
-            channel=amo.RELEASE_CHANNEL_LISTED,
+            channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -3590,7 +3580,7 @@ class TestReview(ReviewBase):
         assert 'checked' not in subscribe_unlisted_input.attrib
 
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.reviewer, channel=amo.RELEASE_CHANNEL_LISTED
+            addon=self.addon, user=self.reviewer, channel=amo.CHANNEL_LISTED
         )
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3599,7 +3589,7 @@ class TestReview(ReviewBase):
         assert subscribe_input.attrib['checked'] == 'checked'
 
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.reviewer, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, user=self.reviewer, channel=amo.CHANNEL_UNLISTED
         )
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4116,7 +4106,7 @@ class TestReview(ReviewBase):
     @mock.patch('olympia.reviewers.utils.sign_file')
     def review_version(self, version, url, mock_sign):
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
-        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+        if version.channel == amo.CHANNEL_LISTED:
             version.file.update(status=amo.STATUS_AWAITING_REVIEW)
             action = 'public'
         else:
@@ -4132,7 +4122,7 @@ class TestReview(ReviewBase):
 
         self.client.post(url, data)
 
-        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+        if version.channel == amo.CHANNEL_LISTED:
             assert mock_sign.called
         return action
 
@@ -4842,14 +4832,12 @@ class TestReview(ReviewBase):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         old_version = self.version
-        old_version.update(
-            needs_human_review=True, channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
+        old_version.update(needs_human_review=True, channel=amo.CHANNEL_UNLISTED)
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version = version_factory(
             addon=self.addon,
             version='3.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
@@ -4882,14 +4870,12 @@ class TestReview(ReviewBase):
     def test_reasons_optional_for_multiple_approve(self, sign_file_mock):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         old_version = self.version
-        old_version.update(
-            needs_human_review=True, channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
+        old_version.update(needs_human_review=True, channel=amo.CHANNEL_UNLISTED)
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version = version_factory(
             addon=self.addon,
             version='3.0',
-            channel=amo.RELEASE_CHANNEL_UNLISTED,
+            channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
@@ -5445,7 +5431,7 @@ class TestReview(ReviewBase):
         assert elm.attrib['data-value'] == 'reject_multiple_versions|'
 
     def test_data_value_attributes_unlisted(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version
         )
@@ -5497,7 +5483,7 @@ class TestReview(ReviewBase):
         assert elm.attrib['data-value'] == '|'
 
     def test_no_data_value_attributes_unlisted_for_viewer(self):
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version
         )
@@ -6282,9 +6268,7 @@ class TestWhiteboard(ReviewBase):
         # Now the addon is not purely unlisted, but because we've requested the
         # unlisted channel we'll still get an error - this time it's a 403 from
         # the view itself
-        version_factory(
-            addon=self.addon, version='9.99', channel=amo.RELEASE_CHANNEL_LISTED
-        )
+        version_factory(addon=self.addon, version='9.99', channel=amo.CHANNEL_LISTED)
         response = self.client.post(
             url,
             {
@@ -6577,7 +6561,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_subscribe_already_subscribed_listed(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
@@ -6587,7 +6571,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_subscribe_already_subscribed_unlisted(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         self.client.login_api(self.user)
@@ -6597,7 +6581,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_subscribe_already_subscribed_unlisted_viewer(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(self.user)
@@ -6673,7 +6657,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_unsubscribe(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
@@ -6686,7 +6670,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_unsubscribe_listed(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
@@ -6696,7 +6680,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_unsubscribe_unlisted(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         self.client.login_api(self.user)
@@ -6706,7 +6690,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_unsubscribe_unlisted_viewer(self):
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
         self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(self.user)
@@ -6718,13 +6702,13 @@ class TestAddonReviewerViewSet(TestCase):
         another_user = user_factory()
         another_addon = addon_factory()
         ReviewerSubscription.objects.create(
-            user=self.user, addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
         ReviewerSubscription.objects.create(
-            user=self.user, addon=another_addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=self.user, addon=another_addon, channel=amo.CHANNEL_LISTED
         )
         ReviewerSubscription.objects.create(
-            user=another_user, addon=self.addon, channel=amo.RELEASE_CHANNEL_LISTED
+            user=another_user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
@@ -7077,7 +7061,7 @@ class AddonReviewerViewSetPermissionMixin:
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 404
 
@@ -7085,27 +7069,27 @@ class AddonReviewerViewSetPermissionMixin:
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
 
     def test_unlisted_version_unlisted_viewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
 
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
 
     def test_unlisted_version_user(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 404
 
@@ -7247,7 +7231,7 @@ class TestReviewAddonVersionViewSetDetail(
 
         # Add an unlisted version to the mix
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
 
         # Now the add-on has both, listed and unlisted versions
@@ -7405,7 +7389,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
 
         self.client.login_api(user)
 
-        version_factory(addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -7428,7 +7412,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
         self.client.login_api(user)
 
         unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED
+            addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
 
         with self.assertNumQueries(8):
@@ -7992,7 +7976,7 @@ class TestDraftCommentViewSet(TestCase):
         user = user_factory(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
 
         data = {
             'comment': 'Some really fancy comment',
@@ -8011,7 +7995,7 @@ class TestDraftCommentViewSet(TestCase):
     def test_unlisted_version_user(self):
         user = user_factory(username='simpleuser')
         self.client.login_api(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
 
         data = {
             'comment': 'Some really fancy comment',
@@ -8565,7 +8549,7 @@ class TestDownloadGitFileView(TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.force_login(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
 
         url = reverse(
             'reviewers.download_git_file',
@@ -8579,34 +8563,34 @@ class TestDownloadGitFileView(TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
         self.client.force_login(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url_success()
 
     def test_unlisted_version_unlisted_viewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.client.force_login(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url_success()
 
     def test_unlisted_version_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.force_login(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url_success()
 
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url_success()
 
     def test_unlisted_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')
         self.client.force_login(user)
-        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
 
         url = reverse(
             'reviewers.download_git_file',
@@ -8744,30 +8728,22 @@ class TestMadQueue(QueueTest):
         # This add-on should be listed once, even with two versions.
         listed_addon = addon_factory(created=self.days_ago(15))
         version_review_flags_factory(
-            version=version_factory(
-                addon=listed_addon, channel=amo.RELEASE_CHANNEL_LISTED
-            ),
+            version=version_factory(addon=listed_addon, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=listed_addon, channel=amo.RELEASE_CHANNEL_LISTED
-            ),
+            version=version_factory(addon=listed_addon, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
 
         # This add-on should be listed once, even with two versions.
         unlisted_addon = addon_factory(created=self.days_ago(5))
         version_review_flags_factory(
-            version=version_factory(
-                addon=unlisted_addon, channel=amo.RELEASE_CHANNEL_UNLISTED
-            ),
+            version=version_factory(addon=unlisted_addon, channel=amo.CHANNEL_UNLISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=unlisted_addon, channel=amo.RELEASE_CHANNEL_UNLISTED
-            ),
+            version=version_factory(addon=unlisted_addon, channel=amo.CHANNEL_UNLISTED),
             needs_human_review_by_mad=True,
         )
 
@@ -8776,13 +8752,13 @@ class TestMadQueue(QueueTest):
         listed_addon_previous = addon_factory(created=self.days_ago(15))
         version_review_flags_factory(
             version=version_factory(
-                addon=listed_addon_previous, channel=amo.RELEASE_CHANNEL_LISTED
+                addon=listed_addon_previous, channel=amo.CHANNEL_LISTED
             ),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
             version=version_factory(
-                addon=listed_addon_previous, channel=amo.RELEASE_CHANNEL_LISTED
+                addon=listed_addon_previous, channel=amo.CHANNEL_LISTED
             ),
             needs_human_review_by_mad=False,
         )
@@ -8809,42 +8785,30 @@ class TestMadQueue(QueueTest):
         # Mixed listed and unlisted versions. Should not show up in queue.
         mixed_addon = addon_factory(created=self.days_ago(5))
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon, channel=amo.RELEASE_CHANNEL_UNLISTED
-            ),
+            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_UNLISTED),
             needs_human_review_by_mad=False,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon, channel=amo.RELEASE_CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon, channel=amo.RELEASE_CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=False,
         )
 
         # Mixed listed and unlisted versions. Only the unlisted should show up.
         mixed_addon2 = addon_factory(created=self.days_ago(4))
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon2, channel=amo.RELEASE_CHANNEL_UNLISTED
-            ),
+            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_UNLISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon2, channel=amo.RELEASE_CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon2, channel=amo.RELEASE_CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon2, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=False,
         )
 
@@ -8852,14 +8816,12 @@ class TestMadQueue(QueueTest):
         mixed_addon_both = addon_factory(created=self.days_ago(2))
         version_review_flags_factory(
             version=version_factory(
-                addon=mixed_addon_both, channel=amo.RELEASE_CHANNEL_UNLISTED
+                addon=mixed_addon_both, channel=amo.CHANNEL_UNLISTED
             ),
             needs_human_review_by_mad=True,
         )
         version_review_flags_factory(
-            version=version_factory(
-                addon=mixed_addon_both, channel=amo.RELEASE_CHANNEL_LISTED
-            ),
+            version=version_factory(addon=mixed_addon_both, channel=amo.CHANNEL_LISTED),
             needs_human_review_by_mad=True,
         )
 

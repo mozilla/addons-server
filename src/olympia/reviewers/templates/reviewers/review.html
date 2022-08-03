@@ -300,7 +300,7 @@
                     data-toggle-button-selector="#disable_auto_approval_unlisted"
                     id="enable_auto_approval_unlisted" class="toggle" type="button">{{ _('Enable Unlisted Auto-Approval') }}</button>
           </li>
-          {% if channel == amo.RELEASE_CHANNEL_LISTED %}
+          {% if channel == amo.CHANNEL_LISTED %}
           <li {% if addon.auto_approval_disabled_until_next_approval %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"

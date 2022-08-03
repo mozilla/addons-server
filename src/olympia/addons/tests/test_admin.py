@@ -126,7 +126,7 @@ class TestAddonAdmin(TestCase):
 
     def test_list_show_link_to_reviewer_tools_listed(self):
         addon = addon_factory()
-        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_LISTED)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
@@ -135,7 +135,7 @@ class TestAddonAdmin(TestCase):
         assert b'Reviewer Tools (unlisted)' not in response.content
 
     def test_list_show_link_to_reviewer_tools_unlisted(self):
-        version_kw = {'channel': amo.RELEASE_CHANNEL_UNLISTED}
+        version_kw = {'channel': amo.CHANNEL_UNLISTED}
         addon_factory(guid='@foo', version_kw=version_kw)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -146,8 +146,8 @@ class TestAddonAdmin(TestCase):
 
     def test_list_show_link_to_reviewer_tools_with_both_channels(self):
         addon = addon_factory()
-        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
-        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_LISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
@@ -205,7 +205,7 @@ class TestAddonAdmin(TestCase):
 
     def test_show_link_to_reviewer_tools_listed(self):
         addon = addon_factory(guid='@foo')
-        version_factory(addon=addon, channel=amo.RELEASE_CHANNEL_LISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_LISTED)
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -215,7 +215,7 @@ class TestAddonAdmin(TestCase):
         assert b'Reviewer Tools (unlisted)' not in response.content
 
     def test_show_link_to_reviewer_tools_unlisted(self):
-        version_kw = {'channel': amo.RELEASE_CHANNEL_UNLISTED}
+        version_kw = {'channel': amo.CHANNEL_UNLISTED}
         addon = addon_factory(guid='@foo', version_kw=version_kw)
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
@@ -227,10 +227,8 @@ class TestAddonAdmin(TestCase):
 
     def test_show_links_to_reviewer_tools_with_both_channels(self):
         addon = addon_factory(guid='@foo')
-        version_factory(addon=addon, version='0.1', channel=amo.RELEASE_CHANNEL_LISTED)
-        version_factory(
-            addon=addon, version='0.2', channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
+        version_factory(addon=addon, version='0.1', channel=amo.CHANNEL_LISTED)
+        version_factory(addon=addon, version='0.2', channel=amo.CHANNEL_UNLISTED)
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -412,9 +410,7 @@ class TestAddonAdmin(TestCase):
 
     def test_can_manage_unlisted_versions_and_change_addon_status(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
-        unlisted_version = version_factory(
-            addon=addon, channel=amo.RELEASE_CHANNEL_UNLISTED
-        )
+        unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         listed_version = addon.current_version
         addonuser = addon.addonuser_set.get()
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))

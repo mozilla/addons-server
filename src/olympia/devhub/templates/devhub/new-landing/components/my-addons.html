@@ -57,7 +57,7 @@
                   {% endif %}
                 {% endif %}
 
-                {% set latest_unlisted_version=addon.find_latest_version(channel=amo.RELEASE_CHANNEL_UNLISTED) %}
+                {% set latest_unlisted_version=addon.find_latest_version(channel=amo.CHANNEL_UNLISTED) %}
 
                 {% if latest_unlisted_version %}
                   <div class="DevHub-MyAddons-item-version-details">

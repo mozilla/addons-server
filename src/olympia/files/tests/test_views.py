@@ -70,18 +70,23 @@ class TestFileUploadViewSet(TestCase):
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
         # Add a file upload
         self.upload = FileUpload.objects.create(
-            user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API, ip_address='127.0.0.9'
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            ip_address='127.0.0.9',
+            channel=amo.CHANNEL_LISTED,
         )
         # Add some other ones from other users
         self.other_user_upload = FileUpload.objects.create(
             user=user_factory(),
             source=amo.UPLOAD_SOURCE_ADDON_API,
             ip_address='127.0.0.10',
+            channel=amo.CHANNEL_LISTED,
         )
         FileUpload.objects.create(
             user=user_factory(),
             source=amo.UPLOAD_SOURCE_ADDON_API,
             ip_address='127.0.0.11',
+            channel=amo.CHANNEL_LISTED,
         )
 
         self.detail_url = reverse_ns(
@@ -149,10 +154,10 @@ class TestFileUploadViewSet(TestCase):
         assert data['channel'] == channel_name
 
     def test_create_listed(self):
-        self._test_create(amo.RELEASE_CHANNEL_LISTED, 'listed')
+        self._test_create(amo.CHANNEL_LISTED, 'listed')
 
     def test_create_unlisted(self):
-        self._test_create(amo.RELEASE_CHANNEL_UNLISTED, 'unlisted')
+        self._test_create(amo.CHANNEL_UNLISTED, 'unlisted')
 
     def test_list(self):
         response = self.client.get(

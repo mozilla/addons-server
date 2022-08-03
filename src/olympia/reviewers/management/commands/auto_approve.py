@@ -203,7 +203,7 @@ class Command(BaseCommand):
         approve_action = helper.actions.get('public')
         if not approve_action:
             raise ApprovalNotAvailableError
-        if version.channel == amo.RELEASE_CHANNEL_LISTED:
+        if version.channel == amo.CHANNEL_LISTED:
             helper.handler.data = {
                 # The comment is not translated on purpose, to behave like
                 # regular human approval does.
