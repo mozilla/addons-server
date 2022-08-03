@@ -295,7 +295,7 @@ class TestUserAdmin(TestCase):
             collection_factory(author=self.user),
         ]
         relations_that_should_survive = [
-            AbuseReport.objects.create(reporter=self.user),
+            AbuseReport.objects.create(reporter=self.user, guid='@foo'),
             AbuseReport.objects.create(user=self.user),
             ActivityLog.create(user=self.user, action=amo.LOG.USER_EDITED),
             ReviewerScore.objects.create(user=self.user, score=42),
