@@ -15,6 +15,7 @@ from olympia.addons.tasks import (
 )
 from olympia.blocklist.models import Block
 from olympia.constants.base import (
+    _ADDON_LPADDON,
     _ADDON_PERSONA,
     _ADDON_PLUGIN,
     _ADDON_THEME,
@@ -136,7 +137,7 @@ class Command(ProcessObjectsCommand):
                     Q(
                         type__in=(
                             _ADDON_THEME,
-                            amo.ADDON_LPADDON,
+                            _ADDON_LPADDON,
                             _ADDON_PLUGIN,
                             _ADDON_PERSONA,
                             _ADDON_WEBAPP,

@@ -111,7 +111,7 @@ _ADDON_THEME = 2  # Deprecated.  XUL Theme.
 ADDON_DICT = 3
 _ADDON_SEARCH = 4  # Deprecated.  Opensearch.
 ADDON_LPAPP = 5
-ADDON_LPADDON = 6
+_ADDON_LPADDON = 6  # Deprecated.  A langpack for a specific extension.
 _ADDON_PLUGIN = 7  # Deprecated.  Binary plugin, e.g. Flash.
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
 _ADDON_PERSONA = 9  # Deprecated.  Aka Lightweight Themes.
@@ -131,7 +131,7 @@ ADDON_TYPE = {
     ADDON_DICT: _('Dictionary'),
     _ADDON_SEARCH: _('Deprecated Search Engine'),
     ADDON_LPAPP: _('Language Pack (Application)'),
-    ADDON_LPADDON: _('Language Pack (Add-on)'),
+    _ADDON_LPADDON: _('Deprecated Language Pack (Add-on)'),
     _ADDON_PLUGIN: _('Deprecated Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
@@ -145,7 +145,7 @@ ADDON_TYPES = {
     ADDON_DICT: _('Dictionaries'),
     _ADDON_SEARCH: _('Deprecated Search Tools'),
     ADDON_LPAPP: _('Language Packs (Application)'),
-    ADDON_LPADDON: _('Language Packs (Add-on)'),
+    _ADDON_LPADDON: _('Deprecated Language Packs (Add-on)'),
     _ADDON_PLUGIN: _('Deprecated Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
