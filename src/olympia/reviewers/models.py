@@ -284,7 +284,7 @@ class ReviewerScore(ModelBase):
 
             if addon.type == amo.ADDON_DICT:
                 reviewed_score_name = 'REVIEWED_DICT_FULL'
-            elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON]:
+            elif addon.type == amo.ADDON_LPAPP:
                 reviewed_score_name = 'REVIEWED_LP_FULL'
             elif addon.type == _ADDON_SEARCH:
                 reviewed_score_name = 'REVIEWED_SEARCH_FULL'
@@ -304,14 +304,11 @@ class ReviewerScore(ModelBase):
             else:
                 queue = ''
 
-            if (
-                addon.type in [amo.ADDON_EXTENSION, amo.ADDON_PLUGIN, amo.ADDON_API]
-                and queue
-            ):
+            if addon.type in [amo.ADDON_EXTENSION, amo.ADDON_API] and queue:
                 reviewed_score_name = 'REVIEWED_ADDON_%s' % queue
             elif addon.type == amo.ADDON_DICT and queue:
                 reviewed_score_name = 'REVIEWED_DICT_%s' % queue
-            elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON] and queue:
+            elif addon.type == amo.ADDON_LPAPP and queue:
                 reviewed_score_name = 'REVIEWED_LP_%s' % queue
             elif addon.type == amo.ADDON_STATICTHEME:
                 reviewed_score_name = 'REVIEWED_STATICTHEME'

@@ -1101,7 +1101,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_old_nomination_to_public_bonus_score(self):
         self.sign_file_mock.reset()
-        self.setup_data(amo.STATUS_NOMINATED, type=amo.ADDON_PLUGIN)
+        self.setup_data(amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME)
         self.version.update(nomination=self.days_ago(9))
 
         self.helper.handler.approve_latest_version()
@@ -1125,7 +1125,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # Score has bonus points added for reviewing an old add-on.
         # 2 days over the limit = 4 points
-        self._check_score(amo.REVIEWED_ADDON_FULL, bonus=4)
+        self._check_score(amo.REVIEWED_STATICTHEME, bonus=4)
 
     def test_nomination_to_public_not_human(self):
         self.sign_file_mock.reset()
