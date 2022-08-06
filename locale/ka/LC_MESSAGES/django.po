@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-02 17:58+0000\n"
-"PO-Revision-Date: 2022-08-06 17:19+0000\n"
+"PO-Revision-Date: 2022-08-06 17:40+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3647,7 +3647,7 @@ msgstr "დააყენეთ სასურველი გვერდი,
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr "საინტერესო სურათი ნახეთ და გსურთ მეტი ინფორმაცია მოიძიოთ მასზე? სცადეთ ეს სურათების საძიებელი ხელსაწყო."
+msgstr "საინტერესო სურათი ნახეთ და გსურთ, მეტი ინფორმაცია მოიძიოთ მასზე? სცადეთ ეს სურათების საძიებელი ხელსაწყო."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4062,7 +4062,7 @@ msgstr "შექმენით ვებსაიტებთან დაკ�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr "გვერდებზე გადაადგილება ტელეფონის მსგავსად, კომპიუტერზე. „ჩავლებით გადატანის“ შესაძლებლობები, თაგვის მოძრაობით."
+msgstr "გადაადგილდით გვერდებზე ტელეფონის მსგავსად კომპიუტერზე. „ჩავლებით გადატანის“ შესაძლებლობა თაგვის მოძრაობით."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
