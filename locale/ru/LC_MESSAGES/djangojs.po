@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-02 17:59+0000\n"
-"PO-Revision-Date: 2022-01-29 13:43+0000\n"
-"Last-Translator: jankonstanta <jankonstanta@gmail.com>\n"
+"PO-Revision-Date: 2022-08-06 08:45+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "There was a problem contacting the server."
-msgstr "Проблема связи с сервером."
+msgstr "Проблема при подключении к серверу."
 
 msgid "Select a file..."
 msgstr "Выберите файл..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Расширение файла дополнения должно заканчиваться на .zip, .xpi или .crx"
+msgstr "Расширение файла выбранного дополнения должно заканчиваться на .zip, .xpi или .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -36,19 +36,19 @@ msgid "Cancel"
 msgstr "Отмена"
 
 msgid "Uploading {0}"
-msgstr "Загрузка {0}"
+msgstr "Обновление {0}"
 
 msgid "Error with {0}"
-msgstr "Ошибка с {0}"
+msgstr "Ошибка с кодом {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr "Пожалуйста, сообщайте обо всех проблемах с линтингом на GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Ваше дополнение не смогло пройти валидацию, найдена {0} ошибка."
-msgstr[1] "Ваше дополнение не смогло пройти валидацию, найдено {0} ошибки."
-msgstr[2] "Ваше дополнение не смогло пройти валидацию, найдено {0} ошибок."
+msgstr[0] "Ваше дополнение не прошло валидацию, найдена {0} ошибка."
+msgstr[1] "Ваше дополнение не прошло валидацию, найдено {0} ошибки."
+msgstr[2] "Ваше дополнение не прошло валидацию, найдено {0} ошибок."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
