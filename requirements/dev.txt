@@ -72,9 +72,9 @@ executing==0.9.1 \
     --hash=sha256:4ce4d6082d99361c0231fc31ac1a0f56979363cc6819de0b1410784f99e49105 \
     --hash=sha256:ea278e2cf90cbbacd24f1080dd1f0ac25b71b2e21f50ab439b7ba45dd3195587
 # asttokens is required by stack-data
-asttokens==2.0.5 \
-    --hash=sha256:0844691e88552595a6f4a4281a9f7f79b8dd45ca4ccea82e5e05b4bbdb76705c \
-    --hash=sha256:9a54c114f02c7a9480d56550932546a3f1fe71d8a02f1bc7ccd0ee3ee35cf4d5
+asttokens==2.0.7 \
+    --hash=sha256:8444353e4e2a99661c8dfb85ec9c02eedded08f0006234bff7db44a06840acc2 \
+    --hash=sha256:f5589ef8518f73dd82c15e1c19f795d8a62c133485e557c04443d4a1a730cf9f
 # pure-eval is required by stack-data
 pure-eval==0.2.2 \
     --hash=sha256:01eaab343580944bc56080ebe0a674b39ec44a945e6d09ba7db3cb8cec289350 \
