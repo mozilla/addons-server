@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-02 17:58+0000\n"
-"PO-Revision-Date: 2022-08-13 17:30+0000\n"
+"PO-Revision-Date: 2022-08-13 17:34+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5082,10 +5082,10 @@ msgid "The latest public version of this add-on was automatically approved. This
 msgstr "დამატების ბოლო გამოქვეყნებული ვერსია თვითდამოწმებულია. ამის შედეგად, თქვენი დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
 
 msgid "Approve Multiple Versions"
-msgstr ""
+msgstr "რამდენიმე ვერსიის მიღება"
 
 msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "შედეგად, შერჩეული ვერსიები მიღებულია იქნება. გამოხმაურებები გაეგზავნება შემმუშავებელს."
 
 msgid "Reject Multiple Versions"
 msgstr "რამდენიმე ვერსიის უარყოფა"
@@ -6336,19 +6336,19 @@ msgstr "და სხვები"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "გადადება უარყოფილია, დაგეგმილია %s"
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "თვითდამოწმებულია, დადასტურებულია"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "თვითდამოწმებულია, დაუდასტურებელია"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "დადასტურებულია, ხელით"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "გამორთულია შემმუშავებლის მიერ"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} და უფრო ახალ ვერსიებთან"
