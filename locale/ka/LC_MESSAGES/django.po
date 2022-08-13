@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-02 17:58+0000\n"
-"PO-Revision-Date: 2022-08-06 17:40+0000\n"
+"PO-Revision-Date: 2022-08-13 17:30+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -168,7 +168,7 @@ msgid "URLs must start with https://."
 msgstr "ბმულების თავსართი უნდა იყოს https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "ლიცენზია დაბოლოებით {value} არ არსებობს."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "მხარდაუჭერელი სახის ფაილი, გთხოვთ, ატვირთოთ არქივის სახით ({extensions})."
@@ -183,10 +183,10 @@ msgid "Invalid app specified"
 msgstr "არასწორი აპია მითითებული"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "ვერსიის ზედა ზღვარი არასწორადაა მითითებული"
 
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "ვერსიის ქვედა ზღვარი არასწორადაა მითითებული"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -262,13 +262,13 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr "დამატების თანმხლები მონაცემები აუცილებელია, გამოსაქვეყნებელი ვერსიის შესაქმნელად: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "GUID უნდა იყოს მითითებული Manifest-ფაილში."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "GUID შეუსაბამოა ბმულსა და Manifets-ში."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "წყაროს შეცვლა შეუძლებელია, რადგან ამ ვერსიას უკვე განიხილავს Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "ამ სახის დამატება არ იძლევა თავსებადობის მორგების საშუალებას."
@@ -485,7 +485,7 @@ msgid "The language code \"{lang_code}\" is invalid."
 msgstr "ენის კოდი „{lang_code}“ არასწორია."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "აუცილებლად უნდა მიუთითოთ ობიექტი {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr "მნიშვნელობას, აუცილებლად საჭიროებს ნაგულისხმევი „{lang_code}“."
@@ -571,7 +571,7 @@ msgid "Invalid version"
 msgstr "არასწორი ვერსია"
 
 msgid "Min version can not be greater than Max version"
-msgstr "Min-ვერსია არ უნდა აღემატებოდეს Max-ვერსიას."
+msgstr "ვერსიის ქვედა ზღვარი არ უნდა აღემატებოდეს ზედა ზღვარს"
 
 msgid "Review Listed"
 msgstr "მიმოხილვა გამოქვეყნებულია"
@@ -2567,7 +2567,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "ამ პირობებში „საკუთარი ძალისხმევით“ გავრცელება არის ერთადერთი საშუალება."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "თანდართული წყაროების შეცვლა შეუძლებელია, რადგან ამ ვერსიას უკვე განიხილავს Mozilla."
 
 msgid "General Tests"
 msgstr "ზოგადი შემოწმება"
@@ -4480,7 +4480,7 @@ msgstr "შეწყვიტეთ საიტებისთვის თქ�
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "იერსახის ცვლა დროის მიხედვით. Firefox შეიცვლის ფერებს დღის სხვადასხვა მონაკვეთში."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4606,7 +4606,7 @@ msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
 msgid "Top anti-tracking extensions"
-msgstr ""
+msgstr "რჩეული გაფართოებები თვალთვალის წინააღმდეგ"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4953,7 +4953,7 @@ msgid "Choose one or more reasons:"
 msgstr "აირჩიეთ ერთი ან რამდენიმე მიზეზი:"
 
 msgid "Version mismatch - the latest version has changed!"
-msgstr ""
+msgstr "ვერსიების შეუსაბამობა – ბოლო ვერსია შეცვლილია!"
 
 msgid "Choose a canned response..."
 msgstr "მიუთითეთ წინასწარ განსაზღვრული პასუხი..."
