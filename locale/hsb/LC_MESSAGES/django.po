@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-07-26 17:49+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1084,17 +1084,17 @@ msgstr "Zestarjena dospołna drasta"
 msgid "Dictionary"
 msgstr "Słownik"
 
-msgid "Search Engine"
-msgstr "Pytawa"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Rěčny pakćik (nałoženje)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Rěčny pakćik (přidatk)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Tykač"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Zestarjena lochka drasta"
@@ -1114,17 +1114,17 @@ msgstr "Zestarjene dospołne drasty"
 msgid "Dictionaries"
 msgstr "Słowniki"
 
-msgid "Search Tools"
-msgstr "Pytanske nastroje"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 msgid "Language Packs (Application)"
 msgstr "Rěčne pakćiki (nałoženje)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Rěčne pakćiki (přidatk)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Tykače"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Zestarjene lochke drasty"
@@ -1190,6 +1190,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Sćehńće rozšěrjenja Firefox, zo byšće priwatnje a wěsće přehladował. Tuta kategorija rozšěrjenja zapřijima, kotrež wobćežne wabjenje blokuja, slědowanju zadźěwaja, dalesposrědkowanja rjaduja a "
 "wjace."
+
+msgid "Search Tools"
+msgstr "Pytanske nastroje"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Sćehńće rozšěrjenja Firefox za pytanje a hladanje za informacijemi. Tuta kategorija rozšěrjenja zapřijima, kotrež tekst wuzběhuja a pytaja, za IP-adresami/domenami hladaja a wjace."
@@ -4614,17 +4617,18 @@ msgid "See all extensions"
 msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Woblubowane rozšěrjenja přećiwo slědowanju"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Přełožowanske nastroje"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Přiměrjenje YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Spočatny pakćik rozšěrjenjow"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Zrjadowaki rajtarkow"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4679,10 +4683,6 @@ msgid "See more password manager staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju hesłow pokazać"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Přełožowanske nastroje"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane přełožowanske nastroje pokazać"
 
@@ -4693,6 +4693,10 @@ msgstr "Socialne prudźenje"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja socialneho prudźenja pokazać"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Zrjadowaki rajtarkow"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4713,10 +4717,6 @@ msgstr "Wukonliwe blokowaki wabjenja"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju blokowakow wabjenja pokazać"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Přiměrjenje YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

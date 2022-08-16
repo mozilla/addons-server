@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-07-27 13:57+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -1098,17 +1098,17 @@ msgstr "Παρωχημένο πλήρες θέμα"
 msgid "Dictionary"
 msgstr "Λεξικό"
 
-msgid "Search Engine"
-msgstr "Μηχανή αναζήτησης"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Πακέτο γλώσσας (Εφαρμογή)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Πακέτο γλώσσας (Πρόσθετο)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Άρθρωμα"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Παρωχημένο LWT"
@@ -1130,18 +1130,18 @@ msgstr "Παρωχημένα πλήρη θέματα"
 msgid "Dictionaries"
 msgstr "Λεξικά"
 
-msgid "Search Tools"
-msgstr "Εργαλεία αναζήτησης"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Πακέτα γλώσσας (Εφαρμογή)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Πακέτα γλώσσας (Πρόσθετο)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Αρθρώματα"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Παρωχημένα LWTs"
@@ -1217,6 +1217,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Κάντε λήψη επεκτάσεων του Firefox για να περιηγείστε με ασφάλεια και απόρρητο. Αυτή η κατηγορία περιέχει επεκτάσεις για φραγή ενοχλητικών διαφημίσεων, αποκλεισμό καταγραφής, διαχείριση "
 "ανακατευθύνσεων και πολλά άλλα."
+
+msgid "Search Tools"
+msgstr "Εργαλεία αναζήτησης"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Κάντε λήψη επεκτάσεων του Firefox για αναζήτηση και εύρεση. Αυτή η κατηγορία περιέχει επεκτάσεις για επισήμανση και αναζήτηση κειμένου, εύρεση διευθύνσεων IP/τομέων και πολλά άλλα."
@@ -4670,17 +4673,18 @@ msgid "See all extensions"
 msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Κορυφαίες επεκτάσεις προστασίας από καταγραφή"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Εργαλεία μετάφρασης"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Προσαρμογή YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Βασικό πακέτο επεκτάσεων"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Εργαλεία διαχείρισης καρτελών"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4736,10 +4740,6 @@ msgid "See more password manager staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης κωδικών πρόσβασης"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Εργαλεία μετάφρασης"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Περισσότερα επιλεγμένα εργαλεία μετάφρασης"
 
@@ -4750,6 +4750,10 @@ msgstr "Μετάδοση σε κοινωνικά δίκτυα"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις μετάδοσης κοινωνικών δικτύων"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Εργαλεία διαχείρισης καρτελών"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4770,10 +4774,6 @@ msgstr "Επίλεκτα πρόσθετα φραγής διαφημίσεων"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις φραγής διαφημίσεων"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Προσαρμογή YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

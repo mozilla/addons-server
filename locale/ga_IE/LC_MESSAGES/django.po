@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -1172,17 +1172,17 @@ msgstr "Téama Iomlán"
 msgid "Dictionary"
 msgstr "Foclóir"
 
-msgid "Search Engine"
-msgstr "Inneall Cuardaigh"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Pacáiste Teanga (Feidhmchlár)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Pacáiste Teanga (Breiseán)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Forlíontán"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr ""
@@ -1205,18 +1205,18 @@ msgstr "Téamaí Iomlána"
 msgid "Dictionaries"
 msgstr "Foclóirí"
 
-msgid "Search Tools"
-msgstr "Uirlisí Cuardaigh"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Pacáistí Teanga (Feidhmchlár)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Pacáistí Teanga (Breiseán)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Forlíontáin"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr ""
@@ -1282,6 +1282,9 @@ msgstr "Príobháideachas agus Slándáil"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+
+msgid "Search Tools"
+msgstr "Uirlisí Cuardaigh"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -4747,16 +4750,17 @@ msgid "See all extensions"
 msgstr "Brabhsáil gach breiseán"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4821,10 +4825,6 @@ msgid "See more password manager staff picks"
 msgstr "Brabhsáil gach breiseán"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "de réir Leagan an Bhreiseáin"
@@ -4838,6 +4838,10 @@ msgstr "Líonrú Sóisialta"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Brabhsáil gach breiseán"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4861,10 +4865,6 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Brabhsáil gach breiseán"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

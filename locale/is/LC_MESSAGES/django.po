@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-06-23 19:30+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1084,17 +1084,17 @@ msgstr "Úrelti heilt þema"
 msgid "Dictionary"
 msgstr "Orðasafn"
 
-msgid "Search Engine"
-msgstr "Leitarvél"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Tungumálapakki (forrit)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Tungumálapakki (viðbót)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Forritsviðbót"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Úrelt LWT"
@@ -1114,17 +1114,17 @@ msgstr "Úrelti heil þemu"
 msgid "Dictionaries"
 msgstr "Orðasöfn"
 
-msgid "Search Tools"
-msgstr "Leitarverkfæri"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 msgid "Language Packs (Application)"
 msgstr "Tungumálapakkar (forrit)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Tungumálapakkar (viðbætur)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Viðbætur"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Úreltir LWT"
@@ -1190,6 +1190,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Sæktu Firefox-forritsauka til að vafra öruggar og í friði fyrir eftirliti. Þessi flokkur inniheldur forritsauka til að loka á auglýsingar, koma í veg fyrir eftirlit, stýra endurbeiningum og "
 "ýmislegt fleira."
+
+msgid "Search Tools"
+msgstr "Leitarverkfæri"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Sæktu Firefox-forritsauka fyrir leit og uppflettingar. Þessi flokkur inniheldur forritsauka sem áherslulita texta og leita, fletta upp IP-vistföngum eða lénum og ýmislegt fleira."
@@ -4499,17 +4502,18 @@ msgid "See all extensions"
 msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Þýðingatól"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Sérsníðing YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Flipastýringar"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4564,10 +4568,6 @@ msgid "See more password manager staff picks"
 msgstr "Skoðaðu fleiri lykilorðastjóra sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Þýðingatól"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Skoðaðu fleiri þýðingatól sem starfsfólk hefur valið"
 
@@ -4578,6 +4578,10 @@ msgstr "Samfélagsmiðlastreymi"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Skoðaðu fleiri samfélagsmiðlastreymi sem starfsfólk hefur valið"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Flipastýringar"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4598,10 +4602,6 @@ msgstr "Auglýsingabanar fyrir elítuna"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Sérsníðing YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

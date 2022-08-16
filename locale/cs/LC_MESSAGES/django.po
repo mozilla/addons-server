@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-06-24 14:12+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -1092,17 +1092,17 @@ msgstr "Zastaralý plný motiv vzhledu"
 msgid "Dictionary"
 msgstr "Slovník"
 
-msgid "Search Engine"
-msgstr "Vyhledávací modul"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Jazykový balíček (aplikace)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Jazykový balíček (doplněk)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Zásuvný modul"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Zastaralý odlehčený motiv vzhledu"
@@ -1124,18 +1124,18 @@ msgstr "Zastaralé plné motivy vzhledu"
 msgid "Dictionaries"
 msgstr "Slovníky"
 
-msgid "Search Tools"
-msgstr "Nástroje pro vyhledávání"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Jazykové balíčky (aplikace)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Jazykové balíčky (doplněk)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Zásuvné moduly"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Zastaralé odlehčené motivy vzhledu"
@@ -1201,6 +1201,9 @@ msgstr "Soukromí a bezpečnost"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr "Stáhněte si rozšíření pro soukromější a bezpečnější prohlížení. Tato kategorie obsahuje rozšíření blokující nepříjemné reklamy a sledovací prvky, spravující přesměrování apod."
+
+msgid "Search Tools"
+msgstr "Nástroje pro vyhledávání"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Stáhněte si rozšíření pro vyhledávání. Tato kategorie zahrnuje rozšíření, která zvýrazňují a vyhledávají text, IP adresy, domény a další."
@@ -4603,17 +4606,18 @@ msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Jazykové překladače"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Přizpůsobení YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Správa panelů"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4669,10 +4673,6 @@ msgid "See more password manager staff picks"
 msgstr "Další vybraná rozšíření pro správu hesel"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Jazykové překladače"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Další vybrané jazykové překladače"
 
@@ -4683,6 +4683,10 @@ msgstr "Streamování na sociálních sítích"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Další vybraná rozšíření pro streamování na sociálních sítích"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Správa panelů"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4703,10 +4707,6 @@ msgstr "Výkonné blokátory reklam"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Další vybraná rozšíření pro blokování reklam"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Přizpůsobení YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
