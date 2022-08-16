@@ -8,13 +8,6 @@ from rest_framework import serializers
 
 from olympia.zadmin.models import get_config
 
-from .fields import (
-    ESTranslationSerializerField,
-    OutgoingURLESTranslationField,
-    OutgoingURLTranslationField,
-    TranslationSerializerField,
-)
-
 
 class BaseESSerializer(serializers.ModelSerializer):
     """
@@ -32,15 +25,13 @@ class BaseESSerializer(serializers.ModelSerializer):
 
     def get_fields(self):
         """
-        Return all fields as normal, with one exception: replace every instance
-        of TranslationSerializerField with ESTranslationSerializerField.
+        Return all fields as normal, except if the class defines a `get_es_instance`
+        function - if it does then replace with the instance returned.
         """
         fields = super().get_fields()
         for key, field in fields.items():
-            if isinstance(field, OutgoingURLTranslationField):
-                fields[key] = OutgoingURLESTranslationField(source=field.source)
-            elif isinstance(field, TranslationSerializerField):
-                fields[key] = ESTranslationSerializerField(source=field.source)
+            if hasattr(field, 'get_es_instance'):
+                fields[key] = field.get_es_instance()
             # Set all fields as read_only just in case.
             fields[key].read_only = True
         return fields

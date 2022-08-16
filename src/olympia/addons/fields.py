@@ -12,7 +12,7 @@ from django.utils.encoding import smart_str
 from django.utils.translation import gettext, gettext_lazy as _
 from django.urls import reverse
 
-from rest_framework import fields, exceptions, serializers
+from rest_framework import exceptions, serializers
 
 from olympia import amo
 from olympia.amo.utils import ImageCheck, sorted_groupby
@@ -130,7 +130,7 @@ class ContributionSerializerField(OutgoingURLField):
         return data
 
 
-class LicenseNameSerializerField(serializers.Field):
+class LicenseNameSerializerMixin:
     """Field to handle license name translations.
 
     Builtin licenses, for better or worse, don't necessarily have their name
@@ -142,53 +142,41 @@ class LicenseNameSerializerField(serializers.Field):
     """
 
     builtin_translation_field_class = GetTextTranslationSerializerField
-    custom_translation_field_class = TranslationSerializerField
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.builtin_translation_field = self.builtin_translation_field_class(
             *args, **kwargs
         )
-        self.custom_translation_field = self.custom_translation_field_class(
-            *args, **kwargs
-        )
 
     def bind(self, field_name, parent):
         super().bind(field_name, parent)
         self.builtin_translation_field.bind(field_name, parent)
-        self.custom_translation_field.bind(field_name, parent)
 
     def get_attribute(self, obj):
         if obj._constant:
             return self.builtin_translation_field.get_attribute(obj._constant)
         else:
-            return self.custom_translation_field.get_attribute(obj)
+            return super().get_attribute(obj)
 
     def to_representation(self, obj):
         # Like TranslationSerializerField, the bulk of the logic is in
         # get_attribute(), we just have to return the data at this point.
         return obj
 
-    def run_validation(self, data=fields.empty):
-        return self.custom_translation_field.run_validation(data)
 
-    def to_internal_value(self, value):
-        return self.custom_translation_field.to_internal_value(value)
+class LicenseNameSerializerField(
+    LicenseNameSerializerMixin, TranslationSerializerField
+):
+    def get_es_instance(self):
+        return ESLicenseNameSerializerField(source=self.source)
 
 
-class ESLicenseNameSerializerField(LicenseNameSerializerField):
+class ESLicenseNameSerializerField(
+    LicenseNameSerializerMixin, ESTranslationSerializerField
+):
     """Like LicenseNameSerializerField, but uses the data from ES to avoid
-    a database query for custom licenses.
-
-    BaseESSerializer automatically changes
-    TranslationSerializerField to ESTranslationSerializerField for all base
-    fields on the serializer, but License name has its own special field to
-    handle builtin licences so it's done separately."""
-
-    custom_translation_field_class = ESTranslationSerializerField
-
-    def attach_translations(self, obj, data, field_name):
-        return self.custom_translation_field.attach_translations(obj, data, field_name)
+    a database query for custom licenses."""
 
 
 class LicenseSlugSerializerField(serializers.RelatedField):

@@ -1404,12 +1404,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         # the default_locale isn't overriden from the xpi - it's en-US
         response = self.request(
             data={
-                'version': {
-                    'upload': upload.uuid,
-                    # This should also fail (but doesn't currently):
-                    # https://github.com/mozilla/addons-server/issues/19313
-                    'custom_license': {'name': {'it': 'test'}, 'text': {'it': 'test'}},
-                },
+                'version': {'upload': upload.uuid, 'license': self.license.slug},
                 'categories': {'firefox': ['other']},
                 'support_email': {  # this field has the required locales
                     'it': 'rusiczki.ioana@gmail.com',
@@ -1436,10 +1431,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         #  - added a summary value in en-US in addition to it
         response = self.request(
             data={
-                'version': {
-                    'upload': upload.uuid,
-                    'custom_license': {'name': {'it': 'test'}, 'text': {'it': 'test'}},
-                },
+                'version': {'upload': upload.uuid, 'license': self.license.slug},
                 'categories': {'firefox': ['other']},
                 'support_email': {
                     'it': 'rusiczki.ioana@gmail.com',
@@ -2799,6 +2791,19 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
             'custom_license': {
                 'name': ['This field is required.'],
                 'text': ['This field is required.'],
+            }
+        }
+
+    def test_custom_license_needs_default_locale_value(self):
+        response = self.request(
+            custom_license={'name': {'it': 'test'}, 'text': {'it': 'test'}}
+        )
+        assert response.status_code == 400, response.content
+        error_string = 'A value in the default locale of "en-US" is required.'
+        assert response.data == {
+            'custom_license': {
+                'name': [error_string],
+                'text': [error_string],
             }
         }
 

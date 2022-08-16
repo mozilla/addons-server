@@ -227,6 +227,41 @@ class AddonDefaultLocaleValidator:
             raise exceptions.ValidationError(errors)
 
 
+class NoFallbackDefaultLocaleValidator:
+    """This validator can be used with serializers for models that don't specify a
+    fallback locale field.  (If the model does it requires more handling)"""
+
+    requires_context = True
+
+    def __call__(self, data, serializer):
+        from olympia.api.fields import TranslationSerializerField
+
+        if serializer.instance:
+            return
+        fields = [
+            (name, field)
+            for name, field in serializer.fields.items()
+            if isinstance(field, TranslationSerializerField)
+        ]
+        errors = {}
+        default = settings.LANGUAGE_CODE
+        for field_name, field in fields:
+            if field_name in data:
+                locales = {
+                    loc
+                    for loc, val in data.get(field_name, {}).items()
+                    if val is not None
+                }
+
+                if locales and default not in locales:
+                    errors[field_name] = field.default_error_messages[
+                        'default_locale_required'
+                    ].format(lang_code=default)
+
+        if errors:
+            raise exceptions.ValidationError(errors)
+
+
 class MatchingGuidValidator:
     requires_context = True
 
