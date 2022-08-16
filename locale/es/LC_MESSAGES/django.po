@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1109,17 +1109,17 @@ msgstr "Valoración actualizada del tema completo"
 msgid "Dictionary"
 msgstr "Diccionario"
 
-msgid "Search Engine"
-msgstr "Motor de búsqueda"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Paquete de idioma (Aplicación)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Paquete de idioma (complemento)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Plugin"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "LWT en desuso"
@@ -1142,18 +1142,18 @@ msgstr "Temas completos"
 msgid "Dictionaries"
 msgstr "Diccionarios"
 
-msgid "Search Tools"
-msgstr "Herramientas de búsqueda"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Paquetes de idioma (aplicación)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Paquetes de idioma (complemento)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Plugins"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "LWTs en desuso"
@@ -1223,6 +1223,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Descarga extensiones de Firefox para navegar de forma privada y segura. Esta categoría incluye extensiones que bloquean los anuncios más molestos, impiden el rastreo, gestionan las redirecciones y "
 "mucho más."
+
+msgid "Search Tools"
+msgstr "Herramientas de búsqueda"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Descarga extensiones de Firefox para buscar y hacer consultas. Esta categoría incluye extensiones que resaltan y buscan textos, consultan dominios y direcciones IP y mucho más."
@@ -4721,16 +4724,18 @@ msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Organizadores de pestañas y herramientas"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4792,11 +4797,6 @@ msgstr "Ver más extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Translation tools"
-msgstr "Organizadores de pestañas y herramientas"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "por versión del complemento"
 
@@ -4809,6 +4809,10 @@ msgstr "Redes sociales"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Ver más extensiones populares"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4833,10 +4837,6 @@ msgstr "Actualizar bloqueadores de complementos"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Ver más extensiones recomendadas"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-07-26 19:53+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
@@ -1089,17 +1089,17 @@ msgstr "Застаріла повна тема"
 msgid "Dictionary"
 msgstr "Словник"
 
-msgid "Search Engine"
-msgstr "Засіб пошуку"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Мовний пакет (Програма)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Мовний пакет (Додаток)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Плагін"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Застарілий LWT"
@@ -1119,17 +1119,17 @@ msgstr "Застарілі повні теми"
 msgid "Dictionaries"
 msgstr "Словники"
 
-msgid "Search Tools"
-msgstr "Засоби пошуку"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 msgid "Language Packs (Application)"
 msgstr "Мовні пакети (Програма)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Мовні пакети (Додаток)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Плагіни"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Застарілі LWT"
@@ -1199,6 +1199,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Завантажте розширення для Firefox для безпечного і приватного перегляду. До цієї категорії входять розширення для блокування надокучливої реклами, захисту від стеження, керування перенаправленнями "
 "та інші."
+
+msgid "Search Tools"
+msgstr "Засоби пошуку"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Завантажте розширення Firefox для пошуку і тлумачення. До цієї категорії входять розширення, що підсвічують і шукають текст, здійснюють пошук IP-адрес / доменів та інше."
@@ -4612,17 +4615,18 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Найпопулярніші розширення проти стеження"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Засоби для перекладу"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Пристосування YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Стартовий пакунок розширень"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Менеджери вкладок"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4677,10 +4681,6 @@ msgid "See more password manager staff picks"
 msgstr "Переглянути більше менеджерів паролів відібраних персоналом"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Засоби для перекладу"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Переглянути більше засобів перекладу відібрані персоналом"
 
@@ -4691,6 +4691,10 @@ msgstr "Стрічки з суспільних мереж"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Переглянути більше розширень для стрічок суспільних мереж відібраних персоналом"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Менеджери вкладок"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4711,10 +4715,6 @@ msgstr "Елітні блокувальники реклами"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Переглянути більше відібраних персоналом блокувальників реклами"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Пристосування YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

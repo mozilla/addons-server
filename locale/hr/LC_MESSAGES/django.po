@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-07-29 16:22+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -1101,17 +1101,17 @@ msgstr "Zastarjela cjelovita tema"
 msgid "Dictionary"
 msgstr "Rječnik"
 
-msgid "Search Engine"
-msgstr "Tražilica"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Jezični paket (aplikacija)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Jezični paket (dodatak)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Priključak"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Zastarjela LWT tema"
@@ -1132,17 +1132,17 @@ msgstr "Zastarjele cjelovite teme"
 msgid "Dictionaries"
 msgstr "Riječnici"
 
-msgid "Search Tools"
-msgstr "Alati za pretraživanje"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 msgid "Language Packs (Application)"
 msgstr "Jezični paketi (aplikacija)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Jezični paketi (dodatak)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Dodaci za preglednik"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Zastarjele LWT teme"
@@ -1210,6 +1210,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Preuzmi Firefox proširenja za privatno i sigurno pregledavanje. Ova kategorija uključuje proširenja, koja blokiraju dosadne oglase, sprečavaju praćenje, upravljaju preusmjeravanjima i još mnogo "
 "toga."
+
+msgid "Search Tools"
+msgstr "Alati za pretraživanje"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Preuzmi Firefox proširenja za pretraživanje. Ova kategorija uključuje proširenja, koja ističu i pretražuju tekst, pretražuju IP adrese i domene i još mnogo toga."
@@ -4569,16 +4572,17 @@ msgid "See all extensions"
 msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Alati za prevođenje"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4636,10 +4640,6 @@ msgid "See more password manager staff picks"
 msgstr "Pogledaj još preporučenih proširenja"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Alati za prevođenje"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "Pogledaj još alata za prevođenje"
@@ -4653,6 +4653,10 @@ msgstr "Društvene mreže"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Pogledaj još popularnih proširenja"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4677,10 +4681,6 @@ msgstr "Aktualiziraj blokadu dodataka"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Pogledaj još preporučenih proširenja"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

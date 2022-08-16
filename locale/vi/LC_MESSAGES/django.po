@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-07-26 07:50+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -1100,17 +1100,17 @@ msgstr "Chủ đề hoàn chỉnh không hỗ trợ nữa"
 msgid "Dictionary"
 msgstr "Từ điển"
 
-msgid "Search Engine"
-msgstr "Máy tìm kiếm"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Gói ngôn ngữ (Ứng dụng)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Gói ngôn ngữ (Tiện ích)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Phần bổ trợ"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "LWT ngừng hoạt động"
@@ -1132,18 +1132,18 @@ msgstr "Các chủ đề hoàn chỉnh không hỗ trợ nữa"
 msgid "Dictionaries"
 msgstr "Từ điển"
 
-msgid "Search Tools"
-msgstr "Công cụ tìm kiếm"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Gói ngôn ngữ (Ứng dụng)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Các gói ngôn ngữ (Tiện ích)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Phần bổ trợ"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "LWTs không còn hỗ trợ"
@@ -1208,6 +1208,9 @@ msgstr "Riêng tư & Bảo mật"
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
 "Tải xuống các tiện ích mở rộng Firefox để duyệt riêng tư và an toàn. Danh mục này bao gồm các tiện ích mở rộng để chặn quảng cáo gây phiền nhiễu, ngăn theo dõi, quản lý chuyển hướng và hơn thế nữa."
+
+msgid "Search Tools"
+msgstr "Công cụ tìm kiếm"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Tải xuống tiện ích mở rộng Firefox để tìm kiếm và tra cứu. Danh mục này bao gồm các tiện ích mở rộng làm nổi bật và tìm kiếm văn bản, tra cứu địa chỉ IP/tên miền và hơn thế nữa."
@@ -4620,17 +4623,18 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Công cụ dịch thuật"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Tùy chỉnh YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Quản lý thẻ"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4686,10 +4690,6 @@ msgid "See more password manager staff picks"
 msgstr "Xem thêm trình quản lý mật khẩu được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Công cụ dịch thuật"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Xem thêm các công cụ dịch thuật được lựa chọn bởi biên tập viên"
 
@@ -4700,6 +4700,10 @@ msgstr "Phát trực tuyến xã hội"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Xem thêm phát trực tuyến và xã hội được lựa chọn bởi biên tập viên"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Quản lý thẻ"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4720,10 +4724,6 @@ msgstr "Trình chặn quảng cáo ưu tú"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Xem thêm các trình chặn quảng cáo được lựa chọn bởi biên tập viên"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Tùy chỉnh YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

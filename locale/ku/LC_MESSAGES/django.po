@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1067,16 +1067,16 @@ msgstr ""
 msgid "Dictionary"
 msgstr ""
 
-msgid "Search Engine"
+msgid "Deprecated Search Engine"
 msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr ""
 
-msgid "Language Pack (Add-on)"
+msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
 
-msgid "Plugin"
+msgid "Deprecated Plugin"
 msgstr ""
 
 msgid "Deprecated LWT"
@@ -1097,16 +1097,16 @@ msgstr ""
 msgid "Dictionaries"
 msgstr ""
 
-msgid "Search Tools"
+msgid "Deprecated Search Tools"
 msgstr ""
 
 msgid "Language Packs (Application)"
 msgstr ""
 
-msgid "Language Packs (Add-on)"
+msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
 
-msgid "Plugins"
+msgid "Deprecated Plugins"
 msgstr ""
 
 msgid "Deprecated LWTs"
@@ -1170,6 +1170,9 @@ msgid "Privacy & Security"
 msgstr ""
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Search Tools"
 msgstr ""
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
@@ -4478,16 +4481,17 @@ msgid "See all extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4543,10 +4547,6 @@ msgid "See more password manager staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr ""
 
@@ -4556,6 +4556,10 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -4576,10 +4580,6 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the homepage shelves.

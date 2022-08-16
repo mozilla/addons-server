@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-05-15 12:00+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1092,17 +1092,17 @@ msgstr "Forelda fullstendig tema"
 msgid "Dictionary"
 msgstr "Ordliste"
 
-msgid "Search Engine"
-msgstr "Søkjemotor"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Språkpakke (program)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Språkpakke (utviding)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Programtillegg"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Forelda LWT"
@@ -1123,17 +1123,17 @@ msgstr "Forelda fullstendige tema"
 msgid "Dictionaries"
 msgstr "Ordbøker"
 
-msgid "Search Tools"
-msgstr "Søkjeverktøy"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 msgid "Language Packs (Application)"
 msgstr "Språkpakkar (program)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Språkpakkar (utvidingar)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Programtillegg"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Forelda LWT-ar"
@@ -1198,6 +1198,9 @@ msgstr "Personvern og sikkerheit"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+
+msgid "Search Tools"
+msgstr "Søkjeverktøy"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -4564,17 +4567,18 @@ msgid "See all extensions"
 msgstr "Vis alle utvidingar"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Fanehandterarar"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4632,10 +4636,6 @@ msgid "See more password manager staff picks"
 msgstr "Vis fleire tilrådde utvidingar"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "etter utvidingsversjon"
@@ -4648,6 +4648,10 @@ msgstr "Sosial strøyming"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Vis fleire populære utvidingar"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Fanehandterarar"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4671,10 +4675,6 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Vis fleire tilrådde utvidingar"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

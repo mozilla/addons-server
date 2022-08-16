@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -1179,17 +1179,17 @@ msgstr "Temes destacats"
 msgid "Dictionary"
 msgstr "Diccionari"
 
-msgid "Search Engine"
-msgstr "Motor de cerca"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Paquet d'idioma (aplicació)"
 
-msgid "Language Pack (Add-on)"
+msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
 
-msgid "Plugin"
-msgstr "Connector"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr ""
@@ -1213,19 +1213,18 @@ msgstr "Temes destacats"
 msgid "Dictionaries"
 msgstr "Diccionaris"
 
-msgid "Search Tools"
-msgstr "Eines de cerca"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Paquets d'idioma (aplicació)"
 
-msgid "Language Packs (Add-on)"
+msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
 
-# Plural in this context means many of the add-on type
-msgid "Plugins"
-msgstr "Connectors"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr ""
@@ -1290,6 +1289,9 @@ msgstr "Privadesa i seguretat"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+
+msgid "Search Tools"
+msgstr "Eines de cerca"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -4762,16 +4764,17 @@ msgid "See all extensions"
 msgstr "Mostra tots els complements"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4837,10 +4840,6 @@ msgid "See more password manager staff picks"
 msgstr "Mostra tots els complements"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "per la versió del complement"
@@ -4854,6 +4853,10 @@ msgstr "Xarxes socials"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Mostra tots els complements"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4877,10 +4880,6 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Mostra tots els complements"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

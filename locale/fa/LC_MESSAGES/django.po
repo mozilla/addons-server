@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1132,17 +1132,17 @@ msgstr "مضمون‌های کامل"
 msgid "Dictionary"
 msgstr "واژه‌نامه‌"
 
-msgid "Search Engine"
-msgstr "موتور جست‌وجو"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "بستهٔ زبان (برنامه)"
 
-msgid "Language Pack (Add-on)"
+msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
 
-msgid "Plugin"
-msgstr "متصل‌شونده"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr ""
@@ -1166,24 +1166,18 @@ msgstr "مضمون‌های کامل"
 msgid "Dictionaries"
 msgstr "واژه‌نامه‌ها"
 
-#, fuzzy
-msgid "Search Tools"
+msgid "Deprecated Search Tools"
 msgstr ""
-"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
-"ابزارهای جستجو\n"
-"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
-"ابزارهای جست‌وجو"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "بسته‌های زبان (برنامه)"
 
-msgid "Language Packs (Add-on)"
+msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
 
-#, fuzzy
-msgid "Plugins"
-msgstr "متصل‌شونده"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr ""
@@ -1249,6 +1243,14 @@ msgstr "خصوصی و امنیتی"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+
+#, fuzzy
+msgid "Search Tools"
+msgstr ""
+"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
+"ابزارهای جستجو\n"
+"#-#-#-#-#  django.po (addons.mozilla.org)  #-#-#-#-#\n"
+"ابزارهای جست‌وجو"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -4678,16 +4680,17 @@ msgid "See all extensions"
 msgstr "محبوب‌ترین ضمیمه‌ها"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4751,10 +4754,6 @@ msgid "See more password manager staff picks"
 msgstr "محبوب‌ترین ضمیمه‌ها"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "محبوب‌ترین ضمیمه‌ها"
@@ -4768,6 +4767,10 @@ msgstr "شبکه‌های اجتماعی"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "محبوب‌ترین ضمیمه‌ها"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4791,10 +4794,6 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "محبوب‌ترین ضمیمه‌ها"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1094,17 +1094,17 @@ msgstr "非推奨の完全テーマ"
 msgid "Dictionary"
 msgstr "スペルチェック辞書"
 
-msgid "Search Engine"
-msgstr "検索エンジン"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "言語パック (アプリケーション)"
 
-msgid "Language Pack (Add-on)"
-msgstr "言語パック (アドオン)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "プラグイン"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "非推奨の LWT"
@@ -1126,18 +1126,18 @@ msgstr "非推奨の完全テーマ"
 msgid "Dictionaries"
 msgstr "スペルチェック辞書"
 
-msgid "Search Tools"
-msgstr "検索ツール"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "言語パック (アプリケーション)"
 
-msgid "Language Packs (Add-on)"
-msgstr "言語パック (アドオン)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "プラグイン"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "非推奨の LWT"
@@ -1201,6 +1201,9 @@ msgstr "プライバシー／セキュリティ"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+
+msgid "Search Tools"
+msgstr "検索ツール"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "検索のための Firefox の拡張機能をダウンロードしましょう。このカテゴリには、テキストを強調表示して検索したり、IP アドレス/ドメインを検索する拡張機能などが含まれます。"
@@ -4600,17 +4603,18 @@ msgid "See all extensions"
 msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "翻訳ツール"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "タブ管理"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4669,10 +4673,6 @@ msgid "See more password manager staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "翻訳ツール"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "翻訳ツールをもっと見る"
@@ -4686,6 +4686,10 @@ msgstr "ソーシャルネットワーキング"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "人気の拡張機能をもっと見る"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "タブ管理"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4708,10 +4712,6 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

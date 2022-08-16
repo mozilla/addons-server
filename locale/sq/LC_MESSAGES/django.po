@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-04-07 21:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1096,17 +1096,17 @@ msgstr "Temë e Plotë Nxjerrë Nga Përdorimi"
 msgid "Dictionary"
 msgstr "Fjalor"
 
-msgid "Search Engine"
-msgstr "Motor Kërkimi"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Paketë Gjuhësore (Aplikacion)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Paketë Gjuhësore (Shtesë)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Shtojcë"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "LWT e nxjerrë nga përdorimi"
@@ -1128,18 +1128,18 @@ msgstr "Tema të Plota Nxjerrë Nga Përdorimi"
 msgid "Dictionaries"
 msgstr "Fjalorë"
 
-msgid "Search Tools"
-msgstr "Mjete Kërkimi"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Paketa Gjuhësore (Aplikacion)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Paketa Gjuhësore (Shtesë)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Shtojca"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "LWT të nxjerra nga përdorimi"
@@ -1203,6 +1203,9 @@ msgstr "Privatësi & Siguri"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr "Shkarkoni zgjerime Firefox-i për shfletim privatisht dhe të parrezik. Kjo kategori përfshin zgjerime për bllokim reklamash bezdisëse, për parandalim gjurmimi, administrim ridrejtimesh, etj."
+
+msgid "Search Tools"
+msgstr "Mjete Kërkimi"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Shkarkoni zgjerime Firefox-i për kërkime. Kjo kategori përfshin zgjerime që theksojnë tekst të kërkuar, kërkojnë për adresa IP/përkatësi, etj."
@@ -4620,17 +4623,18 @@ msgid "See all extensions"
 msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Mjete përkthimi"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Përshtatje YouTube-i"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Përgjegjës skedash"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4686,10 +4690,6 @@ msgid "See more password manager staff picks"
 msgstr "Shihni më tepër zgjerime përgjegjës fjalëkalimesh të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Mjete përkthimi"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Shihni më tepër mjete përkthimi të zgjedhura nga stafi"
 
@@ -4700,6 +4700,10 @@ msgstr "Transmetim shoqëror"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Shihni më tepër zgjerime transmetimi në shoqërorë të zgjedhur nga stafi"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Përgjegjës skedash"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4720,10 +4724,6 @@ msgstr "Bllokues reklamash elitarë"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Shihni më tepër bllokues reklamash të zgjedhur nga stafi"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Përshtatje YouTube-i"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

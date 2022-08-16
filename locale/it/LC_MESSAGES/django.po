@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-07-26 18:04+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -1100,17 +1100,17 @@ msgstr "Tema completo obsoleto"
 msgid "Dictionary"
 msgstr "Dizionario"
 
-msgid "Search Engine"
-msgstr "motori di ricerca"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "language pack (applicazione)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Language Pack (componente aggiuntivo)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "plugin"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "LWT obsoleto"
@@ -1132,18 +1132,18 @@ msgstr "Temi completi obsoleti"
 msgid "Dictionaries"
 msgstr "dizionari"
 
-msgid "Search Tools"
-msgstr "Strumenti di ricerca"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "language pack (applicazione)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Language Pack (componenti aggiuntivi)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Plugin"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "LWT obsoleti"
@@ -1219,6 +1219,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Scarica estensioni per Firefox che proteggono la tua privacy e sicurezza durante la navigazione. In questa categoria troverai estensioni per bloccare annunci pubblicitari fastidiosi, impedire il "
 "tracciamento, gestire i reindirizzamenti ad altri siti e altro ancora."
+
+msgid "Search Tools"
+msgstr "Strumenti di ricerca"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -4688,17 +4691,18 @@ msgid "See all extensions"
 msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Le migliori estensioni antitracciamento"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Strumenti di traduzione"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Personalizzazione di YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Pacchetto di estensioni per iniziare"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Gestori di schede"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4754,10 +4758,6 @@ msgid "See more password manager staff picks"
 msgstr "Visualizza altri strumenti per la gestione delle password scelti dallo staff"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Strumenti di traduzione"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Visualizza altri strumenti per la traduzione scelti dallo staff"
 
@@ -4768,6 +4768,10 @@ msgstr "Streaming di gruppo"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "Visualizza altri strumenti per lo streaming di gruppo scelti dallo staff"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Gestori di schede"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4788,10 +4792,6 @@ msgstr "Strumenti esclusivi per il blocco delle pubblicità"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Visualizza altri strumenti per il blocco delle pubblicità scelti dallo staff"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Personalizzazione di YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

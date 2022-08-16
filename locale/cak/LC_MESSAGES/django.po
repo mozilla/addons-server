@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1102,17 +1102,17 @@ msgstr "Xk'ex Rejqalem Tz'aqät Wachinel"
 msgid "Dictionary"
 msgstr "Soltzij"
 
-msgid "Search Engine"
-msgstr "Rusamajel kanob'äl"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Tanaj ch'ab'äl (Chokoy)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Tanaj Ch'ab'äl (Tz'aqat)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Nak'ab'äl"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Man okel ta ri LWT"
@@ -1134,17 +1134,17 @@ msgstr "Tz'aqät taq Wachinel"
 msgid "Dictionaries"
 msgstr "Taq soltzij"
 
-msgid "Search Tools"
-msgstr "Kekanöx Samajib'äl"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 msgid "Language Packs (Application)"
 msgstr "Taq Tanaj Ch'ab'äl (Chokoy)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Taq Tanaj Ch'ab'äl (Tz'aqat)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Taq nak'ab'äl"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Man okel ta ri LWTs"
@@ -1220,6 +1220,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Ke'aqasaj taq ruk'amal Firefox richin ütz chuqa' jikïl yatok pa k'amaya'l. Re ruwäch re' ruk'wan taq k'amal yekiq'ät ri itzel taq eltzijol, man nikiya' ta q'ij richin yatkikanoj, nikinuk'samajij ri "
 "nikanöx chik chuqa' ch'aqa' chik."
+
+msgid "Search Tools"
+msgstr "Kekanöx Samajib'äl"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -4659,16 +4662,17 @@ msgid "See all extensions"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4733,10 +4737,6 @@ msgid "See more password manager staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "chi Ruwäch Tz'aqat"
@@ -4750,6 +4750,10 @@ msgstr "K'amawinaqil"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Ketz'et ronojel ri taq k'amal"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4773,10 +4777,6 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

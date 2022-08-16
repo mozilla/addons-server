@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1101,17 +1101,17 @@ msgstr "Temă completă perimată"
 msgid "Dictionary"
 msgstr "Dicționar"
 
-msgid "Search Engine"
-msgstr "Motor de căutare"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Pachet lingvistic (Aplicație)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Pachet lingvistic (supliment)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Plugin"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "LWT perimat"
@@ -1134,18 +1134,18 @@ msgstr "Teme complete perimate"
 msgid "Dictionaries"
 msgstr "Dicționare"
 
-msgid "Search Tools"
-msgstr "Instrumente pentru căutare"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Pachete lingvistice (Aplicație)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Pachete lingvistice (supliment)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Pluginuri"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "LWT perimate"
@@ -1217,6 +1217,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Descarcă extensii Firefox pentru a naviga confidențial și în siguranță. Această categorie include extensii pentru blocarea reclamelor iritante, prevenirea urmăririi, gestionarea redirecționărilor "
 "și multe altele."
+
+msgid "Search Tools"
+msgstr "Instrumente pentru căutare"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Descarcă extensii Firefox pentru căutare și consultare. Această categorie include extensii care evidențiază și caută text, caută adrese IP/domenii și multe altele."
@@ -4673,16 +4676,17 @@ msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Instrumente de traducere"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4742,10 +4746,6 @@ msgid "See more password manager staff picks"
 msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Instrumente de traducere"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
@@ -4759,6 +4759,10 @@ msgstr "Rețele sociale"
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "Vezi mai multe extensii populare"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4781,10 +4785,6 @@ msgstr "Blocatoare de reclame de elită"
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Vezi mai multe extensii recomandate"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

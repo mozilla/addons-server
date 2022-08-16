@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-07-27 16:42+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1095,17 +1095,17 @@ msgstr "Elavult teljes témák"
 msgid "Dictionary"
 msgstr "Szótár"
 
-msgid "Search Engine"
-msgstr "Kereső"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "Nyelvi csomag (alkalmazás)"
 
-msgid "Language Pack (Add-on)"
-msgstr "Nyelvi csomag (kiegészítő)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "Bővítmény"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr "Elavult LWT"
@@ -1127,18 +1127,18 @@ msgstr "Elavult teljes témák"
 msgid "Dictionaries"
 msgstr "Szótárak"
 
-msgid "Search Tools"
-msgstr "Keresőeszközök"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Nyelvi csomagok (alkalmazás)"
 
-msgid "Language Packs (Add-on)"
-msgstr "Nyelvi csomagok (kiegészítő)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "Bővítmények"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr "Elavult LWT-k"
@@ -1213,6 +1213,9 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr ""
 "Töltsön le Firefox kiegészítőket, melyekkel bizalmasan és biztonságosan böngészhet. Ez a kategória olyan kiegészítőket tartalmaz, amelyek blokkolják a bosszantó hirdetéseket, megakadályozzák a "
 "nyomkövetést, kezelik az átirányításokat, és így tovább."
+
+msgid "Search Tools"
+msgstr "Keresőeszközök"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Töltsön le Firefox kiegészítőket kereséshez. Ebbe a kategóriába olyan kiegészítők tartoznak, amelyek szöveget keresnek és kiemelik azt, IP-címeket / domain neveket keresnek ki, és így tovább."
@@ -4639,17 +4642,18 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr "Legjobbra értékelt követés elleni kiegészítők"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Fordítási eszközök"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube testreszabás"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Kiegészítő kezdőcsomag"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Lapkezelők"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4705,10 +4709,6 @@ msgid "See more password manager staff picks"
 msgstr "További, stáb által javasolt jelszókezelő kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Fordítási eszközök"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "További, stáb által javasolt fordítási eszközök megtekintése"
 
@@ -4719,6 +4719,10 @@ msgstr "Közösségi közvetítés"
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr "További, stáb által javasolt közösségi közvetítési kiegészítők megtekintése"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Lapkezelők"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4739,10 +4743,6 @@ msgstr "Elit reklámblokkolók"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "További, stáb által javasolt reklámblokkoló kiegészítők megtekintése"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube testreszabás"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

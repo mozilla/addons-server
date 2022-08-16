@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2022-06-25 18:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -1102,17 +1102,17 @@ msgstr "סקירת ערכת נושא שלמה מעודכנת"
 msgid "Dictionary"
 msgstr "מילון"
 
-msgid "Search Engine"
-msgstr "מנוע חיפוש"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "חבילת שפה (יישום)"
 
-msgid "Language Pack (Add-on)"
-msgstr "חבילת שפה (תוספת)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "תוסף"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr ""
@@ -1135,20 +1135,18 @@ msgstr "ערכות נושא שלמות"
 msgid "Dictionaries"
 msgstr "מילונים"
 
-msgid "Search Tools"
-msgstr "כלי חיפוש"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "חבילות שפה (יישום)"
 
-msgid "Language Packs (Add-on)"
-msgstr "חבילות שפה (תוספת)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-# 85%
-# 100%
-msgid "Plugins"
-msgstr "תוספים חיצוניים"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr ""
@@ -1212,6 +1210,9 @@ msgstr "פרטיות ואבטחה"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+
+msgid "Search Tools"
+msgstr "כלי חיפוש"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -4587,17 +4588,18 @@ msgid "See all extensions"
 msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "כלי תרגום"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "התאמה אישית של YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "מנהלי לשוניות"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4653,10 +4655,6 @@ msgid "See more password manager staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "כלי תרגום"
-
-#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr ""
 
@@ -4667,6 +4665,10 @@ msgstr ""
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "מנהלי לשוניות"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
@@ -4687,10 +4689,6 @@ msgstr ""
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "התאמה אישית של YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-02 17:58+0000\n"
+"POT-Creation-Date: 2022-08-16 17:38+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1165,17 +1165,17 @@ msgstr "ਮੁਕੰਮਲ ਥੀਮ ਸਮੀਖਿਆ ਅੱਪਡੇਟ ਹ�
 msgid "Dictionary"
 msgstr "ਸ਼ਬਦਕੋਸ"
 
-msgid "Search Engine"
-msgstr "ਖੋਜ ਇੰਜਨ"
+msgid "Deprecated Search Engine"
+msgstr ""
 
 msgid "Language Pack (Application)"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਪਲੀਕੇਸ਼ਨ)"
 
-msgid "Language Pack (Add-on)"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
+msgid "Deprecated Language Pack (Add-on)"
+msgstr ""
 
-msgid "Plugin"
-msgstr "ਪਲੱਗਇਨ"
+msgid "Deprecated Plugin"
+msgstr ""
 
 msgid "Deprecated LWT"
 msgstr ""
@@ -1198,17 +1198,17 @@ msgstr "ਮੁਕਮੰਲ ਥੀਮ"
 msgid "Dictionaries"
 msgstr "ਸ਼ਬਦਕੋਸ"
 
-msgid "Search Tools"
-msgstr "ਖੋਜ ਟੂਲ"
+msgid "Deprecated Search Tools"
+msgstr ""
 
 msgid "Language Packs (Application)"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਪਲੀਕੇਸ਼ਨ)"
 
-msgid "Language Packs (Add-on)"
-msgstr "ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
+msgid "Deprecated Language Packs (Add-on)"
+msgstr ""
 
-msgid "Plugins"
-msgstr "ਪਲੱਗਇਨ"
+msgid "Deprecated Plugins"
+msgstr ""
 
 msgid "Deprecated LWTs"
 msgstr ""
@@ -1278,6 +1278,9 @@ msgstr "ਪਰਦਾ ਨੀਤੀ"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+
+msgid "Search Tools"
+msgstr "ਖੋਜ ਟੂਲ"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -4777,16 +4780,17 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Top anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4851,10 +4855,6 @@ msgid "See more password manager staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "ਐਡ-ਆਨ ਵਰਜਨ ਦੁਆਰਾ"
@@ -4867,6 +4867,10 @@ msgstr ""
 #, fuzzy
 msgid "See more social streaming staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4890,10 +4894,6 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
