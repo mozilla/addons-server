@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-16 17:38+0000\n"
-"PO-Revision-Date: 2022-08-17 23:40+0000\n"
+"PO-Revision-Date: 2022-08-17 23:49+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1099,7 +1099,7 @@ msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
 
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Plugin obsolete"
 
 msgid "Deprecated LWT"
 msgstr "LWT obsolete"
@@ -1120,16 +1120,16 @@ msgid "Dictionaries"
 msgstr "Dictionarios"
 
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Utensiles de recerca obsolete"
 
 msgid "Language Packs (Application)"
 msgstr "Pacchettos de lingua (Application)"
 
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Pacchettos de lingua obsolete (Additivo)"
 
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Plugins obsolete"
 
 msgid "Deprecated LWTs"
 msgstr "LWTs obsolete"
