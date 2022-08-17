@@ -1122,7 +1122,7 @@ class TestAddonModels(TestCase):
 
     def test_newlines_malformed_faketag(self):
         before = '<madonna'
-        after = ''
+        after = '&lt;madonna'
 
         assert self.newlines_helper(before) == after
 
@@ -1134,7 +1134,7 @@ class TestAddonModels(TestCase):
 
     def test_newlines_malformed_tag(self):
         before = '<strong'
-        after = ''
+        after = '&lt;strong'
 
         assert self.newlines_helper(before) == after
 
