@@ -3147,6 +3147,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             data={
                 **self.minimal_data,
                 'release_notes': {'en-US': 'dsdsdsd'},
+                'approval_notes': 'This!',
             },
         )
 
@@ -3157,6 +3158,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         version = self.addon.find_latest_version(channel=None)
         assert data['release_notes'] == {'en-US': 'dsdsdsd'}
         assert version.release_notes == 'dsdsdsd'
+        assert version.approval_notes == 'This!'
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
 
     def test_check_blocklist(self):
@@ -3358,14 +3360,19 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     def test_basic(self):
         response = self.client.patch(
             self.url,
-            data={'release_notes': {'en-US': 'Something new'}},
+            data={
+                'release_notes': {'en-US': 'Something new'},
+                'approval_notes': 'secret!',
+            },
         )
         assert response.status_code == 200, response.content
         data = response.data
         assert data['release_notes'] == {'en-US': 'Something new'}
+        assert data['approval_notes'] == 'secret!'
         self.addon.reload()
         self.version.reload()
         assert self.version.release_notes == 'Something new'
+        assert self.version.approval_notes == 'secret!'
         assert self.addon.versions.count() == 1
         version = self.addon.find_latest_version(channel=None)
         request = APIRequestFactory().get('/')

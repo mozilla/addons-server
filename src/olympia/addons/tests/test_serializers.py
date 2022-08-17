@@ -1356,6 +1356,15 @@ class TestDeveloperVersionSerializerOutput(TestVersionSerializerOutput):
             reverse('downloads.source', args=(self.version.id,))
         )
 
+    def test_approval_notes(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        assert result['approval_notes'] == ''
+
+        self.version.update(approval_notes='Plz approve!')
+        result = self.serialize()
+        assert result['approval_notes'] == 'Plz approve!'
+
 
 class TestListVersionSerializerOutput(TestCase):
     serializer_class = ListVersionSerializer

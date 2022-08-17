@@ -505,6 +505,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int id: The version id.
+    :>json string approval_notes: Information for Mozilla reviewers, for when the add-on is reviewed.  These notes are only visible to Mozilla, and this field is only present if the user has reviewer permissions, or is listed as a developer of the add-on.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
     :>json object compatibility:
         Object detailing which :ref:`applications <addon-detail-application>` the version is compatible with.
@@ -574,6 +575,7 @@ already defined.
 
     .. _version-create-request:
 
+    :<json string approval_notes: Information for Mozilla reviewers, for when the add-on is reviewed.  These notes are only visible to Mozilla.
     :<json object|array compatibility:
         Either an object detailing which :ref:`applications <addon-detail-application>`
         and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`,
@@ -584,8 +586,8 @@ already defined.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
-    :<json string upload: The uuid for the xpi upload to create this version with.
     :<json string|null source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
+    :<json string upload: The uuid for the xpi upload to create this version with.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -690,6 +692,7 @@ This endpoint allows the metadata for an existing version to be edited.
 
     .. _version-edit-request:
 
+    :<json string approval_notes: Information for Mozilla reviewers, for when the add-on is reviewed.  These notes are only visible to Mozilla.
     :<json object|array compatibility: Either an object detailing which :ref:`applications <addon-detail-application>` and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`, where default min/max versions will be used if not already defined.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.

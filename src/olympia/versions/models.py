@@ -211,9 +211,7 @@ class Version(OnChangeMixin, ModelBase):
         'License', null=True, blank=True, on_delete=models.SET_NULL
     )
     release_notes = PurifiedField(db_column='releasenotes', short=False)
-    approval_notes = models.TextField(
-        db_column='approvalnotes', default='', null=True, blank=True
-    )
+    approval_notes = models.TextField(db_column='approvalnotes', default='', blank=True)
     version = VersionStringField(max_length=255, default='0.1')
 
     nomination = models.DateTimeField(null=True)
@@ -339,7 +337,7 @@ class Version(OnChangeMixin, ModelBase):
             previous_version = addon.find_latest_version(channel=channel, exclude=())
             if previous_version and previous_version.license_id:
                 license_id = previous_version.license_id
-        approval_notes = None
+        approval_notes = parsed_data.get('approval_notes', '')
         if parsed_data.get('is_mozilla_signed_extension'):
             approval_notes = (
                 'This version has been signed with Mozilla internal certificate.'
