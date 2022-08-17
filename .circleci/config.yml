@@ -283,7 +283,7 @@ references:
 
   docker-images:
     # These versions should try to match what we run in production.
-    - &python "cimg/python:3.9"
+    - &python "cimg/python:3.10"
     - &redis "redis:6.2"
     - &memcached "memcached:1.4"
     - &mysql "mysql:8.0.28"
