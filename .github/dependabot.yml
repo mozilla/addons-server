@@ -24,9 +24,6 @@ updates:
   - dependency-name: kombu
     versions:
     - ">= 6"
-  - dependency-name: pygit2
-    versions:
-    - ">= 1.2.0"
   - dependency-name: vine
     versions:
     - ">= 6"

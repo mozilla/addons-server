@@ -35,7 +35,6 @@ RUN touch /addons-server-docker-container \
         build-essential \
         curl \
         libcap-dev \
-        libgit2-dev \
         libjpeg-dev \
         libpcre3-dev \
         libsasl2-dev \
@@ -61,8 +60,6 @@ RUN touch /addons-server-docker-container \
         # Use libmaxmind for speedy geoip lookups
         libmaxminddb0                    \
         libmaxminddb-dev                 \
-    && apt-get -t buster-backports install -y \
-        libgit2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # IMPORTANT: When editing one of these lists below, make sure to also update
