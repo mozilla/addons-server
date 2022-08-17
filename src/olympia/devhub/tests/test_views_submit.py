@@ -652,7 +652,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         response = self.post()
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        assert addon.current_version.file.filename.endswith(
+        assert addon.current_version.file.file.name.endswith(
             f'{addon.pk}/weta_fade-1.0.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
@@ -671,7 +671,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
-        assert latest_version.file.filename.endswith(f'{addon.pk}/{addon.slug}-1.0.zip')
+        assert latest_version.file.file.name.endswith(
+            f'{addon.pk}/{addon.slug}-1.0.zip'
+        )
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -697,7 +699,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         addon = Addon.objects.get()
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
-        assert addon.current_version.file.filename.endswith(
+        assert addon.current_version.file.file.name.endswith(
             f'{addon.pk}/weta_fade-1.0.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
@@ -728,7 +730,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
-        assert latest_version.file.filename.endswith(f'{addon.pk}/{addon.slug}-1.0.zip')
+        assert latest_version.file.file.name.endswith(
+            f'{addon.pk}/{addon.slug}-1.0.zip'
+        )
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0

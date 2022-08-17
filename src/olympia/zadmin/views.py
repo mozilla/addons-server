@@ -18,7 +18,7 @@ log = olympia.core.logger.getLogger('z.zadmin')
 def recalc_hash(request, file_id):
 
     file = get_object_or_404(File, pk=file_id)
-    file.size = storage.size(file.file_path)
+    file.size = storage.size(file.file.path)
     file.hash = file.generate_hash()
     file.save()
 

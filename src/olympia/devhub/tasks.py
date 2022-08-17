@@ -219,7 +219,7 @@ def validate_file(results, file_pk):
     if file.has_been_validated:
         data = file.validation.validation
     else:
-        data = validate_file_path(file.file_path, file.version.channel)
+        data = validate_file_path(file.file.path, file.version.channel)
     return {**results, **json.loads(force_str(data))}
 
 

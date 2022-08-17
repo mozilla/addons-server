@@ -86,12 +86,12 @@ class TestReviewHelperBase(TestCase):
         assert scores[0].note_key == reviewed_type
 
     def remove_paths(self):
-        if self.file.file and not storage.exists(self.file.file_path):
-            storage.delete(self.file.file_path)
+        if self.file.file and not storage.exists(self.file.file.path):
+            storage.delete(self.file.file.path)
 
     def create_paths(self):
-        if not storage.exists(self.file.file_path):
-            with storage.open(self.file.file_path, 'w') as f:
+        if not storage.exists(self.file.file.path):
+            with storage.open(self.file.file.path, 'w') as f:
                 f.write('test data\n')
         self.addCleanup(self.remove_paths)
 
@@ -977,7 +977,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approval_counter.counter == 1
         self.assertCloseToNow(approval_counter.last_human_review)
 
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -1093,7 +1093,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approval_counter.counter == 1
 
         self.sign_file_mock.assert_called_with(self.file)
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -1119,7 +1119,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approval_counter.counter == 1
 
         self.sign_file_mock.assert_called_with(self.file)
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -1150,7 +1150,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approval_counter.last_human_review is None
 
         self.sign_file_mock.assert_called_with(self.file)
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -1206,7 +1206,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.assertCloseToNow(approval_counter.last_human_review)
 
         self.sign_file_mock.assert_called_with(self.file)
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -1300,7 +1300,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert approval_counter.counter == 1
 
         assert not self.sign_file_mock.called
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
@@ -1633,7 +1633,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert 'You received this email because' not in message.body
 
         self.sign_file_mock.assert_called_with(self.file)
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
@@ -1671,7 +1671,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
 
         assert not self.sign_file_mock.called
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
     def test_email_unicode_monster(self):
@@ -2582,11 +2582,11 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 1
 
-        assert storage.exists(self.file.file_path)
+        assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-        signature_info, manifest = _get_signature_details(self.file.file_path)
+        signature_info, manifest = _get_signature_details(self.file.file.path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'test@local'
@@ -2613,7 +2613,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         ).exists()
         assert self.addon.promoted_group() == RECOMMENDED
 
-        signature_info, manifest = _get_signature_details(self.file.file_path)
+        signature_info, manifest = _get_signature_details(self.file.file.path)
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'test@local'
@@ -2625,7 +2625,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         assert 'Name: META-INF/cose.sig' in manifest
         assert 'Name: mozilla-recommendation.json' in manifest
 
-        recommendation_data = _get_recommendation_data(self.file.file_path)
+        recommendation_data = _get_recommendation_data(self.file.file.path)
         assert recommendation_data['addon_id'] == 'test@local'
         assert sorted(recommendation_data['states']) == [
             'recommended',
