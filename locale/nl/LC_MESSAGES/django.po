@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-16 17:38+0000\n"
-"PO-Revision-Date: 2022-08-18 12:11+0000\n"
+"PO-Revision-Date: 2022-08-18 12:12+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1133,17 +1133,17 @@ msgid "Dictionaries"
 msgstr "Woordenboeken"
 
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Verouderde zoekhulpmiddelen"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
 msgstr "Taalpakketten (Toepassing)"
 
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Verouderde taalpakketten (add-on)"
 
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Verouderde plug-ins"
 
 msgid "Deprecated LWTs"
 msgstr "Verouderde LWT’s"
