@@ -16,8 +16,45 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
 class TestAddonAbuseReportSerializer(TestCase):
-    def serialize(self, report, **extra_context):
-        return AddonAbuseReportSerializer(report, context=extra_context).data
+    def serialize(self, report, context=None):
+        return dict(AddonAbuseReportSerializer(report, context=context or {}).data)
+
+    def test_output_with_view_and_addon_object(self):
+        addon = addon_factory(guid='@guid')
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        view = Mock()
+        view.get_guid.return_value = addon.guid
+        view.get_addon_object.return_value.slug = addon.slug
+        view.get_addon_object.return_value.pk = addon.pk
+        context = {
+            'request': request,
+            'view': view,
+        }
+        report = AbuseReport(guid=addon.guid, message='bad stuff')
+        serialized = self.serialize(report, context=context)
+        assert serialized == {
+            'reporter': None,
+            'addon': {'guid': addon.guid, 'id': addon.pk, 'slug': addon.slug},
+            'message': 'bad stuff',
+            'addon_install_method': None,
+            'addon_install_origin': None,
+            'addon_install_source': None,
+            'addon_install_source_url': None,
+            'addon_name': None,
+            'addon_signature': None,
+            'addon_summary': None,
+            'addon_version': None,
+            'app': 'firefox',
+            'lang': None,
+            'appversion': None,
+            'client_id': None,
+            'install_date': None,
+            'operating_system': None,
+            'operating_system_version': None,
+            'reason': None,
+            'report_entry_point': None,
+        }
 
     def test_guid_report_addon_exists_doesnt_matter(self):
         addon = addon_factory(guid='@guid')
@@ -76,12 +113,9 @@ class TestAddonAbuseReportSerializer(TestCase):
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
         view = Mock()
-        view.get_guid_and_addon.return_value = {
-            'guid': '@someguid',
-            'addon': None,
-        }
+        view.get_guid.return_value = '@someguid'
         view.get_addon_object.return_value = None
-        extra_context = {
+        context = {
             'request': request,
             'view': view,
         }
@@ -106,11 +140,10 @@ class TestAddonAbuseReportSerializer(TestCase):
             'reason': 'broken',
             'report_entry_point': 'uninstall',
         }
-        result = AddonAbuseReportSerializer(
-            data, context=extra_context
-        ).to_internal_value(data)
+        result = dict(
+            AddonAbuseReportSerializer(data, context=context).to_internal_value(data)
+        )
         expected = {
-            'addon': None,
             'addon_install_method': AbuseReport.ADDON_INSTALL_METHODS.URL,
             'addon_install_origin': 'http://somewhere.com/',
             'addon_install_source': AbuseReport.ADDON_INSTALL_SOURCES.AMO,
@@ -136,8 +169,8 @@ class TestAddonAbuseReportSerializer(TestCase):
 
 
 class TestUserAbuseReportSerializer(TestCase):
-    def serialize(self, report, **extra_context):
-        return UserAbuseReportSerializer(report, context=extra_context).data
+    def serialize(self, report, context=None):
+        return dict(UserAbuseReportSerializer(report, context=context or {}).data)
 
     def test_user_report(self):
         user = user_factory()

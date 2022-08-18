@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
 import olympia.core.logger
@@ -153,19 +154,30 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
             )
         self.validate_target(data, 'addon')
         view = self.context.get('view')
-        output = view.get_guid_and_addon()
-        # Pop 'addon' from data before passing that data to super(), we already
-        # have it in the output value.
+        output = {'guid': view.get_guid()}
+        # Pop 'addon' from data before passing that data to super(), we don't
+        # need it - we're only recording the guid and it's coming from the view
         data.pop('addon')
         output.update(super().to_internal_value(data))
         return output
 
     def get_addon(self, obj):
-        return {
+        output = {
             'guid': obj.guid,
-            'id': None,  # For backwards-compatibility.
-            'slug': None,  # For backwards-compatibility.
+            'id': None,
+            'slug': None,
         }
+        if view := self.context.get('view'):
+            try:
+                addon = view.get_addon_object()
+                output['id'] = addon.pk
+                output['slug'] = addon.slug
+            except Http404:
+                # We accept abuse reports against unknown guids or guids
+                # belonging to non-public/disabled/deleted add-ons, but don't
+                # want to reveal the slug or id of those add-ons.
+                pass
+        return output
 
 
 class UserAbuseReportSerializer(BaseAbuseReportSerializer):
