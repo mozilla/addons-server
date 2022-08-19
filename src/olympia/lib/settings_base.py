@@ -711,7 +711,7 @@ CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.PyMemcacheC
 CACHES['default']['KEY_PREFIX'] = 'amo:%s:' % BUILD_ID
 
 # Outgoing URL bouncer
-REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
+REDIRECT_URL = env('REDIRECT_URL', default='https://outgoing.prod.mozaws.net/v1/')
 REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY', default='')
 
 # Allow URLs from these servers. Use full domain names.
