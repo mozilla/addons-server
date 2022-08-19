@@ -52,19 +52,28 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
             raise Http404
         return self.addon_object
 
-    def get_guid_and_addon(self):
-        data = {
-            'guid': None,
-        }
+    def get_guid(self):
+        """
+        Return the guid corresponding to the add-on the report is being made
+        against.
+
+        If `addon` in the POST/GET data looks like a guid, use that directly
+        without looking in the database, but if not, consider it's a slug or pk
+        belonging to a public add-on.
+
+        Can raise Http404 if the `addon` parameter in POST/GET data doesn't
+        look like a guid and there is no public add-on with a matching slug or
+        pk.
+        """
         if self.get_addon_viewset().get_lookup_field(self.kwargs['addon_pk']) == 'guid':
-            data['guid'] = self.kwargs['addon_pk']
+            guid = self.kwargs['addon_pk']
         else:
             # At this point the parameter is a slug or pk. For backwards-compatibility
             # we accept that, but ultimately record only the guid.
             self.get_addon_object()
             if self.addon_object:
-                data['guid'] = self.addon_object.guid
-        return data
+                guid = self.addon_object.guid
+        return guid
 
 
 class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
