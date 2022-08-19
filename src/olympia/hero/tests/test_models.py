@@ -214,6 +214,23 @@ class TestSecondaryHero(TestCase):
             hero.clean()
             assert hero.cta_url == '/collections/4757633/privacy-matters/'
 
+            hero.cta_url = '/en-US/addon/noapp/'
+            hero.clean()
+            assert hero.cta_url == '/addon/noapp/'
+
+            hero.cta_url = '/addon/noapporlocale/'
+            hero.clean()
+            assert hero.cta_url == '/addon/noapporlocale/'
+
+            hero.cta_url = '/api/v5/addon/addon/'
+            hero.clean()
+            assert hero.cta_url == '/api/v5/addon/addon/'
+
+            # Can't resolve that, so we don't touch it.
+            hero.cta_url = '/en-US/firefox/something/weird/'
+            hero.clean()
+            assert hero.cta_url == '/en-US/firefox/something/weird/'
+
     def test_clean_only_enabled(self):
         hero = SecondaryHero.objects.create(
             headline='Its a héadline!', description='description'
@@ -288,6 +305,23 @@ class TestSecondaryHeroModule(TestCase):
             module.cta_url = '/fr/android/collections/4757633/privacy-matters'
             module.clean()
             assert module.cta_url == '/collections/4757633/privacy-matters/'
+
+            module.cta_url = '/en-US/addon/noapp/'
+            module.clean()
+            assert module.cta_url == '/addon/noapp/'
+
+            module.cta_url = '/addon/noapporlocale/'
+            module.clean()
+            assert module.cta_url == '/addon/noapporlocale/'
+
+            module.cta_url = '/api/v5/addon/addon/'
+            module.clean()
+            assert module.cta_url == '/api/v5/addon/addon/'
+
+            # Can't resolve that, so we don't touch it.
+            module.cta_url = '/en-US/firefox/something/weird/'
+            module.clean()
+            assert module.cta_url == '/en-US/firefox/something/weird/'
 
     def test_icon_url(self):
         ph = SecondaryHeroModule.objects.create(
