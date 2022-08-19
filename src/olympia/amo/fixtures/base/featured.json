@@ -335,6 +335,7 @@
             "file": "75708/glue-4.5.16.xpi",
             "version": 91189,
             "datestatuschanged": "2010-01-14 11:39:32",
+            "manifest_version": 2,
             "size": 164864
         }
     },
@@ -349,6 +350,7 @@
             "file": "75488/foxyproxy_standard-2.17-fx+sm+tb.xpi",
             "version": 90952,
             "datestatuschanged": "2010-01-12 20:50:11",
+            "manifest_version": 2,
             "size": 592896
         }
     },
@@ -363,6 +365,7 @@
             "file": "73703/read_it_later-2.0.3.xpi",
             "version": 88798,
             "datestatuschanged": "2009-12-24 18:30:00",
+            "manifest_version": 2,
             "size": 173056
         }
     },
@@ -377,6 +380,7 @@
             "file": "52775/limon_free_english-hebrew_dictionary-0.5.3.xpi",
             "version": 68019,
             "datestatuschanged": "2009-05-08 05:26:20",
+            "manifest_version": 2,
             "size": 3072
         }
     }

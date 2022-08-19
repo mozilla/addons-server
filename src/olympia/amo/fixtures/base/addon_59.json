@@ -68,6 +68,7 @@
             "file": "56975/user_agent_switcher-0.7.2-fx+sm.xpi",
             "version": 71752,
             "size": 38912,
+            "manifest_version": 2,
             "datestatuschanged": "2009-06-30 19:48:42"
         }
     }

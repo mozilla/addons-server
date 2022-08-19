@@ -37,10 +37,6 @@ from olympia.files.utils import (
 
 log = olympia.core.logger.getLogger('z.files')
 
-# We should be able to drop the field default - so enforce it being required - now we've
-# dropped `is_webextension`, but the fixtures need updating to include it.
-DEFAULT_MANIFEST_VERSION = 2
-
 
 def files_upload_to_callback(instance, filename):
     """upload_to callback for File instances.
@@ -89,6 +85,7 @@ def files_storage():
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
+    SUPPORTED_MANIFEST_VERSIONS = ((2, 'Manifest V2'), (3, 'Manifest V3'))
 
     version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
     file = FilenameFileField(
@@ -122,7 +119,7 @@ class File(OnChangeMixin, ModelBase):
     # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
     original_status = models.PositiveSmallIntegerField(default=amo.STATUS_NULL)
     # The manifest_version defined in manifest.json
-    manifest_version = models.SmallIntegerField(default=DEFAULT_MANIFEST_VERSION)
+    manifest_version = models.SmallIntegerField(choices=SUPPORTED_MANIFEST_VERSIONS)
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
@@ -183,9 +180,7 @@ class File(OnChangeMixin, ModelBase):
         file_.is_signed = file_.is_mozilla_signed_extension
         file_.hash = upload.hash
         file_.original_hash = file_.hash
-        file_.manifest_version = parsed_data.get(
-            'manifest_version', DEFAULT_MANIFEST_VERSION
-        )
+        file_.manifest_version = parsed_data.get('manifest_version')
         log.info(f'New file: {file_!r} from {upload!r}')
 
         # FileUpload.path is not a FileField, so we have to open() the path to

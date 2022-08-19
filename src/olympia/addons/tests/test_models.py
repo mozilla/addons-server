@@ -1273,7 +1273,7 @@ class TestAddonModels(TestCase):
     def setup_files(self, status):
         addon = Addon.objects.create(type=1)
         version = Version.objects.create(addon=addon)
-        File.objects.create(status=status, version=version)
+        File.objects.create(status=status, version=version, manifest_version=2)
         return addon, version
 
     def test_no_change_disabled_user(self):
@@ -1969,7 +1969,7 @@ class TestAddonNomination(TestCase):
     ):
         addon = Addon.objects.create()
         version = Version.objects.create(addon=addon)
-        File.objects.create(status=file_status, version=version)
+        File.objects.create(status=file_status, version=version, manifest_version=2)
         # Cheating date to make sure we don't have a date on the same second
         # the code we test is running.
         past = self.days_ago(1)
@@ -1982,7 +1982,9 @@ class TestAddonNomination(TestCase):
     def test_new_version_of_under_review_addon_does_not_reset_nomination(self):
         addon, nomination = self.setup_nomination()
         version = Version.objects.create(addon=addon, version='0.2')
-        File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
+        File.objects.create(
+            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
+        )
         assert addon.versions.latest().nomination == nomination
 
     def test_nomination_not_reset_if_adding_new_versions_and_files(self):
@@ -1993,21 +1995,29 @@ class TestAddonNomination(TestCase):
         addon, nomination = self.setup_nomination()
         # Switching it to a public status.
         version = Version.objects.create(addon=addon, version='0.2')
-        File.objects.create(status=amo.STATUS_APPROVED, version=version)
+        File.objects.create(
+            status=amo.STATUS_APPROVED, version=version, manifest_version=2
+        )
         assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version='0.3')
-        File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
+        File.objects.create(
+            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
+        )
         assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version='0.4')
-        File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
+        File.objects.create(
+            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
+        )
         assert addon.versions.latest().nomination == nomination
 
     def check_nomination_reset_with_new_version(self, addon, nomination):
         version = Version.objects.create(addon=addon, version='0.2')
         assert version.nomination is None
-        File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
+        File.objects.create(
+            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
+        )
         assert addon.versions.latest().nomination != nomination
 
     def test_new_version_of_approved_addon_should_reset_nomination(self):
@@ -2073,7 +2083,9 @@ class TestUpdateStatus(TestCase):
     def test_no_valid_file_ends_with_NULL(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         version = Version.objects.create(addon=addon)
-        file_ = File.objects.create(status=amo.STATUS_AWAITING_REVIEW, version=version)
+        file_ = File.objects.create(
+            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
+        )
         addon.status = amo.STATUS_NOMINATED
         addon.save()
         assert Addon.objects.get(pk=addon.pk).status == (amo.STATUS_NOMINATED)
@@ -2257,6 +2269,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             )
 
         self.dummy_parsed_data = {
+            'manifest_version': 2,
             'guid': '@webextension-guid',
             'version': '0.0.1',
             'apps': [_app(amo.FIREFOX)],
@@ -2495,6 +2508,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
     def test_webext_resolve_translations_corrects_locale(self):
         """Make sure we correct invalid `default_locale` values"""
         parsed_data = {
+            'manifest_version': 2,
             'default_locale': 'sv',
             'guid': 'notify-link-clicks-i18n@notzilla.org',
             'name': '__MSG_extensionName__',
@@ -2519,6 +2533,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         for invalid locales
         """
         parsed_data = {
+            'manifest_version': 2,
             'default_locale': 'xxx',
             'guid': 'notify-link-clicks-i18n@notzilla.org',
             'name': '__MSG_extensionName__',
@@ -2542,6 +2557,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         """If we have a dict passed as the field value it is already localised so don't
         try to localize further."""
         parsed_data = {
+            'manifest_version': 2,
             'default_locale': 'sv',
             'guid': 'notify-link-clicks-i18n@notzilla.org',
             'name': '__MSG_extensionName__',

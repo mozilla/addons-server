@@ -35,5 +35,6 @@ def generate_version(addon, app=None):
     File.objects.create(
         version=v,
         status=amo.STATUS_APPROVED,
+        manifest_version=2,
     )
     return v

@@ -64,6 +64,7 @@
             "file": "197/mozex-1.0.7.xpi",
             "version": 42,
             "size": 18432,
+            "manifest_version": 2,
             "datestatuschanged": "2007-03-05 13:11:03"
         }
     },

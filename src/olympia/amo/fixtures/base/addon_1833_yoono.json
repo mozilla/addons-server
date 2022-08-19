@@ -80,6 +80,7 @@
             "file": "84382/yoono-7.1.6.xpi",
             "version": 101235,
             "size": 2777088,
+            "manifest_version": 2,
             "datestatuschanged": "2010-03-26 08:22:39"
         }
     },

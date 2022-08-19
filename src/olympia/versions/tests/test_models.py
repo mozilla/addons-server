@@ -1325,7 +1325,7 @@ class TestVersionFromUpload(UploadMixin, TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(guid='@webextension-guid')
         self.selected_app = amo.FIREFOX.id
-        self.dummy_parsed_data = {'version': '0.1'}
+        self.dummy_parsed_data = {'manifest_version': 2, 'version': '0.1'}
         self.fake_user = user_factory()
 
 

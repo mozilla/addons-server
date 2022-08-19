@@ -204,6 +204,7 @@
             "file": "67442/delicious_bookmarks-2.1.072.xpi",
             "version": 81551,
             "size": 388096,
+            "manifest_version": 2,
             "datestatuschanged": "2009-10-21 09:58:40"
         }
     },

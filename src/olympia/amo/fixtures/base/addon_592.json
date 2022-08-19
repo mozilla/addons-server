@@ -78,6 +78,7 @@
             "file": "87384/gmail_s_mime-0.4.7-fx+sm.xpi",
             "version": 104749,
             "size": 114688,
+            "manifest_version": 2,
             "datestatuschanged": "2010-04-24 11:33:30"
         }
     },

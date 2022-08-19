@@ -89,6 +89,7 @@
             "file": "33046/better_gcal-0.3.xpi",
             "version": 49515,
             "size": 75776,
+            "manifest_version": 2,
             "datestatuschanged": "2008-07-07 12:08:01"
         }
     },
@@ -101,6 +102,7 @@
             "file": "7/better_gcal-0.4.xpi",
             "version": 50000,
             "size": 24576,
+            "manifest_version": 2,
             "datestatuschanged": "2009-09-18 12:32:59"
         },
         "model": "files.file",

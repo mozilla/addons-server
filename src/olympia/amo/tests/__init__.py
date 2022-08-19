@@ -802,6 +802,7 @@ def license_factory(**kw):
 
 def file_factory(**kw):
     kw.setdefault('status', amo.STATUS_APPROVED)
+    kw.setdefault('manifest_version', 2)
     filename = kw.pop('filename', None)
     if filename:
         # If a filename is passed, also copy the file over to where it would

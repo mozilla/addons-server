@@ -124,6 +124,7 @@
             "file": "11993/del.icio.us_bookmarks-1.0.43.xpi",
             "version": 24007,
             "datestatuschanged": null,
+            "manifest_version": 2,
             "size": 173056
         }
     },
@@ -160,6 +161,7 @@
             "file": "2/del.icio.us_bookmarks-1.0.43.xpi",
             "version": 2,
             "datestatuschanged": null,
+            "manifest_version": 2,
             "size": 173056
         }
     }
