@@ -206,6 +206,10 @@ class TranslationSerializerField(fields.CharField):
 
         return super().run_validation(data)
 
+    def get_es_instance(self):
+        """Returns the equivalent ElasticSearch compatible Serializer instance."""
+        return ESTranslationSerializerField(source=self.source)
+
 
 class ESTranslationSerializerField(TranslationSerializerField):
     """
@@ -280,6 +284,12 @@ class ESTranslationSerializerField(TranslationSerializerField):
         return self._format_single_translation_response(
             value, locale, requested_language
         )
+
+    def get_es_instance(self):
+        """We're already the ES field, but if we don't specify this,
+        TranslationSerializerField.get_es_instance will be used and return the wrong
+        class for subclasses."""
+        return self
 
 
 class SplitField(fields.Field):
@@ -432,7 +442,8 @@ class OutgoingURLField(OutgoingSerializerMixin, serializers.URLField):
 
 
 class OutgoingURLTranslationField(OutgoingSerializerMixin, URLTranslationField):
-    pass
+    def get_es_instance(self):
+        return OutgoingURLESTranslationField(source=self.source)
 
 
 class OutgoingURLESTranslationField(

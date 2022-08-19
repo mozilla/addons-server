@@ -81,6 +81,7 @@ from .validators import (
     MatchingGuidValidator,
     ReviewedSourceFileValidator,
     VersionAddonMetadataValidator,
+    NoFallbackDefaultLocaleValidator,
     VersionLicenseValidator,
     VerifyMozillaTrademark,
 )
@@ -259,6 +260,7 @@ class LicenseSerializer(serializers.ModelSerializer):
         fields = ('id', 'is_custom', 'name', 'slug', 'text', 'url')
         writeable_fields = ('name', 'text')
         read_only_fields = tuple(set(fields) - set(writeable_fields))
+        validators = (NoFallbackDefaultLocaleValidator(),)
 
     def get_is_custom(self, obj):
         return not bool(obj.builtin)
