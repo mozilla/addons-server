@@ -21,7 +21,8 @@ class Prefixer:
         split = self.split_path(request.path_info)
         self.locale, self.app, self.shortened_path = split
 
-    def split_path(self, path_):
+    @staticmethod
+    def split_path(path_):
         """
         Split the requested path into (locale, app, remainder).
 
