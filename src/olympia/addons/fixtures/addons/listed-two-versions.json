@@ -44,7 +44,7 @@
             "license": 5,
             "created": "2009-12-13 23:10:16",
             "release_notes": null,
-            "approval_notes": null,
+            "approval_notes": "",
             "modified": "2009-12-13 23:11:17",
             "version": "1.0",
             "addon": 2795
@@ -57,7 +57,7 @@
             "license": 5,
             "created": "2009-12-13 23:10:16",
             "release_notes": null,
-            "approval_notes": null,
+            "approval_notes": "",
             "modified": "2009-12-14 17:43:48",
             "version": "2.0",
             "addon": 2795

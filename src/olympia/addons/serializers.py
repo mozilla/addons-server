@@ -400,6 +400,7 @@ class VersionSerializer(SimpleVersionSerializer):
 
 
 class DeveloperVersionSerializer(VersionSerializer):
+    approval_notes = serializers.CharField(allow_blank=True, required=False)
     custom_license = LicenseSerializer(
         write_only=True,
         required=False,
@@ -424,6 +425,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         )
         fields = (
             'id',
+            'approval_notes',
             'channel',
             'compatibility',
             'custom_license',
@@ -438,6 +440,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             'version',
         )
         writeable_fields = (
+            'approval_notes',
             'compatibility',
             'custom_license',
             'license',
