@@ -52,15 +52,25 @@ urls.reverse = reverse
 
 def resolve(path, urlconf=None):
     """Wraps django's resolve to remove the locale and app from the path."""
-    prefixer = get_url_prefix()
-    if prefixer:
-        _lang, application, path_fragment = prefixer.split_path(path)
-        path = '/%s' % path_fragment
-    return django_resolve(path, urlconf)
+    from olympia.amo.urlresolvers import Prefixer
+
+    _lang, application, path_fragment = Prefixer.split_path(path)
+    return django_resolve(f'/{path_fragment}', urlconf)
 
 
 # Replace Django's resolve with our own.
 urls.resolve = resolve
+
+
+def resolve_with_trailing_slash(path):
+    """Try resolving a path by appending a trailing slash if necessary."""
+
+    try:
+        return resolve(path)
+    except urls.Resolver404:
+        if not path.endswith('/'):
+            return resolve(f'{path}/')
+        raise
 
 
 @contextmanager

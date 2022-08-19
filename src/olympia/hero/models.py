@@ -1,4 +1,5 @@
 import os
+from urllib.parse import urlparse
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -8,8 +9,10 @@ from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms.widgets import RadioSelect
 from django.templatetags.static import static
 from django.utils.safestring import mark_safe
+from django.urls import Resolver404
 
 from olympia.amo.models import LongNameIndex, ModelBase
+from olympia.amo.reverse import resolve_with_trailing_slash, reverse
 from olympia.amo.utils import SafeStorage
 from olympia.constants.promoted import PROMOTED_GROUPS
 from olympia.promoted.models import PromotedAddon
@@ -237,6 +240,22 @@ class CTACheckMixin:
                 'Both the call to action URL and text must be defined, or '
                 'neither, for enabled shelves.'
             )
+
+        # Avoid locale & app prefixes in URLs for SecondaryHero/Module for our
+        # own URLs: addons-frontend will automatically add the right ones
+        # according to current context when displaying them.
+        if self.cta_url.startswith(('/', settings.SITE_URL)):
+            parsed = urlparse(self.cta_url)
+            try:
+                match = resolve_with_trailing_slash(parsed.path)
+                self.cta_url = reverse(
+                    match.url_name,
+                    args=match.args,
+                    kwargs=match.kwargs,
+                    add_prefix=False,
+                )
+            except Resolver404:
+                pass
 
 
 class SecondaryHero(CTACheckMixin, ModelBase):

@@ -198,6 +198,39 @@ class TestSecondaryHero(TestCase):
         hero.cta_url = 'http://goo.gl'
         hero.clean()  # it raises if there's an error
 
+    def test_clean_cta_remove_prefixes(self):
+        hero = SecondaryHero.objects.create()
+
+        with self.activate(locale='en-US', app='firefox'):
+            hero.cta_url = '/en-US/firefox/addon/foo'
+            hero.clean()
+            assert hero.cta_url == '/addon/foo/'
+
+            hero.cta_url = '/en-US/firefox/addon/foo/'
+            hero.clean()
+            assert hero.cta_url == '/addon/foo/'
+
+            hero.cta_url = '/fr/android/collections/4757633/privacy-matters'
+            hero.clean()
+            assert hero.cta_url == '/collections/4757633/privacy-matters/'
+
+            hero.cta_url = '/en-US/addon/noapp/'
+            hero.clean()
+            assert hero.cta_url == '/addon/noapp/'
+
+            hero.cta_url = '/addon/noapporlocale/'
+            hero.clean()
+            assert hero.cta_url == '/addon/noapporlocale/'
+
+            hero.cta_url = '/api/v5/addon/addon/'
+            hero.clean()
+            assert hero.cta_url == '/api/v5/addon/addon/'
+
+            # Can't resolve that, so we don't touch it.
+            hero.cta_url = '/en-US/firefox/something/weird/'
+            hero.clean()
+            assert hero.cta_url == '/en-US/firefox/something/weird/'
+
     def test_clean_only_enabled(self):
         hero = SecondaryHero.objects.create(
             headline='Its a héadline!', description='description'
@@ -253,6 +286,42 @@ class TestSecondaryHeroModule(TestCase):
         # And setting both is okay too.
         ph.cta_url = 'http://goo.gl'
         ph.clean()  # it raises if there's an error
+
+    def test_clean_cta_remove_prefixes(self):
+        module = SecondaryHeroModule.objects.create(
+            shelf=SecondaryHero.objects.create()
+        )
+
+        with self.activate(locale='en-US', app='firefox'):
+            module = SecondaryHero.objects.create()
+            module.cta_url = '/en-US/firefox/addon/foo'
+            module.clean()
+            assert module.cta_url == '/addon/foo/'
+
+            module.cta_url = '/en-US/firefox/addon/foo/'
+            module.clean()
+            assert module.cta_url == '/addon/foo/'
+
+            module.cta_url = '/fr/android/collections/4757633/privacy-matters'
+            module.clean()
+            assert module.cta_url == '/collections/4757633/privacy-matters/'
+
+            module.cta_url = '/en-US/addon/noapp/'
+            module.clean()
+            assert module.cta_url == '/addon/noapp/'
+
+            module.cta_url = '/addon/noapporlocale/'
+            module.clean()
+            assert module.cta_url == '/addon/noapporlocale/'
+
+            module.cta_url = '/api/v5/addon/addon/'
+            module.clean()
+            assert module.cta_url == '/api/v5/addon/addon/'
+
+            # Can't resolve that, so we don't touch it.
+            module.cta_url = '/en-US/firefox/something/weird/'
+            module.clean()
+            assert module.cta_url == '/en-US/firefox/something/weird/'
 
     def test_icon_url(self):
         ph = SecondaryHeroModule.objects.create(
