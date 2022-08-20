@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-16 17:38+0000\n"
-"PO-Revision-Date: 2022-08-20 05:59+0000\n"
+"PO-Revision-Date: 2022-08-20 06:18+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4423,7 +4423,7 @@ msgstr "Nechte si webové stránky předčítat. Podporováno více než 40 jazy
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Double-click any word to instantly see its definition."
-msgstr "Dvojklepnutím na libovolné slovo se okamžitě zobrazí jeho definice."
+msgstr "Poklepáním na libovolné slovo se okamžitě zobrazí jeho definice."
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
