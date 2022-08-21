@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-16 17:38+0000\n"
-"PO-Revision-Date: 2022-08-21 15:07+0000\n"
+"PO-Revision-Date: 2022-08-21 15:15+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -3200,42 +3200,41 @@ msgid "Visit the Firefox Extension Workshop"
 msgstr ""
 
 msgid "Connect with us"
-msgstr ""
+msgstr "Spojte sa s nami"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "For developers"
 msgstr "Pre vývojárov"
 
 msgid "For end users"
-msgstr ""
+msgstr "Pre koncových používateľov"
 
 msgid "Matrix"
-msgstr ""
+msgstr "Matrix"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "Komunita a podpora"
+msgstr "Komunitné fórum"
 
 msgid "Extensions Developers Newsletter"
-msgstr ""
+msgstr "Newsletter pre vývojárov rozšírení"
 
 msgid "Stay up-to-date on news and events for Firefox extension developers."
-msgstr ""
+msgstr "Buďte informovaní o novinkách a udalostiach pre vývojárov rozšírení Firefoxu."
 
 msgid "Email Address"
 msgstr "E-mailová adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr ""
+msgstr "Súhlasím s tým, že Mozilla narába s mojimi informáciami tak, ako je vysvetlené v týchto %(link_open)sZásadách ochrany osobných údajov%(link_close)s."
 
 msgid "Sign Up"
 msgstr ""
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Ďakujeme!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
@@ -3391,9 +3390,8 @@ msgstr "Zdrojový kód"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Súbor {file_id} ({platform})"
+msgstr "Súbor {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
