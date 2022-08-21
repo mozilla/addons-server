@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-16 17:38+0000\n"
-"PO-Revision-Date: 2022-08-02 15:55+0000\n"
+"PO-Revision-Date: 2022-08-21 15:01+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -155,10 +155,10 @@ msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
+msgstr "Neplatný názov kategórie."
 
 msgid "Invalid app name."
-msgstr ""
+msgstr "Neplatný názov aplikácie."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr ""
@@ -167,7 +167,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "Webové adresy musia začínať https://."
 
 msgid "License with slug={value} does not exist."
 msgstr ""
@@ -179,33 +179,33 @@ msgid "Invalid or broken archive."
 msgstr "Neplatný alebo poškodený archív."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Neplatná hodnota"
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Bola zadaná neplatná aplikácia"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Bola zadaná neznáma maximálna verzia aplikácie"
 
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Bola zadaná neznáma minimálna verzia aplikácie"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Obrázky musia byť menšie ako %dMB"
 
 # Column name in a table.
 msgid "Listed"
 msgstr "V zozname"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Cesta k doplnkom a kolekciám musí končiť znakom \"/\""
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Nie je možné vytvoriť ukážky pre témy."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Vstavané licencie nie je možné aktualizovať."
 
 msgid "Upload is not valid."
 msgstr ""
@@ -214,28 +214,28 @@ msgid "Version {version} matches {block_link} for this add-on. You can contact {
 msgstr ""
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Verzia {version_string} už bola v minulosti nahraná a odstránená."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Verzia {version_string} už existuje."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Uvedené verzie nie je možné odoslať, kým je doplnok zakázaný."
 
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Doplnky potrebujú aspoň jedného vlastníka."
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Doplnky potrebujú aspoň jedného uvedeného autora."
 
 msgid "Account not found."
-msgstr ""
+msgstr "Účet nebol nájdený."
 
 msgid "An author can only be present once."
-msgstr ""
+msgstr "Autor môže byť prítomný iba raz."
 
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Účet musí mať zobrazený názov, aby ho bolo možné pridať ako autora."
 
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
@@ -253,19 +253,19 @@ msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Nesprávny typ doplnku pre túto licenciu."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Vlastné licencie nie sú podporované pre témy vzhľadu."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Toto pole je povinné pre doplnky s uvedenými verziami."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Identifikátor GUID musí byť uvedený v manifeste."
 
 msgid "GUID mismatch between the URL and manifest."
 msgstr ""
@@ -274,7 +274,7 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Tento typ doplnku neumožňuje vlastnú kompatibilitu."
 
 msgid "My Add-ons"
 msgstr "Moje doplnky"
@@ -377,14 +377,14 @@ msgstr "Nebolo nájdené"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1> Je nám ľúto, ale nenašli sme, čo hľadáte. </h1> <p> Požadovanú stránka alebo súbor sme na našom webe nenašli. Je možné, že ste klikli na odkaz, ktorý je zastaralý alebo ste adresu zadali "
-"nesprávne. </p> <ul> <li> Prosím, skontrolujte, či ste zadanú adresu zadali správne. </li> <li> Ak ste klikli na odkaz na inej stránke, prosím ,%(open_bug_link)snahláste nám tento problém"
-"%(close_bug_link)s. Povedzte nám, na akej stránke ste klikli na daný odkaz a čo ste hľadali, a urobíme všetko pre to, aby sme to napravili. </li> </ul> <p> Alebo môžete prejsť na niektoré z "
+"nesprávne. </p> <ul> <li> Prosím, skontrolujte, či ste zadanú adresu zadali správne. </li> <li> Ak ste klikli na odkaz na inej stránke, prosím ,%(open_bug_link)snahláste nám tento "
+"problém%(close_bug_link)s. Povedzte nám, na akej stránke ste klikli na daný odkaz a čo ste hľadali, a urobíme všetko pre to, aby sme to napravili. </li> </ul> <p> Alebo môžete prejsť na niektoré z "
 "obľúbených stránok na našom webe. </p> <ul> <li> Máte záujem o <a href=\"%(rec)s\"> zoznam odporúčaných rozšírení</a>? </li> <li> Chcete <a href=\"%(search)s\">hľadať rozšírenia</a>? Môžete prejsť "
 "na <a href=\"%(search)s\">stránku vyhľadávania</a> alebo jednoducho použiť vyhľadávacie pole vyššie. </li> <li> Ak chcete začať znova, jednoducho prejdite na <a href=\"%(home)s\">úvodnú stránku "
 "rozšírení</a>. </li> </ul>"
@@ -399,13 +399,13 @@ msgid ""
 msgstr ""
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Zaregistrujte sa alebo sa prihláste"
 
 msgid "Email:"
 msgstr "E-mailová adresa:"
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -450,13 +450,13 @@ msgid "Another Body"
 msgstr "Ďalšie telo"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Neplatná hlavička autorizácie. Neboli poskytnuté žiadne poverenia."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Neplatná hlavička autorizácie. Reťazec poverení by nemal obsahovať medzery."
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "Nenašla sa platná používateľská relácia zodpovedajúca zadanému kľúču relácie."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr ""
@@ -474,19 +474,19 @@ msgid "Invalid JWT Token."
 msgstr "Neplatný token JWT."
 
 msgid "Invalid token or hash."
-msgstr ""
+msgstr "Neplatný token alebo hash."
 
 msgid "Email address not found."
 msgstr "E-mailová adresa sa nenašla."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "Z právnych dôvodov nedostupné."
 
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Kód jazyka \"{lang_code}\" nie je platný."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Musíte poskytnúť objekt {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
@@ -525,11 +525,11 @@ msgstr "Verzie"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Ak vaša podporovaná aplikácia nevyžaduje súbor manifest, aj tak musíte zahrnúť tento súbor a uviesť požadované informácie tak ako je popísané %(amo_manifests_mdn_link_open)stu"
-"%(amo_manifests_mdn_link_close)s."
+"Ak vaša podporovaná aplikácia nevyžaduje súbor manifest, aj tak musíte zahrnúť tento súbor a uviesť požadované informácie tak ako je popísané "
+"%(amo_manifests_mdn_link_open)stu%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Táto adresa URL je už používaná inou vašou kolekciou."
@@ -621,7 +621,7 @@ msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
 msgid "Submit"
-msgstr ""
+msgstr "Odoslať"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
@@ -733,7 +733,7 @@ msgid "Comment on {addon} {version}."
 msgstr "Doplnok {addon} {version} bol okomentovaný."
 
 msgid "Commented"
-msgstr ""
+msgstr "S komentárom"
 
 msgid "{tag} added to {addon}."
 msgstr "Doplnku {addon} pridaná značka {tag}."
@@ -815,9 +815,8 @@ msgstr "Schválené, ale čaká"
 msgid "Account updated."
 msgstr "Účet bol aktualizovaný."
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "Účet bol aktualizovaný."
+msgstr "Účet {user} bol odstránený."
 
 #, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
@@ -1434,7 +1433,7 @@ msgid "Video"
 msgstr "Video"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 msgid "GNU General Public License v2.0"
 msgstr ""
@@ -2183,12 +2182,10 @@ msgstr ""
 "Tento doplnok nie je kompatibilný s <b>%(app_name)s %(app_version)s</b>, najnovšou verziou aplikácie %(app_name)s. Zvážte aktualizáciu kompatibility doplnku alebo odošlite novú verziu tohto doplnku."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aktualizovať kompatibilitu</a> <a href=\"%(version_url)s\" class=\"button\">Odoslať novú verziu</a> alebo <a href=\"#"
-"\" class=\"close\">Ignorovať</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aktualizovať kompatibilitu</a> <a href=\"%(version_url)s\" class=\"button\">Odoslať novú verziu</a> alebo <a href=\"#\""
+" class=\"close\">Ignorovať</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr ""
@@ -2410,8 +2407,8 @@ msgid "Email"
 msgstr "E-mailová adresa"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2421,8 +2418,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Ak má váš doplnok stránku podpory alebo fórum, uveďte ich adresu tu. Ak je vaša webová stránka preložená do viacerých jazykov, môžete pridať viacero prekladov tohto poľa. Toto pole je relevantné "
-"len pre uverejnené doplnky."
+"Ak má váš doplnok stránku podpory alebo fórum, uveďte ich adresu tu. Ak je vaša webová stránka preložená do viacerých jazykov, môžete pridať viacero prekladov tohto poľa. Toto pole je relevantné len"
+" pre uverejnené doplnky."
 
 msgid "Images"
 msgstr "Obrázky"
@@ -2455,8 +2452,8 @@ msgid "Whiteboard"
 msgstr "Poznámka pre redaktora"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
-"may help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
+" help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2970,8 +2967,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -3043,8 +3040,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3366,8 +3362,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "Správa verzie {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Spravovať kolekciu {0}"
 
@@ -3538,16 +3534,16 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Naozaj chcete zrušiť vašu žiadosť o kontrolu?"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
 msgstr[2] "{0} chýb"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} upozornenie"
@@ -4605,8 +4601,8 @@ msgstr "Zobraziť všetky rozšírenia"
 msgid "See more recommended privacy extensions"
 msgstr "Zobraziť všetky rozšírenia"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
+# Plural in this context means many of the add-on type
 #, fuzzy
 msgid "Popular extensions"
 msgstr "Pozrite si ďalšie rozšírenia"
@@ -6193,8 +6189,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -6259,8 +6255,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
