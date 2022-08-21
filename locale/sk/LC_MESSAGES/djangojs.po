@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-16 17:39+0000\n"
-"PO-Revision-Date: 2021-04-27 11:40+0000\n"
-"Last-Translator: Vlado Valaštiak <valastiak@mozilla.sk>\n"
+"PO-Revision-Date: 2022-08-21 15:05+0000\n"
+"Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +191,7 @@ msgid "Number of Contributions"
 msgstr "Počet príspevkov"
 
 msgid "More Info..."
-msgstr "Viac informácií..."
+msgstr "Ďalšie informácie…"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"

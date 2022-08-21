@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-08-16 17:38+0000\n"
-"PO-Revision-Date: 2022-08-21 15:01+0000\n"
+"PO-Revision-Date: 2022-08-21 15:07+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1436,27 +1436,25 @@ msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "GNU General Public License v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "GNU Library General Public License v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "GNU Library General Public License v3.0"
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Licencia"
+msgstr "Licencia MIT"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Licencia"
+msgstr "Licencia BSD"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla Public License 1.1"
 
 msgid "All Rights Reserved"
 msgstr "Všetky práva vyhradené"
@@ -1484,20 +1482,19 @@ msgid "Not Promoted"
 msgstr "Propagácia"
 
 msgid "Recommended"
-msgstr ""
+msgstr "Odporúčané"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Sponzorované"
 
 msgid "Verified"
-msgstr ""
+msgstr "Overené"
 
-#, fuzzy
 msgid "By Firefox"
-msgstr "Firefox"
+msgstr "Od Firefoxu"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Spotlight"
 
 msgid "Strategic"
 msgstr ""
@@ -1512,10 +1509,10 @@ msgid "Persona"
 msgstr "Téma Persona"
 
 msgid "Security"
-msgstr ""
+msgstr "Bezpečnosť"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Súkromie"
 
 msgid "Development Practices"
 msgstr ""
@@ -1872,9 +1869,8 @@ msgstr ""
 msgid "Origin"
 msgstr ""
 
-#, fuzzy
 msgid "Permissions"
-msgstr "Povolenia:"
+msgstr "Povolenia"
 
 msgid "You have generated a site permission add-on for the same origin and permissions."
 msgstr ""
@@ -1950,10 +1946,10 @@ msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "URL názov je nesprávny. Doplnok nebol odstránený."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Pozvánka bola prijatá."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Pozvánka bolo odmietnutá."
 
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
@@ -1977,7 +1973,7 @@ msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Rozmery obrázku musia byť v pomere 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr ""
+msgstr "Ikona musí mať šírku a výšku aspoň {0} bodov."
 
 msgid "Icon must be square (same width and height)."
 msgstr "Ikona musí byť štvorcová (rovnaká šírka a výška)."
@@ -2486,7 +2482,7 @@ msgstr "Použitá na stránke podrobností o doplnku."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128 x 128 pixelov"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr ""
@@ -2628,7 +2624,7 @@ msgid "Statistics"
 msgstr "Štatistika"
 
 msgid "More"
-msgstr "Viac"
+msgstr "Ďalšie"
 
 msgid "Manage Status & Versions"
 msgstr "Správa stavu a verzií"
@@ -3260,7 +3256,7 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "Program Odporúčané rozšírenia"
 
 msgid "Contribute"
 msgstr "Prispieť"
@@ -4573,23 +4569,20 @@ msgid "See staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Zobraziť všetky rozšírenia"
+msgstr "Odporúčané rozšírenia"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended extensions"
-msgstr "Zobraziť všetky rozšírenia"
+msgstr "Pozrite si ďalšie odporúčané rozšírenia"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "Populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular themes"
-msgstr "Ďalšie aplikácie&hellip;"
+msgstr "Pozrite si ďalšie populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4614,11 +4607,11 @@ msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
-msgstr ""
+msgstr "Odporúčané témy vzhľadu"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "Ďalšie odporúčané témy vzhľadu"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
@@ -4715,9 +4708,8 @@ msgid "See more Steam staff picks"
 msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Creativity extensions"
-msgstr "Zobraziť všetky rozšírenia"
+msgstr "Rozšírenia pre kreativitu"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
