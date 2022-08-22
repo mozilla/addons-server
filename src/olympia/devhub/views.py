@@ -1035,7 +1035,7 @@ def upload_image(request, addon_id, addon, upload_type):
         else:
             max_size = settings.MAX_IMAGE_UPLOAD_SIZE
 
-        if max_size and upload_preview.size > max_size:
+        if upload_preview.size > max_size:
             errors.append(
                 gettext('Please use images smaller than %dMB.')
                 % (max_size // 1024 // 1024)
