@@ -1033,14 +1033,13 @@ def upload_image(request, addon_id, addon, upload_type):
         if is_icon:
             max_size = settings.MAX_ICON_UPLOAD_SIZE
         else:
-            max_size = None
+            max_size = settings.MAX_IMAGE_UPLOAD_SIZE
 
         if max_size and upload_preview.size > max_size:
-            if is_icon:
-                errors.append(
-                    gettext('Please use images smaller than %dMB.')
-                    % (max_size // 1024 // 1024)
-                )
+            errors.append(
+                gettext('Please use images smaller than %dMB.')
+                % (max_size // 1024 // 1024)
+            )
 
         content_waffle = waffle.switch_is_active('content-optimization')
         if image_check.is_image() and content_waffle and is_preview:
