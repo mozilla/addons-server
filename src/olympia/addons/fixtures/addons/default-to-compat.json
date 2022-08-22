@@ -267,6 +267,7 @@
             "version": 1268881,
             "reviewed": null,
             "datestatuschanged": "2011-12-05 14:46:43",
+            "manifest_version": 2,
             "size": 0
         }
     },
@@ -283,6 +284,7 @@
             "version": 1268882,
             "reviewed": null,
             "datestatuschanged": "2011-12-05 14:46:43",
+            "manifest_version": 2,
             "size": 0
         }
     },
@@ -299,6 +301,7 @@
             "version": 1268883,
             "reviewed": null,
             "datestatuschanged": "2011-12-05 14:46:43",
+            "manifest_version": 2,
             "size": 0
         }
     },
@@ -315,6 +318,7 @@
             "version": 1268884,
             "reviewed": null,
             "datestatuschanged": "2011-12-05 14:46:43",
+            "manifest_version": 2,
             "size": 0
         }
     }

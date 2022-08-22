@@ -162,6 +162,7 @@
             "file": "100456/testaddon-20101217.xpi",
             "version": 118898,
             "datestatuschanged": "2010-12-17 13:04:57",
+            "manifest_version": 2,
             "size": 782336
         }
     },
@@ -176,6 +177,7 @@
             "file": "100400/testaddon-20101217.xpi",
             "version": 118897,
             "datestatuschanged": "2010-12-17 13:04:57",
+            "manifest_version": 2,
             "size": 782336
         }
     },

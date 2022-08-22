@@ -104,6 +104,7 @@
             "modified": "2010-01-14 14:15:29",
             "file": "592/mime-1.32.xpi",
             "version": 592,
+            "manifest_version": 2,
             "datestatuschanged": "2010-01-14 14:15:28"
         }
     },

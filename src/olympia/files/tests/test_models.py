@@ -367,7 +367,7 @@ class TestTrackFileStatusChange(TestCase):
         ver.addon = addon
         ver.save()
 
-        f = File(**kwargs)
+        f = File(manifest_version=2, **kwargs)
         f.version = ver
         f.save()
 
@@ -1106,6 +1106,8 @@ def test_file_upload_passed_all_validations_invalid():
 
 
 class TestFileFromUpload(UploadMixin, TestCase):
+    parsed_data = {'manifest_version': 2}
+
     @classmethod
     def setUpTestData(cls):
         versions = {
@@ -1158,19 +1160,19 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_filename(self):
         upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.file.name == '56/3456/123456/xxx-0.1.zip'
 
     def test_filename_no_extension(self):
         upload = self.upload('webextension.xpi')
         # Remove the extension.
         upload.name = upload.name.rsplit('.', 1)[0]
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.file.name == '56/3456/123456/xxx-0.1.zip'
 
     def test_file_validation(self):
         upload = self.upload('webextension.xpi')
-        file = File.from_upload(upload, self.version, parsed_data={})
+        file = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         fv = FileValidation.objects.get(file=file)
         assert json.loads(fv.validation) == json.loads(upload.validation)
         assert fv.valid
@@ -1181,47 +1183,51 @@ class TestFileFromUpload(UploadMixin, TestCase):
     def test_filename_utf8_addon_slug(self):
         upload = self.upload('webextension.xpi')
         self.version.addon.slug = 'jéts!'
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.file.name == '56/3456/123456/jets-0.1.zip'
 
     def test_size(self):
         upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.size == 537
 
     def test_public_to_unreviewed(self):
         upload = self.upload('webextension.xpi')
         self.addon.update(status=amo.STATUS_APPROVED)
         assert self.addon.status == amo.STATUS_APPROVED
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.status == amo.STATUS_AWAITING_REVIEW
 
     def test_file_hash_copied_over(self):
         upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.hash == 'sha256:fake_hash'
 
     def test_extension_extension(self):
         upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.file.name.endswith('.zip')
 
     def test_langpack_extension(self):
         upload = self.upload('webextension_langpack.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.file.name.endswith('.zip')
 
     def test_experiment(self):
         upload = self.upload('experiment_inside_webextension.xpi')
         file_ = File.from_upload(
-            upload, self.version, parsed_data={'is_experiment': True}
+            upload,
+            self.version,
+            parsed_data={**self.parsed_data, 'is_experiment': True},
         )
         assert file_.is_experiment
 
     def test_not_experiment(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(
-            upload, self.version, parsed_data={'is_experiment': False}
+            upload,
+            self.version,
+            parsed_data={**self.parsed_data, 'is_experiment': False},
         )
         assert not file_.is_experiment
 
@@ -1230,7 +1236,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
         file_ = File.from_upload(
             upload,
             self.version,
-            parsed_data={'is_mozilla_signed_extension': True},
+            parsed_data={**self.parsed_data, 'is_mozilla_signed_extension': True},
         )
         assert file_.is_mozilla_signed_extension
 
@@ -1239,19 +1245,21 @@ class TestFileFromUpload(UploadMixin, TestCase):
         file_ = File.from_upload(
             upload,
             self.version,
-            parsed_data={'is_mozilla_signed_extension': False},
+            parsed_data={**self.parsed_data, 'is_mozilla_signed_extension': False},
         )
         assert not file_.is_mozilla_signed_extension
 
     def test_webextension_mv2(self):
         upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.manifest_version == 2
 
     def test_webextension_mv3(self):
         upload = self.upload('webextension_mv3.xpi')
         file_ = File.from_upload(
-            upload, self.version, parsed_data={'manifest_version': 3}
+            upload,
+            self.version,
+            parsed_data={**self.parsed_data, 'manifest_version': 3},
         )
         assert file_.manifest_version == 3
 
@@ -1300,13 +1308,13 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_file_is_copied_to_file_path_at_upload(self):
         upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert os.path.exists(file_.file.path)
 
     def test_file_is_copied_to_file_path_at_upload_if_disabled(self):
         self.addon.update(disabled_by_user=True)
         upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(upload, self.version, parsed_data={})
+        file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert os.path.exists(file_.file.path)
 
     def test_permission_enabler_site_permissions(self):
@@ -1315,6 +1323,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
             upload,
             self.version,
             parsed_data={
+                **self.parsed_data,
                 'type': amo.ADDON_SITE_PERMISSION,
                 'site_permissions': ['one', 'two'],
             },

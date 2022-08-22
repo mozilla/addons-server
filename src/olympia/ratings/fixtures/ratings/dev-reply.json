@@ -127,6 +127,7 @@
             "file": "53612/adblock.xpi",
             "version": 90149,
             "datestatuschanged": "2009-08-27 14:29:14",
+            "manifest_version": 2,
             "size": 1
         }
     },

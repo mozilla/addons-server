@@ -108,6 +108,7 @@
             "file": "74797/cooliris-1.11.6-fx-macosx.xpi",
             "version": 90119,
             "size": 4608000,
+            "manifest_version": 2,
             "datestatuschanged": "2010-01-06 18:15:53"
         }
     },

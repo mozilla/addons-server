@@ -67,6 +67,7 @@
             "file": "81898/yslow-2.0.7.xpi",
             "version": 98198,
             "size": 220160,
+            "manifest_version": 2,
             "datestatuschanged": "2010-03-03 16:15:03"
         }
     },

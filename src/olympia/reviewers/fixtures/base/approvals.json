@@ -44,6 +44,7 @@
             "file": "97656/quick_link_to_the_world-0.1.xpi",
             "version": 116367,
             "datestatuschanged": "2010-08-27 21:14:17",
+            "manifest_version": 2,
             "size": 24
         }
     },
