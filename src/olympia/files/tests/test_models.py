@@ -202,7 +202,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_pretty_filename(self):
         file_ = File.objects.get(id=67442)
-        assert file_.file.name == '3615/delicious_bookmarks-2.1.072.xpi'
+        assert file_.file.name == '15/3615/3615/delicious_bookmarks-2.1.072.xpi'
         assert file_.pretty_filename == 'delicious_bookmarks-2.1.072.xpi'
 
     def test_generate_filename_ja(self):
@@ -254,22 +254,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         )[0]
         assert filename_in_db
         assert filename_in_db == filename_in_instance
-
-    def test_filename_not_migrated(self):
-        # We aren't migrating existing files yet, so for an existing File
-        # instance, the filename in database should just be the xpi filename
-        # without any directories, despite the file_.name containing the add-on
-        # dir.
-        file_ = File.objects.get(pk=67442)
-        filename_in_instance = file_.file.name
-        assert filename_in_instance.startswith(f'{str(file_.addon.pk)}/')
-        assert file_.file.path == f'{settings.ADDONS_PATH}/{filename_in_instance}'
-        filename_in_db = File.objects.filter(pk=file_.pk).values_list(
-            'file', flat=True
-        )[0]
-        assert filename_in_db
-        assert '/' not in filename_in_db
-        assert not filename_in_db.startswith(f'{str(file_.addon.pk)}/')
 
     def test_generate_hash(self):
         file_ = addon_factory(
