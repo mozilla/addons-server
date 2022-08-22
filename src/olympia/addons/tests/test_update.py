@@ -449,13 +449,6 @@ class TestResponse(VersionCheckMixin, TestCase):
         guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
         assert data['addons'][guid]['updates'][0]['update_link'] == self.get_file_url()
 
-    def test_url_new_directory_structure(self):
-        File.objects.filter(pk=self.addon.current_version.file.pk).update(
-            file='67/4567/1234567/addon-1.0.xpi'
-        )
-        self.addon.current_version.file.reload()
-        self.test_url()
-
     def test_url_local_recent(self):
         a_bit_ago = datetime.now() - timedelta(seconds=60)
         File.objects.get(pk=67442).update(datestatuschanged=a_bit_ago)
