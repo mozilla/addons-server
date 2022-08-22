@@ -86,7 +86,7 @@ from ..models import (
 from ..serializers import (
     AddonAuthorSerializer,
     AddonPendingAuthorSerializer,
-    AddonSerializerWithUnlistedData,
+    DeveloperAddonSerializer,
     CompactLicenseSerializer,
     DeveloperVersionSerializer,
     LicenseSerializer,
@@ -871,7 +871,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == AddonSerializerWithUnlistedData(
+        assert data == DeveloperAddonSerializer(
             context={'request': request}
         ).to_representation(addon)
         assert addon.find_latest_version(channel=None).channel == amo.CHANNEL_UNLISTED
@@ -902,7 +902,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == AddonSerializerWithUnlistedData(
+        assert data == DeveloperAddonSerializer(
             context={'request': request}
         ).to_representation(addon)
         assert addon.current_version.channel == amo.CHANNEL_LISTED
@@ -1122,7 +1122,11 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             'summary': {'en-US': 'new summary', 'fr': 'lé summary'},
             'support_email': {'en-US': 'email@me.me'},
             'support_url': {'en-US': 'https://my.home.page/support/'},
-            'version': {'upload': self.upload.uuid, 'license': self.license.slug},
+            'version': {
+                'upload': self.upload.uuid,
+                'license': self.license.slug,
+                'approval_notes': 'approve me!',
+            },
         }
         response = self.request(**data)
 
@@ -1155,6 +1159,11 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
+        assert (
+            data['current_version']['approval_notes']
+            == addon.current_version.approval_notes
+            == 'approve me!'
+        )
         self.statsd_incr_mock.assert_any_call('addons.submission.addon.listed')
 
     def test_override_manifest_localization(self):
@@ -1587,7 +1596,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == AddonSerializerWithUnlistedData(
+        assert data == DeveloperAddonSerializer(
             context={'request': request}
         ).to_representation(self.addon)
         assert self.addon.summary == 'summary update!'

@@ -17,9 +17,9 @@ from olympia.addons.models import (
 )
 from olympia.addons.serializers import (
     AddonAuthorSerializer,
-    AddonDeveloperSerializer,
+    UserSerializerWithPictureUrl,
     AddonSerializer,
-    AddonSerializerWithUnlistedData,
+    DeveloperAddonSerializer,
     DeveloperVersionSerializer,
     DeveloperListVersionSerializer,
     ESAddonAutoCompleteSerializer,
@@ -979,7 +979,7 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         assert result['current_version']['is_strict_compatibility_enabled']
 
     def test_latest_unlisted_version_with_right_serializer(self):
-        self.serializer_class = AddonSerializerWithUnlistedData
+        self.serializer_class = DeveloperAddonSerializer
 
         self.addon = addon_factory()
         version_factory(
@@ -1580,8 +1580,8 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert result['name'] == translated_name['fr']
 
 
-class TestAddonDeveloperSerializer(TestCase, BaseTestUserMixin):
-    serializer_class = AddonDeveloperSerializer
+class TestUserSerializerWithPictureUrl(TestCase, BaseTestUserMixin):
+    serializer_class = UserSerializerWithPictureUrl
 
     def setUp(self):
         self.request = APIRequestFactory().get('/')

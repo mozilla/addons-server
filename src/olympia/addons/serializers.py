@@ -651,6 +651,29 @@ class DeveloperListVersionSerializer(DeveloperVersionSerializer):
     license = CompactLicenseSerializer()
 
 
+class SimpleDeveloperVersionSerializer(DeveloperVersionSerializer):
+    # Used with DeveloperAddonSerializer - essentially SimpleVersionSerializer +
+    # developer-only fields like source, approval_notes, etc.
+    license = CompactLicenseSerializer(read_only=True)
+
+    class Meta:
+        model = Version
+        fields = (
+            'id',
+            'approval_notes',
+            'compatibility',
+            'edit_url',
+            'file',
+            'is_strict_compatibility_enabled',
+            'license',
+            'release_notes',
+            'reviewed',
+            'version',
+            'source',
+        )
+        read_only_fields = fields
+
+
 class CurrentVersionSerializer(SimpleVersionSerializer):
     def to_representation(self, obj):
         # If the add-on is a langpack, and `appversion` is passed, try to
@@ -728,7 +751,7 @@ class AddonEulaPolicySerializer(serializers.ModelSerializer):
         )
 
 
-class AddonDeveloperSerializer(BaseUserSerializer):
+class UserSerializerWithPictureUrl(BaseUserSerializer):
     picture_url = serializers.SerializerMethodField()
 
     class Meta(BaseUserSerializer.Meta):
@@ -845,7 +868,7 @@ class PromotedAddonSerializer(serializers.ModelSerializer):
 
 
 class AddonSerializer(serializers.ModelSerializer):
-    authors = AddonDeveloperSerializer(
+    authors = UserSerializerWithPictureUrl(
         many=True, source='listed_authors', read_only=True
     )
     categories = CategoriesSerializerField(source='all_categories', required=False)
@@ -1210,8 +1233,9 @@ class AddonSerializer(serializers.ModelSerializer):
         return instance
 
 
-class AddonSerializerWithUnlistedData(AddonSerializer):
-    latest_unlisted_version = SimpleVersionSerializer(read_only=True)
+class DeveloperAddonSerializer(AddonSerializer):
+    current_version = SimpleDeveloperVersionSerializer(read_only=True)
+    latest_unlisted_version = SimpleDeveloperVersionSerializer(read_only=True)
 
     class Meta(AddonSerializer.Meta):
         fields = AddonSerializer.Meta.fields + ('latest_unlisted_version',)
