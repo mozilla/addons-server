@@ -3,6 +3,7 @@ import os
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
 
@@ -932,6 +933,30 @@ class TestEditMedia(BaseTestEdit):
 
     def test_edit_media_screenshot_wrong_type(self):
         self.check_image_type(self.preview_upload, 'Images must be either PNG or JPG.')
+
+    @override_settings(MAX_IMAGE_UPLOAD_SIZE=10 * 1024)
+    def test_image_too_big(self):
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(get_image_path('mozilla-small.png'), 'rb')},
+        )
+        data = json.loads(force_str(response.content))
+        assert data == {
+            'errors': ['Please use images smaller than 0MB.'],
+            'upload_hash': '',
+        }
+
+    @override_settings(MAX_ICON_UPLOAD_SIZE=10 * 1024)
+    def test_icon_too_big(self):
+        response = self.client.post(
+            self.icon_upload,
+            {'upload_image': open(get_image_path('mozilla-small.png'), 'rb')},
+        )
+        data = json.loads(force_str(response.content))
+        assert data == {
+            'errors': ['Please use images smaller than 0MB.'],
+            'upload_hash': '',
+        }
 
     def setup_image_status(self):
         addon = self.get_addon()
