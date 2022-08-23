@@ -20,7 +20,7 @@ class MiddlewareTest(TestCase):
     def setUp(self):
         super().setUp()
         self.request_factory = RequestFactory()
-        self.middleware = LocaleAndAppURLMiddleware()
+        self.middleware = LocaleAndAppURLMiddleware(lambda: None)
 
     def test_redirection(self):
         redirections = {

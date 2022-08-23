@@ -30,7 +30,7 @@ class Command(BaseCommand):
     # related checks since 1.10 which require a working MySQL connection.
     # We don't have that during our docker builds and since `compress_assets`
     # is being used while building our docker images we have to disable them.
-    requires_system_checks = False
+    requires_system_checks = []
 
     checked_hash = {}
 

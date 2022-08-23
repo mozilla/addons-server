@@ -10,6 +10,7 @@ import zipfile
 from collections import Counter
 from unittest import mock
 from unittest.mock import patch
+from urllib.parse import unquote
 
 from django.conf import settings
 from django.core import mail
@@ -18,7 +19,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_encode, urlunquote
+from django.utils.http import urlsafe_base64_encode
 
 import pytest
 
@@ -5813,7 +5814,7 @@ class TestReplacementAddonView(TestCase):
         # Add a single addon replacement
         rep_addon1 = addon_factory()
         ReplacementAddon.objects.create(
-            guid='legacy2addon@moz', path=urlunquote(rep_addon1.get_url_path())
+            guid='legacy2addon@moz', path=unquote(rep_addon1.get_url_path())
         )
         # Add a collection replacement
         author = user_factory()
@@ -5823,7 +5824,7 @@ class TestReplacementAddonView(TestCase):
         CollectionAddon.objects.create(addon=rep_addon2, collection=collection)
         CollectionAddon.objects.create(addon=rep_addon3, collection=collection)
         ReplacementAddon.objects.create(
-            guid='legacy2collection@moz', path=urlunquote(collection.get_url_path())
+            guid='legacy2collection@moz', path=unquote(collection.get_url_path())
         )
         # Add an invalid path
         ReplacementAddon.objects.create(

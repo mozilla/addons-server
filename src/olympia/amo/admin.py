@@ -1,7 +1,7 @@
 import functools
+import operator
 
 from django.contrib import admin
-from django.contrib.admin.options import operator
 from django.core.exceptions import FieldDoesNotExist
 from django.db import models
 from django.db.models.constants import LOOKUP_SEP
