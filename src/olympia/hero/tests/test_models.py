@@ -236,6 +236,8 @@ class TestSecondaryHero(TestCase):
         hero = SecondaryHero.objects.create()
 
         with self.activate(locale='en-US', app='firefox'):
+            # With default test settings, this should be transformed because
+            # SITE_URL is http://testserver.
             hero.cta_url = 'http://testserver/en-US/firefox/addon/foo'
             hero.clean()
             assert hero.cta_url == '/addon/foo/'
@@ -249,7 +251,7 @@ class TestSecondaryHero(TestCase):
 
             # When overriding the EXTERNAL_SITE_URL however, it works.
             with override_settings(EXTERNAL_SITE_URL='https://addons.mozilla.org'):
-                hero.cta_url = 'http://testserver/en-US/firefox/addon/foo'
+                hero.cta_url = 'https://addons.mozilla.org/en-US/firefox/addon/foo'
                 hero.clean()
                 assert hero.cta_url == '/addon/foo/'
 
@@ -354,6 +356,8 @@ class TestSecondaryHeroModule(TestCase):
         module.cta_text = 'something'
 
         with self.activate(locale='en-US', app='firefox'):
+            # With default test settings, this should be transformed because
+            # SITE_URL is http://testserver.
             module.cta_url = 'http://testserver/en-US/firefox/addon/foo'
             module.clean()
             assert module.cta_url == '/addon/foo/'
@@ -369,7 +373,7 @@ class TestSecondaryHeroModule(TestCase):
 
             # When overriding the EXTERNAL_SITE_URL however, it works.
             with override_settings(EXTERNAL_SITE_URL='https://addons.mozilla.org'):
-                module.cta_url = 'http://testserver/en-US/firefox/addon/foo'
+                module.cta_url = 'https://addons.mozilla.org/en-US/firefox/addon/foo'
                 module.clean()
                 assert module.cta_url == '/addon/foo/'
 
