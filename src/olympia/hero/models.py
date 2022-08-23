@@ -244,7 +244,9 @@ class CTACheckMixin:
         # Avoid locale & app prefixes in URLs for SecondaryHero/Module for our
         # own URLs: addons-frontend will automatically add the right ones
         # according to current context when displaying them.
-        if self.cta_url.startswith(('/', settings.SITE_URL)):
+        if self.cta_url.startswith(
+            ('/', settings.SITE_URL, settings.EXTERNAL_SITE_URL)
+        ):
             parsed = urlparse(self.cta_url)
             try:
                 match = resolve_with_trailing_slash(parsed.path)

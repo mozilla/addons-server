@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.core.exceptions import ValidationError
+from django.test.utils import override_settings
 
 from olympia.amo.tests import addon_factory, TestCase
 from olympia.amo.tests.test_helpers import get_uploaded_file
@@ -231,6 +232,29 @@ class TestSecondaryHero(TestCase):
             hero.clean()
             assert hero.cta_url == '/en-US/firefox/something/weird/'
 
+    def test_clean_cta_remove_prefixes_with_site_url(self):
+        hero = SecondaryHero.objects.create()
+
+        with self.activate(locale='en-US', app='firefox'):
+            # With default test settings, this should be transformed because
+            # SITE_URL is http://testserver.
+            hero.cta_url = 'http://testserver/en-US/firefox/addon/foo'
+            hero.clean()
+            assert hero.cta_url == '/addon/foo/'
+
+        with self.activate(locale='en-US', app='firefox'):
+            # With default test settings, this isn't transformed because
+            # neither the SITE_URL nor the EXTERNAL_SITE_URL match.
+            hero.cta_url = 'https://addons.mozilla.org/en-US/firefox/addon/foo'
+            hero.clean()
+            assert hero.cta_url == 'https://addons.mozilla.org/en-US/firefox/addon/foo'
+
+            # When overriding the EXTERNAL_SITE_URL however, it works.
+            with override_settings(EXTERNAL_SITE_URL='https://addons.mozilla.org'):
+                hero.cta_url = 'https://addons.mozilla.org/en-US/firefox/addon/foo'
+                hero.clean()
+                assert hero.cta_url == '/addon/foo/'
+
     def test_clean_only_enabled(self):
         hero = SecondaryHero.objects.create(
             headline='Its a héadline!', description='description'
@@ -292,8 +316,9 @@ class TestSecondaryHeroModule(TestCase):
             shelf=SecondaryHero.objects.create()
         )
 
+        module.cta_text = 'something'
+
         with self.activate(locale='en-US', app='firefox'):
-            module = SecondaryHero.objects.create()
             module.cta_url = '/en-US/firefox/addon/foo'
             module.clean()
             assert module.cta_url == '/addon/foo/'
@@ -322,6 +347,35 @@ class TestSecondaryHeroModule(TestCase):
             module.cta_url = '/en-US/firefox/something/weird/'
             module.clean()
             assert module.cta_url == '/en-US/firefox/something/weird/'
+
+    def test_clean_cta_remove_prefixes_with_site_url(self):
+        module = SecondaryHeroModule.objects.create(
+            shelf=SecondaryHero.objects.create()
+        )
+
+        module.cta_text = 'something'
+
+        with self.activate(locale='en-US', app='firefox'):
+            # With default test settings, this should be transformed because
+            # SITE_URL is http://testserver.
+            module.cta_url = 'http://testserver/en-US/firefox/addon/foo'
+            module.clean()
+            assert module.cta_url == '/addon/foo/'
+
+        with self.activate(locale='en-US', app='firefox'):
+            # With default test settings, this isn't transformed because
+            # neither the SITE_URL nor the EXTERNAL_SITE_URL match.
+            module.cta_url = 'https://addons.mozilla.org/en-US/firefox/addon/foo'
+            module.clean()
+            assert (
+                module.cta_url == 'https://addons.mozilla.org/en-US/firefox/addon/foo'
+            )
+
+            # When overriding the EXTERNAL_SITE_URL however, it works.
+            with override_settings(EXTERNAL_SITE_URL='https://addons.mozilla.org'):
+                module.cta_url = 'https://addons.mozilla.org/en-US/firefox/addon/foo'
+                module.clean()
+                assert module.cta_url == '/addon/foo/'
 
     def test_icon_url(self):
         ph = SecondaryHeroModule.objects.create(
