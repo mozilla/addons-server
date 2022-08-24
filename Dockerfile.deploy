@@ -51,9 +51,6 @@ RUN touch /addons-server-docker-container \
         librsvg2-bin \
         # Use pngcrush to optimize the PNGs uploaded by developers
         pngcrush \
-        # Use libmaxmind for speedy geoip lookups
-        libmaxminddb0                    \
-        libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
 # IMPORTANT: When editing one of these lists below, make sure to also update

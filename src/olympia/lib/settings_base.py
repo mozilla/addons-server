@@ -1450,8 +1450,6 @@ MOZILLA_NEWLETTER_URL = env(
     'MOZILLA_NEWSLETTER_URL', default='https://www.mozilla.org/en-US/newsletter/'
 )
 
-GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'
-
 EXTENSION_WORKSHOP_URL = env(
     'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop-dev.allizom.org'
 )
