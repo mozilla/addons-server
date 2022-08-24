@@ -294,6 +294,12 @@ references:
       MYSQL_DATABASE: olympia
 
   defaults: &defaults
+    parameters:
+      djangoversion:
+        type: string
+        default: django32
+    environment:
+        DJANGO_VERSION : << parameters.djangoversion >>
     working_directory: &working-directory
     docker:
       - image: *python
@@ -374,7 +380,7 @@ commands:
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            docker build -t app:build -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
+            docker build -t app:build --build-arg DJANGO_VERSION -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
@@ -634,6 +640,8 @@ jobs:
 
   release-master:
     <<: *defaults-release
+    environment:
+      DJANGO_VERSION: django32
     steps:
       - checkout
       - make_release:
@@ -652,15 +660,50 @@ workflows:
   version: 2
   default-workflow:
     jobs:
-      - addons-versions-files-ratings
-      - amo-lib-locales-and-signing
-      - assets
+      - addons-versions-files-ratings:
+          matrix:
+            parameters:
+              djangoversion:
+                - django32
+                - django41
+      - amo-lib-locales-and-signing:
+          matrix:
+            parameters:
+              djangoversion:
+                - django32
+                - django41
+      - assets:
+          matrix:
+            parameters:
+              djangoversion:
+                - django32
+                - django41
       - codestyle
-      - devhub
+      - devhub:
+          matrix:
+            parameters:
+              djangoversion:
+                - django32
+                - django41
       - docs
-      - main
-      - reviewers-and-zadmin
-      - es-tests
+      - main:
+          matrix:
+            parameters:
+              djangoversion:
+                - django32
+                - django41
+      - reviewers-and-zadmin:
+          matrix:
+            parameters:
+              djangoversion:
+                - django32
+                - django41
+      - es-tests:
+          matrix:
+            parameters:
+              djangoversion:
+                - django32
+                - django41
       - release-master:
           filters:
             branches:
