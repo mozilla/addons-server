@@ -83,7 +83,7 @@ from .serializers import (
     AddonEulaPolicySerializer,
     AddonAuthorSerializer,
     AddonSerializer,
-    AddonSerializerWithUnlistedData,
+    DeveloperAddonSerializer,
     DeveloperVersionSerializer,
     DeveloperListVersionSerializer,
     ESAddonAutoCompleteSerializer,
@@ -240,7 +240,7 @@ class AddonViewSet(
         RegionalRestriction | GroupPermission(amo.permissions.ADDONS_EDIT)
     ]
     serializer_class = AddonSerializer
-    serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
+    serializer_class_for_developers = DeveloperAddonSerializer
     lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
     throttle_classes = addon_submission_throttles
 
@@ -268,7 +268,7 @@ class AddonViewSet(
         return qs
 
     def get_serializer_class(self):
-        # Override serializer to use serializer_class_with_unlisted_data if
+        # Override serializer to use serializer_class_for_developers if the author or
         # we are allowed to access unlisted data.
         obj = getattr(self, 'instance', None)
         request = self.request
@@ -277,7 +277,7 @@ class AddonViewSet(
             or acl.is_unlisted_addons_viewer_or_reviewer(request.user)
             or (obj and obj.authors.filter(pk=request.user.pk).exists())
         ):
-            return self.serializer_class_with_unlisted_data
+            return self.serializer_class_for_developers
         return self.serializer_class
 
     def get_lookup_field(self, identifier):
