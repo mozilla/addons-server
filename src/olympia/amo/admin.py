@@ -19,14 +19,19 @@ class CommaSearchInAdminMixin:
         """
         return 'pk'
 
-    def lookup_needs_distinct(self, opts, lookup_path):
+    def lookup_spawns_duplicates(self, opts, lookup_path):
         """
         Return True if 'distinct()' should be used to query the given lookup
         path. Used by get_search_results() as a replacement of the version used
         by django, which doesn't consider our translation fields as needing
         distinct (but they do).
         """
-        rval = admin.utils.lookup_needs_distinct(opts, lookup_path)
+        # The utility function was admin.utils.lookup_needs_distinct in django3.2;
+        # it was renamed to admin.utils.lookup_spawns_duplicates in django4.0
+        lookup_function = getattr(
+            admin.utils, 'lookup_spawns_duplicates', None
+        ) or getattr(admin.utils, 'lookup_needs_distinct')
+        rval = lookup_function(opts, lookup_path)
         lookup_fields = lookup_path.split(LOOKUP_SEP)
         # Not pretty but looking up the actual field would require truly
         # resolving the field name, walking to any relations we find up until
@@ -116,8 +121,8 @@ class CommaSearchInAdminMixin:
                 filters.append(q_for_this_term)
 
             may_have_duplicates |= any(
-                # Use our own lookup_needs_distinct(), not django's.
-                self.lookup_needs_distinct(self.opts, search_spec)
+                # Use our own lookup_spawns_duplicates(), not django's.
+                self.lookup_spawns_duplicates(self.opts, search_spec)
                 for search_spec in orm_lookups
             )
 
