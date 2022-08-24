@@ -1,10 +1,6 @@
-from django import forms
-from django.contrib.gis.geoip2 import GeoIP2, GeoIP2Exception
-from django.core.validators import validate_ipv46_address
 from django.db import models
 
 from extended_choices import Choices
-from geoip2.errors import GeoIP2Error
 
 from olympia import amo
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
@@ -270,21 +266,6 @@ class AbuseReport(ModelBase):
         # the only possible relations are to users and add-ons, which are also
         # soft-deleted.
         return self.update(state=self.STATES.DELETED)
-
-    @classmethod
-    def lookup_country_code_from_ip(cls, ip):
-        try:
-            # Early check to avoid initializing GeoIP2 on invalid addresses
-            if not ip:
-                raise forms.ValidationError('No IP')
-            validate_ipv46_address(ip)
-            geoip = GeoIP2()
-            value = geoip.country_code(ip)
-        # Annoyingly, we have to catch both django's GeoIP2Exception (setup
-        # issue) and geoip2's GeoIP2Error (lookup issue)
-        except (forms.ValidationError, GeoIP2Exception, GeoIP2Error):
-            value = ''
-        return value
 
     @property
     def type(self):

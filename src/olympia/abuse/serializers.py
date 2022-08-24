@@ -29,9 +29,7 @@ class BaseAbuseReportSerializer(serializers.ModelSerializer):
     def to_internal_value(self, data):
         output = super().to_internal_value(data)
         request = self.context['request']
-        output['country_code'] = AbuseReport.lookup_country_code_from_ip(
-            request.META.get('REMOTE_ADDR')
-        )
+        output['country_code'] = request.META.get('HTTP_X_COUNTRY_CODE', '')
         if request.user.is_authenticated:
             output['reporter'] = request.user
         return output

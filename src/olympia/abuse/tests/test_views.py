@@ -1,8 +1,6 @@
 import json
 from datetime import datetime
 
-from unittest import mock
-
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
@@ -20,17 +18,12 @@ class AddonAbuseViewSetTestBase:
 
     def setUp(self):
         self.url = reverse_ns('abusereportaddon-list')
-        geoip_patcher = mock.patch('olympia.abuse.models.GeoIP2')
-        self.GeoIP2_mock = geoip_patcher.start()
-        self.GeoIP2_mock.return_value.country_code.return_value = 'ZZ'
-        self.addCleanup(geoip_patcher.stop)
 
     def check_reporter(self, report):
         raise NotImplementedError
 
     def check_report(self, report, text):
         assert str(report) == text
-        assert report.country_code == 'ZZ'
         self.check_reporter(report)
 
     def test_report_addon_by_id(self):
@@ -393,6 +386,22 @@ class AddonAbuseViewSetTestBase:
         assert report.addon_install_method == (AbuseReport.ADDON_INSTALL_METHODS.OTHER)
         assert report.addon_install_source == (AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
 
+    def test_report_country_code(self):
+        addon = addon_factory(status=amo.STATUS_NULL)
+        response = self.client.post(
+            self.url,
+            data={'addon': str(addon.guid), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+            HTTP_X_COUNTRY_CODE='YY',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(guid=addon.guid).exists()
+        report = AbuseReport.objects.get(guid=addon.guid)
+        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        assert report.country_code == 'YY'
+
 
 class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
@@ -438,17 +447,12 @@ class UserAbuseViewSetTestBase:
 
     def setUp(self):
         self.url = reverse_ns('abusereportuser-list')
-        geoip_patcher = mock.patch('olympia.abuse.models.GeoIP2')
-        self.GeoIP2_mock = geoip_patcher.start()
-        self.GeoIP2_mock.return_value.country_code.return_value = 'ZZ'
-        self.addCleanup(geoip_patcher.stop)
 
     def check_reporter(self, report):
         raise NotImplementedError
 
     def check_report(self, report, text):
         assert str(report) == text
-        assert report.country_code == 'ZZ'
         self.check_reporter(report)
 
     def test_report_user_id(self):
@@ -516,6 +520,21 @@ class UserAbuseViewSetTestBase:
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 429
+
+    def test_report_country_code(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={'user': str(user.id), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_COUNTRY_CODE='YY',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(user_id=user.id).exists()
+        report = AbuseReport.objects.get(user_id=user.id)
+        self.check_report(report, 'Abuse Report for User %s' % user)
+        assert report.country_code == 'YY'
 
 
 class TestUserAbuseViewSetLoggedOut(UserAbuseViewSetTestBase, TestCase):
