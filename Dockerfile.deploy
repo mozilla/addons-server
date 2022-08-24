@@ -1,5 +1,8 @@
 FROM python:3.10-slim-buster
 
+ARG DJANGO_VERSION=django32
+ENV DJANGO_VERSION=$DJANGO_VERSION
+
 # need to compile swig
 ENV SWIG_FEATURES="-D__x86_64__"
 
@@ -71,7 +74,7 @@ WORKDIR /data/olympia
 
 # Install all python requires, and add symlink for old uwsgi binary paths
 RUN pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/system.txt   \
-    && pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/prod.txt  \
+    && pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_$DJANGO_VERSION.txt  \
     && pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_without_hash.txt \
     && pip3 install --no-cache-dir --exists-action=w --no-deps -e . \
     && ln -s /usr/local/bin/uwsgi /usr/bin/uwsgi \

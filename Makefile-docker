@@ -1,4 +1,5 @@
 export PYTHON_COMMAND=python3
+export DJANGO_VERSION?=django32
 
 # As we're using user-local installs inside the docker-container we need
 # to be cautious about uprading pip and not confusing it with the
@@ -84,7 +85,7 @@ install_python_test_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
 	$(PIP_COMMAND) install --no-deps --exists-action=w -r requirements/system.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_$(DJANGO_VERSION).txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
