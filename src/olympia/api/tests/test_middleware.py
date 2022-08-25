@@ -11,37 +11,37 @@ class TestAPIRequestMiddleware(TestCase):
 
     def test_api_identified(self):
         request = self.request_factory.get('/api/v3/lol/')
-        APIRequestMiddleware().process_request(request)
+        APIRequestMiddleware(lambda: None).process_request(request)
         assert request.is_api
 
     def test_vary_applied(self):
         request = self.request_factory.get('/api/v5/foo')
         request.is_api = True
         response = HttpResponse()
-        APIRequestMiddleware().process_response(request, response)
+        APIRequestMiddleware(lambda: None).process_response(request, response)
         assert response['Vary'] == 'X-Country-Code, Accept-Language'
 
         response['Vary'] = 'Foo, Bar'
-        APIRequestMiddleware().process_response(request, response)
+        APIRequestMiddleware(lambda: None).process_response(request, response)
         assert response['Vary'] == 'Foo, Bar, X-Country-Code, Accept-Language'
 
     def test_vary_not_applied_outside_api(self):
         request = self.request_factory.get('/somewhere')
         request.is_api = False
         response = HttpResponse()
-        APIRequestMiddleware().process_response(request, response)
+        APIRequestMiddleware(lambda: None).process_response(request, response)
         assert not response.has_header('Vary')
 
         response['Vary'] = 'Foo, Bar'
-        APIRequestMiddleware().process_response(request, response)
+        APIRequestMiddleware(lambda: None).process_response(request, response)
         assert response['Vary'] == 'Foo, Bar'
 
     def test_disabled_for_the_rest(self):
         """Test that we don't tag the request as API on "regular" pages."""
         request = self.request_factory.get('/overtherainbow')
-        APIRequestMiddleware().process_request(request)
+        APIRequestMiddleware(lambda: None).process_request(request)
         assert not request.is_api
 
         request = self.request_factory.get('/overtherainbow')
-        APIRequestMiddleware().process_request(request)
+        APIRequestMiddleware(lambda: None).process_request(request)
         assert not request.is_api

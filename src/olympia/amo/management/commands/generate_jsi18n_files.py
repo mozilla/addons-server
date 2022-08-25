@@ -10,7 +10,7 @@ from django.views.i18n import JavaScriptCatalog
 
 class Command(BaseCommand):
     help = 'Generate static jsi18n files for each locale we support'
-    requires_system_checks = False  # Can be ran without the database up yet.
+    requires_system_checks = []  # Can be ran without the database up yet.
 
     def handle(self, *args, **options):
         fake_request = HttpRequest()

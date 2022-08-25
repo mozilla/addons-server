@@ -23,7 +23,7 @@ from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
 from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
-from django.conf import urls as django_urls
+from django.urls import re_path
 from django.utils import translation
 from django.utils.encoding import force_str
 from django.utils.html import escape
@@ -1113,7 +1113,7 @@ class WithDynamicEndpointsMixin:
             view = view.as_view()
 
         dynamic_urls.urlpatterns = [
-            django_urls.url(url_regex, view, name='test-dynamic-endpoint')
+            re_path(url_regex, view, name='test-dynamic-endpoint')
         ]
 
         self.addCleanup(self._clean_up_dynamic_urls)

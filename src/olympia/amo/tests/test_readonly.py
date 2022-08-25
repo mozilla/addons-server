@@ -9,7 +9,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import reverse_ns
 
 
-@pytest.yield_fixture
+@pytest.fixture
 def read_only_mode(client, settings, db):
     def _db_error(*args, **kwargs):
         raise mysql.OperationalError("You can't do this in read-only mode.")

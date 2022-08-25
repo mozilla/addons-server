@@ -45,31 +45,31 @@ class TestMiddleware(TestCase):
     def test_authentication_used_outside_the_api(self, process_request):
         req = RequestFactory().get('/')
         req.is_api = False
-        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        AuthenticationMiddlewareWithoutAPI(lambda: None).process_request(req)
         assert process_request.called
 
     @patch('django.contrib.sessions.middleware.SessionMiddleware.process_request')
     def test_authentication_not_used_with_the_api(self, process_request):
         req = RequestFactory().get('/')
         req.is_api = True
-        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        AuthenticationMiddlewareWithoutAPI(lambda: None).process_request(req)
         assert not process_request.called
 
     @patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
     def test_authentication_is_used_with_accounts_auth(self, process_request):
         req = RequestFactory().get('/api/v3/accounts/authenticate/')
         req.is_api = True
-        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        AuthenticationMiddlewareWithoutAPI(lambda: None).process_request(req)
         assert process_request.call_count == 1
 
         req = RequestFactory().get('/api/v4/accounts/authenticate/')
         req.is_api = True
-        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        AuthenticationMiddlewareWithoutAPI(lambda: None).process_request(req)
         assert process_request.call_count == 2
 
         req = RequestFactory().get('/api/v5/accounts/authenticate/')
         req.is_api = True
-        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        AuthenticationMiddlewareWithoutAPI(lambda: None).process_request(req)
         assert process_request.call_count == 3
 
     def test_lbheartbeat_middleware(self):
@@ -145,13 +145,13 @@ def test_request_id_middleware(client):
     # Test that we set `request.request_id` too
 
     request = RequestFactory().get('/')
-    RequestIdMiddleware().process_request(request)
+    RequestIdMiddleware(lambda: None).process_request(request)
     assert request.request_id
 
 
 class TestSetRemoteAddrFromForwardedFor(TestCase):
     def setUp(self):
-        self.middleware = SetRemoteAddrFromForwardedFor()
+        self.middleware = SetRemoteAddrFromForwardedFor(lambda: None)
 
     def test_no_special_headers(self):
         request = RequestFactory().get('/', REMOTE_ADDR='4.8.15.16')
@@ -369,7 +369,7 @@ class TestGraphiteMiddlewareNoAuth(TestCase):
         self.response = HttpResponse()
 
     def test_graphite_response(self, statsd_mock):
-        gmw = GraphiteMiddlewareNoAuth()
+        gmw = GraphiteMiddlewareNoAuth(lambda: None)
         gmw.process_response(self.request, self.response)
         assert statsd_mock.incr.call_count == 1
         assert statsd_mock.incr.call_args[0] == ('response.200',)
@@ -378,14 +378,14 @@ class TestGraphiteMiddlewareNoAuth(TestCase):
         self.request.user = Mock()
         is_authenticated_mock = PropertyMock(return_value=True)
         type(self.request.user).is_authenticated = is_authenticated_mock
-        gmw = GraphiteMiddlewareNoAuth()
+        gmw = GraphiteMiddlewareNoAuth(lambda: None)
         gmw.process_response(self.request, self.response)
         assert is_authenticated_mock.call_count == 0
         assert statsd_mock.incr.call_count == 1
         assert statsd_mock.incr.call_args[0] == ('response.200',)
 
     def test_graphite_exception(self, statsd_mock):
-        gmw = GraphiteMiddlewareNoAuth()
+        gmw = GraphiteMiddlewareNoAuth(lambda: None)
         gmw.process_exception(self.request, None)
         assert statsd_mock.incr.call_count == 1
         assert statsd_mock.incr.call_args[0] == ('response.500',)
@@ -394,7 +394,7 @@ class TestGraphiteMiddlewareNoAuth(TestCase):
         self.request.user = Mock()
         is_authenticated_mock = PropertyMock(return_value=True)
         type(self.request.user).is_authenticated = is_authenticated_mock
-        gmw = GraphiteMiddlewareNoAuth()
+        gmw = GraphiteMiddlewareNoAuth(lambda: None)
         gmw.process_exception(self.request, None)
         assert is_authenticated_mock.call_count == 0
         assert statsd_mock.incr.call_count == 1

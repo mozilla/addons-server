@@ -2,9 +2,6 @@ import contextlib
 import threading
 
 
-default_app_config = 'olympia.core.apps.CoreConfig'
-
-
 _locals = threading.local()
 _locals.user = None
 _locals.remote_addr = None

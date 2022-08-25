@@ -47,7 +47,7 @@ def make_adapter_with_retry():
     adapter = HTTPAdapter(
         max_retries=Retry(
             total=1,
-            method_whitelist=['POST'],
+            allowed_methods=['POST'],
             status_forcelist=[500, 502, 503, 504],
         )
     )

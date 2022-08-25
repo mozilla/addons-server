@@ -121,7 +121,7 @@ class Test500(TestCase):
         from olympia.api.middleware import APIRequestMiddleware
 
         request = RequestFactory().get('/api/v4/addons/addon/lol/')
-        APIRequestMiddleware().process_exception(request, Exception())
+        APIRequestMiddleware(lambda: None).process_exception(request, Exception())
         response = handler500(request)
         assert response.status_code == 500
         assert response['Content-Type'] == 'application/json'
