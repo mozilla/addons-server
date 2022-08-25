@@ -1,15 +1,17 @@
 import json
 import uuid
 import io
+from datetime import datetime
 
 from django.core.management import call_command
 
+import pytest
 from unittest.mock import ANY, patch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import addon_factory, days_ago, TestCase, user_factory
 from olympia.users.management.commands.createsuperuser import Command as CreateSuperUser
 from olympia.users.models import UserProfile, UserRestrictionHistory
 
@@ -373,3 +375,79 @@ class TestClearOldUserData(TestCase):
         assert not old_not_deleted.email
         assert not Addon.unfiltered.filter(id=old_not_deleted_addon.id).exists()
         assert not Addon.unfiltered.filter(id=no_longer_owner_addon.id).exists()
+
+
+@pytest.mark.django_db
+def test_backfill_activity_and_iplog():
+    yesterday = days_ago(1)
+    recently = days_ago(42)
+    a_long_time_ago = datetime(2018, 12, 31)
+
+    # last login too old to be considered. has a restriction, but it should
+    # be ignored too.
+    UserRestrictionHistory.objects.create(
+        user=user_factory(last_login_ip='127.0.41.1', last_login=a_long_time_ago),
+        restriction=UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][0],
+        ip_address='127.0.41.2',
+    )
+
+    # recent last login but somehow no last login ip.
+    user_factory(last_login_ip='', last_login=recently)
+
+    # recent enough last login, with restrictions
+    user = user_factory(last_login_ip='127.0.42.1', last_login=recently)
+    UserRestrictionHistory.objects.create(
+        user=user,
+        restriction=UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][0],
+        ip_address='127.0.42.2',
+        created=yesterday,
+    )
+
+    # same, but deleted.
+    user_deleted = user_factory(last_login_ip='127.0.43.1', last_login=recently)
+    user_deleted.delete()
+    UserRestrictionHistory.objects.create(
+        user=user_deleted,
+        restriction=UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][0],
+        ip_address='127.0.43.2',
+        created=yesterday,
+    )
+
+    call_command('process_users', task='backfill_activity_and_iplog')
+
+    # We should have 4 ActivityLog, 2 for each user.
+    assert ActivityLog.objects.count() == 4
+
+    activity = ActivityLog.objects.get(user=user, action=amo.LOG.LOG_IN.id)
+    assert activity.created == recently
+    assert activity.iplog_set.count() == 1
+    ipl = activity.iplog_set.all().get()
+    assert ipl.ip_address == '127.0.42.1'
+
+    activity = ActivityLog.objects.get(user=user, action=amo.LOG.RESTRICTED.id)
+    assert activity.created == yesterday
+    assert activity.details == {
+        'restriction': str(
+            UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][1].__name__
+        )
+    }
+    assert activity.iplog_set.count() == 1
+    ipl = activity.iplog_set.all().get()
+    assert ipl.ip_address == '127.0.42.2'
+
+    activity = ActivityLog.objects.get(user=user_deleted, action=amo.LOG.LOG_IN.id)
+    assert activity.created == recently
+    assert activity.iplog_set.count() == 1
+    ipl = activity.iplog_set.all().get()
+    assert ipl.ip_address == '127.0.43.1'
+
+    activity = ActivityLog.objects.get(user=user_deleted, action=amo.LOG.RESTRICTED.id)
+    assert activity.created == yesterday
+    assert activity.details == {
+        'restriction': str(
+            UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][1].__name__
+        )
+    }
+    assert activity.iplog_set.count() == 1
+    ipl = activity.iplog_set.all().get()
+    assert ipl.ip_address == '127.0.43.2'

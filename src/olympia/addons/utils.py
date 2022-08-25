@@ -202,7 +202,7 @@ class RestrictionChecker:
                     activity.log_create(
                         amo.LOG.RESTRICTED,
                         user=self.user,
-                        details={'restriction': str(cls)},
+                        details={'restriction': str(cls.__name__)},
                     )
                     UserRestrictionHistory.objects.create(
                         user=self.user,
