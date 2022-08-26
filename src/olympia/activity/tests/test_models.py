@@ -308,6 +308,7 @@ class TestActivityLog(TestCase):
         ip_log = IPLog.objects.get()
         assert ip_log.activity_log == activity
         assert ip_log.ip_address == '15.16.23.42'
+        assert ip_log.ip_address_binary == b'\x0f\x10\x17*'
 
     def test_review_action_reason_log(self):
         addon = Addon.objects.get()
