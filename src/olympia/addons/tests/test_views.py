@@ -1975,7 +1975,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert response.data['tags'] == ['zoom', 'music']
         self.addon.reload()
         assert [tag.tag_text for tag in self.addon.tags.all()] == ['music', 'zoom']
-        alogs = ActivityLog.objects.exclude(action=amo.LOG.ADD_VERSION.id)
+        alogs = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.ADD_VERSION.id, amo.LOG.LOG_IN.id)
+        )
         assert len(alogs) == 2, [(a.action, a.details) for a in alogs]
         assert alogs[0].action == amo.LOG.REMOVE_TAG.id
         assert alogs[1].action == amo.LOG.ADD_TAG.id
