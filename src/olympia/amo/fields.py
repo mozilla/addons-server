@@ -29,6 +29,11 @@ class PositiveAutoField(models.AutoField):
         return models.PositiveIntegerField().db_type(connection=connection)
 
 
+class VarBinaryField(models.BinaryField):
+    def db_type(self, connection):
+        return f'varbinary({self.max_length})'
+
+
 class HttpHttpsOnlyURLField(fields.URLField):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

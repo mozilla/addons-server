@@ -1,3 +1,4 @@
+import ipaddress
 import json
 import string
 import uuid
@@ -20,7 +21,7 @@ import olympia.core.logger
 from olympia import amo, constants
 from olympia.access.models import Group
 from olympia.addons.models import Addon
-from olympia.amo.fields import PositiveAutoField
+from olympia.amo.fields import PositiveAutoField, VarBinaryField
 from olympia.amo.models import BaseQuerySet, LongNameIndex, ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
@@ -212,6 +213,16 @@ class IPLog(ModelBase):
 
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
     ip_address = models.CharField(max_length=45)
+    ip_address_binary = VarBinaryField(max_length=16, null=True)
+
+    def save(self, *args, **kwargs):
+        # Save the ip address in binary - equivalent to INET6_ATON() in MySQL.
+        # Will then allow queries like:
+        # SELECT ip_address, ip_address_binary FROM log_activity_ip
+        # WHERE ip_address_binary >= INET6_ATON('127.0.0.1')
+        # AND ip_address_binary <= INET6_ATON('127.0.0.254');
+        self.ip_address_binary = ipaddress.ip_address(self.ip_address).packed
+        return super().save(*args, **kwargs)
 
     class Meta:
         db_table = 'log_activity_ip'
@@ -220,6 +231,10 @@ class IPLog(ModelBase):
             LongNameIndex(
                 fields=('ip_address',),
                 name='log_activity_ip_ip_address_ba36172a',
+            ),
+            LongNameIndex(
+                fields=('ip_address_binary',),
+                name='log_activity_ip_ip_address_binary_209777a9',
             ),
         ]
 
