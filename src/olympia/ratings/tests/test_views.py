@@ -1685,7 +1685,7 @@ class TestRatingViewSetPost(TestCase):
                 'score': 5,
                 'version': self.addon.current_version.pk,
             },
-            REMOTE_ADDR='213.225.312.5',
+            REMOTE_ADDR='213.225.31.25',
         )
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
@@ -1701,7 +1701,7 @@ class TestRatingViewSetPost(TestCase):
             'version': review.version.version,
         }
         assert 'ip_address' not in response.data
-        assert review.ip_address == '213.225.312.5'
+        assert review.ip_address == '213.225.31.25'
         assert not review.flag
         assert not review.editorreview
 
@@ -1709,6 +1709,9 @@ class TestRatingViewSetPost(TestCase):
         assert activity_log.user == self.user
         assert activity_log.arguments == [self.addon, review]
         assert activity_log.action == amo.LOG.ADD_RATING.id
+
+        ip_log = activity_log.iplog_set.get()
+        assert ip_log.ip_address == '213.225.31.25'
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [addon_author.email]

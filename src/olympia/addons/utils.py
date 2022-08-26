@@ -199,11 +199,12 @@ class RestrictionChecker:
                     f'RestrictionChecker.is_{action_type}_allowed.{name}.failure'
                 )
                 if self.user and self.user.is_authenticated:
-                    activity.log_create(
-                        amo.LOG.RESTRICTED,
-                        user=self.user,
-                        details={'restriction': str(cls.__name__)},
-                    )
+                    with core.override_remote_addr(self.ip_address):
+                        activity.log_create(
+                            amo.LOG.RESTRICTED,
+                            user=self.user,
+                            details={'restriction': str(cls.__name__)},
+                        )
                     UserRestrictionHistory.objects.create(
                         user=self.user,
                         ip_address=self.ip_address,

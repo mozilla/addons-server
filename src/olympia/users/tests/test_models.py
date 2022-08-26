@@ -15,8 +15,9 @@ import responses
 
 import olympia  # noqa
 
-from olympia import amo
+from olympia import amo, core
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
 from olympia.amo.utils import SafeStorage
@@ -44,6 +45,27 @@ class TestUserProfile(TestCase):
 
     def setUp(self):
         self.storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
+
+    def test_logged_in(self):
+        user = user_factory()
+        with core.override_remote_addr('4.8.15.16'):
+            self.client.force_login(user)
+        user.reload()
+        assert user.last_login_ip == '4.8.15.16'
+        assert ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).count() == 1
+        log = ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).latest('pk')
+        assert log.user == user
+        ip_log = log.iplog_set.get()
+        assert ip_log.ip_address == '4.8.15.16'
+
+        with core.override_remote_addr('23.42.42.42'):
+            self.client.force_login(user)
+        assert user.last_login_ip == '23.42.42.42'
+        assert ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).count() == 2
+        log = ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).latest('pk')
+        assert log.user == user
+        ip_log = log.iplog_set.get()
+        assert ip_log.ip_address == '23.42.42.42'
 
     def test_is_addon_developer(self):
         user = user_factory()
