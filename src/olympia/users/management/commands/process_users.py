@@ -15,8 +15,6 @@ class Command(ProcessObjectsCommand):
 
     def get_tasks(self):
         return {
-            # Don't forget to use the --with_deleted argument when triggering
-            # this task!
             'backfill_activity_and_iplog': {
                 'task': backfill_activity_and_iplog,
                 'queryset_filters': [
