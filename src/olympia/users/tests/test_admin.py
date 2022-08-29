@@ -93,35 +93,70 @@ class TestUserAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#result_list tbody tr')
-        assert not doc('.column-_ratings_all__ip_address')
+        assert not doc('.column-known_ip_adresses')
 
     def test_search_for_single_ip(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        user_factory(last_login_ip='127.0.0.1')  # Extra user that shouldn't match
-        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')  # Will match
+        with core.override_remote_addr('127.0.0.2'):
+            self.user.update(email='foo@bar.com')
+            # That will make self.user match our query.
+            ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr('127.0.0.1'):
+            extra_user = user_factory()  # Extra user that shouldn't match
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
         response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 1
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
-        # Make sure last login is now displayed, and has the right value.
-        assert doc('.field-last_login_ip').text() == '127.0.0.2'
+        # Make sure login ip is now displayed, and has the right value.
+        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+
+    def test_search_for_single_ip_other_ips_are_shown(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        with core.override_remote_addr('127.0.0.2'):
+            self.user.update(email='foo@bar.com')
+            # That will make self.user match our query.
+            ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr('127.0.0.3'):
+            # Add another login from a different IP to make sure we show it.
+            ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr('127.0.0.1'):
+            extra_user = user_factory()  # Extra user that shouldn't match
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
+        response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 1
+        # Make sure it's the right user.
+        assert doc('.field-email').text() == self.user.email
+        # Make sure login ip is now displayed, and has the right value.
+        assert doc('.field-known_ip_adresses').text() == '127.0.0.2\n127.0.0.3'
 
     def test_search_for_single_ip_multiple_results_for_different_reasons(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        extra_user = user_factory(
-            email='extra@bar.com', last_login_ip='127.0.0.1'
-        )  # Extra user that matches but not thanks to their last_login_ip...
-        UserRestrictionHistory.objects.create(user=extra_user, ip_address='127.0.0.2')
+
+        # Extra user that will match but not thanks to their last login ip...
+        with core.override_remote_addr('127.0.0.1'):
+            extra_user = user_factory(email='extra@bar.com')
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.RESTRICTED, user=extra_user)
+        # Another one that will match through their activity
         extra_extra_user = user_factory(email='extra_extra@bar.com')
-        UserRestrictionHistory.objects.create(
-            user=extra_extra_user, last_login_ip='127.0.0.2'
-        )
-        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.RESTRICTED, user=extra_extra_user)
+        # And finally self.user that will also match
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.ADD_RATING, user=self.user)
+        self.user.update(email='foo@bar.com')
         response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -133,19 +168,21 @@ class TestUserAdmin(TestCase):
                 self.user.email,
             ]
         )
-        # Make sure last login is now displayed, and has the right values.
-        assert doc('.field-last_login_ip').text() == '127.0.0.1 127.0.0.1 127.0.0.2'
-        # Same for the others that match
-        assert doc('.field-restriction_history__ip_address').text() == '- 127.0.0.2 -'
-        assert (
-            doc('.field-restriction_history__last_login_ip').text() == '127.0.0.2 - -'
+        # Make sure IPs displayed, and has the right values. The first and
+        # third users only have the one we're looking for, the one in the
+        # middle has another (separated with a newline because it's from the
+        # same cell, in a list) we're displaying as well.
+        assert doc('.field-known_ip_adresses').text() == (
+            '127.0.0.2 127.0.0.1\n127.0.0.2 127.0.0.2'
         )
 
     def test_search_for_multiple_ips(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
-        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.ADD_RATING, user=self.user)
+        self.user.update(email='foo@bar.com')
         response = self.client.get(
             self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
         )
@@ -154,52 +191,46 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure last login is now displayed, and has the right value.
-        assert doc('.field-last_login_ip').text() == '127.0.0.2'
+        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
 
     def test_search_for_multiple_ips_with_deduplication(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         # Will match once with the last_login
-        self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')
-        # Will match twice: once with the last login, once with the restriction history
-        # ip_address. Only one result will be shown since the 2 rows would be the same.
-        extra_user = user_factory(email='extra@bar.com', last_login_ip='127.0.0.2')
-        UserRestrictionHistory.objects.create(user=extra_user, ip_address='127.0.0.2')
-        # Will match 4 times: last_login, restriction history (last_login_ip and
-        # ip_address), ratings ip_address. There will be 2 results shown because of the
-        # 2 different user restriction history matching.
-        extra_extra_user = user_factory(
-            email='extra_extra@bar.com', last_login_ip='127.0.0.3'
-        )
-        UserRestrictionHistory.objects.create(
-            user=extra_extra_user, last_login_ip='127.0.0.2', ip_address='10.0.0.42'
-        )
-        UserRestrictionHistory.objects.create(
-            user=extra_extra_user, ip_address='127.0.0.2', last_login_ip='10.0.0.36'
-        )
-        addon = addon_factory()
-        Rating.objects.create(
-            user=extra_extra_user,
-            rating=4,
-            ip_address='127.0.0.3',
-            addon=addon,
-            version=addon.current_version,
-        )
+        with core.override_remote_addr('127.0.0.3'):
+            ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
+        self.user.update(email='foo@bar.com')
+        # Will match twice, will only show up once since it's the same user.
+        extra_user = user_factory(email='extra@bar.com')
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
+        # Will match 4 times, will only show up once since it's the same user.
+        extra_extra_user = user_factory(email='extra_extra@bar.com')
+        with core.override_remote_addr('127.0.0.3'):
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_extra_user)
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.RESTRICTED, user=extra_extra_user)
+            ActivityLog.create(amo.LOG.ADD_RATING, user=extra_extra_user)
+            ActivityLog.create(amo.LOG.ADD_VERSION, user=extra_extra_user)
         response = self.client.get(
             self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('#result_list tbody tr')) == 4
+        assert len(doc('#result_list tbody tr')) == 3
         # Make sure it's the right users.
         assert doc('.field-email').text() == ' '.join(
             [
                 extra_extra_user.email,
-                extra_extra_user.email,
                 extra_user.email,
                 self.user.email,
             ]
+        )
+        # Make sure each IP only appears once for each row.
+        assert doc('.field-known_ip_adresses').text() == (
+            '127.0.0.2\n127.0.0.3 127.0.0.2 127.0.0.3'
         )
 
     def test_search_for_mixed_strings(self):

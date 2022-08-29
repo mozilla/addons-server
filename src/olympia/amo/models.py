@@ -628,3 +628,8 @@ class FilterableManyToManyField(models.fields.related.ManyToManyField):
                     self.remote_field, reverse=True, q_filter=self.q_filter
                 ),
             )
+
+
+class GroupConcat(models.Aggregate):
+    function = 'GROUP_CONCAT'
+    allow_distinct = True
