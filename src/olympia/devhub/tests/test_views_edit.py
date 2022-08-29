@@ -874,7 +874,7 @@ class TestEditMedia(BaseTestEdit):
 
     def test_edit_media_icon_log(self):
         self.test_edit_media_uploadedicon()
-        log = ActivityLog.objects.all()
+        log = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id)
         assert log.count() == 1
         assert log[0].action == amo.LOG.CHANGE_MEDIA.id
 
@@ -1498,7 +1498,7 @@ class TestEditTechnical(BaseTestEdit):
 
     def test_log(self):
         data = {'developer_comments': 'This is a test'}
-        assert ActivityLog.objects.count() == 0
+        assert ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).count() == 0
         response = self.client.post(self.technical_edit_url, data)
         assert response.context['form'].errors == {}
         assert (

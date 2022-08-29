@@ -6,6 +6,7 @@ from django.conf import settings
 from django.core import mail
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo.cron import gc, write_sitemaps
 from olympia.amo.sitemap import get_sitemaps
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
@@ -19,6 +20,41 @@ from olympia.amo.models import FakeEmail
 
 @mock.patch('olympia.amo.cron.storage')
 class TestGC(TestCase):
+    def test_stale_activity_logs_deletion(self, storage_mock):
+        user = user_factory()
+        to_keep = [
+            # Relatively recent activity that should not be deleted yet.
+            ActivityLog.objects.create(
+                action=amo.LOG.THROTTLED.id, user=user, created=self.days_ago(91)
+            ),
+            # Newer activity that should not be deleted.
+            ActivityLog.objects.create(action=amo.LOG.THROTTLED.id, user=user),
+            # Old activity from action that should always be kept.
+            ActivityLog.objects.create(
+                action=amo.LOG.LOG_IN.id, user=user, created=self.days_ago(181)
+            ),
+            # Newer activity that should not be deleted and that should be kept
+            # anyway regardless of age because of the action.
+            ActivityLog.objects.create(action=amo.LOG.RESTRICTED.id, user=user),
+        ]
+
+        to_delete = [
+            # Old activity that should be deleted
+            ActivityLog.objects.create(
+                action=amo.LOG.THROTTLED.id, user=user, created=self.days_ago(181)
+            ),
+        ]
+
+        gc()
+
+        assert ActivityLog.objects.filter(
+            pk__in=[activity.pk for activity in to_keep]
+        ).count() == len(to_keep)
+
+        assert not ActivityLog.objects.filter(
+            pk__in=[activity.pk for activity in to_delete]
+        ).exists()
+
     def test_file_uploads_deletion(self, storage_mock):
         user = user_factory()
         fu_new = FileUpload.objects.create(

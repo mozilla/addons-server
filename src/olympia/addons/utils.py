@@ -16,7 +16,7 @@ from django.utils.translation import gettext
 
 from django_statsd.clients import statsd
 
-from olympia import amo, core
+from olympia import activity, amo, core
 from olympia.access.acl import action_allowed_for
 from olympia.amo.utils import normalize_string
 from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
@@ -199,6 +199,12 @@ class RestrictionChecker:
                     f'RestrictionChecker.is_{action_type}_allowed.{name}.failure'
                 )
                 if self.user and self.user.is_authenticated:
+                    with core.override_remote_addr(self.ip_address):
+                        activity.log_create(
+                            amo.LOG.RESTRICTED,
+                            user=self.user,
+                            details={'restriction': str(cls.__name__)},
+                        )
                     UserRestrictionHistory.objects.create(
                         user=self.user,
                         ip_address=self.ip_address,

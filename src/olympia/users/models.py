@@ -29,7 +29,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 
-from olympia import amo, core
+from olympia import amo, activity, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField, CIDRField
@@ -591,6 +591,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # The following log statement is used by foxsec-pipeline.
         log.info('User (%s) logged in successfully', user, extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
+        activity.log_create(amo.LOG.LOG_IN, user=user)
 
 
 class UserNotification(ModelBase):

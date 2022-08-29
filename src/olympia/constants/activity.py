@@ -272,9 +272,9 @@ class ADD_RATING(_LOG):
     action_class = 'review'
     format = _('{rating} for {addon} written.')
     show_user_to_developer = True
+    store_ip = True
 
 
-# TODO(davedash): Add these when we do the admin site
 class ADD_RECOMMENDED_CATEGORY(_LOG):
     id = 31
     action_class = 'edit'
@@ -824,6 +824,24 @@ class FORCE_ENABLE(_LOG):
     reviewer_review_action = True
     format = _('{user} force-enabled {addon}.')
     short = _('Force enabled')
+
+
+class LOG_IN(_LOG):
+    id = 169
+    # Note: clear_old_user_data cron would delete the IPLog when needed, so we
+    # can keep the activity log, it just won't have any IP associated with it.
+    keep = True
+    admin_event = True
+    store_ip = True
+    format = _('{user} logged in.')
+
+
+class RESTRICTED(_LOG):
+    id = 170
+    keep = True
+    admin_event = True
+    store_ip = True
+    format = _('{user} restricted.')
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]

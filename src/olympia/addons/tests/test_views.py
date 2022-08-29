@@ -1601,7 +1601,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             context={'request': request}
         ).to_representation(self.addon)
         assert self.addon.summary == 'summary update!'
-        alog = ActivityLog.objects.exclude(action=amo.LOG.ADD_VERSION.id).get()
+        alog = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.ADD_VERSION.id, amo.LOG.LOG_IN.id)
+        ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.EDIT_PROPERTIES.id
         assert alog.details == ['summary']
@@ -1848,7 +1850,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
         assert addon.support_url == 'https://my.home.page/support/'
-        alog = ActivityLog.objects.exclude(action=amo.LOG.ADD_VERSION.id).get()
+        alog = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.ADD_VERSION.id, amo.LOG.LOG_IN.id)
+        ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.EDIT_PROPERTIES.id
         assert alog.details == list(patch_data.keys())
@@ -1864,7 +1868,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert data['is_disabled'] is True
         assert addon.is_disabled is True
         assert addon.disabled_by_user is True  # sets the user property
-        alog = ActivityLog.objects.exclude(action=amo.LOG.ADD_VERSION.id).get()
+        alog = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.ADD_VERSION.id, amo.LOG.LOG_IN.id)
+        ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.USER_DISABLE.id
 
@@ -1894,7 +1900,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert data['is_disabled'] is False
         assert addon.is_disabled is False
         assert addon.disabled_by_user is False  # sets the user property
-        alog = ActivityLog.objects.exclude(action=amo.LOG.ADD_VERSION.id).get()
+        alog = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.ADD_VERSION.id, amo.LOG.LOG_IN.id)
+        ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.USER_ENABLE.id
 
@@ -1977,7 +1985,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert response.data['tags'] == ['zoom', 'music']
         self.addon.reload()
         assert [tag.tag_text for tag in self.addon.tags.all()] == ['music', 'zoom']
-        alogs = ActivityLog.objects.exclude(action=amo.LOG.ADD_VERSION.id)
+        alogs = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.ADD_VERSION.id, amo.LOG.LOG_IN.id)
+        )
         assert len(alogs) == 2, [(a.action, a.details) for a in alogs]
         assert alogs[0].action == amo.LOG.REMOVE_TAG.id
         assert alogs[1].action == amo.LOG.ADD_TAG.id
@@ -2033,7 +2043,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert os.path.exists(
             os.path.join(self.addon.get_icon_dir(), f'{self.addon.id}-original.png')
         )
-        alog = ActivityLog.objects.get()
+        alog = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
 
@@ -2051,7 +2061,9 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
         assert self.addon.icon_type == ''
         remove_icons_mock.assert_called()
-        alog = ActivityLog.objects.exclude(action=amo.LOG.ADD_VERSION.id).get()
+        alog = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.ADD_VERSION.id, amo.LOG.LOG_IN.id)
+        ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
 
@@ -3527,7 +3539,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'url': 'http://testserver' + self.version.license_url(),
             'slug': None,
         }
-        alog = ActivityLog.objects.get()
+        alog = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_LICENSE.id
 
@@ -3554,7 +3566,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert new_license.name == 'neú name'
         assert License.objects.count() == num_licenses
 
-        alog2 = ActivityLog.objects.exclude(id=alog.id).get()
+        alog2 = (
+            ActivityLog.objects.exclude(id=alog.id)
+            .exclude(action=amo.LOG.LOG_IN.id)
+            .get()
+        )
         assert alog2.user == self.user
         assert alog2.action == amo.LOG.CHANGE_LICENSE.id
 
@@ -3584,7 +3600,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'url': 'http://testserver' + self.version.license_url(),
             'slug': None,
         }
-        alog = ActivityLog.objects.get()
+        alog = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_LICENSE.id
 
@@ -3602,7 +3618,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert data['license']['name']['en-US'] == str(builtin_license)
         assert data['license']['is_custom'] is False
         assert data['license']['url'] == builtin_license.url
-        alog2 = ActivityLog.objects.exclude(id=alog.id).get()
+        alog2 = (
+            ActivityLog.objects.exclude(id=alog.id)
+            .exclude(action=amo.LOG.LOG_IN.id)
+            .get()
+        )
         assert alog2.user == self.user
         assert alog2.action == amo.LOG.CHANGE_LICENSE.id
 

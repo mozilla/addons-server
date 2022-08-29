@@ -14,7 +14,7 @@ import pytest
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
-from olympia import amo
+from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.applications.models import AppVersion
@@ -162,6 +162,7 @@ class TestRestrictionChecker(TestCase):
         self.request.is_api = False
         self.request.user = user_factory(read_dev_agreement=self.days_ago(0))
         self.request.user.update(last_login_ip='192.168.1.1')
+        core.set_remote_addr(self.request.META.get('REMOTE_ADDR'))
 
     def test_is_submission_allowed_pass(self, incr_mock):
         checker = RestrictionChecker(request=self.request)
@@ -171,6 +172,7 @@ class TestRestrictionChecker(TestCase):
             'RestrictionChecker.is_submission_allowed.success',
         )
         assert not UserRestrictionHistory.objects.exists()
+        assert not ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).exists()
 
     def test_is_submission_allowed_hasnt_read_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
@@ -196,6 +198,12 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.user == self.request.user
+        assert activity.iplog_set.all().count() == 1
+        ip_log = activity.iplog_set.all().get()
+        assert ip_log.ip_address == '10.0.0.1'
 
     def test_is_submission_allowed_bypassing_read_dev_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
@@ -206,6 +214,7 @@ class TestRestrictionChecker(TestCase):
             'RestrictionChecker.is_submission_allowed.success',
         )
         assert not UserRestrictionHistory.objects.exists()
+        assert not ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).exists()
 
     def test_user_is_allowed_to_bypass_restrictions(self, incr_mock):
         IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
@@ -237,6 +246,12 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.user == self.request.user
+        assert activity.iplog_set.all().count() == 1
+        ip_log = activity.iplog_set.all().get()
+        assert ip_log.ip_address == '10.0.0.1'
 
     def test_is_submission_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
@@ -259,6 +274,12 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.user == self.request.user
+        assert activity.iplog_set.all().count() == 1
+        ip_log = activity.iplog_set.all().get()
+        assert ip_log.ip_address == '10.0.0.1'
 
     def test_is_submission_allowed_bypassing_read_dev_agreement_restricted(
         self, incr_mock
@@ -288,6 +309,12 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.user == self.request.user
+        assert activity.iplog_set.all().count() == 1
+        ip_log = activity.iplog_set.all().get()
+        assert ip_log.ip_address == '10.0.0.1'
 
     def test_is_auto_approval_allowed_email_restricted_only_for_submission(
         self, incr_mock
@@ -305,6 +332,7 @@ class TestRestrictionChecker(TestCase):
         assert checker.is_auto_approval_allowed()
         assert incr_mock.call_count == 1
         assert UserRestrictionHistory.objects.count() == 0
+        assert not ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).exists()
         assert incr_mock.call_args_list[0][0] == (
             'RestrictionChecker.is_auto_approval_allowed.success',
         )
@@ -336,6 +364,14 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.2'
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.user == self.request.user
+        assert activity.iplog_set.all().count() == 1
+        ip_log = activity.iplog_set.all().get()
+        # Note that there is no request in this case, the ip_adress is coming
+        # from the upload.
+        assert ip_log.ip_address == '10.0.0.2'
 
     def test_no_request_or_upload_at_init(self, incr_mock):
         with self.assertRaises(ImproperlyConfigured):

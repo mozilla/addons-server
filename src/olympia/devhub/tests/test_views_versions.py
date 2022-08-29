@@ -313,7 +313,7 @@ class TestVersion(TestCase):
         # Check we didn't change the status of the files.
         assert version.file.status == amo.STATUS_APPROVED
 
-        entry = ActivityLog.objects.get()
+        entry = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
         assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
         assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
@@ -365,7 +365,7 @@ class TestVersion(TestCase):
         assert not addon.disabled_by_user
         assert addon.status == amo.STATUS_APPROVED
 
-        entry = ActivityLog.objects.get()
+        entry = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
         assert entry.action == amo.LOG.USER_ENABLE.id
         msg = entry.to_string()
         assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
@@ -1096,9 +1096,9 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert response.status_code == 302
         apps = [app.id for app in self.get_version().compatible_apps.keys()]
         assert sorted(apps) == sorted([amo.FIREFOX.id, amo.ANDROID.id])
-        assert list(ActivityLog.objects.all().values_list('action')) == (
-            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)]
-        )
+        assert list(
+            ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
+        ) == ([(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_update_appversion(self):
         data = self.get_form()
@@ -1108,9 +1108,9 @@ class TestVersionEditCompat(TestVersionEditBase):
         av = self.version.apps.get()
         assert av.min.version == '1.0'
         assert av.max.version == '5.0'
-        assert list(ActivityLog.objects.all().values_list('action')) == (
-            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)]
-        )
+        assert list(
+            ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
+        ) == ([(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_ajax_update_appversion(self):
         url = reverse('devhub.ajax.compat.update', args=['a3615', self.version.id])
@@ -1121,9 +1121,9 @@ class TestVersionEditCompat(TestVersionEditBase):
         av = self.version.apps.get()
         assert av.min.version == '1.0'
         assert av.max.version == '5.0'
-        assert list(ActivityLog.objects.all().values_list('action')) == (
-            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)]
-        )
+        assert list(
+            ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
+        ) == ([(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_ajax_update_on_deleted_version(self):
         url = reverse('devhub.ajax.compat.update', args=['a3615', self.version.id])
@@ -1143,9 +1143,9 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert response.status_code == 302
         apps = [app.id for app in self.get_version().compatible_apps.keys()]
         assert apps == [amo.ANDROID.id]
-        assert list(ActivityLog.objects.all().values_list('action')) == (
-            [(amo.LOG.MAX_APPVERSION_UPDATED.id,)]
-        )
+        assert list(
+            ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
+        ) == ([(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
     def test_unique_apps(self):
         form = self.client.get(self.url).context['compat_form'].initial_forms[0]

@@ -248,14 +248,14 @@ class TestEditLicense(TestOwnership):
         data = self.build_form_data({'builtin': License.OTHER, 'text': 'text'})
         self.version.addon.update(status=amo.STATUS_APPROVED)
         self.client.post(self.url, data)
-        assert ActivityLog.objects.all().count() == 1
+        assert ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).count() == 1
 
         self.version.license = License.objects.all()[1]
         self.version.save()
 
         data = self.build_form_data({'builtin': License.OTHER, 'text': 'text'})
         self.client.post(self.url, data)
-        assert ActivityLog.objects.all().count() == 2
+        assert ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).count() == 2
 
 
 class TestEditAuthor(TestOwnership):

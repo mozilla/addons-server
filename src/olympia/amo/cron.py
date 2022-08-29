@@ -33,7 +33,7 @@ def gc(test_result=True):
     log.info('Collecting data to delete')
 
     logs = (
-        ActivityLog.objects.filter(created__lt=days_ago(90))
+        ActivityLog.objects.filter(created__lt=days_ago(180))
         .exclude(action__in=amo.LOG_KEEP)
         .values_list('id', flat=True)
     )
