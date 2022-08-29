@@ -747,16 +747,16 @@ class ActivityLog(ModelBase):
             elif class_ == ReviewActionReason:
                 ReviewActionReasonLog.objects.create(reason_id=id_, **create_kwargs)
 
-        if getattr(action, 'store_ip', False):
-            ip_address = core.get_remote_addr()
+        if getattr(action, 'store_ip', False) and (
+            ip_address := core.get_remote_addr()
+        ):
             # Index specific actions by their IP address. Note that the caller
             # must take care of overriding remote addr if the action is created
             # from a task.
-            if ip_address:
-                IPLog.objects.create(
-                    ip_address=ip_address,
-                    activity_log=al,
-                    created=kw.get('created', timezone.now()),
-                )
+            IPLog.objects.create(
+                ip_address=ip_address,
+                activity_log=al,
+                created=kw.get('created', timezone.now()),
+            )
 
         return al
