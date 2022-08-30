@@ -1037,7 +1037,7 @@ msgid "Force enabled"
 msgstr "Attivato in modo forzato"
 
 msgid "{user} logged in."
-msgstr "{utente} ha effettuato l’accesso."
+msgstr "{user} ha effettuato l’accesso."
 
 msgid "{user} restricted."
 msgstr "{user} sottoposto a restrizioni."
