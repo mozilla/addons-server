@@ -106,7 +106,12 @@ class TestUserAdmin(TestCase):
         with core.override_remote_addr('127.0.0.1'):
             extra_user = user_factory()  # Extra user that shouldn't match
             ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
-        response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert len(doc('#result_list tbody tr')) == 1
@@ -129,7 +134,12 @@ class TestUserAdmin(TestCase):
         with core.override_remote_addr('127.0.0.1'):
             extra_user = user_factory()  # Extra user that shouldn't match
             ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
-        response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert len(doc('#result_list tbody tr')) == 1
@@ -157,7 +167,12 @@ class TestUserAdmin(TestCase):
         with core.override_remote_addr('127.0.0.2'):
             ActivityLog.create(amo.LOG.ADD_RATING, user=self.user)
         self.user.update(email='foo@bar.com')
-        response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(self.list_url, {'q': '127.0.0.2'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         # Make sure it's the right users.
@@ -183,9 +198,14 @@ class TestUserAdmin(TestCase):
         with core.override_remote_addr('127.0.0.2'):
             ActivityLog.create(amo.LOG.ADD_RATING, user=self.user)
         self.user.update(email='foo@bar.com')
-        response = self.client.get(
-            self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
-        )
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(
+                self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
+            )
         assert response.status_code == 200
         doc = pq(response.content)
         # Make sure it's the right user.
@@ -214,9 +234,14 @@ class TestUserAdmin(TestCase):
             ActivityLog.create(amo.LOG.RESTRICTED, user=extra_extra_user)
             ActivityLog.create(amo.LOG.ADD_RATING, user=extra_extra_user)
             ActivityLog.create(amo.LOG.ADD_VERSION, user=extra_extra_user)
-        response = self.client.get(
-            self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
-        )
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(
+                self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
+            )
         assert response.status_code == 200
         doc = pq(response.content)
         assert len(doc('#result_list tbody tr')) == 3
