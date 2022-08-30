@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-16 17:38+0000\n"
+"POT-Creation-Date: 2022-08-30 16:34+0000\n"
 "PO-Revision-Date: 2022-07-20 09:30+0000\n"
 "Last-Translator: Jorge <laborim@protonmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1032,6 +1032,12 @@ msgstr "{user} forçou a ativação de {addon}."
 
 msgid "Force enabled"
 msgstr "Ativação forçada"
+
+msgid "{user} logged in."
+msgstr ""
+
+msgid "{user} restricted."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
