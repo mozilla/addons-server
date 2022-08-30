@@ -5,7 +5,6 @@
   "fields": {
     "name": 1,
     "created": "2009-04-30T23:48:48",
-    "url": "http://www.gnu.org/licenses/gpl-3.0.html",
     "text": null,
     "modified": "2010-10-14T16:14:13",
     "builtin": 3
@@ -17,7 +16,6 @@
   "fields": {
     "name": 2,
     "created": "2009-05-01T04:53:42",
-    "url": "http://www.gnu.org/licenses/lgpl-3.0.html",
     "text": null,
     "modified": "2010-10-14T16:14:13",
     "builtin": 5
@@ -29,7 +27,6 @@
   "fields": {
     "name": 3,
     "created": "2009-05-01T05:00:44",
-    "url": "http://www.gnu.org/licenses/gpl-2.0.html",
     "text": null,
     "modified": "2010-10-14T16:14:14",
     "builtin": 2
@@ -41,7 +38,6 @@
   "fields": {
     "name": 4,
     "created": "2009-05-01T08:02:14",
-    "url": "http://www.gnu.org/licenses/lgpl-2.1.html",
     "text": null,
     "modified": "2010-10-14T16:14:14",
     "builtin": 4
@@ -53,7 +49,6 @@
   "fields": {
     "name": 5,
     "created": "2009-05-01T08:36:09",
-    "url": "http://www.opensource.org/licenses/bsd-license.php",
     "text": null,
     "modified": "2010-10-14T16:14:15",
     "builtin": 7
@@ -65,7 +60,6 @@
   "fields": {
     "name": 6,
     "created": "2009-05-01T17:29:25",
-    "url": "http://www.opensource.org/licenses/mit-license.php",
     "text": null,
     "modified": "2010-10-14T16:14:15",
     "builtin": 6
@@ -77,7 +71,6 @@
   "fields": {
     "name": 7,
     "created": "2013-04-16T14:12:38",
-    "url": "http://www.mozilla.org/MPL/2.0/",
     "text": null,
     "modified": "2013-04-16T14:12:38",
     "builtin": 1
@@ -89,7 +82,6 @@
   "fields": {
     "name": null,
     "created": "2018-01-01T00:00:00",
-    "url": null,
     "text": null,
     "modified": "2018-01-01T00:00:00",
     "builtin": 11
@@ -101,7 +93,6 @@
   "fields": {
     "name": null,
     "created": "2018-01-01T00:00:00",
-    "url": "http://creativecommons.org/licenses/by/3.0/",
     "text": null,
     "modified": "2018-01-01T00:00:00",
     "builtin": 12
@@ -113,7 +104,6 @@
   "fields": {
     "name": null,
     "created": "2018-01-01T00:00:00",
-    "url": "http://creativecommons.org/licenses/by-nc/3.0/",
     "text": null,
     "modified": "2018-01-01T00:00:00",
     "builtin": 13
@@ -125,7 +115,6 @@
   "fields": {
     "name": null,
     "created": "2018-01-01T00:00:00",
-    "url": "http://creativecommons.org/licenses/by-nc-nd/3.0/",
     "text": null,
     "modified": "2018-01-01T00:00:00",
     "builtin": 14
@@ -137,7 +126,6 @@
   "fields": {
     "name": null,
     "created": "2018-01-01T00:00:00",
-    "url": "http://creativecommons.org/licenses/by-nc-sa/3.0/",
     "text": null,
     "modified": "2018-01-01T00:00:00",
     "builtin": 1
@@ -149,7 +137,6 @@
   "fields": {
     "name": null,
     "created": "2018-01-01T00:00:00",
-    "url": "http://creativecommons.org/licenses/by-nd/3.0/",
     "text": null,
     "modified": "2018-01-01T00:00:00",
     "builtin": 16
@@ -161,7 +148,6 @@
   "fields": {
     "name": null,
     "created": "2018-01-01T00:00:00",
-    "url": "http://creativecommons.org/licenses/by-sa/3.0/",
     "text": null,
     "modified": "2018-01-01T00:00:00",
     "builtin": 17

@@ -794,7 +794,6 @@ def license_factory(**kw):
         'text': {
             'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
         },
-        'url': 'http://license.example.com/',
     }
     data.update(**kw)
     return License.objects.create(**data)

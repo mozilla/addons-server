@@ -386,7 +386,6 @@ class TestAddonBrowseVersionSerializer(TestCase):
             text={
                 'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
-            url='http://license.example.com/',
         )
 
         self.addon = addon_factory(

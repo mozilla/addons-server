@@ -1129,7 +1129,6 @@ class License(ModelBase):
 
     id = PositiveAutoField(primary_key=True)
     name = TranslatedField()
-    url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
 
@@ -1158,6 +1157,10 @@ class License(ModelBase):
     @property
     def slug(self):
         return ((constant := self._constant) and constant.slug) or None
+
+    @property
+    def url(self):
+        return ((constant := self._constant) and constant.url) or None
 
 
 models.signals.pre_save.connect(

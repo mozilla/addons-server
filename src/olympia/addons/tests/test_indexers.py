@@ -9,6 +9,7 @@ from olympia.addons.models import Addon, Preview, attach_tags, attach_translatio
 from olympia.amo.tests import addon_factory, ESTestCase, TestCase
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
+from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.files.models import WebextPermission
@@ -267,9 +268,7 @@ class TestAddonIndexer(TestCase):
         optional_permissions = ['cookies', 'optional permission']
         version = self.addon.current_version
         # Add a bunch of things to it to test different scenarios.
-        version.license = License.objects.create(
-            name='My licensé', url='http://example.com/', builtin=3
-        )
+        version.license = License.objects.create(name='My licensé', builtin=3)
         [
             WebextPermission.objects.create(
                 file=version.file,
@@ -298,7 +297,7 @@ class TestAddonIndexer(TestCase):
             'builtin': 3,
             'id': version.license.pk,
             'name_translations': [{'lang': 'en-US', 'string': 'My licensé'}],
-            'url': 'http://example.com/',
+            'url': LICENSES_BY_BUILTIN[3].url,
         }
         assert extracted['current_version']['release_notes_translations'] == [
             {'lang': 'en-US', 'string': 'Fix for an important bug'},

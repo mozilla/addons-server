@@ -1347,7 +1347,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 license_serializer = version_serializer.fields['license']
                 version.license = License(id=data['license']['id'])
                 license_serializer._attach_fields(
-                    version.license, data['license'], ('builtin', 'url')
+                    version.license, data['license'], ('builtin',)
                 )
                 license_serializer._attach_translations(
                     version.license, data['license'], ('name',)
