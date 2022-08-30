@@ -698,7 +698,9 @@ def test_render_index_xml():
         built = render_index_xml(sitemaps={})
 
         with open(os.path.join(TEST_SITEMAPS_DIR, 'sitemap.xml')) as sitemap:
-            assert built == sitemap.read()
+            # strip out the line returns because there is annoyingly an extra one in
+            # django4.1's template vs. django3.2's template.
+            assert built.replace('\n', '') == sitemap.read().replace('\n', '')
 
 
 def test_sitemap_render():

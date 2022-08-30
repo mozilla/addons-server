@@ -2,6 +2,7 @@ import datetime
 import math
 import os
 from collections import namedtuple
+from dataclasses import dataclass
 from urllib.parse import urlparse
 
 from django.conf import settings
@@ -419,6 +420,19 @@ def get_sitemaps():
     }
 
 
+@dataclass
+class SitemapIndexItem:
+    """This is copied over from Django4.1, with a few adjustments.
+    Once we drop Django3.2 we can import class directly from django.contrib.sitemaps.
+    """
+
+    location: str
+    last_mod: bool = None
+
+    def __str__(self):
+        return self.location
+
+
 OTHER_SITEMAPS = [
     '/blog/sitemap.xml',
 ]
@@ -450,7 +464,7 @@ def render_index_xml(sitemaps):
 
     return loader.render_to_string(
         'sitemap_index.xml',
-        {'sitemaps': (absolutify(url) for url in urls)},
+        {'sitemaps': (SitemapIndexItem(absolutify(url)) for url in urls)},
     )
 
 
