@@ -185,13 +185,11 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def get_search_results(self, request, queryset, search_term):
         ips = self.ip_addresses_if_query_is_all_ip_addresses(search_term)
         if ips:
-            q_objects = Q()
-            for ip in ips:
-                q_objects |= Q(
-                    activitylog__iplog__ip_address_binary=ipaddress.ip_address(
-                        ip
-                    ).packed
-                )
+            condition = Q(
+                activitylog__iplog__ip_address_binary__in=[
+                    ipaddress.ip_address(ip).packed for ip in ips
+                ]
+            )
             # We want to duplicate the joins against activitylog + iplog so
             # that one is used for the search, and the other for the group
             # concat showing all IPs for activities of that user. Django
@@ -202,7 +200,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                     'activitylog__iplog__ip_address', distinct=True
                 ),
                 'activitylog_filtered': FilteredRelation(
-                    'activitylog__iplog', condition=q_objects
+                    'activitylog__iplog', condition=condition
                 ),
             }
             # ...and then add the most simple filter to "activate" the join
