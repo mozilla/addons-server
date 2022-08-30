@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-16 17:38+0000\n"
+"POT-Creation-Date: 2022-08-30 16:34+0000\n"
 "PO-Revision-Date: 2022-06-20 02:42+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1044,6 +1044,12 @@ msgstr "Pengaya yang dihidupkan paksa"
 #, fuzzy
 msgid "Force enabled"
 msgstr "Pengaya yang dihidupkan paksa"
+
+msgid "{user} logged in."
+msgstr ""
+
+msgid "{user} restricted."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

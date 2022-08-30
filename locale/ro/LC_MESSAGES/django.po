@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-16 17:38+0000\n"
+"POT-Creation-Date: 2022-08-30 16:34+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1036,6 +1036,12 @@ msgstr "Activează forțat suplimentul"
 #, fuzzy
 msgid "Force enabled"
 msgstr "Activează forțat suplimentul"
+
+msgid "{user} logged in."
+msgstr ""
+
+msgid "{user} restricted."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

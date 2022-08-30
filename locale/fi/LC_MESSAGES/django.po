@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-16 17:38+0000\n"
+"POT-Creation-Date: 2022-08-30 16:34+0000\n"
 "PO-Revision-Date: 2022-08-01 18:12+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -1052,6 +1052,12 @@ msgstr "Pakota lisäosa päälle"
 #, fuzzy
 msgid "Force enabled"
 msgstr "Pakota lisäosa päälle"
+
+msgid "{user} logged in."
+msgstr ""
+
+msgid "{user} restricted."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

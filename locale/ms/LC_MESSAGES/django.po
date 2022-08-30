@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-16 17:38+0000\n"
+"POT-Creation-Date: 2022-08-30 16:34+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1061,6 +1061,12 @@ msgstr "Add-on yang dipaksa-daya"
 #, fuzzy
 msgid "Force enabled"
 msgstr "Add-on yang dipaksa-daya"
+
+msgid "{user} logged in."
+msgstr ""
+
+msgid "{user} restricted."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

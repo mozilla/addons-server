@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-16 17:38+0000\n"
+"POT-Creation-Date: 2022-08-30 16:34+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1041,6 +1041,12 @@ msgstr "إضافات الهواتف الذكية"
 #, fuzzy
 msgid "Force enabled"
 msgstr "إضافات الهواتف الذكية"
+
+msgid "{user} logged in."
+msgstr ""
+
+msgid "{user} restricted."
+msgstr ""
 
 msgid "Firefox"
 msgstr "فَيَرفُكس"

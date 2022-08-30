@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-16 17:38+0000\n"
+"POT-Creation-Date: 2022-08-30 16:34+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1114,6 +1114,12 @@ msgstr "Re-enable Version"
 #, fuzzy
 msgid "Force enabled"
 msgstr "Re-enable Version"
+
+msgid "{user} logged in."
+msgstr "{user} logged in."
+
+msgid "{user} restricted."
+msgstr "{user} restricted."
 
 msgid "Firefox"
 msgstr "Firefox"
