@@ -5,7 +5,12 @@ import itertools
 from django import http
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
-from django.db.models import Count, F, Q
+from django.db.models import (
+    Count,
+    FilteredRelation,
+    Q,
+)
+
 from django.db.utils import IntegrityError
 from django.http import (
     Http404,
@@ -25,6 +30,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import CommaSearchInAdminMixin
+from olympia.amo.models import GroupConcat
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
@@ -51,22 +57,12 @@ class GroupUserInline(admin.TabularInline):
 @admin.register(UserProfile)
 class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     list_display = ('__str__', 'email', 'last_login', 'is_public', 'deleted')
-    extra_list_display_for_ip_searches = (
-        'last_login_ip',
-        # Those fields don't exist, and the admin doesn't know how to traverse
-        # relations, especially reverse ones, so these are actually methods
-        # defined below that match the exact relation string, so the
-        # annotations and filter expressions needed are built directly from
-        # the strings defined here.
-        'restriction_history__last_login_ip',
-        'restriction_history__ip_address',
-        '_ratings_all__ip_address',
-        # FIXME: IPLog makes this query too slow in production, need to
-        # fix #17504 to enable.
-        # 'activitylog__iplog__ip_address',
-    )
-    # A custom ip address search is also implemented in get_search_results()
     search_fields = ('=id', '^email', '^username')
+    # A custom ip address search is implemented in get_search_results() using
+    # IPLog. It sets an annotation that we can then use in the
+    # custom `known_ip_adresses` method referenced in the line below, which
+    # is added to the list_display fields for IP searches.
+    extra_list_display_for_ip_searches = ('known_ip_adresses',)
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
     inlines = (GroupUserInline,)
@@ -189,22 +185,32 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def get_search_results(self, request, queryset, search_term):
         ips = self.ip_addresses_if_query_is_all_ip_addresses(search_term)
         if ips:
-            q_objects = Q()
-            annotations = {}
-            for arg in self.extra_list_display_for_ip_searches:
-                q_objects |= Q(**{f'{arg}__in': ips})
-                if '__' in arg:
-                    annotations[arg] = F(arg)
-            queryset = queryset.filter(q_objects).annotate(**annotations)
-            # We force the distinct() ourselves and tell Django there are no
-            # duplicates, otherwise the admin de-duplication logic, which
-            # doesn't use distinct() after Django 3.1, would break our
-            # annotations.
-            # This can cause some users to show up multiple times, but that's
-            # a feature: it will happen when the IPs returned are different
-            # (so technically the rows are not duplicates), since the
-            # annotations are part of the distinct().
-            queryset = queryset.distinct()
+            condition = Q(
+                activitylog__iplog__ip_address_binary__in=[
+                    ipaddress.ip_address(ip).packed for ip in ips
+                ]
+            )
+            # We want to duplicate the joins against activitylog + iplog so
+            # that one is used for the search, and the other for the group
+            # concat showing all IPs for activities of that user. Django
+            # doesn't let us do that out of the box, but through
+            # FilteredRelation we can force it...
+            annotations = {
+                'activity_ips': GroupConcat(
+                    'activitylog__iplog__ip_address', distinct=True
+                ),
+                'activitylog_filtered': FilteredRelation(
+                    'activitylog__iplog', condition=condition
+                ),
+            }
+            # ...and then add the most simple filter to "activate" the join
+            # which has our search condition.
+            queryset = queryset.annotate(**annotations).filter(
+                activitylog_filtered__isnull=False
+            )
+            # A GROUP_BY will already have been applied thanks to our
+            # annotations so we can let django know there won't be any
+            # duplicates and avoid doing a DISTINCT.
             may_have_duplicates = False
         else:
             queryset, may_have_duplicates = super().get_search_results(
@@ -213,28 +219,6 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                 search_term,
             )
         return queryset, may_have_duplicates
-
-    def restriction_history__last_login_ip(self, obj):
-        return getattr(obj, 'restriction_history__last_login_ip', '-') or '-'
-
-    restriction_history__last_login_ip.short_description = (
-        'Restriction History Last Login IP'
-    )
-
-    def restriction_history__ip_address(self, obj):
-        return getattr(obj, 'restriction_history__ip_address', '-') or '-'
-
-    restriction_history__ip_address.short_description = 'Restriction History IP'
-
-    def activitylog__iplog__ip_address(self, obj):
-        return getattr(obj, 'activitylog__iplog__ip_address', '-') or '-'
-
-    activitylog__iplog__ip_address.short_description = 'Activity IP'
-
-    def _ratings_all__ip_address(self, obj):
-        return getattr(obj, '_ratings_all__ip_address', '-') or '-'
-
-    _ratings_all__ip_address.short_description = 'Rating IP'
 
     def get_urls(self):
         def wrap(view):
@@ -438,29 +422,39 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     picture_img.short_description = _('Profile Photo')
 
     def known_ip_adresses(self, obj):
-        ip_adresses = set(
-            Rating.objects.filter(user=obj)
-            .values_list('ip_address', flat=True)
-            .order_by()
-            .distinct()
-        )
-        ip_adresses.update(
-            itertools.chain(
-                *UserRestrictionHistory.objects.filter(user=obj)
-                .values_list('last_login_ip', 'ip_address')
+        # activity_ips is an annotation added by get_search_results() above
+        # thanks to a GROUP_CONCAT. If present, use that (avoiding making
+        # extra queries for each row of results), otherwise, look everywhere
+        # we can.
+        activity_ips = getattr(obj, 'activity_ips', None)
+        if activity_ips is not None:
+            ip_addresses = activity_ips.split(',')
+        else:
+            ip_addresses = set(
+                Rating.objects.filter(user=obj)
+                .values_list('ip_address', flat=True)
                 .order_by()
                 .distinct()
             )
-        )
-        ip_adresses.update(
-            IPLog.objects.filter(activity_log__user=obj)
-            .values_list('ip_address', flat=True)
-            .order_by()
-            .distinct()
-        )
-        ip_adresses.add(obj.last_login_ip)
-        contents = format_html_join('', '<li>{}</li>', ((ip,) for ip in ip_adresses))
+            ip_addresses.update(
+                itertools.chain(
+                    *UserRestrictionHistory.objects.filter(user=obj)
+                    .values_list('last_login_ip', 'ip_address')
+                    .order_by()
+                    .distinct()
+                )
+            )
+            ip_addresses.update(
+                IPLog.objects.filter(activity_log__user=obj)
+                .values_list('ip_address', flat=True)
+                .order_by()
+                .distinct()
+            )
+            ip_addresses.add(obj.last_login_ip)
+        contents = format_html_join('', '<li>{}</li>', ((ip,) for ip in ip_addresses))
         return format_html('<ul>{}</ul>', contents)
+
+    known_ip_adresses.short_description = 'Known IP addresses'
 
     def last_known_activity_time(self, obj):
         from django.contrib.admin.utils import display_for_value

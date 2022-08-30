@@ -91,11 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   search_bar = document.querySelector('#searchbar');
   original_search_terms = get_search_bar_terms();
   ip_fields = document.querySelectorAll(
-    '.field-last_login_ip, \
-    .field-restriction_history__last_login_ip, \
-    .field-restriction_history__ip_address, \
-    .field-_ratings_all__ip_address, \
-    .field-activitylog__iplog__ip_address',
+    '.change-list .field-known_ip_adresses li',
   );
   add_add_remove_links();
   highlight_ips_not_in(get_search_bar_terms());

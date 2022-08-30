@@ -15,14 +15,28 @@
     visibility: visible;
 }
 
+.hasaddremoveip.notinsearch .deletelink, .hasaddremoveip:not(.notinsearch) .addlink {
+    display: none;
+}
+
 .hasaddremoveip .addlink:hover, .hasaddremoveip .deletelink:hover {
     outline: 1px dotted black;
 }
 
 .notinsearch {
-    border-bottom: 1px solid hotpink;
+    color: deeppink;
+    font-weight: bold;
 }
 
 #toolbar #searchbar.dirty {
     border-color: orange;
+}
+
+.change-list .field-known_ip_adresses ul {
+    margin: 0;
+    padding: 0;
+}
+
+.change-list .field-known_ip_adresses li {
+    list-style-type: none;
 }
