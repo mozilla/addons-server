@@ -422,7 +422,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     picture_img.short_description = _('Profile Photo')
 
     def known_ip_adresses(self, obj):
-        # activity_ips is a, annotation added by get_search_results() above
+        # activity_ips is an annotation added by get_search_results() above
         # thanks to a GROUP_CONCAT. If present, use that (avoiding making
         # extra queries for each row of results), otherwise, look everywhere
         # we can.
