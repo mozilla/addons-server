@@ -114,14 +114,11 @@ class TestEditLicense(TestOwnership):
         super().setUp()
         self.version.license = None
         self.version.save()
-        self.license = License.objects.create(
-            builtin=7, name='bsd', url='license.url', on_form=True
-        )
+        self.license = License.objects.create(builtin=7, name='bsd', url='license.url')
         self.cc_license = License.objects.create(
             builtin=11,
             name='copyright',
             url='license.url',
-            on_form=True,
         )
 
     def test_no_license(self):
@@ -811,9 +808,7 @@ class TestEditAuthorStaticTheme(TestEditAuthor):
     def setUp(self):
         super().setUp()
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        self.cc_license = License.objects.create(
-            builtin=11, url='license.url', on_form=True
-        )
+        self.cc_license = License.objects.create(builtin=11, url='license.url')
         self.version.update(license=self.cc_license)
 
 
