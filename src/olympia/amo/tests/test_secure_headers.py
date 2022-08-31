@@ -6,6 +6,5 @@ class TestSecurityHeaders(TestCase):
         """Test that security headers are set."""
         response = self.client.get('/en-US/developers/')
         assert response.status_code == 200
-        assert response['x-xss-protection'] == '1; mode=block'
         assert response['x-content-type-options'] == 'nosniff'
         assert response['x-frame-options'] == 'DENY'
