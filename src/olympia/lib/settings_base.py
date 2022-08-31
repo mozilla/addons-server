@@ -324,6 +324,8 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'debug_toolbar',
     r'^rangefilter\/',
     r'^registration\/',
+    # Django's sitemap_index.xml template uses some syntax that jinja doesn't support
+    r'sitemap_index.xml',
 )
 
 TEMPLATES = [
