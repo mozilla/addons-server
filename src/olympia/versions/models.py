@@ -37,7 +37,7 @@ from olympia.amo.models import (
 )
 from olympia.amo.utils import sorted_groupby, SafeStorage, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.constants.licenses import CC_LICENSES, LICENSES_BY_BUILTIN
+from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
@@ -1116,11 +1116,12 @@ models.signals.post_delete.connect(
 
 
 class LicenseManager(ManagerBase):
-    def builtins(self, cc=False):
-        cc_filter = Q(builtin__in=CC_LICENSES.keys())
+    def builtins(self, cc=False, on_form=True):
+        cc_q = Q(builtin__in=CC_LICENSES.keys())
         if not cc:
-            cc_filter = ~cc_filter
-        return self.filter(cc_filter, builtin__gt=0).order_by('builtin')
+            cc_q = ~cc_q
+        on_form_q = Q(builtin__in=FORM_LICENSES.keys()) if on_form else Q()
+        return self.filter(on_form_q, cc_q, builtin__gt=0).order_by('builtin')
 
 
 class License(ModelBase):
@@ -1128,12 +1129,8 @@ class License(ModelBase):
 
     id = PositiveAutoField(primary_key=True)
     name = TranslatedField()
-    url = models.URLField(null=True)
     builtin = models.PositiveIntegerField(default=OTHER)
     text = LinkifiedField()
-    on_form = models.BooleanField(
-        default=False, help_text='Is this a license choice in the devhub?'
-    )
 
     objects = LicenseManager()
 
@@ -1160,6 +1157,10 @@ class License(ModelBase):
     @property
     def slug(self):
         return ((constant := self._constant) and constant.slug) or None
+
+    @property
+    def url(self):
+        return ((constant := self._constant) and constant.url) or None
 
 
 models.signals.pre_save.connect(

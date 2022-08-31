@@ -165,3 +165,6 @@ CC_LICENSES = {
     license.builtin: license for license in ALL_LICENSES if license.creative_commons
 }
 LICENSES_BY_SLUG = {license.slug: license for license in ALL_LICENSES if license.slug}
+FORM_LICENSES = {
+    license.builtin: license for license in ALL_LICENSES if license.on_form
+}

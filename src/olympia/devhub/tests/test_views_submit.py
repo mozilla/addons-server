@@ -1275,7 +1275,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         ctx = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
-        License.objects.create(builtin=3, on_form=True)
+        License.objects.create(builtin=3)
         self.get_addon().update(status=amo.STATUS_NULL)
 
     def get_dict(self, minimal=True, **kw):
@@ -1536,7 +1536,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
-        License.objects.create(builtin=11, on_form=True)
+        License.objects.create(builtin=11)
         self.get_addon().update(status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
 
     def get_dict(self, minimal=True, **kw):
@@ -2520,7 +2520,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         had missing metadata despite being public shouldn't reset it to
         nominated."""
         # Create a built-in License we'll use later when posting.
-        License.objects.create(builtin=3, on_form=True)
+        License.objects.create(builtin=3)
 
         # Remove license from existing versions, but make sure the addon is
         # still public, just lacking metadata now.

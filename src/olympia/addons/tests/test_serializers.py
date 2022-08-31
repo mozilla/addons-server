@@ -95,7 +95,7 @@ class AddonSerializerOutputTestMixin:
             'name': {'en-US': 'My License', 'fr': 'Mä Licence'},
             # License text is not present in version serializer used from
             # AddonSerializer.
-            'url': 'http://license.example.com/',
+            'url': absolutify(version.license_url()),
             'slug': None,
         }
 
@@ -145,7 +145,6 @@ class AddonSerializerOutputTestMixin:
             text={
                 'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
-            url='http://license.example.com/',
         )
         self.addon = addon_factory(
             average_daily_users=4242,
@@ -771,7 +770,6 @@ class AddonSerializerOutputTestMixin:
             version_kw={
                 'license_kw': {
                     'builtin': LICENSE_GPL3.builtin,
-                    'url': 'http://gplv3.example.com/',
                 }
             }
         )
@@ -782,7 +780,7 @@ class AddonSerializerOutputTestMixin:
             'is_custom': False,
             'name': {'en-US': 'GNU General Public License v3.0'},
             'slug': 'GPL-3.0-or-later',
-            'url': 'http://gplv3.example.com/',
+            'url': 'http://www.gnu.org/licenses/gpl-3.0.html',
         }
 
 
@@ -1099,7 +1097,6 @@ class TestVersionSerializerOutput(TestCase):
             text={
                 'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
-            url='http://license.example.com/',
         )
         addon = addon_factory(
             file_kw={
@@ -1158,7 +1155,7 @@ class TestVersionSerializerOutput(TestCase):
             'text': {
                 'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
-            'url': 'http://license.example.com/',
+            'url': absolutify(self.version.license_url()),
             'slug': None,
         }
         assert result['reviewed'] == (now.replace(microsecond=0).isoformat() + 'Z')
@@ -1194,7 +1191,7 @@ class TestVersionSerializerOutput(TestCase):
         addon = addon_factory()
         self.version = addon.current_version
         license = self.version.license
-        license.update(url=None, builtin=license.OTHER)
+        license.update(builtin=license.OTHER)
         result = self.serialize()
         assert result['id'] == self.version.pk
         assert result['license']
@@ -1208,7 +1205,7 @@ class TestVersionSerializerOutput(TestCase):
             result = self.serialize()
             assert 'is_custom' not in result['license']
 
-        license.update(builtin=1)
+        license.update(builtin=11)
         result = self.serialize()
         # Builtin licenses with no url shouldn't get the version license url.
         assert result['license']['url'] is None
@@ -1227,7 +1224,6 @@ class TestVersionSerializerOutput(TestCase):
         addon = addon_factory()
         self.version = addon.current_version
         license = self.version.license
-        license.update(url=None)
         result = LicenseSerializer(context={'request': self.request}).to_representation(
             license
         )
@@ -1260,6 +1256,7 @@ class TestVersionSerializerOutput(TestCase):
         # A request with no ?lang gets you the site default l10n in a dict to
         # match how non-constant values are returned.
         assert result['name'] == {'en-US': builtin_license_name_english}
+        assert result['url'] == LICENSES_BY_BUILTIN[18].url
 
         with self.activate('de'):
             builtin_license_name_german = str(LICENSES_BY_BUILTIN[18].name)
@@ -1275,6 +1272,7 @@ class TestVersionSerializerOutput(TestCase):
                 'de': builtin_license_name_german,
                 'en-US': builtin_license_name_english,
             }
+            assert result['url'] == LICENSES_BY_BUILTIN[18].url
 
         with self.activate('fr'):
             builtin_license_name_french = str(LICENSES_BY_BUILTIN[18].name)
@@ -1285,6 +1283,7 @@ class TestVersionSerializerOutput(TestCase):
             license
         )
         assert result['name'] == {'fr': builtin_license_name_french}
+        assert result['url'] == LICENSES_BY_BUILTIN[18].url
 
         # Make sure the license slug is not present in v3/v4
         gates = {self.request.version: ('del-version-license-slug',)}
@@ -1404,7 +1403,6 @@ class TestSimpleVersionSerializerOutput(TestCase):
             text={
                 'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
-            url='http://license.example.com/',
         )
         addon = addon_factory(
             version_kw={
@@ -1421,7 +1419,7 @@ class TestSimpleVersionSerializerOutput(TestCase):
         assert result['license']['id'] == license.pk
         assert result['license']['name']['en-US'] == 'My License'
         assert result['license']['name']['fr'] == 'Mä Licence'
-        assert result['license']['url'] == 'http://license.example.com/'
+        assert result['license']['url'] == absolutify(self.version.license_url())
         assert 'text' not in result['license']
 
 

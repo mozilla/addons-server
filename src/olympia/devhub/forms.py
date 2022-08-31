@@ -611,7 +611,7 @@ class LicenseForm(AMOModelForm):
             self.cc_licenses = kwargs.pop('cc', False)
 
         super().__init__(*args, **kwargs)
-        licenses = License.objects.builtins(cc=self.cc_licenses).filter(on_form=True)
+        licenses = License.objects.builtins(cc=self.cc_licenses, on_form=True)
         cs = [(x.builtin, x) for x in licenses]
         if not self.cc_licenses:
             # creative commons licenses don't have an 'other' option.
