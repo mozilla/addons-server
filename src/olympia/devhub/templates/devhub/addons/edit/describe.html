@@ -12,7 +12,7 @@
   </h3>
   <div class="item">
     <div class="item_wrapper">
-      {% if editable %}{{ form.non_field_errors() }}{% endif %}
+      {% if editable %}{{ main_form.non_field_errors() }}{% endif %}
       <table>
         {# L10n: {0} is the addon name #}
         <caption>{{ _('Describe {0}')|format_html(addon.name) }}</caption>
@@ -30,23 +30,23 @@
             <td>
               {% if editable %}
                 <div class="combine-name-summary">
-                  {{ form.name }}&nbsp;{{ form.summary }}
-                  {{ form.name.errors }}
-                  {{ form.summary.errors }}
+                  {{ main_form.name }}&nbsp;{{ main_form.summary }}
+                  {{ main_form.name.errors }}
+                  {{ main_form.summary.errors }}
                 </div>
                 <div class="char-count"
                   data-text-prefix="{{ _('Name') }}&nbsp;"
                   data-text-postfix=";&nbsp;"
-                  data-for-startswith="{{ form.name.auto_id }}_"
-                  data-minlength="{{ form.name.field.min_length }}"></div>
+                  data-for-startswith="{{ main_form.name.auto_id }}_"
+                  data-minlength="{{ main_form.name.field.min_length }}"></div>
                 <div class="char-count"
                   data-text-prefix="{{ _('Summary') }}&nbsp;"
                   data-text-postfix=";&nbsp;"
-                  data-for-startswith="{{ form.summary.auto_id }}_"
-                  data-minlength="{{ form.summary.field.min_length }}"></div>
+                  data-for-startswith="{{ main_form.summary.auto_id }}_"
+                  data-minlength="{{ main_form.summary.field.min_length }}"></div>
                 <div class="char-count"
                   data-for-names="name,summary"
-                  data-maxlength="{{ form.name.field.min_length + form.summary.field.max_length }}"></div>
+                  data-maxlength="{{ main_form.name.field.min_length + main_form.summary.field.max_length }}"></div>
               {% else %}
                 {{ addon|all_locales('name') }}
                 {{ addon|all_locales('summary') }}
@@ -61,9 +61,9 @@
             <td id="slug_edit">
               {% if editable %}
                 <div class="edit_with_prefix">
-                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug }}
+                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ main_form.slug }}
                 </div>
-                {{ form.slug.errors }}
+                {{ main_form.slug.errors }}
               {% else %}
                 {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}
                 {% if addon.has_listed_versions() %}<a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>{% endif %}
@@ -75,8 +75,8 @@
             <th><label data-for="name">{{ _("Name") }}</label></th>
             <td>
               {% if editable %}
-                {{ form.name }}
-                {{ form.name.errors }}
+                {{ main_form.name }}
+                {{ main_form.name.errors }}
               {% else %}
                 {{ addon|all_locales('name') }}
               {% endif %}
@@ -90,9 +90,9 @@
             <td id="slug_edit">
               {% if editable %}
                 <div class="edit_with_prefix">
-                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug }}
+                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ main_form.slug }}
                 </div>
-                {{ form.slug.errors }}
+                {{ main_form.slug.errors }}
               {% else %}
                 {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}
                 {% if addon.has_listed_versions() %}<a href="{{ addon.get_url_path() }}">{{ _('View Product Page') }}</a>{% endif %}
@@ -111,11 +111,11 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.summary }}
-                {{ form.summary.errors }}
+                {{ main_form.summary }}
+                {{ main_form.summary.errors }}
                 <div class="char-count"
-                     data-for-startswith="{{ form.summary.auto_id }}_"
-                     data-maxlength="{{ form.summary.field.max_length }}"></div>
+                     data-for-startswith="{{ main_form.summary.auto_id }}_"
+                     data-maxlength="{{ main_form.summary.field.max_length }}"></div>
               {% else %}
                 {{ addon|all_locales('summary') }}
               {% endif %}
@@ -129,18 +129,18 @@
                 {{ tip(None,
                        _("A longer explanation of features, functionality, and other relevant information. "
                          "This field is only displayed on the add-on's product page. " +
-                         ('Minimum length: 10 characters; ' if editable and form.description.field.min_length else '') +
+                         ('Minimum length: 10 characters; ' if editable and main_form.description.field.min_length else '') +
                          "Recommended length: 250 characters. "
                          "If you need a longer description, make sure the first 250 characters contain the most important description points.")) }}
               </label>
             </th>
             <td>
               {% if editable %}
-                {{ form.description }}
-                {{ form.description.errors }}
+                {{ main_form.description }}
+                {{ main_form.description.errors }}
                 <div class="char-count"
-                     data-for-startswith="{{ form.description.auto_id }}_"
-                     data-minlength="{{ form.description.field.min_length }}"></div>
+                     data-for-startswith="{{ main_form.description.auto_id }}_"
+                     data-minlength="{{ main_form.description.field.min_length }}"></div>
                 {{ some_html_tip() }}
               {% else %}
                 {% call empty_unless(addon.description) %}
@@ -161,7 +161,7 @@
             </th>
             <td id="experimental-edit">
               {{ flags(_("This add-on is experimental."),
-                       addon.is_experimental if not editable else form.is_experimental, editable,
+                       addon.is_experimental if not editable else main_form.is_experimental, editable,
                        _("This add-on is ready for general use.")) }}
             </td>
           </tr>
@@ -175,7 +175,7 @@
             <td id="requires-payment-edit">
               {{ flags(_('This add-on requires payment, non-free services or '
                          'software, or additional hardware.'),
-                       addon.requires_payment if not editable else form.requires_payment, editable,
+                       addon.requires_payment if not editable else main_form.requires_payment, editable,
                        _("This add-on doesn't require any additional payments, "
                          "paid services or software, or additional hardware.")) }}
             </td>
@@ -229,8 +229,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.support_email }}
-                {{ form.support_email.errors }}
+                {{ main_form.support_email }}
+                {{ main_form.support_email.errors }}
               {% else %}
                 {% call empty_unless(addon.support_email) %}
                   {{ addon|all_locales('support_email') }}
@@ -251,8 +251,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.support_url }}
-                {{ form.support_url.errors }}
+                {{ main_form.support_url }}
+                {{ main_form.support_url.errors }}
               {% else %}
                 {% call empty_unless(addon.support_url) %}
                   {{ addon|all_locales('support_url') }}
@@ -265,7 +265,7 @@
       </table>
     </div>
     {% if editable %}
-    {{ form.non_field_errors() }}
+    {{ main_form.non_field_errors() }}
     <div class="listing-footer">
       <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
       <a href="{{ url('devhub.addons.section', addon.slug, 'describe') }}"

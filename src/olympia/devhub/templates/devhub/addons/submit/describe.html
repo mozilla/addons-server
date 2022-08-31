@@ -8,15 +8,15 @@
   {% set channel_param = 'listed' if version.channel == amo.CHANNEL_LISTED else 'unlisted' %}
   <h3>{{ _('Describe Add-on') }}</h3>
   <form method="post" id="submit-describe" class="item">
-    {{ form.non_field_errors() }}
+    {{ describe_form.non_field_errors() }}
     {% csrf_token %}
     {% if waffle.switch('content-optimization') %}
     <div class="addon-submission-field">
       <div class="combine-name-summary">
         <label for="id_name">{{ _("Name and Summary:") }}<span class="req" title="{{ _('required') }}">*</span></label>
-        {{ form.name }}&nbsp;{{ form.summary }}
-        {{ form.name.errors }}
-        {{ form.summary.errors }}
+        {{ describe_form.name }}&nbsp;{{ describe_form.summary }}
+        {{ describe_form.name.errors }}
+        {{ describe_form.summary.errors }}
       </div>
       <div class="edit-addon-details">
         {{ _('The summary should explain what your add-on does, clearly and '
@@ -25,21 +25,21 @@
              '70 characters and a minimum length of 2 characters for each.') }}
         <div class="char-count"
              data-for-names="name,summary"
-             data-maxlength="{{ form.name.field.min_length + form.summary.field.max_length }}"></div>
+             data-maxlength="{{ describe_form.name.field.min_length + describe_form.summary.field.max_length }}"></div>
         <div class="char-count"
              data-text-prefix="{{ _('Summary') }}&nbsp;"
              data-text-postfix=";&nbsp;"
-             data-for-startswith="{{ form.summary.auto_id }}_"
-             data-minlength="{{ form.summary.field.min_length }}"></div>
+             data-for-startswith="{{ describe_form.summary.auto_id }}_"
+             data-minlength="{{ describe_form.summary.field.min_length }}"></div>
         <div class="char-count"
              data-text-prefix="{{ _('Name') }}&nbsp;"
              data-text-postfix=";&nbsp;"
-             data-for-startswith="{{ form.name.auto_id }}_"
-             data-minlength="{{ form.name.field.min_length }}"></div>
+             data-for-startswith="{{ describe_form.name.auto_id }}_"
+             data-minlength="{{ describe_form.name.field.min_length }}"></div>
       </div>
       <div class="edit-addon-details">
         <div id="name-summary-locales-warning" class="error">
-          {% trans max_length=form.name.field.min_length + form.summary.field.max_length %}
+          {% trans max_length=describe_form.name.field.min_length + describe_form.summary.field.max_length %}
           Warning: you have name/summary values in other locales that will be
           automatically cropped to fit under the limit of {{ max_length }}
           characters.  To edit these go to Edit Product Page after the submission
@@ -51,7 +51,7 @@
     <div class="addon-submission-field slug-edit">
       <label>{{ _("Add-on URL:") }}</label>
       <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
-        <span>{{ settings.SITE_URL }}</span>{{ form.slug }}
+        <span>{{ settings.SITE_URL }}</span>{{ describe_form.slug }}
         <div class="edit-addon-details">
           {{ _('Please use only letters, numbers, underscores, and dashes in your URL.') }}
         </div>
@@ -60,19 +60,19 @@
         {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
         <a id="edit_slug" href="#">{{ _('Edit') }}</a>
       </span>
-      {{ form.slug.errors }}
+      {{ describe_form.slug.errors }}
     </div>
     {% else %}
     <div class="addon-submission-field">
       <label for="id_name">{{ _("Name:") }}</label>
       <span class="tip tooltip" title="{{ _('Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox') }}" data-oldtitle="">?</span>
-      {{ form.name }}
-      {{ form.name.errors }}
+      {{ describe_form.name }}
+      {{ describe_form.name.errors }}
     </div>
     <div class="addon-submission-field slug-edit">
       <label>{{ _("Add-on URL:") }}</label>
       <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
-        <span>{{ settings.SITE_URL }}</span>{{ form.slug }}
+        <span>{{ settings.SITE_URL }}</span>{{ describe_form.slug }}
         <div class="edit-addon-details">
           {{ _('Please use only letters, numbers, underscores, and dashes in your URL.') }}
         </div>
@@ -81,45 +81,45 @@
         {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
         <a id="edit_slug" href="#">{{ _('Edit') }}</a>
       </span>
-      {{ form.slug.errors }}
+      {{ describe_form.slug.errors }}
     </div>
     <div class="addon-submission-field">
       <label>{{ _('Summary:') }}<span class="req" title="{{ _('required') }}">*</span></label>
-      {{ form.summary }}
-      {{ form.summary.errors }}
+      {{ describe_form.summary }}
+      {{ describe_form.summary.errors }}
       <div class="edit-addon-details">
         {{ _('This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on.') }}
         <div class="char-count"
-             data-for-startswith="{{ form.summary.auto_id }}_"
-             data-maxlength="{{ form.summary.field.max_length }}"></div>
+             data-for-startswith="{{ describe_form.summary.auto_id }}_"
+             data-maxlength="{{ describe_form.summary.field.max_length }}"></div>
       </div>
     </div>
     {% endif %}
     {% if addon.type == amo.ADDON_EXTENSION %}
     <div class="addon-submission-field">
       <label>{{ _('Description:') }}
-      {% if form.description.field.min_length %}
+      {% if describe_form.description.field.min_length %}
         <span class="req" title="{{ _('required') }}">*</span>
       {% endif %}</label>
-      {{ form.description }}
-      {{ form.description.errors }}
+      {{ describe_form.description }}
+      {{ describe_form.description.errors }}
       <div class="edit-addon-details">
         {{ _("A longer explanation of features, functionality, and other relevant information. "
              "This field is only displayed on the addon's product page. " +
-             ('Minimum length: 10 characters; ' if form.description.field.min_length else '') +
+             ('Minimum length: 10 characters; ' if describe_form.description.field.min_length else '') +
              "Recommended length: 250 characters. "
              "If you need a longer description, make sure the first 250 characters contain the most important description points.") }}
         <div class="char-count"
-             data-for-startswith="{{ form.description.auto_id }}_"
-             data-minlength="{{ form.description.field.min_length }}"></div>
+             data-for-startswith="{{ describe_form.description.auto_id }}_"
+             data-minlength="{{ describe_form.description.field.min_length }}"></div>
       </div>
       {{ some_html_tip() }}
     </div>
     {% endif %}
     {% if addon.type != amo.ADDON_STATICTHEME %}
     <div class="addon-submission-field">
-      <label for="{{ form.is_experimental.auto_id }}">
-      {{ form.is_experimental }}
+      <label for="{{ describe_form.is_experimental.auto_id }}">
+      {{ describe_form.is_experimental }}
       {{ _('This add-on is experimental') }}
       </label>
       <span class="tip tooltip"
@@ -130,8 +130,8 @@
                   }}">?</span>
     </div>
     <div class="addon-submission-field">
-      <label for="{{ form.requires_payment.auto_id }}">
-      {{ form.requires_payment }}
+      <label for="{{ describe_form.requires_payment.auto_id }}">
+      {{ describe_form.requires_payment }}
       {{ _('This add-on requires payment, non-free services or software, or '
            'additional hardware.') }}
       </label>
@@ -157,18 +157,18 @@
     </div>
     {% endif %}
     <div class="addon-submission-field">
-      <label for="{{ form.support_email.auto_id }}">
+      <label for="{{ describe_form.support_email.auto_id }}">
       {{ _('Support email:') }}
       </label>
-      {{ form.support_email }}
-      {{ form.support_email.errors }}
+      {{ describe_form.support_email }}
+      {{ describe_form.support_email.errors }}
     </div>
     <div class="addon-submission-field">
-      <label for="{{ form.support_url.auto_id }}">
+      <label for="{{ describe_form.support_url.auto_id }}">
       {{ _('Support website:') }}
       </label>
-      {{ form.support_url }}
-      {{ form.support_url.errors }}
+      {{ describe_form.support_url }}
+      {{ describe_form.support_url.errors }}
     </div>
     {% if license_form %}
       <b>{{ _('License:') }}<span class="req" title="{{ _('required') }}">*</span></b>

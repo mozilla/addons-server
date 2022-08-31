@@ -920,12 +920,12 @@ def addons_section(request, addon_id, addon, section, editable=False):
     valid_slug = addon.slug
     if editable:
         if request.method == 'POST':
-            form = models[section](
+            main_form = models[section](
                 request.POST, request.FILES, instance=addon, request=request
             )
 
-            if form.is_valid() and (not previews or previews.is_valid()):
-                addon = form.save(addon)
+            if main_form.is_valid() and (not previews or previews.is_valid()):
+                addon = main_form.save(addon)
 
                 if previews:
                     for preview in previews.forms:
@@ -955,15 +955,15 @@ def addons_section(request, addon_id, addon, section, editable=False):
                     editable = True
 
         else:
-            form = models[section](instance=addon, request=request)
+            main_form = models[section](instance=addon, request=request)
     else:
-        form = False
+        main_form = False
 
     data = {
         'addon': addon,
         'whiteboard': whiteboard,
         'show_listed_fields': show_listed,
-        'form': form,
+        'main_form': main_form,
         'editable': editable,
         'tags': tags,
         'cat_form': cat_form,
@@ -1744,7 +1744,11 @@ def _submit_details(request, addon, version):
             post_data, version=latest_version, prefix='license'
         )
         context.update(license_form.get_context())
-        context.update(form=describe_form, cat_form=cat_form, policy_form=policy_form)
+        context.update(
+            describe_form=describe_form,
+            cat_form=cat_form,
+            policy_form=policy_form,
+        )
         forms_list.extend(
             [describe_form, cat_form, policy_form, context['license_form']]
         )
