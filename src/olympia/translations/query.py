@@ -90,10 +90,16 @@ class TranslationQuery(models.sql.query.Query):
         c.translation_aliases = self.translation_aliases
         return c
 
-    def get_compiler(self, using=None, connection=None):
+    def get_compiler(self, using=None, connection=None, **kwargs):
         # Call super to figure out using and connection.
-        c = super().get_compiler(using, connection)
-        return SQLCompiler(self, c.connection, c.using)
+        compiler = super().get_compiler(using, connection, **kwargs)
+        # slightly weird kwargs because django4.0 adds an extra elide_empty kwarg
+        return SQLCompiler(
+            self,
+            compiler.connection,
+            compiler.using,
+            **{kw: getattr(compiler, kw, None) for kw in kwargs if kw == 'elide_emtpy'},
+        )
 
 
 class SQLCompiler(compiler.SQLCompiler):
@@ -102,13 +108,9 @@ class SQLCompiler(compiler.SQLCompiler):
     def get_from_clause(self):
         # Temporarily remove translation tables from query.tables so Django
         # doesn't create joins against them.
-        # self.query.tables was removed in django2.0+
-        old_tables = list(self.query.tables) if hasattr(self.query, 'tables') else None
         old_map = OrderedDict(self.query.alias_map)
         for table in itertools.chain(*self.query.translation_aliases.values()):
             if table in self.query.alias_map:
-                if old_tables:
-                    self.query.tables.remove(table)
                 del self.query.alias_map[table]
 
         joins, params = super().get_from_clause()
@@ -130,8 +132,6 @@ class SQLCompiler(compiler.SQLCompiler):
             joins.append(self.join_with_locale(t1, None, old_map, model))
             joins.append(self.join_with_locale(t2, fallback, old_map, model))
 
-        if old_tables:
-            self.query.tables = old_tables
         self.query.alias_map = old_map
         return joins, params
 
