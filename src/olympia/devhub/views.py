@@ -1597,13 +1597,13 @@ def _submit_source(request, addon, version, submit_page, next_view):
     )
     if addon.type != amo.ADDON_EXTENSION:
         return redirect(next_view, *redirect_args)
-    form = forms.SourceForm(
+    source_form = forms.SourceForm(
         request.POST or None,
         request.FILES or None,
         instance=version,
         request=request,
     )
-    has_source = form.data.get('has_source') == 'yes'
+    has_source = source_form.data.get('has_source') == 'yes'
     if has_source and posting:
         timer = StopWatch('devhub.views._submit_source.')
         timer.start()
@@ -1614,7 +1614,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
         )
         timer.log_interval('1.form_populated')
 
-    if request.method == 'POST' and form.is_valid():
+    if request.method == 'POST' and source_form.is_valid():
         if has_source:
             log.info(
                 '_submit_source, form validated, addon.slug: %s, version.pk: %s',
@@ -1622,7 +1622,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
                 version.pk,
             )
             timer.log_interval('2.form_validated')
-        if form.cleaned_data.get('source'):
+        if source_form.cleaned_data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True}
             )
@@ -1639,7 +1639,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
                 },
             )
             VersionLog.objects.create(version_id=version.id, activity_log=activity_log)
-            form.save()
+            source_form.save()
             log.info(
                 '_submit_source, form saved, addon.slug: %s, version.pk: %s',
                 addon.slug,
@@ -1658,7 +1658,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
             timer.log_interval('4.redirecting_to_next_view')
         return result
     context = {
-        'form': form,
+        'source_form': source_form,
         'addon': addon,
         'version': version,
         'submit_page': submit_page,

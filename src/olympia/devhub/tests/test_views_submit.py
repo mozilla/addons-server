@@ -755,8 +755,8 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert response.status_code == status_code
         if not expect_errors:
             # Show any unexpected form errors.
-            if response.context and 'describe_form' in response.context:
-                assert response.context['describe_form'].errors == {}
+            if response.context and 'source_form' in response.context:
+                assert response.context['source_form'].errors == {}
         return response
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
@@ -812,7 +812,7 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_logging_failed_validation(self, log_mock):
         # Not including a source file when expected to fail validation.
         response = self.post(has_source=True, source=None, expect_errors=True)
-        assert response.context['describe_form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['You have not uploaded a source file.']
         }
         assert log_mock.info.call_count == 2
@@ -867,7 +867,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         response = self.post(
             has_source=False, source=self.generate_source_zip(), expect_errors=True
         )
-        assert response.context['describe_form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Source file uploaded but you indicated no source was needed.']
         }
         self.addon = self.addon.reload()
@@ -876,7 +876,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_say_yes_but_dont_submit_source_fails(self):
         response = self.post(has_source=True, source=None, expect_errors=True)
-        assert response.context['describe_form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['You have not uploaded a source file.']
         }
         self.addon = self.addon.reload()
@@ -915,7 +915,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             source=self.generate_source_zip(suffix='.exe'),
             expect_errors=True,
         )
-        assert response.context['describe_form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': [
                 'Unsupported file type, please upload an archive file '
                 '(.zip, .tar.gz, .tgz, .tar.bz2).'
@@ -932,7 +932,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             source=self.generate_source_tar(mode='w'),
             expect_errors=True,
         )
-        assert response.context['describe_form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
@@ -945,7 +945,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             source=self.generate_source_garbage(suffix='.zip'),
             expect_errors=True,
         )
-        assert response.context['describe_form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
@@ -964,7 +964,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert zipfile.is_zipfile(source)
         source.seek(0)  # Last seek to reset source descriptor before posting.
         response = self.post(has_source=True, source=source, expect_errors=True)
-        assert response.context['describe_form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
@@ -980,7 +980,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         # Re-open and post.
         with open(source.name, 'rb'):
             response = self.post(has_source=True, source=source, expect_errors=True)
-        assert response.context['describe_form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
