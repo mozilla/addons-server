@@ -502,7 +502,7 @@ commands:
       - when:
           condition: << parameters.install_python_test_dependencies >>
           steps:
-            - run: make install_python_test_dependencies
+            - run: CPUCOUNT=2 CC=`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'` make install_python_test_dependencies
       - when:
           condition: << parameters.install_node_dependencies >>
           steps:
