@@ -499,10 +499,17 @@ commands:
             - run:
                 name: Wait for memcached
                 command: dockerize -wait tcp://localhost:11211 -timeout 1m
+      - run:
+          name: Set environment variables
+          command: |
+            echo export PYTHONPATH=src >> $BASH_ENV
+            echo export CPUCOUNT=2 >> $BASH_ENV
+            echo export CC=`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'` >> $BASH_ENV
+            cat $BASH_ENV
       - when:
           condition: << parameters.install_python_test_dependencies >>
           steps:
-            - run: CPUCOUNT=2 CC=`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'` make install_python_test_dependencies
+            - run: make install_python_test_dependencies
       - when:
           condition: << parameters.install_node_dependencies >>
           steps:
@@ -511,10 +518,6 @@ commands:
           condition: << parameters.update_deps >>
           steps:
             - run: make update_deps
-      - run:
-          name: Set environment variables
-          command: |
-            echo 'export PYTHONPATH=src' >> $BASH_ENV
       # should be executed after all python install commands
       - run: pyenv rehash
 
