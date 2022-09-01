@@ -504,7 +504,7 @@ commands:
           command: |
             echo export PYTHONPATH=src >> $BASH_ENV
             echo export CPUCOUNT=2 >> $BASH_ENV
-            echo export CC=`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'` >> $BASH_ENV
+            echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
             cat $BASH_ENV
       - when:
           condition: << parameters.install_python_test_dependencies >>
