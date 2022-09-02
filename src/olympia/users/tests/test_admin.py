@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage import default_storage as default_messages_storage
@@ -6,7 +5,7 @@ from django.db import connection
 from django.test import RequestFactory
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
-from django.utils.dateformat import DateFormat
+from django.utils.formats import localize
 
 from unittest import mock
 
@@ -770,7 +769,7 @@ class TestUserAdmin(TestCase):
         core.set_user(someone_else)
         activity = ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
 
-        expected_result = DateFormat(expected_date).format(settings.DATETIME_FORMAT)
+        expected_result = localize(expected_date)
 
         assert str(model_admin.last_known_activity_time(self.user)) == expected_result
 
