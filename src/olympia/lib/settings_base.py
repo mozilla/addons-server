@@ -190,6 +190,9 @@ LOCALE_PATHS = (path('locale'),)
 # to load the internationalization machinery.
 USE_I18N = True
 
+# This enables localized formatting of numbers and dates/times. Deprecated in Django4.1
+USE_L10N = True
+
 # The host currently running the site.  Only use this in code for good reason;
 # the site is designed to run on a cluster and should continue to support that
 HOSTNAME = socket.gethostname()
@@ -393,11 +396,6 @@ TEMPLATES = [
         },
     },
 ]
-
-# Default datetime format in templates
-# https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#std:templatefilter-date
-DATETIME_FORMAT = 'N j, Y, H:i'
-
 
 X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True

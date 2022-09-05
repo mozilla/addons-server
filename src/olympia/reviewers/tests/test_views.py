@@ -15,6 +15,7 @@ from django.db import connection, reset_queries
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
+from django.utils.formats import localize
 
 from rest_framework.test import APIRequestFactory
 
@@ -147,7 +148,9 @@ class TestRatingsModerationLog(ReviewerTest):
 
         response = self.client.get(self.url, {'end': '2011-01-01'})
         assert response.status_code == 200
-        assert pq(response.content)('tbody td').eq(0).text() == ('Jan. 1, 2011, 00:00')
+        assert pq(response.content)('tbody td').eq(0).text() == localize(
+            datetime(2011, 1, 1)
+        )
 
     def test_action_filter(self):
         """

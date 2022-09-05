@@ -8,6 +8,7 @@ from django.contrib.admin.sites import AdminSite
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
+from django.utils.formats import localize
 from django.utils.html import format_html
 from django.utils.http import urlencode
 
@@ -1220,18 +1221,16 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert button.attrib['formaction'] == url
 
     def test_no_button_for_completed_rule_query(self):
+        completed = datetime(2020, 9, 29, 14, 1, 2)
         rule = ScannerQueryRule.objects.create(
-            name='bar',
-            scanner=YARA,
-            state=COMPLETED,
-            completed=datetime(2020, 9, 29, 14, 1, 2),
+            name='bar', scanner=YARA, state=COMPLETED, completed=completed
         )
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         doc = pq(response.content)
         field = doc('.field-state_with_actions')
         assert field
-        assert field.text() == 'Completed (Sept. 29, 2020, 14:01)'
+        assert field.text() == f'Completed ({localize(completed)})'
         assert not field.find('button')
 
         rule.update(completed=None)  # If somehow None (unknown finished time)
