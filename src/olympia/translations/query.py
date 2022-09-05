@@ -2,7 +2,7 @@ import itertools
 from collections import OrderedDict
 
 from django.conf import settings
-from django.db import models
+from django.db import connections, models
 from django.db.models.sql import compiler
 from django.db.models.sql.constants import LOUTER
 from django.db.models.sql.datastructures import Join
@@ -90,25 +90,27 @@ class TranslationQuery(models.sql.query.Query):
         c.translation_aliases = self.translation_aliases
         return c
 
-    def get_compiler(self, using=None, connection=None):
-        # Call super to figure out using and connection.
-        c = super().get_compiler(using, connection)
-        return SQLCompiler(self, c.connection, c.using)
+    def get_compiler(self, using=None, connection=None, **kwargs):
+        # Unfortunately even though there is a mechanism to override the compiler class
+        # through `self.compiler`, that needs to point to a member of the
+        # django.db.models.sql.compiler module (and if we change that in our custom db
+        # backend, we're forced to provide ALL the SQLCompiler variant classes).
+        # So instead we just return our custom SQLCompiler here.
+        # The parent implementation can set connection though, so we do that as well.
+        if using:
+            connection = connections[using]
+        return SQLCompiler(self, connection, using, **kwargs)
 
 
 class SQLCompiler(compiler.SQLCompiler):
     """Overrides get_from_clause to LEFT JOIN translations with a locale."""
 
     def get_from_clause(self):
-        # Temporarily remove translation tables from query.tables so Django
+        # Temporarily remove translation tables from query.alias_map so Django
         # doesn't create joins against them.
-        # self.query.tables was removed in django2.0+
-        old_tables = list(self.query.tables) if hasattr(self.query, 'tables') else None
         old_map = OrderedDict(self.query.alias_map)
         for table in itertools.chain(*self.query.translation_aliases.values()):
             if table in self.query.alias_map:
-                if old_tables:
-                    self.query.tables.remove(table)
                 del self.query.alias_map[table]
 
         joins, params = super().get_from_clause()
@@ -124,14 +126,12 @@ class SQLCompiler(compiler.SQLCompiler):
             params.append(fallback)
 
         # Add our locale-aware joins.  We're not respecting the table ordering
-        # Django had in query.tables, but that seems to be ok.
+        # Django had in query.alias_map, but that seems to be ok.
         for field, aliases in self.query.translation_aliases.items():
             t1, t2 = aliases
             joins.append(self.join_with_locale(t1, None, old_map, model))
             joins.append(self.join_with_locale(t2, fallback, old_map, model))
 
-        if old_tables:
-            self.query.tables = old_tables
         self.query.alias_map = old_map
         return joins, params
 
