@@ -2,7 +2,7 @@ import itertools
 from collections import OrderedDict
 
 from django.conf import settings
-from django.db import models
+from django.db import connections, models
 from django.db.models.sql import compiler
 from django.db.models.sql.constants import LOUTER
 from django.db.models.sql.datastructures import Join
@@ -91,22 +91,22 @@ class TranslationQuery(models.sql.query.Query):
         return c
 
     def get_compiler(self, using=None, connection=None, **kwargs):
-        # Call super to figure out using and connection.
-        compiler = super().get_compiler(using, connection, **kwargs)
-        # slightly weird kwargs because django4.0 adds an extra elide_empty kwarg
-        return SQLCompiler(
-            self,
-            compiler.connection,
-            compiler.using,
-            **{kw: getattr(compiler, kw, None) for kw in kwargs if kw == 'elide_emtpy'},
-        )
+        # Unfortunately even though there is a mechanism to override the compiler class
+        # through `self.compiler`, that needs to point to a member of the
+        # django.db.models.sql.compiler module (and if we change that in our custom db
+        # backend, we're forced to provide ALL the SQLCompiler variant classes).
+        # So instead we just return our custom SQLCompiler here.
+        # The parent implementation can set connection though, so we do that as well.
+        if using:
+            connection = connections[using]
+        return SQLCompiler(self, connection, using, **kwargs)
 
 
 class SQLCompiler(compiler.SQLCompiler):
     """Overrides get_from_clause to LEFT JOIN translations with a locale."""
 
     def get_from_clause(self):
-        # Temporarily remove translation tables from query.tables so Django
+        # Temporarily remove translation tables from query.alias_map so Django
         # doesn't create joins against them.
         old_map = OrderedDict(self.query.alias_map)
         for table in itertools.chain(*self.query.translation_aliases.values()):
@@ -126,7 +126,7 @@ class SQLCompiler(compiler.SQLCompiler):
             params.append(fallback)
 
         # Add our locale-aware joins.  We're not respecting the table ordering
-        # Django had in query.tables, but that seems to be ok.
+        # Django had in query.alias_map, but that seems to be ok.
         for field, aliases in self.query.translation_aliases.items():
             t1, t2 = aliases
             joins.append(self.join_with_locale(t1, None, old_map, model))
