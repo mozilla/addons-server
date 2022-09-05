@@ -2,10 +2,6 @@
 ## This makes sure we have the latest version of pip, setuptools and relevant
 ## system packages first.
 
-# appdirs is required by setuptools
-appdirs==1.4.4 \
-    --hash=sha256:a841dacd6b99318a741b166adb07e19ee71a274450e68237b4650ca1055ab128 \
-    --hash=sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41
 # asn1crypto is required by cryptography, signin-clients
 asn1crypto==1.5.1 \
     --hash=sha256:13ae38502be632115abf8a24cbe5f4da52e3b5231990aff31123c805306ccb9c \
