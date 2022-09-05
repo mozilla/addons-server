@@ -8,7 +8,6 @@ from urllib.parse import quote_plus
 
 from django.conf import settings
 from django.contrib.auth import login, logout
-from django.contrib.auth.signals import user_logged_in
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
@@ -179,7 +178,6 @@ def update_user(user, identity):
 def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
     log.info('Logging in user %s from FxA', user)
-    user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
     if token_data:
         request.session['fxa_access_token_expiry'] = token_data['access_token_expiry']
