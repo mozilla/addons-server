@@ -6,6 +6,7 @@ from django import http
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
 from django.db.models import (
+    CharField,
     Count,
     FilteredRelation,
     Q,
@@ -30,6 +31,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import CommaSearchInAdminMixin
+from olympia.amo.fields import IPAddressBinaryField
 from olympia.amo.models import GroupConcat
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
@@ -185,11 +187,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def get_search_results(self, request, queryset, search_term):
         ips = self.ip_addresses_if_query_is_all_ip_addresses(search_term)
         if ips:
-            condition = Q(
-                activitylog__iplog__ip_address_binary__in=[
-                    ipaddress.ip_address(ip).packed for ip in ips
-                ]
-            )
+            condition = Q(activitylog__iplog__ip_address_binary__in=ips)
             # We want to duplicate the joins against activitylog + iplog so
             # that one is used for the search, and the other for the group
             # concat showing all IPs for activities of that user. Django
@@ -197,7 +195,11 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             # FilteredRelation we can force it...
             annotations = {
                 'activity_ips': GroupConcat(
-                    'activitylog__iplog__ip_address', distinct=True
+                    'activitylog__iplog__ip_address_binary',
+                    distinct=True,
+                    # You can't have multiple ip addresses in an IPv[4|6]Address object
+                    # so we store the binary values in a CharField instead.
+                    output_field=CharField(),
                 ),
                 'activitylog_filtered': FilteredRelation(
                     'activitylog__iplog', condition=condition
@@ -427,8 +429,10 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # extra queries for each row of results), otherwise, look everywhere
         # we can.
         activity_ips = getattr(obj, 'activity_ips', None)
+        to_ipaddress = IPAddressBinaryField().to_python
         if activity_ips is not None:
-            ip_addresses = activity_ips.split(',')
+            # The GroupConcat value is a comma seperated string of the binary values.
+            ip_addresses = {to_ipaddress(ip) for ip in activity_ips.split(b',')}
         else:
             ip_addresses = set(
                 Rating.objects.filter(user=obj)
@@ -444,14 +448,20 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                     .distinct()
                 )
             )
+            ip_addresses.add(obj.last_login_ip)
+            # In the glorious future all these ip addresses will be IPv[4|6]Address
+            # objects but for now some of them are strings so we have to convert.
+            ip_addresses = {to_ipaddress(ip) for ip in ip_addresses if ip}
             ip_addresses.update(
                 IPLog.objects.filter(activity_log__user=obj)
-                .values_list('ip_address', flat=True)
+                .values_list('ip_address_binary', flat=True)
                 .order_by()
                 .distinct()
             )
-            ip_addresses.add(obj.last_login_ip)
-        contents = format_html_join('', '<li>{}</li>', ((ip,) for ip in ip_addresses))
+
+        contents = format_html_join(
+            '', '<li>{}</li>', ((ip,) for ip in sorted(ip_addresses))
+        )
         return format_html('<ul>{}</ul>', contents)
 
     known_ip_adresses.short_description = 'Known IP addresses'

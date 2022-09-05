@@ -34,6 +34,38 @@ class VarBinaryField(models.BinaryField):
         return f'varbinary({self.max_length})'
 
 
+class IPAddressBinaryField(VarBinaryField):
+    """This field lets us store the ip address in binary in the database - equivalent to
+    INET6_ATON() in MySQL for speedy queries - and expose the value in Django as a
+    IPv4Address or IPv6Address, which nicely renders as a human readable string.
+
+    # It allows SQL queries like:
+    # SELECT INET6_NTOA(`ip_address_binary`) FROM `log_activity_ip`
+    # WHERE `ip_address_binary` >= INET6_ATON('127.0.0.1')
+    # AND `ip_address_binary` <= INET6_ATON('127.0.0.254');
+    """
+
+    def __init__(self, *args, max_length=16, **kwargs):
+        super().__init__(*args, max_length=max_length, **kwargs)
+
+    def from_db_value(self, value, expression, connection, *args):
+        return self.to_python(value)
+
+    def to_python(self, value):
+        try:
+            # ip_address() is quite tolerant of arg type - it'll accept a string; a
+            # bytestring - i.e. what's stored in the db; or an IPv4Address|IPv6Address.
+            return ipaddress.ip_address(value) if value is not None else None
+        except Exception as exc:
+            raise exceptions.ValidationError(exc)
+
+    def get_prep_value(self, value):
+        return self.to_python(value).packed if value is not None else None
+
+    def value_to_string(self, obj):
+        return str(self.value_from_object(obj))
+
+
 class HttpHttpsOnlyURLField(fields.URLField):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

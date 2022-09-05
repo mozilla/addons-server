@@ -1,6 +1,7 @@
 import json
 
 from datetime import timedelta
+from ipaddress import IPv4Address
 
 from django.conf import settings
 from django.core import mail
@@ -1711,7 +1712,7 @@ class TestRatingViewSetPost(TestCase):
         assert activity_log.action == amo.LOG.ADD_RATING.id
 
         ip_log = activity_log.iplog_set.get()
-        assert ip_log.ip_address == '213.225.31.25'
+        assert ip_log.ip_address_binary == IPv4Address('213.225.31.25')
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [addon_author.email]
