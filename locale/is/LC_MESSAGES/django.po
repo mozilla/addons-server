@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2022-06-23 19:30+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4495,6 +4495,14 @@ msgstr "Lokaðu á auglýsingar og fáðu betri varnir gegn spilliforritum."
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Eyða sniði af texta sem afritaður er á klippispjald."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Forritsaukar eru eins og smáforrit fyrir Firefox."
@@ -4509,16 +4517,15 @@ msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Þýðingatól"
+msgid "Elite ad blockers"
+msgstr "Auglýsingabanar fyrir elítuna"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Sérsníðing YouTube"
+msgid "Anti-tracking extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4574,6 +4581,10 @@ msgid "See more password manager staff picks"
 msgstr "Skoðaðu fleiri lykilorðastjóra sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Þýðingatól"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Skoðaðu fleiri þýðingatól sem starfsfólk hefur valið"
 
@@ -4602,12 +4613,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Sjá fleiri forritsauka merkta með \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Auglýsingabanar fyrir elítuna"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Sérsníðing YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

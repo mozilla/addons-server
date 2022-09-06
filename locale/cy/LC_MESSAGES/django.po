@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4582,6 +4582,14 @@ msgstr ""
 msgid "Remove formatting from copied Clipboard text."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4598,16 +4606,15 @@ msgstr "Estyniadau"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4676,6 +4683,10 @@ msgstr ""
 msgid "See more password manager staff picks"
 msgstr "Estyniadau"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4712,15 +4723,15 @@ msgstr ""
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Estyniadau"
 
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Estyniadau"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
