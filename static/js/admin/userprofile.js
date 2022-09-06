@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Return a Set of all search terms in the search bar.
      */
     const search_term = search_bar.value.trim();
-    return new Set(search_term ? search_term.split(',') : []);
+    return new Set(search_term ? search_term.split(',').map(function(x) { return x.trim()}) : []);
   }
 
   function highlight_ips_not_in(values) {

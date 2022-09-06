@@ -203,7 +203,29 @@ class TestUserAdmin(TestCase):
             # - 1 count for the main search query
             # - 1 main search query
             response = self.client.get(
-                self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
+                self.list_url, {'q': '127.0.0.2,127.0.0.3,'}, follow=True
+            )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Make sure it's the right user.
+        assert doc('.field-email').text() == self.user.email
+        # Make sure last login is now displayed, and has the right value.
+        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+
+    def test_search_for_multiple_ips_with_garbage(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.ADD_RATING, user=self.user)
+        self.user.update(email='foo@bar.com')
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(
+                self.list_url, {'q': ' 127.0.0.2, 127.0.0.3,,'}, follow=True
             )
         assert response.status_code == 200
         doc = pq(response.content)
