@@ -10,7 +10,7 @@
     {% csrf_token %}
     <h3>{{ _('Do You Need to Submit Source Code?') }}</h3>
     <div>
-        {{ form.non_field_errors() }}
+        {{ source_form.non_field_errors() }}
         <p class="instruction-emphasis">
         {% trans %}
             Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected.
@@ -32,10 +32,10 @@
             <li>{% trans %}Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension{% endtrans %}</li>
         </ul>
         <p id="id_has_source">
-            {% for radio in form.has_source %}
+            {% for radio in source_form.has_source %}
                 {{ radio }}
             {% endfor %}
-            {{ form.has_source.errors }}
+            {{ source_form.has_source.errors }}
         </p>
     </div>
     <div id="option_no_source">
@@ -69,9 +69,9 @@
             {% endtrans %}
         </p>
         <p>
-            <label for="{{ form.source.auto_id }}">{{ _("Upload source code:") }}</label>
-            {{ form.source.errors }}
-            {{ form.source }}
+            <label for="{{ source_form.source.auto_id }}">{{ _("Upload source code:") }}</label>
+            {{ source_form.source.errors }}
+            {{ source_form.source }}
         </p>
     </div>
 

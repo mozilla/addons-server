@@ -58,7 +58,7 @@
                 </div>
               </div>
               <ul id="icons_default">
-                {{ form.icon_type }}
+                {{ main_form.icon_type }}
               </ul>
               <div class="invisible-upload">
                 <a class="button" href="#">{{ _('Upload a Custom Icon...') }}</a>
@@ -67,7 +67,7 @@
                        data-upload-url="{{ url('devhub.addons.upload_icon', addon.slug) }}">
               </div>
               <div class="js-hidden">
-                {{ form.icon_upload_hash }}
+                {{ main_form.icon_upload_hash }}
               </div>
               <div class="edit-media-details">
                 {{ _('PNG and JPG supported.') }}

@@ -920,12 +920,12 @@ def addons_section(request, addon_id, addon, section, editable=False):
     valid_slug = addon.slug
     if editable:
         if request.method == 'POST':
-            form = models[section](
+            main_form = models[section](
                 request.POST, request.FILES, instance=addon, request=request
             )
 
-            if form.is_valid() and (not previews or previews.is_valid()):
-                addon = form.save(addon)
+            if main_form.is_valid() and (not previews or previews.is_valid()):
+                addon = main_form.save(addon)
 
                 if previews:
                     for preview in previews.forms:
@@ -955,15 +955,15 @@ def addons_section(request, addon_id, addon, section, editable=False):
                     editable = True
 
         else:
-            form = models[section](instance=addon, request=request)
+            main_form = models[section](instance=addon, request=request)
     else:
-        form = False
+        main_form = False
 
     data = {
         'addon': addon,
         'whiteboard': whiteboard,
         'show_listed_fields': show_listed,
-        'form': form,
+        'main_form': main_form,
         'editable': editable,
         'tags': tags,
         'cat_form': cat_form,
@@ -1597,13 +1597,13 @@ def _submit_source(request, addon, version, submit_page, next_view):
     )
     if addon.type != amo.ADDON_EXTENSION:
         return redirect(next_view, *redirect_args)
-    form = forms.SourceForm(
+    source_form = forms.SourceForm(
         request.POST or None,
         request.FILES or None,
         instance=version,
         request=request,
     )
-    has_source = form.data.get('has_source') == 'yes'
+    has_source = source_form.data.get('has_source') == 'yes'
     if has_source and posting:
         timer = StopWatch('devhub.views._submit_source.')
         timer.start()
@@ -1614,7 +1614,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
         )
         timer.log_interval('1.form_populated')
 
-    if request.method == 'POST' and form.is_valid():
+    if request.method == 'POST' and source_form.is_valid():
         if has_source:
             log.info(
                 '_submit_source, form validated, addon.slug: %s, version.pk: %s',
@@ -1622,7 +1622,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
                 version.pk,
             )
             timer.log_interval('2.form_validated')
-        if form.cleaned_data.get('source'):
+        if source_form.cleaned_data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True}
             )
@@ -1639,7 +1639,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
                 },
             )
             VersionLog.objects.create(version_id=version.id, activity_log=activity_log)
-            form.save()
+            source_form.save()
             log.info(
                 '_submit_source, form saved, addon.slug: %s, version.pk: %s',
                 addon.slug,
@@ -1658,7 +1658,7 @@ def _submit_source(request, addon, version, submit_page, next_view):
             timer.log_interval('4.redirecting_to_next_view')
         return result
     context = {
-        'form': form,
+        'source_form': source_form,
         'addon': addon,
         'version': version,
         'submit_page': submit_page,
@@ -1744,7 +1744,11 @@ def _submit_details(request, addon, version):
             post_data, version=latest_version, prefix='license'
         )
         context.update(license_form.get_context())
-        context.update(form=describe_form, cat_form=cat_form, policy_form=policy_form)
+        context.update(
+            describe_form=describe_form,
+            cat_form=cat_form,
+            policy_form=policy_form,
+        )
         forms_list.extend(
             [describe_form, cat_form, policy_form, context['license_form']]
         )

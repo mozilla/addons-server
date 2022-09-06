@@ -10,7 +10,6 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, AddonUserPendingConfirmation
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, formset, user_factory
-from olympia.devhub.forms import LicenseForm
 from olympia.users.models import EmailUserRestriction, UserProfile
 from olympia.versions.models import License, Version
 
@@ -233,7 +232,8 @@ class TestEditLicense(TestOwnership):
 
     def test_license_details_links(self):
         # Check that builtin licenses get details links.
-        doc = pq(str(LicenseForm(version=self.version)))
+        response = self.client.get(self.url)
+        doc = pq(response.content)
         for license in License.objects.builtins():
             radio = 'input.license[value="%s"]' % license.builtin
             assert doc(radio).parent().text() == (str(license) + ' Details')

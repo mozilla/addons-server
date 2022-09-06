@@ -755,8 +755,8 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert response.status_code == status_code
         if not expect_errors:
             # Show any unexpected form errors.
-            if response.context and 'form' in response.context:
-                assert response.context['form'].errors == {}
+            if response.context and 'source_form' in response.context:
+                assert response.context['source_form'].errors == {}
         return response
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
@@ -812,7 +812,7 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_logging_failed_validation(self, log_mock):
         # Not including a source file when expected to fail validation.
         response = self.post(has_source=True, source=None, expect_errors=True)
-        assert response.context['form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['You have not uploaded a source file.']
         }
         assert log_mock.info.call_count == 2
@@ -867,7 +867,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         response = self.post(
             has_source=False, source=self.generate_source_zip(), expect_errors=True
         )
-        assert response.context['form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Source file uploaded but you indicated no source was needed.']
         }
         self.addon = self.addon.reload()
@@ -876,7 +876,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_say_yes_but_dont_submit_source_fails(self):
         response = self.post(has_source=True, source=None, expect_errors=True)
-        assert response.context['form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['You have not uploaded a source file.']
         }
         self.addon = self.addon.reload()
@@ -915,7 +915,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             source=self.generate_source_zip(suffix='.exe'),
             expect_errors=True,
         )
-        assert response.context['form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': [
                 'Unsupported file type, please upload an archive file '
                 '(.zip, .tar.gz, .tgz, .tar.bz2).'
@@ -932,7 +932,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             source=self.generate_source_tar(mode='w'),
             expect_errors=True,
         )
-        assert response.context['form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
@@ -945,7 +945,7 @@ class TestAddonSubmitSource(TestSubmitBase):
             source=self.generate_source_garbage(suffix='.zip'),
             expect_errors=True,
         )
-        assert response.context['form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
@@ -964,7 +964,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert zipfile.is_zipfile(source)
         source.seek(0)  # Last seek to reset source descriptor before posting.
         response = self.post(has_source=True, source=source, expect_errors=True)
-        assert response.context['form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
@@ -980,7 +980,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         # Re-open and post.
         with open(source.name, 'rb'):
             response = self.post(has_source=True, source=source, expect_errors=True)
-        assert response.context['form'].errors == {
+        assert response.context['source_form'].errors == {
             'source': ['Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
@@ -1050,20 +1050,20 @@ class DetailsPageMixin:
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this value has at most 50 characters (it has 51).'
-        self.assertFormError(response, 'form', 'name', error)
+        self.assertFormError(response, 'describe_form', 'name', error)
 
     def test_submit_name_symbols_only(self):
         data = self.get_dict(name='()+([#')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'form', 'name', error)
+        self.assertFormError(response, 'describe_form', 'name', error)
 
         data = self.get_dict(name='±↡∋⌚')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'form', 'name', error)
+        self.assertFormError(response, 'describe_form', 'name', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
         data = self.get_dict(name='ø')
@@ -1078,7 +1078,7 @@ class DetailsPageMixin:
         assert response.status_code == 200
         self.assertFormError(
             response,
-            'form',
+            'describe_form',
             'slug',
             f'Enter a valid {STRING_QUOTE_OPEN}slug{STRING_QUOTE_CLOSE} consisting of '
             'letters, numbers, underscores or hyphens.',
@@ -1088,26 +1088,30 @@ class DetailsPageMixin:
         # Make sure the slug is required.
         response = self.client.post(self.url, self.get_dict(slug=''))
         assert response.status_code == 200
-        self.assertFormError(response, 'form', 'slug', 'This field is required.')
+        self.assertFormError(
+            response, 'describe_form', 'slug', 'This field is required.'
+        )
 
     def test_submit_summary_required(self):
         # Make sure summary is required.
         response = self.client.post(self.url, self.get_dict(summary=''))
         assert response.status_code == 200
-        self.assertFormError(response, 'form', 'summary', 'This field is required.')
+        self.assertFormError(
+            response, 'describe_form', 'summary', 'This field is required.'
+        )
 
     def test_submit_summary_symbols_only(self):
         data = self.get_dict(summary='()+([#')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'form', 'summary', error)
+        self.assertFormError(response, 'describe_form', 'summary', error)
 
         data = self.get_dict(summary='±↡∋⌚')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'form', 'summary', error)
+        self.assertFormError(response, 'describe_form', 'summary', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
         data = self.get_dict(summary='ø')
@@ -1120,7 +1124,7 @@ class DetailsPageMixin:
         response = self.client.post(self.url, self.get_dict(summary='a' * 251))
         assert response.status_code == 200
         error = 'Ensure this value has at most 250 characters (it has 251).'
-        self.assertFormError(response, 'form', 'summary', error)
+        self.assertFormError(response, 'describe_form', 'summary', error)
 
     def test_nomination_date_set_only_once(self):
         self.get_version().update(nomination=None)
@@ -1186,13 +1190,13 @@ class DetailsPageMixin:
         assert response.status_code == 200
         self.assertFormError(
             response,
-            'form',
+            'describe_form',
             'name',
             'Ensure this value has at least 2 characters (it has 1).',
         )
         self.assertFormError(
             response,
-            'form',
+            'describe_form',
             'summary',
             'Ensure this value has at least 2 characters (it has 1).',
         )
@@ -1207,7 +1211,7 @@ class DetailsPageMixin:
         assert response.status_code == 200
         self.assertFormError(
             response,
-            'form',
+            'describe_form',
             'name',
             'Ensure name and summary combined are at most 70 characters '
             '(they have 100).',

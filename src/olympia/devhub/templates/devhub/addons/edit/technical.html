@@ -30,8 +30,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.developer_comments }}
-                {{ form.developer_comments.errors }}
+                {{ main_form.developer_comments }}
+                {{ main_form.developer_comments.errors }}
                 {{ some_html_tip() }}
               {% else %}
                 {% call empty_unless(addon.developer_comments) %}
