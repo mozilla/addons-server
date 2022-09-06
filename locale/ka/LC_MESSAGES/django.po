@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2022-08-13 17:34+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4607,6 +4607,14 @@ msgstr "მოიცილეთ რეკლამები და უკეთ
 msgid "Remove formatting from copied Clipboard text."
 msgstr "გაფორმების მოცილება ასლად აღებული ტექსტიდან."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "გაფართოებები ერთგვარი პროგრამებია, რომელთაც იყენებს Firefox."
@@ -4621,17 +4629,16 @@ msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "თარგმნის ხელსაწყოები"
+msgid "Elite ad blockers"
+msgstr "რეკლამის საუკეთესო შემზღუდავები"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-ის უკეთ მორგება"
+msgid "Anti-tracking extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "საწყისი გაფართოებების ნაკრები"
+msgid "Extensions for writers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4686,6 +4693,10 @@ msgid "See more password manager staff picks"
 msgstr "პაროლის სხვა მმართველები, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "თარგმნის ხელსაწყოები"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "თარგმნის სხვა ხელსაწყოები, თანამშრომლების შერჩეული"
 
@@ -4714,12 +4725,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "სხვა გავრცელებული, მონიშვნით „{tag}“"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "რეკლამის საუკეთესო შემზღუდავები"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "რეკლამის სხვა შემზღუდავები, თანამშრომლების შერჩეული"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-ის უკეთ მორგება"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
