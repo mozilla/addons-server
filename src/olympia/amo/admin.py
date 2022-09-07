@@ -14,8 +14,6 @@ class CommaSearchInAdminChangeListSearchForm(ChangeListSearchForm):
     def clean(self):
         self.cleaned_data = super().clean()
         search_term = self.cleaned_data[SEARCH_VAR]
-        # Ah, the culprit is the whitespace check here. We only do the normalization
-        # if there is a comma and no ' '.
         if ',' in search_term:
             self.cleaned_data[SEARCH_VAR] = ','.join(
                 [
