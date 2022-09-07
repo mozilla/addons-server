@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-07 06:54+0000\n"
-"Last-Translator: Daremo <kokorosan@free.fr>\n"
+"PO-Revision-Date: 2022-09-07 21:37+0000\n"
+"Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -4676,11 +4676,11 @@ msgstr "Supprimez la mise en forme du texte copié dans le presse-papiers."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Protection de la vie privée contre la détection d’empreinte numérique."
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Améliorez votre expérience de jeu sur Steam."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4705,7 +4705,7 @@ msgstr "Extensions contre le pistage"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions for writers"
-msgstr ""
+msgstr "Extensions pour les autrices et auteurs"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
