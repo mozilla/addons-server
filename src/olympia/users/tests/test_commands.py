@@ -2,6 +2,7 @@ import json
 import uuid
 import io
 from datetime import datetime
+from ipaddress import IPv4Address
 
 from django.core.management import call_command
 
@@ -85,7 +86,7 @@ class TestClearOldUserData(TestCase):
         # a given action after a while, we'll still correctly clear the old
         # data when it's time to do so.
         activity = ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi', user=user)
-        IPLog.objects.create(activity_log=activity, ip_address='127.0.0.56')
+        IPLog.objects.create(activity_log=activity, ip_address_binary='127.0.0.56')
 
     def test_no_addons(self):
         recent_date = self.days_ago(2)
@@ -136,10 +137,9 @@ class TestClearOldUserData(TestCase):
         assert recent_not_deleted.fxa_id
         assert recent_not_deleted.modified == recent_date
         assert recent_not_deleted.activitylog_set.count() == 1
-        assert (
-            IPLog.objects.filter(activity_log__user=recent_not_deleted).get().ip_address
-            == '127.0.0.56'
-        )
+        assert IPLog.objects.filter(
+            activity_log__user=recent_not_deleted
+        ).get().ip_address_binary == IPv4Address('127.0.0.56')
 
         new_user.reload()
         assert new_user.last_login_ip == '127.0.0.1'
@@ -147,10 +147,9 @@ class TestClearOldUserData(TestCase):
         assert new_user.email
         assert new_user.fxa_id
         assert new_user.activitylog_set.count() == 1
-        assert (
-            IPLog.objects.filter(activity_log__user=new_user).get().ip_address
-            == '127.0.0.56'
-        )
+        assert IPLog.objects.filter(
+            activity_log__user=new_user
+        ).get().ip_address_binary == IPv4Address('127.0.0.56')
 
         recent_deleted_user.reload()
         assert recent_deleted_user.last_login_ip == ''
@@ -179,10 +178,9 @@ class TestClearOldUserData(TestCase):
         assert recent_banned_user.fxa_id
         assert recent_banned_user.banned
         assert recent_banned_user.activitylog_set.count() == 1
-        assert (
-            IPLog.objects.filter(activity_log__user=recent_banned_user).get().ip_address
-            == '127.0.0.56'
-        )
+        assert IPLog.objects.filter(
+            activity_log__user=recent_banned_user
+        ).get().ip_address_binary == IPv4Address('127.0.0.56')
 
         old_banned_user.reload()
         assert old_banned_user.last_login_ip == ''
@@ -330,10 +328,9 @@ class TestClearOldUserData(TestCase):
         assert old_not_deleted.fxa_id
         assert old_not_deleted.modified == old_date
         assert old_not_deleted_addon.reload()
-        assert (
-            IPLog.objects.filter(activity_log__user=old_not_deleted).get().ip_address
-            == '127.0.0.56'
-        )
+        assert IPLog.objects.filter(
+            activity_log__user=old_not_deleted
+        ).get().ip_address_binary == IPv4Address('127.0.0.56')
 
         recent_user.reload()
         assert recent_user.last_login_ip == '127.0.0.1'
@@ -341,10 +338,9 @@ class TestClearOldUserData(TestCase):
         assert recent_user.email
         assert recent_user.fxa_id
         assert recent_user_addon.reload()
-        assert (
-            IPLog.objects.filter(activity_log__user=recent_user).get().ip_address
-            == '127.0.0.56'
-        )
+        assert IPLog.objects.filter(
+            activity_log__user=recent_user
+        ).get().ip_address_binary == IPv4Address('127.0.0.56')
 
         old_user.reload()
         assert old_user.last_login_ip == ''
@@ -422,7 +418,7 @@ def test_backfill_activity_and_iplog():
     assert activity.created == recently
     assert activity.iplog_set.count() == 1
     ipl = activity.iplog_set.all().get()
-    assert ipl.ip_address == '127.0.42.1'
+    assert ipl.ip_address_binary == IPv4Address('127.0.42.1')
 
     activity = ActivityLog.objects.get(user=user, action=amo.LOG.RESTRICTED.id)
     assert activity.created == yesterday
@@ -433,13 +429,13 @@ def test_backfill_activity_and_iplog():
     }
     assert activity.iplog_set.count() == 1
     ipl = activity.iplog_set.all().get()
-    assert ipl.ip_address == '127.0.42.2'
+    assert ipl.ip_address_binary == IPv4Address('127.0.42.2')
 
     activity = ActivityLog.objects.get(user=user_deleted, action=amo.LOG.LOG_IN.id)
     assert activity.created == recently
     assert activity.iplog_set.count() == 1
     ipl = activity.iplog_set.all().get()
-    assert ipl.ip_address == '127.0.43.1'
+    assert ipl.ip_address_binary == IPv4Address('127.0.43.1')
 
     activity = ActivityLog.objects.get(user=user_deleted, action=amo.LOG.RESTRICTED.id)
     assert activity.created == yesterday
@@ -450,4 +446,4 @@ def test_backfill_activity_and_iplog():
     }
     assert activity.iplog_set.count() == 1
     ipl = activity.iplog_set.all().get()
-    assert ipl.ip_address == '127.0.43.2'
+    assert ipl.ip_address_binary == IPv4Address('127.0.43.2')

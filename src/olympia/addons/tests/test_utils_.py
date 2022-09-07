@@ -2,6 +2,7 @@ import zipfile
 
 from contextlib import ExitStack
 from datetime import timedelta
+from ipaddress import IPv4Address
 from unittest import mock
 
 from django.conf import settings
@@ -203,7 +204,7 @@ class TestRestrictionChecker(TestCase):
         assert activity.user == self.request.user
         assert activity.iplog_set.all().count() == 1
         ip_log = activity.iplog_set.all().get()
-        assert ip_log.ip_address == '10.0.0.1'
+        assert ip_log.ip_address_binary == IPv4Address('10.0.0.1')
 
     def test_is_submission_allowed_bypassing_read_dev_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
@@ -251,7 +252,7 @@ class TestRestrictionChecker(TestCase):
         assert activity.user == self.request.user
         assert activity.iplog_set.all().count() == 1
         ip_log = activity.iplog_set.all().get()
-        assert ip_log.ip_address == '10.0.0.1'
+        assert ip_log.ip_address_binary == IPv4Address('10.0.0.1')
 
     def test_is_submission_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
@@ -279,7 +280,7 @@ class TestRestrictionChecker(TestCase):
         assert activity.user == self.request.user
         assert activity.iplog_set.all().count() == 1
         ip_log = activity.iplog_set.all().get()
-        assert ip_log.ip_address == '10.0.0.1'
+        assert ip_log.ip_address_binary == IPv4Address('10.0.0.1')
 
     def test_is_submission_allowed_bypassing_read_dev_agreement_restricted(
         self, incr_mock
@@ -314,7 +315,7 @@ class TestRestrictionChecker(TestCase):
         assert activity.user == self.request.user
         assert activity.iplog_set.all().count() == 1
         ip_log = activity.iplog_set.all().get()
-        assert ip_log.ip_address == '10.0.0.1'
+        assert ip_log.ip_address_binary == IPv4Address('10.0.0.1')
 
     def test_is_auto_approval_allowed_email_restricted_only_for_submission(
         self, incr_mock
@@ -371,7 +372,7 @@ class TestRestrictionChecker(TestCase):
         ip_log = activity.iplog_set.all().get()
         # Note that there is no request in this case, the ip_adress is coming
         # from the upload.
-        assert ip_log.ip_address == '10.0.0.2'
+        assert ip_log.ip_address_binary == IPv4Address('10.0.0.2')
 
     def test_no_request_or_upload_at_init(self, incr_mock):
         with self.assertRaises(ImproperlyConfigured):
@@ -570,7 +571,7 @@ class TestSitePermissionVersionCreator(TestCase):
         assert file_._site_permissions.permissions == ['midi-sysex', 'webblah']
         activity = ActivityLog.objects.for_addons(addon).latest('pk')
         assert activity.user == creator.user
-        assert activity.iplog_set.all()[0].ip_address == '4.8.15.16'
+        assert activity.iplog_set.all()[0].ip_address_binary == IPv4Address('4.8.15.16')
 
     @override_switch('record-install-origins', active=True)
     def test_create_version_existing_addon_wrong_origins(self):
@@ -639,7 +640,7 @@ class TestSitePermissionVersionCreator(TestCase):
         assert file_._site_permissions.permissions == ['midi-sysex', 'webblah']
         activity = ActivityLog.objects.for_addons(addon).latest('pk')
         assert activity.user == creator.user
-        assert activity.iplog_set.all()[0].ip_address == '4.8.15.16'
+        assert activity.iplog_set.all()[0].ip_address_binary == IPv4Address('4.8.15.16')
 
     def test_create_version_existing_addon_but_user_is_not_an_author(self):
         creator = SitePermissionVersionCreator(

@@ -1,4 +1,5 @@
 from datetime import date, datetime, timedelta
+from ipaddress import IPv4Address
 
 import django  # noqa
 
@@ -56,7 +57,7 @@ class TestUserProfile(TestCase):
         log = ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).latest('pk')
         assert log.user == user
         ip_log = log.iplog_set.get()
-        assert ip_log.ip_address == '4.8.15.16'
+        assert ip_log.ip_address_binary == IPv4Address('4.8.15.16')
 
         with core.override_remote_addr('23.42.42.42'):
             self.client.force_login(user)
@@ -65,7 +66,7 @@ class TestUserProfile(TestCase):
         log = ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).latest('pk')
         assert log.user == user
         ip_log = log.iplog_set.get()
-        assert ip_log.ip_address == '23.42.42.42'
+        assert ip_log.ip_address_binary == IPv4Address('23.42.42.42')
 
     def test_is_addon_developer(self):
         user = user_factory()

@@ -2,6 +2,7 @@ import json
 import os
 
 from datetime import datetime, timedelta
+from ipaddress import IPv4Address
 from urllib.parse import quote, urlencode
 
 from django.conf import settings
@@ -2201,7 +2202,9 @@ class TestSitePermissionGenerator(TestCase):
         assert file_._site_permissions.permissions == ['midi-sysex']
         activity = ActivityLog.objects.for_addons(addon).latest('pk')
         assert activity.user == self.user
-        assert activity.iplog_set.all()[0].ip_address == '15.16.23.42'
+        assert activity.iplog_set.all()[0].ip_address_binary == IPv4Address(
+            '15.16.23.42'
+        )
 
     def test_non_field_errors(self):
         self.user.update(read_dev_agreement=self.days_ago(1))
