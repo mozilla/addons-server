@@ -9,6 +9,7 @@ from urllib.parse import parse_qs, urlparse
 
 from django import http
 from django.conf import settings
+from django.contrib.auth import login
 from django.contrib.auth.models import AnonymousUser
 from django.urls import reverse
 from django.test import RequestFactory
@@ -29,7 +30,7 @@ from olympia.access.acl import action_allowed_for
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
 from olympia.accounts.views import FxaNotificationView
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, IPLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClientSessionID,
@@ -189,11 +190,11 @@ class TestLoginStartView(TestCase):
 class TestLoginUserAndRegisterUser(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/login')
-        self.enable_messages(self.request)
+        self.enable_messages_and_session(self.request)
         self.user = UserProfile.objects.create(email='real@yeahoo.com', fxa_id='9001')
         self.identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
-        # This mock actually points to django.contrib.auth.login()
-        patcher = mock.patch('olympia.accounts.views.login')
+        # Add a patch with wraps= to spy around django.contrib.auth.login()
+        patcher = mock.patch('olympia.accounts.views.login', wraps=login)
         self.login_mock = patcher.start()
         self.addCleanup(patcher.stop)
         patcher = mock.patch('olympia.core.get_remote_addr')
@@ -211,6 +212,12 @@ class TestLoginUserAndRegisterUser(TestCase):
         self.login_mock.assert_called_with(self.request, self.user)
         self.assertCloseToNow(self.user.last_login)
         assert self.user.last_login_ip == '8.8.8.8'
+        assert (
+            ActivityLog.objects.filter(user=self.user, action=amo.LOG.LOG_IN.id).count()
+            == 1
+        )
+        assert IPLog.objects.all().count() == 1
+        assert IPLog.objects.get().ip_address == '8.8.8.8'
 
     def test_email_address_can_change(self):
         self.user.update(email='different@yeahoo.com')
