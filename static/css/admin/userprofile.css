@@ -28,6 +28,18 @@
     font-weight: bold;
 }
 
+#changelist-search > div {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+#toolbar #searchbar {
+    font-size: 18px;
+    height: auto;
+    width: 42em;
+}
+
 #toolbar #searchbar.dirty {
     border-color: orange;
 }

@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   var original_search_terms;
   var ip_fields;
 
+  const Netmask = exports.Netmask;
+
   function are_set_equal(a, b) {
     /** Return whether or not two sets contains the same values. */
     if (a.size !== b.size) {
@@ -43,11 +45,24 @@ document.addEventListener('DOMContentLoaded', () => {
      * loaded.
      */
     for (const field of ip_fields) {
-      const value = field.textContent;
-      if (value.length <= 1) {
+      const ip = field.textContent;
+      if (ip.length <= 1) {
         continue;
       }
-      if (!values.has(value)) {
+      // Our Set can contain IPs and networks, so we can't just do
+      // values.has(ip), we have to iterate on it and look if it's contained
+      // in the corresponding block (Netmask(ip) returns a block with only that
+      // IP in it).
+      let found = false;
+      values.forEach(item => {
+        let block = new Netmask(item);
+        if (block.contains(ip)) {
+          found = true;
+          return;
+        }
+      })
+
+      if (!found) {
         field.classList.add('notinsearch');
       } else {
         field.classList.remove('notinsearch');
@@ -100,7 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
     '.change-list .field-known_ip_adresses li',
   );
   add_add_remove_links();
-  highlight_ips_not_in(get_search_bar_terms());
+  const values = get_search_bar_terms();
+  search_bar.value = [...values].join(', ');
+  highlight_ips_not_in(values);
 
   document.querySelector('#result_list').addEventListener('click', (e) => {
     const target = e.target;
@@ -114,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (target.classList.contains('deletelink')) {
         values.delete(new_value);
       }
-      search_bar.value = [...values].join(',');
+      search_bar.value = [...values].join(', ');
       highlight_ips_not_in(values);
     }
   });

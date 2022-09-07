@@ -212,6 +212,50 @@ class TestUserAdmin(TestCase):
         # Make sure last login is now displayed, and has the right value.
         assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
 
+    def test_search_for_ip_range(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.ADD_RATING, user=self.user)
+        self.user.update(email='foo@bar.com')
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(
+                self.list_url, {'q': '127.0.0.1-127.0.0.3,'}, follow=True
+            )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Make sure it's the right user.
+        assert doc('.field-email').text() == self.user.email
+        # Make sure last login is now displayed, and has the right value.
+        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+
+    def test_search_for_ip_network(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.ADD_RATING, user=self.user)
+        self.user.update(email='foo@bar.com')
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(
+                self.list_url, {'q': '127.0.0.0/24'}, follow=True
+            )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Make sure it's the right user.
+        assert doc('.field-email').text() == self.user.email
+        # Make sure last login is now displayed, and has the right value.
+        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+
     def test_search_for_multiple_ips_with_garbage(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
@@ -262,6 +306,51 @@ class TestUserAdmin(TestCase):
             # - 1 main search query
             response = self.client.get(
                 self.list_url, {'q': '127.0.0.2,127.0.0.3'}, follow=True
+            )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 3
+        # Make sure it's the right users.
+        assert doc('.field-email').text() == ' '.join(
+            [
+                extra_extra_user.email,
+                extra_user.email,
+                self.user.email,
+            ]
+        )
+        # Make sure each IP only appears once for each row.
+        assert doc('.field-known_ip_adresses').text() == (
+            '127.0.0.2\n127.0.0.3 127.0.0.2 127.0.0.3'
+        )
+
+    def test_search_for_ip_network_with_deduplication(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        # Will match once with the last_login
+        with core.override_remote_addr('127.0.0.3'):
+            ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
+        self.user.update(email='foo@bar.com')
+        # Will match twice, will only show up once since it's the same user.
+        extra_user = user_factory(email='extra@bar.com')
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
+        # Will match 4 times, will only show up once since it's the same user.
+        extra_extra_user = user_factory(email='extra_extra@bar.com')
+        with core.override_remote_addr('127.0.0.3'):
+            ActivityLog.create(amo.LOG.LOG_IN, user=extra_extra_user)
+        with core.override_remote_addr('127.0.0.2'):
+            ActivityLog.create(amo.LOG.RESTRICTED, user=extra_extra_user)
+            ActivityLog.create(amo.LOG.ADD_RATING, user=extra_extra_user)
+            ActivityLog.create(amo.LOG.ADD_VERSION, user=extra_extra_user)
+        with self.assertNumQueries(6):
+            # - 2 savepoint/release
+            # - 2 logged in user & groups
+            # - 1 count for the main search query
+            # - 1 main search query
+            response = self.client.get(
+                self.list_url, {'q': '127.0.0.0/24'}, follow=True
             )
         assert response.status_code == 200
         doc = pq(response.content)

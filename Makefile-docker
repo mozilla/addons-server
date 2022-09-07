@@ -36,6 +36,7 @@ jquery.cookie/jquery.cookie.js \
 jszip/dist/jszip.js \
 timeago/jquery.timeago.js \
 underscore/underscore.js \
+netmask/lib/netmask.js \
 
 NODE_LIBS_JQUERY_UI := \
 jquery-ui/ui/data.js \
