@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-08 10:17+0000\n"
+"PO-Revision-Date: 2022-09-08 11:02+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -4017,7 +4017,7 @@ msgstr "Leitaðu í laumi með bara einum smelli."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "Hættu að láta ræna flipunum þínum. Komdu í veg fyrir að tenglar sem þú smellir á taki völdin yfir flipanum sem þú ert á og hlaði inn efni sem þú baðst ekki um."
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -4042,7 +4042,7 @@ msgstr "Njóttu fullkominnar flipastýringar - lokaðu tvíteknum flipum, samein
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
-msgstr ""
+msgstr "Prófaðu skrýtna upplýsingaöflun. Opnaðu handahófskennda Wikipedia-grein í hvert skipti sem þú opnar nýjan flipa."
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -4050,7 +4050,7 @@ msgstr "Stilltu nýjar flipasíður til að birta sérsniðna bakgrunnsliti og m
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Hittu krúttlega kisu á hverjum nýjum flipa. Klóraðu henni á bakvið eyrað og sjáðu hvað gerist."
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -4058,11 +4058,11 @@ msgstr "Fyrir þær stundir þegar þú þarft nauðsynlega að skjóta leysigei
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Leitaðu í Firefox á einfaldan máta að opnum flipum, bókamerkjum og í ferlinum."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr "Rosalega margir flipar? Hættu að skruna og leitaðu með flýtilyklum á lyklaborðinu."
+msgstr "Hrikalega margir flipar? Hættu að skruna og leitaðu með flýtilyklum á lyklaborðinu."
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -4070,7 +4070,7 @@ msgstr "Stöðvaðu endurbeiningar svo þú getir nálgast vefsvæðið sem þú
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Bætir eiginleikanum til að birta/fela við alla lykilorðareiti."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
@@ -4086,7 +4086,7 @@ msgstr "Geymdu lykilorð á öruggan hátt og skráðu þig sjálfkrafa inn á �
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Einfaldur auglýsingabani sem einbeitir sér að því að birta bara efnið sem þú vilt skoða."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
@@ -4098,7 +4098,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Fylgstu með framleiðni. Mældu tímann sem þú eyðir fyrir framan tölvuna eða notar í tilteknum forritum á borð við Trello, JIRA, Basecamp, GitHub og mörgum fleiri."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
@@ -4164,7 +4164,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Aðlagaðu hjóðstillingar vafrans á einstaklega skýran máta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4181,11 +4181,11 @@ msgstr "Einfaldaðu flipana. Sýslaðu með opnu flipana þina á hreinlegu ló�
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Eyddu óumbeðnum vefkökum sjálfkrafa. Býður upp á lista yfir bannað og leyft."
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "Með einum músarsmelli geturðu horft á myndskeið á öllum skjánum í allri sinni dýrð."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4198,7 +4198,7 @@ msgstr "Vistaðu heilar vefsíður – eða bara hluta þeirra – sem eina HTML
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "Skerðu niður bullið í algengum þjónustuskilmálum (TOS - Terms of Service). Þessi sniðugi forritsauki hjálpar þér að skilja hvað það er sem þú átt að samþykkja."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4213,7 +4213,7 @@ msgstr "Lokaðu á auglýsingar og fáðu betri varnir gegn spilliforritum og au
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "Nýttu þér stuðning við niðurhal á mörgum örgjörvaþráðum. Greindu sjálfvirkt mismunandi tegundir niðurhals í boði."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4226,7 +4226,7 @@ msgstr "Mældu vefsíður. Teiknaðu með stafrænni mælistiku á hverskyns vef
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "Njóttu kostanna við umsýslu sterkra lykilorða."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4258,7 +4258,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "Gerðu vefinn dökkann eða veldu sérsniðið litastef til að klæðskerasauma internetið eins og þú vilt hafa það."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4380,7 +4380,7 @@ msgstr "Hættu að gefa vefsvæðum tölvupóstfangið þitt. Firefox Relay vern
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Tímahaður þemaskiptir. Láttu Firefox breyta um lit eftir tíma dagsins."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4412,7 +4412,7 @@ msgstr "Lesið upphátt af vefsíðum. Fleiri en 40 tungumál studd."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Fjarlægir þessar löngu rakningarbreytur úr slóðum í leitarniðurstöðum Google."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
@@ -4420,7 +4420,7 @@ msgstr "Fáðu veðrið beint úr Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "Stýrðu tímanum þínum betur með vafraklukku sem skráir tímabil við vinnu."
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
@@ -4450,7 +4450,7 @@ msgstr "Láttu Firefox breyta um lit eftir tíma dagsins."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Útrýmdu truflunum af YouTube. Fjarlægðu tillögur um tengt efni og það sem mælt er með, auk athugasemda og fleira."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
@@ -4482,7 +4482,7 @@ msgstr "Öflug vörn gegn öllum tegundum auglýsinga."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Massa-niðurhalsstýring einfaldar öfgafullt niðurhal."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
@@ -4494,11 +4494,11 @@ msgstr "Eyða sniði af texta sem afritaður er á klippispjald."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Vörn gegn gerð fingrafara sem geta auðkennt þig."
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Bættu upplifun þína af leikjaspilun á Steam."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4519,11 +4519,11 @@ msgstr "Auglýsingabanar fyrir elítuna"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Viðbætur gegn rekjurum"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions for writers"
-msgstr ""
+msgstr "Viðaukar fyrir þá sem skrifa"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
