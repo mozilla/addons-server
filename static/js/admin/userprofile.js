@@ -54,13 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // in the corresponding block (Netmask(ip) returns a block with only that
       // IP in it).
       let found = false;
-      values.forEach(item => {
+      values.forEach((item) => {
         let block = new Netmask(item);
         if (block.contains(ip)) {
           found = true;
           return;
         }
-      })
+      });
 
       if (!found) {
         field.classList.add('notinsearch');
