@@ -3239,7 +3239,8 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'name': license_data['name'],
             'text': license_data['text'],
             'is_custom': True,
-            'url': 'http://testserver' + version.license_url(),
+            'url': 'http://testserver'
+            + reverse('addons.license', args=[self.addon.slug]),
             'slug': None,
         }
 
@@ -3536,7 +3537,8 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'name': license_data['name'],
             'text': license_data['text'],
             'is_custom': True,
-            'url': 'http://testserver' + self.version.license_url(),
+            'url': 'http://testserver'
+            + reverse('addons.license', args=[self.addon.slug]),
             'slug': None,
         }
         alog = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
@@ -3560,7 +3562,8 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'name': {'en-US': 'neú name'},
             'text': license_data['text'],  # no change
             'is_custom': True,
-            'url': 'http://testserver' + self.version.license_url(),
+            'url': 'http://testserver'
+            + reverse('addons.license', args=[self.addon.slug]),
             'slug': None,
         }
         assert new_license.name == 'neú name'
@@ -3597,7 +3600,8 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'name': license_data['name'],
             'text': license_data['text'],
             'is_custom': True,
-            'url': 'http://testserver' + self.version.license_url(),
+            'url': 'http://testserver'
+            + reverse('addons.license', args=[self.addon.slug]),
             'slug': None,
         }
         alog = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
