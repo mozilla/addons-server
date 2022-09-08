@@ -16,11 +16,7 @@ class CommaSearchInAdminChangeListSearchForm(ChangeListSearchForm):
         search_term = self.cleaned_data[SEARCH_VAR]
         if ',' in search_term:
             self.cleaned_data[SEARCH_VAR] = ','.join(
-                [
-                    term.strip()
-                    for term in search_term.strip().split(',')
-                    if term.strip()
-                ]
+                [term.strip() for term in search_term.split(',') if term.strip()]
             )
         return self.cleaned_data
 
