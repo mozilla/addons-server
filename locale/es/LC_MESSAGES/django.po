@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -4717,6 +4717,14 @@ msgstr "No solo bloquea los anuncios molestos, también te protege frente a malw
 msgid "Remove formatting from copied Clipboard text."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Las extensiones son como aplicaciones para Firefox."
@@ -4732,16 +4740,15 @@ msgstr "Ver todas las extensiones"
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Translation tools"
-msgstr "Organizadores de pestañas y herramientas"
+msgid "Elite ad blockers"
+msgstr "Actualizar bloqueadores de complementos"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4803,6 +4810,11 @@ msgstr "Ver más extensiones recomendadas"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
+msgid "Translation tools"
+msgstr "Organizadores de pestañas y herramientas"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "por versión del complemento"
 
@@ -4836,13 +4848,12 @@ msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Elite ad blockers"
-msgstr "Actualizar bloqueadores de complementos"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Ver más extensiones recomendadas"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy

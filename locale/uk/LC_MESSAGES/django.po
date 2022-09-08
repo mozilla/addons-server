@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
-"PO-Revision-Date: 2022-08-30 21:16+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"PO-Revision-Date: 2022-09-06 17:57+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4604,6 +4604,14 @@ msgstr "Блокуйте рекламу та отримайте вдоскона
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Вилучає форматування зі скопійованого до буфера обміну тексту."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr "Захист приватності цифрових відбитків."
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr "Розширюйте взаємодію з іграми у Steam."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Розширення — це наче програми для вашого браузера."
@@ -4618,17 +4626,16 @@ msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Засоби для перекладу"
+msgid "Elite ad blockers"
+msgstr "Елітні блокувальники реклами"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Пристосування YouTube"
+msgid "Anti-tracking extensions"
+msgstr "Розширення для захисту від стеження"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Стартовий пакунок розширень"
+msgid "Extensions for writers"
+msgstr "Розширення для письменників"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4683,6 +4690,10 @@ msgid "See more password manager staff picks"
 msgstr "Переглянути більше менеджерів паролів відібраних персоналом"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Засоби для перекладу"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Переглянути більше засобів перекладу відібрані персоналом"
 
@@ -4711,12 +4722,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Переглянути інші розширення з міткою \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Елітні блокувальники реклами"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Переглянути більше відібраних персоналом блокувальників реклами"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Пристосування YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

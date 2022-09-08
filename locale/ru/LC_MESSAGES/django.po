@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2022-07-24 16:15+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -4641,6 +4641,14 @@ msgstr "Блокируйте рекламу и получайте улучшен
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Удаляйте форматирование из текста скопированного в буфер обмена."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Расширения — это как приложения для Firefox."
@@ -4655,16 +4663,15 @@ msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Инструменты перевода"
+msgid "Elite ad blockers"
+msgstr "Элитные блокировщики рекламы"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Настройка YouTube"
+msgid "Anti-tracking extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4721,6 +4728,10 @@ msgid "See more password manager staff picks"
 msgstr "Больше менеджеров паролей отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Инструменты перевода"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Больше инструментов перевода отобранных нашими сотрудниками"
 
@@ -4749,12 +4760,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Больше расширений с тегом \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Элитные блокировщики рекламы"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Больше средств блокировки рекламы отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Настройка YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

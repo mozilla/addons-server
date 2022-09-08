@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage.fallback import FallbackStorage
+from django.contrib.sessions.middleware import SessionMiddleware
 from django.core.files import File as DjangoFile
 from django.db.models.signals import post_save
 from django.http import HttpRequest, SimpleCookie
@@ -559,10 +560,12 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def days_ago(self, days):
         return days_ago(days)
 
-    def enable_messages(self, request):
-        setattr(request, 'session', {})
+    def enable_messages_and_session(self, request):
+        middleware = SessionMiddleware(request)
+        middleware.process_request(request)
         messages = FallbackStorage(request)
         setattr(request, '_messages', messages)
+        request.session.save()
         return request
 
     def make_addon_unlisted(self, addon):

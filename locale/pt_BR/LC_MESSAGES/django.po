@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
-"PO-Revision-Date: 2022-08-31 11:33+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"PO-Revision-Date: 2022-09-06 20:11+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4662,6 +4662,14 @@ msgstr "Remova anúncios e receba melhor proteção contra malware."
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Remova a formatação de texto copiado para a área de transferência."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr "Proteção de privacidade de identidade digital."
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr "Melhore sua experiência em jogos no Steam."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Extensões são como aplicativos no Firefox."
@@ -4676,17 +4684,16 @@ msgstr "Ver todas extensões"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Ferramentas de tradução"
+msgid "Elite ad blockers"
+msgstr "Bloqueadores de anúncios de elite"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Personalização do YouTube"
+msgid "Anti-tracking extensions"
+msgstr "Extensões contra rastreamento"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Pacote de extensões para começar"
+msgid "Extensions for writers"
+msgstr "Extensões para escritores"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4742,6 +4749,10 @@ msgid "See more password manager staff picks"
 msgstr "Mais escolhas da equipe de gerenciadores de senhas"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Ferramentas de tradução"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Mais escolhas da equipe de ferramentas de tradução"
 
@@ -4770,12 +4781,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Mais extensões marcadas com \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Bloqueadores de anúncios de elite"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Mais escolhas da equipe de bloqueadores de anúncios"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Personalização do YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

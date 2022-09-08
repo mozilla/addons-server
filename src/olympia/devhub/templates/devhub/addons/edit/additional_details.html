@@ -10,7 +10,7 @@
   </h3>
   <div class="item">
     <div class="item_wrapper">
-      {% if editable %}{{ form.non_field_errors() }}{% endif %}
+      {% if editable %}{{ main_form.non_field_errors() }}{% endif %}
       <table>
         <caption>{{ _('Additional Details for {0}')|format_html(addon.name) }}</caption>
         <tbody>
@@ -22,8 +22,8 @@
             </th>
             <td id="addon_tags_edit">
               {% if editable %}
-                {{ form.tags }}
-                {{ form.tags.errors }}
+                {{ main_form.tags }}
+                {{ main_form.tags.errors }}
                 <div class="edit-addon-details">
                   {{ _('Limit {0} tags.')|format_html(amo.MAX_TAGS) }}
                 </div>
@@ -43,8 +43,8 @@
             <td>
               {% if editable %}
                 <p>{{ _('Supported domains: %s'|format(', '.join(amo.VALID_CONTRIBUTION_DOMAINS))) }}</p>
-                <p>{{ form.contributions }}</p>
-                {{ form.contributions.errors }}
+                <p>{{ main_form.contributions }}</p>
+                {{ main_form.contributions.errors }}
               {% else %}
                 <a href="{{ addon.contributions }}" target="_blank" rel="noopener noreferrer">{{ addon.contributions }}</a>
               {% endif %}
@@ -59,8 +59,8 @@
             </th>
             <td class="addon_edit_locale">
               {% if editable %}
-                {{ form.default_locale }}
-                {{ form.default_locale.errors }}
+                {{ main_form.default_locale }}
+                {{ main_form.default_locale.errors }}
               {% else %}
                 {{ addon.language_ascii() }}
               {% endif %}
@@ -79,8 +79,8 @@
             </th>
             <td>
               {% if editable %}
-                {{ form.homepage }}
-                {{ form.homepage.errors }}
+                {{ main_form.homepage }}
+                {{ main_form.homepage.errors }}
               {% else %}
                 {% call empty_unless(addon.homepage) %}
                   {{ addon|all_locales('homepage') }}

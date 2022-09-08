@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2022-08-01 18:12+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -4648,6 +4648,14 @@ msgstr ""
 msgid "Remove formatting from copied Clipboard text."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Laajennukset ovat kuin sovelluksia Firefoxille."
@@ -4662,17 +4670,16 @@ msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Kielityökalut"
+msgid "Elite ad blockers"
+msgstr "Ensiluokan mainosestäjät"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTuben mukauttaminen"
+msgid "Anti-tracking extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Laajennusten aloituspaketti"
+msgid "Extensions for writers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4732,6 +4739,10 @@ msgid "See more password manager staff picks"
 msgstr "Katso lisää valittuja salasanahallinnan työkaluja"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Kielityökalut"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Katso lisää valittuja kielityökaluja"
 
@@ -4760,12 +4771,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Katso lisää \"{tag}\"-merkittyjä laajennuksia"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Ensiluokan mainosestäjät"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Katso lisää valittuja mainosestäjiä"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTuben mukauttaminen"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

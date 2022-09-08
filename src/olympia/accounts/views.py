@@ -8,10 +8,10 @@ from urllib.parse import quote_plus
 
 from django.conf import settings
 from django.contrib.auth import login, logout
-from django.contrib.auth.signals import user_logged_in
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
@@ -179,7 +179,6 @@ def update_user(user, identity):
 def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
     log.info('Logging in user %s from FxA', user)
-    user_logged_in.send(sender=sender, request=request, user=user)
     login(request, user)
     if token_data:
         request.session['fxa_access_token_expiry'] = token_data['access_token_expiry']
@@ -338,7 +337,7 @@ class FxAConfigMixin:
 
 
 class LoginStartView(FxAConfigMixin, APIView):
-    @never_cache
+    @method_decorator(never_cache)
     def get(self, request):
         request.session.setdefault('fxa_state', generate_fxa_state())
         return HttpResponseRedirect(
@@ -356,7 +355,7 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
     authentication_classes = (SessionAuthentication,)
 
-    @never_cache
+    @method_decorator(never_cache)
     @with_user
     def get(self, request, user, identity, next_path, token_data):
         # At this point @with_user guarantees that we have a valid fxa

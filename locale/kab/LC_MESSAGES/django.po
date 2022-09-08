@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2022-08-24 14:29+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4567,6 +4567,14 @@ msgstr "Kkes adellel, tremseḍ ammesten igerrzen mgal yir aseɣẓan."
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Kkes amsal seg uḍris yettwaneɣlen ɣer tecfawt."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Isiɣzaf am yisnasen i Firefox."
@@ -4581,16 +4589,15 @@ msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Ifecka n usuqel"
+msgid "Elite ad blockers"
+msgstr "Ẓreg amsewḥel n yizegrar"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Asagen n YouTube"
+msgid "Anti-tracking extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4646,6 +4653,10 @@ msgid "See more password manager staff picks"
 msgstr "Wali ugar n yisiɣzaf i usefrek n wawalen uffiren sɣur terbaεt"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Ifecka n usuqel"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Wali ugar n yifecka n usuqel yettwafernen sɣur terbaεt"
 
@@ -4674,12 +4685,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Wali ugar n yisiɣzaf d-yettwabedren \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Ẓreg amsewḥel n yizegrar"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Wali ugar n yisiɣzaf i usewḥel n udellel yettwafernen sɣur terbaεt"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Asagen n YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

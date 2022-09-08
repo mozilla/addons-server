@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2022-08-17 04:20+0000\n"
 "Last-Translator: killingfield <killingfield@gmail.com>\n"
 "Language-Team: none\n"
@@ -4577,6 +4577,14 @@ msgstr ""
 msgid "Remove formatting from copied Clipboard text."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "확장 기능은 Firefox만을 위한 앱입니다."
@@ -4591,16 +4599,15 @@ msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "번역 도구"
+msgid "Elite ad blockers"
+msgstr "엘리트 광고 차단기"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube 사용자 지정"
+msgid "Anti-tracking extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4658,6 +4665,10 @@ msgid "See more password manager staff picks"
 msgstr "비밀번호 관리자 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "번역 도구"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "번역 도구 직원 추천 더보기"
 
@@ -4687,12 +4698,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" 태그 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "엘리트 광고 차단기"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "광고 차단기 직원 추천 더보기"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube 사용자 지정"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

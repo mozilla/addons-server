@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
 "PO-Revision-Date: 2022-08-20 06:18+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -4596,6 +4596,14 @@ msgstr "Blokujte reklamy a získejte vylepšenou ochranu před malwarem."
 msgid "Remove formatting from copied Clipboard text."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšíření jsou jako aplikace pro Firefox."
@@ -4610,16 +4618,15 @@ msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Jazykové překladače"
+msgid "Elite ad blockers"
+msgstr "Výkonné blokátory reklam"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Přizpůsobení YouTube"
+msgid "Anti-tracking extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4676,6 +4683,10 @@ msgid "See more password manager staff picks"
 msgstr "Další vybraná rozšíření pro správu hesel"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Jazykové překladače"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Další vybrané jazykové překladače"
 
@@ -4704,12 +4715,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Zobrazit další rozšíření se štítkem „{tag}“"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Výkonné blokátory reklam"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Další vybraná rozšíření pro blokování reklam"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Přizpůsobení YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

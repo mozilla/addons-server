@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
-"PO-Revision-Date: 2022-09-03 08:33+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"PO-Revision-Date: 2022-09-07 02:19+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4522,6 +4522,14 @@ msgstr "去广告并获得更好的恶意软件防护。"
 msgid "Remove formatting from copied Clipboard text."
 msgstr "清除复制到剪贴板中文本的格式。"
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr "数字指纹隐私保护。"
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr "增强您在 Steam 上的游戏体验。"
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Firefox 上的“小程序”。"
@@ -4536,17 +4544,16 @@ msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "翻译工具"
+msgid "Elite ad blockers"
+msgstr "王者级广告拦截工具"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube 体验定制"
+msgid "Anti-tracking extensions"
+msgstr "反跟踪扩展"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "新手必备扩展"
+msgid "Extensions for writers"
+msgstr "面向文字工作者的扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4602,6 +4609,10 @@ msgid "See more password manager staff picks"
 msgstr "更多编辑推荐 > 密码管理器"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "翻译工具"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "更多编辑推荐 > 翻译工具"
 
@@ -4630,12 +4641,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "更多含“{tag}”标签的扩展"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "王者级广告拦截工具"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "更多编辑推荐 > 广告拦截工具"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube 体验定制"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

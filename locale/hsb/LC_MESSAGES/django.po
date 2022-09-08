@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
-"PO-Revision-Date: 2022-08-30 20:59+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"PO-Revision-Date: 2022-09-06 17:26+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4604,6 +4604,14 @@ msgstr "Wotstrońće wabjenje a dóstańće polěpšeny škit před škódnej so
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Wotstrońće formatowanje z kopěrowaneho teksta mjezyskłada."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr "Škit priwatnosće přećiwo porstowym wućišćam."
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr "Polěpšće swoje hrajne dožiwjenje na Steam."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšěrjenja su za Firefox kaž nałoženja."
@@ -4618,17 +4626,16 @@ msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Přełožowanske nastroje"
+msgid "Elite ad blockers"
+msgstr "Wukonliwe blokowaki wabjenja"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Přiměrjenje YouTube"
+msgid "Anti-tracking extensions"
+msgstr "Rozšěrjenja přećiwo slědowanju"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Spočatny pakćik rozšěrjenjow"
+msgid "Extensions for writers"
+msgstr "Rozšěrjenja za pisarjow"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4683,6 +4690,10 @@ msgid "See more password manager staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju hesłow pokazać"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Přełožowanske nastroje"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane přełožowanske nastroje pokazać"
 
@@ -4711,12 +4722,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Dalše rozšěrjenja ze značku „{tag}“"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Wukonliwe blokowaki wabjenja"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju blokowakow wabjenja pokazać"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Přiměrjenje YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

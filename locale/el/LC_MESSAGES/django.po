@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
-"PO-Revision-Date: 2022-08-31 12:28+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"PO-Revision-Date: 2022-09-06 21:26+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4661,6 +4661,14 @@ msgstr "Αφαίρεση διαφημίσεων και ενισχυμένη πρ
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Κατάργηση μορφοποίησης από το αντιγραμμένο κείμενο του πρόχειρου."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr "Προστασία απορρήτου με δακτυλικό αποτύπωμα."
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr "Βελτιώστε την εμπειρία σας με τα παιχνίδια στο Steam."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Οι επεκτάσεις είναι σαν εφαρμογές για το Firefox."
@@ -4675,17 +4683,16 @@ msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Εργαλεία μετάφρασης"
+msgid "Elite ad blockers"
+msgstr "Επίλεκτα πρόσθετα φραγής διαφημίσεων"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Προσαρμογή YouTube"
+msgid "Anti-tracking extensions"
+msgstr "Επεκτάσεις προστασίας από καταγραφή"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Βασικό πακέτο επεκτάσεων"
+msgid "Extensions for writers"
+msgstr "Επεκτάσεις για συγγραφείς"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4741,6 +4748,10 @@ msgid "See more password manager staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης κωδικών πρόσβασης"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Εργαλεία μετάφρασης"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Περισσότερα επιλεγμένα εργαλεία μετάφρασης"
 
@@ -4769,12 +4780,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Περισσότερες επεκτάσεις με ετικέτα «{tag}»"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Επίλεκτα πρόσθετα φραγής διαφημίσεων"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις φραγής διαφημίσεων"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Προσαρμογή YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"

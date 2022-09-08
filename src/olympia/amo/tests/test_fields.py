@@ -1,9 +1,11 @@
+from ipaddress import IPv4Address, IPv6Address
+
 from django.core import exceptions
 from django.db import connection, DataError
 from django.test.utils import override_settings
 
 from olympia.access.models import Group
-from olympia.amo.fields import HttpHttpsOnlyURLField, CIDRField
+from olympia.amo.fields import CIDRField, HttpHttpsOnlyURLField, IPAddressBinaryField
 from olympia.amo.tests import TestCase
 
 
@@ -115,3 +117,57 @@ class TestCIDRField(TestCase):
             self.field.clean('127.0.0.1/28')
 
         self.field.clean('127.0.0.0/28')
+
+
+class TestIPAddressBinaryField(TestCase):
+    def test_from_db_value(self):
+        assert IPAddressBinaryField().from_db_value(
+            b'\x0f\x10\x17*', None, None
+        ) == IPv4Address('15.16.23.42')
+
+    def test_to_python(self):
+        assert IPAddressBinaryField().to_python(b'\x0f\x10\x17*') == IPv4Address(
+            '15.16.23.42'
+        )
+        assert IPAddressBinaryField().to_python('123.45.67.89') == IPv4Address(
+            '123.45.67.89'
+        )
+
+        assert IPAddressBinaryField().to_python(
+            b' \x01\r\xb8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x10\x00'
+        ) == IPv6Address('2001:db8::1000')
+        assert IPAddressBinaryField().to_python(
+            '0000:0000:0000:0000:0000:0abc:0007:0def'
+        ) == IPv6Address('::abc:7:def')
+
+        assert IPAddressBinaryField().to_python(None) is None
+
+        with self.assertRaises(exceptions.ValidationError):
+            assert IPAddressBinaryField().to_python('')
+        with self.assertRaises(exceptions.ValidationError):
+            assert IPAddressBinaryField().to_python('127.0.0.256')
+        with self.assertRaises(exceptions.ValidationError):
+            assert IPAddressBinaryField().to_python('::abc:7:def:1:99999')
+
+    def test_get_prep_value(self):
+        assert (
+            IPAddressBinaryField().get_prep_value(IPv4Address('15.16.23.42'))
+            == b'\x0f\x10\x17*'
+        )
+        assert IPAddressBinaryField().get_prep_value('15.16.23.42') == b'\x0f\x10\x17*'
+
+        assert (
+            IPAddressBinaryField().get_prep_value(IPv6Address('::abc:7:def'))
+            == b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\n\xbc\x00\x07\r\xef'
+        )
+        assert (
+            IPAddressBinaryField().get_prep_value('::abc:7:def')
+            == b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\n\xbc\x00\x07\r\xef'
+        )
+
+        assert IPAddressBinaryField().get_prep_value(None) is None
+
+        with self.assertRaises(exceptions.ValidationError):
+            assert IPAddressBinaryField().get_prep_value('')
+        with self.assertRaises(exceptions.ValidationError):
+            assert IPAddressBinaryField().get_prep_value('127.0.0.256')

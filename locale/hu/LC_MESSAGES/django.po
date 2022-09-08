@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-08-30 16:34+0000\n"
-"PO-Revision-Date: 2022-08-30 16:56+0000\n"
+"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"PO-Revision-Date: 2022-09-08 08:26+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4629,6 +4629,14 @@ msgstr "Távolítsa a reklámokat, és kapjon jobb védelmet a rosszindulatú pr
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Távolítsa el a formázást a vágólapra másolt szövegből."
 
+#. editorial content for the primary hero shelves.
+msgid "Fingerprinting privacy protection."
+msgstr "Ujjlenyomat-készítés elleni védelem."
+
+#. editorial content for the primary hero shelves.
+msgid "Enhance your gaming experience on Steam."
+msgstr "Emelje a következő szintre a játékélményét a Steamen."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "A kiegészítők olyanok, mintha alkalmazások lennének a Firefoxhoz."
@@ -4643,17 +4651,16 @@ msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Fordítási eszközök"
+msgid "Elite ad blockers"
+msgstr "Elit reklámblokkolók"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube testreszabás"
+msgid "Anti-tracking extensions"
+msgstr "Követés elleni kiegészítők"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Kiegészítő kezdőcsomag"
+msgid "Extensions for writers"
+msgstr "Kiegészítők íróknak"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4709,6 +4716,10 @@ msgid "See more password manager staff picks"
 msgstr "További, stáb által javasolt jelszókezelő kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Fordítási eszközök"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "További, stáb által javasolt fordítási eszközök megtekintése"
 
@@ -4737,12 +4748,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "További „{tag}” címkéjű kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Elit reklámblokkolók"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "További, stáb által javasolt reklámblokkoló kiegészítők megtekintése"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube testreszabás"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
