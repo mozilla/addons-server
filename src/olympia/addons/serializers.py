@@ -273,7 +273,7 @@ class LicenseSerializer(serializers.ModelSerializer):
         # currently so we just need the addon id.
         # We can get the addon via `instance.version_instance` which is set by
         # SimpleVersionSerializer.to_representation() while serializing.
-        # Only get the version license url for non-builtin licenses.
+        # Only get the addon license url for non-builtin licenses.
         if not obj.builtin and hasattr(obj, 'version_instance'):
             return absolutify(
                 reverse('addons.license', args=[obj.version_instance.addon.slug])
