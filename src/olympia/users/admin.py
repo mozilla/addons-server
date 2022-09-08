@@ -230,7 +230,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                 for network in ips_and_networks['networks']:
                     condition |= Q(
                         activitylog__iplog__ip_address_binary__range=(
-                            network[0], network[-1],
+                            network[0],
+                            network[-1],
                         )
                     )
             # We want to duplicate the joins against activitylog + iplog so
