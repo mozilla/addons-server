@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-08 11:02+0000\n"
+"PO-Revision-Date: 2022-09-08 12:24+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1986,37 +1986,37 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 msgid "Header area background"
-msgstr ""
+msgstr "Bakgrunnur fyrirsagnasvæðis"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Texti og táknmyndir fyrirsagnasvæðis"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr ""
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Bakgrunnur verkfærastikusvæðis"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr ""
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Texti og táknmyndir verkfærastikusvæðis"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Bakgrunnur reita verkfærastiku"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Bakgrunnur reita textasvæðis"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
@@ -2081,7 +2081,7 @@ msgid "Add-on Validator"
 msgstr ""
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Viðbætur í þróun"
 
 msgid "Community & Support"
 msgstr "Aðstoð og samfélag"
@@ -2954,7 +2954,7 @@ msgid "Confirm and generate new credentials"
 msgstr ""
 
 msgid "Generate new credentials"
-msgstr ""
+msgstr "Útbúa ný auðkenni"
 
 #, python-format
 msgid ""
@@ -3908,7 +3908,7 @@ msgstr "Takmarka aðgang Firefox að vefsíðum sem þú skilgreinir. Frábært 
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Stýrðu tímanum þínum með því að vinna á tilteknum tímabilum."
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
@@ -4102,7 +4102,7 @@ msgstr "Fylgstu með framleiðni. Mældu tímann sem þú eyðir fyrir framan t�
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Vistaðu eftirlætisefnið þitt af vefnum. Klipptu út efni á borð við greinar, myndskeið, myndir og fleira til að geyma og nota síðar eða í rauntímasamskiptum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4137,7 +4137,7 @@ msgstr "Sástu áhugaverða mynd á vefnum? Viltu vita meira um hana?"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Einfaldlega dragðu texta, myndir eða tengla til að framkvæma aðgerðir á borð við afritun, opna, leita og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -4146,7 +4146,7 @@ msgstr "Nýttu þér getuna til að hlaða niður myndskeiðum og/eða hljóði 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Sjáðu hvar netþjónar vefsvæða eru staðsettir á hnettinum. Vertu upplýst/ur á vafrinu."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
@@ -4231,7 +4231,7 @@ msgstr "Njóttu kostanna við umsýslu sterkra lykilorða."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "Sérsníddu ljósa og dökka litatóna til að gera vefsíður þægilegri fyrir augun."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
