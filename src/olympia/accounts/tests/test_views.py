@@ -3,6 +3,7 @@ import json
 import time
 
 from datetime import datetime
+from ipaddress import IPv4Address
 from os import path
 from unittest import mock
 from urllib.parse import parse_qs, urlparse
@@ -217,7 +218,7 @@ class TestLoginUserAndRegisterUser(TestCase):
             == 1
         )
         assert IPLog.objects.all().count() == 1
-        assert IPLog.objects.get().ip_address == '8.8.8.8'
+        assert IPLog.objects.get().ip_address_binary == IPv4Address('8.8.8.8')
 
     def test_email_address_can_change(self):
         self.user.update(email='different@yeahoo.com')
