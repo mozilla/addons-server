@@ -30,7 +30,11 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.admin import CommaSearchInAdminMixin
+from olympia.amo.admin import (
+    CommaSearchInAdminMixin,
+    CommaSearchInAdminChangeListSearchForm,
+    SEARCH_VAR,
+)
 from olympia.amo.fields import IPAddressBinaryField
 from olympia.amo.models import GroupConcat
 from olympia.api.models import APIKey, APIKeyConfirmation
@@ -159,12 +163,22 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         css = {'all': ('css/admin/userprofile.css',)}
 
     def get_list_display(self, request):
-        search_term = request.GET.get('q')
+        """Get fields to use for displaying changelist."""
+        # We don't have access to the _search_form instance the ChangeList
+        # creates, so make our own just for this method to grab the cleaned
+        # search term.
+        search_form = CommaSearchInAdminChangeListSearchForm(request.GET)
+        search_term = (
+            search_form.cleaned_data.get(SEARCH_VAR) if search_form.is_valid() else None
+        )
         if search_term and self.ip_addresses_if_query_is_all_ip_addresses(search_term):
             return (*self.list_display, *self.extra_list_display_for_ip_searches)
         return self.list_display
 
     def ip_addresses_if_query_is_all_ip_addresses(self, search_term):
+        # Caller should already have cleaned up search_term at this point,
+        # removing whitespace etc if there is a comma separating multiple
+        # terms.
         search_terms = search_term.split(',')
         ips = []
         for term in search_terms:

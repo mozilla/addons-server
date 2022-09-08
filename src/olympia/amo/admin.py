@@ -2,6 +2,7 @@ import functools
 import operator
 
 from django.contrib import admin
+from django.contrib.admin.views.main import ChangeList, ChangeListSearchForm, SEARCH_VAR
 from django.core.exceptions import FieldDoesNotExist
 from django.db import models
 from django.db.models.constants import LOOKUP_SEP
@@ -9,7 +10,28 @@ from django.db.models.constants import LOOKUP_SEP
 from .models import FakeEmail
 
 
+class CommaSearchInAdminChangeListSearchForm(ChangeListSearchForm):
+    def clean(self):
+        self.cleaned_data = super().clean()
+        search_term = self.cleaned_data[SEARCH_VAR]
+        if ',' in search_term:
+            self.cleaned_data[SEARCH_VAR] = ','.join(
+                term.strip() for term in search_term.split(',') if term.strip()
+            )
+        return self.cleaned_data
+
+
+class CommaSearchInAdminChangeList(ChangeList):
+    """Custom ChangeList companion for CommaSearchInAdminMixin, allowing to
+    have a custom search form."""
+
+    search_form_class = CommaSearchInAdminChangeListSearchForm
+
+
 class CommaSearchInAdminMixin:
+    def get_changelist(self, request, **kwargs):
+        return CommaSearchInAdminChangeList
+
     def get_search_id_field(self, request):
         """
         Return the field to use when all search terms are numeric.
@@ -96,8 +118,10 @@ class CommaSearchInAdminMixin:
         if not (search_fields and search_term):
             # return early if we have nothing special to do
             return queryset, may_have_duplicates
-
-        if ' ' not in search_term and ',' in search_term:
+        # Do our custom logic if a `,` is present. Note that our custom search
+        # form (CommaSearchInAdminChangeListSearchForm) does some preliminary
+        # cleaning when it sees a comma, trimming whitespace around each term.
+        if ',' in search_term:
             separator = ','
             joining_operator = operator.or_
         else:
