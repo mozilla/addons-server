@@ -483,9 +483,6 @@ class Version(OnChangeMixin, ModelBase):
 
         return version
 
-    def license_url(self, impala=False):
-        return reverse('addons.license', args=[self.addon.slug, self.version])
-
     def get_url_path(self):
         if self.channel == amo.CHANNEL_UNLISTED:
             return ''

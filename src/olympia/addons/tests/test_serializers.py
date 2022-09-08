@@ -95,7 +95,7 @@ class AddonSerializerOutputTestMixin:
             'name': {'en-US': 'My License', 'fr': 'Mä Licence'},
             # License text is not present in version serializer used from
             # AddonSerializer.
-            'url': absolutify(version.license_url()),
+            'url': absolutify(reverse('addons.license', args=[version.addon.slug])),
             'slug': None,
         }
 
@@ -1155,7 +1155,9 @@ class TestVersionSerializerOutput(TestCase):
             'text': {
                 'en-US': 'Lorem ipsum dolor sit amet, has nemore patrioqué',
             },
-            'url': absolutify(self.version.license_url()),
+            'url': absolutify(
+                reverse('addons.license', args=[self.version.addon.slug])
+            ),
             'slug': None,
         }
         assert result['reviewed'] == (now.replace(microsecond=0).isoformat() + 'Z')
@@ -1197,7 +1199,9 @@ class TestVersionSerializerOutput(TestCase):
         assert result['license']
         assert result['license']['id'] == license.pk
         assert result['license']['is_custom'] is True
-        assert result['license']['url'] == absolutify(self.version.license_url())
+        assert result['license']['url'] == absolutify(
+            reverse('addons.license', args=[self.version.addon.slug])
+        )
 
         # And make sure it's not present in v3
         gates = {self.request.version: ('del-version-license-is-custom',)}
@@ -1419,7 +1423,9 @@ class TestSimpleVersionSerializerOutput(TestCase):
         assert result['license']['id'] == license.pk
         assert result['license']['name']['en-US'] == 'My License'
         assert result['license']['name']['fr'] == 'Mä Licence'
-        assert result['license']['url'] == absolutify(self.version.license_url())
+        assert result['license']['url'] == absolutify(
+            reverse('addons.license', args=[self.version.addon.slug])
+        )
         assert 'text' not in result['license']
 
 

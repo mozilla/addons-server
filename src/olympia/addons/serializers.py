@@ -266,18 +266,18 @@ class LicenseSerializer(serializers.ModelSerializer):
         return not bool(obj.builtin)
 
     def get_url(self, obj):
-        return obj.url or self.get_version_license_url(obj)
+        return obj.url or self.get_addon_license_url(obj)
 
-    def get_version_license_url(self, obj):
-        # We need the version associated with the license, because that's where
-        # the license_url() method lives. The problem is, normally we would not
-        # be able to do that, because there can be multiple versions for a
-        # given License. However, since we're serializing through a nested
-        # serializer, we cheat and use `instance.version_instance` which is
-        # set by SimpleVersionSerializer.to_representation() while serializing.
+    def get_addon_license_url(self, obj):
+        # addons-frontend only supports an addon license url - not version specific -
+        # currently so we just need the addon id.
+        # We can get the addon via `instance.version_instance` which is set by
+        # SimpleVersionSerializer.to_representation() while serializing.
         # Only get the version license url for non-builtin licenses.
         if not obj.builtin and hasattr(obj, 'version_instance'):
-            return absolutify(obj.version_instance.license_url())
+            return absolutify(
+                reverse('addons.license', args=[obj.version_instance.addon.slug])
+            )
         return None
 
     def to_representation(self, instance):
