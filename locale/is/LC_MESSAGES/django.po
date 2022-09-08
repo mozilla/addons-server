@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-08 09:53+0000\n"
+"PO-Revision-Date: 2022-09-08 10:17+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -1022,10 +1022,10 @@ msgid "Force enabled"
 msgstr "Þvingað virkt"
 
 msgid "{user} logged in."
-msgstr ""
+msgstr "{user} skráður inn."
 
 msgid "{user} restricted."
-msgstr ""
+msgstr "{user} takmarkaður."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1091,16 +1091,16 @@ msgid "Dictionary"
 msgstr "Orðasafn"
 
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Úrelt leitarvél"
 
 msgid "Language Pack (Application)"
 msgstr "Tungumálapakki (forrit)"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Úreltur tungumálapakki (viðbót)"
 
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Úrelt viðbót"
 
 msgid "Deprecated LWT"
 msgstr "Úrelt LWT"
@@ -1121,16 +1121,16 @@ msgid "Dictionaries"
 msgstr "Orðasöfn"
 
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Úrelt leitarvrkfæri"
 
 msgid "Language Packs (Application)"
 msgstr "Tungumálapakkar (forrit)"
 
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Úreltir tungumálapakkar (viðbætur)"
 
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Úreltar viðbætur"
 
 msgid "Deprecated LWTs"
 msgstr "Úreltir LWT"
@@ -3686,7 +3686,7 @@ msgstr "Forðastu lúmska rekjara og ýmsar takmarkanir. Dulbúðu flakkið þit
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Endurhlaða flipa sjálfkrafa á grundvelli tímabila sem þú stillir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3746,7 +3746,7 @@ msgstr "Finndu út hverjir eru að fylgjast með þér og hvar þeir kunna að d
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Vafraðu nafnlaust. Flakkaðu um vefinn í dulargerfi - láttu jafnvel líta út fyrir að þú sért í öðru landi."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
@@ -3764,7 +3764,7 @@ msgstr "Umbreyttu öllum opnum flipum þínum í lista til að stýra þeim auð
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Skoteheld umsýsla niðurhals. Skoðaðu ástand þess sem þú ert að sækja með hjálp stöðustiku, síðu með niðurhalsferli og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
@@ -3798,7 +3798,7 @@ msgstr "Sérsníddu útlit hvaða vefsíðu sem er. Breyttu litum, bakgrunni og 
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Sérsníddu síðuna fyrir nýja flipa, þannig að hún birti tiltekinn fjölda flísa, bakgrunnsmynd og fleira."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -3806,7 +3806,7 @@ msgstr "Geymdu lykilorð á öruggan hátt og hafðu aðgang að þeim á mörgu
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Vertu viss um hvar þú sért á vefnum. Sjáðu í hvaða landi vefsvæði eru hýst. Vertu upplýst/ur á netinu."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
@@ -3827,7 +3827,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Útilokaðu vefsvæði sem stela frá þér tíma, þannig að þú getir einbeitt þér að fyrirliggjandi verkefnum."
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
@@ -5601,7 +5601,7 @@ msgid "Download"
 msgstr "Sækja"
 
 msgid "Not Auto Approved Because"
-msgstr ""
+msgstr "Ekki samþykkt sjálfvirkt vegna"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -5616,7 +5616,7 @@ msgid "Updates"
 msgstr "Uppfærslur"
 
 msgid "Rating Reviews"
-msgstr ""
+msgstr "Einkunn umsagna"
 
 msgid "Auto Approved"
 msgstr "Samþykkt sjálfvirkt"
@@ -5684,11 +5684,11 @@ msgstr "Keyra"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr ""
+msgstr "Ógild \"%s\" færibreyta."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Ógild samsetning á \"%s\" og \"%s\" færibreytum."
 
 msgid "Return To AMO is currently disabled"
 msgstr ""
@@ -6207,19 +6207,19 @@ msgstr "aðrir"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Hafnað eftir töf, áætlað fyrir %s"
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Samþykkt sjálfvirkt, staðfest"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Samþykkt sjálfvirkt, ekki staðfest"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Samþykkt, handvirkt"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Gert óvirkt af hönnuðum"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} og nýrra"
