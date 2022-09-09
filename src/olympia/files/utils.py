@@ -907,6 +907,17 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     if not acl.langpack_submission_allowed(user, xpi_info):
         raise forms.ValidationError(gettext('You cannot submit a language pack'))
 
+    if (
+        addon
+        and addon.target_locale
+        and addon.target_locale != xpi_info['target_locale']
+    ):
+        raise forms.ValidationError(
+            gettext(
+                'The locale of an existing dictionary/language pack cannot be changed'
+            )
+        )
+
     if not acl.site_permission_addons_submission_allowed(user, xpi_info):
         raise forms.ValidationError(gettext('You cannot submit this type of add-on'))
 

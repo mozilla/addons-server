@@ -19,7 +19,7 @@ from django.test.utils import override_settings
 import pytest
 
 from olympia import amo
-from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.files import utils
@@ -597,6 +597,60 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
         self.grant_permission(user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
 
         utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
+
+    def test_cant_change_locale_for_dictionary(self):
+        self.create_appversion('firefox', '61.0')
+        data = {
+            'applications': {'gecko': {'id': '@dict'}},
+            'dictionaries': {'en-US': '/path/to/en-US.dic'},
+        }
+
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
+        assert parsed_data['type'] == amo.ADDON_DICT
+        assert parsed_data['target_locale'] == 'en-US'
+        assert utils.check_xpi_info(parsed_data)
+
+        addon = addon_factory(type=amo.ADDON_DICT, target_locale='fr', guid='@dict')
+        with self.assertRaises(ValidationError) as exc:
+            utils.check_xpi_info(parsed_data, addon)
+        assert exc.exception.messages == [
+            'The locale of an existing dictionary/language pack cannot be changed'
+        ]
+
+        addon.update(target_locale='en-US')
+        assert utils.check_xpi_info(parsed_data, addon=addon)
+
+    def test_cant_change_locale_for_langpack(self):
+        user = user_factory()
+        self.grant_permission(user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.create_appversion('firefox', '60.0')
+        self.create_appversion('firefox', '60.*')
+
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '>=60.0',
+                    'strict_max_version': '=60.*',
+                    'id': '@langp',
+                }
+            },
+            'langpack_id': 'en-US',
+        }
+
+        parsed_data = utils.ManifestJSONExtractor(json.dumps(data)).parse()
+        assert parsed_data['type'] == amo.ADDON_LPAPP
+        assert parsed_data['target_locale'] == 'en-US'
+        assert utils.check_xpi_info(parsed_data, user=user)
+
+        addon = addon_factory(type=amo.ADDON_LPAPP, target_locale='fr', guid='@langp')
+        with self.assertRaises(ValidationError) as exc:
+            utils.check_xpi_info(parsed_data, addon, user=user)
+        assert exc.exception.messages == [
+            'The locale of an existing dictionary/language pack cannot be changed'
+        ]
+
+        addon.update(target_locale='en-US')
+        assert utils.check_xpi_info(parsed_data, addon=addon, user=user)
 
 
 class TestSitePermission(AppVersionsMixin, TestCase):
