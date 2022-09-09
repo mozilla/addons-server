@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-09 18:10+0000\n"
+"PO-Revision-Date: 2022-09-09 23:04+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4588,11 +4588,11 @@ msgstr "Remover formattation ab le texto copiate."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Protection del confidentialitate de dactylogrammatores."
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Meliora tu experientia de joco sur Steam."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
