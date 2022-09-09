@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-09 09:25+0000\n"
+"PO-Revision-Date: 2022-09-09 18:10+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4613,7 +4613,7 @@ msgstr "Blocatores de avisos elite"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Extensiones anti-traciamento"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions for writers"
