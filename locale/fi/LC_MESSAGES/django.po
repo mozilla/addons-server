@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-10 11:40+0000\n"
+"PO-Revision-Date: 2022-09-10 11:50+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -1466,13 +1466,13 @@ msgid "Video"
 msgstr "Video"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozillan julkinen lisenssi 2.0 (MPL)"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU:n yleinen julkinen lisenssi v2.0 (GPL)"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "GNU:n yleinen julkinen lisenssi v3.0 (GPL)"
 
 msgid "GNU Library General Public License v2.1"
 msgstr ""
@@ -1480,16 +1480,14 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Lisenssi"
+msgstr "MIT-lisenssi"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Lisenssi"
+msgstr "BSD-lisenssi"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozillan julkinen lisenssi 1.1 (MPL)"
 
 msgid "All Rights Reserved"
 msgstr "Kaikki oikeudet pidätetään"
@@ -3727,7 +3725,7 @@ msgstr "Nauti lukuisista uusista YouTube-ominaisuuksista, kuten cinema-tilasta, 
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Korosta mikä tahansa teksti ja napsauta hiiren kakkospainiketta suorittaaksesi kuvahaun nopeasti."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
@@ -3909,7 +3907,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Muunna kaikki avoimet välilehdet luetteloksi hallitaksesi niitä helposti ja nopeuttaaksesi Firefoxia."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4225,7 +4223,7 @@ msgstr "Lisää mahdollisuuden näyttää tai piilottaa kaikki salasanakentät."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Keskity katsomaasi himmentämällä kaikki muu paitsi videosoitin."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -4618,7 +4616,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Muokkaa YouTubea makusi mukaan."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
@@ -4630,7 +4628,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Tehokas esto kaikentyyppisiä mainoksia vastaan."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
@@ -4642,7 +4640,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Poista muotoilu kopioidusta leikepöydän tekstistä."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
@@ -4812,7 +4810,7 @@ msgstr "Katso lisää nousussa olevia laajennuksia"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Steamin tehostajat"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
