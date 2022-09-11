@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-11 18:04+0000\n"
+"PO-Revision-Date: 2022-09-11 18:09+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2086,7 +2086,7 @@ msgstr "ďalšie doplnky..."
 
 # Plural in this context means many of the add-on type
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Workshop tvorby rozšírenia"
 
 msgid "Documentation"
 msgstr "Dokumentácia"
@@ -5656,7 +5656,7 @@ msgid "Additional sources:"
 msgstr "Ďalšie zdroje:"
 
 msgid "Download files"
-msgstr "Prevziať súbory"
+msgstr "Stiahnuť súbory"
 
 msgid "The developer has provided source code."
 msgstr "Vývojár poskytol zdrojový kód."
@@ -5681,7 +5681,7 @@ msgid "Flagged for human review"
 msgstr "Moderovaná recenzia ({0})"
 
 msgid "Download"
-msgstr "Prevziať"
+msgstr "Stiahnuť"
 
 msgid "Not Auto Approved Because"
 msgstr ""
@@ -6058,7 +6058,7 @@ msgid "Forum"
 msgstr "Fórum"
 
 msgid "Download Firefox"
-msgstr "Prevziať Firefox"
+msgstr "Stiahnuť Firefox"
 
 msgid "Android Browser"
 msgstr "Prehliadač pre Android"
