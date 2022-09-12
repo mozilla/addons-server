@@ -298,9 +298,9 @@ django-environ==0.9.0 \
 django-extended-choices==1.3.3 \
     --hash=sha256:13c1edfb5fe8da112720f1b006866aa7142e0f62a828728e5afa638da5980387 \
     --hash=sha256:609cafc2feaf352cb92b3978a6e71fcb267dd2d3281ffa964d736b9bf71ec34b
-django-extensions==3.2.0 \
-    --hash=sha256:4c234a7236e9e41c17d9036f6dae7a3a9b212527105b8a0d24b2459b267825f0 \
-    --hash=sha256:7dc7cd1da50d83b76447a58f5d7e5c8e6cd83f21e9b7e5f97e6b644f4d4e21a6
+django-extensions==3.2.1 \
+    --hash=sha256:2a4f4d757be2563cd1ff7cfdf2e57468f5f931cc88b23cf82ca75717aae504a4 \
+    --hash=sha256:421464be390289513f86cb5e18eb43e5dc1de8b4c27ba9faa3b91261b0d67e09
 django-multidb-router==0.10 \
     --hash=sha256:6802bbfce3a0dac343f93a290df12a9979aed99b350bc0148a7430353efae8b6 \
     --hash=sha256:a10bf4b664465090a5f2e8543dd1491eaf8dde7c551270e546324454e7280964
