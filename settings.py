@@ -93,41 +93,16 @@ DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
 }
 
-# FxA config for local development only.
-FXA_CONFIG = {
-    'default': {
-        'client_id': env('FXA_CLIENT_ID', default='a25796da7bc73ffa'),
-        'client_secret': env(
-            'FXA_CLIENT_SECRET',
-            default='4828af02f60a12738a79c7121b06d42b481f112dce1831440902a8412d2770c5',
-        ),
-        # fxa redirects to http://olympia.test/api/auth/authenticate-callback/
-    },
-    'amo': {
-        'client_id': env('FXA_CLIENT_ID', default='0f95f6474c24c1dc'),
-        'client_secret': env(
-            'FXA_CLIENT_SECRET',
-            default='ca45e503a1b4ec9e2a3d4855d79849e098da18b7dfe42b6bc76dfed420fc1d38',
-        ),
-        # fxa redirects to http://localhost:3000/fxa-authenticate
-    },
-    'local': {
-        'client_id': env('FXA_CLIENT_ID', default='4dce1adfa7901c08'),
-        'client_secret': env(
-            'FXA_CLIENT_SECRET',
-            default='d7d5f1148a35b12c067fb9eafafc29d35165a90f5d8b0032f1fcd37468ae49fe',
-        ),
-        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  # noqa
-    },
-}
-FXA_CONTENT_HOST = 'https://stable.dev.lcip.org'
-FXA_OAUTH_HOST = 'https://oauth-stable.dev.lcip.org/v1'
-FXA_PROFILE_HOST = 'https://stable.dev.lcip.org/profile/v1'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
+FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
+FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
+FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 
 # When USE_FAKE_FXA_AUTH and settings.DEBUG are both True, we serve a fake
 # authentication page, bypassing FxA. To disable this behavior, set
 # USE_FAKE_FXA = False in your local settings.
+# You will also need to specify `client_id` and `client_secret` in your
+# local_settings.py or environment variables - you must contact the FxA team to get your
+# own credentials for FxA stage.
 USE_FAKE_FXA_AUTH = True
 
 # CSP report endpoint which returns a 204 from addons-nginx in local dev.

@@ -69,19 +69,13 @@ ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 ALLOW_SELF_REVIEWS = True
 
 FXA_CONFIG = {
-    'default': {
-        'client_id': env('FXA_CLIENT_ID'),
-        'client_secret': env('FXA_CLIENT_SECRET'),
-        # fxa redirects to https://%s/api/auth/authenticate-callback/ % DOMAIN
-    },
+    **FXA_CONFIG,
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
         # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  # noqa
     },
 }
-DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',

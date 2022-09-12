@@ -1404,11 +1404,19 @@ ignore_logger('django.security.DisallowedHost')
 # Automatically do 'from olympia import amo' when running shell_plus.
 SHELL_PLUS_POST_IMPORTS = (('olympia', 'amo'),)
 
+FXA_CONFIG = {
+    'default': {
+        'client_id': env('FXA_CLIENT_ID', default='.'),
+        'client_secret': env('FXA_CLIENT_SECRET', default='.'),
+        # fxa redirects to https://%s/api/auth/authenticate-callback/ % DOMAIN
+    },
+}
+DEFAULT_FXA_CONFIG_NAME = 'default'
+
 FXA_CONTENT_HOST = 'https://accounts.firefox.com'
 FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
 FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
-DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default']
+
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
 VERIFY_FXA_ACCESS_TOKEN = True
 

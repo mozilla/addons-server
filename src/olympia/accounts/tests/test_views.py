@@ -63,15 +63,15 @@ SKIP_REDIRECT_FXA_CONFIG = {
 }
 
 
-@override_settings(FXA_CONFIG={'current-config': FXA_CONFIG})
+@override_settings(
+    FXA_CONFIG={'current-config': FXA_CONFIG},
+    DEFAULT_FXA_CONFIG_NAME='current-config',
+)
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/v1')
 class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
-    class LoginStartView(views.LoginStartView):
-        DEFAULT_FXA_CONFIG_NAME = 'current-config'
-
     def setUp(self):
         super().setUp()
-        self.endpoint(self.LoginStartView, r'^login/start/')
+        self.endpoint(views.LoginStartView, r'^login/start/')
         self.url = '/en-US/firefox/login/start/'
         self.initialize_session({})
 
@@ -174,10 +174,6 @@ def has_cors_headers(response, origin='https://addons-frontend'):
 
 
 class TestLoginStartView(TestCase):
-    def test_default_config_is_used(self):
-        assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
-        assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (['default', 'amo', 'local'])
-
     @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
     def test_redirect_url_fake_fxa_auth(self):
         response = self.client.get(reverse_ns('accounts.login_start'))
@@ -690,44 +686,23 @@ class TestWithUser(TestCase):
         'foo': {'FOO': 123},
         'bar': {'BAR': 456},
         'baz': {'BAZ': 789},
-    }
+    },
+    DEFAULT_FXA_CONFIG_NAME='baz',
 )
 class TestFxAConfigMixin(TestCase):
-    class DefaultConfig(views.FxAConfigMixin):
-        DEFAULT_FXA_CONFIG_NAME = 'bar'
-
-    class MultipleConfigs(views.FxAConfigMixin):
-        DEFAULT_FXA_CONFIG_NAME = 'baz'
-        ALLOWED_FXA_CONFIGS = ['foo', 'baz']
-
-    def test_default_only_no_config(self):
+    def test_no_config(self):
         request = RequestFactory().get('/login')
-        config = self.DefaultConfig().get_fxa_config(request)
-        assert config == {'BAR': 456}
+        config = views.FxAConfigMixin().get_fxa_config(request)
+        assert config == {'BAZ': 789}
 
-    def test_default_only_not_allowed(self):
-        request = RequestFactory().get('/login?config=foo')
-        config = self.DefaultConfig().get_fxa_config(request)
-        assert config == {'BAR': 456}
-
-    def test_default_only_allowed(self):
+    def test_config_alternate(self):
         request = RequestFactory().get('/login?config=bar')
-        config = self.DefaultConfig().get_fxa_config(request)
+        config = views.FxAConfigMixin().get_fxa_config(request)
         assert config == {'BAR': 456}
-
-    def test_config_is_allowed(self):
-        request = RequestFactory().get('/login?config=foo')
-        config = self.MultipleConfigs().get_fxa_config(request)
-        assert config == {'FOO': 123}
 
     def test_config_is_default(self):
         request = RequestFactory().get('/login?config=baz')
-        config = self.MultipleConfigs().get_fxa_config(request)
-        assert config == {'BAZ': 789}
-
-    def test_config_is_not_allowed(self):
-        request = RequestFactory().get('/login?config=bar')
-        config = self.MultipleConfigs().get_fxa_config(request)
+        config = views.FxAConfigMixin().get_fxa_config(request)
         assert config == {'BAZ': 789}
 
 

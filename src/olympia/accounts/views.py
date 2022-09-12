@@ -322,14 +322,12 @@ def with_user(f):
 
 
 class FxAConfigMixin:
-    DEFAULT_FXA_CONFIG_NAME = settings.DEFAULT_FXA_CONFIG_NAME
-    ALLOWED_FXA_CONFIGS = settings.ALLOWED_FXA_CONFIGS
-
     def get_config_name(self, request):
-        config_name = request.GET.get('config', self.DEFAULT_FXA_CONFIG_NAME)
-        if config_name not in self.ALLOWED_FXA_CONFIGS:
-            log.info(f'Using default FxA config instead of {config_name}')
-            config_name = self.DEFAULT_FXA_CONFIG_NAME
+        config_name = request.GET.get('config')
+        if config_name not in settings.FXA_CONFIG:
+            if config_name:
+                log.info(f'Using default FxA config instead of {config_name}')
+            config_name = settings.DEFAULT_FXA_CONFIG_NAME
         return config_name
 
     def get_fxa_config(self, request):
