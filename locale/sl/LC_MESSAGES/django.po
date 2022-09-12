@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-12 07:00+0000\n"
+"PO-Revision-Date: 2022-09-12 07:21+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4236,9 +4236,8 @@ msgstr "Popravite moteč zvok. Je glasnost spletne strani premajhna? Prevelika? 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr "Uredite spletne strani – odstranite oglase ali neželeno vsebino – preden jih natisnete."
+msgstr "Uredite spletno stran pred tiskanjem. Opravite zajetne vizualne spremembe – odstranite oglase ali neželeno vsebino – preden jo natisnete."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
@@ -4601,11 +4600,11 @@ msgstr "Posodobi blokado dodatka"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Razširitve proti sledenju"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions for writers"
-msgstr ""
+msgstr "Razširitve za pisce"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
