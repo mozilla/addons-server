@@ -159,7 +159,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     actions = ['ban_action', 'reset_api_key_action', 'reset_session_action']
 
     class Media:
-        js = ('js/admin/userprofile.js',)
+        js = ('js/admin/userprofile.js', 'js/exports.js', 'js/node_lib/netmask.js')
         css = {'all': ('css/admin/userprofile.css',)}
 
     def get_list_display(self, request):
@@ -171,37 +171,69 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         search_term = (
             search_form.cleaned_data.get(SEARCH_VAR) if search_form.is_valid() else None
         )
-        if search_term and self.ip_addresses_if_query_is_all_ip_addresses(search_term):
+        if search_term and self.ip_addresses_and_networks_from_query(search_term):
             return (*self.list_display, *self.extra_list_display_for_ip_searches)
         return self.list_display
 
-    def ip_addresses_if_query_is_all_ip_addresses(self, search_term):
+    def ip_addresses_and_networks_from_query(self, search_term):
         # Caller should already have cleaned up search_term at this point,
         # removing whitespace etc if there is a comma separating multiple
         # terms.
         search_terms = search_term.split(',')
         ips = []
+        networks = []
         for term in search_terms:
+            # If term is a number, skip trying to recognize an IP address
+            # entirely, because ip_address() is able to understand IP addresses
+            # as integers, and we don't want that, it's likely an user ID.
+            if term.isdigit():
+                return None
+            # Is the search term an IP ?
             try:
-                ip = ipaddress.ip_address(term)
-                ip_str = str(ip)
-                if ip_str != term:
-                    raise ValueError
-                ips.append(ip_str)
+                ips.append(ipaddress.ip_address(term))
+                continue
             except ValueError:
-                break
-        if search_terms == ips:
-            # If all we are searching for are IPs, we'll use our custom IP
-            # search.
-            # Note that this comparison relies on ips being stored as strings,
-            # if that were to change that it would break.
-            return ips
-        return None
+                pass
+            # Is the search term a network ?
+            try:
+                networks.append(ipaddress.ip_network(term))
+                continue
+            except ValueError:
+                pass
+            # Is the search term an IP range ?
+            if term.count('-') == 1:
+                try:
+                    networks.extend(
+                        ipaddress.summarize_address_range(
+                            *(ipaddress.ip_address(i.strip()) for i in term.split('-'))
+                        )
+                    )
+                    continue
+                except (ValueError, TypeError):
+                    pass
+            # That search term doesn't look like an IP, network or range, so
+            # we're not doing an IP search.
+            return None
+        return {'ips': ips, 'networks': networks}
 
     def get_search_results(self, request, queryset, search_term):
-        ips = self.ip_addresses_if_query_is_all_ip_addresses(search_term)
-        if ips:
-            condition = Q(activitylog__iplog__ip_address_binary__in=ips)
+        ips_and_networks = self.ip_addresses_and_networks_from_query(search_term)
+        if ips_and_networks:
+            condition = Q()
+            if ips_and_networks['ips']:
+                # IPs search can be implemented in a single __in=() query.
+                condition |= Q(
+                    activitylog__iplog__ip_address_binary__in=ips_and_networks['ips']
+                )
+            if ips_and_networks['networks']:
+                # Networks search need one __range conditions for each network.
+                for network in ips_and_networks['networks']:
+                    condition |= Q(
+                        activitylog__iplog__ip_address_binary__range=(
+                            network[0],
+                            network[-1],
+                        )
+                    )
             # We want to duplicate the joins against activitylog + iplog so
             # that one is used for the search, and the other for the group
             # concat showing all IPs for activities of that user. Django
