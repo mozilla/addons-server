@@ -1183,6 +1183,7 @@ def download_git_stored_file(request, version_id, filename):
 
 class AddonReviewerViewSet(GenericViewSet):
     log = olympia.core.logger.getLogger('z.reviewers')
+    lookup_value_regex = r'\d+'
 
     @drf_action(
         detail=True, methods=['post'], permission_classes=[AllowAnyKindOfReviewer]
@@ -1347,6 +1348,7 @@ class ReviewAddonVersionMixin:
     permission_classes = [
         AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
     ]
+    lookup_value_regex = r'\d+'
 
     def get_queryset(self):
         # Permission classes disallow access to non-public/unlisted add-ons
@@ -1460,6 +1462,7 @@ class ReviewAddonVersionDraftCommentViewSet(
 
     queryset = DraftComment.objects.all()
     serializer_class = DraftCommentSerializer
+    lookup_value_regex = r'\d+'
 
     def check_object_permissions(self, request, obj):
         """Check permissions against the parent add-on object."""
