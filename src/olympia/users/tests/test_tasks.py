@@ -1,9 +1,7 @@
-import os
 import shutil
 import tempfile
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
 import pytest
