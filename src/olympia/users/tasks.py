@@ -13,13 +13,13 @@ task_log = olympia.core.logger.getLogger('z.task')
 
 
 @task
-def delete_photo(dst, **kw):
-    task_log.info('[1@None] Deleting photo: %s.' % dst)
+def delete_photo(pk, **kw):
+    task_log.info('[1@None] Deleting photo for user: %s.' % pk)
 
-    try:
-        SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics').delete(dst)
-    except Exception as e:
-        task_log.error('Error deleting userpic: %s' % e)
+    user = UserProfile(id=pk)
+    storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
+    storage.delete(user.picture_path)
+    storage.delete(user.picture_path_original)
 
 
 @task

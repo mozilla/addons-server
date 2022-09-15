@@ -455,13 +455,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # Recursive import
         from olympia.users.tasks import delete_photo
 
-        storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
-
-        if storage.exists(self.picture_path):
-            delete_photo.delay(self.picture_path)
-
-        if storage.exists(self.picture_path_original):
-            delete_photo.delay(self.picture_path_original)
+        delete_photo.delay(self.pk)
 
         if self.picture_type:
             self.update(picture_type=None)

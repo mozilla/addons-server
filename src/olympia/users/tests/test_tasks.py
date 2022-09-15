@@ -11,6 +11,8 @@ import pytest
 from PIL import Image
 
 from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.utils import SafeStorage
+from olympia.users.models import UserProfile
 from olympia.users.tasks import delete_photo, resize_photo
 
 
@@ -19,14 +21,17 @@ pytestmark = pytest.mark.django_db
 
 def test_delete_photo():
     with tempfile.TemporaryDirectory(dir=settings.TMP_PATH) as tmp_media_path:
-        os.mkdir(os.path.join(tmp_media_path, 'userpics'))
-        dst_path = os.path.join(tmp_media_path, 'userpics', 'foo.png')
-        with storage.open(dst_path, mode='wb') as dst:
-            dst.write(b'test data\n')
         with override_settings(MEDIA_ROOT=tmp_media_path):
-            delete_photo(dst_path)
+            user = UserProfile(pk=42)
+            storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
+            with storage.open(user.picture_path, mode='wb') as dst:
+                dst.write(b'test data\n')
 
-        assert not storage.exists(dst_path)
+            assert storage.exists(user.picture_path)
+
+            delete_photo(user.pk)
+
+            assert not storage.exists(user.picture_path)
 
 
 def test_resize_photo():
