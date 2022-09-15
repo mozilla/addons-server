@@ -214,7 +214,7 @@ class TestIdentify(TestCase):
         self.get_profile.assert_called_with('cafe')
 
     def test_no_refresh_token(self):
-        self.get_fxa_token.return_value = get_fxa_token_data = {'access_token': 'cafe'}
+        self.get_fxa_token.return_value = {'access_token': 'cafe'}
         self.get_profile.return_value = {'email': 'me@em.hi'}
         with pytest.raises(verify.IdentificationError):
             verify.fxa_identify('heya', self.CONFIG)
