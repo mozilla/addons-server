@@ -6562,6 +6562,12 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.subscribe_url_listed)
         assert response.status_code == 404
 
+        self.subscribe_url_listed = self.subscribe_url_listed.replace(
+            f'{self.addon.pk + 42}', 'NaN'
+        )
+        response = self.client.post(self.subscribe_url_listed)
+        assert response.status_code == 404
+
     def test_subscribe_already_subscribed_listed(self):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon, channel=amo.CHANNEL_LISTED
@@ -6639,10 +6645,16 @@ class TestAddonReviewerViewSet(TestCase):
     def test_unsubscribe_addon_does_not_exist(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.client.login_api(self.user)
-        self.unsubscribe_url = reverse_ns(
+        self.subscribe_url_listed = reverse_ns(
             'reviewers-addon-subscribe-listed', kwargs={'pk': self.addon.pk + 42}
         )
-        response = self.client.post(self.unsubscribe_url)
+        response = self.client.post(self.subscribe_url_listed)
+        assert response.status_code == 404
+
+        self.subscribe_url_listed = self.subscribe_url_listed.replace(
+            f'{self.addon.pk + 42}', 'NaN'
+        )
+        response = self.client.post(self.subscribe_url_listed)
         assert response.status_code == 404
 
     def test_unsubscribe_not_subscribed(self):
@@ -6745,6 +6757,10 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.enable_url)
         assert response.status_code == 404
 
+        self.enable_url = self.enable_url.replace(f'{self.addon.pk + 42}', 'NaN')
+        response = self.client.post(self.enable_url)
+        assert response.status_code == 404
+
     def test_enable(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
@@ -6808,8 +6824,12 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         self.disable_url = reverse_ns(
-            'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42}
+            'reviewers-addon-disable', kwargs={'pk': self.addon.pk + 42}
         )
+        response = self.client.post(self.disable_url)
+        assert response.status_code == 404
+
+        self.disable_url = self.disable_url.replace(f'{self.addon.pk + 42}', 'NaN')
         response = self.client.post(self.disable_url)
         assert response.status_code == 404
 
@@ -6847,6 +6867,10 @@ class TestAddonReviewerViewSet(TestCase):
             'reviewers-addon-flags', kwargs={'pk': self.addon.pk + 42}
         )
         response = self.client.patch(self.flags_url, {'auto_approval_disabled': True})
+        assert response.status_code == 404
+
+        self.flags_url = self.flags_url.replace(f'{self.addon.pk + 42}', 'NaN')
+        response = self.client.post(self.flags_url)
         assert response.status_code == 404
 
     def test_patch_flags_no_flags_yet_still_works_transparently(self):
@@ -7224,6 +7248,25 @@ class TestReviewAddonVersionViewSetDetail(
         response = self.client.get(self.url)
         assert response.status_code == 404
 
+        self.url = self.url.replace(f'{self.addon.pk + 42}', 'NaN')
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_addon_get_not_found(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.url = reverse_ns(
+            'reviewers-versions-detail',
+            kwargs={'addon_pk': self.addon.pk + 42, 'pk': self.version.file.pk},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        self.url = self.url.replace(f'{self.version.file.pk + 42}', 'NaN')
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
     def test_mixed_channel_only_listed_without_unlisted_perm(self):
         user = UserProfile.objects.create(username='admin')
 
@@ -7356,6 +7399,17 @@ class TestReviewAddonVersionViewSetList(TestCase):
     def test_anonymous(self):
         response = self.client.get(self.url)
         assert response.status_code == 401
+
+    def test_invalid_addon(self):
+        self.url = reverse_ns(
+            'reviewers-versions-list', kwargs={'addon_pk': self.addon.pk + 42}
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        self.url = self.url.replace(f'{self.addon.pk + 42}', 'NaN')
+        response = self.client.get(self.url)
+        assert response.status_code == 404
 
     def test_permissions_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -7547,6 +7601,36 @@ class TestDraftCommentViewSet(TestCase):
             # - 1 drafts
             response = self.client.get(url, {'lang': 'en-US'})
         assert response.json()['count'] == 3
+
+    def test_list_invalid_addon(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        url = reverse_ns(
+            'reviewers-versions-draft-comment-list',
+            kwargs={'addon_pk': self.addon.pk + 42, 'version_pk': self.version.pk},
+        )
+        response = self.client.get(url)
+        assert response.status_code == 404
+
+        url = url.replace(f'{self.addon.pk + 42}', 'NaN')
+        response = self.client.get(url)
+        assert response.status_code == 404
+
+    def test_list_invalid_version(self):
+        user = user_factory(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        url = reverse_ns(
+            'reviewers-versions-draft-comment-list',
+            kwargs={'addon_pk': self.addon.pk, 'version_pk': self.version.pk + 42},
+        )
+        response = self.client.get(url)
+        assert response.status_code == 404
+
+        url = url.replace(f'{self.version.pk + 42}', 'NaN')
+        response = self.client.get(url)
+        assert response.status_code == 404
 
     def test_create_retrieve_and_update(self):
         user = user_factory(username='reviewer')
@@ -8200,6 +8284,25 @@ class TestReviewAddonVersionCompareViewSet(
                 'pk': self.compare_to_version.pk,
             },
         )
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        self.url = self.url.replace(f'{self.version.pk + 42}', 'NaN')
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        self.url = reverse_ns(
+            'reviewers-versions-compare-detail',
+            kwargs={
+                'addon_pk': self.addon.pk,
+                'version_pk': self.version.pk,
+                'pk': self.compare_to_version.pk + 42,
+            },
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+        self.url = self.url.replace(f'{self.compare_to_version.pk + 42}', 'NaN')
         response = self.client.get(self.url)
         assert response.status_code == 404
 
