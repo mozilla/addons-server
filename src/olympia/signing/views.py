@@ -143,16 +143,18 @@ class VersionView(APIView):
                 status.HTTP_400_BAD_REQUEST,
             )
 
-        existing_version = addon and Version.unfiltered.filter(
-            addon=addon, version=version_string
+        existing_version = (
+            addon
+            and Version.unfiltered.filter(addon=addon, version=version_string).last()
         )
         if existing_version:
-            latest_version = addon.find_latest_version(None, exclude=())
-            msg = gettext(
-                'Version already exists. Latest version is: %s.'
-                % latest_version.version
+            if existing_version.deleted:
+                msg = gettext('Version {version} was uploaded before and deleted.')
+            else:
+                msg = gettext('Version {version} already exists.')
+            raise forms.ValidationError(
+                msg.format(version=version_string), status.HTTP_409_CONFLICT
             )
-            raise forms.ValidationError(msg, status.HTTP_409_CONFLICT)
 
         package_guid = parsed_data.get('guid', None)
 

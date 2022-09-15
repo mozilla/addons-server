@@ -191,9 +191,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             'PUT', self.url(self.guid, '2.1.072'), version='2.1.072'
         )
         assert response.status_code == 409
-        assert response.data['error'] == (
-            'Version already exists. Latest version is: 2.1.072.'
-        )
+        assert response.data['error'] == ('Version 2.1.072 already exists.')
 
     @mock.patch('olympia.devhub.views.Version.from_upload')
     def test_no_version_yet(self, from_upload):
@@ -239,8 +237,18 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
+        assert response.data['error'] == ('Version 3.0 already exists.')
+
+    def test_only_version_already_uploaded_was_deleted(self):
+        # Make the only version conflict with the version number we're about to
+        # upload, and soft-delete it.
+        Version.objects.filter(addon__guid=self.guid, version='2.1.072').update(
+            version='3.0', deleted=True
+        )
+        response = self.request('PUT', self.url(self.guid, '3.0'))
+        assert response.status_code == 409, response.data
         assert response.data['error'] == (
-            'Version already exists. Latest version is: 3.0.'
+            'Version 3.0 was uploaded before and deleted.'
         )
 
     def test_version_failed_review(self):
@@ -251,9 +259,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
-        assert response.data['error'] == (
-            'Version already exists. Latest version is: 3.0.'
-        )
+        assert response.data['error'] == ('Version 3.0 already exists.')
 
         # Verify that you can check the status after upload (#953).
         response = self.get(self.url(self.guid, '3.0'))
