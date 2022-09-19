@@ -642,6 +642,14 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['manifest_version'] == 2
 
+    def test_already_used_upload(self):
+        with self.assertRaises(forms.ValidationError) as e:
+            # Try parsing a FileUpload with no path set (which means it has
+            # already been converted into a Version).
+            parse_addon(FileUpload(name='addon.zip'))
+        msg = e.exception.messages[0]
+        assert msg.startswith('This upload is already being processed.'), msg
+
 
 class TestFileUpload(UploadMixin, TestCase):
     fixtures = ['base/appversion', 'base/addon_3615']
