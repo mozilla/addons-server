@@ -1189,6 +1189,8 @@ class AddonRecommendationView(AddonSearchView):
     def filter_queryset(self, qs):
         qs = super().filter_queryset(qs)
         guid_param = self.request.GET.get('guid')
+        if not guid_param or not amo.ADDON_GUID_PATTERN.match(guid_param):
+            raise exceptions.ParseError('Invalid guid parameter')
         taar_enable = self.request.GET.get('recommended', '').lower() == 'true'
         guids, self.ab_outcome, self.fallback_reason = get_addon_recommendations(
             guid_param, taar_enable

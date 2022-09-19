@@ -1,6 +1,6 @@
 import json
 from collections import OrderedDict
-from urllib.parse import urljoin, urlsplit
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.utils.http import urlencode
@@ -27,13 +27,10 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
     which defaults to "get"."""
     request_kwargs = {'timeout': settings.RECOMMENDATION_ENGINE_TIMEOUT}
     # Don't blindly trust client_id_or_guid, urljoin() will use its host name
-    # and/or scheme if present.
-    # https://docs.python.org/3/library/urllib.parse.html#urllib.parse.urljoin
-    try:
-        client_id_or_guid = urlsplit(client_id_or_guid).path
-    except ValueError:
-        client_id_or_guid = None
-    if not client_id_or_guid or client_id_or_guid.startswith('/'):
+    # and/or scheme if present! Fortunately we know what it must looks like.
+    if not amo.ADDON_GUID_PATTERN.match(
+        client_id_or_guid
+    ) and not amo.VALID_CLIENT_ID.match(client_id_or_guid):
         # That parameter was weird, don't call the recommendation server.
         return None
     if verb == 'get':

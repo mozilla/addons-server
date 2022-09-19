@@ -17,6 +17,9 @@ from olympia.discovery.utils import (
 )
 
 
+valid_client_id = '67c831b793cc423eb482de7421459d2b1faf4cc0fef04c30b03ebb62e91fa1bf'
+
+
 @pytest.mark.django_db
 @mock.patch('olympia.discovery.utils.statsd.incr')
 @mock.patch('olympia.discovery.utils.requests.get')
@@ -24,7 +27,9 @@ def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
     requests_get.side_effect = requests.exceptions.RequestException()
     # Check the exception in requests.get is handled okay.
     assert (
-        call_recommendation_server(settings.RECOMMENDATION_ENGINE_URL, '123456', {})
+        call_recommendation_server(
+            settings.RECOMMENDATION_ENGINE_URL, valid_client_id, {}
+        )
         is None
     )
     statsd_incr.assert_called_with('services.recommendations.fail')
@@ -36,7 +41,7 @@ def test_call_recommendation_server_fails_nice(requests_get, statsd_incr):
 def test_call_recommendation_server_succeeds(requests_get, statsd_incr):
     requests_get.return_value = HttpResponse(json.dumps({'results': ['@lolwut']}))
     assert call_recommendation_server(
-        settings.RECOMMENDATION_ENGINE_URL, '123456', {}
+        settings.RECOMMENDATION_ENGINE_URL, valid_client_id, {}
     ) == ['@lolwut']
     statsd_incr.assert_called_with('services.recommendations.success')
 
@@ -48,8 +53,8 @@ def test_call_recommendation_server_no_parameters(requests_get, requests_post):
     taar_timeout = settings.RECOMMENDATION_ENGINE_TIMEOUT
     requests_get.return_value = HttpResponse(json.dumps({'results': ['@lolwut']}))
     # No parameters
-    call_recommendation_server(url, '123456', {})
-    requests_get.assert_called_with(url + '123456/', timeout=taar_timeout)
+    call_recommendation_server(url, valid_client_id, {})
+    requests_get.assert_called_with(url + valid_client_id + '/', timeout=taar_timeout)
     assert not requests_post.called
 
 
@@ -60,9 +65,9 @@ def test_call_recommendation_server_some_parameters(requests_get, requests_post)
     taar_timeout = settings.RECOMMENDATION_ENGINE_TIMEOUT
     requests_get.return_value = HttpResponse(json.dumps({'results': ['@lolwut']}))
     data = {'some': 'params', 'and': 'more'}
-    call_recommendation_server(url, '123456', data)
+    call_recommendation_server(url, valid_client_id, data)
     requests_get.assert_called_with(
-        url + '123456/?and=more&some=params', timeout=taar_timeout
+        url + valid_client_id + '/?and=more&some=params', timeout=taar_timeout
     )
     assert not requests_post.called
 
@@ -74,10 +79,10 @@ def test_call_recommendation_server_post(requests_get, requests_post):
     taar_timeout = settings.RECOMMENDATION_ENGINE_TIMEOUT
     requests_get.return_value = HttpResponse(json.dumps({'results': ['@lolwut']}))
     data = {'some': 'params', 'and': 'more'}
-    call_recommendation_server(url, '4815162342', data, verb='post')
+    call_recommendation_server(url, valid_client_id, data, verb='post')
     assert not requests_get.called
     requests_post.assert_called_with(
-        url + '4815162342/', json=data, timeout=taar_timeout
+        url + valid_client_id + '/', json=data, timeout=taar_timeout
     )
 
 
@@ -87,11 +92,24 @@ def test_call_recommendation_server_post_no_parameters(requests_get, requests_po
     url = 'http://example.com/taar_is_awesome/'
     taar_timeout = settings.RECOMMENDATION_ENGINE_TIMEOUT
     requests_get.return_value = HttpResponse(json.dumps({'results': ['@lolwut']}))
-    call_recommendation_server(url, '4815162342', None, verb='post')
+    call_recommendation_server(url, valid_client_id, None, verb='post')
     assert not requests_get.called
     requests_post.assert_called_with(
-        url + '4815162342/', json=None, timeout=taar_timeout
+        url + valid_client_id + '/', json=None, timeout=taar_timeout
     )
+
+
+@mock.patch('olympia.discovery.utils.requests.post')
+@mock.patch('olympia.discovery.utils.requests.get')
+def test_call_recommendation_server_get_parameter_is_invalid(
+    requests_get, requests_post
+):
+    url = 'http://example.com/taar_is_awesome/'
+    requests_get.return_value = HttpResponse(json.dumps({'results': []}))
+
+    assert call_recommendation_server(url, "a@b.com' and 1=1", {}, verb='get') is None
+    assert not requests_get.called
+    assert not requests_post.called
 
 
 @mock.patch('olympia.discovery.utils.requests.post')
