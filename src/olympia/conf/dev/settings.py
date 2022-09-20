@@ -72,11 +72,7 @@ ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 ALLOW_SELF_REVIEWS = True
 
 FXA_CONFIG = {
-    'default': {
-        'client_id': env('FXA_CLIENT_ID'),
-        'client_secret': env('FXA_CLIENT_SECRET'),
-        # fxa redirects to https://%s/api/auth/authenticate-callback/ % DOMAIN
-    },
+    **FXA_CONFIG,
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
@@ -86,9 +82,6 @@ FXA_CONFIG = {
 FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
 FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
-
-DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default', 'local']
 
 REMOTE_SETTINGS_IS_TEST_SERVER = True
 

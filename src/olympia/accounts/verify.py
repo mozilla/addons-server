@@ -124,7 +124,7 @@ def check_and_update_fxa_access_token(request):
 
         config_name = (
             request.session['fxa_config_name']
-            if request.session.get('fxa_config_name') in settings.ALLOWED_FXA_CONFIGS
+            if request.session.get('fxa_config_name') in settings.FXA_CONFIG
             else settings.DEFAULT_FXA_CONFIG_NAME
         )
 

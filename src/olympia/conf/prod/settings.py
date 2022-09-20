@@ -54,16 +54,6 @@ NEW_FEATURES = True
 
 ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
-FXA_CONFIG = {
-    'default': {
-        'client_id': env('FXA_CLIENT_ID'),
-        'client_secret': env('FXA_CLIENT_SECRET'),
-        # fxa redirects to https://%s/api/auth/authenticate-callback/ % DOMAIN
-    },
-}
-DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default']
-
 ES_DEFAULT_NUM_SHARDS = 10
 
 RECOMMENDATION_ENGINE_URL = env(
