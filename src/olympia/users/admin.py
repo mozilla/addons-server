@@ -8,6 +8,7 @@ from django.contrib.admin.utils import unquote
 from django.db.models import (
     CharField,
     Count,
+    F,
     FilteredRelation,
     Q,
 )
@@ -250,11 +251,17 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                 'activitylog_filtered': FilteredRelation(
                     'activitylog__iplog', condition=condition
                 ),
+                # Add an annotation for activitylog__iplog__id so that we can
+                # apply a filter on the specific JOIN that will be used to grab
+                # the IPs through GroupConcat to help MySQL optimizer remove
+                # non relevant activities from the DISTINCT bit.
+                'activity_ips_ids': F('activitylog__iplog__id'),
             }
             # ...and then add the most simple filter to "activate" the join
             # which has our search condition.
             queryset = queryset.annotate(**annotations).filter(
-                activitylog_filtered__isnull=False
+                activitylog_filtered__isnull=False,
+                activity_ips_ids__isnull=False,
             )
             # A GROUP_BY will already have been applied thanks to our
             # annotations so we can let django know there won't be any
