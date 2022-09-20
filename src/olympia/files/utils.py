@@ -106,6 +106,12 @@ def id_to_path(pk, breadth=1):
 def get_file(fileorpath):
     """Get a file-like object, whether given a FileUpload object or a path."""
     if hasattr(fileorpath, 'path'):  # FileUpload
+        if not fileorpath.path:
+            # This upload has already been used to create a Version. Note that
+            # we say "processed" but it's different than the `processed`
+            # property on FileUpload, it's just used here as a generic term to
+            # inform the developer this FileUpload has already been used.
+            raise AlreadyUsedUpload(gettext('This upload has already been submitted.'))
         return storage.open(fileorpath.path, 'rb')
     if hasattr(fileorpath, 'name'):
         return fileorpath
@@ -136,6 +142,13 @@ class InvalidManifest(forms.ValidationError):
 
 class InvalidZipFile(forms.ValidationError):
     """This error is raised when we attempt to open an invalid file with SafeZip."""
+
+    pass
+
+
+class AlreadyUsedUpload(forms.ValidationError):
+    """Error raised when trying to use a FileUpload that has already been used
+    to make a Version+File, its path will be empty."""
 
     pass
 
@@ -822,7 +835,7 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
                 zip_file.read('manifest.json'), certinfo=certificate_info
             ).parse(minimal=minimal)
         else:
-            raise NoManifestFound('No manifest.json found')
+            raise NoManifestFound(gettext('No manifest.json found'))
 
     except forms.ValidationError:
         raise
