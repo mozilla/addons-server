@@ -36,6 +36,6 @@ def process_email(message, spam_rating, **kwargs):
     res = add_email_to_activity_log_wrapper(message, spam_rating)
 
     if not res:
-        log.error(
+        log.warning(
             'Failed to process email [%s].', msg_id, extra={'message_obj': message}
         )
