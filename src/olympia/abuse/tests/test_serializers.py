@@ -5,6 +5,8 @@ from unittest.mock import Mock
 from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 
+from rest_framework.serializers import ValidationError
+
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
@@ -133,7 +135,9 @@ class TestAddonAbuseReportSerializer(TestCase):
             'app': 'firefox',
             'lang': 'en-US',
             'appversion': '64.0',
-            'client_id': 'somehashedclientid',
+            'client_id': (
+                'ed3480638a9c48f3bc16c2becde0de74d44d80f1f8cf463b937745572c109ed0'
+            ),
             'install_date': '2019-02-25 12:19',
             'operating_system': 'Ôperating System!',
             'operating_system_version': '2019',
@@ -155,7 +159,9 @@ class TestAddonAbuseReportSerializer(TestCase):
             'application': amo.FIREFOX.id,
             'application_locale': 'en-US',
             'application_version': '64.0',
-            'client_id': 'somehashedclientid',
+            'client_id': (
+                'ed3480638a9c48f3bc16c2becde0de74d44d80f1f8cf463b937745572c109ed0'
+            ),
             'country_code': '',
             'guid': '@someguid',
             'install_date': datetime(2019, 2, 25, 12, 19),
@@ -166,6 +172,41 @@ class TestAddonAbuseReportSerializer(TestCase):
             'report_entry_point': AbuseReport.REPORT_ENTRY_POINTS.UNINSTALL,
         }
         assert result == expected
+
+    def test_with_invalid_client_id(self):
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        view = Mock()
+        view.get_guid.return_value = '@someguid'
+        view.get_addon_object.return_value = None
+        context = {
+            'request': request,
+            'view': view,
+        }
+        data = {
+            'addon': '@someguid',
+            'message': 'I am the messagê',
+            'addon_install_method': 'url',
+            'addon_install_origin': 'http://somewhere.com/',
+            'addon_install_source': 'amo',
+            'addon_install_source_url': 'https://example.com/sourceme',
+            'addon_name': 'Fancy add-on nâme',
+            'addon_signature': None,
+            'addon_summary': 'A summary',
+            'addon_version': '42.42.0',
+            'app': 'firefox',
+            'lang': 'en-US',
+            'appversion': '64.0',
+            'client_id': 'someinvalidclientid',
+            'install_date': '2019-02-25 12:19',
+            'operating_system': 'Ôperating System!',
+            'operating_system_version': '2019',
+            'reason': 'broken',
+            'report_entry_point': 'uninstall',
+        }
+        with self.assertRaises(ValidationError) as e:
+            AddonAbuseReportSerializer(data, context=context).to_internal_value(data)
+        assert str(e.exception.detail['client_id'][0]) == 'Invalid value'
 
 
 class TestUserAbuseReportSerializer(TestCase):

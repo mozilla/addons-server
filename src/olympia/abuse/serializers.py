@@ -125,6 +125,11 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
                 raise serializers.ValidationError({'message': [msg]})
         return data
 
+    def validate_client_id(self, value):
+        if not amo.VALID_CLIENT_ID.match(value):
+            raise serializers.ValidationError(_('Invalid value'))
+        return value
+
     def handle_unknown_install_method_or_source(self, data, field_name):
         reversed_choices = self.fields[field_name].reversed_choices
         value = data[field_name]

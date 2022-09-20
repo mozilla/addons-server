@@ -5911,6 +5911,34 @@ class TestAddonRecommendationView(ESTestCase):
         data = json.loads(force_str(response.content))
         return data
 
+    def test_invalid_guid(self):
+        data = self.perform_search(self.url, expected_status=400)
+        assert data['detail'] == 'Invalid guid parameter'
+
+        data = self.perform_search(
+            self.url, data={'guid': 'invalid'}, expected_status=400
+        )
+        assert data['detail'] == 'Invalid guid parameter'
+
+        data = self.perform_search(
+            self.url, data={'guid': "invalid@a' AND 1=1"}, expected_status=400
+        )
+        assert data['detail'] == 'Invalid guid parameter'
+
+        data = self.perform_search(
+            self.url,
+            data={'guid': '{88291a20-a290-484a-a21a-6e1eaf38ee00} /* LOL */'},
+            expected_status=400,
+        )
+        assert data['detail'] == 'Invalid guid parameter'
+
+        data = self.perform_search(
+            self.url,
+            data={'guid': '88291a20a290484aa21a6e1eaf38ee00'},
+            expected_status=400,
+        )
+        assert data['detail'] == 'Invalid guid parameter'
+
     def test_basic(self):
         addon1 = addon_factory(id=101, guid='101@mozilla')
         addon2 = addon_factory(id=102, guid='102@mozilla')
