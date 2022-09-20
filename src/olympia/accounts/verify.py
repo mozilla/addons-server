@@ -25,6 +25,11 @@ def fxa_identify(code, config):
     try:
         with statsd.timer('accounts.fxa.identify.all'):
             token_data = get_fxa_token(code=code, config=config)
+            if 'refresh_token' not in token_data:
+                # We should have requested authentication with
+                # access_type: offline, so if refresh_token is not present,
+                # something is wrong and we can't proceed with that token_data.
+                raise IdentificationError('No refresh token present')
             profile = get_fxa_profile(token_data['access_token'])
     except Exception:
         statsd.incr('accounts.fxa.identify.all.fail')

@@ -191,7 +191,10 @@ class TestIdentify(TestCase):
         assert not self.get_profile.called
 
     def test_profile_raises(self):
-        self.get_fxa_token.return_value = {'access_token': 'bee5'}
+        self.get_fxa_token.return_value = {
+            'access_token': 'bee5',
+            'refresh_token': 'boots',
+        }
         self.get_profile.side_effect = verify.IdentificationError
         with pytest.raises(verify.IdentificationError):
             verify.fxa_identify('heya', self.CONFIG)
@@ -199,7 +202,10 @@ class TestIdentify(TestCase):
         self.get_profile.assert_called_with('bee5')
 
     def test_all_good(self):
-        self.get_fxa_token.return_value = get_fxa_token_data = {'access_token': 'cafe'}
+        self.get_fxa_token.return_value = get_fxa_token_data = {
+            'access_token': 'cafe',
+            'refresh_token': 'cats',
+        }
         self.get_profile.return_value = {'email': 'me@em.hi'}
         identity, token_data = verify.fxa_identify('heya', self.CONFIG)
         assert identity == {'email': 'me@em.hi'}
@@ -207,10 +213,19 @@ class TestIdentify(TestCase):
         self.get_fxa_token.assert_called_with(code='heya', config=self.CONFIG)
         self.get_profile.assert_called_with('cafe')
 
+    def test_no_refresh_token(self):
+        self.get_fxa_token.return_value = {'access_token': 'cafe'}
+        self.get_profile.return_value = {'email': 'me@em.hi'}
+        with pytest.raises(verify.IdentificationError):
+            verify.fxa_identify('heya', self.CONFIG)
+        self.get_fxa_token.assert_called_with(code='heya', config=self.CONFIG)
+        assert not self.get_profile.called
+
     def test_with_id_token(self):
         self.get_fxa_token.return_value = get_fxa_token_data = {
             'access_token': 'cafe',
             'id_token': 'openidisawesome',
+            'refresh_token': 'bees',
         }
         self.get_profile.return_value = {'email': 'me@em.hi'}
         identity, token_data = verify.fxa_identify('heya', self.CONFIG)
