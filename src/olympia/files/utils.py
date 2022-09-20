@@ -111,7 +111,7 @@ def get_file(fileorpath):
             # we say "processed" but it's different than the `processed`
             # property on FileUpload, it's just used here as a generic term to
             # inform the developer this FileUpload has already been used.
-            raise AlreadyUsedUpload(gettext('This upload is already being processed.'))
+            raise AlreadyUsedUpload(gettext('This upload has already been submitted.'))
         return storage.open(fileorpath.path, 'rb')
     if hasattr(fileorpath, 'name'):
         return fileorpath

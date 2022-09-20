@@ -648,7 +648,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             # already been converted into a Version).
             parse_addon(FileUpload(name='addon.zip'))
         msg = e.exception.messages[0]
-        assert msg.startswith('This upload is already being processed.'), msg
+        assert msg.startswith('This upload has already been submitted.'), msg
 
 
 class TestFileUpload(UploadMixin, TestCase):
