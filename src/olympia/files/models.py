@@ -25,11 +25,10 @@ from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.utils import SafeStorage
+from olympia.amo.utils import id_to_path, SafeStorage
 from olympia.files.fields import FilenameFileField
 from olympia.files.utils import (
     get_sha256,
-    id_to_path,
     InvalidOrUnsupportedCrx,
     write_crx_as_xpi,
 )

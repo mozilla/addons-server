@@ -35,7 +35,12 @@ from olympia.amo.models import (
     ModelBase,
     OnChangeMixin,
 )
-from olympia.amo.utils import sorted_groupby, SafeStorage, utc_millesecs_from_epoch
+from olympia.amo.utils import (
+    id_to_path,
+    sorted_groupby,
+    SafeStorage,
+    utc_millesecs_from_epoch,
+)
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
@@ -189,7 +194,7 @@ def source_upload_path(instance, filename):
 
     return os.path.join(
         'version_source',
-        utils.id_to_path(instance.pk),
+        id_to_path(instance.pk),
         f'{instance.addon.slug}-{instance.version}-src{ext}',
     )
 

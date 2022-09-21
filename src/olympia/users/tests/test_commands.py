@@ -1,8 +1,11 @@
-import json
-import uuid
 import io
+import json
+import os
+import re
+import uuid
 from ipaddress import IPv4Address
 
+from django.core.files.base import ContentFile
 from django.core.management import call_command
 
 from unittest.mock import ANY, patch
@@ -11,6 +14,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.utils import SafeStorage
 from olympia.users.management.commands.createsuperuser import Command as CreateSuperUser
 from olympia.users.models import UserProfile, UserRestrictionHistory
 
@@ -369,3 +373,65 @@ class TestClearOldUserData(TestCase):
         assert not old_not_deleted.email
         assert not Addon.unfiltered.filter(id=old_not_deleted_addon.id).exists()
         assert not Addon.unfiltered.filter(id=no_longer_owner_addon.id).exists()
+
+
+class TestMigrateUserPhotos(TestCase):
+    def setUp(self):
+        self.storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
+        self.user = user_factory()
+        self.deleted_user = user_factory(deleted=True)
+
+        self.old_picture_path = (
+            f'{self.get_old_picture_dir(self.user)}/{self.user.pk}.png'
+        )
+        self.old_picture_path_original = (
+            f'{self.get_old_picture_dir(self.user)}/{self.user.pk}_original.png'
+        )
+
+        self.old_deleted_picture_path = (
+            f'{self.get_old_picture_dir(self.deleted_user)}/{self.deleted_user.pk}.png'
+        )
+        self.old_deleted_picture_path_original = f'{self.get_old_picture_dir(self.deleted_user)}/{self.deleted_user.pk}_original.png'
+
+        self.garbage_path = 'somewhere/deep/whatever.png'
+        self.other_garbage_path = f'{self.get_old_picture_dir(self.user)}/føøøøø.png'
+
+        # Files that need to be migrated.
+        self.storage.save(self.old_picture_path, ContentFile('xxx'))
+        self.storage.save(self.old_picture_path_original, ContentFile('yyy'))
+
+        # Orphaned/garbage files that should be removed.
+        self.storage.save(self.garbage_path, ContentFile('ggg'))
+        self.storage.save(self.other_garbage_path, ContentFile('ŋŋŋ'))
+        self.storage.save(self.old_deleted_picture_path, ContentFile('aaa'))
+        self.storage.save(self.old_deleted_picture_path_original, ContentFile('bbb'))
+
+    def get_old_picture_dir(self, user):
+        split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(user.pk))
+        return os.path.join(split_id.group(2) or '0', split_id.group(1) or '0')
+
+    def test_migrate(self):
+        old_paths = (
+            self.old_picture_path,
+            self.old_picture_path_original,
+            self.old_deleted_picture_path,
+            self.old_deleted_picture_path_original,
+            self.garbage_path,
+            self.other_garbage_path,
+        )
+        for path in old_paths:
+            assert self.storage.exists(path)
+        # These should not exist since we haven't ran the migration yet.
+        assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
+
+        call_command('migrate_user_photos')
+
+        # Now, every old paths should be gone and only the non-deleted user
+        # photo should have been migrated.
+        for path in old_paths:
+            assert not self.storage.exists(path)
+        assert self.storage.exists(self.user.picture_path)
+        assert self.storage.exists(self.user.picture_path_original)
+        assert self.storage.open(self.user.picture_path).read() == b'xxx'
+        assert self.storage.open(self.user.picture_path_original).read() == b'yyy'

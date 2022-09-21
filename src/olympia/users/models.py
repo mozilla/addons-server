@@ -34,6 +34,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField, CIDRField
 from olympia.amo.models import LongNameIndex, ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.utils import id_to_path
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -336,34 +337,28 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_dir(self):
-        split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
         return os.path.join(
-            settings.MEDIA_ROOT,
-            'userpics',
-            split_id.group(2) or '0',
-            split_id.group(1) or '0',
+            settings.MEDIA_ROOT, 'userpics', id_to_path(self.pk, breadth=2)
         )
 
     @property
     def picture_path(self):
-        return os.path.join(self.picture_dir, str(self.id) + '.png')
+        return os.path.join(self.picture_dir, str(self.pk) + '.png')
 
     @property
     def picture_path_original(self):
-        return os.path.join(self.picture_dir, str(self.id) + '_original.png')
+        return os.path.join(self.picture_dir, str(self.pk) + '_original.png')
 
     @property
     def picture_url(self):
         if not self.picture_type:
             return static('img/zamboni/anon_user.png')
         else:
-            split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
             modified = int(time.mktime(self.modified.timetuple()))
             path = '/'.join(
                 [
-                    split_id.group(2) or '0',
-                    split_id.group(1) or '0',
-                    f'{self.id}.png?modified={modified}',
+                    id_to_path(self.pk, breadth=2),
+                    f'{self.pk}.png?modified={modified}',
                 ]
             )
             return f'{settings.MEDIA_URL}userpics/{path}'

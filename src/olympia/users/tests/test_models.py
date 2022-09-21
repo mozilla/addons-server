@@ -495,12 +495,12 @@ class TestUserProfile(TestCase):
         u = UserProfile.objects.create(
             id=1234, picture_type='image/png', modified=date.today(), username='a'
         )
-        u.picture_url.index('/userpics/0/1/1234.png?modified=')
+        u.picture_url.index('/userpics/34/1234/1234/1234.png?modified=')
 
         u = UserProfile.objects.create(
             id=1234567890, picture_type='image/png', modified=date.today(), username='b'
         )
-        u.picture_url.index('/userpics/1234/1234567/1234567890.png?modified=')
+        u.picture_url.index('/userpics/90/7890/1234567890/1234567890.png?modified=')
 
         u = UserProfile.objects.create(id=123456, picture_type=None, username='c')
         assert u.picture_url.endswith('/anon_user.png')
