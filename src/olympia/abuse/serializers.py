@@ -126,7 +126,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         return data
 
     def validate_client_id(self, value):
-        if not amo.VALID_CLIENT_ID.match(value):
+        if value and not amo.VALID_CLIENT_ID.match(str(value)):
             raise serializers.ValidationError(_('Invalid value'))
         return value
 
