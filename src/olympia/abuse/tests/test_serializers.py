@@ -208,6 +208,39 @@ class TestAddonAbuseReportSerializer(TestCase):
             AddonAbuseReportSerializer(data, context=context).to_internal_value(data)
         assert str(e.exception.detail['client_id'][0]) == 'Invalid value'
 
+    def test_explicitly_null_client_id(self):
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        view = Mock()
+        view.get_guid.return_value = '@someguid'
+        view.get_addon_object.return_value = None
+        context = {
+            'request': request,
+            'view': view,
+        }
+        data = {'addon': '@someguid', 'message': 'I am the messagê', 'client_id': None}
+        result = dict(
+            AddonAbuseReportSerializer(data, context=context).to_internal_value(data)
+        )
+        assert result['guid']
+        assert result['message']
+        assert result['client_id'] is None
+
+    def test_non_string_client_id(self):
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        view = Mock()
+        view.get_guid.return_value = '@someguid'
+        view.get_addon_object.return_value = None
+        context = {
+            'request': request,
+            'view': view,
+        }
+        data = {'addon': '@someguid', 'message': 'I am the messagê', 'client_id': 42}
+        with self.assertRaises(ValidationError) as e:
+            AddonAbuseReportSerializer(data, context=context).to_internal_value(data)
+        assert str(e.exception.detail['client_id'][0]) == 'Invalid value'
+
 
 class TestUserAbuseReportSerializer(TestCase):
     def serialize(self, report, context=None):
