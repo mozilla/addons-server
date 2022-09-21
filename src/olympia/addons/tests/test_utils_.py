@@ -88,6 +88,7 @@ def test_verify_mozilla_trademark(name, allowed, give_permission):
         verify_mozilla_trademark(name, user)
 
 
+@mock.patch('django_statsd.clients.statsd.incr')
 class TestGetAddonRecommendations(TestCase):
     def setUp(self):
         patcher = mock.patch('olympia.addons.utils.call_recommendation_server')
@@ -106,7 +107,7 @@ class TestGetAddonRecommendations(TestCase):
         ]
         self.recommendation_server_mock.return_value = self.recommendation_guids
 
-    def test_recommended(self):
+    def test_recommended(self, incr_mock):
         recommendations, outcome, reason = get_addon_recommendations('a@b', True)
         assert recommendations == self.recommendation_guids
         assert outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
@@ -114,8 +115,12 @@ class TestGetAddonRecommendations(TestCase):
         self.recommendation_server_mock.assert_called_with(
             settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {}
         )
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args_list[0][0] == (
+            'services.addon_recommendations.success',
+        )
 
-    def test_recommended_no_results(self):
+    def test_recommended_no_results(self, incr_mock):
         self.recommendation_server_mock.return_value = []
         recommendations, outcome, reason = get_addon_recommendations('a@b', True)
         assert recommendations == TAAR_LITE_FALLBACKS
@@ -124,8 +129,12 @@ class TestGetAddonRecommendations(TestCase):
         self.recommendation_server_mock.assert_called_with(
             settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {}
         )
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args_list[0][0] == (
+            f'services.addon_recommendations.{TAAR_LITE_FALLBACK_REASON_EMPTY}',
+        )
 
-    def test_recommended_timeout(self):
+    def test_recommended_timeout(self, incr_mock):
         self.recommendation_server_mock.return_value = None
         recommendations, outcome, reason = get_addon_recommendations('a@b', True)
         assert recommendations == TAAR_LITE_FALLBACKS
@@ -134,26 +143,33 @@ class TestGetAddonRecommendations(TestCase):
         self.recommendation_server_mock.assert_called_with(
             settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {}
         )
+        assert incr_mock.call_count == 1
+        assert incr_mock.call_args_list[0][0] == (
+            f'services.addon_recommendations.{TAAR_LITE_FALLBACK_REASON_TIMEOUT}',
+        )
 
-    def test_not_recommended(self):
+    def test_not_recommended(self, incr_mock):
         recommendations, outcome, reason = get_addon_recommendations('a@b', False)
         assert not self.recommendation_server_mock.called
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_CURATED
         assert reason is None
+        assert incr_mock.call_count == 0
 
-    def test_invalid_fallback(self):
+    def test_invalid_fallback(self, incr_mock):
         recommendations, outcome, reason = get_addon_recommendations_invalid()
         assert not self.recommendation_server_mock.called
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
         assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
+        assert incr_mock.call_count == 0
 
-    def test_is_outcome_recommended(self):
+    def test_is_outcome_recommended(self, incr_mock):
         assert is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_SUCCESS)
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_FAIL)
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_CURATED)
         assert not self.recommendation_server_mock.called
+        assert incr_mock.call_count == 0
 
 
 @mock.patch('django_statsd.clients.statsd.incr')
