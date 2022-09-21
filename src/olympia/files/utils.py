@@ -839,6 +839,8 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
 
     except forms.ValidationError:
         raise
+    except zipfile.BadZipFile:
+        raise forms.ValidationError(gettext('Invalid or corrupted file.'))
     except Exception as exception:
         # We don't really know what happened, so even though we return a
         # generic message about the manifest, don't raise InvalidManifest: it's

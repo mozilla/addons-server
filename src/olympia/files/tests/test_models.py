@@ -601,6 +601,11 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
+            self.parse(filename='badzipfile.zip')
+        assert e.exception.messages == ['Invalid or corrupted file.']
+
+    def test_ioerror(self):
+        with self.assertRaises(forms.ValidationError) as e:
             # This file doesn't exist, it will raise an IOError that should
             # be caught and re-raised as a ValidationError.
             parse_addon('baxmldzip.xpi', None)
