@@ -97,15 +97,15 @@ TAAR_LITE_FALLBACK_REASON_INVALID = 'invalid_results'
 def get_addon_recommendations(guid_param, taar_enable):
     guids = None
     fail_reason = None
-    taar_lite_outcome = 'success'
     if taar_enable:
         guids = call_recommendation_server(
             settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, guid_param, {}
         )
-        outcome = (
-            TAAR_LITE_OUTCOME_REAL_SUCCESS if guids else TAAR_LITE_OUTCOME_REAL_FAIL
-        )
-        if not guids:
+        if guids:
+            outcome = TAAR_LITE_OUTCOME_REAL_SUCCESS
+            taar_lite_outcome = 'success'
+        else:
+            outcome = TAAR_LITE_OUTCOME_REAL_FAIL
             fail_reason = (
                 TAAR_LITE_FALLBACK_REASON_EMPTY
                 if guids == []
