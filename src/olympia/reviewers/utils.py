@@ -561,9 +561,11 @@ class ReviewHelper:
         is_appropriate_reviewer_post_review = acl.action_allowed_for(
             self.user, permission_post_review
         )
+        is_admin_reviewer = is_appropriate_reviewer and acl.action_allowed_for(
+            self.user, amo.permissions.REVIEWS_ADMIN
+        )
 
-        addon_is_complete_and_not_disabled = self.addon.status not in (
-            amo.STATUS_NULL,
+        addon_is_not_disabled_or_deleted = self.addon.status not in (
             amo.STATUS_DELETED,
             amo.STATUS_DISABLED,
         )
@@ -571,9 +573,8 @@ class ReviewHelper:
             self.addon.status == amo.STATUS_NULL and version_is_unlisted
         )
         addon_is_reviewable = (
-            addon_is_complete_and_not_disabled
-            or addon_is_incomplete_and_version_is_unlisted
-        )
+            addon_is_not_disabled_or_deleted and self.addon.status != amo.STATUS_NULL
+        ) or addon_is_incomplete_and_version_is_unlisted
         version_is_unreviewed = self.version and self.version.is_unreviewed
         addon_is_valid = self.addon.is_public() or self.addon.is_unreviewed()
         addon_is_valid_and_version_is_listed = (
@@ -689,7 +690,7 @@ class ReviewHelper:
             'method': self.handler.approve_multiple_versions,
             'label': _('Approve Multiple Versions'),
             'minimal': True,
-            'versions': True,
+            'multiple_versions': True,
             'details': _(
                 'This will approve the selected versions. '
                 'The comments will be sent to the developer.'
@@ -708,7 +709,7 @@ class ReviewHelper:
                 # or (unlisted and) awaiting review
                 or self.version.file.status == amo.STATUS_AWAITING_REVIEW
             ),
-            'versions': True,
+            'multiple_versions': True,
             'details': _(
                 'This will reject the selected versions. '
                 'The comments will be sent to the developer.'
@@ -717,11 +718,23 @@ class ReviewHelper:
             'allows_reasons': not is_static_theme,
             'requires_reasons': not is_static_theme,
         }
+        actions['unreject_multiple_versions'] = {
+            'method': self.handler.unreject_multiple_versions,
+            'label': _('Un-Reject Versions'),
+            'minimal': True,
+            'multiple_versions': True,
+            'details': _(
+                'This will un-reject the selected versions without notifying the '
+                'developer.'
+            ),
+            'comments': False,
+            'available': (addon_is_not_disabled_or_deleted and is_admin_reviewer),
+        }
         actions['block_multiple_versions'] = {
             'method': self.handler.block_multiple_versions,
             'label': _('Block Multiple Versions'),
             'minimal': True,
-            'versions': True,
+            'multiple_versions': True,
             'comments': False,
             'details': _(
                 'This will disable the selected approved '
@@ -736,7 +749,7 @@ class ReviewHelper:
             'method': self.handler.confirm_multiple_versions,
             'label': _('Confirm Multiple Versions'),
             'minimal': True,
-            'versions': True,
+            'multiple_versions': True,
             'details': _(
                 'This will confirm approval of the selected '
                 'versions without notifying the developer.'
@@ -1359,6 +1372,61 @@ class ReviewBase:
                 post_review=True,
                 content_review=self.content_review,
             )
+
+    def unreject_multiple_versions(self):
+        """Un-reject a list of versions."""
+        # self.version and self.file won't point to the versions we want to
+        # modify in this action, so set them to None before finding the right
+        # versions.
+        latest_version = self.version
+        self.version = None
+        self.file = None
+        now = datetime.now()
+        # we're only supporting non-automated reviews right now:
+        assert self.human_review
+
+        log.info(
+            'Making %s versions %s awaiting review (not disabled)'
+            % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
+        )
+
+        for version in self.data['versions']:
+            self.set_file(amo.STATUS_AWAITING_REVIEW, version.file)
+
+            self.log_action(
+                action=amo.LOG.UNREJECT_VERSION,
+                version=version,
+                file=version.file,
+                timestamp=now,
+                user=self.user,
+            )
+
+        # if these are listed versions then the addon status may need updating
+        if (
+            self.data['versions']
+            and latest_version.channel == amo.CHANNEL_LISTED
+            and self.addon.status == amo.STATUS_NULL
+        ):
+            log.info(
+                'Changing add-on status [%s]: %s => %s (%s).'
+                % (
+                    self.addon.id,
+                    self.addon.status,
+                    amo.STATUS_NOMINATED,
+                    'unrejecting versions',
+                )
+            )
+            self.addon.update(status=amo.STATUS_NOMINATED)
+            ActivityLog.create(
+                amo.LOG.CHANGE_STATUS, self.addon, self.addon.status, user=self.user
+            )
+            self.addon.update_version()
+
+        # The reviewer should be automatically subscribed to any new versions posted to
+        # the same channel.
+        ReviewerSubscription.objects.get_or_create(
+            user=self.user, addon=self.addon, channel=latest_version.channel
+        )
 
     def notify_about_auto_approval_delay(self, version):
         """Notify developers of the add-on when their version has not been

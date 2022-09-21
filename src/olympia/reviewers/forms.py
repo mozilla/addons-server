@@ -112,11 +112,28 @@ class VersionsChoiceWidget(forms.SelectMultiple):
     """
 
     actions_filters = {
-        amo.STATUS_APPROVED: ('confirm_multiple_versions', 'block_multiple_versions'),
-        amo.STATUS_AWAITING_REVIEW: (
-            'reject_multiple_versions',
-            'approve_multiple_versions',
-        ),
+        amo.CHANNEL_UNLISTED: {
+            amo.STATUS_APPROVED: (
+                'block_multiple_versions',
+                'confirm_multiple_versions',
+            ),
+            amo.STATUS_AWAITING_REVIEW: (
+                'approve_multiple_versions',
+                'reject_multiple_versions',
+            ),
+            amo.STATUS_DISABLED: ('unreject_multiple_versions',),
+        },
+        amo.CHANNEL_LISTED: {
+            amo.STATUS_APPROVED: (
+                'block_multiple_versions',
+                'reject_multiple_versions',
+            ),
+            amo.STATUS_AWAITING_REVIEW: (
+                'approve_multiple_versions',
+                'reject_multiple_versions',
+            ),
+            amo.STATUS_DISABLED: ('unreject_multiple_versions',),
+        },
     }
 
     def create_option(self, *args, **kwargs):
@@ -126,13 +143,12 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         obj = option['label']
         status = obj.file.status if obj.file else None
         versions_actions = getattr(self, 'versions_actions', None)
-        if versions_actions and obj.channel == amo.CHANNEL_UNLISTED:
-            # For unlisted, some actions should only apply to approved/pending
-            # versions, so we add our special `data-toggle` class and the
-            # right `data-value` depending on status.
+        if versions_actions:
+            # Add our special `data-toggle` class and the right `data-value` depending
+            # on status.
             option['attrs']['class'] = 'data-toggle'
             option['attrs']['data-value'] = '|'.join(
-                self.actions_filters.get(status, ()) + ('',)
+                self.actions_filters[obj.channel].get(status, ()) + ('',)
             )
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
@@ -218,7 +234,7 @@ class ReviewForm(forms.Form):
         if action:
             if not action.get('comments', True):
                 self.fields['comments'].required = False
-            if action.get('versions', False):
+            if action.get('multiple_versions', False):
                 self.fields['versions'].required = True
             if not action.get('requires_reasons', False):
                 self.fields['reasons'].required = False
@@ -255,18 +271,19 @@ class ReviewForm(forms.Form):
         # if the relevant actions are available, otherwise we don't really care
         # about this field.
         versions_actions = [
-            k for k in self.helper.actions if self.helper.actions[k].get('versions')
+            k
+            for k in self.helper.actions
+            if self.helper.actions[k].get('multiple_versions')
         ]
         if versions_actions:
             if self.helper.version:
                 channel = self.helper.version.channel
             else:
                 channel = amo.CHANNEL_LISTED
-            statuses = (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)
             self.fields['versions'].widget.versions_actions = versions_actions
             self.fields['versions'].queryset = (
                 self.helper.addon.versions(manager='unfiltered_for_relations')
-                .filter(channel=channel, file__status__in=statuses)
+                .filter(channel=channel)
                 .no_transforms()
                 .select_related('file')
                 .select_related('autoapprovalsummary')
