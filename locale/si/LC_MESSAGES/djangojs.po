@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-21 16:59+0000\n"
+"PO-Revision-Date: 2022-09-21 17:50+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -331,7 +331,7 @@ msgid "Total Amount Contributed"
 msgstr ""
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "දළ දායකත්වය"
 
 msgid "Usage"
 msgstr "භාවිතය"
@@ -355,11 +355,11 @@ msgid "Fennec"
 msgstr ""
 
 msgid "Android"
-msgstr ""
+msgstr "ඇන්ඩ්‍රොයිඩ්"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr ""
+msgstr "බාගැනීම් හා දෛනික පරිශීලකයින්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
