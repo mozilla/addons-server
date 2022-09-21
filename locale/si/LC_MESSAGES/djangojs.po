@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-21 17:50+0000\n"
+"PO-Revision-Date: 2022-09-21 17:52+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -363,23 +363,23 @@ msgstr "බාගැනීම් හා දෛනික පරිශීලකය
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා බාගැනීම් හා දෛනික පරිශීලකයින්"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr ""
+msgstr "ස්ථාපන හා දෛනික පරිශීලකයින්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා ස්ථාපන හා දෛනික පරිශීලකයින්"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr ""
+msgstr "බාගැනීම්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා බාගැනීම්"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
