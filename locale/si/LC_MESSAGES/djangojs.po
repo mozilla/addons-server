@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-22 12:51+0000\n"
+"PO-Revision-Date: 2022-09-22 12:58+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -403,39 +403,39 @@ msgstr "රටවල්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Countries from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා රටවල්"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "වේදිකා, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා වේදිකා"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "භාෂා, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා භාෂා"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "එක්කහු අනුවාද, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා එක්කහු අනුවාද"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "එක්කහුවේ තත්‍වය, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා එක්කහුවේ තත්‍වය"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -589,10 +589,10 @@ msgid "No data available."
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "දිනය"
 
 msgid "Other"
-msgstr ""
+msgstr "වෙනත්"
 
 msgid "Changes Saved"
 msgstr ""
@@ -713,21 +713,21 @@ msgstr ""
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "දෝෂ {0}"
+msgstr[1] "දෝෂ {0}"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "අවවාද {0}"
+msgstr[1] "අවවාද {0}"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "දැන්වීම් {0}"
+msgstr[1] "දැන්වීම් {0}"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "වලංගුකරණ කාර්යය දෝෂ සහිතව සම්පූර්ණයි හෝ සම්පූර්ණ නොවිණි"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "අභ්‍යන්තර සේවාදායක දෝෂයකි"
