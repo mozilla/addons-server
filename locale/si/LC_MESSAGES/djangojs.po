@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-22 13:12+0000\n"
+"PO-Revision-Date: 2022-09-22 13:15+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -487,15 +487,15 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr ""
+msgstr "භාවිත එක්කහු, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා භාවිත එක්කහු"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "බාගත වූ එක්කහු, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -637,22 +637,22 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "&hellip; පූරණය වෙමින්"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "අනුවාද සටහන්"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "සමාලෝචකයින් සඳහා සටහන්"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "අනුවාද සටහන් හමු නොවිණි"
 
 msgid "Review Text"
 msgstr ""
 
 msgid "Review notes found"
-msgstr ""
+msgstr "සමාලෝචන සටහන් හමු විය"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
