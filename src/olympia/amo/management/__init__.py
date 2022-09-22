@@ -34,9 +34,9 @@ class ProcessObjectsCommand(BaseCommand):
             the task on. Must return the pks
         - kwargs: any extra kwargs you want to apply to delay() when calling
             the task.
-        allowed_kwargs: any extra boolean kwargs that will be passed as kwargs
-            to the delay() call from the command line arguments. Make sure to
-            add it to `add_arguments` too if it's not there already.
+        - allowed_kwargs: any extra boolean kwargs that will be passed as
+            kwargs to the delay() call from the command line arguments. Make
+            sure to add it to `add_arguments` too if it's not there already.
         """
         raise NotImplementedError
 
