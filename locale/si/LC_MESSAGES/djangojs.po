@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-21 17:52+0000\n"
+"PO-Revision-Date: 2022-09-22 12:51+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -28,10 +28,10 @@ msgstr ""
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr ""
+msgstr "{0}% ක් සම්පූර්ණයි"
 
 msgid "{0} of {1}"
-msgstr ""
+msgstr "{1} න් {0}"
 
 msgid "Cancel"
 msgstr "අවලංගු"
@@ -129,33 +129,33 @@ msgstr ""
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "බාගැනීම් {0}"
+msgstr[1] "බාගැනීම් {0}"
 
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "පරිශීලකයින් {0}"
+msgstr[1] "පරිශීලකයින් {0}"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "එක්කහු {0}"
+msgstr[1] "එක්කහු {0}"
 
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "එකතු {0}"
+msgstr[1] "එකතු {0}"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "සමාලෝචන {0}"
+msgstr[1] "සමාලෝචන {0}"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "අලෙවි {0}"
+msgstr[1] "අලෙවි {0}"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
@@ -164,8 +164,8 @@ msgstr[1] ""
 
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ස්ථාපන {0}"
+msgstr[1] "ස්ථාපන {0}"
 
 msgid "Downloads"
 msgstr "බාගැනීම්"
@@ -174,10 +174,10 @@ msgid "Daily Users"
 msgstr "දෛනික පරිශීලකයින්"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "මුදල, ඩොලර් වලින්"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "දායකත්ව ගණන"
 
 msgid "More Info..."
 msgstr "තව තොරතුරු..."
@@ -190,7 +190,7 @@ msgid "Collections Created"
 msgstr ""
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "භාවිතා වන එක්කහු"
 
 msgid "Add-ons Created"
 msgstr ""
@@ -277,7 +277,7 @@ msgid "Meet the Developer"
 msgstr ""
 
 msgid "User Profile"
-msgstr ""
+msgstr "පරිශීලක පැතිකඩ"
 
 msgid "Version History"
 msgstr "අනුවාද ඉතිහාසය"
@@ -286,7 +286,7 @@ msgid "Sharing"
 msgstr "බෙදාගැනීම"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "ප්‍රවර්ග පිටු"
 
 msgid "Collections"
 msgstr "එකතු"
@@ -340,19 +340,19 @@ msgid "Firefox"
 msgstr "ෆයර්ෆොක්ස්"
 
 msgid "Mozilla"
-msgstr ""
+msgstr "මොසිල්ලා"
 
 msgid "Thunderbird"
-msgstr ""
+msgstr "තන්ඩර්බර්ඩ්"
 
 msgid "Sunbird"
-msgstr ""
+msgstr "සන්බර්ඩ්"
 
 msgid "SeaMonkey"
-msgstr ""
+msgstr "සීමන්කි"
 
 msgid "Fennec"
-msgstr ""
+msgstr "ෆෙනෙක්"
 
 msgid "Android"
 msgstr "ඇන්ඩ්‍රොයිඩ්"
@@ -383,23 +383,23 @@ msgstr "{0} සිට {1} දක්වා බාගැනීම්"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr ""
+msgstr "දෛනික පරිශීලකයින්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා දෛනික පරිශීලකයින්"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr ""
+msgstr "යෙදුම්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා යෙදුම්"
 
 #. L10n: {0} is an integer.
 msgid "Countries, last {0} days"
-msgstr ""
+msgstr "රටවල්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Countries from {0} to {1}"
