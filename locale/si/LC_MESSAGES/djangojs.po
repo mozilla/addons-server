@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-22 12:58+0000\n"
+"PO-Revision-Date: 2022-09-22 13:12+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -268,7 +268,7 @@ msgid "Others By Author"
 msgstr ""
 
 msgid "Dependencies"
-msgstr ""
+msgstr "පරායත්ත"
 
 msgid "Upsell"
 msgstr ""
@@ -471,11 +471,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "දායකත්ව, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා දායකත්ව"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -667,22 +667,22 @@ msgid "Duplicate"
 msgstr ""
 
 msgid "Rejected"
-msgstr ""
+msgstr "ප්‍රතික්‍ෂේපිතයි"
 
 msgid "Approved"
-msgstr ""
+msgstr "අනුමතයි"
 
 msgid "No results found"
-msgstr ""
+msgstr "ප්‍රතිඵල හමු නොවිණි"
 
 msgid "Theme"
-msgstr ""
+msgstr "තේමාව"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "සමාලෝචක"
 
 msgid "Status"
-msgstr ""
+msgstr "තත්‍වය"
 
 msgid "All tests passed successfully."
 msgstr ""
@@ -694,10 +694,10 @@ msgid "Tests"
 msgstr ""
 
 msgid "Error"
-msgstr ""
+msgstr "දෝෂයකි"
 
 msgid "Warning"
-msgstr ""
+msgstr "අවවාදයයි"
 
 msgid "{0} line {1} column {2}"
 msgstr ""
@@ -706,10 +706,10 @@ msgid "{0} line {1}"
 msgstr ""
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "එක්කහුව වලංගුකරණයට අසමත් විය"
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "එක්කහුව වලංගුකරණයෙන් සමත් විය"
 
 msgid "{0} error"
 msgid_plural "{0} errors"
