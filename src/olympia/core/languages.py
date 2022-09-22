@@ -79,6 +79,7 @@ AMO_LANGUAGES = {
         'english': 'Russian',
         'native': '\u0420\u0443\u0441\u0441\u043a\u0438\u0439',
     },
+    'si': {'english': 'Sinhala', 'native': '\u0dc3\u0dd2\u0d82\u0dc4\u0dbd'},
     'sk': {'english': 'Slovak', 'native': 'sloven\u010dina'},
     'sl': {'english': 'Slovenian', 'native': 'Sloven\u0161\u010dina'},
     'sq': {'english': 'Albanian', 'native': 'Shqip'},
