@@ -140,8 +140,9 @@ class InvalidManifest(forms.ValidationError):
     pass
 
 
-class InvalidZipFile(forms.ValidationError):
-    """This error is raised when we attempt to open an invalid file with SafeZip."""
+class InvalidArchiveFile(forms.ValidationError):
+    """This error is raised when we attempt to open an invalid file with
+    SafeZip/SafeTar."""
 
     pass
 
@@ -541,7 +542,7 @@ def _validate_archive_member_name_and_size(
     filename, filesize, ignore_filename_errors=False
 ):
     if filename is None or filesize is None:
-        raise InvalidZipFile(gettext('Unsupported archive type.'))
+        raise InvalidArchiveFile(gettext('Unsupported archive type.'))
 
     try:
         force_str(filename)
@@ -553,7 +554,7 @@ def _validate_archive_member_name_and_size(
             'Invalid file name in archive. Please make sure '
             'all filenames are utf-8 or latin1 encoded.'
         )
-        raise InvalidZipFile(msg)
+        raise InvalidArchiveFile(msg)
 
     if not ignore_filename_errors:
         if (
@@ -565,7 +566,7 @@ def _validate_archive_member_name_and_size(
             log.warning('Extraction error, invalid file name: %s', filename)
             # L10n: {0} is the name of the invalid file.
             msg = gettext('Invalid file name in archive: {0}')
-            raise InvalidZipFile(msg.format(filename))
+            raise InvalidArchiveFile(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
         log.warning(
@@ -573,7 +574,30 @@ def _validate_archive_member_name_and_size(
         )
         # L10n: {0} is the name of the invalid file.
         msg = gettext('File exceeding size limit in archive: {0}')
-        raise InvalidZipFile(msg.format(filename))
+        raise InvalidArchiveFile(msg.format(filename))
+
+
+class SafeTar:
+    @classmethod
+    def open(cls, *args, **kwargs):
+        if kwargs.pop('force_fsync', False):
+            cls = FSyncedTarFile
+        else:
+            cls = tarfile.TarFile
+        archive = cls.open(*args, **kwargs)
+        for member in archive.getmembers():
+            archive_member_validator(archive, member)
+            # In addition to the generic archive member validator, tar files
+            # can contain special files we don't want...
+            for method in ('isblk', 'ischr', 'isdev', 'isfifo', 'islnk', 'issym'):
+                if getattr(member, method)():
+                    raise InvalidArchiveFile(
+                        gettext(
+                            'This archive contains a forbidden special file '
+                            '(symbolink / hard link or device / block file)'
+                        )
+                    )
+        return archive
 
 
 class SafeZip:
@@ -604,7 +628,7 @@ class SafeZip:
             archive_member_validator(self.source, info, self.ignore_filename_errors)
 
         if total_file_size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
-            raise InvalidZipFile(gettext('Uncompressed size is too large'))
+            raise InvalidArchiveFile(gettext('Uncompressed size is too large'))
 
         self.info_list = info_list
         self.zip_file = zip_file
@@ -725,8 +749,7 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
                 zip_file = SafeZip(source_file, force_fsync=force_fsync)
                 zip_file.extract_to_dest(target)
         elif source.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
-            tarfile_class = tarfile.TarFile if not force_fsync else FSyncedTarFile
-            with tarfile_class.open(source) as archive:
+            with SafeTar.open(source, force_fsync=force_fsync) as archive:
                 archive.extractall(target)
         else:
             raise FileNotFoundError  # Unsupported file, shouldn't be reached

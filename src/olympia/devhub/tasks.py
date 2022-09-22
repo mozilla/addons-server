@@ -48,7 +48,7 @@ from olympia.files.utils import (
     parse_addon,
     SafeZip,
     UnsupportedFileType,
-    InvalidZipFile,
+    InvalidArchiveFile,
 )
 from olympia.users.models import UserProfile
 
@@ -170,7 +170,7 @@ def validation_task(fn):
                 msg_id='unsupported_filetype',
             )
             return results
-        except InvalidZipFile as exc:
+        except InvalidArchiveFile as exc:
             results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
             annotations.insert_validation_message(
                 results,
