@@ -27,7 +27,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.applications import APPS
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_SLUG
-from olympia.files.utils import SafeZip, archive_member_validator
+from olympia.files.utils import SafeTar, SafeZip
 from olympia.versions.models import (
     ApplicationsVersions,
     License,
@@ -214,15 +214,17 @@ class SourceFileField(serializers.FileField):
         try:
             _, ext = os.path.splitext(data.name)
             if ext == '.zip':
-                # testzip() returns None if there are no broken CRCs.
+                # For zip files, opening them though SafeZip() checks that we
+                # can accept the file and testzip() on top of that returns None
+                # if there are no broken CRCs.
                 if SafeZip(data).zip_file.testzip() is not None:
                     raise zipfile.BadZipFile()
             else:
-                # For tar files we need to do a little more work.
+                # For tar files, opening them through SafeTar.open() checks
+                # that we can accept it.
                 mode = 'r:bz2' if ext == '.bz2' else 'r:gz'
-                with tarfile.open(mode=mode, fileobj=data) as archive:
-                    for member in archive.getmembers():
-                        archive_member_validator(archive, member)
+                with SafeTar.open(mode=mode, fileobj=data):
+                    pass
         except (zipfile.BadZipFile, tarfile.ReadError, OSError, EOFError):
             raise exceptions.ValidationError(gettext('Invalid or broken archive.'))
 

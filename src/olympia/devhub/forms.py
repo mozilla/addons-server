@@ -49,7 +49,7 @@ from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, CATEGORIES_NO_APP
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
-from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
+from olympia.files.utils import SafeTar, SafeZip, parse_addon
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import LocaleErrorMessage, TransField, TransTextarea
@@ -754,17 +754,18 @@ class WithSourceMixin:
             # Check inside to see if the file extension matches the content.
             try:
                 if source.name.endswith('.zip'):
+                    # For zip files, opening them though SafeZip() checks that
+                    # we can accept the file and testzip() on top of that
+                    # returns None if there are no broken CRCs.
                     zip_file = SafeZip(source)
-                    # testzip() returns None if there are no broken CRCs.
                     if zip_file.zip_file.testzip() is not None:
                         raise zipfile.BadZipFile()
                 elif source.name.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
-                    # For tar files we need to do a little more work.
+                    # For tar files, opening them through SafeTar.open() checks
+                    # that we can accept it.
                     mode = 'r:bz2' if source.name.endswith('bz2') else 'r:gz'
-                    with tarfile.open(mode=mode, fileobj=source) as archive:
-                        archive_members = archive.getmembers()
-                        for member in archive_members:
-                            archive_member_validator(archive, member)
+                    with SafeTar.open(mode=mode, fileobj=source):
+                        pass
                 else:
                     raise forms.ValidationError(
                         self.get_invalid_source_file_type_message()
