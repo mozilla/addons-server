@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-23 02:04+0000\n"
+"PO-Revision-Date: 2022-09-23 02:11+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -37,7 +37,7 @@ msgid "Cancel"
 msgstr "අවලංගු"
 
 msgid "Uploading {0}"
-msgstr ""
+msgstr "{0} උඩුගත වෙමින්"
 
 msgid "Error with {0}"
 msgstr ""
@@ -479,11 +479,11 @@ msgstr "{0} සිට {1} දක්වා දායකත්ව"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr ""
+msgstr "අඩවි ප්‍රමිතික, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා අඩවි ප්‍රමිතික"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -499,23 +499,23 @@ msgstr "බාගත වූ එක්කහු, පසුගිය දවස් 
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා බාගත කළ එක්කහු"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr ""
+msgstr "සාදන ලද එක්කහු, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා සාදන ලද එක්කහු"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr ""
+msgstr "යාවත්කාලීන එක්කහු, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා යාවත්කාලීන එක්කහු"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
@@ -527,19 +527,19 @@ msgstr "{0} සිට {1} දක්වා ලියන ලද සමාලෝච
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr ""
+msgstr "පරිශීලක ලියාපදිංචි, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා පරිශීලක ලියාපදිංචි"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr ""
+msgstr "සාදන ලද එකතු, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා සාදන ලද එකතු"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
