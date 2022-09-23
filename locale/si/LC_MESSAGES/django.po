@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-22 13:01+0000\n"
+"PO-Revision-Date: 2022-09-23 08:32+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -59,7 +59,7 @@ msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Modified on:"
-msgstr ""
+msgstr "සංශෝධනය:"
 
 #, python-format
 msgid "By %(filter_title)s"
@@ -69,7 +69,7 @@ msgid "All"
 msgstr "සියල්ල"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "සබැඳි සඳහා ඉඩ නොදේ."
 
 msgid "This display name cannot be used."
 msgstr ""
@@ -78,26 +78,26 @@ msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "රූපය PNG හෝ JPG විය යුතුය."
 
 msgid "Images cannot be animated."
 msgstr ""
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "මෙ.බ. %d කට වඩා කුඩා රූප භාවිතා කරන්න."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "ඔබ දැනටමත් පිවිස ඇත."
 
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "ඔබගේ ෆයර්ෆොක්ස් ගිණුම හමු නොවිණි. යළි උත්සාහ කරන්න."
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "ඔබට පිවිසීමට නොහැකි විය. යළි උත්සාහ කරන්න."
 
 msgid "Need help?"
 msgstr "උදව් වුවමනා ද?"
@@ -107,25 +107,25 @@ msgid "Notification [%s] does not exist"
 msgstr ""
 
 msgid "Add-ons Review Team"
-msgstr ""
+msgstr "එක්කහු සමාලෝචන කණ්ඩායම"
 
 msgid "Review"
-msgstr ""
+msgstr "සමාලෝචනය"
 
 msgid "Version {0}"
-msgstr ""
+msgstr "අනුවාදය {0}"
 
 msgid "Review note"
-msgstr ""
+msgstr "සමාලෝචන සටහන"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "Authors"
-msgstr ""
+msgstr "කතුවරු"
 
 msgid "Ratings"
-msgstr ""
+msgstr "ඇගැයුම්"
 
 msgid "Reviewer Tools (listed)"
 msgstr ""
@@ -165,7 +165,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "https:// සමඟ ඒ.ස.නි. ආරම්භ විය යුතුය."
 
 msgid "License with slug={value} does not exist."
 msgstr ""
@@ -177,7 +177,7 @@ msgid "Invalid or broken archive."
 msgstr ""
 
 msgid "Invalid value"
-msgstr ""
+msgstr "අගය වලංගු නොවේ"
 
 msgid "Invalid app specified"
 msgstr ""
