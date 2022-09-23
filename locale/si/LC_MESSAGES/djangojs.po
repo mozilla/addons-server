@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-23 01:09+0000\n"
+"PO-Revision-Date: 2022-09-23 01:20+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -253,13 +253,13 @@ msgid "Homepage Most Popular"
 msgstr ""
 
 msgid "Detail Page"
-msgstr ""
+msgstr "විස්තර පිටුව"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "විස්තර පිටුව (පහළ)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "විස්තර පිටුව (සංවර්ධන නාලිකාව)"
 
 msgid "Often Used With"
 msgstr ""
@@ -274,7 +274,7 @@ msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "සංවර්ධක හමුවන්න"
 
 msgid "User Profile"
 msgstr "පරිශීලක පැතිකඩ"
@@ -439,15 +439,15 @@ msgstr "{0} සිට {1} දක්වා එක්කහුවේ තත්‍�
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "මූලාශ්‍ර බාගැනීම, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා මූලාශ්‍ර බාගැනීම"
 
 #. L10n: {0} is an integer.
 msgid "Download Mediums, last {0} days"
-msgstr ""
+msgstr "මාධ්‍ය බාගැනීම, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Mediums from {0} to {1}"
@@ -455,11 +455,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
-msgstr ""
+msgstr "අන්තර්ගත බාගැනීම, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Contents from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා අන්තර්ගත බාගැනීම"
 
 #. L10n: {0} is an integer.
 msgid "Download Campaigns, last {0} days"
