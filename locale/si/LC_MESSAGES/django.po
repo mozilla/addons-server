@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-23 08:38+0000\n"
+"PO-Revision-Date: 2022-09-23 08:48+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -400,36 +400,36 @@ msgstr "හරි"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "කලින්"
 
 msgid "Next"
-msgstr ""
+msgstr "ඊළඟ"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
 msgstr ""
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "නඩත්තු කටයුතු සිදු වෙමින්"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "අපි අඩවිය නඩත්තු කරන හෙයින් මෙම විශේෂාංගය තාවකාලිකව අබල කර ඇත. ටික වේලාවකට පසුව නැවත පරීක්‍ෂා කරන්න."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr ""
 
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "{0} සඳහා එක්කහු"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
 msgstr ""
 
 msgid "Title"
-msgstr ""
+msgstr "සිරැසිය"
 
 msgid "Body"
-msgstr ""
+msgstr "අන්තර්ගතය"
 
 msgid "Another Title"
 msgstr ""
@@ -453,10 +453,10 @@ msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "අත්සන කල් ඉකුත් වී ඇත."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "අත්සන විකේතන දෝෂයකි."
 
 msgid "Invalid JWT Token."
 msgstr ""
@@ -468,10 +468,10 @@ msgid "Email address not found."
 msgstr ""
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "නීතිමය හේතු මත නොතිබේ."
 
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "\"{lang_code}\" භාෂා කේතය වලංගු නොවේ."
 
 msgid "You must provide an object of {{lang-code:value}}."
 msgstr ""
@@ -490,7 +490,7 @@ msgid "Confirmation for developer API keys"
 msgstr ""
 
 msgid "Application Versions"
-msgstr ""
+msgstr "යෙදුමේ අනුවාද"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr ""
@@ -509,7 +509,7 @@ msgid "GUID"
 msgstr ""
 
 msgid "Versions"
-msgstr ""
+msgstr "අනුවාද"
 
 #, python-format
 msgid ""
@@ -521,7 +521,7 @@ msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "මෙම නම භාවිතා කළ නොහැකිය."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -571,7 +571,7 @@ msgid "Delete Multiple %(name)s"
 msgstr ""
 
 msgid "Home"
-msgstr ""
+msgstr "මුල"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
@@ -582,16 +582,16 @@ msgid "%(count)s Add-on GUIDs were not found"
 msgstr ""
 
 msgid "Save"
-msgstr ""
+msgstr "සුරකින්න"
 
 msgid "Save and add more"
 msgstr ""
 
 msgid "Delete"
-msgstr ""
+msgstr "මකන්න"
 
 msgid "Update"
-msgstr ""
+msgstr "යාවත්කාලය"
 
 msgid "Reject Submission"
 msgstr ""
@@ -607,7 +607,7 @@ msgid "Add-on GUIDs (one per line)"
 msgstr ""
 
 msgid "Submit"
-msgstr ""
+msgstr "යොමන්න"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs with %(adu)s users"
@@ -617,7 +617,7 @@ msgid "Edit Block"
 msgstr ""
 
 msgid "versions"
-msgstr ""
+msgstr "අනුවාද"
 
 msgid "{addon} was created."
 msgstr ""
@@ -1429,7 +1429,7 @@ msgid "Mozilla Public License 1.1"
 msgstr ""
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "සියළුම හිමිකම් ඇවිරිණි"
 
 msgid "Creative Commons Attribution 3.0"
 msgstr ""
@@ -1459,10 +1459,10 @@ msgid "Sponsored"
 msgstr ""
 
 msgid "Verified"
-msgstr ""
+msgstr "තහවුරුයි"
 
 msgid "By Firefox"
-msgstr ""
+msgstr "ෆයර්ෆොක්ස් වෙතින්"
 
 msgid "Spotlight"
 msgstr ""
@@ -1471,19 +1471,19 @@ msgid "Strategic"
 msgstr ""
 
 msgid "Add-on"
-msgstr ""
+msgstr "එක්කහුව"
 
 msgid "Static Theme"
-msgstr ""
+msgstr "ස්ථිතික තේමාව"
 
 msgid "Persona"
 msgstr ""
 
 msgid "Security"
-msgstr ""
+msgstr "ආරක්‍ෂාව"
 
 msgid "Privacy"
-msgstr ""
+msgstr "රහස්‍යතාව"
 
 msgid "Development Practices"
 msgstr ""
@@ -1576,31 +1576,31 @@ msgid "Add-on Review (Low Risk)"
 msgstr ""
 
 msgid "Level 1"
-msgstr ""
+msgstr "මට්ටම 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "මට්ටම 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "මට්ටම 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "මට්ටම 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "මට්ටම 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "මට්ටම 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "මට්ටම 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "මට්ටම 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "මට්ටම 9"
 
 msgid "Request More Info"
 msgstr ""
