@@ -1263,7 +1263,7 @@ STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (path('static'),)
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'olympia.lib.storage.ManifestStaticFilesStorageNotMaps'
 
 # Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
 # variable will be set and point to our NFS/EFS storage
