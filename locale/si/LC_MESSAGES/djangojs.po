@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-23 01:03+0000\n"
+"PO-Revision-Date: 2022-09-23 01:09+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -187,25 +187,25 @@ msgid "Details for {0}"
 msgstr "{0} සඳහා විස්තර"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "සාදන ලද එකතු"
 
 msgid "Add-ons in Use"
 msgstr "භාවිතා වන එක්කහු"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "සාදන ලද එක්කහු"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "බාගත කළ එක්කහු"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "යාවත්කාල කළ එක්කහු"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "ලියන ලද සමාලෝචන"
 
 msgid "User Signups"
-msgstr ""
+msgstr "ලියාපදිංචි පරිශීලකයින්"
 
 msgid "Subscribers"
 msgstr ""
@@ -232,7 +232,7 @@ msgid "Add-ons Manager Featured"
 msgstr ""
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "එක්කහු කළමනාකරු ගැන දැන ගන්න"
 
 msgid "Search Suggestions"
 msgstr "සෙවුම් යෝජනා"
