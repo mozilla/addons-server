@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-23 08:32+0000\n"
+"PO-Revision-Date: 2022-09-23 08:38+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -226,7 +226,7 @@ msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "Account not found."
-msgstr ""
+msgstr "ගිණුම හමු නොවිණි."
 
 msgid "An author can only be present once."
 msgstr ""
@@ -241,7 +241,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Site permissions for {hostnames}"
-msgstr ""
+msgstr "{hostnames} සඳහා අඩවි අවසර"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -274,49 +274,49 @@ msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
 msgid "My Add-ons"
-msgstr ""
+msgstr "මාගේ එක්කහු"
 
 msgid "My Themes"
-msgstr ""
+msgstr "මාගේ තේමා"
 
 msgid "Git-Extract"
 msgstr ""
 
 msgid "Tools"
-msgstr ""
+msgstr "මෙවලම්"
 
 msgid "My Profile"
-msgstr ""
+msgstr "මාගේ පැතිකඩ"
 
 msgid "Account Settings"
-msgstr ""
+msgstr "ගිණුමේ සැකසුම්"
 
 msgid "My Collections"
-msgstr ""
+msgstr "මාගේ එකතු"
 
 msgid "Log out"
-msgstr ""
+msgstr "නික්මෙන්න"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "යොමු කිරීම් කළමනාකරණය"
 
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "නව එක්කහුවක් යොමන්න"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "නව තේමාවක් යොමන්න"
 
 msgid "Developer Hub"
-msgstr ""
+msgstr "සංවර්ධක නැබ"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "යෙ.ක්‍ර.මු. යතුරු කළමනාකරණය"
 
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "සමාලෝචක මෙවලම්"
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "පරිපාලක මෙවලම්"
 
 msgid "Positive integer"
 msgstr ""
@@ -326,13 +326,13 @@ msgid "This field can only be used to link to external websites. URLs on %(domai
 msgstr ""
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "වැරදිය, යළි උත්සාහ කරන්න."
 
 msgid "Error verifying input, please try again."
 msgstr ""
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "වලංගු අ.ජා.කෙ. 4 හෝ 6 ජාලයක් යොදන්න."
 
 msgid "CIDR"
 msgstr ""
@@ -347,10 +347,10 @@ msgid "Ensure this field contains at least one letter or number character."
 msgstr ""
 
 msgid "Not allowed"
-msgstr ""
+msgstr "ඉඩ නොදේ"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "අපොයි! ඉඩ නොදේ."
 
 msgid "You tried to do something that you weren't allowed to."
 msgstr ""
@@ -369,7 +369,7 @@ msgid ""
 msgstr ""
 
 msgid "Not Found"
-msgstr ""
+msgstr "හමු නොවිණි"
 
 #, python-format
 msgid ""
@@ -381,7 +381,7 @@ msgid ""
 msgstr ""
 
 msgid "Oops"
-msgstr ""
+msgstr "අපොයි"
 
 #, python-format
 msgid ""
@@ -390,13 +390,13 @@ msgid ""
 msgstr ""
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "පිවිසෙන්න හෝ ලියාපදිංචිය"
 
 msgid "Email:"
-msgstr ""
+msgstr "වි-තැපෑල:"
 
 msgid "OK"
-msgstr ""
+msgstr "හරි"
 
 #. abbreviation of 'previous'
 msgid "Prev"
