@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-23 07:57+0000\n"
+"PO-Revision-Date: 2022-09-23 08:13+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -78,19 +78,19 @@ msgstr "ඔබගේ එක්කහුව වලංගුකරණය ඉකු
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ඔබගේ එක්කහුව දෝෂ රහිතව හා අවවාද {0} ක් සහිතව වලංගු කෙරිිණි."
+msgstr[1] "ඔබගේ එක්කහුව දෝෂ රහිතව හා අවවාද {0} ක් සහිතව වලංගු කෙරිිණි."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ඔබගේ එක්කහුව දෝෂ රහිතව හා පණිවිඩ {0} ක් සහිතව වලංගු කෙරිිණි."
+msgstr[1] "ඔබගේ එක්කහුව දෝෂ රහිතව හා පණිවිඩ {0} ක් සහිතව වලංගු කෙරිිණි."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "ඔබගේ එක්කහුව දෝෂ හා අවවාද රහිතව වලංගු කෙරිිණි."
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "විස්තරාත්මක අනුවාද සටහන් යොදන්න (ඊළඟ පියවරේදී හැකිය)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
@@ -122,10 +122,10 @@ msgid "Images must be either PNG or JPG."
 msgstr "රූපය PNG හෝ JPG විය යුතුය."
 
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "දෘශ්‍යකය WebM විය යුතුය."
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "{0} වන සතිය"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
@@ -159,8 +159,8 @@ msgstr[1] "අලෙවි {0}"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ආපසු දීම් {0}"
+msgstr[1] "ආපසු දීම් {0}"
 
 msgid "{0} install"
 msgid_plural "{0} installs"
@@ -601,7 +601,7 @@ msgid "Enter a new author's email address"
 msgstr ""
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "ඔබගේ ගොනුව උඩුගත කිරීමේ දෝෂයකි."
 
 msgid "{files} file"
 msgid_plural "{files} files"
@@ -609,10 +609,10 @@ msgstr[0] "ගොනු {files}"
 msgstr[1] "ගොනු {files}"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "රූප වෙනස් කිරීම් සකසමින් පවතී"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "පළමුව යෙදුමක් තෝරන්න"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -621,14 +621,14 @@ msgstr[1] "අකුරු <b>{0}</b>"
 
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "අකුරු <b>{0}</b> ක් ඉතිරිය"
+msgstr[1] "අකුරු <b>{0}</b> ක් ඉතිරිය"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr ""
+msgstr "අපි අඩවිය නඩත්තු කරන හෙයින් මෙම විශේෂාංගය තාවකාලිකව අබල කර ඇත. ටික වේලාවකට පසුව නැවත පරීක්‍ෂා කරන්න."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "මෙම දේශීයකරණය ඉවතලන්න"
 
 msgid "{name} was viewing this page first."
 msgstr ""
