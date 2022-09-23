@@ -1422,12 +1422,6 @@ class ReviewBase:
             )
             self.addon.update_version()
 
-        # The reviewer should be automatically subscribed to any new versions posted to
-        # the same channel.
-        ReviewerSubscription.objects.get_or_create(
-            user=self.user, addon=self.addon, channel=latest_version.channel
-        )
-
     def notify_about_auto_approval_delay(self, version):
         """Notify developers of the add-on when their version has not been
         auto-approved for a while."""

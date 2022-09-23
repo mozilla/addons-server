@@ -2188,12 +2188,6 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
 
-        # The reviewer should have been automatically subscribed to new listed
-        # versions.
-        assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.review_version.channel
-        ).exists()
-
     def test_unreject_multiple_versions_with_unlisted(self):
         old_version = self.review_version
         self.review_version = version_factory(addon=self.addon, version='3.0')
@@ -2227,12 +2221,6 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
 
-        # The reviewer should have been automatically subscribed to new listed
-        # versions.
-        assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.review_version.channel
-        ).exists()
-
     def test_unreject_multiple_versions_incomplete_addon(self):
         old_version = self.review_version
         old_version.file.update(status=amo.STATUS_DISABLED)
@@ -2264,12 +2252,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 0
 
         assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
-
-        # The reviewer should have been automatically subscribed to new listed
-        # versions.
-        assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.review_version.channel
-        ).exists()
 
     def test_approve_multiple_versions_unlisted(self):
         old_version = self.review_version
