@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-23 01:20+0000\n"
+"PO-Revision-Date: 2022-09-23 01:29+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -559,34 +559,34 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "විකුණුම්, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා විකුණුම්"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "ස්ථාපන, පසුගිය දවස් {0}"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "{0} සිට {1} දක්වා ස්ථාපන"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr ""
+msgstr "පසුගිය දවස් {1} තුළ <b>{0}</b>"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr ""
+msgstr "{1} සිට {2} දක්වා <b>{0}</b>"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "පසුගිය දවස් {1} තුළ සාමාන්‍යය <b>{0}</b>"
 
 msgid "No data available."
-msgstr ""
+msgstr "දත්ත නොතිබේ"
 
 msgid "Date"
 msgstr "දිනය"
@@ -595,7 +595,7 @@ msgid "Other"
 msgstr "වෙනත්"
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "වෙනස්කම් සුරැකිණි"
 
 msgid "Enter a new author's email address"
 msgstr ""
@@ -605,8 +605,8 @@ msgstr ""
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ගොනු {files}"
+msgstr[1] "ගොනු {files}"
 
 msgid "Image changes being processed"
 msgstr ""
@@ -616,8 +616,8 @@ msgstr ""
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "අකුරු <b>{0}</b>"
+msgstr[1] "අකුරු <b>{0}</b>"
 
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
@@ -658,7 +658,7 @@ msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"
-msgstr ""
+msgstr "ඉල්ලූ තොරතුරු"
 
 msgid "Flagged"
 msgstr ""
