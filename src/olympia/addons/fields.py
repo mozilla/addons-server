@@ -220,8 +220,8 @@ class SourceFileField(serializers.FileField):
                 if SafeZip(data).zip_file.testzip() is not None:
                     raise zipfile.BadZipFile()
             else:
-                # For tar files, opening them through SafeTar() checks that we
-                # can accept it.
+                # For tar files, opening them through SafeTar.open() checks
+                # that we can accept it.
                 mode = 'r:bz2' if ext == '.bz2' else 'r:gz'
                 with SafeTar.open(mode=mode, fileobj=data):
                     pass

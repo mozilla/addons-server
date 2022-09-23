@@ -761,8 +761,8 @@ class WithSourceMixin:
                     if zip_file.zip_file.testzip() is not None:
                         raise zipfile.BadZipFile()
                 elif source.name.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
-                    # For tar files, opening them through SafeTar() checks that
-                    # we can accept it.
+                    # For tar files, opening them through SafeTar.open() checks
+                    # that we can accept it.
                     mode = 'r:bz2' if source.name.endswith('bz2') else 'r:gz'
                     with SafeTar.open(mode=mode, fileobj=source):
                         pass
