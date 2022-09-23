@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-23 02:11+0000\n"
+"PO-Revision-Date: 2022-09-23 02:19+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -23,7 +23,7 @@ msgid "Select a file..."
 msgstr "ගොනුවක් තෝරන්න..."
 
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr ""
+msgstr "ඔබගේ එක්කහුව .zip, .xpi හෝ .crx න් නිම විය යුතුය"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -40,15 +40,15 @@ msgid "Uploading {0}"
 msgstr "{0} උඩුගත වෙමින්"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "{0} සමඟ දෝෂ"
 
 msgid "Please make sure to report any linting related issues on GitHub"
 msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "දෝෂ {0} ක් සහිතව ඔබගේ එක්කහුව වලංගුකරණයට අසමත් විය."
+msgstr[1] "දෝෂ {0} ක් සහිතව ඔබගේ එක්කහුව වලංගුකරණයට අසමත් විය."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -56,25 +56,25 @@ msgstr[0] "&hellip;සහ තවත් {0}"
 msgstr[1] "&hellip;සහ තවත් {0}"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "පූර්ණ වලංගුකරණ වාර්තාව බලන්න"
 
 msgid "Validating {0}"
-msgstr ""
+msgstr "{0} වලංගු කරමින්"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ඔබගේ එක්කහුව උපරිම ප්‍රමාණය {0} ඉක්මවයි."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "සේවාදායකයෙන් හිස් ප්‍රතිචාරයක් ලැබුණි; තත්‍වය: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "වලංගුකරණය අතරතුර අනපේක්‍ෂිත සේවාදායක දෝෂයකි."
 
 msgid "Finished validating {0}"
 msgstr ""
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "ඔබගේ එක්කහුව වලංගුකරණය ඉකුත් වී ඇත, එය අතින් සමාලෝචනය කෙරේ."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -110,16 +110,16 @@ msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "ඔබ උඩුගත කළ ගොනු වර්ගය නොහඳුනයි."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ගොනුව {0} ක උපරිම ප්‍රමාණය ඉක්මවයි."
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "ඔබ උඩුගත කිරීම අවලංගු කළා."
 
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "රූපය PNG හෝ JPG විය යුතුය."
 
 msgid "Videos must be in WebM."
 msgstr ""
