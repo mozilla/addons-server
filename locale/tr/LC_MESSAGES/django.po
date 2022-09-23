@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-23 14:30+0000\n"
+"PO-Revision-Date: 2022-09-23 14:35+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1913,7 +1913,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Doğrulama çok fazla hata/uyarı üretti, %s iletileri kesildi. Görünen iletileri ele aldıktan sonra, diğerlerini görebilirsiniz."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Manifest V3 şu anda yükleme için desteklenmiyor. {start_href}Destek zaman çizelgesi hakkında daha fazla bilgi alın{end_href}."
 
 msgid "Updated"
 msgstr "Güncelleme"
@@ -4666,7 +4666,7 @@ msgstr "Güçlü parola yöneticileri"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
-msgstr ""
+msgstr "Editörün seçtiği diğer parola yöneticilerine bakın"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
@@ -4674,7 +4674,7 @@ msgstr "Çeviri araçları"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
-msgstr ""
+msgstr "Editörün seçtiği diğer çeviri araçlarına bakın"
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
@@ -4684,7 +4684,7 @@ msgstr "Sosyal akış"
 # 95%
 # 100%
 msgid "See more social streaming staff picks"
-msgstr ""
+msgstr "Editörün seçtiği diğer sosyal akış uzantılarına bakın"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4692,7 +4692,7 @@ msgstr "Sekme yöneticileri"
 
 #. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
-msgstr ""
+msgstr "Editörün seçtiği diğer sekme yönetimi uzantılarına bakın"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
@@ -4706,7 +4706,7 @@ msgstr "\"{tag}\" etiketli diğer uzantılara bakın"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
-msgstr ""
+msgstr "Editörün seçtiği diğer reklam engelleyicilere bakın"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
@@ -4714,7 +4714,7 @@ msgstr "YouTube özelleştirme"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
-msgstr ""
+msgstr "Editörün seçtiği diğer YouTube uzantılarına bakın"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
@@ -4843,7 +4843,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Çok parçalı dosya verilerinde \"yükleme\" anahtarı eksik."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "\"Channel\" bağımsız değişkeni eksik"
 
 msgid "User"
 msgstr "Kullanıcı"
@@ -4882,10 +4882,10 @@ msgid "You can't leave a review on your own add-on."
 msgstr "Kendi eklentinizde yorum yazamazsınız."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Bir eklentinin aynı sürümü için birden fazla inceleme ekleyemezsiniz."
 
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr ""
+msgstr "Geçersiz bayrak [{}]. Bayrak şunlardan biri olmalıdır: [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
@@ -4964,7 +4964,7 @@ msgid "Choose one or more reasons:"
 msgstr "Bir veya daha fazla neden seçin:"
 
 msgid "Version mismatch - the latest version has changed!"
-msgstr ""
+msgstr "Sürüm uyuşmazlığı. En son sürüm değişmiş!"
 
 msgid "Choose a canned response..."
 msgstr "Hazır yanıtı seçin..."
@@ -5093,7 +5093,7 @@ msgid "The latest public version of this add-on was automatically approved. This
 msgstr ""
 
 msgid "Approve Multiple Versions"
-msgstr ""
+msgstr "Birden çok sürümü onayla"
 
 msgid "This will approve the selected versions. The comments will be sent to the developer."
 msgstr ""
@@ -5987,7 +5987,7 @@ msgid "Application usage by Date"
 msgstr "Tarihe göre uygulama kullanımı"
 
 msgid "Download campaigns by Date"
-msgstr ""
+msgstr "Tarihe göre indirme kampanyaları"
 
 msgid "About tracking external sources..."
 msgstr "Harici kaynakları izleme hakkında..."
@@ -6005,7 +6005,7 @@ msgid "User languages by Date"
 msgstr "Tarihe göre kullanıcı dilleri"
 
 msgid "Download mediums by Date"
-msgstr ""
+msgstr "Tarihe göre indirme ortamları"
 
 msgid "Platform usage by Date"
 msgstr "Tarihe göre platform kullanımı"
