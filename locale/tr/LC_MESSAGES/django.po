@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-17 12:34+0000\n"
+"PO-Revision-Date: 2022-09-23 14:30+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -2005,6 +2005,8 @@ msgstr "Ön izlemenizi yüklerken bir hata oluştu."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Bu %s eklentisinin en son onaylanmış sürümü silinemez veya devre dışı bırakılamaz çünkü önceki sürüm %s tanıtımı için onaylanmamış. Bu konuda yardıma ihtiyacınız varsa lütfen AMO yöneticileri ile "
+"iletişime geçin."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2631,7 +2633,7 @@ msgid "Deleting your add-on will permanently delete all versions and files you h
 msgstr "Eklentinizi silmek, bu eklenti için gönderdiğiniz tüm sürümleri ve dosyaları listelenmiş olsun olmasın kalıcı olarak silecektir."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "Eklenti kimliği geri getirilemez ve sonsuza kadar tekrar kullanılamaz."
 
 msgid "Delete Add-on"
 msgstr "Eklentiyi sil"
@@ -2804,7 +2806,7 @@ msgid "How to Distribute this Version"
 msgstr "Bu Sürüm Nasıl Dağıtılır?"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Başlamak için bu sürümü nasıl dağıtmak istediğinizi seçin."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
@@ -2850,7 +2852,7 @@ msgid "Edit version {0}"
 msgstr "{0} sürümünü düzenle"
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Eklentinizin her zaman manuel incelemeye tabi olduğunu hatırlatmak isteriz."
 
 msgid "Go to My Submissions"
 msgstr "Gönderilerime git"
@@ -2862,7 +2864,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Kaynak kodu göndermeniz mi gerekiyor?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Mozilla’nın eklenti inceleyicilerinin uzantınızdaki kodları okuyup yeniden oluşturabilmeleri gerekir. Aksi takdirde uzantınız reddedilebilir."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Uzantınızda aşağıdakilerden herhangi birini kullanıyor musunuz?"
@@ -4607,7 +4609,7 @@ msgstr "Takip önleme uzantıları"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions for writers"
-msgstr ""
+msgstr "Yazarlara özel uzantılar"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
