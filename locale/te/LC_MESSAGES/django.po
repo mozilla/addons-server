@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-24 14:11+0000\n"
+"PO-Revision-Date: 2022-09-24 14:12+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4517,7 +4517,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
+msgstr "సిబ్బంది ఎంపికలను చూడండి"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
@@ -4540,9 +4540,8 @@ msgid "Enhanced privacy extensions"
 msgstr "మెరుగైన అంతరంగికత పొడగింతలు"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "మరిన్ని సిఫార్సుచేయబడ్డ పొడగింతలను చూడండి"
+msgstr "మరిన్ని సిఫార్సుచేయబడ్డ అంతరంగిక పొడగింతలను చూడండి"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4558,7 +4557,7 @@ msgstr "సిఫార్సుచేయబడ్డ అలంకారాల�
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended themes"
-msgstr ""
+msgstr "మరిన్ని సిఫారసు చేయబడ్డ అలంకారాలను చూడండి"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
