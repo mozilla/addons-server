@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-24 08:30+0000\n"
+"PO-Revision-Date: 2022-09-24 08:40+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -4712,13 +4712,13 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "You cannot submit a language pack"
-msgstr ""
+msgstr "ඔබට භාෂා ඇසුරුමක් යොමු කිරීමට නොහැකිය"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "අනපේක්‍ෂිත දෝෂයකි."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
@@ -4731,10 +4731,10 @@ msgid "Missing \"channel\" arg."
 msgstr ""
 
 msgid "User"
-msgstr ""
+msgstr "පරිශිලක"
 
 msgid "IP Address"
-msgstr ""
+msgstr "අ.ජා.කෙ. ලිපිනය"
 
 msgid "Spam or otherwise non-review content"
 msgstr ""
@@ -4749,7 +4749,7 @@ msgid "Other (please specify)"
 msgstr ""
 
 msgid "This field is required."
-msgstr ""
+msgstr "මෙම ක්‍ෂේත්‍රය අවශ්‍යයි."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
@@ -4797,13 +4797,13 @@ msgid "Approved reviews"
 msgstr ""
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "මකන ලද සමාලෝචන"
 
 msgid "View entries between"
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "සහ"
 
 msgid "Filter by type/action"
 msgstr ""
@@ -4820,16 +4820,16 @@ msgstr ""
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr ""
+msgstr "එක්කහුව, සමාලෝචක හෝ අදහස"
 
 msgid "Comments:"
-msgstr ""
+msgstr "අදහස්:"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "මෙහෙයුම් පද්ධති:"
 
 msgid "Applications:"
-msgstr ""
+msgstr "යෙදුම්:"
 
 msgid "Delay rejection, requiring developer to correct in less than…"
 msgstr ""
@@ -4838,7 +4838,7 @@ msgid "Reject immediately. Only use in case of serious security issues."
 msgstr ""
 
 msgid "days"
-msgstr ""
+msgstr "දවස්"
 
 msgid "Choose one or more reasons:"
 msgstr ""
@@ -4856,10 +4856,10 @@ msgid "Keep review; remove flags"
 msgstr ""
 
 msgid "Skip for now"
-msgstr ""
+msgstr "දැනට මඟහරින්න"
 
 msgid "Delete review"
-msgstr ""
+msgstr "සමාලෝචනය මකන්න"
 
 msgid "Needs Admin Code Review"
 msgstr ""
@@ -4910,7 +4910,7 @@ msgid "You can't submit a line number without associating it to a filename."
 msgstr ""
 
 msgid "ID"
-msgstr ""
+msgstr "හැඳු."
 
 msgid "Flags"
 msgstr ""
@@ -4931,7 +4931,7 @@ msgid "Maliciousness Score"
 msgstr ""
 
 msgid "Type"
-msgstr ""
+msgstr "වර්ගය"
 
 msgid "Waiting Time"
 msgstr ""
@@ -5009,7 +5009,7 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 
 msgid "Comment"
-msgstr ""
+msgstr "අදහස"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
@@ -5018,7 +5018,7 @@ msgid "Pre-Review Add-ons"
 msgstr ""
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "නිර්දේශිත ({0})"
 
 msgid "Other Pending Review ({0})"
 msgstr ""
@@ -5030,7 +5030,7 @@ msgid "Add-on Review Guide"
 msgstr ""
 
 msgid "Security Scanners"
-msgstr ""
+msgstr "ආරක්‍ෂණ සුපිරික්සන"
 
 msgid "Flagged By Scanners"
 msgstr ""
@@ -5039,10 +5039,10 @@ msgid "Flagged for Human Review"
 msgstr ""
 
 msgid "Auto-Approved Add-ons"
-msgstr ""
+msgstr "ස්වයං අනුමත එක්කහු"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "ස්වයං අනුමත එක්කහු ({0})"
 
 msgid "Add-on Review Log"
 msgstr ""
@@ -5057,10 +5057,10 @@ msgid "Content Review ({0})"
 msgstr ""
 
 msgid "New ({0})"
-msgstr ""
+msgstr "නව ({0})"
 
 msgid "Updates ({0})"
-msgstr ""
+msgstr "යාවත්කාල ({0})"
 
 msgid "Theme Review Guide"
 msgstr ""
@@ -5087,7 +5087,7 @@ msgid "Unlisted Add-ons Pending Manual Approval"
 msgstr ""
 
 msgid "Announcement"
-msgstr ""
+msgstr "නිවේදනය"
 
 msgid "Update message of the day"
 msgstr ""
@@ -5111,7 +5111,7 @@ msgid "{addon} – EULA"
 msgstr ""
 
 msgid "{addon} – Privacy Policy"
-msgstr ""
+msgstr "{addon} – රහස්‍යතා ප්‍රතිපත්තිය"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
 msgstr ""
@@ -5124,22 +5124,22 @@ msgstr ""
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
-msgstr ""
+msgstr "{0} සඳහා එක්කහු තොරතුරු"
 
 msgid "Add-on ID"
-msgstr ""
+msgstr "එක්කහු හැඳු."
 
 msgid "Original Add-on ID"
-msgstr ""
+msgstr "මුල් එක්කහු හැඳු."
 
 msgid "Add-on(s) sharing same ID"
 msgstr ""
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "අභ්‍යන්තර AMO හැඳු."
 
 msgid "Support Website"
-msgstr ""
+msgstr "සහාය අඩවිය"
 
 msgid "Visibility"
 msgstr ""
@@ -5148,16 +5148,16 @@ msgid "Visible"
 msgstr ""
 
 msgid "Weekly Downloads"
-msgstr ""
+msgstr "සතිපතා බාගැනීම්"
 
 msgid "Average Daily Users"
-msgstr ""
+msgstr "දළ දෛනික පරිශීලකයින්"
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "රහස්‍යතා ප්‍රතිපත්තිය බලන්න"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "ගෙවීමක් අවශ්‍යයි"
 
 msgid "EULA"
 msgstr ""
@@ -5215,16 +5215,16 @@ msgstr ""
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "පෙරහන"
 
 msgid "Date"
-msgstr ""
+msgstr "දිනය"
 
 msgid "Event"
-msgstr ""
+msgstr "සිදුවීම"
 
 msgid "More details."
-msgstr ""
+msgstr "තව විස්තර."
 
 msgid "No events found for this period."
 msgstr ""
@@ -5237,7 +5237,7 @@ msgstr ""
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr ""
@@ -5255,7 +5255,7 @@ msgid " – Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
 msgid "Back to review"
-msgstr ""
+msgstr "සමාලෝචනයට ආපසු"
 
 msgid "Content Review – Add-ons for Firefox"
 msgstr ""
@@ -5293,16 +5293,16 @@ msgid "There are currently no add-ons of this type to review."
 msgstr ""
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "උපකාර සබැඳි:"
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "එක්කහු ප්‍රතිපත්තිය"
 
 msgid "Reviewer's Guide"
 msgstr ""
 
 msgid "{addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "{addon} – ෆයර්ෆොක්ස් සඳහා එක්කහු"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -5316,7 +5316,7 @@ msgid "Add-on important changes history"
 msgstr ""
 
 msgid "Add-on History"
-msgstr ""
+msgstr "එක්කහුවේ ඉතිහාසය"
 
 msgid "You don't have permission to review it."
 msgstr ""
