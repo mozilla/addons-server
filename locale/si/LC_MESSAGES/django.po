@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-24 08:40+0000\n"
+"PO-Revision-Date: 2022-09-24 08:42+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -642,10 +642,10 @@ msgid "Contributions for {addon}."
 msgstr ""
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} අබලයි."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} සබලයි."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
