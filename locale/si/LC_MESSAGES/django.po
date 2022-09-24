@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-24 08:08+0000\n"
+"PO-Revision-Date: 2022-09-24 08:10+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -5978,7 +5978,7 @@ msgid "Required fields"
 msgstr ""
 
 msgid "(optional)"
-msgstr ""
+msgstr "(වරණීය)"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -6203,7 +6203,7 @@ msgid "Disabled by Developer"
 msgstr ""
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} සහ නව"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "{origin} ස්ථාපන ප්‍රභවයට අවසර නොදේ."
