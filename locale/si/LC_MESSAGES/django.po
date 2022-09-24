@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-24 08:20+0000\n"
+"PO-Revision-Date: 2022-09-24 08:30+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -5331,7 +5331,7 @@ msgid "Insert canned response..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "ගොනු:"
 
 msgid "Tested on:"
 msgstr ""
@@ -5349,7 +5349,7 @@ msgid "Update whiteboards"
 msgstr ""
 
 msgid "More Actions"
-msgstr ""
+msgstr "තවත් ක්‍රියාමාර්ග"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -5421,16 +5421,16 @@ msgid "Update add-on block"
 msgstr ""
 
 msgid "(admin)"
-msgstr ""
+msgstr "(පරිපාලක)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "පරිපාලක පිටුව"
 
 msgid "Review This Add-on"
 msgstr ""
 
 msgid "More Information"
-msgstr ""
+msgstr "තව තොරතුරු"
 
 msgid "Resolution"
 msgstr ""
@@ -5439,16 +5439,16 @@ msgid "Add-on Review Log – Add-ons for Firefox"
 msgstr ""
 
 msgid "Reviewer"
-msgstr ""
+msgstr "සමාලෝචක"
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "එක්කහුව මකා දමා ඇත."
 
 msgid "Show Comments"
-msgstr ""
+msgstr "අදහස් පෙන්වන්න"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "අදහස් සඟවන්න"
 
 msgid "No reviews found for this period."
 msgstr ""
@@ -5457,13 +5457,13 @@ msgid "Origin:"
 msgstr ""
 
 msgid "Method:"
-msgstr ""
+msgstr "ක්‍රමය:"
 
 msgid "Source:"
-msgstr ""
+msgstr "මූලාශ්‍රය:"
 
 msgid "Source URL:"
-msgstr ""
+msgstr "මූලාශ්‍ර ඒ.ස.නි.:"
 
 msgid "Dismiss this announcement"
 msgstr ""
@@ -5472,25 +5472,25 @@ msgid "Files in this version:"
 msgstr ""
 
 msgid "All Platforms"
-msgstr ""
+msgstr "සියළුම වේදිකා"
 
 msgid "Browse all files in this version"
 msgstr ""
 
 msgid "Contents"
-msgstr ""
+msgstr "අන්තර්ගතය"
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
 msgid "Compare"
-msgstr ""
+msgstr "සසඳන්න"
 
 msgid "Permissions:"
-msgstr ""
+msgstr "අවසර:"
 
 msgid "Optional permissions:"
-msgstr ""
+msgstr "වරණීය අවසර:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5531,10 +5531,10 @@ msgid "You have <span>{0}</span> points."
 msgstr ""
 
 msgid "Theme"
-msgstr ""
+msgstr "තේමාව"
 
 msgid "No results found"
-msgstr ""
+msgstr "ප්‍රතිඵල හමු නොවිණි"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5581,7 +5581,7 @@ msgid "Flagged for human review"
 msgstr ""
 
 msgid "Download"
-msgstr ""
+msgstr "බාගන්න"
 
 msgid "Not Auto Approved Because"
 msgstr ""
@@ -5596,7 +5596,7 @@ msgid "Other Pending Review"
 msgstr ""
 
 msgid "Updates"
-msgstr ""
+msgstr "යාවත්කාල"
 
 msgid "Rating Reviews"
 msgstr ""
@@ -5663,7 +5663,7 @@ msgid "Abort"
 msgstr ""
 
 msgid "Run"
-msgstr ""
+msgstr "ධාවනය"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5719,7 +5719,7 @@ msgid "No uploaded file for that add-on and version."
 msgstr ""
 
 msgid "Overview"
-msgstr ""
+msgstr "විශ්ලේෂණය"
 
 msgid "by Source"
 msgstr ""
@@ -5734,28 +5734,28 @@ msgid "by Campaign"
 msgstr ""
 
 msgid "Daily Users"
-msgstr ""
+msgstr "දෛනික පරිශීලකයින්"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "එක්කහු අනුවාදය අනුව"
 
 msgid "by Application"
-msgstr ""
+msgstr "යෙදුම අනුව"
 
 msgid "by Language"
-msgstr ""
+msgstr "භාෂාව අනුව"
 
 msgid "by Platform"
-msgstr ""
+msgstr "වේදිකාව අනුව"
 
 msgid "by Country"
-msgstr ""
+msgstr "රට අනුව"
 
 msgid "close"
-msgstr ""
+msgstr "වසන්න"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "අභිරුචි දින පරාසය"
 
 msgid "From"
 msgstr ""
@@ -5764,7 +5764,7 @@ msgid "To"
 msgstr ""
 
 msgid "Export"
-msgstr ""
+msgstr "නිර්යාතය"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -5778,10 +5778,10 @@ msgstr ""
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "{0} සඳහා සංඛ්‍යාලේඛන"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "සංඛ්‍යාලේඛන පුවරුව"
 
 msgid "Controls:"
 msgstr ""
@@ -5793,31 +5793,31 @@ msgid "Group by:"
 msgstr ""
 
 msgid "day"
-msgstr ""
+msgstr "දවස"
 
 msgid "week"
-msgstr ""
+msgstr "සතිය"
 
 msgid "month"
-msgstr ""
+msgstr "මාසය"
 
 msgid "For last:"
 msgstr ""
 
 msgid "7 days"
-msgstr ""
+msgstr "දවස් 7"
 
 msgid "30 days"
-msgstr ""
+msgstr "දවස් 30"
 
 msgid "90 days"
-msgstr ""
+msgstr "දවස් 90"
 
 msgid "365 days"
-msgstr ""
+msgstr "දවස් 365"
 
 msgid "Custom..."
-msgstr ""
+msgstr "අභිරුචි..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
 msgstr ""
@@ -5826,10 +5826,10 @@ msgid "Loading the latest data&hellip;"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "දත්ත නොතිබේ."
 
 msgid "Previous"
-msgstr ""
+msgstr "කලින්"
 
 msgid "This dashboard is <b>private</b>."
 msgstr ""
@@ -5865,7 +5865,7 @@ msgid "<b>{0}</b> Weekly Downloads"
 msgstr ""
 
 msgid "Loading..."
-msgstr ""
+msgstr "පූර්ණය වෙමින්..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr ""
@@ -5895,10 +5895,10 @@ msgid "Add-on Status by Date"
 msgstr ""
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "දිනය අනුව දෛනික පරිශීලකයින්"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "දෛනික පරිශීලකයින් යනු කුමක්ද?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
@@ -5906,16 +5906,16 @@ msgid ""
 msgstr ""
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "දිනය අනුව යෙදුම් අනුවාද"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "මොසිල්ලා එක්කහු"
 
 msgid "Back to Add-ons"
-msgstr ""
+msgstr "එක්කහු වෙත ආපසු"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "පාදතලය ලාංඡනය"
 
 msgid "Legal Notices"
 msgstr ""
