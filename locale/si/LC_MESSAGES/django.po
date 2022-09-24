@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-24 08:10+0000\n"
+"PO-Revision-Date: 2022-09-24 08:20+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -5924,7 +5924,7 @@ msgid "Report Trademark Abuse"
 msgstr ""
 
 msgid "Site Status"
-msgstr ""
+msgstr "අඩවියේ තත්‍වය"
 
 msgid "Report a bug"
 msgstr ""
@@ -5935,7 +5935,7 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "<b>එක්කහු</b> ගැන දැන ගන්න"
 
 msgid "About"
 msgstr "පිළිබඳව"
@@ -5968,14 +5968,14 @@ msgid "Go"
 msgstr "යන්න"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "{0} එක්කහු මුල් පිටුවට යන්න"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(login)s\">පිවිසෙන්න</a> හෝ <a href=\"%(reg)s\">ලියාපදිංචිය</a>"
 
 msgid "Required fields"
-msgstr ""
+msgstr "අවශ්‍ය ක්‍ෂේත්‍රයකි"
 
 msgid "(optional)"
 msgstr "(වරණීය)"
@@ -5987,27 +5987,27 @@ msgstr ""
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "පවතින භාෂා"
 
 msgid "New Locales"
-msgstr ""
+msgstr "නව භාෂා"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
 msgstr ""
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "වෙනස්කම් ඉවතලන්න"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr ""
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "භාෂාව මකන්න"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
@@ -6029,29 +6029,29 @@ msgid "The users \"%(users)s\" had their session(s) reset."
 msgstr ""
 
 msgid "Reset session"
-msgstr ""
+msgstr "වාරය යළි සකසන්න"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
 msgstr ""
 
 msgid "Reset API Key"
-msgstr ""
+msgstr "යෙ.ක්‍ර.මු. යතුර යළි සකසන්න"
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "පැතිකඩ රූපය"
 
 msgid "Collections"
-msgstr ""
+msgstr "එකතු"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "ඔබට අ.ජා.කෙ ලිපිනයක් හෝ ජාලයක් යෙදීමට හැකිය."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "එම වි-තැපෑල සහිත අයෙක් නැත."
 
 msgid "Firefox user {id}"
 msgstr ""
@@ -6091,7 +6091,7 @@ msgid "an add-on developer replies to my review"
 msgstr ""
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "නව එක්කහු හෝ ෆයර්ෆොක්ස් විශේෂාංග තිබේ"
 
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
@@ -6100,7 +6100,7 @@ msgid "someone writes a review of my add-on"
 msgstr ""
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "එක්කහු සංවර්ධකයින්ට අදාළ පුවත් සහ සිදුවීම් සමඟ යාවත්කාලීනව සිටින්න (about:addons පුවත් පත්‍රිකාව ඇතුළුව)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr ""
@@ -6112,25 +6112,25 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
 
 msgid "User Notifications"
-msgstr ""
+msgstr "පරිශීලක දැනුම්දීම්"
 
 msgid "An author has been added to your add-on"
-msgstr ""
+msgstr "ඔබගේ එක්කහුවට කතුවරයෙක් එක් කර ඇත"
 
 msgid "An author role has been changed on your add-on"
 msgstr ""
 
 msgid "An author has been removed from your add-on"
-msgstr ""
+msgstr "ඔබගේ එක්කහුවෙන් කතුවරයෙක් ඉවත් කර ඇත"
 
 msgid "Ban"
-msgstr ""
+msgstr "තහනම්"
 
 msgid "Reset session(s)"
-msgstr ""
+msgstr "වාර(ය) යළි සකසන්න"
 
 msgid "Delete picture"
-msgstr ""
+msgstr "රූපය මකන්න"
 
 #, python-format
 msgid ""
@@ -6184,23 +6184,23 @@ msgstr ""
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "වෙනත්"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "ස්වයං අනුමතයි, තහවුරුයි"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "ස්වයං අනුමතයි, තහවුරු කර නැත"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "අනුමතයි, අතින්"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "සංවර්ධකයා අබල කර ඇත"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} සහ නව"
