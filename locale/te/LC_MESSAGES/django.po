@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-24 14:12+0000\n"
+"PO-Revision-Date: 2022-09-25 13:03+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -3722,7 +3722,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "ట్యాగులు, ఇతరాలు వాడటం ద్వారా రెడిట్‌ను మీరు వాడే విధానం మార్చుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
@@ -3776,7 +3776,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "తెరను నల్లబరచడం ద్వారా జాలాన్ని మీ కళ్ళపై తేలిక చేసుకోండి."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
