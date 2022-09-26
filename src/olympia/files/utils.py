@@ -206,6 +206,8 @@ class ManifestJSONExtractor:
 
         try:
             self.data = json.loads(json_string)
+            if not isinstance(self.data, dict):
+                raise TypeError()
         except Exception:
             raise InvalidManifest(gettext('Could not parse the manifest file.'))
 
