@@ -1,9 +1,10 @@
-from django.db.models import F, Q
+import os
+
+from django.db.models import Q
 
 from olympia.amo.management import ProcessObjectsCommand
-from olympia.bandwagon.models import Collection
 from olympia.translations.models import Translation
-from olympia.translations.tasks import reclean_collection_descriptions
+from olympia.translations.tasks import update_outgoing_url
 
 
 class Command(ProcessObjectsCommand):
@@ -11,21 +12,17 @@ class Command(ProcessObjectsCommand):
         return Translation
 
     def get_tasks(self):
+        # Change this on dev/stage using an environement variable. The trailing
+        # slash is important (matches how settings.REDIRECT_URL is set).
+        old_outgoing_url = os.environ.get(
+            'OLD_OUTGOING_URL', 'https://outgoing.prod.mozaws.net/v1/'
+        )
         return {
-            'reclean_collection_descriptions': {
-                'task': reclean_collection_descriptions,
-                # Need to fetch ids of translations that belong to collection
-                # descriptions (there might be more than one per collection!)
-                # and then find those where the cleaned string is not the same
-                # as the original: those are the ones we need to re-clean.
+            'update_outgoing_url': {
+                'task': update_outgoing_url,
                 'queryset_filters': [
-                    Q(
-                        id__in=Collection.objects.all()
-                        .filter(description__isnull=False)
-                        .values_list('description', flat=True)
-                    ),
-                    Q(localized_string_clean__isnull=False),
-                    ~Q(localized_string_clean=F('localized_string')),
+                    Q(localized_string_clean__icontains=old_outgoing_url),
                 ],
+                'kwargs': {'old_outgoing_url': old_outgoing_url},
             },
         }
