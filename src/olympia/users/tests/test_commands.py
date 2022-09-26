@@ -391,10 +391,16 @@ class TestMigrateUserPhotos(TestCase):
         self.old_deleted_picture_path = (
             f'{self.get_old_picture_dir(self.deleted_user)}/{self.deleted_user.pk}.png'
         )
-        self.old_deleted_picture_path_original = f'{self.get_old_picture_dir(self.deleted_user)}/{self.deleted_user.pk}_original.png'
+        self.old_deleted_picture_path_original = (
+            f'{self.get_old_picture_dir(self.deleted_user)}/'
+            f'{self.deleted_user.pk}_original.png'
+        )
 
         self.garbage_path = 'somewhere/deep/whatever.png'
         self.other_garbage_path = f'{self.get_old_picture_dir(self.user)}/føøøøø.png'
+        self.yet_another_garbage_path = (
+            f'{self.get_old_picture_dir(self.user)}/{self.user.pk}_nopé.png'
+        )
 
         # Files that need to be migrated.
         self.storage.save(self.old_picture_path, ContentFile('xxx'))
@@ -403,6 +409,7 @@ class TestMigrateUserPhotos(TestCase):
         # Orphaned/garbage files that should be removed.
         self.storage.save(self.garbage_path, ContentFile('ggg'))
         self.storage.save(self.other_garbage_path, ContentFile('ŋŋŋ'))
+        self.storage.save(self.yet_another_garbage_path, ContentFile('nnn'))
         self.storage.save(self.old_deleted_picture_path, ContentFile('aaa'))
         self.storage.save(self.old_deleted_picture_path_original, ContentFile('bbb'))
 
@@ -418,6 +425,7 @@ class TestMigrateUserPhotos(TestCase):
             self.old_deleted_picture_path_original,
             self.garbage_path,
             self.other_garbage_path,
+            self.yet_another_garbage_path,
         )
         for path in old_paths:
             assert self.storage.exists(path)
@@ -435,3 +443,7 @@ class TestMigrateUserPhotos(TestCase):
         assert self.storage.exists(self.user.picture_path_original)
         assert self.storage.open(self.user.picture_path).read() == b'xxx'
         assert self.storage.open(self.user.picture_path_original).read() == b'yyy'
+        assert set(self.storage.listdir(self.user.picture_dir)[1]) == {
+            f'{self.user.pk}.png',
+            f'{self.user.pk}_original.png',
+        }
