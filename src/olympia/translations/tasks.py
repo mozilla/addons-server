@@ -22,11 +22,13 @@ def update_outgoing_url(pks, *, old_outgoing_url, **kw):
         pks[-1],
         len(pks),
     )
-    # Note: we explicitly avoid .save(), because that automatically triggers
-    # clean(), but we don't know what the right Translation class is, so doing
-    # so would mess with the HTML handling: regular Translation should not
-    # allow it, PurifiedTranslation should allow a specific set of tags and
-    # attributes and LinkifiedTranslation should only allow links...
+    # Note: we use <queryset>.update() and do the replace in SQL to avoid going
+    # over each instance and calling .save(): not just because it's faster, but
+    # also because that would automatically trigger clean(), but we don't know
+    # what the right Translation class is, so doing so would mess with the HTML
+    # handling: regular Translation should not allow it, PurifiedTranslation
+    # should allow a specific set of tags and attributes and
+    # LinkifiedTranslation should only allow links...
     Translation.objects.filter(pk__in=pks).update(
         localized_string=Replace(
             'localized_string', Value(old_outgoing_url), Value(settings.REDIRECT_URL)
