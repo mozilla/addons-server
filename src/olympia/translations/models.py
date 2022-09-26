@@ -189,7 +189,7 @@ class PurifiedTranslation(Translation):
         'acronym': ['title'],
     }
 
-    class Meta(Translation.Meta):
+    class Meta:
         proxy = True
 
     def __str__(self):
@@ -231,14 +231,14 @@ class LinkifiedTranslation(PurifiedTranslation):
 
     allowed_tags = ['a']
 
-    class Meta(PurifiedTranslation.Meta):
+    class Meta:
         proxy = True
 
 
 class NoURLsTranslation(Translation):
     """Regular translation model, but with URLs stripped."""
 
-    class Meta(Translation.Meta):
+    class Meta:
         proxy = True
 
     def __str__(self):
