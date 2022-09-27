@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-24 08:42+0000\n"
+"PO-Revision-Date: 2022-09-27 05:51+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -1147,19 +1147,19 @@ msgid "Download extensions that enhance bookmarks by password-protecting them, s
 msgstr ""
 
 msgid "Download Management"
-msgstr ""
+msgstr "බාගැනීම් කළමනාකරණය"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "සංග්‍රහ, පුවත් හා ලිපිපෙළ"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "ක්‍රීඩා හා විනෝදාස්වාදය"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
