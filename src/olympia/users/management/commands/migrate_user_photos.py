@@ -15,9 +15,10 @@ class Command(BaseCommand):
 
     # Note: because avatars are only displayed on developer profiles and
     # heavily cached, we're directly migrating in-place without
-    # backwards-compatibility - UserProfile.picture_dir has already been
-    # to point to the new location. There will be some 404s until the migration
-    # is finished, but CDN caching should help avoid some of them.
+    # backwards-compatibility - UserProfile.picture_dir implementation has
+    # already been updated to point to the new location. There will be some
+    # 404s until the migration is finished, but CDN caching should help avoid
+    # some of them.
 
     def handle(self, *args, **options):
         basedirname = os.path.join(settings.MEDIA_ROOT, 'userpics')
