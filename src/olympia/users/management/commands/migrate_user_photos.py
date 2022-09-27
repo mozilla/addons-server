@@ -33,9 +33,15 @@ class Command(BaseCommand):
                     os.path.join(basedirname, dirname, subdirname)
                 ):
                     fullpath = os.path.join(basedirname, dirname, subdirname, filename)
+                    # If fullpath is a directory, we need to ignore it: it's
+                    # one of the directories created for the new structure.
+                    if os.path.isdir(fullpath):
+                        continue
                     user = None
                     try:
                         # Valid filenames are {pk}.png or {pk}_original.png
+                        if not filename.endswith('.png'):
+                            raise ValueError
                         pk = int(
                             os.path.splitext(filename)[0].removesuffix('_original')
                         )
