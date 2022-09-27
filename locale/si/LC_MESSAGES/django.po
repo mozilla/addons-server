@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-27 06:01+0000\n"
+"PO-Revision-Date: 2022-09-27 06:09+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -1255,7 +1255,7 @@ msgid "Download Firefox extensions to enhance your experience on popular social 
 msgstr ""
 
 msgid "Sports & Games"
-msgstr ""
+msgstr "තරඟ හා ක්‍රීඩා"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
 msgstr ""
@@ -1282,7 +1282,7 @@ msgid "Modern"
 msgstr ""
 
 msgid "Nature"
-msgstr ""
+msgstr "සොබාදහම"
 
 msgid "OS Integration"
 msgstr ""
@@ -1294,13 +1294,13 @@ msgid "Sports"
 msgstr "ක්‍රීඩා"
 
 msgid "Abstract"
-msgstr ""
+msgstr "විචිත්‍ර"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
 msgstr ""
 
 msgid "Causes"
-msgstr ""
+msgstr "අභිප්‍රාය"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
 msgstr ""
@@ -1312,7 +1312,7 @@ msgid "Download Firefox themes that celebrate style of all forms—patterns, flo
 msgstr ""
 
 msgid "Film and TV"
-msgstr ""
+msgstr "චිත්‍රපට හා රූ.වා."
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
@@ -1327,13 +1327,13 @@ msgid "Download Firefox themes with the Japanese Firefox. This category includes
 msgstr ""
 
 msgid "Holiday"
-msgstr ""
+msgstr "නිවාඩු"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
 msgstr ""
 
 msgid "Music"
-msgstr ""
+msgstr "සංගීතය"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
@@ -1357,7 +1357,7 @@ msgid "Download Firefox themes for all four seasons—fall, winter, spring, and 
 msgstr ""
 
 msgid "Solid"
-msgstr ""
+msgstr "ඝණ"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
