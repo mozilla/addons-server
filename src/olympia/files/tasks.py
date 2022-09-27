@@ -41,37 +41,31 @@ def repack_fileupload(results, upload_pk):
         # tempdir must *not* be on TMP_PATH, we want local fs instead. It will be
         # deleted automatically once we exit the context manager.
         with tempfile.TemporaryDirectory(prefix='repack_fileupload_extract') as tempdir:
-            try:
-                extract_zip(upload.path, tempdir=tempdir)
+            # extract_zip can raise an exception for a number of reasons, but
+            # @validation_task should catch everything, return a nice error
+            # message to the developer and log the exception if it's not
+            # something we are handling.
+            extract_zip(upload.path, tempdir=tempdir)
 
-                if waffle.switch_is_active('enable-manifest-normalization'):
-                    manifest = Path(tempdir) / 'manifest.json'
+            if waffle.switch_is_active('enable-manifest-normalization'):
+                manifest = Path(tempdir) / 'manifest.json'
 
-                    if manifest.exists():
-                        try:
-                            xpi_data = parse_xpi(upload.path, minimal=True)
+                if manifest.exists():
+                    try:
+                        xpi_data = parse_xpi(upload.path, minimal=True)
 
-                            if not xpi_data.get('is_mozilla_signed_extension', False):
-                                json_data = ManifestJSONExtractor(
-                                    manifest.read_bytes()
-                                ).data
-                                manifest.write_text(json.dumps(json_data, indent=2))
-                        except Exception:
-                            # If we cannot normalize the manifest file, we skip
-                            # this step and let the linter catch the exact
-                            # cause in order to return a more appropriate error
-                            # than "unexpected error", which would happen if
-                            # this task was handling the error itself.
-                            pass
-            except Exception as exc:
-                # Something bad happened, maybe we couldn't parse the zip file.
-                # @validation_task should ensure the exception is caught and
-                # transformed in a generic error message for the developer, so we
-                # just log it and re-raise.
-                log.exception(
-                    'Could not extract upload %s for repack.', upload_pk, exc_info=exc
-                )
-                raise
+                        if not xpi_data.get('is_mozilla_signed_extension', False):
+                            json_data = ManifestJSONExtractor(
+                                manifest.read_bytes()
+                            ).data
+                            manifest.write_text(json.dumps(json_data, indent=2))
+                    except Exception:
+                        # If we cannot normalize the manifest file, we skip
+                        # this step and let the linter catch the exact
+                        # cause in order to return a more appropriate error
+                        # than "unexpected error", which would happen if
+                        # this task was handling the error itself.
+                        pass
             timer.log_interval('1.extracted')
             log.info('Zip from upload %s extracted, repackaging', upload_pk)
             # We'll move the file to its final location below with move_stored_file(),
