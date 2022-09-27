@@ -21,8 +21,9 @@ from django.utils.functional import cached_property
 import olympia.core.logger
 
 from olympia import amo
+from olympia.amo.utils import id_to_path
 from olympia.versions.models import Version
-from olympia.files.utils import id_to_path, extract_extension_to_dest, get_all_files
+from olympia.files.utils import extract_extension_to_dest, get_all_files
 
 from .models import GitExtractionEntry
 
