@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-27 06:09+0000\n"
+"PO-Revision-Date: 2022-09-27 06:37+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -2042,7 +2042,7 @@ msgstr ""
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "<small>එක්කහු</small> සංවර්ධක නැබ"
 
 msgid "more add-ons..."
 msgstr ""
@@ -3264,7 +3264,7 @@ msgid "Submit Your First Theme"
 msgstr ""
 
 msgid "Add-on Developer Hub"
-msgstr ""
+msgstr "එක්කහු සංවර්ධක නැබ"
 
 msgid "Support"
 msgstr ""
@@ -3288,7 +3288,7 @@ msgid "Submit or Manage Extensions"
 msgstr ""
 
 msgid "Customize Firefox"
-msgstr ""
+msgstr "ෆයර්ෆොක්ස් රිසිකරණය"
 
 msgid "Learn how to make an extension"
 msgstr ""
