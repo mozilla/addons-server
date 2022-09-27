@@ -59,6 +59,12 @@ class AppVersionsMixin:
 
 
 class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
+    def test_not_dict(self):
+        with self.assertRaises(utils.InvalidManifest) as exc:
+            utils.ManifestJSONExtractor('"foo@bar.com"').parse()
+        assert isinstance(exc.exception, forms.ValidationError)
+        assert exc.exception.message == 'Could not parse the manifest file.'
+
     def test_parse_xpi_no_manifest(self):
         fake_zip = utils.make_xpi({'dummy': 'dummy'})
 
