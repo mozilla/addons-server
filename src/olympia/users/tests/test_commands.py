@@ -399,7 +399,7 @@ class TestMigrateUserPhotos(TestCase):
         self.garbage_path = 'somewhere/deep/whatever.png'
         self.other_garbage_path = f'{self.get_old_picture_dir(self.user)}/føøøøø.png'
         self.yet_another_garbage_path = (
-            f'{self.get_old_picture_dir(self.user)}/{self.user.pk}_nopé.png'
+            f'{self.get_old_picture_dir(self.user)}/{self.user.pk}_nopé.bin'
         )
 
         # Files that need to be migrated.
@@ -447,3 +447,8 @@ class TestMigrateUserPhotos(TestCase):
             f'{self.user.pk}.png',
             f'{self.user.pk}_original.png',
         }
+
+    def test_migrate_twice(self):
+        self.test_migrate()
+        # Running the migration command again shouldn't do anything.
+        call_command('migrate_user_photos')
