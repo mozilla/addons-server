@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-10-02 12:10+0000\n"
+"PO-Revision-Date: 2022-10-02 12:11+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -6394,7 +6394,7 @@ msgstr "другие"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Отклонено по задержке, запланировано на %s"
 
 msgid "Auto-approved, Confirmed"
 msgstr "Автоматически одобрено, подтверждено"
@@ -6403,7 +6403,7 @@ msgid "Auto-approved, not Confirmed"
 msgstr "Автоматически одобрено, не подтверждено"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Утверждено, Вручную"
 
 msgid "Disabled by Developer"
 msgstr "Отключено разработчиком"
