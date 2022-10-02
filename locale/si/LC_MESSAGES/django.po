@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-27 06:43+0000\n"
+"PO-Revision-Date: 2022-10-02 11:29+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -335,10 +335,10 @@ msgid "Enter a valid IP4 or IP6 network."
 msgstr "වලංගු අ.ජා.කෙ. 4 හෝ 6 ජාලයක් යොදන්න."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "අපි අඩවිය නඩත්තු කරන හෙයින් ඇතැම් විශේෂාංගය තාවකාලිකව අබල කර ඇත. ටික වේලාවකට පසු සියල්ල යථා පරිදි තිබෙනු ඇත."
 
 msgid "Must contain at least one printable character."
 msgstr ""
@@ -423,7 +423,7 @@ msgstr "{0} සඳහා එක්කහු"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} කට පෙර"
 
 msgid "Title"
 msgstr "සිරැසිය"
