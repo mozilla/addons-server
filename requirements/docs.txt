@@ -108,9 +108,9 @@ chardet==5.0.0 \
     --hash=sha256:0368df2bfd78b5fc20572bb4e9bb7fb53e2c094f60ae9993339e8671d0afb8aa \
     --hash=sha256:d3e64f022d254183001eccc5db4040520c0f23b1a3f33d6413e099eb7f126557
 # importlib-metadata is required by sphinx
-importlib-metadata==4.12.0 \
-    --hash=sha256:637245b8bab2b6502fcbc752cc4b7a6f6243bb02b31c5c26156ad103d3d45670 \
-    --hash=sha256:7401a975809ea1fdc658c3aa4f78cc2195a0e019c5cbc4c06122884e9ae80c23
+importlib-metadata==5.0.0 \
+    --hash=sha256:da31db32b304314d044d3c12c79bd59e307889b287ad12ff387b3500835fc2ab \
+    --hash=sha256:ddb0e35065e8938f867ed4928d0ae5bf2a53b7773871bfe6bcc7e4fcdc7dea43
 # zipp is required by importlib-metadata
 zipp==3.8.0 \
     --hash=sha256:56bf8aadb83c24db6c4b577e13de374ccfb67da2078beba1d037c17980bf43ad \
