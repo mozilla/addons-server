@@ -3,7 +3,7 @@
   "version": "0.0.17",
   "private": true,
   "engines": {
-    "node": ">= 10.13"
+    "node": ">= 16.17"
   },
   "dependencies": {
     "@claviska/jquery-minicolors": "2.3.6",
