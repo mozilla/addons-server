@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:30+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -60,6 +60,9 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Pogrešno postavljen izveštaj o grešci ili zahtev za podršku"
 
 msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
+
+msgid "Invalid value"
 msgstr ""
 
 msgid "Modified on:"
@@ -187,9 +190,6 @@ msgstr ""
 #, fuzzy
 msgid "Invalid or broken archive."
 msgstr "Nevažeća arhiva."
-
-msgid "Invalid value"
-msgstr ""
 
 msgid "Invalid app specified"
 msgstr ""
@@ -5652,6 +5652,9 @@ msgstr "Odbijeno ili nepregledano"
 msgid "[status:%s]"
 msgstr "Status:"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -5683,11 +5686,22 @@ msgstr "Nevažeći naziv datoteke u arhivi: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Veličina prelazi ograničenje veličine u arhivi: {0}"
 
+msgid ""
+"This archive contains a forbidden special file (symbolink / hard link or "
+"device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
 msgstr "Nevažeća arhiva."
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5721,6 +5735,9 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "You cannot submit a language pack"
+msgstr ""
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
 #, fuzzy
@@ -6883,10 +6900,6 @@ msgid "You cannot add versions to an add-on that has status: %s."
 msgstr ""
 
 msgid "Version does not match the manifest file."
-msgstr ""
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid ""
