@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:08+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -63,6 +63,9 @@ msgstr "Misplaced bug report or support request"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Please ensure this field has no more than {max_length} characters."
+
+msgid "Invalid value"
+msgstr "Invalid value"
 
 msgid "Modified on:"
 msgstr "Modified on:"
@@ -190,9 +193,6 @@ msgstr "Unsupported file type, please upload an archive file ({extensions})."
 #, fuzzy
 msgid "Invalid or broken archive."
 msgstr "Invalid archive."
-
-msgid "Invalid value"
-msgstr "Invalid value"
 
 msgid "Invalid app specified"
 msgstr "Invalid app specified"
@@ -5207,6 +5207,9 @@ msgstr "Rejected or Unreviewed"
 msgid "[status:%s]"
 msgstr "Status:"
 
+msgid "This upload has already been submitted."
+msgstr "This upload has already been submitted."
+
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
 
@@ -5238,11 +5241,20 @@ msgstr "Invalid file name in archive: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+
 msgid "Uncompressed size is too large"
 msgstr "Uncompressed size is too large"
 
 msgid "Invalid archive."
 msgstr "Invalid archive."
+
+msgid "No manifest.json found"
+msgstr "No manifest.json found"
+
+msgid "Invalid or corrupted file."
+msgstr "Invalid or corrupted file."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -5273,6 +5285,9 @@ msgstr "You cannot submit a Mozilla Signed Extension"
 #, fuzzy
 msgid "You cannot submit a language pack"
 msgstr "You cannot submit a Mozilla Signed Extension"
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr "The locale of an existing dictionary/language pack cannot be changed"
 
 #, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
@@ -6395,10 +6410,6 @@ msgstr "You cannot add versions to an add-on that has status: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Version does not match the manifest file."
-
-#, fuzzy, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "Version already exists."
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."

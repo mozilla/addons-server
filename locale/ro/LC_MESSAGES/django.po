@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:08+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -56,6 +56,9 @@ msgstr "Marchează rapoartele de abuz selectate ca suspecte"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Te rugăm să te asiguri că acest câmp nu are mai mult de {max_length} de caractere."
+
+msgid "Invalid value"
+msgstr ""
 
 msgid "Modified on:"
 msgstr "Modificat la:"
@@ -175,9 +178,6 @@ msgstr ""
 
 msgid "Invalid or broken archive."
 msgstr "Arhivă nevalidă sau coruptă."
-
-msgid "Invalid value"
-msgstr ""
 
 msgid "Invalid app specified"
 msgstr ""
@@ -4864,6 +4864,9 @@ msgstr "Respinse sau fără recenzii"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
 
@@ -4894,11 +4897,20 @@ msgstr "Denumire de fișier nevalidă în arhiva: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr "Dimensiunea necomprimată este prea mare"
 
 msgid "Invalid archive."
 msgstr "Arhivă nevalidă."
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4928,6 +4940,9 @@ msgstr "Nu poți trimite o extensie semnată de Mozilla"
 
 msgid "You cannot submit a language pack"
 msgstr "Nu poți trimite un pachet lingvistic"
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tip de fișier fără suport. Te rugăm să încarci un fișier {extensions} cu suport."
@@ -5952,10 +5967,6 @@ msgstr ""
 
 msgid "Version does not match the manifest file."
 msgstr "Versiunea nu corespunde cu fișierul manifest."
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "Versiunea deja există. Ultima versiune este: %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Te rugăm să specifici ID-ul suplimentului în manifest dacă are mai mult de 64 de caractere."

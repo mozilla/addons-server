@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:08+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -59,6 +59,9 @@ msgstr "選択された悪用レポートを疑わしいものとしてマーク
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "このフィールドは {max_length} 文字以下まで入力できます。"
+
+msgid "Invalid value"
+msgstr ""
 
 msgid "Modified on:"
 msgstr "変更日時:"
@@ -177,9 +180,6 @@ msgstr ""
 
 msgid "Invalid or broken archive."
 msgstr "不正または壊れたアーカイブです。"
-
-msgid "Invalid value"
-msgstr ""
 
 msgid "Invalid app specified"
 msgstr ""
@@ -4785,6 +4785,9 @@ msgstr "却下もしくは未審査"
 msgid "[status:%s]"
 msgstr "[状態:%s]"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
 
@@ -4814,11 +4817,20 @@ msgstr "アーカイブ内のファイル名が不正です: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "アーカイブ内のファイルがサイズ制限を超えています: {0}"
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr "展開後のサイズが大きすぎます"
 
 msgid "Invalid archive."
 msgstr "不正なアーカイブです。"
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4847,6 +4859,9 @@ msgstr "あなたは Mozilla Signed Extension を登録できません"
 
 msgid "You cannot submit a language pack"
 msgstr "あなたは言語パックを登録できません"
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "非対応のファイル形式です。サポートされた {extensions} ファイルをアップロードしてください。"
@@ -5873,10 +5888,6 @@ msgstr ""
 
 msgid "Version does not match the manifest file."
 msgstr "バージョンがマニフェストファイルと一致しません。"
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "このバージョンは既に存在します。最新バージョンは %s です。"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "64 文字を超える場合は、マニフェストでアドオン ID を指定してください。"

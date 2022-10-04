@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:08+0000\n"
 "PO-Revision-Date: 2022-08-24 14:29+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,6 +57,9 @@ msgstr "Creḍ ineqqisen n usexseṛ i yettwafernen am wakken yella deg-sen ccek
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Ḍmen dakken urti ur yegbir ara ugar n {max_length} n yisekkilen."
+
+msgid "Invalid value"
+msgstr "Azal d arameɣtu"
 
 msgid "Modified on:"
 msgstr "Yettwabeddel deg:"
@@ -175,9 +178,6 @@ msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz (
 
 msgid "Invalid or broken archive."
 msgstr "Taṛcivt diri-tt neɣ ahat texseṛ."
-
-msgid "Invalid value"
-msgstr "Azal d arameɣtu"
 
 msgid "Invalid app specified"
 msgstr "Asnas yettwafernen d arameɣtu"
@@ -4743,6 +4743,9 @@ msgstr "Yettwagi neɣ ur ittucegger ara"
 msgid "[status:%s]"
 msgstr "[addad:%s]"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
 
@@ -4772,11 +4775,20 @@ msgstr "Isem n ufaylu mačči d ameɣtu deg uḥraz: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Afaylu yezger talast n teɣzi deg uɣbaṛ: {0}"
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr "Taɣzi ur nkussem meqqert aṭas"
 
 msgid "Invalid archive."
 msgstr "Yir aɣbaṛ"
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4805,6 +4817,9 @@ msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
 
 msgid "You cannot submit a language pack"
 msgstr "Ur tezmireḍ ara ad tazneḍ akemmus n tutlayt"
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Anaw-a n ufaylu ur ittusefrak ara, ma ulac aɣilif azen-d afaylu {extensions}."
@@ -5790,10 +5805,6 @@ msgstr "Ur temirzḍ ar ad ternuḍ ileqman i uzegrir yelllan deg waddad: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Lqem ur imenṭaḍ ara akked ufaylu n umeskan."
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "Lqem-a yella yakan. Lqem aneggaru d: %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Ma ulac aɣilif, efk-d asulay n uzegrir-inek deg umeskan ma yella iɛedda 64 yisekkilen."

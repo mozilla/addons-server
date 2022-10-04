@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:08+0000\n"
 "PO-Revision-Date: 2022-07-29 16:22+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -59,6 +59,9 @@ msgstr "Označi odabrane izvještaje o zloupotrebi kao sumnjive"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Provjeri da ovo polje ne sadrži više od {max_length} znakova."
+
+msgid "Invalid value"
+msgstr ""
 
 msgid "Modified on:"
 msgstr "Promijenjeno:"
@@ -186,9 +189,6 @@ msgstr ""
 
 msgid "Invalid or broken archive."
 msgstr "Neispravna ili pokvarena arhiva."
-
-msgid "Invalid value"
-msgstr ""
 
 msgid "Invalid app specified"
 msgstr ""
@@ -4760,6 +4760,9 @@ msgstr "Odbijeno ili nepregledano"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4789,10 +4792,19 @@ msgstr ""
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
+msgstr ""
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
 msgstr ""
 
 #, python-format
@@ -4821,6 +4833,9 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "You cannot submit a language pack"
+msgstr ""
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
@@ -5825,10 +5840,6 @@ msgstr ""
 
 msgid "Version does not match the manifest file."
 msgstr "Verzija ne odgovara datoteci manifesta."
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "Verzija već postoji. Najnovija verzija je: %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Navedi ID oznaku svog dodatka u manifestu, ako je duži od 64 znaka."

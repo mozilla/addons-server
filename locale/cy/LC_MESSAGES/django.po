@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:08+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,6 +62,9 @@ msgid "Mark selected abuse reports as suspicious"
 msgstr "Cais adroddiad gwall neu gefnogaeth coll"
 
 msgid "Please ensure this field has no more than {max_length} characters."
+msgstr ""
+
+msgid "Invalid value"
 msgstr ""
 
 msgid "Modified on:"
@@ -184,9 +187,6 @@ msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
 msgid "Invalid or broken archive."
-msgstr ""
-
-msgid "Invalid value"
 msgstr ""
 
 msgid "Invalid app specified"
@@ -4802,6 +4802,9 @@ msgstr ""
 msgid "[status:%s]"
 msgstr ""
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4831,10 +4834,19 @@ msgstr ""
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
+msgstr ""
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
 msgstr ""
 
 #, python-format
@@ -4863,6 +4875,9 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "You cannot submit a language pack"
+msgstr ""
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
@@ -5905,10 +5920,6 @@ msgid "You cannot add versions to an add-on that has status: %s."
 msgstr ""
 
 msgid "Version does not match the manifest file."
-msgstr ""
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
