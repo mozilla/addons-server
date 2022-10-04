@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-04 18:30+0000\n"
-"PO-Revision-Date: 2022-10-04 21:50+0000\n"
+"PO-Revision-Date: 2022-10-04 21:52+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -4790,7 +4790,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
 msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
-msgstr ""
+msgstr "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 
 msgid "Uncompressed size is too large"
 msgstr "Uncompressed size is too large"
@@ -4799,10 +4799,10 @@ msgid "Invalid archive."
 msgstr "Invalid archive."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "No manifest.json found"
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Invalid or corrupt file."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4833,7 +4833,7 @@ msgid "You cannot submit a language pack"
 msgstr "You cannot submit a language pack"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "The locale of an existing dictionary/language pack cannot be changed"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Unsupported file type, please upload a supported file {extensions}."
