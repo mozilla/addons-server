@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:30+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,6 +56,9 @@ msgstr "ਚੁਣੀਆਂ ਹੋਈਆਂ ਦੁਰਵਿਹਾਰ ਸੰਬੰ
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸੁਨਿਸ਼ਚਿਤ ਕਰੋ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ {max_length} ਅੱਖਰਾਂ ਤੋਂ ਵੱਧ ਨਹੀਂ ਹਨ।"
+
+msgid "Invalid value"
+msgstr ""
 
 msgid "Modified on:"
 msgstr "ਇਦੋਂ ਸੋਧ ਕੀਤੀ ਗਈ:"
@@ -175,9 +178,6 @@ msgstr ""
 
 msgid "Invalid or broken archive."
 msgstr "ਅਵੈਧ ਜਾਂ ਖਰਾਬ ਆਰਕਾਈਵ।"
-
-msgid "Invalid value"
-msgstr ""
 
 msgid "Invalid app specified"
 msgstr ""
@@ -4809,6 +4809,9 @@ msgstr "ਰੱਦ ਹੋਇਆ ਜਾਂ ਬਿਨਾਂ-ਸਮੀਖਿਆ"
 msgid "[status:%s]"
 msgstr "[ਸਥਿਤੀ:%s]"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
@@ -4840,11 +4843,20 @@ msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਈਲ ਨਾਂ:{0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr "ਬੇਮਿਸਾਲ ਆਕਾਰ ਬਹੁਤ ਵੱਡਾ ਹੈ"
 
 msgid "Invalid archive."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4874,6 +4886,9 @@ msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨ�
 
 msgid "You cannot submit a language pack"
 msgstr "ਤੁਸੀਂ ਭਾਸ਼ਾ ਪੈਕ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "ਗ਼ੈਰਸਮਰਥਿਤ ਫਾਈਲ ਕਿਸਮ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮਰਥਿਤ ਫਾਈਲ {extensions} ਅਪਲੋਡ ਕਰੋੋ।"
@@ -5923,10 +5938,6 @@ msgstr ""
 
 msgid "Version does not match the manifest file."
 msgstr "ਵਰਜਨ ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ।"
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "ਵਰਜਨ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ। ਨਵਾਂ ਵਰਜਨ ਹੈ: %s।"
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."

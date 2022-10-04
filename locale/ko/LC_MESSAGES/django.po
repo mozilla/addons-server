@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:30+0000\n"
 "PO-Revision-Date: 2022-08-17 04:20+0000\n"
 "Last-Translator: killingfield <killingfield@gmail.com>\n"
 "Language-Team: none\n"
@@ -59,6 +59,9 @@ msgstr "선택된 악용 사례 보고서를 의심스러운 것으로 표시"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "이 필드는 {max_length}자를 넘지 않아야합니다."
+
+msgid "Invalid value"
+msgstr "유효하지 않은 값"
 
 msgid "Modified on:"
 msgstr "변경 날짜:"
@@ -177,9 +180,6 @@ msgstr "지원하지 않는 파일 형식입니다. 압축 파일({extensions})�
 
 msgid "Invalid or broken archive."
 msgstr "올바르지 않거나 손상된 압축 파일입니다."
-
-msgid "Invalid value"
-msgstr "유효하지 않은 값"
 
 msgid "Invalid app specified"
 msgstr "잘못된 앱이 지정됨"
@@ -4758,6 +4758,9 @@ msgstr "거부 또는 미검토"
 msgid "[status:%s]"
 msgstr "[상태:%s]"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr ""
 
@@ -4787,11 +4790,20 @@ msgstr "압축 파일내 잘못된 파일 이름: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "압축 파일내 파일 용량 제한 초과: {0}"
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr "압축되지 않은 크기가 너무 큽니다."
 
 msgid "Invalid archive."
 msgstr "잘못된 압축 파일입니다."
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4821,6 +4833,9 @@ msgstr "Mozilla 서명 확장을 제출할 수 없습니다."
 #, fuzzy
 msgid "You cannot submit a language pack"
 msgstr "이런 종류의 부가 기능은 제출할 수 없음"
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
 
 #, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
@@ -5866,10 +5881,6 @@ msgid "You cannot add versions to an add-on that has status: %s."
 msgstr ""
 
 msgid "Version does not match the manifest file."
-msgstr ""
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."

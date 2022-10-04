@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:30+0000\n"
 "PO-Revision-Date: 2022-07-20 09:30+0000\n"
 "Last-Translator: Jorge <laborim@protonmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -56,6 +56,9 @@ msgstr "Marcar os relatórios de abuso selecionados como suspeitos"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Por favor, verifique se este campo não tem mais do que {max_length} carateres."
+
+msgid "Invalid value"
+msgstr "Valor inválido"
 
 msgid "Modified on:"
 msgstr "Modificado em:"
@@ -178,9 +181,6 @@ msgstr "Tipo de ficheiro não suportado, por favor, carregue um ficheiro de arqu
 
 msgid "Invalid or broken archive."
 msgstr "Arquivo inválido ou corrompido."
-
-msgid "Invalid value"
-msgstr "Valor inválido"
 
 msgid "Invalid app specified"
 msgstr "Aplicação inválida especificada"
@@ -4820,6 +4820,9 @@ msgstr "Rejeitado ou não revisto"
 msgid "[status:%s]"
 msgstr "[estado:%s]"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o ficheiro manifest."
 
@@ -4849,11 +4852,20 @@ msgstr "Nome de ficheiro inválido no arquivo: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr "O tamanho não comprimido é muito grande"
 
 msgid "Invalid archive."
 msgstr "Arquivo inválido."
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4882,6 +4894,9 @@ msgstr "Não pode submeter uma extensão assinada pela Mozilla"
 
 msgid "You cannot submit a language pack"
 msgstr "Você não pode enviar um pacote de idiomas"
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tipo de ficheiro não suportado, por favor carregue um ficheiro suportado {extensions}."
@@ -5868,10 +5883,6 @@ msgstr ""
 
 msgid "Version does not match the manifest file."
 msgstr "A versão não corresponde ao ficheiro manifest."
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "A versão já existe. A versão mais recente é: %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Por favor, especifique a Identificação do seu Extra no manifesto se for maior do que 64 carateres."

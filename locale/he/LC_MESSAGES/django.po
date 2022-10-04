@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2022-10-04 18:30+0000\n"
 "PO-Revision-Date: 2022-06-25 18:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -60,6 +60,9 @@ msgstr "סימון הדיווחים על שימוש לרעה שנבחרו כחש
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "נא לוודא ששדה זה לא כולל יותר מ־{max_length} תווים."
+
+msgid "Invalid value"
+msgstr ""
 
 msgid "Modified on:"
 msgstr "נערך ב:"
@@ -179,9 +182,6 @@ msgstr "סוג הקובץ לא נתמך, נא להעלות קובץ ארכיון
 
 msgid "Invalid or broken archive."
 msgstr "ארכיון לא חוקי או פגום."
-
-msgid "Invalid value"
-msgstr ""
 
 msgid "Invalid app specified"
 msgstr ""
@@ -4758,6 +4758,9 @@ msgstr "נדחה או לא נסקר"
 msgid "[status:%s]"
 msgstr "[מצב:%s]"
 
+msgid "This upload has already been submitted."
+msgstr ""
+
 msgid "Could not parse the manifest file."
 msgstr "לא ניתן לפענח את קובץ ה־manifest."
 
@@ -4787,11 +4790,20 @@ msgstr "שם קובץ שגוי בארכיון: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "הקובץ חורג ממגבלת הגודל בארכיון: {0}"
 
+msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr "הגודל הלא דחוס גדול מדי"
 
 msgid "Invalid archive."
 msgstr "ארכיון שגוי."
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4820,6 +4832,9 @@ msgstr "לא ניתן להגיש הרחבות החתומות על־ידי Mozill
 
 msgid "You cannot submit a language pack"
 msgstr "לא ניתן להגיש ערכת שפה"
+
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "סוג הקובץ אינו נתמך, נא להעלות קובץ {extensions} נתמך."
@@ -5857,10 +5872,6 @@ msgstr "לא ניתן להוסיף גרסאות לתוספת שנמצאת במצ
 
 msgid "Version does not match the manifest file."
 msgstr "הגרסה אינה תואמת את קובץ ה־manifest."
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "הגרסה כבר קיימת. הגרסה העדכנית ביותר היא: %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "נא לציין את מזהה התוספת שלך בקובץ ה־manifest אם הוא ארוך מ־64 תווים."
