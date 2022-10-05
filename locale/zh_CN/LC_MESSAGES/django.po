@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-04 18:30+0000\n"
-"PO-Revision-Date: 2022-10-05 13:51+0000\n"
+"PO-Revision-Date: 2022-10-05 14:01+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -483,10 +483,10 @@ msgid "You must provide an object of {{lang-code:value}}."
 msgstr "您必须提供 {{lang-code:value}} 的对象。"
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr "“{lang_code}”的默认语系值必填。"
+msgstr "“{lang_code}”的默认语言环境必填。"
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr "若设置了其他翻译，“{lang_code}”默认语系值必填。"
+msgstr "若设置了其他翻译，“{lang_code}”默认语言环境必填。"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2292,7 +2292,7 @@ msgid "Default Locale"
 msgstr "默认语言"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "您的附加组件的相关信息将以此语系的内容显示，并且您可以对其他特定语系填入翻译盖过这些默认内容。此项仅与公开上架的附加组件相关。"
+msgstr "您的附加组件的相关信息将以此语言环境的内容显示，并且您可以对其他特定语言环境填入翻译盖过这些默认内容。此项仅与公开上架的附加组件相关。"
 
 msgid "Homepage"
 msgstr "主页"
@@ -2639,7 +2639,7 @@ msgstr "必需"
 msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
-msgstr "警告：您其他语系版本的名称/摘要内容将被自动截短，以符合最多 %(max_length)s 个字符的限制。若要编辑这些内容，请于提交完成后前往“编辑产品页面”。"
+msgstr "警告：您其他语言环境版本的名称/摘要内容将被自动截短，以符合最多 %(max_length)s 个字符的限制。若要编辑这些内容，请于提交完成后前往“编辑产品页面”。"
 
 msgid "Add-on URL:"
 msgstr "附加组件网址："
@@ -4775,7 +4775,7 @@ msgid "You cannot submit a language pack"
 msgstr "您不能提交语言包"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "无法更改现有字典/语言包的环境"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "不支持的文件格式，请上传一个支持的 {extensions} 格式文件。"
