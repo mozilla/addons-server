@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-04 18:30+0000\n"
-"PO-Revision-Date: 2022-10-05 03:40+0000\n"
+"PO-Revision-Date: 2022-10-05 03:42+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2538,7 +2538,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "此狀態下，僅能「由您自行處理」附加元件的發布。"
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "由於此版本已通過 Mozilla 審核，無法變更附加的原始檔。"
 
 msgid "General Tests"
 msgstr "一般測試"
@@ -4718,7 +4718,7 @@ msgid "[status:%s]"
 msgstr "[狀態：%s]"
 
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "此上傳檔案已經送出過。"
 
 msgid "Could not parse the manifest file."
 msgstr "無法剖析安裝資訊檔。"
@@ -4750,7 +4750,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "壓縮檔中有超過大小限制的檔案: {0}"
 
 msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
-msgstr ""
+msgstr "此壓縮檔包含禁止的特殊檔案（符號連結 / 硬連結 / 裝置 / 區塊檔案）"
 
 msgid "Uncompressed size is too large"
 msgstr "未壓縮大小過大"
