@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-04 18:30+0000\n"
-"PO-Revision-Date: 2022-10-07 18:49+0000\n"
+"PO-Revision-Date: 2022-10-07 18:59+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4810,7 +4810,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "ფაილის მოცულობა არქივში, აჭარბებს {0} დაშვებულ ზღვარს"
 
 msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
-msgstr ""
+msgstr "ეს არქივი შეიცავს აკრძალულ საგანგებო ფაილს (მიმთითებელ / პირდაპირ ბმულს ან მოწყობილობის / ბლოკის ფაილს)"
 
 msgid "Uncompressed size is too large"
 msgstr "შეუკუმშავის ზომა ზედმეტად დიდია"
@@ -4819,10 +4819,10 @@ msgid "Invalid archive."
 msgstr "უმართებულო არქივი."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "manifest.json ვერ მოიძებნა"
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "არამართებული ან დაზიანებული ფაილი."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4853,7 +4853,7 @@ msgid "You cannot submit a language pack"
 msgstr "ენის პაკეტის წარდგენა არ შეგიძლიათ"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "არსებული ლექსიკონის/ენის პაკეტის ენა ვერ შეიცვლება"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "მხარდაუჭერელი სახის ფაილი, გთხოვთ ატვირთოთ მხარდაჭერილი გაფართოებით {extensions}."
