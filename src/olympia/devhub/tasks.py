@@ -27,13 +27,12 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon, Preview
+from olympia.addons.models import Addon
 from olympia.addons.utils import SitePermissionVersionCreator
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on, use_primary_db
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import (
     image_size,
-    pngcrush_image,
     resize_image,
     send_html_mail_jinja,
     send_mail,
@@ -501,45 +500,6 @@ def track_validation_stats(results):
 
     # Track listed/unlisted success/fail.
     statsd.incr(f'devhub.linter.results.{listed_tag}.{result_kind}')
-
-
-@task
-@use_primary_db
-@set_modified_on
-def pngcrush_existing_icons(addon_id):
-    """
-    Call pngcrush_image() on the icons of a given add-on.
-    """
-    log.info('Crushing icons for add-on %s', addon_id)
-    addon = Addon.objects.get(pk=addon_id)
-    if addon.icon_type != 'image/png':
-        log.info('Aborting icon crush for add-on %s, icon type is not a PNG.', addon_id)
-        return
-    icon_dir = addon.get_icon_dir()
-    pngcrush_image(os.path.join(icon_dir, '%s-64.png' % addon_id))
-    pngcrush_image(os.path.join(icon_dir, '%s-32.png' % addon_id))
-    # Return an icon hash that set_modified_on decorator will set on the add-on
-    # after a small delay. This is normally done with the true md5 hash of the
-    # original icon, but we don't necessarily have it here. We could read one
-    # of the icons we modified but it does not matter just fake a hash to
-    # indicate it was "manually" crushed.
-    return {'icon_hash': 'mcrushed'}
-
-
-@task
-@use_primary_db
-@set_modified_on
-def pngcrush_existing_preview(preview_id):
-    """
-    Call pngcrush_image() on the images of a given add-on Preview object.
-    """
-    log.info('Crushing images for Preview %s', preview_id)
-    preview = Preview.objects.get(pk=preview_id)
-    pngcrush_image(preview.thumbnail_path)
-    pngcrush_image(preview.image_path)
-    # We don't need a hash, previews are cachebusted with their modified date,
-    # which does not change often. @set_modified_on will do that for us
-    # automatically if the task was called with set_modified_on_obj=[preview].
 
 
 def _recreate_images_for_preview(preview):
