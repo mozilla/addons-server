@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-04 18:30+0000\n"
-"PO-Revision-Date: 2022-10-10 06:46+0000\n"
+"PO-Revision-Date: 2022-10-10 07:04+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -1210,7 +1210,7 @@ msgid "Web Development"
 msgstr "වියමන සංවර්ධනය"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "වියමන සංවර්ධන මෙවලම් ආශ්‍රිත ෆයර්ෆොක්ස් දිගු බාගන්න. මෙම ප්‍රවර්ගය සඳහා ගිට්හබ්, පරිශීලක නියෝත මාරුව, දත්තකඩ කළමනාකරණය වැනි දිගු ඇතුළත් වේ."
 
 msgid "Other"
 msgstr "වෙනත්"
@@ -1420,13 +1420,13 @@ msgid "GNU Library General Public License v3.0"
 msgstr ""
 
 msgid "The MIT License"
-msgstr ""
+msgstr "MIT බලපත්‍රය"
 
 msgid "The BSD License"
-msgstr ""
+msgstr "BSD බලපත්‍රය"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "මොසිල්ලා පොදු බලපත්‍රය 1.1"
 
 msgid "All Rights Reserved"
 msgstr "සියළුම හිමිකම් ඇවිරිණි"
@@ -1750,10 +1750,10 @@ msgid "Details"
 msgstr ""
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "ඔබගේ බලපත්‍රයේ නම කුමක්ද?"
 
 msgid "Custom License"
-msgstr ""
+msgstr "අභිරුචි බලපත්‍රය"
 
 msgid "Provide the text of your license."
 msgstr ""
@@ -2239,7 +2239,7 @@ msgid "Decline"
 msgstr ""
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "කතුවරුන් හා බලපත්‍රය කළමනාකරණය"
 
 msgid "About author roles"
 msgstr ""
@@ -2497,13 +2497,13 @@ msgid "The licensor permits others to distribute derivativeworks only under the 
 msgstr ""
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "ඔබගේ එක්කහුව පහත බලපත්‍රය යටතේ නිකුත් කෙරේ:"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "වෙනස් බලපත්‍රයක් තෝරන්න."
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
+msgstr "ක්‍රියේටිව් කොමන්ස් බලපත්‍ර පිළිබඳව තව තොරතුරු"
 
 msgid "Your add-on is currently set to \"Invisible\"."
 msgstr ""
@@ -2668,7 +2668,7 @@ msgid "Support website:"
 msgstr ""
 
 msgid "License:"
-msgstr ""
+msgstr "බලපත්‍රය:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -3094,7 +3094,7 @@ msgid "You’re done! ✨ You will be notified by email when the signed file is 
 msgstr ""
 
 msgid "License"
-msgstr ""
+msgstr "බලපත්‍රය"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
