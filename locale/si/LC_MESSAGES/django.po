@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-04 18:30+0000\n"
-"PO-Revision-Date: 2022-10-10 08:29+0000\n"
+"PO-Revision-Date: 2022-10-10 08:38+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -3206,7 +3206,7 @@ msgid "\"Get The Add-on\" button"
 msgstr ""
 
 msgid "Recommended Extensions program"
-msgstr ""
+msgstr "නිර්දේශිත දිගු වැඩසටහන්"
 
 msgid "Contribute"
 msgstr ""
@@ -4498,11 +4498,11 @@ msgstr "සියළු දිගු බලන්න"
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "ප්‍රබල දැන්වීම් අවහිරක"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "ප්‍රති-ලුහුබැඳීමේ දිගු"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions for writers"
@@ -4510,23 +4510,23 @@ msgstr "ලේඛකයින් සඳහා දිගු"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr "මාණ්ඩලික තේරීම් බලන්න"
+msgstr "මාණ්ඩලික තේරීම්"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended extensions"
-msgstr ""
+msgstr "නිර්දේශිත දිගු"
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended extensions"
-msgstr ""
+msgstr "තවත් නිර්දේශිත දිගු බලන්න"
 
 #. editorial content for the homepage shelves.
 msgid "Popular themes"
-msgstr ""
+msgstr "ප්‍රචලිත තේමා"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
-msgstr ""
+msgstr "තවත් ප්‍රචලිත තේමා බලන්න"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
@@ -4534,7 +4534,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended privacy extensions"
-msgstr ""
+msgstr "තවත් නිර්දේශිත රහස්‍යතා දිගු බලන්න"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
@@ -4562,7 +4562,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
-msgstr ""
+msgstr "පරිවර්තන මෙවලම්"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
