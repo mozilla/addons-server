@@ -1378,7 +1378,6 @@ class ReviewBase:
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
-        latest_version = self.version
         self.version = None
         self.file = None
         now = datetime.now()
@@ -1401,26 +1400,9 @@ class ReviewBase:
                 user=self.user,
             )
 
-        # if these are listed versions then the addon status may need updating
-        if (
-            self.data['versions']
-            and latest_version.channel == amo.CHANNEL_LISTED
-            and self.addon.status == amo.STATUS_NULL
-        ):
-            log.info(
-                'Changing add-on status [%s]: %s => %s (%s).'
-                % (
-                    self.addon.id,
-                    self.addon.status,
-                    amo.STATUS_NOMINATED,
-                    'unrejecting versions',
-                )
-            )
-            self.addon.update(status=amo.STATUS_NOMINATED)
-            ActivityLog.create(
-                amo.LOG.CHANGE_STATUS, self.addon, self.addon.status, user=self.user
-            )
-            self.addon.update_version()
+        if self.data['versions']:
+            # if these are listed versions then the addon status may need updating
+            self.addon.update_nominated_status(self.user)
 
     def notify_about_auto_approval_delay(self, version):
         """Notify developers of the add-on when their version has not been

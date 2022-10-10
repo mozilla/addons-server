@@ -1235,6 +1235,22 @@ class Addon(OnChangeMixin, ModelBase):
 
         self.update_version(ignore=ignore_version)
 
+    def update_nominated_status(self, user):
+        # Update the addon status to nominated if there are versions awaiting review
+        if (
+            self.status == amo.STATUS_NULL
+            and self.versions.filter(
+                file__status=amo.STATUS_AWAITING_REVIEW, channel=amo.CHANNEL_LISTED
+            ).exists()
+        ):
+            log.info(
+                'Changing add-on status [%s]: %s => %s (%s).'
+                % (self.id, self.status, amo.STATUS_NOMINATED, 'unrejecting versions')
+            )
+            self.update(status=amo.STATUS_NOMINATED)
+            activity.log_create(amo.LOG.CHANGE_STATUS, self, self.status, user=user)
+            self.update_version()
+
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):
         if addon_dict is None:
