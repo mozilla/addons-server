@@ -1,7 +1,7 @@
 import requests
-from io import BytesIO
 
 from django.conf import settings
+from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand, CommandError
 from django.db.transaction import atomic
 
@@ -23,20 +23,24 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('slug', type=str)
+        parser.add_argument(
+            '--overwrite-existing-versions', action='store_true', default=False
+        )
 
     def handle(self, *args, **options):
         if not settings.DEBUG:
             raise CommandError(
                 'As a safety precaution this command only works if DEBUG=True.'
             )
-        self.fetch_versions_data(**options)
+        self.options = options
+        self.fetch_versions_data()
 
     def get_max_pages(self, slug):
         response = requests.get(self.VERSIONS_API_URL % {'slug': slug})
         return response.json()['page_count']
 
-    def fetch_versions_data(self, **options):
-        self.addon = Addon.objects.get(slug=options['slug'])
+    def fetch_versions_data(self):
+        self.addon = Addon.objects.get(slug=self.options['slug'])
         slug = self.addon.slug
         pages = range(1, self.get_max_pages(slug) + 1)
         print('Fetching pages from 1 to %s' % max(pages))
@@ -57,28 +61,39 @@ class Command(BaseCommand):
 
         return data
 
-    def _download_file(self, url, file_):
+    def _download_file(self, url):
         data = requests.get(url)
-        # filename we pass to save() will be ignored, it will be dynamically
-        # built from the upload_to callback.
-        file_.file.save('addon.xpi', BytesIO(data.content), save=True)
+        return data.content
 
     def _handle_version(self, data):
         if (
-            self.addon.versions(manager='unfiltered_for_relations')
+            version := self.addon.versions(manager='unfiltered_for_relations')
             .filter(version=data['version'])
-            .exists()
+            .last()
         ):
-            print('Skipping %s (version already exists' % data['version'])
-            return
+            if self.options.get('overwrite_existing_versions'):
+                print('Hard-deleting existing version %s in database' % data['version'])
+                version.delete(hard=True)
+            else:
+                print('Skipping %s (version already exists)' % data['version'])
+                return
 
         file_data = data['file']
+
+        # Download the file to the right path.
+        print('Downloading file for version %s' % data['version'])
+        raw_file_contents = self._download_file(file_data['url'])
+
         file_kw = {
             'hash': file_data['hash'],
             'status': amo.STATUS_CHOICES_API_LOOKUP[file_data['status']],
             'size': file_data['size'],
             'is_mozilla_signed_extension': (file_data['is_mozilla_signed_extension']),
             'strict_compatibility': (data['is_strict_compatibility_enabled']),
+            # The name argument to the ContentFile doesn't matter, it will be
+            # ignored and we'll dynamically build one from the upload_to
+            # callback, but it needs to be set for things to work.
+            'file': ContentFile(raw_file_contents, name='addon.xpi'),
         }
 
         version_kw = {
@@ -88,10 +103,6 @@ class Command(BaseCommand):
             # Everything else we don't really care about at the moment.
         }
 
-        print('Creating version %s' % data['version'])
         with atomic():
-            version = version_factory(addon=self.addon, file_kw=file_kw, **version_kw)
-
-            # Download the file to the right path.
-            print('Downloading file for version %s' % data['version'])
-            self._download_file(file_data['url'], version.file)
+            print('Creating version %s' % data['version'])
+            version_factory(addon=self.addon, file_kw=file_kw, **version_kw)
