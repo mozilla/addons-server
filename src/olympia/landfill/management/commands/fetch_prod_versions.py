@@ -1,9 +1,7 @@
 import requests
-from os.path import basename
-from urllib.parse import urlparse
+from io import BytesIO
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.core.management.base import BaseCommand, CommandError
 from django.db.transaction import atomic
 
@@ -60,9 +58,10 @@ class Command(BaseCommand):
         return data
 
     def _download_file(self, url, file_):
-        with storage.open(file_.file.path, 'wb') as f:
-            data = requests.get(url)
-            f.write(data.content)
+        data = requests.get(url)
+        # filename we pass to save() will be ignored, it will be dynamically
+        # built from the upload_to callback.
+        file_.file.save('addon.xpi', BytesIO(data.content), save=True)
 
     def _handle_version(self, data):
         if (
@@ -76,7 +75,6 @@ class Command(BaseCommand):
         file_data = data['file']
         file_kw = {
             'hash': file_data['hash'],
-            'filename': basename(urlparse(file_data['url']).path),
             'status': amo.STATUS_CHOICES_API_LOOKUP[file_data['status']],
             'size': file_data['size'],
             'is_mozilla_signed_extension': (file_data['is_mozilla_signed_extension']),
