@@ -2104,6 +2104,29 @@ class TestUpdateStatus(TestCase):
             amo.STATUS_NULL
         )  # No listed versions so now NULL
 
+    def test_update_nominated_status(self):
+        addon = addon_factory(
+            status=amo.STATUS_NULL, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        first_version = addon.versions.last()
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_APPROVED})
+        user = user_factory()
+        # if add-on has no files that are AWAITING_REVIEW, the status shouldn't change
+        addon.update_nominated_status(user)
+        assert addon.reload().status == amo.STATUS_NULL
+
+        addon.update(status=amo.STATUS_DISABLED)
+        first_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        # and neither should the status change if the addon status isn't NULL
+        addon.update_nominated_status(user)
+        addon.refresh_from_db()  # this clears the fk relations too
+        assert addon.status == amo.STATUS_DISABLED
+
+        addon.update(status=amo.STATUS_NULL)
+        # success case - has version that is awaiting review and incomplete addon status
+        addon.update_nominated_status(user)
+        assert addon.reload().status == amo.STATUS_NOMINATED
+
 
 class TestGetVersion(TestCase):
     fixtures = [

@@ -844,6 +844,17 @@ class RESTRICTED(_LOG):
     format = _('{user} restricted.')
 
 
+class UNREJECT_VERSION(_LOG):
+    # takes add-on, version
+    id = 171
+    action_class = 'reject'
+    format = _('{addon} {version} unrejected.')
+    short = _('Unrejected')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
