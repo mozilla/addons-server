@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-11 16:25+0000\n"
-"PO-Revision-Date: 2022-10-11 22:20+0000\n"
+"PO-Revision-Date: 2022-10-11 22:22+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1025,10 +1025,10 @@ msgid "{user} restricted."
 msgstr "{user} begränsad."
 
 msgid "{addon} {version} unrejected."
-msgstr ""
+msgstr "{addon} {version} godkänd igen."
 
 msgid "Unrejected"
-msgstr "Godkänn igen"
+msgstr "Godkänd igen"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5101,7 +5101,7 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "Detta kommer att avvisa de valda versionerna. Kommentarerna kommer att skickas till utvecklaren."
 
 msgid "Un-Reject Versions"
-msgstr "Versioner har godkänts på nytt"
+msgstr "Versioner som har godkänts på nytt"
 
 msgid "This will un-reject the selected versions without notifying the developer."
 msgstr "Detta kommer att godkänna de valda versionerna igen utan att meddela utvecklaren."
