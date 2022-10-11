@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 18:30+0000\n"
+"POT-Creation-Date: 2022-10-11 16:25+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -256,9 +256,6 @@ msgstr "This slug cannot be used. Please choose another."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
-
-msgid "Site permissions for {hostnames}"
-msgstr "Site permissions for {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Both `license` and `custom_license` cannot be provided together."
@@ -1120,6 +1117,12 @@ msgstr "{user} logged in."
 
 msgid "{user} restricted."
 msgstr "{user} restricted."
+
+msgid "{addon} {version} unrejected."
+msgstr "{addon} {version} unrejected."
+
+msgid "Unrejected"
+msgstr "Unrejected"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2012,20 +2015,6 @@ msgid "Display Name"
 msgstr "Display Name"
 
 #, fuzzy
-msgid "Origin"
-msgstr "Origin:"
-
-#, fuzzy
-msgid "Permissions"
-msgstr "Versions"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "You have generated a site permission add-on for the same origin and permissions."
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "Invalid archive."
 
@@ -2288,16 +2277,6 @@ msgstr "Search Developer Docs"
 
 msgid "Search"
 msgstr "Search"
-
-#, fuzzy
-msgid "Generate Site Permission Add-on"
-msgstr "Versions"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr "The permission(s) the generated add-on will grant on the origin."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Use the field below to upload your add-on package."
@@ -5594,6 +5573,12 @@ msgstr "Re-enable Version"
 #, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "This will approve, sign, and publish this version. The comments will be sent to the developer."
+
+msgid "Un-Reject Versions"
+msgstr "Un-Reject Versions"
+
+msgid "This will un-reject the selected versions without notifying the developer."
+msgstr "This will un-reject the selected versions without notifying the developer."
 
 #, fuzzy
 msgid "Block Multiple Versions"

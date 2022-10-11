@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 18:30+0000\n"
+"POT-Creation-Date: 2022-10-11 16:25+0000\n"
 "PO-Revision-Date: 2022-08-16 22:58+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -240,9 +240,6 @@ msgstr "Không thể sử dụng slug này. Vui lòng chọn slug khác."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox."
-
-msgid "Site permissions for {hostnames}"
-msgstr "Quyền hạn trang web cho {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Không thể cung cấp `license` và `custom_license` cùng nhau."
@@ -1040,6 +1037,12 @@ msgid "{user} logged in."
 msgstr ""
 
 msgid "{user} restricted."
+msgstr ""
+
+msgid "{addon} {version} unrejected."
+msgstr ""
+
+msgid "Unrejected"
 msgstr ""
 
 msgid "Firefox"
@@ -1877,18 +1880,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "Tên hiển thị"
 
-msgid "Origin"
-msgstr "Origin"
-
-msgid "Permissions"
-msgstr "Quyền hạn"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "Bạn đã tạo một tiện ích quyền trang web cho cùng một origin và các quyền."
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "Origin chỉ nên bao gồm một scheme (giao thức), một tên máy chủ (miền) và một cổng tùy chọn"
-
 msgid "Invalid or corrupt add-on file."
 msgstr "Tập tin tiện ích không hợp lệ hoặc bị hỏng."
 
@@ -2130,15 +2121,6 @@ msgstr "Tìm kiếm trong Tài liệu Nhà phát triển"
 
 msgid "Search"
 msgstr "Tìm kiếm"
-
-msgid "Generate Site Permission Add-on"
-msgstr "Tạo tiện ích quyền truy cập trang web"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr "Origin (scheme + tên máy chủ + cổng tùy chọn) bạn cần có quyền để được bật. Đây cũng sẽ là nơi bạn cần lưu trữ tiện ích."
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr "(Các) quyền mà tiện ích đã tạo sẽ được phép trên origin."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Sử dụng trường bên dưới để tải lên gói tiện ích của bạn."
@@ -5141,6 +5123,12 @@ msgstr "Từ chối nhiều phiên bản"
 
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Điều này sẽ từ chối các phiên bản được chọn. Các bình luận sẽ được gửi đến nhà phát triển."
+
+msgid "Un-Reject Versions"
+msgstr ""
+
+msgid "This will un-reject the selected versions without notifying the developer."
+msgstr ""
 
 msgid "Block Multiple Versions"
 msgstr "Chặn nhiều phiên bản"

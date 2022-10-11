@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 18:30+0000\n"
+"POT-Creation-Date: 2022-10-11 16:25+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -248,9 +248,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Los nombres de complementos no pueden incluir las marcas Mozilla o Firefox."
-
-msgid "Site permissions for {hostnames}"
-msgstr "Permisos del sitio para {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -1048,6 +1045,12 @@ msgid "{user} logged in."
 msgstr ""
 
 msgid "{user} restricted."
+msgstr ""
+
+msgid "{addon} {version} unrejected."
+msgstr ""
+
+msgid "Unrejected"
 msgstr ""
 
 msgid "Firefox"
@@ -1892,18 +1895,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nombre para mostrar"
 
-msgid "Origin"
-msgstr "Origen"
-
-msgid "Permissions"
-msgstr "Permisos"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
-
 msgid "Invalid or corrupt add-on file."
 msgstr "Archivo de complemento no válido o corrupto."
 
@@ -2144,16 +2135,6 @@ msgstr "Buscar documentos para desarrolladores"
 
 msgid "Search"
 msgstr "Buscar"
-
-#, fuzzy
-msgid "Generate Site Permission Add-on"
-msgstr "Permisos:"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Usa el campo de debajo para subir tu paquete de complemento."
@@ -5271,6 +5252,12 @@ msgstr "Rechazar varias versiones"
 #, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Esto eliminará las versiones públicas seleccionadas. El desarrollador recibirá los comentarios."
+
+msgid "Un-Reject Versions"
+msgstr ""
+
+msgid "This will un-reject the selected versions without notifying the developer."
+msgstr ""
 
 #, fuzzy
 msgid "Block Multiple Versions"
