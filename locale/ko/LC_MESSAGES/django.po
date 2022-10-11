@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 18:30+0000\n"
+"POT-Creation-Date: 2022-10-11 16:25+0000\n"
 "PO-Revision-Date: 2022-08-17 04:20+0000\n"
 "Last-Translator: killingfield <killingfield@gmail.com>\n"
 "Language-Team: none\n"
@@ -243,9 +243,6 @@ msgstr "이 주소는 사용할 수 없습니다. 다른걸 사용해 주세요.
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "부가 기능 이름은 Mozilla 및 Firefox 상표를 포함할 수 없습니다."
-
-msgid "Site permissions for {hostnames}"
-msgstr "{hostnames}에 대한 사이트 권한"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -1036,6 +1033,12 @@ msgid "{user} logged in."
 msgstr ""
 
 msgid "{user} restricted."
+msgstr ""
+
+msgid "{addon} {version} unrejected."
+msgstr ""
+
+msgid "Unrejected"
 msgstr ""
 
 msgid "Firefox"
@@ -1867,19 +1870,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "표시 이름"
 
-msgid "Origin"
-msgstr "출처"
-
-#, fuzzy
-msgid "Permissions"
-msgstr "권한:"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "동일한 출처 및 권한에 대한 사이트 권한 부가 기능을 만들어 냈습니다."
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
-
 msgid "Invalid or corrupt add-on file."
 msgstr "잘못되거나 손상된 부가기능 파일입니다."
 
@@ -2123,15 +2113,6 @@ msgstr "개발자 문서 검색"
 
 msgid "Search"
 msgstr "검색"
-
-msgid "Generate Site Permission Add-on"
-msgstr "사이트 권한 부가 기능 생성"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "부가 기능 패키지를 업로드 하려면 아래 항목을 입력해 주세요."
@@ -5124,6 +5105,12 @@ msgstr "인쇄용 버전"
 #, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "선택된 공개 버전을 거부하게 됩니다. 의견이 개발자에게 보내집니다."
+
+msgid "Un-Reject Versions"
+msgstr ""
+
+msgid "This will un-reject the selected versions without notifying the developer."
+msgstr ""
 
 #, fuzzy
 msgid "Block Multiple Versions"

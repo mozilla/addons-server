@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 18:30+0000\n"
+"POT-Creation-Date: 2022-10-11 16:25+0000\n"
 "PO-Revision-Date: 2022-09-28 09:24+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -238,9 +238,6 @@ msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "పొడగింతల పేర్లలో Mozilla లేదా Firefox ట్రేడ్‌మార్కులు ఉండకూడదు."
-
-msgid "Site permissions for {hostnames}"
-msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -1014,6 +1011,12 @@ msgstr "{user} ప్రవేశించారు."
 
 msgid "{user} restricted."
 msgstr "{user} నియంత్రించబడ్డారు."
+
+msgid "{addon} {version} unrejected."
+msgstr ""
+
+msgid "Unrejected"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1836,18 +1839,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "ప్రదర్శన పేరు"
 
-msgid "Origin"
-msgstr "మూలం"
-
-msgid "Permissions"
-msgstr "అనుమతులు"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
-
 msgid "Invalid or corrupt add-on file."
 msgstr "చెల్లని లేదా పాడైన పొడగింత ఫైలు."
 
@@ -2086,15 +2077,6 @@ msgstr "డెవలపర్ పత్రావళిలో వెతకండ�
 
 msgid "Search"
 msgstr "వెతుకు"
-
-msgid "Generate Site Permission Add-on"
-msgstr ""
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr "మీ పొడగింత ప్యాకేజీని ఎక్కించడానికి క్రింది ఖాళీని ఉపయోగించండి."
@@ -5016,6 +4998,12 @@ msgid "Reject Multiple Versions"
 msgstr ""
 
 msgid "This will reject the selected versions. The comments will be sent to the developer."
+msgstr ""
+
+msgid "Un-Reject Versions"
+msgstr ""
+
+msgid "This will un-reject the selected versions without notifying the developer."
 msgstr ""
 
 msgid "Block Multiple Versions"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 18:30+0000\n"
+"POT-Creation-Date: 2022-10-11 16:25+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -257,9 +257,6 @@ msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
-
-msgid "Site permissions for {hostnames}"
 msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -1117,6 +1114,12 @@ msgid "{user} logged in."
 msgstr ""
 
 msgid "{user} restricted."
+msgstr ""
+
+msgid "{addon} {version} unrejected."
+msgstr ""
+
+msgid "Unrejected"
 msgstr ""
 
 msgid "Firefox"
@@ -1980,19 +1983,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nom a mostrar"
 
-msgid "Origin"
-msgstr ""
-
-#, fuzzy
-msgid "Permissions"
-msgstr "Versions"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
-
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "Arxiu invàlid."
@@ -2243,16 +2233,6 @@ msgstr ""
 
 msgid "Search"
 msgstr "Cerca"
-
-#, fuzzy
-msgid "Generate Site Permission Add-on"
-msgstr "Versions"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
 
 msgid "Use the field below to upload your add-on package."
 msgstr ""
@@ -5327,6 +5307,12 @@ msgstr "Suprimeix la versió"
 #, fuzzy
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Rebutja el complement i el suprimeix de la cua de revisió."
+
+msgid "Un-Reject Versions"
+msgstr ""
+
+msgid "This will un-reject the selected versions without notifying the developer."
+msgstr ""
 
 #, fuzzy
 msgid "Block Multiple Versions"

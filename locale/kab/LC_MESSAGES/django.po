@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-04 18:30+0000\n"
+"POT-Creation-Date: 2022-10-11 16:25+0000\n"
 "PO-Revision-Date: 2022-08-24 14:29+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -239,9 +239,6 @@ msgstr "Anegzum-a ur yezmir ara ad yettuseqdec. Ma ulac aγili; fren wayeḍ-nni
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Ismawen n yizegrar ur zmiren ara ad gebren ticraḍ yersen n Mozilla neɣ Firefox."
-
-msgid "Site permissions for {hostnames}"
-msgstr "Tisirag n usmel i {hostnames}"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -1025,6 +1022,12 @@ msgid "{user} logged in."
 msgstr ""
 
 msgid "{user} restricted."
+msgstr ""
+
+msgid "{addon} {version} unrejected."
+msgstr ""
+
+msgid "Unrejected"
 msgstr ""
 
 msgid "Firefox"
@@ -1850,18 +1853,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "Sken-d Isem"
 
-msgid "Origin"
-msgstr "Aɣbalu:"
-
-msgid "Permissions"
-msgstr "Tisirag:"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "Tsirweḍ-d azegrir n tsiregt n usmel i uɣbalu-nni kan d tsirag-nni."
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
-
 msgid "Invalid or corrupt add-on file."
 msgstr "Afaylu n uzegrir d arameɣtu neɣ yexseṛ."
 
@@ -2101,15 +2092,6 @@ msgstr "Nadi tasemlit n tneflit"
 
 msgid "Search"
 msgstr "Nadi"
-
-msgid "Generate Site Permission Add-on"
-msgstr "Sirew azegrir n tsiregt n usmel"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr "Tisirag i d-isirew uzegrir ad εedlent d uɣbalu."
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Seqdec urti daw-a akken ad tazned akemmus inek n uzegrir."
@@ -5090,6 +5072,12 @@ msgstr "Aggwi aṭas n ilqman"
 
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Tigawt-agi ad tagi ileqman yettwafernen. Iwenniten ad ttwaznen i uneflay."
+
+msgid "Un-Reject Versions"
+msgstr ""
+
+msgid "This will un-reject the selected versions without notifying the developer."
+msgstr ""
 
 msgid "Block Multiple Versions"
 msgstr "Sewḥel aṭas n ilqman"
