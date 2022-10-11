@@ -181,55 +181,6 @@ class TestCheckAddonOwnership(TestCase):
         assert self.check_addon_ownership(self.user, self.addon, allow_developer=True)
 
 
-class TestCheckAddonOwnershipSitePermission(TestCheckAddonOwnership):
-    def setUp(self):
-        super().setUp()
-        self.extra_kwargs = {'allow_site_permission': True}
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-
-
-class TestCheckAddonOwnershipSitePermissionFalse(TestCheckAddonOwnership):
-    def setUp(self):
-        super().setUp()
-        # allow_site_permission defaults to False so we don't need to change
-        # self.extra_kwargs.
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-
-    def test_allow_mozilla_disabled_addon(self):
-        self.addon.update(status=amo.STATUS_DISABLED)
-        # Not authorized - even if we're allowing mozilla disabled add-ons,
-        # it's still a site permission add-on and we're not allowing that.
-        assert not self.check_addon_ownership(
-            self.user, self.addon, allow_mozilla_disabled_addon=True
-        )
-
-    def test_owner(self):
-        # Not authorized - even if we're allowing owners by default,
-        # it's still a site permission add-on and we're not allowing that.
-        assert not self.check_addon_ownership(self.user, self.addon)
-
-    def test_allow_developer(self):
-        # Not authorized - even if we're allowing developers,
-        # it's still a site permission add-on and we're not allowing that.
-        self.au.role = amo.AUTHOR_ROLE_DEV
-        self.au.save()
-        assert not self.check_addon_ownership(
-            self.user, self.addon, allow_developer=True
-        )
-
-    def test_owner_of_a_different_addon(self):
-        user_dev = user_factory()
-        addon_factory(users=[user_dev])
-        self.addon.addonuser_set.create(user=user_dev, role=amo.AUTHOR_ROLE_DEV)
-        self.user = user_dev
-        # Not authorized - even when we're allowing owners/developers,
-        # it's still a site permission add-on and we're not allowing that.
-        assert not self.check_addon_ownership(self.user, self.addon)
-        assert not self.check_addon_ownership(
-            self.user, self.addon, allow_developer=True
-        )
-
-
 class TestCheckReviewer(TestCase):
     fixtures = ['base/addon_3615']
 

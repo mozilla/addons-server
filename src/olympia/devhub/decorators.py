@@ -15,7 +15,6 @@ from olympia.versions.models import Version
 def dev_required(
     owner_for_post=False,
     allow_reviewers_for_read=False,
-    allow_site_permission_for_post=False,
     submitting=False,
     qs=Addon.objects.all,
 ):
@@ -28,10 +27,6 @@ def dev_required(
     request is a HEAD or GET, provided that a file_id is also passed as keyword
     argument (so the channel can be checked to determine whether the reviewer
     has access).
-
-    When allow_site_permission_for_post is True, allowed authors can make a
-    POST even if the add-on is a site permission add-on (which typically are
-    not edited in devhub, since they are automatically generated).
 
     When submitting is True, access is not allowed if the add-on is a site
     permission add-on, regardless of other arguments. When it's False,
@@ -50,8 +45,6 @@ def dev_required(
             def fun():
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 
-            if submitting and addon.type == amo.ADDON_SITE_PERMISSION:
-                raise PermissionDenied
             if request.method in ('HEAD', 'GET'):
                 # Allow reviewers for read operations, if file_id is present
                 # and the reviewer is the right kind of reviewer for this file.
@@ -72,13 +65,12 @@ def dev_required(
                         raise ImproperlyConfigured
 
                 # On read-only requests, we can allow developers, and even let
-                # authors see mozilla disabled or site permission add-ons.
+                # authors see mozilla disabled add-ons.
                 if acl.check_addon_ownership(
                     request.user,
                     addon,
                     allow_developer=True,
                     allow_mozilla_disabled_addon=True,
-                    allow_site_permission=True,
                 ):
                     # Redirect to the submit flow if they're not done with
                     # listed submission.
@@ -92,7 +84,6 @@ def dev_required(
                     request.user,
                     addon,
                     allow_developer=not owner_for_post,
-                    allow_site_permission=allow_site_permission_for_post,
                 ):
                     return fun()
             raise PermissionDenied

@@ -111,7 +111,6 @@ def download_file(request, file_id, download_type=None, **kwargs):
             addon,
             allow_developer=True,
             allow_mozilla_disabled_addon=True,
-            allow_site_permission=True,
         )
         apply_georestrictions = False
     else:

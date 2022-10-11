@@ -42,7 +42,6 @@ from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowAddonOwner,
     AllowIfNotMozillaDisabled,
-    AllowIfNotSitePermission,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
     AllowListedViewerOrReviewer,
@@ -216,7 +215,6 @@ class AddonViewSet(
         APIGatePermission('addon-submission-api'),
         AllowAddonAuthor,
         AllowIfNotMozillaDisabled,
-        AllowIfNotSitePermission,
         IsSubmissionAllowedFor,
     ]
     delete_permission_classes = [

@@ -1906,19 +1906,6 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.USER_ENABLE.id
 
-    def test_write_site_permission(self):
-        addon = Addon.objects.get()
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        response = self.request(
-            data={'slug': 'a-new-slug'},
-        )
-        addon.reload()
-        # Site Permission Addons can't be written to.
-        assert response.status_code == 403
-        assert response.data['detail'] == (
-            'You do not have permission to perform this action.'
-        )
-
     @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
@@ -2391,12 +2378,6 @@ class TestAddonViewSetDelete(TestCase):
             'is_disabled_by_mozilla': False,
         }
         assert self.addon.status == amo.STATUS_APPROVED
-
-    def test_delete_allowed_for_site_permission_addons(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        self.client.login_api(self.user)
-        self._perform_delete_request(204)
-        assert self.addon.status == amo.STATUS_DELETED
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
@@ -3056,14 +3037,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert self.addon.status == amo.STATUS_NOMINATED
         self.statsd_incr_mock.assert_any_call('addons.submission.version.listed')
 
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        response = self.client.post(
-            self.url,
-            data={**self.minimal_data},
-        )
-        assert response.status_code == 403
-
     def test_not_authenticated(self):
         self.client.logout_api()
         response = self.client.post(
@@ -3432,14 +3405,6 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'is_disabled_by_mozilla': False,
         }
         assert self.version.release_notes != 'Something new'
-
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        response = self.client.patch(
-            self.url,
-            data={'release_notes': {'en-US': 'Something new'}},
-        )
-        assert response.status_code == 403
 
     def test_not_your_addon(self):
         self.addon.addonuser_set.get(user=self.user).update(

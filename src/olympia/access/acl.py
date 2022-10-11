@@ -1,5 +1,3 @@
-from django.conf import settings
-
 from olympia import amo
 
 
@@ -76,23 +74,12 @@ def mozilla_signed_extension_submission_allowed(user, parsed_addon_data):
     ) or action_allowed_for(user, amo.permissions.SYSTEM_ADDON_SUBMIT)
 
 
-def site_permission_addons_submission_allowed(user, parsed_addon_data):
-    """Site Permission Add-ons can only be submitted by users with a specific
-    permission or the task user."""
-    return (
-        not parsed_addon_data.get('type') == amo.ADDON_SITE_PERMISSION
-        or action_allowed_for(user, amo.permissions.ADDONS_SUBMIT_SITE_PERMISSION)
-        or (user and user.pk == settings.TASK_USER_ID)
-    )
-
-
 def check_addon_ownership(
     user,
     addon,
     allow_developer=False,
     allow_addons_edit_permission=True,
     allow_mozilla_disabled_addon=False,
-    allow_site_permission=False,
 ):
     """
     Check that user is the owner of the add-on.
@@ -104,9 +91,6 @@ def check_addon_ownership(
       allow_mozilla_disabled_addon=True.
     - return False if the author is just a developer and not an owner. Can be
       bypassed with allow_developer=True.
-    - return False for site permission add-ons regardless of authorship. Can be
-      bypassed with allow_site_permission=True, in which case regular authorship checks
-      apply.
     - return False for non authors. Can be bypassed with
       allow_addons_edit_permission=True and the user has the Addons:Edit
       permission. This has precedence over all other checks.
@@ -123,9 +107,6 @@ def check_addon_ownership(
         return True
     # Only admins can edit admin-disabled addons.
     if addon.status == amo.STATUS_DISABLED and not allow_mozilla_disabled_addon:
-        return False
-    # Site permission add-ons can't be edited by default.
-    if addon.type == amo.ADDON_SITE_PERMISSION and not allow_site_permission:
         return False
     # Addon owners can do everything else.
     roles = (amo.AUTHOR_ROLE_OWNER,)
@@ -217,5 +198,4 @@ def author_or_unlisted_viewer_or_reviewer(user, addon):
         addon,
         allow_addons_edit_permission=False,
         allow_developer=True,
-        allow_site_permission=True,
     )
