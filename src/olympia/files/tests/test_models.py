@@ -1314,21 +1314,6 @@ class TestFileFromUpload(UploadMixin, TestCase):
         file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert os.path.exists(file_.file.path)
 
-    def test_permission_enabler_site_permissions(self):
-        upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(
-            upload,
-            self.version,
-            parsed_data={
-                **self.parsed_data,
-                'type': amo.ADDON_SITE_PERMISSION,
-                'site_permissions': ['one', 'two'],
-            },
-        )
-        site_permissions = file_._site_permissions
-        assert site_permissions.pk
-        assert site_permissions.permissions == ['one', 'two']
-
 
 class TestZip(TestCase, amo.tests.AMOPaths):
     def test_zip_python_bug_4710(self):

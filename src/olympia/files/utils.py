@@ -222,8 +222,6 @@ class ManifestJSONExtractor:
             if 'theme' in self.data
             else amo.ADDON_DICT
             if 'dictionaries' in self.data
-            else amo.ADDON_SITE_PERMISSION
-            if 'site_permissions' in self.data
             else amo.ADDON_EXTENSION
         )
 
@@ -419,8 +417,6 @@ class ManifestJSONExtractor:
                     data.update({'devtools_page': self.get('devtools_page')})
             elif self.type in (amo.ADDON_DICT, amo.ADDON_LPAPP):
                 data['target_locale'] = self.target_locale()
-            elif self.type == amo.ADDON_SITE_PERMISSION:
-                data['site_permissions'] = self.get('site_permissions', [])
         return data
 
 
@@ -926,9 +922,6 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
                 'The locale of an existing dictionary/language pack cannot be changed'
             )
         )
-
-    if not acl.site_permission_addons_submission_allowed(user, xpi_info):
-        raise forms.ValidationError(gettext('You cannot submit this type of add-on'))
 
     return xpi_info
 

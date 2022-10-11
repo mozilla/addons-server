@@ -205,15 +205,6 @@ class File(OnChangeMixin, ModelBase):
                 optional_permissions=optional_permissions,
                 file=file_,
             )
-        # site_permissions are not related to webext permissions (they are
-        # Web APIs a particular site can enable with a specially generated
-        # add-on) and thefore are stored separately.
-        if parsed_data.get('type') == amo.ADDON_SITE_PERMISSION:
-            site_permissions = list(parsed_data.get('site_permissions', []))
-            FileSitePermission.objects.create(
-                permissions=site_permissions,
-                file=file_,
-            )
 
         if upload.validation:
             validation = json.loads(upload.validation)
@@ -620,13 +611,3 @@ class WebextPermission(ModelBase):
 
     class Meta:
         db_table = 'webext_permissions'
-
-
-class FileSitePermission(ModelBase):
-    permissions = models.JSONField(default=list)
-    file = models.OneToOneField(
-        'File', related_name='_site_permissions', on_delete=models.CASCADE
-    )
-
-    class Meta:
-        db_table = 'site_permissions'

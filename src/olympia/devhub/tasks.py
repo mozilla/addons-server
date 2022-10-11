@@ -28,7 +28,6 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.addons.utils import SitePermissionVersionCreator
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import (
@@ -49,7 +48,6 @@ from olympia.files.utils import (
     UnsupportedFileType,
     InvalidArchiveFile,
 )
-from olympia.users.models import UserProfile
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
@@ -642,20 +640,3 @@ def send_api_key_revocation_email(emails):
         use_deny_list=False,
         perm_setting='individual_contact',
     )
-
-
-@task
-@use_primary_db
-def create_site_permission_version(
-    *, user_pk, remote_addr, install_origins, site_permissions, **kwargs
-):
-    # Can raise if the user does not exist, but that's ok, we don't want to go
-    # any further if that's the case.
-    user = UserProfile.objects.filter(deleted=False).get(pk=user_pk)
-    generator = SitePermissionVersionCreator(
-        user=user,
-        remote_addr=remote_addr,
-        install_origins=install_origins,
-        site_permissions=site_permissions,
-    )
-    generator.create_version()

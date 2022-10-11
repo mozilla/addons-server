@@ -107,17 +107,17 @@ AUTHOR_CHOICES_UNFILTERED = AUTHOR_CHOICES + ((AUTHOR_ROLE_DELETED, _('(Deleted)
 # Addon types
 ADDON_ANY = 0
 ADDON_EXTENSION = 1
-_ADDON_THEME = 2  # Deprecated.  XUL Theme.
+_ADDON_THEME = 2  # Obsolete.  XUL Theme.
 ADDON_DICT = 3
-_ADDON_SEARCH = 4  # Deprecated.  Opensearch.
+_ADDON_SEARCH = 4  # Obsolete.  Opensearch.
 ADDON_LPAPP = 5
-_ADDON_LPADDON = 6  # Deprecated.  A langpack for a specific extension.
-_ADDON_PLUGIN = 7  # Deprecated.  Binary plugin, e.g. Flash.
+_ADDON_LPADDON = 6  # Obsolete.  A langpack for a specific extension.
+_ADDON_PLUGIN = 7  # Obsolete.  Binary plugin, e.g. Flash.
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
-_ADDON_PERSONA = 9  # Deprecated.  Aka Lightweight Themes.
+_ADDON_PERSONA = 9  # Obsolete.  Aka Lightweight Themes.
 ADDON_STATICTHEME = 10
-_ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
-ADDON_SITE_PERMISSION = 12
+_ADDON_WEBAPP = 11  # Obsolete.  Marketplace cruft.
+_ADDON_SITE_PERMISSION = 12  # Obsolete.  Never used in production.
 
 # Addon type groupings
 
@@ -135,7 +135,7 @@ ADDON_TYPE = {
     _ADDON_PLUGIN: _('Deprecated Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
-    ADDON_SITE_PERMISSION: _('Site Permission'),
+    _ADDON_SITE_PERMISSION: _('Site Permission'),
 }
 
 # Plural
@@ -149,7 +149,7 @@ ADDON_TYPES = {
     _ADDON_PLUGIN: _('Deprecated Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
-    ADDON_SITE_PERMISSION: _('Site Permissions'),
+    _ADDON_SITE_PERMISSION: _('Site Permissions'),
 }
 
 # Searchable Add-on Types
@@ -171,7 +171,6 @@ ADDON_SLUGS = {
     ADDON_LPAPP: 'language-tools',
     _ADDON_SEARCH: 'search-tools',
     ADDON_STATICTHEME: 'themes',
-    ADDON_SITE_PERMISSION: 'sitepermission',
 }
 
 # A slug to ID map for the search API. Included are all ADDON_TYPES that are
@@ -185,7 +184,6 @@ ADDON_SEARCH_SLUGS = {
     'language': ADDON_LPAPP,
     'persona': _ADDON_PERSONA,
     'statictheme': ADDON_STATICTHEME,
-    'sitepermission': ADDON_SITE_PERMISSION,
 }
 
 ADDON_TYPE_CHOICES_API = {
@@ -196,7 +194,6 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_LPAPP: 'language',
     _ADDON_PERSONA: 'persona',
     ADDON_STATICTHEME: 'statictheme',
-    ADDON_SITE_PERMISSION: 'sitepermission',
 }
 
 ADDON_TYPES_WITH_STATS = (
@@ -204,7 +201,6 @@ ADDON_TYPES_WITH_STATS = (
     ADDON_STATICTHEME,
     ADDON_DICT,
     ADDON_LPAPP,
-    ADDON_SITE_PERMISSION,
 )
 
 # Edit addon information

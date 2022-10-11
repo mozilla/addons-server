@@ -698,21 +698,6 @@ class TestVersion(TestCase):
         # Extra tags in the headers too
         assert doc('h3 span.distribution-tag-listed').length == 2
 
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-
-        # Authors can see the versions page of a site permission add-on.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-        # They can't delete/disable/enable versions though.
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 403
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 403
-        response = self.client.post(self.delete_url, self.delete_data)
-        assert response.status_code == 403
-
 
 class TestVersionEditBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
@@ -1029,16 +1014,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert not version.addon.needs_admin_code_review
-
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        # Authors can see a version page of a site permission add-on.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-        # They can't edit it though.
-        response = self.client.post(self.url, self.formset())
-        assert response.status_code == 403
 
 
 class TestVersionEditStaticTheme(TestVersionEditBase):

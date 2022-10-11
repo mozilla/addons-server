@@ -171,32 +171,6 @@ def dashboard(request, theme=False):
     return TemplateResponse(request, 'devhub/addons/dashboard.html', context=data)
 
 
-@login_required
-def site_permission_generator(request):
-    if not RestrictionChecker(request=request).is_submission_allowed():
-        return redirect(
-            '%s%s%s'
-            % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
-        )
-    form = forms.SitePermissionGeneratorForm(
-        request.POST if request.method == 'POST' else None, request=request
-    )
-    success = None
-    if request.method == 'POST' and form.is_valid():
-        tasks.create_site_permission_version.delay(
-            user_pk=request.user.pk,
-            remote_addr=request.META.get('REMOTE_ADDR', ''),
-            install_origins=[form.cleaned_data['origin']],
-            site_permissions=form.cleaned_data['site_permissions'],
-        )
-        success = True
-    return TemplateResponse(
-        request,
-        'devhub/site_permission_generator.html',
-        context={'form': form, 'success': success},
-    )
-
-
 @dev_required
 def ajax_compat_status(request, addon_id, addon):
     if not (addon.can_set_compatibility and addon.current_version):
@@ -365,7 +339,6 @@ def feed(request, addon_id=None):
                 addon,
                 allow_developer=True,
                 allow_mozilla_disabled_addon=True,
-                allow_site_permission=True,
             ):
                 raise PermissionDenied
             addons = [addon]
@@ -421,7 +394,7 @@ def edit(request, addon_id, addon):
     return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
 
 
-@dev_required(owner_for_post=True, allow_site_permission_for_post=True)
+@dev_required(owner_for_post=True)
 @post_required
 def delete(request, addon_id, addon):
     # Database deletes only allowed for free or incomplete addons.
@@ -542,7 +515,7 @@ def invitation(request, addon_id):
     return TemplateResponse(request, 'devhub/addons/invitation.html', context=ctx)
 
 
-@dev_required(owner_for_post=True, allow_site_permission_for_post=True)
+@dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
     fs = []
     ctx = {
@@ -551,9 +524,7 @@ def ownership(request, addon_id, addon):
         # regular developers, but can be edited by owners even if it's a site
         # permission add-on.
         'editable_body_class': 'no-edit'
-        if not acl.check_addon_ownership(
-            request.user, addon, allow_site_permission=True
-        )
+        if not acl.check_addon_ownership(request.user, addon)
         else '',
     }
     post_data = request.POST if request.method == 'POST' else None
@@ -584,7 +555,7 @@ def ownership(request, addon_id, addon):
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    if addon.type not in (amo.ADDON_STATICTHEME, amo.ADDON_SITE_PERMISSION):
+    if addon.type != amo.ADDON_STATICTHEME:
         policy_form = forms.PolicyForm(post_data, addon=addon)
         ctx['policy_form'] = policy_form
         fs.append(policy_form)

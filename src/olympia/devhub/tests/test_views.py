@@ -2,7 +2,6 @@ import json
 import os
 
 from datetime import datetime, timedelta
-from ipaddress import IPv4Address
 from urllib.parse import quote, urlencode
 
 from django.conf import settings
@@ -31,7 +30,6 @@ from olympia.amo.templatetags.jinja_helpers import (
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
-    fxa_login_link,
     user_factory,
     version_factory,
 )
@@ -42,7 +40,7 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
 from olympia.devhub.views import get_next_version_number
-from olympia.files.models import FileSitePermission, FileUpload
+from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
@@ -386,18 +384,6 @@ class TestDevRequired(TestCase):
         doc = pq(response.content)
         assert 'no-edit' not in doc('body')[0].attrib['class']
 
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        response = self.client.get(self.get_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert 'no-edit' in doc('body')[0].attrib['class']
-        response = self.client.get(self.edit_page_url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert 'no-edit' in doc('body')[0].attrib['class']
-        self.assert3xx(self.client.post(self.delete_url), self.get_url)
-
     def test_dev_post(self):
         self.assert3xx(self.client.post(self.delete_url), self.get_url)
 
@@ -509,20 +495,6 @@ class TestDelete(TestCase):
         )
         assert Addon.objects.filter(id=theme.id).exists()
         self.assert3xx(response, theme.get_dev_url('versions'))
-
-    def test_post_site_permission(self):
-        site_permission = addon_factory(
-            type=amo.ADDON_SITE_PERMISSION,
-            users=[self.user],
-        )
-        response = self.client.post(
-            site_permission.get_dev_url('delete'),
-            {'slug': site_permission.slug},
-            follow=True,
-        )
-        assert pq(response.content)('.notification-box').text() == ('Add-on deleted.')
-        assert not Addon.objects.filter(pk=site_permission.pk).exists()
-        self.assert3xx(response, reverse('devhub.addons'))
 
 
 class TestHome(TestCase):
@@ -682,13 +654,6 @@ class TestActivityFeed(TestCase):
         assert doc('header h2').text() == 'Recent Activity for My Add-ons'
 
     def test_feed_for_addon(self):
-        response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('header h2').text() == ('Recent Activity for %s' % self.addon.name)
-
-    def test_feed_for_site_permission_addon(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
         response = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         assert response.status_code == 200
         doc = pq(response.content)
@@ -2114,117 +2079,4 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
 
         assert reverse('stats.overview', args=[self.addon.slug]) in str(
             response.content
-        )
-
-
-class TestSitePermissionGenerator(TestCase):
-    def setUp(self):
-        self.url = reverse('devhub.site_permission_generator')
-        self.user = user_factory()
-        self.client.force_login(self.user)
-        self.user.update(last_login_ip='192.168.1.1')
-        set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
-
-    def test_not_logged_in(self):
-        self.client.logout()
-        response = self.client.get(self.url)
-        self.assert3xx(response, fxa_login_link(response=response, to=self.url))
-
-    def test_redirect_to_agreement_if_restricted(self):
-        assert self.user.read_dev_agreement is None
-        response = self.client.get(self.url)
-        self.assert3xx(
-            response,
-            '%s%s%s' % (reverse('devhub.developer_agreement'), '?to=', self.url),
-        )
-
-    def test_errors(self):
-        self.user.update(read_dev_agreement=self.days_ago(1))
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        data = {
-            'origin': 'foo',  # wrong
-            'site_permissions': ['bar'],  # also wrong
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == 200
-        assert not response.context['form'].is_valid()
-        doc = pq(response.content)
-        errors = doc('.errorlist')
-        assert len(errors) == 2
-        assert errors[0].text_content() == 'Enter a valid URL.'
-        assert (
-            errors[1].text_content()
-            == 'Select a valid choice. bar is not one of the available choices.'
-        )
-
-    @override_switch('record-install-origins', active=True)
-    def test_success(self):
-        user_factory(pk=settings.TASK_USER_ID)
-        AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version='97.0')
-        AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version='*')
-        AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='97.0')
-        AppVersion.objects.get_or_create(application=amo.ANDROID.id, version='*')
-
-        self.user.update(read_dev_agreement=self.days_ago(1))
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('.devhub-form form')
-        data = {
-            'origin': 'https://foo.com',
-            'site_permissions': ['midi-sysex'],
-        }
-        response = self.client.post(self.url, data, REMOTE_ADDR='15.16.23.42')
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('.devhub-form form')
-        assert 'Version Signature Pending' in response.content.decode('utf-8')
-        # Since we're in tests, tasks are executed synchronously so we can
-        # directly check the add-on has been created.
-        assert Addon.objects.count() == 1
-        addon = Addon.objects.get()
-        version = addon.versions.all()[0]
-        file_ = version.file
-        assert version.pk
-        assert version.channel == amo.CHANNEL_UNLISTED
-        assert version.version == '1.0'
-        assert sorted(
-            version.installorigin_set.all().values_list('origin', flat=True)
-        ) == [
-            'https://foo.com',
-        ]
-        assert addon.status == amo.STATUS_NULL
-        assert addon.type == amo.ADDON_SITE_PERMISSION
-        assert list(addon.authors.all()) == [self.user]
-        assert file_.status == amo.STATUS_AWAITING_REVIEW
-        assert file_._site_permissions
-        assert file_._site_permissions.permissions == ['midi-sysex']
-        activity = ActivityLog.objects.for_addons(addon).latest('pk')
-        assert activity.user == self.user
-        assert activity.iplog_set.all()[0].ip_address_binary == IPv4Address(
-            '15.16.23.42'
-        )
-
-    def test_non_field_errors(self):
-        self.user.update(read_dev_agreement=self.days_ago(1))
-        # Generate a duplicate in order to get an error not attached to a
-        # particular form field.
-        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.user])
-        version = addon.versions.get()
-        FileSitePermission.objects.create(file=version.file, permissions=['midi-sysex'])
-        version.installorigin_set.create(origin='https://example.com')
-        data = {
-            'origin': 'https://example.com',
-            'site_permissions': ['midi-sysex'],
-        }
-        response = self.client.post(self.url, data)
-        assert response.status_code == 200
-        form = response.context['form']
-        assert not form.is_valid()
-        doc = pq(response.content)
-        form_element = doc('.site_permission_generator form')
-        assert (
-            'site permission add-on for the same origin and permissions'
-            in form_element.text()
         )

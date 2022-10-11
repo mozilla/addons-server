@@ -242,7 +242,7 @@
       </div>
     {% endif %}
   </div>
-  {% if check_addon_ownership(request.user, addon, allow_site_permission=True) and addon.can_be_deleted() %}
+  {% if check_addon_ownership(request.user, addon) and addon.can_be_deleted() %}
   <h3>{{ _('Delete Add-on') }}</h3>
   <div class="item" id="addon-delete-listing">
     <div class="item_wrapper">
