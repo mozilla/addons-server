@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-11 16:25+0000\n"
-"PO-Revision-Date: 2022-10-11 18:45+0000\n"
+"PO-Revision-Date: 2022-10-11 19:00+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5093,7 +5093,7 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "Isto rejectara le versiones seligite. Le commentos sera inviate al disveloppator."
 
 msgid "Un-Reject Versions"
-msgstr ""
+msgstr "Versiones reapprobate"
 
 msgid "This will un-reject the selected versions without notifying the developer."
 msgstr "Isto reconfirmara le approbation del versiones seligite sin notificar le disveloppator."
