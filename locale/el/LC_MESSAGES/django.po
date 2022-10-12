@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-11 16:25+0000\n"
-"PO-Revision-Date: 2022-10-12 17:21+0000\n"
+"PO-Revision-Date: 2022-10-12 17:22+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1041,7 +1041,7 @@ msgid "{addon} {version} unrejected."
 msgstr "Αναιρέθηκε η απόρριψη του {addon} {version}."
 
 msgid "Unrejected"
-msgstr ""
+msgstr "Αναιρέθηκε η απόρριψη"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5169,10 +5169,10 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "Αυτό θα απορρίψει τις επιλεγμένες εκδόσεις. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
 
 msgid "Un-Reject Versions"
-msgstr ""
+msgstr "Αναίρεση απόρριψης εκδόσεων"
 
 msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
+msgstr "Αυτό θα αναιρέσει την απόρριψη των επιλεγμένων εκδόσεων χωρίς να ειδοποιηθεί ο προγραμματιστής."
 
 msgid "Block Multiple Versions"
 msgstr "Φραγή πολλαπλών εκδόσεων"
