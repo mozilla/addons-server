@@ -6,7 +6,6 @@ from django import http
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
 from django.db.models import (
-    CharField,
     Count,
     F,
     FilteredRelation,
