@@ -2628,9 +2628,6 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         assert log.user == self.user
 
 
-REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
-
-
 class TestFrozenAddons(TestCase):
     def test_immediate_freeze(self):
         # Adding a FrozenAddon should immediately drop the addon's hotness.

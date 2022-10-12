@@ -2,7 +2,6 @@ from unittest import mock
 
 from django.conf import settings
 from django.core.management import call_command
-from django.test.utils import override_settings
 
 from olympia.amo.tests import TestCase
 from olympia.translations.models import (
@@ -59,9 +58,6 @@ class TestTranslationCommands(TestCase):
         for translation in self.translations:
             translation.save()
 
-    @override_settings(
-        REDIRECT_URL='https://prod.outgoing.prod.webservices.mozgcp.net/v1/'
-    )
     def test_update_outgoing_url(self):
         self.expected = {}
         for translation in self.translations:
@@ -83,9 +79,6 @@ class TestTranslationCommands(TestCase):
             assert translation.localized_string == expected_values[0]
             assert translation.localized_string_clean == expected_values[1]
 
-    @override_settings(
-        REDIRECT_URL='https://stage.outgoing.nonprod.webservices.mozgcp.net/v1/'
-    )
     def test_update_outgoing_url_custom_url(self):
         self.expected = {}
         for translation in self.translations:

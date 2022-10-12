@@ -725,7 +725,7 @@ class TestRankingScenarios(ESTestCase):
             'Open Image in New Tab',
             (
                 ['Open Image in New Tab', 5553],
-                ['Open image in a new tab', 1735],
+                ['Open image in a new tab', 1736],
             ),
         )
 
@@ -735,7 +735,7 @@ class TestRankingScenarios(ESTestCase):
             'CoinHive',
             (
                 ['Coinhive Blocker', 1899],
-                ['NoMiners', 69],  # via description
+                ['NoMiners', 70],  # via description
                 # ['CoinBlock', 0],  # via prefix search
             ),
         )
@@ -822,9 +822,9 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'No Flash',
             (
-                ['No Flash', 7230],
+                ['No Flash', 7226],
                 ['Download Flash and Video', 1565],
-                ['YouTube Flash Player', 1370],
+                ['YouTube Flash Player', 1371],
                 ['YouTube Flash Video Player', 1260],
             ),
         )
@@ -833,9 +833,9 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'no flash',
             (
-                ['No Flash', 7230],
+                ['No Flash', 7226],
                 ['Download Flash and Video', 1565],
-                ['YouTube Flash Player', 1370],
+                ['YouTube Flash Player', 1371],
                 ['YouTube Flash Video Player', 1260],
             ),
         )
@@ -846,8 +846,8 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Youtube html5 Player',
             (
-                ['YouTube Flash Player', 472],
-                ['No Flash', 205],
+                ['YouTube Flash Player', 474],
+                ['No Flash', 193],
             ),
         )
 
@@ -1001,12 +1001,12 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tab',
             (
-                ['Tabby Cat', 3729],
-                ['Tab Mix Plus', 1351],
+                ['Tabby Cat', 3730],
+                ['Tab Mix Plus', 1352],
                 ['OneTab', 1144],
-                ['Tab Center Redux', 960],
+                ['Tab Center Redux', 961],
                 ['FoxyTab', 902],
-                ['Open Bookmarks in New Tab', 886],
+                ['Open Bookmarks in New Tab', 887],
                 ['Open image in a new tab', 715],
                 ['Open Image in New Tab', 560],
             ),
