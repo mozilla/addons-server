@@ -561,7 +561,7 @@ class SafeTar:
                     raise InvalidArchiveFile(
                         gettext(
                             'This archive contains a forbidden special file '
-                            '(symbolink / hard link or device / block file)'
+                            '(symbolic / hard link or device / block file)'
                         )
                     )
         return archive
