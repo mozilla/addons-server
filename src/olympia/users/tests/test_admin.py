@@ -127,7 +127,11 @@ class TestUserAdmin(TestCase):
             self.user.update(email='foo@bar.com')
             # That will make self.user match our query.
             ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr('127.0.0.3'):
+        # 127.0.0.44 packed is b'\x7f\x00\x00,' - it's useful to test since it
+        # contains a comma character, which would trip the split(',') we do on
+        # the result of the GROUP_CONCAT if the binary value wasn't translated
+        # to an IP address string representation before being grouped.
+        with core.override_remote_addr('127.0.0.44'):
             # Add another login from a different IP to make sure we show it.
             ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
         with core.override_remote_addr('127.0.0.1'):
@@ -145,7 +149,7 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure login ip is now displayed, and has the right value.
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2\n127.0.0.3'
+        assert doc('.field-known_ip_adresses').text() == '127.0.0.2\n127.0.0.44'
 
     def test_search_for_single_ip_multiple_results_for_different_reasons(self):
         user = user_factory(email='someone@mozilla.com')
