@@ -244,9 +244,6 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
                 'activity_ips': GroupConcat(
                     Inet6Ntoa('activitylog__iplog__ip_address_binary'),
                     distinct=True,
-                    # You can't have multiple ip addresses in an IPv[4|6]Address object
-                    # so we store the binary values in a CharField instead.
-                    output_field=CharField(),
                 ),
                 'activitylog_filtered': FilteredRelation(
                     'activitylog__iplog', condition=condition
