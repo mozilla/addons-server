@@ -6,7 +6,6 @@ from django import http
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
 from django.db.models import (
-    CharField,
     Count,
     F,
     FilteredRelation,
@@ -37,7 +36,7 @@ from olympia.amo.admin import (
     SEARCH_VAR,
 )
 from olympia.amo.fields import IPAddressBinaryField
-from olympia.amo.models import GroupConcat
+from olympia.amo.models import GroupConcat, Inet6Ntoa
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
@@ -242,11 +241,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             # FilteredRelation we can force it...
             annotations = {
                 'activity_ips': GroupConcat(
-                    'activitylog__iplog__ip_address_binary',
+                    Inet6Ntoa('activitylog__iplog__ip_address_binary'),
                     distinct=True,
-                    # You can't have multiple ip addresses in an IPv[4|6]Address object
-                    # so we store the binary values in a CharField instead.
-                    output_field=CharField(),
                 ),
                 'activitylog_filtered': FilteredRelation(
                     'activitylog__iplog', condition=condition
@@ -482,11 +478,12 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # extra queries for each row of results), otherwise, look everywhere
         # we can.
         activity_ips = getattr(obj, 'activity_ips', None)
-        to_ipaddress = IPAddressBinaryField().to_python
         if activity_ips is not None:
-            # The GroupConcat value is a comma seperated string of the binary values.
-            ip_addresses = {to_ipaddress(ip) for ip in activity_ips.split(b',')}
+            # The GroupConcat value is a comma seperated string of the ip
+            # addresses (already converted to string thanks to INET6_NTOA).
+            ip_addresses = set(activity_ips.split(','))
         else:
+            to_ipaddress = IPAddressBinaryField().to_python
             ip_addresses = set(
                 Rating.objects.filter(user=obj)
                 .values_list('ip_address', flat=True)
