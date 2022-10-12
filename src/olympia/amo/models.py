@@ -7,6 +7,8 @@ from urllib.parse import urljoin
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.db.models.expressions import Func
+from django.db.models.fields import CharField
 from django.db.models.fields.related_descriptors import ManyToManyDescriptor
 from django.db.models.query import ModelIterable
 from django.urls import resolve, reverse
@@ -633,3 +635,8 @@ class FilterableManyToManyField(models.fields.related.ManyToManyField):
 class GroupConcat(models.Aggregate):
     function = 'GROUP_CONCAT'
     allow_distinct = True
+
+
+class Inet6Ntoa(Func):
+    function = 'INET6_NTOA'
+    output_field = CharField()
