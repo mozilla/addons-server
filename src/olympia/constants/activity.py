@@ -848,8 +848,8 @@ class UNREJECT_VERSION(_LOG):
     # takes add-on, version
     id = 171
     action_class = 'reject'
-    format = _('{addon} {version} unrejected.')
-    short = _('Unrejected')
+    format = _('{addon} {version} un-rejected.')
+    short = _('Un-rejected')
     keep = True
     review_queue = True
     reviewer_review_action = True
