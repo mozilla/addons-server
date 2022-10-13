@@ -720,7 +720,7 @@ class ReviewHelper:
         }
         actions['unreject_multiple_versions'] = {
             'method': self.handler.unreject_multiple_versions,
-            'label': _('Un-Reject Versions'),
+            'label': _('Un-reject Versions'),
             'minimal': True,
             'multiple_versions': True,
             'details': _(
