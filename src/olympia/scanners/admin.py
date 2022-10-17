@@ -273,35 +273,8 @@ class ScannerResultChangeList(ChangeList):
 class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     actions = None
     view_on_site = False
-
-    list_display = (
-        'id',
-        'formatted_addon',
-        'guid',
-        'authors',
-        'scanner',
-        'formatted_score',
-        'formatted_matched_rules',
-        'formatted_created',
-        'result_actions',
-    )
     list_select_related = ('version',)
-    raw_id_fields = ('version', 'upload')
-
-    fields = (
-        'id',
-        'upload',
-        'formatted_addon',
-        'authors',
-        'guid',
-        'scanner',
-        'formatted_score',
-        'created',
-        'state',
-        'formatted_matched_rules_with_files',
-        'result_actions',
-        'formatted_results',
-    )
+    raw_id_fields = ('version',)
 
     ordering = ('-pk',)
 
@@ -326,7 +299,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
             ),
             'version__file',
             'version__addon__authors',
-            'matched_rules',
         )
 
     def get_unfiltered_changelist_params(self):
@@ -370,10 +342,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         to_exclude = []
         if not self.has_actions_permission(request):
             to_exclude = ['result_actions']
-        try:
-            self.model._meta.get_field('upload')
-        except FieldDoesNotExist:
-            to_exclude.append('upload')
         fields = list(filter(lambda x: x not in to_exclude, fields))
         return fields
 
@@ -469,8 +437,12 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     formatted_results.short_description = 'Results'
 
     def formatted_matched_rules(self, obj):
-        rule_model = self.model.matched_rules.rel.model
-        info = rule_model._meta.app_label, rule_model._meta.model_name
+        info = obj.rule_model._meta.app_label, obj.rule_model._meta.model_name
+        rules = (
+            [obj.matched_rule]
+            if hasattr(obj, 'matched_rule')
+            else obj.matched_rules.all()
+        )
 
         return format_html(
             ', '.join(
@@ -480,7 +452,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                         rule.name,
                         rule.get_scanner_display(),
                     )
-                    for rule in obj.matched_rules.all()
+                    for rule in rules
                 ]
             )
         )
@@ -491,8 +463,13 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         self, obj, template_name='formatted_matched_rules_with_files'
     ):
         files_by_matched_rules = obj.get_files_by_matched_rules()
-        rule_model = self.model.matched_rules.rel.model
-        info = rule_model._meta.app_label, rule_model._meta.model_name
+        info = obj.rule_model._meta.app_label, obj.rule_model._meta.model_name
+        rules = (
+            [obj.matched_rule]
+            if hasattr(obj, 'matched_rule')
+            else obj.matched_rules.all()
+        )
+
         return render_to_string(
             f'admin/scanners/scannerresult/{template_name}.html',
             {
@@ -505,7 +482,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                         'name': rule.name,
                         'files': files_by_matched_rules[rule.name],
                     }
-                    for rule in obj.matched_rules.all()
+                    for rule in rules
                 ],
                 'addon_id': obj.version.addon.pk if obj.version else None,
                 'version_id': obj.version.pk if obj.version else None,
@@ -513,6 +490,123 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         )
 
     formatted_matched_rules_with_files.short_description = 'Matched rules'
+
+
+class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
+    view_on_site = False
+
+    list_display = ('name', 'scanner', 'action', 'is_active')
+    list_filter = ('scanner', 'action', 'is_active')
+    fields = (
+        'scanner',
+        'name',
+        'action',
+        'created',
+        'modified',
+        'matched_results_link',
+        'is_active',
+        'definition',
+    )
+    readonly_fields = ('created', 'modified', 'matched_results_link')
+
+    def formfield_for_choice_field(self, db_field, request, **kwargs):
+        if db_field.name == 'scanner':
+            kwargs['choices'] = (('', '---------'),)
+            for key, value in db_field.get_choices():
+                if key in [CUSTOMS, YARA]:
+                    kwargs['choices'] += ((key, value),)
+        return super().formfield_for_choice_field(db_field, request, **kwargs)
+
+    class Media:
+        css = {'all': ('css/admin/scannerrule.css',)}
+
+    def get_fields(self, request, obj=None):
+        fields = super().get_fields(request, obj)
+        if not self.has_change_permission(request, obj):
+            # Remove the 'definition' field...
+            fields = list(filter(lambda x: x != 'definition', fields))
+            # ...and add its readonly (and pretty!) alter-ego.
+            fields.append('formatted_definition')
+        return fields
+
+    def matched_results_link(self, obj):
+        if not obj.pk or not obj.scanner:
+            return '-'
+        counts = obj.results.aggregate(
+            addons=Count('version__addon', distinct=True), total=Count('id')
+        )
+        ResultModel = obj.results.model
+        url = reverse(
+            'admin:{}_{}_changelist'.format(
+                ResultModel._meta.app_label, ResultModel._meta.model_name
+            )
+        )
+        # The parameter name is called matched_rule or matched_rules depending
+        # on the model, because one of them is a many to many and the other a
+        # simple FK.
+        param_name = 'matched_rule%s__id__exact' % (
+            's' if obj._meta.get_field('results').many_to_many else ''
+        )
+        params = {
+            param_name: str(obj.pk),
+        }
+        result_admin = admin.site._registry[ResultModel]
+        params.update(result_admin.get_unfiltered_changelist_params())
+        return format_html(
+            '<a href="{}?{}">{} ({} add-ons)</a>',
+            url,
+            urlencode(params),
+            counts['total'],
+            counts['addons'],
+        )
+
+    matched_results_link.short_description = 'Matched Results'
+
+    def formatted_definition(self, obj):
+        return format_html('<pre>{}</pre>', obj.definition)
+
+    formatted_definition.short_description = 'Definition'
+
+
+@admin.register(ScannerResult)
+class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
+    fields = (
+        'id',
+        'upload',
+        'formatted_addon',
+        'authors',
+        'guid',
+        'scanner',
+        'formatted_score',
+        'created',
+        'state',
+        'formatted_matched_rules_with_files',
+        'result_actions',
+        'formatted_results',
+    )
+    list_display = (
+        'id',
+        'formatted_addon',
+        'guid',
+        'authors',
+        'scanner',
+        'formatted_score',
+        'formatted_matched_rules',
+        'formatted_created',
+        'result_actions',
+    )
+    list_filter = (
+        'scanner',
+        MatchesFilter,
+        StateFilter,
+        ('matched_rules', ScannerRuleListFilter),
+        WithVersionFilter,
+        ExcludeMatchedRulesFilter,
+    )
+    raw_id_fields = AbstractScannerResultAdminMixin.raw_id_fields + ('upload',)
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related('matched_rules')
 
     def formatted_score(self, obj):
         if obj.scanner not in [CUSTOMS, MAD]:
@@ -673,90 +767,18 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     result_actions.allow_tags = True
 
 
-class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
-    view_on_site = False
-
-    list_display = ('name', 'scanner', 'action', 'is_active')
-    list_filter = ('scanner', 'action', 'is_active')
-    fields = (
-        'scanner',
-        'name',
-        'action',
-        'created',
-        'modified',
-        'matched_results_link',
-        'is_active',
-        'definition',
-    )
-    readonly_fields = ('created', 'modified', 'matched_results_link')
-
-    def formfield_for_choice_field(self, db_field, request, **kwargs):
-        if db_field.name == 'scanner':
-            kwargs['choices'] = (('', '---------'),)
-            for key, value in db_field.get_choices():
-                if key in [CUSTOMS, YARA]:
-                    kwargs['choices'] += ((key, value),)
-        return super().formfield_for_choice_field(db_field, request, **kwargs)
-
-    class Media:
-        css = {'all': ('css/admin/scannerrule.css',)}
-
-    def get_fields(self, request, obj=None):
-        fields = super().get_fields(request, obj)
-        if not self.has_change_permission(request, obj):
-            # Remove the 'definition' field...
-            fields = list(filter(lambda x: x != 'definition', fields))
-            # ...and add its readonly (and pretty!) alter-ego.
-            fields.append('formatted_definition')
-        return fields
-
-    def matched_results_link(self, obj):
-        if not obj.pk or not obj.scanner:
-            return '-'
-        counts = obj.results.aggregate(
-            addons=Count('version__addon', distinct=True), total=Count('id')
-        )
-        ResultModel = obj.results.model
-        url = reverse(
-            'admin:{}_{}_changelist'.format(
-                ResultModel._meta.app_label, ResultModel._meta.model_name
-            )
-        )
-        params = {
-            'matched_rules__id__exact': str(obj.pk),
-        }
-        result_admin = admin.site._registry[ResultModel]
-        params.update(result_admin.get_unfiltered_changelist_params())
-        return format_html(
-            '<a href="{}?{}">{} ({} add-ons)</a>',
-            url,
-            urlencode(params),
-            counts['total'],
-            counts['addons'],
-        )
-
-    matched_results_link.short_description = 'Matched Results'
-
-    def formatted_definition(self, obj):
-        return format_html('<pre>{}</pre>', obj.definition)
-
-    formatted_definition.short_description = 'Definition'
-
-
-@admin.register(ScannerResult)
-class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
-    list_filter = (
-        'scanner',
-        MatchesFilter,
-        StateFilter,
-        ('matched_rules', ScannerRuleListFilter),
-        WithVersionFilter,
-        ExcludeMatchedRulesFilter,
-    )
-
-
 @admin.register(ScannerQueryResult)
 class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
+    fields = (
+        'id',
+        'formatted_addon',
+        'authors',
+        'guid',
+        'scanner',
+        'created',
+        'formatted_matched_rules_with_files',
+        'formatted_results',
+    )
     raw_id_fields = ('version',)
     list_display_links = None
     list_display = (
@@ -774,13 +796,16 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         'download',
     )
     list_filter = (
-        ('matched_rules', ScannerRuleListFilter),
+        ('matched_rule', ScannerRuleListFilter),
         ('version__channel', VersionChannelFilter),
         ('version__addon__status', AddonStatusFilter),
         ('version__addon__disabled_by_user', AddonVisibilityFilter),
         ('version__file__status', FileStatusFiler),
         ('version__file__is_signed', FileIsSigned),
         ('was_blocked', admin.BooleanFieldListFilter),
+    )
+    list_select_related = AbstractScannerResultAdminMixin.list_select_related + (
+        'matched_rule',
     )
 
     ordering = ('version__addon_id', 'version__channel', 'version__created')
