@@ -13,17 +13,17 @@
 {% block content %}
 
 <hgroup>
-  <h2 class="addon"{{ addon.name|locale_html }}>
+  <h2 class="addon"{{ addon.name|locale_html }} id="addon-name">
     <img src="{{ addon.get_icon_url(32) }}" class="icon" alt="" />
     {% if content_review %}
       {# L10n: "Content Review [add-on name]" #}
       <span>
-        {{ _('Content Review {0}')|format_html(addon.name) }}
+        {{ _('Content Review <em>{0}</em>')|format_html(addon.name) }}
       </span>
     {% else %}
       {# L10n: "Review [add-on name]" #}
       <span>
-        {{ _('Review {0}')|format_html(addon.name) }}
+        {{ _('Review <em>{0}</em>')|format_html(addon.name) }}
       </span>
     {% endif %}
     {% if version %}
@@ -33,7 +33,66 @@
   <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
 </hgroup>
 
+{% if promoted_group %}
+{# Technically could be just pending approval, but that doesn't matter for this message. #}
+<p class="is_promoted">
+  {{ _('This is a %s add-on.' % promoted_group.name) }}
+  {% if (promoted_group == amo.promoted.RECOMMENDED and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+        (promoted_group.admin_review and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
+    {{ _("You don't have permission to review it.") }}
+  {% endif %}
+</p>
+{% endif %}
+
 <div id="addon" class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
+
+  {% include 'reviewers/addon_details_box.html' %}
+
+{% if important_changes_log %}
+<div id="important-changes-history">
+  <h3>
+    {{ _('Add-on important changes history') }}
+  </h3>
+  <ul>
+    {% for activity in important_changes_log %}
+      <li {% if activity.log.reviewer_review_action %}class="reviewer-review-action"{% endif %}>{{ activity.created|datetime }}: {{ activity }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if whiteboard_form %}
+<form method="POST" action="{{ whiteboard_url }}" id="whiteboard_form">
+  {% csrf_token %}
+  <h3>
+    {{ _('Whiteboard') }}
+  </h3>
+  <div class="whiteboard">
+    <div class="whiteboard-inner">
+      <label for="{{ whiteboard_form.public.auto_id }}">{{ whiteboard_form.public.label }}</label>
+      {{ whiteboard_form.public }}
+      <p>{{ _('The whiteboard is the place to exchange information relevant to '
+              'this add-on (whatever the version), between the developer and the '
+              'reviewer. This is visible and editable by both.') }}</p>
+    </div>
+  </div>
+  {% if 'private' in whiteboard_form.fields %}
+  <div class="whiteboard private">
+    <div class="whiteboard-inner">
+      <label for="{{ whiteboard_form.private.auto_id }}">{{ whiteboard_form.private.label }}</label>
+      {{ whiteboard_form.private }}
+      <p>{{ _('The private whiteboard is used for exchanging information '
+              'between reviewers that is independent of the version. Please '
+              'keep the language objective. It is visible only to reviewers.') }}</p>
+    </div>
+  </div>
+  {% endif %}
+  <div class="whiteboard-actions">
+    {{ whiteboard_form.errors }}
+    <input type="submit" value="{{ _('Update whiteboards') }}" />
+  </div>
+</form>
+{% endif %}
 
 <form method="POST" action="#review-actions" class="review-form">
   {% csrf_token %}
@@ -41,20 +100,6 @@
   <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
   {{ form.version_pk.errors }}
 
-  {% include 'reviewers/addon_details_box.html' %}
-
-  {% if important_changes_log %}
-  <div id="important-changes-history">
-    <h3>
-      {{ _('Add-on important changes history') }}
-    </h3>
-    <ul>
-      {% for activity in important_changes_log %}
-        <li {% if activity.log.reviewer_review_action %}class="reviewer-review-action"{% endif %}>{{ activity.created|datetime }}: {{ activity }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
   <div id="review-files-header">
     <h3 id="history">
       {{ _('Add-on History') }}
@@ -188,36 +233,6 @@
     </div>
   </div>
 </form>
-
-{% if whiteboard_form %}
-<form method="POST" action="{{ whiteboard_url }}" id="whiteboard_form">
-  {% csrf_token %}
-  <div class="whiteboard">
-    <div class="whiteboard-inner">
-      <label for="{{ whiteboard_form.public.auto_id }}">{{ whiteboard_form.public.label }}</label>
-      {{ whiteboard_form.public }}
-      <p>{{ _('The whiteboard is the place to exchange information relevant to '
-              'this add-on (whatever the version), between the developer and the '
-              'reviewer. This is visible and editable by both.') }}</p>
-    </div>
-  </div>
-  {% if 'private' in whiteboard_form.fields %}
-  <div class="whiteboard private">
-    <div class="whiteboard-inner">
-      <label for="{{ whiteboard_form.private.auto_id }}">{{ whiteboard_form.private.label }}</label>
-      {{ whiteboard_form.private }}
-      <p>{{ _('The private whiteboard is used for exchanging information '
-              'between reviewers that is independent of the version. Please '
-              'keep the language objective. It is visible only to reviewers.') }}</p>
-    </div>
-  </div>
-  {% endif %}
-  <div class="whiteboard-actions">
-    {{ whiteboard_form.errors }}
-    <input type="submit" value="{{ _('Update whiteboards') }}" />
-  </div>
-</form>
-{% endif %}
 
 {% if not addon.is_deleted or is_admin %}
 <form class="more-actions" id="extra-review-actions" data-session-id="{{ session_id }}">
@@ -427,7 +442,10 @@
 
   <strong>{{ _('Review This Add-on') }}</strong>
   <ul>
+    <li><a href="#addon-name">{{ _('Overview') }}</a></li>
     <li><a href="#more-about">{{ _('More Information') }}</a></li>
+    <li><a href="#important-changes-history">{{ _('Important Changes') }}</a></li>
+    <li><a href="#whiteboard_form">{{ _('Whiteboard') }}</a></li>
     <li><a href="#history">{{ _('Add-on History') }}</a></li>
     <li><a href="#review-actions">{{ _('Resolution') }}</a></li>
   </ul>
