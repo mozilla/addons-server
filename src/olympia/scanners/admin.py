@@ -2,7 +2,6 @@ from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.contrib.admin.views.main import ChangeList, ERROR_FLAG, PAGE_VAR
-from django.core.exceptions import FieldDoesNotExist
 from django.db.models import Count, Prefetch
 from django.http import Http404
 from django.http.request import QueryDict
