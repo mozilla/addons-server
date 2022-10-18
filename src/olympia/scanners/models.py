@@ -419,9 +419,8 @@ class ScannerQueryRule(AbstractScannerRule):
 
 class ScannerQueryResult(AbstractScannerResult):
     # Note: ScannerResult uses a M2M called 'matched_rules', but here we don't
-    # need a M2M because there will always be a single rule for each result so
-    # we have a single FK called 'matched_rule' (singular). For compatibility
-    # we provide a `matched_rules` (plural) property below.
+    # need a M2M because there will always be a single rule for each result, so
+    # we have a single FK called 'matched_rule' (singular).
     matched_rule = models.ForeignKey(
         ScannerQueryRule, on_delete=models.CASCADE, related_name='results'
     )
