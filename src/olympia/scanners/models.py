@@ -441,15 +441,3 @@ class ScannerQueryResult(AbstractScannerResult):
         if self.results:
             self.matched_rule = self.get_rules_queryset().get()
         super().save(*args, **kwargs)
-
-    @property
-    def matched_rules(self):
-        """Queryset returning the rule that lead to this result.
-
-        Query results only have a single rule each, but regular ones can have
-        multiple rules matching. This is just a compatibility layer for generic
-        code dealing with both."""
-
-        # FIXME: this is cute, but we are not taking advantage of the
-        # select_related so it sucks for perf. Need a different abstraction.
-        return ScannerQueryRule.objects.filter(pk=self.matched_rule_id)
