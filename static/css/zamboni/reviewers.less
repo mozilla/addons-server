@@ -61,6 +61,12 @@
 .plat-sprite-solaris { background-position: 0 -80px; }
 .plat-sprite-android { background-position: 0 -96px; }
 
+body.content-review #main-wrapper,
+body.content-review .primary,
+body.content-review .primary .article {
+    background-color: lighten(#ff6600, 47%);
+}
+
 body.content-review .ed-sprite-needs-admin-content-review {
     display: block /* show needs admin content review flag on content review pages */
 }
@@ -164,14 +170,7 @@ table.data-grid tr th a:visited {
     color: #3D6DB5;
 }
 table.data-grid tr th.ordered {
-    background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(#FFFFFF),
-    to(#BCE0FF)
-    );
-    background: linear-gradient(#FFFFFF, #BCE0FF);
+    background-color: #FFF;
 }
 table.data-grid tr th.ordered a {
     color: #153A72;
@@ -742,11 +741,11 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     border-top: 1px solid lighten(@flagged-by-scanners-color, 5%);
 
     &:hover {
-        background: linear-gradient(lighten(@flagged-by-scanners-color, 20%), @flagged-by-scanners-color);
+        background-color: @flagged-by-scanners-color;
     }
 
     &:active {
-        background: linear-gradient(@flagged-by-scanners-color, lighten(@flagged-by-scanners-color, 20%));
+        background-color: #FFF;
     }
 }
 
@@ -755,37 +754,21 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     border-top: 1px solid lighten(@flagged-for-human-review-color, 5%);
 
     &:hover {
-        background: linear-gradient(lighten(@flagged-for-human-review-color, 20%), @flagged-for-human-review-color);
+        background-color: @flagged-for-human-review-color;
     }
 
     &:active {
-        background: linear-gradient(@flagged-for-human-review-color, lighten(@flagged-for-human-review-color, 20%));
+        background-color: #FFF;
     }
 }
 
 .review-files tr.listing-header:hover {
     cursor: pointer;
     background-color: #CCE6FF;
-    background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(#FFFFFF),
-    to(#CCE6FF)
-    );
-    background: linear-gradient(#FFFFFF, #CCE6FF);
 }
 .review-files tr.listing-header:active {
     cursor: pointer;
     background-color: #FFF;
-    background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(#CCE6FF),
-    to(#FFFFFF)
-    );
-    background: linear-gradient(#E0EFFD, #FFF);
 }
 .review-files tr.listing-header input[type=checkbox] {
     float: right;
@@ -851,14 +834,12 @@ form.review-form .data-toggle {
 
 .review-actions .action_nav li {
     background-color: #E0EFFD;
-    background: linear-gradient(#FFFFFF, #E0EFFD) repeat scroll 0 0 transparent;
     display: table-cell;
     text-align: center;
 }
 
 .review-actions .action_nav li:active {
     background-color: #FFF;
-    background: linear-gradient(#E0EFFD, #FFF) repeat scroll 0 0 transparent;
 }
 
 .review-actions .action_nav li input {
@@ -1113,17 +1094,6 @@ p.is_promoted {
 }
 
 #reviewers-score-bar {
-    background: #FCFDFE;
-    background-image: -webkit-gradient(linear, left bottom, left top, from(#fcfdfe), to(#f4f8fc));
-    background-image: linear-gradient(#fcfdfe, #f4f8fc);
-    background-image: -webkit-linear-gradient(#fcfdfe, #f4f8fc);
-    border: 1px solid #c9ddf2;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 -2px 0 rgba(204, 223, 243, 0.3) inset, 0 0 1px rgba(0, 0, 0, 0.1);
     display: block;
     margin-bottom: 15px;
     padding: 14px 14px 16px;
@@ -1202,7 +1172,7 @@ p.is_promoted {
         padding: 10px;
         textarea {
             border: 1px solid #AFBDD3;
-            height: 200px;
+            height: 75px;
         }
         .whiteboard-actions {
             text-align: right;
