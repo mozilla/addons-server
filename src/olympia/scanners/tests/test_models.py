@@ -331,8 +331,8 @@ class TestScannerQueryResult(TestScannerResultMixin, TestCase):
 
     def create_result(self, *args, **kwargs):
         # We can't save ScannerQueryResults in database without a rule, so for
-        # this test class create_yara_result() is overridden to not save the
-        # result initially.
+        # this test class create_result() is overridden to not save the result
+        # initially - it will be saved later when adding the result data.
         return self.model(*args, **kwargs)
 
 
