@@ -2819,9 +2819,10 @@ class TestReview(ReviewBase):
 
         doc = pq(response.content)
         assert doc('.is_promoted')
-        assert doc('.is_promoted').text() == (
-            "This is a Recommended add-on. You don't have permission to review it."
-        )
+        for entry in doc('.is_promoted').items():
+            assert entry.text() == (
+                "This is a Recommended add-on. You don't have permission to review it."
+            )
 
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         response = self.client.get(self.url)
@@ -2839,7 +2840,8 @@ class TestReview(ReviewBase):
 
         doc = pq(response.content)
         assert doc('.is_promoted')
-        assert doc('.is_promoted').text() == ('This is a Recommended add-on.')
+        for entry in doc('.is_promoted').items():
+            assert entry.text() == ('This is a Recommended add-on.')
 
         # Change to a different class of promoted addon
         self.make_addon_promoted(self.addon, SPOTLIGHT)
@@ -2852,9 +2854,10 @@ class TestReview(ReviewBase):
 
         doc = pq(response.content)
         assert doc('.is_promoted')
-        assert doc('.is_promoted').text() == (
-            "This is a Spotlight add-on. You don't have permission to review it."
-        )
+        for entry in doc('.is_promoted').items():
+            assert entry.text() == (
+                "This is a Spotlight add-on. You don't have permission to review it."
+            )
 
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         response = self.client.get(self.url)
@@ -2873,7 +2876,8 @@ class TestReview(ReviewBase):
 
         doc = pq(response.content)
         assert doc('.is_promoted')
-        assert doc('.is_promoted').text() == ('This is a Spotlight add-on.')
+        for entry in doc('.is_promoted').items():
+            assert entry.text() == ('This is a Spotlight add-on.')
 
     def test_not_recommendable(self):
         response = self.client.get(self.url)
