@@ -315,10 +315,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     def has_add_permission(self, request):
         return False
 
-    # Remove the "delete" button
-    def has_delete_permission(self, request, obj=None):
-        return False
-
     # Read-only mode
     def has_change_permission(self, request, obj=None):
         return False
@@ -764,6 +760,10 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
 
     result_actions.short_description = 'Actions'
     result_actions.allow_tags = True
+
+    # Remove the "delete" button
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(ScannerQueryResult)

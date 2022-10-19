@@ -1418,6 +1418,46 @@ class TestScannerQueryRuleAdmin(TestCase):
         doc = pq(response.content)
         assert doc('.field-formatted_definition .readonly')
 
+    def test_delete_rule_that_has_results(self):
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        result = ScannerQueryResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+
+        url = reverse('admin:scanners_scannerqueryrule_delete', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#content h1').text() == 'Are you sure?'
+
+        url = reverse('admin:scanners_scannerqueryrule_delete', args=(rule.pk,))
+        response = self.client.post(url, {'post': 'yes'})
+        self.assert3xx(response, self.list_url)
+
+        assert not ScannerQueryRule.objects.filter(pk=rule.pk).exists()
+        assert not ScannerQueryResult.objects.filter(pk=result.pk).exists()
+
+    def test_cant_delete_rule_if_insufficient_permissions(self):
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        result = ScannerQueryResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+
+        url = reverse('admin:scanners_scannerqueryrule_delete', args=(rule.pk,))
+
+        user = user_factory(email='somebodyelse@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(url)
+        assert response.status_code == 403
+        response = self.client.post(url, {'post': 'yes'})
+        assert response.status_code == 403
+
+        self.grant_permission(user, 'Admin:ScannersQueryView')
+        response = self.client.get(url)
+        assert response.status_code == 403
+        response = self.client.post(url, {'post': 'yes'})
+        assert response.status_code == 403
+
 
 class TestScannerQueryResultAdmin(TestCase):
     def setUp(self):
