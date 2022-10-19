@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-19 21:28+0000\n"
+"PO-Revision-Date: 2022-10-19 21:33+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4536,7 +4536,7 @@ msgstr "Alterador de tema com base na hora. Faça o Firefox mudar de cor conform
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Arrume sua experiência no Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4855,7 +4855,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Arquivo maior que o limite em arquivamento: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Este arquivamento contém um arquivo especial proibido (link simbólico/hard ou arquivo de dispositivo/bloco)"
 
 msgid "Uncompressed size is too large"
 msgstr "Tamanho descompactado grande demais"
@@ -5175,7 +5175,7 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "Isso rejeitará as versões selecionadas. Os comentários serão enviados ao desenvolvedor."
 
 msgid "Un-reject Versions"
-msgstr ""
+msgstr "Versões que deixaram de ser rejeitadas"
 
 msgid "This will un-reject the selected versions without notifying the developer."
 msgstr "Isto cancela a rejeição das versões selecionadas sem notificar o desenvolvedor."
@@ -5514,11 +5514,11 @@ msgstr "{addon} – Extensões do Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review <em>{0}</em>"
-msgstr ""
+msgstr "Revisão de conteúdo <em>{0}</em>"
 
 #. "Review [add-on name]"
 msgid "Review <em>{0}</em>"
-msgstr ""
+msgstr "Revisar <em>{0}</em>"
 
 msgid "You don't have permission to review it."
 msgstr "Você não tem permissão para revisar."
@@ -5646,7 +5646,7 @@ msgid "More Information"
 msgstr "Mais informações"
 
 msgid "Important Changes"
-msgstr ""
+msgstr "Alterações importantes"
 
 msgid "Resolution"
 msgstr "Resolução"
