@@ -188,6 +188,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'scanners.change_scannerqueryrule': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.delete_scannerqueryrule': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.change_scannerqueryresult': ADMIN_SCANNERS_QUERY_EDIT,
+        'scanners.delete_scannerqueryresult': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.view_scannerqueryrule': ADMIN_SCANNERS_QUERY_VIEW,
         'scanners.view_scannerqueryresult': ADMIN_SCANNERS_QUERY_VIEW,
         'tags.add_tag': DISCOVERY_EDIT,
