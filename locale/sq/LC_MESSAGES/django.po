@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-04-07 21:42+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1035,10 +1035,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4487,6 +4487,10 @@ msgstr "Reshtni së dhëni sajteve adresën tuaj email. Firefox Relay mbron iden
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Disa sajte kanë vështirësi të luajnë video nën Android. Ky zgjerim sjell zgjidhje."
@@ -4620,15 +4624,16 @@ msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Bllokues reklamash elitarë"
+msgid "Tab managers"
+msgstr "Përgjegjës skedash"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Përshtatje YouTube-i"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4701,10 +4706,6 @@ msgid "See more social streaming staff picks"
 msgstr "Shihni më tepër zgjerime transmetimi në shoqërorë të zgjedhur nga stafi"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Përgjegjës skedash"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Shihni më tepër zgjerime administrimi skedash të zgjedhura nga stafi"
 
@@ -4717,12 +4718,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Shihni më tepër zgjerime të etiketuara me \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "See more ad blocker staff picks"
-msgstr "Shihni më tepër bllokues reklamash të zgjedhur nga stafi"
+msgid "Elite ad blockers"
+msgstr "Bllokues reklamash elitarë"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Përshtatje YouTube-i"
+msgid "See more ad blocker staff picks"
+msgstr "Shihni më tepër bllokues reklamash të zgjedhur nga stafi"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4810,7 +4811,7 @@ msgstr "Emër i pavlefshëm kartele te arkivi: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Kartelë që tejkalon kufirin e madhësisë te arkivi: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5126,7 +5127,7 @@ msgstr "Hidhi tej Versionet e Shumëfishtë"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Kështu do hidhen tej versionet e përzgjedhur. Komentet do t’i dërgohen zhvilluesit."
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5453,21 +5454,30 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr "{addon} – Shtesa për Firefox"
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Shqyrtim Lënde {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Shqyrtoni {0}"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+msgid "You don't have permission to review it."
+msgstr "S’keni leje ta shqyrtoni."
 
 msgid "Add-on important changes history"
 msgstr "Historik ndryshimesh të rëndësishme shtese"
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Tabela private përdoret për të shkëmbyer mes zhvilluesve informacion që është i pavarur nga versioni. Ju lutemi, ruani objektivitetin. Është e dukshme vetëm për shqyrtuesit."
+
+msgid "Update whiteboards"
+msgstr "Përditësoni tabela"
+
 msgid "Add-on History"
 msgstr "Historik Shtese"
-
-msgid "You don't have permission to review it."
-msgstr "S’keni leje ta shqyrtoni."
 
 msgid "Please select one or more versions in the list below."
 msgstr "Ju lutemi, përzgjidhni te lista më poshtë një ose më shumë versione."
@@ -5486,15 +5496,6 @@ msgstr "Provuar me:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Kujdes!</strong> Para jush, këtë faqe po e shihte një tjetër përdorues."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Tabela private përdoret për të shkëmbyer mes zhvilluesve informacion që është i pavarur nga versioni. Ju lutemi, ruani objektivitetin. Është e dukshme vetëm për shqyrtuesit."
-
-msgid "Update whiteboards"
-msgstr "Përditësoni tabela"
 
 msgid "More Actions"
 msgstr "Më Tepër Veprime"
@@ -5577,8 +5578,14 @@ msgstr "Faqe Administratori"
 msgid "Review This Add-on"
 msgstr "Shqyrtojeni Këtë Shtesë"
 
+msgid "Overview"
+msgstr "Përmbledhje"
+
 msgid "More Information"
 msgstr "Më Tepër të Dhëna"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Qartësi"
@@ -5785,9 +5792,6 @@ msgstr "nënshkrim kartele"
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Ky është emri i saktë i rregullit të përdorur nga një skanues."
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "Në u lëntë pa shenjë, përfundimet e skanuesit nuk do të kufizohen me këtë rregull dhe veprimi s’do të kryhet."
-
 msgid "Yara rules should have a definition"
 msgstr "Rregullat Yara duhet të kenë një përkufizim"
 
@@ -5803,6 +5807,9 @@ msgstr "Përkufizimi s’është i vlefshëm: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr "Ndodhi një gabim gjatë përpilimit të përkufizimit"
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr "Në u lëntë pa shenjë, përfundimet e skanuesit nuk do të kufizohen me këtë rregull dhe veprimi s’do të kryhet."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Xhiroje këtë rregull edhe në shtesa që janë çaktivizuar me detyrim."
@@ -5861,9 +5868,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
-
-msgid "Overview"
-msgstr "Përmbledhje"
 
 msgid "by Source"
 msgstr "sipas Burimesh"
@@ -6068,9 +6072,6 @@ msgstr "Shënime Ligjore"
 
 msgid "Report Trademark Abuse"
 msgstr "Njoftoni Shpërdorim Shenjash Tregtare"
-
-msgid "Site Status"
-msgstr "Gjendje Sajti"
 
 msgid "Report a bug"
 msgstr "Njoftoni një të metë"

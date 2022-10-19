@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1040,10 +1040,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4532,6 +4532,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4670,15 +4674,16 @@ msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Blocatoare de reclame de elită"
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Tab managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4757,10 +4762,6 @@ msgid "See more social streaming staff picks"
 msgstr "Vezi mai multe extensii populare"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Vezi mai multe extensii recomandate"
@@ -4774,13 +4775,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Vezi mai multe extensii etichetate „{tag}”"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Blocatoare de reclame de elită"
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Vezi mai multe extensii recomandate"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4876,7 +4877,7 @@ msgstr "Denumire de fișier nevalidă în arhiva: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5201,7 +5202,7 @@ msgstr "Respinge multiple versiuni"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Această acțiune va respinge versiunile selectate. Comentariile vor fi trimise dezvoltatorului."
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5540,22 +5541,31 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr "{addon} – Suplimente pentru Firefox"
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Recenzie de conţinut {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Recenzie ({0})"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+msgid "You don't have permission to review it."
+msgstr "Nu ai permisiune de recenzare."
 
 #, fuzzy
 msgid "Add-on important changes history"
 msgstr "Istoricul modificărilor suplimentului de către utilizatori"
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Tabla albă privată este folosită pentru schimbul de informații dintre recenzenți, indiferent de versiune. Te rugăm să rămâi obiectiv(ă). Este vizibilă numai pentru recenzenți."
+
+msgid "Update whiteboards"
+msgstr "Actualizează table albe"
+
 msgid "Add-on History"
 msgstr "Istoricul suplimentului"
-
-msgid "You don't have permission to review it."
-msgstr "Nu ai permisiune de recenzare."
 
 msgid "Please select one or more versions in the list below."
 msgstr "Te rugăm să selectezi una sau mai multe versiuni din lista de mai jos."
@@ -5574,15 +5584,6 @@ msgstr "Testat la:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Avertisment!</strong> Alt utilizator a vizualizat această pagină înaintea ta."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Tabla albă privată este folosită pentru schimbul de informații dintre recenzenți, indiferent de versiune. Te rugăm să rămâi obiectiv(ă). Este vizibilă numai pentru recenzenți."
-
-msgid "Update whiteboards"
-msgstr "Actualizează table albe"
 
 msgid "More Actions"
 msgstr "Mai multe acțiuni"
@@ -5670,8 +5671,14 @@ msgstr "Pagină admin"
 msgid "Review This Add-on"
 msgstr "Scrie o recenzie la acest supliment"
 
+msgid "Overview"
+msgstr "Prezentare generală"
+
 msgid "More Information"
 msgstr "Mai multe informații"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Rezoluție"
@@ -5891,9 +5898,6 @@ msgstr "semnătura fișierului"
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Aceasta este denumirea exactă a regulii folosite de un scaner."
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "Când nu este bifat, rezultatele scanerului nu vor fi restricționate de această regulă și acțiunea nu va fi executată."
-
 msgid "Yara rules should have a definition"
 msgstr "Regulile Yara trebuie să aibă o definiție"
 
@@ -5909,6 +5913,9 @@ msgstr "Definiția este nevalidă: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr "A apărut o eroare la compilarea definiției"
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr "Când nu este bifat, rezultatele scanerului nu vor fi restricționate de această regulă și acțiunea nu va fi executată."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Execută această regulă și pe suplimentele care au fost dezactivate forțat."
@@ -5967,9 +5974,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
-
-msgid "Overview"
-msgstr "Prezentare generală"
 
 msgid "by Source"
 msgstr "după sursă"
@@ -6174,9 +6178,6 @@ msgstr "Mențiuni legale"
 
 msgid "Report Trademark Abuse"
 msgstr "Raportează abuzul mărcilor înregistrate"
-
-msgid "Site Status"
-msgstr "Starea site-ului"
 
 msgid "Report a bug"
 msgstr "Raportează o defecțiune"

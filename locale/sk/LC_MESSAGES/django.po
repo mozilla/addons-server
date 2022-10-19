@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-09-11 18:09+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -1038,10 +1038,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4418,6 +4418,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4548,15 +4552,16 @@ msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Tab managers"
 msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Prispôsobenie YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4636,10 +4641,6 @@ msgid "See more social streaming staff picks"
 msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Zobraziť všetky rozšírenia"
@@ -4653,13 +4654,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Pozrite si ďalšie rozšírenia so značkou \"{tag}\""
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Zobraziť všetky rozšírenia"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Prispôsobenie YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4751,7 +4752,7 @@ msgstr ""
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5072,7 +5073,7 @@ msgstr ""
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5406,22 +5407,31 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr ""
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
+msgid "Content Review <em>{0}</em>"
 msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Recenzia {0}"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+msgid "You don't have permission to review it."
+msgstr ""
 
 #, fuzzy
 msgid "Add-on important changes history"
 msgstr "História zmien doplnku používateľom"
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+msgid "Update whiteboards"
+msgstr ""
+
 msgid "Add-on History"
 msgstr "História doplnku"
-
-msgid "You don't have permission to review it."
-msgstr ""
 
 msgid "Please select one or more versions in the list below."
 msgstr ""
@@ -5440,15 +5450,6 @@ msgstr "Testované na:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Upozornenie!</strong> Iný používateľ pred vami túto stránku prezeral."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
-msgstr ""
 
 msgid "More Actions"
 msgstr ""
@@ -5531,8 +5532,14 @@ msgstr "Stránka administrácie"
 msgid "Review This Add-on"
 msgstr "Skontrolovať tento doplnok"
 
+msgid "Overview"
+msgstr "Prehľad"
+
 msgid "More Information"
 msgstr "Ďalšie informácie"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Riešenie"
@@ -5747,9 +5754,6 @@ msgstr ""
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
-
 msgid "Yara rules should have a definition"
 msgstr ""
 
@@ -5764,6 +5768,9 @@ msgid "The definition is not valid: %(error)s"
 msgstr ""
 
 msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
@@ -5823,9 +5830,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
-
-msgid "Overview"
-msgstr "Prehľad"
 
 msgid "by Source"
 msgstr "podľa zdroja prevzatia"
@@ -6035,9 +6039,6 @@ msgstr "Právne informácie"
 
 msgid "Report Trademark Abuse"
 msgstr "Nahlásiť zneužitie ochrannej známky"
-
-msgid "Site Status"
-msgstr "Stav stránky"
 
 msgid "Report a bug"
 msgstr "Nahlásiť chybu"

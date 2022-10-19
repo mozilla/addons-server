@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-01-18 15:18+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1035,10 +1035,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4472,6 +4472,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4610,15 +4614,16 @@ msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4702,10 +4707,6 @@ msgid "See more social streaming staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
@@ -4720,13 +4721,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4823,7 +4824,7 @@ msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਈਲ ਨਾਂ:{0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਈਲ ਨੇ ਅਕਾਰ ਸੀਮਾ ਲੰਘੀ: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5153,7 +5154,7 @@ msgstr "ਬਹੁ ਵਰਜਨ ਨੂੰ ਰੱਦ ਕਰੋ"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "ਇਹ ਚੁਣੇ ਗਏ ਜਨਤਕ ਸੰਸਕਰਣਾਂ ਨੂੰ ਅਸਵੀਕਾਰ ਕਰੇਗਾ। ਟਿੱਪਣੀ ਵਿਕਾਸਕਾਰ ਨੂੰ ਭੇਜੀ ਜਾਵੇਗੀ।"
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5494,23 +5495,32 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr ""
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "ਸਮੱਗਰੀ ਸਮੀਖਿਆ {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "ਸਮੀਖਿਆ {0}"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+#, fuzzy
+msgid "You don't have permission to review it."
+msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ API ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਨਹੀਂ ਹਨ।"
 
 #, fuzzy
 msgid "Add-on important changes history"
 msgstr "ਐਡ-ਆਨ ਉਪਭੋਗੀ ਨੇ ਇਤਿਹਾਸ ਬਦਲਿਆ"
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "ਪ੍ਰਾਈਵੇਟ ਵ੍ਹਾਈਟ ਬੋਰਡ ਦਾ ਵਰਨਨ ਤੋਂ ਸੁਤੰਤਰ ਸਮੀਖਿਅਕਾਂ ਵਿਚਕਾਰ ਜਾਣਕਾਰੀ ਦਾ ਆਦਾਨ-ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਭਾਸ਼ਾ ਦੇ ਉਦੇਸ਼ ਨੂੰ ਜਾਰੀ ਰੱਖੋ। ਇਹ ਸਿਰਫ ਸਮੀਖਿਅਕਾਂ ਲਈ ਦ੍ਰਿਸ਼ਟੀਗਤ ਹੁੰਦਾ ਹੈ।"
+
+msgid "Update whiteboards"
+msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
+
 msgid "Add-on History"
 msgstr "ਐਡ-ਆਨ ਇਤਿਹਾਸ"
-
-#, fuzzy
-msgid "You don't have permission to review it."
-msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ API ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਨਹੀਂ ਹਨ।"
 
 #, fuzzy
 msgid "Please select one or more versions in the list below."
@@ -5530,15 +5540,6 @@ msgstr "ਤੇ ਟੈਸਟ ਕੀਤਾ:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>ਚੇਤਾਵਨੀ!</strong> ਦੂਜਾ ਉਪਭੋਗੀ ਤੁਹਾਡੇ ਤੋਂ ਪਹਿਲਾਂ ਇਹ ਸਫ਼ਾ ਵੇਖ ਰਿਹਾ ਸੀ।"
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "ਪ੍ਰਾਈਵੇਟ ਵ੍ਹਾਈਟ ਬੋਰਡ ਦਾ ਵਰਨਨ ਤੋਂ ਸੁਤੰਤਰ ਸਮੀਖਿਅਕਾਂ ਵਿਚਕਾਰ ਜਾਣਕਾਰੀ ਦਾ ਆਦਾਨ-ਪ੍ਰਦਾਨ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਭਾਸ਼ਾ ਦੇ ਉਦੇਸ਼ ਨੂੰ ਜਾਰੀ ਰੱਖੋ। ਇਹ ਸਿਰਫ ਸਮੀਖਿਅਕਾਂ ਲਈ ਦ੍ਰਿਸ਼ਟੀਗਤ ਹੁੰਦਾ ਹੈ।"
-
-msgid "Update whiteboards"
-msgstr "ਵਾਇਟਬੋਰਡ ਅੱਪਡੇਟ ਕਰੋ"
 
 msgid "More Actions"
 msgstr "ਹੋਰ ਕਾਰਵਾਈਆਂ"
@@ -5636,8 +5637,14 @@ msgstr "ਪ੍ਰਬੰਧਕ ਸਫ਼ਾ"
 msgid "Review This Add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
+msgid "Overview"
+msgstr "ਸੰਖੇਪ ਜਾਣਕਾਰੀ"
+
 msgid "More Information"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "ਮਤਾ"
@@ -5862,9 +5869,6 @@ msgstr "{file} ਸਾਇਨ ਹੋਈ ਸੀ।"
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
-
 msgid "Yara rules should have a definition"
 msgstr ""
 
@@ -5879,6 +5883,9 @@ msgid "The definition is not valid: %(error)s"
 msgstr ""
 
 msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
@@ -5941,9 +5948,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
-
-msgid "Overview"
-msgstr "ਸੰਖੇਪ ਜਾਣਕਾਰੀ"
 
 msgid "by Source"
 msgstr "ਸੋਰਸ ਦੁਆਰਾ"
@@ -6155,9 +6159,6 @@ msgstr "ਕਾਨੂੰਨੀ ਨੋਟਿਸ"
 
 msgid "Report Trademark Abuse"
 msgstr "ਟਰੇਡਮਾਰਕ ਦੁਰਵਿਅਵਹਾਰ ਰਿਪੋਰਟ"
-
-msgid "Site Status"
-msgstr "ਸਾਈਟ ਦੀ ਸਥਿਤੀ"
 
 msgid "Report a bug"
 msgstr "ਬੱਗ ਦੀ ਰਿਪੋਰਟ ਕਰੋ"
