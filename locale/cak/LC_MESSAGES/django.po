@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1041,10 +1041,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4522,6 +4522,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4656,15 +4660,16 @@ msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4748,10 +4753,6 @@ msgid "See more social streaming staff picks"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
@@ -4766,13 +4767,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4868,7 +4869,7 @@ msgstr "Man okel ta rub'i' yakb'äl pa yakb'äl: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Nik'o runimilem yakb'äl pa yakb'äl: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5195,7 +5196,7 @@ msgstr "Kexutüx K'ïy taq Ruwäch"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Re re' xkeruyüj ri taq ruwäch echa'on. Xkeruk'ül ri taq na'oj ri b'anonel."
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5541,23 +5542,32 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr "{addon} – Taq tz'aqat richin Firefox"
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Runik'oxik Rupam {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Nik'oxïk {0}"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+#, fuzzy
+msgid "You don't have permission to review it."
+msgstr "Man k'o ta API awujil."
 
 #, fuzzy
 msgid "Add-on important changes history"
 msgstr "Jalon runatab'al rokisanel tz'aqat"
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Ri ichinan tz'alamtz'ib'äl nokisäx richin chi ri nik'onela' kikek'exela' etamab'äl chuqa' rujachon ri' rik'in ri ruwäch. Jikïl tzij nrokisaj. Xa xe wachel chi kiwäch ri nik'onela'."
+
+msgid "Update whiteboards"
+msgstr "Kek'ex tz'alamtz'ib'ab'äl"
+
 msgid "Add-on History"
 msgstr "Runatab'al Tz'aqat"
-
-#, fuzzy
-msgid "You don't have permission to review it."
-msgstr "Man k'o ta API awujil."
 
 #, fuzzy
 msgid "Please select one or more versions in the list below."
@@ -5577,15 +5587,6 @@ msgstr "Tojtob'en pa:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>¡K'ayewal!</strong> Jun chik okisanel xutz'ët re ruxaq re' chawäch."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Ri ichinan tz'alamtz'ib'äl nokisäx richin chi ri nik'onela' kikek'exela' etamab'äl chuqa' rujachon ri' rik'in ri ruwäch. Jikïl tzij nrokisaj. Xa xe wachel chi kiwäch ri nik'onela'."
-
-msgid "Update whiteboards"
-msgstr "Kek'ex tz'alamtz'ib'ab'äl"
 
 msgid "More Actions"
 msgstr "Ch'aqa' chik taq B'anoj"
@@ -5683,8 +5684,14 @@ msgstr "Ruxaq Nuk'samajinïk"
 msgid "Review This Add-on"
 msgstr "nik'öx Re Tz'aqat Re'"
 
+msgid "Overview"
+msgstr "Chijun rutzijoxkil"
+
 msgid "More Information"
 msgstr "Ch'aqa' chik Rutzijol"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Rusaqil"
@@ -5911,9 +5918,6 @@ msgstr "{file} xjuch'."
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
-
 msgid "Yara rules should have a definition"
 msgstr ""
 
@@ -5928,6 +5932,9 @@ msgid "The definition is not valid: %(error)s"
 msgstr ""
 
 msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
@@ -5990,9 +5997,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
-
-msgid "Overview"
-msgstr "Chijun rutzijoxkil"
 
 msgid "by Source"
 msgstr "chi Ruxe'el"
@@ -6204,9 +6208,6 @@ msgstr "Taqanel Rutzijol"
 
 msgid "Report Trademark Abuse"
 msgstr "Taya' Rutzijol Itzel Rokisaxik ri Retal B'i'aj"
-
-msgid "Site Status"
-msgstr "Rub'anikil Ruxaq K'amaya'l"
 
 msgid "Report a bug"
 msgstr "Tiya' rutzijol jun sachoj"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-09-28 09:24+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -1012,10 +1012,10 @@ msgstr "{user} ప్రవేశించారు."
 msgid "{user} restricted."
 msgstr "{user} నియంత్రించబడ్డారు."
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4353,6 +4353,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4483,15 +4487,16 @@ msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4566,10 +4571,6 @@ msgid "See more social streaming staff picks"
 msgstr "మరిన్ని సామాజిక స్ట్రీమింగ్ పొడగింతలను చూడండి"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "మరిన్ని ట్యాబు నిర్వహణ పొడగింతలను చూడండి"
@@ -4584,13 +4585,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "మరిన్ని ప్రాచుర్య పొడగింతలను చూడండి"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "మరిన్ని ట్యాబు నిర్వహణ పొడగింతలను చూడండి"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4684,7 +4685,7 @@ msgstr "ఆర్కైవ్‌లో చెల్లని ఫైలు పే
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ఆర్కైవ్‌లో పరిమాణపు పరిమితిని మించిన ఫైలు: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5000,7 +5001,7 @@ msgstr ""
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5327,21 +5328,30 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr ""
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "విషయం సమీక్ష {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "{0}‌ను సమీక్షించండి"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+msgid "You don't have permission to review it."
+msgstr "దీన్ని సమీక్షించడానికి మీకు అనుమతి లేదు."
 
 msgid "Add-on important changes history"
 msgstr ""
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+msgid "Update whiteboards"
+msgstr "వైట్‌బోర్డులను తాజాకరించు"
+
 msgid "Add-on History"
 msgstr "పొడగింత చరిత్ర"
-
-msgid "You don't have permission to review it."
-msgstr "దీన్ని సమీక్షించడానికి మీకు అనుమతి లేదు."
 
 msgid "Please select one or more versions in the list below."
 msgstr "కింది జాబితా నుండి ఒకటి అంతకంటే ఎక్కువ వెర్షన్లను ఎంచుకోండి."
@@ -5360,15 +5370,6 @@ msgstr "పరీక్షించబడింది:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>హెచ్చరిక!</ strong> మీ ముందు మరొక వాడుకరి ఈ పేజీని చూస్తున్నారు."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
-msgstr "వైట్‌బోర్డులను తాజాకరించు"
 
 msgid "More Actions"
 msgstr "మరిన్ని చర్యలు"
@@ -5451,8 +5452,14 @@ msgstr "నిర్వాహకుని పేజీ"
 msgid "Review This Add-on"
 msgstr "ఈ పొడిగింతను సమీక్షించండి"
 
+msgid "Overview"
+msgstr "అవలోకనం"
+
 msgid "More Information"
 msgstr "మరింత సమాచారం"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "పరిష్కారం"
@@ -5659,9 +5666,6 @@ msgstr "ఫైలు సంతకం"
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
-
 msgid "Yara rules should have a definition"
 msgstr ""
 
@@ -5676,6 +5680,9 @@ msgid "The definition is not valid: %(error)s"
 msgstr "నిర్వచనం చెల్లదు: %(error)s"
 
 msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
@@ -5735,9 +5742,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
-
-msgid "Overview"
-msgstr "అవలోకనం"
 
 msgid "by Source"
 msgstr "మూల ద్వారా"
@@ -5940,9 +5944,6 @@ msgstr "చట్టపరమైన గమనికలు"
 
 msgid "Report Trademark Abuse"
 msgstr "ట్రేడ్‌మార్క్ దుర్వినియోగాన్ని నివేదించండి"
-
-msgid "Site Status"
-msgstr "సైటు స్థితి"
 
 msgid "Report a bug"
 msgstr "లోపాన్ని నివేదించు"

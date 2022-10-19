@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1008,10 +1008,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4349,6 +4349,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4479,15 +4483,16 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4559,10 +4564,6 @@ msgid "See more social streaming staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr ""
 
@@ -4575,11 +4576,11 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "See more ad blocker staff picks"
+msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "See more ad blocker staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -4665,7 +4666,7 @@ msgstr ""
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -4981,7 +4982,7 @@ msgstr ""
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5308,20 +5309,29 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr ""
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
+msgid "Content Review <em>{0}</em>"
 msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+msgid "You don't have permission to review it."
 msgstr ""
 
 msgid "Add-on important changes history"
 msgstr ""
 
-msgid "Add-on History"
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
 
-msgid "You don't have permission to review it."
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+msgid "Update whiteboards"
+msgstr ""
+
+msgid "Add-on History"
 msgstr ""
 
 msgid "Please select one or more versions in the list below."
@@ -5340,15 +5350,6 @@ msgid "Tested on:"
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
 msgstr ""
 
 msgid "More Actions"
@@ -5432,7 +5433,13 @@ msgstr ""
 msgid "Review This Add-on"
 msgstr ""
 
+msgid "Overview"
+msgstr ""
+
 msgid "More Information"
+msgstr ""
+
+msgid "Important Changes"
 msgstr ""
 
 msgid "Resolution"
@@ -5640,9 +5647,6 @@ msgstr ""
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
-
 msgid "Yara rules should have a definition"
 msgstr ""
 
@@ -5657,6 +5661,9 @@ msgid "The definition is not valid: %(error)s"
 msgstr ""
 
 msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
@@ -5715,9 +5722,6 @@ msgid "You cannot add a listed version to this add-on via the API due to missing
 msgstr ""
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
-
-msgid "Overview"
 msgstr ""
 
 msgid "by Source"
@@ -5920,9 +5924,6 @@ msgid "Legal Notices"
 msgstr ""
 
 msgid "Report Trademark Abuse"
-msgstr ""
-
-msgid "Site Status"
 msgstr ""
 
 msgid "Report a bug"

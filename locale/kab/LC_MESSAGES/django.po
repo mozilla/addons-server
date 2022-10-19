@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-08-24 14:29+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1024,10 +1024,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4441,6 +4441,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin deg Android. Dagi i tella tifrat."
@@ -4571,15 +4575,16 @@ msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Ẓreg amsewḥel n yizegrar"
+msgid "Tab managers"
+msgstr "Imsefraken n waccaren"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Asagen n YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4651,10 +4656,6 @@ msgid "See more social streaming staff picks"
 msgstr "Wali ugar n yisiɣzaf n usuddem anmetti"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Imsefraken n waccaren"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Wali ugar n yisiɣzaf i usefrek n waccaren yettwafernen sɣur terbaεt"
 
@@ -4667,12 +4668,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Wali ugar n yisiɣzaf d-yettwabedren \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "See more ad blocker staff picks"
-msgstr "Wali ugar n yisiɣzaf i usewḥel n udellel yettwafernen sɣur terbaεt"
+msgid "Elite ad blockers"
+msgstr "Ẓreg amsewḥel n yizegrar"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Asagen n YouTube"
+msgid "See more ad blocker staff picks"
+msgstr "Wali ugar n yisiɣzaf i usewḥel n udellel yettwafernen sɣur terbaεt"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4757,7 +4758,7 @@ msgstr "Isem n ufaylu mačči d ameɣtu deg uḥraz: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Afaylu yezger talast n teɣzi deg uɣbaṛ: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5073,7 +5074,7 @@ msgstr "Aggwi aṭas n ilqman"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Tigawt-agi ad tagi ileqman yettwafernen. Iwenniten ad ttwaznen i uneflay."
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5400,21 +5401,30 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr "{addon} – Izegrar i Firefox"
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Acegger n ugbur i {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Acegger {0}"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+msgid "You don't have permission to review it."
+msgstr "Ur ɣur-k ara tisurag n ucegger."
 
 msgid "Add-on important changes history"
 msgstr "Azray n yibeddilen yesεan azal n uzegrir"
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr "Tafelwit tamellalt d amḍiq i umbaddal n telɣut icudden ɣer uzegrir-a (akken yebɣu yella lqem), gar uneflay akked umaẓrag. Tafelwit-a zemren ad tt-wali i sin."
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Tafelwit-a tamellalt tettwaseqdec deg tulsa n tɣuri i beṭṭu n telɣut tamunant ɣef lqem. Ma ulac aɣilif qqim kan deg tmussni. Ala wid yettalsen taɣuri ara t-iwalin."
+
+msgid "Update whiteboards"
+msgstr "Snifel tafelwit tamellalt"
+
 msgid "Add-on History"
 msgstr "Amazray n uzegrir"
-
-msgid "You don't have permission to review it."
-msgstr "Ur ɣur-k ara tisurag n ucegger."
 
 msgid "Please select one or more versions in the list below."
 msgstr "Ma ulac aɣilif, fren yiwen neɣ ugar n yileqman deg tebdert yellan ddaw."
@@ -5433,15 +5443,6 @@ msgstr "Yettwasekyed di:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Ɣur-k!</strong> Aseqdac-nniḍen iwala asebter-a uqbel-ik."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Tafelwit tamellalt d amḍiq i umbaddal n telɣut icudden ɣer uzegrir-a (akken yebɣu yella lqem), gar uneflay akked umaẓrag. Tafelwit-a zemren ad tt-wali i sin."
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Tafelwit-a tamellalt tettwaseqdec deg tulsa n tɣuri i beṭṭu n telɣut tamunant ɣef lqem. Ma ulac aɣilif qqim kan deg tmussni. Ala wid yettalsen taɣuri ara t-iwalin."
-
-msgid "Update whiteboards"
-msgstr "Snifel tafelwit tamellalt"
 
 msgid "More Actions"
 msgstr "Ugar n tigawin"
@@ -5524,8 +5525,14 @@ msgstr "Asebter n unedbal"
 msgid "Review This Add-on"
 msgstr "Cegger azegrir-agi"
 
+msgid "Overview"
+msgstr "Tazwart"
+
 msgid "More Information"
 msgstr "Ugar n telɣut"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Afray"
@@ -5732,9 +5739,6 @@ msgstr "Azmul n ufaylu"
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "D wagi swaswa i d isem n ulugen yettwasqedcen deg usnirem."
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "Ma yili ur tettuṛeccem ara, igmaḍ n usimḍen ur seεεun ara assaɣ  walugen-a dɣa tigawt ur tettwaselkan ara."
-
 msgid "Yara rules should have a definition"
 msgstr "Ilugan n Yara yessefk ad sɛun tabadut."
 
@@ -5750,6 +5754,9 @@ msgstr "Tabadut mačči d tameɣtut: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr "Tella-d tuccḍa deg usefsu n tbadut"
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr "Ma yili ur tettuṛeccem ara, igmaḍ n usimḍen ur seεεun ara assaɣ  walugen-a dɣa tigawt ur tettwaselkan ara."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Seddu alugen-a ɣef yizegrar i yettwasensen s uḥettem."
@@ -5808,9 +5815,6 @@ msgstr "Ur tezmireḍ ara ad tbedreḍ lqem-a n uzegrir s API imi tettuḍ iɣef
 
 msgid "No uploaded file for that add-on and version."
 msgstr "Ulac afaylu yulin i uzegrir neɣ lqem-nni."
-
-msgid "Overview"
-msgstr "Tazwart"
 
 msgid "by Source"
 msgstr "s uɣbalu"
@@ -6015,9 +6019,6 @@ msgstr "Alγu usḍif"
 
 msgid "Report Trademark Abuse"
 msgstr "Mmel yir aseqdec n tecreṭ"
-
-msgid "Site Status"
-msgstr "Addad n usmel"
 
 msgid "Report a bug"
 msgstr "Azen-d abug"

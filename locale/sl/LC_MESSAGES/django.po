@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-10-06 17:30+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1034,10 +1034,10 @@ msgstr "{user} se je prijavil."
 msgid "{user} restricted."
 msgstr "{user} omejen."
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4451,6 +4451,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Nekatere strani imajo težave pri predvajanju videoposnetkov v sistemu Android. Tu je popravek."
@@ -4581,17 +4585,17 @@ msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Posodobi blokado dodatka"
+msgid "Tab managers"
+msgstr "Upravitelji zavihkov"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Prilagajanje YouTuba"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
 msgstr "Razširitve proti sledenju"
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
-msgstr "Razširitve za pisce"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4664,10 +4668,6 @@ msgid "See more social streaming staff picks"
 msgstr "Prikaži vse razširitve"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Upravitelji zavihkov"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Več osebno izbranih razširitev za upravljanje zavihkov"
 
@@ -4680,12 +4680,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Več razširitev z oznako \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "See more ad blocker staff picks"
-msgstr "Več osebno izbranih razširitev za zavračanje oglasov"
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Posodobi blokado dodatka"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Prilagajanje YouTuba"
+msgid "See more ad blocker staff picks"
+msgstr "Več osebno izbranih razširitev za zavračanje oglasov"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4770,7 +4771,7 @@ msgstr "Neveljavno ime datoteke v arhivu: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Datoteka v arhivu presega omejitev velikosti: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5092,7 +5093,7 @@ msgstr "Zavrni več različic"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "S tem boste zavrnili izbrane različice. Komentarji bodo poslani razvijalcu."
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5425,21 +5426,30 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr "{addon} – Dodatki za Firefox"
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Pregled vsebine {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Preglej {0}"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+msgid "You don't have permission to review it."
+msgstr "Nimate dovoljenja za pregled."
 
 msgid "Add-on important changes history"
 msgstr "Zgodovina pomembnih sprememb dodatka"
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr "Bela tabla je mesto, kjer si lahko razvijalec in pregledovalec izmenjujeta informacije o tem dodatku (ne glede na različico). Vidita in urejata jo lahko oba."
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "Zasebna bela tabla je namenjena izmenjevanju informacij med pregledovalci, ki so neodvisne od različice. Svoj jezik ohranite objektiven. Tabla je vidna le pregledovalcem."
+
+msgid "Update whiteboards"
+msgstr "Posodobi bele table"
+
 msgid "Add-on History"
 msgstr "Zgodovina dodatka"
-
-msgid "You don't have permission to review it."
-msgstr "Nimate dovoljenja za pregled."
 
 msgid "Please select one or more versions in the list below."
 msgstr "Izberite eno ali več različic na spodnjem seznamu."
@@ -5458,15 +5468,6 @@ msgstr "Preizkušeno na:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Opozorilo!</strong> Nek drug uporabnik je ogledoval to stran pred vami."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Bela tabla je mesto, kjer si lahko razvijalec in pregledovalec izmenjujeta informacije o tem dodatku (ne glede na različico). Vidita in urejata jo lahko oba."
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Zasebna bela tabla je namenjena izmenjevanju informacij med pregledovalci, ki so neodvisne od različice. Svoj jezik ohranite objektiven. Tabla je vidna le pregledovalcem."
-
-msgid "Update whiteboards"
-msgstr "Posodobi bele table"
 
 msgid "More Actions"
 msgstr "Več dejanj"
@@ -5559,8 +5560,14 @@ msgstr "Stran administratorja"
 msgid "Review This Add-on"
 msgstr "Pregled tega dodatka"
 
+msgid "Overview"
+msgstr "Pregled"
+
 msgid "More Information"
 msgstr "Več informacij"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Odločitev"
@@ -5773,9 +5780,6 @@ msgstr "podpis datoteke"
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
-
 msgid "Yara rules should have a definition"
 msgstr "Pravila Yara bi morala imeti definicijo"
 
@@ -5791,6 +5795,9 @@ msgstr "Definicija ni veljavna: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr "Pri sestavljanju definicije je prišlo do napake"
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Zaženi to pravilo tudi za dodatke, ki so bili prisilno onemogočeni."
@@ -5849,9 +5856,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr "Ni naložene datoteke za ta dodatek in različico."
-
-msgid "Overview"
-msgstr "Pregled"
 
 msgid "by Source"
 msgstr "po izvoru"
@@ -6070,9 +6074,6 @@ msgstr "Pravna obvestila"
 
 msgid "Report Trademark Abuse"
 msgstr "Prijava zlorabe blagovne znamke"
-
-msgid "Site Status"
-msgstr "Stanje strani "
 
 msgid "Report a bug"
 msgstr "Prijavi hrošča"

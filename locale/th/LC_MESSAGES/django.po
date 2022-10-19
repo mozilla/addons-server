@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-08-24 17:26+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -1041,10 +1041,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4431,6 +4431,10 @@ msgstr ""
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4561,15 +4565,16 @@ msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4653,10 +4658,6 @@ msgid "See more social streaming staff picks"
 msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "ดูส่วนขยายทั้งหมด"
@@ -4671,13 +4672,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "ดูส่วนขยายทั้งหมด"
-
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4772,7 +4773,7 @@ msgstr "ชื่อไฟล์ไม่ถูกต้องในที่เ
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ไฟล์มีขนาดเกินขีดจำกัดในที่เก็บถาวร: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5098,7 +5099,7 @@ msgstr "อธิบายส่วนเสริมของคุณ"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr ""
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5449,22 +5450,31 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr ""
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "การตรวจสอบเนื้อหา {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
+msgid "Review <em>{0}</em>"
 msgstr ""
-
-msgid "Add-on important changes history"
-msgstr ""
-
-msgid "Add-on History"
-msgstr "ประวัติของส่วนเสริม"
 
 #, fuzzy
 msgid "You don't have permission to review it."
 msgstr "คุณไม่มีข้อมูลประจำตัว API ใด ๆ"
+
+msgid "Add-on important changes history"
+msgstr ""
+
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr ""
+
+msgid "Update whiteboards"
+msgstr ""
+
+msgid "Add-on History"
+msgstr "ประวัติของส่วนเสริม"
 
 msgid "Please select one or more versions in the list below."
 msgstr ""
@@ -5482,15 +5492,6 @@ msgid "Tested on:"
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
 msgstr ""
 
 msgid "More Actions"
@@ -5579,8 +5580,14 @@ msgstr "หน้าผู้ดูแล"
 msgid "Review This Add-on"
 msgstr "วิจารณ์ส่วนเสริมนี้"
 
+msgid "Overview"
+msgstr "ภาพรวม"
+
 msgid "More Information"
 msgstr "ข้อมูลเพิ่มเติม"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "ความละเอียด"
@@ -5807,9 +5814,6 @@ msgstr "เซ็น {file} แล้ว"
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
-
 msgid "Yara rules should have a definition"
 msgstr ""
 
@@ -5824,6 +5828,9 @@ msgid "The definition is not valid: %(error)s"
 msgstr ""
 
 msgid "An error occurred when compiling the definition"
+msgstr ""
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
@@ -5885,9 +5892,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
-
-msgid "Overview"
-msgstr "ภาพรวม"
 
 msgid "by Source"
 msgstr ""
@@ -6093,9 +6097,6 @@ msgstr "ข้อกฎหมาย"
 
 msgid "Report Trademark Abuse"
 msgstr "รายงานการละเมิดเครื่องหมายการค้า"
-
-msgid "Site Status"
-msgstr "สถานะไซต์"
 
 msgid "Report a bug"
 msgstr "รายงานข้อบกพร่อง"

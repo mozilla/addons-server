@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-11 16:25+0000\n"
+"POT-Creation-Date: 2022-10-19 15:24+0000\n"
 "PO-Revision-Date: 2022-07-20 09:30+0000\n"
 "Last-Translator: Jorge <laborim@protonmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1036,10 +1036,10 @@ msgstr ""
 msgid "{user} restricted."
 msgstr ""
 
-msgid "{addon} {version} unrejected."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "Unrejected"
+msgid "Un-rejected"
 msgstr ""
 
 msgid "Firefox"
@@ -4504,6 +4504,10 @@ msgstr "Deixe de facultar o seu endereço de e-mail a sites. O Firefox Relay pro
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Alguns sites têm dificuldade em reproduzir vídeos no Android. Existe uma correção."
@@ -4640,15 +4644,16 @@ msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Bloqueadores de anúncios de elite"
+msgid "Tab managers"
+msgstr "Gestores de marcadores"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
+msgid "Anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4721,10 +4726,6 @@ msgid "See more social streaming staff picks"
 msgstr "Ver mais escolhas da equipa para transmissão social"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Gestores de marcadores"
-
-#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Ver mais escolhas da equipa para gestores de separadores"
 
@@ -4737,12 +4738,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Ver mais extensões etiquetadas com \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "See more ad blocker staff picks"
-msgstr "Ver mais escolhas da equipa para bloqueadores de anúncios"
+msgid "Elite ad blockers"
+msgstr "Bloqueadores de anúncios de elite"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
+msgid "See more ad blocker staff picks"
+msgstr "Ver mais escolhas da equipa para bloqueadores de anúncios"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4834,7 +4835,7 @@ msgstr "Nome de ficheiro inválido no arquivo: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
-msgid "This archive contains a forbidden special file (symbolink / hard link or device / block file)"
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
 msgid "Uncompressed size is too large"
@@ -5151,7 +5152,7 @@ msgstr "Rejeitar múltiplas versões"
 msgid "This will reject the selected versions. The comments will be sent to the developer."
 msgstr "Isto vai rejeitar as versões selecionadas. Os comentários serão enviados para o programador."
 
-msgid "Un-Reject Versions"
+msgid "Un-reject Versions"
 msgstr ""
 
 msgid "This will un-reject the selected versions without notifying the developer."
@@ -5478,21 +5479,30 @@ msgid "{addon} – Add-ons for Firefox"
 msgstr "{addon} – Extras para o Firefox"
 
 #. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Revisão de conteúdo {0}"
+msgid "Content Review <em>{0}</em>"
+msgstr ""
 
 #. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Revisão {0}"
+msgid "Review <em>{0}</em>"
+msgstr ""
+
+msgid "You don't have permission to review it."
+msgstr "Não tem permissão para o rever."
 
 msgid "Add-on important changes history"
 msgstr "Histórico de alterações importantes do extra"
 
+msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
+msgstr ""
+
+msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
+msgstr "O quadro branco privado é apenas utilizado para trocar informação entre revisores e é independente da versão. Por favor, mantenha a linguagem objetiva. É apenas visível para revisores."
+
+msgid "Update whiteboards"
+msgstr "Atualizar quadros brancos"
+
 msgid "Add-on History"
 msgstr "Histórico do extra"
-
-msgid "You don't have permission to review it."
-msgstr "Não tem permissão para o rever."
 
 msgid "Please select one or more versions in the list below."
 msgstr "Por favor selecione uma ou mais versões na lista abaixo."
@@ -5511,15 +5521,6 @@ msgstr "Testado em:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Aviso!</strong> Outro utilizador estava a visualizar esta página antes de si."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "O quadro branco privado é apenas utilizado para trocar informação entre revisores e é independente da versão. Por favor, mantenha a linguagem objetiva. É apenas visível para revisores."
-
-msgid "Update whiteboards"
-msgstr "Atualizar quadros brancos"
 
 msgid "More Actions"
 msgstr "Mais ações"
@@ -5602,8 +5603,14 @@ msgstr "Página de administrador"
 msgid "Review This Add-on"
 msgstr "Rever este extra"
 
+msgid "Overview"
+msgstr "Resumo"
+
 msgid "More Information"
 msgstr "Mais informação"
+
+msgid "Important Changes"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Resolução"
@@ -5810,9 +5817,6 @@ msgstr "assinatura de ficheiro"
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Este é o nome exato da regra utilizada por um pesquisador."
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "Quando desmarcada, os resultados do pesquisador não serão associados a esta regra e a ação não será executada."
-
 msgid "Yara rules should have a definition"
 msgstr "As regras de Yara deviam ter uma definição"
 
@@ -5828,6 +5832,9 @@ msgstr "A definição não é válida: %(error)s"
 
 msgid "An error occurred when compiling the definition"
 msgstr "Ocorreu um erro quando compilava a definição"
+
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr "Quando desmarcada, os resultados do pesquisador não serão associados a esta regra e a ação não será executada."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Execute também esta regra nos extras que também foram desativados à força."
@@ -5886,9 +5893,6 @@ msgstr ""
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
-
-msgid "Overview"
-msgstr "Resumo"
 
 msgid "by Source"
 msgstr "por fonte"
@@ -6094,9 +6098,6 @@ msgstr "Avisos legais"
 
 msgid "Report Trademark Abuse"
 msgstr "Reportar abuso de marca registada"
-
-msgid "Site Status"
-msgstr "Estado do site"
 
 msgid "Report a bug"
 msgstr "Reportar um bug"
