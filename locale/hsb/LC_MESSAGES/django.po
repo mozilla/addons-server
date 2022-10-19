@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-19 20:01+0000\n"
+"PO-Revision-Date: 2022-10-19 20:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4478,7 +4478,7 @@ msgstr "Wot časa wotwisne wuměnjenje drastow. Dajće Firefox barby po času dn
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Wurjedźće swoje dožiwjenje Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4796,7 +4796,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Dataja wulkosćowy limit w archiwje překročuje: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Tutón archiw zakazanu specialnu dataju wobsahuje (symboliski/twjerdy wotkaz abo grat/blokowa dataja)"
 
 msgid "Uncompressed size is too large"
 msgstr "Njekomprimowana wulkosć je přewulka"
@@ -5114,7 +5114,7 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "To wubrane wersije wotpokaza. Komentary so na wuwiwarja pósćelu."
 
 msgid "Un-reject Versions"
-msgstr ""
+msgstr "Wotpokazanje wersijow zběhnyć"
 
 msgid "This will un-reject the selected versions without notifying the developer."
 msgstr "To wotpokazanje wubranych wersijow zběhnje, bjeztoho zo by so wuwiwar informował."
@@ -5441,11 +5441,11 @@ msgstr "{addon} – Přidatki za Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review <em>{0}</em>"
-msgstr ""
+msgstr "Přepruwowanje wobsaha <em>{0}</em>"
 
 #. "Review [add-on name]"
 msgid "Review <em>{0}</em>"
-msgstr ""
+msgstr "Přepruwowanje <em>{0}</em>"
 
 msgid "You don't have permission to review it."
 msgstr "Nimaće prawo to přepruwować."
@@ -5572,7 +5572,7 @@ msgid "More Information"
 msgstr "Dalše informacije"
 
 msgid "Important Changes"
-msgstr ""
+msgstr "Wažne změny"
 
 msgid "Resolution"
 msgstr "Rozsud"
