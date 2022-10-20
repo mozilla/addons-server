@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-20 14:11+0000\n"
+"PO-Revision-Date: 2022-10-20 14:17+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -185,59 +185,59 @@ msgid "License with slug={value} does not exist."
 msgstr ""
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Nepodržana vrsta datoteke, prenesi arhivsku datoteku ({extensions})."
 
 msgid "Invalid or broken archive."
 msgstr "Neispravna ili pokvarena arhiva."
 
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Određena je neispravna aplikacija"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Određena je nepoznata maksimalna verzija aplikacije"
 
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Određena je nepoznata minimalna verzija aplikacije"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Slike moraju biti manje od %d MB"
 
 msgid "Listed"
 msgstr "Na popisu"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Staze dodataka i zbirki moraju završiti s kosom crtom (/)"
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Pregledi se ne mogu stvoriti za teme."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Ugrađene licence se ne mogu aktualizirati."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Prijenos nije ispravan."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Verzija {version_string} je već prije bila prenesena i izbrisana."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Verzija {version_string} već postoji."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Navedene verzije se ne mogu poslati dok je dodatak deaktiviran."
 
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Dodaci trebaju barem jednog vlasnika."
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "Dodaci trebaju barem jednog navedenog autora."
 
 msgid "Account not found."
-msgstr ""
+msgstr "Račun nije pronađen."
 
 msgid "An author can only be present once."
 msgstr "Autor se smije samo jednom navesti."
