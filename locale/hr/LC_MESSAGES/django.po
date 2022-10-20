@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-20 14:17+0000\n"
+"PO-Revision-Date: 2022-10-20 14:46+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -489,16 +489,16 @@ msgid "Unavailable for legal reasons."
 msgstr "Nedostupno iz pravnih razloga."
 
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Jezični kod \"{lang_code}\" je neispravan."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Moraš navesti objekt za {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Potrebna je vrijednost u zadanom jeziku \"{lang_code}\"."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Potrebna je vrijednost u zadanom jeziku \"{lang_code}\" ako su postavljeni drugi prijevodi."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -565,14 +565,14 @@ msgstr ""
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Dodatak s GUID-om %(guid)s ne postoji"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Blokade koje se moraju aktualizirati razlikuju se, jer su se minimalna ili maksimalna verzija promijenile."
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s sadrži *"
 
 msgid "Invalid version"
 msgstr "Neispravna verzija"
