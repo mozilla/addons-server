@@ -1,5 +1,5 @@
 from olympia.versions.compare import (
-    MAX_VERSION_PART,
+    APP_MAJOR_VERSION_PART_MAX,
     version_dict,
     version_int,
     VersionString,
@@ -13,9 +13,9 @@ def test_version_int():
     assert version_int('0') == 200100
     assert version_int('*') == 65535999999200100
     assert version_int('*.0') == 65535000000200100
-    assert version_int(MAX_VERSION_PART) == 65535000000200100
-    assert version_int(MAX_VERSION_PART + 1) == 65535000000200100
-    assert version_int(f'{MAX_VERSION_PART}.100') == 65535990000200100
+    assert version_int(APP_MAJOR_VERSION_PART_MAX) == 65535000000200100
+    assert version_int(APP_MAJOR_VERSION_PART_MAX + 1) == 65535000000200100
+    assert version_int(f'{APP_MAJOR_VERSION_PART_MAX}.100') == 65535990000200100
 
 
 def test_version_int_compare():
@@ -121,33 +121,7 @@ def test_version_dict():
         {
             'major': 5,
             'minor1': 0,
-            'minor2': 65535,
-            'minor3': None,
-            'alpha': None,
-            'alpha_ver': None,
-            'pre': None,
-            'pre_ver': None,
-        }
-    )
-
-    assert version_dict('5.0.*', asterisk_value=1234) == (
-        {
-            'major': 5,
-            'minor1': 0,
-            'minor2': 1234,
-            'minor3': None,
-            'alpha': None,
-            'alpha_ver': None,
-            'pre': None,
-            'pre_ver': None,
-        }
-    )
-
-    assert version_dict('*.0.*', asterisk_value='@') == (
-        {
-            'major': '@',
-            'minor1': 0,
-            'minor2': '@',
+            'minor2': '*',
             'minor3': None,
             'alpha': None,
             'alpha_ver': None,

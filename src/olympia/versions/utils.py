@@ -13,7 +13,6 @@ from PIL import Image
 from olympia.amo.utils import convert_svg_to_png
 from olympia.core import logger
 
-from . import compare
 from .models import Version
 
 
@@ -24,11 +23,10 @@ def get_next_version_number(addon):
     if not addon:
         return '1.0'
     last_version = Version.unfiltered.filter(addon=addon).order_by('id').last()
-    version_dict = compare.version_dict(last_version.version)
 
     version_counter = 1
     while True:
-        next_version = '%s.0' % (version_dict['major'] + version_counter)
+        next_version = '%s.0' % (last_version.version['major'] + version_counter)
         if not Version.unfiltered.filter(addon=addon, version=next_version).exists():
             return next_version
         else:
