@@ -2,7 +2,8 @@ import re
 
 
 BIGINT_POSITIVE_MAX = 2**63 - 1
-MAX_VERSION_PART = 2**16 - 1
+APP_MAJOR_VERSION_PART_MAX = 2**16 - 1
+APP_MINOR_VERSION_PART_MAX = 99
 
 version_re = re.compile(
     r"""(?P<major>\d+|\*)      # major (x in x.y)
@@ -22,7 +23,7 @@ NUMBERS = ['major', 'minor1', 'minor2', 'minor3', 'alpha_ver', 'pre_ver']
 ASTERISK = '*'
 
 
-def version_dict(version, asterisk_value=MAX_VERSION_PART):
+def version_dict(version):
     """Turn a version string into a dict with major/minor/... info."""
     match = version_re.match(version or '')
 
@@ -31,9 +32,7 @@ def version_dict(version, asterisk_value=MAX_VERSION_PART):
         for letter in LETTERS:
             vdict[letter] = vdict[letter] if vdict[letter] else None
         for num in NUMBERS:
-            if vdict[num] == ASTERISK:
-                vdict[num] = asterisk_value
-            else:
+            if vdict[num] != ASTERISK:
                 vdict[num] = int(vdict[num]) if vdict[num] else None
     else:
         vdict = {number_part: None for number_part in NUMBERS}
@@ -45,7 +44,7 @@ class VersionString(str):
     def _get_full_vdict(self):
         if hasattr(self, '_full_vdict'):
             return self._full_vdict
-        vdict = version_dict(self, ASTERISK)
+        vdict = version_dict(self)
         last_part_value = None
         for part in NUMBERS:
             part_value = vdict[part]
@@ -128,7 +127,12 @@ def version_int(version):
     """
     vdict = dict(VersionString(version).parts)
     for part in NUMBERS:
-        max_num = MAX_VERSION_PART if part == 'major' else 99
+        max_num = (
+            APP_MAJOR_VERSION_PART_MAX
+            if part == 'major'
+            else APP_MINOR_VERSION_PART_MAX
+        )
+
         number = vdict[part]
         vdict[part] = max_num if number == ASTERISK else min(number, max_num)
     vdict['alpha'] = {'a': 0, 'b': 1}.get(vdict['alpha'], 2)

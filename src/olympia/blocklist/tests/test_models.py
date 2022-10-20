@@ -2,7 +2,6 @@ from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
 from olympia.amo.tests import addon_factory, TestCase, user_factory
-from olympia.versions.compare import MAX_VERSION_PART
 
 from ..models import Block, BlocklistSubmission
 
@@ -12,7 +11,9 @@ class TestBlock(TestCase):
         block = Block.objects.create(guid='anyguid@', updated_by=user_factory())
         # default is 0 to *
         assert block.is_version_blocked('0')
-        assert block.is_version_blocked(str(MAX_VERSION_PART + 1))
+        # 999999999 is the maximum version part permitted by the linter
+        over_linter_max = str(999999999 + 1234)
+        assert block.is_version_blocked(over_linter_max)
 
         # Now with some restricted version range
         block.update(min_version='2.0')
@@ -20,14 +21,14 @@ class TestBlock(TestCase):
         assert not block.is_version_blocked('2.0b1')
         assert block.is_version_blocked('2')
         assert block.is_version_blocked('3')
-        assert block.is_version_blocked(str(MAX_VERSION_PART + 1))
+        assert block.is_version_blocked(over_linter_max)
         block.update(max_version='10.*')
         assert not block.is_version_blocked('11')
-        assert not block.is_version_blocked(str(MAX_VERSION_PART + 1))
+        assert not block.is_version_blocked(over_linter_max)
         assert block.is_version_blocked('10')
         assert block.is_version_blocked('9')
         assert block.is_version_blocked('10.1')
-        assert block.is_version_blocked('10.%s' % (MAX_VERSION_PART + 1))
+        assert block.is_version_blocked('10.%s' % (over_linter_max))
 
     def test_is_readonly(self):
         block = Block.objects.create(guid='foo@baa', updated_by=user_factory())
