@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-19 16:44+0000\n"
+"PO-Revision-Date: 2022-10-20 10:49+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1030,10 +1030,10 @@ msgid "{user} restricted."
 msgstr "{user} limitate."
 
 msgid "{addon} {version} un-rejected."
-msgstr "{addon} {version} non-rejectate."
+msgstr "{addon} {version} reapprobate."
 
 msgid "Un-rejected"
-msgstr "Non-rejectate"
+msgstr "Reapprobate"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4460,7 +4460,7 @@ msgstr "Cambiator de thema basate sur tempore. Face cambiar colores de Firefox a
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Reordina tu experientia in Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4778,7 +4778,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "File excedente le dimension limite in le archivo: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Iste archivo contine un file special prohibite (symbolic / ligamine dur o apparato / file de blocada)"
 
 msgid "Uncompressed size is too large"
 msgstr "Le dimension non comprimite es troppo grande"
@@ -5094,7 +5094,7 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "Isto rejectara le versiones seligite. Le commentos sera inviate al disveloppator."
 
 msgid "Un-reject Versions"
-msgstr ""
+msgstr "Versiones reapprobate"
 
 msgid "This will un-reject the selected versions without notifying the developer."
 msgstr "Isto reconfirmara le approbation del versiones seligite sin notificar le disveloppator."
@@ -5421,7 +5421,7 @@ msgstr "{addon} – Additivos pro Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review <em>{0}</em>"
-msgstr ""
+msgstr "Revision de contento <em>{0}</em>"
 
 #. "Review [add-on name]"
 msgid "Review <em>{0}</em>"
