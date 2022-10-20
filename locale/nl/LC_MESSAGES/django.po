@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-20 06:00+0000\n"
+"PO-Revision-Date: 2022-10-20 05:45+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4489,7 +4489,7 @@ msgstr "Tijdgebaseerde themawisselaar. Laat Firefox al naar gelang de tijd van d
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Ruim uw Twitter-ervaring op."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -5455,7 +5455,7 @@ msgstr "Inhoudsbeoordeling <em>{0}</em>"
 
 #. "Review [add-on name]"
 msgid "Review <em>{0}</em>"
-msgstr ""
+msgstr "<em>{0}</em> beoordelen"
 
 msgid "You don't have permission to review it."
 msgstr "U hebt geen rechten om dit te beoordelen."
