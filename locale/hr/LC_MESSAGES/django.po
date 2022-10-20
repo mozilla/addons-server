@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-20 14:00+0000\n"
+"PO-Revision-Date: 2022-10-20 14:11+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -61,7 +61,7 @@ msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Provjeri da ovo polje ne sadrži više od {max_length} znakova."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Neispravna vrijednost"
 
 msgid "Modified on:"
 msgstr "Promijenjeno:"
@@ -161,25 +161,25 @@ msgid "- Add-on not on AMO -"
 msgstr "- Dodatak nije na AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Premašen je maksimalan broj kategorija po aplikaciji ({MAX_CATEGORIES})"
 
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
+msgstr "Neispravno ime kategorije."
 
 msgid "Invalid app name."
-msgstr ""
+msgstr "Neispravno ime aplikacije."
 
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "URL domena mora biti jedna od [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "URL staza za GitHub sponzore mora sadržavati /sponsors/."
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URL-ovi moraju početi s https://."
 
 msgid "License with slug={value} does not exist."
 msgstr ""
@@ -4629,18 +4629,16 @@ msgid "Strong password managers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Pogledaj još preporučenih proširenja"
+msgstr "Pogledaj izbor naših zaposlenika za upravljanje lozinkama"
 
 #. editorial content for the homepage shelves.
 msgid "Translation tools"
 msgstr "Alati za prevođenje"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "Pogledaj još alata za prevođenje"
+msgstr "Pogledaj izbor naših zaposlenika za alate za prevođenje"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4648,14 +4646,12 @@ msgid "Social streaming"
 msgstr "Društvene mreže"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Pogledaj još popularnih proširenja"
+msgstr "Pogledaj izbor naših zaposlenika popularnih proširenja"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Pogledaj još preporučenih proširenja"
+msgstr "Pogledaj izbor naših zaposlenika za upravljanje karticama"
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
@@ -4672,14 +4668,12 @@ msgid "Elite ad blockers"
 msgstr "Aktualiziraj blokadu dodataka"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Pogledaj još preporučenih proširenja"
+msgstr "Pogledaj izbor naših zaposlenika za blokiranje oglasa"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "Pogledaj još alata za prevođenje"
+msgstr "Pogledaj izbor naših zaposlenika za YouTube proširenje"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4716,9 +4710,8 @@ msgid "Steam enhancers"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more Steam staff picks"
-msgstr "Pogledaj još popularnih proširenja"
+msgstr "Pogledaj izbor naših zaposlenika za Steam"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4726,9 +4719,8 @@ msgid "Creativity extensions"
 msgstr "Preporučene teme"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "Pogledaj još alata za prevođenje"
+msgstr "Pogledaj izbor naših zaposlenika za kreativnost"
 
 msgid "Rejected or Unreviewed"
 msgstr "Odbijeno ili nepregledano"
