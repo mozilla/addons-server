@@ -5566,7 +5566,7 @@ msgid "More Information"
 msgstr "დამატებითი ინფორმაცია"
 
 msgid "Important Changes"
-msgstr ""
+msgstr "მნიშვნელოვანი ცვლილებები"
 
 msgid "Resolution"
 msgstr "გარჩევადობა"
