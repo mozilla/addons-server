@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-21 02:17+0000\n"
+"PO-Revision-Date: 2022-10-21 14:49+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1027,10 +1027,10 @@ msgid "{user} restricted."
 msgstr "{user} შეზღუდულია."
 
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} უარყოფა გაუქმებულია."
 
 msgid "Un-rejected"
-msgstr ""
+msgstr "უარყოფის გაუქმება"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4475,7 +4475,7 @@ msgstr "იერსახის ცვლა დროის მიხედვ
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "მოიცილეთ ზედმეტობა Twitter-ით სარგებლობისას."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
