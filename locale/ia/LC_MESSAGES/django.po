@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-20 10:53+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2022-10-21 19:53+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -4364,7 +4364,7 @@ msgstr "Remove elementos traciante de ligamines web."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr "Crea dossiers de marcapaginas pro fluxos RSS replenate automaticamente."
+msgstr "Obtene dossiers de marcapaginas que se replena automaticamente con fluxos RSS."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4554,7 +4554,7 @@ msgstr "Deler datos de navigation directemente desde le barra de instrumentos de
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr "Recipe actualisationes automatic de fluxos RSS directe al plicas de marcapaginas."
+msgstr "Recipe actualisationes automatic de fluxos RSS directemente in tu dossiers de marcapaginas."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
