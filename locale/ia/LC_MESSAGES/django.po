@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-21 19:53+0000\n"
+"PO-Revision-Date: 2022-10-21 23:29+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -174,7 +174,7 @@ msgid "License with slug={value} does not exist."
 msgstr "Il non existe licentia con alias breve={value}."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr "Typo de file non tractate, per favor carga un file archivo ({extensions})."
+msgstr "Typo de file non supportate, per favor incarga un file de archivo ({extensions})."
 
 msgid "Invalid or broken archive."
 msgstr "Archivo non valide o rupte."
@@ -205,13 +205,13 @@ msgid "Built in licenses can not be updated."
 msgstr "Le licentias integrate non pote esser actualisate."
 
 msgid "Upload is not valid."
-msgstr "Cargamento non valide."
+msgstr "Le incargamento non es valide."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Version {version} corresponde a {block_link} pro iste additivo. Tu pote contactar {amo_admins} pro plus informationes."
 
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr "Le version {version_string} ha jam essite cargate e delite."
+msgstr "Le version {version_string} ha jam essite incargate e delite."
 
 msgid "Version {version_string} already exists."
 msgstr "Le version {version_string} jam existe."
