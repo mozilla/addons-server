@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-21 14:49+0000\n"
+"PO-Revision-Date: 2022-10-21 15:02+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4793,7 +4793,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "ფაილის მოცულობა არქივში, აჭარბებს {0} დაშვებულ ზღვარს"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "ეს არქივი შეიცავს აკრძალულ საგანგებო ფაილს (მიმთითებელ / პირდაპირ ბმულს ან მოწყობილობის / ბლოკის ფაილს)"
 
 msgid "Uncompressed size is too large"
 msgstr "შეუკუმშავის ზომა ზედმეტად დიდია"
@@ -5109,10 +5109,10 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "შედეგად, შერჩეული ვერსიები უარყოფილი იქნება. გამოხმაურებები გაეგზავნება შემმუშავებელს."
 
 msgid "Un-reject Versions"
-msgstr ""
+msgstr "ვერსიების უარყოფის გაუქმება"
 
 msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
+msgstr "შედეგად, შერჩეული ვერსიების უარყოფა გაუქმდება შემმუშავებლის შეუტყობინებლად."
 
 msgid "Block Multiple Versions"
 msgstr "რამდენიმე ვერსიის შეზღუდვა"
@@ -5436,11 +5436,11 @@ msgstr "{addon} – Firefox-ის დამატებები"
 
 #. "Content Review [add-on name]"
 msgid "Content Review <em>{0}</em>"
-msgstr ""
+msgstr "შიგთავსის განხილვა – <em>{0}</em>"
 
 #. "Review [add-on name]"
 msgid "Review <em>{0}</em>"
-msgstr ""
+msgstr "განხილვა – <em>{0}</em>"
 
 msgid "You don't have permission to review it."
 msgstr "თქვენ არ გაქვთ მიმოხილვის უფლება."
