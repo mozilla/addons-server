@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-22 07:50+0000\n"
+"PO-Revision-Date: 2022-10-22 07:57+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4398,7 +4398,7 @@ msgstr "定时切换主题，Firefox 的主题颜色将随着时间变化而改�
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "焕新您的 Twitter 体验。"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4715,7 +4715,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "超过体积限制的文件存在于压缩包：{0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "此压缩文件包含禁止的特殊文件（符号/硬链接或设备/块文件）"
 
 msgid "Uncompressed size is too large"
 msgstr "未压缩大小过大"
@@ -5357,11 +5357,11 @@ msgstr "{addon} - Firefox 附加组件库"
 
 #. "Content Review [add-on name]"
 msgid "Content Review <em>{0}</em>"
-msgstr ""
+msgstr "内容审核 <em>{0}</em>"
 
 #. "Review [add-on name]"
 msgid "Review <em>{0}</em>"
-msgstr ""
+msgstr "审核 <em>{0}</em>"
 
 msgid "You don't have permission to review it."
 msgstr "你没有权限浏览该内容。"
@@ -5487,7 +5487,7 @@ msgid "More Information"
 msgstr "更多信息"
 
 msgid "Important Changes"
-msgstr ""
+msgstr "重要变化"
 
 msgid "Resolution"
 msgstr "决定"
