@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-23 13:12+0000\n"
+"PO-Revision-Date: 2022-10-23 13:30+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1872,6 +1872,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Po svoje. <span class=\"helptext\">Potem ko predloženi dodatek podpiše Mozilla, lahko iz razvojnega središča prenesete datoteko .xpi in jo distribuirate svoji ciljni množici. Poskrbite, da bo v "
+"manifestu dodatka naveden <a {a_attrs}>update_url</a>, saj na njem Firefox išče nove različice za samodejno posodobitev pri uporabnikih.</span>"
 
 msgid "Display Name"
 msgstr "Prikazno ime"
@@ -2443,6 +2445,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Bela tabla je mesto, kjer lahko pregledovalcu posredujete informacije o svojem dodatku (ne glede na različico). Prek nje lahko pregledovalcu posredujete možne načine preskušanja dodatka in "
+"kakršnekoli dodatne informacije. Belo tablo lahko urejajo tudi pregledovalci."
 
 msgid "Add-on Media for {0}"
 msgstr "Predstavnost za dodatek {0}"
@@ -2795,6 +2799,8 @@ msgstr "Vaš dodatek bo uspešnejši, če ga opremite s podrobnim opisom. Pripra
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Uporabnike lahko privabite k svoji razširitvi tako, da njegovo stran opremite s podrobnim opisom in posnetki zaslona. Pomoč pri <a %(a_attrs)s>ustvarjanju privlačne strani</a> lahko najdete v "
+"delavnici razširitev za Firefox."
 
 msgid "Manage Listing"
 msgstr "Upravljanje prikaza na seznamu"
@@ -2844,9 +2850,8 @@ msgstr "Predložiti morate izvorno kodo razširitve."
 msgid "Your source code must include:"
 msgstr "Vaša izvorna koda mora vsebovati:"
 
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Navodila po korakih za izgradnjo popolne kopije kode dodatka."
+msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Skript za izgradnjo, ki izvede vse potrebne tehnične korake."
@@ -3771,9 +3776,8 @@ msgid "Track the trackers. Get a glimpse into who's tracking you with just a cli
 msgstr "Sledite sledilcem. Z enim klikom si oglejte, kdo vam sledi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
-msgstr "Brskajte po spletu preko lastnih nastavitev posrednika."
+msgstr "Spremenite svoj posredniški strežnik in brskajte po spletu preko lastnih nastavitev posrednika."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
@@ -3839,7 +3843,6 @@ msgid "Use mouse gestures to close tabs, navigate pages, and more."
 msgstr "Uporabljajte poteze z miško za zapiranje zavihkov, krmarjenje po straneh in drugo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See thumbnail images alongside your search returns."
 msgstr "Opremite zadetke iskanja s predoglednimi ploščicami spletnih strani."
 
@@ -3944,9 +3947,8 @@ msgid "Conquer spam. Use clever temporary email addresses to remain anonymous an
 msgstr "Obvladajte neželeno pošto. Uporabljajte pametne začasne e-poštne naslove, ostanite anonimni in se izognite neželeni pošti."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Preprosto prilagodite vgrajene nastavitve zasebnosti v Firefoxu."
+msgstr "Neposrednejši način za prilagajanje vgrajenih nastavitev zasebnosti v Firefoxu."
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
@@ -4119,9 +4121,8 @@ msgid "For those moments when you need to fire lasers out of a cat."
 msgstr "Za tiste trenutke, ko morate iz mačka izstreljevati laserje."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr "Preprosto dostopajte do odprtih zavihkov, zaznamkov in zgodovine."
+msgstr "Iščite po Firefoxu s preprostim dostopom do odprtih zavihkov, zaznamkov in zgodovine."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4286,7 +4287,7 @@ msgstr "Enostavno shranjevanje slik – prenesite jih s trenutnega zavihka."
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "Izmerite spletne strani. Povlecite digitalno ravnilo čez katerokoli spletno stran, da ugotovite višino, širino in poravnavo elementov strani."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
@@ -4389,7 +4390,7 @@ msgstr "Preskočite sponzorirane dele videoposnetkov YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr ""
+msgstr "Naj se vam spletne strani preberejo naglas. Več kot 40 podprtih jezikov."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4440,7 +4441,7 @@ msgstr "Vsi emodžiji, ki jih potrebujete – vedno le klik stran."
 
 #. editorial content for the discovery pane.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Ni treba, da spletnim mestom daste svoj e-poštni naslov. Firefox Relay ščiti vašo identiteto in vas ščiti pred neželeno pošto."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4508,7 +4509,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Takoj prevedite katerokoli izbrano besedilo na spletni strani."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
