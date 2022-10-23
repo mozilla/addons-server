@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-19 15:24+0000\n"
-"PO-Revision-Date: 2022-10-23 13:30+0000\n"
+"PO-Revision-Date: 2022-10-23 13:40+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4517,7 +4517,7 @@ msgstr "Naj Firefox spreminja barve glede na čas v dnevu."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "Znebite se motenj na YouTubu. Odstranite predlagane in povezane videoposnetke, komentarje in drugo."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
@@ -4736,7 +4736,7 @@ msgid "[status:%s]"
 msgstr "[stanje: %s]"
 
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "To je že bilo predloženo."
 
 msgid "Could not parse the manifest file."
 msgstr "Datoteke manifesta ni bilo mogoče razčleniti."
@@ -4811,7 +4811,7 @@ msgid "You cannot submit a language pack"
 msgstr "Ne morete poslati jezikovnega paketa"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Območne nastavitve obstoječega slovarja/jezikovnega paketa ni mogoče spremeniti"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nepodprta vrsta datoteke, naložite podprto vrsto datoteke {extensions}."
@@ -5090,10 +5090,10 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "S tem boste zavrnili izbrane različice. Komentarji bodo poslani razvijalcu."
 
 msgid "Un-reject Versions"
-msgstr ""
+msgstr "Razveljavi zavrnitev različic"
 
 msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
+msgstr "S tem boste razveljavili zavrnitev izbranih različic, ne da bi o tem obvestili razvijalca."
 
 msgid "Block Multiple Versions"
 msgstr "Blokiraj več različic"
@@ -5423,11 +5423,11 @@ msgstr "{addon} – Dodatki za Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review <em>{0}</em>"
-msgstr ""
+msgstr "Pregled vsebine <em>{0}</em>"
 
 #. "Review [add-on name]"
 msgid "Review <em>{0}</em>"
-msgstr ""
+msgstr "Pregled <em>{0}</em>"
 
 msgid "You don't have permission to review it."
 msgstr "Nimate dovoljenja za pregled."
@@ -5525,7 +5525,7 @@ msgid "Clear Auto-Approval Extra Delay"
 msgstr "Počisti dodatno zakasnitev samodejne odobritve"
 
 msgid "Clear pending rejections"
-msgstr ""
+msgstr "Počisti čakajoče zavrnitve"
 
 msgid "Clear Admin Code Review Flag"
 msgstr "Izbriši zastavico za skrbnikov pregled kode"
@@ -5563,7 +5563,7 @@ msgid "More Information"
 msgstr "Več informacij"
 
 msgid "Important Changes"
-msgstr ""
+msgstr "Pomembne spremembe"
 
 msgid "Resolution"
 msgstr "Odločitev"
@@ -5681,9 +5681,8 @@ msgstr "Različica %(version)s &middot; %(created)s <span class=\"light\">&middo
 msgid "(Confirmed)"
 msgstr "(Potrjeno)"
 
-#, fuzzy
 msgid "Pending Rejection on review of new version"
-msgstr "Rok zahteve za informacije"
+msgstr "Čaka na zavrnitev ob pregledu nove različice"
 
 msgid "Compatibility:"
 msgstr "Združljivost:"
@@ -5727,16 +5726,14 @@ msgstr "skript za samodejno odobritev še ni bil zagnan v tej različici."
 msgid "This version has not been reviewed."
 msgstr "Te različice se ni pregledalo."
 
-#, fuzzy
 msgid "Other Pending Review"
-msgstr "Drugi čakajoči na pregled ({0})"
+msgstr "Drugi čakajoči na pregled"
 
 msgid "Updates"
 msgstr "Posodobitve"
 
-#, fuzzy
 msgid "Rating Reviews"
-msgstr "Čaka na pregled"
+msgstr "Pregledi ocen"
 
 msgid "Auto Approved"
 msgstr "Samodejno odobren"
