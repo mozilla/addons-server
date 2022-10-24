@@ -235,6 +235,23 @@ class VersionView(APIView):
                     ),
                     status.HTTP_400_BAD_REQUEST,
                 )
+        if (
+            addon
+            and channel == amo.CHANNEL_LISTED
+            and (previous_version := addon.current_version)
+            and previous_version.version >= version_string
+        ):
+            msg = gettext(
+                'Version {version_string} must be greater than the previous approved '
+                'version {previous_version_string}.'
+            )
+            raise forms.ValidationError(
+                msg.format(
+                    version_string=version_string,
+                    previous_version_string=previous_version.version,
+                ),
+                status.HTTP_409_CONFLICT,
+            )
 
         # Note: The following function call contains a log statement that is
         # used by foxsec-pipeline - if refactoring, keep in mind we need to

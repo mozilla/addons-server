@@ -45,6 +45,7 @@ from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.ratings.utils import get_grouped_ratings
 from olympia.tags.models import Tag
 from olympia.users.models import EmailUserRestriction, RESTRICTION_TYPES, UserProfile
+from olympia.versions.compare import VersionString
 from olympia.versions.models import (
     ApplicationsVersions,
     License,
@@ -513,24 +514,41 @@ class DeveloperVersionSerializer(VersionSerializer):
                 {'version': msg.format(version_string=version_string)}
             )
 
+    def _check_is_greater_version_number(self, version_string):
+        if (
+            previous_version := self.addon.current_version
+        ) and previous_version.version >= version_string:
+            msg = gettext(
+                'Version {version_string} must be greater than the previous approved '
+                'version {previous_version_string}.'
+            )
+            raise exceptions.ValidationError(
+                {
+                    'version': msg.format(
+                        version_string=version_string,
+                        previous_version_string=previous_version.version,
+                    )
+                }
+            )
+
     def validate(self, data):
         if not self.instance:
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
-            self._check_blocklist(guid, self.parsed_data.get('version'))
+            version_string = VersionString(self.parsed_data.get('version'))
+            self._check_blocklist(guid, version_string)
             if self.addon:
-                self._check_for_existing_versions(self.parsed_data.get('version'))
+                self._check_for_existing_versions(version_string)
 
-                # Also check for submitting listed versions when disabled.
-                if (
-                    data['upload'].channel == amo.CHANNEL_LISTED
-                    and self.addon.disabled_by_user
-                ):
-                    raise exceptions.ValidationError(
-                        gettext(
-                            'Listed versions cannot be submitted while add-on is '
-                            'disabled.'
+                if data['upload'].channel == amo.CHANNEL_LISTED:
+                    self._check_is_greater_version_number(version_string)
+                    if self.addon.disabled_by_user:
+                        # Also check for submitting listed versions when disabled.
+                        raise exceptions.ValidationError(
+                            gettext(
+                                'Listed versions cannot be submitted while add-on is '
+                                'disabled.'
+                            )
                         )
-                    )
         elif 'source' in data:
             # We need to manually trigger this as null/empty values aren't validated.
             try:
