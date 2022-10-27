@@ -35,6 +35,7 @@ from olympia.addons.models import (
     Preview,
 )
 from olympia.addons.utils import (
+    check_version_number_is_greater_than_current,
     fetch_translations_from_addon,
     RestrictionChecker,
     verify_mozilla_trademark,
@@ -1087,16 +1088,6 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
                 msg = gettext('Version {version} already exists.')
             raise forms.ValidationError(msg.format(version=version))
 
-    def check_for_greater_version_number(self, version_string):
-        if (
-            previous_version := self.addon.current_version
-        ) and previous_version.version >= version_string:
-            msg = gettext(
-                'Version {version_string} must be greater than the previous '
-                'approved version.'
-            )
-            raise forms.ValidationError(msg.format(version_string=version_string))
-
     def clean(self):
         self.check_throttles(self.request)
 
@@ -1113,7 +1104,10 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
             if self.addon:
                 self.check_for_existing_versions(parsed_data.get('version'))
                 if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED:
-                    self.check_for_greater_version_number(parsed_data.get('version'))
+                    if error_message := check_version_number_is_greater_than_current(
+                        self.addon, parsed_data.get('version')
+                    ):
+                        raise forms.ValidationError(error_message)
 
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data

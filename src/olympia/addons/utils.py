@@ -287,3 +287,19 @@ class DeleteTokenSigner(TimestampSigner):
             log.debug(exc)
             return False
         return token_payload['addon_id'] == addon_id
+
+
+def check_version_number_is_greater_than_current(addon, version_string):
+    if (
+        addon
+        and (previous_version := addon.current_version)
+        and previous_version.version >= version_string
+    ):
+        msg = gettext(
+            'Version {version_string} must be greater than the previous approved '
+            'version {previous_version_string}.'
+        )
+        return msg.format(
+            version_string=version_string,
+            previous_version_string=previous_version.version,
+        )

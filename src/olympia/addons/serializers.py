@@ -74,7 +74,10 @@ from .models import (
     ReplacementAddon,
 )
 from .tasks import resize_icon, resize_preview
-from .utils import fetch_translations_from_addon
+from .utils import (
+    check_version_number_is_greater_than_current,
+    fetch_translations_from_addon,
+)
 from .validators import (
     AddonMetadataValidator,
     AddonDefaultLocaleValidator,
@@ -514,23 +517,6 @@ class DeveloperVersionSerializer(VersionSerializer):
                 {'version': msg.format(version_string=version_string)}
             )
 
-    def _check_is_greater_version_number(self, version_string):
-        if (
-            previous_version := self.addon.current_version
-        ) and previous_version.version >= version_string:
-            msg = gettext(
-                'Version {version_string} must be greater than the previous approved '
-                'version {previous_version_string}.'
-            )
-            raise exceptions.ValidationError(
-                {
-                    'version': msg.format(
-                        version_string=version_string,
-                        previous_version_string=previous_version.version,
-                    )
-                }
-            )
-
     def validate(self, data):
         if not self.instance:
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
@@ -540,7 +526,10 @@ class DeveloperVersionSerializer(VersionSerializer):
                 self._check_for_existing_versions(version_string)
 
                 if data['upload'].channel == amo.CHANNEL_LISTED:
-                    self._check_is_greater_version_number(version_string)
+                    if error_message := check_version_number_is_greater_than_current(
+                        self.addon, version_string
+                    ):
+                        raise exceptions.ValidationError({'version': error_message})
                     if self.addon.disabled_by_user:
                         # Also check for submitting listed versions when disabled.
                         raise exceptions.ValidationError(

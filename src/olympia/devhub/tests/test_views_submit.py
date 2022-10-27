@@ -2374,14 +2374,14 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         self.version.update(version='0.0.2')
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.0.1 must be greater than the previous approved version.'
+            'Version 0.0.1 must be greater than the previous approved version 0.0.2.'
         )
 
     def test_version_num_must_be_numerically_greater(self):
         self.version.update(version='0.0.1.0')
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.0.1 must be greater than the previous approved version.'
+            'Version 0.0.1 must be greater than the previous approved version 0.0.1.0.'
         )
 
 

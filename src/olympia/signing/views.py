@@ -14,6 +14,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.addons.utils import check_version_number_is_greater_than_current
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -235,21 +236,13 @@ class VersionView(APIView):
                     ),
                     status.HTTP_400_BAD_REQUEST,
                 )
-        if (
-            addon
-            and channel == amo.CHANNEL_LISTED
-            and (previous_version := addon.current_version)
-            and previous_version.version >= version_string
-        ):
-            msg = gettext(
-                'Version {version_string} must be greater than the previous approved '
-                'version {previous_version_string}.'
+        if channel == amo.CHANNEL_LISTED and (
+            error_message := check_version_number_is_greater_than_current(
+                addon, version_string
             )
+        ):
             raise forms.ValidationError(
-                msg.format(
-                    version_string=version_string,
-                    previous_version_string=previous_version.version,
-                ),
+                error_message,
                 status.HTTP_409_CONFLICT,
             )
 
