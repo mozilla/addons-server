@@ -1590,14 +1590,16 @@ class TestUploadDetail(UploadMixin, TestCase):
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
         data = json.loads(force_str(response.content))
-        assert data['validation']['messages'] == [
-            {
-                'tier': 1,
-                'message': 'You cannot submit a Mozilla Signed Extension',
-                'fatal': True,
-                'type': 'error',
-            }
-        ]
+        # There should be an error as verified below and a warning about the
+        # use of `applications` instead of `browser_specific_settings` (which
+        # is now deprecated).
+        assert len(data['validation']['messages']) == 2
+        assert data['validation']['messages'][0] == {
+            'tier': 1,
+            'message': 'You cannot submit a Mozilla Signed Extension',
+            'fatal': True,
+            'type': 'error',
+        }
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_update_allowed(self, run_addons_linter_mock):
