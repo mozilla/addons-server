@@ -225,6 +225,7 @@ class ReviewForm(forms.Form):
         label=_('Choose one or more reasons:'),
         queryset=ReviewActionReason.objects.filter(is_active__exact=True),
         required=True,
+        widget=forms.CheckboxSelectMultiple,
     )
     version_pk = forms.IntegerField(required=False, min_value=1)
 
