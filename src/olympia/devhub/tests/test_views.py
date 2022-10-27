@@ -1440,8 +1440,8 @@ class TestUploadDetail(UploadMixin, TestCase):
             for m in data['validation']['messages']
         ]
         expected = [
-          ('"/" must have required property \'version\'', True),
-          ('The version string should be simplified.', True),
+            ('"/" must have required property \'version\'', True),
+            ('The version string should be simplified.', True),
         ]
         assert messages == expected
 
