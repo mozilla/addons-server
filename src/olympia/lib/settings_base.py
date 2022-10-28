@@ -1152,8 +1152,8 @@ ES_DEFAULT_NUM_SHARDS = 5
 # paginating through all results.
 # NOTE: This setting is being set during reindex, if this needs changing
 # we need to trigger a reindex. It's also hard-coded in amo/pagination.py
-# and there's a test verifying it's value is 25000 in amo/test_pagination.py
-ES_MAX_RESULT_WINDOW = 25000
+# and there's a test verifying it's value is 30000 in amo/test_pagination.py
+ES_MAX_RESULT_WINDOW = 30000
 
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633

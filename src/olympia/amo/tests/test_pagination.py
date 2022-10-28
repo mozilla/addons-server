@@ -90,11 +90,11 @@ class TestSearchPaginator(TestCase):
         mocked_qs.__getitem__().execute().hits.total = 30000
         paginator = ESPaginator(mocked_qs, 5)
 
-        assert ESPaginator.max_result_window == 25000
+        assert ESPaginator.max_result_window == 30000
 
         with pytest.raises(InvalidPage) as exc:
             # We're fetching 5 items per page, so requesting page 5001 should
-            # fail, since the max result window should is set to 25000.
+            # fail, since the max result window should is set to 30000.
             paginator.page(5000 + 1)
 
         # Make sure we raise exactly `InvalidPage`, this is needed
@@ -116,7 +116,7 @@ class TestSearchPaginator(TestCase):
         mocked_qs.__getitem__().execute().hits.total = 30000
         paginator = ESPaginator(mocked_qs, 5)
 
-        assert ESPaginator.max_result_window == 25000
+        assert ESPaginator.max_result_window == 30000
 
         page = paginator.page(4999)
         assert page.has_next() is True
