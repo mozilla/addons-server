@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-25 17:13+0000\n"
-"PO-Revision-Date: 2022-10-29 16:30+0000\n"
+"PO-Revision-Date: 2022-10-29 16:38+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4461,7 +4461,7 @@ msgstr "Přestaňte webům dávat svou e-mailovou adresu. Firefox Relay chrání
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Měnič motivů vzhledu na základě času. Přimějte Firefox měnit barvy podle toho, jak se mění denní doba."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
