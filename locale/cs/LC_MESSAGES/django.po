@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-25 17:13+0000\n"
-"PO-Revision-Date: 2022-10-29 16:46+0000\n"
+"PO-Revision-Date: 2022-10-29 17:05+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4543,11 +4543,11 @@ msgstr "Vezměte si emotikony všude na webu s sebou."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Omezte rozptylující a časem plýtvající webové stránky."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Odstraňte z Twitteru všechen balast."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
@@ -4555,7 +4555,7 @@ msgstr "Přizpůsobte si YouTube dle chuti."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Odstraňte údaje o prohlížení přímo z nástrojové lišty prohlížeče."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
@@ -4563,11 +4563,11 @@ msgstr "Získejte automaticky aktualizované složky záložek coby RSS kanály.
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Účinný blokátor všech typů reklam."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Správce hromadného stahování extrémně usnadňuje extrémní stahování."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
@@ -4575,7 +4575,7 @@ msgstr "Blokujte reklamy a získejte vylepšenou ochranu před malwarem."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Odstraňte formátování z textu zkopírovaného ze schránky."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
@@ -4583,7 +4583,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Vylepšete svůj herní zážitek na Steamu."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4609,7 +4609,7 @@ msgstr "Přizpůsobení YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Rozšíření chránící před sledováním"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4730,7 +4730,7 @@ msgstr "Další právě populární rozšíření"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Vylepšení pro Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
