@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-25 17:13+0000\n"
-"PO-Revision-Date: 2022-10-29 16:38+0000\n"
+"PO-Revision-Date: 2022-10-29 16:46+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4522,14 +4522,16 @@ msgstr "Vraťte se do jednodušších časů, kdy se nejlepší výsledky vyhled
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
 msgstr ""
+"Přestaňte webům poskytovat svou e-mailovou adresu. Firefox Relay chrání vaši totožnost a předchází zasílání nevyžádané pošty. Při přechodu na prémiovou verzi získáte další výhody, jako třeba "
+"blokování konkrétnějších reklamních e-mailů."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Okamžitě přeložte jakýkoli vybraný text na webových stránkách."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
-msgstr ""
+msgstr "Nechte Firefox měnit barvy podle denní doby."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
