@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-25 17:13+0000\n"
-"PO-Revision-Date: 2022-10-29 15:17+0000\n"
+"PO-Revision-Date: 2022-10-29 16:30+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3771,7 +3771,7 @@ msgstr "Automaticky aktualizujte panely na základě stanovených časových int
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Mějte jednotlivé části svého online života oddělené v barevně odlišených panelech, každý se svými cookies. Nyní integrováno do sítě Mozilla VPN jako další vrstva ochrany soukromí."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
