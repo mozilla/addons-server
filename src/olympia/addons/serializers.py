@@ -73,7 +73,10 @@ from .models import (
     ReplacementAddon,
 )
 from .tasks import resize_icon, resize_preview
-from .utils import fetch_translations_from_addon
+from .utils import (
+    fetch_translations_from_addon,
+    is_version_number_not_greater_than_current,
+)
 from .validators import (
     AddonMetadataValidator,
     AddonDefaultLocaleValidator,
@@ -516,21 +519,24 @@ class DeveloperVersionSerializer(VersionSerializer):
     def validate(self, data):
         if not self.instance:
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
-            self._check_blocklist(guid, self.parsed_data.get('version'))
+            version_string = self.parsed_data.get('version')
+            self._check_blocklist(guid, version_string)
             if self.addon:
-                self._check_for_existing_versions(self.parsed_data.get('version'))
+                self._check_for_existing_versions(version_string)
 
-                # Also check for submitting listed versions when disabled.
-                if (
-                    data['upload'].channel == amo.CHANNEL_LISTED
-                    and self.addon.disabled_by_user
-                ):
-                    raise exceptions.ValidationError(
-                        gettext(
-                            'Listed versions cannot be submitted while add-on is '
-                            'disabled.'
+                if data['upload'].channel == amo.CHANNEL_LISTED:
+                    if error_message := is_version_number_not_greater_than_current(
+                        self.addon, version_string
+                    ):
+                        raise exceptions.ValidationError({'version': error_message})
+                    if self.addon.disabled_by_user:
+                        # Also check for submitting listed versions when disabled.
+                        raise exceptions.ValidationError(
+                            gettext(
+                                'Listed versions cannot be submitted while add-on is '
+                                'disabled.'
+                            )
                         )
-                    )
         elif 'source' in data:
             # We need to manually trigger this as null/empty values aren't validated.
             try:
