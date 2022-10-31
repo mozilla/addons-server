@@ -1425,9 +1425,9 @@ class TestUploadDetail(UploadMixin, TestCase):
     def test_no_servererror_on_missing_version(self):
         """https://github.com/mozilla/addons-server/issues/3779
 
-        addons-linter and amo-validator both add proper errors if the version
-        is missing but we shouldn't fail on that but properly show the
-        validation results.
+        addons-linter adds proper errors when the version is missing
+        but we shouldn't fail on that but properly show the validation
+        results.
         """
         self.upload_file('valid_webextension_no_version.xpi')
         upload = FileUpload.objects.get()
@@ -1435,12 +1435,15 @@ class TestUploadDetail(UploadMixin, TestCase):
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         )
         data = json.loads(force_str(response.content))
-        message = [
+        messages = [
             (m['message'], m.get('type') == 'error')
             for m in data['validation']['messages']
         ]
-        expected = [('"/" must have required property \'version\'', True)]
-        assert message == expected
+        expected = [
+            ('"/" must have required property \'version\'', True),
+            ('The version string should be simplified.', True),
+        ]
+        assert messages == expected
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_not_a_valid_xpi(self, run_addons_linter_mock):
