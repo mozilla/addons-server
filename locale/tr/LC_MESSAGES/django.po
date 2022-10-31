@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-10-25 17:13+0000\n"
-"PO-Revision-Date: 2022-10-28 11:28+0000\n"
+"PO-Revision-Date: 2022-10-31 13:01+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -2471,7 +2471,7 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "Eklentinizin UUID’si, manifest dosyasında belirtilir ve benzersiz bir şekilde tanımlanır. UUID’nizi gönderildikten sonra değiştiremezsiniz."
 
 msgid "Whiteboard"
 msgstr "Beyaz Tahta"
@@ -2480,6 +2480,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Beyaz tahta, sürümü ne olursa olsun eklentinizle ilgili bilgileri inceleyicilere sağlayan yerdir. Eklentiyi test etmenin yollarını ve yardımcı olabilecek ek bilgileri sağlamak için kullanın. Bu "
+"beyaz tahta, inceleyiciler tarafından da düzenlenebilir."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -2494,6 +2496,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Eklentiniz için bir simge yükleyin veya bizimkilerden birini seçin. Simge, eklentinizin olduğu hemen hemen her yerde görüntülenir. Yüklenen resimler şu resim türlerinden biri olmalıdır: .png, .jpg. "
+"Yalnızca listelenen eklentiler için geçerlidir."
 
 msgid "Select an icon for your add-on:"
 msgstr "Eklentiniz için bir simge seçin:"
@@ -2755,7 +2759,7 @@ msgid "Notes to Reviewer:"
 msgstr "İnceleyene notlar:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Bu eklentiyi incelerken inceleyicilerin dikkate alması gereken bir şey var mı?"
 
 msgid "Remember"
 msgstr "Unutmayın"
@@ -2798,7 +2802,7 @@ msgstr "Bu seçenekler hakkında daha fazla bilgi almak için Firefox Uzantı At
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr ""
+msgstr "Tüm eklentiler <a %(a_attrs)s>Mozilla’nın Eklenti Politikaları</a> ile uyumlu olmalıdır ve eklentiler her zaman Mozilla tarafından manuel incelemeye tabi tutulabilir."
 
 msgid "Submission Complete"
 msgstr "Gönderim tamamlandı"
@@ -2866,7 +2870,7 @@ msgid "Any other tool that takes code or files, applies processing, and generate
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Kaynak kodunu göndermenize gerek yok. Bir sonraki adıma hazırsınız."
 
 msgid "You must submit your extension's source code."
 msgstr "Eklentinizin kaynak kodunu göndermelisiniz."
@@ -3977,7 +3981,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Belirli zaman aralıklarında çalışarak verimliliğinizi yönetin."
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
@@ -3998,7 +4002,7 @@ msgstr "Birden çok yer imi klasörü kullanananlar için yer imlerini kaydetmen
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Gereksiz biçimlendirmeyi kaldırıp yalnızca düz metni kopyalayın."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -4006,7 +4010,7 @@ msgstr "Tek bir tıklamayla bütün web sayfasını istediğiniz dile çevirin."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Bir web sayfasındaki tüm bağlantıları anında yeni sekmelerde görüntüleyin."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
@@ -4014,7 +4018,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
-msgstr ""
+msgstr "Arama motorları hangi arama sonuçlarına tıkladığınızı bilmesin."
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
@@ -4023,7 +4027,7 @@ msgstr "YouTube videolarını ve/veya seslerini indirin."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Tüm RSS/Atom/RDF kaynaklarınızı bir araya getiren gelişmiş bir okuyucu."
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
@@ -4090,7 +4094,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Web sayfasındaki metni seçip sağ tıklayarak kolayca Vikipedi araması yapın."
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
@@ -4259,7 +4263,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Pasif sekmeler değerli bellek alanınızı boşa harcamasın."
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
@@ -4277,7 +4281,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Reklamları engelleyin, kötü amaçlı yazılımlara ve reklam takipçilerine karşı gelişmiş korumaya kavuşun."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4827,7 +4831,7 @@ msgid "You cannot submit a language pack"
 msgstr "Dil paketi gönderemezsiniz"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Mevcut bir sözlüğün/dil paketinin dili değiştirilemez"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Desteklenmeyen dosya türü. Lütfen desteklenen bir {extensions} dosyası yükleyin."
