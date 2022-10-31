@@ -74,7 +74,7 @@ class TestESPageNumberPagination(TestCustomPageNumberPagination):
         response = view(request)
         assert response.data == {
             'page_size': page_size,
-            'page_count': int(ceil(settings.ES_MAX_RESULT_WINDOW / page_size)),
+            'page_count': page + 1,  # We know there should be one more.
             'results': mock.ANY,
             'previous': f'http://testserver/?page={page - 1}&page_size={page_size}',
             'next': f'http://testserver/?page={page + 1}&page_size={page_size}',
@@ -88,7 +88,7 @@ class TestESPageNumberPagination(TestCustomPageNumberPagination):
         response = view(request)
         assert response.data == {
             'page_size': page_size,
-            'page_count': int(ceil(settings.ES_MAX_RESULT_WINDOW / page_size)),
+            'page_count': page,  # We know it should be the last one.
             'results': mock.ANY,
             'previous': f'http://testserver/?page={page - 1}&page_size={page_size}',
             'next': None,
