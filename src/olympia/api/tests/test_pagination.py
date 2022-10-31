@@ -1,4 +1,3 @@
-from math import ceil
 from unittest import mock
 
 from django.conf import settings
