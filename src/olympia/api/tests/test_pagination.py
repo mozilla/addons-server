@@ -1,5 +1,7 @@
 from unittest import mock
 
+from django.conf import settings
+
 from rest_framework import generics, serializers, status
 from rest_framework.test import APIRequestFactory
 
@@ -54,8 +56,9 @@ class TestCustomPageNumberPagination(TestCase):
 
 class TestESPageNumberPagination(TestCustomPageNumberPagination):
     def test_next_page_never_exeeds_max_result_window(self):
+        total = 50000
         mocked_qs = mock.MagicMock()
-        mocked_qs.__getitem__().execute().hits.total = 30000
+        mocked_qs.__getitem__().execute().hits.total = total
 
         view = generics.ListAPIView.as_view(
             serializer_class=PassThroughSerializer,
@@ -63,27 +66,33 @@ class TestESPageNumberPagination(TestCustomPageNumberPagination):
             pagination_class=ESPageNumberPagination,
         )
 
-        request = self.factory.get('/', {'page_size': 5, 'page': 4999})
+        # Request the last page that still has a `next`.
+        page_size = 5
+        page = int(settings.ES_MAX_RESULT_WINDOW / page_size) - 1
+        request = self.factory.get('/', {'page_size': page_size, 'page': page})
         response = view(request)
         assert response.data == {
-            'page_size': 5,
-            'page_count': 5000,
+            'page_size': page_size,
+            'page_count': page + 1,  # We know there should be one more.
             'results': mock.ANY,
-            'previous': 'http://testserver/?page=4998&page_size=5',
-            'next': 'http://testserver/?page=5000&page_size=5',
-            'count': 30000,
+            'previous': f'http://testserver/?page={page - 1}&page_size={page_size}',
+            'next': f'http://testserver/?page={page + 1}&page_size={page_size}',
+            'count': total,
         }
 
-        request = self.factory.get('/', {'page_size': 5, 'page': 5000})
+        # Request the page that doesn't have a `next` because it's over the
+        # max result window.
+        page = int(settings.ES_MAX_RESULT_WINDOW / page_size)
+        request = self.factory.get('/', {'page_size': page_size, 'page': page})
         response = view(request)
         assert response.data == {
-            'page_size': 5,
-            'page_count': 5000,
+            'page_size': page_size,
+            'page_count': page,  # We know it should be the last one.
             'results': mock.ANY,
-            'previous': 'http://testserver/?page=4999&page_size=5',
+            'previous': f'http://testserver/?page={page - 1}&page_size={page_size}',
             'next': None,
             # We don't lie about the total count
-            'count': 30000,
+            'count': total,
         }
 
 
