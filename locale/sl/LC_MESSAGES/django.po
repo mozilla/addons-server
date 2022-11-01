@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-25 17:13+0000\n"
+"POT-Creation-Date: 2022-11-01 17:05+0000\n"
 "PO-Revision-Date: 2022-10-23 13:40+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -239,6 +239,9 @@ msgstr "Te reglete ni mogoče uporabiti. Izberite drugačno."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Imena dodatkov ne smejo vsebovati blagovnih znamk Mozilla ali Firefox."
+
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "'license' in 'custom_license' ne moreta biti istočasno določeni."

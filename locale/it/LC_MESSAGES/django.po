@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-25 17:13+0000\n"
+"POT-Creation-Date: 2022-11-01 17:05+0000\n"
 "PO-Revision-Date: 2022-10-24 05:46+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -243,6 +243,9 @@ msgstr "Questo slug non può essere utilizzato. Scegline un altro."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "I nomi dei componenti aggiuntivi non possono contenere i marchi registrati di Mozilla o Firefox."
+
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "“license” e “custom_license” non possono essere specificati insieme."
