@@ -114,6 +114,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
                 url,
                 data,
                 HTTP_AUTHORIZATION=self.authorization(),
+                HTTP_USER_AGENT='web-ext/12.34',
                 format='multipart',
                 **(extra_kwargs or {}),
             )
@@ -133,7 +134,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        response = self.request('PUT', guid=guid, version='1.0')
+        with mock.patch('olympia.addons.utils.statsd.incr') as statsd_incr_mock:
+            response = self.request('PUT', guid=guid, version='1.0')
         assert response.status_code == 201
         assert qs.exists()
         addon = qs.get()
@@ -149,6 +151,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             .count()
             == 1
         )
+        statsd_incr_mock.assert_any_call('signing.submission.webext_version.12_34')
 
     def test_new_addon_random_slug_unlisted_channel(self):
         guid = '@create-webextension'
@@ -211,9 +214,12 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert existing.count() == 1
         assert existing[0].channel == amo.CHANNEL_LISTED
 
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), extra_kwargs={'REMOTE_ADDR': '127.0.2.1'}
-        )
+        with mock.patch('olympia.addons.utils.statsd.incr') as statsd_incr_mock:
+            response = self.request(
+                'PUT',
+                self.url(self.guid, '3.0'),
+                extra_kwargs={'REMOTE_ADDR': '127.0.2.1'},
+            )
         assert response.status_code == 202
         assert 'processed' in response.data
 
@@ -229,6 +235,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.CHANNEL_LISTED
         assert not version.file.is_mozilla_signed_extension
+
+        statsd_incr_mock.assert_any_call('signing.submission.webext_version.12_34')
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))

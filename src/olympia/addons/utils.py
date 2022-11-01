@@ -1,3 +1,4 @@
+import re
 import uuid
 
 from django import forms
@@ -303,3 +304,12 @@ def check_version_number_is_greater_than_current(addon, version_string):
             version_string=version_string,
             previous_version_string=previous_version.version,
         )
+
+
+def webext_version_stats(request, source):
+    webext_version_match = re.match(
+        r'web-ext/([\d\.]+)$', request.META.get('HTTP_USER_AGENT') or ''
+    )
+    if webext_version_match:
+        webext_version = webext_version_match[1].replace('.', '_')
+        statsd.incr(f'{source}.webext_version.{webext_version}')
