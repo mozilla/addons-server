@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-25 17:13+0000\n"
+"POT-Creation-Date: 2022-11-01 17:05+0000\n"
 "PO-Revision-Date: 2022-10-20 03:40+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -239,6 +239,9 @@ msgstr "這個 slug 無法使用，請改用其他的 slug。"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "附加元件名稱中，不得包含 Mozilla 或 Firefox 商標。"
+
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "不可同時指定 `license` 及 `custom_license`。"

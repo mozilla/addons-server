@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-25 17:13+0000\n"
+"POT-Creation-Date: 2022-11-01 17:05+0000\n"
 "PO-Revision-Date: 2022-08-16 22:58+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -240,6 +240,9 @@ msgstr "Không thể sử dụng slug này. Vui lòng chọn slug khác."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox."
+
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Không thể cung cấp `license` và `custom_license` cùng nhau."

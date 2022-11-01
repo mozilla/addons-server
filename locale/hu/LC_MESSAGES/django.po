@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-10-25 17:13+0000\n"
+"POT-Creation-Date: 2022-11-01 17:05+0000\n"
 "PO-Revision-Date: 2022-10-19 20:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -247,6 +247,9 @@ msgstr "Ez a SEO URL nem használható. Válasszon egy másikat."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
+
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "A „license” és a „custom_license” együtt nem adható meg."
