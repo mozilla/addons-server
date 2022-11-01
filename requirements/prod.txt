@@ -330,9 +330,9 @@ drf-nested-routers==0.93.4 \
     --hash=sha256:996b77f3f4dfaf64569e7b8f04e3919945f90f95366838ca5b8bed9dd709d6c5 \
     --hash=sha256:01aa556b8c08608bb74fb34f6ca065a5183f2cda4dc0478192cc17a2581d71b0
 # elasticsearch is required by elasticsearch-dsl
-elasticsearch==7.17.6 \
-    --hash=sha256:2c3400c9e9c7fee46c4732fb32b933577aebb07b5e94df025f6ff1a30d2397d0 \
-    --hash=sha256:f4b779fc2a035904b97bef0542110372efd94aa7ab2c13749af73158c08be110
+elasticsearch==7.17.7 \
+    --hash=sha256:555170b4e13a823f4472bc12a148aef90febd5b90b16be83651d35524f34acb3 \
+    --hash=sha256:ed9c0cd58e05959a56e306ecf444f794da6afde75b213e26758f7a317e5e668c
 elasticsearch-dsl==7.4.0 \
     --hash=sha256:046ea10820b94c075081b528b4526c5bc776bda4226d702f269a5f203232064b \
     --hash=sha256:c4a7b93882918a413b63bed54018a1685d7410ffd8facbc860ee7fd57f214a6d
