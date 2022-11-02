@@ -14,7 +14,10 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.addons.utils import check_version_number_is_greater_than_current
+from olympia.addons.utils import (
+    check_version_number_is_greater_than_current,
+    webext_version_stats,
+)
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -257,6 +260,8 @@ class VersionView(APIView):
             channel=channel,
             source=amo.UPLOAD_SOURCE_SIGNING_API,
         )
+
+        webext_version_stats(request, 'signing.submission')
 
         return file_upload, created
 
