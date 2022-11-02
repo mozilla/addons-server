@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-01 17:05+0000\n"
-"PO-Revision-Date: 2022-11-02 12:50+0000\n"
+"PO-Revision-Date: 2022-11-02 12:59+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -219,7 +219,7 @@ msgid "Upload is not valid."
 msgstr "Prijenos nije ispravan."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Verzija {version} odgovara {block_link} za ovaj dodatak. Za dodatne informacije možeš kontaktirati {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Verzija {version_string} je već prije bila prenesena i izbrisana."
@@ -4139,7 +4139,7 @@ msgstr "Spremi lozinke sigurno i automatski se prijavi na poznate web stranice."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Jednostavan program za blokiranje oglasa namijenjen za prikazivanje samo željenog sadržaja."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
@@ -4261,7 +4261,7 @@ msgstr "Čitaj jasnije i lakše. Ukloni nered oko teksta na web-stranicama."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "Blokiraj oglase i dobij poboljšanu zaštitu od zlonamjernog softvera i praćenja putem oglasa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4289,7 +4289,7 @@ msgstr "Prilagodi svijetle i tamne nijanse kako bi web-stranice bile vizualno ug
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "Blokiraj web stranice koje odvlače pažnju. Jednostavno navedi stranice koje želiš da proširenje blokira. Trenutna disciplina!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4364,7 +4364,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all ads—video, pop-ups, banners & more."
-msgstr ""
+msgstr "Blokiraj sve oglase – video, skočne prozore, natpise i više."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4535,7 +4535,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Učinkovito blokiranje protiv svih vrsta oglasa."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
@@ -4667,9 +4667,8 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Pogledaj još popularnih proširenja"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Aktualiziraj blokadu dodataka"
+msgstr "Elitno blokiranje oglasa"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
