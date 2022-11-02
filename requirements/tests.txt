@@ -49,10 +49,6 @@ psutil==5.9.3 \
     --hash=sha256:f57d63a2b5beaf797b87024d018772439f9d3103a395627b77d17a8d72009543 \
     --hash=sha256:fa5e32c7d9b60b2528108ade2929b115167fe98d59f89555574715054f50fa31 \
     --hash=sha256:fe79b4ad4836e3da6c4650cb85a663b3a51aef22e1a829c384e18fae87e5e727
-# py is required by pytest, pytest-xdist
-py==1.11.0 \
-    --hash=sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378 \
-    --hash=sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719
 # pytest is required by amo-validator, pytest-base-url, pytest-cov, pytest-django, pytest-html, pytest-instafail, pytest-variables, pytest-xdist
 pytest==7.2.0 \
     --hash=sha256:892f933d339f068883b6fd5a459f03d85bfcb355e4981e146d2c7616c21fef71 \
