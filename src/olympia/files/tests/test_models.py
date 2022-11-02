@@ -636,7 +636,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         with self.assertRaises(forms.ValidationError) as e:
             check_xpi_info({'guid': 'guid', 'version': '1' * 256})
         msg = e.exception.messages[0]
-        assert msg == 'Version numbers should have at most {max_length} characters.'
+        assert msg == 'Version numbers should have at most 255 characters.'
 
     def test_manifest_version(self):
         parsed = self.parse(filename='webextension_mv3.xpi')
