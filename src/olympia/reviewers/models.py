@@ -1128,6 +1128,7 @@ class ReviewActionReason(ModelBase):
         default=True, help_text=_('Is available to be used in reviews')
     )
     name = models.CharField(max_length=255)
+    canned_response = models.TextField()
 
     def labelled_name(self):
         return '(** inactive **) ' + self.name if not self.is_active else self.name

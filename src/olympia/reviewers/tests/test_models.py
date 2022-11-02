@@ -2048,12 +2048,15 @@ class TestCannedResponse(TestCase):
 
 class TestReviewActionReason(TestCase):
     def test_basic(self):
+        canned_response = 'Some canned response text.'
         name = 'Test reason'
         reason = ReviewActionReason.objects.create(
+            canned_response=canned_response,
             is_active=False,
             name=name,
         )
 
+        assert reason.canned_response == canned_response
         assert reason.name == name
         assert reason.__str__() == name
         assert not reason.is_active
