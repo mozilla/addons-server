@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-01 17:05+0000\n"
-"PO-Revision-Date: 2022-11-02 12:30+0000\n"
+"PO-Revision-Date: 2022-11-02 12:39+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -788,11 +788,10 @@ msgid "{addon} is now licensed under {0}."
 msgstr "{addon} je sad licenciran pod {0}."
 
 msgid "{addon} policy changed."
-msgstr "{addon} polica osiguranja promijenjena."
+msgstr "{addon} politika je promijenjena."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "{addon} ikona promijenjena."
+msgstr "{addon} ikona ili pregledi su promijenjeni."
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} za {addon} odobreno."
@@ -881,7 +880,7 @@ msgstr "Datoteka {file} je potpisana."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "ID dodatka {0} s GUID-om {1} je izbrisan"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} preseljen iz preliminarnog."
@@ -991,10 +990,10 @@ msgid "Block deleted"
 msgstr "Blokiranje je izbrisano"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID za {addon} je dodan u DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "GUID za {addon} uklonjen je s DeniedGuid."
+msgstr "GUID za {addon} je uklonjen iz DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
@@ -3626,7 +3625,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Uživaj u paketu novih YouTube značajki, kao što je modus kina, blokiranje oglasa, kontrola automatske reprodukcije i više."
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
@@ -4227,7 +4226,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search with enhanced tracker blocking, smart encryption, and other privacy benefits."
-msgstr ""
+msgstr "Traži uz poboljšano blokiranje sustava praćenja, pametno šifriranje i druge prednosti privatnosti."
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs. Organize your many open tabs in a tidy vertical sidebar."
