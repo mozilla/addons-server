@@ -845,6 +845,7 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
 
 def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     from olympia.addons.models import Addon, DeniedGuid
+    from olympia.versions.models import Version
 
     guid = xpi_info['guid']
 
@@ -868,9 +869,13 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             or DeniedGuid.objects.filter(guid=guid).exists()
         ):
             raise forms.ValidationError(gettext('Duplicate add-on ID found.'))
-    if len(xpi_info['version']) > 32:
+
+    version_field_max_length = Version.version.field.max_length
+    if len(xpi_info['version']) > version_field_max_length:
         raise forms.ValidationError(
-            gettext('Version numbers should have fewer than 32 characters.')
+            gettext(
+                'Version numbers should have at most {max_length} characters.'
+            ).format(max_length=version_field_max_length)
         )
     if not VERSION_RE.match(xpi_info['version']):
         raise forms.ValidationError(
