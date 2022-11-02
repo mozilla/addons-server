@@ -874,7 +874,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     if len(xpi_info['version']) > version_field_max_length:
         raise forms.ValidationError(
             gettext(
-                'Version numbers should have fewer than {max_length} characters.'
+                'Version numbers should have at most {max_length} characters.'
             ).format(max_length=version_field_max_length)
         )
     if not VERSION_RE.match(xpi_info['version']):
