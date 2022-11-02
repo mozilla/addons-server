@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-01 17:05+0000\n"
-"PO-Revision-Date: 2022-11-02 12:59+0000\n"
+"PO-Revision-Date: 2022-11-02 13:21+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -638,7 +638,7 @@ msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr "%(count)s GUID-a dodataka s %(adu)s korisnika"
 
 msgid "Edit Block"
-msgstr "Uredi blokiranje"
+msgstr "Promijeni blokadu"
 
 msgid "versions"
 msgstr "verzije"
@@ -972,22 +972,22 @@ msgid "User {user} api key reset."
 msgstr "Api ključ korisnika {user} resetiran."
 
 msgid "Block for {0} added to Blocklist."
-msgstr "Blokiranje za {0} je dodano u popis blokiranih."
+msgstr "Blokada za {0} je dodana u popis blokiranja."
 
 msgid "Block added"
-msgstr "Blokiranje je dodano"
+msgstr "Blokada je dodana"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokada za {0} je promijenjena u popisu blokiranja."
 
 msgid "Block edited"
-msgstr "Blok je uređen"
+msgstr "Blokada je promijenjena"
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr "Blokiranje za {0} izbrisano je s popisa blokiranja."
+msgstr "Blokada za {0} je izbrisana iz popisa blokiranja."
 
 msgid "Block deleted"
-msgstr "Blokiranje je izbrisano"
+msgstr "Blokada je izbrisana"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr "GUID za {addon} je dodan u DeniedGuid."
@@ -4992,7 +4992,7 @@ msgid "Delayed because it's the first listed version"
 msgstr "Odgođeno, jer je ovo prva navedena verzija"
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "Verzija i guid odgovaraju blokadi u popisu blokiranja"
 
 msgid "Weight breakdown not available."
 msgstr "Podjela težine nije dostupna."
@@ -5530,7 +5530,7 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr "Izbriši oznaku za administratorski pregled statičke teme"
 
 msgid "View Blocklist Submission"
-msgstr "Prikaži prijavu iz blokiranog popisa"
+msgstr "Prikaži prijavu za popis blokiranja"
 
 msgid "Block add-on"
 msgstr "Blokiraj dodatak"
@@ -6188,6 +6188,8 @@ msgstr "Uzorak za e-adresu"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Upiši e-mail adresu koju želiš blokirati ili koristi zamjenske znakove u stilu unixa, npr. „*@example.com”. Ako moraš blokirati domenu uključujući poddomene, dodaj drugi unos, npr. "
+"„*@*.example.com”."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr "E-adresi koja se koristi za tvoj račun nije dozvoljeno slati dodatke."
