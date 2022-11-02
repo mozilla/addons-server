@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-01 17:05+0000\n"
-"PO-Revision-Date: 2022-11-02 12:39+0000\n"
+"PO-Revision-Date: 2022-11-02 12:50+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -1847,7 +1847,7 @@ msgid "Need to select at least one application."
 msgstr "Moraš odabrati barem jednu aplikaciju."
 
 msgid "a blocklist entry"
-msgstr "blokiran unos"
+msgstr "unos u popisu blokiranja"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzija {version} je već prije bila prenesena i izbrisana."
@@ -3641,7 +3641,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Blokiraj pojavljivanje dosadnih oglasa i napomena na YouTubeu."
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
@@ -3842,7 +3842,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Standardno blokiraj sve skočne prozore. Zatim odluči koje želiš otvoriti."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4494,6 +4494,8 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
 msgstr ""
+"Prestani stranicama davati svoju e-mail adresu. Firefox Relay štiti tvoj identitet i sprečava neželjenu poštu. Nadogradi na premium verziju za dodatne pogodnosti, poput blokiranja specifičnijih "
+"promotivnih e-mailova."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
