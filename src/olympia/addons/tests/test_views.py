@@ -2200,7 +2200,6 @@ class TestAddonViewSetUpdatePut(UploadMixin, TestAddonViewSetUpdate):
     def setUp(self):
         super().setUp()
         self.addon.update(guid='@webextension-guid')
-        self.addon.current_version.update(version='0.0.0.99')
         self.url = reverse_ns(
             'addon-detail', kwargs={'pk': self.addon.guid}, api_version='v5'
         )
@@ -2973,11 +2972,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             source=amo.UPLOAD_SOURCE_ADDON_API,
             channel=amo.CHANNEL_UNLISTED,
         )
-        self.addon = addon_factory(
-            users=(self.user,),
-            guid='@webextension-guid',
-            version_kw={'version': '0.0.0.999'},
-        )
+        self.addon = addon_factory(users=(self.user,), guid='@webextension-guid')
         self.url = reverse_ns(
             'addon-version-list',
             kwargs={'addon_pk': self.addon.slug},
@@ -3302,35 +3297,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert response.status_code == 400, response.content
         assert response.data == {
             'version': ['Version 0.0.1 was uploaded before and deleted.'],
-        }
-
-    def test_greater_version_number_error(self):
-        self.addon.current_version.update(version='0.0.2')
-        self.upload.update(channel=amo.CHANNEL_LISTED)
-        response = self.client.post(
-            self.url,
-            data=self.minimal_data,
-        )
-        assert response.status_code == 400, response.content
-        assert response.data == {
-            'version': [
-                'Version 0.0.1 must be greater than the previous approved version '
-                '0.0.2.'
-            ],
-        }
-
-        # And check for the "same" version number
-        self.addon.current_version.update(version='0.0.1.0')
-        response = self.client.post(
-            self.url,
-            data=self.minimal_data,
-        )
-        assert response.status_code == 400, response.content
-        assert response.data == {
-            'version': [
-                'Version 0.0.1 must be greater than the previous approved version '
-                '0.0.1.0.'
-            ],
         }
 
     def _submit_source(self, filepath, error=False):
