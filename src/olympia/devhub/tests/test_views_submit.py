@@ -641,7 +641,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.file.file.name.endswith(
-            f'{addon.pk}/weta_fade-2.9.zip'
+            f'{addon.pk}/weta_fade-1.0.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
@@ -660,7 +660,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
         assert latest_version.file.file.name.endswith(
-            f'{addon.pk}/{addon.slug}-2.9.zip'
+            f'{addon.pk}/{addon.slug}-1.0.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
@@ -688,7 +688,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.file.file.name.endswith(
-            f'{addon.pk}/weta_fade-2.9.zip'
+            f'{addon.pk}/weta_fade-1.0.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
@@ -719,7 +719,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
         assert latest_version.file.file.name.endswith(
-            f'{addon.pk}/{addon.slug}-2.9.zip'
+            f'{addon.pk}/{addon.slug}-1.0.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
@@ -1981,7 +1981,7 @@ class VersionSubmitUploadMixin:
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.client.force_login(self.user)
         self.user.update(last_login_ip='192.168.1.1')
-        self.addon.versions.update(channel=self.channel, version='0.0.0.99')
+        self.addon.versions.update(channel=self.channel)
         channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.url = reverse(
             'devhub.submit.version.upload', args=[self.addon.slug, channel]
@@ -2125,7 +2125,6 @@ class VersionSubmitUploadMixin:
     def test_static_theme_wizard(self):
         channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        self.version.update(version='2.1')
         # Get the correct template.
         self.url = reverse(
             'devhub.submit.version.wizard', args=[self.addon.slug, channel]
@@ -2180,7 +2179,6 @@ class VersionSubmitUploadMixin:
     def test_static_theme_wizard_unsupported_properties(self):
         channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        self.version.update(version='2.1')
         # Get the correct template.
         self.url = reverse(
             'devhub.submit.version.wizard', args=[self.addon.slug, channel]
@@ -2368,20 +2366,6 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
             response,
             reverse('devhub.submit.version.distribution', args=[self.addon.slug]),
             302,
-        )
-
-    def test_version_num_must_be_greater(self):
-        self.version.update(version='0.0.2')
-        response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.0.1 must be greater than the previous approved version 0.0.2.'
-        )
-
-    def test_version_num_must_be_numerically_greater(self):
-        self.version.update(version='0.0.1.0')
-        response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.0.1 must be greater than the previous approved version 0.0.1.0.'
         )
 
 

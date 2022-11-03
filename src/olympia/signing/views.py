@@ -14,7 +14,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.addons.utils import check_version_number_is_greater_than_current
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -236,15 +235,6 @@ class VersionView(APIView):
                     ),
                     status.HTTP_400_BAD_REQUEST,
                 )
-        if channel == amo.CHANNEL_LISTED and (
-            error_message := check_version_number_is_greater_than_current(
-                addon, version_string
-            )
-        ):
-            raise forms.ValidationError(
-                error_message,
-                status.HTTP_409_CONFLICT,
-            )
 
         # Note: The following function call contains a log statement that is
         # used by foxsec-pipeline - if refactoring, keep in mind we need to

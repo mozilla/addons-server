@@ -35,7 +35,6 @@ from olympia.addons.models import (
     Preview,
 )
 from olympia.addons.utils import (
-    check_version_number_is_greater_than_current,
     fetch_translations_from_addon,
     RestrictionChecker,
     verify_mozilla_trademark,
@@ -1063,30 +1062,31 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
             raise forms.ValidationError(formatted_msg)
 
     def check_for_existing_versions(self, version_string):
-        # Make sure we don't already have this version.
-        existing_versions = Version.unfiltered.filter(
-            addon=self.addon, version=version_string
-        )
-        if existing_versions.exists():
-            version = existing_versions[0]
-            if version.deleted:
-                msg = gettext('Version {version} was uploaded before and deleted.')
-            elif version.file.status == amo.STATUS_AWAITING_REVIEW:
-                next_url = reverse(
-                    'devhub.submit.version.details',
-                    args=[self.addon.slug, version.pk],
-                )
-                msg = DoubleSafe(
-                    '%s <a href="%s">%s</a>'
-                    % (
-                        gettext('Version {version} already exists.'),
-                        next_url,
-                        gettext('Continue with existing upload instead?'),
+        if self.addon:
+            # Make sure we don't already have this version.
+            existing_versions = Version.unfiltered.filter(
+                addon=self.addon, version=version_string
+            )
+            if existing_versions.exists():
+                version = existing_versions[0]
+                if version.deleted:
+                    msg = gettext('Version {version} was uploaded before and deleted.')
+                elif version.file.status == amo.STATUS_AWAITING_REVIEW:
+                    next_url = reverse(
+                        'devhub.submit.version.details',
+                        args=[self.addon.slug, version.pk],
                     )
-                )
-            else:
-                msg = gettext('Version {version} already exists.')
-            raise forms.ValidationError(msg.format(version=version))
+                    msg = DoubleSafe(
+                        '%s <a href="%s">%s</a>'
+                        % (
+                            gettext('Version {version} already exists.'),
+                            next_url,
+                            gettext('Continue with existing upload instead?'),
+                        )
+                    )
+                else:
+                    msg = gettext('Version {version} already exists.')
+                raise forms.ValidationError(msg.format(version=version_string))
 
     def clean(self):
         self.check_throttles(self.request)
@@ -1101,13 +1101,7 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
                 self.addon.guid if self.addon else parsed_data.get('guid'),
                 parsed_data.get('version'),
             )
-            if self.addon:
-                self.check_for_existing_versions(parsed_data.get('version'))
-                if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED:
-                    if error_message := check_version_number_is_greater_than_current(
-                        self.addon, parsed_data.get('version')
-                    ):
-                        raise forms.ValidationError(error_message)
+            self.check_for_existing_versions(parsed_data.get('version'))
 
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data
