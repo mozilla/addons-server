@@ -603,14 +603,9 @@ def review(request, addon, channel=None):
         .select_related('autoapprovalsummary')
         .select_related('reviewerflags')
         .select_related('file___webext_permissions')
-        # Prefetch scanner results... but without the results json as we don't
-        # need it.
-        .prefetch_related(
-            Prefetch(
-                'scannerresults',
-                queryset=ScannerResult.objects.defer('results'),
-            )
-        )
+        # Prefetch scanner results and related rules...
+        .prefetch_related('scannerresults')
+        .prefetch_related('scannerresults__matched_rules')
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
         .transform(Version.transformer_activity)
@@ -807,6 +802,8 @@ def review(request, addon, channel=None):
         else []
     )
 
+    from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
+
     ctx = context(
         # Used for reviewer subscription check, don't use global `is_reviewer`
         # since that actually is `is_user_any_kind_of_reviewer`.
@@ -833,6 +830,7 @@ def review(request, addon, channel=None):
         count=count,
         flags=flags,
         form=form,
+        formatted_matched_rules_with_files_and_data=formatted_matched_rules_with_files_and_data,
         has_versions_pending_rejection=has_versions_pending_rejection,
         important_changes_log=important_changes_log,
         is_admin=is_admin,

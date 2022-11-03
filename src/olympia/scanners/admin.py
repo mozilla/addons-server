@@ -8,7 +8,7 @@ from django.http.request import QueryDict
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import re_path, reverse
-from django.utils.html import format_html, format_html_join
+from django.utils.html import conditional_escape, format_html, format_html_join
 from django.utils.http import urlencode
 from django.utils.translation import gettext, gettext_lazy as _
 
@@ -44,6 +44,50 @@ from .models import (
     ScannerRule,
 )
 from .tasks import run_yara_query_rule
+
+
+def formatted_matched_rules_with_files_and_data(
+    obj,
+    *,
+    display_data=False,
+    display_scanner=False,
+    clamp_at=100,
+    template_name=None,
+):
+    if template_name is None:
+        template_name = 'formatted_matched_rules_with_files'
+    files_and_data_by_matched_rules = obj.get_files_and_data_by_matched_rules()
+    info = obj.rule_model._meta.app_label, obj.rule_model._meta.model_name
+    rules = (
+        [obj.matched_rule] if hasattr(obj, 'matched_rule') else obj.matched_rules.all()
+    )
+
+    return render_to_string(
+        f'admin/scanners/scannerresult/{template_name}.html',
+        {
+            'clamp_at': clamp_at,
+            'display_data': display_data,
+            'display_scanner': display_scanner,
+            'rule_change_urlname': 'admin:%s_%s_change' % info,
+            'external_site_url': settings.EXTERNAL_SITE_URL,
+            'file_id': (obj.version.file.id if obj.version else None),
+            'matched_rules': [
+                {
+                    'pk': rule.pk,
+                    'name': rule.name,
+                    'scanner': rule.get_scanner_display(),
+                    'files_and_data': files_and_data_by_matched_rules[rule.name][
+                        :clamp_at
+                    ],
+                    'files_not_shown': len(files_and_data_by_matched_rules[rule.name])
+                    - clamp_at,
+                }
+                for rule in rules
+            ],
+            'addon_id': obj.version.addon.pk if obj.version else None,
+            'version_id': obj.version.pk if obj.version else None,
+        },
+    )
 
 
 class PresenceFilter(SimpleListFilter):
@@ -454,34 +498,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     formatted_matched_rules.short_description = 'Matched rules'
 
-    def formatted_matched_rules_with_files(
-        self, obj, template_name='formatted_matched_rules_with_files'
-    ):
-        files_by_matched_rules = obj.get_files_by_matched_rules()
-        info = obj.rule_model._meta.app_label, obj.rule_model._meta.model_name
-        rules = (
-            [obj.matched_rule]
-            if hasattr(obj, 'matched_rule')
-            else obj.matched_rules.all()
-        )
-
-        return render_to_string(
-            f'admin/scanners/scannerresult/{template_name}.html',
-            {
-                'rule_change_urlname': 'admin:%s_%s_change' % info,
-                'external_site_url': settings.EXTERNAL_SITE_URL,
-                'file_id': (obj.version.file.id if obj.version else None),
-                'matched_rules': [
-                    {
-                        'pk': rule.pk,
-                        'name': rule.name,
-                        'files': files_by_matched_rules[rule.name],
-                    }
-                    for rule in rules
-                ],
-                'addon_id': obj.version.addon.pk if obj.version else None,
-                'version_id': obj.version.pk if obj.version else None,
-            },
+    def formatted_matched_rules_with_files(self, obj, *, template_name=None):
+        return formatted_matched_rules_with_files_and_data(
+            obj, template_name=template_name
         )
 
     formatted_matched_rules_with_files.short_description = 'Matched rules'

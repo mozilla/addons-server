@@ -18,13 +18,12 @@
 /* sprites for data grid icons */
 
 .app-icon, .platform-icon {
-    float: left;
-    margin-right: 4px;
     background: url(../../img/developers/reviewer-sprite.png?12) no-repeat top left;
-    width: 16px; height: 16px;
-    position: relative;
-    top: 4px;
+    display: inline-block;
     text-decoration: none;
+    vertical-align: middle;
+    width: 16px; height: 16px;
+    
 }
 .ed-sprite-firefox { background-position: 0 0; }
 .ed-sprite-thunderbird { background-position: 0 -16px; }
@@ -682,7 +681,7 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     background-color: #FAFAFA;
     border-right: 1px dotted #DDDDDD;
     border-top: 0 none;
-    width: 255px;
+    width: 42%;
     padding: 15px;
 }
 .review-files .files .file-permissions {
@@ -773,16 +772,9 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 .review-files tr.listing-header input[type=checkbox] {
     float: right;
 }
-.review-files .files div:first-child {
-    padding-top: 0;
-}
-.review-files .files li,
 .review-files .files > div {
-    padding-top: 5px;
     line-height: 1.3em;
-}
-.review-files .files ul {
-    margin: 0 0 5px 15px;
+    margin: 10px 0;
 }
 .review-files .no-activity {
     color: #777777;
@@ -792,6 +784,66 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 .review-files .install {
     padding: 0;
 }
+.review-files .files > .compatibility, .review-files .files > .compatibility li {
+    padding-top: 0;
+}
+.review-files .files > .compatibility > strong {
+    vertical-align: top;
+}
+.review-files .files > .compatibility ul {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.review-files .files .scanners-results table {
+  margin-bottom: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.review-files .files .scanners-results .rule_name {
+  width: 15em;
+}
+
+.review-files .files .scanners-results th {
+    padding: 0;
+}
+
+.review-files .files .scanners-results td {
+    padding: 0 5px 5px 0;
+    vertical-align: top;
+}
+
+.review-files .files .scanners-results td > ul > li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.review-files .files .scanners-results td > ul > li.extra_data {
+    overflow: visible;
+    white-space: normal;
+}
+
+.review-files .files .scanners-results td > ul > li.extra_data dl,
+.review-files .files .scanners-results td > ul > li.extra_data li {
+    display: inline-block;
+}
+
+.review-files .files .scanners-results td dt,
+.review-files .files .scanners-results td dd {
+    display: inline-block;
+    margin-top: 0;
+    min-width: 34%;
+}
+
+.review-files .files .scanners-results td dl {
+    /*display: flex;
+    flex-wrap: wrap;
+    gap: 5px;*/
+    margin-bottom: 5px;
+}
+
 form.review-form .data-toggle {
     display: none; /* hide all toggles by default, they'll be shown through javascript */
 }
