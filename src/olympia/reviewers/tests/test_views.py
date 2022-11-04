@@ -6215,30 +6215,6 @@ class TestReviewerMOTD(ReviewerTest):
         assert doc('#reviewer-motd .errorlist').text() == ('This field is required.')
 
 
-class TestStatusFile(ReviewBase):
-    def get_file(self):
-        return self.version.file
-
-    def check_status(self, expected):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#versions-history .file-info div').text() == (
-            f'{expected} Permissions: None Optional permissions: None'
-        )
-
-    def test_status_full(self):
-        self.get_file().update(status=amo.STATUS_AWAITING_REVIEW)
-        for status in [amo.STATUS_NOMINATED, amo.STATUS_APPROVED]:
-            self.addon.update(status=status)
-            self.check_status('Awaiting Review')
-
-    def test_status_full_reviewed(self):
-        self.get_file().update(status=amo.STATUS_APPROVED)
-        self.addon.update(status=amo.STATUS_APPROVED)
-        self.check_status('Approved')
-
-
 class TestWhiteboard(ReviewBase):
     def test_whiteboard_addition(self):
         public_whiteboard_info = 'Public whiteboard info.'
