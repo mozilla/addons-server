@@ -8,10 +8,10 @@ register = template.Library()
 
 @register.filter
 def format_scanners_data(data, parent=None):
-    '''HTML formatter for scanners data. Recognizes some specific keys but
+    """HTML formatter for scanners data. Recognizes some specific keys but
     otherwise should be generic enough to work with any kind of data that can
     be returned by scanners.
-    '''
+    """
     if isinstance(data, list):
         rval = format_html(
             '<ul>\n{}\n</ul>',
