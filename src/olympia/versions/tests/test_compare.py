@@ -83,37 +83,147 @@ class TestVersionString:
         assert bool(VersionString('3.6')) is True
         assert bool(VersionString('*')) is True
 
-    def test_parts(self):
-        assert tuple(VersionString('3.6a5pre9').parts) == (
-            ('major', 3),
-            ('minor1', 6),
-            ('minor2', 0),
-            ('minor3', 0),
-            ('alpha', 'a'),
-            ('alpha_ver', 5),
-            ('pre', 'pre'),
-            ('pre_ver', 9),
-        )
-        assert tuple(VersionString('3.6.*').parts) == (
-            ('major', 3),
-            ('minor1', 6),
-            ('minor2', '*'),
-            ('minor3', '*'),
-            ('alpha', ''),
-            ('alpha_ver', 0),
-            ('pre', ''),
-            ('pre_ver', 0),
+    def test_vparts(self):
+        assert VersionString('3.6a5pre9').vparts == (
+            VersionString.Part('3'),
+            VersionString.Part('6a5pre9'),
         )
 
-    def test_part_indexing(self):
-        vs = VersionString('32.6pre9')
-        assert vs['major'] == 32
-        assert vs['minor3'] == 0
-        assert vs['alpha'] == ''
-        assert vs['pre'] == 'pre'
-        assert vs['pre_ver'] == 9
-        assert vs[0] == '3'  # normal string indexing still works
-        assert vs[3:5] == '6p'
+
+class TestVersionStringPart:
+    def test_parse(self):
+        assert VersionString.Part('1').asdict() == {'a': 1, 'b': '', 'c': 0, 'd': ''}
+        assert VersionString.Part('1pre').asdict() == {
+            'a': 1,
+            'b': 'pre',
+            'c': 0,
+            'd': '',
+        }
+        assert VersionString.Part('5pre4').asdict() == {
+            'a': 5,
+            'b': 'pre',
+            'c': 4,
+            'd': '',
+        }
+        assert VersionString.Part('11pre4').asdict() == {
+            'a': 11,
+            'b': 'pre',
+            'c': 4,
+            'd': '',
+        }
+        assert VersionString.Part('567pre123').asdict() == {
+            'a': 567,
+            'b': 'pre',
+            'c': 123,
+            'd': '',
+        }
+        assert VersionString.Part('-567pre123').asdict() == {
+            'a': -567,
+            'b': 'pre',
+            'c': 123,
+            'd': '',
+        }
+        assert VersionString.Part('-567pre-123').asdict() == {
+            'a': -567,
+            'b': 'pre',
+            'c': -123,
+            'd': '',
+        }
+        assert VersionString.Part('1pre1b').asdict() == {
+            'a': 1,
+            'b': 'pre',
+            'c': 1,
+            'd': 'b',
+        }
+        assert VersionString.Part('1pre1aa').asdict() == {
+            'a': 1,
+            'b': 'pre',
+            'c': 1,
+            'd': 'aa',
+        }
+        assert VersionString.Part('6a5pre').asdict() == {
+            'a': 6,
+            'b': 'a',
+            'c': 5,
+            'd': 'pre',
+        }
+        # Edge cases
+        assert VersionString.Part('1pre0').asdict() == {
+            'a': 1,
+            'b': 'pre',
+            'c': 0,
+            'd': '',
+        }
+        assert VersionString.Part('00').asdict() == {'a': 0, 'b': '', 'c': 0, 'd': ''}
+        assert VersionString.Part('01').asdict() == {'a': 1, 'b': '', 'c': 0, 'd': ''}
+        assert VersionString.Part('001').asdict() == {'a': 1, 'b': '', 'c': 0, 'd': ''}
+        assert VersionString.Part('-1').asdict() == {'a': -1, 'b': '', 'c': 0, 'd': ''}
+        # + has a special meaning for backwards compatability
+        assert VersionString.Part('5+').asdict() == {
+            'a': 6,
+            'b': 'pre',
+            'c': 0,
+            'd': '',
+        }
+        assert VersionString.Part('0+').asdict() == {
+            'a': 1,
+            'b': 'pre',
+            'c': 0,
+            'd': '',
+        }
+
+    def test_equality(self):
+        assert VersionString.Part('567pre123a') == VersionString.Part('567pre123a')
+        assert VersionString.Part('') == VersionString.Part('')
+        assert VersionString.Part('1') == VersionString.Part('1')
+        assert VersionString.Part('*') == VersionString.Part('*')
+        assert VersionString.Part('01') == VersionString.Part('1')
+        # Special case where + is treated differently
+        assert VersionString.Part('23+') == VersionString.Part('24pre')
+
+        assert VersionString.Part('1') != VersionString.Part('2')
+        assert VersionString.Part('1a') != VersionString.Part('1')
+        assert VersionString.Part('1a1') != VersionString.Part('1a')
+        assert VersionString.Part('1a1a') != VersionString.Part('1a1')
+        assert VersionString.Part('1a1a') != VersionString.Part('1a1b')
+
+    def test_comparison(self):
+        # Asterisks are treated seperately
+        assert VersionString.Part('*') > VersionString.Part('9999')
+        assert VersionString.Part('*') > VersionString.Part('0')
+        assert VersionString.Part('*') > VersionString.Part('')
+        assert not VersionString.Part('*') > VersionString.Part('*')
+        # Only a-part
+        assert VersionString.Part('31') > VersionString.Part('30')
+        assert VersionString.Part('31') < VersionString.Part('32')
+        assert VersionString.Part('1') > VersionString.Part('0')
+        assert VersionString.Part('1') > VersionString.Part('')
+        # a-b parts
+        assert VersionString.Part('40bb') > VersionString.Part('40ba')
+        # a-b with parts missing
+        assert VersionString.Part('40') > VersionString.Part('40a')
+        assert VersionString.Part('41a') > VersionString.Part('40')
+        # a-b-c parts
+        assert VersionString.Part('26hi72') > VersionString.Part('26hi71')
+        assert VersionString.Part('26hi72') > VersionString.Part('26hh73')
+        assert VersionString.Part('26hi72') > VersionString.Part('25hj73')
+        # a-b-c parts with parts missing
+        assert VersionString.Part('26a') > VersionString.Part('26a1')
+        assert VersionString.Part('26') > VersionString.Part('26a1')
+        assert VersionString.Part('27a1') > VersionString.Part('26b')
+        assert VersionString.Part('27a1') > VersionString.Part('26')
+        # a-b-c-d parts
+        assert VersionString.Part('5b6c') > VersionString.Part('5b6b')
+        assert VersionString.Part('5b6c') > VersionString.Part('5b5d')
+        assert VersionString.Part('5b6c') > VersionString.Part('5a7d')
+        assert VersionString.Part('5b6c') > VersionString.Part('4c7d')
+        # a-b-c-d parts with parts missing
+        assert VersionString.Part('5b6') > VersionString.Part('5b6a')
+        assert VersionString.Part('5b') > VersionString.Part('5b1a')
+        assert VersionString.Part('5') > VersionString.Part('5a1a')
+        assert VersionString.Part('6a1a') > VersionString.Part('5b2')
+        assert VersionString.Part('6a1a') > VersionString.Part('5b')
+        assert VersionString.Part('6a1a') > VersionString.Part('5')
 
 
 def test_version_dict():
