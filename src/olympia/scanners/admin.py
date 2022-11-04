@@ -8,7 +8,7 @@ from django.http.request import QueryDict
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import re_path, reverse
-from django.utils.html import conditional_escape, format_html, format_html_join
+from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
 from django.utils.translation import gettext, gettext_lazy as _
 

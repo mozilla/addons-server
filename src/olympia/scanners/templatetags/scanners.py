@@ -8,23 +8,23 @@ register = template.Library()
 
 @register.filter
 def format_scanners_data(data, parent=None):
-    """HTML formatter for scanners data. Recognizes some specific keys but
+    '''HTML formatter for scanners data. Recognizes some specific keys but
     otherwise should be generic enough to work with any kind of data that can
     be returned by scanners.
-    """
+    '''
     if isinstance(data, list):
         rval = format_html(
-            "<ul>\n{}\n</ul>",
+            '<ul>\n{}\n</ul>',
             format_html_join(
-                "\n", "<li>{}</li>", ((format_scanners_data(v),) for v in data)
+                '\n', '<li>{}</li>', ((format_scanners_data(v),) for v in data)
             ),
         )
     elif isinstance(data, dict):
         rval = format_html(
-            "<dl>\n{}\n</dl>",
+            '<dl>\n{}\n</dl>',
             format_html_join(
-                "\n",
-                "<dt>{}:</dt><dd>{}</dd>",
+                '\n',
+                '<dt>{}:</dt><dd>{}</dd>',
                 (
                     (format_scanners_data(k), format_scanners_data(v, parent=k))
                     for k, v in data.items()
@@ -33,7 +33,7 @@ def format_scanners_data(data, parent=None):
         )
     elif isinstance(data, (float, int)):
         if parent == 'ratio':
-            rval = f"{data * 100:.2f}%"
+            rval = f'{data * 100:.2f}%'
         else:
             rval = str(round(data, 3))
     else:

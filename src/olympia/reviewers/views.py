@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.db.models import Prefetch, Q
+from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -109,7 +109,7 @@ from olympia.reviewers.utils import (
     UpdatedThemesQueueTable,
     ViewUnlistedAllListTable,
 )
-from olympia.scanners.models import ScannerResult
+from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 from olympia.zadmin.models import get_config, set_config
@@ -802,8 +802,6 @@ def review(request, addon, channel=None):
         else []
     )
 
-    from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
-
     ctx = context(
         # Used for reviewer subscription check, don't use global `is_reviewer`
         # since that actually is `is_user_any_kind_of_reviewer`.
@@ -830,7 +828,7 @@ def review(request, addon, channel=None):
         count=count,
         flags=flags,
         form=form,
-        formatted_matched_rules_with_files_and_data=formatted_matched_rules_with_files_and_data,
+        format_matched_rules=formatted_matched_rules_with_files_and_data,
         has_versions_pending_rejection=has_versions_pending_rejection,
         important_changes_log=important_changes_log,
         is_admin=is_admin,
