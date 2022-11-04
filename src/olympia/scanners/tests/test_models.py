@@ -143,11 +143,11 @@ class TestScannerResultMixin:
         result = self.create_customs_result()
         assert result.get_git_repository() is None
 
-    def test_get_files_by_matched_rules_with_no_yara_results(self):
+    def test_get_files_and_data_by_matched_rules_with_no_yara_results(self):
         result = self.create_yara_result()
-        assert result.get_files_by_matched_rules() == {}
+        assert result.get_files_and_data_by_matched_rules() == {}
 
-    def test_get_files_by_matched_rules_for_yara(self):
+    def test_get_files_and_data_by_matched_rules_for_yara(self):
         result = self.create_yara_result()
         rule1 = 'rule-1'
         file1 = 'file/1.js'
@@ -160,26 +160,26 @@ class TestScannerResultMixin:
         # rule1 with file2
         match3 = self.create_fake_yara_match(rule=rule1, filename=file2)
         result.add_yara_result(rule=match3.rule, tags=match3.tags, meta=match3.meta)
-        assert result.get_files_by_matched_rules() == {
-            rule1: [file1, file2],
-            rule2: [file2],
+        assert result.get_files_and_data_by_matched_rules() == {
+            rule1: [{'filename': file1}, {'filename': file2}],
+            rule2: [{'filename': file2}],
         }
 
-    def test_get_files_by_matched_rules_no_file_somehow(self):
+    def test_get_files_and_data_by_matched_rules_no_file_somehow(self):
         result = self.create_yara_result()
         rule = self.rule_model.objects.create(name='foobar', scanner=YARA)
         result.add_yara_result(rule=rule.name)
         result.save()
-        assert result.get_files_by_matched_rules() == {
-            'foobar': ['???'],
+        assert result.get_files_and_data_by_matched_rules() == {
+            'foobar': [{'filename': '???'}],
         }
 
-    def test_get_files_by_matched_rules_with_no_customs_results(self):
+    def test_get_files_and_data_by_matched_rules_with_no_customs_results(self):
         result = self.create_customs_result()
         result.results = {'matchedRules': []}
-        assert result.get_files_by_matched_rules() == {}
+        assert result.get_files_and_data_by_matched_rules() == {}
 
-    def test_get_files_by_matched_rules_for_customs(self):
+    def test_get_files_and_data_by_matched_rules_for_customs(self):
         result = self.create_customs_result()
         file1 = 'file/1.js'
         rule1 = 'rule1'
@@ -219,9 +219,9 @@ class TestScannerResultMixin:
                 },
             }
         }
-        assert result.get_files_by_matched_rules() == {
-            rule1: [file1],
-            rule3: [file3, file4],
+        assert result.get_files_and_data_by_matched_rules() == {
+            rule1: [{'data': {}, 'filename': file1}],
+            rule3: [{'data': {}, 'filename': file3}, {'data': {}, 'filename': file4}],
         }
 
 
