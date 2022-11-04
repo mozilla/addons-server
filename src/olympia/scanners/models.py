@@ -105,7 +105,7 @@ class AbstractScannerResult(ModelBase):
         if self.scanner == YARA:
             for item in self.results:
                 res[item['rule']].append(
-                    {'filename': item['meta'].get('filename', '???')}
+                    {'filename': item.get('meta', {}).get('filename', '???')}
                 )
         elif self.scanner == CUSTOMS:
             scanMap = self.results.get('scanMap', {}).copy()
