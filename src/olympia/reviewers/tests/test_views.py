@@ -3249,14 +3249,14 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         score = doc('.listing-body .maliciousness-score')
-        assert score.text() == 'Maliciousness Score: n/a ?'
+        assert score.text() == 'Maliciousness Score:\nn/a ?'
         # With a score.
         ScannerResult.objects.create(version=self.version, scanner=MAD, score=0.1)
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
         score = doc('.listing-body .maliciousness-score')
-        assert score.text() == 'Maliciousness Score: 10% ?'
+        assert score.text() == 'Maliciousness Score:\n10% ?'
 
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]
@@ -5252,8 +5252,8 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         info = doc('#versions-history div.file-permissions')
-        assert info.eq(0).text() == 'Permissions: ' + ', '.join(permissions)
-        assert info.eq(1).text() == 'Optional permissions: ' + ', '.join(
+        assert info.eq(0).text() == 'Permissions:\n' + ', '.join(permissions)
+        assert info.eq(1).text() == 'Optional permissions:\n' + ', '.join(
             optional_permissions
         )
 
@@ -5783,7 +5783,7 @@ class TestReview(ReviewBase):
                 ScannerResult.objects.create(
                     scanner=customs_rule.scanner,
                     version=version,
-                    results={'matchedResults': [customs_rule.name]},
+                    results={'matchedRules': [customs_rule.name]},
                 )
 
         with self.assertNumQueries(52):
@@ -5804,7 +5804,7 @@ class TestReview(ReviewBase):
         assert 'Scanners results:' in tds.eq(9).text()
         # There should be a link to the scanner result page. Let's check one.
         scanner_results = self.addon.versions.get(version='1.0').scannerresults.all()
-        links = tds.eq(0).find('.scanners-results a.rule-link')
+        links = tds.eq(0).find('.scanners-results a.result-link')
         for i, result in enumerate(scanner_results):
             assert links[i].attrib['href'] == reverse(
                 'admin:scanners_scannerresult_change', args=(result.pk,)
