@@ -3025,10 +3025,10 @@ class TestReview(ReviewBase):
         expected = [
             (file_.get_absolute_url(attachment=True)),
             (
-                'Validation',
+                'Validation results',
                 reverse('devhub.file_validation', args=[self.addon.slug, file_.id]),
             ),
-            ('Contents', None),
+            ('Browse contents', None),
         ]
         check_links(expected, items.find('a'), verify=False)
 
@@ -3241,25 +3241,6 @@ class TestReview(ReviewBase):
         assert icons.eq(0).attr('title') == 'Firefox for Android'
         assert icons.eq(1).attr('title') == 'Firefox'
 
-    def test_item_history_weight(self):
-        """Make sure the weight is shown on the review page"""
-        AutoApprovalSummary.objects.create(
-            version=self.version,
-            verdict=amo.AUTO_APPROVED,
-            weight=326,
-            code_weight=126,
-            metadata_weight=200,
-            weight_info={'fôo': 42, 'bär': 84, 'oof': 105, 'rab': 95},
-        )
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        url = reverse('reviewers.review', args=[self.addon.pk])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        weight = doc('.listing-body .file-weight')
-        assert weight.text() == 'Code Weight: 126\nMetadata Weight: 200'
-        assert weight.attr['title'] == 'bär: 84\nfôo: 42\noof: 105\nrab: 95'
-
     def test_maliciousness_score(self):
         self.grant_permission(self.reviewer, 'Addons:Review')
         url = reverse('reviewers.review', args=[self.addon.pk])
@@ -3411,7 +3392,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         items = doc('#versions-history .review-files .files .file-info')
         assert items.length == 1
-        assert items.find('a.reviewers-install').text() == 'All Platforms'
+        assert items.find('a.reviewers-install').text() == 'Download file'
 
     def test_no_items(self):
         response = self.client.get(self.url)
@@ -4010,8 +3991,8 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         validation = doc.find('.files')
-        assert validation.find('a').eq(1).text() == 'Validation'
-        assert validation.find('a').eq(2).text() == 'Contents'
+        assert validation.find('a').eq(1).text() == 'Validation results'
+        assert validation.find('a').eq(2).text() == 'Browse contents'
 
         assert validation.find('a').length == 3
 
@@ -5270,9 +5251,9 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        info = doc('#versions-history .file-info div')
-        assert info.eq(1).text() == 'Permissions: ' + ', '.join(permissions)
-        assert info.eq(2).text() == 'Optional permissions: ' + ', '.join(
+        info = doc('#versions-history div.file-permissions')
+        assert info.eq(0).text() == 'Permissions: ' + ', '.join(permissions)
+        assert info.eq(1).text() == 'Optional permissions: ' + ', '.join(
             optional_permissions
         )
 
@@ -5777,67 +5758,7 @@ class TestReview(ReviewBase):
         assert b'Add-on(s) sharing same ID' not in response.content
 
     def test_versions_that_are_flagged_by_scanners_are_highlighted(self):
-        self.addon.current_version.update(created=self.days_ago(366))
-        customs_rule = ScannerRule.objects.create(name='ringo', scanner=CUSTOMS)
-        yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
-        for i in range(0, 10):
-            # Add versions 1.0 to 1.9. Flag a few of them as needing human
-            # review.
-            matched_yara_rule = not bool(i % 3)
-            matched_customs_rule = not bool(i % 3) and not bool(i % 2)
-            version = version_factory(
-                addon=self.addon,
-                version=f'1.{i}',
-                needs_human_review=matched_yara_rule or matched_customs_rule,
-                created=self.days_ago(365 - i),
-            )
-            if matched_yara_rule:
-                ScannerResult.objects.create(
-                    scanner=yara_rule.scanner,
-                    version=version,
-                    results=[{'rule': yara_rule.name}],
-                )
-            if matched_customs_rule:
-                ScannerResult.objects.create(
-                    scanner=customs_rule.scanner,
-                    version=version,
-                    results={'matchedResults': [customs_rule.name]},
-                )
-        # Delete ActivityLog to make the query count easier to follow. We have
-        # other tests for the ActivityLog related stuff.
-        ActivityLog.objects.for_addons(self.addon).delete()
-        with self.assertNumQueries(51):
-            # See test_item_history_pagination() for more details about the
-            # queries count. What's important here is that the extra versions
-            # and scanner results don't cause extra queries.
-            response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        tds = doc('#versions-history .review-files td.files')
-        assert tds.length == 10
-        # Original version should not be there any more, it's on the second
-        # page. Versions on the page should be displayed in chronological order
-        # Versions 1.0, 1.3, 1.6, 1.9 are flagged for human review.
-        assert 'Flagged by scanners' in tds.eq(0).text()
-        assert 'Flagged by scanners' in tds.eq(3).text()
-        assert 'Flagged by scanners' in tds.eq(6).text()
-        assert 'Flagged by scanners' in tds.eq(9).text()
-
-        # There are no other flagged versions in the other page.
-        span = doc('#review-files-header .risk-high')
-        assert span.length == 0
-
-        # Load the second page. This time there should be a message indicating
-        # there are flagged versions in other pages.
-        response = self.client.get(self.url, {'page': 2})
-        assert response.status_code == 200
-        doc = pq(response.content)
-        span = doc('#review-files-header .risk-high')
-        assert span.length == 1
-        assert span.text() == '4 versions flagged by scanners on other pages.'
-
-    def test_versions_that_are_flagged_by_scanners_are_highlighted_admin(self):
-        self.login_as_admin()
+        self.login_as_reviewer()
         self.addon.current_version.update(created=self.days_ago(366))
         customs_rule = ScannerRule.objects.create(name='ringo', scanner=CUSTOMS)
         yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
@@ -5865,12 +5786,10 @@ class TestReview(ReviewBase):
                     results={'matchedResults': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(53):
+        with self.assertNumQueries(52):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
-            # There are 2 extra queries caused by additional stuff available to
-            # admins, but not more.
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5879,14 +5798,13 @@ class TestReview(ReviewBase):
         # Original version should not be there any more, it's on the second
         # page. Versions on the page should be displayed in chronological order
         # Versions 1.0, 1.3, 1.6, 1.9 are flagged for human review.
-        assert 'Flagged by scanners (yara, customs)' in tds.eq(0).text()
-        assert 'Flagged by scanners (yara)' in tds.eq(3).text()
-        assert 'Flagged by scanners (yara, customs)' in tds.eq(6).text()
-        assert 'Flagged by scanners (yara)' in tds.eq(9).text()
-        # We're an admin so not only does the text mention the scanner name, but there
-        # should be a link to the scanner result page. Let's check one.
+        assert 'Scanners results:' in tds.eq(0).text()
+        assert 'Scanners results:' in tds.eq(3).text()
+        assert 'Scanners results:' in tds.eq(6).text()
+        assert 'Scanners results:' in tds.eq(9).text()
+        # There should be a link to the scanner result page. Let's check one.
         scanner_results = self.addon.versions.get(version='1.0').scannerresults.all()
-        links = tds.eq(0).find('.risk-high a')
+        links = tds.eq(0).find('.scanners-results a.rule-link')
         for i, result in enumerate(scanner_results):
             assert links[i].attrib['href'] == reverse(
                 'admin:scanners_scannerresult_change', args=(result.pk,)
