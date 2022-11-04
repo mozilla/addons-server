@@ -292,7 +292,7 @@ def run_yara_query_rule(query_rule_pk):
     log.info('Fetching versions for run_yara_query_rule on rule %s', rule.pk)
     # Build a huge list of all pks we're going to run the tasks on.
     qs = Version.unfiltered.filter(
-        addon__type=amo.ADDON_EXTENSION, file__file__isnull=False
+        addon__type=amo.ADDON_EXTENSION, file__isnull=False
     ).exclude(file__file='')
     if not rule.run_on_disabled_addons:
         qs = qs.exclude(addon__status=amo.STATUS_DISABLED)
