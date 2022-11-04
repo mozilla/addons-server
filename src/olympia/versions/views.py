@@ -145,6 +145,8 @@ def download_file(request, file_id, download_type=None, **kwargs):
         url = 'https://www.mozilla.org/about/policy/transparency/'
         response['Link'] = f'<{url}>; rel="blocked-by"'
     else:
+        if not file_.file:
+            raise http.Http404()
         # We're returning a X-Accel-Redirect, we can set
         # Content-Disposition: attachment ourselves in HttpResponseXSendFile:
         # nginx won't override it if present.

@@ -26,7 +26,6 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import id_to_path, SafeStorage
-from olympia.files.fields import FilenameFileField
 from olympia.files.utils import (
     get_sha256,
     InvalidOrUnsupportedCrx,
@@ -50,12 +49,6 @@ def files_upload_to_callback(instance, filename):
     {addon_id last 2 digits}/{addon_id last 4 digits}/{addon_id}. We drop all
     non-ascii chars from the slug, and if the result is empty, fall back on the
     addon id.
-
-    For older uploads, the returned path used to be in the format of
-    {addon_id}/{addon_name}-{version}.{extension} (and even used to contain
-    compatible apps associated with the file before), and our custom
-    FilenameFileField ensured we only stored the filename without the leading
-    directory to the database for backwards-compatibility.
 
     By convention, newly signed files after 2022-03-31 get a .xpi extension,
     unsigned get .zip. This helps ensure CDN cache is busted when we sign
@@ -87,7 +80,7 @@ class File(OnChangeMixin, ModelBase):
     SUPPORTED_MANIFEST_VERSIONS = ((2, 'Manifest V2'), (3, 'Manifest V3'))
 
     version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
-    file = FilenameFileField(
+    file = models.FileField(
         max_length=255,
         default='',
         db_column='filename',
