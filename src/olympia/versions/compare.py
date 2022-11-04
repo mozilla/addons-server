@@ -1,5 +1,7 @@
 import re
 
+from django.utils.functional import cached_property
+
 
 BIGINT_POSITIVE_MAX = 2**63 - 1
 APP_MAJOR_VERSION_PART_MAX = 2**16 - 1
@@ -40,8 +42,8 @@ def version_dict(version):
     return vdict
 
 
-def list_get(lst, idx, default):
-    return lst[idx] if idx < len(lst) else default
+def seq_get(sequence, index, default):
+    return sequence[index] if index < len(sequence) else default
 
 
 class VersionString(str):
@@ -60,7 +62,7 @@ class VersionString(str):
         SPLIT_INT_REGEX = re.compile(r' *(?P<int>\-?[\d]+)(?P<rest>.*)')
         SPLIT_STR_REGEX = re.compile(r'(?P<str>[^\d\-]+)(?P<int>\-?[\d]*)(?P<rest>.*)')
 
-        def __init__(self, part_string):
+        def __init__(self, part_string=''):
             if not part_string:
                 return
 
@@ -134,11 +136,9 @@ class VersionString(str):
         def __repr__(self):
             return f'{self.asdict()}'
 
-    @property
+    @cached_property
     def vparts(self):
-        if not hasattr(self, '_vparts'):
-            self._vparts = tuple(self.Part(vpart) for vpart in self.split('.'))
-        return self._vparts
+        return tuple(self.Part(vpart) for vpart in self.split('.'))
 
     def __eq__(self, other):
         if other is None or (bool(self) ^ bool(other)):
@@ -148,15 +148,13 @@ class VersionString(str):
         self_part = self.Part('')
         other_part = self.Part('')
         for idx in range(0, max(len(self.vparts), len(other.vparts))):
-            self_part = list_get(
-                self.vparts,
-                idx,
-                self_part if self_part == self.Part('*') else self.Part(''),
+            self_part = seq_get(
+                self.vparts, idx, self_part if self_part.a == ASTERISK else self.Part()
             )
-            other_part = list_get(
+            other_part = seq_get(
                 other.vparts,
                 idx,
-                other_part if other_part == self.Part('*') else self.Part(''),
+                other_part if other_part.a == ASTERISK else self.Part(),
             )
             if self_part != other_part:
                 return False
@@ -166,8 +164,8 @@ class VersionString(str):
         if not isinstance(other, self.__class__):
             other = self.__class__(other)
         for idx in range(0, max(len(self.vparts), len(other.vparts))):
-            self_part = list_get(self.vparts, idx, self.Part(''))
-            other_part = list_get(other.vparts, idx, self.Part(''))
+            self_part = seq_get(self.vparts, idx, self.Part())
+            other_part = seq_get(other.vparts, idx, self.Part())
             if self_part != other_part:
                 return self_part > other_part
         return False
