@@ -65,6 +65,7 @@ def formatted_matched_rules_with_files_and_data(
     return render_to_string(
         f'admin/scanners/scannerresult/{template_name}.html',
         {
+            'obj': obj,
             'clamp_at': clamp_at,
             'display_data': display_data,
             'display_scanner': display_scanner,

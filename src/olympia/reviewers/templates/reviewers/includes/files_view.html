@@ -1,37 +1,31 @@
-<div>
-<ul>
-<li class="file-info">
-  <span class="light">
-    <strong><a href="{{ file.get_absolute_url(attachment=True) }}" class="reviewers-install"
-        data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download file') }}</a></strong>
-    &middot;
-    <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation results') }}</a>
-    &middot;
-    <a
-      href="{{ code_manager_url('browse', addon.pk, version.pk) }}"
-      title="{{ _('Browse all files in this version') }}"
-      >
-        {{ _('Browse contents') }}
-    </a>
-    {% if base_version_pk and version == latest_not_disabled_version %}
-    &middot;
-    <a
-      class="compare"
-      href="{{ code_manager_url('compare', addon.pk, version.pk, base_version_pk) }}"
-      title="{{ _('Compare this version to the last reviewed version') }}"
+<div class="file-info light">
+  <strong><a href="{{ file.get_absolute_url(attachment=True) }}" class="reviewers-install"
+      data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download file') }}</a></strong>
+  &middot;
+  <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">{{ _('Validation results') }}</a>
+  &middot;
+  <a
+    href="{{ code_manager_url('browse', addon.pk, version.pk) }}"
+    title="{{ _('Browse all files in this version') }}"
     >
-      {{ _('Compare with last reviewed') }}
-    </a>
-    {% endif %}
-  </span>
-</li>
-</ul>
+      {{ _('Browse contents') }}
+  </a>
+  {% if base_version_pk and version == latest_not_disabled_version %}
+  &middot;
+  <a
+    class="compare"
+    href="{{ code_manager_url('compare', addon.pk, version.pk, base_version_pk) }}"
+    title="{{ _('Compare this version to the last reviewed version') }}"
+  >
+    {{ _('Compare with last reviewed') }}
+  </a>
+  {% endif %}
 </div>
 <div>
   {% if file.permissions %}
-    <div class="file-permissions"><strong>{{ _('Permissions:') }}</strong> {{ ', '.join(file.permissions) }}</div>
+    <div class="file-permissions"><h5>{{ _('Permissions:') }}</h5> {{ ', '.join(file.permissions) }}</div>
   {% endif %}
   {% if file.optional_permissions %}
-    <div class="file-permissions"><strong>{{ _('Optional permissions:') }}</strong> {{ ', '.join(file.optional_permissions) }}</div>
+    <div class="file-permissions"><h5>{{ _('Optional permissions:') }}</h5> {{ ', '.join(file.optional_permissions) }}</div>
   {% endif %}
 </div>

@@ -7,6 +7,11 @@
 {# Note that this is a django template and not jinja2!                      #}
 
 <table>
+  {% if display_scanner %}
+  <caption>
+    <a href="{% url 'admin:scanners_scannerresult_change' obj.pk %}">{{ obj.get_scanner_display }}</a>
+  </caption>
+  {% endif %}
   <thead>
     <tr>
       <th class="rule_name">Rule name</th>
@@ -16,7 +21,7 @@
   {% for rule in matched_rules %}
   <tr>
     <td>
-      <a href="{% url rule_change_urlname rule.pk %}">{{ rule.name }}{% if display_scanner %} ({{ rule.scanner }}){% endif %}</a>
+      <a class="rule-link" href="{% url rule_change_urlname rule.pk %}">{{ rule.name }}</a>
     </td>
     <td>
       <ul>
@@ -37,7 +42,7 @@
         {% endif %}
       {% endfor %}
       {% if rule.files_not_shown > 0 %}
-        …and {{ rule.files_not_shown }} more files
+        <li> …and {{ rule.files_not_shown }} more files </li>
       {% endif %}
     </td>
   </tr>
