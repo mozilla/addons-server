@@ -209,6 +209,10 @@ class TestScannerResultMixin:
                     rule2: {},
                     rule3: {
                         'RULE_HAS_MATCHED': True,
+                        'EXTRA': [
+                            'some',
+                            'thing',
+                        ],
                     },
                 },
                 file4: {
@@ -217,11 +221,26 @@ class TestScannerResultMixin:
                         'RULE_HAS_MATCHED': True,
                     },
                 },
+                '__GLOBAL__': {
+                    rule1: {
+                        'RULE_HAS_MATCHED': True,
+                        'MAWR_DATA': [
+                            'foo',
+                            'bar',
+                        ],
+                    }
+                },
             }
         }
         assert result.get_files_and_data_by_matched_rules() == {
-            rule1: [{'data': {}, 'filename': file1}],
-            rule3: [{'data': {}, 'filename': file3}, {'data': {}, 'filename': file4}],
+            rule1: [
+                {'data': {}, 'filename': file1},
+                {'data': {'MAWR_DATA': ['foo', 'bar']}, 'filename': ''},
+            ],
+            rule3: [
+                {'data': {'EXTRA': ['some', 'thing']}, 'filename': file3},
+                {'data': {}, 'filename': file4},
+            ],
         }
 
 
