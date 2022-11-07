@@ -291,9 +291,12 @@ class DeleteTokenSigner(TimestampSigner):
 
 
 def webext_version_stats(request, source):
+    log.info(f'webext_version_stats header: {request.META.get("HTTP_USER_AGENT")}')
     webext_version_match = re.match(
         r'web-ext/([\d\.]+)$', request.META.get('HTTP_USER_AGENT') or ''
     )
     if webext_version_match:
         webext_version = webext_version_match[1].replace('.', '_')
+        log.info(f'webext_version_stats webext_version: {webext_version}')
         statsd.incr(f'{source}.webext_version.{webext_version}')
+    log.info(f'webext_version_stats no match')
