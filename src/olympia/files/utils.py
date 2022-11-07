@@ -43,7 +43,8 @@ class ParseError(forms.ValidationError):
     pass
 
 
-VERSION_RE = re.compile(r'^[-+*.\w]{,32}$')
+# Note: Long strings are a DOS risk, so always check the length of input to this regex.
+VERSION_RE = re.compile(r'^[-+*.\w]*$', re.ASCII)
 SIGNED_RE = re.compile(r'^META\-INF/(\w+)\.(rsa|sf)$')
 
 # This is essentially what Firefox matches
