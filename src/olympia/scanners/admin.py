@@ -102,10 +102,10 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
 
     def field_choices(self, field, request, model_admin):
         return [
-            (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
+            (rule.pk, f'{rule} ({rule.get_scanner_display()})')
             for rule in field.related_model.objects.only(
-                'pk', 'scanner', 'name'
-            ).order_by('scanner', 'name')
+                'pk', 'scanner', 'pretty_name', 'name'
+            ).order_by('scanner', 'pretty_name', 'name')
         ]
 
 
@@ -132,10 +132,10 @@ class ExcludeMatchedRulesFilter(SimpleListFilter):
         # None is not included, since it's a <select multiple> to remove all
         # rules the user should deselect all <option> from the dropdown.
         return [
-            (rule.pk, f'{rule.name} ({rule.get_scanner_display()})')
-            for rule in ScannerRule.objects.only('pk', 'scanner', 'name').order_by(
-                'scanner', 'name'
-            )
+            (rule.pk, f'{rule} ({rule.get_scanner_display()})')
+            for rule in ScannerRule.objects.only(
+                'pk', 'scanner', 'pretty_name', 'name'
+            ).order_by('scanner', 'pretty_name', 'name')
         ]
 
     def choices(self, cl):
@@ -444,7 +444,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                 [
                     '<a href="{}">{} ({})</a>'.format(
                         reverse('admin:%s_%s_change' % info, args=[rule.pk]),
-                        rule.name,
+                        str(rule),
                         rule.get_scanner_display(),
                     )
                     for rule in rules
@@ -474,7 +474,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                 'matched_rules': [
                     {
                         'pk': rule.pk,
-                        'name': rule.name,
+                        'name': str(rule),
                         'files': files_by_matched_rules[rule.name],
                     }
                     for rule in rules
@@ -490,11 +490,12 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     view_on_site = False
 
-    list_display = ('name', 'scanner', 'action', 'is_active')
+    list_display = ('__str__', 'scanner', 'action', 'is_active')
     list_filter = ('scanner', 'action', 'is_active')
     fields = (
         'scanner',
         'name',
+        'pretty_name',
         'action',
         'created',
         'modified',
@@ -898,7 +899,7 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
 @admin.register(ScannerQueryRule)
 class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
     list_display = (
-        'name',
+        '__str__',
         'scanner',
         'run_on_disabled_addons',
         'created',
@@ -912,6 +913,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'run_on_disabled_addons',
         'state_with_actions',
         'name',
+        'pretty_name',
         'created',
         'modified',
         'completion_rate',

@@ -124,6 +124,13 @@ class AbstractScannerRule(ModelBase):
         max_length=200,
         help_text=_('This is the exact name of the rule used by a scanner.'),
     )
+    pretty_name = models.CharField(
+        default='',
+        help_text=_('Human-readable name for the scanner rule'),
+        max_length=255,
+        blank=True,
+        verbose_name=_('Human-readable name'),
+    )
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
     definition = models.TextField(null=True, blank=True)
 
@@ -144,7 +151,7 @@ class AbstractScannerRule(ModelBase):
         }
 
     def __str__(self):
-        return self.name
+        return self.pretty_name or self.name
 
     def clean(self):
         if self.scanner == YARA:
