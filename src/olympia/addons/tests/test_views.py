@@ -14,7 +14,6 @@ from urllib.parse import unquote
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.utils import override_settings
 from django.urls import reverse

@@ -5,8 +5,6 @@ from django.db.models import Max, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
 
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers, status

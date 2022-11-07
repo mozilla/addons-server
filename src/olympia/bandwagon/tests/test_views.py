@@ -3,12 +3,10 @@ import json
 import django.test
 
 from django.conf import settings
-from django.http import HttpResponse
 from django.test.utils import override_settings
 from django.utils.cache import get_max_age
 
 from rest_framework.fields import empty
-from rest_framework.response import Response
 
 from olympia import amo
 from olympia.amo.tests import (
