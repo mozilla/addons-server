@@ -40,6 +40,7 @@ from olympia.files.models import FileUpload
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
     formatted_matched_rules_with_files_and_data,
+    ExcludeMatchedRulesFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
     ScannerResultAdmin,
