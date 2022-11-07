@@ -1031,7 +1031,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_no_caching(expected_num_queries=26)
+        self._test_response(expected_num_queries=26)
 
     def test_no_caching_authenticated_by_username(self):
         self.user.update(username='notmozilla')
@@ -1044,12 +1044,11 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         )
         self.client.login_api(self.user)
         # Passing authentication makes an extra query. We should not be caching.
-        self._test_no_caching(expected_num_queries=26)
+        self._test_response(expected_num_queries=26)
 
     def test_no_caching_anonymous_not_mozilla_collection(self):
-        # No caching done by addons-server, but we get the Cache-Control set
-        # from middleware.
-        self._test_no_caching(expected_max_age=180)
+        # We get the Cache-Control set from middleware (not the view).
+        self._test_response(expected_max_age=180)
 
     def test_no_caching_anonymous_but_not_mozilla_collection_by_username(self):
         self.user.update(username='notmozilla')
@@ -1060,7 +1059,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
                 'collection_slug': self.collection.slug,
             },
         )
-        self._test_no_caching(expected_max_age=180)
+        self._test_response(expected_max_age=180)
 
     def test_caching_anonymous(self):
         self.user = user_factory(id=settings.TASK_USER_ID)
@@ -1069,7 +1068,7 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
             'collection-addon-list',
             kwargs={'user_pk': self.user.pk, 'collection_slug': self.collection.slug},
         )
-        self._test_caching()
+        self._test_response(expected_max_age=7200)
 
     def test_caching_anonymous_by_username(self):
         self.user.update(username='mozilla')
@@ -1080,13 +1079,11 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
                 'collection_slug': self.collection.slug,
             },
         )
-        self._test_caching()
+        self._test_response(expected_max_age=7200)
 
-    def _test_no_caching(self, expected_num_queries=25, expected_max_age=None):
+    def _test_response(self, expected_num_queries=25, expected_max_age=None):
         with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
-        # We aren't caching so we should be swapping DRF's Response with HttpResponse.
-        assert isinstance(response, Response)
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 3
@@ -1098,61 +1095,10 @@ class TestCollectionAddonViewSetList(CollectionAddonViewSetMixin, TestCase):
         self.collection.addons.remove(self.addon_a)
         with self.assertNumQueries(expected_num_queries):
             response = self.client.get(self.url)
-        assert isinstance(response, Response)
         assert response['Content-Type'] == 'application/json'
         assert response.status_code == 200
         assert len(response.json()['results']) == 2
         assert get_max_age(response) == expected_max_age
-
-    def _test_caching(self):
-        # Force first add-on to have an enormous description (large enough
-        # that the response being an HttpResponse and not a DRF Response would
-        # matter, but not too large so that it makes pickling even an
-        # HttpResponse over 1MB)
-        self.addon_a.description = 'Desc' * 131072
-        self.addon_a.save()
-
-        # See test_basic() below for the queries breakdown. What matters here
-        # is that when we're being served a cached response we aren't doing
-        # any queries besides the 2 savepoints.
-        with self.assertNumQueries(25):
-            response = self.client.get(self.url)
-        # For this API we're returning a HttpResponse directly, not a Response,
-        # to improve pickled size to help caching.
-        assert isinstance(response, HttpResponse)
-        assert response['Content-Type'] == 'application/json'
-        assert response.status_code == 200
-        assert len(response.json()['results']) == 3
-        assert response['Cache-Control'] == 'max-age=3600'
-
-        # We should get a cached response with 3 add-ons.
-        self.collection.addons.remove(self.addon_a)
-        with self.assertNumQueries(2):
-            response = self.client.get(self.url)
-        assert isinstance(response, HttpResponse)
-        assert response['Content-Type'] == 'application/json'
-        assert response.status_code == 200
-        assert len(response.json()['results']) == 3
-        assert response['Cache-Control'] == 'max-age=3600'
-
-        # Any URL parameter added creates a separate cache key as well, so we
-        # see the updated results with a new URL.
-        with self.assertNumQueries(25):
-            response = self.client.get(self.url, {'foo': 'bar'})
-        assert isinstance(response, HttpResponse)
-        assert response['Content-Type'] == 'application/json'
-        assert response.status_code == 200
-        assert len(response.json()['results']) == 2
-        assert response['Cache-Control'] == 'max-age=3600'
-
-        # Old response remains cached.
-        with self.assertNumQueries(2):
-            response = self.client.get(self.url)
-        assert isinstance(response, HttpResponse)
-        assert response['Content-Type'] == 'application/json'
-        assert response.status_code == 200
-        assert len(response.json()['results']) == 3
-        assert response['Cache-Control'] == 'max-age=3600'
 
     def test_basic(self):
         with self.assertNumQueries(25):
