@@ -141,9 +141,11 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         # label_from_instance() on VersionsChoiceField returns the full object,
         # not a label, this is what makes this work.
         obj = option['label']
-        status = obj.file.status if obj.file else None
-        versions_actions = getattr(self, 'versions_actions', None)
-        if versions_actions:
+        if getattr(self, 'versions_actions', None):
+            status = obj.file.status if obj.file else None
+            if status == amo.STATUS_DISABLED and obj.is_blocked:
+                # Override status for blocked versions: we don't want them unrejected.
+                status = None
             # Add our special `data-toggle` class and the right `data-value` depending
             # on status.
             option['attrs']['class'] = 'data-toggle'
