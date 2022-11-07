@@ -75,7 +75,7 @@ def formatted_matched_rules_with_files_and_data(
             'matched_rules': [
                 {
                     'pk': rule.pk,
-                    'name': rule.name,
+                    'name': str(rule),
                     'scanner': rule.get_scanner_display(),
                     'files_and_data': files_and_data_by_matched_rules[rule.name][
                         :clamp_at
