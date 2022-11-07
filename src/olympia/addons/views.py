@@ -5,8 +5,6 @@ from django.db.models import Max, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
 
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers, status
@@ -1127,17 +1125,16 @@ class LanguageToolsView(ListAPIView):
             .distinct()
         )
 
-    @method_decorator(cache_page(60 * 60 * 24))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
     def list(self, request, *args, **kwargs):
         # Ignore pagination (return everything) but do wrap the data in a
         # 'results' property to mimic what the default implementation of list()
         # does in DRF.
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
-        return Response({'results': serializer.data})
+        response = Response({'results': serializer.data})
+        # Cache on the CDN/clients for 24 hours.
+        patch_cache_control(response, max_age=60 * 60 * 24)
+        return response
 
 
 class ReplacementAddonView(ListAPIView):
