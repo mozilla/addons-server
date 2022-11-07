@@ -299,4 +299,4 @@ def webext_version_stats(request, source):
         webext_version = webext_version_match[1].replace('.', '_')
         log.info(f'webext_version_stats webext_version: {webext_version}')
         statsd.incr(f'{source}.webext_version.{webext_version}')
-    log.info(f'webext_version_stats no match')
+    log.info('webext_version_stats no match')
