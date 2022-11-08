@@ -442,8 +442,9 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
         return format_html(
             ', '.join(
                 [
-                    '<a href="{}">{} ({})</a>'.format(
+                    '<a href="{}" title="{}">{} ({})</a>'.format(
                         reverse('admin:%s_%s_change' % info, args=[rule.pk]),
+                        str(rule.description),
                         str(rule),
                         rule.get_scanner_display(),
                     )
@@ -475,6 +476,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
                     {
                         'pk': rule.pk,
                         'name': str(rule),
+                        'description': str(rule.description),
                         'files': files_by_matched_rules[rule.name],
                     }
                     for rule in rules
@@ -496,6 +498,7 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
         'scanner',
         'name',
         'pretty_name',
+        'description',
         'action',
         'created',
         'modified',
@@ -914,6 +917,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
         'state_with_actions',
         'name',
         'pretty_name',
+        'description',
         'created',
         'modified',
         'completion_rate',

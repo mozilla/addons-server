@@ -131,6 +131,12 @@ class AbstractScannerRule(ModelBase):
         blank=True,
         verbose_name=_('Human-readable name'),
     )
+    description = models.CharField(
+        default='',
+        help_text=_('Human readable description for the scanner rule'),
+        max_length=255,
+        blank=True,
+    )
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
     definition = models.TextField(null=True, blank=True)
 

@@ -11,7 +11,7 @@
   </thead>
   {% for rule in matched_rules %}
   <tr>
-    <td><a href="{% url rule_change_urlname rule.pk %}">{{ rule.name }}</a></td>
+    <td><a href="{% url rule_change_urlname rule.pk %}" title="{{ rule.description }} ">{{ rule.name }}</a></td>
     <td>
       {% for file in rule.files %}
         {% if file_id %}
