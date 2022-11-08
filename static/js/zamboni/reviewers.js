@@ -104,6 +104,21 @@ function initReviewActions() {
     showForm(review_checked.closest('li'), true);
   }
 
+  /* Review action reason stuff */
+  $('.review-actions-reasons-select input').change(function () {
+    const cannedResponse = this.dataset.value;
+    if (cannedResponse.length) {
+      if (this.checked) {
+        insertAtCursor($('#id_comments'), cannedResponse);
+      } else {
+        // Attempt to remove the canned response related to the reason.
+        $('#id_comments').val(
+          $('#id_comments').val().replace(cannedResponse, ''),
+        );
+      }
+    }
+  });
+
   /* Install Triggers */
 
   $('.files .install').click(

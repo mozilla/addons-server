@@ -169,6 +169,7 @@ class TestReviewForm(TestCase):
         self.reason_a = ReviewActionReason.objects.create(
             name='a reason',
             is_active=True,
+            canned_response='Canned response for A',
         )
         self.inactive_reason = ReviewActionReason.objects.create(
             name='b inactive reason',
@@ -177,6 +178,7 @@ class TestReviewForm(TestCase):
         self.reason_c = ReviewActionReason.objects.create(
             name='c reason',
             is_active=True,
+            canned_response='Canned response for C',
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
@@ -184,6 +186,12 @@ class TestReviewForm(TestCase):
         # Reasons are displayed in alphabetical order.
         assert list(choices.queryset)[0] == self.reason_a
         assert list(choices.queryset)[1] == self.reason_c
+
+        # Assert that the canned_response is written to data-value of the
+        # checkboxes.
+        doc = pq(str(form['reasons']))
+        assert doc('input')[0].attrib.get('data-value') == self.reason_a.canned_response
+        assert doc('input')[1].attrib.get('data-value') == self.reason_c.canned_response
 
     def test_reasons_required(self):
         self.grant_permission(self.request.user, 'Addons:Review')

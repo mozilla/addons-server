@@ -158,6 +158,34 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         return option
 
 
+class ReasonsChoiceField(ModelMultipleChoiceField):
+    """
+    Widget to use together with ReasonsChoiceWidget to display checkboxes
+    with extra data for the canned responses.
+    """
+
+    def label_from_instance(self, obj):
+        """Return the object instead of transforming into a label at this stage
+        so that it's available in the widget."""
+        return obj
+
+
+class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
+    """
+    Widget to use together with ReasonsChoiceField to display checkboxes
+    with extra data for the canned responses.
+    """
+
+    def create_option(self, *args, **kwargs):
+        option = super().create_option(*args, **kwargs)
+        # label_from_instance() on ReasonsChoiceField returns the full object,
+        # not a label, this is what makes this work.
+        obj = option['label']
+        option['attrs']['data-value'] = obj.canned_response
+        option['label'] = str(obj)
+        return option
+
+
 class ReviewForm(forms.Form):
     # Hack to restore behavior from pre Django 1.10 times.
     # Django 1.10 enabled `required` rendering for required widgets. That
@@ -221,11 +249,11 @@ class ReviewForm(forms.Form):
         min_value=1,
         max_value=99,
     )
-    reasons = forms.ModelMultipleChoiceField(
+    reasons = ReasonsChoiceField(
         label=_('Choose one or more reasons:'),
         queryset=ReviewActionReason.objects.filter(is_active__exact=True),
         required=True,
-        widget=forms.CheckboxSelectMultiple,
+        widget=ReasonsChoiceWidget,
     )
     version_pk = forms.IntegerField(required=False, min_value=1)
 
