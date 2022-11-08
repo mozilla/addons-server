@@ -339,6 +339,12 @@ class TestScannerQueryResult(TestScannerResultMixin, TestCase):
 class TestScannerRuleMixin:
     __test__ = False
 
+    def test_str(self):
+        result = self.model(name='Fôo')
+        assert str(result) == 'Fôo'
+        result.pretty_name = 'Bär'
+        assert str(result) == 'Bär'
+
     def test_clean_raises_for_yara_rule_without_a_definition(self):
         rule = self.model(name='some_rule', scanner=YARA)
 
