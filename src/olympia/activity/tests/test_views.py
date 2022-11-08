@@ -4,18 +4,19 @@ from unittest import mock
 
 from django.test.utils import override_settings
 
+from rest_framework.test import APIRequestFactory
+
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken, GENERIC_USER_NAME
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
-from olympia.activity.views import EmailCreationPermission, inbound_email
+from olympia.activity.views import inbound_email, InboundEmailIPPermission
 from olympia.addons.models import AddonUser, AddonRegionalRestrictions
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
     addon_factory,
-    req_factory_factory,
     reverse_ns,
     user_factory,
     version_factory,
@@ -489,7 +490,7 @@ class TestEmailApi(TestCase):
         # after having built the json representation of it, then fed into
         # BytesIO().
         datastr = json.dumps(data).encode('utf-8')
-        req = req_factory_factory(reverse_ns('inbound-email-api'), post=True)
+        req = APIRequestFactory().post(reverse_ns('inbound-email-api'))
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['CONTENT_LENGTH'] = len(datastr)
         req.META['CONTENT_TYPE'] = 'application/json'
@@ -497,9 +498,7 @@ class TestEmailApi(TestCase):
         return req
 
     def get_validation_request(self, data):
-        req = req_factory_factory(
-            url=reverse_ns('inbound-email-api'), post=True, data=data
-        )
+        req = APIRequestFactory().post(reverse_ns('inbound-email-api'), data=data)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         return req
 
@@ -522,23 +521,41 @@ class TestEmailApi(TestCase):
         assert logs.count() == 1
         assert logs.get(action=amo.LOG.REVIEWER_REPLY_VERSION.id)
 
-    def test_allowed(self):
-        assert EmailCreationPermission().has_permission(
-            self.get_request({'SecretKey': 'SOME SECRET KEY'}), None
-        )
+    def test_ip_allowed(self):
+        assert InboundEmailIPPermission().has_permission(self.get_request({}), None)
 
     def test_ip_denied(self):
-        req = self.get_request({'SecretKey': 'SOME SECRET KEY'})
-        req.META['REMOTE_ADDR'] = '10.10.10.1'
-        assert not EmailCreationPermission().has_permission(req, None)
-
-    def test_no_postfix_token(self):
         req = self.get_request({})
-        assert not EmailCreationPermission().has_permission(req, None)
+        req.META['REMOTE_ADDR'] = '10.10.10.1'
+        assert not InboundEmailIPPermission().has_permission(req, None)
 
-    def test_postfix_token_denied(self):
-        req = self.get_request({'SecretKey': 'WRONG SECRET'})
-        assert not EmailCreationPermission().has_permission(req, None)
+    @override_settings(DATA_UPLOAD_MAX_MEMORY_SIZE=42)
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_content_too_long(self, _mock):
+        data = {'Message': 'something', 'SpamScore': 4.56}
+        assert len(json.dumps(data)) == 43
+        req = self.get_request(data)
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 413
+        res.render()
+        assert b'Request content length exceeds 42.' in res.content
+
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_no_secret_key(self, _mock):
+        req = self.get_request({'Message': 'something', 'SpamScore': 4.56})
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 403
+
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_wrong_secret_key(self, _mock):
+        req = self.get_request(
+            {'SecretKey': 'WRONG SECRET', 'Message': 'something', 'SpamScore': 4.56}
+        )
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 403
 
     @mock.patch('olympia.activity.tasks.process_email.apply_async')
     def test_successful(self, _mock):
