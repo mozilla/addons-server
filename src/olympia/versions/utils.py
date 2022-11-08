@@ -26,7 +26,7 @@ def get_next_version_number(addon):
 
     version_counter = 1
     while True:
-        next_version = '%s.0' % (last_version.version['major'] + version_counter)
+        next_version = '%s.0' % (last_version.version.vparts[0].a + version_counter)
         if not Version.unfiltered.filter(addon=addon, version=next_version).exists():
             return next_version
         else:
