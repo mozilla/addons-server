@@ -1,17 +1,14 @@
-import json
-
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from django.utils.encoding import force_str
-from django.utils.translation import gettext
 
-from rest_framework import status
+from django.utils.translation import gettext, gettext_lazy as _
+
+from rest_framework import exceptions, status
 from rest_framework.decorators import (
     api_view,
     authentication_classes,
     permission_classes,
 )
-from rest_framework.exceptions import ParseError
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -20,9 +17,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.activity.models import (
-    ActivityLog,
-)
+from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
@@ -94,7 +89,7 @@ class VersionReviewNotesViewSet(
             channel=version.channel, exclude=()
         )
         if version != latest_version:
-            raise ParseError(
+            raise exceptions.ParseError(
                 gettext('Only latest versions of addons can have notes added.')
             )
         activity_object = log_and_notify(
@@ -110,22 +105,10 @@ class VersionReviewNotesViewSet(
 log = olympia.core.logger.getLogger('z.amo.activity')
 
 
-class EmailCreationPermission:
+class InboundEmailIPPermission:
     """Permit if client's IP address is allowed."""
 
     def has_permission(self, request, view):
-        try:
-            # request.data isn't available at this point.
-            data = json.loads(force_str(request.body))
-        except ValueError:
-            # Verification checks don't send JSON, but do send the key as POST.
-            data = request.POST
-
-        secret_key = data.get('SecretKey', '')
-        if not secret_key == settings.INBOUND_EMAIL_SECRET_KEY:
-            log.info(f'Invalid secret key [{secret_key}] provided; data [{data}]')
-            return False
-
         remote_ip = request.META.get('REMOTE_ADDR', '')
         allowed_ips = settings.ALLOWED_CLIENTS_EMAIL_API
         if allowed_ips and remote_ip not in allowed_ips:
@@ -135,18 +118,48 @@ class EmailCreationPermission:
         return True
 
 
+class RequestTooLargeException(exceptions.APIException):
+    status_code = status.HTTP_413_REQUEST_ENTITY_TOO_LARGE
+    default_detail = _('Request content length is too large.')
+    default_code = 'request_too_large'
+
+
 @api_view(['POST'])
 @authentication_classes(())
-@permission_classes((EmailCreationPermission,))
+@permission_classes((InboundEmailIPPermission,))
 def inbound_email(request):
+    def check_secret_key(request):
+        data = request.data
+        secret_key = data.get('SecretKey', '')
+        if not secret_key == settings.INBOUND_EMAIL_SECRET_KEY:
+            log.info(f'Invalid secret key [{secret_key}] provided; [{data=}]')
+            raise exceptions.PermissionDenied()
+
+    def check_content_length(request):
+        try:
+
+            length = int(request.META.get('CONTENT_LENGTH'))
+        except ValueError:
+            length = 0
+
+        max_length = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+        if length > max_length:
+            log.info(f'Inbound email over content length: {length}')
+            raise RequestTooLargeException(
+                f'Request content length exceeds {max_length}.'
+            )
+
+    check_content_length(request)
+    check_secret_key(request)
+
     validation_response = settings.INBOUND_EMAIL_VALIDATION_KEY
-    if request.data.get('Type', '') == 'Validation':
+    if request.data.get('Type') == 'Validation':
         # Its just a verification check that the end-point is working.
         return Response(data=validation_response, status=status.HTTP_200_OK)
 
     message = request.data.get('Message', None)
     if not message:
-        raise ParseError(detail='Message not present in the POST data.')
+        raise exceptions.ParseError(detail='Message not present in the POST data.')
 
     spam_rating = request.data.get('SpamScore', 0.0)
     process_email.apply_async((message, spam_rating))
