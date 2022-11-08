@@ -77,12 +77,9 @@ function initReviewActions() {
     }
 
     // Hide everything, then show the ones containing the value we're
-    // interested in. An extra | (the separator used) is added at the end
-    // to make sure we don't match things with a common prefix (i.e. don't
-    // show elements with data-value="reject_multiple_versions" when the
-    // value is "reject".)
+    // interested in. Values are padded with spaces so we don't match a substring.)
     $data_toggle.hide();
-    $data_toggle.filter('[data-value*="' + value + '|"]').show();
+    $data_toggle.filter('[data-value*=" ' + value + ' "]').show();
 
     /* Fade out canned responses */
     var label = $element.text().trim();
