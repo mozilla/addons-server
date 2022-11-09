@@ -3,6 +3,7 @@ import os
 import tempfile
 import zipfile
 
+import pytest
 from unittest import mock
 from waffle.testutils import override_switch
 
@@ -16,6 +17,13 @@ from olympia.files.tests.test_utils import AppVersionsMixin
 
 
 class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
+    @pytest.fixture(autouse=True)
+    def set_tempfile_tempdir_for_class(self, tmp_path):
+        original = tempfile.tempdir
+        tempfile.tempdir = str(tmp_path)
+        yield
+        tempfile.tempdir = original
+
     @mock.patch('olympia.amo.utils.SafeStorage.move_stored_file')
     @mock.patch('olympia.files.tasks.get_sha256')
     @mock.patch('olympia.files.tasks.shutil')
