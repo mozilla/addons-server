@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap as DjangoSitemap
+from django.core.paginator import PageNotAnInteger
 from django.db.models import Count, Max, Q
 from django.template import loader
 from django.utils.functional import cached_property
@@ -42,6 +43,10 @@ FRONTEND_LANGUAGES = [
     'ru',
     'zh-CN',
 ]
+
+
+class InvalidSection(Exception):
+    pass
 
 
 class LazyTupleList:
@@ -469,16 +474,23 @@ def render_index_xml(sitemaps):
 
 
 def get_sitemap_path(section, app, page=1):
-    if section is None or app is None:
-        # If we don't have a section or app, we don't need a complex directory
-        # structure and we can call the first page 'sitemap' for convenience
-        # (it's likely going to be the only page).
-        endpath = str(page) if page != 1 else 'sitemap'
+    if section is None:
+        sitemap_path = 'sitemap.xml'
     else:
-        endpath = id_to_path(page)
-    return os.path.join(
-        settings.SITEMAP_STORAGE_PATH,
-        section or '',
-        app or '',
-        f'{endpath}.xml',
-    )
+        if (section, amo.APPS.get(app, '') if app else app) not in get_sitemaps():
+            raise InvalidSection
+        try:
+            int(page)
+        except ValueError:
+            raise PageNotAnInteger
+        if app is None:
+            # If we don't have a section or app, we don't need a complex directory
+            # structure and we can call the first page 'sitemap' for convenience
+            # (it's likely going to be the only page).
+            sitemap_path = os.path.join(
+                section, f'{"sitemap" if page == 1 else page}.xml'
+            )
+        else:
+            sitemap_path = os.path.join(section, app, f'{id_to_path(page)}.xml')
+
+    return os.path.join(settings.SITEMAP_STORAGE_PATH, sitemap_path)

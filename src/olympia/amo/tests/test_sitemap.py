@@ -3,6 +3,7 @@ from unittest import mock
 from datetime import datetime
 
 from django.conf import settings
+from django.core.paginator import PageNotAnInteger
 from django.test import override_settings
 from django.urls import reverse
 
@@ -17,6 +18,7 @@ from olympia.amo.sitemap import (
     get_sitemap_path,
     get_sitemap_section_pages,
     get_sitemaps,
+    InvalidSection,
     render_index_xml,
     TagPagesSitemap,
 )
@@ -745,16 +747,46 @@ def test_sitemap_render():
             assert android_built == sitemap.read()
 
 
-def test_get_sitemap_path():
-    basepath = settings.SITEMAP_STORAGE_PATH
-    assert get_sitemap_path(None, None) == f'{basepath}/sitemap.xml'
-    assert get_sitemap_path('foo', None) == f'{basepath}/foo/sitemap.xml'
-    assert get_sitemap_path('foo', 'bar') == f'{basepath}/foo/bar/1/01/1.xml'
-    assert get_sitemap_path('foo', None, 1) == f'{basepath}/foo/sitemap.xml'
-    assert get_sitemap_path('foo', None, 2) == f'{basepath}/foo/2.xml'
-    assert get_sitemap_path('foo', None, 89) == f'{basepath}/foo/89.xml'
-    assert get_sitemap_path('foo', None, 4321) == f'{basepath}/foo/4321.xml'
-    assert get_sitemap_path('foo', 'bar', 1) == f'{basepath}/foo/bar/1/01/1.xml'
-    assert get_sitemap_path('foo', 'bar', 2) == f'{basepath}/foo/bar/2/02/2.xml'
-    assert get_sitemap_path('foo', 'bar', 89) == f'{basepath}/foo/bar/9/89/89.xml'
-    assert get_sitemap_path('foo', 'bar', 4321) == f'{basepath}/foo/bar/1/21/4321.xml'
+class TestGetSitemapPath(TestCase):
+    def test_success(self):
+        basepath = settings.SITEMAP_STORAGE_PATH
+        assert get_sitemap_path(None, None) == f'{basepath}/sitemap.xml'
+        assert get_sitemap_path('amo', None) == f'{basepath}/amo/sitemap.xml'
+        assert (
+            get_sitemap_path('addons', 'firefox')
+            == f'{basepath}/addons/firefox/1/01/1.xml'
+        )
+        assert get_sitemap_path('amo', None, 1) == f'{basepath}/amo/sitemap.xml'
+        assert get_sitemap_path('amo', None, 2) == f'{basepath}/amo/2.xml'
+        assert get_sitemap_path('amo', None, 89) == f'{basepath}/amo/89.xml'
+        assert get_sitemap_path('amo', None, 4321) == f'{basepath}/amo/4321.xml'
+        assert (
+            get_sitemap_path('addons', 'firefox', 1)
+            == f'{basepath}/addons/firefox/1/01/1.xml'
+        )
+        assert (
+            get_sitemap_path('addons', 'android', 2)
+            == f'{basepath}/addons/android/2/02/2.xml'
+        )
+        assert (
+            get_sitemap_path('addons', 'android', 89)
+            == f'{basepath}/addons/android/9/89/89.xml'
+        )
+        assert (
+            get_sitemap_path('addons', 'firefox', 4321)
+            == f'{basepath}/addons/firefox/1/21/4321.xml'
+        )
+
+    def test_errors(self):
+        with self.assertRaises(InvalidSection):
+            # completely invalid section
+            get_sitemap_path('foo', None)
+        with self.assertRaises(InvalidSection):
+            # an invalid section+app combination
+            get_sitemap_path('addons', None)
+        with self.assertRaises(PageNotAnInteger):
+            # invalid page with a section and an app
+            get_sitemap_path('addons', 'firefox', 'a')
+        with self.assertRaises(PageNotAnInteger):
+            # invalid page with a section but no app
+            get_sitemap_path('amo', None, 'a')
