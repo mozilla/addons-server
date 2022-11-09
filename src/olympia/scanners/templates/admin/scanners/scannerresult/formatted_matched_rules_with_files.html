@@ -21,7 +21,7 @@
   {% for rule in matched_rules %}
   <tr>
     <td>
-      <a class="rule-link" href="{% url rule_change_urlname rule.pk %}">{{ rule.name }}</a>
+      <a class="rule-link" href="{% url rule_change_urlname rule.pk %}" title="{{ rule.description }} ">{{ rule.name }}</a>
     </td>
     <td>
       <ul>

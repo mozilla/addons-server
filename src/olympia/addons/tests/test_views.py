@@ -14,7 +14,6 @@ from urllib.parse import unquote
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -5771,8 +5770,7 @@ class TestLanguageToolsView(TestCase):
         assert len(results) == 2
         assert results[0]['current_compatible_version']['files']
 
-    def test_memoize(self):
-        cache.clear()
+    def test_cache_headers(self):
         super_author = user_factory(username='super')
         addon_factory(type=amo.ADDON_DICT, target_locale='fr', users=(super_author,))
         addon_factory(type=amo.ADDON_DICT, target_locale='fr')
@@ -5783,24 +5781,10 @@ class TestLanguageToolsView(TestCase):
         assert response.status_code == 200
         assert len(json.loads(force_str(response.content))['results']) == 3
 
-        # Same again, should be cached; no queries.
-        with self.assertNumQueries(0):
-            assert self.client.get(
-                self.url, {'app': 'firefox', 'lang': 'fr'}
-            ).content == (response.content)
-
-        with self.assertNumQueries(2):
-            assert self.client.get(
-                self.url, {'app': 'firefox', 'lang': 'fr', 'author': 'super'}
-            ).content != (response.content)
-        # Same again, should be cached; no queries.
-        with self.assertNumQueries(0):
-            self.client.get(
-                self.url, {'app': 'firefox', 'lang': 'fr', 'author': 'super'}
-            )
-        # Change the lang, we should get queries again.
-        with self.assertNumQueries(2):
-            self.client.get(self.url, {'app': 'firefox', 'lang': 'de'})
+        assert response['Cache-Control'] == 'max-age=86400'
+        assert response['Vary'] == (
+            'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+        )
 
 
 class TestReplacementAddonView(TestCase):

@@ -298,7 +298,9 @@ class TestScannerResultAdmin(TestCase):
 
     def test_list_filters(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
-        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(
+            name='hello', scanner=YARA, pretty_name='Pretty Hello'
+        )
         rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
 
         response = self.client.get(self.list_url)
@@ -320,7 +322,7 @@ class TestScannerResultAdmin(TestCase):
             ('All', '?'),
             ('foo (customs)', f'?matched_rules__id__exact={rule_foo.pk}'),
             ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
-            ('hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
+            ('Pretty Hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
             ('All', '?has_version=all'),
             (' With version only', '?'),
         ]
@@ -331,7 +333,7 @@ class TestScannerResultAdmin(TestCase):
         expected = [
             ('foo (customs)', str(rule_foo.pk)),
             ('bar (yara)', str(rule_bar.pk)),
-            ('hello (yara)', str(rule_hello.pk)),
+            ('Pretty Hello (yara)', str(rule_hello.pk)),
         ]
         filters = [
             (option.text, option.attrib['value'])
@@ -1548,16 +1550,18 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_filters(self):
         rule_foo = ScannerQueryRule.objects.create(name='foo', scanner=YARA)
-        rule_bar = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        rule_bar = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, pretty_name='A rule walks into a'
+        )
 
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
             ('All', '?'),
-            ('bar (yara)', f'?matched_rule__id__exact={rule_bar.pk}'),
             ('foo (yara)', f'?matched_rule__id__exact={rule_foo.pk}'),
             ('myrule (yara)', f'?matched_rule__id__exact={self.rule.pk}'),
+            ('A rule walks into a (yara)', f'?matched_rule__id__exact={rule_bar.pk}'),
             ('All', '?'),
             ('Unlisted', '?version__channel__exact=1'),
             ('Listed', '?version__channel__exact=2'),

@@ -43,6 +43,7 @@ from olympia.scanners.tasks import (
     run_yara_query_rule,
     run_yara_query_rule_on_versions_chunk,
 )
+from olympia.versions.models import Version
 
 
 class TestRunScanner(UploadMixin, TestCase):
@@ -642,11 +643,22 @@ class TestRunYaraQueryRule(TestCase):
                 addon=other_addon, file_kw={'filename': 'webextension.xpi'}
             ),
         ]
-        # Ignored version:
+        # Ignored versions:
         # Listed Webextension version belonging to mozilla disabled add-on.
         addon_factory(
             status=amo.STATUS_DISABLED, file_kw={'filename': 'webextension.xpi'}
         ).current_version
+        # Unlisted extension without a File instance
+        Version.objects.create(
+            addon=other_addon, channel=amo.CHANNEL_UNLISTED, version='42.42.42.42'
+        )
+        # Unlisted extension with a File... but no File.file
+        File.objects.create(
+            manifest_version=2,
+            version=Version.objects.create(
+                addon=other_addon, channel=amo.CHANNEL_UNLISTED, version='43.43.43.43'
+            ),
+        )
 
         # Run the task.
         run_yara_query_rule.delay(self.rule.pk)

@@ -381,6 +381,10 @@ class TestDownloads(TestDownloadsBase):
         self.addon.delete()
         assert self.client.get(self.file_url).status_code == 404
 
+    def test_file_path_empty(self):
+        self.file.update(file='')
+        assert self.client.get(self.file_url).status_code == 404
+
     def test_georestricted(self):
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']

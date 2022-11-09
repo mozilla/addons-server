@@ -4,7 +4,8 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonReviewerFlags
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.blocklist.models import Block
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
@@ -169,6 +170,7 @@ class TestReviewForm(TestCase):
         self.reason_a = ReviewActionReason.objects.create(
             name='a reason',
             is_active=True,
+            canned_response='Canned response for A',
         )
         self.inactive_reason = ReviewActionReason.objects.create(
             name='b inactive reason',
@@ -177,6 +179,7 @@ class TestReviewForm(TestCase):
         self.reason_c = ReviewActionReason.objects.create(
             name='c reason',
             is_active=True,
+            canned_response='Canned response for C',
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
@@ -184,6 +187,12 @@ class TestReviewForm(TestCase):
         # Reasons are displayed in alphabetical order.
         assert list(choices.queryset)[0] == self.reason_a
         assert list(choices.queryset)[1] == self.reason_c
+
+        # Assert that the canned_response is written to data-value of the
+        # checkboxes.
+        doc = pq(str(form['reasons']))
+        assert doc('input')[0].attrib.get('data-value') == self.reason_a.canned_response
+        assert doc('input')[1].attrib.get('data-value') == self.reason_c.canned_response
 
     def test_reasons_required(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -305,6 +314,17 @@ class TestReviewForm(TestCase):
             channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
+        blocked_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        Block.objects.create(
+            addon=self.addon,
+            min_version=blocked_version.version,
+            max_version=blocked_version.version,
+            updated_by=user_factory(),
+        )
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
@@ -316,7 +336,7 @@ class TestReviewForm(TestCase):
         assert list(form.fields['versions'].queryset) == list(
             self.addon.versions.all().order_by('pk')
         )
-        assert form.fields['versions'].queryset.count() == 3
+        assert form.fields['versions'].queryset.count() == 4
 
         content = str(form['versions'])
         doc = pq(content)
@@ -329,7 +349,7 @@ class TestReviewForm(TestCase):
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
-        assert len(doc('option')) == 3
+        assert len(doc('option')) == 4
         option1 = doc('option[value="%s"]' % self.version.pk)[0]
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value') == (
@@ -353,6 +373,14 @@ class TestReviewForm(TestCase):
             'unreject_multiple_versions|'
         )
         assert option3.attrib.get('value') == str(rejected_version.pk)
+
+        option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
+        assert option4.attrib.get('class') == 'data-toggle'
+        assert option4.attrib.get('data-value') == (
+            # That version is blocked, so unreject_multiple_versions is unavailable.
+            ''
+        )
+        assert option4.attrib.get('value') == str(blocked_version.pk)
 
     def test_versions_queryset_contains_pending_files_for_listed_admin_reviewer(self):
         self.grant_permission(self.request.user, 'Reviews:Admin')
@@ -381,6 +409,17 @@ class TestReviewForm(TestCase):
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
+        blocked_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        Block.objects.create(
+            addon=self.addon,
+            min_version=blocked_version.version,
+            max_version=blocked_version.version,
+            updated_by=user_factory(),
+        )
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         # auto-approve everything
         for version in Version.unfiltered.all():
@@ -401,7 +440,7 @@ class TestReviewForm(TestCase):
         assert list(form.fields['versions'].queryset) == list(
             self.addon.versions.all().order_by('pk')
         )
-        assert form.fields['versions'].queryset.count() == 3
+        assert form.fields['versions'].queryset.count() == 4
 
         content = str(form['versions'])
         doc = pq(content)
@@ -414,7 +453,7 @@ class TestReviewForm(TestCase):
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
-        assert len(doc('option')) == 3
+        assert len(doc('option')) == 4
         option1 = doc('option[value="%s"]' % self.version.pk)[0]
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value') == (
@@ -438,6 +477,14 @@ class TestReviewForm(TestCase):
             'unreject_multiple_versions|'
         )
         assert option3.attrib.get('value') == str(rejected_version.pk)
+
+        option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
+        assert option4.attrib.get('class') == 'data-toggle'
+        assert option4.attrib.get('data-value') == (
+            # That version is blocked, so unreject_multiple_versions is unavailable.
+            ''
+        )
+        assert option4.attrib.get('value') == str(blocked_version.pk)
 
     def test_versions_queryset_contains_pending_files_for_unlisted_admin_reviewer(self):
         self.grant_permission(self.request.user, 'Reviews:Admin')

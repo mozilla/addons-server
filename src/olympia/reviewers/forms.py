@@ -141,9 +141,11 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         # label_from_instance() on VersionsChoiceField returns the full object,
         # not a label, this is what makes this work.
         obj = option['label']
-        status = obj.file.status if obj.file else None
-        versions_actions = getattr(self, 'versions_actions', None)
-        if versions_actions:
+        if getattr(self, 'versions_actions', None):
+            status = obj.file.status if obj.file else None
+            if status == amo.STATUS_DISABLED and obj.is_blocked:
+                # Override status for blocked versions: we don't want them unrejected.
+                status = None
             # Add our special `data-toggle` class and the right `data-value` depending
             # on status.
             option['attrs']['class'] = 'data-toggle'
@@ -155,6 +157,34 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         option['label'] = str(obj) + markupsafe.Markup(
             f' - {obj.get_review_status_display(True)}' if obj else ''
         )
+        return option
+
+
+class ReasonsChoiceField(ModelMultipleChoiceField):
+    """
+    Widget to use together with ReasonsChoiceWidget to display checkboxes
+    with extra data for the canned responses.
+    """
+
+    def label_from_instance(self, obj):
+        """Return the object instead of transforming into a label at this stage
+        so that it's available in the widget."""
+        return obj
+
+
+class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
+    """
+    Widget to use together with ReasonsChoiceField to display checkboxes
+    with extra data for the canned responses.
+    """
+
+    def create_option(self, *args, **kwargs):
+        option = super().create_option(*args, **kwargs)
+        # label_from_instance() on ReasonsChoiceField returns the full object,
+        # not a label, this is what makes this work.
+        obj = option['label']
+        option['attrs']['data-value'] = obj.canned_response
+        option['label'] = str(obj)
         return option
 
 
@@ -221,11 +251,11 @@ class ReviewForm(forms.Form):
         min_value=1,
         max_value=99,
     )
-    reasons = forms.ModelMultipleChoiceField(
+    reasons = ReasonsChoiceField(
         label=_('Choose one or more reasons:'),
         queryset=ReviewActionReason.objects.filter(is_active__exact=True),
         required=True,
-        widget=forms.CheckboxSelectMultiple,
+        widget=ReasonsChoiceWidget,
     )
     version_pk = forms.IntegerField(required=False, min_value=1)
 
