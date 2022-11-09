@@ -19,7 +19,18 @@ from olympia.files.tests.test_utils import AppVersionsMixin
 class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
     @pytest.fixture(autouse=True)
     def set_tempfile_tempdir_for_class(self, tmp_path):
+        """Fixture setting tempfile.tempdir for each test in this class,
+        allowing them to run in parallel each with their own tempdir.
+
+        It reverts back to the original tempdir after each test.
+
+        repack_fileupload() depends on tempfile methods which are using
+        tempfile.tempdir under the hood, and the tests expect to be able to
+        compare the contents of that directory to check no files were left
+        behind.
+        """
         original = tempfile.tempdir
+        # tmp_path is automatically provided by pytest (it's a fixture).
         tempfile.tempdir = str(tmp_path)
         yield
         tempfile.tempdir = original
