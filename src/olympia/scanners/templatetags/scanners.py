@@ -15,7 +15,7 @@ def format_scanners_data(data, parent=None):
     """
     if isinstance(data, set):
         data = sorted(data)
-    if isinstance(data, (list, tuple, set)):
+    if isinstance(data, (list, tuple)):
         rval = format_html(
             '<ul>\n{}\n</ul>',
             format_html_join(
