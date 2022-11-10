@@ -61,7 +61,7 @@
           <h5>{{ _('Scanners results:') }}</h5>
           {% for result in version.scannerresults.all() %}
             {% if result.has_matches %}
-              {{ format_matched_rules(result, display_scanner=True, display_data=True, clamp_at=5) }}
+              {{ format_matched_rules(result, display_scanner=True, display_data=True, limit_to=5) }}
             {% endif %}
           {% endfor %}
         </div>

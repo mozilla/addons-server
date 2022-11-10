@@ -1958,7 +1958,7 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
             '/en-US/admin/models/scanners/scannerresult/42/change/'
         )
 
-    def test_clamp_at(self):
+    def test_limit_to(self):
         result = ScannerResult.objects.create(pk=42, scanner=YARA)
         rule = ScannerRule.objects.create(name='bar', scanner=YARA)
         for i in range(0, 5):
@@ -1971,7 +1971,7 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
         assert len(doc('li')) == 5
         assert doc('li')[1].text.strip() == 'somefilename1'
 
-        content = formatted_matched_rules_with_files_and_data(result, clamp_at=2)
+        content = formatted_matched_rules_with_files_and_data(result, limit_to=2)
         doc = pq(content)
         assert len(doc('li')) == 3  # 2 + 1 for the "…and and more 3 files"
         assert doc('li')[1].text.strip() == 'somefilename1'

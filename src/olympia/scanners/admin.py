@@ -52,7 +52,7 @@ def formatted_matched_rules_with_files_and_data(
     *,
     display_data=False,
     display_scanner=False,
-    clamp_at=100,
+    limit_to=100,
     template_name='formatted_matched_rules_with_files',
 ):
     files_and_data_by_matched_rules = obj.get_files_and_data_by_matched_rules()
@@ -65,7 +65,7 @@ def formatted_matched_rules_with_files_and_data(
         f'admin/scanners/scannerresult/{template_name}.html',
         {
             'obj': obj,
-            'clamp_at': clamp_at,
+            'limit_to': limit_to,
             'display_data': display_data,
             'display_scanner': display_scanner,
             'rule_change_urlname': 'admin:%s_%s_change' % info,
@@ -78,10 +78,10 @@ def formatted_matched_rules_with_files_and_data(
                     'description': str(rule.description),
                     'scanner': rule.get_scanner_display(),
                     'files_and_data': files_and_data_by_matched_rules[rule.name][
-                        :clamp_at
+                        :limit_to
                     ],
                     'files_not_shown': len(files_and_data_by_matched_rules[rule.name])
-                    - clamp_at,
+                    - limit_to,
                 }
                 for rule in rules
             ],
