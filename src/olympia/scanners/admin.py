@@ -46,16 +46,15 @@ from .models import (
 from .tasks import run_yara_query_rule
 
 
+@admin.display(description='Matched Rules')
 def formatted_matched_rules_with_files_and_data(
     obj,
     *,
     display_data=False,
     display_scanner=False,
     clamp_at=100,
-    template_name=None,
+    template_name='formatted_matched_rules_with_files',
 ):
-    if template_name is None:
-        template_name = 'formatted_matched_rules_with_files'
     files_and_data_by_matched_rules = obj.get_files_and_data_by_matched_rules()
     info = obj.rule_model._meta.app_label, obj.rule_model._meta.model_name
     rules = (
@@ -501,13 +500,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     formatted_matched_rules.short_description = 'Matched rules'
 
-    def formatted_matched_rules_with_files(self, obj, *, template_name=None):
-        return formatted_matched_rules_with_files_and_data(
-            obj, template_name=template_name
-        )
-
-    formatted_matched_rules_with_files.short_description = 'Matched rules'
-
 
 class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     view_on_site = False
@@ -599,7 +591,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
         'formatted_score',
         'created',
         'state',
-        'formatted_matched_rules_with_files',
+        formatted_matched_rules_with_files_and_data,
         'result_actions',
         'formatted_results',
     )
@@ -799,7 +791,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         'guid',
         'scanner',
         'created',
-        'formatted_matched_rules_with_files',
+        formatted_matched_rules_with_files_and_data,
         'formatted_results',
     )
     raw_id_fields = ('version',)
@@ -895,7 +887,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         return {}
 
     def matching_filenames(self, obj):
-        return self.formatted_matched_rules_with_files(
+        return formatted_matched_rules_with_files_and_data(
             obj, template_name='formatted_matching_files'
         )
 

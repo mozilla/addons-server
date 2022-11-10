@@ -222,7 +222,7 @@ class TestScannerResultAdmin(TestCase):
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
         )
-        assert expect_file_item in self.admin.formatted_matched_rules_with_files(result)
+        assert expect_file_item in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_matched_rules_with_files_without_version(self):
         result = ScannerResult.objects.create(scanner=YARA)
@@ -232,10 +232,10 @@ class TestScannerResultAdmin(TestCase):
         result.save()
 
         # We list the file related to the matched rule...
-        assert filename in self.admin.formatted_matched_rules_with_files(result)
+        assert filename in formatted_matched_rules_with_files_and_data(result)
         # ...but we do not add a link to it because there is no associated
         # version.
-        assert '/browse/' not in self.admin.formatted_matched_rules_with_files(result)
+        assert '/browse/' not in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_score_for_customs(self):
         result = ScannerResult(score=0.123, scanner=CUSTOMS)
@@ -1814,7 +1814,7 @@ class TestScannerQueryResultAdmin(TestCase):
             'admin:scanners_scannerqueryrule_change', args=(self.rule.pk,)
         )
         doc = pq(response.content)
-        link = doc('.field-formatted_matched_rules_with_files td a')
+        link = doc('.field-formatted_matched_rules_with_files_and_data td a')
         assert link.text() == 'myrule ???'
         assert link.attr('href') == rule_url
 
@@ -1855,7 +1855,7 @@ class TestScannerQueryResultAdmin(TestCase):
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
         )
-        content = self.admin.formatted_matched_rules_with_files(result)
+        content = formatted_matched_rules_with_files_and_data(result)
         assert expect_file_item in content
         assert rule_url in content
 
