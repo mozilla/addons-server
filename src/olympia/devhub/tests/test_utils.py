@@ -24,6 +24,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
+from olympia.files.models import FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.scanners.tasks import run_customs, run_yara, call_mad_api
@@ -524,45 +525,95 @@ class TestValidator(UploadMixin, TestCase):
         assert scanners_chord.body.name == 'olympia.scanners.tasks.call_mad_api'
 
 
-def test_add_manifest_version_error():
+def test_add_manifest_version_message_not_listed():
     validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-    len(validation['messages']) == 1
-
-    # Add the error message when the manifest_version is 3.
-    # The manifest_version error isn't in VALIDATOR_SKELETON_EXCEPTION_WEBEXT.
+    validation['messages'] = []
     validation['metadata']['manifestVersion'] = 3
-    utils.add_manifest_version_error(validation)
+    utils.add_manifest_version_messages(
+        validation, upload=FileUpload(channel=amo.CHANNEL_UNLISTED)
+    )
+    # mv3 submission switch is off so we should have added the message even
+    # for an unlisted submission.
+    assert len(validation['messages']) == 1
+    # It should be inserted at the top.
     assert 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
         validation['messages'][0]['message']
     )
-    assert len(validation['messages']) == 2  # we added it
 
+
+def test_add_manifest_version_message_not_mv3():
+    validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+    validation['messages'] = []
+    validation['metadata']['manifestVersion'] = 2
+    utils.add_manifest_version_messages(
+        validation, upload=FileUpload(channel=amo.CHANNEL_LISTED)
+    )
+    assert validation['messages'] == []
+
+
+def test_add_manifest_version_message_switch_enabled():
+    validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+    validation['messages'] = []
+    validation['metadata']['manifestVersion'] = 3
+    with override_switch('enable-mv3-submissions', active=True):
+        utils.add_manifest_version_messages(
+            validation, upload=FileUpload(channel=amo.CHANNEL_UNLISTED)
+        )
+        assert validation['messages'] == []
+
+        # For listed mv3, we want our message suggesting to use unlisted for
+        # the time being.
+        utils.add_manifest_version_messages(
+            validation, upload=FileUpload(channel=amo.CHANNEL_LISTED)
+        )
+        assert len(validation['messages']) == 1
+        assert (
+            validation['messages'][0]['message'] == 'Manifest V3 compatibility warning'
+        )
+        assert 'https://mzl.la/amo_mv3' in (
+            # description is a list of strings, the link is in the second one.
+            validation['messages'][0]['description'][1]
+        )
+
+
+def test_add_manifest_version_message():
+    validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+    len(validation['messages']) == 1
+
+    # Add the error message when the manifest_version is 3 and the switch to
+    # enable mv3 submissions is off (the default).
+    # The manifest_version error isn't in VALIDATOR_SKELETON_EXCEPTION_WEBEXT.
+    validation['metadata']['manifestVersion'] = 3
+    utils.add_manifest_version_messages(
+        validation, upload=FileUpload(channel=amo.CHANNEL_LISTED)
+    )
+    assert len(validation['messages']) == 2  # we added it
+    # It should be inserted at the top.
+    assert 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
+        validation['messages'][0]['message']
+    )
+
+
+def test_add_manifest_version_message_replace():
+    validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
     # When the linter error is already there, replace it
     validation['messages'] = [
         {
             'message': '"/manifest_version" should be &lt;= 2',
             'description': ['Your JSON file could not be parsed.'],
-            'dataPath': '/manifest_version',
+            'instancePath': '/manifest_version',
             'type': 'error',
             'tier': 1,
         }
     ]
-    utils.add_manifest_version_error(validation)
+    validation['metadata']['manifestVersion'] = 3
+    utils.add_manifest_version_messages(
+        validation, upload=FileUpload(channel=amo.CHANNEL_LISTED)
+    )
+    assert len(validation['messages']) == 1  # we replaced it and not added it.
     assert 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
         validation['messages'][0]['message']
     )
-    assert len(validation['messages']) == 1  # we replaced it
-
-    # Not if the mv3 waffle switch is enabled though
-    with override_switch('enable-mv3-submissions', active=True):
-        validation['messages'] = []
-        utils.add_manifest_version_error(validation)
-        assert validation['messages'] == []
-
-    # Or if the manifest_version != 3
-    validation['metadata']['manifestVersion'] = 2
-    utils.add_manifest_version_error(validation)
-    assert validation['messages'] == []
 
 
 class TestCreateVersionForUpload(UploadMixin, TestCase):

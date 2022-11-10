@@ -7,6 +7,7 @@ from olympia.versions.models import DeniedInstallOrigin
 
 def insert_validation_message(
     results,
+    *,
     type_='error',
     message='',
     msg_id='',
@@ -26,6 +27,11 @@ def insert_validation_message(
             'message': message,
             'description': description,
             'compatibility_type': compatibility_type,
+            # Indicate that it's an extra message not coming from the linter:
+            # our JavaScript has some logic to display a checklist if there are
+            # linter warnings, so we want these custom messages we're inserting
+            # to be excluded from that.
+            'extra': True,
         },
     )
     # Need to increment 'errors' or 'warnings' count, so add an extra 's' after

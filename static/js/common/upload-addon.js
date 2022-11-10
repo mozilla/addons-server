@@ -539,10 +539,67 @@
 
           $('<strong>').text(message).appendTo(upload_results);
 
+          let checklistWarningsIds = [
+              'NO_DOCUMENT_WRITE',
+              'DANGEROUS_EVAL',
+              'NO_IMPLIED_EVAL',
+              'UNSAFE_VAR_ASSIGNMENT',
+              'MANIFEST_CSP',
+            ],
+            mv3NoticeId = '_MV3_COMPATIBILITY',
+            checklistMessages = [],
+            mv3CompatibilityMessage,
+            // this.id is in the form ["abc_def_ghi', 'foo_bar', 'something'],
+            // we usually only match one of the elements.
+            matchId = function (id) {
+              return this.hasOwnProperty('id') && _.contains(this.id, id);
+            };
+
+          if (results.validation.messages) {
+            for (var i = 0; i < results.validation.messages.length; i++) {
+              let current = results.validation.messages[i];
+
+              if (current.extra) {
+                // We want to ignore messages that are not coming from the
+                // linter in the logic that decides whether or not to show the
+                // submission checklist box. Those are tagged with extra: true.
+                messageCount--;
+              }
+
+              // Check for warnings we want to higlight specifically.
+              let matched = _.find(checklistWarningsIds, matchId, current);
+              if (matched) {
+                checklistMessages.push(gettext(current.message));
+                // We want only once every possible warning hit.
+                checklistWarningsIds.splice(
+                  checklistWarningsIds.indexOf(matched),
+                  1,
+                );
+                if (!checklistWarningsIds.length) break;
+              }
+
+              // Manifest v3 warning is a custom one added by addons-server
+              // that should be added once, regardless of whether or not we're
+              // displaying the submission warning box.
+              if (_.find([mv3NoticeId], matchId, current)) {
+                let mv3CompatibilityBox = $('<div>')
+                  .attr('class', 'submission-warning')
+                  .appendTo(upload_results);
+                $('<h5>').text(current.message).appendTo(mv3CompatibilityBox);
+                // That description is split into several paragraphs and can
+                // contain HTML for links.
+                current.description.forEach(function (item) {
+                  $('<p>').html(item).appendTo(mv3CompatibilityBox);
+                });
+              }
+            }
+          }
+
           if (messageCount > 0) {
-            // Validation checklist
-            var checklist_box = $('<div>')
-                .attr('class', 'submission-checklist')
+            // Validation checklist should be displayed if there is at least
+            // one message coming from the linter.
+            let checklist_box = $('<div>')
+                .attr('class', 'submission-warning')
                 .appendTo(upload_results),
               checklist = [
                 gettext(
@@ -551,25 +608,7 @@
                 gettext(
                   'If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step).',
                 ),
-              ],
-              warnings_id = [
-                'NO_DOCUMENT_WRITE',
-                'DANGEROUS_EVAL',
-                'NO_IMPLIED_EVAL',
-                'UNSAFE_VAR_ASSIGNMENT',
-                'MANIFEST_CSP',
-                'set_innerHTML',
-                'namespace_pollution',
-                'dangerous_global',
-              ],
-              current,
-              matched,
-              messages = [],
-              // this.id is in the form ["testcases_javascript_instanceactions", "_call_expression", "createelement_variable"],
-              // we usually only match one of the elements.
-              matchId = function (id) {
-                return this.hasOwnProperty('id') && _.contains(this.id, id);
-              };
+              ];
 
             $('<h5>')
               .text(gettext('Add-on submission checklist'))
@@ -582,28 +621,18 @@
               )
               .appendTo(checklist_box);
             if (results.validation.metadata.contains_binary_extension) {
-              messages.push(
+              checklistMessages.push(
                 gettext(
                   'Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload field to avoid having your submission rejected.',
                 ),
               );
-            }
-            for (var i = 0; i < results.validation.messages.length; i++) {
-              current = results.validation.messages[i];
-              matched = _.find(warnings_id, matchId, current);
-              if (matched) {
-                messages.push(gettext(current.message));
-                // We want only once every possible warning hit.
-                warnings_id.splice(warnings_id.indexOf(matched), 1);
-                if (!warnings_id.length) break;
-              }
             }
             var checklist_ul = $('<ul>');
             $.each(checklist, function (i) {
               $('<li>').text(checklist[i]).appendTo(checklist_ul);
             });
             checklist_ul.appendTo(checklist_box);
-            if (messages.length) {
+            if (checklistMessages.length) {
               $('<h6>')
                 .text(
                   gettext(
@@ -612,12 +641,13 @@
                 )
                 .appendTo(checklist_box);
               var messages_ul = $('<ul>');
-              $.each(messages, function (i) {
-                // Note: validation messages are supposed to be already escaped by
-                // devhub.views.json_upload_detail(), which does an escape_all()
-                // call on messages. So we need to use html() and not text() to
-                // display them, since they can contain HTML entities.
-                $('<li>').html(messages[i]).appendTo(messages_ul);
+              $.each(checklistMessages, function (i) {
+                // Note: validation messages can contain HTML, in the form of
+                // links or entities, because devhub.views.json_upload_detail()
+                // uses processed_validation with escapes and linkifies linter
+                // messages (and escape_all() on non-linter messages).
+                // So we need to use html() and not text() to display them.
+                $('<li>').html(checklistMessages[i]).appendTo(messages_ul);
               });
               messages_ul.appendTo(checklist_box);
             }

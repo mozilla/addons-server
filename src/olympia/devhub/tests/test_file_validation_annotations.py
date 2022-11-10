@@ -51,6 +51,7 @@ class TestDeniedOrigins(TestCase):
             'id': ['validation', 'messages', ''],
             'message': 'The install origin https://foo.com is not permitted.',
             'description': [],
+            'extra': True,  # This didn't come from the linter.
             'compatibility_type': None,
         }
 
@@ -68,6 +69,7 @@ class TestDeniedOrigins(TestCase):
             'id': ['validation', 'messages', ''],
             'message': 'The install origin https://foo.com is not permitted.',
             'description': [],
+            'extra': True,  # This didn't come from the linter.
             'compatibility_type': None,
         }
 
@@ -91,6 +93,7 @@ class TestDeniedOrigins(TestCase):
             'id': ['validation', 'messages', ''],
             'message': 'The install origin https://foo.fr is not permitted.',
             'description': [],
+            'extra': True,  # This didn't come from the linter.
             'compatibility_type': None,
         }
         assert results['messages'][1] == {
@@ -99,6 +102,7 @@ class TestDeniedOrigins(TestCase):
             'id': ['validation', 'messages', ''],
             'message': 'The install origin https://foo.com is not permitted.',
             'description': [],
+            'extra': True,  # This didn't come from the linter.
             'compatibility_type': None,
         }
 
@@ -116,6 +120,7 @@ class TestDeniedOrigins(TestCase):
             'id': ['validation', 'messages', ''],
             'message': 'The install origin https://foo.com is not permitted.',
             'description': [],
+            'extra': True,  # This didn't come from the linter.
             'compatibility_type': None,
         }
         assert results['messages'][1] == {
@@ -124,6 +129,7 @@ class TestDeniedOrigins(TestCase):
             'id': ['validation', 'messages', ''],
             'message': 'The install origin https://bar.com is not permitted.',
             'description': [],
+            'extra': True,  # This didn't come from the linter.
             'compatibility_type': None,
         }
 

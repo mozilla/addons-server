@@ -14,6 +14,7 @@ import olympia.core.logger
 
 from olympia import amo, core
 from olympia.amo.urlresolvers import linkify_and_clean
+from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
@@ -310,37 +311,55 @@ def wizard_unsupported_properties(data, wizard_fields):
     return unsupported
 
 
-def add_manifest_version_error(validation):
-    mv = validation.get('metadata', {}).get('manifestVersion')
-    if (
-        mv != 3
-        or waffle.switch_is_active('enable-mv3-submissions')
-        or 'messages' not in validation
-    ):
+def add_manifest_version_messages(results, *, upload):
+    mv = results.get('metadata', {}).get('manifestVersion')
+    if mv != 3:
         return
-    msg = gettext(
-        'Manifest V3 is currently not supported for upload. '
-        '{start_href}Read more about the support timeline{end_href}.'
-    )
-    url = 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
-    start_href = f'<a href="{url}" target="_blank" rel="noopener">'
+    if 'messages' not in results:
+        results['messages'] = []
+    enable_mv3_submissions = waffle.switch_is_active('enable-mv3-submissions')
+    if not enable_mv3_submissions:
+        msg = gettext(
+            'Manifest V3 is currently not supported for upload. '
+            '{start_href}Read more about the support timeline{end_href}.'
+        )
+        url = 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
+        start_href = f'<a href="{url}" target="_blank" rel="noopener">'
 
-    new_error_message = msg.format(start_href=start_href, end_href='</a>')
-    for index, message in enumerate(validation['messages']):
-        if message.get('dataPath') == '/manifest_version':
-            # if we find the linter manifest_version=3 warning, replace it
-            validation['messages'][index]['message'] = new_error_message
-            break
-    else:
-        # otherwise insert a new error at the start of the errors
-        validation['messages'].insert(
-            0,
-            {
-                'type': 'error',
-                'message': new_error_message,
-                'tier': 1,
-                'fatal': True,
-            },
+        new_error_message = msg.format(start_href=start_href, end_href='</a>')
+        for index, message in enumerate(results['messages']):
+            if message.get('instancePath') == '/manifest_version':
+                # if we find the linter manifest_version=3 warning, replace it
+                results['messages'][index]['message'] = new_error_message
+                break
+        else:
+            # otherwise insert a new error at the start of the errors
+            insert_validation_message(
+                results, message=new_error_message, msg_id='mv3_not_supported_yet'
+            )
+    elif upload.channel == amo.CHANNEL_LISTED:
+        # If submitting a listed upload and mv3 switch is on, we want to warn
+        # about using unlisted instead for now.
+        insert_validation_message(
+            results,
+            type_='warning',
+            message=gettext('Manifest V3 compatibility warning'),
+            description=[
+                gettext(
+                    'Firefox is adding support for manifest version 3 (MV3) extensions '
+                    'in Firefox {version}, however, older versions of Firefox are only '
+                    'compatible with manifest version 2 (MV2) extensions. We recommend '
+                    'uploading Manifest V3 extensions as self-hosted for now to not '
+                    'break compatibility for your users.'
+                ).format(version=amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX),
+                linkify_and_clean(
+                    gettext(
+                        'For more information about the MV3 extension roll-out or '
+                        'self-hosting MV3 extensions, visit https://mzl.la/amo_mv3'
+                    )
+                ),
+            ],
+            msg_id='_MV3_COMPATIBILITY',
         )
 
 
