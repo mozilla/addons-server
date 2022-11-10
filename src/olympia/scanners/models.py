@@ -100,17 +100,22 @@ class AbstractScannerResult(ModelBase):
     def get_pretty_results(self):
         return json.dumps(self.results, indent=2)
 
-    def get_files_by_matched_rules(self):
+    def get_files_and_data_by_matched_rules(self):
         res = defaultdict(list)
-        if self.scanner is YARA:
+        if self.scanner == YARA:
             for item in self.results:
-                res[item['rule']].append(item['meta'].get('filename', '???'))
-        elif self.scanner is CUSTOMS:
-            scanMap = self.results.get('scanMap', {})
+                res[item['rule']].append(
+                    {'filename': item.get('meta', {}).get('filename', '???')}
+                )
+        elif self.scanner == CUSTOMS:
+            scanMap = self.results.get('scanMap', {}).copy()
             for filename, rules in scanMap.items():
                 for ruleId, data in rules.items():
-                    if data.get('RULE_HAS_MATCHED', False):
-                        res[ruleId].append(filename)
+                    data = data.copy()
+                    if data.pop('RULE_HAS_MATCHED', False):
+                        if filename == '__GLOBAL__':
+                            filename = ''
+                        res[ruleId].append({'filename': filename, 'data': data})
         return res
 
     def get_git_repository(self):

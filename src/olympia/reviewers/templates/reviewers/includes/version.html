@@ -28,7 +28,7 @@
     {% if addon.type != amo.ADDON_STATICTHEME %}
       {{ file_view(version) }}
       {% if version.compatible_apps %}
-        <div><strong>{{ _('Compatibility:') }}</strong></div>
+        <div class="compatibility"><h5>{{ _('Compatibility:') }}</h5>
         <ul>
           {% for app, compat in version.compatible_apps.items()|sort(attribute="0.short") %}
           <li>
@@ -37,10 +37,11 @@
           </li>
           {% endfor %}
         </ul>
+        </div>
       {% endif %}
 
       {% if version.source %}
-          <div><strong>{{ _('Additional sources:') }}</strong></div>
+          <div><h5>{{ _('Additional sources:') }}</h5></div>
           <div>
               {% if is_admin %}
                   <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
@@ -51,41 +52,30 @@
       {% endif %}
 
       <div class="maliciousness-score">
-        <strong>{{ _('Maliciousness Score:') }}</strong> {{ version.maliciousness_score|format_score }}
+        <h5>{{ _('Maliciousness Score:') }}</h5> {{ version.maliciousness_score|format_score }}
         <span class="tip tooltip" title="{{ _('The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings.') }}">?</span>
       </div>
 
-      {% if version.autoapprovalsummary %}
-        <div class="file-weight" title="{{ version.autoapprovalsummary.get_pretty_weight_info()|join('\n') }}">
-          <strong>{{ _('Code Weight:') }}</strong> {{ version.autoapprovalsummary.code_weight }}<br>
-          <strong>{{ _('Metadata Weight:') }}</strong> {{ version.autoapprovalsummary.metadata_weight }}
-        </div>
-      {% endif %}
-
       {% if version.needs_human_review %}
-        <div><strong class="risk-high">
-          {{ _('Flagged by scanners') }}
-          {%- if request.user.is_staff and action_allowed_for(request.user, amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW) %}
-            {% for result in version.scannerresults.all() -%}
-              {%- if loop.first %}({% endif -%}
-              <a href="{{ url('admin:scanners_scannerresult_change', result.pk ) }}">{{ result.get_scanner_display() }}</a>
-              {%- if loop.last %}){% else %}, {% endif -%}
-            {%- endfor %}
-          {%- endif %}
-        </strong></div>
+        <div class="scanners-results">
+          <h5>{{ _('Scanners results:') }}</h5>
+          {% for result in version.scannerresults.all() %}
+            {% if result.has_matches %}
+              {{ format_matched_rules(result, display_scanner=True, display_data=True, limit_to=5) }}
+            {% endif %}
+          {% endfor %}
+        </div>
       {% elif version.needs_human_review_by_mad %}
-        <div><strong class="risk-medium">{{ _('Flagged for human review') }}</strong></div>
+        <div><h5 class="risk-medium">{{ _('Flagged for human review') }}</h5></div>
       {% endif %}
     {% else %}
       <ul>
-        <li class="file-info">
-          <span class="light">
-            <strong><a href="{{ version.file.get_url_path() }}" class="reviewers-install"
-              data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></strong>
+        <li class="file-info light">
+            <h5><a href="{{ version.file.get_url_path() }}" class="reviewers-install"
+              data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></h5>
             <div>
               {{ version.file.get_review_status_display() }}
             </div>
-          </span>
         </li>
       </ul>
     {% endif %}

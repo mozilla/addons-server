@@ -46,6 +46,51 @@ from .models import (
 from .tasks import run_yara_query_rule
 
 
+@admin.display(description='Matched Rules')
+def formatted_matched_rules_with_files_and_data(
+    obj,
+    *,
+    display_data=False,
+    display_scanner=False,
+    limit_to=100,
+    template_name='formatted_matched_rules_with_files',
+):
+    files_and_data_by_matched_rules = obj.get_files_and_data_by_matched_rules()
+    info = obj.rule_model._meta.app_label, obj.rule_model._meta.model_name
+    rules = (
+        [obj.matched_rule] if hasattr(obj, 'matched_rule') else obj.matched_rules.all()
+    )
+
+    return render_to_string(
+        f'admin/scanners/scannerresult/{template_name}.html',
+        {
+            'obj': obj,
+            'limit_to': limit_to,
+            'display_data': display_data,
+            'display_scanner': display_scanner,
+            'rule_change_urlname': 'admin:%s_%s_change' % info,
+            'external_site_url': settings.EXTERNAL_SITE_URL,
+            'file_id': (obj.version.file.id if obj.version else None),
+            'matched_rules': [
+                {
+                    'pk': rule.pk,
+                    'name': str(rule),
+                    'description': str(rule.description),
+                    'scanner': rule.get_scanner_display(),
+                    'files_and_data': files_and_data_by_matched_rules[rule.name][
+                        :limit_to
+                    ],
+                    'files_not_shown': len(files_and_data_by_matched_rules[rule.name])
+                    - limit_to,
+                }
+                for rule in rules
+            ],
+            'addon_id': obj.version.addon.pk if obj.version else None,
+            'version_id': obj.version.pk if obj.version else None,
+        },
+    )
+
+
 class PresenceFilter(SimpleListFilter):
     def choices(self, cl):
         for lookup, title in self.lookup_choices:
@@ -455,39 +500,6 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
 
     formatted_matched_rules.short_description = 'Matched rules'
 
-    def formatted_matched_rules_with_files(
-        self, obj, template_name='formatted_matched_rules_with_files'
-    ):
-        files_by_matched_rules = obj.get_files_by_matched_rules()
-        info = obj.rule_model._meta.app_label, obj.rule_model._meta.model_name
-        rules = (
-            [obj.matched_rule]
-            if hasattr(obj, 'matched_rule')
-            else obj.matched_rules.all()
-        )
-
-        return render_to_string(
-            f'admin/scanners/scannerresult/{template_name}.html',
-            {
-                'rule_change_urlname': 'admin:%s_%s_change' % info,
-                'external_site_url': settings.EXTERNAL_SITE_URL,
-                'file_id': (obj.version.file.id if obj.version else None),
-                'matched_rules': [
-                    {
-                        'pk': rule.pk,
-                        'name': str(rule),
-                        'description': str(rule.description),
-                        'files': files_by_matched_rules[rule.name],
-                    }
-                    for rule in rules
-                ],
-                'addon_id': obj.version.addon.pk if obj.version else None,
-                'version_id': obj.version.pk if obj.version else None,
-            },
-        )
-
-    formatted_matched_rules_with_files.short_description = 'Matched rules'
-
 
 class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
     view_on_site = False
@@ -579,7 +591,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
         'formatted_score',
         'created',
         'state',
-        'formatted_matched_rules_with_files',
+        formatted_matched_rules_with_files_and_data,
         'result_actions',
         'formatted_results',
     )
@@ -779,7 +791,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         'guid',
         'scanner',
         'created',
-        'formatted_matched_rules_with_files',
+        formatted_matched_rules_with_files_and_data,
         'formatted_results',
     )
     raw_id_fields = ('version',)
@@ -875,7 +887,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
         return {}
 
     def matching_filenames(self, obj):
-        return self.formatted_matched_rules_with_files(
+        return formatted_matched_rules_with_files_and_data(
             obj, template_name='formatted_matching_files'
         )
 

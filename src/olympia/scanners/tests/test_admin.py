@@ -39,6 +39,7 @@ from olympia.constants.scanners import (
 from olympia.files.models import FileUpload
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
+    formatted_matched_rules_with_files_and_data,
     ExcludeMatchedRulesFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
@@ -53,6 +54,7 @@ from olympia.scanners.models import (
     ScannerResult,
     ScannerRule,
 )
+from olympia.scanners.templatetags.scanners import format_scanners_data
 from olympia.versions.models import Version
 
 
@@ -220,7 +222,7 @@ class TestScannerResultAdmin(TestCase):
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
         )
-        assert expect_file_item in self.admin.formatted_matched_rules_with_files(result)
+        assert expect_file_item in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_matched_rules_with_files_without_version(self):
         result = ScannerResult.objects.create(scanner=YARA)
@@ -230,10 +232,10 @@ class TestScannerResultAdmin(TestCase):
         result.save()
 
         # We list the file related to the matched rule...
-        assert filename in self.admin.formatted_matched_rules_with_files(result)
+        assert filename in formatted_matched_rules_with_files_and_data(result)
         # ...but we do not add a link to it because there is no associated
         # version.
-        assert '/browse/' not in self.admin.formatted_matched_rules_with_files(result)
+        assert '/browse/' not in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_score_for_customs(self):
         result = ScannerResult(score=0.123, scanner=CUSTOMS)
@@ -1812,7 +1814,7 @@ class TestScannerQueryResultAdmin(TestCase):
             'admin:scanners_scannerqueryrule_change', args=(self.rule.pk,)
         )
         doc = pq(response.content)
-        link = doc('.field-formatted_matched_rules_with_files td a')
+        link = doc('.field-formatted_matched_rules_with_files_and_data td a')
         assert link.text() == 'myrule ???'
         assert link.attr('href') == rule_url
 
@@ -1853,7 +1855,7 @@ class TestScannerQueryResultAdmin(TestCase):
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
         )
-        content = self.admin.formatted_matched_rules_with_files(result)
+        content = formatted_matched_rules_with_files_and_data(result)
         assert expect_file_item in content
         assert rule_url in content
 
@@ -1906,3 +1908,71 @@ class TestScannerQueryResultAdmin(TestCase):
             ),
         ]
         assert [link.attrib['href'] for link in links] == expected
+
+
+class FormattedMatchedRulesWithFilesAndData(TestCase):
+    def test_display_data(self):
+        rule = ScannerRule.objects.create(name='bar', scanner=CUSTOMS)
+        data = {
+            'scanMap': {
+                '__GLOBAL__': {
+                    rule.name: {
+                        'RULE_HAS_MATCHED': True,
+                        'BLAH': [
+                            {'ratio': 0.566346, 'thisisfun': ['a', 'b']},
+                            {'extensionId': '@flop', 'xaxaxa': False},
+                        ],
+                    }
+                }
+            },
+            'matchedRules': [rule.name],
+        }
+        result = ScannerResult.objects.create(pk=42, scanner=CUSTOMS, results=data)
+        content = formatted_matched_rules_with_files_and_data(result)
+        doc = pq(content)
+        assert len(doc('td > ul > li')) == 1
+        assert doc('td > ul > li').eq(0).text() == ''
+
+        content = formatted_matched_rules_with_files_and_data(result, display_data=True)
+        doc = pq(content)
+        assert len(doc('td > ul > li')) == 2
+        assert doc('td > ul > li').eq(0).text() == ''
+        li = doc('td > ul > li').eq(1)
+        assert li.attr('class') == 'extra_data'
+        assert li.html().strip() == format_scanners_data(
+            result.get_files_and_data_by_matched_rules()[rule.name][0]['data']
+        )
+
+    def test_display_scanner(self):
+        result = ScannerResult(pk=42, scanner=YARA)
+        content = formatted_matched_rules_with_files_and_data(result)
+        doc = pq(content)
+        assert not doc('caption')
+
+        content = formatted_matched_rules_with_files_and_data(
+            result, display_scanner=True
+        )
+        doc = pq(content)
+        assert doc('caption').text() == 'yara'
+        assert doc('caption a')[0].attrib['href'] == (
+            '/en-US/admin/models/scanners/scannerresult/42/change/'
+        )
+
+    def test_limit_to(self):
+        result = ScannerResult.objects.create(pk=42, scanner=YARA)
+        rule = ScannerRule.objects.create(name='bar', scanner=YARA)
+        for i in range(0, 5):
+            result.add_yara_result(
+                rule=rule.name, meta={'filename': f'somefilename{i}'}
+            )
+        result.save()
+        content = formatted_matched_rules_with_files_and_data(result)
+        doc = pq(content)
+        assert len(doc('li')) == 5
+        assert doc('li')[1].text.strip() == 'somefilename1'
+
+        content = formatted_matched_rules_with_files_and_data(result, limit_to=2)
+        doc = pq(content)
+        assert len(doc('li')) == 3  # 2 + 1 for the "…and and more 3 files"
+        assert doc('li')[1].text.strip() == 'somefilename1'
+        assert doc('li')[2].text == '…and 3 more files'
