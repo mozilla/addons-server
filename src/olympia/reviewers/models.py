@@ -274,11 +274,11 @@ class ReviewerScore(ModelBase):
                 if version is None:
                     raise AutoApprovalSummary.DoesNotExist
                 weight = version.autoapprovalsummary.weight
-            except AutoApprovalSummary.DoesNotExist as exception:
-                log.exception(
+            except AutoApprovalSummary.DoesNotExist:
+                log.warning(
                     'No such version/auto approval summary when determining '
-                    'event type to award points: %r',
-                    exception,
+                    'event type to award points (%s)',
+                    addon,
                 )
                 weight = 0
 
