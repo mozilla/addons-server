@@ -480,7 +480,7 @@ def get_sitemap_path(section, app, page=1):
         if (section, amo.APPS.get(app, '') if app else app) not in get_sitemaps():
             raise InvalidSection
         try:
-            int(page)
+            page = int(page)
         except ValueError:
             raise PageNotAnInteger
         if app is None:
