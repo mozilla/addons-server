@@ -300,3 +300,19 @@ def webext_version_stats(request, source):
         log.info(f'webext_version_stats webext_version: {webext_version}')
         statsd.incr(f'{source}.webext_version.{webext_version}')
     log.info('webext_version_stats no match')
+
+
+def is_version_number_not_greater_than_current(addon, version_string):
+    if (
+        addon
+        and (previous_version := addon.current_version)
+        and previous_version.version >= version_string
+    ):
+        msg = gettext(
+            'Version {version_string} must be greater than the previous approved '
+            'version {previous_version_string}.'
+        )
+        return msg.format(
+            version_string=version_string,
+            previous_version_string=previous_version.version,
+        )
