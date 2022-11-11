@@ -529,8 +529,8 @@ class DeveloperVersionSerializer(VersionSerializer):
                         self.addon, version_string
                     ):
                         raise exceptions.ValidationError({'version': error_message})
+                    # Also check for submitting listed versions when disabled.
                     if self.addon.disabled_by_user:
-                        # Also check for submitting listed versions when disabled.
                         raise exceptions.ValidationError(
                             gettext(
                                 'Listed versions cannot be submitted while add-on is '
