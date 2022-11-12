@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-01 17:05+0000\n"
-"PO-Revision-Date: 2022-11-03 09:40+0000\n"
+"PO-Revision-Date: 2022-11-12 15:19+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -3781,7 +3781,7 @@ msgstr "Poista evästeet automaattisesti, kun suljet välilehden."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Yksinkertainen tapa säätää minkä tahansa sivun tekstin kokoa – tai jopa suurentaa itse sivua."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4294,7 +4294,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Adjust browser audio settings with extreme clarity."
-msgstr ""
+msgstr "Säädä selaimen ääniasetuksia äärimmäisellä kirkkaudella."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4474,7 +4474,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Välilehdet ja kirjanmerkit siististi järjestettynä Firefoxin sivunäkymässä."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
