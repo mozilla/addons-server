@@ -1,6 +1,5 @@
 import json
 import os.path
-from copy import deepcopy
 from datetime import datetime, timedelta
 from unittest import mock
 
@@ -11,7 +10,6 @@ import pytest
 
 from celery import chord
 from celery.result import AsyncResult
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -24,7 +22,6 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
-from olympia.files.models import FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.scanners.tasks import run_customs, run_yara, call_mad_api

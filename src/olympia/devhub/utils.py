@@ -14,7 +14,6 @@ import olympia.core.logger
 
 from olympia import amo, core
 from olympia.amo.urlresolvers import linkify_and_clean
-from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
