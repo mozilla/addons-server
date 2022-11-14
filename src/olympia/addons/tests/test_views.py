@@ -3305,6 +3305,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def test_greater_version_number_error(self):
         self.addon.current_version.update(version='0.0.2')
+        self.addon.current_version.file.update(is_signed=True)
         self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.client.post(
             self.url,

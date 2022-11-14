@@ -275,9 +275,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert 'processed' in response.data
 
     def test_version_num_must_be_greater(self):
-        Version.objects.filter(addon__guid=self.guid, version='2.1.072').update(
-            version='3.1'
-        )
+        version = Version.objects.filter(addon__guid=self.guid, version='2.1.072')[0]
+        version.update(version='3.1')
+        version.file.update(is_signed=True)
 
         response = self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
         assert response.status_code == 409
@@ -286,9 +286,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         )
 
     def test_version_num_must_be_numerically_greater(self):
-        Version.objects.filter(addon__guid=self.guid, version='2.1.072').update(
-            version='3.0.0'
-        )
+        version = Version.objects.filter(addon__guid=self.guid, version='2.1.072')[0]
+        version.update(version='3.0.0')
+        version.file.update(is_signed=True)
 
         response = self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
         assert response.status_code == 409
