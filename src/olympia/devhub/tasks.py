@@ -255,7 +255,9 @@ def validate_file_path(path, channel):
 
     log.info('Running linter on %s', path)
     results = run_addons_linter(path, channel=channel)
-    annotations.annotate_validation_results(results, parsed_data)
+    annotations.annotate_validation_results(
+        results=results, parsed_data=parsed_data, channel=channel
+    )
     return json.dumps(results)
 
 

@@ -56,7 +56,6 @@ from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
-    add_manifest_version_messages,
     extract_theme_properties,
     wizard_unsupported_properties,
 )
@@ -772,7 +771,6 @@ def json_upload_detail(request, upload, addon_slug=None):
             return json_view.error(result)
         else:
             result['addon_type'] = pkg.get('type', '')
-            add_manifest_version_messages(result['validation'], upload=upload)
     return result
 
 

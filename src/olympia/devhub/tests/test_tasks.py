@@ -540,7 +540,9 @@ class TestValidateFilePath(ValidatorTestCase):
         assert run_addons_linter_mock.call_count == 1
         assert annotate_validation_results_mock.call_count == 1
         annotate_validation_results_mock.assert_called_with(
-            run_addons_linter_mock.return_value, parse_addon_mock.return_value
+            results=run_addons_linter_mock.return_value,
+            parsed_data=parse_addon_mock.return_value,
+            channel=amo.CHANNEL_UNLISTED,
         )
 
 
