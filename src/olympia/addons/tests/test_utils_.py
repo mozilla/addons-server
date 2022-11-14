@@ -30,7 +30,6 @@ from ..utils import (
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
-    is_version_number_not_greater_than_current,
     RestrictionChecker,
     TAAR_LITE_FALLBACK_REASON_EMPTY,
     TAAR_LITE_FALLBACK_REASON_TIMEOUT,
@@ -39,6 +38,7 @@ from ..utils import (
     TAAR_LITE_OUTCOME_REAL_FAIL,
     TAAR_LITE_OUTCOME_REAL_SUCCESS,
     TAAR_LITE_FALLBACK_REASON_INVALID,
+    validate_version_number_is_greater,
     verify_mozilla_trademark,
     webext_version_stats,
 )
@@ -494,18 +494,28 @@ def test_webext_version_stats():
         incr_mock.assert_called_with('prefix.for.logging.webext_version.12_34_56')
 
 
-def test_is_version_number_not_greater_than_current():
+def test_validate_version_number_is_greater():
     addon = addon_factory(version_kw={'version': '123.0'})
-    # version number isn't greater (its the same)
-    assert is_version_number_not_greater_than_current(addon, '123')
-    # version number is less than the current version
-    assert is_version_number_not_greater_than_current(addon, '122.9')
-    # version number is greater, so it's okay
-    assert not is_version_number_not_greater_than_current(addon, '123.1')
+    # version number isn't greater (its the same).
+    assert validate_version_number_is_greater(addon, '123') == (
+        'Version 123 must be greater than the previous approved version 123.0.'
+    )
+    # version number is less than the current version.
+    assert validate_version_number_is_greater(addon, '122.9') == (
+        'Version 122.9 must be greater than the previous approved version 123.0.'
+    )
+    # version number is greater, so no error message.
+    assert not validate_version_number_is_greater(addon, '123.1')
+
+    addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+    # Same as current but check only applies to approved versions, so no error message.
+    assert not validate_version_number_is_greater(addon, '123')
 
     addon.current_version.file.update(status=amo.STATUS_DISABLED)
+    addon.reload()
     assert not addon.current_version
-    # with no current version, it's okay
-    assert not is_version_number_not_greater_than_current(addon, '123.1')
-    # also check the edge case when addon is None
-    assert not is_version_number_not_greater_than_current(None, '123.0')
+    # No current version, so no error message.
+    assert not validate_version_number_is_greater(addon, '123')
+
+    # Also check the edge case when addon is None
+    assert not validate_version_number_is_greater(None, '123')

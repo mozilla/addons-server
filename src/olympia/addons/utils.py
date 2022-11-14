@@ -302,10 +302,13 @@ def webext_version_stats(request, source):
     log.info('webext_version_stats no match')
 
 
-def is_version_number_not_greater_than_current(addon, version_string):
+def validate_version_number_is_greater(addon, version_string):
+    """Returns an error string if `version_string` isn't greater than the current
+    approved listed version."""
     if (
         addon
         and (previous_version := addon.current_version)
+        and previous_version.file.status == amo.STATUS_APPROVED
         and previous_version.version >= version_string
     ):
         msg = gettext(
