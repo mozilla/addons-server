@@ -302,14 +302,19 @@ def webext_version_stats(request, source):
     log.info('webext_version_stats no match')
 
 
-def validate_version_number_is_greater(addon, version_string):
+def validate_version_number_is_gt_latest_signed_listed_version(addon, version_string):
     """Returns an error string if `version_string` isn't greater than the current
     approved listed version."""
     if (
         addon
-        and (previous_version := addon.current_version)
-        and previous_version.file.status == amo.STATUS_APPROVED
-        and previous_version.version >= version_string
+        and (
+            latest_version_string := addon.versions(manager='unfiltered_for_relations')
+            .filter(channel=amo.CHANNEL_LISTED, file__is_signed=True)
+            .order_by('created')
+            .values_list('version', flat=True)
+            .last()
+        )
+        and latest_version_string >= version_string
     ):
         msg = gettext(
             'Version {version_string} must be greater than the previous approved '
@@ -317,5 +322,5 @@ def validate_version_number_is_greater(addon, version_string):
         )
         return msg.format(
             version_string=version_string,
-            previous_version_string=previous_version.version,
+            previous_version_string=latest_version_string,
         )

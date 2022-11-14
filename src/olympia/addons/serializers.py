@@ -75,7 +75,7 @@ from .models import (
 from .tasks import resize_icon, resize_preview
 from .utils import (
     fetch_translations_from_addon,
-    validate_version_number_is_greater,
+    validate_version_number_is_gt_latest_signed_listed_version,
 )
 from .validators import (
     AddonMetadataValidator,
@@ -525,8 +525,10 @@ class DeveloperVersionSerializer(VersionSerializer):
                 self._check_for_existing_versions(version_string)
 
                 if data['upload'].channel == amo.CHANNEL_LISTED:
-                    if error_message := validate_version_number_is_greater(
-                        self.addon, version_string
+                    if error_message := (
+                        validate_version_number_is_gt_latest_signed_listed_version(
+                            self.addon, version_string
+                        )
                     ):
                         raise exceptions.ValidationError({'version': error_message})
                     # Also check for submitting listed versions when disabled.

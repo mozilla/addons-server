@@ -14,7 +14,7 @@ from freezegun import freeze_time
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.files.models import FileUpload
 from olympia.users.models import (
     EmailUserRestriction,
@@ -38,7 +38,7 @@ from ..utils import (
     TAAR_LITE_OUTCOME_REAL_FAIL,
     TAAR_LITE_OUTCOME_REAL_SUCCESS,
     TAAR_LITE_FALLBACK_REASON_INVALID,
-    validate_version_number_is_greater,
+    validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
     webext_version_stats,
 )
@@ -494,28 +494,52 @@ def test_webext_version_stats():
         incr_mock.assert_called_with('prefix.for.logging.webext_version.12_34_56')
 
 
-def test_validate_version_number_is_greater():
-    addon = addon_factory(version_kw={'version': '123.0'})
+def test_validate_version_number_is_gt_latest_signed_listed_version():
+    addon = addon_factory(version_kw={'version': '123.0'}, file_kw={'is_signed': True})
+    # add an unlisted version, which should be ignored.
+    latest_unlisted = version_factory(
+        addon=addon,
+        version='124',
+        channel=amo.CHANNEL_UNLISTED,
+        file_kw={'is_signed': True},
+    )
+    # Version number is greater, but doesn't matter, because the check is listed only.
+    assert latest_unlisted.version > addon.current_version.version
+
     # version number isn't greater (its the same).
-    assert validate_version_number_is_greater(addon, '123') == (
+    assert validate_version_number_is_gt_latest_signed_listed_version(addon, '123') == (
         'Version 123 must be greater than the previous approved version 123.0.'
     )
-    # version number is less than the current version.
-    assert validate_version_number_is_greater(addon, '122.9') == (
-        'Version 122.9 must be greater than the previous approved version 123.0.'
-    )
+    # version number is less than the current listed version.
+    assert validate_version_number_is_gt_latest_signed_listed_version(
+        addon, '122.9'
+    ) == ('Version 122.9 must be greater than the previous approved version 123.0.')
     # version number is greater, so no error message.
-    assert not validate_version_number_is_greater(addon, '123.1')
+    assert not validate_version_number_is_gt_latest_signed_listed_version(
+        addon, '123.1'
+    )
 
-    addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-    # Same as current but check only applies to approved versions, so no error message.
-    assert not validate_version_number_is_greater(addon, '123')
+    addon.current_version.file.update(is_signed=False)
+    # Same as current but check only applies to signed versions, so no error message.
+    assert not validate_version_number_is_gt_latest_signed_listed_version(addon, '123')
 
-    addon.current_version.file.update(status=amo.STATUS_DISABLED)
+    # Set up the scenario when a newer version has been signed, but then disabled
+    addon.current_version.file.update(is_signed=True)
+    disabled = version_factory(
+        addon=addon,
+        version='123.5',
+        file_kw={'is_signed': True, 'status': amo.STATUS_DISABLED},
+    )
     addon.reload()
-    assert not addon.current_version
-    # No current version, so no error message.
-    assert not validate_version_number_is_greater(addon, '123')
+    assert validate_version_number_is_gt_latest_signed_listed_version(
+        addon, '123.1'
+    ) == ('Version 123.1 must be greater than the previous approved version 123.5.')
+
+    disabled.delete()
+    # Shouldn't make a difference even if it's deleted - it was still signed.
+    assert validate_version_number_is_gt_latest_signed_listed_version(
+        addon, '123.1'
+    ) == ('Version 123.1 must be greater than the previous approved version 123.5.')
 
     # Also check the edge case when addon is None
-    assert not validate_version_number_is_greater(None, '123')
+    assert not validate_version_number_is_gt_latest_signed_listed_version(None, '123')

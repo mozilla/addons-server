@@ -37,7 +37,7 @@ from olympia.addons.models import (
 from olympia.addons.utils import (
     fetch_translations_from_addon,
     RestrictionChecker,
-    validate_version_number_is_greater,
+    validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
 )
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
@@ -1104,8 +1104,10 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
             if self.addon:
                 self.check_for_existing_versions(parsed_data.get('version'))
                 if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED:
-                    if error_message := validate_version_number_is_greater(
-                        self.addon, parsed_data.get('version')
+                    if error_message := (
+                        validate_version_number_is_gt_latest_signed_listed_version(
+                            self.addon, parsed_data.get('version')
+                        )
                     ):
                         raise forms.ValidationError(error_message)
 
