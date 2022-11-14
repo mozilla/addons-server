@@ -76,10 +76,9 @@ function initReviewActions() {
       $('#review-actions').find('.errorlist').remove();
     }
 
-    // Hide everything, then show the ones containing the value we're
-    // interested in. Values are padded with spaces so we don't match a substring.)
+    // Hide everything, then show the ones containing the value we're interested in.
     $data_toggle.hide();
-    $data_toggle.filter('[data-value*=" ' + value + ' "]').show();
+    $data_toggle.filter('[data-value~="' + value + '"]').show();
 
     /* Fade out canned responses */
     var label = $element.text().trim();

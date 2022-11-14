@@ -149,8 +149,8 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             # Add our special `data-toggle` class and the right `data-value` depending
             # on status.
             option['attrs']['class'] = 'data-toggle'
-            option['attrs']['data-value'] = ''.join(
-                f' {a} ' for a in self.actions_filters[obj.channel].get(status, ())
+            option['attrs']['data-value'] = ' '.join(
+                self.actions_filters[obj.channel].get(status, ())
             )
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
@@ -302,7 +302,7 @@ class ReviewForm(forms.Form):
         # if the relevant actions are available, otherwise we don't really care
         # about this field.
         versions_actions = [
-            f' {k} '
+            k
             for k in self.helper.actions
             if self.helper.actions[k].get('multiple_versions')
         ]
@@ -321,9 +321,8 @@ class ReviewForm(forms.Form):
                 .select_related('reviewerflags')
                 .order_by('created')
             )
-            # Reset data-value depending on widget depending on actions
-            # available.
-            self.fields['versions'].widget.attrs['data-value'] = ''.join(
+            # Reset data-value depending on widget depending on actions available.
+            self.fields['versions'].widget.attrs['data-value'] = ' '.join(
                 versions_actions
             )
         # For the canned responses, we're starting with an empty one, which

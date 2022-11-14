@@ -138,7 +138,7 @@
     <div id="review-actions-form">
 
       {% for (setting, action) in actions %}
-      <div class="data-toggle review-actions-desc" data-value=" {{ setting }} ">
+      <div class="data-toggle review-actions-desc" data-value="{{ setting }}">
         {{ action['details'] }}
 
         {# We don't have a better place to display versions error messages, so let's do it here.
@@ -158,7 +158,7 @@
       {{ form.versions.errors }}
 
       <div class="review-actions-section data-toggle review-comments"
-           data-value="{{ actions_comments|join('') }}">
+           data-value="{{ actions_comments|join(' ') }}">
         <div class="review-actions-comments-reasons">
           <div class="review-actions-comments">
             <label for="id_comments">{{ form.comments.label }}</label>
@@ -166,7 +166,7 @@
             {{ form.comments.errors }}
           </div>
           <div class="data-toggle review-actions-reasons"
-            data-value="{{ actions_reasons|join('') }}">
+            data-value="{{ actions_reasons|join(' ') }}">
             <label for="id_reasons">{{ form.reasons.label }}</label>
             <div class="review-actions-reasons-select">
               {{ form.reasons }}
@@ -183,7 +183,7 @@
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle review-files"
-           data-value="{{ actions_full|join('') }}">
+           data-value="{{ actions_full|join(' ') }}">
         <label><strong>{{ _('Files:') }}</strong></label>
         <ul>
           {% for file in form.unreviewed_files %}
@@ -196,7 +196,7 @@
       </div>
 
       <div class="review-actions-section review-actions-tested data-toggle review-tested"
-           data-value="{{ actions_full|join('') }}">
+           data-value="{{ actions_full|join(' ') }}">
         <strong>{{ _('Tested on:') }}</strong>
         <label>
           {{ form.operating_systems.label }}
@@ -210,7 +210,7 @@
         {{ form.applications.errors }}
       </div>
       <div class="review-actions-section data-toggle review-delayed-rejection"
-           data-value="{{ actions_delayable|join('') }}">
+           data-value="{{ actions_delayable|join(' ') }}">
         <div class="review-delayed-rejection-inner">
           {{ form.delayed_rejection }}
           {{ form.delayed_rejection.errors }}

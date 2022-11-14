@@ -5461,11 +5461,11 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            ' confirm_auto_approved ',
-            ' reject_multiple_versions ',
-            ' reply ',
-            ' super ',
-            ' comment ',
+            'confirm_auto_approved',
+            'reject_multiple_versions',
+            'reply',
+            'super',
+            'comment',
         ]
         assert [
             act.attrib['data-value'] for act in doc('.data-toggle.review-actions-desc')
@@ -5473,7 +5473,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('select#id_versions.data-toggle')[0].attrib['data-value']
-            == ' reject_multiple_versions '
+            == 'reject_multiple_versions'
         )
 
         assert (
@@ -5483,12 +5483,12 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == ' reject_multiple_versions  reply  super  comment '
+            == 'reject_multiple_versions reply super comment'
         )
 
         assert (
             doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == ' reject_multiple_versions  reply '
+            == 'reject_multiple_versions reply'
         )
 
         # We don't have approve/reject actions so these have an empty
@@ -5496,7 +5496,7 @@ class TestReview(ReviewBase):
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
         elm = doc('.data-toggle.review-delayed-rejection')[0]
-        assert elm.attrib['data-value'] == ' reject_multiple_versions '
+        assert elm.attrib['data-value'] == 'reject_multiple_versions'
 
     def test_data_value_attributes_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -5511,13 +5511,13 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            ' approve_multiple_versions ',
-            ' reject_multiple_versions ',
-            ' block_multiple_versions ',
-            ' confirm_multiple_versions ',
-            ' reply ',
-            ' super ',
-            ' comment ',
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'reply',
+            'super',
+            'comment',
         ]
         assert [
             act.attrib['data-value'] for act in doc('.data-toggle.review-actions-desc')
@@ -5525,19 +5525,18 @@ class TestReview(ReviewBase):
 
         assert (
             doc('select#id_versions.data-toggle')[0].attrib['data-value']
-            == ' approve_multiple_versions  reject_multiple_versions '
-            ' block_multiple_versions  confirm_multiple_versions '
+            == 'approve_multiple_versions reject_multiple_versions '
+            'block_multiple_versions confirm_multiple_versions'
         )
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == ' approve_multiple_versions  reject_multiple_versions  reply  super '
-            ' comment '
+            == 'approve_multiple_versions reject_multiple_versions reply super comment'
         )
 
         assert (
             doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == ' approve_multiple_versions  reject_multiple_versions  reply '
+            == 'approve_multiple_versions reject_multiple_versions reply'
         )
 
         # We don't have approve/reject actions so these have an empty
@@ -5581,12 +5580,12 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            ' public ',
-            ' reject ',
-            ' reject_multiple_versions ',
-            ' reply ',
-            ' super ',
-            ' comment ',
+            'public',
+            'reject',
+            'reject_multiple_versions',
+            'reply',
+            'super',
+            'comment',
         ]
         assert [
             act.attrib['data-value'] for act in doc('.data-toggle.review-actions-desc')
@@ -5596,19 +5595,17 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == ' public  reject  reject_multiple_versions  reply  super  comment '
+            == 'public reject reject_multiple_versions reply super comment'
         )
         assert (
-            doc('.data-toggle.review-files')[0].attrib['data-value']
-            == ' public  reject '
+            doc('.data-toggle.review-files')[0].attrib['data-value'] == 'public reject'
         )
         assert (
-            doc('.data-toggle.review-tested')[0].attrib['data-value']
-            == ' public  reject '
+            doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'public reject'
         )
         assert (
             doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == ' public  reject  reject_multiple_versions  reply '
+            == 'public reject reject_multiple_versions reply'
         )
 
     def test_data_value_attributes_static_theme(self):
@@ -5620,12 +5617,12 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
 
         expected_actions_values = [
-            ' public ',
-            ' reject ',
-            ' reject_multiple_versions ',
-            ' reply ',
-            ' super ',
-            ' comment ',
+            'public',
+            'reject',
+            'reject_multiple_versions',
+            'reply',
+            'super',
+            'comment',
         ]
         assert [
             act.attrib['data-value'] for act in doc('.data-toggle.review-actions-desc')
@@ -5635,7 +5632,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == ' public  reject  reject_multiple_versions  reply  super  comment '
+            == 'public reject reject_multiple_versions reply super comment'
         )
         # we don't show files, reasons, and tested with for any static theme actions
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''

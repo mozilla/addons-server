@@ -701,13 +701,13 @@ def review(request, addon, channel=None):
 
     for key, action in actions:
         if not (is_static_theme or action.get('minimal')):
-            actions_full.append(f' {key} ')
+            actions_full.append(key)
         if action.get('comments', True):
-            actions_comments.append(f' {key} ')
+            actions_comments.append(key)
         if action.get('delayable', False):
-            actions_delayable.append(f' {key} ')
+            actions_delayable.append(key)
         if action.get('allows_reasons', False):
-            actions_reasons.append(f' {key} ')
+            actions_reasons.append(key)
 
     addons_sharing_same_guid = (
         Addon.unfiltered.all()
