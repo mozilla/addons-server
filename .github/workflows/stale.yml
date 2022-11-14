@@ -1,0 +1,37 @@
+# This workflow warns and then closes issues and PRs that have had no activity for a specified amount of time.
+#
+# You can adjust the behavior by modifying this file.
+# For more information, see:
+# https://github.com/actions/stale
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+  - cron: '00 6 * * *'
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+    - uses: actions/stale@v5
+      with:
+        days-before-stale: 180
+        days-before-close: 14
+        exempt-issue-labels: >-
+          'contrib: maybe good first bug, contrib: good first bug, component: security,
+          state: blocked, state: blocked by upstream, state: pull request ready, neverstale'
+        exempt-all-milestones: true
+        exempt-all-assignees: true
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        stale-issue-message: >
+          This issue has been automatically marked as stale because it has not had
+          recent activity. If you think this bug should stay open, please comment on 
+          the issue with further details. Thank you for your contributions.
+        stale-pr-message: 'Stale pull request message'
+        stale-issue-label: 'state: stale'
+        stale-pr-label: 'no-pr-activity'
