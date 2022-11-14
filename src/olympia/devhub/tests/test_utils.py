@@ -570,7 +570,7 @@ def test_add_manifest_version_message_switch_enabled():
         assert (
             validation['messages'][0]['message'] == 'Manifest V3 compatibility warning'
         )
-        assert 'https://mzl.la/amo_mv3' in (
+        assert 'https://mzl.la/3hIwQXX' in (
             # description is a list of strings, the link is in the second one.
             validation['messages'][0]['description'][1]
         )

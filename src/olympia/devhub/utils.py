@@ -355,7 +355,7 @@ def add_manifest_version_messages(results, *, upload):
                 linkify_and_clean(
                     gettext(
                         'For more information about the MV3 extension roll-out or '
-                        'self-hosting MV3 extensions, visit https://mzl.la/amo_mv3'
+                        'self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX'
                     )
                 ),
             ],
