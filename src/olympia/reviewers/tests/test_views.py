@@ -6353,6 +6353,34 @@ class TestWhiteboard(ReviewBase):
         assert whiteboard.public == public_whiteboard_info
         assert whiteboard.private == private_whiteboard_info
 
+    def test_whiteboard_private_too_long(self):
+        url = reverse('reviewers.whiteboard', args=['listed', self.addon.pk])
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.post(
+            url,
+            {
+                'whiteboard-private': 'ï' * 100001,
+                'whiteboard-public': 'û',
+            },
+        )
+        # That view doesn't handle errors, it's an XHR call.
+        assert response.status_code == 403
+
+    def test_whiteboard_public_too_long(self):
+        url = reverse('reviewers.whiteboard', args=['listed', self.addon.pk])
+        user = UserProfile.objects.get(email='reviewer@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.post(
+            url,
+            {
+                'whiteboard-private': 'ï',
+                'whiteboard-public': 'û' * 100001,
+            },
+        )
+        # That view doesn't handle errors, it's an XHR call.
+        assert response.status_code == 403
+
     def test_delete_empty(self):
         url = reverse('reviewers.whiteboard', args=['listed', self.addon.pk])
         response = self.client.post(

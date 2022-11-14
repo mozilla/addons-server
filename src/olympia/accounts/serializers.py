@@ -18,7 +18,7 @@ from olympia.amo.utils import (
     unsubscribe_newsletter,
     urlparams,
 )
-from olympia.api.serializers import SiteStatusSerializer
+from olympia.api.serializers import AMOModelSerializer, SiteStatusSerializer
 from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMorePrintableCharacterAPIValidator
 from olympia.users import notifications
@@ -29,7 +29,7 @@ from olympia.users.tasks import resize_photo
 log = olympia.core.logger.getLogger('accounts')
 
 
-class BaseUserSerializer(serializers.ModelSerializer):
+class BaseUserSerializer(AMOModelSerializer):
     url = serializers.SerializerMethodField()
 
     class Meta:

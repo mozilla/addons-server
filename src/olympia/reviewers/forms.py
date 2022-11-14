@@ -14,6 +14,7 @@ import olympia.core.logger
 
 from olympia import amo, ratings
 from olympia.access import acl
+from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
@@ -407,21 +408,21 @@ class MOTDForm(forms.Form):
     motd = forms.CharField(required=True, widget=widgets.Textarea())
 
 
-class WhiteboardForm(forms.ModelForm):
+class WhiteboardForm(AMOModelForm):
     class Meta:
         model = Whiteboard
         fields = ['private', 'public']
         labels = {'private': _('Private Whiteboard'), 'public': _('Whiteboard')}
 
 
-class PublicWhiteboardForm(forms.ModelForm):
+class PublicWhiteboardForm(AMOModelForm):
     class Meta:
         model = Whiteboard
         fields = ['public']
         labels = {'public': _('Whiteboard')}
 
 
-class ModerateRatingFlagForm(forms.ModelForm):
+class ModerateRatingFlagForm(AMOModelForm):
 
     action_choices = [
         (ratings.REVIEW_MODERATE_KEEP, _('Keep review; remove flags')),

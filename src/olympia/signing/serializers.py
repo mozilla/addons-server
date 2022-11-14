@@ -7,10 +7,11 @@ from rest_framework.reverse import reverse as drf_reverse
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.api.serializers import AMOModelSerializer
 from olympia.files.models import FileUpload
 
 
-class SigningFileUploadSerializer(serializers.ModelSerializer):
+class SigningFileUploadSerializer(AMOModelSerializer):
     guid = serializers.CharField(source='addon.guid')
     active = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()

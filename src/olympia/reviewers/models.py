@@ -1109,8 +1109,8 @@ class AutoApprovalSummary(ModelBase):
 
 class Whiteboard(ModelBase):
     addon = models.OneToOneField(Addon, on_delete=models.CASCADE, primary_key=True)
-    private = models.TextField(blank=True)
-    public = models.TextField(blank=True)
+    private = models.TextField(blank=True, max_length=100000)
+    public = models.TextField(blank=True, max_length=100000)
 
     class Meta:
         db_table = 'review_whiteboard'

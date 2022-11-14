@@ -1,9 +1,11 @@
 from rest_framework import serializers
 
+from olympia.api.serializers import AMOModelSerializer
+
 from .models import ScannerResult
 
 
-class ScannerResultSerializer(serializers.ModelSerializer):
+class ScannerResultSerializer(AMOModelSerializer):
     scanner = serializers.SerializerMethodField()
     label = serializers.CharField(default=None)
     results = serializers.JSONField()

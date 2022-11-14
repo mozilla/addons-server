@@ -1512,6 +1512,17 @@ class TestEditTechnical(BaseTestEdit):
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
+    def test_whiteboard_too_long(self):
+        data = {
+            'whiteboard-public': 'ê' * 100001,
+        }
+        response = self.client.post(self.technical_edit_url, data)
+        assert response.context['whiteboard_form'].errors == {
+            'public': [
+                'Ensure this value has at most 100000 characters (it has 100001).'
+            ]
+        }
+
 
 class TestEditTechnicalUnlisted(BaseTestEdit):
     __test__ = True

@@ -9,12 +9,13 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.api.fields import ReverseChoiceField
+from olympia.api.serializers import AMOModelSerializer
 
 
 log = olympia.core.logger.getLogger('z.abuse')
 
 
-class BaseAbuseReportSerializer(serializers.ModelSerializer):
+class BaseAbuseReportSerializer(AMOModelSerializer):
     reporter = BaseUserSerializer(read_only=True)
 
     class Meta:

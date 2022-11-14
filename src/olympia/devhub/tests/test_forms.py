@@ -376,6 +376,16 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         assert update_mock.called
 
+    def test_caption_too_long(self):
+        name = 'transparent.png'
+        form = forms.PreviewForm(
+            {'caption': 'û' * 281, 'upload_hash': name, 'position': 1}
+        )
+        assert not form.is_valid()
+        assert form.errors == {
+            'caption': ['Ensure this value has at most 280 characters (it has 281).']
+        }
+
     def test_preview_transparency(self):
         addon = Addon.objects.get(pk=3615)
         name = 'transparent-cotton'
@@ -589,6 +599,29 @@ class TestDescribeForm(TestCase):
         )
         assert form.is_valid(), form.errors
 
+    def test_support_url_too_long(self):
+        form = forms.DescribeForm(
+            {'support_url': f'https://{"s" * 244}.com'},
+            request=self.request,
+            instance=Addon.objects.get(),
+        )
+        assert not form.is_valid()
+        assert form.errors['support_url'] == [
+            'Enter a valid URL.',
+            'Ensure this value has at most 255 characters (it has 256).',
+        ]
+
+    def test_support_email_too_long(self):
+        form = forms.DescribeForm(
+            {'support_email': f'{"u" * 89}@support.com'},
+            request=self.request,
+            instance=Addon.objects.get(),
+        )
+        assert not form.is_valid()
+        assert form.errors['support_email'] == [
+            'Ensure this value has at most 100 characters (it has 101).',
+        ]
+
     def test_description_optional(self):
         delicious = Addon.objects.get()
         assert delicious.type == amo.ADDON_EXTENSION
@@ -689,6 +722,25 @@ class TestDescribeForm(TestCase):
                 instance=delicious,
             )
             assert form.is_valid(), form.errors
+
+    def test_description_too_long(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {
+                'name': 'name me',
+                'summary': 'summary me',
+                'slug': 'slugme',
+                'description': 'a' * 15001,
+            },
+            request=self.request,
+            instance=delicious,
+        )
+        assert not form.is_valid()
+        assert form.errors == {
+            'description': [
+                'Ensure this value has at most 15000 characters (it has 15001).'
+            ]
+        }
 
     def test_name_summary_lengths(self):
         delicious = Addon.objects.get()
@@ -924,6 +976,18 @@ class TestAdditionalDetailsForm(TestCase):
         )
         assert form.is_valid()
 
+    def test_homepage_too_long(self):
+        form = forms.AdditionalDetailsForm(
+            {'homepage': f'https://{"a" * 244}.com'},
+            request=self.request,
+            instance=self.addon,
+        )
+        assert not form.is_valid()
+        assert form.errors['homepage'] == [
+            'Enter a valid URL.',
+            'Ensure this value has at most 255 characters (it has 256).',
+        ]
+
 
 class TestIconForm(TestCase):
     fixtures = ['base/addon_3615']
@@ -1004,3 +1068,20 @@ class TestVersionForm(TestCase):
 
             pending_mock.return_value = True
             assert form(instance=version).fields['source'].disabled is False
+
+
+class TestAddonFormTechnical(TestCase):
+    def test_developer_comments_too_long(self):
+        addon = addon_factory()
+        request = req_factory_factory('/')
+        form = forms.AddonFormTechnical(
+            {'developer_comments': 'a' * 3001},
+            instance=addon,
+            request=request,
+        )
+        assert not form.is_valid()
+        assert form.errors == {
+            'developer_comments': [
+                'Ensure this value has at most 3000 characters (it has 3001).'
+            ]
+        }

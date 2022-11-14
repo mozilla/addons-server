@@ -215,8 +215,14 @@ class Version(OnChangeMixin, ModelBase):
     license = models.ForeignKey(
         'License', null=True, blank=True, on_delete=models.SET_NULL
     )
-    release_notes = PurifiedField(db_column='releasenotes', short=False)
-    approval_notes = models.TextField(db_column='approvalnotes', default='', blank=True)
+    release_notes = PurifiedField(
+        db_column='releasenotes', short=False, max_length=3000
+    )
+    # Note that max_length isn't enforced at the database level for TextFields,
+    # but the API serializer & form are set to obey it.
+    approval_notes = models.TextField(
+        db_column='approvalnotes', default='', blank=True, max_length=3000
+    )
     version = VersionStringField(max_length=255, default='0.1')
 
     nomination = models.DateTimeField(null=True)
@@ -1134,9 +1140,9 @@ class License(ModelBase):
     OTHER = 0
 
     id = PositiveAutoField(primary_key=True)
-    name = TranslatedField()
+    name = TranslatedField(max_length=200)
     builtin = models.PositiveIntegerField(default=OTHER)
-    text = LinkifiedField()
+    text = LinkifiedField(max_length=75000)
 
     objects = LicenseManager()
 

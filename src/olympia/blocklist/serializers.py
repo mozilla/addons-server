@@ -1,11 +1,10 @@
-from rest_framework import serializers
-
+from olympia.api.serializers import AMOModelSerializer
 from olympia.api.fields import OutgoingURLField, TranslationSerializerField
 
 from .models import Block
 
 
-class BlockSerializer(serializers.ModelSerializer):
+class BlockSerializer(AMOModelSerializer):
     addon_name = TranslationSerializerField(source='addon.name')
     url = OutgoingURLField()
 

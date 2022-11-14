@@ -9,6 +9,7 @@ from django.urls import NoReverseMatch, reverse
 
 import olympia.core.logger
 from olympia import amo
+from olympia.amo.forms import AMOModelForm
 from olympia.shelves.models import Shelf
 from olympia.tags.models import Tag
 
@@ -16,7 +17,7 @@ from olympia.tags.models import Tag
 log = olympia.core.logger.getLogger('z.admin.shelves')
 
 
-class ShelfForm(forms.ModelForm):
+class ShelfForm(AMOModelForm):
     # It's required in the model, but we set it to a default selectively per endpoint.
     criteria = forms.CharField(required=False)
 

@@ -11,6 +11,7 @@ from rest_framework.relations import PrimaryKeyRelatedField
 
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import SimpleAddonSerializer, SimpleVersionSerializer
+from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.versions.models import Version
@@ -34,9 +35,8 @@ class RatingAddonSerializer(SimpleAddonSerializer):
         return self.context['view'].get_addon_object() or obj.addon
 
 
-class BaseRatingSerializer(serializers.ModelSerializer):
+class BaseRatingSerializer(AMOModelSerializer):
     addon = RatingAddonSerializer(read_only=True)
-    body = serializers.CharField(allow_null=True, required=False)
     is_deleted = serializers.BooleanField(read_only=True, source='deleted')
     is_developer_reply = serializers.SerializerMethodField()
     is_latest = serializers.BooleanField(read_only=True)
@@ -251,7 +251,7 @@ class RatingSerializer(BaseRatingSerializer):
         return super().create(validated_data)
 
 
-class RatingFlagSerializer(serializers.ModelSerializer):
+class RatingFlagSerializer(AMOModelSerializer):
     flag = serializers.CharField()
     note = serializers.CharField(allow_null=True, required=False)
     rating = RatingSerializer(read_only=True)

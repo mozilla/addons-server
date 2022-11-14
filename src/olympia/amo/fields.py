@@ -67,24 +67,21 @@ class IPAddressBinaryField(VarBinaryField):
 
 
 class HttpHttpsOnlyURLField(fields.URLField):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.validators = [
-            URLValidator(schemes=('http', 'https')),
-            # Reject AMO URLs, see:
-            # https://github.com/mozilla/addons-server/issues/9012
-            RegexValidator(
-                regex=r'%s' % re.escape(settings.DOMAIN),
-                message=_(
-                    'This field can only be used to link to external websites.'
-                    ' URLs on %(domain)s are not allowed.',
-                )
-                % {'domain': settings.DOMAIN},
-                code='no_amo_url',
-                inverse_match=True,
-            ),
-        ]
+    default_validators = [
+        URLValidator(schemes=('http', 'https')),
+        # Reject AMO URLs, see:
+        # https://github.com/mozilla/addons-server/issues/9012
+        RegexValidator(
+            regex=r'%s' % re.escape(settings.DOMAIN),
+            message=_(
+                'This field can only be used to link to external websites.'
+                ' URLs on %(domain)s are not allowed.',
+            )
+            % {'domain': settings.DOMAIN},
+            code='no_amo_url',
+            inverse_match=True,
+        ),
+    ]
 
 
 class ReCaptchaField(UpstreamReCaptchaField):

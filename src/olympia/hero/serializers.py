@@ -8,6 +8,7 @@ from olympia.api.fields import (
     GetTextTranslationSerializerFieldFlat,
     TranslationSerializerFieldFlat,
 )
+from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.discovery.serializers import DiscoveryAddonSerializer
 
@@ -32,7 +33,7 @@ class HeroAddonSerializer(DiscoveryAddonSerializer):
         model = Addon
 
 
-class PrimaryHeroShelfSerializer(serializers.ModelSerializer):
+class PrimaryHeroShelfSerializer(AMOModelSerializer):
     description = FallbackField(
         GetTextTranslationSerializerFieldFlat(),
         TranslationSerializerFieldFlat(source='promoted_addon.addon.summary'),
@@ -83,7 +84,7 @@ class CTAField(serializers.Serializer):
             return None
 
 
-class SecondaryHeroShelfModuleSerializer(serializers.ModelSerializer):
+class SecondaryHeroShelfModuleSerializer(AMOModelSerializer):
     icon = serializers.CharField(source='icon_url')
     description = GetTextTranslationSerializerFieldFlat()
     cta = CTAField(source='*')
@@ -93,7 +94,7 @@ class SecondaryHeroShelfModuleSerializer(serializers.ModelSerializer):
         fields = ('icon', 'description', 'cta')
 
 
-class SecondaryHeroShelfSerializer(serializers.ModelSerializer):
+class SecondaryHeroShelfSerializer(AMOModelSerializer):
     headline = GetTextTranslationSerializerFieldFlat()
     description = GetTextTranslationSerializerFieldFlat()
     cta = CTAField(source='*')

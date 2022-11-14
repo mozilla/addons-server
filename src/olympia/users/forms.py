@@ -3,6 +3,8 @@ import os
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
+from olympia.amo.forms import AMOModelForm
+
 
 class DeniedNameAddForm(forms.Form):
     """Form for adding denied names in bulk fashion."""
@@ -16,7 +18,7 @@ class DeniedNameAddForm(forms.Form):
         return names
 
 
-class IPNetworkUserRestrictionForm(forms.ModelForm):
+class IPNetworkUserRestrictionForm(AMOModelForm):
     ip_address = forms.GenericIPAddressField(
         required=False,
         label=_('IP Address'),

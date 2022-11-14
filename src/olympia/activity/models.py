@@ -141,7 +141,7 @@ class CommentLog(ModelBase):
     """
 
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
-    comments = models.TextField()
+    comments = models.TextField(max_length=100000)
 
     class Meta:
         db_table = 'log_activity_comment'
