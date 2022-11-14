@@ -1405,7 +1405,7 @@ class ReviewBase:
 
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
-            self.addon.update_nominated_status(self.user)
+            self.addon.update_status(self.user)
 
     def notify_about_auto_approval_delay(self, version):
         """Notify developers of the add-on when their version has not been

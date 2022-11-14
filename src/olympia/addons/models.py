@@ -1184,47 +1184,43 @@ class Addon(OnChangeMixin, ModelBase):
     def update_status(self, ignore_version=None):
         self.reload()
 
-        if self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or self.is_disabled:
+        # We don't auto-update the status of deleted or disabled add-ons.
+        if self.status == amo.STATUS_DELETED or self.is_disabled:
             self.update_version(ignore=ignore_version)
             return
 
-        versions = self.versions.filter(channel=amo.CHANNEL_LISTED)
-        status = None
-        reason = ''
-        if not versions.exists():
-            status = amo.STATUS_NULL
-            reason = 'no listed versions'
-        elif not versions.filter(file__status__in=amo.VALID_FILE_STATUSES).exists():
-            status = amo.STATUS_NULL
-            reason = 'no listed version with valid file'
-        elif (
-            self.status == amo.STATUS_APPROVED
-            and not versions.filter(file__status=amo.STATUS_APPROVED).exists()
-        ):
-            if versions.filter(file__status=amo.STATUS_AWAITING_REVIEW).exists():
-                status = amo.STATUS_NOMINATED
-                reason = 'only an unreviewed file'
-            else:
-                status = amo.STATUS_NULL
-                reason = 'no reviewed files'
-        elif self.status == amo.STATUS_APPROVED:
-            latest_version = self.find_latest_version(channel=amo.CHANNEL_LISTED)
+        listed_versions = self.versions.filter(channel=amo.CHANNEL_LISTED)
+        correct_status = self.status
+        force_update = False
+        if listed_versions.filter(file__status=amo.STATUS_APPROVED).exists():
+            correct_status = amo.STATUS_APPROVED
+            reason = 'unapproved add-on with approved listed version'
+
             if (
-                latest_version
-                and latest_version.file.status == amo.STATUS_AWAITING_REVIEW
+                self.status == amo.STATUS_APPROVED
+                and self.find_latest_version(channel=amo.CHANNEL_LISTED).file.status
+                == amo.STATUS_AWAITING_REVIEW
             ):
                 # Addon is public, but its latest file is not (it's the case on
-                # a new file upload). So, call update, to trigger watch_status,
+                # a new file upload). So, force the update, to trigger watch_status,
                 # which takes care of setting nomination time when needed.
-                status = self.status
+                force_update = True
                 reason = 'triggering watch_status'
 
-        if status is not None:
+        elif listed_versions.filter(file__status=amo.STATUS_AWAITING_REVIEW).exists():
+            if self.status != amo.STATUS_NULL or self.has_complete_metadata():
+                correct_status = amo.STATUS_NOMINATED
+                reason = 'complete metadata and/or listed version awaiting review'
+        else:
+            correct_status = amo.STATUS_NULL
+            reason = 'no listed versions that are approved or awaiting review'
+
+        if correct_status != self.status or force_update:
             log.info(
                 'Changing add-on status [%s]: %s => %s (%s).'
-                % (self.id, self.status, status, reason)
+                % (self.id, self.status, correct_status, reason)
             )
-            self.update(status=status)
+            self.update(status=correct_status)
             # If task_user doesn't exist that's no big issue (i.e. in tests)
             try:
                 task_user = get_task_user()
@@ -1235,22 +1231,6 @@ class Addon(OnChangeMixin, ModelBase):
             )
 
         self.update_version(ignore=ignore_version)
-
-    def update_nominated_status(self, user):
-        # Update the addon status to nominated if there are versions awaiting review
-        if (
-            self.status == amo.STATUS_NULL
-            and self.versions.filter(
-                file__status=amo.STATUS_AWAITING_REVIEW, channel=amo.CHANNEL_LISTED
-            ).exists()
-        ):
-            log.info(
-                'Changing add-on status [%s]: %s => %s (%s).'
-                % (self.id, self.status, amo.STATUS_NOMINATED, 'unrejecting versions')
-            )
-            self.update(status=amo.STATUS_NOMINATED)
-            activity.log_create(amo.LOG.CHANGE_STATUS, self, self.status, user=user)
-            self.update_version()
 
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):
@@ -1840,35 +1820,27 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
 
     If a version is rejected after nomination, the developer has
     to upload a new version.
-
     """
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-    new_status = new_attr.get('status')
-    old_status = old_attr.get('status')
-    latest_version = instance.find_latest_version(channel=amo.CHANNEL_LISTED)
+    new_status = new_attr.get('status') if new_attr else None
+    old_status = old_attr.get('status') if old_attr else None
 
     # Update the author's account profile visibility
     if new_status != old_status:
         [author.update_is_public() for author in instance.authors.all()]
 
-    if (
-        new_status not in amo.VALID_ADDON_STATUSES
-        or not new_status
-        or not latest_version
+    if new_status not in amo.VALID_ADDON_STATUSES or not (
+        latest_version := instance.find_latest_version(channel=amo.CHANNEL_LISTED)
     ):
         return
 
-    if old_status != amo.STATUS_NOMINATED:
-        # New: will (re)set nomination only if it's None.
-        latest_version.reset_nomination_time()
-    else:
+    if old_status == amo.STATUS_NOMINATED:
         # Updating: inherit nomination from last nominated version.
         # Calls `inherit_nomination` manually given that signals are
         # deactivated to avoid circular calls.
         inherit_nomination(None, latest_version)
+    else:
+        # New: will (re)set nomination only if it's None.
+        latest_version.reset_nomination_time()
 
 
 def attach_translations_dict(addons):

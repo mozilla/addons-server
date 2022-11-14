@@ -250,6 +250,7 @@ class TestDashboard(HubTest):
         self.make_addon_unlisted(self.addon)
         version = version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
         version.update(license=None)
+        self.addon.update(status=amo.STATUS_NULL)
         self.addon.reload()
         assert not self.addon.has_complete_metadata()
 
@@ -1790,6 +1791,7 @@ class TestHasCompleteMetadataRedirects(TestCase):
         self.request = RequestFactory().get('developers/addon/a3615/edit')
         self.request.user = UserProfile.objects.get(email='admin@mozilla.com')
         self.addon = Addon.objects.get(id=3615)
+        self.addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NULL)
         self.addon = Addon.objects.get(id=3615)
         assert self.addon.has_complete_metadata(), self.addon.get_required_metadata()

@@ -1987,24 +1987,20 @@ class TestAddonNomination(TestCase):
         )
         assert addon.versions.latest().nomination == nomination
 
-    def test_nomination_not_reset_if_adding_new_versions_and_files(self):
+    def test_nomination_not_reset_if_adding_new_versions(self):
         """
         When under review, adding new versions and files should not
         reset nomination.
         """
         addon, nomination = self.setup_nomination()
-        # Switching it to a public status.
-        version = Version.objects.create(addon=addon, version='0.2')
-        File.objects.create(
-            status=amo.STATUS_APPROVED, version=version, manifest_version=2
-        )
-        assert addon.versions.latest().nomination == nomination
+
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version='0.3')
         File.objects.create(
             status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
         )
         assert addon.versions.latest().nomination == nomination
+
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version='0.4')
         File.objects.create(
@@ -2104,28 +2100,52 @@ class TestUpdateStatus(TestCase):
             amo.STATUS_NULL
         )  # No listed versions so now NULL
 
-    def test_update_nominated_status(self):
+    def test_approved_versions_ends_with_approved_addon(self):
         addon = addon_factory(
             status=amo.STATUS_NULL, file_kw={'status': amo.STATUS_DISABLED}
         )
-        first_version = addon.versions.last()
-        version_factory(addon=addon, file_kw={'status': amo.STATUS_APPROVED})
-        user = user_factory()
-        # if add-on has no files that are AWAITING_REVIEW, the status shouldn't change
-        addon.update_nominated_status(user)
-        assert addon.reload().status == amo.STATUS_NULL
+        assert addon.status == amo.STATUS_NULL
 
-        addon.update(status=amo.STATUS_DISABLED)
-        first_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        # and neither should the status change if the addon status isn't NULL
-        addon.update_nominated_status(user)
-        addon.refresh_from_db()  # this clears the fk relations too
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_APPROVED})
+        addon.reload()
+        assert addon.status == amo.STATUS_APPROVED
+
+    def test_awaiting_review_versions_ends_with_nominated(self):
+        addon = addon_factory(
+            status=amo.STATUS_NULL,
+            summary=None,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        assert addon.status == amo.STATUS_NULL
+
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        addon.reload()
+        # Because it don't have complete metadata the status isn't changed
+        assert not addon.has_complete_metadata(), addon.get_required_metadata()
+        addon.update_status()
+        assert addon.status == amo.STATUS_NULL
+
+        addon.summary = 'addon summary'
+        addon.save()
+        assert addon.has_complete_metadata(), addon.get_required_metadata()
+        addon.update_status()
+        assert addon.status == amo.STATUS_NOMINATED
+
+    def test_disabled_addons_do_not_update(self):
+        addon = addon_factory(
+            status=amo.STATUS_DISABLED, file_kw={'status': amo.STATUS_DISABLED}
+        )
         assert addon.status == amo.STATUS_DISABLED
 
-        addon.update(status=amo.STATUS_NULL)
-        # success case - has version that is awaiting review and incomplete addon status
-        addon.update_nominated_status(user)
-        assert addon.reload().status == amo.STATUS_NOMINATED
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_APPROVED})
+        addon.reload()
+        addon.update_status()
+        assert addon.status == amo.STATUS_DISABLED
+
+        version_factory(addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        addon.reload()
+        addon.update_status()
+        assert addon.status == amo.STATUS_DISABLED
 
 
 class TestGetVersion(TestCase):
