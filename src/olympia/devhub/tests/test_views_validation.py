@@ -5,10 +5,10 @@ from datetime import datetime
 from django.core.files.storage import default_storage as storage
 from django.urls import reverse
 
-from unittest import mock
 import waffle
-
+from unittest import mock
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
@@ -190,17 +190,59 @@ class TestUploadErrors(UploadMixin, TestCase):
     def test_mv3_error_added(self):
         validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
         validation['metadata']['manifestVersion'] = 3
-        xpi = self.get_upload(
+        upload = self.get_upload(
             'webextension_mv3.xpi',
             with_validation=True,
             validation=json.dumps(validation),
             user=self.user,
         )
-
-        res = self.client.get(reverse('devhub.upload_detail', args=[xpi.uuid, 'json']))
-        assert b'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
-            res.content
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
         )
+        assert b'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
+            response.content
+        )
+
+    @override_switch('enable-mv3-submissions', active=True)
+    def test_mv3_warning_added_for_listed_if_mv3_submissions_are_enabled(self):
+        validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+        validation['metadata']['manifestVersion'] = 3
+        upload = self.get_upload(
+            'webextension_mv3.xpi',
+            with_validation=True,
+            validation=json.dumps(validation),
+            user=self.user,
+            channel=amo.CHANNEL_LISTED,
+        )
+
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+        )
+        assert (
+            b'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
+            not in response.content
+        )
+        assert b'https://mzl.la/3hIwQXX' in response.content
+
+    @override_switch('enable-mv3-submissions', active=True)
+    def test_mv3_warning_not_added_for_unlisted_if_mv3_submissions_are_enabled(self):
+        validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+        validation['metadata']['manifestVersion'] = 3
+        upload = self.get_upload(
+            'webextension_mv3.xpi',
+            with_validation=True,
+            validation=json.dumps(validation),
+            user=self.user,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid, 'json'])
+        )
+        assert (
+            b'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
+            not in response.content
+        )
+        assert b'https://mzl.la/3hIwQXX' not in response.content
 
 
 class TestFileValidation(TestCase):
