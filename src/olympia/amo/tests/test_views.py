@@ -708,7 +708,7 @@ class TestSitemap(TestCase):
         assert result[settings.XSENDFILE_HEADER]
 
     @override_settings(SITEMAP_DEBUG_AVAILABLE=True)
-    def test_exceptions(self):
+    def test_debug_exceptions(self):
         # check that requesting an out of bounds page number 404s
         assert self.client.get('/sitemap.xml?debug&p=10').status_code == 404
         assert self.client.get('/sitemap.xml?debug&section=amo&p=10').status_code == 404
@@ -717,3 +717,20 @@ class TestSitemap(TestCase):
         assert self.client.get('/sitemap.xml?debug&p=1.3').status_code == 404
         # invalid sections should also fail nicely
         assert self.client.get('/sitemap.xml?debug&section=foo').status_code == 404
+        assert (
+            self.client.get(
+                '/sitemap.xml?debug&section=amo&app_name=firefox'
+            ).status_code
+            == 404
+        )
+
+    def test_exceptions(self):
+        # check a non-integer page number
+        assert self.client.get('/sitemap.xml?section=amo&p=a').status_code == 404
+        assert self.client.get('/sitemap.xml?section=amo&p=1.3').status_code == 404
+        # invalid sections should also fail nicely
+        assert self.client.get('/sitemap.xml?section=foo').status_code == 404
+        assert (
+            self.client.get('/sitemap.xml?section=amo&app_name=firefox').status_code
+            == 404
+        )

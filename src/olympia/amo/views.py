@@ -27,7 +27,7 @@ from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
 
 from . import monitors
-from .sitemap import get_sitemap_path, get_sitemaps, render_index_xml
+from .sitemap import get_sitemap_path, get_sitemaps, InvalidSection, render_index_xml
 
 
 @never_cache
@@ -219,18 +219,14 @@ class SiteStatusView(APIView):
         return Response(SiteStatusSerializer(object()).data)
 
 
-class InvalidSection(Exception):
-    pass
-
-
 @non_atomic_requests
 @x_robots_tag
 def sitemap(request):
     section = request.GET.get('section')  # no section means the index page
     app = request.GET.get('app_name')
     page = request.GET.get('p', 1)
-    if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
-        try:
+    try:
+        if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
             sitemaps = get_sitemaps()
             if not section:
                 if page != 1:
@@ -241,15 +237,20 @@ def sitemap(request):
                 if not sitemap_object:
                     raise InvalidSection
                 content = sitemap_object.render(app, page)
-        except EmptyPage:
-            raise Http404('Page %s empty' % page)
-        except PageNotAnInteger:
-            raise Http404('No page "%s"' % page)
-        except InvalidSection:
-            raise Http404('No sitemap available for section: %r' % section)
-        response = HttpResponse(content, content_type='application/xml')
-    else:
-        path = get_sitemap_path(section, app, page)
-        response = HttpResponseXSendFile(request, path, content_type='application/xml')
-        patch_cache_control(response, max_age=60 * 60)
+            response = HttpResponse(content, content_type='application/xml')
+
+        else:
+            path = get_sitemap_path(section, app, page)
+            response = HttpResponseXSendFile(
+                request, path, content_type='application/xml'
+            )
+            patch_cache_control(response, max_age=60 * 60)
+
+    except EmptyPage:
+        raise Http404('Page %s empty' % page)
+    except PageNotAnInteger:
+        raise Http404('No page "%s"' % page)
+    except InvalidSection:
+        raise Http404('No sitemap available for section: %r' % section)
+
     return response
