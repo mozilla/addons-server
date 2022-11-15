@@ -1,6 +1,5 @@
 import json
 import os.path
-from copy import deepcopy
 from datetime import datetime, timedelta
 from unittest import mock
 
@@ -11,7 +10,6 @@ import pytest
 
 from celery import chord
 from celery.result import AsyncResult
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -522,47 +520,6 @@ class TestValidator(UploadMixin, TestCase):
         assert expected_parallel_tasks == [task.name for task in scanners_chord.tasks]
         # Callback
         assert scanners_chord.body.name == 'olympia.scanners.tasks.call_mad_api'
-
-
-def test_add_manifest_version_error():
-    validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-    len(validation['messages']) == 1
-
-    # Add the error message when the manifest_version is 3.
-    # The manifest_version error isn't in VALIDATOR_SKELETON_EXCEPTION_WEBEXT.
-    validation['metadata']['manifestVersion'] = 3
-    utils.add_manifest_version_error(validation)
-    assert 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
-        validation['messages'][0]['message']
-    )
-    assert len(validation['messages']) == 2  # we added it
-
-    # When the linter error is already there, replace it
-    validation['messages'] = [
-        {
-            'message': '"/manifest_version" should be &lt;= 2',
-            'description': ['Your JSON file could not be parsed.'],
-            'dataPath': '/manifest_version',
-            'type': 'error',
-            'tier': 1,
-        }
-    ]
-    utils.add_manifest_version_error(validation)
-    assert 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
-        validation['messages'][0]['message']
-    )
-    assert len(validation['messages']) == 1  # we replaced it
-
-    # Not if the mv3 waffle switch is enabled though
-    with override_switch('enable-mv3-submissions', active=True):
-        validation['messages'] = []
-        utils.add_manifest_version_error(validation)
-        assert validation['messages'] == []
-
-    # Or if the manifest_version != 3
-    validation['metadata']['manifestVersion'] = 2
-    utils.add_manifest_version_error(validation)
-    assert validation['messages'] == []
 
 
 class TestCreateVersionForUpload(UploadMixin, TestCase):

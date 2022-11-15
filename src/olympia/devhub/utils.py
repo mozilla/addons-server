@@ -310,40 +310,6 @@ def wizard_unsupported_properties(data, wizard_fields):
     return unsupported
 
 
-def add_manifest_version_error(validation):
-    mv = validation.get('metadata', {}).get('manifestVersion')
-    if (
-        mv != 3
-        or waffle.switch_is_active('enable-mv3-submissions')
-        or 'messages' not in validation
-    ):
-        return
-    msg = gettext(
-        'Manifest V3 is currently not supported for upload. '
-        '{start_href}Read more about the support timeline{end_href}.'
-    )
-    url = 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
-    start_href = f'<a href="{url}" target="_blank" rel="noopener">'
-
-    new_error_message = msg.format(start_href=start_href, end_href='</a>')
-    for index, message in enumerate(validation['messages']):
-        if message.get('dataPath') == '/manifest_version':
-            # if we find the linter manifest_version=3 warning, replace it
-            validation['messages'][index]['message'] = new_error_message
-            break
-    else:
-        # otherwise insert a new error at the start of the errors
-        validation['messages'].insert(
-            0,
-            {
-                'type': 'error',
-                'message': new_error_message,
-                'tier': 1,
-                'fatal': True,
-            },
-        )
-
-
 @transaction.atomic
 def create_version_for_upload(addon, upload, channel, parsed_data=None):
     fileupload_exists = addon.fileupload_set.filter(

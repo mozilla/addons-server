@@ -1,13 +1,11 @@
 import json
-from copy import deepcopy
 from datetime import datetime
 
 from django.core.files.storage import default_storage as storage
 from django.urls import reverse
 
-from unittest import mock
 import waffle
-
+from unittest import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -186,21 +184,6 @@ class TestUploadErrors(UploadMixin, TestCase):
         )
         xpi_info = check_xpi_info({'guid': long_guid, 'version': '1.0'})
         assert xpi_info['guid'] == long_guid
-
-    def test_mv3_error_added(self):
-        validation = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-        validation['metadata']['manifestVersion'] = 3
-        xpi = self.get_upload(
-            'webextension_mv3.xpi',
-            with_validation=True,
-            validation=json.dumps(validation),
-            user=self.user,
-        )
-
-        res = self.client.get(reverse('devhub.upload_detail', args=[xpi.uuid, 'json']))
-        assert b'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
-            res.content
-        )
 
 
 class TestFileValidation(TestCase):
