@@ -297,7 +297,7 @@ class TestReviewForm(TestCase):
         assert list(form.fields['versions'].queryset) == [self.addon.current_version]
 
     def test_versions_queryset_contains_pending_files_for_listed(
-        self, select_data_value='reject_multiple_versions|'
+        self, select_data_value='reject_multiple_versions'
     ):
         # We hide some of the versions using JavaScript + some data attributes on each
         # <option>.
@@ -354,7 +354,7 @@ class TestReviewForm(TestCase):
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value') == (
             # That version is approved.
-            'block_multiple_versions|reject_multiple_versions|'
+            'block_multiple_versions reject_multiple_versions'
         )
         assert option1.attrib.get('value') == str(self.version.pk)
 
@@ -362,7 +362,7 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('class') == 'data-toggle'
         assert option2.attrib.get('data-value') == (
             # That version is pending.
-            'approve_multiple_versions|reject_multiple_versions|'
+            'approve_multiple_versions reject_multiple_versions'
         )
         assert option2.attrib.get('value') == str(pending_version.pk)
 
@@ -370,7 +370,7 @@ class TestReviewForm(TestCase):
         assert option3.attrib.get('class') == 'data-toggle'
         assert option3.attrib.get('data-value') == (
             # That version is rejected.
-            'unreject_multiple_versions|'
+            'unreject_multiple_versions'
         )
         assert option3.attrib.get('value') == str(rejected_version.pk)
 
@@ -385,14 +385,14 @@ class TestReviewForm(TestCase):
     def test_versions_queryset_contains_pending_files_for_listed_admin_reviewer(self):
         self.grant_permission(self.request.user, 'Reviews:Admin')
         self.test_versions_queryset_contains_pending_files_for_listed(
-            select_data_value='reject_multiple_versions|unreject_multiple_versions|'
+            select_data_value='reject_multiple_versions unreject_multiple_versions'
         )
 
     def test_versions_queryset_contains_pending_files_for_unlisted(
         self,
         select_data_value=(
-            'approve_multiple_versions|reject_multiple_versions|'
-            'block_multiple_versions|confirm_multiple_versions|'
+            'approve_multiple_versions reject_multiple_versions '
+            'block_multiple_versions confirm_multiple_versions'
         ),
     ):
         # We hide some of the versions using JavaScript + some data attributes on each
@@ -458,7 +458,7 @@ class TestReviewForm(TestCase):
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value') == (
             # That version is approved.
-            'block_multiple_versions|confirm_multiple_versions|'
+            'block_multiple_versions confirm_multiple_versions'
         )
         assert option1.attrib.get('value') == str(self.version.pk)
 
@@ -466,7 +466,7 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('class') == 'data-toggle'
         assert option2.attrib.get('data-value') == (
             # That version is pending.
-            'approve_multiple_versions|reject_multiple_versions|'
+            'approve_multiple_versions reject_multiple_versions'
         )
         assert option2.attrib.get('value') == str(pending_version.pk)
 
@@ -474,7 +474,7 @@ class TestReviewForm(TestCase):
         assert option3.attrib.get('class') == 'data-toggle'
         assert option3.attrib.get('data-value') == (
             # That version is rejected.
-            'unreject_multiple_versions|'
+            'unreject_multiple_versions'
         )
         assert option3.attrib.get('value') == str(rejected_version.pk)
 
@@ -490,9 +490,9 @@ class TestReviewForm(TestCase):
         self.grant_permission(self.request.user, 'Reviews:Admin')
         self.test_versions_queryset_contains_pending_files_for_unlisted(
             select_data_value=(
-                'approve_multiple_versions|reject_multiple_versions|'
-                'unreject_multiple_versions|block_multiple_versions|'
-                'confirm_multiple_versions|'
+                'approve_multiple_versions reject_multiple_versions '
+                'unreject_multiple_versions block_multiple_versions '
+                'confirm_multiple_versions'
             )
         )
 
