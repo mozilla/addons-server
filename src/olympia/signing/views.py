@@ -15,7 +15,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.utils import (
-    is_version_number_not_greater_than_current,
+    validate_version_number_is_gt_latest_signed_listed_version,
     webext_version_stats,
 )
 from olympia.amo.decorators import use_primary_db
@@ -240,7 +240,7 @@ class VersionView(APIView):
                     status.HTTP_400_BAD_REQUEST,
                 )
         if channel == amo.CHANNEL_LISTED and (
-            error_message := is_version_number_not_greater_than_current(
+            error_message := validate_version_number_is_gt_latest_signed_listed_version(
                 addon, version_string
             )
         ):
