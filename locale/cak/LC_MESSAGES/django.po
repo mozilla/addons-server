@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,6 +124,9 @@ msgstr "Ruch'utitzijol nik'oxïk"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Xa xe tikirel yetz'aqatisäx ch'utitzijol pa ri ruk'isib'äl taq kiwäch tz'aqat."
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "Taq b'anel"
@@ -1768,6 +1771,20 @@ msgstr "K'ak'a' taq Jaloj pa Taq Nutz'aqat"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "Nokisäx re slug re'. Tacha' jun chik."
 
@@ -1914,9 +1931,6 @@ msgstr "Rutzijol Rujikomal Mozilla: Xeyuj ri taq AMO API wujil"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Ri junamanem ruya'on k'ïy taq sachoj//warnings ruma ri toq %s taq rutzijol xe'ewäx. Toq xesamajïx yan ri tz'etel taq rutzijol, xkatikïr xtatz'ët ri ch'aqa' chik."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 msgid "Updated"
 msgstr "Xk'ex"
@@ -4894,8 +4908,8 @@ msgstr "Ri atz'aqat ID pa manifest.json or install.rdf (%s) man nikik'äm ta ki'
 msgid "Duplicate add-on ID found."
 msgstr "Xilitäj jun kamulun tz'aqät ID"
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Ri kajilab'al ruwäch k'o chi k'a xaxe 32 taq kitz'ib'."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Ri kajilab'al taq ruwäch k'o chi xa xe kik'wan taq tz'ib', taq ajilab'äl chuqa' re taq tz'ib' re': +*.-_."
@@ -5734,24 +5748,24 @@ msgstr "chi Ruxe'el"
 msgid "Dismiss this announcement"
 msgstr "Titz'apïx re rutzijol re'"
 
-msgid "Files in this version:"
-msgstr "Taq ruyakb'al re ruwäch re':"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "Ronojel Nuk'uche'el"
+msgid "Validation results"
+msgstr ""
 
 #, fuzzy
 msgid "Browse all files in this version"
 msgstr "Taq ruyakb'al re ruwäch re':"
 
-msgid "Contents"
-msgstr "Taq rupam"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "Tijunamäx"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "Taq ya'oj q'ij:"
@@ -5837,15 +5851,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-#, fuzzy
-msgid "Code Weight:"
-msgstr "Ralal:"
-
-#, fuzzy
-msgid "Metadata Weight:"
-msgstr "Ralal:"
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 #, fuzzy
@@ -5919,6 +5925,15 @@ msgid "file signature"
 msgstr "{file} xjuch'."
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"

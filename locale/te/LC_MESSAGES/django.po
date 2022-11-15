@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2022-09-28 09:24+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -122,6 +122,9 @@ msgstr "గమనికను సమీక్షించండి"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "పొడగింతల సరికొత్త వెర్షన్లకు మాత్రమే గమనికలు జోడించవచ్చు."
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "రచయితలు"
@@ -1712,6 +1715,20 @@ msgstr "నా పొడిగింతల కోసం ఇటీవలి మ�
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "ఈ స్లగ్ ఇప్పటికే ఉపయోగంలో ఉంది. దయచేసి మరొకదాన్ని ఎంచుకోండి."
 
@@ -1856,9 +1873,6 @@ msgstr "మొజిల్లా భద్రతా నోటీసు: మీ A
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4710,8 +4724,8 @@ msgstr ""
 msgid "Duplicate add-on ID found."
 msgstr "నకిలీ పొడగింత ID కనుగొనబడింది."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "వెర్షన్ అంకెలు 32 కంటే తక్కువ అక్షరాలను కలిగి ఉండాలి."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "వెర్షన్ అంకెలలో అక్షరాలు, అంకెలు, ఈ విరామచిహ్నలు మాత్రమే ఉండాలి: + *.-_."
@@ -5500,23 +5514,23 @@ msgstr "మూల చిరునామా:"
 msgid "Dismiss this announcement"
 msgstr "ఈ ప్రకటనను తీసివేయండి"
 
-msgid "Files in this version:"
-msgstr "ఈ వెర్షను లోని ఫైళ్ళు:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "అన్ని వేదికలు"
+msgid "Validation results"
+msgstr ""
 
 msgid "Browse all files in this version"
 msgstr "ఈ వెర్షను లోని ఫైళ్ళనీ చూడండి"
 
-msgid "Contents"
-msgstr "విషయాలు"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "పోల్చు"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "అనుమతులు:"
@@ -5600,13 +5614,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-msgid "Code Weight:"
-msgstr "కోడు బరువు:"
-
-msgid "Metadata Weight:"
-msgstr "మెటాడేటా బరువు:"
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 msgid "Flagged for human review"
@@ -5667,6 +5675,15 @@ msgid "file signature"
 msgstr "ఫైలు సంతకం"
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"

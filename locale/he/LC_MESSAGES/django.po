@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2022-06-25 18:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -127,6 +127,9 @@ msgstr "סקירה"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "ניתן להוסיף הערות רק לגרסאות עדכניות של תוספות."
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "יוצרים"
@@ -1750,6 +1753,20 @@ msgstr "שינויים אחרונים עבור התוספות שלי"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "תוספות של Open Search {blog_link_open}אינן נתמכות עוד ב־AMO{blog_link_close}. באפשרותך ליצור {doc_link_open}הרחבת חיפוש במקום{doc_link_close}."
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
@@ -1895,9 +1912,6 @@ msgstr "הודעת אבטחה של Mozilla: פרטי הגישה שלך ל־API �
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "בדיקת האימות ייצרה יותר מדי שגיאות/אזהרות כך ש־%s הודעות נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 msgid "Updated"
 msgstr "תאריך עדכון"
@@ -4797,8 +4811,8 @@ msgstr "מזהה התוספת ב־manifest.json או ב־install.rdf שלך (%s)
 msgid "Duplicate add-on ID found."
 msgstr "נמצא מזהה תוספת כפול."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "מספרי הגרסאות חייבים להיות באורך של פחות מ־32 תווים."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "מספרי גרסאות אמורים להכיל אך ורק תווים, מספרים ואת הסימנים הבאים: +*.-_."
@@ -5629,23 +5643,23 @@ msgstr "כתובת מקור:"
 msgid "Dismiss this announcement"
 msgstr "התעלמות מהכרזה זו"
 
-msgid "Files in this version:"
-msgstr "קבצים בגרסה זו:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "כל הפלטפורמות"
+msgid "Validation results"
+msgstr ""
 
 msgid "Browse all files in this version"
 msgstr "עיון בכל הקבצים שבגרסה זו"
 
-msgid "Contents"
-msgstr "תכנים"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "השוואה"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "הרשאות:"
@@ -5730,13 +5744,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-msgid "Code Weight:"
-msgstr "משקל הקוד:"
-
-msgid "Metadata Weight:"
-msgstr "משקל מטא־נתונים:"
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 msgid "Flagged for human review"
@@ -5806,6 +5814,15 @@ msgid "file signature"
 msgstr "חתימת הקובץ"
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"

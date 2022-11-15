@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -125,6 +125,9 @@ msgstr "審査担当者へのメモ"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "ノートを追加できるのはアドオンの最新版のみです。"
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "作者"
@@ -1738,6 +1741,20 @@ msgstr "自分のアドオンの最近の変更"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Searchアドオンは、{blog_link_open}AMO でのサポートを終了しました{blog_link_close}。代わりに、{doc_link_open}検索の拡張機能{doc_link_close} を作成できます。"
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "このスラグは既に使われています。別のスラグを付けてください。"
 
@@ -1881,9 +1898,6 @@ msgstr "Mozilla セキュリティ通知: AMO API 認証情報が取り消され
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "検証の結果、多数のエラーや警告が見つかったため、%s個のメッセージが省略されました。表示されているメッセージを解決すると、他のメッセージも表示されます。"
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 msgid "Updated"
 msgstr "更新日"
@@ -4824,8 +4838,8 @@ msgstr "manifest.json 内のアドオン ID (%s) が AMO 上のあなたのア�
 msgid "Duplicate add-on ID found."
 msgstr "重複したアドオンの ID が見つかりました。"
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "バージョン番号は 32 文字以内でなければなりません。"
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "バージョン番号に英数字もしくは記号「+*.-_.」以外の文字を含めることはできません。"
@@ -5644,23 +5658,23 @@ msgstr "ソース URL:"
 msgid "Dismiss this announcement"
 msgstr "このお知らせを削除"
 
-msgid "Files in this version:"
-msgstr "このバージョンのファイル:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "すべての OS"
+msgid "Validation results"
+msgstr ""
 
 msgid "Browse all files in this version"
 msgstr "このバージョンのすべてのファイルを見る"
 
-msgid "Contents"
-msgstr "内容"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "比較"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "許可設定:"
@@ -5745,15 +5759,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-#, fuzzy
-msgid "Code Weight:"
-msgstr "重み:"
-
-#, fuzzy
-msgid "Metadata Weight:"
-msgstr "重み:"
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 #, fuzzy
@@ -5822,6 +5828,15 @@ msgid "file signature"
 msgstr "ファイル署名"
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -123,6 +123,9 @@ msgstr "Notă de recenzie"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Notele pot fi adăugate numai la cele mai recente versiuni ale suplimentelor."
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "Autori"
@@ -1768,6 +1771,20 @@ msgstr "Modificări recente pentru suplimentele mele"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Suplimentele cu căutare deschisă {blog_link_open}nu mai au suport pe AMO{blog_link_close}. Poți crea {doc_link_open}în schimb o extensie de căutare{doc_link_close}."
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "Slugul este deja utilizat. Te rugăm să alegi altul."
 
@@ -1915,9 +1932,6 @@ msgstr "Notificare de securitate Mozilla: Datele tale de autentificare AMO API a
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validarea a generat prea multe erori/avertismente, așa că %s (de) mesaje au fost trunchiate. După corectarea mesajelor vizibile, vei putea să le vezi și pe celelalte."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 msgid "Updated"
 msgstr "Actualizat"
@@ -4902,8 +4916,8 @@ msgstr "ID-ul suplimentului din manifest.json sau install.rdf (%s) nu corespunde
 msgid "Duplicate add-on ID found."
 msgstr "S-a depistat un ID de supliment duplicat."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Numerele de versiune trebuie să aibă mai puțin de 32 de caractere."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Numerele de versiune trebuie să conțină numai litere, cifre și aceste semne de punctuație: +*.-_."
@@ -5719,23 +5733,23 @@ msgstr "URL sursă:"
 msgid "Dismiss this announcement"
 msgstr "Respinge acest anunț"
 
-msgid "Files in this version:"
-msgstr "Fișiere în această versiune:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "Toate platformele"
+msgid "Validation results"
+msgstr ""
 
 msgid "Browse all files in this version"
 msgstr "Derulează toate fișierele din această versiune"
 
-msgid "Contents"
-msgstr "Conținuturi"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr "Compară această versiune cu ultima versiune recenzată"
 
-msgid "Compare"
-msgstr "Compară"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "Permisiuni:"
@@ -5821,16 +5835,8 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "Scorul scanerelor reprezintă probabilitatea ca această versiune să fie rău-intenționată, în baza constatărilor scanerelor."
 
-#, fuzzy
-msgid "Code Weight:"
-msgstr "Greutate:"
-
-#, fuzzy
-msgid "Metadata Weight:"
-msgstr "Greutate:"
-
-msgid "Flagged by scanners"
-msgstr "Marcate de scanere"
+msgid "Scanners results:"
+msgstr ""
 
 msgid "Flagged for human review"
 msgstr "Marcate pentru recenzie umană"
@@ -5900,6 +5906,15 @@ msgstr "semnătura fișierului"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Aceasta este denumirea exactă a regulii folosite de un scaner."
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
+msgstr ""
 
 msgid "Yara rules should have a definition"
 msgstr "Regulile Yara trebuie să aibă o definiție"

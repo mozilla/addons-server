@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,6 +129,9 @@ msgstr "Nota ulasan"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Hanya add-ons versi terkini boleh disertakan dengan nota."
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "Pengarang"
@@ -1783,6 +1786,20 @@ msgstr "Perubahan Terkini untuk Add-ons Saya"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug ini sedang digunakan. Sila pilih yang lain."
 
@@ -1927,9 +1944,6 @@ msgstr "Notis Keselamatan Mozilla: Kelayakan AMO API anda telah dibatalkan"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Pengesahan menghasilkan terlalu banyak ralat/warnings, maka %s mesej telah dicantas. Selepas menangani mesej yang ketara, anda akan boleh nampak yang lain."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 msgid "Updated"
 msgstr "Dikemaskini"
@@ -4942,8 +4956,8 @@ msgstr "ID add-on dalam manifest.json anda atau install.rdf (%s) tidak sepadan I
 msgid "Duplicate add-on ID found."
 msgstr "Duplikasi ID add-on ditemukan."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Nombor versi mesti kurang daripada 32 aksara."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Nombor versi perlu mengandungi hanya huruf, nombor, dan karakter tanda baca berikut: +*.-_."
@@ -5790,24 +5804,24 @@ msgstr "mengikut Sumber"
 msgid "Dismiss this announcement"
 msgstr "Abaikan pengumuman ini"
 
-msgid "Files in this version:"
-msgstr "Fail dalam versi ini:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "Platform All"
+msgid "Validation results"
+msgstr ""
 
 #, fuzzy
 msgid "Browse all files in this version"
 msgstr "Fail dalam versi ini:"
 
-msgid "Contents"
-msgstr "Kandungan"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "Banding"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "Keizinan:"
@@ -5893,15 +5907,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-#, fuzzy
-msgid "Code Weight:"
-msgstr "Pertimbangkan:"
-
-#, fuzzy
-msgid "Metadata Weight:"
-msgstr "Pertimbangkan:"
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 #, fuzzy
@@ -5975,6 +5981,15 @@ msgid "file signature"
 msgstr "{file} telah ditandatangan."
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"

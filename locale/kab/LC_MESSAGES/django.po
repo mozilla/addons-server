@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2022-08-24 14:29+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,6 +123,9 @@ msgstr "Tazmilt n uɛawed n tmuɣli"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Anagar ileqman ineggura n yizegrar i izemren ad gebren tizmilin."
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "Imeskaren"
@@ -1726,6 +1729,20 @@ msgstr "Isnifal n melmi kan i yizegrar-iw"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Izegrar Open Search ur ttusefraken ara s {blog_link_open}ɣef AMO{blog_link_close}. Tzemreḍ ad d-ternuḍ aseɣzaf n unadi {doc_link_open}deg wadeg n{doc_link_close}."
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "Anegzum-agi  yettwaseqdec yakan. Ma ulac aɣilif ɛreḍ wayeḍ."
 
@@ -1871,9 +1888,6 @@ msgstr "Ulqu n tɣellist n Mozilla: Inekcam-ik AMOAPI ttwaḥwin"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Asentem yegla-d s ddeqs n tuccḍiwin /warnings ihi %s n yiznan ttwagezmen. Seld aseɣti n yiznan umanen, ad tizmireḍ ad twaliḍ wiyaḍ."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 msgid "Updated"
 msgstr "Yettusnifel"
@@ -4783,8 +4797,8 @@ msgstr "Asulay n uzegrir deg umeskan-ik·im manifest.json (%s) ur yemṣada ara 
 msgid "Duplicate add-on ID found."
 msgstr "Asulay ID uslig n uzegrir yettwaf."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Uṭṭunen n yileqman issefk ad ilin xarṣum s 32 n yisekkilen."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Uṭṭunen n yileqman issefk ad gebren kan isekkilen, izwilen akked isekkilen-a: +*.-_."
@@ -5573,23 +5587,23 @@ msgstr "URL aɣbalu:"
 msgid "Dismiss this announcement"
 msgstr "Agi alɣu-a"
 
-msgid "Files in this version:"
-msgstr "Ifuyla di lqem-agi:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "Akk tilɣubliḍin"
+msgid "Validation results"
+msgstr ""
 
 msgid "Browse all files in this version"
 msgstr "Wali akk ifuyla n lqem-a"
 
-msgid "Contents"
-msgstr "Igburen"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr "Serwes gar lqem-a d lqem aneggaru yettwasneqden"
 
-msgid "Compare"
-msgstr "Serwes"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "Tisirag:"
@@ -5673,14 +5687,8 @@ msgstr "Agmuḍ n yir asemres:"
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-msgid "Code Weight:"
-msgstr "Taẓayt n tengalt:"
-
-msgid "Metadata Weight:"
-msgstr "Taẓayt n waɣefisefka:"
-
-msgid "Flagged by scanners"
-msgstr "Yettwacreḍ s yisniram"
+msgid "Scanners results:"
+msgstr ""
 
 msgid "Flagged for human review"
 msgstr "Yettwacreḍ i  usenqed n umdan"
@@ -5741,6 +5749,15 @@ msgstr "Azmul n ufaylu"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "D wagi swaswa i d isem n ulugen yettwasqedcen deg usnirem."
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
+msgstr ""
 
 msgid "Yara rules should have a definition"
 msgstr "Ilugan n Yara yessefk ad sɛun tabadut."

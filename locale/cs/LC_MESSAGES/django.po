@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2022-10-29 17:05+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -127,6 +127,9 @@ msgstr "Poznámka ke kontrole"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Poznámky mohou být přidány pouze k posledním verzím doplňků."
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "Autoři"
@@ -1738,6 +1741,20 @@ msgstr "Nedávné změny pro mé doplňky"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Doplňky ve formátu Open Search {blog_link_open}již nejsou na webu doplňků podporovány{blog_link_close}. Místo nich můžete vytvořit {doc_link_open}rozšíření pro vyhledávání{doc_link_close}."
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "Manifest V3 není v současné době pro nahrávání podporován. {start_href}Přečtěte si více o době podpory{end_href}."
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "Toto URL je již používáno. Zvolte prosím jiné."
 
@@ -1887,9 +1904,6 @@ msgstr "Bezpečnostní upozornění Mozilly: Vaše přihlašovací údaje k API 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Kontrola vygenerovala příliš mnoho chyb/varování a %s zpráv tak není zobrazeno. Po opravení zobrazených nedostatků budete moci vidět další."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifest V3 není v současné době pro nahrávání podporován. {start_href}Přečtěte si více o době podpory{end_href}."
 
 msgid "Updated"
 msgstr "Aktualizováno"
@@ -4815,8 +4829,8 @@ msgstr "ID doplňku v souboru manifest.json (%s) je jiné, než ID doplňku na A
 msgid "Duplicate add-on ID found."
 msgstr "Nalezeno duplicitní ID doplňku."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Čísla verzí by měly mít méně než 32 znaků."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Čísla verzí by měla obsahovat pouze základní znaky, čísla a následující speciální znaky: +*.-_."
@@ -5608,23 +5622,23 @@ msgstr "URL zdroje:"
 msgid "Dismiss this announcement"
 msgstr "Skrýt toto oznámení"
 
-msgid "Files in this version:"
-msgstr "Soubory v této verzi:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "Všechny platformy"
+msgid "Validation results"
+msgstr ""
 
 msgid "Browse all files in this version"
 msgstr "Procházet všechny soubory v této verzi"
 
-msgid "Contents"
-msgstr "Obsah"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "Porovnání"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "Oprávnění:"
@@ -5708,13 +5722,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-msgid "Code Weight:"
-msgstr ""
-
-msgid "Metadata Weight:"
-msgstr ""
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 msgid "Flagged for human review"
@@ -5775,6 +5783,15 @@ msgid "file signature"
 msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"
