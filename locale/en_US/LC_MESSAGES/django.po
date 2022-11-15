@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -133,6 +133,9 @@ msgstr "Review Date"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Only latest versions of addons can have notes added."
+
+msgid "Request content length is too large."
+msgstr "Request content length is too large."
 
 msgid "Authors"
 msgstr "Authors"
@@ -1880,6 +1883,23 @@ msgstr "Recent Changes for My Add-ons"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 
+#, fuzzy
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+
+msgid "Manifest V3 compatibility warning"
+msgstr "Manifest V3 compatibility warning"
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+
 msgid "This slug is already in use. Please choose another."
 msgstr "This slug is already in use. Please choose another."
 
@@ -2035,10 +2055,6 @@ msgstr "Mozilla Security Notice: Your AMO API credentials have been revoked"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-
-#, fuzzy
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
 
 msgid "Updated"
 msgstr "Updated"
@@ -5246,8 +5262,8 @@ msgstr "The add-on ID in your manifest.json or install.rdf (%s) does not match t
 msgid "Duplicate add-on ID found."
 msgstr "Duplicate add-on ID found."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Version numbers should have fewer than 32 characters."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr "Version numbers should have at most {max_length} characters."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
@@ -6148,24 +6164,24 @@ msgstr "by Source"
 msgid "Dismiss this announcement"
 msgstr "Dismiss this announcement"
 
-msgid "Files in this version:"
-msgstr "Files in this version:"
+msgid "Download file"
+msgstr "Download file"
 
-msgid "All Platforms"
-msgstr "All Platforms"
+msgid "Validation results"
+msgstr "Validation results"
 
 #, fuzzy
 msgid "Browse all files in this version"
 msgstr "Files in this version:"
 
-msgid "Contents"
-msgstr "Contents"
+msgid "Browse contents"
+msgstr "Browse contents"
 
 msgid "Compare this version to the last reviewed version"
 msgstr "Compare this version to the last reviewed version"
 
-msgid "Compare"
-msgstr "Compare"
+msgid "Compare with last reviewed"
+msgstr "Compare with last reviewed"
 
 #, fuzzy
 msgid "Permissions:"
@@ -6255,17 +6271,8 @@ msgstr "Maliciousness Score:"
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
 
-#, fuzzy
-msgid "Code Weight:"
-msgstr "Weight"
-
-#, fuzzy
-msgid "Metadata Weight:"
-msgstr "Weight"
-
-#, fuzzy
-msgid "Flagged by scanners"
-msgstr "Flagged by automated scanners"
+msgid "Scanners results:"
+msgstr "Scanners results:"
 
 #, fuzzy
 msgid "Flagged for human review"
@@ -6341,6 +6348,15 @@ msgstr "{file} was signed."
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "This is the exact name of the rule used by a scanner."
+
+msgid "Human-readable name for the scanner rule"
+msgstr "Human-readable name for the scanner rule"
+
+msgid "Human-readable name"
+msgstr "Human-readable name"
+
+msgid "Human readable description for the scanner rule"
+msgstr "Human readable description for the scanner rule"
 
 msgid "Yara rules should have a definition"
 msgstr "Yara rules should have a definition"

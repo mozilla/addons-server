@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -128,6 +128,9 @@ msgid "Review note"
 msgstr "Датум рецензије"
 
 msgid "Only latest versions of addons can have notes added."
+msgstr ""
+
+msgid "Request content length is too large."
 msgstr ""
 
 msgid "Authors"
@@ -1873,6 +1876,20 @@ msgstr "Скорашње измене за Моји додаци"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "Назив url адресе је у употреби. Молимо Вас изаберите други."
 
@@ -2022,9 +2039,6 @@ msgstr ""
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Овера је створила превише грешака/упозорења па је %s порука скраћено. Након обраћања видљивим порукама, бићете у могућности да погледате остале."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 msgid "Updated"
 msgstr "Ажурирано"
@@ -5035,8 +5049,8 @@ msgstr ""
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Број верзије би требало да буде мањи од 32 карактера."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Број верзије ви требало да садржи само слова, бројеве, и ове карактере: +*.-_."
@@ -5925,24 +5939,24 @@ msgstr "по извору"
 msgid "Dismiss this announcement"
 msgstr "Одбаци ову најаву"
 
-msgid "Files in this version:"
-msgstr "Датотеке у овој верзији:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "Све платформе"
+msgid "Validation results"
+msgstr ""
 
 #, fuzzy
 msgid "Browse all files in this version"
 msgstr "Датотеке у овој верзији:"
 
-msgid "Contents"
-msgstr "Садржаји"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "Упореди"
+msgid "Compare with last reviewed"
+msgstr ""
 
 #, fuzzy
 msgid "Permissions:"
@@ -6029,13 +6043,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-msgid "Code Weight:"
-msgstr ""
-
-msgid "Metadata Weight:"
-msgstr ""
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 #, fuzzy
@@ -6108,6 +6116,15 @@ msgid "file signature"
 msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"

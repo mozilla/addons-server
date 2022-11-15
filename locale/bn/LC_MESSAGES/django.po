@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,6 +123,9 @@ msgstr "পর্যালোচনা নোট"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "শুধুমাত্র অ্যাডঅনসটির সর্বশেষ সংস্করণে যোগকৃত নোটগুলো থাকতে পারে।"
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "লেখক"
@@ -1752,6 +1755,20 @@ msgstr "আমার অ্যাড-অন এর জন্য সাম্প�
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "স্লাগটি ইতিমধ্যে ব্যবহৃত হয়েছে। অনুগ্রহ করে অন্য একটি নির্বাচন করুন।"
 
@@ -1896,9 +1913,6 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -4770,7 +4784,7 @@ msgstr ""
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-msgid "Version numbers should have fewer than 32 characters."
+msgid "Version numbers should have at most {max_length} characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
@@ -5577,24 +5591,24 @@ msgstr "সোর্স কোড"
 msgid "Dismiss this announcement"
 msgstr "এই ঘোষণা খারিজ করুন"
 
-msgid "Files in this version:"
+msgid "Download file"
 msgstr ""
 
-msgid "All Platforms"
-msgstr "সকল প্লাটফর্ম"
+msgid "Validation results"
+msgstr ""
 
 #, fuzzy
 msgid "Browse all files in this version"
 msgstr "সকল এক্সটেনসন ব্রাউজ করুন"
 
-msgid "Contents"
-msgstr "বিষয়বস্তুসমূহ"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "তুলনা"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr ""
@@ -5679,14 +5693,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-#, fuzzy
-msgid "Code Weight:"
-msgstr "ওজন"
-
-msgid "Metadata Weight:"
-msgstr ""
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 msgid "Flagged for human review"
@@ -5755,6 +5762,15 @@ msgid "file signature"
 msgstr "{file} স্বাক্ষরিত।"
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"

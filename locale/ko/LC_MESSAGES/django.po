@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-01 17:05+0000\n"
+"POT-Creation-Date: 2022-11-15 17:54+0000\n"
 "PO-Revision-Date: 2022-08-17 04:20+0000\n"
 "Last-Translator: killingfield <killingfield@gmail.com>\n"
 "Language-Team: none\n"
@@ -125,6 +125,9 @@ msgstr "검토 노트"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "오직 최신 버젼의 부가 기능만 노트를 추가할 수 있습니다."
+
+msgid "Request content length is too large."
+msgstr ""
 
 msgid "Authors"
 msgstr "제작자"
@@ -1745,6 +1748,20 @@ msgstr "내 부가 기능의 최근 변경사항"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search 부가 기능은 {blog_link_open}AMO에서 더 이상 지원되지 않습니다{blog_link_close}. 대신 {doc_link_open}검색 확장 프로그램{doc_link_close}을 만들 수 있습니다."
 
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "매니페스트 V3는 현재 업로드가 지원되지 않습니다. {start_href}지원 일정에 대해 자세히 알아보세요{end_href}."
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
+
 msgid "This slug is already in use. Please choose another."
 msgstr "이미 사용중인 주화입니다. 다른걸 사용해 주세요."
 
@@ -1888,9 +1905,6 @@ msgstr "Mozila 보안 공지: 귀하의 AMO API 자격 증명이 취소되었습
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "검사 과정에서 너무 많은 오류/경고가 발생했으며 %s개의 메세지가 잘려져 있는 상태입니다. 현재 표시된 메세지부터 확인 후에 나머지 메세지를 확인하실 수 있습니다."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "매니페스트 V3는 현재 업로드가 지원되지 않습니다. {start_href}지원 일정에 대해 자세히 알아보세요{end_href}."
 
 msgid "Updated"
 msgstr "최근 업데이트"
@@ -4797,8 +4811,8 @@ msgstr ""
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "버전 번호는 32 글자 미만이어야 합니다."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "버전 번호엔 문자, 숫자, 다음의 특수 기호만 들어있어야 합니다: +*.-_"
@@ -5641,23 +5655,23 @@ msgstr "소스 URL:"
 msgid "Dismiss this announcement"
 msgstr "알림 무시하기"
 
-msgid "Files in this version:"
-msgstr "이 버전의 파일:"
+msgid "Download file"
+msgstr ""
 
-msgid "All Platforms"
-msgstr "모든 플랫폼"
+msgid "Validation results"
+msgstr ""
 
 msgid "Browse all files in this version"
 msgstr "이 버전의 모든 파일 찾아보기"
 
-msgid "Contents"
-msgstr "내용"
+msgid "Browse contents"
+msgstr ""
 
 msgid "Compare this version to the last reviewed version"
 msgstr ""
 
-msgid "Compare"
-msgstr "비교하기"
+msgid "Compare with last reviewed"
+msgstr ""
 
 msgid "Permissions:"
 msgstr "권한:"
@@ -5742,15 +5756,7 @@ msgstr ""
 msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
 msgstr ""
 
-#, fuzzy
-msgid "Code Weight:"
-msgstr "무게:"
-
-#, fuzzy
-msgid "Metadata Weight:"
-msgstr "무게:"
-
-msgid "Flagged by scanners"
+msgid "Scanners results:"
 msgstr ""
 
 msgid "Flagged for human review"
@@ -5816,6 +5822,15 @@ msgid "file signature"
 msgstr "파일 서명"
 
 msgid "This is the exact name of the rule used by a scanner."
+msgstr ""
+
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"
