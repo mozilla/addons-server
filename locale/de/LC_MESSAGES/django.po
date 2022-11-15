@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-15 17:54+0000\n"
-"PO-Revision-Date: 2022-11-15 19:31+0000\n"
+"PO-Revision-Date: 2022-11-15 19:32+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -5759,7 +5759,7 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "Der Bösartigkeits-Wert gibt die Wahrscheinlichkeit an, dass diese Version böswillig ist, basierend auf den Ergebnissen der Scanner."
 
 msgid "Scanners results:"
-msgstr ""
+msgstr "Testergebnisse:"
 
 msgid "Flagged for human review"
 msgstr "Für menschliche Überprüfung vorgelegt"
@@ -5822,13 +5822,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "Dies ist der genaue Name der Regel, die von einem Scanner verwendet wird."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Für Menschen lesbarer Name für die Scannerregel"
 
 msgid "Human-readable name"
 msgstr "Für Menschen lesbarer Name"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Für Menschen lesbare Beschreibung für die Scannerregel"
 
 msgid "Yara rules should have a definition"
 msgstr "Yara-Regeln sollten eine Definition haben"
