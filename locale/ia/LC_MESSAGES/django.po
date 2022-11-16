@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-15 17:54+0000\n"
-"PO-Revision-Date: 2022-11-15 18:46+0000\n"
+"PO-Revision-Date: 2022-11-16 22:12+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -125,7 +125,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Solmente le ultime versiones del additivos pote haber notas addite."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Le longor del contento del requesta es troppo grande."
 
 msgid "Authors"
 msgstr "Autores"
@@ -1743,7 +1743,7 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr "Manifesto V3 non es actualmente supportate pro incargamento. {start_href}Lege plus sur le chronogramma de supporto{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Aviso de compatibilitate del File manifesto V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
@@ -5622,7 +5622,7 @@ msgid "Compare this version to the last reviewed version"
 msgstr "Comparar iste version al ultime version verificate"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "Comparar con ultime revidite"
 
 msgid "Permissions:"
 msgstr "Permissiones:"
@@ -5707,7 +5707,7 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "Le valutation del malitiositate representa le probabilitate de esser maligne de iste version, in base al resultatos del scanditores."
 
 msgid "Scanners results:"
-msgstr ""
+msgstr "Resultatos del scanditores:"
 
 msgid "Flagged for human review"
 msgstr "Signalate per revision human"
@@ -5770,13 +5770,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "Isto es le nomine exacte del regula usate per un scanditor."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Nomine legibile al humanos pro le regula del scanditor"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Nomine legibile al humanos"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Description legibile al humanos pro le regula del scanditor"
 
 msgid "Yara rules should have a definition"
 msgstr "Le regulas Yara debe haber un definition"
