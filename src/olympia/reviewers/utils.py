@@ -849,9 +849,9 @@ class ReviewBase:
         file.status = status
         file.save()
 
-    def set_promoted(self):
+    def set_promoted(self, action):
         group = self.addon.promoted_group(currently_approved=False)
-        if group and group.pre_review:
+        if group and group.pre_review and action in group.reviewer_actions:
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
@@ -1030,7 +1030,7 @@ class ReviewBase:
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_file(amo.STATUS_APPROVED, self.file)
-        self.set_promoted()
+        self.set_promoted('public')
         if self.set_addon_status:
             self.set_addon(status=amo.STATUS_APPROVED)
 
@@ -1186,6 +1186,7 @@ class ReviewBase:
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
         if self.human_review:
+            self.set_promoted('confirm_auto_approved')
             # Mark the approval as confirmed (handle DoesNotExist, it may have
             # been auto-approved before we unified workflow for unlisted and
             # listed).
@@ -1468,6 +1469,7 @@ class ReviewUnlisted(ReviewBase):
         self.log_action(amo.LOG.APPROVE_VERSION)
 
         if self.human_review:
+            self.set_promoted('public')
             self.clear_specific_needs_human_review_flags(self.version)
 
             # An approval took place so we can reset this.

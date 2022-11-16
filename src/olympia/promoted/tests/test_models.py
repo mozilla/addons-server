@@ -80,7 +80,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-        promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
 
         # then with a group thats immediate_approval == True
         promo.group_id = promoted.SPOTLIGHT.id
@@ -88,7 +88,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == [amo.FIREFOX]
         assert PromotedApproval.objects.count() == 1
-        promo.addon.promoted_group() == promoted.SPOTLIGHT
+        assert promo.addon.promoted_group() == promoted.SPOTLIGHT
 
         # test the edge case where the application was changed afterwards
         promo.application_id = 0
@@ -96,6 +96,47 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == [amo.FIREFOX, amo.ANDROID]
         assert PromotedApproval.objects.count() == 2
+
+    def test_addon_flagged_for_human_review_when_saved(self):
+        # empty case with no group set
+        promo = PromotedAddon.objects.create(
+            addon=addon_factory(), application_id=amo.FIREFOX.id
+        )
+        assert promo.group == promoted.NOT_PROMOTED
+        assert promo.approved_applications == []
+        assert not PromotedApproval.objects.exists()
+
+        # first test with a group.flag_for_human_review == False
+        promo.group_id = promoted.RECOMMENDED.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []
+        assert not PromotedApproval.objects.exists()
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+
+        # then with a group thats flag_for_human_review == True
+        assert not promo.addon.current_version.needs_human_review
+        ActivityLog.create(
+            amo.LOG.APPROVE_VERSION,
+            promo.addon,
+            promo.addon.current_version,
+            user=user_factory(id=settings.TASK_USER_ID),
+        )
+        promo.group_id = promoted.NOTABLE.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []  # doesn't approve immediately
+        assert not PromotedApproval.objects.exists()
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.current_version.needs_human_review
+
+        # But we should only flag before the add-on is approved for Promoted
+        promo.addon.current_version.update(needs_human_review=False)
+        promo.approve_for_version(promo.addon.current_version)
+        assert promo.addon.promoted_group() == promoted.NOTABLE
+        promo.save()
+        promo.addon.reload()
+        assert not promo.addon.current_version.needs_human_review
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_approve_for_addon(self, mock_sign_file):

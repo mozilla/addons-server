@@ -125,6 +125,13 @@ class PromotedAddon(ModelBase):
             and self.approved_applications != self.all_applications
         ):
             self.approve_for_addon()
+        elif (
+            self.group.flag_for_human_review
+            and not self.has_approvals
+            and self.addon.current_version
+            and not self.addon.current_version.needs_human_review
+        ):
+            self.addon.current_version.update(needs_human_review=True)
 
 
 class PromotedTheme(PromotedAddon):

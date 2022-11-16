@@ -26,6 +26,7 @@ from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.promoted import (
     LINE,
+    NOTABLE,
     RECOMMENDED,
     SPOTLIGHT,
     STRATEGIC,
@@ -36,7 +37,7 @@ from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data,
     _get_signature_details,
 )
-from olympia.promoted.models import PromotedApproval
+from olympia.promoted.models import PromotedAddon, PromotedApproval
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     ReviewActionReason,
@@ -1506,6 +1507,45 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # Check points awarded.
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+
+    def test_confirm_auto_approved_approves_for_promoted(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        PromotedAddon.objects.create(addon=self.addon, group_id=NOTABLE.id)
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
+
+        self.helper.handler.confirm_auto_approved()
+
+        self.addon.reload()
+        self.addon.promotedaddon.reload()
+        assert self.addon.promoted_group() == NOTABLE, self.addon.promotedaddon
+        assert self.review_version.reload().approved_for_groups == [
+            (NOTABLE, amo.FIREFOX),
+            (NOTABLE, amo.ANDROID),
+        ]
+
+    def test_non_notable_promoted_is_not_approves_with_confirm_auto_approved(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        PromotedAddon.objects.create(addon=self.addon, group_id=LINE.id)
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
+
+        self.helper.handler.confirm_auto_approved()
+
+        self.addon.reload()
+        self.addon.promotedaddon.reload()
+        assert not self.addon.promoted_group()
+        assert self.review_version.reload().approved_for_groups == []
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
         self.addon.current_version.update(needs_human_review=True)

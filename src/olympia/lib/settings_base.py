@@ -1429,6 +1429,7 @@ CRON_JOBS = {
     'write_sitemaps': 'olympia.amo.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
+    'add_high_adu_extensions_to_notable': 'olympia.promoted.cron',
     'update_user_ratings': 'olympia.users.cron',
 }
 
