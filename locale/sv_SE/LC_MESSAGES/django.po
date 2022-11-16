@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-15 17:54+0000\n"
-"PO-Revision-Date: 2022-11-16 01:01+0000\n"
+"PO-Revision-Date: 2022-11-16 01:06+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1738,9 +1738,11 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox lägger till stöd för manifestversion 3 (MV3)-tillägg i Firefox {version}, men äldre versioner av Firefox är endast kompatibla med manifestversion 2 (MV2)-tillägg. Vi rekommenderar att du "
+"laddar upp Manifest V3-tillägg som är lokalt installerad för att inte bryta kompatibiliteten för dina användare."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Besök https://mzl.la/3hIwQXX för mer information om utbyggnaden av MV3-tillägget eller lokalt installerade MV3-tillägg"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Sluggen används redan. Välj en annan."
@@ -4825,7 +4827,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Dubbla tilläggs-ID hittades."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Versionsnummer bör ha högst {max_length} tecken."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Versionsnummer bör endast innehålla bokstäver, siffror och dessa skiljetecken: +*.-_."
@@ -5615,22 +5617,22 @@ msgid "Dismiss this announcement"
 msgstr "Avfärda detta meddelande"
 
 msgid "Download file"
-msgstr ""
+msgstr "Hämta fil"
 
 msgid "Validation results"
-msgstr ""
+msgstr "Valideringsresultat"
 
 msgid "Browse all files in this version"
 msgstr "Bläddra bland alla filer i den här versionen"
 
 msgid "Browse contents"
-msgstr ""
+msgstr "Bläddra i innehållet"
 
 msgid "Compare this version to the last reviewed version"
 msgstr "Jämför denna version med den senaste granskade versionen"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "Jämför med senast granskade"
 
 msgid "Permissions:"
 msgstr "Behörigheter:"
@@ -5715,7 +5717,7 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "Skadlighetspoäng representerar sannolikheten för att den här versionen är skadlig, baserat på skannrarnas resultat."
 
 msgid "Scanners results:"
-msgstr ""
+msgstr "Skannerresultat:"
 
 msgid "Flagged for human review"
 msgstr "Flaggad för mänsklig granskning"
@@ -5778,13 +5780,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "Det här är det exakta namnet på den regel som används av en skanner."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Människoläsbart namn för skannerregeln"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Människoläsbart namn"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Människoläsbar beskrivning för skannerregeln"
 
 msgid "Yara rules should have a definition"
 msgstr "Yara-reglerna bör ha en definition"
