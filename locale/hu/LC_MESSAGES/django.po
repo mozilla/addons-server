@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-15 17:54+0000\n"
-"PO-Revision-Date: 2022-11-16 12:31+0000\n"
+"PO-Revision-Date: 2022-11-16 13:54+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1772,9 +1772,11 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"A Firefox hozzáadja a 3-as verziójú leírófájlt használó (MV3) kiegészítők támogatását a Firefox {version} verzióban, azonban a Firefox régebbi verziói csak a 2-es verziójú leírófájlt használó (MV2) "
+"kiegészítőkkel kompatibilisek. Azt javasoljuk, hogy egyelőre csak saját kiszolgálóra töltse fel a V3-as leírófájlt használó kiegészítőket, hogy ne okozzon kompatibilitási hibákat a felhasználóknál."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Az MV3-as kiegészítők bevezetésével vagy a saját kiszolgálású MV3-as kiegészítőkkel kapcsolatos további információkért látogasson el a https://mzl.la/3hIwQXX oldalra."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ezt a SEO URL-t már használja valaki. Válasszon másikat."
@@ -4861,7 +4863,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Kettőzött kiegészítő azonosító található."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "A verziószám legfeljebb {max_length} karakteres lehet."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "A verziószámok kizárólag betűket, számokat és a következő karaktereket tartalmazhatja: +*.-_."
@@ -5657,22 +5659,22 @@ msgid "Dismiss this announcement"
 msgstr "Bejelentés elvetése"
 
 msgid "Download file"
-msgstr ""
+msgstr "Fájl letöltése"
 
 msgid "Validation results"
-msgstr ""
+msgstr "Ellenőrzés eredményei"
 
 msgid "Browse all files in this version"
 msgstr "Az összes fájl tallózása ebben a verzióban"
 
 msgid "Browse contents"
-msgstr ""
+msgstr "Tallózás a tartalmak között"
 
 msgid "Compare this version to the last reviewed version"
 msgstr "E verzió összehasonlítása az utolsó felülvizsgált verzióval"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "Összehasonlítás a legutóbb felülvizsgálttal"
 
 msgid "Permissions:"
 msgstr "Engedélyek:"
@@ -5757,7 +5759,7 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "A rosszindulat pontszáma annak a valószínűségét jelenti, hogy az átvizsgáló megállapításai alapján ez a verzió rosszindulatú-e."
 
 msgid "Scanners results:"
-msgstr ""
+msgstr "Átvizsgálók eredményei:"
 
 msgid "Flagged for human review"
 msgstr "Emberi felülvizsgálatra jelölve"
@@ -5820,13 +5822,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "Ez az átvizsgáló által használt szabály pontos neve."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Az átvizsgálószabály ember által olvasható neve"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Ember által olvasható név"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Az átvizsgálószabály ember által olvasható leírása"
 
 msgid "Yara rules should have a definition"
 msgstr "A Yara szabályoknak definícióval kell rendelkezniük"
