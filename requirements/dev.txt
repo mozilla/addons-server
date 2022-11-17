@@ -64,9 +64,9 @@ supervisor==4.2.4 \
     --hash=sha256:bbae57abf74e078fe0ecc9f30068b6da41b840546e233ef1e659a12e4c875af6 \
     --hash=sha256:40dc582ce1eec631c3df79420b187a6da276bbd68a4ec0a8f1f123ea616b97a2
 # stack-data is required by ipython
-stack-data==0.6.0 \
-    --hash=sha256:8e515439f818efaa251036af72d89e4026e2b03993f3453c000b200fb4f2d6aa \
-    --hash=sha256:b92d206ef355a367d14316b786ab41cb99eb453a21f2cb216a4204625ff7bc07
+stack-data==0.6.1 \
+    --hash=sha256:6c9a10eb5f342415fe085db551d673955611afb821551f554d91772415464315 \
+    --hash=sha256:960cb054d6a1b2fdd9cbd529e365b3c163e8dabf1272e02cfe36b58403cff5c6
 # executing is required by stack-data
 executing==1.2.0 \
     --hash=sha256:0314a69e37426e3608aada02473b4161d4caf5a4b244d1d0c48072b8fee7bacc \
