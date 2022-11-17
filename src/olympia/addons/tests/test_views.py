@@ -2860,9 +2860,9 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
 
-    def test_compatibility_dict_100(self):
-        # 100.0 is valid per setUpTestData()
-        response = self.request(compatibility={'firefox': {'min': '100.0'}})
+    def test_compatibility_dict_109(self):
+        # 109.0 is valid per setUpTestData()
+        response = self.request(compatibility={'firefox': {'min': '109.0'}})
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
         data = response.data
         self.addon.reload()
@@ -2870,7 +2870,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         version = self.addon.find_latest_version(channel=None)
         assert data['compatibility'] == {
             # firefox max wasn't specified, so is the default max app version
-            'firefox': {'max': '*', 'min': '100.0'},
+            'firefox': {'max': '*', 'min': '109.0'},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX]
 
