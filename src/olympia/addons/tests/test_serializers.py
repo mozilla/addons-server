@@ -1545,6 +1545,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
             'id',
             'name',
             'icon_url',
+            'icons',
             'type',
             'url',
             'promoted',
@@ -1552,6 +1553,11 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': str(self.addon.name)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['icons'] == {
+            '32': absolutify(self.addon.get_icon_url(32)),
+            '64': absolutify(self.addon.get_icon_url(64)),
+            '128': absolutify(self.addon.get_icon_url(128)),
+        }
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
         assert result['promoted'] == self.addon.promoted is None
