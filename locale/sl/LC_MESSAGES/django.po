@@ -1752,7 +1752,7 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr "Manifest V3 trenutno ni podprt za nalaganje. {start_href}Preberite več o časovnici podpore{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Opozorilo o združljivosti manifesta V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
