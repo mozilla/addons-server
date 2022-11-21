@@ -4,6 +4,7 @@ from django.utils.translation import gettext
 
 from olympia import amo
 from olympia.amo.urlresolvers import linkify_and_clean
+from olympia.versions.compare import version_dict
 from olympia.versions.models import DeniedInstallOrigin
 
 
@@ -124,7 +125,10 @@ def add_manifest_version_messages(*, results, channel):
             )
     elif channel == amo.CHANNEL_LISTED:
         # If submitting a listed upload and mv3 switch is on, we want to warn
-        # about using unlisted instead for now.
+        # about using unlisted instead for now. The version constant is an
+        # alpha version to support Nightly, but let's be a little bit more user
+        # friendly in the message and remove the alpha bit.
+        mv3_min = version_dict(amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX)
         insert_validation_message(
             results,
             type_='warning',
@@ -136,7 +140,7 @@ def add_manifest_version_messages(*, results, channel):
                     'compatible with manifest version 2 (MV2) extensions. We recommend '
                     'uploading Manifest V3 extensions as self-hosted for now to not '
                     'break compatibility for your users.'
-                ).format(version='109.0'),
+                ).format(version=f'{mv3_min["major"]}.{mv3_min["minor1"]}'),
                 linkify_and_clean(
                     gettext(
                         'For more information about the MV3 extension roll-out or '
