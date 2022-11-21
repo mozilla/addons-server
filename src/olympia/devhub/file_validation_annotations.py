@@ -136,7 +136,7 @@ def add_manifest_version_messages(*, results, channel):
                     'compatible with manifest version 2 (MV2) extensions. We recommend '
                     'uploading Manifest V3 extensions as self-hosted for now to not '
                     'break compatibility for your users.'
-                ).format(version=amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX),
+                ).format(version='109.0'),
                 linkify_and_clean(
                     gettext(
                         'For more information about the MV3 extension roll-out or '
