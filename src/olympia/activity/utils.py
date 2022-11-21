@@ -5,6 +5,7 @@ from email.utils import formataddr
 from html import unescape
 
 from django.conf import settings
+from django.core.mail.message import sanitize_address
 from django.forms import ValidationError
 from django.template import loader
 from django.urls import reverse
@@ -441,16 +442,24 @@ def filter_queryset_to_pending_replies(queryset, log_type_ids=NOT_PENDING_IDS):
 
 
 def bounce_mail(message, reason):
-    recipient = (
+    recipient_header = (
         None
         if not isinstance(message, dict)
         else message.get('From', message.get('ReplyTo'))
     )
-    if not recipient:
-        log.error(
+    if not recipient_header:
+        log.warning(
             'Tried to bounce incoming activity mail but no From or '
             'ReplyTo header present.'
         )
+        return
+    recipient = recipient_header.get('EmailAddress')
+    try:
+        recipient = sanitize_address(
+            recipient_header.get('EmailAddress'), settings.DEFAULT_CHARSET
+        )
+    except ValueError:
+        log.warning('Tried to bounce incoming activity mail but recipient is invalid')
         return
 
     body = loader.get_template('activity/emails/bounce.txt').render(
@@ -459,7 +468,7 @@ def bounce_mail(message, reason):
     send_mail(
         'Re: %s' % message.get('Subject', 'your email to us'),
         body,
-        recipient_list=[recipient['EmailAddress']],
+        recipient_list=[recipient],
         from_email=settings.ADDONS_EMAIL,
         use_deny_list=False,
     )
