@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-15 17:54+0000\n"
+"POT-Creation-Date: 2022-11-22 17:21+0000\n"
 "PO-Revision-Date: 2022-10-29 17:05+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -4608,6 +4608,10 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
 msgstr "Vylepšete svůj herní zážitek na Steamu."
+
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."

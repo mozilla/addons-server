@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-15 17:54+0000\n"
+"POT-Creation-Date: 2022-11-22 17:21+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -4703,6 +4703,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

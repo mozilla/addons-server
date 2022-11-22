@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-15 17:54+0000\n"
+"POT-Creation-Date: 2022-11-22 17:21+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4802,6 +4802,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
