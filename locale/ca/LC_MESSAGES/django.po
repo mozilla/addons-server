@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-15 17:54+0000\n"
+"POT-Creation-Date: 2022-11-22 17:21+0000\n"
 "PO-Revision-Date: 2021-06-25 10:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -4763,6 +4763,10 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
