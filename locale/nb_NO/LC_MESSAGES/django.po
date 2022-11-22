@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-15 17:54+0000\n"
-"PO-Revision-Date: 2022-11-22 00:42+0000\n"
+"PO-Revision-Date: 2022-11-22 00:45+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb_NO\n"
@@ -981,13 +981,13 @@ msgid "Block deleted"
 msgstr "Blokkering slettet"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID for {addon} lagt til i DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "GUID for {addon} fjernet fra DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Blokk {1} -handling for {0} godkjent."
 
 msgid "Block action signoff"
 msgstr ""
@@ -1190,7 +1190,7 @@ msgid "Games & Entertainment"
 msgstr "Spill og underholdning"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Last ned Firefox-utvidelser for å øke underholdningsopplevelsen din. Denne kategorien inkluderer utvidelser som kan forbedre spilling, kontrollere videoavspilling og mer."
 
 msgid "Language Support"
 msgstr "Språkstøtte"
