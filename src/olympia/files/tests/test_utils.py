@@ -1,6 +1,7 @@
 import json
 import os
 import shutil
+import tarfile
 import tempfile
 import time
 import zipfile
@@ -1216,63 +1217,120 @@ class TestSafeTar(TestCase):
             utils.SafeTar.open(filename)
 
 
-class TestArchiveMemberValidator(TestCase):
-    # We cannot easily test `archive_member_validator` so let's test
-    # `_validate_archive_member_name_and_size` instead.
+class TestArchiveMemberValidatorZip(TestCase):
+    def _fake_archive_member(self, filename, filesize):
+        info = zipfile.ZipInfo(filename)
+        info.file_size = filesize
+        return info
 
     def test_raises_when_filename_is_none(self):
+        info = self._fake_archive_member('', 123)
+        info.filename = None
         with pytest.raises(utils.InvalidArchiveFile):
-            utils._validate_archive_member_name_and_size(None, 123)
+            utils.archive_member_validator(info)
+
+    def test_unsupported_compression_method(self):
+        info = self._fake_archive_member('foo', 123)
+        info.compress_type == zipfile.ZIP_DEFLATED
+        # ZIP_DEFLATED works.
+        utils.archive_member_validator(info)
+        # ZIP_STORED works.
+        info.compress_type = zipfile.ZIP_STORED
+        utils.archive_member_validator(info)
+
+        # The rest should raise an error. Test a few known ones out there:
+        ZIP_DEFLATED64 = 9
+        ZIP_IMPLODED = 10
+        ZIP_BZIP2 = 12
+        ZIP_LZMA = 14
+        ZIP_ZSTANDARD = 93
+        ZIP_XZ = 95
+        ZIP_PPMD = 98
+        for compress_type in (
+            ZIP_DEFLATED64,
+            ZIP_IMPLODED,
+            ZIP_BZIP2,
+            ZIP_LZMA,
+            ZIP_ZSTANDARD,
+            ZIP_XZ,
+            ZIP_PPMD,
+        ):
+            info.compress_type = compress_type
+            with pytest.raises(utils.InvalidArchiveFile):
+                utils.archive_member_validator(info)
 
     def test_raises_when_filesize_is_none(self):
         with pytest.raises(utils.InvalidArchiveFile):
-            utils._validate_archive_member_name_and_size('filename', None)
+            utils.archive_member_validator(self._fake_archive_member('filename', None))
 
     def test_raises_when_filename_is_dot_dot_slash(self):
         with pytest.raises(utils.InvalidArchiveFile):
-            utils._validate_archive_member_name_and_size('../', 123)
+            utils.archive_member_validator(self._fake_archive_member('../', 123))
 
     def test_raises_when_filename_starts_with_slash(self):
         with pytest.raises(utils.InvalidArchiveFile):
-            utils._validate_archive_member_name_and_size('/..', 123)
+            utils.archive_member_validator(self._fake_archive_member('/..', 123))
 
     def test_raises_when_filename_contains_backslashes(self):
         with pytest.raises(utils.InvalidArchiveFile):
-            utils._validate_archive_member_name_and_size('path\\to\\file.txt', 123)
+            utils.archive_member_validator(
+                self._fake_archive_member('path\\to\\file.txt', 123)
+            )
 
     def test_raises_when_filename_is_dot_dot(self):
         with pytest.raises(utils.InvalidArchiveFile):
-            utils._validate_archive_member_name_and_size('..', 123)
+            utils.archive_member_validator(self._fake_archive_member('..', 123))
 
     def test_ignores_when_filename_is_dot_dot_slash_with_argument(self):
-        utils._validate_archive_member_name_and_size(
-            '../', 123, ignore_filename_errors=True
+        utils.archive_member_validator(
+            self._fake_archive_member('../', 123), ignore_filename_errors=True
         )
 
     def test_ignores_when_filename_starts_with_slash_with_argument(self):
-        utils._validate_archive_member_name_and_size(
-            '/..', 123, ignore_filename_errors=True
+        utils.archive_member_validator(
+            self._fake_archive_member('/..', 123), ignore_filename_errors=True
         )
 
     def test_ignores_when_filename_contains_backslashes_with_argument(self):
-        utils._validate_archive_member_name_and_size(
-            'path\\to\\file.txt', 123, ignore_filename_errors=True
+        utils.archive_member_validator(
+            self._fake_archive_member('path\\to\\file.txt', 123),
+            ignore_filename_errors=True,
         )
 
     def test_ignores_when_filename_is_dot_dot_with_argument(self):
-        utils._validate_archive_member_name_and_size(
-            '..', 123, ignore_filename_errors=True
+        utils.archive_member_validator(
+            self._fake_archive_member('..', 123), ignore_filename_errors=True
         )
 
     def test_does_not_raise_when_filename_is_dot_dot_extension(self):
-        utils._validate_archive_member_name_and_size('foo..svg', 123)
+        utils.archive_member_validator(self._fake_archive_member('foo..svg', 123))
 
     @override_settings(FILE_UNZIP_SIZE_LIMIT=100)
     def test_raises_when_filesize_is_above_limit(self):
         with pytest.raises(utils.InvalidArchiveFile):
-            utils._validate_archive_member_name_and_size(
-                'filename', settings.FILE_UNZIP_SIZE_LIMIT + 100
+            utils.archive_member_validator(
+                self._fake_archive_member(
+                    'filename', settings.FILE_UNZIP_SIZE_LIMIT + 100
+                )
             )
+
+
+class TestArchiveMemberValidatorTar(TestArchiveMemberValidatorZip):
+    def _fake_archive_member(self, filename, filesize):
+        info = tarfile.TarInfo(filename)
+        info.size = filesize
+        return info
+
+    def test_raises_when_filename_is_none(self):
+        with pytest.raises(utils.InvalidArchiveFile):
+            utils.archive_member_validator(self._fake_archive_member(None, 123))
+
+    def test_unsupported_compression_method(self):
+        info = self._fake_archive_member('foo', 123)
+        # tar files members don't have a compress_type, we should not fail and
+        # let it validate properly.
+        assert not hasattr(info, 'compress_type')
+        utils.archive_member_validator(info)
 
 
 class TestWriteCrxAsXpi(TestCase):

@@ -499,16 +499,18 @@ class FSyncedTarFile(FSyncMixin, tarfile.TarFile):
     pass
 
 
-def archive_member_validator(archive, member, ignore_filename_errors=False):
+def archive_member_validator(member, ignore_filename_errors=False):
     """Validate a member of an archive member (TarInfo or ZipInfo)."""
     filename = getattr(member, 'filename', getattr(member, 'name', None))
     filesize = getattr(member, 'file_size', getattr(member, 'size', None))
-    _validate_archive_member_name_and_size(filename, filesize, ignore_filename_errors)
+    compress_type = getattr(member, 'compress_type', None)
 
+    if compress_type is not None and compress_type not in (
+        zipfile.ZIP_STORED,
+        zipfile.ZIP_DEFLATED,
+    ):
+        raise InvalidArchiveFile(gettext('Unsupported compression method in archive.'))
 
-def _validate_archive_member_name_and_size(
-    filename, filesize, ignore_filename_errors=False
-):
     if filename is None or filesize is None:
         raise InvalidArchiveFile(gettext('Unsupported archive type.'))
 
@@ -554,7 +556,7 @@ class SafeTar:
             cls = tarfile.TarFile
         archive = cls.open(*args, **kwargs)
         for member in archive.getmembers():
-            archive_member_validator(archive, member)
+            archive_member_validator(member)
             # In addition to the generic archive member validator, tar files
             # can contain special files we don't want...
             for method in ('isblk', 'ischr', 'isdev', 'isfifo', 'islnk', 'issym'):
@@ -593,7 +595,7 @@ class SafeZip:
         total_file_size = 0
         for info in info_list:
             total_file_size += info.file_size
-            archive_member_validator(self.source, info, self.ignore_filename_errors)
+            archive_member_validator(info, self.ignore_filename_errors)
 
         if total_file_size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
             raise InvalidArchiveFile(gettext('Uncompressed size is too large'))
