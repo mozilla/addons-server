@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-23 19:47+0000\n"
+"PO-Revision-Date: 2022-11-23 19:55+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1767,8 +1767,8 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
-"O Firefox está adicionando suporte a extensões com manifesto versão 3 (MV3) no Firefox {version}, no entanto, versões mais antigas do Firefox são compatíveis apenas com extensões com manifesto versão"
-" 2 (MV2). Recomendamos enviar extensões com manifesto V3 como auto-hospedadas por enquanto, para não atrapalhar a compatibilidade em seus usuários."
+"O Firefox está adicionando suporte a extensões com manifesto versão 3 (MV3) no Firefox {version}, no entanto, versões mais antigas do Firefox são compatíveis apenas com extensões com manifesto "
+"versão 2 (MV2). Recomendamos enviar extensões com manifesto V3 como auto-hospedadas por enquanto, para não atrapalhar a compatibilidade em seus usuários."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 msgstr "Consulte em https://mzl.la/3hIwQXX mais informações sobre o lançamento de extensões com MV3 e extensões com MV3 auto-hospedadas."
@@ -4677,7 +4677,7 @@ msgstr "Melhore sua experiência em jogos no Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Voto a favor de trazer de volta o botão de \"não gostei\"."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
