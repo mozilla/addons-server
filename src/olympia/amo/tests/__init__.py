@@ -489,7 +489,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         """
         Make sure the datetime is within a minute from `now`.
         """
-        if not dt or not isinstance(dt, datetime.datetime):
+        if not dt or not isinstance(dt, datetime):
             raise AssertionError('Expected datetime; got %s' % dt)
 
         dt_later_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
