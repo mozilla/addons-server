@@ -1767,7 +1767,7 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
-"O Firefox está adicionando suporte a extensões com manifesto versão 3 (MV3) no Firefox {versão}, no entanto, versões mais antigas do Firefox são compatíveis apenas com extensões com manifesto versão"
+"O Firefox está adicionando suporte a extensões com manifesto versão 3 (MV3) no Firefox {version}, no entanto, versões mais antigas do Firefox são compatíveis apenas com extensões com manifesto versão"
 " 2 (MV2). Recomendamos enviar extensões com manifesto V3 como auto-hospedadas por enquanto, para não atrapalhar a compatibilidade em seus usuários."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
