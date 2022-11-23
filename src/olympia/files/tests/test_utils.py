@@ -1235,7 +1235,7 @@ class TestArchiveMemberValidatorZip(TestCase):
         # ZIP_DEFLATED works.
         utils.archive_member_validator(info)
         # ZIP_STORED works.
-        info.compress_type = zipfile.ZIP_DEFLATED
+        info.compress_type = zipfile.ZIP_STORED
         utils.archive_member_validator(info)
 
         # The rest should raise an error. Test a few known ones out there:
@@ -1255,7 +1255,7 @@ class TestArchiveMemberValidatorZip(TestCase):
             ZIP_XZ,
             ZIP_PPMD,
         ):
-            info.compress_type = zipfile.ZIP_LZMA
+            info.compress_type = compress_type
             with pytest.raises(utils.InvalidArchiveFile):
                 utils.archive_member_validator(info)
 
