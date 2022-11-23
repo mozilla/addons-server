@@ -30,7 +30,6 @@ from django.utils.encoding import force_str
 from django.utils.html import escape
 
 import pytest
-from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 from rest_framework.test import APIClient, APIRequestFactory
@@ -490,15 +489,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         """
         Make sure the datetime is within a minute from `now`.
         """
-
-        # Try parsing the string if it's not a datetime.
-        if isinstance(dt, str):
-            try:
-                dt = dateutil_parser(dt)
-            except ValueError as e:
-                raise AssertionError(f'Expected valid date; got {dt}\n{e}')
-
-        if not dt:
+        if not dt or not isinstance(dt, datetime.datetime):
             raise AssertionError('Expected datetime; got %s' % dt)
 
         dt_later_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())

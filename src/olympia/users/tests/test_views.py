@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.urls import reverse
 
-from dateutil.parser import parse
 from pyquery import PyQuery as pq
 
 from olympia import amo
@@ -59,7 +58,9 @@ class TestSessionLength(UserViewBase):
         # The user's session should be valid for at least four weeks (near a
         # month).
         four_weeks_from_now = datetime.now() + timedelta(days=28)
-        expiry = parse(cookie['expires']).replace(tzinfo=None)
+        expiry = datetime.strptime(
+            cookie['expires'], '%a, %d %b %Y %H:%M:%S %Z'
+        ).replace(tzinfo=None)
 
         assert cookie.value != ''
         assert expiry >= four_weeks_from_now
