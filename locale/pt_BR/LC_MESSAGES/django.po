@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-23 19:41+0000\n"
+"PO-Revision-Date: 2022-11-23 19:47+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1771,7 +1771,7 @@ msgstr ""
 " 2 (MV2). Recomendamos enviar extensões com manifesto V3 como auto-hospedadas por enquanto, para não atrapalhar a compatibilidade em seus usuários."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Consulte em https://mzl.la/3hIwQXX mais informações sobre o lançamento de extensões com MV3 e extensões com MV3 auto-hospedadas."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Esse identificador já está em uso. Escolha outro."
@@ -4900,7 +4900,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Foi encontrado um ID de extensão duplicado."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Números de versão devem ter no máximo {max_length} caracteres."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Os números de versão devem conter apenas letras, números e os seguintes caracteres de pontuação: +*-_."
@@ -5808,7 +5808,7 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "A pontuação de maliciosidade representa a probabilidade desta versão ser maliciosa, com base nas descobertas dos verificadores."
 
 msgid "Scanners results:"
-msgstr ""
+msgstr "Resultados de verificadores:"
 
 msgid "Flagged for human review"
 msgstr "Sinalizado por revisão humana"
@@ -5873,13 +5873,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "Este é o nome exato da regra usada por um verificador."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Nome legível por humanos da regra de verificação"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Nome legível por humanos"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Descrição legível por humanos da regra de verificação"
 
 msgid "Yara rules should have a definition"
 msgstr "Regras Yara devem ter uma definição"
