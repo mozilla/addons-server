@@ -51,7 +51,7 @@ def update_addon_average_daily_users(chunk_size=250):
         create_chunked_tasks_signatures(
             _update_addon_average_daily_users, counts, chunk_size
         )
-        | add_high_adu_extensions_to_notable.si(counts)
+        | add_high_adu_extensions_to_notable.si()
     ).apply_async()
 
 

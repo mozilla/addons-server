@@ -119,20 +119,19 @@ class TestAvgDailyUserCountTestCase(TestCase):
         chunk_size = 123
         cron.update_addon_average_daily_users(chunk_size)
 
-        items = [
-            (addon_without_count.guid, 0),
-            (addon.guid, count),
-            (langpack.guid, langpack_count),
-            (dictionary.guid, dictionary_count),
-            (deleted_addon.guid, deleted_addon_count),
-        ]
         create_chunked_mock.assert_called_with(
             update_addon_average_daily_users,
-            items,
+            [
+                (addon_without_count.guid, 0),
+                (addon.guid, count),
+                (langpack.guid, langpack_count),
+                (dictionary.guid, dictionary_count),
+                (deleted_addon.guid, deleted_addon_count),
+            ],
             chunk_size,
         )
 
-        notable_mock.assert_called_with(items)
+        notable_mock.assert_called()
 
 
 class TestUpdateAddonHotness(TestCase):

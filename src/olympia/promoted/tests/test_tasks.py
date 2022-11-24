@@ -22,15 +22,7 @@ def test_add_high_adu_extensions_to_notable():
     promoted_record_exists = addon_factory(average_daily_users=adu_limit + 1)
     PromotedAddon.objects.create(addon=promoted_record_exists, group_id=NOT_PROMOTED.id)
 
-    items = [
-        (extension_with_low_adu.guid, extension_with_low_adu.average_daily_users),
-        (extension_with_high_adu.guid, extension_with_high_adu.average_daily_users),
-        (ignored_theme.guid, ignored_theme.average_daily_users),
-        (already_promoted.guid, already_promoted.average_daily_users),
-        (promoted_record_exists.guid, promoted_record_exists.average_daily_users),
-        ('@unknownguid', adu_limit + 1),
-    ]
-    add_high_adu_extensions_to_notable(items)
+    add_high_adu_extensions_to_notable()
 
     assert (
         extension_with_low_adu.reload().promoted_group(currently_approved=False)
