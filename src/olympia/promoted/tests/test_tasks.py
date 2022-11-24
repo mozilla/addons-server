@@ -1,6 +1,6 @@
 from olympia import amo
 from olympia.amo.tests import addon_factory
-from olympia.constants.promoted import NOTABLE, NOT_PROMOTED
+from olympia.constants.promoted import LINE, NOTABLE, NOT_PROMOTED
 from olympia.promoted.models import PromotedAddon
 from olympia.zadmin.models import set_config
 
@@ -17,10 +17,20 @@ def test_add_high_adu_extensions_to_notable():
     ignored_theme = addon_factory(
         average_daily_users=adu_limit + 1, type=amo.ADDON_STATICTHEME
     )
-    already_promoted_extension = addon_factory(average_daily_users=adu_limit + 1)
-    PromotedAddon.objects.create(addon=already_promoted_extension)
+    already_promoted = addon_factory(average_daily_users=adu_limit + 1)
+    PromotedAddon.objects.create(addon=already_promoted, group_id=LINE.id)
+    promoted_record_exists = addon_factory(average_daily_users=adu_limit + 1)
+    PromotedAddon.objects.create(addon=promoted_record_exists, group_id=NOT_PROMOTED.id)
 
-    add_high_adu_extensions_to_notable()
+    items = [
+        (extension_with_low_adu.guid, extension_with_low_adu.average_daily_users),
+        (extension_with_high_adu.guid, extension_with_high_adu.average_daily_users),
+        (ignored_theme.guid, ignored_theme.average_daily_users),
+        (already_promoted.guid, already_promoted.average_daily_users),
+        (promoted_record_exists.guid, promoted_record_exists.average_daily_users),
+        ('@unknownguid', adu_limit + 1),
+    ]
+    add_high_adu_extensions_to_notable(items)
 
     assert (
         extension_with_low_adu.reload().promoted_group(currently_approved=False)
@@ -33,9 +43,10 @@ def test_add_high_adu_extensions_to_notable():
     assert (
         ignored_theme.reload().promoted_group(currently_approved=False) == NOT_PROMOTED
     )
-    assert (
-        already_promoted_extension.reload().promoted_group(currently_approved=False)
-        == NOT_PROMOTED
-    )
+    already_promoted.reload().promotedaddon.reload()
+    assert already_promoted.promoted_group(currently_approved=False) == LINE
+    promoted_record_exists.reload().promotedaddon.reload()
+    assert promoted_record_exists.promoted_group(currently_approved=False) == NOTABLE
 
     assert extension_with_high_adu.current_version.needs_human_review
+    assert promoted_record_exists.current_version.needs_human_review
