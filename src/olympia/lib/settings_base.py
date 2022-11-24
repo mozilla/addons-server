@@ -900,7 +900,7 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
-    'olympia.addons.tasks.add_high_adu_extensions_to_notable': {'queue': 'cron'},
+    'olympia.promoted.tasks.add_high_adu_extensions_to_notable': {'queue': 'cron'},
     'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'cron'},
     # Reviewers.
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'reviewers'},
