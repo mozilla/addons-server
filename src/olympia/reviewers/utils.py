@@ -649,7 +649,7 @@ class ReviewHelper:
                 and version_is_unreviewed
                 and is_appropriate_reviewer
             ),
-            'allows_reasons': not is_static_theme,
+            'allows_reasons': True,
             'requires_reasons': not is_static_theme,
         }
         actions['approve_content'] = {
@@ -715,7 +715,7 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': (can_reject_multiple),
-            'allows_reasons': not is_static_theme,
+            'allows_reasons': True,
             'requires_reasons': not is_static_theme,
         }
         actions['unreject_multiple_versions'] = {
