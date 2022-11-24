@@ -1,16 +1,18 @@
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon
+from olympia.amo.celery import task
 from olympia.constants.promoted import NOTABLE
-from olympia.promoted.models import PromotedAddon
 from olympia.zadmin.models import get_config
 
+from .models import PromotedAddon
 
-log = olympia.core.logger.getLogger('z.promoted.cron')
+log = olympia.core.logger.getLogger('z.promoted.tasks')
 
 ADU_LIMIT_CONFIG_KEY = 'notable-adu-threshold'
 
 
+@task
 def add_high_adu_extensions_to_notable():
     """Add add-ons with high ADU to Notable promoted group."""
 

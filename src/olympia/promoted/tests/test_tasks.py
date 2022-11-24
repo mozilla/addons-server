@@ -4,7 +4,7 @@ from olympia.constants.promoted import NOTABLE, NOT_PROMOTED
 from olympia.promoted.models import PromotedAddon
 from olympia.zadmin.models import set_config
 
-from ..cron import add_high_adu_extensions_to_notable, ADU_LIMIT_CONFIG_KEY
+from ..tasks import add_high_adu_extensions_to_notable, ADU_LIMIT_CONFIG_KEY
 
 
 def test_add_high_adu_extensions_to_notable():

@@ -13,6 +13,7 @@ from olympia.addons.tasks import (
 )
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
+from olympia.promoted.tasks import add_high_adu_extensions_to_notable
 from olympia.stats.utils import (
     get_addons_and_average_daily_users_from_bigquery,
     get_addons_and_weekly_downloads_from_bigquery,
@@ -46,8 +47,11 @@ def update_addon_average_daily_users(chunk_size=250):
 
     log.info('Preparing update of `average_daily_users` for %s add-ons.', len(counts))
 
-    create_chunked_tasks_signatures(
-        _update_addon_average_daily_users, counts, chunk_size
+    (
+        create_chunked_tasks_signatures(
+            _update_addon_average_daily_users, counts, chunk_size
+        )
+        | add_high_adu_extensions_to_notable.si()
     ).apply_async()
 
 

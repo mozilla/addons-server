@@ -31,7 +31,6 @@ HOME=/tmp
 # Once per day after metrics import is done
 30 12 * * * %(z_cron)s update_addon_weekly_downloads
 30 13 * * * %(z_cron)s update_addon_average_daily_users
-30 14 * * * %(z_cron)s add_high_adu_extensions_to_notable
 
 # Once per week
 1 9 * * 1 %(django)s review_reports
