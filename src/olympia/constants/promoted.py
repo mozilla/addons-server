@@ -21,7 +21,6 @@ _PromotedSuperClass = namedtuple(
         'can_primary_hero',
         'immediate_approval',
         'flag_for_human_review',
-        'reviewer_actions',
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -35,7 +34,6 @@ _PromotedSuperClass = namedtuple(
         False,  # can_primary_hero - can be added to a primary hero shelf
         False,  # immediate_approval - will addon be auto-approved once added
         False,  # flag_for_human_review - will be add-on be flagged for another review
-        ('public',),  # reviewer_actions - a tuple of actions that can add approval
     ),
 )
 
@@ -138,7 +136,6 @@ NOTABLE = PromotedClass(
     admin_review=True,
     can_primary_hero=True,
     flag_for_human_review=True,
-    reviewer_actions=('public', 'confirm_auto_approved'),
 )
 
 PROMOTED_GROUPS = [

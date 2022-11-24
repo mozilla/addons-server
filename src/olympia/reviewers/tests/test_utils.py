@@ -1529,24 +1529,6 @@ class TestReviewHelper(TestReviewHelperBase):
             (NOTABLE, amo.ANDROID),
         ]
 
-    def test_non_notable_promoted_is_not_approves_with_confirm_auto_approved(self):
-        self.grant_permission(self.user, 'Addons:Review')
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        PromotedAddon.objects.create(addon=self.addon, group_id=LINE.id)
-        self.create_paths()
-
-        # Safeguards.
-        assert self.addon.status == amo.STATUS_APPROVED
-        assert self.file.status == amo.STATUS_APPROVED
-        assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
-
-        self.helper.handler.confirm_auto_approved()
-
-        self.addon.reload()
-        self.addon.promotedaddon.reload()
-        assert not self.addon.promoted_group()
-        assert self.review_version.reload().approved_for_groups == []
-
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
         self.addon.current_version.update(needs_human_review=True)
         self.test_public_addon_confirm_auto_approval()
