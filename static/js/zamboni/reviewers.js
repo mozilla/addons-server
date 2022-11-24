@@ -60,13 +60,27 @@ function initReviewActions() {
   function showForm(element, pageload) {
     var $element = $(element),
       value = $element.find('input').val(),
-      $data_toggle = $('form.review-form').find('.data-toggle');
+      $data_toggle = $('form.review-form').find('.data-toggle'),
+      $comments = $('#id_comments');
 
     pageload = pageload || false;
     $element.closest('.review-actions').addClass('on');
     $('.review-actions .action_nav ul li').removeClass('on-tab');
     $element.find('input').prop('checked', true);
 
+    // Input message into empty comments textbox.
+    if ($comments.val().length === 0) {
+      if ($element.text().trim() === 'Approve') {
+        insertAtCursor($comments, 'Thank you for your contribution.');
+      } else if (
+        ['Reject', 'Reject Multiple Versions'].includes($element.text().trim())
+      ) {
+        insertAtCursor(
+          $comments,
+          "This add-on didn't pass review because of the following problems:\n\n1)",
+        );
+      }
+    }
     $element.addClass('on-tab');
 
     if (pageload) {
