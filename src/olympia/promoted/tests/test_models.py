@@ -113,15 +113,9 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert not promo.addon.current_version.needs_human_review
 
         # then with a group thats flag_for_human_review == True
-        assert not promo.addon.current_version.needs_human_review
-        ActivityLog.create(
-            amo.LOG.APPROVE_VERSION,
-            promo.addon,
-            promo.addon.current_version,
-            user=user_factory(id=settings.TASK_USER_ID),
-        )
         promo.group_id = promoted.NOTABLE.id
         promo.save()
         promo.addon.reload()
