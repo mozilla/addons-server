@@ -718,7 +718,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.reviewlog'),
@@ -765,7 +765,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.reviewlog'),
@@ -859,7 +859,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.reviewlog'),
@@ -1045,7 +1045,7 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
             reverse('reviewers.reviewlog'),
@@ -1364,7 +1364,7 @@ class TestQueueBasics(QueueTest):
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
         expected = [
             reverse('reviewers.queue_extension'),
-            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_auto_approved'),
         ]
@@ -1377,7 +1377,7 @@ class TestQueueBasics(QueueTest):
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
         expected = [
             reverse('reviewers.queue_extension'),
-            reverse('reviewers.queue_scanners'),
+            reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.queue_auto_approved'),
@@ -2499,7 +2499,7 @@ class TestScannersReviewQueue(QueueTest):
 
     def setUp(self):
         super().setUp()
-        self.url = reverse('reviewers.queue_scanners')
+        self.url = reverse('reviewers.queue_human_review')
 
     def generate_files(self):
         # Has no versions needing human review.
@@ -2612,7 +2612,7 @@ class TestScannersReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Flagged By Scanners',
+            'Versions Needing Human Review',
             tab_position=1,
             total_addons=3,
             total_queues=4,
@@ -2625,7 +2625,7 @@ class TestScannersReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout(
-            'Flagged By Scanners',
+            'Versions Needing Human Review',
             tab_position=2,
             total_addons=4,
             total_queues=10,
@@ -8984,7 +8984,7 @@ class TestMadQueue(QueueTest):
 
     def test_queue_layout(self):
         self._test_queue_layout(
-            'Flagged for Human Review',
+            'Flagged by MAD for Human Review',
             tab_position=2,
             total_addons=4,
             total_queues=4,
@@ -8996,7 +8996,7 @@ class TestMadQueue(QueueTest):
         self.grant_permission(self.user, 'Reviews:Admin')
 
         self._test_queue_layout(
-            'Flagged for Human Review',
+            'Flagged by MAD for Human Review',
             tab_position=2,
             total_addons=5,
             total_queues=5,

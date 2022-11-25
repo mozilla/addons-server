@@ -360,14 +360,16 @@ class ContentReviewTable(AutoApprovedTable):
         return reverse('reviewers.review', args=['content', record.id])
 
 
-class ScannersReviewTable(AddonQueueTable):
+class HumanReviewTable(AddonQueueTable):
     listed_text = _('Listed versions needing human review ({0})')
     unlisted_text = _('Unlisted versions needing human review ({0})')
     show_count_in_dashboard = False
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_scanners_queue(admin_reviewer=admin_reviewer).annotate(
+        return Addon.objects.get_human_review_queue(
+            admin_reviewer=admin_reviewer
+        ).annotate(
             unlisted_versions_that_need_human_review=Count(
                 'versions',
                 filter=Q(
@@ -414,7 +416,7 @@ class ScannersReviewTable(AddonQueueTable):
         return markupsafe.Markup(''.join(rval))
 
 
-class MadReviewTable(ScannersReviewTable):
+class MadReviewTable(HumanReviewTable):
     listed_text = _('Listed version')
     unlisted_text = _('Unlisted versions ({0})')
     show_count_in_dashboard = False

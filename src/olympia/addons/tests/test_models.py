@@ -2991,7 +2991,7 @@ class TestExtensionsQueues(TestCase):
             version=unexpected_addons['non_extension'].current_version,
         )
 
-        addons = Addon.objects.get_scanners_queue().all()
+        addons = Addon.objects.get_human_review_queue().all()
 
         assert all(addon in addons for addon in expected_addons.values())
         assert not any(addon in addons for addon in unexpected_addons.values())

@@ -104,7 +104,7 @@ from olympia.reviewers.utils import (
     PendingRejectionTable,
     RecommendedPendingManualApprovalQueueTable,
     ReviewHelper,
-    ScannersReviewTable,
+    HumanReviewTable,
     UnlistedPendingManualApprovalQueueTable,
     UpdatedThemesQueueTable,
     ViewUnlistedAllListTable,
@@ -226,13 +226,13 @@ def dashboard(request):
                 ),
             )
         )
-        sections[gettext('Security Scanners')] = [
+        sections[gettext('Human Review Needed')] = [
             (
-                gettext('Flagged By Scanners'),
-                reverse('reviewers.queue_scanners'),
+                gettext('Versions Needing Human Review'),
+                reverse('reviewers.queue_human_review'),
             ),
             (
-                gettext('Flagged for Human Review'),
+                gettext('Flagged by MAD for Human Review'),
                 reverse('reviewers.queue_mad'),
             ),
         ]
@@ -419,7 +419,7 @@ reviewer_tables_registry = {
     'auto_approved': AutoApprovedTable,
     'content_review': ContentReviewTable,
     'mad': MadReviewTable,
-    'scanners': ScannersReviewTable,
+    'human_review': HumanReviewTable,
     'pending_rejection': PendingRejectionTable,
     'unlisted_pending_manual_approval': UnlistedPendingManualApprovalQueueTable,
     'unlisted': ViewUnlistedAllListTable,
@@ -521,8 +521,8 @@ def queue_auto_approved(request):
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_scanners(request):
-    return _queue(request, 'scanners')
+def queue_human_review(request):
+    return _queue(request, 'human_review')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
