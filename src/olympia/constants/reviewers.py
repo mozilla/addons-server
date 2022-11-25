@@ -210,3 +210,14 @@ AUTO_APPROVAL_VERDICT_CHOICES = (
     (AUTO_APPROVED, 'Was auto-approved'),
     (NOT_AUTO_APPROVED, 'Was *not* auto-approved'),
 )
+
+# Types of Add-ons for Reasons.
+REASON_ADDON_TYPE_ALL = 1
+REASON_ADDON_TYPE_EXTENSION = 2
+REASON_ADDON_TYPE_THEME = 3
+
+REASON_ADDON_TYPE_CHOICES = {
+    REASON_ADDON_TYPE_ALL: _('All'),
+    REASON_ADDON_TYPE_EXTENSION: _('Extension'),
+    REASON_ADDON_TYPE_THEME: _('Theme'),
+}

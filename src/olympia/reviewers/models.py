@@ -1129,6 +1129,10 @@ class ReviewActionReason(ModelBase):
     )
     name = models.CharField(max_length=255)
     canned_response = models.TextField()
+    addon_type = models.PositiveIntegerField(
+        choices=amo.REASON_ADDON_TYPE_CHOICES.items(),
+        default=amo.REASON_ADDON_TYPE_ALL,
+    )
 
     def labelled_name(self):
         return '(** inactive **) ' + self.name if not self.is_active else self.name

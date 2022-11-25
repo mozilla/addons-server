@@ -194,6 +194,37 @@ class TestReviewForm(TestCase):
         assert doc('input')[0].attrib.get('data-value') == self.reason_a.canned_response
         assert doc('input')[1].attrib.get('data-value') == self.reason_c.canned_response
 
+    def test_reasons_by_type(self):
+        self.reason_all = ReviewActionReason.objects.create(
+            name='A reason for all add-on types',
+            is_active=True,
+            addon_type=amo.REASON_ADDON_TYPE_ALL,
+        )
+        self.reason_extension = ReviewActionReason.objects.create(
+            name='An extension only reason',
+            is_active=True,
+            addon_type=amo.REASON_ADDON_TYPE_EXTENSION,
+        )
+        self.reason_theme = ReviewActionReason.objects.create(
+            name='A theme only reason',
+            is_active=True,
+            addon_type=amo.REASON_ADDON_TYPE_THEME,
+        )
+        form = self.get_form()
+        choices = form.fields['reasons'].choices
+        # By default the addon is an extension.
+        assert len(choices) == 2
+        assert list(choices.queryset)[0] == self.reason_all
+        assert list(choices.queryset)[1] == self.reason_extension
+
+        # Change the addon to a theme.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        form = self.get_form()
+        choices = form.fields['reasons'].choices
+        assert len(choices) == 2
+        assert list(choices.queryset)[0] == self.reason_all
+        assert list(choices.queryset)[1] == self.reason_theme
+
     def test_reasons_required(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()

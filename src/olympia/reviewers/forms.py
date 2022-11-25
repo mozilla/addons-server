@@ -253,7 +253,8 @@ class ReviewForm(forms.Form):
     )
     reasons = ReasonsChoiceField(
         label=_('Choose one or more reasons:'),
-        queryset=ReviewActionReason.objects.filter(is_active__exact=True),
+        # queryset is set later in __init__.
+        queryset=ReviewActionReason.objects.none(),
         required=True,
         widget=ReasonsChoiceWidget,
     )
@@ -359,6 +360,17 @@ class ReviewForm(forms.Form):
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()
         ]
+
+        # Set the queryset for reasons based on the add-on type.
+        self.fields['reasons'].queryset = ReviewActionReason.objects.filter(
+            is_active__exact=True,
+            addon_type__in=[
+                amo.REASON_ADDON_TYPE_ALL,
+                amo.REASON_ADDON_TYPE_THEME
+                if self.helper.addon.type == amo.ADDON_STATICTHEME
+                else amo.REASON_ADDON_TYPE_EXTENSION,
+            ],
+        )
 
     @property
     def unreviewed_files(self):
