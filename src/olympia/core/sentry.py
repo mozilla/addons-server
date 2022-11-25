@@ -102,6 +102,22 @@ def sentry_before_breadcrumb(crumb, hint):
 
 
 def get_sentry_config(env):
+    # i.e. is_dev will be true on addons-dev and false elsewhere
+    is_dev = env('ENV', default='') == 'dev'
+    # if SENTRY_TRACES_SAMPLE_RATE is set in an env, and it's not 0, then set up the
+    # profiling. If it's not set then we default to 1.0 on dev, and 0.0 elsewhere.
+    if sample_rate := env.float('SENTRY_TRACES_SAMPLE_RATE', default=(1.0 * is_dev)):
+        extra = {
+            'traces_sample_rate': sample_rate,
+            '_experiments': {
+                # profiles_sample_rate is relative to traces_sample_rate, e.g. if
+                # traces_sample_rate is 0.1, we're only sampling 10% for profiling too.
+                'profiles_sample_rate': 1.0,
+            },
+        }
+    else:
+        extra = {}
+
     return {
         # This is the DSN to the Sentry service.
         'dsn': env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN')),
@@ -115,4 +131,5 @@ def get_sentry_config(env):
         'send_default_pii': True,
         'before_send': sentry_before_send,
         'before_breadcrumb': sentry_before_breadcrumb,
+        **extra,
     }
