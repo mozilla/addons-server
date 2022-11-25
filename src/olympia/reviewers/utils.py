@@ -1186,6 +1186,7 @@ class ReviewBase:
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
         if self.human_review:
+            self.set_promoted()
             # Mark the approval as confirmed (handle DoesNotExist, it may have
             # been auto-approved before we unified workflow for unlisted and
             # listed).
@@ -1468,6 +1469,7 @@ class ReviewUnlisted(ReviewBase):
         self.log_action(amo.LOG.APPROVE_VERSION)
 
         if self.human_review:
+            self.set_promoted()
             self.clear_specific_needs_human_review_flags(self.version)
 
             # An approval took place so we can reset this.

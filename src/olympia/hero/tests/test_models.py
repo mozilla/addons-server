@@ -72,7 +72,7 @@ class TestPrimaryHero(TestCase):
             ph.clean()
         assert context.exception.messages == [
             'Only add-ons that are Recommended, Sponsored, By Firefox, '
-            'Spotlight can be enabled for non-external primary shelves.'
+            'Spotlight, Notable can be enabled for non-external primary shelves.'
         ]
 
         # change to a different group that *can* be added as a primary hero

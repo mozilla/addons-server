@@ -13,13 +13,14 @@ _PromotedSuperClass = namedtuple(
         'name',
         'api_name',
         'search_ranking_bump',
-        'warning',
+        'warning',  # See EXCLUDE_WARNING_CATEGORIES in frontend: there's no effect here
         'pre_review',
         'admin_review',
-        'badged',
+        'badged',  # See BADGE_CATEGORIES in frontend too: both need changing
         'autograph_signing_states',
         'can_primary_hero',
         'immediate_approval',
+        'flag_for_human_review',
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -32,6 +33,7 @@ _PromotedSuperClass = namedtuple(
         {},  # autograph_signing_states - should be a dict of App.short: state
         False,  # can_primary_hero - can be added to a primary hero shelf
         False,  # immediate_approval - will addon be auto-approved once added
+        False,  # flag_for_human_review - will be add-on be flagged for another review
     ),
 )
 
@@ -125,6 +127,16 @@ STRATEGIC = PromotedClass(
     admin_review=True,
 )
 
+NOTABLE = PromotedClass(
+    id=7,
+    name=_('Notable'),
+    api_name='notable',
+    warning=False,
+    pre_review=True,
+    can_primary_hero=True,
+    flag_for_human_review=True,
+)
+
 PROMOTED_GROUPS = [
     NOT_PROMOTED,
     RECOMMENDED,
@@ -133,6 +145,7 @@ PROMOTED_GROUPS = [
     LINE,
     SPOTLIGHT,
     STRATEGIC,
+    NOTABLE,
 ]
 
 PRE_REVIEW_GROUPS = [group for group in PROMOTED_GROUPS if group.pre_review]
