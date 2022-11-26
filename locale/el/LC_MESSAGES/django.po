@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-26 11:56+0000\n"
+"PO-Revision-Date: 2022-11-26 13:06+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1044,10 +1044,10 @@ msgid "{user} restricted."
 msgstr "Ο/Η {user} περιορίστηκε."
 
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "Αναιρέθηκε η απόρριψη του {addon} {version}."
 
 msgid "Un-rejected"
-msgstr ""
+msgstr "Αναιρέθηκε η απόρριψη"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1797,7 +1797,7 @@ msgid ""
 msgstr ""
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Για περισσότερες πληροφορίες σχετικά με την κυκλοφορία ή την αυτοφιλοξενία επεκτάσεων MV3, επισκεφτείτε το https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλούμε διαλέξτε κάποιο άλλο."
@@ -4897,7 +4897,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Βρέθηκε διπλό ID προσθέτου."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Οι αριθμοί εκδόσεων θα πρέπει να έχουν το πολύ {max_length} χαρακτήρες."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Οι αριθμοί εκδόσεων μπορούν να περιλαμβάνουν μόνο αριθμούς, γράμματα και αυτά τα σύμβολα: +*.-_."
@@ -5191,7 +5191,7 @@ msgid "This will reject the selected versions. The comments will be sent to the 
 msgstr "Αυτό θα απορρίψει τις επιλεγμένες εκδόσεις. Τα σχόλια θα αποσταλούν στον προγραμματιστή."
 
 msgid "Un-reject Versions"
-msgstr ""
+msgstr "Αναίρεση απόρριψης εκδόσεων"
 
 msgid "This will un-reject the selected versions without notifying the developer."
 msgstr "Αυτό θα αναιρέσει την απόρριψη των επιλεγμένων εκδόσεων χωρίς να ειδοποιηθεί ο προγραμματιστής."
@@ -5708,7 +5708,7 @@ msgid "Compare this version to the last reviewed version"
 msgstr "Σύγκριση έκδοσης με την τελευταία ελεγμένη έκδοση"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "Σύγκριση με τον τελευταίο έλεγχο"
 
 msgid "Permissions:"
 msgstr "Δικαιώματα:"
