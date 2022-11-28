@@ -838,6 +838,8 @@ def user_factory(**kw):
     email = kw.pop('email', '%s@mozîlla.com' % identifier)
     if 'last_login_ip' not in kw:
         kw['last_login_ip'] = '127.0.0.1'
+    if 'auth_id' not in kw:
+        kw['auth_id'] = random.randint(1, 42)  # Cheaper default.
     user = UserProfile.objects.create(username=username, email=email, **kw)
     return user
 

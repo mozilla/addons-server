@@ -1291,7 +1291,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # We might not have position in ES; if not fake it with the list position.
         position = data.get('position', idx)
         preview = model_class(
-            id=data['id'], sizes=data.get('sizes', {}), position=position
+            id=data['id'], created=None, sizes=data.get('sizes', {}), position=position
         )
         preview.addon = obj
         preview.version = obj.current_version
@@ -1329,6 +1329,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         if data:
             version = Version(
                 addon=obj,
+                created=self.handle_date(data['files'][0]['created']),
                 id=data['id'],
                 reviewed=self.handle_date(data['reviewed']),
                 version=data['version'],
@@ -1342,8 +1343,12 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             for app_id, compat_dict in data.get('compatible_apps', {}).items():
                 app_name = APPS_ALL[int(app_id)]
                 compatible_apps[app_name] = ApplicationsVersions(
-                    min=AppVersion(version=compat_dict.get('min_human', '')),
-                    max=AppVersion(version=compat_dict.get('max_human', '')),
+                    min=AppVersion(
+                        created=None, version=compat_dict.get('min_human', '')
+                    ),
+                    max=AppVersion(
+                        created=None, version=compat_dict.get('max_human', '')
+                    ),
                 )
             version.compatible_apps = compatible_apps
             version_serializer = self.fields.get('current_version') or None
@@ -1353,7 +1358,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 )
             if 'license' in data and version_serializer:
                 license_serializer = version_serializer.fields['license']
-                version.license = License(id=data['license']['id'])
+                version.license = License(created=None, id=data['license']['id'])
                 license_serializer._attach_fields(
                     version.license, data['license'], ('builtin',)
                 )
@@ -1368,7 +1373,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Addon and related models from ES data."""
-        obj = Addon(id=data['id'], slug=data['slug'])
+        obj = Addon(id=data['id'], created=None, slug=data['slug'])
 
         # Attach base attributes that have the same name/format in ES and in
         # the model.
@@ -1422,7 +1427,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [
             UserProfile(
+                auth_id=None,
                 id=data_author['id'],
+                created=None,
                 display_name=data_author['name'],
                 username=data_author['username'],
                 is_public=data_author.get('is_public', False),
@@ -1447,6 +1454,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             obj.promoted = PromotedAddon(
                 addon=obj,
                 approved_application_ids=approved_for_apps,
+                created=None,
                 group_id=promoted['group_id'],
             )
             # we can safely regenerate these tuples because
