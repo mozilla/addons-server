@@ -363,12 +363,12 @@ class ReviewForm(forms.Form):
 
         # Set the queryset for reasons based on the add-on type.
         self.fields['reasons'].queryset = ReviewActionReason.objects.filter(
-            is_active__exact=True,
+            is_active=True,
             addon_type__in=[
-                amo.REASON_ADDON_TYPE_ALL,
-                amo.REASON_ADDON_TYPE_THEME
+                amo.ADDON_ANY,
+                amo.ADDON_STATICTHEME
                 if self.helper.addon.type == amo.ADDON_STATICTHEME
-                else amo.REASON_ADDON_TYPE_EXTENSION,
+                else amo.ADDON_EXTENSION,
             ],
         )
 

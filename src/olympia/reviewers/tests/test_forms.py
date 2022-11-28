@@ -198,21 +198,22 @@ class TestReviewForm(TestCase):
         self.reason_all = ReviewActionReason.objects.create(
             name='A reason for all add-on types',
             is_active=True,
-            addon_type=amo.REASON_ADDON_TYPE_ALL,
+            addon_type=amo.ADDON_ANY,
         )
         self.reason_extension = ReviewActionReason.objects.create(
             name='An extension only reason',
             is_active=True,
-            addon_type=amo.REASON_ADDON_TYPE_EXTENSION,
+            addon_type=amo.ADDON_EXTENSION,
         )
         self.reason_theme = ReviewActionReason.objects.create(
             name='A theme only reason',
             is_active=True,
-            addon_type=amo.REASON_ADDON_TYPE_THEME,
+            addon_type=amo.ADDON_STATICTHEME,
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
         # By default the addon is an extension.
+        assert self.addon.type == amo.ADDON_EXTENSION
         assert len(choices) == 2
         assert list(choices.queryset)[0] == self.reason_all
         assert list(choices.queryset)[1] == self.reason_extension

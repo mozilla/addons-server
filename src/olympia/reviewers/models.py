@@ -1131,7 +1131,7 @@ class ReviewActionReason(ModelBase):
     canned_response = models.TextField()
     addon_type = models.PositiveIntegerField(
         choices=amo.REASON_ADDON_TYPE_CHOICES.items(),
-        default=amo.REASON_ADDON_TYPE_ALL,
+        default=amo.ADDON_ANY,
     )
 
     def labelled_name(self):
