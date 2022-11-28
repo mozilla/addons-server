@@ -1,4 +1,8 @@
+from contextlib import ExitStack
+from unittest import mock
+
 from django.conf import settings
+from django.core.exceptions import FieldDoesNotExist
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.translation import override
@@ -52,13 +56,16 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN, LICENSE_GPL3
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
+from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
     License,
+    Version,
     VersionPreview,
 )
+from olympia.users.models import UserProfile
 
 
 class AddonSerializerOutputTestMixin:
@@ -1029,6 +1036,41 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         with self.assertNumQueries(0):
             result = self.serializer.to_representation(obj)
         return result
+
+    def test_no_expensive_defaults(self):
+        auth_id_field = UserProfile._meta.get_field('auth_id')
+        # Ensure mocking default is working before proceeding with this test.
+        with mock.patch.object(auth_id_field, 'get_default') as default_auth_id:
+            UserProfile()
+        assert default_auth_id.call_count == 1
+
+        self.addon = addon_factory(users=[user_factory()])
+
+        fields_with_default_to_mock = ('auth_id', 'created')
+        models_with_defaults_to_mock = (
+            Addon,
+            AppVersion,
+            License,
+            Preview,
+            PromotedAddon,
+            UserProfile,
+            Version,
+        )
+        mocks = {}
+        with ExitStack() as stack:
+            for model in models_with_defaults_to_mock:
+                for field in fields_with_default_to_mock:
+                    try:
+                        field = model._meta.get_field(field)
+                        mocks[field] = stack.enter_context(
+                            mock.patch.object(field, 'get_default')
+                        )
+                    except FieldDoesNotExist:
+                        pass
+            self.serialize()
+        assert len(mocks) == 8  # created on all models + auth_id.
+        for mocked_default in mocks.values():
+            assert mocked_default.call_count == 0
 
     def _test_author(self, author, data):
         """Override because the ES serializer doesn't include picture_url."""
