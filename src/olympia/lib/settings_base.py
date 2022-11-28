@@ -838,6 +838,7 @@ CELERY_TASK_ROUTES = {
     'olympia.translations.tasks.update_outgoing_url': {'queue': 'adhoc'},
     'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
+    'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
     # Misc AMO tasks.
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},

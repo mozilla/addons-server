@@ -235,6 +235,20 @@ class IPLog(ModelBase):
         return super().save(*args, **kwargs)
 
 
+class RatingLog(ModelBase):
+    """
+    This table is for indexing the activity log by Ratings (user reviews).
+    """
+
+    id = PositiveAutoField(primary_key=True)
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    rating = models.ForeignKey(Rating, on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        db_table = 'log_activity_rating'
+        ordering = ('-created',)
+
+
 class DraftComment(ModelBase):
     """A model that allows us to draft comments for reviews before we have
     an ActivityLog instance ready.
@@ -317,7 +331,7 @@ class ActivityLogManager(ManagerBase):
             action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION
         ).exclude(user__id=settings.TASK_USER_ID)
 
-    def total_ratings(self, theme=False):
+    def total_reviews(self, theme=False):
         """Return the top users, and their # of reviews."""
         qs = self._by_type()
         action_ids = (
@@ -375,8 +389,8 @@ class ActivityLogManager(ManagerBase):
         except StopIteration:
             return None
 
-    def total_ratings_user_position(self, user, theme=False):
-        return self.user_position(self.total_ratings(theme), user)
+    def total_reviews_user_position(self, user, theme=False):
+        return self.user_position(self.total_reviews(theme), user)
 
     def monthly_reviews_user_position(self, user, theme=False):
         return self.user_position(self.monthly_reviews(theme), user)
@@ -742,6 +756,8 @@ class ActivityLog(ModelBase):
                 BlockLog.objects.create(block_id=id_, guid=arg.guid, **create_kwargs)
             elif class_ == ReviewActionReason:
                 ReviewActionReasonLog.objects.create(reason_id=id_, **create_kwargs)
+            elif class_ == Rating:
+                RatingLog.objects.create(rating_id=id_, **create_kwargs)
 
         if getattr(action, 'store_ip', False) and (
             ip_address := core.get_remote_addr()
