@@ -75,7 +75,6 @@ from olympia.reviewers.forms import (
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     CannedResponse,
-    ReviewerScore,
     ReviewerSubscription,
     Whiteboard,
     clear_reviewing_cache,
@@ -171,9 +170,6 @@ def ratings_moderation_log_detail(request, id):
             if not can_undelete:
                 raise PermissionDenied
 
-            ReviewerScore.award_moderation_points(
-                log.user, review.addon, review.id, undo=True
-            )
             review.undelete()
         return redirect('reviewers.ratings_moderation_log.detail', id)
 
@@ -405,7 +401,6 @@ def _queue(request, tab, unlisted=False):
             table=table,
             page=page,
             tab=tab,
-            point_types=amo.REVIEWED_AMO,
             unlisted=unlisted,
         ),
     )
@@ -505,7 +500,6 @@ def queue_moderated(request):
             tab='moderated',
             page=page,
             flags=flags,
-            point_types=amo.REVIEWED_AMO,
         ),
     )
 
@@ -1006,15 +1000,6 @@ def abuse_reports(request, addon):
     reports = amo.utils.paginate(request, AbuseReport.objects.for_addon(addon))
     data = context(addon=addon, reports=reports, version=addon.current_version)
     return TemplateResponse(request, 'reviewers/abuse_reports.html', context=data)
-
-
-@any_reviewer_required
-def leaderboard(request):
-    return TemplateResponse(
-        request,
-        'reviewers/leaderboard.html',
-        context=context(scores=ReviewerScore.all_users_by_score()),
-    )
 
 
 @any_reviewer_required

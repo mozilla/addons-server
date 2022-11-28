@@ -1,6 +1,5 @@
 import datetime
 
-from django.conf import settings
 from django.utils.translation import gettext
 
 import jinja2
@@ -11,7 +10,6 @@ from olympia import amo
 from olympia.access import acl
 from olympia.amo.templatetags.jinja_helpers import new_context
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.models import ReviewerScore
 from olympia.reviewers.templatetags import code_manager
 
 
@@ -96,24 +94,6 @@ def queue_tabnav(context):
         ]
 
     return tabnav
-
-
-@library.global_function
-@library.render_with('reviewers/includes/reviewers_score_bar.html')
-@jinja2.pass_context
-def reviewers_score_bar(context, types=None, addon_type=None):
-    user = context.get('user')
-
-    return new_context(
-        dict(
-            request=context.get('request'),
-            amo=amo,
-            settings=settings,
-            points=ReviewerScore.get_recent(user, addon_type=addon_type),
-            total=ReviewerScore.get_total(user),
-            **ReviewerScore.get_leaderboards(user, types=types, addon_type=addon_type),
-        )
-    )
 
 
 @library.global_function

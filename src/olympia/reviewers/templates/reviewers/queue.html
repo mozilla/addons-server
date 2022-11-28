@@ -20,10 +20,6 @@
 
 {% block content %}
 
-<div id="reviewers-score-bar" class="c">
-  {{ reviewers_score_bar(types=point_types) }}
-</div>
-
 <ul class="tabnav">
   {% for this, loc, text in queue_tabnav() %}
   <li class="{% if tab==this %}selected{% endif %}"><a href="{{ url('reviewers.%s' % loc) }}">{{ text }}</a></li>

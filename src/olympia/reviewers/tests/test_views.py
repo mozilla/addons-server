@@ -66,7 +66,6 @@ from olympia.reviewers.models import (
     AutoApprovalSummary,
     CannedResponse,
     ReviewActionReason,
-    ReviewerScore,
     ReviewerSubscription,
     Whiteboard,
 )
@@ -1481,7 +1480,7 @@ class TestThemePendingQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -1489,7 +1488,6 @@ class TestThemePendingQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
     def test_queue_layout(self):
@@ -1527,7 +1525,7 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -1535,7 +1533,6 @@ class TestExtensionQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
     def test_results_two_versions(self):
@@ -1712,7 +1709,7 @@ class TestThemeNominatedQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -1720,7 +1717,6 @@ class TestThemeNominatedQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
     def test_results_two_versions(self):
@@ -1794,7 +1790,7 @@ class TestRecommendedQueue(QueueTest):
         self.url = reverse('reviewers.queue_recommended')
 
     def test_results(self):
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -1802,7 +1798,6 @@ class TestRecommendedQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
     def test_results_two_versions(self):
@@ -1928,13 +1923,6 @@ class TestModeratedQueue(QueueTest):
         rows = doc('#reviews-flagged .review-flagged:not(.review-saved)')
         assert rows.length == 1
 
-    def test_skip_score(self):
-        self.setup_actions(ratings.REVIEW_MODERATE_SKIP)
-        assert (
-            ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW).count()
-            == 0
-        )
-
     def get_logs(self, action):
         return ActivityLog.objects.filter(action=action.id)
 
@@ -1983,13 +1971,6 @@ class TestModeratedQueue(QueueTest):
         # Make sure it was not actually deleted.
         assert Rating.objects.filter(addon=1865).count() == 2
 
-    def test_remove_score(self):
-        self.setup_actions(ratings.REVIEW_MODERATE_DELETE)
-        assert (
-            ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW).count()
-            == 1
-        )
-
     def test_keep(self):
         """Make sure the reviewer tools can remove flags and keep a review."""
         self.setup_actions(ratings.REVIEW_MODERATE_KEEP)
@@ -2008,13 +1989,6 @@ class TestModeratedQueue(QueueTest):
 
         # ...but it's no longer flagged.
         assert rating.filter(editorreview=1).count() == 0
-
-    def test_keep_score(self):
-        self.setup_actions(ratings.REVIEW_MODERATE_KEEP)
-        assert (
-            ReviewerScore.objects.filter(note_key=amo.REVIEWED_ADDON_REVIEW).count()
-            == 1
-        )
 
     def test_queue_layout(self):
         # From the fixtures we already have 2 reviews, one is flagged. We add
@@ -2104,7 +2078,7 @@ class TestUnlistedAllList(QueueTest):
         self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2112,7 +2086,6 @@ class TestUnlistedAllList(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
     def test_review_notes_json(self):
@@ -2160,13 +2133,12 @@ class TestUnlistedPendingManualApproval(QueueTest):
         flags.update(needs_admin_code_review=True)
 
     def test_results(self):
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             # - 1 main queue query
             # - 1 translations
             self._test_results()
@@ -2324,7 +2296,7 @@ class TestAutoApprovedQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2332,7 +2304,6 @@ class TestAutoApprovedQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
     def test_queue_layout(self):
@@ -2507,7 +2478,7 @@ class TestContentReviewQueue(QueueTest):
     def test_results(self):
         self.login_with_permission()
         self.generate_files()
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2515,7 +2486,6 @@ class TestContentReviewQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results()
 
     def test_queue_layout(self):
@@ -2608,7 +2578,7 @@ class TestScannersReviewQueue(QueueTest):
 
     def test_results(self):
         self.generate_files()
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2616,7 +2586,6 @@ class TestScannersReviewQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -2759,7 +2728,7 @@ class TestPendingRejectionReviewQueue(QueueTest):
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -2767,7 +2736,6 @@ class TestPendingRejectionReviewQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             self._test_results(dont_expect_version_number=True)
 
 
@@ -6398,91 +6366,6 @@ class TestWhiteboardDeleted(TestWhiteboard):
         self.addon.delete()
 
 
-class TestLeaderboard(ReviewerTest):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super().setUp()
-        self.url = reverse('reviewers.leaderboard')
-
-        self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.login_as_reviewer()
-        core.set_user(self.user)
-
-    def _award_points(self, user, score):
-        ReviewerScore.objects.create(
-            user=user, note_key=amo.REVIEWED_MANUAL, score=score, note='Thing.'
-        )
-
-    def test_leaderboard_ranks(self):
-        other_reviewer = UserProfile.objects.create(
-            username='other_reviewer',
-            display_name='',  # No display_name, will fall back on name.
-            email='other_reviewer@mozilla.com',
-        )
-        self.grant_permission(
-            other_reviewer,
-            'Addons:Review',
-            name='Reviewers: Add-ons',  # The name of the group matters here.
-        )
-
-        users = (
-            self.user,
-            UserProfile.objects.get(email='theme_reviewer@mozilla.com'),
-            other_reviewer,
-        )
-
-        self._award_points(users[0], amo.REVIEWED_LEVELS[0]['points'] - 1)
-        self._award_points(users[1], amo.REVIEWED_LEVELS[0]['points'] + 1)
-        self._award_points(users[2], amo.REVIEWED_LEVELS[0]['points'] + 2)
-
-        def get_cells():
-            doc = pq(self.client.get(self.url).content.decode('utf-8'))
-
-            cells = doc(
-                '#leaderboard > tbody > tr > .name, '
-                '#leaderboard > tbody > tr > .level'
-            )
-
-            return [cells.eq(i).text() for i in range(0, cells.length)]
-
-        assert get_cells() == (
-            [
-                users[2].name,
-                users[1].name,
-                str(amo.REVIEWED_LEVELS[0]['name']),
-                users[0].name,
-            ]
-        )
-
-        self._award_points(users[0], 1)
-
-        assert get_cells() == (
-            [
-                users[2].name,
-                users[1].name,
-                users[0].name,
-                str(amo.REVIEWED_LEVELS[0]['name']),
-            ]
-        )
-
-        self._award_points(users[0], -1)
-        self._award_points(
-            users[2],
-            (amo.REVIEWED_LEVELS[1]['points'] - amo.REVIEWED_LEVELS[0]['points']),
-        )
-
-        assert get_cells() == (
-            [
-                users[2].name,
-                str(amo.REVIEWED_LEVELS[1]['name']),
-                users[1].name,
-                str(amo.REVIEWED_LEVELS[0]['name']),
-                users[0].name,
-            ]
-        )
-
-
 class TestXssOnAddonName(amo.tests.TestXss):
     def test_reviewers_abuse_report_page(self):
         url = reverse('reviewers.abuse_reports', args=[self.addon.pk])
@@ -9023,7 +8906,7 @@ class TestMadQueue(QueueTest):
         self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(10):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
@@ -9032,7 +8915,6 @@ class TestMadQueue(QueueTest):
             #     how many are in the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            # - 4 for reviewer scores and user stuff displayed above the queue
             response = self.client.get(self.url)
         assert response.status_code == 200
 

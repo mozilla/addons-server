@@ -25,7 +25,6 @@ from olympia.amo.tests import (
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import ReviewerScore
 from olympia.users.admin import UserAdmin
 from olympia.users.models import (
     EmailUserRestriction,
@@ -531,7 +530,6 @@ class TestUserAdmin(TestCase):
             AbuseReport.objects.create(reporter=self.user, guid='@foo'),
             AbuseReport.objects.create(user=self.user),
             ActivityLog.create(user=self.user, action=amo.LOG.USER_EDITED),
-            ReviewerScore.objects.create(user=self.user, score=42),
             addon_with_other_authors,  # Has other authors, should be kept.
             # Bit of a weird case, but because the user was the only author of
             # this add-on, the addonuser relation is kept, and both the add-on
