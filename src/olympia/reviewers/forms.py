@@ -188,6 +188,23 @@ class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
         return option
 
 
+class ActionChoiceWidget(forms.RadioSelect):
+    """
+    Widget to add boilerplate_text to action options.
+    """
+
+    def create_option(self, *args, **kwargs):
+        option = super().create_option(*args, **kwargs)
+        actions = getattr(self, 'actions', {})
+        action = actions.get(option['value'], None)
+        if action:
+            boilerplate_text = action.get('boilerplate_text', None)
+            if boilerplate_text:
+                option['attrs']['data-value'] = boilerplate_text
+
+        return option
+
+
 class ReviewForm(forms.Form):
     # Hack to restore behavior from pre Django 1.10 times.
     # Django 1.10 enabled `required` rendering for required widgets. That
@@ -200,7 +217,7 @@ class ReviewForm(forms.Form):
         required=True, widget=forms.Textarea(), label=_('Comments:')
     )
     canned_response = NonValidatingChoiceField(required=False)
-    action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
+    action = forms.ChoiceField(required=True, widget=ActionChoiceWidget)
     versions = VersionsChoiceField(
         # The <select> is displayed/hidden dynamically depending on the action
         # so it needs the data-toggle class (data-value attribute is set later
@@ -371,6 +388,10 @@ class ReviewForm(forms.Form):
                 else amo.ADDON_EXTENSION,
             ],
         )
+
+        # Add actions from the helper into the action widget so we can access
+        # them in create_option.
+        self.fields['action'].widget.actions = self.helper.actions
 
     @property
     def unreviewed_files(self):

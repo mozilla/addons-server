@@ -61,7 +61,8 @@ function initReviewActions() {
     var $element = $(element),
       value = $element.find('input').val(),
       $data_toggle = $('form.review-form').find('.data-toggle'),
-      $comments = $('#id_comments');
+      $comments = $('#id_comments'),
+      boilerplate_text = $element.find('input').attr('data-value');
 
     pageload = pageload || false;
     $element.closest('.review-actions').addClass('on');
@@ -69,17 +70,8 @@ function initReviewActions() {
     $element.find('input').prop('checked', true);
 
     // Input message into empty comments textbox.
-    if ($comments.val().length === 0) {
-      if ($element.text().trim() === 'Approve') {
-        insertAtCursor($comments, 'Thank you for your contribution.');
-      } else if (
-        ['Reject', 'Reject Multiple Versions'].includes($element.text().trim())
-      ) {
-        insertAtCursor(
-          $comments,
-          "This add-on didn't pass review because of the following problems:\n\n1)",
-        );
-      }
+    if ($comments.val().length === 0 && boilerplate_text) {
+      insertAtCursor($comments, boilerplate_text);
     }
     $element.addClass('on-tab');
 
