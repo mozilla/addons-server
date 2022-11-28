@@ -1,5 +1,7 @@
 from django.utils.translation import gettext_lazy as _
 
+from .base import ADDON_ANY, ADDON_EXTENSION, ADDON_STATICTHEME
+
 
 # Reviewer Tools
 REVIEWER_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
@@ -210,3 +212,10 @@ AUTO_APPROVAL_VERDICT_CHOICES = (
     (AUTO_APPROVED, 'Was auto-approved'),
     (NOT_AUTO_APPROVED, 'Was *not* auto-approved'),
 )
+
+# Types of Add-ons for Reasons.
+REASON_ADDON_TYPE_CHOICES = {
+    ADDON_ANY: _('All'),
+    ADDON_EXTENSION: _('Extension'),
+    ADDON_STATICTHEME: _('Theme'),
+}
