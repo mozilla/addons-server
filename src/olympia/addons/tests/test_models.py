@@ -2916,7 +2916,7 @@ class TestExtensionsQueues(TestCase):
         )
         unexpected_addons['disabled_addon'] = addon_factory(status=amo.STATUS_DISABLED)
         version_review_flags_factory(
-            version=unexpected_addons['disabled_addon'].current_version,
+            version=unexpected_addons['disabled_addon'].versions.get(),
             needs_human_review_by_mad=True,
         )
         unexpected_addons['disabled_version_addon'] = addon_factory()

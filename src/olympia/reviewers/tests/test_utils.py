@@ -106,8 +106,6 @@ class TestReviewHelperBase(TestCase):
         human_review=True,
     ):
         mail.outbox = []
-        ActivityLog.objects.for_addons(self.helper.addon).delete()
-        self.addon.update(status=status, type=type)
         self.file.update(status=file_status)
         if channel == amo.CHANNEL_UNLISTED:
             self.make_addon_unlisted(self.addon)
@@ -117,6 +115,8 @@ class TestReviewHelperBase(TestCase):
         self.helper = self.get_helper(
             content_review=content_review, human_review=human_review
         )
+        self.addon.update(status=status, type=type)
+        ActivityLog.objects.for_addons(self.helper.addon).delete()
         data = self.get_data().copy()
         self.helper.set_data(data)
 

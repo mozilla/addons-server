@@ -1734,7 +1734,8 @@ class TestRequestReview(TestCase):
         orig_date = datetime.now() - timedelta(days=30)
         # Pretend it was nominated in the past:
         self.version.update(nomination=orig_date)
-        self.addon.update(status=amo.STATUS_NULL)
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        self.addon.update_status()
         response = self.client.post(self.public_url)
         self.assert3xx(response, self.redirect_url)
         assert self.get_addon().status == amo.STATUS_NOMINATED

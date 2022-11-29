@@ -463,17 +463,26 @@ class TestVersion(TestCase):
 
     def test_cancel_wrong_status(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
+        file = self.addon.current_version.file
         for status in Addon.STATUS_CHOICES:
             if status in (amo.STATUS_NOMINATED, amo.STATUS_DELETED):
                 continue
+            file_status = (
+                amo.STATUS_APPROVED
+                if status == amo.STATUS_APPROVED
+                else amo.STATUS_DISABLED
+            )
+            file.update(status=file_status)
+            self.addon.update_status()
+            if status == amo.STATUS_DISABLED:
+                self.addon.update(status=status)
 
-            self.addon.update(status=status)
             self.client.post(cancel_url)
             assert Addon.objects.get(id=3615).status == status
 
     def test_cancel(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
-        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.client.post(cancel_url)
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 

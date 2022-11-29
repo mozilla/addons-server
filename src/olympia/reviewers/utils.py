@@ -836,9 +836,9 @@ class ReviewBase:
         self.content_review = content_review
         self.redirect_url = None
 
-    def set_addon(self, **kw):
+    def set_addon(self):
         """Alter addon, set reviewed timestamp on version being reviewed."""
-        self.addon.update(**kw)
+        self.addon.update_status()
         self.version.update(reviewed=datetime.now())
 
     def set_data(self, data):
@@ -1033,8 +1033,7 @@ class ReviewBase:
         # is at least one public file or it won't make the addon public.
         self.set_file(amo.STATUS_APPROVED, self.file)
         self.set_promoted()
-        if self.set_addon_status:
-            self.set_addon(status=amo.STATUS_APPROVED)
+        self.set_addon()
 
         if self.human_review:
             # No need for a human review anymore in this channel.
@@ -1089,9 +1088,8 @@ class ReviewBase:
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        if self.set_addon_status:
-            self.set_addon(status=amo.STATUS_NULL)
         self.set_file(amo.STATUS_DISABLED, self.file)
+        self.set_addon()
 
         if self.human_review:
             # Clear needs human review flags, but only on the latest version:
@@ -1429,8 +1427,6 @@ class ReviewBase:
 
 
 class ReviewAddon(ReviewBase):
-    set_addon_status = True
-
     def log_public_message(self):
         log.info('Making %s public' % (self.addon))
 
@@ -1439,8 +1435,6 @@ class ReviewAddon(ReviewBase):
 
 
 class ReviewFiles(ReviewBase):
-    set_addon_status = False
-
     def log_public_message(self):
         log.info(
             'Making %s files %s public'
