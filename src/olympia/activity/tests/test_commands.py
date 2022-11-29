@@ -96,7 +96,7 @@ def test_backfill_ratinglog_command():
     call_command('backfill_ratinglog')
 
     assert RatingLog.objects.count() == 2
-    ratinglog1, ratinglog2 = list(RatingLog.objects.all())
+    ratinglog1, ratinglog2 = list(RatingLog.objects.all().order_by('-id'))
     assert ratinglog1.activity_log == missing_log
     assert ratinglog1.rating == missing
     assert ratinglog2.activity_log == has_rating_log
