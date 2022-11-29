@@ -1,9 +1,10 @@
 import olympia.core.logger
 
-from olympia.activity.models import ActivityLogEmails
+from olympia.activity.models import ActivityLog, ActivityLogEmails, RatingLog
 from olympia.activity.utils import add_email_to_activity_log_wrapper
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.ratings.models import Rating
 
 
 log = olympia.core.logger.getLogger('z.amo.activity')
@@ -39,3 +40,17 @@ def process_email(message, spam_rating, **kwargs):
         log.warning(
             'Failed to process email [%s].', msg_id, extra={'message_obj': message}
         )
+
+
+@task
+def create_ratinglog(activitylog_ids):
+    alogs = ActivityLog.objects.filter(id__in=activitylog_ids)
+    for alog in alogs:
+        rating = None
+        for obj in alog.arguments:
+            if isinstance(obj, Rating):
+                rating = obj
+                break
+        else:
+            continue
+        RatingLog.objects.get_or_create(activity_log=alog, rating=rating)

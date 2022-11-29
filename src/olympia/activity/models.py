@@ -4,7 +4,6 @@ import uuid
 
 from collections import defaultdict
 from copy import copy
-from datetime import datetime
 
 from django.apps import apps
 from django.conf import settings
@@ -235,6 +234,20 @@ class IPLog(ModelBase):
         return super().save(*args, **kwargs)
 
 
+class RatingLog(ModelBase):
+    """
+    This table is for indexing the activity log by Ratings (user reviews).
+    """
+
+    id = PositiveAutoField(primary_key=True)
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    rating = models.ForeignKey(Rating, on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        db_table = 'log_activity_rating'
+        ordering = ('-created',)
+
+
 class DraftComment(ModelBase):
     """A model that allows us to draft comments for reviews before we have
     an ActivityLog instance ready.
@@ -293,93 +306,14 @@ class ActivityLogManager(ManagerBase):
     def for_guidblock(self, guid):
         return self.filter(blocklog__guid=guid)
 
-    def for_developer(self):
-        return self.exclude(
-            action__in=constants.activity.LOG_ADMINS
-            + constants.activity.LOG_HIDE_DEVELOPER
-        )
-
-    def admin_events(self):
-        return self.filter(action__in=constants.activity.LOG_ADMINS)
-
     def moderation_events(self):
         return self.filter(action__in=constants.activity.LOG_RATING_MODERATION)
-
-    def review_queue(self):
-        qs = self._by_type()
-        return qs.filter(action__in=constants.activity.LOG_REVIEW_QUEUE).exclude(
-            user__id=settings.TASK_USER_ID
-        )
 
     def review_log(self):
         qs = self._by_type()
         return qs.filter(
             action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION
         ).exclude(user__id=settings.TASK_USER_ID)
-
-    def total_ratings(self, theme=False):
-        """Return the top users, and their # of reviews."""
-        qs = self._by_type()
-        action_ids = (
-            [amo.LOG.THEME_REVIEW.id]
-            if theme
-            else constants.activity.LOG_REVIEWER_REVIEW_ACTION
-        )
-        return (
-            qs.values('user', 'user__display_name', 'user__username')
-            .filter(action__in=action_ids)
-            .exclude(user__id=settings.TASK_USER_ID)
-            .annotate(approval_count=models.Count('id'))
-            .order_by('-approval_count')
-        )
-
-    def monthly_reviews(self, theme=False):
-        """Return the top users for the month, and their # of reviews."""
-        qs = self._by_type()
-        now = datetime.now()
-        created_date = datetime(now.year, now.month, 1)
-        actions = (
-            [constants.activity.LOG.THEME_REVIEW.id]
-            if theme
-            else constants.activity.LOG_REVIEWER_REVIEW_ACTION
-        )
-        return (
-            qs.values('user', 'user__display_name', 'user__username')
-            .filter(created__gte=created_date, action__in=actions)
-            .exclude(user__id=settings.TASK_USER_ID)
-            .annotate(approval_count=models.Count('id'))
-            .order_by('-approval_count')
-        )
-
-    def user_approve_reviews(self, user):
-        qs = self._by_type()
-        return qs.filter(
-            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION, user__id=user.id
-        )
-
-    def current_month_user_approve_reviews(self, user):
-        now = datetime.now()
-        ago = datetime(now.year, now.month, 1)
-        return self.user_approve_reviews(user).filter(created__gte=ago)
-
-    def user_position(self, values_qs, user):
-        try:
-            return (
-                next(
-                    i
-                    for (i, d) in enumerate(list(values_qs))
-                    if d.get('user') == user.id
-                )
-                + 1
-            )
-        except StopIteration:
-            return None
-
-    def total_ratings_user_position(self, user, theme=False):
-        return self.user_position(self.total_ratings(theme), user)
-
-    def monthly_reviews_user_position(self, user, theme=False):
-        return self.user_position(self.monthly_reviews(theme), user)
 
     def _by_type(self):
         qs = self.get_queryset()
@@ -742,6 +676,8 @@ class ActivityLog(ModelBase):
                 BlockLog.objects.create(block_id=id_, guid=arg.guid, **create_kwargs)
             elif class_ == ReviewActionReason:
                 ReviewActionReasonLog.objects.create(reason_id=id_, **create_kwargs)
+            elif class_ == Rating:
+                RatingLog.objects.create(rating_id=id_, **create_kwargs)
 
         if getattr(action, 'store_ip', False) and (
             ip_address := core.get_remote_addr()
