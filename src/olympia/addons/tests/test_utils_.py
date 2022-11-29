@@ -543,3 +543,12 @@ def test_validate_version_number_is_gt_latest_signed_listed_version():
 
     # Also check the edge case when addon is None
     assert not validate_version_number_is_gt_latest_signed_listed_version(None, '123')
+
+
+def test_validate_version_number_is_gt_latest_signed_listed_version_not_langpack():
+    addon = addon_factory(version_kw={'version': '123.0'}, file_kw={'is_signed': True})
+    assert validate_version_number_is_gt_latest_signed_listed_version(addon, '122') == (
+        'Version 122 must be greater than the previous approved version 123.0.'
+    )
+    addon.update(type=amo.ADDON_LPAPP)
+    assert not validate_version_number_is_gt_latest_signed_listed_version(addon, '122')
