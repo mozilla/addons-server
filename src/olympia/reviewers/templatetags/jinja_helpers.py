@@ -40,9 +40,15 @@ def queue_tabnav(context):
                 )
             )
             tabnav.append(
-                ('scanners', 'queue_scanners', gettext('Flagged By Scanners'))
+                (
+                    'human_review',
+                    'queue_human_review',
+                    gettext('Versions Needing Human Review'),
+                )
             )
-            tabnav.append(('mad', 'queue_mad', gettext('Flagged for Human Review')))
+            tabnav.append(
+                ('mad', 'queue_mad', gettext('Flagged by MAD for Human Review'))
+            )
         if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
             tabnav.extend(
                 (
