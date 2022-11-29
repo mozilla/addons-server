@@ -614,8 +614,8 @@ class ReviewHelper:
             can_approve_multiple = False
 
         # Definitions for all actions.
-        boilerplate_for_approve = _('Thank you for your contribution.')
-        boilerplate_for_reject = _(
+        boilerplate_for_approve = 'Thank you for your contribution.'
+        boilerplate_for_reject = (
             "This add-on didn't pass review because of the following problems:\n\n1) "
         )
 
