@@ -33,17 +33,12 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
     ) and not amo.VALID_CLIENT_ID.match(client_id_or_guid):
         # That parameter was weird, don't call the recommendation server.
         return None
+    # Build the URL, always ending with a slash.
+    endpoint = urljoin(server, f'{client_id_or_guid}/')
     if verb == 'get':
-        params = OrderedDict(sorted(data.items(), key=lambda t: t[0]))
-        endpoint = urljoin(
-            server,
-            '{}/{}{}'.format(
-                client_id_or_guid, '?' if params else '', urlencode(params)
-            ),
-        )
-
+        if params := OrderedDict(sorted(data.items(), key=lambda t: t[0])):
+            endpoint += f'?{urlencode(params)}'
     else:
-        endpoint = urljoin(server, '%s/' % client_id_or_guid)
         request_kwargs['json'] = data
     try:
         with statsd.timer('services.recommendations'):

@@ -64,10 +64,10 @@ def test_call_recommendation_server_some_parameters(requests_get, requests_post)
     url = 'http://example.com/whatever/'
     taar_timeout = settings.RECOMMENDATION_ENGINE_TIMEOUT
     requests_get.return_value = HttpResponse(json.dumps({'results': ['@lolwut']}))
-    data = {'some': 'params', 'and': 'more'}
+    data = {'some': 'params', 'and': 'moré'}
     call_recommendation_server(url, valid_client_id, data)
     requests_get.assert_called_with(
-        url + valid_client_id + '/?and=more&some=params', timeout=taar_timeout
+        url + valid_client_id + '/?and=mor%C3%A9&some=params', timeout=taar_timeout
     )
     assert not requests_post.called
 
