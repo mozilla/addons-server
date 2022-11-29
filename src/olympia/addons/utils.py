@@ -304,9 +304,10 @@ def webext_version_stats(request, source):
 
 def validate_version_number_is_gt_latest_signed_listed_version(addon, version_string):
     """Returns an error string if `version_string` isn't greater than the current
-    approved listed version."""
+    approved listed version. Doesn't apply to langpacks."""
     if (
         addon
+        and addon.type != amo.ADDON_LPAPP
         and (
             latest_version_string := addon.versions(manager='unfiltered_for_relations')
             .filter(channel=amo.CHANNEL_LISTED, file__is_signed=True)
