@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-28 09:43+0000\n"
+"PO-Revision-Date: 2022-11-29 14:58+0000\n"
 "Last-Translator: Pedro Coelho <pedrozc99@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -124,7 +124,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Apenas as versões mais recentes de extras podem ter notas adicionadas."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "O tamanho do conteúdo do pedido é muito grande."
 
 msgid "Authors"
 msgstr "Autores"
@@ -177,7 +177,7 @@ msgid "URLs must start with https://."
 msgstr "Os URLs devem começar com https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "A licença com slug={value} não existe."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Tipo de ficheiro não suportado, por favor, carregue um ficheiro de arquivo ({extensions})."
@@ -251,10 +251,10 @@ msgid "Version {version_string} must be greater than the previous approved versi
 msgstr "A versão {version_string} deve ser superior à versão {previous_version_string} aprovada anteriormente."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Ambas `license` e `custom_license` não podem ser fornecidas juntas."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Este campo, ou a custom_license, é obrigatório para as versões listadas."
 
 msgid "Wrong add-on type for this license."
 msgstr "Tipo de extra incorreto para esta licença."
