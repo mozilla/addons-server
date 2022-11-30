@@ -1086,6 +1086,7 @@ class QueueTest(ReviewerTest):
         self.url = reverse('reviewers.queue_extension')
         self.addons = OrderedDict()
         self.expected_addons = []
+        self.expected_versions = {}
         self.channel_name = 'listed' if self.listed else 'unlisted'
 
     def generate_files(self, subset=None, files=None, auto_approve_disabled=False):
@@ -1196,7 +1197,7 @@ class QueueTest(ReviewerTest):
         #          percentages of [< 5, 5-10, >10])
         return ((1, (0, 0, 100)), (8, (0, 50, 50)), (12, (50, 0, 50)))
 
-    def get_addon_latest_version(self, addon):
+    def get_addon_expected_version(self, addon):
         if self.listed:
             channel = amo.CHANNEL_LISTED
         else:
@@ -1212,6 +1213,9 @@ class QueueTest(ReviewerTest):
         # Make sure all elements have been added
         assert len(expected_addons) == len(names)
         return expected_addons
+
+    def get_expected_versions(self, addons):
+        return {addon: self.get_addon_expected_version(addon) for addon in addons}
 
     def _test_queue_layout(
         self, name, tab_position, total_addons, total_queues, per_page=None
@@ -1245,9 +1249,8 @@ class QueueTest(ReviewerTest):
                 # In unlisted queue we don't display latest version number.
                 name = str(addon.name)
             else:
-                latest_version = self.get_addon_latest_version(addon)
-                assert latest_version
-                name = f'{str(addon.name)} {latest_version.version}'
+                expected_version = self.expected_versions[addon]
+                name = f'{str(addon.name)} {expected_version.version}'
             url = reverse('reviewers.review', args=channel + [addon.pk])
             expected.append((name, url))
         doc = pq(response.content)
@@ -1471,13 +1474,23 @@ class TestThemePendingQueue(QueueTest):
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two']
         )
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         Addon.objects.all().update(type=amo.ADDON_STATICTHEME)
         self.url = reverse('reviewers.queue_theme_pending')
         GroupUser.objects.filter(user=self.user).delete()
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        self._test_results()
+        with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_queue_layout(self):
         self._test_queue_layout(
@@ -1501,9 +1514,10 @@ class TestExtensionQueue(QueueTest):
     def setUp(self):
         super().setUp()
         # These should be the only ones present.
-        self.get_expected_addons_by_names(
+        addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two']
         )
+        self.expected_versions = self.get_expected_versions(addons)
         self.expected_addons = []
         self.url = reverse('reviewers.queue_extension')
 
@@ -1512,7 +1526,17 @@ class TestExtensionQueue(QueueTest):
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'],
             auto_approve_disabled=True,
         )
-        self._test_results()
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_results_two_versions(self):
         self.expected_addons = self.get_expected_addons_by_names(
@@ -1681,13 +1705,23 @@ class TestThemeNominatedQueue(QueueTest):
         self.expected_addons = self.get_expected_addons_by_names(
             ['Nominated One', 'Nominated Two']
         )
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         Addon.objects.all().update(type=amo.ADDON_STATICTHEME)
         self.url = reverse('reviewers.queue_theme_nominated')
         GroupUser.objects.filter(user=self.user).delete()
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        self._test_results()
+        with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
@@ -1754,12 +1788,22 @@ class TestRecommendedQueue(QueueTest):
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two']
         )
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         for addon in self.expected_addons:
             self.make_addon_promoted(addon, RECOMMENDED)
         self.url = reverse('reviewers.queue_recommended')
 
     def test_results(self):
-        self._test_results()
+        with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_results_two_versions(self):
         version1 = self.addons['Nominated One'].versions.all()[0]
@@ -2057,9 +2101,19 @@ class TestUnlistedAllList(QueueTest):
             self.addons['Nominated Two'],
             self.addons['Nominated One'],
         ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
-        self._test_results()
+        with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results()
 
     def test_review_notes_json(self):
         latest_version = self.expected_addons[0].find_latest_version(
@@ -2091,6 +2145,7 @@ class TestUnlistedPendingManualApproval(QueueTest):
             self.addons['Pending Two'],
             self.addons['Nominated One'],
         ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         for i, addon in enumerate(self.expected_addons):
             AutoApprovalSummary.objects.create(
                 version=addon.versions.latest('pk'), score=100 - i
@@ -2157,12 +2212,12 @@ class TestAutoApprovedQueue(QueueTest):
         self.grant_permission(user, 'Addons:Review')
         self.client.force_login(user)
 
-    def get_addon_latest_version(self, addon):
-        """Method used by _test_results() to fetch the version that the queue
-        is supposed to display. Overridden here because in our case, it's not
-        necessarily the latest available version - we display the current
-        public version instead (which is not guaranteed to be the latest
-        auto-approved one, but good enough) for this page."""
+    def get_addon_expected_version(self, addon):
+        """Method used by get_expected_versions() to fetch the versions that
+        the queue is supposed to display. Overridden here because in our case,
+        it's not necessarily the latest available version - we display the
+        current public version instead (which is not guaranteed to be the
+        latest auto-approved one, but good enough) for this page."""
         return addon.current_version
 
     def generate_files(self):
@@ -2251,6 +2306,7 @@ class TestAutoApprovedQueue(QueueTest):
             score=90,
         )
         self.expected_addons = [addon5, addon4, addon2, addon3, addon1]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_only_viewable_with_specific_permission(self):
         # content reviewer does not have access.
@@ -2334,12 +2390,12 @@ class TestContentReviewQueue(QueueTest):
         self.client.force_login(user)
         return user
 
-    def get_addon_latest_version(self, addon):
-        """Method used by _test_results() to fetch the version that the queue
-        is supposed to display. Overridden here because in our case, it's not
-        necessarily the latest available version - we display the current
-        public version instead (which is not guaranteed to be the latest
-        auto-approved one, but good enough) for this page."""
+    def get_addon_expected_version(self, addon):
+        """Method used by get_expected_versions() to fetch the versions that
+        the queue is supposed to display. Overridden here because in our case,
+        it's not necessarily the latest available version - we display the
+        current public version instead (which is not guaranteed to be the
+        latest auto-approved one, but good enough) for this page."""
         return addon.current_version
 
     def generate_files(self):
@@ -2435,6 +2491,7 @@ class TestContentReviewQueue(QueueTest):
         # Addons with no last_content_review date, ordered by
         # their creation date, older first.
         self.expected_addons = [addon1, addon2, addon3, addon4]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_only_viewable_with_specific_permission(self):
         # Regular addon reviewer does not have access.
@@ -2547,10 +2604,19 @@ class TestScannersReviewQueue(QueueTest):
         AddonReviewerFlags.objects.create(addon=addon4, needs_admin_code_review=True)
 
         self.expected_addons = [addon1, addon2, addon3]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
         self.generate_files()
         with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
             response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -2688,11 +2754,21 @@ class TestPendingRejectionReviewQueue(QueueTest):
         # Addon 2 has an older creation date, but what matters for the ordering
         # is the pending rejection deadline.
         self.expected_addons = [unlisted_addon, addon1, addon2]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        self._test_results(dont_expect_version_number=True)
+        with self.assertNumQueries(14):
+            # - 2 for savepoints because we're in tests
+            # - 2 for user/groups
+            # - 1 for the current queue count for pagination purposes
+            # - 2 for the addons in the queues and their files (regardless of
+            #     how many are in the queue - that's the important bit)
+            # - 2 for config items (motd / site notice)
+            # - 1 for my add-ons in user menu
+            # - 4 for reviewer scores and user stuff displayed above the queue
+            self._test_results(dont_expect_version_number=True)
 
 
 class ReviewBase(QueueTest):
@@ -8916,11 +8992,10 @@ class TestMadQueue(QueueTest):
             mixed_addon2,
             mixed_addon_both,
         ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
 
     def test_results(self):
         with self.assertNumQueries(14):
-            # That's a lot of queries. Some of them are unfortunately scaling
-            # with the number of add-ons in the queue.
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
