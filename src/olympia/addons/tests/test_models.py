@@ -2120,7 +2120,7 @@ class TestUpdateStatus(TestCase):
 
         version_factory(addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         addon.reload()
-        # Because it don't have complete metadata the status isn't changed
+        # Because it doesn't have complete metadata the status isn't changed
         assert not addon.has_complete_metadata(), addon.get_required_metadata()
         addon.update_status()
         assert addon.status == amo.STATUS_NULL
