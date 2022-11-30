@@ -60,13 +60,19 @@ function initReviewActions() {
   function showForm(element, pageload) {
     var $element = $(element),
       value = $element.find('input').val(),
-      $data_toggle = $('form.review-form').find('.data-toggle');
+      $data_toggle = $('form.review-form').find('.data-toggle'),
+      $comments = $('#id_comments'),
+      boilerplate_text = $element.find('input').attr('data-value');
 
     pageload = pageload || false;
     $element.closest('.review-actions').addClass('on');
     $('.review-actions .action_nav ul li').removeClass('on-tab');
     $element.find('input').prop('checked', true);
 
+    // Input message into empty comments textbox.
+    if ($comments.val().length === 0 && boilerplate_text) {
+      insertAtCursor($comments, boilerplate_text);
+    }
     $element.addClass('on-tab');
 
     if (pageload) {

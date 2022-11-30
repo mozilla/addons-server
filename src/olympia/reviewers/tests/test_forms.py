@@ -272,6 +272,28 @@ class TestReviewForm(TestCase):
         assert form.is_valid()
         assert not form.errors
 
+    def test_boilerplate(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        form = self.get_form()
+        doc = pq(str(form['action']))
+        assert (
+            doc('input')[0].attrib.get('data-value')
+            == 'Thank you for your contribution.'
+        )
+        assert doc('input')[1].attrib.get('data-value') == (
+            "This add-on didn't pass review because of the following "
+            'problems:\n\n1) '
+        )
+        assert doc('input')[2].attrib.get('data-value') == (
+            "This add-on didn't pass review because of the following "
+            'problems:\n\n1) '
+        )
+        assert doc('input')[3].attrib.get('data-value') is None
+        assert doc('input')[4].attrib.get('data-value') is None
+        assert doc('input')[5].attrib.get('data-value') is None
+
     def test_comments_and_action_required_by_default(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
