@@ -204,7 +204,9 @@ class JWTKeyAuthentication(BaseAuthentication):
         # Send user_logged_in signal when JWT is used to authenticate an user.
         # Otherwise, we'd never update the last_login information for users
         # who never visit the site but do use the API to upload new add-ons.
-        user_logged_in.send(sender=self.__class__, request=request, user=user)
+        user_logged_in.send(
+            sender=self.__class__, request=request, user=user, using_api_token=True
+        )
         return (user, jwt_value)
 
     def authenticate_credentials(self, payload):

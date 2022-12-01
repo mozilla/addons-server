@@ -579,7 +579,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # The following log statement is used by foxsec-pipeline.
         log.info('User (%s) logged in successfully', user, extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
-        activity.log_create(amo.LOG.LOG_IN, user=user)
+        action = (
+            amo.LOG.LOG_IN_API_TOKEN
+            if kwargs.get('using_api_token')
+            else amo.LOG.LOG_IN
+        )
+        activity.log_create(action, user=user)
 
 
 class UserNotification(ModelBase):
