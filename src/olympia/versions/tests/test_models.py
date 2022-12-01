@@ -1621,8 +1621,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # would be in the microsecond range.
         self.upload.update(created=datetime.now() - timedelta(days=1))
 
-        mock_timing_path = 'olympia.versions.models.statsd.timing'
-        with mock.patch(mock_timing_path) as mock_timing:
+        mock_path = 'olympia.versions.models.statsd.'
+        with mock.patch(f'{mock_path}timing') as mock_timing, mock.patch(
+            f'{mock_path}incr'
+        ) as mock_incr:
             Version.from_upload(
                 self.upload,
                 self.addon,
@@ -1640,6 +1642,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             assert actual_delta >= (rough_delta - fuzz) and actual_delta <= (
                 rough_delta + fuzz
             )
+            mock_incr.assert_called_with('devhub.version_created_from_upload.extension')
 
     def test_nomination_inherited_for_updates(self):
         assert self.addon.status == amo.STATUS_APPROVED
