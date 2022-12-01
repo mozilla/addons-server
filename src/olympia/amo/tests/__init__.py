@@ -644,6 +644,7 @@ def _get_created(created):
 
 def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **kw):
     version_kw = version_kw or {}
+    file_kw = file_kw or {}
 
     # Disconnect signals until the last save.
     post_save.disconnect(
@@ -703,6 +704,15 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         PromotedAddon.objects.create(addon=addon, group_id=promoted_group.id)
         if 'promotion_approved' not in version_kw:
             version_kw['promotion_approved'] = True
+
+    if 'status' not in file_kw and version_kw.get('channel') != amo.CHANNEL_UNLISTED:
+        match status:
+            case amo.STATUS_APPROVED:
+                file_kw['status'] = amo.STATUS_APPROVED
+            case amo.STATUS_NOMINATED:
+                file_kw['status'] = amo.STATUS_AWAITING_REVIEW
+            case _:
+                file_kw['status'] = amo.STATUS_DISABLED
 
     version = version_factory(file_kw, addon=addon, **version_kw)
     addon.update_version()

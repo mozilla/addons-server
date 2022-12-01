@@ -347,9 +347,8 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
         statsd.incr(
             f'signing.submission.{"addon" if new_addon else "version"}.{channel_name}'
         )
-        # The add-on's status will be STATUS_NULL when its first version is
-        # created because the version has no files when it gets added and it
-        # gets flagged as invalid. We need to manually set the status.
-        if addon.status == amo.STATUS_NULL and channel == amo.CHANNEL_LISTED:
-            addon.update(status=amo.STATUS_NOMINATED)
+        # The add-on's status will be STATUS_NULL when its first version is created
+        # because the version has no files when it gets added and it gets flagged as
+        # invalid. Addon.update_status will set the status to NOMINATATED.
+        addon.update_status()
         return version

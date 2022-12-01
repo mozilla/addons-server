@@ -436,11 +436,9 @@ def cancel(request, addon_id, addon, channel):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     latest_version = addon.find_latest_version(channel=channel)
     if latest_version:
-        if addon.status == amo.STATUS_NOMINATED and channel == amo.CHANNEL_LISTED:
-            addon.update(status=amo.STATUS_NULL)
-            ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
         if latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
             latest_version.file.update(status=amo.STATUS_DISABLED)
+        addon.update_status()
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -1454,12 +1452,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
             statsd.incr(f'devhub.submission.addon.{channel_text}')
 
         check_validation_override(request, form, addon, version)
-        if (
-            addon.status == amo.STATUS_NULL
-            and addon.has_complete_metadata()
-            and channel == amo.CHANNEL_LISTED
-        ):
-            addon.update(status=amo.STATUS_NOMINATED)
+        addon.update_status()
         return redirect(next_view, *url_args)
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
     if addon:
@@ -1739,8 +1732,7 @@ def _submit_details(request, addon, version):
             license_form.save(log=False)
             if not static_theme:
                 reviewer_form.save()
-            if addon.status == amo.STATUS_NULL:
-                addon.update(status=amo.STATUS_NOMINATED)
+            addon.update_status()
             signals.submission_done.send(sender=addon)
         elif not static_theme:
             reviewer_form.save()
@@ -1853,7 +1845,7 @@ def request_review(request, addon_id, addon):
         # Clear the nomination date so it gets set again in Addon.watch_status.
         latest_version.update(nomination=None)
     if addon.has_complete_metadata():
-        addon.update(status=amo.STATUS_NOMINATED)
+        addon.update_status()
         messages.success(request, gettext('Review requested.'))
     else:
         messages.success(request, _('You must provide further details to proceed.'))

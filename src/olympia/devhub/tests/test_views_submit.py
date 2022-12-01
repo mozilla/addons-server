@@ -1115,7 +1115,7 @@ class DetailsPageMixin:
         self.assertFormError(response, 'describe_form', 'summary', error)
 
     def test_nomination_date_set_only_once(self):
-        self.get_version().update(nomination=None)
+        self.get_version().update(nomination=None, _signal=False)
         self.is_success(self.get_dict())
         self.assertCloseToNow(self.get_version().nomination)
 
@@ -1261,14 +1261,18 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         super().setUp()
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=1).delete()
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
+        addon = self.get_addon()
+        AddonCategory.objects.filter(addon=addon, category_id=1).delete()
+        AddonCategory.objects.filter(addon=addon, category_id=71).delete()
 
         ctx = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=3)
-        self.get_addon().update(status=amo.STATUS_NULL)
+
+        addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        addon.update(status=amo.STATUS_NULL)
+        assert self.get_addon().status == amo.STATUS_NULL
 
     def get_dict(self, minimal=True, **kw):
         result = {}
@@ -1523,13 +1527,17 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         super().setUp()
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=1).delete()
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=22).delete()
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
+        addon = self.get_addon()
+        AddonCategory.objects.filter(addon=addon, category_id=1).delete()
+        AddonCategory.objects.filter(addon=addon, category_id=22).delete()
+        AddonCategory.objects.filter(addon=addon, category_id=71).delete()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=11)
-        self.get_addon().update(status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
+
+        addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        addon.update(status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
+        assert self.get_addon().status == amo.STATUS_NULL
 
     def get_dict(self, minimal=True, **kw):
         result = {}
@@ -2581,8 +2589,13 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
     def setUp(self):
         super().setUp()
         self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
-        self.version = version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
+        self.version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         self.version.update(license=None)  # Addon needs to be missing data.
+        self.addon.update(status=amo.STATUS_NULL)
         self.url = reverse(
             'devhub.submit.version.details', args=['a3615', self.version.pk]
         )

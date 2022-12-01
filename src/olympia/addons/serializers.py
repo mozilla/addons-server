@@ -587,12 +587,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         if self.addon:
             # self.addon is None when creating a new add-on
             statsd.incr(f'addons.submission.version.{channel_text}')
-            if (
-                self.addon.status == amo.STATUS_NULL
-                and self.addon.has_complete_metadata()
-                and upload.channel == amo.CHANNEL_LISTED
-            ):
-                self.addon.update(status=amo.STATUS_NOMINATED)
+            self.addon.update_status()
         else:
             statsd.incr(f'addons.submission.addon.{channel_text}')
 
@@ -1201,12 +1196,7 @@ class AddonSerializer(serializers.ModelSerializer):
             {**validated_data.get('version', {}), 'addon': addon}
         )
 
-        if (
-            addon.status == amo.STATUS_NULL
-            and addon.has_complete_metadata()
-            and upload.channel == amo.CHANNEL_LISTED
-        ):
-            addon.update(status=amo.STATUS_NOMINATED)
+        addon.update_status()
 
         return addon
 

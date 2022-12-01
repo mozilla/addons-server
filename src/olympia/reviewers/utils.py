@@ -844,9 +844,9 @@ class ReviewBase:
         self.content_review = content_review
         self.redirect_url = None
 
-    def set_addon(self, **kw):
+    def set_addon(self):
         """Alter addon, set reviewed timestamp on version being reviewed."""
-        self.addon.update(**kw)
+        self.addon.update_status()
         self.version.update(reviewed=datetime.now())
 
     def set_data(self, data):
@@ -1042,7 +1042,7 @@ class ReviewBase:
         self.set_file(amo.STATUS_APPROVED, self.file)
         self.set_promoted()
         if self.set_addon_status:
-            self.set_addon(status=amo.STATUS_APPROVED)
+            self.set_addon()
 
         if self.human_review:
             # No need for a human review anymore in this channel.
@@ -1097,9 +1097,9 @@ class ReviewBase:
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        if self.set_addon_status:
-            self.set_addon(status=amo.STATUS_NULL)
         self.set_file(amo.STATUS_DISABLED, self.file)
+        if self.set_addon_status:
+            self.set_addon()
 
         if self.human_review:
             # Clear needs human review flags, but only on the latest version:
@@ -1413,7 +1413,7 @@ class ReviewBase:
 
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
-            self.addon.update_nominated_status(self.user)
+            self.addon.update_status(self.user)
 
     def notify_about_auto_approval_delay(self, version):
         """Notify developers of the add-on when their version has not been
