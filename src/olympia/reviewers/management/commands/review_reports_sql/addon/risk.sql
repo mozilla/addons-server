@@ -20,14 +20,23 @@ FROM
              (SELECT `id`
               FROM `groups`
               WHERE `name` = 'No Reviewer Incentives')) THEN 'volunteer' ELSE 'all' END AS `group_category`
-      FROM `reviewer_scores` `rs`
-      JOIN `users` `u` ON `u`.`id` = `rs`.`user_id`
-      WHERE DATE(`rs`.`created`) BETWEEN @WEEK_BEGIN AND @WEEK_END
-        AND `u`.`deleted` = 0
+      FROM (
+        SELECT DISTINCT `created`, `user_id`, `action`, MAX(`id`) AS `id`
+        FROM `log_activity`
+        WHERE DATE(`created`) BETWEEN @WEEK_BEGIN AND @WEEK_END
+        /* The type of review, see constants/activity.py */
+        AND `action` IN (21, 43, 144, 165)
+        GROUP BY `created`, `user_id`, `action`
+      ) AS `activity`
+      JOIN `log_activity_version` `activity_ver` ON `activity_ver`.`activity_log_id` = `activity`.`id`
+      LEFT JOIN `log_activity_comment` `activity_comment` ON `activity_comment`.`activity_log_id` = `activity`.`id`
+      JOIN `users` `u` ON `u`.`id` = `activity`.`user_id`
+      WHERE
         /* Filter out internal task user */
-        AND `user_id` <> 4757633
-        /* The type of review, see constants/reviewers.py */
-        AND `rs`.`note_key` IN (10, 12, 20, 22, 30, 32, 50, 52, 102, 103, 104, 105)) `reviews` ON `reviews`.`version_id` = `aa`.`version_id`
+        `user_id` <> 4757633
+        AND `u`.`deleted` = 0
+        AND (`activity_comment`.`comments` IS NULL OR `activity_comment`.`comments` != "Automatic rejection after grace period ended.")
+     ) `reviews` ON `reviews`.`version_id` = `aa`.`version_id`
    GROUP BY `risk_category`,
             `group_category`) `risk`
 GROUP BY 1

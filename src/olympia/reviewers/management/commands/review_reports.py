@@ -35,7 +35,6 @@ REPORTS = {
             'Weekly Add-on Reviews by Risk Profiles',
             os.path.join(SQL_DIR, 'addon/risk.sql'),
         ),
-        ('Quarterly contributions', os.path.join(SQL_DIR, 'addon/quarterly.sql')),
     ],
     'content': [
         (
@@ -46,7 +45,6 @@ REPORTS = {
             'Weekly Volunteer Contribution Ratio',
             os.path.join(SQL_DIR, 'content/breakdown.sql'),
         ),
-        ('Quarterly contributions', os.path.join(SQL_DIR, 'content/quarterly.sql')),
     ],
 }
 
@@ -93,7 +91,6 @@ class Command(BaseCommand):
                 """
                 SET @WEEK_BEGIN=%s;
                 SET @WEEK_END=%s;
-                SET @QUARTER_BEGIN=%s;
                 SET @RISK_HIGHEST=%s;
                 SET @RISK_HIGH=%s;
                 SET @RISK_MEDIUM=%s;
@@ -101,7 +98,6 @@ class Command(BaseCommand):
                 [
                     today - timedelta(days=today.weekday() + 7),
                     today - timedelta(days=today.weekday() + 1),
-                    date(today.year, (today.month - 1) // 3 * 3 + 1, 1),
                     POST_REVIEW_WEIGHT_HIGHEST_RISK,
                     POST_REVIEW_WEIGHT_HIGH_RISK,
                     POST_REVIEW_WEIGHT_MEDIUM_RISK,
