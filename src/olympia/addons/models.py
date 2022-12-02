@@ -300,11 +300,6 @@ class AddonManager(ManagerBase):
         theme_review = types == amo.GROUP_TYPE_THEME
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
-            # The select related needed to avoid extra queries in other queues
-            # typically depend on current_version, but we don't care here, as
-            # it's a pre-review queue. We'll make the select_related() calls we
-            # need ourselves.
-            select_related_fields_for_listed=False,
             # We'll filter on pending_rejection below without limiting
             # ourselves to the current_version.
             exclude_listed_pending_rejection=False,
@@ -330,24 +325,15 @@ class AddonManager(ManagerBase):
                     )
                 )
             )
-
-        return (
-            # We passed select_related_fields_for_listed=False but there are
-            # still base select_related() fields in that queryset that are
-            # applied in all cases that we don't want, so reset them away.
-            qs.select_related(None)
-            .filter(filters)
-            .select_related('reviewerflags')
-            .annotate(
-                first_version_nominated=Min('versions__nomination'),
-                # Because of the Min(), a GROUP BY addon.id is created.
-                # Unfortunately if we were to annotate with just
-                # F('versions__version') Django would add version.version to
-                # the GROUP BY, ruining it. To prevent that, we wrap it into
-                # a harmless Func() - we need a no-op function to do that,
-                # hence the LOWER().
-                latest_version=Func(F('versions__version'), function='LOWER'),
-            )
+        return qs.filter(filters).annotate(
+            first_version_nominated=Min('versions__nomination'),
+            # Because of the Min(), a GROUP BY addon.id is created.
+            # Unfortunately if we were to annotate with just
+            # F('versions__version') Django would add version.version to
+            # the GROUP BY, ruining it. To prevent that, we wrap it into
+            # a harmless Func() - we need a no-op function to do that,
+            # hence the LOWER().
+            latest_version=Func(F('versions__version'), function='LOWER'),
         )
 
     def get_addons_with_unlisted_versions_queue(self, admin_reviewer=False):
@@ -356,13 +342,11 @@ class AddonManager(ManagerBase):
             exclude_listed_pending_rejection=False,
             admin_reviewer=admin_reviewer,
         )
-        return (
-            qs.filter(versions__channel=amo.CHANNEL_UNLISTED).exclude(
-                status=amo.STATUS_DISABLED
-            )
-            # Reset select_related() made by get_base_queryset_for_queue(), we
-            # don't want them for the unlisted queue.
-            .select_related(None)
+        # Reset *all* select_related() made by get_base_queryset_for_queue(),
+        # we don't want them for the unlisted queue.
+        qs = qs.select_related(None)
+        return qs.filter(versions__channel=amo.CHANNEL_UNLISTED).exclude(
+            status=amo.STATUS_DISABLED
         )
 
     def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
