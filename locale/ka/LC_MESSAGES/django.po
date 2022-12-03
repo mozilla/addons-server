@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-03 18:10+0000\n"
+"PO-Revision-Date: 2022-12-03 18:20+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4616,7 +4616,7 @@ msgstr "მეტად მოხერხებულად ითამაშ�
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "„მოიწონეთ“ კვლავ, რომ დააბრუნოთ „დაწუნება“."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4838,7 +4838,7 @@ msgid "Duplicate add-on ID found."
 msgstr "აღმოჩენილია დამატების განმეორებული ID."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "ვერსიის ნომერი უნდა შედგებოდეს არანაკლებ {max_length} სიმბოლოსგან."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "ვერსიის ნომრები უნდა შედგებოდეს მხოლოდ ასოებისგან, ციფრებისგან და მოცემული სიმბოლოებისგან: +*.-_."
@@ -5643,7 +5643,7 @@ msgid "Compare this version to the last reviewed version"
 msgstr "შედარება ამ ვერსიის ბოლო განხილულ ვერსიასთან"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "ბოლოს განხილულთან შედარება"
 
 msgid "Permissions:"
 msgstr "ნებართვები:"
@@ -5728,7 +5728,7 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "მავნებლობის ქულა აჩვენებს, თუ რამდენად მავნე შეიძლება აღმოჩნდეს ეს ვერსია, სკანერების კვლევის საფუძველზე."
 
 msgid "Scanners results:"
-msgstr ""
+msgstr "სკანერების შედეგები:"
 
 msgid "Flagged for human review"
 msgstr "მონიშნულია ადამიანის მონაწილეობით განხილვისთვის"
@@ -5791,13 +5791,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "ესაა ზუსტი დასახელება წესის, რომელსაც სკანერი იყენებს."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "ადვილად წასაკითხი სახელი სკანერის წესისთვის"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "ადვილად წასაკითხი სახელი"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "ადვილად წასაკითხი აღწერა სკანერის წესისთვის"
 
 msgid "Yara rules should have a definition"
 msgstr "Yara-წესს უნდა ჰქონდეს განმარტება"
