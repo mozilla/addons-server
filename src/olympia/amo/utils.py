@@ -1275,25 +1275,27 @@ class BaseModelSerializerAndFormMixin:
             source = getattr(field, 'source', field_name)
             if getattr(field, 'max_length', None) is None and self.Meta.model:
                 try:
-                    max_length = getattr(
-                        self.Meta.model._meta.get_field(source),
-                        'max_length',
-                        None,
-                    )
+                    model_field = self.Meta.model._meta.get_field(source)
                 except FieldDoesNotExist:
                     continue
-                # Normally setting max_length on the field would be enough, but
-                # because we're late, after __init__(), we also need to convert
-                # that into a validator ourselves, adding a custom message if
-                # we can find a base string to format (mimicking DRF behavior).
-                if max_length is not None:
+                if (max_length := getattr(model_field, 'max_length', None)) is not None:
                     field.max_length = max_length
+                    # Normally setting max_length on the field would be enough,
+                    # but because we're late, after the field's __init__(), we
+                    # also need to convert that into a validator ourselves if
+                    # the field requires it. If we can find a message that
+                    # only takes {max_length} as the format parameter, that's
+                    # our cue that the field can accept a validator set at
+                    # __init__ time (otherwise it means validation is done in
+                    # a custom way that we can't mess with automatically).
                     message = getattr(field, 'error_messages', {}).get('max_length')
-                    if message:
+                    if message and re.findall(r'\{.*?\}', str(message)) == [
+                        '{max_length}'
+                    ]:
                         message = lazy_format(
                             field.error_messages['max_length'],
                             max_length=field.max_length,
                         )
-                    field.validators.append(
-                        MaxLengthValidator(field.max_length, message=message)
-                    )
+                        field.validators.append(
+                            MaxLengthValidator(field.max_length, message=message)
+                        )
