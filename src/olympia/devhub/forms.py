@@ -1252,8 +1252,8 @@ class CombinedNameSummaryCleanMixin:
 
 
 class DescribeFormContentOptimization(CombinedNameSummaryCleanMixin, DescribeForm):
-    name = TransField(min_length=2)
-    summary = TransField(min_length=2)
+    name = TransField(min_length=2, max_length=255)
+    summary = TransField(min_length=2, max_length=255)
 
 
 class DescribeFormUnlisted(AddonFormBase):
