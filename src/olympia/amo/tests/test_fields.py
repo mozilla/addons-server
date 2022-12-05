@@ -10,14 +10,14 @@ from olympia.amo.tests import TestCase
 
 
 class HttpHttpsOnlyURLFieldTestCase(TestCase):
-
     domain = 'example.com'
+    max_length = None
 
     def setUp(self):
         super().setUp()
 
         with override_settings(DOMAIN=self.domain):
-            self.field = HttpHttpsOnlyURLField()
+            self.field = HttpHttpsOnlyURLField(max_length=self.max_length)
 
     def test_invalid_scheme_validation_error(self):
         with self.assertRaises(exceptions.ValidationError):
@@ -46,21 +46,27 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
             assert self.field.clean('https://test.[com')
 
     def test_with_domain_and_no_scheme(self):
-        # So does that mean default_validators doesn't work ? Is it not passed
-        # down like I thought it would ?
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean('%s' % self.domain)
+            self.field.clean(self.domain)
 
     def test_with_domain_and_http(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean('http://%s' % self.domain)
+            self.field.clean(f'http://{self.domain}')
 
     def test_with_domain_and_https(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean('https://%s' % self.domain)
+            self.field.clean(f'https://{self.domain}')
 
     def test_domain_is_escaped_in_regex_validator(self):
         assert self.field.clean('example-com.fr') == 'http://example-com.fr'
+
+
+class HttpHttpsOnlyURLFieldTestCaseWithMaxLengthSet(HttpHttpsOnlyURLFieldTestCase):
+    max_length = 50
+
+    def test_max_length_not_overridden(self):
+        with self.assertRaises(exceptions.ValidationError):
+            self.field.clean(f'https://{"a" * 39}.com')
 
 
 class TestPositiveAutoField(TestCase):
