@@ -21,10 +21,7 @@ from olympia.users.models import DeniedName
 
 class CollectionSerializer(AMOModelSerializer):
     name = TranslationSerializerField()
-    description = TranslationSerializerField(
-        allow_blank=True,
-        required=False,
-    )
+    description = TranslationSerializerField(allow_blank=True, required=False)
     url = serializers.SerializerMethodField()
     # DRF's default=serializers.CurrentUserDefault() is necessary to pass
     # validation but we also need the custom create() below for the author to
@@ -125,9 +122,7 @@ class CollectionAddonSerializer(AMOModelSerializer):
         AddonSerializer(),
     )
     notes = TranslationSerializerField(
-        source='comments',
-        required=False,
-        allow_blank=True,
+        source='comments', required=False, allow_blank=True
     )
     collection = serializers.HiddenField(default=ThisCollectionDefault())
 

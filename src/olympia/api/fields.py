@@ -6,7 +6,6 @@ from django.core.validators import RegexValidator
 from django.utils.encoding import smart_str
 from django.utils.translation import get_language, gettext, gettext_lazy as _, override
 
-
 from rest_framework import exceptions, fields, serializers
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
