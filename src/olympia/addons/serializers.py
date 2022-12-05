@@ -346,10 +346,7 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
         source='file.strict_compatibility', read_only=True
     )
     license = CompactLicenseSerializer(read_only=True)
-    release_notes = TranslationSerializerField(
-        required=False,
-        read_only=True,
-    )
+    release_notes = TranslationSerializerField(required=False, read_only=True)
 
     class Meta:
         model = Version
@@ -878,19 +875,14 @@ class AddonSerializer(AMOModelSerializer):
     )
     categories = CategoriesSerializerField(source='all_categories', required=False)
     contributions_url = ContributionSerializerField(
-        source='contributions',
-        required=False,
+        source='contributions', required=False
     )
     current_version = CurrentVersionSerializer(read_only=True)
     default_locale = serializers.ChoiceField(
         choices=list(AMO_LANGUAGES), required=False
     )
-    description = TranslationSerializerField(
-        required=False,
-    )
-    developer_comments = TranslationSerializerField(
-        required=False,
-    )
+    description = TranslationSerializerField(required=False)
+    developer_comments = TranslationSerializerField(required=False)
     edit_url = serializers.SerializerMethodField()
     has_eula = serializers.SerializerMethodField()
     has_privacy_policy = serializers.SerializerMethodField()
@@ -931,12 +923,8 @@ class AddonSerializer(AMOModelSerializer):
         required=False,
         validators=[OneOrMoreLetterOrNumberCharacterValidator()],
     )
-    support_email = EmailTranslationField(
-        required=False,
-    )
-    support_url = OutgoingURLTranslationField(
-        required=False,
-    )
+    support_email = EmailTranslationField(required=False)
+    support_url = OutgoingURLTranslationField(required=False)
     tags = serializers.ListField(
         child=LazyChoiceField(choices=Tag.objects.values_list('tag_text', flat=True)),
         max_length=amo.MAX_TAGS,
