@@ -485,6 +485,10 @@ class Version(OnChangeMixin, ModelBase):
             )
         )
         statsd.timing('devhub.version_created_from_upload', upload_time)
+        statsd.incr(
+            'devhub.version_created_from_upload.'
+            f'{amo.ADDON_TYPE_CHOICES_API.get(addon.type, "")}'
+        )
 
         return version
 
