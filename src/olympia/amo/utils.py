@@ -1283,19 +1283,21 @@ class BaseModelSerializerAndFormMixin:
                     # Normally setting max_length on the field would be enough,
                     # but because we're late, after the field's __init__(), we
                     # also need to convert that into a validator ourselves if
-                    # the field requires it. If we can find a message that
-                    # only takes {max_length} as the format parameter, that's
-                    # our cue that the field can accept a validator set at
-                    # __init__ time (otherwise it means validation is done in
-                    # a custom way that we can't mess with automatically).
+                    # the field requires it. Unfortunately some fields
+                    # (FileField) do not work like that and instead deal with
+                    # max_length dynamically, with a custom error message that
+                    # is generated dynamically, so we need to avoid those.
+                    # # If a compatible error message for max_length is set, or
+                    # no message at all, we're good.
                     message = getattr(field, 'error_messages', {}).get('max_length')
-                    if message and re.findall(r'\{.*?\}', str(message)) == [
+                    if message is None or re.findall(r'\{.*?\}', str(message)) == [
                         '{max_length}'
                     ]:
-                        message = lazy_format(
-                            field.error_messages['max_length'],
-                            max_length=field.max_length,
-                        )
+                        if message:
+                            message = lazy_format(
+                                field.error_messages['max_length'],
+                                max_length=field.max_length,
+                            )
                         field.validators.append(
                             MaxLengthValidator(field.max_length, message=message)
                         )
