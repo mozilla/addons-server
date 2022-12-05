@@ -756,6 +756,19 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert str(version.release_notes) == 'xx'
         assert str(version.approval_notes) == 'yy'
 
+    def test_approval_notes_and_approval_notes_too_long(self):
+        data = self.formset(approval_notes='ü' * 3001, release_notes='è' * 3002)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert response.context['version_form'].errors == {
+            'approval_notes': [
+                'Ensure this value has at most 3000 characters (it has 3001).'
+            ],
+            'release_notes': [
+                'Ensure this value has at most 3000 characters (it has 3002).'
+            ],
+        }
+
     def test_version_number_redirect(self):
         url = self.url.replace(str(self.version.id), self.version.version)
         response = self.client.get(url, follow=True)

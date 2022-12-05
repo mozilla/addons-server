@@ -1,10 +1,11 @@
 from django import forms
 
+from olympia.amo.utils import BaseModelSerializerAndFormMixin
 from olympia.translations.fields import TranslatedField
 from django.utils.functional import cached_property
 
 
-class AMOModelForm(forms.ModelForm):
+class AMOModelForm(BaseModelSerializerAndFormMixin, forms.ModelForm):
     @cached_property
     def changed_data(self):
         """

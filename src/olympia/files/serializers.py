@@ -4,11 +4,12 @@ from rest_framework.reverse import reverse as drf_reverse
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.fields import ReverseChoiceField
+from olympia.api.serializers import AMOModelSerializer
 
 from .models import FileUpload
 
 
-class FileUploadSerializer(serializers.ModelSerializer):
+class FileUploadSerializer(AMOModelSerializer):
     uuid = serializers.UUIDField(format='hex')
     channel = ReverseChoiceField(choices=list(amo.CHANNEL_CHOICES_API.items()))
     processed = serializers.BooleanField()

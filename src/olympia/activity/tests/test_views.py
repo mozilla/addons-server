@@ -4,6 +4,7 @@ from unittest import mock
 
 from django.test.utils import override_settings
 
+from rest_framework.exceptions import ErrorDetail
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -363,6 +364,31 @@ class TestReviewNotesViewSetCreate(TestCase):
         response = self._post_reply()
         assert response.status_code == 403
         assert not self.get_review_activity_queryset().exists()
+
+    def test_comments_required(self):
+        self.user = user_factory()
+        self.user.addonuser_set.create(addon=self.addon)
+        self.client.login_api(self.user)
+        response = self.client.post(self.url, {})
+        assert response.status_code == 400
+        assert response.data == {
+            'comments': [ErrorDetail(string='This field is required.', code='required')]
+        }
+
+    def test_comments_too_long(self):
+        self.user = user_factory()
+        self.user.addonuser_set.create(addon=self.addon)
+        self.client.login_api(self.user)
+        response = self.client.post(self.url, {'comments': 'â' * 100001})
+        assert response.status_code == 400
+        assert response.data == {
+            'comments': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 100000 characters.',
+                    code='max_length',
+                )
+            ]
+        }
 
     def test_developer_reply(self):
         self.user = user_factory()

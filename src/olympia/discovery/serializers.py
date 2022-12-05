@@ -10,12 +10,13 @@ from olympia.api.fields import (
     GetTextTranslationSerializerFieldFlat,
     TranslationSerializerFieldFlat,
 )
+from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.discovery.models import DiscoveryItem
 from olympia.versions.models import Version
 
 
-class DiscoveryEditorialContentSerializer(serializers.ModelSerializer):
+class DiscoveryEditorialContentSerializer(AMOModelSerializer):
     """
     Serializer used to fetch editorial-content only, for internal use when
     generating the .po files containing all editorial content to be translated
@@ -72,7 +73,7 @@ class DiscoveryAddonSerializer(AddonSerializer):
         model = Addon
 
 
-class DiscoverySerializer(serializers.ModelSerializer):
+class DiscoverySerializer(AMOModelSerializer):
     heading = serializers.SerializerMethodField()
     description = serializers.SerializerMethodField()
     description_text = FallbackField(

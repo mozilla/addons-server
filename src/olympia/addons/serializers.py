@@ -28,7 +28,7 @@ from olympia.api.fields import (
     SplitField,
     TranslationSerializerField,
 )
-from olympia.api.serializers import BaseESSerializer
+from olympia.api.serializers import BaseESSerializer, AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -90,7 +90,7 @@ from .validators import (
 )
 
 
-class FileSerializer(serializers.ModelSerializer):
+class FileSerializer(AMOModelSerializer):
     url = serializers.SerializerMethodField()
     platform = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
@@ -168,7 +168,7 @@ class ThisAddonDefault:
         return serializer_field.context['view'].get_addon_object()
 
 
-class PreviewSerializer(serializers.ModelSerializer):
+class PreviewSerializer(AMOModelSerializer):
     caption = TranslationSerializerField(required=False)
     image_url = serializers.SerializerMethodField()
     thumbnail_url = serializers.SerializerMethodField()
@@ -251,7 +251,7 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
         return data
 
 
-class LicenseSerializer(serializers.ModelSerializer):
+class LicenseSerializer(AMOModelSerializer):
     is_custom = serializers.SerializerMethodField()
     name = LicenseNameSerializerField(allow_null=True)
     text = TranslationSerializerField(allow_null=True)
@@ -306,7 +306,7 @@ class CompactLicenseSerializer(LicenseSerializer):
         fields = ('id', 'is_custom', 'name', 'slug', 'url')
 
 
-class MinimalVersionSerializer(serializers.ModelSerializer):
+class MinimalVersionSerializer(AMOModelSerializer):
     file = FileSerializer(read_only=True)
 
     class Meta:
@@ -405,7 +405,6 @@ class VersionSerializer(SimpleVersionSerializer):
 
 
 class DeveloperVersionSerializer(VersionSerializer):
-    approval_notes = serializers.CharField(allow_blank=True, required=False)
     custom_license = LicenseSerializer(
         write_only=True,
         required=False,
@@ -742,7 +741,7 @@ class ESCurrentVersionSerializer(BaseESSerializer, CurrentVersionSerializer):
         return data
 
 
-class AddonEulaPolicySerializer(serializers.ModelSerializer):
+class AddonEulaPolicySerializer(AMOModelSerializer):
     eula = TranslationSerializerField()
     privacy_policy = TranslationSerializerField()
 
@@ -762,7 +761,7 @@ class UserSerializerWithPictureUrl(BaseUserSerializer):
         read_only_fields = fields
 
 
-class AddonAuthorSerializer(serializers.ModelSerializer):
+class AddonAuthorSerializer(AMOModelSerializer):
     name = serializers.CharField(source='user.name', read_only=True)
     email = serializers.CharField(source='user.email', read_only=True)
     role = ReverseChoiceField(
@@ -854,7 +853,7 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
         return value
 
 
-class PromotedAddonSerializer(serializers.ModelSerializer):
+class PromotedAddonSerializer(AMOModelSerializer):
     GROUP_CHOICES = [(group.id, group.api_name) for group in PROMOTED_GROUPS]
     apps = serializers.SerializerMethodField()
     category = ReverseChoiceField(choices=GROUP_CHOICES, source='group_id')
@@ -870,7 +869,7 @@ class PromotedAddonSerializer(serializers.ModelSerializer):
         return [app.short for app in obj.approved_applications]
 
 
-class AddonSerializer(serializers.ModelSerializer):
+class AddonSerializer(AMOModelSerializer):
     authors = UserSerializerWithPictureUrl(
         many=True, source='listed_authors', read_only=True
     )
@@ -887,7 +886,9 @@ class AddonSerializer(serializers.ModelSerializer):
     edit_url = serializers.SerializerMethodField()
     has_eula = serializers.SerializerMethodField()
     has_privacy_policy = serializers.SerializerMethodField()
-    homepage = OutgoingURLTranslationField(required=False)
+    homepage = OutgoingURLTranslationField(
+        required=False,
+    )
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
     icon = ImageField(
@@ -904,12 +905,11 @@ class AddonSerializer(serializers.ModelSerializer):
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField(
-        max_length=50,
         required=False,
-        validators=(
+        validators=[
             VerifyMozillaTrademark(),
             OneOrMoreLetterOrNumberCharacterValidator(),
-        ),
+        ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
     promoted = PromotedAddonSerializer(read_only=True)
@@ -921,8 +921,7 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     summary = TranslationSerializerField(
         required=False,
-        max_length=250,
-        validators=(OneOrMoreLetterOrNumberCharacterValidator(),),
+        validators=[OneOrMoreLetterOrNumberCharacterValidator()],
     )
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)
@@ -1571,7 +1570,7 @@ class LanguageToolsSerializer(AddonSerializer):
         return data
 
 
-class ReplacementAddonSerializer(serializers.ModelSerializer):
+class ReplacementAddonSerializer(AMOModelSerializer):
     replacement = serializers.SerializerMethodField()
     ADDON_PATH_REGEX = r"""/addon/(?P<addon_id>[^/<>"']+)/$"""
     COLLECTION_PATH_REGEX = (

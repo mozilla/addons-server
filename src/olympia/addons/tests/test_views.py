@@ -24,6 +24,7 @@ import pytest
 
 from elasticsearch import Elasticsearch
 from freezegun import freeze_time
+from rest_framework.exceptions import ErrorDetail
 from rest_framework.test import APIRequestFactory
 from waffle import switch_is_active
 from waffle.testutils import override_switch
@@ -796,6 +797,19 @@ class AddonViewSetCreateUpdateMixin(RequestMixin):
         addon = Addon.objects.get()
         assert addon.contributions == valid_url
 
+    def test_contributions_url_too_long(self):
+        url = f'https://flattr.com/{"x" * 237}'
+        response = self.request(contributions_url=url)
+        assert response.status_code == 400
+        assert response.data == {
+            'contributions_url': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 255 characters.',
+                    code='max_length',
+                )
+            ]
+        }
+
     def test_name_trademark(self):
         name = {'en-US': 'FIREFOX foo', 'fr': 'lé Mozilla baa'}
         response = self.request(name=name)
@@ -1205,7 +1219,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
 
     def test_fields_max_length(self):
         data = {
-            'name': {'fr': 'é' * 51},
+            'name': {'fr': 'é' * 51, 'en-US': 'some english name'},
             'summary': {'en-US': 'a' * 251},
         }
         response = self.request(**data)
@@ -1271,6 +1285,57 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert response.data == {
             'homepage': [msg],
             'support_url': [msg],
+        }
+
+    def test_set_data_too_long(self):
+        data = {
+            'homepage': {'fr': f'https://example.com/{"a" * 236}'},
+            'support_url': {'fr': f'https://example.com/{"b" * 236}'},
+            'support_email': {'fr': f'{"c" * 90}@abcdef.com'},
+        }
+        response = self.request(**data)
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 255 characters.',
+                    code='max_length',
+                ),
+            ],
+            'support_url': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 255 characters.',
+                    code='max_length',
+                ),
+            ],
+            'support_email': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 100 characters.',
+                    code='max_length',
+                ),
+            ],
+        }
+
+    def test_set_data_too_long_other_textfields(self):
+        data = {
+            'description': {'fr': 'é' * 15001},
+            'developer_comments': {'fr': 'ö' * 3001},
+        }
+        response = self.request(**data)
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'description': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 15000 characters.',
+                    code='max_length',
+                ),
+            ],
+            'developer_comments': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 3000 characters.',
+                    code='max_length',
+                ),
+            ],
         }
 
     def test_set_tags(self):
@@ -3455,6 +3520,30 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             context={'request': request}
         ).to_representation(version)
 
+    def test_approval_notes_and_release_notes_too_long(self):
+        response = self.client.patch(
+            self.url,
+            data={
+                'approval_notes': 'ö' * 3001,
+                'release_notes': {'en-US': 'î' * 3001},
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'approval_notes': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 3000 characters.',
+                    code='max_length',
+                )
+            ],
+            'release_notes': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 3000 characters.',
+                    code='max_length',
+                )
+            ],
+        }
+
     @mock.patch('olympia.addons.views.log')
     def test_does_not_log_without_source(self, log_mock):
         response = self.client.patch(
@@ -3615,6 +3704,33 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         )
         assert alog2.user == self.user
         assert alog2.action == amo.LOG.CHANGE_LICENSE.id
+
+    def test_custom_license_name_and_text_too_long(self):
+        license_data = {
+            'name': {'en-US': 'ŋ' * 201},
+            'text': {'en-US': 'ŧ' * 75001},
+        }
+        response = self.client.patch(
+            self.url,
+            data={'custom_license': license_data},
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'custom_license': {
+                'name': [
+                    ErrorDetail(
+                        string='Ensure this field has no more than 200 characters.',
+                        code='max_length',
+                    )
+                ],
+                'text': [
+                    ErrorDetail(
+                        string='Ensure this field has no more than 75000 characters.',
+                        code='max_length',
+                    )
+                ],
+            }
+        }
 
     def test_custom_license_from_builtin(self):
         assert self.version.license.builtin != License.OTHER
@@ -6245,6 +6361,26 @@ class TestAddonPreviewViewSet(TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
         assert alog.addonlog_set.get().addon == self.addon
+
+    def test_caption_too_long(self):
+        preview = Preview.objects.create(addon=self.addon)
+        url = reverse_ns(
+            'addon-preview-detail',
+            kwargs={'addon_pk': self.addon.id, 'pk': preview.id},
+            api_version='v5',
+        )
+        data = {'caption': {'en-US': 'ĉ' * 281, 'fr': 'un thíng'}, 'position': 1}
+        self.client.login_api(self.user)
+        response = self.client.patch(url, data=data)
+        assert response.status_code == 400
+        assert response.data == {
+            'caption': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 280 characters.',
+                    code='max_length',
+                )
+            ]
+        }
 
     def test_delete(self):
         preview = Preview.objects.create(addon=self.addon)

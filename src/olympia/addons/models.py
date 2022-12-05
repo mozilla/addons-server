@@ -497,7 +497,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
-    name = TranslatedField()
+    name = TranslatedField(max_length=50)
     default_locale = models.CharField(
         max_length=10, default=settings.LANGUAGE_CODE, db_column='defaultlocale'
     )
@@ -512,15 +512,15 @@ class Addon(OnChangeMixin, ModelBase):
     )
     icon_type = models.CharField(max_length=25, blank=True, db_column='icontype')
     icon_hash = models.CharField(max_length=8, blank=True, null=True)
-    homepage = TranslatedField()
-    support_email = TranslatedField(db_column='supportemail')
-    support_url = TranslatedField(db_column='supporturl')
-    description = PurifiedField(short=False)
+    homepage = TranslatedField(max_length=255)
+    support_email = TranslatedField(db_column='supportemail', max_length=100)
+    support_url = TranslatedField(db_column='supporturl', max_length=255)
+    description = PurifiedField(short=False, max_length=15000)
 
-    summary = LinkifiedField()
-    developer_comments = PurifiedField(db_column='developercomments')
-    eula = PurifiedField()
-    privacy_policy = PurifiedField(db_column='privacypolicy')
+    summary = LinkifiedField(max_length=250)
+    developer_comments = PurifiedField(db_column='developercomments', max_length=3000)
+    eula = PurifiedField(max_length=350000)
+    privacy_policy = PurifiedField(db_column='privacypolicy', max_length=150000)
 
     average_rating = models.FloatField(
         max_length=255, default=0, null=True, db_column='averagerating'
@@ -2125,7 +2125,7 @@ class DeniedGuid(ModelBase):
 class Preview(BasePreview, ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, related_name='previews', on_delete=models.CASCADE)
-    caption = TranslatedField()
+    caption = TranslatedField(max_length=280)
     position = models.IntegerField(default=0)
     sizes = models.JSONField(default=dict)
 

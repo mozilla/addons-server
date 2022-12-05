@@ -29,6 +29,7 @@ from olympia.addons.serializers import (
 )
 from olympia.addons.models import AddonReviewerFlags
 from olympia.api.fields import ReverseChoiceField, SplitField
+from olympia.api.serializers import AMOModelSerializer
 from olympia.users.models import UserProfile
 from olympia.files.utils import get_sha256
 from olympia.files.models import File, FileValidation
@@ -38,7 +39,7 @@ from olympia.git.utils import AddonGitRepository, get_mime_type_for_blob
 from olympia.lib import unicodehelper
 
 
-class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
+class AddonReviewerFlagsSerializer(AMOModelSerializer):
     class Meta:
         model = AddonReviewerFlags
         fields = (
@@ -275,7 +276,7 @@ class FileEntriesDiffMixin(FileEntriesMixin):
 
 # NOTE: Because of caching, this serializer cannot be reused and must be
 # created for each file. It cannot be used with DRF's many=True option.
-class FileInfoSerializer(serializers.ModelSerializer, FileEntriesMixin):
+class FileInfoSerializer(AMOModelSerializer, FileEntriesMixin):
     content = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
@@ -535,7 +536,7 @@ class AddonCompareVersionSerializer(
         pass
 
 
-class CannedResponseSerializer(serializers.ModelSerializer):
+class CannedResponseSerializer(AMOModelSerializer):
     # Title is actually more fitting than the internal "name"
     title = serializers.CharField(source='name')
     category = serializers.SerializerMethodField()
@@ -548,7 +549,7 @@ class CannedResponseSerializer(serializers.ModelSerializer):
         return amo.CANNED_RESPONSE_CATEGORY_CHOICES[obj.category]
 
 
-class DraftCommentSerializer(serializers.ModelSerializer):
+class DraftCommentSerializer(AMOModelSerializer):
     user = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
         BaseUserSerializer(),

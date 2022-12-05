@@ -2,6 +2,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from olympia.amo.forms import AMOModelForm
+
 from .models import Block, BlocklistSubmission
 from .utils import splitlines
 
@@ -69,7 +71,7 @@ class MultiAddForm(MultiGUIDInputForm):
             raise ValidationError(errors)
 
 
-class BlocklistSubmissionForm(forms.ModelForm):
+class BlocklistSubmissionForm(AMOModelForm):
     existing_min_version = forms.fields.CharField(
         widget=forms.widgets.HiddenInput, required=False
     )

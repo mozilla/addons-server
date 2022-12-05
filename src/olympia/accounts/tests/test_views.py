@@ -1417,6 +1417,14 @@ class TestAccountViewSetUpdate(TestCase):
             'biography': ['No links are allowed.']
         }
 
+    def test_biography_too_long(self):
+        self.client.login_api(self.user)
+        response = self.patch(data={'biography': 'ä' * 256})
+        assert response.status_code == 400
+        assert json.loads(force_str(response.content)) == {
+            'biography': ['Ensure this field has no more than 255 characters.']
+        }
+
     def test_display_name_validation(self):
         self.client.login_api(self.user)
         response = self.patch(data={'display_name': 'a'})

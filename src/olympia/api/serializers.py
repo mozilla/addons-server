@@ -6,10 +6,15 @@ from django.conf import settings
 from elasticsearch_dsl.response.hit import Hit
 from rest_framework import serializers
 
+from olympia.amo.utils import BaseModelSerializerAndFormMixin
 from olympia.zadmin.models import get_config
 
 
-class BaseESSerializer(serializers.ModelSerializer):
+class AMOModelSerializer(BaseModelSerializerAndFormMixin, serializers.ModelSerializer):
+    pass
+
+
+class BaseESSerializer(AMOModelSerializer):
     """
     A base deserializer that handles ElasticSearch data for a specific model.
 

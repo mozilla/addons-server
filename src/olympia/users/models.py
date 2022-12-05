@@ -159,7 +159,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     averagerating = models.FloatField(null=True)
     # biography can (and does) contain html and other unsanitized content.
     # It must be cleaned before display.
-    biography = models.TextField(blank=True, null=True)
+    biography = models.CharField(blank=True, null=True, max_length=255)
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     homepage = models.URLField(max_length=255, blank=True, default='')

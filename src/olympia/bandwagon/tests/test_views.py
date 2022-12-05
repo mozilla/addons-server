@@ -422,6 +422,17 @@ class CollectionViewSetDataMixin:
             'description': ['No links are allowed.']
         }
 
+    def test_name_and_description_too_long(self):
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(description={'en-US': 'ŷ' * 281}, name={'fr': '€' * 51})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'description': ['Ensure this field has no more than 280 characters.'],
+            'name': ['Ensure this field has no more than 50 characters.'],
+        }
+
     def test_slug_valid(self):
         self.client.login_api(self.user)
         data = dict(self.data)
@@ -1379,6 +1390,17 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         }
         response = self.send(self.url, data)
         self.check_response(response, notes='')
+
+    def test_notes_too_long(self):
+        self.client.login_api(self.user)
+        data = {
+            'notes': {'en-US': 'ð' * 281},
+        }
+        response = self.send(self.url, data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'notes': ['Ensure this field has no more than 280 characters.']
+        }
 
     def test_cant_change_addon(self):
         self.client.login_api(self.user)

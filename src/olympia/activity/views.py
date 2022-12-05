@@ -18,7 +18,10 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.activity.serializers import ActivityLogSerializer
+from olympia.activity.serializers import (
+    ActivityLogSerializer,
+    ActivityLogSerializerForComments,
+)
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
     action_from_user,
@@ -92,9 +95,11 @@ class VersionReviewNotesViewSet(
             raise exceptions.ParseError(
                 gettext('Only latest versions of addons can have notes added.')
             )
+        serializer = ActivityLogSerializerForComments(data=request.data)
+        serializer.is_valid(raise_exception=True)
         activity_object = log_and_notify(
             action_from_user(request.user, version),
-            request.data['comments'],
+            serializer.data['comments'],
             request.user,
             version,
         )

@@ -99,7 +99,11 @@ class Rating(ModelBase):
     )
 
     rating = models.PositiveSmallIntegerField(null=True, choices=RATING_CHOICES)
-    body = models.TextField(db_column='text_body', null=True)
+    # Note that max_length isn't enforced at the database level for TextFields,
+    # but the API serializer is set to obey it.
+    body = models.TextField(
+        blank=True, db_column='text_body', null=True, max_length=4000
+    )
     ip_address = models.CharField(max_length=45, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)

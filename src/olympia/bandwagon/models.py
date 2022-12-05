@@ -27,13 +27,13 @@ class Collection(ModelBase):
     id = PositiveAutoField(primary_key=True)
 
     uuid = models.UUIDField(blank=True, unique=True, null=True)
-    name = TranslatedField(require_locale=False)
+    name = TranslatedField(require_locale=False, max_length=50)
     slug = models.CharField(max_length=30, blank=True, null=True)
 
     # description can (and sometimes does) contain html and other unsanitized
     # content. It must be cleaned before display - NoURLsField just strips the
     # URL without doing any escaping.
-    description = NoURLsField(require_locale=False)
+    description = NoURLsField(require_locale=False, max_length=280)
     default_locale = models.CharField(
         max_length=10, default='en-US', db_column='defaultlocale'
     )
@@ -140,7 +140,7 @@ class CollectionAddon(ModelBase):
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
     # category (deprecated: for "Fashion Your Firefox")
-    comments = LinkifiedField(null=True)
+    comments = LinkifiedField(null=True, max_length=280)
     user = models.ForeignKey(UserProfile, null=True, on_delete=models.CASCADE)
 
     ordering = models.PositiveIntegerField(

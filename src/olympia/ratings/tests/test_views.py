@@ -1672,6 +1672,28 @@ class TestRatingViewSetPost(TestCase):
         ]
         assert response.data['version'] == error_string
 
+    def test_post_body_too_long(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'x' * 4001,
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 400
+        error_string = [
+            ErrorDetail(
+                string='Ensure this field has no more than 4000 characters.',
+                code='max_length',
+            )
+        ]
+        assert response.data['body'] == error_string
+
     def test_post_logged_in(self):
         addon_author = user_factory()
         self.addon.addonuser_set.create(user=addon_author)

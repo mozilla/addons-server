@@ -22,6 +22,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.forms import AMOModelForm
 from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.git.models import GitExtractionEntry
@@ -467,7 +468,7 @@ class FrozenAddonAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon',)
 
 
-class ReplacementAddonForm(forms.ModelForm):
+class ReplacementAddonForm(AMOModelForm):
     def clean_path(self):
         path = None
         try:

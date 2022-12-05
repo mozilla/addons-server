@@ -2,11 +2,12 @@ from django.utils.translation import gettext
 
 from rest_framework import serializers
 
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, CommentLog
+from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 
 
-class ActivityLogSerializer(serializers.ModelSerializer):
+class ActivityLogSerializer(AMOModelSerializer):
     action = serializers.SerializerMethodField()
     action_label = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
@@ -57,3 +58,9 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         if request and is_gate_active(request, 'activity-user-shim'):
             data.update({'id': None, 'username': None, 'url': None})
         return data
+
+
+class ActivityLogSerializerForComments(serializers.Serializer):
+    comments = serializers.CharField(
+        required=True, max_length=CommentLog._meta.get_field('comments').max_length
+    )

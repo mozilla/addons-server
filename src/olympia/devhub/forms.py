@@ -89,7 +89,7 @@ def clean_addon_slug(slug, instance):
     return slug
 
 
-class AddonFormBase(TranslationFormMixin, forms.ModelForm):
+class AddonFormBase(TranslationFormMixin, AMOModelForm):
     fields_to_trigger_content_review = ('name', 'summary')
 
     def __init__(self, *args, **kw):
@@ -271,7 +271,7 @@ class AdditionalDetailsForm(AddonFormBase):
     tags = forms.MultipleChoiceField(
         choices=(), widget=forms.CheckboxSelectMultiple, required=False
     )
-    contributions = HttpHttpsOnlyURLField(required=False, max_length=255)
+    contributions = HttpHttpsOnlyURLField(required=False)
 
     class Meta:
         model = Addon
@@ -379,7 +379,7 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
         fields = ()
 
 
-class AuthorForm(forms.ModelForm):
+class AuthorForm(AMOModelForm):
     user = UserEmailField(required=True, queryset=UserProfile.objects.all())
     role = forms.TypedChoiceField(
         required=True,
@@ -794,10 +794,11 @@ class SourceFileInput(forms.widgets.ClearableFileInput):
         return context
 
 
-class VersionForm(WithSourceMixin, forms.ModelForm):
+class VersionForm(TranslationFormMixin, WithSourceMixin, AMOModelForm):
     release_notes = TransField(widget=TransTextarea(), required=False)
     approval_notes = forms.CharField(
-        widget=forms.Textarea(attrs={'rows': 4}), required=False
+        widget=forms.Textarea(attrs={'rows': 4}),
+        required=False,
     )
     source = forms.FileField(required=False, widget=SourceFileInput)
 
@@ -823,7 +824,7 @@ class AppVersionChoiceField(forms.ModelChoiceField):
         return obj.version
 
 
-class CompatForm(forms.ModelForm):
+class CompatForm(AMOModelForm):
     application = forms.TypedChoiceField(
         choices=amo.APPS_CHOICES, coerce=int, widget=forms.HiddenInput
     )
@@ -1115,7 +1116,7 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
         return self.cleaned_data
 
 
-class SourceForm(WithSourceMixin, forms.ModelForm):
+class SourceForm(WithSourceMixin, AMOModelForm):
     source = forms.FileField(required=False, widget=SourceFileInput)
     has_source = forms.ChoiceField(
         choices=(('yes', _('Yes')), ('no', _('No'))), required=True, widget=RadioSelect
@@ -1144,10 +1145,13 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
 
 
 class DescribeForm(AddonFormBase):
-    name = TransField(max_length=50)
-    slug = forms.CharField(max_length=30)
-    summary = TransField(widget=TransTextarea(attrs={'rows': 4}), max_length=250)
-    description = TransField(widget=TransTextarea(attrs={'rows': 6}), min_length=10)
+    name = TransField()
+    slug = forms.CharField()
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}))
+    description = TransField(
+        widget=TransTextarea(attrs={'rows': 6}),
+        min_length=10,
+    )
     is_experimental = forms.BooleanField(required=False)
     requires_payment = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
@@ -1248,14 +1252,14 @@ class CombinedNameSummaryCleanMixin:
 
 
 class DescribeFormContentOptimization(CombinedNameSummaryCleanMixin, DescribeForm):
-    name = TransField(min_length=2)
-    summary = TransField(min_length=2)
+    name = TransField(min_length=2, max_length=255)
+    summary = TransField(min_length=2, max_length=255)
 
 
 class DescribeFormUnlisted(AddonFormBase):
-    name = TransField(max_length=50)
-    slug = forms.CharField(max_length=30)
-    summary = TransField(widget=TransTextarea(attrs={'rows': 4}), max_length=250)
+    name = TransField()
+    slug = forms.CharField()
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}))
     description = TransField(widget=TransTextarea(attrs={'rows': 4}), required=False)
 
     class Meta:
@@ -1270,7 +1274,7 @@ class DescribeFormUnlistedContentOptimization(
     summary = TransField(max_length=68, min_length=2)
 
 
-class PreviewForm(forms.ModelForm):
+class PreviewForm(TranslationFormMixin, AMOModelForm):
     caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)
     upload_hash = forms.CharField(required=False)

@@ -27,9 +27,10 @@ import django.core.mail
 
 from django.conf import settings
 from django.core.cache import cache
+from django.core.exceptions import FieldDoesNotExist
 from django.core.files.storage import FileSystemStorage, default_storage as storage
 from django.core.paginator import EmptyPage, InvalidPage, Paginator as DjangoPaginator
-from django.core.validators import ValidationError, validate_slug
+from django.core.validators import MaxLengthValidator, ValidationError, validate_slug
 from django.forms.fields import Field
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirectBase
@@ -56,6 +57,7 @@ from django_statsd.clients import statsd
 from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
+from rest_framework.utils.formatting import lazy_format
 
 from olympia.core.logger import getLogger
 from olympia.amo import ADDON_ICON_SIZES
@@ -1246,3 +1248,55 @@ def id_to_path(pk, breadth=1):
     # We always append the unpadded pk as the final directory.
     path.append(pk)
     return os.path.join(*path)
+
+
+class BaseModelSerializerAndFormMixin:
+    """
+    Base mixin to apply custom behavior to our ModelForms and ModelSerializers.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.set_max_length_on_fields_where_necessary()
+
+    def set_max_length_on_fields_where_necessary(self):
+        """
+        Automatically set max_length and associated validator on fields that
+        map to a model field where it's already set.
+
+        Allow declaring custom fields without having to re-declare the same
+        max_length for those fields.
+
+        Should be called at __init__() time."""
+        for field_name, field in self.fields.items():
+            if getattr(field, 'read_only', False):
+                continue
+            source = getattr(field, 'source', field_name)
+            if getattr(field, 'max_length', None) is None and self.Meta.model:
+                try:
+                    model_field = self.Meta.model._meta.get_field(source)
+                except FieldDoesNotExist:
+                    continue
+                if (max_length := getattr(model_field, 'max_length', None)) is not None:
+                    field.max_length = max_length
+                    # Normally setting max_length on the field would be enough,
+                    # but because we're late, after the field's __init__(), we
+                    # also need to convert that into a validator ourselves if
+                    # the field requires it. Unfortunately some fields
+                    # (FileField) do not work like that and instead deal with
+                    # max_length dynamically, with a custom error message that
+                    # is generated dynamically, so we need to avoid those.
+                    # # If a compatible error message for max_length is set, or
+                    # no message at all, we're good.
+                    message = getattr(field, 'error_messages', {}).get('max_length')
+                    if message is None or re.findall(r'\{.*?\}', str(message)) == [
+                        '{max_length}'
+                    ]:
+                        if message:
+                            message = lazy_format(
+                                field.error_messages['max_length'],
+                                max_length=field.max_length,
+                            )
+                        field.validators.append(
+                            MaxLengthValidator(field.max_length, message=message)
+                        )
