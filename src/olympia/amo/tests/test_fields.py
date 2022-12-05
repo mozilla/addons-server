@@ -46,6 +46,8 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
             assert self.field.clean('https://test.[com')
 
     def test_with_domain_and_no_scheme(self):
+        # So does that mean default_validators doesn't work ? Is it not passed
+        # down like I thought it would ?
         with self.assertRaises(exceptions.ValidationError):
             self.field.clean('%s' % self.domain)
 
