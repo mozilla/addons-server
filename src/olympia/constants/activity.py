@@ -855,6 +855,16 @@ class UNREJECT_VERSION(_LOG):
     reviewer_review_action = True
 
 
+class LOG_IN_API_TOKEN(_LOG):
+    id = 172
+    # Note: clear_old_user_data cron would delete the IPLog when needed, so we
+    # can keep the activity log, it just won't have any IP associated with it.
+    keep = True
+    admin_event = True
+    store_ip = True
+    format = _('{user} authenticated through an API token.')
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

@@ -213,6 +213,12 @@ class TestLoginUserAndRegisterUser(TestCase):
             ActivityLog.objects.filter(user=self.user, action=amo.LOG.LOG_IN.id).count()
             == 1
         )
+        assert (
+            ActivityLog.objects.filter(
+                user=self.user, action=amo.LOG.LOG_IN_API_TOKEN.id
+            ).count()
+            == 0
+        )
         assert IPLog.objects.all().count() == 1
         assert IPLog.objects.get().ip_address_binary == IPv4Address('8.8.8.8')
 

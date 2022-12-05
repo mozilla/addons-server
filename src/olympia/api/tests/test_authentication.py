@@ -17,8 +17,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from olympia import core
+from olympia import amo, core
 from olympia.accounts.verify import IdentificationError
+from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClientSessionID,
@@ -73,6 +74,12 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
         assert user == self.user
         assert user.last_login_ip == '15.16.23.42'
         self.assertCloseToNow(user.last_login)
+        assert (
+            ActivityLog.objects.filter(
+                action=amo.LOG.LOG_IN_API_TOKEN.id, user=user
+            ).count()
+            == 1
+        )
 
     def test_authenticate_header(self):
         request = self.factory.post('/api/v4/whatever/')
