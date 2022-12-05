@@ -1219,7 +1219,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
 
     def test_fields_max_length(self):
         data = {
-            'name': {'fr': 'é' * 51},
+            'name': {'fr': 'é' * 51, 'en-US': 'some english name'},
             'summary': {'en-US': 'a' * 251},
         }
         response = self.request(**data)

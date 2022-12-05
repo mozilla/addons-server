@@ -497,7 +497,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
-    name = TranslatedField()
+    name = TranslatedField(max_length=50)
     default_locale = models.CharField(
         max_length=10, default=settings.LANGUAGE_CODE, db_column='defaultlocale'
     )
@@ -517,7 +517,7 @@ class Addon(OnChangeMixin, ModelBase):
     support_url = TranslatedField(db_column='supporturl', max_length=255)
     description = PurifiedField(short=False, max_length=15000)
 
-    summary = LinkifiedField()
+    summary = LinkifiedField(max_length=250)
     developer_comments = PurifiedField(db_column='developercomments', max_length=3000)
     eula = PurifiedField(max_length=350000)
     privacy_policy = PurifiedField(db_column='privacypolicy', max_length=150000)
