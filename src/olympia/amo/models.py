@@ -7,8 +7,9 @@ from urllib.parse import urljoin
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.db.models import Lookup
 from django.db.models.expressions import Func
-from django.db.models.fields import CharField
+from django.db.models.fields import CharField, Field
 from django.db.models.fields.related_descriptors import ManyToManyDescriptor
 from django.db.models.query import ModelIterable
 from django.urls import resolve, reverse
@@ -24,6 +25,21 @@ from olympia.translations.hold import save_translations
 
 
 log = olympia.core.logger.getLogger('z.addons')
+
+
+@Field.register_lookup
+class Like(Lookup):
+    lookup_name = 'like'
+
+    def as_sql(self, compiler, connection):
+        lhs_sql, params = self.process_lhs(compiler, connection)
+        rhs_sql, rhs_params = self.process_rhs(compiler, connection)
+        params.extend(rhs_params)
+        # This looks scarier than it is: rhs_sql should to resolve to '%s',
+        # lhs_sql to the query before this part. The params are isolated and
+        # will be passed to the database client code separately, ensuring
+        # everything is escaped correctly.
+        return '%s LIKE %s' % (lhs_sql, rhs_sql), params
 
 
 @contextlib.contextmanager
