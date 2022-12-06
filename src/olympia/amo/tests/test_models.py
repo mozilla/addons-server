@@ -470,3 +470,20 @@ class TestFilterableManyToManyField(TestCase):
         assert list(self.twinkle_twinkle.performers.all()) == [self.bob]
         # But Joe is still on the other song
         assert list(self.humpty_dumpty.performers.all()) == [self.sue, self.joe]
+
+
+class TestLikeLookup(TestCase):
+    def test_basic(self):
+        song = Song.objects.create(name='ThisIsAName')
+        qs = Song.objects.filter(name__like='This%aname')
+        assert qs.get() == song
+        assert qs.query.sql_with_params() == (
+            # 2 different kinds of `%`:
+            # - the first one, `%s` in the query itself, is where mysqlclient
+            #   will insert the parameter
+            # - the second one, in the params, is the wildcard for the LIKE
+            #   query
+            'SELECT `m2m_testapp_song`.`id`, `m2m_testapp_song`.`name` '
+            'FROM `m2m_testapp_song` WHERE `m2m_testapp_song`.`name` LIKE %s',
+            ('This%aname',),
+        )

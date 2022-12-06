@@ -47,20 +47,68 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_delete', args=(self.user.pk,)
         )
 
-    def test_search_for_multiple_users(self):
+    def test_search_by_email_simple(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         another_user = user_factory()
         response = self.client.get(
             self.list_url,
-            {'q': f'{self.user.pk},{another_user.pk},foobaa'},
+            {'q': self.user.email},
+            follow=True,
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(self.user.pk) in doc('#result_list').text()
+        assert str(another_user.pk) not in doc('#result_list').text()
+
+    def test_search_by_email_like(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        another_user = user_factory(email='someone@notzilla.org')
+        response = self.client.get(
+            self.list_url,
+            {'q': 'some*@notzilla.org'},
+            follow=True,
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(another_user.pk) in doc('#result_list').text()
+        assert str(self.user.pk) not in doc('#result_list').text()
+        assert str(user.pk) not in doc('#result_list').text()
+
+    def test_search_by_email_multiple(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        another_user = user_factory()
+        response = self.client.get(
+            self.list_url,
+            {'q': f'{self.user.email},{another_user.email},foobaa'},
             follow=True,
         )
         assert response.status_code == 200
         doc = pq(response.content)
         assert str(self.user.pk) in doc('#result_list').text()
         assert str(another_user.pk) in doc('#result_list').text()
+        assert str(user.pk) not in doc('#result_list').text()
+
+    def test_search_by_email_multiple_like(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        another_user = user_factory(email='someone@notzilla.com')
+        response = self.client.get(
+            self.list_url,
+            {'q': 'some*@mozilla.com,*@notzilla.*,foobaa'},
+            follow=True,
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(user.pk) in doc('#result_list').text()
+        assert str(another_user.pk) in doc('#result_list').text()
+        assert str(self.user.pk) not in doc('#result_list').text()
 
     def test_search_for_multiple_user_ids(self):
         """Test the optimization when just searching for matching ids."""

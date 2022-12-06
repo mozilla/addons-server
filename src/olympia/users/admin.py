@@ -63,11 +63,14 @@ class GroupUserInline(admin.TabularInline):
 @admin.register(UserProfile)
 class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     list_display = ('__str__', 'email', 'last_login', 'is_public', 'deleted')
-    search_fields = ('=id', '^email', '^username')
-    # A custom ip address search is implemented in get_search_results() using
-    # IPLog. It sets an annotation that we can then use in the
-    # custom `known_ip_adresses` method referenced in the line below, which
-    # is added to the list_display fields for IP searches.
+    # pk and IP address search are supported without needing to specify them in
+    # search_fields (see `CommaSearchInAdminMixin.get_search_results()` and
+    # `get_search_id_field()` as well as `get_search_results()` below)
+    search_fields = ('email__like',)
+    # get_search_results() below searches using `IPLog`. It sets an annotation
+    # that we can then use in the custom `known_ip_adresses` method referenced
+    # in the line below, which is added to the` list_display` fields for IP
+    # searches.
     extra_list_display_for_ip_searches = ('known_ip_adresses',)
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
@@ -264,6 +267,8 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             # duplicates and avoid doing a DISTINCT.
             may_have_duplicates = False
         else:
+            # We support `*` as a wildcard character for `email__like` lookup.
+            search_term = search_term.replace('*', '%')
             queryset, may_have_duplicates = super().get_search_results(
                 request,
                 queryset,
