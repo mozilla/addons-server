@@ -381,6 +381,8 @@ class TestPreviewForm(TestCase):
         form = forms.PreviewForm(
             {'caption': 'û' * 281, 'upload_hash': name, 'position': 1}
         )
+        assert form.fields['caption'].max_length == 280
+        assert form.fields['caption'].widget.attrs['maxlength'] == '280'
         assert not form.is_valid()
         assert form.errors == {
             'caption': ['Ensure this value has at most 280 characters (it has 281).']
@@ -605,6 +607,8 @@ class TestDescribeForm(TestCase):
             request=self.request,
             instance=Addon.objects.get(),
         )
+        assert form.fields['support_url'].max_length == 255
+        assert form.fields['support_url'].widget.attrs['maxlength'] == '255'
         assert not form.is_valid()
         assert form.errors['support_url'] == [
             'Enter a valid URL.',
@@ -617,6 +621,8 @@ class TestDescribeForm(TestCase):
             request=self.request,
             instance=Addon.objects.get(),
         )
+        assert form.fields['support_email'].max_length == 100
+        assert form.fields['support_email'].widget.attrs['maxlength'] == '100'
         assert not form.is_valid()
         assert form.errors['support_email'] == [
             'Ensure this value has at most 100 characters (it has 101).',
@@ -735,6 +741,8 @@ class TestDescribeForm(TestCase):
             request=self.request,
             instance=delicious,
         )
+        assert form.fields['description'].max_length == 15000
+        assert form.fields['description'].widget.attrs['maxlength'] == '15000'
         assert not form.is_valid()
         assert form.errors == {
             'description': [
@@ -982,6 +990,8 @@ class TestAdditionalDetailsForm(TestCase):
             request=self.request,
             instance=self.addon,
         )
+        assert form.fields['homepage'].max_length == 255
+        assert form.fields['homepage'].widget.attrs['maxlength'] == '255'
         assert not form.is_valid()
         assert form.errors['homepage'] == [
             'Enter a valid URL.',
@@ -1079,6 +1089,8 @@ class TestAddonFormTechnical(TestCase):
             instance=addon,
             request=request,
         )
+        assert form.fields['developer_comments'].max_length == 3000
+        assert form.fields['developer_comments'].widget.attrs['maxlength'] == '3000'
         assert not form.is_valid()
         assert form.errors == {
             'developer_comments': [

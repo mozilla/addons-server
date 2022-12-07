@@ -127,7 +127,8 @@
             <div class="dev-review-reply">
               <form class="dev-review-reply-form" action="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
                     data-session-id="{{ session_id }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
-                  <textarea name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
+                  {# This is not a django form, an XHR goes through to the form action on submit #}
+                  <textarea maxlength="{{ comments_maxlength }}" name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
                   <button type="submit" class="submit" >{{ _('Reply') }}</button>
               </form>
             </div>
