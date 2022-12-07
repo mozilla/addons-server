@@ -193,6 +193,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json float ratings.average: The average user rating for the add-on.
     :>json float ratings.bayesian_average: The bayesian average user rating for the add-on.
     :>json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
+    :>json boolean requires_sensitive_data_access: Does the add-on have permissions that can read/modify sensitive user data.
     :>json string review_url: The URL to the reviewer review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.

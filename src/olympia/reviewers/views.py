@@ -509,7 +509,8 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                 # Require approval of WebExt experiments.
                 Q(**{'files.is_experiment': True}) |
                 Q(**{'files.is_restart_required': True}) |
-                Q(**{'addons_addonreviewerflags.auto_approval_disabled': True})
+                Q(**{'addons_addonreviewerflags.auto_approval_disabled': True}) |
+                Q(**{'addons_addonreviewerflags.needs_sensitive_data_access_review': True})
             )
 
     order_by = request.GET.get('sort', TableObj.default_order_by())

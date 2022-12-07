@@ -11,7 +11,7 @@ from olympia.addons.tasks import (
     delete_obsolete_applicationsversions,
     find_inconsistencies_between_es_and_db,
     migrate_legacy_dictionaries_to_webextension,
-    migrate_lwts_to_static_themes)
+    migrate_lwts_to_static_themes, migrate_addons_that_require_sensitive_data_access)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -88,6 +88,14 @@ tasks = {
               status=amo.STATUS_PUBLIC,
               disabled_by_user=False,
               _current_version__files__is_webextension=False),
+        ],
+    },
+    'migrate_addons_that_require_sensitive_data_access': {
+        'method': migrate_addons_that_require_sensitive_data_access,
+        'qs': [
+            Q(type=amo.ADDON_EXTENSION,
+              appsupport__app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id),
+              _current_version__files__is_webextension=True),
         ],
     },
 }

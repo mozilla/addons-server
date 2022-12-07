@@ -1507,6 +1507,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'has_auto_approval_disabled': False,
             'is_locked': False,
+            'has_sensitive_data_access': False,
         }
 
     def test_create_summary_no_files(self):
@@ -1522,6 +1523,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'is_locked': True,
             'has_auto_approval_disabled': False,
+            'has_sensitive_data_access': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -1532,6 +1534,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'is_locked': True,
             'has_auto_approval_disabled': False,
+            'has_sensitive_data_access': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1541,6 +1544,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'is_locked': False,
             'has_auto_approval_disabled': False,
+            'has_sensitive_data_access': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -1550,6 +1554,7 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'is_locked': False,
             'has_auto_approval_disabled': False,
+            'has_sensitive_data_access': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
@@ -1560,6 +1565,18 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {
             'is_locked': False,
             'has_auto_approval_disabled': True,
+            'has_sensitive_data_access': False,
+        }
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
+
+    def test_calculate_verdict_has_sensitive_data_access(self):
+        summary = AutoApprovalSummary.objects.create(
+            version=self.version, has_sensitive_data_access=True)
+        info = summary.calculate_verdict()
+        assert info == {
+            'is_locked': False,
+            'has_auto_approval_disabled': False,
+            'has_sensitive_data_access': True,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1567,11 +1584,13 @@ class TestAutoApprovalSummary(TestCase):
         verdict_info = {
             'is_locked': True,
             'has_auto_approval_disabled': True,
+            'has_sensitive_data_access': True,
         }
         result = list(
             AutoApprovalSummary.verdict_info_prettifier(verdict_info))
         assert result == [
             u'Has auto-approval disabled flag set.',
+            u'Has sensitive data access flag set.',
             u'Is locked by a reviewer.',
         ]
 

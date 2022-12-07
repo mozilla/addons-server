@@ -2084,3 +2084,128 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
 
     def test_no_welcome_email_if_unlisted(self):
         pass
+
+class TestSubmitWithSensitiveDataAccess(UploadTest, TestCase):
+    fixtures = ['base/users']
+
+    def setUp(self):
+        super(TestSubmitWithSensitiveDataAccess, self).setUp()
+
+
+        # Commented out until test fixes are merged
+        #create_default_webext_appversion()
+        # Inlined until test fixes are merged
+        from olympia.applications.models import AppVersion
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='60.0')  # Default Min Version
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='102.0') # Targeted Max Version
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='*')
+
+        self.upload = self.get_upload('webextension_sda.zip')
+        assert self.client.login(email='regular@mozilla.com')
+        self.client.post(reverse('devhub.submit.agreement'))
+
+        self.version_url = reverse('devhub.submit.version.upload',
+                           args=['sensitive-data-access-test', 'listed'])
+
+
+    def post(self, upload_data=None, compatible_apps=None, expect_errors=False,
+             listed=True, status_code=200, url=None, extra_kwargs=None):
+        if compatible_apps is None:
+            compatible_apps = [amo.THUNDERBIRD]
+
+        upload_data = upload_data or self.upload
+
+        data = {
+            'upload': upload_data.uuid.hex,
+            'compatible_apps': [p.id for p in compatible_apps]
+        }
+        url = url or reverse('devhub.submit.upload',
+                             args=['listed' if listed else 'unlisted'])
+        response = self.client.post(
+            url, data, follow=True, **(extra_kwargs or {}))
+        assert response.status_code == status_code
+        if not expect_errors:
+            # Show any unexpected form errors.
+            if response.context and 'new_addon_form' in response.context:
+                assert (
+                    response.context['new_addon_form'].errors.as_text() == '')
+        return response
+
+    def upload_addon(self, filename=None):
+        """Initial upload of the addon"""
+
+        if filename is None:
+            filename = self.upload
+        else:
+            filename = self.get_upload(filename)
+
+        # Adds the messagesRead permission (permission = ['messagesRead'])
+        response = self.post(upload_data=filename)
+        assert response.status_code == 200
+        return Addon.objects.get()
+
+    def upload_version(self, filename):
+        """Uploads a new version based on the initial addon"""
+        response = self.post(upload_data=self.get_upload(filename), url=self.version_url)
+        assert response.status_code == 200
+        return Addon.objects.get()
+
+    def test_extension_with_messagesRead_permission_has_sensitive_data_access(self):
+        """Ensure that our initial upload includes the sensitive data access flag due to messagesRead."""
+        assert Addon.objects.count() == 0
+        addon = self.upload_addon()
+        assert addon.needs_sensitive_data_access_review == True
+        assert addon.requires_sensitive_data_access == True
+
+    def test_extension_version_without_messagesRead_permission(self):
+        """Ensure removing messagesRead in a version update does not remove the sensitive data access flag."""
+        # Add our initial version with sensitive data use enabled
+        assert Addon.objects.count() == 0
+        addon = self.upload_addon()
+        assert addon.needs_sensitive_data_access_review == True
+        assert addon.requires_sensitive_data_access == True
+
+        # Removes the messagesRead permission (permission = [])
+        addon = self.upload_version('webextension_sda_v2.zip')
+        assert addon.needs_sensitive_data_access_review == True
+        assert addon.requires_sensitive_data_access == True
+
+    def test_extension_version_with_sensitive_data_access_and_exfiltrate(self):
+        """Ensure that adding the `exfiltrate` permission removes the sensitive data access flag."""
+        # Add our initial version with sensitive data use enabled
+        assert Addon.objects.count() == 0
+        addon = self.upload_addon()
+        assert addon.needs_sensitive_data_access_review == True
+        assert addon.requires_sensitive_data_access == True
+
+        # Adds exfiltrate permission (permission = ['exfiltrate'])
+        addon = self.upload_version('webextension_sda_v3.zip')
+        assert addon.needs_sensitive_data_access_review == False
+        assert addon.requires_sensitive_data_access == True
+
+    def test_extension_version_update_without_exfiltrate(self):
+        """Ensure that previously having the `exfiltrate` permission, does not influence the current sensitive data access flag."""
+        # Add our initial version with sensitive data use enabled
+        assert Addon.objects.count() == 0
+        addon = self.upload_addon()
+        assert addon.needs_sensitive_data_access_review == True
+        assert addon.requires_sensitive_data_access == True
+
+        # Adds exfiltrate permission (permission = ['exfiltrate'])
+        addon = self.upload_version('webextension_sda_v3.zip')
+        assert addon.needs_sensitive_data_access_review == False
+        assert addon.requires_sensitive_data_access == True
+
+        # Removes exfiltrate permission (permission = [])
+        addon = self.upload_version('webextension_sda_v4.zip')
+        assert addon.needs_sensitive_data_access_review == True
+        assert addon.requires_sensitive_data_access == True
+
+    def test_extension_no_sensitive_permissions(self):
+        assert Addon.objects.count() == 0
+        addon = self.upload_addon('webextension_no_sda.zip')
+        assert addon.needs_sensitive_data_access_review == False
+        assert addon.requires_sensitive_data_access == False

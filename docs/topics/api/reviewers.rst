@@ -22,7 +22,7 @@ sent when a new listed version is submitted on a particular add-on.
         Requires authentication and the current user to have any
         reviewer-related permission.
 
-.. http:post::/api/v4/reviewers/addon/(int:addon_id)/subscribe/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/subscribe/
 
 -----------
 Unsubscribe
@@ -35,7 +35,7 @@ sent when a new listed version is submitted on a particular add-on.
         Requires authentication and the current user to have any
         reviewer-related permission.
 
-.. http:post::/api/v4/reviewers/addon/(int:addon_id)/unsubscribe/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/unsubscribe/
 
 -------
 Disable
@@ -44,10 +44,9 @@ Disable
 This endpoint allows you to disable the public listing for an add-on.
 
     .. note::
-       Requires authentication and the current user to have ``Reviews:Admin``
-        permission.
+       Requires authentication and the current user to have ``Reviews:Admin`` permission.
 
-.. http:post::/api/v4/reviewers/addon/(int:addon_id)/disable/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/disable/
 
 ------
 Enable
@@ -62,7 +61,7 @@ of its versions.
         Requires authentication and the current user to have ``Reviews:Admin``
         permission.
 
-.. http:post::/api/v4/reviewers/addon/(int:addon_id)/enable/
+.. http:post:: /api/v4/reviewers/addon/(int:addon_id)/enable/
 
 
 -----
@@ -76,9 +75,10 @@ add-on.
        Requires authentication and the current user to have ``Reviews:Admin``
        permission.
 
-.. http:patch::/api/v4/reviewers/addon/(int:addon_id)/flags/
+.. http:patch:: /api/v4/reviewers/addon/(int:addon_id)/flags/
 
     :>json boolean auto_approval_disabled: Boolean indicating whether auto approval are disabled on an add-on or not. When it's ``true``, new versions for this add-on will make it appear in the regular reviewer queues instead of being auto-approved.
     :>json string|null pending_info_request: Deadline date for the pending info request as a string, or ``null``.
     :>json boolean needs_admin_code_review: Boolean indicating whether the add-on needs its code to be reviewed by an admin or not.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
+    :>json boolean needs_sensitive_access_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not. This is related to the `Addon.require_sensitive_data_access` property.

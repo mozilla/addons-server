@@ -172,7 +172,7 @@ class Version(OnChangeMixin, ModelBase):
         """
         assert parsed_data is not None
 
-        from olympia.addons.models import AddonFeatureCompatibility
+        from olympia.addons.models import ( AddonFeatureCompatibility, AddonReviewerFlags )
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
@@ -258,6 +258,11 @@ class Version(OnChangeMixin, ModelBase):
                 version.all_files[0].file_path, theme_data, version_root)
             generate_static_theme_preview(
                 theme_data, version_root, version.pk)
+
+
+        # Adjust our `needs_sensitive_data_access_review` flag accordingly.
+        AddonReviewerFlags.objects.update_or_create(
+            addon=addon, defaults={'needs_sensitive_data_access_review': addon.check_and_update_sensitive_permissions()})
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
