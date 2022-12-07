@@ -1,5685 +1,4676 @@
 {
     "ach": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "af": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "an": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ar": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
-    "as": {
-        "54.0a2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "60.2.1esr": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "62.0.2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "63.0b8": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }
-    }, 
+    },
     "ast": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "az": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "be": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "bg": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
-    "bn-BD": {
-        "54.0a2": {
+    },
+    "bn": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
-    "bn-IN": {
-        "54.0a2": {
+    },
+    "bo": {
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "60.2.1esr": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "62.0.2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "63.0b8": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "br": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
+    "brx": {
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
     "bs": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ca": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
+    "ca-valencia": {
+        "102.6.0esr": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "108.0.1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "109.0b5": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
     "cak": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
-    "crh": {
-        "64.0a1": {
+    },
+    "ckb": {
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "cs": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "cy": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "da": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "de": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "dsb": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "el": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "en-CA": {
-        "62.0.2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "64.0a1": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "en-GB": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "en-US": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
-    "en-ZA": {
-        "54.0a2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "60.2.1esr": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "62.0.2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "63.0b8": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }
-    }, 
+    },
     "eo": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "es-AR": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "es-CL": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "es-ES": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "es-MX": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "et": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "eu": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "fa": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ff": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "fi": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "fr": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
+    "fur": {
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
     "fy-NL": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ga-IE": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "gd": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "gl": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "gn": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "gu-IN": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "he": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "hi-IN": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "hr": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "hsb": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "hu": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "hy-AM": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
+    "hye": {
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
     "ia": {
-        "60.2.1esr": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "64.0a1": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "id": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "is": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "it": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ja": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ka": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "kab": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "kk": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "km": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "kn": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ko": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "lij": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "lo": {
-        "64.0a1": {
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "lt": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ltg": {
-        "54.0a2": {
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "lv": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
-    "mai": {
-        "54.0a2": {
+    },
+    "meh": {
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "60.2.1esr": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "62.0.2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "63.0b8": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "mk": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
-    "ml": {
-        "54.0a2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "60.2.1esr": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "62.0.2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "63.0b8": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }
-    }, 
+    },
     "mr": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ms": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "my": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "nb-NO": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ne-NP": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "nl": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "nn-NO": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "oc": {
-        "60.2.1esr": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "64.0a1": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }
-    }, 
-    "or": {
-        "54.0a2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "60.2.1esr": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "62.0.2": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "63.0b8": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "pa-IN": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "pl": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "pt-BR": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "pt-PT": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "rm": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ro": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ru": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
+    "sat": {
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
+    "sc": {
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
+    "scn": {
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
+    "sco": {
+        "102.6.0esr": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "108.0.1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "109.0b5": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
     "si": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "sk": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "sl": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "son": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "sq": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "sr": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "sv-SE": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
+    "szl": {
+        "102.6.0esr": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "108.0.1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "109.0b5": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
     "ta": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "te": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
+    "tg": {
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
     "th": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "tl": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "64.0a1": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "109.0b5": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "tr": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
+    "trs": {
+        "102.6.0esr": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "108.0.1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "109.0b5": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        },
+        "110.0a1": {
+            "Linux": {
+                "filesize": 0
+            },
+            "OS X": {
+                "filesize": 0
+            },
+            "Windows": {
+                "filesize": 0
+            }
+        }
+    },
     "uk": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "ur": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "uz": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "vi": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "wo": {
-        "64.0a1": {
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "xh": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "zh-CN": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
         }
-    }, 
+    },
     "zh-TW": {
-        "54.0a2": {
+        "102.6.0esr": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "60.2.1esr": {
+        },
+        "108.0.1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "62.0.2": {
+        },
+        "109.0b5": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }
-        }, 
-        "63.0b8": {
+        },
+        "110.0a1": {
             "Linux": {
                 "filesize": 0
-            }, 
+            },
             "OS X": {
                 "filesize": 0
-            }, 
-            "Windows": {
-                "filesize": 0
-            }
-        }, 
-        "64.0a1": {
-            "Linux": {
-                "filesize": 0
-            }, 
-            "OS X": {
-                "filesize": 0
-            }, 
+            },
             "Windows": {
                 "filesize": 0
             }

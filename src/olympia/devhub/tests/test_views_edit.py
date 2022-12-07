@@ -2,6 +2,7 @@
 import json
 import os
 
+import pytest
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
@@ -273,11 +274,11 @@ class BaseTestEditBasic(BaseTestEdit):
         self.addon.find_latest_version(None).files.update(is_webextension=True)
         self.test_nav_links(show_compat_reporter=False)
 
-    def _feature_addon(self, addon_id=3615):
+    def _feature_addon(self, addon_id=3615, app=amo.FIREFOX):
         c_addon = CollectionAddon.objects.create(
             addon_id=addon_id, collection=Collection.objects.create())
         FeaturedCollection.objects.create(collection=c_addon.collection,
-                                          application=amo.FIREFOX.id)
+                                          application=app.id)
         cache.clear()
 
     @override_switch('akismet-spam-check', active=False)
@@ -1661,7 +1662,7 @@ class StaticMixin(object):
             AddonCategory.objects.filter(addon=addon).delete()
             cache.clear()
             Category.from_static_category(CATEGORIES_BY_ID[300], save=True)
-            Category.from_static_category(CATEGORIES_BY_ID[308], save=True)
+            Category.from_static_category(CATEGORIES_BY_ID[320], save=True)
             VersionPreview.objects.create(version=addon.current_version)
 
 
@@ -1680,12 +1681,12 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
     def test_edit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
         response = self.client.post(
-            self.basic_edit_url, self.get_dict(category=308))
+            self.basic_edit_url, self.get_dict(category=320))
         assert set(response.context['addon'].all_categories) == set(
             self.get_addon().all_categories)
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [308]
+        assert sorted(addon_cats) == [320]
 
     def test_edit_categories_change(self):
         category = Category.objects.get(id=300)
@@ -1693,10 +1694,10 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
         assert sorted(
             [cat.id for cat in self.get_addon().all_categories]) == [300]
 
-        self.client.post(self.basic_edit_url, self.get_dict(category=308))
+        self.client.post(self.basic_edit_url, self.get_dict(category=320))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
-        assert category_ids_new == [308]
+        assert category_ids_new == [320]
         # Check we didn't delete the Category object too!
         assert category.reload()
 
@@ -1709,15 +1710,17 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
 
     def test_edit_categories_add_featured(self):
         """Ensure that categories cannot be changed for featured add-ons."""
-        category = Category.objects.get(id=308)
+        category = Category.objects.get(id=320)
         AddonCategory(addon=self.addon, category=category).save()
-        self._feature_addon(self.addon.id)
+
+        # SingleCategoryForm forces the app to Thunderbird, so ensure we make it featured for Thunderbird!
+        self._feature_addon(self.addon.id, amo.THUNDERBIRD)
 
         response = self.client.post(self.basic_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
 
         # This add-on's categories should not change.
-        assert sorted(addon_cats) == [308]
+        assert sorted(addon_cats) == [320]
         self.assertFormError(
             response, 'cat_form', 'category',
             'Categories cannot be changed while your add-on is featured.')
@@ -1725,7 +1728,7 @@ class TestEditBasicStaticThemeListed(StaticMixin, BaseTestEditBasic,
     def test_edit_categories_add_new_creatured_admin(self):
         """Ensure that admins can change categories for creatured add-ons."""
         assert self.client.login(email='admin@mozilla.com')
-        category = Category.objects.get(id=308)
+        category = Category.objects.get(id=320)
         AddonCategory(addon=self.addon, category=category).save()
         self._feature_addon(self.addon.id)
 
@@ -1821,6 +1824,7 @@ class TestThemeEdit(TestCase):
         doc = pq(response.content)
         assert doc('a.reupload')
 
+    @pytest.mark.xfail(reason="ATN no longer supports submitting new Themes that aren't extensions.")
     def test_color_input_is_empty_at_creation(self):
         self.client.login(email='regular@mozilla.com')
         response = self.client.get(reverse('devhub.themes.submit'))

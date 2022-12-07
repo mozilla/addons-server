@@ -24,7 +24,7 @@ log = olympia.core.logger.getLogger('z.search')
 
 
 def _personas(request):
-    """Handle the request for persona searches."""
+    """Handle the request for static theme, persona (removed), themes (removed) searches. """
 
     initial = dict(request.GET.items())
 

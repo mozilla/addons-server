@@ -8,3 +8,8 @@ services:
   web:
     ports:
       - "8000:8000"
+
+  mysqld:
+    ports:
+      # Expose default port, so we can connect it to for local development
+      - "3306:3306"

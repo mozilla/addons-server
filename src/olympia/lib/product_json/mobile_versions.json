@@ -1,8 +1,8 @@
 {
-  "nightly_version": "64.0a1",
-  "alpha_version": "64.0a1",
-  "beta_version": "63.0b7",
-  "version": "62.0.2",
-  "ios_beta_version": "",
-  "ios_version": "12.1"
+    "alpha_version": "110.0a1",
+    "beta_version": "109.0b3",
+    "ios_beta_version": "",
+    "ios_version": "14.1",
+    "nightly_version": "110.0a1",
+    "version": "108.1.1"
 }

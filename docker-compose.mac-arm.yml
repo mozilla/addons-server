@@ -1,0 +1,114 @@
+version: "2.3"
+
+x-env-mapping: &env
+  environment:
+    - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
+    - CELERY_RESULT_BACKEND=redis://redis:6379/1
+    - DATABASES_DEFAULT_URL=mysql://root:@mysqld/olympia
+    - ELASTICSEARCH_LOCATION=elasticsearch:9200
+    - MEMCACHE_LOCATION=memcached:11211
+    - MYSQL_DATABASE=olympia
+    - MYSQL_ROOT_PASSWORD=docker
+    - OLYMPIA_SITE_URL=http://olympia.test
+    - PYTHONDONTWRITEBYTECODE=1
+    - PYTHONUNBUFFERED=1
+    - RECURSION_LIMIT=10000
+    - TERM=xterm-256color
+
+services:
+  worker: &worker
+    <<: *env
+    image: addons/addons-server
+    command: supervisord -n -c /code/docker/supervisor-celery.conf
+    entrypoint: ./scripts/start-docker.sh
+    volumes:
+      - .:/code
+    extra_hosts:
+     - "olympia.test:127.0.0.1"
+
+  web:
+    <<: *worker
+    command: supervisord -n -c /code/docker/supervisor.conf
+
+  web-tests:
+    <<: *worker
+    tty: true
+
+  nginx:
+    image: addons/addons-nginx
+    volumes:
+      - ./static:/srv/static
+      - ./site-static:/srv/site-static
+      - ./user-media/:/srv/user-media
+
+  memcached:
+    image: memcached:1.4
+
+  mysqld:
+    image: mysql:5.7
+    platform: "linux/amd64"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=olympia
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+    platform: "linux/amd64"
+    environment:
+      # Disable all xpack related features to avoid unrelated logging
+      # in docker logs. https://github.com/mozilla/addons-server/issues/8887
+      # This also avoids us to require authentication for local development
+      # which simplifies the setup.
+      - xpack.security.enabled=false
+      - xpack.monitoring.enabled=false
+      - xpack.graph.enabled=false
+      - xpack.watcher.enabled=false
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      # M1 mac emulation doesn't support this feature
+      - bootstrap.system_call_filter=false
+    mem_limit: 2g
+
+  redis:
+    image: redis:latest #:2.8
+
+  rabbitmq:
+    image: rabbitmq:3.8 #:3.5
+    hostname: olympia
+    expose:
+      - "5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=olympia
+      - RABBITMQ_DEFAULT_PASS=olympia
+      - RABBITMQ_DEFAULT_VHOST=olympia
+
+  autograph:
+    image: mozilla/autograph:2.3.0
+
+  selenium-firefox:
+    <<: *env
+    image: b4handjr/selenium-firefox
+    volumes:
+      - .:/code
+    expose:
+      - "4444"
+    ports:
+      - "5900"
+    shm_size: 2g
+    links:
+      - "addons-frontend:olympia-frontend.test"
+      - "nginx:olympia.test"
+
+  addons-frontend:
+    <<: *env
+    environment:
+      - HOSTNAME=uitests
+      - WEBPACK_SERVER_HOST=olympia-frontend.test
+      - FXA_CONFIG=default
+    image: addons/addons-frontend
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    command: yarn amo:ui-tests
+    links:
+      - "nginx:olympia.test"

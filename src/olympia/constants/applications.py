@@ -22,8 +22,10 @@ class FIREFOX(App):
     short = 'firefox'
     pretty = _(u'Firefox')
     browser = True
+    # Firefox is pretty deeply coded as the main application, so while the current version of Firefox may not support
+    # these types, we'll need them for Thunderbird tests. (That don't directly test Thunderbird functionality.)
     types = [ADDON_EXTENSION, ADDON_THEME, ADDON_DICT, ADDON_SEARCH,
-             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA]
+             ADDON_LPAPP, ADDON_PLUGIN, ADDON_PERSONA, ADDON_STATICTHEME]
     guid = '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'
     min_display_version = 3.0
     # These versions were relabeled and should not be displayed.

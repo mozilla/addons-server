@@ -19,7 +19,7 @@ class Command(BaseCommand):
 
     Usage:
 
-        python manage.py generate_themes <num_themes> [--owner <email>]
+        python manage.py generate_themes <num_themes> [--owner <email>] [--app <name>]
 
     """
 
@@ -32,6 +32,10 @@ class Command(BaseCommand):
             '--owner', action='store', dest='email',
             default='nobody@mozilla.org',
             help="Specific owner's email to be created.")
+        parser.add_argument(
+            '--app', action='store', dest='app_name',
+            default='firefox',
+            help="Specific application targeted by add-ons creation.")
 
     def handle(self, *args, **kwargs):
         if not settings.DEBUG:
@@ -39,6 +43,7 @@ class Command(BaseCommand):
                                'DEBUG setting set to True.')
         num = int(kwargs.get('num'))
         email = kwargs.get('email')
+        app = kwargs.get('app_name')
 
         with translation.override(settings.LANGUAGE_CODE):
-            generate_themes(num, email)
+            generate_themes(num, email, app)

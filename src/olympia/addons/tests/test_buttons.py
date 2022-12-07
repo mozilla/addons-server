@@ -40,6 +40,10 @@ class ButtonTest(TestCase):
         v.version = '2.0.3.8'
         self.addon.current_version = v
 
+        # Mock to always return self.addon.current_version, this needs to be evaluated each time, as some tests
+        # modify self.addon.current_version
+        self.addon.latest_compatible_version = lambda a, b: (self.addon.current_version, True)
+
         self.file = self.get_file(amo.PLATFORM_ALL.id)
         v.all_files = [self.file]
 

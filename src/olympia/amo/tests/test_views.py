@@ -102,22 +102,6 @@ class TestCommon(TestCase):
         if get:
             return UserProfile.objects.get(email=email)
 
-    @override_switch('disable-lwt-uploads', active=False)
-    def test_tools_regular_user_lwt_enabled(self):
-        self.login('regular')
-        r = self.client.get(self.url, follow=True)
-        assert not r.context['request'].user.is_developer
-
-        expected = [
-            ('Tools', '#'),
-            ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
-            ('Developer Hub', reverse('devhub.index')),
-            ('Manage API Keys', reverse('devhub.api_key')),
-        ]
-        check_links(expected, pq(r.content)('#aux-nav .tools a'), verify=False)
-
-    @override_switch('disable-lwt-uploads', active=True)
     def test_tools_regular_user(self):
         self.login('regular')
         r = self.client.get(self.url, follow=True)
@@ -147,7 +131,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
+            ('Submit a New Theme', reverse('devhub.submit.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
@@ -163,7 +147,7 @@ class TestCommon(TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
+            ('Submit a New Theme', reverse('devhub.submit.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -184,7 +168,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
+            ('Submit a New Theme', reverse('devhub.submit.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -204,7 +188,7 @@ class TestCommon(TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
+            ('Submit a New Theme', reverse('devhub.submit.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -230,7 +214,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.themes.submit')),
+            ('Submit a New Theme', reverse('devhub.submit.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),

@@ -27,6 +27,8 @@ class TestWebextExtractPermissions(UploadTest):
         super(TestWebextExtractPermissions, self).setUp()
         for version in ('3.0', '3.6', '3.6.*', '4.0b6'):
             AppVersion(application=amo.FIREFOX.id, version=version).save()
+        for version in ('60.0', '60.*', '*'):
+            AppVersion(application=amo.THUNDERBIRD.id, version=version).save()
         self.platform = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(guid='guid@jetpack',
                                           type=amo.ADDON_EXTENSION,
@@ -35,7 +37,7 @@ class TestWebextExtractPermissions(UploadTest):
         UserProfile.objects.create(pk=settings.TASK_USER_ID)
 
     def test_extract(self):
-        upload = self.get_upload('webextension_no_id.xpi')
+        upload = self.get_upload('webextension_with_id.xpi')
         parsed_data = parse_addon(upload, user=mock.Mock())
         # Remove the permissions from the parsed data so they aren't added.
         pdata_permissions = parsed_data.pop('permissions')
@@ -63,7 +65,7 @@ class TestWebextExtractPermissions(UploadTest):
             cs['matches'] for cs in pdata_cscript] for x in y]
 
     def test_force_extract(self):
-        upload = self.get_upload('webextension_no_id.xpi')
+        upload = self.get_upload('webextension_with_id.xpi')
         parsed_data = parse_addon(upload, user=mock.Mock())
         # change the permissions so we can tell they've been re-parsed.
         parsed_data['permissions'].pop()

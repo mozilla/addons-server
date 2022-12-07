@@ -86,8 +86,9 @@ class TestExtractor(TestCase):
     @mock.patch('olympia.files.utils.os.path.getsize')
     def test_static_theme_max_size(self, getsize_mock):
         getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE
+        data = {"theme": {}, "browser_specific_settings": {"gecko": {"id": "@id"}}}
         manifest = utils.ManifestJSONExtractor(
-            '/fake_path', '{"theme": {}}').parse()
+            '/fake_path', json.dumps(data)).parse()
 
         # Calling to check it doesn't raise.
         assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
@@ -103,7 +104,7 @@ class TestExtractor(TestCase):
 
         # dpuble check only static themes are limited
         manifest = utils.ManifestJSONExtractor(
-            '/fake_path', '{}').parse()
+            '/fake_path', json.dumps({'browser_specific_settings': {'gecko': {'id': '@id'}}})).parse()
         assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
 
 
@@ -135,6 +136,8 @@ class TestRDFExtractor(TestCase):
         assert apps[1].min.version == '42.0'
         assert apps[1].max.version == '45.0'
 
+    @pytest.mark.xfail(reason=("This waffle switch was for the split of AMO (addons.mozilla.org) "
+                               "& ATN (addons.thunderbird.net). And so as the Thunderbird repo, this should pass."))
     @override_switch('disallow-thunderbird-and-seamonkey', active=True)
     def test_apps_disallow_thunderbird_and_seamonkey_waffle(self):
         zip_file = utils.SafeZip(get_addon_file(
@@ -149,19 +152,22 @@ class TestRDFExtractor(TestCase):
 
 class TestManifestJSONExtractor(TestCase):
 
+    def setUp(self):
+        self.addon_guid_dict = {"browser_specific_settings": {"gecko": {"id": "testextension@example.org"}}}
+        self.addon_guid_string = '"browser_specific_settings": {"gecko": {"id": "testextension@example.org"}}'
+
     def parse(self, base_data):
         return utils.ManifestJSONExtractor(
             '/fake_path', json.dumps(base_data)).parse()
 
     def create_appversion(self, name, version):
-        return AppVersion.objects.create(application=amo.APPS[name].id,
-                                         version=version)
+        return AppVersion.objects.get_or_create(application=amo.APPS[name].id, version=version)[0]
 
     def create_webext_default_versions(self):
-        self.create_appversion('firefox', '36.0')  # Incompatible with webexts.
-        self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION)
-        self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MAX_VERSION)
-        self.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
+        self.create_appversion('thunderbird', '36.0')  # Incompatible with webexts.
+        self.create_appversion('thunderbird', amo.DEFAULT_WEBEXT_MAX_VERSION)
+        self.create_appversion('thunderbird', amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD)
+        self.create_appversion('thunderbird', amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD)
 
     def test_instanciate_without_data(self):
         """Without data, we load the data from the file path."""
@@ -185,36 +191,45 @@ class TestManifestJSONExtractor(TestCase):
                 'gecko': {
                     'id': 'some-id'}}})['guid'] == 'some-id'
 
+    @pytest.mark.xfail(reason="ATN requires a guid for each and every extension.")
     def test_name_for_guid_if_no_id(self):
         """Don't use the name for the guid if there is no id."""
         assert self.parse({'name': 'addon-name'})['guid'] is None
 
     def test_type(self):
         """manifest.json addons are always ADDON_EXTENSION."""
-        assert self.parse({})['type'] == amo.ADDON_EXTENSION
+        assert self.parse(self.addon_guid_dict)['type'] == amo.ADDON_EXTENSION
 
     def test_is_restart_required(self):
         """manifest.json addons never requires restart."""
-        assert self.parse({})['is_restart_required'] is False
+        assert self.parse(self.addon_guid_dict)['is_restart_required'] is False
 
     def test_name(self):
+        data = {'name': 'addon-name'}
+        data.update(self.addon_guid_dict)
         """Use name for the name."""
-        assert self.parse({'name': 'addon-name'})['name'] == 'addon-name'
+        assert self.parse(data)['name'] == 'addon-name'
 
     def test_version(self):
+        data = {'version': '23.0.1'}
+        data.update(self.addon_guid_dict)
         """Use version for the version."""
-        assert self.parse({'version': '23.0.1'})['version'] == '23.0.1'
+        assert self.parse(data)['version'] == '23.0.1'
 
     def test_homepage(self):
+        data = {'homepage_url': 'http://my-addon.org'}
+        data.update(self.addon_guid_dict)
         """Use homepage_url for the homepage."""
         assert (
-            self.parse({'homepage_url': 'http://my-addon.org'})['homepage'] ==
+            self.parse(data)['homepage'] ==
             'http://my-addon.org')
 
     def test_summary(self):
+        data = {'description': 'An addon.'}
+        data.update(self.addon_guid_dict)
         """Use description for the summary."""
         assert (
-            self.parse({'description': 'An addon.'})['summary'] == 'An addon.')
+            self.parse(data)['summary'] == 'An addon.')
 
     def test_invalid_strict_min_version(self):
         data = {
@@ -229,10 +244,10 @@ class TestManifestJSONExtractor(TestCase):
             self.parse(data)
         assert (
             exc.value.message ==
-            'Lowest supported "strict_min_version" is 42.0.')
+            'Lowest supported "strict_min_version" is 60.0.')
 
-    def test_strict_min_version_needs_to_be_higher_then_42_if_specified(self):
-        """strict_min_version needs to be higher than 42.0 if specified."""
+    def test_strict_min_version_needs_to_be_higher_then_60_if_specified(self):
+        """strict_min_version needs to be higher than 60.0 if specified."""
         data = {
             'applications': {
                 'gecko': {
@@ -245,74 +260,73 @@ class TestManifestJSONExtractor(TestCase):
             self.parse(data)
         assert (
             exc.value.message ==
-            'Lowest supported "strict_min_version" is 42.0.')
+            'Lowest supported "strict_min_version" is 60.0.')
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
-        firefox_min_version = self.create_appversion('firefox', '47.0')
-        firefox_max_version = self.create_appversion('firefox', '47.*')
+        thunderbird_min_version = self.create_appversion('thunderbird', '60.0')
+        thunderbird_max_version = self.create_appversion('thunderbird', '60.*')
 
         self.create_webext_default_versions()
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '>=47.0',
-                    'strict_max_version': '=47.*',
-                    'id': '@random'
+                    'strict_min_version': '>=60.0',
+                    'strict_max_version': '=60.*',
+                    'id': '@random-2'
                 }
             }
         }
         apps = self.parse(data)['apps']
         assert len(apps) == 1
         app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min == firefox_min_version
-        assert app.max == firefox_max_version
+        assert app.appdata == amo.THUNDERBIRD
+        assert app.min == thunderbird_min_version
+        assert app.max == thunderbird_max_version
 
     def test_apps_use_default_versions_if_none_provided(self):
         """Use the default min and max versions if none provided."""
         self.create_webext_default_versions()
 
-        data = {'applications': {'gecko': {'id': 'some-id'}}}
+        data = {'applications': {'gecko': {'id': '@some-id'}}}
         apps = self.parse(data)['apps']
         assert len(apps) == 1  # Only Firefox for now.
         app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
+        assert app.appdata == amo.THUNDERBIRD
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
         # But if 'browser_specific_settings' is used, it's higher min version.
-        data = {'browser_specific_settings': {'gecko': {'id': 'some-id'}}}
+        data = {'browser_specific_settings': {'gecko': {'id': '@some-id'}}}
         apps = self.parse(data)['apps']
         assert len(apps) == 1  # Only Firefox for now.
         app = apps[0]
-        assert app.appdata == amo.FIREFOX
+        assert app.appdata == amo.THUNDERBIRD
         assert app.min.version == (
-            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
+            amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_is_webextension(self):
-        assert self.parse({})['is_webextension']
+        assert self.parse(self.addon_guid_dict)['is_webextension']
 
     def test_allow_static_theme_waffle(self):
+        data = {'theme': {}}
+        data.update(self.addon_guid_dict)
         manifest = utils.ManifestJSONExtractor(
-            '/fake_path', '{"theme": {}}').parse()
+            '/fake_path', json.dumps(data)).parse()
 
         utils.check_xpi_info(manifest)
 
-        assert self.parse({'theme': {}})['type'] == amo.ADDON_STATICTHEME
+        assert self.parse(data)['type'] == amo.ADDON_STATICTHEME
 
     def test_is_e10s_compatible(self):
-        data = self.parse({})
+        data = self.parse(self.addon_guid_dict)
         assert data['e10s_compatibility'] == amo.E10S_COMPATIBLE_WEBEXTENSION
 
     def test_langpack(self):
         self.create_webext_default_versions()
-        self.create_appversion('firefox', '60.0')
-        self.create_appversion('firefox', '60.*')
-        self.create_appversion('android', '60.0')
-        self.create_appversion('android', '60.*')
-
+        self.create_appversion('thunderbird', '60.0')
+        self.create_appversion('thunderbird', '60.*')
         data = {
             'applications': {
                 'gecko': {
@@ -331,17 +345,18 @@ class TestManifestJSONExtractor(TestCase):
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Langpacks are not compatible with android.
-        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].appdata == amo.THUNDERBIRD
         assert apps[0].min.version == '60.0'
         assert apps[0].max.version == '60.*'
 
     def test_dictionary(self):
         self.create_webext_default_versions()
-        self.create_appversion('firefox', '61.0')
+
         data = {
             'applications': {
                 'gecko': {
-                    'id': '@dict'
+                    'id': '@dict',
+                    'strict_min_version': amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD
                 }
             },
             'dictionaries': {'en-US': '/path/to/en-US.dic'}
@@ -354,9 +369,9 @@ class TestManifestJSONExtractor(TestCase):
         assert parsed_data['target_locale'] == 'en-US'
 
         apps = parsed_data['apps']
-        assert len(apps) == 1  # Dictionaries are not compatible with android.
-        assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == '61.0'
+        assert len(apps) == 1
+        assert apps[0].appdata == amo.THUNDERBIRD
+        assert apps[0].min.version == amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD
         assert apps[0].max.version == '*'
 
     def test_broken_dictionary(self):
@@ -367,7 +382,7 @@ class TestManifestJSONExtractor(TestCase):
             self.parse(data)
 
     def test_extensions_dont_have_strict_compatibility(self):
-        assert self.parse({})['strict_compatibility'] is False
+        assert self.parse(self.addon_guid_dict)['strict_compatibility'] is False
 
     def test_moz_signed_extension_no_strict_compat(self):
         addon = amo.tests.addon_factory()
@@ -427,6 +442,7 @@ class TestManifestJSONExtractor(TestCase):
         with amo.tests.copy_file(fixture, file_obj.file_path):
             utils.parse_xpi(file_obj.file_path)
 
+    @pytest.mark.xfail(reason="ATN requires a guid for each and every extension.")
     def test_apps_use_default_versions_if_applications_is_omitted(self):
         """
         WebExtensions are allowed to omit `applications[/gecko]` and we
@@ -459,22 +475,21 @@ class TestManifestJSONExtractor(TestCase):
         assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_handle_utf_bom(self):
-        manifest = '\xef\xbb\xbf{"manifest_version": 2, "name": "..."}'
+        manifest = '\xef\xbb\xbf{"manifest_version": 2, "name": "...", ' + self.addon_guid_string + '}'
         parsed = utils.ManifestJSONExtractor(None, manifest).parse()
         assert parsed['name'] == '...'
 
     def test_raise_error_if_no_optional_id_support(self):
         """
-        We only support optional ids in Firefox 48+ and will throw an error
-        otherwise.
+        We don't support no optional id support
         """
         self.create_webext_default_versions()
 
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '42.0',
-                    'strict_max_version': '49.0',
+                    'strict_min_version': '60.0',
+                    'strict_max_version': '68.0',
                 }
             }
         }
@@ -484,7 +499,7 @@ class TestManifestJSONExtractor(TestCase):
 
         assert (
             exc.value.message ==
-            'GUID is required for Firefox 47 and below.')
+            'GUID is required for Thunderbird Mail Extensions, including Themes.')
 
     def test_comments_are_allowed(self):
         json_string = """
@@ -493,6 +508,12 @@ class TestManifestJSONExtractor(TestCase):
             "manifest_version": 2,
             "name": "My Extension",
             "version": "versionString",
+            
+            "browser_specific_settings": {
+                "gecko": {
+                  "id": "testextension@example.org"
+                }
+            },
 
             // Recommended
             "default_locale": "en",
@@ -511,7 +532,7 @@ class TestManifestJSONExtractor(TestCase):
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '47.0.0',
+                    'strict_min_version': '60.25.9',
                     'id': '@random'
                 }
             }
@@ -531,11 +552,11 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
             TestManifestJSONExtractorStaticTheme, self).parse(base_data)
 
     def test_type(self):
-        assert self.parse({})['type'] == amo.ADDON_STATICTHEME
+        assert self.parse(self.addon_guid_dict)['type'] == amo.ADDON_STATICTHEME
 
     def create_webext_default_versions(self):
-        self.create_appversion('firefox',
-                               amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        self.create_appversion('thunderbird',
+                               amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD)
         return (super(TestManifestJSONExtractorStaticTheme, self)
                 .create_webext_default_versions())
 
@@ -545,28 +566,20 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         """
         self.create_webext_default_versions()
 
-        data = {}
+        data = self.addon_guid_dict
         apps = self.parse(data)['apps']
         assert len(apps) == 1
-        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].appdata == amo.THUNDERBIRD
         assert apps[0].min.version == (
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+            amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
-        # Static themes don't support Android yet.  So check they aren't there.
-        self.create_appversion(
-            'android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
-        self.create_appversion(
-            'android', amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
-        self.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
-
-        assert apps == self.parse(data)['apps']  # Same as before.
-
+    @pytest.mark.xfail(reason="ATN requires a guid and strict_max_version for each web extension")
     def test_apps_use_default_versions_if_none_provided(self):
         """Use the default min and max versions if none provided."""
         self.create_webext_default_versions()
 
-        data = {'applications': {'gecko': {'id': 'some-id'}}}
+        data = {}
         apps = self.parse(data)['apps']
         assert len(apps) == 1  # Only Firefox for now.
         app = apps[0]
@@ -576,15 +589,15 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
-        firefox_min_version = self.create_appversion('firefox', '54.0')
-        firefox_max_version = self.create_appversion('firefox', '54.*')
+        thunderbird_min_version = self.create_appversion('thunderbird', '60.0')
+        thunderbird_max_version = self.create_appversion('thunderbird', '60.*')
 
         self.create_webext_default_versions()
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '>=54.0',
-                    'strict_max_version': '=54.*',
+                    'strict_min_version': '>=60.0',
+                    'strict_max_version': '=60.*',
                     'id': '@random'
                 }
             }
@@ -592,9 +605,9 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         apps = self.parse(data)['apps']
         assert len(apps) == 1
         app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min == firefox_min_version
-        assert app.max == firefox_max_version
+        assert app.appdata == amo.THUNDERBIRD
+        assert app.min == thunderbird_min_version
+        assert app.max == thunderbird_max_version
 
     def test_apps_contains_wrong_versions(self):
         """Use the min and max versions if provided."""
@@ -602,7 +615,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '54.0.0',
+                    'strict_min_version': '88.0.0',
                     'id': '@random'
                 }
             }
@@ -616,6 +629,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
     def test_theme_json_extracted(self):
         # Check theme data is extracted from the manifest and returned.
         data = {'theme': {'colors': {'textcolor': "#3deb60"}}}
+        data.update(self.addon_guid_dict)
         assert self.parse(data)['theme'] == data['theme']
 
     def test_langpack(self):

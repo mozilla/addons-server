@@ -322,38 +322,6 @@ class TestPane(TestCase):
         assert li.find('h3').text() == unicode(addon.name)
         assert li.find('img').attr('src') == addon.icon_url
 
-    def test_featured_personas_section(self):
-        r = self.client.get(self.url)
-        h2 = pq(r.content)('#featured-themes h2')
-        assert h2.text() == 'See all Featured Themes'
-        assert h2.find('a.all').attr('href') == reverse('browse.personas')
-
-    @override_settings(MEDIA_URL='/media/', STATIC_URL='/static/')
-    def test_featured_personas(self):
-        addon = Addon.objects.get(id=15679)
-        r = self.client.get(self.url)
-        doc = pq(r.content)
-
-        featured = doc('#featured-themes')
-        assert featured.length == 1
-
-        # Look for all images that are not icon uploads.
-        imgs = doc('img:not([src*="/media/"])')
-        imgs_ok = (pq(img).attr('src').startswith('/static/')
-                   for img in imgs)
-        assert all(imgs_ok), 'Images must be prefixed with MEDIA_URL!'
-
-        featured = doc('#featured-themes')
-        assert featured.length == 1
-
-        a = featured.find('a[data-browsertheme]')
-        url = reverse('discovery.addons.detail', args=[15679])
-        assert a.attr('href').endswith(url + '?src=discovery-featured'), (
-            'Unexpected add-on details URL')
-        assert a.attr('target') == '_self'
-        assert featured.find('.addon-title').text() == unicode(addon.name)
-
-
 class TestDetails(TestCase):
     fixtures = ['base/addon_3615', 'base/addon_592']
 

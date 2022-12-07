@@ -408,6 +408,22 @@ def legacy_theme_redirects(request, category=None, category_name=None):
 
 
 @non_atomic_requests
+def static_theme_redirects(request, category=None):
+    """ Handle redirects to static-themes. This also carries over the sort parameter if available. """
+    args = {}
+
+    if category:
+        args = {'category': category}
+
+    url = reverse('browse.static-themes', kwargs=args)
+
+    if 'sort' in request.GET:
+        url = amo.utils.urlparams(url, sort=request.GET['sort'])
+
+    return redirect(url, permanent=not settings.DEBUG)
+
+
+@non_atomic_requests
 def legacy_fulltheme_redirects(request, category=None):
     """Full Themes have already been renamed to Complete Themes!"""
     url = request.get_full_path().replace('/full-themes',

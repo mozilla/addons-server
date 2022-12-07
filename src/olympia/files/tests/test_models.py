@@ -434,6 +434,9 @@ class TestParseXpi(TestCase):
         for version in ('3.0', '3.6.*'):
             AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
+        for version in ('60.0', '60.*', '*'):
+            AppVersion.objects.create(application=amo.THUNDERBIRD.id,
+                                      version=version)
         self.user = user_factory()
 
     def parse(self, addon=None, filename='extension.xpi', **kwargs):
@@ -496,7 +499,7 @@ class TestParseXpi(TestCase):
         assert parsed == expected
 
     def test_parse_permissions(self):
-        parsed = self.parse(filename='webextension_no_id.xpi')
+        parsed = self.parse(filename='webextension_with_id.xpi')
         assert len(parsed['permissions'])
         assert parsed['permissions'] == [
             u'http://*/*', u'https://*/*', u'bookmarks', u'made up permission',
@@ -513,13 +516,13 @@ class TestParseXpi(TestCase):
         AppVersion.objects.all().delete()
         with self.assertRaises(forms.ValidationError) as e:
             assert self.parse(filename='webextension_with_apps_targets.xpi')
-        assert e.exception.messages[0].startswith('Cannot find min/max vers')
+        assert e.exception.messages[0].startswith('Lowest supported "strict_min_version"')
 
         with self.assertRaises(forms.ValidationError) as e:
             assert self.parse(
                 filename='webextension_with_apps_targets.xpi',
                 minimal=False)
-        assert e.exception.messages[0].startswith('Cannot find min/max vers')
+        assert e.exception.messages[0].startswith('Lowest supported "strict_min_version"')
 
         # When minimal=True is passed, we don't do validation...
         expected = {
@@ -591,6 +594,7 @@ class TestParseXpi(TestCase):
             self.parse()
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
+    @pytest.mark.xfail(reason="ATN does not support any extension without an id.")
     def test_guid_no_dupe_webextension_no_id(self):
         Addon.objects.create(guid=None, type=1)
         self.parse(filename='webextension_no_id.xpi')
@@ -608,6 +612,7 @@ class TestParseXpi(TestCase):
             self.parse(addon, filename='webextension.xpi')
         assert e.exception.messages[0].startswith('The add-on ID in your')
 
+    @pytest.mark.xfail(reason="ATN does not support any extension without an id.")
     def test_guid_nomatch_webextension_supports_no_guid(self):
         # addon.guid is generated if none is set originally so it doesn't
         # really matter what we set here, we allow updates to an add-on
@@ -647,6 +652,7 @@ class TestParseXpi(TestCase):
         assert not parsed['is_restart_required']
         assert not parsed['is_experiment']
 
+    @pytest.mark.xfail(reason="ATN doesn't seem to support RDF web extensions")
     def test_experiment_inside_webextension(self):
         self.grant_permission(self.user, 'Experiments:submit')
         parsed = self.parse(filename='experiment_inside_webextension.xpi')
@@ -1101,6 +1107,8 @@ class TestFileFromUpload(UploadTest):
         super(TestFileFromUpload, self).setUp()
         for version in ('3.0', '3.6', '3.6.*', '4.0b6'):
             AppVersion(application=amo.FIREFOX.id, version=version).save()
+        for version in ('60.0', '60.*', '*'):
+            AppVersion.objects.get_or_create(application=amo.THUNDERBIRD.id, version=version)
         self.platform = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(guid='guid@xpi',
                                           type=amo.ADDON_EXTENSION,
@@ -1356,7 +1364,7 @@ class TestFileFromUpload(UploadTest):
         assert not file_.is_experiment
 
     def test_permissions(self):
-        upload = self.upload('webextension_no_id.xpi')
+        upload = self.upload('webextension_with_id.xpi')
         parsed_data = parse_addon(upload, user=user_factory())
         # 5 permissions; 2 content_scripts entries.
         assert len(parsed_data['permissions']) == 5

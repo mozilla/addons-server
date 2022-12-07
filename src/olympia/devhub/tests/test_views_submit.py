@@ -4,6 +4,7 @@ import json
 import os
 import stat
 
+import pytest
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -47,44 +48,6 @@ def _parse_addon_theme_permission_wrapper(*args, **kwargs):
     parsed = parse_addon(*args, **kwargs)
     parsed['permissions'] = parsed.get('permissions', []) + ['theme']
     return parsed
-
-
-class TestSubmitPersona(TestCase):
-    fixtures = ['base/user_999']
-
-    def setUp(self):
-        super(TestSubmitPersona, self).setUp()
-        assert self.client.login(email='regular@mozilla.com')
-        self.url = reverse('devhub.themes.submit')
-
-    def get_img_urls(self):
-        return (
-            reverse('devhub.personas.upload_persona', args=['persona_header']),
-        )
-
-    def test_img_urls(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        header_url = self.get_img_urls()[0]
-        assert doc('#id_header').attr('data-upload-url') == header_url
-
-    def test_img_size(self):
-        img = get_image_path('mozilla.png')
-        for url, img_type in zip(self.get_img_urls(), ('header', )):
-            r_ajax = self.client.post(url, {'upload_image': open(img, 'rb')})
-            r_json = json.loads(r_ajax.content)
-            w, h = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
-            assert r_json['errors'] == [
-                'Image must be exactly %s pixels wide '
-                'and %s pixels tall.' % (w, h)]
-
-    def test_img_wrongtype(self):
-        img = open('static/js/impala/global.js', 'rb')
-        for url in self.get_img_urls():
-            r_ajax = self.client.post(url, {'upload_image': img})
-            r_json = json.loads(r_ajax.content)
-            assert r_json['errors'] == ['Images must be either PNG or JPG.']
 
 
 class TestSubmitBase(TestCase):
@@ -310,17 +273,17 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
     def setUp(self):
         super(TestAddonSubmitUpload, self).setUp()
         create_default_webext_appversion()
-        self.upload = self.get_upload('webextension_no_id.xpi')
+        self.upload = self.get_upload('webextension_with_id.xpi')
         assert self.client.login(email='regular@mozilla.com')
         self.client.post(reverse('devhub.submit.agreement'))
 
     def post(self, compatible_apps=None, expect_errors=False,
              listed=True, status_code=200, url=None, extra_kwargs=None):
         if compatible_apps is None:
-            compatible_apps = [amo.FIREFOX, amo.ANDROID]
+            compatible_apps = [amo.THUNDERBIRD, amo.SEAMONKEY]
         data = {
             'upload': self.upload.uuid.hex,
-            'compatible_apps': [p.id for p in compatible_apps]
+            'compatible_apps': [p.id for p in compatible_apps],
         }
         url = url or reverse('devhub.submit.upload',
                              args=['listed' if listed else 'unlisted'])
@@ -431,48 +394,31 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
 
         # Check that `all_files` is correct
         all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'beastify-1.0-an+fx.xpi']
+        assert all_ == [u'beastify-1.0-tb.xpi']
 
         # Default to PLATFORM_ALL
         assert addon.current_version.supported_platforms == [amo.PLATFORM_ALL]
 
         # And check that compatible apps have a sensible default too
         apps = addon.current_version.compatible_apps.keys()
-        assert sorted(apps) == sorted([amo.FIREFOX, amo.ANDROID])
+        assert sorted(apps) == sorted([amo.THUNDERBIRD])
 
     @mock.patch('olympia.devhub.views.auto_sign_file')
     def test_one_xpi_for_multiple_apps_unlisted_addon(
             self, mock_auto_sign_file):
         assert Addon.objects.count() == 0
         response = self.post(
-            compatible_apps=[amo.FIREFOX, amo.ANDROID], listed=False)
+            compatible_apps=[amo.THUNDERBIRD], listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'beastify-1.0-an+fx.xpi']
+        assert all_ == [u'beastify-1.0-tb.xpi']
         mock_auto_sign_file.assert_has_calls([
             mock.call(f)
             for f in latest_version.all_files])
-
-    def test_static_theme_wizard_button_shown(self):
-        response = self.client.get(reverse(
-            'devhub.submit.upload', args=['listed']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#wizardlink')
-        assert doc('#wizardlink').attr('href') == (
-            reverse('devhub.submit.wizard', args=['listed']))
-
-        response = self.client.get(reverse(
-            'devhub.submit.upload', args=['unlisted']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#wizardlink')
-        assert doc('#wizardlink').attr('href') == (
-            reverse('devhub.submit.wizard', args=['unlisted']))
 
     def test_static_theme_submit_listed(self):
         assert Addon.objects.count() == 0
@@ -484,7 +430,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.details', args=[addon.slug]))
         all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert all_ == [u'weta_fade-1.0-tb.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 3
@@ -504,69 +450,11 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert all_ == [u'weta_fade-1.0-tb.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
 
-    def test_static_theme_wizard_listed(self):
-        # Check we get the correct template.
-        url = reverse('devhub.submit.wizard', args=['listed'])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#theme-wizard')
-        assert doc('#theme-wizard').attr('data-version') == '1.0'
-        assert doc('input#theme-name').attr('type') == 'text'
-
-        # And then check the upload works.  In reality the zip is generated
-        # client side in JS but the zip file is the same.
-        assert Addon.objects.count() == 0
-        path = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-        self.upload = self.get_upload(abspath=path)
-        response = self.post(url=url)
-        addon = Addon.objects.get()
-        # Next step is same as non-wizard flow too.
-        self.assert3xx(
-            response, reverse('devhub.submit.details', args=[addon.slug]))
-        all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
-        assert addon.type == amo.ADDON_STATICTHEME
-        previews = list(addon.current_version.previews.all())
-        assert len(previews) == 3
-        assert storage.exists(previews[0].image_path)
-        assert storage.exists(previews[1].image_path)
-        assert storage.exists(previews[2].image_path)
-
-    def test_static_theme_wizard_unlisted(self):
-        # Check we get the correct template.
-        url = reverse('devhub.submit.wizard', args=['unlisted'])
-        response = self.client.get(url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#theme-wizard')
-        assert doc('#theme-wizard').attr('data-version') == '1.0'
-        assert doc('input#theme-name').attr('type') == 'text'
-
-        # And then check the upload works.  In reality the zip is generated
-        # client side in JS but the zip file is the same.
-        assert Addon.unfiltered.count() == 0
-        path = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-        self.upload = self.get_upload(abspath=path)
-        response = self.post(url=url, listed=False)
-        addon = Addon.unfiltered.get()
-        latest_version = addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        # Next step is same as non-wizard flow too.
-        self.assert3xx(
-            response, reverse('devhub.submit.finish', args=[addon.slug]))
-        all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
-        assert addon.type == amo.ADDON_STATICTHEME
-        # Only listed submissions need a preview generated.
-        assert latest_version.previews.all().count() == 0
 
     @mock.patch('olympia.devhub.forms.parse_addon',
                 wraps=_parse_addon_theme_permission_wrapper)
@@ -1077,7 +965,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
             addon=self.get_addon(),
             category=Category.objects.get(id=71)).delete()
         Category.from_static_category(CATEGORIES_BY_ID[300]).save()
-        Category.from_static_category(CATEGORIES_BY_ID[308]).save()
+        Category.from_static_category(CATEGORIES_BY_ID[320]).save()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=11, on_form=True, creative_commons=True)
@@ -1141,10 +1029,10 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
     def test_submit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
-        self.is_success(self.get_dict(category=308))
+        self.is_success(self.get_dict(category=320))
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [308]
+        assert sorted(addon_cats) == [320]
 
     def test_submit_categories_change(self):
         category = Category.objects.get(id=300)
@@ -1152,10 +1040,10 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert sorted(
             [cat.id for cat in self.get_addon().all_categories]) == [300]
 
-        self.client.post(self.url, self.get_dict(category=308))
+        self.client.post(self.url, self.get_dict(category=320))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
-        assert category_ids_new == [308]
+        assert category_ids_new == [320]
 
     def test_creative_commons_licenses(self):
         response = self.client.get(self.url)
@@ -1488,7 +1376,7 @@ class VersionSubmitUploadMixin(object):
              override_validation=False, expected_status=302, source=None,
              extra_kwargs=None):
         if compatible_apps is None:
-            compatible_apps = [amo.FIREFOX]
+            compatible_apps = [amo.THUNDERBIRD]
         data = {
             'upload': self.upload.uuid.hex,
             'source': source,
@@ -1567,65 +1455,6 @@ class VersionSubmitUploadMixin(object):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
-    def test_static_theme_wizard_button_not_shown_for_extensions(self):
-        assert self.addon.type != amo.ADDON_STATICTHEME
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-    def test_static_theme_wizard_button_shown(self):
-        channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
-                   'unlisted')
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#wizardlink')
-        assert doc('#wizardlink').attr('href') == (
-            reverse('devhub.submit.version.wizard',
-                    args=[self.addon.slug, channel]))
-
-    def test_static_theme_wizard(self):
-        channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
-                   'unlisted')
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        # Check we get the correct template.
-        self.url = reverse('devhub.submit.version.wizard',
-                           args=[self.addon.slug, channel])
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#theme-wizard')
-        assert doc('#theme-wizard').attr('data-version') == '3.0'
-        assert doc('input#theme-name').attr('type') == 'hidden'
-        assert doc('input#theme-name').attr('value') == (
-            unicode(self.addon.name))
-
-        # And then check the upload works.
-        path = os.path.join(
-            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
-        self.upload = self.get_upload(abspath=path)
-        response = self.post()
-
-        version = self.addon.find_latest_version(channel=self.channel)
-        assert version.channel == self.channel
-        assert version.all_files[0].status == (
-            amo.STATUS_AWAITING_REVIEW
-            if self.channel == amo.RELEASE_CHANNEL_LISTED else
-            amo.STATUS_PUBLIC)
-        self.assert3xx(response, self.get_next_url(version))
-        log_items = ActivityLog.objects.for_addons(self.addon)
-        assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
-        if self.channel == amo.RELEASE_CHANNEL_LISTED:
-            previews = list(version.previews.all())
-            assert len(previews) == 3
-            assert storage.exists(previews[0].image_path)
-            assert storage.exists(previews[1].image_path)
-            assert storage.exists(previews[1].image_path)
-        else:
-            assert version.previews.all().count() == 0
-
     @mock.patch('olympia.devhub.forms.parse_addon',
                 wraps=_parse_addon_theme_permission_wrapper)
     def test_dynamic_theme_tagging(self, parse_addon_mock):
@@ -1681,6 +1510,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         log = ActivityLog.objects.latest(field_name='id')
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
 
+    @pytest.mark.xfail(reason="ATN doesn't seem to support RDF web extensions")
     @mock.patch('olympia.devhub.views.sign_file')
     def test_experiments_inside_webext_are_auto_signed(self, mock_sign_file):
         """Experiment extensions (bug 1220097) are auto-signed."""
@@ -1695,7 +1525,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         self.addon.update(
             guid='@experiment-inside-webextension-guid',
             status=amo.STATUS_PUBLIC)
-        self.post()
+        self.post(expected_status=200, extra_kwargs={'follow': True})
         # Make sure the file created and signed is for this addon.
         assert mock_sign_file.call_count == 1
         mock_sign_file_call = mock_sign_file.call_args[0]
@@ -1708,6 +1538,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
 
     @mock.patch('olympia.devhub.views.sign_file')
     def test_experiment_upload_without_permission(self, mock_sign_file):
+        """ ATN supports extensions using the experiments api """
         self.upload = self.get_upload(
             'telemetry_experiment.xpi',
             validation=json.dumps({
@@ -1716,15 +1547,16 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             }))
         self.addon.update(guid='experiment@xpi', status=amo.STATUS_PUBLIC)
 
-        response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
+        response = self.post(expected_status=200, extra_kwargs={'follow': True})
+        assert pq(response.content)('ul.errorlist').text() != (
             'You cannot submit this type of add-on')
 
-        assert mock_sign_file.call_count == 0
+        assert mock_sign_file.call_count == 1
 
     @mock.patch('olympia.devhub.views.sign_file')
     def test_experiment_inside_webext_upload_without_permission(
             self, mock_sign_file):
+        """ ATN supports extensions using the experiments api """
         self.upload = self.get_upload(
             'experiment_inside_webextension.xpi',
             validation=json.dumps({
@@ -1736,7 +1568,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             status=amo.STATUS_PUBLIC)
 
         response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
+        assert pq(response.content)('ul.errorlist').text() != (
             'You cannot submit this type of add-on')
 
         assert mock_sign_file.call_count == 0

@@ -935,6 +935,11 @@ class TestStatusFromUpload(TestVersionFromUpload):
 class TestStaticThemeFromUpload(UploadTest):
 
     def setUp(self):
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='60.0')
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='*')
+
         path = 'src/olympia/devhub/tests/addons/static_theme.zip'
         self.upload = self.get_upload(
             abspath=os.path.join(settings.ROOT, path))
@@ -945,6 +950,7 @@ class TestStaticThemeFromUpload(UploadTest):
         self.addon = addon_factory(
             type=amo.ADDON_STATICTHEME,
             status=amo.STATUS_NOMINATED,
+            guid=1337,
             file_kw={
                 'status': amo.STATUS_AWAITING_REVIEW
             }
@@ -963,7 +969,7 @@ class TestStaticThemeFromUpload(UploadTest):
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_public(
             self, generate_static_theme_preview_mock):
-        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME, guid=1337)
         parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
         version = Version.from_upload(
             self.upload, self.addon, [], amo.RELEASE_CHANNEL_LISTED,
@@ -978,7 +984,7 @@ class TestStaticThemeFromUpload(UploadTest):
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_with_additional_backgrounds(
             self, generate_static_theme_preview_mock):
-        self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME, guid=1338)
         path = 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
         self.upload = self.get_upload(
             abspath=os.path.join(settings.ROOT, path))

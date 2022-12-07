@@ -36,13 +36,11 @@ urlpatterns = [
     url('^full-themes/(?P<category>[^ /]+)?$',
         views.legacy_fulltheme_redirects),
 
-    # Personas are now Themes.
+    # Personas are now Themes. (Which are now Static Themes!)
     url('^personas/(?P<category>[^ /]+)?$',
         views.legacy_theme_redirects),
     url('^themes/(?:(?P<category>[^/]+)/)?$',
-        lambda r, category: redirect(
-            reverse('browse.static-themes',
-                    kwargs=({'category': category} if category else {}))),
+        views.static_theme_redirects,
         name='browse.personas'),
 
     # Themes are now Complete Themes.

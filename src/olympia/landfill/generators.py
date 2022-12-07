@@ -21,6 +21,7 @@ from .ratings import generate_ratings
 from .translations import generate_translations
 from .user import generate_addon_user_and_category, generate_user
 from .version import generate_version
+from ..constants.categories import CATEGORIES
 
 
 def _yield_name_and_cat(num, app=None, type=None):
@@ -54,6 +55,7 @@ def create_addon(name, icon_type, application, **extra_kwargs):
         'last_updated': datetime.now(),
         'icon_type': icon_type,
         'type': ADDON_EXTENSION,
+        'description': 'This is a test description.\n\nPlease visit https://www.thunderbird.net for the latest developments on Thunderbird!'
     }
     kwargs.update(extra_kwargs)
 
@@ -75,6 +77,11 @@ def generate_addons(num, owner, app_name, addon_type=ADDON_EXTENSION):
     user = generate_user(owner)
     app = APPS[app_name]
     default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
+
+    # If the addon type isn't even specified in this app, then ignore it!
+    if addon_type not in CATEGORIES[app.id]:
+        return
+
     for name, category in _yield_name_and_cat(
             num, app=app, type=addon_type):
         # Use one of the default icons at random.
@@ -121,23 +128,26 @@ def create_theme(name, **extra_kwargs):
     return theme
 
 
-def generate_themes(num, owner):
+def generate_themes(num, owner, app_name = 'firefox'):
     """Generate `num` themes for the given `owner`."""
     # Disconnect this signal given that we issue a reindex at the end.
     post_save.disconnect(update_search_index, sender=Addon,
                          dispatch_uid='addons.search.index')
 
     user = generate_user(owner)
+    app = APPS[app_name]
 
-    # Generate personas.
-    for name, category in _yield_name_and_cat(
-            num, app=FIREFOX, type=ADDON_PERSONA):
-        theme = create_theme(name=name)
-        generate_addon_user_and_category(theme, user, category)
-        generate_theme_images(theme)
-        generate_translations(theme)
-        generate_collection(theme)
-        generate_ratings(theme, 5)
+    # Only generate these if we support these
+    if ADDON_PERSONA in CATEGORIES[app.id]:
+        # Generate personas.
+        for name, category in _yield_name_and_cat(
+                num, app=app, type=ADDON_PERSONA):
+            theme = create_theme(name=name)
+            generate_addon_user_and_category(theme, user, category)
+            generate_theme_images(theme)
+            generate_translations(theme)
+            generate_collection(theme)
+            generate_ratings(theme, 5)
 
     # Generate static themes.
-    generate_addons(num, owner, 'firefox', addon_type=ADDON_STATICTHEME)
+    generate_addons(num, owner, app_name, addon_type=ADDON_STATICTHEME)

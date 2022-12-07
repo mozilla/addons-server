@@ -89,11 +89,14 @@ populate_data:
 	python manage.py reindex --wipe --force --noinput
 	python manage.py generate_addons --app firefox $(NUM_ADDONS)
 	python manage.py generate_addons --app android $(NUM_ADDONS)
-	python manage.py generate_themes $(NUM_THEMES)
+	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
+	python manage.py generate_themes --app firefox $(NUM_THEMES)
+	python manage.py generate_themes --app thunderbird $(NUM_THEMES)
 	# These add-ons are specifically useful for the addons-frontend
 	# homepage. You may have to re-run this, in case the data there
 	# changes.
-	python manage.py generate_default_addons_for_frontend
+	# Stubbed out, uses pyfxa which is not pulled in.
+	#python manage.py generate_default_addons_for_frontend
 
 	# Now that addons have been generated, reindex.
 	python manage.py reindex --force --noinput
@@ -176,4 +179,7 @@ perf-tests: setup-ui-tests
 	pip install --progress-bar=off --no-deps -r requirements/perftests.txt
 	locust --no-web -c 1 -f tests/performance/locustfile.py --host "http://olympia.test"
 
-initialize: update_deps initialize_db update_assets populate_data
+finished:
+	@echo "Done!"
+
+initialize: update_deps initialize_db update_assets populate_data finished

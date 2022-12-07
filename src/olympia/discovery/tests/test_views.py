@@ -89,7 +89,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i in range(1, 8):
             if i % 3:
-                type_ = amo.ADDON_PERSONA
+                type_ = amo.ADDON_STATICTHEME
             else:
                 type_ = amo.ADDON_EXTENSION
             addon = addon_factory(type=type_)
@@ -98,15 +98,15 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
 
         for i in range(1, 8):
             if i % 3:
-                type_ = amo.ADDON_PERSONA
+                type_ = amo.ADDON_STATICTHEME
             else:
                 type_ = amo.ADDON_EXTENSION
             addon = addon_factory(type=type_)
             DiscoveryItem.objects.create(addon=addon, position_china=i)
 
     def test_list(self):
-        with self.assertNumQueries(12):
-            # 12 queries:
+        with self.assertNumQueries(16):
+            # 16? queries:
             # - 1 to fetch the waffle switch 'disco-recommendations'
             # - 1 to fetch the discovery items
             # - 1 to fetch the add-ons (can't be joined with the previous one
@@ -118,8 +118,14 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
             # - 1 to fetch the versions applications_versions
             # - 1 to fetch the versions files
             # - 1 to fetch the add-ons authors
-            # - 1 to fetch the add-ons personas
+            # - 1 to fetch the add-ons user position (for previews)
             # - 1 to fetch the add-ons previews
+            # I believe Version.transformer causes this repeat. Without the pre-fetch this gets looped per each add-on.
+            # - 1 to fetch the versions translations
+            # - 1 to fetch the versions applications_versions
+            # - 1 to fetch the versions files
+            # Intentional
+            # - 1 to pre-fetch version previews
             response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
 

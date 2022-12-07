@@ -9,6 +9,7 @@ import rdflib
 
 from django.db import connection
 
+from olympia.constants.applications import THUNDERBIRD
 from services import update
 
 from olympia import amo
@@ -37,8 +38,9 @@ class TestDataValidate(VersionCheckMixin, TestCase):
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
             'version': '2.0.58',
             'reqVersion': 1,
-            'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
+            'appID': THUNDERBIRD.guid,
             'appVersion': '3.7a1pre',
+            'currentAppVersion': '102.6.0'
         }
 
     def test_app_os(self):
@@ -344,7 +346,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
         super(TestDefaultToCompat, self).setUp()
         self.addon = Addon.objects.get(id=337203)
         self.platform = None
-        self.app = amo.APP_IDS[1]
+        self.app = amo.APP_IDS[18]
         self.app_version_int_3_0 = 3000000200100
         self.app_version_int_4_0 = 4000000200100
         self.app_version_int_5_0 = 5000000200100
@@ -397,11 +399,13 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
             'version': kw.get('item_version', '1.0'),
             'appID': self.app.guid,
             'appVersion': kw.get('app_version', '3.0'),
+            'currentAppVersion': '102.6.0'
         })
         assert instance.is_valid()
         instance.compat_mode = kw.get('compat_mode', 'strict')
         instance.get_update()
-        return instance.data['row'].get('version_id')
+        version_id = instance.data['row'].get('version_id')
+        return version_id
 
     def check(self, expected):
         """
@@ -561,13 +565,21 @@ class TestResponse(VersionCheckMixin, TestCase):
 
     def setUp(self):
         super(TestResponse, self).setUp()
+
+        # Must be an easier way to do this...
+        # Update the current versions to support Thunderbird
         self.addon_one = Addon.objects.get(pk=3615)
+        self.addon_one.current_version.apps.update(application=amo.THUNDERBIRD.id)
+        self.addon_one.current_version.apps.get().max.update(application=amo.THUNDERBIRD.id)
+        self.addon_one.current_version.apps.get().min.update(application=amo.THUNDERBIRD.id)
         self.data = {
             'id': '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}',
             'version': '2.0.58',
             'reqVersion': 1,
-            'appID': '{ec8030f7-c20a-464f-9b0e-13a3a9e97384}',
+            'appID': amo.THUNDERBIRD.guid,
             'appVersion': '3.7a1pre',
+            # TB change: Required to be above 60 in order for json to be returned
+            'currentAppVersion': '102.6.0'
         }
 
         self.mac = amo.PLATFORM_MAC

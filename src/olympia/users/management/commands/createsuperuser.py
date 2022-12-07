@@ -75,6 +75,8 @@ and email address and that's it.
             except exceptions.ValidationError as exc:
                 raise CommandError('; '.join(exc.messages))
         else:
+            # During docker setup this can be a tad confusing, so specify what the prompts are for.
+            print("Please enter credentials for the new superuser:")
             user_data = {
                 field_name: self.get_value(field_name)
                 for field_name in self.required_fields

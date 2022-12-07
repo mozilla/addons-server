@@ -45,17 +45,17 @@ class TestNewUploadForm(TestCase):
         form = forms.NewUploadForm(
             {'upload': upload.uuid}, request=mock.Mock())
         result = form.fields['compatible_apps'].widget.render(
-            name='compatible_apps', value=amo.FIREFOX.id)
-        assert 'class="app firefox"' in result
+            name='compatible_apps', value=amo.THUNDERBIRD.id)
+        assert 'class="app thunderbird"' in result
 
         result = form.fields['compatible_apps'].widget.render(
-            name='compatible_apps', value=amo.ANDROID.id)
-        assert 'class="app android"' in result
+            name='compatible_apps', value=amo.SEAMONKEY.id)
+        assert 'class="app seamonkey"' in result
 
     def test_only_valid_uploads(self):
         upload = FileUpload.objects.create(valid=False)
         form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
+            {'upload': upload.uuid, 'compatible_apps': [amo.THUNDERBIRD.id]},
             request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' in
                 form.errors.get('__all__')), form.errors
@@ -65,7 +65,7 @@ class TestNewUploadForm(TestCase):
             # For the 'Addons:Edit' permission check.
             acl.return_value = True
             form = forms.NewUploadForm(
-                {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id],
+                {'upload': upload.uuid, 'compatible_apps': [amo.THUNDERBIRD.id],
                     'admin_override_validation': True},
                 request=mock.Mock())
             assert ('There was an error with your upload. Please try' not in
@@ -75,7 +75,7 @@ class TestNewUploadForm(TestCase):
         upload.save()
         addon = Addon.objects.create()
         form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
+            {'upload': upload.uuid, 'compatible_apps': [amo.THUNDERBIRD.id]},
             addon=addon, request=mock.Mock())
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
@@ -99,7 +99,7 @@ class TestNewUploadForm(TestCase):
         upload = FileUpload.objects.create(valid=True)
         addon = Addon.objects.create()
         form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
+            {'upload': upload.uuid, 'compatible_apps': [amo.THUNDERBIRD.id]},
             addon=addon, request=mock.Mock())
         form.clean()
         assert mock_check_xpi_info.called
@@ -111,9 +111,7 @@ class TestCompatForm(TestCase):
     def setUp(self):
         super(TestCompatForm, self).setUp()
         AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='50.0')
-        AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='58.0')
+            application=amo.FIREFOX.id, version='50.0')
         AppVersion.objects.create(
             application=amo.FIREFOX.id, version='56.0')
         AppVersion.objects.create(
@@ -123,6 +121,7 @@ class TestCompatForm(TestCase):
         AppVersion.objects.create(
             application=amo.FIREFOX.id, version='57.*')
 
+
     def test_forms(self):
         version = Addon.objects.get(id=3615).current_version
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
@@ -130,6 +129,7 @@ class TestCompatForm(TestCase):
         apps = [form.app for form in formset.forms]
         assert set(apps) == set(amo.APP_USAGE)
 
+    @pytest.mark.xfail(reason="This test is not valid for ATN")
     def test_forms_disallow_thunderbird_and_seamonkey(self):
         self.create_switch('disallow-thunderbird-and-seamonkey')
         version = Addon.objects.get(id=3615).current_version
@@ -140,6 +140,7 @@ class TestCompatForm(TestCase):
         apps = [form.app for form in formset.forms]
         assert set(apps) == set(amo.APP_USAGE_FIREFOXES_ONLY)
 
+    @pytest.mark.xfail(reason="This test is not valid for ATN")
     def test_forms_disallow_thunderbird_and_seamonkey_even_if_present(self):
         self.create_switch('disallow-thunderbird-and-seamonkey')
         version = Addon.objects.get(id=3615).current_version
@@ -147,11 +148,11 @@ class TestCompatForm(TestCase):
         current_max = version.apps.filter(application=amo.FIREFOX.id).get().max
         version.files.all().update(is_webextension=False)
         ApplicationsVersions.objects.create(
-            version=version, application=amo.THUNDERBIRD.id,
+            version=version, application=amo.FIREFOX.id,
             min=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='50.0'),
+                application=amo.FIREFOX.id, version='50.0'),
             max=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='58.0'))
+                application=amo.FIREFOX.id, version='58.0'))
         del version.all_files
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
                                       form_kwargs={'version': version})
@@ -184,21 +185,21 @@ class TestCompatForm(TestCase):
         assert form.initial['min'] == current_min.pk
         assert form.initial['max'] == current_max.pk
 
-    def _test_form_choices_expect_all_versions(self, version):
+    def _test_form_choices_expect_all_versions(self, version, app=amo.FIREFOX):
         expected_min_choices = [(u'', u'---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
+            AppVersion.objects.filter(application=app.id)
                               .exclude(version__contains='*')
                               .values_list('pk', 'version')
                               .order_by('version_int'))
         expected_max_choices = [(u'', u'---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
+            AppVersion.objects.filter(application=app.id)
                               .values_list('pk', 'version')
                               .order_by('version_int'))
 
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
                                       form_kwargs={'version': version})
         form = formset.forms[0]
-        assert form.app == amo.FIREFOX
+        assert form.app == app
         assert list(form.fields['min'].choices) == expected_min_choices
         assert list(form.fields['max'].choices) == expected_max_choices
 
@@ -268,11 +269,15 @@ class TestCompatForm(TestCase):
         self._test_form_choices_expect_all_versions(version)
 
     def test_static_theme(self):
+        # APP_USAGE_STATICTHEME only lists Thunderbird, and not Firefox.
+        # So we'll need to do a small patch to the addon's current version's supported applications.
+        Addon.objects.get(id=3615).current_version.apps.update(application=amo.THUNDERBIRD.id)
+
         version = Addon.objects.get(id=3615).current_version
         version.files.all().update(is_webextension=True)
         version.addon.update(type=amo.ADDON_STATICTHEME)
         del version.all_files
-        self._test_form_choices_expect_all_versions(version)
+        self._test_form_choices_expect_all_versions(version, app=amo.THUNDERBIRD)
 
         formset = forms.CompatFormSet(None, queryset=version.apps.all(),
                                       form_kwargs={'version': version})
@@ -324,224 +329,6 @@ class TestPreviewForm(TestCase):
             preview.thumbnail_path)
         assert pngcrush_image_mock.call_args_list[1][0][0] == (
             preview.image_path)
-
-
-class TestThemeForm(TestCase):
-    fixtures = ['base/user_2519']
-
-    def setUp(self):
-        super(TestThemeForm, self).setUp()
-        self.populate()
-        self.request = mock.Mock()
-        self.request.user = mock.Mock()
-        self.request.user.groups_list = []
-        self.request.user.is_authenticated = True
-
-    def populate(self):
-        self.cat = Category.objects.create(
-            application=amo.FIREFOX.id, type=amo.ADDON_PERSONA, db_name='xxxx')
-        License.objects.create(id=amo.LICENSE_CC_BY.id)
-
-    def get_dict(self, **kw):
-        data = {
-            'name': 'new name',
-            'slug': 'special-slug',
-            'category': self.cat.id,
-            'accentcolor': '#003366',
-            'textcolor': '#C0FFEE',
-            'description': 'new description',
-            'tags': 'tag1, tag2, tag3',
-            'license': amo.LICENSE_CC_BY.id,
-            'agreed': True,
-            'header_hash': 'b4ll1n'
-        }
-        data.update(**kw)
-        return data
-
-    def post(self, **kw):
-        self.form = ThemeForm(self.get_dict(**kw), request=self.request)
-        return self.form
-
-    def test_name_required(self):
-        self.post(name='')
-        assert not self.form.is_valid()
-        assert self.form.errors == {'name': ['This field is required.']}
-
-    def test_name_length(self):
-        self.post(name='a' * 51)
-        assert not self.form.is_valid()
-        assert self.form.errors == {
-            'name': ['Ensure this value has at most '
-                     '50 characters (it has 51).']}
-
-    def test_slug_unique(self):
-        # A theme cannot share the same slug as another theme's.
-        Addon.objects.create(type=amo.ADDON_PERSONA, slug='harry-potter')
-        for slug in ('Harry-Potter', '  harry-potter  ', 'harry-potter'):
-            self.post(slug=slug)
-            assert not self.form.is_valid()
-            assert self.form.errors == {
-                'slug': ['This slug is already in use. '
-                         'Please choose another.']}
-
-    def test_slug_required(self):
-        self.post(slug='')
-        assert not self.form.is_valid()
-        assert self.form.errors == {'slug': ['This field is required.']}
-
-    def test_slug_length(self):
-        self.post(slug='a' * 31)
-        assert not self.form.is_valid()
-        assert self.form.errors == {
-            'slug': ['Ensure this value has at most 30 characters '
-                     '(it has 31).']}
-
-    def test_description_optional(self):
-        self.post(description='')
-        assert self.form.is_valid()
-
-    def test_description_length(self):
-        self.post(description='a' * 501)
-        assert not self.form.is_valid()
-        assert self.form.errors == (
-            {'description': ['Ensure this value has at most '
-                             '500 characters (it has 501).']})
-
-    def test_categories_required(self):
-        self.post(category='')
-        assert not self.form.is_valid()
-        assert self.form.errors == {'category': ['This field is required.']}
-
-    def test_license_required(self):
-        self.post(license='')
-        assert not self.form.is_valid()
-        assert self.form.errors == {'license': ['A license must be selected.']}
-
-    def test_header_hash_required(self):
-        self.post(header_hash='')
-        assert not self.form.is_valid()
-        assert self.form.errors == {'header_hash': ['This field is required.']}
-
-    def test_accentcolor_optional(self):
-        self.post(accentcolor='')
-        assert self.form.is_valid()
-
-    def test_accentcolor_invalid(self):
-        self.post(accentcolor='#BALLIN')
-        assert not self.form.is_valid()
-        assert self.form.errors == (
-            {'accentcolor': ['This must be a valid hex color code, '
-                             'such as #000000.']})
-
-    def test_textcolor_optional(self):
-        self.post(textcolor='')
-        assert self.form.is_valid(), self.form.errors
-
-    def test_textcolor_invalid(self):
-        self.post(textcolor='#BALLIN')
-        assert not self.form.is_valid()
-        assert self.form.errors == (
-            {'textcolor': ['This must be a valid hex color code, '
-                           'such as #000000.']})
-
-    def get_img_urls(self):
-        return reverse('devhub.personas.upload_persona',
-                       args=['persona_header'])
-
-    def test_img_attrs(self):
-        header_url = self.get_img_urls()
-
-        self.post()
-        assert self.form.fields['header'].widget.attrs == (
-            {'data-allowed-types': amo.SUPPORTED_IMAGE_TYPES,
-             'data-upload-url': header_url})
-
-    @mock.patch('olympia.addons.tasks.make_checksum')
-    @mock.patch('olympia.addons.tasks.create_persona_preview_images')
-    @mock.patch('olympia.addons.tasks.save_persona_image')
-    @pytest.mark.skipif(not hasattr(Image.core, 'jpeg_encoder'),
-                        reason='Not having a jpeg encoder makes test sad')
-    def test_success(self, save_persona_image_mock,
-                     create_persona_preview_images_mock, make_checksum_mock):
-        make_checksum_mock.return_value = 'hashyourselfbeforeyoucrashyourself'
-
-        self.request.user = UserProfile.objects.get(pk=2519)
-
-        data = self.get_dict()
-        header_url = self.get_img_urls()
-
-        # Upload header image.
-        img = open(get_image_path('persona-header.jpg'), 'rb')
-        r_ajax = self.client.post(header_url, {'upload_image': img})
-        data.update(header_hash=json.loads(r_ajax.content)['upload_hash'])
-
-        # Populate and save form.
-        self.post()
-        assert self.form.is_valid(), self.form.errors
-        self.form.save()
-
-        addon = Addon.objects.filter(type=amo.ADDON_PERSONA).order_by('-id')[0]
-        persona = addon.persona
-
-        # Test for correct Addon and Persona values.
-        assert unicode(addon.name) == data['name']
-        assert addon.slug == data['slug']
-        self.assertSetEqual(set(addon.categories.values_list('id', flat=True)),
-                            {self.cat.id})
-        self.assertSetEqual(set(addon.tags.values_list('tag_text', flat=True)),
-                            set(data['tags'].split(', ')))
-        assert persona.persona_id == 0
-        assert persona.license == data['license']
-        assert persona.accentcolor == data['accentcolor'].lstrip('#')
-        assert persona.textcolor == data['textcolor'].lstrip('#')
-        assert persona.author == self.request.user.username
-        assert persona.display_username == self.request.user.name
-        assert not persona.dupe_persona
-
-        v = addon.versions.all()
-        assert len(v) == 1
-        assert v[0].version == '0'
-
-        # Test for header and preview images.
-        dst = os.path.join(user_media_path('addons'), str(addon.id))
-
-        header_src = os.path.join(settings.TMP_PATH, 'persona_header',
-                                  u'b4ll1n')
-
-        assert save_persona_image_mock.mock_calls == (
-            [mock.call(src=header_src,
-                       full_dst=os.path.join(dst, 'header.png'))])
-
-        create_persona_preview_images_mock.assert_called_with(
-            src=header_src,
-            full_dst=[os.path.join(dst, 'preview.png'),
-                      os.path.join(dst, 'icon.png')],
-            set_modified_on=addon.serializable_reference())
-
-    @mock.patch('olympia.addons.tasks.create_persona_preview_images')
-    @mock.patch('olympia.addons.tasks.save_persona_image')
-    @mock.patch('olympia.addons.tasks.make_checksum')
-    def test_dupe_persona(self, make_checksum_mock, mock1, mock2):
-        """
-        Submitting persona with checksum already in db should be marked
-        duplicate.
-        """
-        make_checksum_mock.return_value = 'cornhash'
-
-        self.request.user = UserProfile.objects.get(pk=2519)
-
-        self.post()
-        assert self.form.is_valid(), self.form.errors
-        self.form.save()
-
-        self.post(name='whatsinaname', slug='metalslug')
-        assert self.form.is_valid(), self.form.errors
-        self.form.save()
-
-        personas = Persona.objects.order_by('addon__name')
-        assert personas[0].checksum == personas[1].checksum
-        assert personas[1].dupe_persona == personas[0]
-        assert personas[0].dupe_persona is None
 
 
 class TestEditThemeForm(TestCase):

@@ -8,19 +8,21 @@ def test_version_int():
     assert version_int('3.5.0a1pre2') == 3050000001002
     assert version_int('') == 200100
     assert version_int('0') == 200100
-    assert version_int('*') == 99000000200100
+    assert version_int('*') == 999000000200100
     assert version_int(MAXVERSION) == MAXVERSION
     assert version_int(MAXVERSION + 1) == MAXVERSION
     assert version_int('9999999') == MAXVERSION
 
 
 def test_version_int_compare():
+    assert version_int('3.6.*') != version_int('3.6.999')
     assert version_int('3.6.*') == version_int('3.6.99')
     assert version_int('3.6.*') > version_int('3.6.8')
 
 
 def test_version_asterix_compare():
-    assert version_int('*') == version_int('99')
+    # Major versions now support three digit versions. Minor versions do not.
+    assert version_int('*') == version_int('999')
     assert version_int('98.*') < version_int('*')
     assert version_int('5.*') == version_int('5.99')
     assert version_int('5.*') > version_int('5.0.*')

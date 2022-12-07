@@ -529,6 +529,7 @@ class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
         call_command('process_addons',
                      task='delete_addons_not_compatible_with_firefoxes')
 
+    @pytest.mark.xfail(reason="Test and the associated command are Firefox specific.")
     def test_basic(self):
         av_min, _ = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='48.0')

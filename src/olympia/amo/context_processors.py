@@ -69,11 +69,9 @@ def global_settings(request):
         tools_links.append(
             {'text': ugettext('Submit a New Add-on'),
              'href': reverse('devhub.submit.agreement')})
-        no_more_lwt = waffle.switch_is_active('disable-lwt-uploads')
         tools_links.append(
             {'text': ugettext('Submit a New Theme'),
-             'href': reverse('devhub.submit.agreement' if no_more_lwt
-                             else 'devhub.themes.submit')})
+             'href': reverse('devhub.submit.agreement')})
         tools_links.append(
             {'text': ugettext('Developer Hub'),
              'href': reverse('devhub.index')})

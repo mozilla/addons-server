@@ -1,11 +1,11 @@
 {
-    "af": {
-        "English": "Afrikaans",
-        "native": "Afrikaans"
-    },
     "ach": {
         "English": "Acholi",
         "native": "Acholi"
+    },
+    "af": {
+        "English": "Afrikaans",
+        "native": "Afrikaans"
     },
     "ak": {
         "English": "Akan",
@@ -51,6 +51,10 @@
         "English": "Bambara",
         "native": "Bamanankan"
     },
+    "bn": {
+        "English": "Bengali",
+        "native": "\u09ac\u09be\u0982\u09b2\u09be"
+    },
     "bn-BD": {
         "English": "Bengali (Bangladesh)",
         "native": "\u09ac\u09be\u0982\u09b2\u09be (\u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6)"
@@ -58,6 +62,10 @@
     "bn-IN": {
         "English": "Bengali (India)",
         "native": "\u09ac\u09be\u0982\u09b2\u09be (\u09ad\u09be\u09b0\u09a4)"
+    },
+    "bo": {
+        "English": "Tibetan",
+        "native": "\u0f56\u0f7c\u0f51\u0f0b\u0f66\u0f90\u0f51\u0f0b"
     },
     "br": {
         "English": "Breton",
@@ -77,11 +85,15 @@
     },
     "ca-valencia": {
         "English": "Catalan (Valencian)",
-        "native": "catal\u00e0 (valenci\u00e0)"
+        "native": "Catal\u00e0 (Valenci\u00e0)"
     },
     "cak": {
         "English": "Kaqchikel",
         "native": "Maya Kaqchikel"
+    },
+    "ckb": {
+        "English": "Central Kurdish",
+        "native": "\u06a9\u0648\u0631\u062f\u06cc\u06cc \u0646\u0627\u0648\u06d5\u0646\u062f\u06cc\u0f0b"
     },
     "crh": {
         "English": "Crimean Tatar",
@@ -279,6 +291,10 @@
         "English": "Armenian",
         "native": "\u0540\u0561\u0575\u0565\u0580\u0565\u0576"
     },
+    "hye": {
+        "English": "Armenian Eastern Classic Orthography",
+        "native": "\u0531\u0580\u0565\u0582\u0565\u056c\u0561\u0570\u0561\u0575\u0565\u0580\u0567\u0576 \u0531\u0582\u0561\u0576\u0564\u0561\u056f\u0561\u0576 \u0548\u0582\u0572\u0572\u0561\u0563\u0580\u0578\u0582\u0569\u056b\u0582\u0576"
+    },
     "ia": {
         "English": "Interlingua",
         "native": "Interlingua"
@@ -335,13 +351,13 @@
         "English": "Konkani",
         "native": "\u0915\u094b\u0902\u0915\u0928\u0940"
     },
-    "ku": {
-        "English": "Kurdish",
-        "native": "Kurd\u00ee"
-    },
     "ks": {
         "English": "Kashmiri",
         "native": "\u0643\u0634\u0645\u06cc\u0631\u06cc"
+    },
+    "ku": {
+        "English": "Kurdish",
+        "native": "Kurd\u00ee"
     },
     "la": {
         "English": "Latin",
@@ -378,6 +394,10 @@
     "mai": {
         "English": "Maithili",
         "native": "\u092e\u0948\u0925\u093f\u0932\u0940 \u09ae\u09c8\u09a5\u09bf\u09b2\u09c0"
+    },
+    "meh": {
+        "English": "Mixteco Yucuhiti",
+        "native": "Tu'un Savi Yucuhiti"
     },
     "mg": {
         "English": "Malagasy",
@@ -419,13 +439,13 @@
         "English": "Nepali",
         "native": "\u0928\u0947\u092a\u093e\u0932\u0940"
     },
-    "nn-NO": {
-        "English": "Norwegian (Nynorsk)",
-        "native": "Norsk nynorsk"
-    },
     "nl": {
         "English": "Dutch",
         "native": "Nederlands"
+    },
+    "nn-NO": {
+        "English": "Norwegian (Nynorsk)",
+        "native": "Norsk nynorsk"
     },
     "nr": {
         "English": "Ndebele, South",
@@ -463,13 +483,13 @@
         "English": "Portuguese (Portugal)",
         "native": "Portugu\u00eas (Europeu)"
     },
-    "ro": {
-        "English": "Romanian",
-        "native": "Rom\u00e2n\u0103"
-    },
     "rm": {
         "English": "Romansh",
         "native": "rumantsch"
+    },
+    "ro": {
+        "English": "Romanian",
+        "native": "Rom\u00e2n\u0103"
     },
     "ru": {
         "English": "Russian",
@@ -483,13 +503,25 @@
         "English": "Sanskrit",
         "native": "\u0938\u0902\u0938\u094d\u0915\u0943\u0924"
     },
-    "sat": {
-        "English": "Santali",
-        "native": "\u0938\u0902\u0924\u093e\u0932\u0940"
-    },
     "sah": {
         "English": "Sakha",
         "native": "\u0421\u0430\u0445\u0430\u043b\u044b\u044b"
+    },
+    "sat": {
+        "English": "Santali",
+        "native": "\u1c65\u1c5f\u1c71\u1c5b\u1c5f\u1c72\u1c64"
+    },
+    "sc": {
+        "English": "Sardinian",
+        "native": "Sardu"
+    },
+    "scn": {
+        "English": "Sicilian",
+        "native": "Sicilianu"
+    },
+    "sco": {
+        "English": "Scots",
+        "native": "Scots"
     },
     "si": {
         "English": "Sinhala",
@@ -539,6 +571,10 @@
         "English": "Swahili",
         "native": "Kiswahili"
     },
+    "szl": {
+        "English": "Silesian",
+        "native": "\u015al\u014dnsko godka"
+    },
     "ta": {
         "English": "Tamil",
         "native": "\u0ba4\u0bae\u0bbf\u0bb4\u0bcd"
@@ -554,6 +590,10 @@
     "te": {
         "English": "Telugu",
         "native": "\u0c24\u0c46\u0c32\u0c41\u0c17\u0c41"
+    },
+    "tg": {
+        "English": "Tajik",
+        "native": "\u0422\u043e\u04b7\u0438\u043a\u04e3"
     },
     "th": {
         "English": "Thai",

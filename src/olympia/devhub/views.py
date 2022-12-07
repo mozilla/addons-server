@@ -1629,10 +1629,7 @@ def submit_version_finish(request, addon_id, addon, version_id):
 
 @login_required
 def submit_theme(request):
-    if waffle.switch_is_active('disable-lwt-uploads'):
-        return redirect('devhub.submit.agreement')
-    else:
-        return submit_lwt_theme(request)
+    return redirect('devhub.submit.agreement')
 
 
 def submit_lwt_theme(request):

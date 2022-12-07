@@ -90,6 +90,17 @@ CATEGORIES = {
             'retro': StaticCategory(id=31, name=_(u'Retro')),
             'sports': StaticCategory(id=26, name=_(u'Sports'))
         },
+        ADDON_STATICTHEME: {
+            'animals': StaticCategory(id=30, name=_(u'Animals')),
+            'compact': StaticCategory(id=32, name=_(u'Compact')),
+            'large': StaticCategory(id=67, name=_(u'Large')),
+            'miscellaneous': StaticCategory(id=21, name=_(u'Miscellaneous')),
+            'modern': StaticCategory(id=62, name=_(u'Modern')),
+            'nature': StaticCategory(id=29, name=_(u'Nature')),
+            'os-integration': StaticCategory(id=61, name=_(u'OS Integration')),
+            'retro': StaticCategory(id=31, name=_(u'Retro')),
+            'sports': StaticCategory(id=26, name=_(u'Sports'))
+        },
         ADDON_DICT: {
             'general': StaticCategory(id=95, name=_(u'General'))
         },

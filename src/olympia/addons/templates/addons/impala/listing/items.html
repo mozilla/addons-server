@@ -2,7 +2,7 @@
 {% for addon in addons %}
   <div class="item addon">
     <div class="info">
-    {% if addon.type == 10 %}
+    {% if addon.type == 10 and addon.current_previews.count() > 0 %}
       <img src="{{ addon.current_previews[0].image_url }}" width="442px" height="60px">
     {% endif %}
       <h3>

@@ -1,1 +1,5458 @@
-{"releases": {"devedition-54.0b12": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "54.0b12", "date": "2017-05-30"}, "devedition-54.0b14": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "54.0b14", "date": "2017-06-06"}, "devedition-55.0b2": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b2", "date": "2017-06-16"}, "devedition-55.0b3": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b3", "date": "2017-06-20"}, "devedition-55.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "55.0b5", "date": "2017-06-27"}, "devedition-55.0b6": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b6", "date": "2017-06-30"}, "devedition-55.0b7": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b7", "date": "2017-07-07"}, "devedition-55.0b8": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b8", "date": "2017-07-11"}, "devedition-55.0b10": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b10", "date": "2017-07-18"}, "devedition-55.0b11": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b11", "date": "2017-07-21"}, "devedition-55.0b12": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b12", "date": "2017-07-25"}, "devedition-55.0b13": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b13", "date": "2017-07-28"}, "devedition-55.0b14": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "55.0b14", "date": "2017-08-01"}, "devedition-56.0b2": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "56.0b2", "date": "2017-08-11"}, "devedition-56.0b3": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "56.0b3", "date": "2017-08-16"}, "devedition-56.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "56.0b5", "date": "2017-08-22"}, "devedition-56.0b8": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "56.0b8", "date": "2017-09-01"}, "devedition-56.0b9": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "56.0b9", "date": "2017-09-05"}, "devedition-56.0b10": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "56.0b10", "date": "2017-09-08"}, "devedition-56.0b11": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "56.0b11", "date": "2017-09-12"}, "devedition-56.0b12": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "56.0b12", "date": "2017-09-15"}, "devedition-57.0b3": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "57.0b3", "date": "2017-09-26"}, "devedition-57.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "57.0b5", "date": "2017-10-03"}, "devedition-57.0b6": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "57.0b6", "date": "2017-10-06"}, "devedition-57.0b7": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "57.0b7", "date": "2017-10-10"}, "devedition-57.0b9": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "57.0b9", "date": "2017-10-17"}, "devedition-57.0b10": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "57.0b10", "date": "2017-10-20"}, "devedition-57.0b11": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "57.0b11", "date": "2017-10-24"}, "devedition-57.0b13": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "57.0b13", "date": "2017-10-31"}, "devedition-57.0b14": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "57.0b14", "date": "2017-11-03"}, "devedition-58.0b4": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "58.0b4", "date": "2017-11-15"}, "devedition-58.0b1": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "58.0b1", "date": "2017-11-17"}, "devedition-58.0b2": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "58.0b2", "date": "2017-11-17"}, "devedition-58.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "58.0b5", "date": "2017-11-21"}, "devedition-58.0b6": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "58.0b6", "date": "2017-11-24"}, "devedition-58.0b7": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "58.0b7", "date": "2017-11-28"}, "devedition-58.0b8": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "58.0b8", "date": "2017-12-01"}, "devedition-58.0b9": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "58.0b9", "date": "2017-12-05"}, "devedition-58.0b10": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "58.0b10", "date": "2017-12-08"}, "devedition-58.0b11": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "58.0b11", "date": "2017-12-12"}, "devedition-58.0b12": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "58.0b12", "date": "2017-12-19"}, "devedition-58.0b13": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "58.0b13", "date": "2017-12-28"}, "devedition-58.0b15": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "58.0b15", "date": "2018-01-09"}, "devedition-58.0b16": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "58.0b16", "date": "2018-01-12"}, "devedition-59.0b2": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b2", "date": "2018-01-19"}, "devedition-59.0b3": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "59.0b3", "date": "2018-01-24"}, "devedition-59.0b4": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b4", "date": "2018-01-26"}, "devedition-59.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b5", "date": "2018-01-29"}, "devedition-59.0b6": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b6", "date": "2018-02-02"}, "devedition-59.0b7": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b7", "date": "2018-02-06"}, "devedition-59.0b9": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b9", "date": "2018-02-13"}, "devedition-59.0b11": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b11", "date": "2018-02-20"}, "devedition-59.0b12": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b12", "date": "2018-02-23"}, "devedition-59.0b13": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b13", "date": "2018-02-27"}, "devedition-59.0b14": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "59.0b14", "date": "2018-03-02"}, "devedition-60.0b2": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "60.0b2", "date": "2018-03-09"}, "devedition-60.0b3": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "60.0b3", "date": "2018-03-14"}, "devedition-60.0b4": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "60.0b4", "date": "2018-03-16"}, "devedition-60.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "60.0b5", "date": "2018-03-20"}, "devedition-60.0b6": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "60.0b6", "date": "2018-03-23"}, "devedition-60.0b7": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "60.0b7", "date": "2018-03-27"}, "devedition-60.0b8": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "60.0b8", "date": "2018-03-30"}, "devedition-60.0b9": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "60.0b9", "date": "2018-04-03"}, "devedition-60.0b10": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "60.0b10", "date": "2018-04-05"}, "devedition-60.0b11": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "60.0b11", "date": "2018-04-10"}, "devedition-60.0b12": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "60.0b12", "date": "2018-04-13"}, "devedition-60.0b13": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "60.0b13", "date": "2018-04-17"}, "devedition-60.0b14": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "60.0b14", "date": "2018-04-20"}, "devedition-60.0b15": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "60.0b15", "date": "2018-04-24"}, "devedition-60.0b16": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "60.0b16", "date": "2018-04-27"}, "devedition-61.0b1": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b1", "date": "2018-05-02"}, "devedition-61.0b2": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b2", "date": "2018-05-04"}, "devedition-61.0b3": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b3", "date": "2018-05-08"}, "devedition-61.0b4": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b4", "date": "2018-05-11"}, "devedition-61.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b5", "date": "2018-05-15"}, "devedition-61.0b6": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b6", "date": "2018-05-18"}, "devedition-61.0b7": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b7", "date": "2018-05-22"}, "devedition-61.0b8": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b8", "date": "2018-05-25"}, "devedition-61.0b9": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b9", "date": "2018-05-29"}, "devedition-61.0b10": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b10", "date": "2018-05-31"}, "devedition-61.0b11": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b11", "date": "2018-06-05"}, "devedition-61.0b12": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b12", "date": "2018-06-08"}, "devedition-61.0b13": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "61.0b13", "date": "2018-06-12"}, "devedition-61.0b14": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "61.0b14", "date": "2018-06-15"}, "devedition-62.0b1": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b1", "date": "2018-06-19"}, "devedition-62.0b2": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b2", "date": "2018-06-22"}, "devedition-62.0b3": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b3", "date": "2018-06-26"}, "devedition-62.0b4": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "62.0b4", "date": "2018-06-29"}, "devedition-62.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b5", "date": "2018-07-03"}, "devedition-62.0b6": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b6", "date": "2018-07-06"}, "devedition-62.0b7": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b7", "date": "2018-07-10"}, "devedition-62.0b8": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b8", "date": "2018-07-13"}, "devedition-62.0b9": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "62.0b9", "date": "2018-07-17"}, "devedition-62.0b10": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "62.0b10", "date": "2018-07-20"}, "devedition-62.0b11": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b11", "date": "2018-07-24"}, "devedition-62.0b12": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b12", "date": "2018-07-27"}, "devedition-62.0b13": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b13", "date": "2018-07-31"}, "devedition-62.0b14": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "62.0b14", "date": "2018-08-03"}, "devedition-62.0b15": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b15", "date": "2018-08-07"}, "devedition-62.0b16": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b16", "date": "2018-08-10"}, "devedition-62.0b17": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "62.0b17", "date": "2018-08-14"}, "devedition-62.0b18": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b18", "date": "2018-08-17"}, "devedition-62.0b19": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "62.0b19", "date": "2018-08-21"}, "devedition-62.0b20": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "62.0b20", "date": "2018-08-24"}, "devedition-63.0b1": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "63.0b1", "date": "2018-08-28"}, "devedition-63.0b2": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "63.0b2", "date": "2018-08-31"}, "devedition-63.0b3": {"category": "dev", "product": "devedition", "build_number": 1, "description": "", "is_security_driven": false, "version": "63.0b3", "date": "2018-09-05"}, "devedition-63.0b4": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "63.0b4", "date": "2018-09-07"}, "devedition-63.0b5": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "63.0b5", "date": "2018-09-11"}, "devedition-63.0b6": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "63.0b6", "date": "2018-09-14"}, "devedition-63.0b7": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "63.0b7", "date": "2018-09-18"}, "devedition-63.0b8": {"category": "dev", "product": "devedition", "build_number": 1, "description": null, "is_security_driven": false, "version": "63.0b8", "date": "2018-09-21"}, "devedition-55.0b9": {"category": "dev", "product": "devedition", "build_number": 2, "description": null, "is_security_driven": false, "version": "55.0b9", "date": "2017-07-14"}, "devedition-56.0b6": {"category": "dev", "product": "devedition", "build_number": 2, "description": null, "is_security_driven": false, "version": "56.0b6", "date": "2017-08-25"}, "devedition-57.0b2": {"category": "dev", "product": "devedition", "build_number": 2, "description": "", "is_security_driven": false, "version": "57.0b2", "date": "2017-09-22"}, "devedition-57.0b12": {"category": "dev", "product": "devedition", "build_number": 2, "description": null, "is_security_driven": false, "version": "57.0b12", "date": "2017-10-27"}, "devedition-58.0b14": {"category": "dev", "product": "devedition", "build_number": 2, "description": "", "is_security_driven": false, "version": "58.0b14", "date": "2018-01-04"}, "devedition-59.0b8": {"category": "dev", "product": "devedition", "build_number": 2, "description": null, "is_security_driven": false, "version": "59.0b8", "date": "2018-02-09"}, "devedition-57.0b1": {"category": "dev", "product": "devedition", "build_number": 3, "description": "", "is_security_driven": false, "version": "57.0b1", "date": "2017-09-19"}, "devedition-57.0b8": {"category": "dev", "product": "devedition", "build_number": 3, "description": null, "is_security_driven": false, "version": "57.0b8", "date": "2017-10-13"}, "devedition-59.0b10": {"category": "dev", "product": "devedition", "build_number": 3, "description": null, "is_security_driven": false, "version": "59.0b10", "date": "2018-02-16"}, "devedition-60.0b1": {"category": "dev", "product": "devedition", "build_number": 3, "description": "", "is_security_driven": false, "version": "60.0b1", "date": "2018-03-06"}, "devedition-54.0b11": {"category": "dev", "product": "devedition", "build_number": 4, "description": null, "is_security_driven": false, "version": "54.0b11", "date": "2017-05-26"}, "devedition-55.0b1": {"category": "dev", "product": "devedition", "build_number": 5, "description": null, "is_security_driven": false, "version": "55.0b1", "date": "2017-06-14"}, "devedition-56.0b1": {"category": "dev", "product": "devedition", "build_number": 5, "description": null, "is_security_driven": false, "version": "56.0b1", "date": "2017-08-09"}, "devedition-56.0b4": {"category": "dev", "product": "devedition", "build_number": 5, "description": null, "is_security_driven": false, "version": "56.0b4", "date": "2017-08-21"}, "devedition-59.0b1": {"category": "dev", "product": "devedition", "build_number": 11, "description": "", "is_security_driven": false, "version": "59.0b1", "date": "2018-01-17"}}}
+{
+    "releases": {
+        "devedition-100.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-04-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b1"
+        },
+        "devedition-100.0b2": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2022-04-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b2"
+        },
+        "devedition-100.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-04-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b3"
+        },
+        "devedition-100.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-04-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b4"
+        },
+        "devedition-100.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-04-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b5"
+        },
+        "devedition-100.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-04-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b6"
+        },
+        "devedition-100.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-04-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b7"
+        },
+        "devedition-100.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-04-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b8"
+        },
+        "devedition-100.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-04-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "100.0b9"
+        },
+        "devedition-101.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b1"
+        },
+        "devedition-101.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b2"
+        },
+        "devedition-101.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b3"
+        },
+        "devedition-101.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b4"
+        },
+        "devedition-101.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b5"
+        },
+        "devedition-101.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b6"
+        },
+        "devedition-101.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b7"
+        },
+        "devedition-101.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b8"
+        },
+        "devedition-101.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "101.0b9"
+        },
+        "devedition-102.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-05-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b1"
+        },
+        "devedition-102.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b2"
+        },
+        "devedition-102.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b3"
+        },
+        "devedition-102.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b4"
+        },
+        "devedition-102.0b5": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2022-06-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b5"
+        },
+        "devedition-102.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b6"
+        },
+        "devedition-102.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b7"
+        },
+        "devedition-102.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b8"
+        },
+        "devedition-102.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "102.0b9"
+        },
+        "devedition-103.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b1"
+        },
+        "devedition-103.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-06-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b2"
+        },
+        "devedition-103.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b3"
+        },
+        "devedition-103.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b4"
+        },
+        "devedition-103.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b5"
+        },
+        "devedition-103.0b6": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2022-07-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b6"
+        },
+        "devedition-103.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b7"
+        },
+        "devedition-103.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b8"
+        },
+        "devedition-103.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "103.0b9"
+        },
+        "devedition-104.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b1"
+        },
+        "devedition-104.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b10"
+        },
+        "devedition-104.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b2"
+        },
+        "devedition-104.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-07-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b3"
+        },
+        "devedition-104.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b4"
+        },
+        "devedition-104.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b5"
+        },
+        "devedition-104.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b6"
+        },
+        "devedition-104.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b7"
+        },
+        "devedition-104.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b8"
+        },
+        "devedition-104.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "104.0b9"
+        },
+        "devedition-105.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b1"
+        },
+        "devedition-105.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b2"
+        },
+        "devedition-105.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b3"
+        },
+        "devedition-105.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b4"
+        },
+        "devedition-105.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-08-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b5"
+        },
+        "devedition-105.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b6"
+        },
+        "devedition-105.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b7"
+        },
+        "devedition-105.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b8"
+        },
+        "devedition-105.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "105.0b9"
+        },
+        "devedition-106.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b1"
+        },
+        "devedition-106.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b2"
+        },
+        "devedition-106.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b3"
+        },
+        "devedition-106.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b4"
+        },
+        "devedition-106.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b5"
+        },
+        "devedition-106.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-09-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b6"
+        },
+        "devedition-106.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b7"
+        },
+        "devedition-106.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b8"
+        },
+        "devedition-106.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "106.0b9"
+        },
+        "devedition-107.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b1"
+        },
+        "devedition-107.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b2"
+        },
+        "devedition-107.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b3"
+        },
+        "devedition-107.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b4"
+        },
+        "devedition-107.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b5"
+        },
+        "devedition-107.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b6"
+        },
+        "devedition-107.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-10-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b7"
+        },
+        "devedition-107.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b8"
+        },
+        "devedition-107.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "107.0b9"
+        },
+        "devedition-108.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b1"
+        },
+        "devedition-108.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b2"
+        },
+        "devedition-108.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b3"
+        },
+        "devedition-108.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b4"
+        },
+        "devedition-108.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b5"
+        },
+        "devedition-108.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b6"
+        },
+        "devedition-108.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b7"
+        },
+        "devedition-108.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-11-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b8"
+        },
+        "devedition-108.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-12-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "108.0b9"
+        },
+        "devedition-109.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-12-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "109.0b1"
+        },
+        "devedition-109.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-12-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "109.0b2"
+        },
+        "devedition-109.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-12-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "109.0b3"
+        },
+        "devedition-109.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-12-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "109.0b4"
+        },
+        "devedition-109.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-12-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "109.0b5"
+        },
+        "devedition-54.0b11": {
+            "build_number": 4,
+            "category": "dev",
+            "date": "2017-05-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "54.0b11"
+        },
+        "devedition-54.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-05-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "54.0b12"
+        },
+        "devedition-54.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-06-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "54.0b14"
+        },
+        "devedition-55.0b1": {
+            "build_number": 5,
+            "category": "dev",
+            "date": "2017-06-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b1"
+        },
+        "devedition-55.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-07-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b10"
+        },
+        "devedition-55.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-07-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b11"
+        },
+        "devedition-55.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-07-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b12"
+        },
+        "devedition-55.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-07-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b13"
+        },
+        "devedition-55.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-08-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b14"
+        },
+        "devedition-55.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-06-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b2"
+        },
+        "devedition-55.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-06-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b3"
+        },
+        "devedition-55.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-06-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b5"
+        },
+        "devedition-55.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-06-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b6"
+        },
+        "devedition-55.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-07-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b7"
+        },
+        "devedition-55.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-07-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b8"
+        },
+        "devedition-55.0b9": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2017-07-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "55.0b9"
+        },
+        "devedition-56.0b1": {
+            "build_number": 5,
+            "category": "dev",
+            "date": "2017-08-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b1"
+        },
+        "devedition-56.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-09-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b10"
+        },
+        "devedition-56.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-09-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b11"
+        },
+        "devedition-56.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-09-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b12"
+        },
+        "devedition-56.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-08-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b2"
+        },
+        "devedition-56.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-08-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b3"
+        },
+        "devedition-56.0b4": {
+            "build_number": 5,
+            "category": "dev",
+            "date": "2017-08-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b4"
+        },
+        "devedition-56.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-08-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b5"
+        },
+        "devedition-56.0b6": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2017-08-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b6"
+        },
+        "devedition-56.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-09-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b8"
+        },
+        "devedition-56.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-09-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "56.0b9"
+        },
+        "devedition-57.0b1": {
+            "build_number": 3,
+            "category": "dev",
+            "date": "2017-09-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b1"
+        },
+        "devedition-57.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-10-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b10"
+        },
+        "devedition-57.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-10-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b11"
+        },
+        "devedition-57.0b12": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2017-10-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b12"
+        },
+        "devedition-57.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-10-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b13"
+        },
+        "devedition-57.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-11-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b14"
+        },
+        "devedition-57.0b2": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2017-09-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b2"
+        },
+        "devedition-57.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-09-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b3"
+        },
+        "devedition-57.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-10-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b5"
+        },
+        "devedition-57.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-10-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b6"
+        },
+        "devedition-57.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-10-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b7"
+        },
+        "devedition-57.0b8": {
+            "build_number": 3,
+            "category": "dev",
+            "date": "2017-10-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b8"
+        },
+        "devedition-57.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-10-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "57.0b9"
+        },
+        "devedition-58.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-11-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b1"
+        },
+        "devedition-58.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-12-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b10"
+        },
+        "devedition-58.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-12-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b11"
+        },
+        "devedition-58.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-12-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b12"
+        },
+        "devedition-58.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-12-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b13"
+        },
+        "devedition-58.0b14": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2018-01-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b14"
+        },
+        "devedition-58.0b15": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-01-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b15"
+        },
+        "devedition-58.0b16": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-01-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b16"
+        },
+        "devedition-58.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-11-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b2"
+        },
+        "devedition-58.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-11-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b4"
+        },
+        "devedition-58.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-11-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b5"
+        },
+        "devedition-58.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-11-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b6"
+        },
+        "devedition-58.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-11-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b7"
+        },
+        "devedition-58.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-12-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b8"
+        },
+        "devedition-58.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2017-12-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "58.0b9"
+        },
+        "devedition-59.0b1": {
+            "build_number": 11,
+            "category": "dev",
+            "date": "2018-01-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b1"
+        },
+        "devedition-59.0b10": {
+            "build_number": 3,
+            "category": "dev",
+            "date": "2018-02-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b10"
+        },
+        "devedition-59.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-02-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b11"
+        },
+        "devedition-59.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-02-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b12"
+        },
+        "devedition-59.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-02-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b13"
+        },
+        "devedition-59.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-03-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b14"
+        },
+        "devedition-59.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-01-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b2"
+        },
+        "devedition-59.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-01-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b3"
+        },
+        "devedition-59.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-01-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b4"
+        },
+        "devedition-59.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-01-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b5"
+        },
+        "devedition-59.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-02-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b6"
+        },
+        "devedition-59.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-02-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b7"
+        },
+        "devedition-59.0b8": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2018-02-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b8"
+        },
+        "devedition-59.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-02-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "59.0b9"
+        },
+        "devedition-60.0b1": {
+            "build_number": 3,
+            "category": "dev",
+            "date": "2018-03-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b1"
+        },
+        "devedition-60.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-04-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b10"
+        },
+        "devedition-60.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-04-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b11"
+        },
+        "devedition-60.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-04-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b12"
+        },
+        "devedition-60.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-04-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b13"
+        },
+        "devedition-60.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-04-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b14"
+        },
+        "devedition-60.0b15": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-04-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b15"
+        },
+        "devedition-60.0b16": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-04-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b16"
+        },
+        "devedition-60.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-03-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b2"
+        },
+        "devedition-60.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-03-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b3"
+        },
+        "devedition-60.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-03-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b4"
+        },
+        "devedition-60.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-03-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b5"
+        },
+        "devedition-60.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-03-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b6"
+        },
+        "devedition-60.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-03-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b7"
+        },
+        "devedition-60.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-03-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b8"
+        },
+        "devedition-60.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-04-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "60.0b9"
+        },
+        "devedition-61.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b1"
+        },
+        "devedition-61.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b10"
+        },
+        "devedition-61.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-06-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b11"
+        },
+        "devedition-61.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-06-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b12"
+        },
+        "devedition-61.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-06-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b13"
+        },
+        "devedition-61.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-06-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b14"
+        },
+        "devedition-61.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b2"
+        },
+        "devedition-61.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b3"
+        },
+        "devedition-61.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b4"
+        },
+        "devedition-61.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b5"
+        },
+        "devedition-61.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b6"
+        },
+        "devedition-61.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b7"
+        },
+        "devedition-61.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b8"
+        },
+        "devedition-61.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-05-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "61.0b9"
+        },
+        "devedition-62.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-06-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b1"
+        },
+        "devedition-62.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b10"
+        },
+        "devedition-62.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b11"
+        },
+        "devedition-62.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b12"
+        },
+        "devedition-62.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b13"
+        },
+        "devedition-62.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b14"
+        },
+        "devedition-62.0b15": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b15"
+        },
+        "devedition-62.0b16": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b16"
+        },
+        "devedition-62.0b17": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b17"
+        },
+        "devedition-62.0b18": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b18"
+        },
+        "devedition-62.0b19": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b19"
+        },
+        "devedition-62.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-06-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b2"
+        },
+        "devedition-62.0b20": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b20"
+        },
+        "devedition-62.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-06-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b3"
+        },
+        "devedition-62.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-06-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b4"
+        },
+        "devedition-62.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b5"
+        },
+        "devedition-62.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b6"
+        },
+        "devedition-62.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b7"
+        },
+        "devedition-62.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b8"
+        },
+        "devedition-62.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-07-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "62.0b9"
+        },
+        "devedition-63.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b1"
+        },
+        "devedition-63.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-09-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b10"
+        },
+        "devedition-63.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-10-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b11"
+        },
+        "devedition-63.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-10-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b12"
+        },
+        "devedition-63.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-10-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b13"
+        },
+        "devedition-63.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-10-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b14"
+        },
+        "devedition-63.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-08-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b2"
+        },
+        "devedition-63.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-09-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b3"
+        },
+        "devedition-63.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-09-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b4"
+        },
+        "devedition-63.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-09-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b5"
+        },
+        "devedition-63.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-09-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b6"
+        },
+        "devedition-63.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-09-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b7"
+        },
+        "devedition-63.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-09-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b8"
+        },
+        "devedition-63.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-09-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "63.0b9"
+        },
+        "devedition-64.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-10-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b1"
+        },
+        "devedition-64.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b10"
+        },
+        "devedition-64.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b11"
+        },
+        "devedition-64.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b12"
+        },
+        "devedition-64.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b13"
+        },
+        "devedition-64.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b14"
+        },
+        "devedition-64.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-10-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b2"
+        },
+        "devedition-64.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-10-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b3"
+        },
+        "devedition-64.0b4": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2018-10-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b4"
+        },
+        "devedition-64.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-10-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b5"
+        },
+        "devedition-64.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b6"
+        },
+        "devedition-64.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b7"
+        },
+        "devedition-64.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b8"
+        },
+        "devedition-64.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-11-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "64.0b9"
+        },
+        "devedition-65.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2018-12-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b1"
+        },
+        "devedition-65.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-01-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b10"
+        },
+        "devedition-65.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-01-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b11"
+        },
+        "devedition-65.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-01-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b12"
+        },
+        "devedition-65.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-12-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b2"
+        },
+        "devedition-65.0b3": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2018-12-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b3"
+        },
+        "devedition-65.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-12-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b4"
+        },
+        "devedition-65.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-12-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b5"
+        },
+        "devedition-65.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-12-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b6"
+        },
+        "devedition-65.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2018-12-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b7"
+        },
+        "devedition-65.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-01-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b8"
+        },
+        "devedition-65.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-01-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "65.0b9"
+        },
+        "devedition-66.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-01-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b1"
+        },
+        "devedition-66.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-02-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b10"
+        },
+        "devedition-66.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-02-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b11"
+        },
+        "devedition-66.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-03-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b12"
+        },
+        "devedition-66.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-03-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b13"
+        },
+        "devedition-66.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-03-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b14"
+        },
+        "devedition-66.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-01-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b2"
+        },
+        "devedition-66.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-01-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b3"
+        },
+        "devedition-66.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-02-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b4"
+        },
+        "devedition-66.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-02-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b5"
+        },
+        "devedition-66.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-02-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b6"
+        },
+        "devedition-66.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-02-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b7"
+        },
+        "devedition-66.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-02-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b8"
+        },
+        "devedition-66.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-02-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "66.0b9"
+        },
+        "devedition-67.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-03-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b1"
+        },
+        "devedition-67.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-04-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b10"
+        },
+        "devedition-67.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-04-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b11"
+        },
+        "devedition-67.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-04-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b12"
+        },
+        "devedition-67.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-04-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b13"
+        },
+        "devedition-67.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-04-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b14"
+        },
+        "devedition-67.0b15": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-04-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b15"
+        },
+        "devedition-67.0b16": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2019-05-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b16"
+        },
+        "devedition-67.0b17": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b17"
+        },
+        "devedition-67.0b18": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b18"
+        },
+        "devedition-67.0b19": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b19"
+        },
+        "devedition-67.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-03-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b2"
+        },
+        "devedition-67.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-03-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b3"
+        },
+        "devedition-67.0b4": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2019-03-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b4"
+        },
+        "devedition-67.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-03-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b5"
+        },
+        "devedition-67.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-03-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b6"
+        },
+        "devedition-67.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-04-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b7"
+        },
+        "devedition-67.0b8": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2019-04-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b8"
+        },
+        "devedition-67.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-04-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "67.0b9"
+        },
+        "devedition-68.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b1"
+        },
+        "devedition-68.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-06-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b10"
+        },
+        "devedition-68.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-06-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b11"
+        },
+        "devedition-68.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-06-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b12"
+        },
+        "devedition-68.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-06-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b13"
+        },
+        "devedition-68.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-06-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b14"
+        },
+        "devedition-68.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b2"
+        },
+        "devedition-68.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b3"
+        },
+        "devedition-68.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b4"
+        },
+        "devedition-68.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b5"
+        },
+        "devedition-68.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-05-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b6"
+        },
+        "devedition-68.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-06-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b7"
+        },
+        "devedition-68.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-06-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b8"
+        },
+        "devedition-68.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-06-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "68.0b9"
+        },
+        "devedition-69.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2019-07-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b1"
+        },
+        "devedition-69.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-08-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b10"
+        },
+        "devedition-69.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-08-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b11"
+        },
+        "devedition-69.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-08-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b12"
+        },
+        "devedition-69.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-08-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b13"
+        },
+        "devedition-69.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-08-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b14"
+        },
+        "devedition-69.0b15": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-08-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b15"
+        },
+        "devedition-69.0b16": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-08-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b16"
+        },
+        "devedition-69.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-07-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b2"
+        },
+        "devedition-69.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-07-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b3"
+        },
+        "devedition-69.0b4": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2019-07-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b4"
+        },
+        "devedition-69.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-07-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b5"
+        },
+        "devedition-69.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-07-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b6"
+        },
+        "devedition-69.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-07-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b7"
+        },
+        "devedition-69.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-07-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b8"
+        },
+        "devedition-69.0b9": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2019-07-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "69.0b9"
+        },
+        "devedition-70.0b1": {
+            "build_number": 3,
+            "category": "dev",
+            "date": "2019-08-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b1"
+        },
+        "devedition-70.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-09-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b10"
+        },
+        "devedition-70.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-10-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b11"
+        },
+        "devedition-70.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-10-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b12"
+        },
+        "devedition-70.0b13": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2019-10-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b13"
+        },
+        "devedition-70.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-10-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b14"
+        },
+        "devedition-70.0b2": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2019-08-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b2"
+        },
+        "devedition-70.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-09-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b3"
+        },
+        "devedition-70.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-09-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b4"
+        },
+        "devedition-70.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-09-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b5"
+        },
+        "devedition-70.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-09-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b6"
+        },
+        "devedition-70.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-09-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b7"
+        },
+        "devedition-70.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-09-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b8"
+        },
+        "devedition-70.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-09-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "70.0b9"
+        },
+        "devedition-71.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-10-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b1"
+        },
+        "devedition-71.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-11-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b10"
+        },
+        "devedition-71.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-11-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b11"
+        },
+        "devedition-71.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-11-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b12"
+        },
+        "devedition-71.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-10-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b2"
+        },
+        "devedition-71.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-10-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b3"
+        },
+        "devedition-71.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-10-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b4"
+        },
+        "devedition-71.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-10-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b5"
+        },
+        "devedition-71.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-11-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b6"
+        },
+        "devedition-71.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-11-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b7"
+        },
+        "devedition-71.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-11-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b8"
+        },
+        "devedition-71.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-11-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "71.0b9"
+        },
+        "devedition-72.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b1"
+        },
+        "devedition-72.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b10"
+        },
+        "devedition-72.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b11"
+        },
+        "devedition-72.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b2"
+        },
+        "devedition-72.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b3"
+        },
+        "devedition-72.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b4"
+        },
+        "devedition-72.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b5"
+        },
+        "devedition-72.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b6"
+        },
+        "devedition-72.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b7"
+        },
+        "devedition-72.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b8"
+        },
+        "devedition-72.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2019-12-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "72.0b9"
+        },
+        "devedition-73.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2020-01-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b1"
+        },
+        "devedition-73.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b10"
+        },
+        "devedition-73.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b11"
+        },
+        "devedition-73.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b12"
+        },
+        "devedition-73.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b2"
+        },
+        "devedition-73.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b3"
+        },
+        "devedition-73.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b4"
+        },
+        "devedition-73.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b5"
+        },
+        "devedition-73.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b6"
+        },
+        "devedition-73.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b7"
+        },
+        "devedition-73.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b8"
+        },
+        "devedition-73.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-01-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "73.0b9"
+        },
+        "devedition-74.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2020-02-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b1"
+        },
+        "devedition-74.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-02-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b2"
+        },
+        "devedition-74.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-02-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b3"
+        },
+        "devedition-74.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-02-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b4"
+        },
+        "devedition-74.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-02-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b5"
+        },
+        "devedition-74.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-02-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b6"
+        },
+        "devedition-74.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-02-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b7"
+        },
+        "devedition-74.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-02-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b8"
+        },
+        "devedition-74.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-02-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "74.0b9"
+        },
+        "devedition-75.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b1"
+        },
+        "devedition-75.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-27",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b10"
+        },
+        "devedition-75.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b11"
+        },
+        "devedition-75.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-04-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b12"
+        },
+        "devedition-75.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b2"
+        },
+        "devedition-75.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b3"
+        },
+        "devedition-75.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b4"
+        },
+        "devedition-75.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b5"
+        },
+        "devedition-75.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b6"
+        },
+        "devedition-75.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b7"
+        },
+        "devedition-75.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b8"
+        },
+        "devedition-75.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-03-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "75.0b9"
+        },
+        "devedition-76.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-04-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "76.0b1"
+        },
+        "devedition-76.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-04-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "76.0b2"
+        },
+        "devedition-76.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-04-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "76.0b3"
+        },
+        "devedition-76.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-04-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "76.0b4"
+        },
+        "devedition-76.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-04-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "76.0b5"
+        },
+        "devedition-76.0b6": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2020-04-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "76.0b6"
+        },
+        "devedition-76.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-04-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "76.0b7"
+        },
+        "devedition-76.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-04-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "76.0b8"
+        },
+        "devedition-77.0b1": {
+            "build_number": 3,
+            "category": "dev",
+            "date": "2020-05-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b1"
+        },
+        "devedition-77.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-05-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b2"
+        },
+        "devedition-77.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-05-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b3"
+        },
+        "devedition-77.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-05-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b4"
+        },
+        "devedition-77.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-05-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b5"
+        },
+        "devedition-77.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-05-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b6"
+        },
+        "devedition-77.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-05-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b7"
+        },
+        "devedition-77.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-05-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b8"
+        },
+        "devedition-77.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-05-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "77.0b9"
+        },
+        "devedition-78.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b1"
+        },
+        "devedition-78.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b2"
+        },
+        "devedition-78.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b3"
+        },
+        "devedition-78.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b4"
+        },
+        "devedition-78.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b5"
+        },
+        "devedition-78.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b6"
+        },
+        "devedition-78.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b7"
+        },
+        "devedition-78.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b8"
+        },
+        "devedition-78.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-06-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "78.0b9"
+        },
+        "devedition-79.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2020-06-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b1"
+        },
+        "devedition-79.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b2"
+        },
+        "devedition-79.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b3"
+        },
+        "devedition-79.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b4"
+        },
+        "devedition-79.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b5"
+        },
+        "devedition-79.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b6"
+        },
+        "devedition-79.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b7"
+        },
+        "devedition-79.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b8"
+        },
+        "devedition-79.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "79.0b9"
+        },
+        "devedition-80.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2020-07-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "80.0b1"
+        },
+        "devedition-80.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-07-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "80.0b2"
+        },
+        "devedition-80.0b3": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2020-08-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "80.0b3"
+        },
+        "devedition-80.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "80.0b4"
+        },
+        "devedition-80.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "80.0b5"
+        },
+        "devedition-80.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "80.0b6"
+        },
+        "devedition-80.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "80.0b7"
+        },
+        "devedition-80.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "80.0b8"
+        },
+        "devedition-81.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b1"
+        },
+        "devedition-81.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b2"
+        },
+        "devedition-81.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b3"
+        },
+        "devedition-81.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-08-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b4"
+        },
+        "devedition-81.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b5"
+        },
+        "devedition-81.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b6"
+        },
+        "devedition-81.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b7"
+        },
+        "devedition-81.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b8"
+        },
+        "devedition-81.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "81.0b9"
+        },
+        "devedition-82.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b1"
+        },
+        "devedition-82.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b2"
+        },
+        "devedition-82.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b3"
+        },
+        "devedition-82.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b4"
+        },
+        "devedition-82.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-09-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b5"
+        },
+        "devedition-82.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b6"
+        },
+        "devedition-82.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b7"
+        },
+        "devedition-82.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b8"
+        },
+        "devedition-82.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "82.0b9"
+        },
+        "devedition-83.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b1"
+        },
+        "devedition-83.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b10"
+        },
+        "devedition-83.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b2"
+        },
+        "devedition-83.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b3"
+        },
+        "devedition-83.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b4"
+        },
+        "devedition-83.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b5"
+        },
+        "devedition-83.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-10-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b6"
+        },
+        "devedition-83.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b7"
+        },
+        "devedition-83.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b8"
+        },
+        "devedition-83.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "83.0b9"
+        },
+        "devedition-84.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2020-11-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "84.0b1"
+        },
+        "devedition-84.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "84.0b2"
+        },
+        "devedition-84.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "84.0b3"
+        },
+        "devedition-84.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "84.0b4"
+        },
+        "devedition-84.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "84.0b5"
+        },
+        "devedition-84.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-11-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "84.0b6"
+        },
+        "devedition-84.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-12-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "84.0b7"
+        },
+        "devedition-84.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-12-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "84.0b8"
+        },
+        "devedition-85.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-12-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b1"
+        },
+        "devedition-85.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-12-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b2"
+        },
+        "devedition-85.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-12-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b3"
+        },
+        "devedition-85.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2020-12-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b4"
+        },
+        "devedition-85.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-01-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b5"
+        },
+        "devedition-85.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-01-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b6"
+        },
+        "devedition-85.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-01-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b7"
+        },
+        "devedition-85.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-01-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b8"
+        },
+        "devedition-85.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-01-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "85.0b9"
+        },
+        "devedition-86.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2021-01-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b1"
+        },
+        "devedition-86.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-01-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b2"
+        },
+        "devedition-86.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-01-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b3"
+        },
+        "devedition-86.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b4"
+        },
+        "devedition-86.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b5"
+        },
+        "devedition-86.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b6"
+        },
+        "devedition-86.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b7"
+        },
+        "devedition-86.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b8"
+        },
+        "devedition-86.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "86.0b9"
+        },
+        "devedition-87.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b1"
+        },
+        "devedition-87.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b2"
+        },
+        "devedition-87.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b3"
+        },
+        "devedition-87.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-02-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b4"
+        },
+        "devedition-87.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b5"
+        },
+        "devedition-87.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b6"
+        },
+        "devedition-87.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b7"
+        },
+        "devedition-87.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b8"
+        },
+        "devedition-87.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "87.0b9"
+        },
+        "devedition-88.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b1"
+        },
+        "devedition-88.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b2"
+        },
+        "devedition-88.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b3"
+        },
+        "devedition-88.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b4"
+        },
+        "devedition-88.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-03-31",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b5"
+        },
+        "devedition-88.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b6"
+        },
+        "devedition-88.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b7"
+        },
+        "devedition-88.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b8"
+        },
+        "devedition-88.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "88.0b9"
+        },
+        "devedition-89.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b1"
+        },
+        "devedition-89.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b10"
+        },
+        "devedition-89.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b11"
+        },
+        "devedition-89.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b12"
+        },
+        "devedition-89.0b13": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b13"
+        },
+        "devedition-89.0b14": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b14"
+        },
+        "devedition-89.0b15": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b15"
+        },
+        "devedition-89.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b2"
+        },
+        "devedition-89.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b3"
+        },
+        "devedition-89.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b4"
+        },
+        "devedition-89.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b5"
+        },
+        "devedition-89.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-04-30",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b6"
+        },
+        "devedition-89.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-03",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b7"
+        },
+        "devedition-89.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b8"
+        },
+        "devedition-89.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-05-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "89.0b9"
+        },
+        "devedition-90.0b1": {
+            "build_number": 2,
+            "category": "dev",
+            "date": "2021-06-01",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b1"
+        },
+        "devedition-90.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b10"
+        },
+        "devedition-90.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b11"
+        },
+        "devedition-90.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b12"
+        },
+        "devedition-90.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b2"
+        },
+        "devedition-90.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b3"
+        },
+        "devedition-90.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b4"
+        },
+        "devedition-90.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b5"
+        },
+        "devedition-90.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b6"
+        },
+        "devedition-90.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b7"
+        },
+        "devedition-90.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b8"
+        },
+        "devedition-90.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-06-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "90.0b9"
+        },
+        "devedition-91.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b1"
+        },
+        "devedition-91.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b2"
+        },
+        "devedition-91.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b3"
+        },
+        "devedition-91.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b4"
+        },
+        "devedition-91.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b5"
+        },
+        "devedition-91.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b6"
+        },
+        "devedition-91.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b7"
+        },
+        "devedition-91.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b8"
+        },
+        "devedition-91.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-07-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "91.0b9"
+        },
+        "devedition-92.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b1"
+        },
+        "devedition-92.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b2"
+        },
+        "devedition-92.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b3"
+        },
+        "devedition-92.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b4"
+        },
+        "devedition-92.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b5"
+        },
+        "devedition-92.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b6"
+        },
+        "devedition-92.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b7"
+        },
+        "devedition-92.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b8"
+        },
+        "devedition-92.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-08-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "92.0b9"
+        },
+        "devedition-93.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b1"
+        },
+        "devedition-93.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b2"
+        },
+        "devedition-93.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b3"
+        },
+        "devedition-93.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b4"
+        },
+        "devedition-93.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b5"
+        },
+        "devedition-93.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b6"
+        },
+        "devedition-93.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b7"
+        },
+        "devedition-93.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b8"
+        },
+        "devedition-93.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-09-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "93.0b9"
+        },
+        "devedition-94.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-05",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b1"
+        },
+        "devedition-94.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-06",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b2"
+        },
+        "devedition-94.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b3"
+        },
+        "devedition-94.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b4"
+        },
+        "devedition-94.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b5"
+        },
+        "devedition-94.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b6"
+        },
+        "devedition-94.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-17",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b7"
+        },
+        "devedition-94.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b8"
+        },
+        "devedition-94.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-10-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "94.0b9"
+        },
+        "devedition-95.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b1"
+        },
+        "devedition-95.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b10"
+        },
+        "devedition-95.0b11": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b11"
+        },
+        "devedition-95.0b12": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b12"
+        },
+        "devedition-95.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-02",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b2"
+        },
+        "devedition-95.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b3"
+        },
+        "devedition-95.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b4"
+        },
+        "devedition-95.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b5"
+        },
+        "devedition-95.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b6"
+        },
+        "devedition-95.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b7"
+        },
+        "devedition-95.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b8"
+        },
+        "devedition-95.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-11-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "95.0b9"
+        },
+        "devedition-96.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-07",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b1"
+        },
+        "devedition-96.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-29",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b10"
+        },
+        "devedition-96.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b2"
+        },
+        "devedition-96.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-09",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b3"
+        },
+        "devedition-96.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-12",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b4"
+        },
+        "devedition-96.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b5"
+        },
+        "devedition-96.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b6"
+        },
+        "devedition-96.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b7"
+        },
+        "devedition-96.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-21",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b8"
+        },
+        "devedition-96.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2021-12-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "96.0b9"
+        },
+        "devedition-97.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b1"
+        },
+        "devedition-97.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b2"
+        },
+        "devedition-97.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b3"
+        },
+        "devedition-97.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b4"
+        },
+        "devedition-97.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-19",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b5"
+        },
+        "devedition-97.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b6"
+        },
+        "devedition-97.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b7"
+        },
+        "devedition-97.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-26",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b8"
+        },
+        "devedition-97.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-01-28",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "97.0b9"
+        },
+        "devedition-98.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b1"
+        },
+        "devedition-98.0b10": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-04",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b10"
+        },
+        "devedition-98.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b2"
+        },
+        "devedition-98.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-11",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b3"
+        },
+        "devedition-98.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-14",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b4"
+        },
+        "devedition-98.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-15",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b5"
+        },
+        "devedition-98.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b6"
+        },
+        "devedition-98.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b7"
+        },
+        "devedition-98.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-22",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b8"
+        },
+        "devedition-98.0b9": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-02-24",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "98.0b9"
+        },
+        "devedition-99.0b1": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-08",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "99.0b1"
+        },
+        "devedition-99.0b2": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-10",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "99.0b2"
+        },
+        "devedition-99.0b3": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-13",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "99.0b3"
+        },
+        "devedition-99.0b4": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-16",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "99.0b4"
+        },
+        "devedition-99.0b5": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-18",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "99.0b5"
+        },
+        "devedition-99.0b6": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-20",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "99.0b6"
+        },
+        "devedition-99.0b7": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-23",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "99.0b7"
+        },
+        "devedition-99.0b8": {
+            "build_number": 1,
+            "category": "dev",
+            "date": "2022-03-25",
+            "description": null,
+            "is_security_driven": false,
+            "product": "devedition",
+            "version": "99.0b8"
+        }
+    }
+}

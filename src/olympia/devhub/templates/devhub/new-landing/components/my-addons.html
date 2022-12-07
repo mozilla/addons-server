@@ -126,11 +126,7 @@
         <a class="DevHub-MyAddons-item-buttons-all" href="{{ url('devhub.addons') }}">{{ _('View All Submissions') }}</a>
         <div class="DevHub-MyAddons-item-buttons-submit">
           <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit a New Add-on') }}</a>
-          {% if waffle.switch('disable-lwt-uploads') %}
-            <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit a New Theme') }}</a>
-          {% else %}
-            <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit a New Theme') }}</a>
-          {% endif %}
+          <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit a New Theme') }}</a>
         </div>
       </div>
     {% else %}
@@ -142,11 +138,7 @@
         {% endtrans %}
       </p>
       <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit Your First Add-on') }}</a>
-      {% if waffle.switch('disable-lwt-uploads') %}
-          <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit Your First Theme') }}</a>
-      {% else %}
-        <a href="{{ url('devhub.themes.submit') }}" class="Button">{{ _('Submit Your First Theme') }}</a>
-      {% endif %}
+      <a href="{{ url('devhub.submit.agreement') }}" class="Button">{{ _('Submit Your First Theme') }}</a>
     {% endif %}
   </div>
 </div>

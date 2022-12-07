@@ -156,13 +156,11 @@ class TestHomepageFeatures(TestCase):
         Collection.objects.update(type=amo.COLLECTION_FEATURED)
         doc = pq(self.client.get(self.url).content)
         browse_extensions = reverse('browse.extensions')
-        browse_personas = reverse('browse.personas')
         browse_collections = reverse('collections.list')
         sections = {
             '#popular-extensions': browse_extensions + '?sort=users',
             '#featured-extensions': browse_extensions + '?sort=featured',
             '#upandcoming': browse_extensions + '?sort=hotness',
-            '#featured-themes': browse_personas,
             '#featured-collections': browse_collections + '?sort=featured',
         }
         for id_, url in sections.iteritems():
@@ -724,6 +722,7 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         assert span_is_restart_required in response.content
 
+    @pytest.mark.xfail(reason="We don't show this warning on ATN")
     def test_fx57_label_is_webextension(self):
         """Test that the Firefox 57 label is being shown.
 
@@ -748,6 +747,7 @@ class TestDetailPage(TestCase):
             'https://support.mozilla.org/kb/firefox-add-technology-modernizing'
         )
 
+    @pytest.mark.xfail(reason="We don't show this warning on ATN")
     def test_fx57_label_is_mozilla_signed_extension(self):
         """Test that the Firefox 57 label is being shown.
 
@@ -2762,11 +2762,11 @@ class TestAddonSearchView(ESTestCase):
 
         addon_lwt = addon_factory(
             slug='my-addon-lwt', name=u'My Addôn LWT',
-            category=get_category(amo.ADDON_PERSONA, 'holiday'),
+            category=get_category(amo.ADDON_PERSONA, 'nature'),
             type=amo.ADDON_PERSONA)
         addon_st = addon_factory(
             slug='my-addon-st', name=u'My Addôn ST',
-            category=get_category(amo.ADDON_STATICTHEME, 'holiday'),
+            category=get_category(amo.ADDON_STATICTHEME, 'nature'),
             type=amo.ADDON_STATICTHEME)
 
         self.refresh()
@@ -2786,7 +2786,7 @@ class TestAddonSearchView(ESTestCase):
         # Search for add-ons in the first category. There should be two.
         data = self.perform_search(self.url, {'app': 'firefox',
                                               'type': 'persona,statictheme',
-                                              'category': 'holiday'})
+                                              'category': 'nature'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         result_ids = (data['results'][0]['id'], data['results'][1]['id'])
@@ -3352,11 +3352,11 @@ class TestAddonFeaturedView(TestCase):
         get_creatured_ids_mock.return_value = [addon1.pk, addon2.pk]
 
         response = self.client.get(self.url, {
-            'category': 'nature', 'app': 'firefox',
-            'type': 'persona,statictheme'
+            'category': 'nature', 'app': 'thunderbird',
+            'type': 'theme,statictheme'
         })
         assert get_creatured_ids_mock.call_count == 2
-        assert get_creatured_ids_mock.call_args_list[0][0][0] == 102  # cat
+        assert get_creatured_ids_mock.call_args_list[0][0][0] == 65  # cat
         assert get_creatured_ids_mock.call_args_list[0][0][1] is None  # lang
         assert get_creatured_ids_mock.call_args_list[1][0][0] == 302  # cat
         assert get_creatured_ids_mock.call_args_list[1][0][1] is None  # lang
@@ -3401,7 +3401,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 113
+        assert len(data) == 111
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -3426,7 +3426,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 113
+        assert len(data) == 111
 
         # some basic checks to verify integrity
         entry = data[0]

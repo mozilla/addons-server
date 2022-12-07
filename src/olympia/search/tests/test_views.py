@@ -46,12 +46,12 @@ class TestSearchboxTarget(ESTestCaseWithAddons):
     def test_addons_is_default(self):
         self.check(reverse('home'), 'search for add-ons')
 
-    def test_themes(self):
-        self.check(reverse('browse.themes'), 'search for add-ons',
-                   '%s,0' % amo.ADDON_THEME)
+    def test_extensions(self):
+        self.check(reverse('browse.extensions'), 'search for add-ons',
+                   '%s,0' % amo.ADDON_EXTENSION)
 
-    def test_personas(self):
-        self.check(reverse('browse.personas'), 'search for themes',
+    def test_themes(self):
+        self.check(reverse('browse.static-themes'), 'search for themes',
                    'themes')
 
     def test_addons_search(self):
@@ -106,15 +106,6 @@ class SearchBase(ESTestCaseWithAddons):
         ]
         for p in permutations:
             self.check_name_results(p, expected)
-
-    def check_heading(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        assert pq(r.content)('.results-count strong').text() is ''
-
-        r = self.client.get(self.url + '&q=ballin')
-        assert r.status_code == 200
-        assert pq(r.content)('.results-count strong').text() == 'ballin'
 
 
 class TestESSearch(SearchBase):
@@ -707,28 +698,28 @@ class TestESSearch(SearchBase):
                 assert result[0] == addon.pk
 
 
-class TestPersonaSearch(SearchBase):
+class TestStaticThemeSearch(SearchBase):
 
     def setUp(self):
-        super(TestPersonaSearch, self).setUp()
-        self.url = urlparams(reverse('search.search'), atype=amo.ADDON_PERSONA)
+        super(TestStaticThemeSearch, self).setUp()
+        self.url = urlparams(reverse('search.search'), atype=amo.ADDON_STATICTHEME)
 
-    def _generate_personas(self):
+    def _generate_static_themes(self):
         # Add some public personas.
-        self.personas = []
+        self.static_themes = []
         for status in [amo.STATUS_PUBLIC] * 3:
-            addon = amo.tests.addon_factory(type=amo.ADDON_PERSONA,
+            addon = amo.tests.addon_factory(type=amo.ADDON_STATICTHEME,
                                             status=status)
-            self.personas.append(addon)
+            self.static_themes.append(addon)
             self._addons.append(addon)
 
-        # Add some unreviewed personas.
+        # Add some unreviewed static theme.
         for status in set(Addon.STATUS_CHOICES) - set(amo.REVIEWED_STATUSES):
-            self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
+            self._addons.append(amo.tests.addon_factory(type=amo.ADDON_STATICTHEME,
                                                         status=status))
 
-        # Add a disabled persona.
-        self._addons.append(amo.tests.addon_factory(type=amo.ADDON_PERSONA,
+        # Add a disabled static theme.
+        self._addons.append(amo.tests.addon_factory(type=amo.ADDON_STATICTHEME,
                                                     disabled_by_user=True))
 
         # NOTE: There are also some add-ons in the setUpClass for good measure.
@@ -736,59 +727,56 @@ class TestPersonaSearch(SearchBase):
         self.refresh()
 
     def test_sort_order_default(self):
-        self._generate_personas()
+        self._generate_static_themes()
         self.check_sort_links(None, sort_by='average_daily_users')
 
     def test_sort_order_unknown(self):
-        self._generate_personas()
+        self._generate_static_themes()
         self.check_sort_links('xxx')
 
     def test_sort_order_users(self):
-        self._generate_personas()
+        self._generate_static_themes()
         self.check_sort_links('users', sort_by='average_daily_users')
 
     def test_sort_order_rating(self):
-        self._generate_personas()
+        self._generate_static_themes()
         self.check_sort_links('rating', sort_by='bayesian_rating')
 
     def test_sort_order_newest(self):
-        self._generate_personas()
+        self._generate_static_themes()
         self.check_sort_links('created', sort_by='created')
 
-    def test_heading(self):
-        self.check_heading()
-
     def test_results_blank_query(self):
-        self._generate_personas()
-        personas_ids = sorted(p.id for p in self.personas)  # Not PersonaID ;)
+        self._generate_static_themes()
+        ids = sorted(p.id for p in self.static_themes)  # Not PersonaID ;)
         r = self.client.get(self.url, follow=True)
         assert r.status_code == 200
-        assert self.get_results(r) == personas_ids
+        assert self.get_results(r) == ids
         doc = pq(r.content)
-        assert doc('.personas-grid li').length == len(personas_ids)
+        assert doc('.item.addon').length == len(ids)
         assert doc('.listing-footer').length == 0
 
     def test_results_name_query(self):
-        self._generate_personas()
+        self._generate_static_themes()
 
-        p1 = self.personas[0]
-        p1.name = 'Harry Potter'
+        p1 = self.static_themes[0]
+        p1.name = 'Frodo Baggins'
         p1.save()
 
-        p2 = self.personas[1]
+        p2 = self.static_themes[1]
         p2.name = 'The Life Aquatic with SeaVan'
         p2.save()
         self.refresh()
 
         # Empty search term should return everything.
-        self.check_name_results({'q': ''}, sorted(p.id for p in self.personas))
+        self.check_name_results({'q': ''}, sorted(p.id for p in self.static_themes))
 
         # Garbage search terms should return nothing.
         for term in ('xxx', 'garbage', '£'):
             self.check_name_results({'q': term}, [])
 
-        # Try to match 'Harry Potter'.
-        for term in ('harry', 'potter', 'har', 'pot', 'harry pooper'):
+        # Try to match 'Frodo Baggins'.
+        for term in ('frodo', 'baggins', 'fro', 'bag', 'frodo ballin'):
             self.check_name_results({'q': term}, [p1.pk])
 
         # Try to match 'The Life Aquatic with SeaVan'.
@@ -798,33 +786,31 @@ class TestPersonaSearch(SearchBase):
             self.check_name_results({'q': term}, [p2.pk])
 
     def test_results_popularity(self):
-        personas = [
-            ('Harry Potter', 2000),
+        static_themes = [
+            ('Frodo Baggins', 2000),
             ('Japanese Koi Tattoo', 67),
             ('Japanese Tattoo', 250),
             ('Japanese Tattoo boop', 50),
             ('Japanese Tattoo ballin', 200),
             ('The Japanese Tattooed Girl', 242),
         ]
-        for name, popularity in personas:
+        for name, popularity in static_themes:
             self._addons.append(amo.tests.addon_factory(name=name,
-                                                        type=amo.ADDON_PERSONA,
+                                                        type=amo.ADDON_STATICTHEME,
                                                         popularity=popularity))
         self.refresh()
 
         # Japanese Tattoo should be the #1 most relevant result. Obviously.
-        expected_name, expected_popularity = personas[2]
+        expected_name, expected_popularity = static_themes[2]
         for sort in ('downloads', 'popularity', 'users'):
             r = self.client.get(urlparams(self.url, q='japanese tattoo',
                                           sort=sort), follow=True)
             assert r.status_code == 200
             results = list(r.context['pager'].object_list)
             first = results[0]
+
             assert unicode(first.name) == expected_name, (
                 'Was not first result for %r. Results: %s' % (sort, results))
-            assert first.persona.popularity == expected_popularity, (
-                'Incorrect popularity for %r. Got %r. Expected %r.' % (
-                    sort, first.persona.popularity, results))
             assert first.average_daily_users == expected_popularity, (
                 'Incorrect users for %r. Got %r. Expected %r.' % (
                     sort, first.average_daily_users, results))
@@ -833,29 +819,29 @@ class TestPersonaSearch(SearchBase):
                     sort, first.weekly_downloads, results))
 
     def test_results_appver_platform(self):
-        self._generate_personas()
-        self.check_appver_platform_ignored(sorted(p.id for p in self.personas))
+        self._generate_static_themes()
+        self.check_appver_platform_ignored(sorted(p.id for p in self.static_themes))
 
     def test_results_other_applications(self):
-        self._generate_personas()
+        self._generate_static_themes()
         # Now ensure we get the same results for Firefox as for Thunderbird.
         self.url = self.url.replace('firefox', 'thunderbird')
-        self.check_name_results({}, sorted(p.id for p in self.personas))
+        self.check_name_results({}, sorted(p.id for p in self.static_themes))
 
     # Pretend we only want 2 personas per result page.
     @mock.patch('olympia.search.views.DEFAULT_NUM_PERSONAS', 2)
     def test_pagination(self):
-        self._generate_personas()  # This creates 3 public personas.
+        self._generate_static_themes()  # This creates 3 public personas.
 
         # Page one should show 2 personas.
         r = self.client.get(self.url, follow=True)
         assert r.status_code == 200
-        assert pq(r.content)('.personas-grid li').length == 2
+        assert pq(r.content)('.item.addon').length == 2
 
         # Page two should show 1 persona.
         r = self.client.get(self.url + '&page=2', follow=True)
         assert r.status_code == 200
-        assert pq(r.content)('.personas-grid li').length == 1
+        assert pq(r.content)('.item.addon').length == 1
 
 
 @pytest.mark.parametrize("test_input,expected", [
@@ -959,7 +945,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
 
     def test_ajax_search_personas_by_id(self):
         addon = Addon.objects.all()[3]
-        addon.update(type=amo.ADDON_PERSONA)
+        addon.update(type=amo.ADDON_STATICTHEME)
         addon.update(status=amo.STATUS_PUBLIC)
         Persona.objects.create(persona_id=addon.id, addon_id=addon.id)
         self.search_addons('q=%s' % addon.id, [addon])
@@ -1003,10 +989,10 @@ class TestSearchSuggestions(TestAjaxSearch):
         super(TestSearchSuggestions, self).setUp()
         self.url = reverse('search.suggestions')
         self._addons += [
-            amo.tests.addon_factory(name='addon persona',
-                                    type=amo.ADDON_PERSONA),
-            amo.tests.addon_factory(name='addon persona',
-                                    type=amo.ADDON_PERSONA,
+            amo.tests.addon_factory(name='addon staticTheme',
+                                    type=amo.ADDON_STATICTHEME),
+            amo.tests.addon_factory(name='addon staticTheme',
+                                    type=amo.ADDON_STATICTHEME,
                                     disabled_by_user=True,
                                     status=amo.STATUS_NULL),
         ]
@@ -1048,14 +1034,14 @@ class TestSearchSuggestions(TestAjaxSearch):
     def test_unicode(self):
         self.search_addons('q=%C2%B2%C2%B2', [])
 
-    def test_personas(self):
-        personas = (Addon.objects.public()
-                    .filter(type=amo.ADDON_PERSONA, disabled_by_user=False))
-        personas, types = list(personas), [amo.ADDON_PERSONA]
-        self.search_addons('q=add&cat=themes', personas, types)
-        self.search_addons('q=persona&cat=themes', personas, types)
-        self.search_addons('q=PERSONA&cat=themes', personas, types)
-        self.search_addons('q=persona&cat=all', [])
+    def test_static_themes(self):
+        themes = (Addon.objects.public()
+                    .filter(type=amo.ADDON_STATICTHEME, disabled_by_user=False))
+        themes, types = list(themes), [amo.ADDON_STATICTHEME]
+        self.search_addons('q=add&cat=themes', themes, types)
+        self.search_addons('q=staticTheme&cat=themes', themes, types)
+        self.search_addons('q=STATICTHEME&cat=themes', themes, types)
+        self.search_addons('q=staticTheme&cat=all', [])
 
     def test_applications(self):
         self.search_applications('', [])

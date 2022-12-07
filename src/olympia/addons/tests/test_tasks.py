@@ -134,11 +134,16 @@ class TestAddStaticThemeFromLwt(TestCase):
         self.build_mock = self.patch(
             'olympia.addons.tasks.build_static_theme_xpi_from_lwt')
         self.build_mock.side_effect = self._mock_xpi_side_effect
+
         self.call_signing_mock.return_value = 'abcdefg1234'
         AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='53.0')
         AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='*')
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='60.0')
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='*')
 
     def _mock_xpi_side_effect(self, lwt, upload_path):
         xpi_path = os.path.join(
@@ -171,15 +176,17 @@ class TestAddStaticThemeFromLwt(TestCase):
         # UpdateCounts were copied.
         assert UpdateCount.objects.filter(
             addon_id=static_theme.id).count() == 2
+        # Signing is only enabled on Firefox
         # xpi was signed
-        self.call_signing_mock.assert_called_with(current_file)
-        assert current_file.cert_serial_num == 'abcdefg1234'
+        #self.call_signing_mock.assert_called_with(current_file)
+        #assert current_file.cert_serial_num == 'abcdefg1234'
         assert static_theme.created == self.create_date
         assert static_theme.modified == self.modify_date
         cron.addon_last_updated()  # Make sure the last_updated change stuck.
         assert static_theme.reload().last_updated == self.update_date
 
     def test_add_static_theme_from_lwt(self):
+
         author = user_factory()
         persona = addon_factory(type=amo.ADDON_PERSONA, users=[author])
         persona.update(
@@ -265,9 +272,9 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
                 version_kw={'version': '6.3'})
 
         AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='61.0')
+            application=amo.THUNDERBIRD.id, version='61.0')
         AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='*')
+            application=amo.THUNDERBIRD.id, version='*')
 
         self.call_signing_mock = self.patch(
             'olympia.lib.crypto.packaged.call_signing')
@@ -313,8 +320,9 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
         assert current_file.datestatuschanged == self.migration_date
         assert current_file.status == amo.STATUS_PUBLIC
 
-        self.call_signing_mock.assert_called_with(current_file)
-        assert current_file.cert_serial_num == 'abcdefg1234'
+        # Signing is only enabled on Firefox
+        # self.call_signing_mock.assert_called_with(current_file)
+        # assert current_file.cert_serial_num == 'abcdefg1234'
 
 
 # migrate_addons_that_require_sensitive_data_access

@@ -32,9 +32,12 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
         # Base queryset for editorial content.
         qs = (
             DiscoveryItem.objects
-                         .prefetch_related('addon')
-                         .filter(**{position_field + '__gt': 0})
-                         .order_by(position_field))
+            .prefetch_related(
+                'addon__versions',
+                'addon___current_version__previews',  # Backport from AMO
+            )
+            .filter(**{position_field + '__gt': 0})
+            .order_by(position_field))
 
         # Recommendations stuff, potentially replacing some/all items in
         # the queryset with recommendations if applicable.

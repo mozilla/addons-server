@@ -450,6 +450,9 @@ class TestFeaturedLocale(TestCase):
         self.category = Category.objects.get(slug='bookmarks')
         self.url = urlparams(reverse('browse.extensions', args=['bookmarks']),
                              {}, sort='featured')
+
+        # Quick adjustment to change persona to static themes, so we can actually test it.
+        self.persona.update(type=amo.ADDON_STATICTHEME)
         cache.clear()
 
     def reset(self):
@@ -531,36 +534,36 @@ class TestFeaturedLocale(TestCase):
         res = self.client.get(reverse('browse.extensions', args=['bookmarks']))
         assert addon not in res.context['filter'].all()['featured']
 
-    def test_featured_persona_no_category_en_US(self):
+    def test_featured_static_themes_no_category_en_US(self):
         addon = self.persona
-        url = reverse('browse.personas')
+        url = reverse('browse.static-themes')
         res = self.client.get(url)
-        assert addon in res.context['featured']
+        assert addon in res.context['filter'].all()['featured']
 
         self.change_addon(addon, 'es')
         res = self.client.get(url)
-        assert addon not in res.context['featured']
+        assert addon not in res.context['filter'].all()['featured']
 
         res = self.client.get(url.replace('en-US', 'es'))
-        assert addon in res.context['featured']
+        assert addon in res.context['filter'].all()['featured']
 
-    def test_featured_persona_category_en_US(self):
+    def test_featured_static_theme_category_en_US(self):
         addon = self.persona
         category = Category.objects.get(id=22)
-        category.update(type=amo.ADDON_PERSONA)
+        category.update(type=amo.ADDON_STATICTHEME)
 
         addon.addoncategory_set.create(category=category, feature=True)
         self.reset()
-        url = reverse('browse.personas', args=[category.slug])
+        url = reverse('browse.static-themes', args=[category.slug])
         res = self.client.get(url)
-        assert addon in res.context['featured']
+        assert addon in res.context['filter'].all()['featured']
 
         self.change_addoncategory(addon, 'es')
         res = self.client.get(url)
-        assert addon not in res.context['featured']
+        assert addon not in res.context['filter'].all()['featured']
 
         res = self.client.get(url.replace('en-US', 'es'))
-        assert addon in res.context['featured']
+        assert addon in res.context['filter'].all()['featured']
 
     def test_homepage(self):
         url = reverse('home')
@@ -582,8 +585,8 @@ class TestFeaturedLocale(TestCase):
         # Ensure that the base homepage filter is applied.
         res = self.client.get(reverse('home'))
         listed = [p.pk for p in (Addon.objects
-                                      .listed(amo.FIREFOX)
-                                      .exclude(type=amo.ADDON_PERSONA))]
+                                 .listed(amo.FIREFOX)
+                                 .exclude(type=amo.ADDON_STATICTHEME))]
 
         featured = Addon.featured_random(amo.FIREFOX, 'en-US')
         actual = [p.pk for p in res.context['featured']]
@@ -940,8 +943,9 @@ class TestLegacyRedirects(TestCase):
         self.redirects('/featured', '/extensions/?sort=featured')
         self.redirects('/recommended/format:rss', '/featured/format:rss')
 
-    def test_complete_themes(self):
-        # A former Theme category should get redirected to /full-themes/.
+    def test_static_themes(self):
+        """ Tests themes/ -> static-themes/ redirect. """
+        # A former Theme category should get redirected to /static-themes/.
         cat = Category.objects.filter(slug='feeds-news-blogging')
         cat.update(type=amo.ADDON_THEME)
 
@@ -950,13 +954,20 @@ class TestLegacyRedirects(TestCase):
                        '/themes/feeds-news-blogging/?sort=rating')
         # which then redirects to the right place
         self.redirects('/themes/feeds-news-blogging/?sort=rating',
-                       '/complete-themes/feeds-news-blogging?sort=rating')
+                       '/static-themes/feeds-news-blogging/?sort=rating')
+
+    def test_complete_themes(self):
+        """ Tests themes/ -> complete-themes/ for the rss feed only! """
+        # A former Theme category should get redirected to /complete-themes/ (rss only.)
+        cat = Category.objects.filter(slug='feeds-news-blogging')
+        cat.update(type=amo.ADDON_THEME)
 
         self.redirects(
             '/themes/feeds-news-blogging/format:rss?sort=users',
             '/complete-themes/feeds-news-blogging/format:rss?sort=users')
 
     def test_personas(self):
+        """ Tests personas/ -> themes/ """
         cat = Category.objects.filter(slug='feeds-news-blogging')
         cat.update(type=amo.ADDON_PERSONA)
 
@@ -967,7 +978,7 @@ class TestLegacyRedirects(TestCase):
                        '/themes/feeds-news-blogging/?sort=rating')
 
         # The trailing slash should be added - We're just
-        # testing that we don't redirect to /complete-themes/.
+        # testing that we don't redirect to /static-themes/.
         self.redirects('/themes/feeds-news-blogging?sort=rating',
                        '/themes/feeds-news-blogging/?sort=rating')
 
@@ -1041,174 +1052,15 @@ class TestFeaturedFeed(TestCase):
             Addon.objects.featured(amo.FIREFOX).count())
 
 
-class TestPersonas(TestCase):
-    fixtures = ('base/appversion', 'base/featured',
-                'addons/featured', 'addons/persona')
-
-    def setUp(self):
-        super(TestPersonas, self).setUp()
-        self.landing_url = reverse('browse.personas')
-        self.upandcoming_url = '{path}?sort=up-and-coming'.format(
-            path=self.landing_url)
-        self.created_url = '{path}?sort=created'.format(path=self.landing_url)
-        self.grid_template = 'browse/personas/grid.html'
-        self.landing_template = 'browse/personas/category_landing.html'
-
-    def create_personas(self, number, persona_extras=None):
-        persona_extras = persona_extras or {}
-        addon = Addon.objects.get(id=15679)
-        for i in xrange(number):
-            a = Addon(type=amo.ADDON_PERSONA)
-            a.name = 'persona-%s' % i
-            a.all_categories = []
-            a.save()
-            v = Version.objects.get(addon=addon)
-            v.addon = a
-            v.pk = None
-            v.save()
-            p = Persona(addon_id=a.id, persona_id=i, **persona_extras)
-            p.save()
-            a.persona = p
-            a._current_version = v
-            a.status = amo.STATUS_PUBLIC
-            a.save()
-
-    def test_try_new_frontend_banner_presence(self):
-        response = self.client.get(self.landing_url)
-        assert 'AMO is getting a new look.' not in response.content
-
-        with override_switch('try-new-frontend', active=True):
-            response = self.client.get(self.landing_url)
-            assert 'AMO is getting a new look.' in response.content
-
-    def test_does_not_500_in_development(self):
-        with self.settings(DEBUG=True):
-            self.test_personas_grid()
-            self.test_personas_landing()
-
-    def test_personas_grid(self):
-        """
-        Show grid page if there are fewer than
-        MIN_COUNT_FOR_LANDING+1 Personas.
-        """
-        base = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
-        assert base.count() == 2
-        response = self.client.get(self.landing_url)
-        self.assertTemplateUsed(response, self.grid_template)
-        assert response.status_code == 200
-        assert response.context['is_homepage']
-
-    def test_personas_landing(self):
-        """
-        Show landing page if there are greater than
-        MIN_COUNT_FOR_LANDING popular Personas.
-        """
-        self.create_personas(MIN_COUNT_FOR_LANDING,
-                             persona_extras={'popularity': 100})
-        base = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
-        assert base.count() == MIN_COUNT_FOR_LANDING + 2
-        r = self.client.get(self.landing_url)
-        self.assertTemplateUsed(r, self.landing_template)
-
-        # Whatever the `category.count` is.
-        category = Category(
-            type=amo.ADDON_PERSONA, slug='abc',
-            count=MIN_COUNT_FOR_LANDING + 1, application=amo.FIREFOX.id)
-        category.save()
-        response = self.client.get(self.landing_url)
-        self.assertTemplateUsed(response, self.landing_template)
-
-    def test_personas_grid_sorting(self):
-        """Ensure we hit a grid page if there is a sorting."""
-        category = Category(
-            type=amo.ADDON_PERSONA, slug='abc', application=amo.FIREFOX.id)
-        category.save()
-        category_url = reverse('browse.personas', args=[category.slug])
-        r = self.client.get(category_url + '?sort=created')
-        self.assertTemplateUsed(r, self.grid_template)
-
-        # Whatever the `category.count` is.
-        category.update(count=MIN_COUNT_FOR_LANDING + 1)
-        r = self.client.get(category_url + '?sort=created')
-        self.assertTemplateUsed(r, self.grid_template)
-
-    def test_personas_category_landing_frozen(self):
-        # Check to make sure add-on is there.
-        r = self.client.get(self.landing_url)
-
-        personas = pq(r.content).find('.persona-preview')
-        assert personas.length == 2
-
-        # Freeze the add-on
-        FrozenAddon.objects.create(addon_id=15663)
-
-        # Make sure it's not there anymore
-        res = self.client.get(self.landing_url)
-
-        personas = pq(res.content).find('.persona-preview')
-        assert personas.length == 1
-
-    def test_only_popular_persona_are_shown_in_up_and_coming(self):
-        r = self.client.get(self.upandcoming_url)
-        personas = pq(r.content).find('.persona-preview')
-        assert personas.length == 2
-        p = Persona.objects.get(pk=559)
-        p.popularity = 99
-        p.save()
-        r = self.client.get(self.upandcoming_url)
-        personas = pq(r.content).find('.persona-preview')
-        assert personas.length == 1
-
-    @override_settings(PERSONA_DEFAULT_PAGES=2)
-    def test_pagination_in_up_and_coming(self):
-        # If the number is < MIN_COUNT_FOR_LANDING + 1 we keep
-        # the base pagination.
-        r = self.client.get(self.upandcoming_url)
-        assert str(r.context['addons']) == '<Page 1 of 1>'
-        # Otherwise we paginate on 10, hardcoded.
-        self.create_personas(PAGINATE_PERSONAS_BY,
-                             persona_extras={'popularity': 100})
-        r = self.client.get(self.upandcoming_url)
-        assert str(r.context['addons']) == '<Page 1 of 2>'
-        # Even if the number of retrieved personas is higher than
-        # 10 pages we shouldn't have a bump in page numbers.
-        self.create_personas(
-            PAGINATE_PERSONAS_BY * settings.PERSONA_DEFAULT_PAGES,
-            persona_extras={'popularity': 100})
-        r = self.client.get(self.upandcoming_url)
-        assert str(r.context['addons']) == '<Page 1 of 2>'
-
-    def test_pagination_in_created(self):
-        r = self.client.get(self.created_url)
-        assert str(r.context['addons']) == '<Page 1 of 1>'
-        self.create_personas(PAGINATE_PERSONAS_BY)
-        r = self.client.get(self.created_url)
-        assert str(r.context['addons']) == '<Page 1 of 2>'
-
-    @override_switch('disable-lwt-uploads', active=False)
-    def test_submit_theme_link_lwt_enabled(self):
-        response = self.client.get(self.created_url)
-        doc = pq(response.content)
-        assert doc('div.submit-theme p a').attr('href') == (
-            reverse('devhub.themes.submit')
-        )
-
-    @override_switch('disable-lwt-uploads', active=True)
-    def test_submit_theme_link_lwt_disabled(self):
-        response = self.client.get(self.created_url)
-        doc = pq(response.content)
-        assert doc('div.submit-theme p a').attr('href') == (
-            reverse('devhub.submit.agreement')
-        )
-
-
 class TestStaticThemeRedirects(TestCase):
+    """ This is also tested in legacy redirect, but it can't hurt to have this sticking around. """
     fixtures = ['base/category']
 
-    def redirects(self, from_, to, status_code=302):
+    def redirects(self, from_, to, status_code=301):
         r = self.client.get('/en-US/firefox' + from_)
         self.assert3xx(r, '/en-US/firefox' + to, status_code=status_code)
 
     def test_redirects(self):
-        self.redirects('/static-themes/', '/themes/')
-        self.redirects('/static-themes/abstract/', '/themes/abstract/')
+        """ Themes are now static-themes! """
+        self.redirects('/themes/', '/static-themes/')
+        self.redirects('/themes/abstract/', '/static-themes/abstract/')

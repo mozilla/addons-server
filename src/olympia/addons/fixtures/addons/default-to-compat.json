@@ -4,7 +4,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 3000000200100,
-            "application": 1,
+            "application": 18,
             "version": "3.0",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -15,7 +15,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 3050000200100,
-            "application": 1,
+            "application": 18,
             "version": "3.5",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -26,7 +26,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 4000000200100,
-            "application": 1,
+            "application": 18,
             "version": "4.0",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -37,7 +37,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 5000000200100,
-            "application": 1,
+            "application": 18,
             "version": "5.0",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -48,7 +48,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 5990000200100,
-            "application": 1,
+            "application": 18,
             "version": "5.*",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -59,7 +59,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 6000000200100,
-            "application": 1,
+            "application": 18,
             "version": "6.0",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -70,7 +70,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 6990000200100,
-            "application": 1,
+            "application": 18,
             "version": "6.*",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -81,7 +81,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 7000000200100,
-            "application": 1,
+            "application": 18,
             "version": "7.0",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -92,7 +92,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 7990000200100,
-            "application": 1,
+            "application": 18,
             "version": "7.*",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -103,7 +103,7 @@
         "model": "applications.appversion",
         "fields": {
             "version_int": 8000000200100,
-            "application": 1,
+            "application": 18,
             "version": "8.0",
             "modified": "2010-01-02 12:34:56",
             "created": "2010-01-02 12:34:56"
@@ -180,7 +180,7 @@
         "pk": 88590,
         "model": "versions.applicationsversions",
         "fields": {
-            "application": 1,
+            "application": 18,
             "max": 393,
             "version": 1268881,
             "min": 364
@@ -206,7 +206,7 @@
         "pk": 88591,
         "model": "versions.applicationsversions",
         "fields": {
-            "application": 1,
+            "application": 18,
             "max": 410,
             "version": 1268882,
             "min": 411
@@ -232,7 +232,7 @@
         "pk": 88592,
         "model": "versions.applicationsversions",
         "fields": {
-            "application": 1,
+            "application": 18,
             "max": 429,
             "version": 1268883,
             "min": 411
@@ -258,7 +258,7 @@
         "pk": 88593,
         "model": "versions.applicationsversions",
         "fields": {
-            "application": 1,
+            "application": 18,
             "max": 429,
             "version": 1268884,
             "min": 412

@@ -115,27 +115,12 @@ class MiddlewareTest(BaseTestCase):
             response = self.process(url, HTTP_USER_AGENT=ua)
             assert response['Location'] == expected
 
+        # Default case, not in `APP_DETECT` but it will fall back to firefox.
         check('/en-US/', '/en-US/firefox/', 'Firefox')
 
-        # SeaMonkey gets priority because it has both strings in its UA...
-        check('/en-US/', '/en-US/seamonkey/', 'Firefox SeaMonkey')
+        check('/en-US/', '/en-US/thunderbird/', 'Thunderbird')
 
-        # Android can found by its user agent.
-        check('/en-US/', '/en-US/android/', 'Fennec/12.0.1')
-        check('/en-US/', '/en-US/android/', 'Fennec/12')
-        check('/en-US/', '/en-US/android/', 'Fennec/11.0')
-
-        # And the user agent changed again.
-        check('/en-US/', '/en-US/android/',
-              'Mozilla/5.0 (Android; Mobile; rv:17.0) Gecko/17.0 Firefox/17.0')
-
-        # And the user agent yet changed again.
-        check('/en-US/', '/en-US/android/',
-              'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0')
-
-        # And the tablet user agent yet changed again!
-        check('/en-US/', '/en-US/android/',
-              'Mozilla/5.0 (Android; Tablet; rv:18.0) Gecko/18.0 Firefox/18.0')
+        check('/en-US/', '/en-US/seamonkey/', 'SeaMonkey')
 
     def test_get_lang(self):
         def check(url, expected):

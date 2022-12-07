@@ -12,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         log = self.stdout.write
         doc = PyQuery(
-            url='https://addons.mozilla.org/en-US/firefox/pages/appversions/')
+            url='https://addons.thunderbird.net/en-US/thunderbird/pages/appversions/')
         codes = doc('.prose ul li code')
         for i in range(0, len(codes), 2):
             try:
