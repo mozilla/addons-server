@@ -210,8 +210,6 @@ class AMOSitemap(Sitemap):
         ('browse.language-tools', amo.FIREFOX),
         # server pages
         ('devhub.index', None),
-        ('apps.appversions', amo.FIREFOX),
-        ('apps.appversions', amo.ANDROID),
     ]
 
     def location(self, item):

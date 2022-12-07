@@ -22,7 +22,7 @@ from olympia.amo.middleware import (
     SetRemoteAddrFromForwardedFor,
     TokenValidMiddleware,
 )
-from olympia.amo.tests import reverse_ns, TestCase, user_factory
+from olympia.amo.tests import addon_factory, reverse_ns, TestCase, user_factory
 from olympia.zadmin.models import Config
 
 
@@ -31,14 +31,15 @@ pytestmark = pytest.mark.django_db
 
 class TestMiddleware(TestCase):
     def test_no_vary_cookie(self):
+        addon_factory(slug='foo')
         # Requesting / forces a Vary on Accept-Language on User-Agent, since
         # we redirect to /<lang>/<app>/.
-        response = test.Client().get('/pages/appversions/')
+        response = test.Client().get('/addon/foo/statistics/')
         assert response['Vary'] == 'Accept-Language, User-Agent'
 
         # Only Vary on Accept-Encoding after that (because of gzip middleware).
         # Crucially, we avoid Varying on Cookie.
-        response = test.Client().get('/pages/appversions/', follow=True)
+        response = test.Client().get('/addon/foo/statistics/', follow=True)
         assert response['Vary'] == 'Accept-Encoding'
 
     @patch('django.contrib.auth.middleware.AuthenticationMiddleware.process_request')
@@ -115,13 +116,14 @@ class AdminMessageTest(TestCase):
     def test_message(self):
         c = Config.objects.create(key='site_notice', value='ET Sighted.')
 
-        r = self.client.get(reverse('apps.appversions'), follow=True)
+        r = self.client.get(reverse('devhub.index'), follow=True)
         doc = pq(r.content)
+        print(doc)
         assert doc('#site-notice').text() == 'ET Sighted.'
 
         c.delete()
 
-        r = self.client.get(reverse('apps.appversions'), follow=True)
+        r = self.client.get(reverse('devhub.index'), follow=True)
         doc = pq(r.content)
         assert len(doc('#site-notice')) == 0
 
