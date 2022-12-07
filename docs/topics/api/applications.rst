@@ -1,19 +1,39 @@
-============
-Applications
-============
-
----------------------
+=====================
 Applications Versions
----------------------
+=====================
 
-.. _applications-version:
+.. note::
+
+    These APIs are not frozen and can change at any time without warning.
+    See :ref:`the API versions available<api-versions-list>` for alternatives
+    if you need stability.
+
+----
+List
+----
+
+.. _applications-version-list:
+
+This endpoint allows you to list all versions that AMO currently supports for a given application.
+
+.. http:get:: /api/v5/applications/(string:application)/
+
+    :param application: The :ref:`application <addon-detail-application>`,
+    :>json string guid: The GUID for the requested application.
+    :>json array versions: An array of all the supported version strings.
+
+
+------
+Create
+------
+
+.. _applications-version-create:
 
 This internal endpoint allows you to create applications versions to be
 referenced in add-ons manifests. It requires :ref:`authentication<api-auth>`
 and a special permission.
 
-The currently available applications versions are listed on a dedicated page:
-https://addons.mozilla.org/en-US/firefox/pages/appversions/
+The currently available applications versions are :ref:`available to list<applications-version-list>`.
 
 When a valid request is made to this endpoint, AMO will create the requested
 version if it didn't exist, and also attempt to create a corresponding minimum

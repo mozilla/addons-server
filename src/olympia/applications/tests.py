@@ -5,7 +5,7 @@ from unittest import mock
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import url
-from olympia.amo.tests import reverse_ns, TestCase
+from olympia.amo.tests import APITestClientSessionID, reverse_ns, TestCase
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 
@@ -29,7 +29,55 @@ class TestViews(TestCase):
         assert self.client.get(url('apps.appversions.rss')).status_code == 200
 
 
-class TestAppVersionsAPI(APIKeyAuthTestMixin, TestCase):
+class TestAppVersionsAPIGet(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.url = reverse_ns('appversions-list', kwargs={'application': 'firefox'})
+
+    def test_invalid_application_argument(self):
+        url = reverse_ns('appversions-list', kwargs={'application': 'unknown'})
+        response = self.client.get(url)
+        assert response.status_code == 400
+
+    def test_appversions_api_wrong_verb(self):
+        # We could need other verbs in the future, but those are not
+        # implemented for the moment.
+        response = self.client.post(self.url)
+        assert response.status_code == 405
+
+        response = self.client.put(self.url)
+        assert response.status_code == 401
+
+        response = self.client.head(self.url)
+        assert response.status_code == 405
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 405
+
+    def test_response(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='123')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='123.0')
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='123.*')
+        # Android appversions shouldn't be included in a /firefox/ request
+        AppVersion.objects.create(application=amo.ANDROID.id, version='123.1')
+
+        response = self.client.get(self.url)
+        assert response.data == {
+            'guid': amo.FIREFOX.guid,
+            'versions': [
+                # Ordered by the version, not by the creation date
+                '123',
+                '123.0',
+                '123.*',
+            ],
+        }
+        assert response.status_code == 200
+        # cached for an hour
+        assert response['cache-control'] == 'max-age=3600'
+
+
+class TestAppVersionsAPIPut(APIKeyAuthTestMixin, TestCase):
     def setUp(self):
         self.url = reverse_ns(
             'appversions', kwargs={'application': 'firefox', 'version': '42.0'}
@@ -56,7 +104,7 @@ class TestAppVersionsAPI(APIKeyAuthTestMixin, TestCase):
         assert response.status_code == 405
 
         response = self.get(self.url)
-        assert response.status_code == 405
+        assert response.status_code == 200
 
         response = self.head(self.url)
         assert response.status_code == 405
