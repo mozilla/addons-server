@@ -229,6 +229,7 @@
             </p>
           {% endif %}
         </div>
+        {{ reviewer_form.approval_notes.errors }}
         {{ reviewer_form.approval_notes }}
         <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
       </div>

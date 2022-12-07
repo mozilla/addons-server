@@ -31,7 +31,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import logout_user
-from olympia.activity.models import ActivityLog, VersionLog
+from olympia.activity.models import ActivityLog, CommentLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons.models import (
     Addon,
@@ -1252,6 +1252,7 @@ def version_list(request, addon_id, addon):
         'versions': versions,
         'session_id': request.session.session_key,
         'is_admin': is_admin,
+        'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
     }
     return TemplateResponse(request, 'devhub/versions/list.html', context=data)
 
