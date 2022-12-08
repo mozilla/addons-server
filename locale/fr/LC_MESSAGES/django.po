@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-08 09:59+0000\n"
+"PO-Revision-Date: 2022-12-08 16:39+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1788,15 +1788,18 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr "La version 3 du fichier Manifest n’est actuellement pas prise en charge pour la mise en ligne. {start_href}En savoir plus sur la chronologie de la prise en charge{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Avertissement de compatibilité avec le manifeste V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox ajoute la prise en charge des extensions reposant sur le manifeste version 3 (MV3) dans Firefox {version}, cependant, les anciennes versions de Firefox ne sont compatibles qu’avec les "
+"extensions reposant sur le manifeste version 2 (MV2). Nous vous recommandons d’héberger vous-même les extensions Manifest V3 pour le moment afin de ne pas rompre la compatibilité pour vos "
+"utilisateurs."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Pour plus d’informations sur le déploiement des extensions MV3 ou des extensions MV3 auto-hébergées, consultez https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce raccourci est déjà utilisé. Merci d’en choisir un autre."
@@ -4686,7 +4689,7 @@ msgstr "Améliorez votre expérience de jeu sur Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Un pouce levé pour faire revenir les pouces vers le bas."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4909,7 +4912,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Un identifiant identique a été trouvé."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Les numéros de versions doivent comprendre {max_length} caractères au maximum."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Les numéros de versions doivent uniquement contenir des lettres, des chiffres, et les caractères suivants : +*.-_."
@@ -5704,19 +5707,19 @@ msgid "Download file"
 msgstr "Télécharger le fichier"
 
 msgid "Validation results"
-msgstr ""
+msgstr "Résultats de la validation"
 
 msgid "Browse all files in this version"
 msgstr "Parcourir tous les fichiers de cette version"
 
 msgid "Browse contents"
-msgstr ""
+msgstr "Parcourir le contenu"
 
 msgid "Compare this version to the last reviewed version"
 msgstr "Comparer cette version à la dernière version vérifiée"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "Comparer avec la dernière revue"
 
 msgid "Permissions:"
 msgstr "Permissions :"
