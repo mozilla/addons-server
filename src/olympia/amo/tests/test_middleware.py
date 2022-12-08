@@ -122,8 +122,8 @@ class AdminMessageTest(TestCase):
 
         config.delete()
 
-        r = self.client.get(reverse('devhub.index'), follow=True)
-        doc = pq(r.content)
+        response = self.client.get(reverse('devhub.index'), follow=True)
+        doc = pq(response.content)
         assert len(doc('#site-notice')) == 0
 
 
