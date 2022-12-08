@@ -242,8 +242,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
 
     .. note::
-        For possible version values per application, see
-        `valid application versions`_.
+        See the :ref:`supported versions <applications-version-list>`.
 
 .. _v3-addon-detail-platform:
 
@@ -349,8 +348,8 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
     :>json object compatibility:
         Object detailing which :ref:`applications <v3-addon-detail-application>` the version is compatible with.
-        The exact min/max version numbers in the object correspond to
-        `valid application versions`_. Example:
+        The exact min/max version numbers in the object correspond to the :ref:`supported versions<applications-version-list>`.
+        Example:
 
             .. code-block:: json
 
@@ -450,8 +449,6 @@ on AMO.
     :>json string results[].type: The :ref:`add-on type <v3-addon-detail-type>`.
     :>json string results[].url: The (absolute) add-on detail URL.
 
-.. _`valid application versions`: https://addons.mozilla.org/en-US/firefox/pages/appversions/
-
 
 -------------------
 Replacement Add-ons
@@ -502,7 +499,7 @@ Compatibilty overrides are used within Firefox i(and other toolkit applications 
     :>json int results[].version_ranges[].applications[].id: Application id on AMO.
     :>json string results[].version_ranges[].applications[].min_version: minimum version of the application to be disabled in.
     :>json string results[].version_ranges[].applications[].max_version: maximum version of the application to be disabled in.
-    :>json string results[].version_ranges[].applications[].guid: Application `guid <https://addons.mozilla.org/en-US/firefox/pages/appversions/>`_.
+    :>json string results[].version_ranges[].applications[].guid: Application :ref:`guid<applications-version-list>`.
 
 
 ---------------
