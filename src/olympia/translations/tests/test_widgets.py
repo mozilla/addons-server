@@ -90,17 +90,32 @@ class TestWidget(TestCase):
             id=666, locale='en-us', localized_string='test value en'
         )
         widget = widgets.TransTextarea(attrs={'rows': 5, 'cols': 20})
+        widget.attrs.update({'maxlength': 333})
 
         doc = pq(widget.render('foo', 666))
         assert doc('textarea')[0].get('rows') == '5'
         assert doc('textarea')[0].get('cols') == '20'
+        assert doc('textarea')[0].get('name') == 'foo_en-us'
+
+        assert doc('textarea')[1].get('rows') == '5'
+        assert doc('textarea')[1].get('cols') == '20'
+        assert doc('textarea')[1].get('maxlength') == '333'
+        assert doc('textarea')[1].get('name') == 'foo_init'
+        assert doc('textarea')[1].get('class') == 'trans-init hidden'
 
     def test_transinput_renders_attrs(self):
         models.Translation.objects.create(
             id=666, locale='en-us', localized_string='test value en'
         )
-        widget = widgets.TransInput(attrs={'rows': 5, 'cols': 20})
+        widget = widgets.TransInput(attrs={'something': 'wicked'})
+        widget.attrs.update({'maxlength': 333})
 
         doc = pq(widget.render('foo', 666))
-        assert doc('input')[0].get('rows') == '5'
-        assert doc('input')[0].get('cols') == '20'
+        assert doc('input')[0].get('something') == 'wicked'
+        assert doc('input')[0].get('maxlength') == '333'
+        assert doc('input')[0].get('name') == 'foo_en-us'
+
+        assert doc('input')[1].get('something') == 'wicked'
+        assert doc('input')[1].get('maxlength') == '333'
+        assert doc('input')[1].get('name') == 'foo_init'
+        assert doc('input')[1].get('class') == 'trans-init hidden'

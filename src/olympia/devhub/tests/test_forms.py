@@ -628,6 +628,30 @@ class TestDescribeForm(TestCase):
             'Ensure this value has at most 100 characters (it has 101).',
         ]
 
+    def test_render_maxlength(self):
+        def _check_output(form):
+            output = str(form.as_p())
+            doc = pq(output)
+            assert doc('input#id_name_0').attr('maxlength') == '50'
+            assert doc('input#id_name.trans-init').attr('maxlength') == '50'
+            assert doc('input#id_support_email_0').attr('maxlength') == '100'
+            assert doc('input#id_support_email.trans-init').attr('maxlength') == '100'
+            assert doc('input#id_support_url_0').attr('maxlength') == '255'
+            assert doc('input#id_support_url.trans-init').attr('maxlength') == '255'
+
+        form = forms.DescribeForm(
+            request=self.request,
+            instance=Addon.objects.get(),
+        )
+        _check_output(form)
+
+        # Check again with an empty instance (no existing translations).
+        form = forms.DescribeForm(
+            request=self.request,
+            instance=Addon(),
+        )
+        _check_output(form)
+
     def test_description_optional(self):
         delicious = Addon.objects.get()
         assert delicious.type == amo.ADDON_EXTENSION
