@@ -1281,13 +1281,17 @@ class BaseModelSerializerAndFormMixin:
                     field.max_length = max_length
                     # Normally setting max_length on the field would be enough,
                     # but because we're late, after the field's __init__(), we
-                    # also need to convert that into a validator ourselves if
-                    # the field requires it. Unfortunately some fields
-                    # (FileField) do not work like that and instead deal with
-                    # max_length dynamically, with a custom error message that
-                    # is generated dynamically, so we need to avoid those.
-                    # # If a compatible error message for max_length is set, or
-                    # no message at all, we're good.
+                    # also need to:
+                    # - Update the widget attributes again, for form fields
+                    if hasattr(field, 'widget'):
+                        field.widget.attrs.update(field.widget_attrs(field.widget))
+                    # - Convert that max_length into a validator ourselves if
+                    #   the field requires it. Unfortunately some fields
+                    #   (FileField) do not work like that and instead deal with
+                    #   max_length dynamically, with a custom error message
+                    #   that is generated dynamically, so we need to avoid
+                    #   those. If a compatible error message for max_length is
+                    #   set, or no message at all, we're good.
                     message = getattr(field, 'error_messages', {}).get('max_length')
                     if message is None or re.findall(r'\{.*?\}', str(message)) == [
                         '{max_length}'

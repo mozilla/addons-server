@@ -127,9 +127,11 @@ class CommaSearchInAdminMixin:
         else:
             separator = None
         search_terms = search_term.split(separator)
-        all_numeric = all(term.isnumeric() for term in search_terms)
-        if all_numeric and len(search_terms) > 1:
-            # if we have multiple numbers assume we're doing a bulk id search
+        if len(search_terms) >= self.minimum_search_terms_to_search_by_id and all(
+            term.isnumeric() for term in search_terms
+        ):
+            # if we have at least minimum_search_terms_to_search_by_id terms
+            # they are all numeric, we're doing a bulk id search
             orm_lookup = '%s__in' % self.get_search_id_field(request)
             queryset = queryset.filter(**{orm_lookup: search_terms})
         else:
@@ -153,6 +155,14 @@ class CommaSearchInAdminMixin:
             if filters:
                 queryset = queryset.filter(functools.reduce(joining_operator, filters))
         return queryset, may_have_duplicates
+
+    # Triggering a search by id only isn't always what the admin wants for an
+    # all numeric query, but on the other hand is a nice optimization.
+    # The default is 2 so that if there is a field in search_fields for which
+    # it makes sense to search using a single numeric term, that still works,
+    # the id-only search is only triggered for 2 or more terms. This should be
+    # overriden by ModelAdmins where it makes sense to do so.
+    minimum_search_terms_to_search_by_id = 2
 
 
 @admin.register(FakeEmail)

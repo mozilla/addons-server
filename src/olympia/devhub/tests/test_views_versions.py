@@ -632,6 +632,8 @@ class TestVersion(TestCase):
         review_form.attrib['action'] == api_url
         review_form.attrib['data-session-id'] == self.client.session.session_key
         review_form.attrib['data-history'] == '#%s-review-history' % v2.id
+        textarea = doc('.dev-review-reply-form textarea')[0]
+        assert textarea.attrib['maxlength'] == '100000'
 
     def test_version_history_mixed_channels(self):
         v1 = self.version
@@ -760,6 +762,24 @@ class TestVersionEditDetails(TestVersionEditBase):
         data = self.formset(approval_notes='ü' * 3001, release_notes='è' * 3002)
         response = self.client.post(self.url, data)
         assert response.status_code == 200
+        assert (
+            response.context['version_form'].fields['approval_notes'].max_length == 3000
+        )
+        assert (
+            response.context['version_form'].fields['approval_notes'].max_length == 3000
+        )
+        assert (
+            response.context['version_form']
+            .fields['release_notes']
+            .widget.attrs['maxlength']
+            == '3000'
+        )
+        assert (
+            response.context['version_form']
+            .fields['release_notes']
+            .widget.attrs['maxlength']
+            == '3000'
+        )
         assert response.context['version_form'].errors == {
             'approval_notes': [
                 'Ensure this value has at most 3000 characters (it has 3001).'

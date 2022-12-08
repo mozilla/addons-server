@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-01 18:05+0000\n"
-"Last-Translator: Yaya.Cout <yaya.cout@free.fr>\n"
+"PO-Revision-Date: 2022-12-08 16:39+0000\n"
+"Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -396,11 +396,11 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Nous sommes désolés, mais nous ne pouvons pas trouver ce que vous cherchez.</h1> <p> La page ou le fichier que vous vouliez n’a pas été trouvé sur notre site. Il est possible que vous ayez "
-"cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">renseigner un bogue</a>. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger"
-" le problème. </li> </ul> <p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-"
-"ce que vous voulez <a href=\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champ de recherche ci-dessus. "
-"</li> <li> Si vous préférez recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
+"cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de %(open_bug_link)ssignaler un "
+"bug%(close_bug_link)s. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger le problème. </li> </ul> <p>Vous pouvez aussi faire un tour sur"
+" nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-ce que vous voulez <a href=\"%(search)s\">rechercher des "
+"modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champ de recherche ci-dessus. </li> <li> Si vous préférez recommencer, rendez-vous sur "
+"<a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Oups"
@@ -418,7 +418,7 @@ msgid "Register or Log in"
 msgstr "S’inscrire ou se connecter"
 
 msgid "Email:"
-msgstr "Adresse électronique :"
+msgstr "Adresse e-mail :"
 
 msgid "OK"
 msgstr "OK"
@@ -495,7 +495,7 @@ msgid "Invalid token or hash."
 msgstr "Jeton ou hash invalide."
 
 msgid "Email address not found."
-msgstr "Adresse électronique introuvable."
+msgstr "Adresse e-mail introuvable."
 
 msgid "Unavailable for legal reasons."
 msgstr "Indisponible pour raisons juridiques."
@@ -819,10 +819,10 @@ msgid "Application max version for {version} updated."
 msgstr "Version maximale d’application mise à jour en {version}."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Auteurs informés par courriel à propos de la compatibilité de {version}."
+msgstr "Auteurs informés par e-mail à propos de la compatibilité de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "Courriel envoyé à l’auteur sur la compatibilité des modules complémentaires."
+msgstr "E-mail envoyé à l’auteur sur la compatibilité des modules complémentaires."
 
 msgid "Password changed."
 msgstr "Mot de passe changé"
@@ -1788,15 +1788,18 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr "La version 3 du fichier Manifest n’est actuellement pas prise en charge pour la mise en ligne. {start_href}En savoir plus sur la chronologie de la prise en charge{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Avertissement de compatibilité avec le manifeste V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox ajoute la prise en charge des extensions reposant sur le manifeste version 3 (MV3) dans Firefox {version}, cependant, les anciennes versions de Firefox ne sont compatibles qu’avec les "
+"extensions reposant sur le manifeste version 2 (MV2). Nous vous recommandons d’héberger vous-même les extensions Manifest V3 pour le moment afin de ne pas rompre la compatibilité pour vos "
+"utilisateurs."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Pour plus d’informations sur le déploiement des extensions MV3 ou des extensions MV3 auto-hébergées, consultez https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce raccourci est déjà utilisé. Merci d’en choisir un autre."
@@ -2002,7 +2005,7 @@ msgid "Invitation declined."
 msgstr "Invitation refusée."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr "Un courriel de confirmation a été envoyé à {email}"
+msgstr "Un e-mail de confirmation a été envoyé à {email}"
 
 msgid "Changes successfully saved."
 msgstr "Modifications enregistrées avec succès."
@@ -2456,14 +2459,14 @@ msgstr ""
 "visibilité maximale."
 
 msgid "Email"
-msgstr "Courriel"
+msgstr "Adresse e-mail"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"Si vous souhaitez afficher une adresse électronique pour les demandes d’assistance, saisissez-la ici. Si vous avez différentes adresses pour chaque langue, vous pouvez ajouter les différentes "
-"traductions de ce champ. Ce champ n’est utile que pour les modules répertoriés."
+"Si vous souhaitez afficher une adresse e-mail pour les demandes d’assistance, saisissez-la ici. Si vous avez différentes adresses pour chaque langue, vous pouvez ajouter les différentes traductions "
+"de ce champ. Ce champ n’est utile que pour les modules répertoriés."
 
 msgid "Website"
 msgstr "Site Web"
@@ -2492,7 +2495,7 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Un utilisateur final de ces informations devrait pouvoir savoir qu’elles ne s’appliquent pas forcément au résumé ou à la description du module. On fournit habituellement la liste des bogues connus, "
+"Un utilisateur final de ces informations devrait pouvoir savoir qu’elles ne s’appliquent pas forcément au résumé ou à la description du module. On fournit habituellement la liste des bugs connus, "
 "des informations sur la façon de faire remonter les problèmes, les prévisions de publication pour les futures versions, etc. Ceci ne s’applique qu’aux modules répertoriés."
 
 msgid "Universally unique identifier"
@@ -2772,7 +2775,7 @@ msgid "Select a category for this add-on:"
 msgstr "Sélectionnez une catégorie pour ce module :"
 
 msgid "Support email:"
-msgstr "Courriel d’assistance :"
+msgstr "E-mail d’assistance :"
 
 msgid "Support website:"
 msgstr "Site d’assistance :"
@@ -3050,7 +3053,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Cliquez sur le bouton de confirmation pour générer une clé d’API pour l’utilisateur <strong>%(name)s</strong>"
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Un lien de confirmation vous sera envoyé par courrier électronique. Après confirmation, vous trouverez vos clés d’API sur cette page."
+msgstr "Un lien de confirmation vous sera envoyé par e-mail. Après confirmation, vous trouverez vos clés d’API sur cette page."
 
 msgid "You don't have any API credentials."
 msgstr "Vous n’avez aucune information permettant de vous authentifier avec l’API."
@@ -3162,14 +3165,13 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Complétez votre module en ajoutant une version ou les métadonnées manquantes."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Vous recevrez un courriel quand la revue sera finie. En attendant, votre module ne sera pas accessible via la galerie mais vous pourrez y accéder directement depuis la page des détails. "
+msgstr "Vous recevrez un e-mail quand la revue sera finie. En attendant, votre module ne sera pas accessible via la galerie mais vous pourrez y accéder directement depuis la page des détails. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Votre module est affiché dans notre galerie et les utilisateurs reçoivent les mises à jour automatiques."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
-"Votre module a été désactivé par un administrateur du site, il n’apparaît plus dans notre galerie. Si vous avez des questions, veuillez envoyer un courrier électronique à amo-admins@mozilla.com."
+msgstr "Votre module a été désactivé par un administrateur du site, il n’apparaît plus dans notre galerie. Si vous avez des questions, veuillez envoyer un e-mail à amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3347,7 +3349,7 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Restez à jour sur les nouveautés et les évènements pour les développeurs d’extensions Firefox."
 
 msgid "Email Address"
-msgstr "Adresse électronique"
+msgstr "Adresse e-mail"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3779,7 +3781,7 @@ msgstr "Empêchez les sites web malveillants d’utiliser la puissance de votre 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Bénéficiez d’une assistance grammaticale chaque fois que vous écrivez sur le Web : réseaux sociaux, courriels, documents, etc."
+msgstr "Bénéficiez d’une assistance grammaticale chaque fois que vous écrivez sur le Web : réseaux sociaux, e-mails, documents, etc."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4057,7 +4059,7 @@ msgstr "Ouvrez un nouvel onglet immédiatement à droite de l’onglet actif et 
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Repoussez le spam. Utilisez d’astucieuses adresses électroniques temporaires pour rester anonyme et éviter les spams."
+msgstr "Repoussez le spam. Utilisez d’astucieuses adresses e-mail temporaires pour rester anonyme et éviter les spams."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
@@ -4622,8 +4624,8 @@ msgstr "Revenez à une époque plus simple — lorsque les meilleurs résultats 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
 msgstr ""
-"Arrêtez de donner aux sites votre adresse électronique. Firefox Relay protège votre identité et empêche les messages indésirables. Passez à Relay Premium pour bénéficier d’avantages supplémentaires,"
-" comme le blocage d’e-mails publicitaires mieux ciblé."
+"Arrêtez de donner aux sites votre adresse e-mail. Firefox Relay protège votre identité et empêche les messages indésirables. Passez à Relay Premium pour bénéficier d’avantages supplémentaires, comme"
+" le blocage d’e-mails publicitaires mieux ciblé."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4687,7 +4689,7 @@ msgstr "Améliorez votre expérience de jeu sur Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Un pouce levé pour faire revenir les pouces vers le bas."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4910,7 +4912,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Un identifiant identique a été trouvé."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Les numéros de versions doivent comprendre {max_length} caractères au maximum."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Les numéros de versions doivent uniquement contenir des lettres, des chiffres, et les caractères suivants : +*.-_."
@@ -4962,7 +4964,7 @@ msgid "Inappropriate language/dialog"
 msgstr "Langage inapproprié"
 
 msgid "Misplaced bug report or support request"
-msgstr "Rapport de bogue ou demande d’assistance inadéquate dans ce contexte"
+msgstr "Rapport de bug ou demande d’assistance inadéquate dans ce contexte"
 
 msgid "Other (please specify)"
 msgstr "Autre (veuillez préciser)"
@@ -5705,19 +5707,19 @@ msgid "Download file"
 msgstr "Télécharger le fichier"
 
 msgid "Validation results"
-msgstr ""
+msgstr "Résultats de la validation"
 
 msgid "Browse all files in this version"
 msgstr "Parcourir tous les fichiers de cette version"
 
 msgid "Browse contents"
-msgstr ""
+msgstr "Parcourir le contenu"
 
 msgid "Compare this version to the last reviewed version"
 msgstr "Comparer cette version à la dernière version vérifiée"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "Comparer avec la dernière revue"
 
 msgid "Permissions:"
 msgstr "Permissions :"
@@ -6283,7 +6285,7 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr "Vous ne pouvez saisir qu’une adresse IP ou un réseau."
 
 msgid "No user with that email."
-msgstr "Pas d’utilisateur ayant cette adresse courriel."
+msgstr "Pas d’utilisateur ayant cette adresse e-mail."
 
 msgid "Firefox user {id}"
 msgstr "Utilisateur ou utilisatrice {id} de Firefox"
@@ -6295,7 +6297,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Plusieurs modules complémentaires contrevenant à nos politiques ont été signalés depuis votre emplacement. Cette adresse IP a été bloquée."
 
 msgid "Email Pattern"
-msgstr "Modèle d’adresse électronique"
+msgstr "Modèle d’adresse e-mail"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
@@ -6303,14 +6305,14 @@ msgstr ""
 "ajoutez une deuxième entrée, par ex. « *@*.example.com »."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "L’adresse électronique utilisée pour votre compte n’est pas autorisée pour le dépôt de modules complémentaires."
+msgstr "L’adresse e-mail utilisée pour votre compte n’est pas autorisée pour le dépôt de modules complémentaires."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
 "Saisissez le domaine de messagerie jetable complet qui doit être bloqué. Les caractères génériques ne sont pas pris en charge : si vous en avez besoin, ou si vous souhaitez faire correspondre "
-"l’adresse électronique entière et pas seulement la partie de domaine, utilisez plutôt « Restrictions relatives aux usages du courrier électronique »."
+"l’adresse e-mail entière et pas seulement la partie de domaine, utilisez plutôt « Restrictions relatives aux usages du courrier électronique »."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -6404,7 +6406,7 @@ msgstr ""
 "\n"
 "%(author_confirmation_link)s\n"
 "\n"
-"Si vous ne vous attendiez pas à recevoir cette invitation, veuillez envoyer un courriel à amo-admins@mozilla.com.\n"
+"Si vous ne vous attendiez pas à recevoir cette invitation, veuillez envoyer un e-mail à amo-admins@mozilla.com.\n"
 "\n"
 "Bien à vous,\n"
 "L’équipe des modules complémentaires de Mozilla"
@@ -6445,7 +6447,7 @@ msgstr ""
 "\n"
 "Vous recevez ce message parce que votre compte utilisateur %(name)s sur %(site_url)s a été supprimé. Cela peut avoir été fait automatiquement si vous avez récemment supprimé votre compte Firefox.\n"
 "\n"
-"Si vous n’êtes pas à l’origine de cette suppression ou si vous pensez qu’une personne non autorisée a accédé à votre compte, veuillez répondre à ce courriel. Sinon, il n’y a pas d’autres mesures à prendre.\n"
+"Si vous n’êtes pas à l’origine de cette suppression ou si vous pensez qu’une personne non autorisée a accédé à votre compte, veuillez répondre à cet e-mail. Sinon, il n’y a pas d’autres mesures à prendre.\n"
 "\n"
 "Cordialement,\n"
 "\n"

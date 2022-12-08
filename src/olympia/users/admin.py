@@ -67,6 +67,10 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     # search_fields (see `CommaSearchInAdminMixin.get_search_results()` and
     # `get_search_id_field()` as well as `get_search_results()` below)
     search_fields = ('email__like',)
+    # We can trigger search by ids with only one search term, if somehow an
+    # admin wants to search for an email using a single query term that's all
+    # numeric they can add a wildcard.
+    minimum_search_terms_to_search_by_id = 1
     # get_search_results() below searches using `IPLog`. It sets an annotation
     # that we can then use in the custom `known_ip_adresses` method referenced
     # in the line below, which is added to the` list_display` fields for IP

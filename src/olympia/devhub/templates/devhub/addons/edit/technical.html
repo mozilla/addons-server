@@ -69,6 +69,7 @@
             </th>
             <td>
               {% if editable %}
+                {{ whiteboard_form.public.errors }}
                 {{ whiteboard_form.public }}
               {% else %}
                 {% call empty_unless(whiteboard.public) %}{{ whiteboard.public }}{% endcall %}

@@ -12,8 +12,7 @@ This internal endpoint allows you to create applications versions to be
 referenced in add-ons manifests. It requires :ref:`v4-authentication<api-auth>`
 and a special permission.
 
-The currently available applications versions are listed on a dedicated page:
-https://addons.mozilla.org/en-US/firefox/pages/appversions/
+The currently available applications versions are :ref:`available to list<applications-version-list>`.
 
 When a valid request is made to this endpoint, AMO will create the requested
 version if it didn't exist, and also attempt to create a corresponding minimum

@@ -241,8 +241,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
 
     .. note::
-        For possible version values per application, see
-        `valid application versions`_.
+        See the :ref:`supported versions <applications-version-list>`.
 
 
 .. _addon-detail-type:
@@ -509,8 +508,8 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
     :>json object compatibility:
         Object detailing which :ref:`applications <addon-detail-application>` the version is compatible with.
-        The exact min/max version numbers in the object correspond to
-        `valid application versions`_. Example:
+        The exact min/max version numbers in the object correspond to the :ref:`supported versions<applications-version-list>`.
+        Example:
 
             .. code-block:: json
 
@@ -887,8 +886,6 @@ on AMO.
     :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
     :>json string results[].type: The :ref:`add-on type <addon-detail-type>`.
     :>json string results[].url: The (absolute) add-on detail URL.
-
-.. _`valid application versions`: https://addons.mozilla.org/en-US/firefox/pages/appversions/
 
 
 -------------------
