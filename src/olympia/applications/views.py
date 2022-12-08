@@ -1,8 +1,4 @@
-from django.core.cache import cache
-from django.db.transaction import non_atomic_requests
-from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
-from django.utils.translation import gettext
 
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
@@ -12,8 +8,6 @@ from rest_framework.views import APIView
 
 from olympia import amo
 from olympia.api.authentication import JWTKeyAuthentication
-from olympia.amo.feeds import BaseFeed
-from olympia.amo.templatetags.jinja_helpers import absolutify, url
 from olympia.api.permissions import ByHttpMethod, GroupPermission
 from olympia.versions.compare import version_dict, version_re
 

@@ -114,14 +114,13 @@ def test_trailing_slash_middleware():
 
 class AdminMessageTest(TestCase):
     def test_message(self):
-        c = Config.objects.create(key='site_notice', value='ET Sighted.')
+        config = Config.objects.create(key='site_notice', value='ET Sighted.')
 
-        r = self.client.get(reverse('devhub.index'), follow=True)
-        doc = pq(r.content)
-        print(doc)
+        response = self.client.get(reverse('devhub.index'), follow=True)
+        doc = pq(response.content)
         assert doc('#site-notice').text() == 'ET Sighted.'
 
-        c.delete()
+        config.delete()
 
         r = self.client.get(reverse('devhub.index'), follow=True)
         doc = pq(r.content)
