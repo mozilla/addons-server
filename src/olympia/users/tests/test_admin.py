@@ -62,6 +62,21 @@ class TestUserAdmin(TestCase):
         assert str(self.user.pk) in doc('#result_list').text()
         assert str(another_user.pk) not in doc('#result_list').text()
 
+    def test_search_by_id_simple(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        another_user = user_factory()
+        response = self.client.get(
+            self.list_url,
+            {'q': self.user.id},
+            follow=True,
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(self.user.pk) in doc('#result_list').text()
+        assert str(another_user.pk) not in doc('#result_list').text()
+
     def test_search_by_email_like(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
