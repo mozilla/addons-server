@@ -449,6 +449,7 @@ class TestRobots(TestCase):
         assert f'Disallow: {username_url}$' in content
 
 
+@pytest.mark.django_db
 def test_fake_fxa_authorization_correct_values_passed():
     with override_settings(DEBUG=True):  # USE_FAKE_FXA_AUTH is already True
         url = reverse('fake-fxa-authorization')
@@ -465,6 +466,7 @@ def test_fake_fxa_authorization_correct_values_passed():
         assert elm  # No value yet, should just be present.
 
 
+@pytest.mark.django_db
 def test_fake_fxa_authorization_deactivated():
     url = reverse('fake-fxa-authorization')
     with override_settings(DEBUG=False, USE_FAKE_FXA_AUTH=False):
@@ -583,6 +585,7 @@ def test_multipart_error():
     )
 
 
+@pytest.mark.django_db
 def test_client_info():
     response = Client().get(reverse('amo.client_info'))
     assert response.status_code == 403

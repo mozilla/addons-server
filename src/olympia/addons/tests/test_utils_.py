@@ -494,6 +494,7 @@ def test_webext_version_stats():
         incr_mock.assert_called_with('prefix.for.logging.webext_version.12_34_56')
 
 
+@pytest.mark.django_db
 def test_validate_version_number_is_gt_latest_signed_listed_version():
     addon = addon_factory(version_kw={'version': '123.0'}, file_kw={'is_signed': True})
     # add an unlisted version, which should be ignored.
@@ -545,6 +546,7 @@ def test_validate_version_number_is_gt_latest_signed_listed_version():
     assert not validate_version_number_is_gt_latest_signed_listed_version(None, '123')
 
 
+@pytest.mark.django_db
 def test_validate_version_number_is_gt_latest_signed_listed_version_not_langpack():
     addon = addon_factory(version_kw={'version': '123.0'}, file_kw={'is_signed': True})
     assert validate_version_number_is_gt_latest_signed_listed_version(addon, '122') == (

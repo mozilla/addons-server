@@ -7,6 +7,8 @@ from django.core.paginator import PageNotAnInteger
 from django.test import override_settings
 from django.urls import reverse
 
+import pytest
+
 from olympia import amo
 from olympia.addons.models import AddonCategory
 from olympia.amo.sitemap import (
@@ -172,6 +174,7 @@ def test_amo_sitemap():
             )
 
 
+@pytest.mark.django_db
 def test_categories_sitemap():
     # without any addons we should still generate a url for each category
     empty_cats = list(CategoriesSitemap().items())
@@ -222,6 +225,7 @@ def test_categories_sitemap():
     assert set(cats_limited) - set(empty_cats) == {extra_2}
 
 
+@pytest.mark.django_db
 def test_collection_sitemap(mozilla_user):
     collection_a = collection_factory(
         author=mozilla_user, modified=datetime(2020, 1, 1, 1, 1, 1)
@@ -586,6 +590,7 @@ class TestAccountSitemap(TestCase):
             ]
 
 
+@pytest.mark.django_db
 def test_tag_pages_sitemap():
     # without any addons we should still generate a url for each tag page
     empty_tag_pages = list(TagPagesSitemap().items())
@@ -624,6 +629,7 @@ def test_tag_pages_sitemap():
     assert set(tag_pages_limited) - set(empty_tag_pages) == {extra_2}
 
 
+@pytest.mark.django_db
 def test_get_sitemap_section_pages():
     addon_factory()
     addon_factory()

@@ -70,6 +70,7 @@ class TestRepudiateActivityLogToken(TestCase):
             call_command('repudiate_token')
 
 
+@pytest.mark.django_db
 def test_backfill_ratinglog_command():
     user = user_factory()
     addon = addon_factory()
