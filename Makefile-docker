@@ -168,8 +168,8 @@ setup-codestyle:
 
 .PHONY: lint
 lint: ## lint the code
-	black --check src/ services/ tests/
-	flake8 src/ services/ tests/
+	black --check src/ tests/
+	flake8 src/ tests/
 	$(shell npm $(NPM_ARGS) bin)/prettier --check '**'
 	curlylint src/
 

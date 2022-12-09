@@ -16,7 +16,6 @@ Development
    vpn
    acl
    logging
-   services
    translations
    search
    docs
