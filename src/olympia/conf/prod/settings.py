@@ -36,8 +36,6 @@ DATABASES = {
     'replica': get_db_config('DATABASES_REPLICA_URL', atomic_requests=False),
 }
 
-SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
-
 REPLICA_DATABASES = ['replica']
 
 # Celery
