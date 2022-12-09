@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-08 16:39+0000\n"
+"PO-Revision-Date: 2022-12-09 20:10+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5804,7 +5804,7 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "Le score de malveillance représente la probabilité que cette version soit malveillante, sur la base des résultats des scanners."
 
 msgid "Scanners results:"
-msgstr ""
+msgstr "Résultats des scanners :"
 
 msgid "Flagged for human review"
 msgstr "Marqué pour examen manuel"
@@ -5867,13 +5867,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "Ceci est le nom exact de la règle utilisée par un scanner."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Nom lisible par un humain pour la règle du scanner"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Nom lisible par un humain"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Description lisible par un humain pour la règle du scanner"
 
 msgid "Yara rules should have a definition"
 msgstr "Les règles Yara doivent avoir une définition"
