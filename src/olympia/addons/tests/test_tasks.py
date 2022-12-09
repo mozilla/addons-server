@@ -1,5 +1,4 @@
 import os
-import pytest
 import shutil
 import tempfile
 from unittest import mock
