@@ -21,7 +21,7 @@ FROM
               FROM `groups`
               WHERE `name` = 'No Reviewer Incentives')) THEN 'volunteer' ELSE 'all' END AS `group_category`
       FROM (
-        SELECT DISTINCT `created`, `user_id`, `action`, MAX(`id`) AS `id`
+        SELECT `created`, `user_id`, `action`, MAX(`id`) AS `id`
         FROM `log_activity`
         WHERE DATE(`created`) BETWEEN @WEEK_BEGIN AND @WEEK_END
         /* The type of review, see constants/activity.py */

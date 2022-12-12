@@ -1,7 +1,7 @@
 SELECT 'All Reviewers' AS `Group`,
        FORMAT(COUNT(*), 0) AS `Add-ons Reviewed`
 FROM (
-  SELECT DISTINCT `created`, `user_id`, `action`, MAX(`id`) AS `id`
+  SELECT `created`, `user_id`, `action`, MAX(`id`) AS `id`
   FROM `log_activity`
   WHERE DATE(`created`) BETWEEN @WEEK_BEGIN AND @WEEK_END
   /* The type of review, see constants/activity.py */
@@ -21,7 +21,7 @@ UNION ALL
 SELECT 'Volunteers' AS `Group`,
        FORMAT(COUNT(*), 0) AS `Add-ons Reviewed`
 FROM (
-  SELECT DISTINCT `created`, `user_id`, `action`, MAX(`id`) AS `id`
+  SELECT `created`, `user_id`, `action`, MAX(`id`) AS `id`
   FROM `log_activity`
   WHERE DATE(`created`) BETWEEN @WEEK_BEGIN AND @WEEK_END
   /* The type of review, see constants/activity.py */
