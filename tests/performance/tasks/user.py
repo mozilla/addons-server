@@ -132,7 +132,7 @@ class UserTaskSet(BaseUserTaskSet):
         else:
             response.failure(f'Unexpected status code {response.status_code}')
 
-    @task(8)
+    @task(1)
     def browse(self):
         app = self.get_app()
         self.client.get(self.get_url('/{language}/{app}/', app))
@@ -260,8 +260,6 @@ class UserTaskSet(BaseUserTaskSet):
             '/{language}/firefox/extensions/appearance/format:rss',
             '/{language}/firefox/extensions/bookmarks/format:rss',
             '/{language}/firefox/extensions/language-support/format:rss',
-            # App Version RSS Feed
-            '/{language}/{app}/pages/appversions/format:rss',
             # Collection RSS Feed
             '/{language}/firefox/collections/Vivre/ploaia/format:rss',
             # Featured Add-ons
@@ -271,9 +269,3 @@ class UserTaskSet(BaseUserTaskSet):
         )
 
         self.client.get(self.get_url(random.choice(urls), app))
-
-    @task(1)
-    def test_browse_appversions(self):
-        app = self.get_app()
-
-        self.client.get(self.get_url('/{language}/{app}/pages/appversions/', app))

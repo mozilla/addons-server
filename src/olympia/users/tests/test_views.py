@@ -6,7 +6,7 @@ from django.urls import reverse
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 from olympia.users.models import UserProfile
 
 
@@ -34,13 +34,15 @@ class TestLogin(UserViewBase):
         self.client.force_login(UserProfile.objects.get(email='jbalogh@mozilla.com'))
 
     def test_login_link(self):
-        r = self.client.get(reverse('apps.appversions'))
-        assert r.status_code == 200
+        addon_factory(slug='foo')
+        r = self.client.get(reverse('stats.overview', args=('foo',)))
+        assert r.status_code == 403
         assert pq(r.content)('#aux-nav li.login').length == 1
 
     def test_logout_link(self):
         self.test_client_login()
-        r = self.client.get(reverse('apps.appversions'))
+        addon_factory(slug='foo')
+        r = self.client.get(reverse('stats.overview', args=('foo',)))
         assert r.status_code == 200
         assert pq(r.content)('#aux-nav li.logout').length == 1
 

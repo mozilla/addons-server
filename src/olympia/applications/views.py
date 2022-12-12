@@ -1,8 +1,4 @@
-from django.core.cache import cache
-from django.db.transaction import non_atomic_requests
-from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
-from django.utils.translation import gettext
 
 from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
@@ -12,69 +8,10 @@ from rest_framework.views import APIView
 
 from olympia import amo
 from olympia.api.authentication import JWTKeyAuthentication
-from olympia.amo.feeds import BaseFeed
-from olympia.amo.templatetags.jinja_helpers import absolutify, url
 from olympia.api.permissions import ByHttpMethod, GroupPermission
 from olympia.versions.compare import version_dict, version_re
 
 from .models import AppVersion
-
-
-def get_versions(order=('application', 'version_int')):
-    def fetch_versions():
-        apps = amo.APP_USAGE
-        versions = {app.id: [] for app in apps}
-        qs = list(
-            AppVersion.objects.order_by(*order)
-            .filter(application__in=versions)
-            .values_list('application', 'version')
-        )
-        for app, version in qs:
-            versions[app].append(version)
-        return apps, versions
-
-    return cache.get_or_set('getv' + ':'.join(order), fetch_versions)
-
-
-@non_atomic_requests
-def appversions(request):
-    apps, versions = get_versions()
-    return TemplateResponse(
-        request,
-        'applications/appversions.html',
-        context={'apps': apps, 'versions': versions},
-    )
-
-
-class AppversionsFeed(BaseFeed):
-    # appversions aren't getting a created date so the sorting is kind of
-    # wanky.  I blame fligtar.
-
-    def title(self):
-        return gettext('Application Versions')
-
-    def link(self):
-        return absolutify(url('apps.appversions'))
-
-    def description(self):
-        return gettext('Acceptable versions for all applications on AMO.')
-
-    def items(self):
-        apps, versions = get_versions(order=('application', '-version_int'))
-        return [(app, version) for app in apps for version in versions[app.id][:3]]
-        return [(app, versions[app.id][:3]) for app in apps]
-
-    def item_title(self, item):
-        app, version = item
-        return f'{app.pretty} {version}'
-
-    item_description = ''
-
-    def item_link(self):
-        return self.link()
-
-    def item_guid(self, item):
-        return self.item_link() + '%s:%s' % item
 
 
 class AppVersionView(APIView):

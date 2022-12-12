@@ -58,7 +58,12 @@ urlpatterns = [
     # Localizable pages.
     re_path(r'', include('olympia.pages.urls')),
     # App versions.
-    re_path(r'pages/appversions/', include('olympia.applications.urls')),
+    re_path(
+        r'pages/appversions/',
+        lambda r: redirect(
+            'v5:appversions-list', application='firefox', permanent=True
+        ),
+    ),
     # Services
     re_path(r'', include('olympia.amo.urls')),
     # Search

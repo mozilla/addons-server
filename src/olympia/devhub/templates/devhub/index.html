@@ -46,7 +46,19 @@
   <body class="html-{{ DIR }} {{ amo.FIREFOX.short }} {% if user_authenticated %}user-signedin{% endif %} {% block bodyclass %}{% endblock %}"
         {% block bodyattrs %}{% endblock %}>
 
-
+    {% block site_notice %}
+      {% set admin_message = get_config('site_notice') %}
+      {% if admin_message or settings.READ_ONLY %}
+        <div id="site-notice">
+          {% if admin_message %}
+            <p>{{ admin_message|safe }}</p>
+          {% endif %}
+          {% if settings.READ_ONLY %}
+            <p>{{ _("Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly.") }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endblock %}
     {% include 'devhub/new-landing/components/navigation.html' %}
 
     {% if not user_authenticated %}

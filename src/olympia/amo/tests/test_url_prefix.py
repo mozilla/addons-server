@@ -8,7 +8,7 @@ import pytest
 from olympia.amo import urlresolvers
 from olympia.amo.middleware import LocaleAndAppURLMiddleware
 from olympia.amo.reverse import clean_url_prefixes, set_url_prefix
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 
 
 pytestmark = pytest.mark.django_db
@@ -221,6 +221,7 @@ class TestPrefixer(TestCase):
         assert reverse('home') == '/en-US/firefox/'
 
     def test_resolve(self):
+        addon_factory(slug='foo')
         # 'home' is now a frontend view
         func, args, kwargs = resolve('/')
         assert func.__name__ == 'frontend_view'
@@ -231,8 +232,8 @@ class TestPrefixer(TestCase):
 
         # With a request with locale and app prefixes, it still works.
         Client().get('/')
-        func, args, kwargs = resolve('/en-US/firefox/pages/appversions/')
-        assert func.__name__ == 'appversions'
+        func, args, kwargs = resolve('/en-US/firefox/addon/foo/statistics/')
+        assert func.__name__ == 'stats_report'
 
     def test_script_name(self):
         rf = RequestFactory()

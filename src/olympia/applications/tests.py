@@ -1,11 +1,12 @@
+from django.core.exceptions import BadRequest
 from django.core.management import call_command
 from django.db import IntegrityError
 
-from unittest import mock
+import responses
 
 from olympia import amo
-from olympia.amo.templatetags.jinja_helpers import url
 from olympia.amo.tests import APITestClientSessionID, reverse_ns, TestCase
+
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 
@@ -23,10 +24,12 @@ class TestViews(TestCase):
     fixtures = ['base/appversion']
 
     def test_appversions(self):
-        assert self.client.get(url('apps.appversions')).status_code == 200
+        response = self.client.get('/en-US/firefox/pages/appversions/')
+        self.assert3xx(response, '/api/v5/applications/firefox/', status_code=301)
 
     def test_appversions_feed(self):
-        assert self.client.get(url('apps.appversions.rss')).status_code == 200
+        response = self.client.get('/en-US/firefox/pages/appversions/format:rss')
+        self.assert3xx(response, '/api/v5/applications/firefox/', status_code=301)
 
 
 class TestAppVersionsAPIGet(TestCase):
@@ -366,31 +369,30 @@ class TestCommands(TestCase):
             == 1
         )
 
-    @mock.patch(
-        'olympia.applications.management.commands.import_prod_versions.PyQuery',
-        spec=True,
-    )
-    def test_import_prod_versions(self, pyquery_mock):
+    def test_import_prod_versions(self):
         assert not AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='53.0'
         ).exists()
         assert not AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='53.*'
         ).exists()
+        assert not AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='52.0'
+        ).exists()
+        assert not AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='52.*'
+        ).exists()
 
-        # Result of PyQuery()
-        MockedDoc = mock.Mock()
-        pyquery_mock.return_value = MockedDoc
-
-        # Result of PyQuery()('selector'). Return 2 applications, one with a
-        # valid guid and one that is garbage and should be ignored.
-        MockedDocResult = [
-            mock.Mock(spec=[], text='lol'),
-            mock.Mock(spec=[], text='some versions...'),
-            mock.Mock(spec=[], text='{ec8030f7-c20a-464f-9b0e-13a3a9e97384}'),
-            mock.Mock(spec=[], text='53.0, 53.*'),
-        ]
-        MockedDoc.return_value = MockedDocResult
+        responses.add(
+            responses.GET,
+            'https://addons.mozilla.org/api/v5/applications/firefox/',
+            json={'guid': amo.FIREFOX.guid, 'versions': ['53.0', '53.*']},
+        )
+        responses.add(
+            responses.GET,
+            'https://addons.mozilla.org/api/v5/applications/android/',
+            json={'guid': amo.ANDROID.guid, 'versions': ['52.0', '52.*']},
+        )
 
         call_command('import_prod_versions')
 
@@ -400,3 +402,47 @@ class TestCommands(TestCase):
         assert AppVersion.objects.filter(
             application=amo.FIREFOX.id, version='53.*'
         ).exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='52.0'
+        ).exists()
+        assert AppVersion.objects.filter(
+            application=amo.ANDROID.id, version='52.*'
+        ).exists()
+
+    def test_import_prod_versions_failures(self):
+        responses.add(
+            responses.GET,
+            'https://addons.mozilla.org/api/v5/applications/firefox/',
+            json={},
+            status=404,
+        )
+        responses.add(
+            responses.GET,
+            'https://addons.mozilla.org/api/v5/applications/firefox/',
+            json={'guid': amo.FIREFOX.guid, 'versions': []},
+        )
+        responses.add(
+            responses.GET,
+            'https://addons.mozilla.org/api/v5/applications/firefox/',
+            json={'guid': 'not-firefoxs-guid', 'versions': ['52.0', '52.*']},
+        )
+
+        with self.assertRaises(BadRequest) as exc:
+            call_command('import_prod_versions')
+            assert exc.exception.messages == [
+                'Importing versions from AMO prod failed: 404.'
+            ]
+        with self.assertRaises(BadRequest) as exc:
+            call_command('import_prod_versions')
+            assert exc.exception.messages == [
+                'Importing versions from AMO prod failed: guid mistmatch - '
+                f'expected={amo.FIREFOX.guid}; got=not-firefoxs-guid.'
+            ]
+
+        with self.assertRaises(BadRequest) as exc:
+            call_command('import_prod_versions')
+            assert exc.exception.messages == [
+                'Importing versions from AMO prod failed: no versions.'
+            ]
+
+        assert AppVersion.objects.all().exists()
