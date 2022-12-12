@@ -18,6 +18,14 @@ COMPAT_MODE_STRICT = 'strict'
 COMPAT_MODE_NORMAL = 'normal'
 COMPAT_MODE_IGNORE = 'ignore'
 
+# Pref in Firefox: sextensions.update.url
+# A typical request looks like:
+# https://versioncheck.addons.mozilla.org/update/VersionCheck.php?reqVersion=2
+# &id=uBlock0@raymondhill.net&version=1.45.2&maxAppVersion=*&status=userEnabled
+# &appID={ec8030f7-c20a-464f-9b0e-13a3a9e97384}&appVersion=109.0a1&appOS=Linux
+# &appABI=x86_64-gcc3&locale=en-US&currentAppVersion=109.0a1&updateType=97
+# &compatMode=normal
+
 
 class Updater:
     def __init__(self, data):
