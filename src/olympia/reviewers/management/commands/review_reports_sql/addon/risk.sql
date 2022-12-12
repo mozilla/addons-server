@@ -25,7 +25,7 @@ FROM
         FROM `log_activity`
         WHERE DATE(`created`) BETWEEN @WEEK_BEGIN AND @WEEK_END
         /* The type of review, see constants/activity.py */
-        AND `action` IN (21, 43, 144, 165)
+        AND FIND_IN_SET(`action`, @ACTIVITY_ID_LIST) > 0
         GROUP BY `created`, `user_id`, `action`
       ) AS `activity`
       JOIN `log_activity_version` `activity_ver` ON `activity_ver`.`activity_log_id` = `activity`.`id`
