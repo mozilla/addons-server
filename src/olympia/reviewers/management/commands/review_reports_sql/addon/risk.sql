@@ -21,6 +21,8 @@ FROM
               FROM `groups`
               WHERE `name` = 'No Reviewer Incentives')) THEN 'volunteer' ELSE 'all' END AS `group_category`
       FROM (
+        /* NOTE: This works to reduce reviews that acted on multiple reviews to a single review
+           because we set created to be the exact same datetime. */
         SELECT `created`, `user_id`, `action`, MAX(`id`) AS `id`
         FROM `log_activity`
         WHERE DATE(`created`) BETWEEN @WEEK_BEGIN AND @WEEK_END

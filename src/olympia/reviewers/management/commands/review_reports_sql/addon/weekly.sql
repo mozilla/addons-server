@@ -11,6 +11,8 @@ SELECT IFNULL(`u`.`display_name`, CONCAT('Firefox user ', `u`.`id`)) AS `Name`,
        IFNULL(FORMAT(AVG(`aa`.`weight`), 2), 0) AS `Average Risk`,
        FORMAT(COUNT(*), 0) AS `Add-ons Reviewed`
 FROM (
+  /* NOTE: This works to reduce reviews that acted on multiple reviews to a single review
+     because we set created to be the exact same datetime. */
   SELECT `created`, `user_id`, `action`, MAX(`id`) AS `id`
   FROM `log_activity`
   WHERE DATE(`created`) BETWEEN @WEEK_BEGIN AND @WEEK_END
