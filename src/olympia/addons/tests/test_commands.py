@@ -522,6 +522,7 @@ class TestFixLangpacksWithMaxVersionStar(TestCase):
                 assert version.compatible_apps[app].max.version == '77.*'
 
 
+@pytest.mark.django_db
 def test_update_rating_aggregates():
     addon = addon_factory()
     Rating.objects.create(addon=addon, user=user_factory(), rating=4)

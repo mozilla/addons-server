@@ -139,12 +139,6 @@ DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
 }
 
-# A database to be used by the services scripts, which does not use Django.
-# Please note that this is not a full Django database connection
-# so the amount of values supported are limited. By default we are using
-# the same connection as 'default' but that changes in prod/dev/stage.
-SERVICES_DATABASE = get_db_config('DATABASES_DEFAULT_URL')
-
 DATABASE_ROUTERS = ('multidb.PinningReplicaRouter',)
 
 # Put the aliases for your slave databases in this list.

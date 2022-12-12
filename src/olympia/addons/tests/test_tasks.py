@@ -1,11 +1,11 @@
 import os
-import pytest
 import shutil
 import tempfile
 from unittest import mock
 
 from django.conf import settings
 
+import pytest
 from PIL import Image
 from waffle.testutils import override_switch
 
@@ -230,6 +230,7 @@ def test_update_addon_hotness():
     assert addon3.hotness == 123
 
 
+@pytest.mark.django_db
 def test_update_addon_weekly_downloads():
     addon = addon_factory(weekly_downloads=0)
     count = 123
@@ -242,6 +243,7 @@ def test_update_addon_weekly_downloads():
     assert addon.weekly_downloads == count
 
 
+@pytest.mark.django_db
 def test_update_addon_weekly_downloads_ignores_deleted_addons():
     guid = 'some@guid'
     deleted_addon = addon_factory(guid=guid)
@@ -258,6 +260,7 @@ def test_update_addon_weekly_downloads_ignores_deleted_addons():
     assert addon.weekly_downloads == count
 
 
+@pytest.mark.django_db
 def test_update_addon_weekly_downloads_skips_non_existent_addons():
     addon = addon_factory(weekly_downloads=0)
     count = 123
@@ -351,6 +354,7 @@ class TestResizeIcon(TestCase):
         self._uploader(resize_size, final_size)
 
 
+@pytest.mark.django_db
 @mock.patch('olympia.addons.tasks.index_addons.delay')
 def test_disable_addons(index_addons_mock):
     UserProfile.objects.create(pk=settings.TASK_USER_ID)
@@ -368,6 +372,7 @@ def test_disable_addons(index_addons_mock):
     index_addons_mock.assert_called_with([addon.id])
 
 
+@pytest.mark.django_db
 @mock.patch('olympia.addons.tasks.unindex_objects')
 @mock.patch('olympia.addons.tasks.index_objects')
 def test_index_addons(index_objects_mock, unindex_objects_mock):

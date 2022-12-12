@@ -1,3 +1,5 @@
+import pytest
+
 from olympia import amo
 from olympia.amo.tests import addon_factory
 from olympia.constants.promoted import LINE, NOTABLE, NOT_PROMOTED
@@ -7,6 +9,7 @@ from olympia.zadmin.models import set_config
 from ..tasks import add_high_adu_extensions_to_notable, ADU_LIMIT_CONFIG_KEY
 
 
+@pytest.mark.django_db
 def test_add_high_adu_extensions_to_notable():
     # Arbitrary_adu_limit
     adu_limit = 1234
