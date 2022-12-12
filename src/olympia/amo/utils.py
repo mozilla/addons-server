@@ -1285,6 +1285,11 @@ class BaseModelSerializerAndFormMixin:
                     # - Update the widget attributes again, for form fields
                     if hasattr(field, 'widget'):
                         field.widget.attrs.update(field.widget_attrs(field.widget))
+                        # - Update the sub-widgets too if there are any (our
+                        #   translations widgets work like that)
+                        if hasattr(field.widget, 'widgets'):
+                            for widget in field.widget.widgets:
+                                widget.attrs.update(field.widget_attrs(widget))
                     # - Convert that max_length into a validator ourselves if
                     #   the field requires it. Unfortunately some fields
                     #   (FileField) do not work like that and instead deal with
