@@ -92,6 +92,7 @@ to if necessary.
                         menu  Report menu in Add-ons Manager
         toolbar_context_menu  Report context menu on add-on toolbar
                          amo  Report button on an AMO page (using ``navigator.mozAddonManager.reportAbuse``)
+        unified_context_menu  Report unified extensions (context) menu
  ===========================  =================================================
 
 .. _abuse-addon_install_method-parameter:
