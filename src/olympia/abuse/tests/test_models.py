@@ -170,6 +170,7 @@ class TestAbuse(TestCase):
             (2, 'Menu'),
             (3, 'Toolbar context menu'),
             (4, 'AMO'),
+            (5, 'Unified extensions context menu'),
         )
         assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == (
             (None, None),
@@ -177,6 +178,7 @@ class TestAbuse(TestCase):
             (2, 'menu'),
             (3, 'toolbar_context_menu'),
             (4, 'amo'),
+            (5, 'unified_context_menu'),
         )
 
     def test_type(self):
