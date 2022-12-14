@@ -529,7 +529,7 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
 
 @admin.register(models.AddonRegionalRestrictions)
 class AddonRegionalRestrictionsAdmin(admin.ModelAdmin):
-    list_display = ('addon__name', 'excluded_regions')
+    list_display = ('created', 'modified', 'addon__name', 'excluded_regions')
     fields = ('created', 'modified', 'addon', 'excluded_regions')
     raw_id_fields = ('addon',)
     readonly_fields = ('created', 'modified')
