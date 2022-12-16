@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-16 18:30+0000\n"
+"PO-Revision-Date: 2022-12-16 18:33+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -5417,11 +5417,11 @@ msgstr "{addon} – Izegrar i Firefox"
 
 #. "Content Review [add-on name]"
 msgid "Content Review <em>{0}</em>"
-msgstr ""
+msgstr "Acegger n ugbur <em>{0}</em>"
 
 #. "Review [add-on name]"
 msgid "Review <em>{0}</em>"
-msgstr ""
+msgstr "Senqed <em>{0}</em>"
 
 msgid "You don't have permission to review it."
 msgstr "Ur ɣur-k ara tisurag n ucegger."
@@ -5547,7 +5547,7 @@ msgid "More Information"
 msgstr "Ugar n telɣut"
 
 msgid "Important Changes"
-msgstr ""
+msgstr "Isenfal ixataren"
 
 msgid "Resolution"
 msgstr "Afray"
@@ -5586,16 +5586,16 @@ msgid "Dismiss this announcement"
 msgstr "Agi alɣu-a"
 
 msgid "Download file"
-msgstr ""
+msgstr "Sader afaylu"
 
 msgid "Validation results"
-msgstr ""
+msgstr "Igmaḍ n usentem"
 
 msgid "Browse all files in this version"
 msgstr "Wali akk ifuyla n lqem-a"
 
 msgid "Browse contents"
-msgstr ""
+msgstr "Inig deg yigburen"
 
 msgid "Compare this version to the last reviewed version"
 msgstr "Serwes gar lqem-a d lqem aneggaru yettwasneqden"
