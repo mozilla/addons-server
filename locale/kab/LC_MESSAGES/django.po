@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-14 08:04+0000\n"
+"PO-Revision-Date: 2022-12-16 18:30+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -1025,16 +1025,16 @@ msgid "Force enabled"
 msgstr "Ḥettem armad"
 
 msgid "{user} logged in."
-msgstr ""
+msgstr "{user} y·ṭeqqen"
 
 msgid "{user} restricted."
-msgstr ""
+msgstr "{user} y·tettuẓẓeyeṛ."
 
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "{addon} {version} ur yettwagi ara."
 
 msgid "Un-rejected"
-msgstr ""
+msgstr "Ur yettwagi ara"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1100,16 +1100,16 @@ msgid "Dictionary"
 msgstr "Amawal"
 
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Amsedday n unadi d aqbur"
 
 msgid "Language Pack (Application)"
 msgstr "Akemmus utlayan (Asnas)"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Akemmus n tutlayt d aqbur (azegrir)"
 
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Azegrir d aqbur"
 
 msgid "Deprecated LWT"
 msgstr "LWT d aqbuṛ"
@@ -1130,16 +1130,16 @@ msgid "Dictionaries"
 msgstr "Imawalen"
 
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "Ifecka n unadi d iqburen"
 
 msgid "Language Packs (Application)"
 msgstr "Ikemmusen utlayanen (Asnas)"
 
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Ikemmusen n tutlayt d iqburen (azegrir)"
 
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Izegrar d iqburen"
 
 msgid "Deprecated LWTs"
 msgstr "LWTs d aqbuṛ"
@@ -4786,7 +4786,7 @@ msgid "No manifest.json found"
 msgstr ""
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Afaylu d arameɣtu neɣ yexṣeṛ."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
