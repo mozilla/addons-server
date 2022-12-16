@@ -441,8 +441,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                 addon.delete(msg=addon_msg)
             else:
                 addon.addonuser_set.get(user=self).delete()
-        user_responsible = core.get_user()
-        self._ratings_all.all().delete(user_responsible=user_responsible)
+        self._ratings_all.all().delete()
 
     def delete_picture(self):
         """Delete picture of this user."""
@@ -514,7 +513,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         # delete the other content associated with the user
         Collection.objects.filter(author__in=users).delete()
-        Rating.objects.filter(user__in=users).delete(user_responsible=core.get_user())
+        Rating.objects.filter(user__in=users).delete()
         # And then delete the users.
         ids = []
         for user in users:

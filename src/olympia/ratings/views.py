@@ -438,6 +438,3 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         serializer.save()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=HTTP_202_ACCEPTED, headers=headers)
-
-    def perform_destroy(self, instance):
-        instance.delete(user_responsible=self.request.user)

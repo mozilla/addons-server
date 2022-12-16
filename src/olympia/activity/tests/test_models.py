@@ -188,9 +188,7 @@ class TestActivityLog(TestCase):
 
     def test_arguments_old_reviews_app_to_ratings(self):
         addon = Addon.objects.get()
-        rating = Rating.objects.create(
-            addon=addon, user=self.user, user_responsible=self.user, rating=5
-        )
+        rating = Rating.objects.create(addon=addon, user=self.user, rating=5)
         activity = ActivityLog.objects.latest('pk')
         # Override _arguments to use reviews.review instead of ratings.rating,
         # as old data already present in the db would use.
@@ -214,9 +212,7 @@ class TestActivityLog(TestCase):
         # without the old-style arguments.
         addon2 = addon_factory(slug='foo')
         user2 = user_factory()
-        rating2 = Rating.objects.create(
-            addon=addon2, user=user2, user_responsible=user2, rating=2
-        )
+        rating2 = Rating.objects.create(addon=addon2, user=user2, rating=2)
         with self.assertNumQueries(5):
             # - 1 for all activities
             # - 1 for all users

@@ -412,13 +412,18 @@ class ReviewerScore(ModelBase):
             amo.REVIEWED_ADDON_REVIEW if not undo else amo.REVIEWED_ADDON_REVIEW_POORLY
         )
         score = amo.REVIEWED_SCORES.get(event)
-
-        cls.objects.create(user=user, addon=addon, score=score, note_key=event)
-        cls.get_key(invalidate=True)
-        user_log.info(
-            'Awarding %s points to user %s for "%s" for review %s'
-            % (score, user, amo.REVIEWED_CHOICES[event], review_id)
-        )
+        if user:
+            cls.objects.create(user=user, addon=addon, score=score, note_key=event)
+            cls.get_key(invalidate=True)
+            user_log.info(
+                'Awarding %s points to user %s for "%s" for review %s'
+                % (score, user, amo.REVIEWED_CHOICES[event], review_id)
+            )
+        else:
+            user_log.info(
+                'Not awarding %s points for "%s" for review %s (no user)'
+                % (score, amo.REVIEWED_CHOICES[event], review_id)
+            )
 
     @classmethod
     def get_total(cls, user):

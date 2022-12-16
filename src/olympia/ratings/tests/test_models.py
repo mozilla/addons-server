@@ -4,7 +4,7 @@ from django.core import mail
 
 from elasticsearch_dsl import Q, Search
 
-from olympia import amo
+from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon
@@ -25,6 +25,7 @@ class TestRatingModel(TestCase):
         assert Rating.objects.count() == 2
         assert Rating.unfiltered.count() == 2
 
+        core.set_user(UserProfile.objects.all()[0])
         Rating.objects.get(id=1).delete()
 
         assert Rating.objects.count() == 1
@@ -38,42 +39,20 @@ class TestRatingModel(TestCase):
         addon.reload()
         assert addon.average_rating == 4.0  # Has been computed after deletion.
 
-    def test_soft_delete_dont_send_signal(self):
-        addon = Addon.objects.get()
-        assert addon.average_rating == 0.0  # Hasn't been computed yet.
-
-        assert Rating.objects.count() == 2
-        assert Rating.unfiltered.count() == 2
-
-        Rating.objects.get(id=1).delete(send_post_save_signal=False)
-
-        assert Rating.objects.count() == 1
-        assert Rating.without_replies.count() == 1
-        assert Rating.unfiltered.count() == 2
-
-        # update_denormalized_fields() is still called.
-        rating = Rating.objects.get(id=2)
-        assert rating.previous_count == 0
-        assert rating.is_latest is True
-
-        # post_save() isn't though, so average_rating of the add-on should stay
-        # at 0.0
-        addon.reload()
-        assert addon.average_rating == 0.0
-
     @mock.patch('olympia.ratings.models.log')
-    def test_soft_delete_user_responsible(self, log_mock):
-        user_responsible = user_factory()
+    def test_soft_delete_by_different_user(self, log_mock):
+        different_user = user_factory()
+        core.set_user(different_user)
         rating = Rating.objects.get(id=1)
-        rating.delete(user_responsible=user_responsible)
+        rating.delete()
         assert log_mock.info.call_count == 1
         assert (
             log_mock.info.call_args[0][0]
             == 'Rating deleted: %s deleted id:%s by %s ("%s")'
         )
-        assert log_mock.info.call_args[0][1] == user_responsible.name
+        assert log_mock.info.call_args[0][1] == str(different_user)
         assert log_mock.info.call_args[0][2] == rating.pk
-        assert log_mock.info.call_args[0][3] == rating.user.name
+        assert log_mock.info.call_args[0][3] == str(rating.user)
         assert log_mock.info.call_args[0][4] == str(rating.body)
 
     def test_hard_delete(self):
@@ -98,9 +77,9 @@ class TestRatingModel(TestCase):
 
     def test_soft_delete_replies_are_hidden(self):
         rating = Rating.objects.get(pk=1)
-        Rating.objects.create(
-            addon=rating.addon, reply_to=rating, user=UserProfile.objects.all()[0]
-        )
+        user = UserProfile.objects.all()[0]
+        core.set_user(user)
+        Rating.objects.create(addon=rating.addon, reply_to=rating, user=user)
         assert Rating.objects.count() == 3
         assert Rating.unfiltered.count() == 3
         assert Rating.without_replies.count() == 2
@@ -121,7 +100,8 @@ class TestRatingModel(TestCase):
     @mock.patch('olympia.ratings.models.log')
     def test_author_delete(self, log_mock):
         rating = Rating.objects.get(pk=1)
-        rating.delete(user_responsible=rating.user)
+        core.set_user(rating.user)
+        rating.delete()
 
         rating.reload()
         assert ActivityLog.objects.count() == 0
@@ -130,9 +110,10 @@ class TestRatingModel(TestCase):
     def test_moderator_delete(self, log_mock):
         moderator = user_factory()
         rating = Rating.objects.get(pk=1)
-        rating.update(editorreview=True)
+        rating.update(editorreview=True, _signal=False)
         rating.ratingflag_set.create()
-        rating.delete(user_responsible=moderator)
+        core.set_user(moderator)
+        rating.delete()
 
         rating.reload()
         assert ActivityLog.objects.count() == 1
@@ -154,17 +135,18 @@ class TestRatingModel(TestCase):
             log_mock.info.call_args[0][0]
             == 'Rating deleted: %s deleted id:%s by %s ("%s")'
         )
-        assert log_mock.info.call_args[0][1] == moderator.name
+        assert log_mock.info.call_args[0][1] == str(moderator)
         assert log_mock.info.call_args[0][2] == rating.pk
-        assert log_mock.info.call_args[0][3] == rating.user.name
+        assert log_mock.info.call_args[0][3] == str(rating.user)
         assert log_mock.info.call_args[0][4] == str(rating.body)
 
     def test_moderator_approve(self):
         moderator = user_factory()
         rating = Rating.objects.get(pk=1)
-        rating.update(editorreview=True)
+        rating.update(editorreview=True, _signal=False)
         rating.ratingflag_set.create()
-        rating.approve(user=moderator)
+        core.set_user(moderator)
+        rating.approve()
 
         rating.reload()
         assert ActivityLog.objects.count() == 1
@@ -189,6 +171,7 @@ class TestRatingModel(TestCase):
         assert rating in addon._ratings.all()
 
         # Delete the review: it shouldn't be listed anymore.
+        core.set_user(rating.user)
         rating.delete()
         addon = Addon.objects.get(pk=addon.pk)
         assert rating not in addon._ratings.all()
@@ -200,7 +183,8 @@ class TestRatingModel(TestCase):
         assert flag.rating == rating
 
         # Delete the review: <RatingFlag>.review should still work.
-        rating.delete(user_responsible=rating.user)
+        core.set_user(rating.user)
+        rating.delete()
         flag = RatingFlag.objects.get(pk=flag.pk)
         assert flag.rating == rating
 
@@ -208,11 +192,11 @@ class TestRatingModel(TestCase):
         addon = Addon.objects.get(pk=4)
         addon_author = addon.authors.first()
         review_user = user_factory()
+        core.set_user(review_user)
         rating = Rating.objects.create(
             user=review_user,
             addon=addon,
             body='Rêviiiiiiew',
-            user_responsible=review_user,
         )
 
         activity_log = ActivityLog.objects.latest('pk')
@@ -237,12 +221,12 @@ class TestRatingModel(TestCase):
     def test_reply_triggers_email_but_no_logging(self):
         rating = Rating.objects.get(id=1)
         user = user_factory()
+        core.set_user(user)
         Rating.objects.create(
             reply_to=rating,
             user=user,
             addon=rating.addon,
             body='Rêply',
-            user_responsible=user,
         )
 
         assert not ActivityLog.objects.exists()
@@ -265,7 +249,7 @@ class TestRatingModel(TestCase):
         assert not ActivityLog.objects.exists()
         assert mail.outbox == []
 
-        rating.user_responsible = rating.user
+        core.set_user(rating.user)
         rating.body = 'Editëd...'
         rating.save()
 
@@ -278,18 +262,17 @@ class TestRatingModel(TestCase):
 
     def test_edit_reply_triggers_logging_but_no_email(self):
         rating = Rating.objects.get(id=1)
-        reply = Rating.objects.create(
-            reply_to=rating, user=user_factory(), addon=rating.addon
-        )
-        assert not ActivityLog.objects.exists()
-        assert mail.outbox == []
+        user = user_factory()
+        core.set_user(user)
+        reply = Rating.objects.create(reply_to=rating, user=user, addon=rating.addon)
+        assert len(mail.outbox) == 1
+        mail.outbox = []  # Clear email sent at creation.
 
-        reply.user_responsible = reply.user
         reply.body = 'Actuälly...'
         reply.save()
 
         activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.user == reply.user
+        assert activity_log.user == user
         assert activity_log.arguments == [reply.addon, reply]
         assert activity_log.action == amo.LOG.EDIT_RATING.id
 
@@ -311,6 +294,7 @@ class TestRefreshTest(ESTestCase):
         self.addon = addon_factory()
         self.user = UserProfile.objects.all()[0]
         self.refresh()
+        core.set_user(self.user)
 
         assert self.get_bayesian_rating() == 0.0
 
