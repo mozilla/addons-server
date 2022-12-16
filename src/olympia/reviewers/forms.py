@@ -451,9 +451,9 @@ class BaseRatingFlagFormSet(BaseModelFormSet):
                 action = int(form.cleaned_data['action'])
 
                 if action == ratings.REVIEW_MODERATE_DELETE:
-                    form.instance.delete(user_responsible=self.request.user)
+                    form.instance.delete()
                 elif action == ratings.REVIEW_MODERATE_KEEP:
-                    form.instance.approve(user=self.request.user)
+                    form.instance.approve()
 
 
 RatingFlagFormSet = modelformset_factory(

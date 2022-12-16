@@ -1483,6 +1483,7 @@ class TestRatingViewSetEdit(TestCase):
             user=addon_author,
             addon=self.addon,
         )
+        mail.outbox = []
         self.url = reverse_ns(self.detail_url_name, kwargs={'pk': reply.pk})
 
         response = self.client.patch(self.url, {'score': 5})

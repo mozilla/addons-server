@@ -70,8 +70,6 @@ class BaseRatingSerializer(AMOModelSerializer):
         data = super().validate(data)
         request = self.context['request']
 
-        data['user_responsible'] = request.user
-
         # There are a few fields that need to be set at creation time and never
         # modified afterwards:
         if not self.partial:
