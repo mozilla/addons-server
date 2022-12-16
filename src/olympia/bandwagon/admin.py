@@ -3,6 +3,7 @@ from django.contrib import admin
 
 from olympia import amo
 from olympia.access import acl
+from olympia.amo.admin import AMOModelAdmin
 
 from .models import Collection, CollectionAddon
 
@@ -33,7 +34,7 @@ class CollectionAddonInline(admin.TabularInline):
         return CollectionAdmin(Collection, self.admin_site).has_add_permission(request)
 
 
-class CollectionAdmin(admin.ModelAdmin):
+class CollectionAdmin(AMOModelAdmin):
     list_display = (
         'name',
         'slug',

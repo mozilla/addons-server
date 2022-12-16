@@ -30,14 +30,15 @@ class TestGitExtractionEntryAdmin(TestCase):
     def test_list_view(self):
         GitExtractionEntry.objects.create(addon=addon_factory())
 
-        # 9 queries:
+        # 8 queries:
         # - 2 transaction savepoints because of tests
         # - 2 request user and groups
-        # - 2 COUNT(*) on extraction entries for pagination and total display
+        # - 1 COUNT(*) on extraction entries for pagination
+        #     (show_full_result_count=False so we avoid the duplicate)
         # - 1 all git extraction entries in one query
         # - 1 all add-ons in one query
         # - 1 all add-ons translations in one query
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(8):
             response = self.client.get(self.list_url)
 
         assert response.status_code == 200

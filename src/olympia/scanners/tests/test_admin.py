@@ -262,11 +262,12 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(14):
+        with self.assertNumQueries(13):
             # 14 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups
-            # - 2 COUNT(*) on scanners results for pagination and total display
+            # - 1 COUNT(*) on scanners results for pagination
+            #     (show_full_result_count=False so we avoid the duplicate)
             # - 2 get all available rules for filtering
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query

@@ -51,10 +51,11 @@ class TestInstallOriginAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
-        with self.assertNumQueries(7):
+        with self.assertNumQueries(6):
             # - 2 SAVEPOINTs
             # - 2 user & groups
-            # - 2 counts (total + pagination)
+            # - 1 count
+            #     (show_full_result_count=False so we avoid the duplicate)
             # - 1 install origins
             response = self.client.get(list_url, follow=True)
         assert response.status_code == 200

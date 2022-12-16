@@ -22,6 +22,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.utils import send_mail
 from olympia.files.models import File
@@ -143,7 +144,7 @@ class FileInline(admin.TabularInline):
         return qs.select_related('version')
 
 
-class AddonAdmin(admin.ModelAdmin):
+class AddonAdmin(AMOModelAdmin):
     class Media:
         css = {
             'all': (
@@ -464,7 +465,7 @@ class AddonAdmin(admin.ModelAdmin):
     activity.short_description = _('Activity Logs')
 
 
-class FrozenAddonAdmin(admin.ModelAdmin):
+class FrozenAddonAdmin(AMOModelAdmin):
     raw_id_fields = ('addon',)
 
 
@@ -492,7 +493,7 @@ class ReplacementAddonForm(AMOModelForm):
         return path
 
 
-class ReplacementAddonAdmin(admin.ModelAdmin):
+class ReplacementAddonAdmin(AMOModelAdmin):
     list_display = ('guid', 'path', 'guid_slug', '_url')
     form = ReplacementAddonForm
 
@@ -528,7 +529,7 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.AddonRegionalRestrictions)
-class AddonRegionalRestrictionsAdmin(admin.ModelAdmin):
+class AddonRegionalRestrictionsAdmin(AMOModelAdmin):
     list_display = ('created', 'modified', 'addon__name', 'excluded_regions')
     fields = ('created', 'modified', 'addon', 'excluded_regions')
     raw_id_fields = ('addon',)

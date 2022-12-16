@@ -12,7 +12,7 @@ from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
-from olympia.amo.admin import CommaSearchInAdminMixin
+from olympia.amo.admin import AMOModelAdmin
 from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
@@ -159,7 +159,7 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
         yield all_choice
 
 
-class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
+class AbuseReportAdmin(AMOModelAdmin):
     class Media:
         css = {'all': ('css/admin/abuse_reports.css',)}
 

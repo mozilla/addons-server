@@ -95,10 +95,11 @@ class TestRatingAdmin(TestCase):
         self.grant_permission(user, 'Ratings:Moderate')
 
         self.client.force_login(user)
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(9):
             # - 2 Savepoint/release
             # - 2 user and its groups
-            # - 2 COUNT(*) (duplicated because of django)
+            # - 1 COUNT(*)
+            #     (show_full_result_count=False so we avoid the duplicate)
             # - 1 ratings themselves
             # - 1 related add-ons
             # - 1 related add-ons translations

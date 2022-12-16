@@ -10,7 +10,7 @@ from django.db.models.constants import LOOKUP_SEP
 from .models import FakeEmail
 
 
-class CommaSearchInAdminChangeListSearchForm(ChangeListSearchForm):
+class AMOModelAdminChangeListSearchForm(ChangeListSearchForm):
     def clean(self):
         self.cleaned_data = super().clean()
         search_term = self.cleaned_data[SEARCH_VAR]
@@ -21,16 +21,22 @@ class CommaSearchInAdminChangeListSearchForm(ChangeListSearchForm):
         return self.cleaned_data
 
 
-class CommaSearchInAdminChangeList(ChangeList):
-    """Custom ChangeList companion for CommaSearchInAdminMixin, allowing to
-    have a custom search form."""
+class AMOModelAdminChangeList(ChangeList):
+    """Custom ChangeList companion for AMOModelAdminMixin, allowing to
+    have a custom search form and providing support for query string containing
+    the same parameter multiple times."""
 
-    search_form_class = CommaSearchInAdminChangeListSearchForm
+    search_form_class = AMOModelAdminChangeListSearchForm
 
 
-class CommaSearchInAdminMixin:
+class AMOModelAdmin(admin.ModelAdmin):
+    # We rarely care about showing this: it's the full count of the number of
+    # objects for this model in the database, unfiltered. It does an extra
+    # COUNT() query, so avoid it by default.
+    show_full_result_count = False
+
     def get_changelist(self, request, **kwargs):
-        return CommaSearchInAdminChangeList
+        return AMOModelAdminChangeList
 
     def get_search_id_field(self, request):
         """
@@ -112,6 +118,7 @@ class CommaSearchInAdminMixin:
             return '%s__icontains' % field_name
 
         may_have_duplicates = False
+
         search_fields = self.get_search_fields(request)
         filters = []
         joining_operator = operator.and_
@@ -119,21 +126,24 @@ class CommaSearchInAdminMixin:
             # return early if we have nothing special to do
             return queryset, may_have_duplicates
         # Do our custom logic if a `,` is present. Note that our custom search
-        # form (CommaSearchInAdminChangeListSearchForm) does some preliminary
+        # form (AMOModelAdminChangeListSearchForm) does some preliminary
         # cleaning when it sees a comma, trimming whitespace around each term.
         if ',' in search_term:
             separator = ','
             joining_operator = operator.or_
         else:
             separator = None
+        # We support `*` as a wildcard character for our `__like` lookups.
+        search_term = search_term.replace('*', '%')
         search_terms = search_term.split(separator)
-        if len(search_terms) >= self.minimum_search_terms_to_search_by_id and all(
-            term.isnumeric() for term in search_terms
+        if (
+            (search_id_field := self.get_search_id_field(request))
+            and len(search_terms) >= self.minimum_search_terms_to_search_by_id
+            and all(term.isnumeric() for term in search_terms)
         ):
             # if we have at least minimum_search_terms_to_search_by_id terms
             # they are all numeric, we're doing a bulk id search
-            orm_lookup = '%s__in' % self.get_search_id_field(request)
-            queryset = queryset.filter(**{orm_lookup: search_terms})
+            queryset = queryset.filter(**{f'{search_id_field}__in': search_terms})
         else:
             orm_lookups = [
                 construct_search(str(search_field)) for search_field in search_fields

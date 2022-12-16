@@ -163,10 +163,11 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
 
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(8):
             # - 2 savepoints
             # - 2 user and groups
-            # - 2 count (repeated, django admin limitation)
+            # - 1 count
+            #    (show_full_result_count=False so we avoid the duplicate)
             # - 1 main query
             # - 1 translations
             # - 1 all authors in one query

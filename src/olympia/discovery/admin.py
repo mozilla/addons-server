@@ -9,6 +9,7 @@ from django.db.models import Prefetch
 
 from olympia import promoted
 from olympia.addons.models import Addon
+from olympia.amo.admin import AMOModelAdmin
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.admin import SecondaryHeroAdmin, PrimaryHeroImageAdmin
 from olympia.hero.models import SecondaryHero, PrimaryHeroImage
@@ -75,7 +76,7 @@ class PositionChinaFilter(PositionFilter):
     parameter_name = 'position_china'
 
 
-class DiscoveryItemAdmin(admin.ModelAdmin):
+class DiscoveryItemAdmin(AMOModelAdmin):
     class Media:
         css = {'all': ('css/admin/discovery.css',)}
 
