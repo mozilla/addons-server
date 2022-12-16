@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-15 20:04+0000\n"
+"PO-Revision-Date: 2022-12-16 22:29+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -554,7 +554,7 @@ msgstr "ਸਾਈਨਔਫ ਹਲਾਤ"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s ਦਾਖਲੇ ਲਈ ਬਕਾਇਆ ਹੈ"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
