@@ -57,8 +57,8 @@ mypy-extensions==0.4.3 \
 platformdirs==2.6.0 \
     --hash=sha256:1a89a12377800c81983db6be069ec068eee989748799b946cce2a6e80dcc54ca \
     --hash=sha256:b46ffafa316e6b83b47489d240ce17173f123a9b9c83282141c3daf26ad9ac2e    
-flake8-quotes==3.3.1 \
-    --hash=sha256:633adca6fb8a08131536af0d750b44d6985b9aba46f498871e21588c3e6f525a
+flake8-quotes==3.3.2 \
+    --hash=sha256:6e26892b632dacba517bf27219c459a8396dcfac0f5e8204904c5a4ba9b480e1
 tomli==2.0.1 \
     --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
     --hash=sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f
