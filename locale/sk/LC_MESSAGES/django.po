@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-23 16:30+0000\n"
+"PO-Revision-Date: 2022-12-23 16:40+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1223,90 +1223,94 @@ msgstr "Súkromie a bezpečnosť"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Stiahnite si rozšírenia pre Firefox, aby ste mohli prehliadať súkromne a bezpečne. Táto kategória zahŕňa rozšírenia na blokovanie otravných reklám, zamedzenie sledovania, správu presmerovaní a "
+"ďalšie."
 
 msgid "Search Tools"
 msgstr "Vyhľadávacie nástroje"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox týkajúce sa vyhľadávania. Táto kategória zahŕňa rozšírenia, ktoré zvýrazňujú a vyhľadávajú text, vyhľadávajú adresy IP/domény a ďalšie."
 
 msgid "Shopping"
 msgstr "Nakupovanie"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox, ktoré môžu zlepšiť váš zážitok z nakupovania online pomocou vyhľadávačov kupónov, vyhľadávačov ponúk, analyzátorov recenzií atď."
 
 msgid "Social & Communication"
 msgstr "Sociálne siete a komunikácia"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia Firefoxu na zlepšenie sociálnych médií a okamžitých správ. Táto kategória zahŕňa vylepšené upozornenia na kartách, nástroje na sťahovanie videí a ďalšie."
 
 msgid "Tabs"
 msgstr "Karty"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox na prispôsobenie kariet a stránky Nová karta. Objavte rozšírenia, ktoré môžu ovládať karty, meniť spôsob, akým s nimi pracujete, a ďalšie."
 
 msgid "Web Development"
 msgstr "Tvorba webu"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox, ktoré obsahujú nástroje na vývoj webu. Táto kategória zahŕňa rozšírenia pre GitHub, prepínanie používateľských agentov, správu súborov cookie a ďalšie."
 
 msgid "Other"
 msgstr "Iné"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox, ktoré môžu byť nepredvídateľné a kreatívne, no zároveň užitočné pre tieto zvláštne úlohy."
 
 msgid "Device Features & Location"
 msgstr "Funkcie zariadenia a lokality"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia na vylepšenie Firefoxu pre Android. Vykonajte rýchle vyhľadávanie, uvoľnite systémové zdroje, robte si poznámky a ďalšie."
 
 msgid "Experimental"
 msgstr "Experimentálne"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Stiahnite si rozšírenia pre Firefox, ktoré sú pravidelne aktualizované a pripravené na verejné testovanie. Vaša spätná väzba informuje vývojárov o zmenách, ktoré je potrebné vykonať v "
+"nadchádzajúcich verziách."
 
 msgid "Performance"
 msgstr "Výkon"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia, ktoré zvýšia výkon Firefoxu. Nájdite rozšírenia, ktoré vám pomôžu byť produktívnejší a efektívnejší blokovaním otravných reklám a podobne."
 
 msgid "Photos & Media"
 msgstr "Fotografie a médiá"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox na vylepšenie fotografií a médií. Táto kategória zahŕňa rozšírenia na spätné vyhľadávanie obrázkov, zachytávanie snímok obrazovky celej stránky a ďalšie."
 
 msgid "Security & Privacy"
 msgstr "Súkromie a bezpečnosť"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox a surfujte bezpečne a súkromne. Objavte rozšírenia, ktoré môžu zastaviť záludné reklamné sledovače, jednoducho vymazať históriu prehliadania a ďalšie."
 
 msgid "Social Networking"
 msgstr "Sociálne siete"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox a vylepšite svoje skúsenosti na obľúbených webových stránkach sociálnych sietí, ako sú YouTube, GitHub, Reddit a ďalšie."
 
 msgid "Sports & Games"
 msgstr "Šport a hry"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox, aby ste si užili zábavu vďaka vylepšeniam živého vysielania, športovým novinkám a ďalším."
 
 msgid "User Interface"
 msgstr "Používateľské rozhranie"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Stiahnite si rozšírenia pre Firefox pre používateľské rozhranie, aby ste mohli upravovať webové stránky pre jednoduchšie čítanie, vyhľadávanie, prehliadanie a ďalšie."
 
 msgid "Animals"
 msgstr "Zvieratá"
@@ -1339,28 +1343,28 @@ msgid "Abstract"
 msgstr "Abstraktné"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Stiahnite si umelecké a koncepčné témy Firefoxu. Táto kategória zahŕňa farebné palety a tvary, fantazijné krajiny, hravé mačky, psychedelické kvety."
 
 msgid "Causes"
 msgstr "Príležitosti"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Stiahnite si témy Firefoxu pre špecializované záujmy a témy. Táto kategória zahŕňa športové témy, sviatky, filantropické aktivity, národnosti a mnoho ďalších."
 
 msgid "Fashion"
 msgstr "Móda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Stiahnite si témy Firefoxu, ktoré oslavujú štýl všetkých foriem – vzory, kvety, textúry, modely a ďalšie."
 
 msgid "Film and TV"
 msgstr "Film a televízia"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Stiahnite si témy Firefoxu s filmami a televíziou. Táto kategória zahŕňa anime ako Uchiha Madara, filmy ako Matrix, predstavenia (Game of Thrones) a ďalšie."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Stiahnite si témy vzhľadu s tematikou Firefoxu. Táto kategória zahŕňa farebné, rôznorodé zobrazenia loga Firefoxu vrátane všeobecnejších líščích tém."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
@@ -1491,9 +1495,8 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "Propagácia"
+msgstr "Nepropagované"
 
 msgid "Recommended"
 msgstr "Odporúčané"
@@ -1511,7 +1514,7 @@ msgid "Spotlight"
 msgstr "Spotlight"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strategické"
 
 msgid "Add-on"
 msgstr "Doplnok"
@@ -1779,9 +1782,9 @@ msgstr[2] "Môžete mať len {0} kategórií."
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategória Rôzne nemôže byť kombinovaná s inými kategóriami."
 
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "Doména v URL adrese musí byť jedna z týchto [%s], alebo ich subdoména."
+msgstr "Doména v URL adrese musí byť jedna z [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
@@ -1794,7 +1797,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a popis v tomto jazyku. Zatiaľ nemáte vyplnené: %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Používateľov nemožno pridať priamo"
 
 msgid "Must have at least one owner."
 msgstr "Musí mať aspoň jedného vlastníka."
@@ -1892,13 +1895,13 @@ msgid ""
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "Zobrazovaný názov"
 
 msgid "Invalid or corrupt add-on file."
-msgstr ""
+msgstr "Neplatný alebo poškodený súbor doplnku."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "Váš kľúč API pre vývojárov sa našiel v odoslanom súbore. Na ochranu vášho účtu bude kľúč zrušený."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
@@ -1965,7 +1968,7 @@ msgid "Invitation declined."
 msgstr "Pozvánka bolo odmietnutá."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Potvrdzovací e-mail bol odoslaný na adresu {email}"
 
 msgid "Changes successfully saved."
 msgstr "Zmeny boli úspešne uložené."
@@ -1980,7 +1983,7 @@ msgid "Icons cannot be animated."
 msgstr "Ikony nesmú byť animované."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Obrázok musí byť aspoň {0} pixelov široký a {1} pixelov vysoký."
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Rozmery obrázku musia byť v pomere 4:3."
