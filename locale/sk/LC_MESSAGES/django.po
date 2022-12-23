@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-23 16:40+0000\n"
+"PO-Revision-Date: 2022-12-23 16:42+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2282,7 +2282,7 @@ msgid "Accept"
 msgstr "Prijať"
 
 msgid "Decline"
-msgstr ""
+msgstr "Odmietnuť"
 
 msgid "Manage Authors & License"
 msgstr "Správa autorov a licencie"
@@ -2503,7 +2503,7 @@ msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Ikony musia byť štvorcové a mať minimálnu veľkosť 128x128 pixelov."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr ""
+msgstr "Ak sú ikony väčšie, veľkosť sa zmení na 128 x 128 pixelov."
 
 msgid "Screenshots"
 msgstr "Ukážky"
@@ -3237,7 +3237,7 @@ msgid "I’m okay with Mozilla handling my info as explained in this %(link_open
 msgstr "Súhlasím s tým, že Mozilla narába s mojimi informáciami tak, ako je vysvetlené v týchto %(link_open)sZásadách ochrany osobných údajov%(link_close)s."
 
 msgid "Sign Up"
-msgstr ""
+msgstr "Zaregistrovať sa"
 
 msgid "Thanks!"
 msgstr "Ďakujeme!"
@@ -3273,7 +3273,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "Pripojte sa k nám"
 
 msgid "Write Some Code"
 msgstr ""
@@ -3291,10 +3291,10 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "Ako na to"
 
 msgid "Get involved"
-msgstr ""
+msgstr "Zapojte sa"
 
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
 msgstr ""
