@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 18:20+0000\n"
+"PO-Revision-Date: 2022-12-26 18:31+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -67,7 +67,7 @@ msgstr "Upravené dňa:"
 
 #, python-format
 msgid "By %(filter_title)s"
-msgstr ""
+msgstr "Podľa %(filter_title)s"
 
 msgid "All"
 msgstr "Všetko"
@@ -2023,43 +2023,43 @@ msgid "Header area background"
 msgstr "Pozadie oblasti hlavičky"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr ""
+msgstr "Farba pozadia oblasti hlavičky zobrazená v časti hlavičky, ktorá nie je zakrytá alebo je viditeľná cez obrázok hlavičky. Pole v manifeste:  frame."
 
 msgid "Header area text and icons"
 msgstr "Text a ikony v oblasti hlavičky"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr ""
+msgstr "Farba textu a ikon v oblasti hlavičky okrem aktívnej karty. Pole v manifeste:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Pozadie oblasti panela s nástrojmi"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Farba pozadia pre navigačný panel, panel so záložkami a aktívnu kartu. Pole v manifeste:  toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Text a ikony oblasti panela s nástrojmi"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr ""
+msgstr "Farba textu a ikon na paneli s nástrojmi a na aktívnej karte. Pole v manifeste:  bookmark_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Pozadie poľa v oblasti panela s nástrojmi"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Farba pozadia polí na paneli s nástrojmi, ako je napríklad panel s adresou URL. Pole v manifeste:  toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Text poľa v oblasti panela s nástrojmi"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Farba textu v poliach na paneli s nástrojmi, ako je napríklad panel s adresou URL. Pole v manifeste:  toolbar_field_text."
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "Zvýraznenie karty"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "Farba zvýraznenia aktívnej karty. Implementované ako okraj okolo karty vo Firefoxe 89+ a čiara nad kartou v starších prehliadačoch Firefox. Pole v manifest:  tab_line."
 
 msgid "Review requested."
 msgstr "Vyžaduje sa kontrola."
@@ -2930,7 +2930,7 @@ msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG alebo GIF (nie animovaný)"
 
 msgid "Aligned to top-right"
-msgstr "Zarovnané k ľavému hornému okraju"
+msgstr "Zarovnaný vpravo hore"
 
 msgid "Select a different header image"
 msgstr "Zvoľte iný obrázok hlavičky"
@@ -2939,10 +2939,10 @@ msgid "Select colors for your theme"
 msgstr "Zvoľte farby vašej témy"
 
 msgid "optional"
-msgstr ""
+msgstr "voliteľné"
 
 msgid "Browser preview"
-msgstr ""
+msgstr "Ukážka v prehliadači"
 
 msgid "Uploading Theme"
 msgstr ""
