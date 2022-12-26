@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 17:12+0000\n"
+"PO-Revision-Date: 2022-12-26 17:31+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1913,7 +1913,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Kontrola vygenerovala príliš veľa chýb/varovaní. %s správ tak nie je zobrazených. Po opravení zobrazených nedostatkov budete môcť vidieť ďalšie."
 
 msgid "Updated"
-msgstr "Aktualizované"
+msgstr "Posledná aktualizácia"
 
 msgid "Name"
 msgstr "Názov"
@@ -2251,7 +2251,7 @@ msgstr[1] "<b>{0}</b> témy vzhľadu"
 msgstr[2] "<b>{0}</b> tém vzhľadu"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Upraviť stránku produktu"
 
 msgid "None"
 msgstr "Žiadne"
@@ -2284,7 +2284,7 @@ msgid "Decline"
 msgstr "Odmietnuť"
 
 msgid "Manage Authors & License"
-msgstr "Správa autorov a licencie"
+msgstr "Spravovať autorov a licencie"
 
 msgid "About author roles"
 msgstr "O roliach autorov"
@@ -2366,7 +2366,7 @@ msgid "View Listing"
 msgstr "Zobraziť doplnok"
 
 msgid "View Product Page"
-msgstr ""
+msgstr "Zobraziť stránku produktu"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2614,7 +2614,7 @@ msgid "Delete this add-on."
 msgstr "Odstrániť tento doplnok"
 
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "Upravte podrobnosti na produktovej stránke tohto doplnku"
 
 msgid "Upload a new version of this add-on"
 msgstr "Nahrať novú verziu tohto doplnku"
@@ -2632,7 +2632,7 @@ msgid "More"
 msgstr "Ďalšie"
 
 msgid "Manage Status & Versions"
-msgstr "Správa stavu a verzií"
+msgstr "Spravovať stav a verzie"
 
 msgid "View Recent Changes"
 msgstr "Zobraziť posledné zmeny"
@@ -3071,7 +3071,7 @@ msgstr "Vytvorené:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr "Posledná aktualizácia:"
+msgstr "Naposledy aktualizované:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
@@ -3081,10 +3081,10 @@ msgid "Status:"
 msgstr "Stav:"
 
 msgid "Listed Version:"
-msgstr ""
+msgstr "Uvedená verzia:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr ""
+msgstr "Toto je verzia vášho doplnku, ktorá sa nainštaluje, ak niekto klikne na tlačidlo Inštalovať na stránke addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr ""
@@ -5041,7 +5041,7 @@ msgid "Pending Rejection Deadline"
 msgstr ""
 
 msgid "Last Updated"
-msgstr ""
+msgstr "Naposledy aktualizované"
 
 msgid "Listed versions needing human review ({0})"
 msgstr ""
