@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 17:07+0000\n"
+"PO-Revision-Date: 2022-12-26 17:11+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4687,32 +4687,27 @@ msgstr "Pozrite si ďalšie tipy na rozšírenia pre YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
-msgstr ""
+msgstr "Populárne témy"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending themes"
-msgstr "Ďalšie aplikácie&hellip;"
+msgstr "Pozrite si ďalšie populárne témy"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Ďalšie aplikácie&hellip;"
+msgstr "Najlepšie hodnotené témy"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Ďalšie aplikácie&hellip;"
+msgstr "Pozrite si ďalšie najlepšie hodnotené témy"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Trending extensions"
-msgstr "Zobraziť všetky rozšírenia"
+msgstr "Populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more trending extensions"
-msgstr "Zobraziť všetky rozšírenia"
+msgstr "Pozrite si ďalšie populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
@@ -4758,40 +4753,40 @@ msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Nepodporovaný typ archívu."
 
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Neplatný názov súboru v archíve. Uistite sa, že všetky názvy súborov majú kódovanie utf-8 alebo latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Neplatný názov súboru v archíve: {0}"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Súbor prekračuje limit veľkosti v archíve: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Tento archív obsahuje zakázaný špeciálny súbor (symbolický / pevný odkaz alebo zariadenie / blokový súbor)"
 
 msgid "Uncompressed size is too large"
-msgstr ""
+msgstr "Nekomprimovaná veľkosť je príliš veľká"
 
 msgid "Invalid archive."
 msgstr "Neplatný archív."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "Nenašli sa žiadne súbory manifest.json"
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Neplatný alebo poškodený súbor."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Našlo sa duplicitné ID doplnku."
 
 msgid "Version numbers should have at most {max_length} characters."
 msgstr ""
