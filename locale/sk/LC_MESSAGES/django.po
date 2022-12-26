@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 18:03+0000\n"
+"PO-Revision-Date: 2022-12-26 18:10+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1615,7 +1615,7 @@ msgid "Add-on Review (High Risk)"
 msgstr ""
 
 msgid "Add-on Review (Medium Risk)"
-msgstr ""
+msgstr "Kontrola doplnku (stredné riziko)"
 
 msgid "Add-on Review (Low Risk)"
 msgstr ""
@@ -5327,7 +5327,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Tu nie je nič zaujímavé!  Vývojár neposkytol žiadne detaily."
 
 msgid "Add-on name translations"
-msgstr ""
+msgstr "Preklady názvu doplnku"
 
 msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
@@ -5871,10 +5871,10 @@ msgid "No uploaded file for that add-on and version."
 msgstr ""
 
 msgid "by Source"
-msgstr "podľa zdroja prevzatia"
+msgstr "Podľa zdroja stiahnutia"
 
 msgid "by Medium"
-msgstr ""
+msgstr "Podľa spôsobu stiahnutia"
 
 #, fuzzy
 msgid "by Content"
@@ -5884,19 +5884,19 @@ msgid "by Campaign"
 msgstr ""
 
 msgid "Daily Users"
-msgstr "Denných používateľov"
+msgstr "Denní používatelia"
 
 msgid "by Add-on Version"
-msgstr "podľa verzie doplnku"
+msgstr "Podľa verzie doplnku"
 
 msgid "by Application"
-msgstr "podľa aplikácie"
+msgstr "Podľa aplikácie"
 
 msgid "by Language"
-msgstr "podľa jazyka"
+msgstr "Podľa jazyka"
 
 msgid "by Platform"
-msgstr "podľa platformy"
+msgstr "Podľa platformy"
 
 msgid "by Country"
 msgstr ""
@@ -6008,9 +6008,8 @@ msgstr "Prevzatia podľa dátumu"
 msgid "User languages by Date"
 msgstr "Jazyky podľa dátumu"
 
-#, fuzzy
 msgid "Download mediums by Date"
-msgstr "Prevzatia podľa dátumu"
+msgstr "Spôsoby stiahnutia podľa dátumu"
 
 msgid "Platform usage by Date"
 msgstr "Používané platformy podľa dátumu"
@@ -6044,7 +6043,7 @@ msgid "See more platforms&hellip;"
 msgstr "Ďalšie platformy&hellip;"
 
 msgid "Download sources by Date"
-msgstr "Zdroje prevzatí podľa dátumu"
+msgstr "Zdroje stiahnutí podľa dátumu"
 
 msgid "Add-on Status by Date"
 msgstr "Stav doplnku podľa dátumu"
@@ -6061,7 +6060,7 @@ msgid ""
 msgstr ""
 
 msgid "Application versions by Date"
-msgstr "Verzie aplikácií podľa dátumu"
+msgstr "Verzie doplnku podľa dátumu"
 
 msgid "Mozilla Add-ons"
 msgstr "Mozilla Add-ons"
