@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 18:41+0000\n"
+"PO-Revision-Date: 2022-12-26 18:46+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2316,22 +2316,22 @@ msgid "Tags"
 msgstr "Značky"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Značky pomáhajú používateľom nájsť váš doplnok. Môžete mať maximálne {0} značiek. Vyberte iba značky, ktoré sú relevantné pre váš doplnok."
 
 msgid "Limit {0} tags."
 msgstr ""
 
 msgid "Contributions URL"
-msgstr ""
+msgstr "Adresa pre príspevky"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Ak by ste chceli od svojich používateľov požadovať peňažné príspevky, nastavte sem stránku, kde tak môžu urobiť."
 
 msgid "Default Locale"
 msgstr "Predvolený jazyk"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Informácie o vašom doplnku sa zobrazujú v tomto lokálnom nastavení, pokiaľ ho neprepíšete prekladom špecifickým pre daný jazyk. Týka sa to len uvedených doplnkov."
 
 msgid "Homepage"
 msgstr "Domovská stránka"
@@ -2339,10 +2339,10 @@ msgstr "Domovská stránka"
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
-msgstr ""
+msgstr "Ak má váš doplnok inú domovskú stránku, zadajte sem jej adresu. Ak je váš web lokalizovaný do iných jazykov, je možné pridať viacero prekladov tohto poľa. Týka sa to len uvedených doplnkov."
 
 msgid "Describe Add-on"
-msgstr "Popíšte doplnok"
+msgstr "Popis doplnku"
 
 #. {0} is the addon name
 msgid "Describe {0}"
@@ -2415,7 +2415,7 @@ msgstr "E-mailová adresa"
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
-msgstr ""
+msgstr "Ak chcete zobraziť e-mailovú adresu pre otázky podpory, zadajte ju sem. Ak máte rôzne adresy pre každý jazyk, je možné pridať viacero prekladov tohto poľa. Týka sa to len uvedených doplnkov."
 
 msgid "Website"
 msgstr "Webová stránka"
@@ -2444,6 +2444,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Akékoľvek informácie, ktoré môžu koncoví používatelia chcieť vedieť, a ktoré sa nemusia nevyhnutne vzťahovať na súhrn alebo popis doplnku. Bežné použitie zahŕňa zoznam známych hlavných chýb, "
+"informácie o tom, ako nahlásiť chyby, predpokladaný dátum vydania novej verzie atď. Týka sa to len uvedených doplnkov."
 
 msgid "Universally unique identifier"
 msgstr "Univerzálny unikátny identifikátor"
@@ -2668,9 +2670,8 @@ msgstr "Odoslať novú verziu"
 msgid "Cancel and Disable Version"
 msgstr ""
 
-#, fuzzy
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr "Naozaj chcete odstrániť túto verziu?"
+msgstr "Naozaj chcete zrušiť a zakázať verziu?"
 
 #, fuzzy
 msgid "Yes, Cancel"
@@ -2886,7 +2887,7 @@ msgid "Upload Add-on"
 msgstr "Nahrať doplnok"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "Kde umiestniť verziu"
 
 msgid "Change"
 msgstr "Zmeniť"
