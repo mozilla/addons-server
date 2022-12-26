@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 17:50+0000\n"
+"PO-Revision-Date: 2022-12-26 18:03+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2071,7 +2071,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr "Nový kľúč API bol vytvorený."
+msgstr "Nový kľúč API bol vytvorený"
 
 msgid "API key revoked"
 msgstr "Kľúč API bol zneplatnený"
@@ -2156,11 +2156,11 @@ msgid "Validated at:"
 msgstr "Overené dňa:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr "Posledná aktivita pre moje doplnky"
+msgstr "Nedávna aktivita pre moje doplnky"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr "Posledná aktivita pre {0}"
+msgstr "Nedávna aktivita pre {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -2557,7 +2557,7 @@ msgid "More information on Creative Commons licenses"
 msgstr ""
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "Váš doplnok je momentálne nastavený ako „Neviditeľný“."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
@@ -2649,9 +2649,9 @@ msgstr "Tento doplnok nemá žiadne verzie."
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "Stiahnutí za týždeň: <strong>{0}</strong>"
-msgstr[1] "Stiahnutí za týždeň: <strong>{0}</strong>"
-msgstr[2] "Stiahnutí za týždeň: <strong>{0}</strong>"
+msgstr[0] "<strong>{0}</strong> stiahnutie za týždeň"
+msgstr[1] "<strong>{0}</strong> stiahnutia za týždeň"
+msgstr[2] "<strong>{0}</strong> stiahnutí za týždeň"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
@@ -3038,6 +3038,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Do vášho účtu bol pridaný nasledujúci kľúč API:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Ak sa domnievate, že tento kľúč bol vytvorený omylom, môžete kľúč odstrániť a\n"
+"zakázať prístup na nasledujúcom mieste:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3080,7 +3088,7 @@ msgid "Your add-on was disabled by a site administrator and is no longer shown i
 msgstr ""
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr ""
+msgstr "Váš doplnok nebude zahrnutý do výsledkov vyhľadávania a jeho stránka bude indikovať, že ste ho deaktivovali. V tomto stave nebudú akceptované nové verzie na zaradenie do zoznamu."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3122,7 +3130,7 @@ msgid "Upload New Version"
 msgstr "Odoslať novú verziu"
 
 msgid "View All"
-msgstr "Zobraziť všetko"
+msgstr "Zobraziť všetky"
 
 msgid "Listed Review Page"
 msgstr ""
@@ -3463,17 +3471,17 @@ msgid "Reply"
 msgstr "Odpovedať"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Viditeľnosť doplnku"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}Viditeľný:{label_close} Viditeľný pre všetkých na stránke {site_url} a zahrnutý vo výsledkoch vyhľadávania a na produktových stránkach."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr ""
+msgstr "{label_open}Neviditeľný:{label_close} Nebude zahrnutý do výsledkov vyhľadávania a na stránke produktu bude uvedené, že ste ho zakázali. V tomto stave nebudú akceptované nové verzie produktu."
 
 msgid "Listed versions"
-msgstr ""
+msgstr "Uvedené verzie"
 
 msgid "Currently on AMO"
 msgstr "Aktuálne na AMO"
@@ -3486,13 +3494,13 @@ msgid "Validation"
 msgstr "Overenie"
 
 msgid "Delete/Disable"
-msgstr "Odstránené/Deaktivované"
+msgstr "Odstrániť/Zakázať"
 
 msgid "Next version of this add-on"
 msgstr "Ďalšia verzia tohto doplnku"
 
 msgid "Other versions"
-msgstr "Iné verzie"
+msgstr "Ďalšie verzie"
 
 msgid "All versions"
 msgstr "Všetky verzie"
@@ -3569,7 +3577,7 @@ msgstr[2] "{0} upozornení"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokujte neviditeľné sledovacie prvky a reklamy, ktoré vás pri prehliadaní sledujú."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5066,9 +5074,8 @@ msgstr ""
 msgid "Unlisted versions needing human review ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Listed version"
-msgstr "Iné verzie"
+msgstr "Uvedená verzia"
 
 msgid "Unlisted versions ({0})"
 msgstr ""
@@ -5855,7 +5862,7 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Uvedené verzie nemôžete pridať do doplnku nastaveného na stav „Neviditeľný“."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr ""
@@ -5974,12 +5981,11 @@ msgstr "Údaje nie sú dostupné."
 msgid "Previous"
 msgstr "Predchádzajúce"
 
-#, fuzzy
 msgid "This dashboard is <b>private</b>."
-msgstr "Táto štatistika je momentálne <b>súkromná</b>."
+msgstr "Táto štatistika je <b>súkromná</b>."
 
 msgid "Application usage by Date"
-msgstr "Používanie aplikácie podľa dátumu"
+msgstr "Používané aplikácie podľa dátumu"
 
 #, fuzzy
 msgid "Download campaigns by Date"
@@ -6017,7 +6023,7 @@ msgid "Loading..."
 msgstr "Načítava sa..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "<b>{0}</b> priemerne denných používateľov"
+msgstr "<b>{0}</b> denných používateľov v priemere"
 
 msgid "Top Applications"
 msgstr "Top aplikácie"
