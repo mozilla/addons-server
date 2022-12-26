@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 17:41+0000\n"
+"PO-Revision-Date: 2022-12-26 17:50+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -501,7 +501,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Potvrdenie kľúčov API pre vývojárov"
 
 msgid "Application Versions"
 msgstr "Verzie aplikácie"
@@ -2958,29 +2958,31 @@ msgstr "Prihlasovacie údaje k API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr "Pre podrobnejšie inštrukcie nahliadnite do <a href=\"%(docs_url)s\">API dokumentácie</a>."
+msgstr "Podrobné pokyny nájdete v <a href=\"%(docs_url)s\">dokumentácii rozhrania API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Udržujte svoje kľúče API v tajnosti a <strong>nikdy ich s nikým nezdieľajte</strong>, vrátane prispievateľov Mozilly."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "Vydavateľ JWT"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "Kľúč JWT"
 
 #, python-format
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Ak chcete zadať požiadavky cez rozhranie API, odošlite ako autorizáčnú hlavičku <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a>. Pre každú požiadavku budete musieť vygenerovať JWT, ako je "
+"vysvetlené v <a href=\"%(docs_url)s\">dokumentácii API</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Kliknutím na tlačidlo potvrdenia nižšie vygenerujete prihlasovacie údaje k API pre používateľa <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Na vašu e-mailovú adresu bude odoslaný potvrdzovací odkaz. Po potvrdení nájdete svoje API kľúče na tejto stránke."
 
 msgid "You don't have any API credentials."
 msgstr "Nemáte žiadne prihlasovacie údaje k API."
@@ -2989,10 +2991,10 @@ msgid "Revoke"
 msgstr "Odvolať"
 
 msgid "Revoke and regenerate credentials"
-msgstr "Odvolať a regenerovať poverenia"
+msgstr "Odvolať a obnoviť prihlasovacie údaje"
 
 msgid "Confirm and generate new credentials"
-msgstr "Potvrďte a vygenerujte nové prihlasovacie údaje"
+msgstr "Potvrdiť a vygenerovať nové prihlasovacie údaje"
 
 msgid "Generate new credentials"
 msgstr "Generovať nové prihlasovacie údaje"
@@ -3012,6 +3014,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Ahoj,\n"
+"\n"
+"túto správu ste dostali, pretože ste požiadali o nové kľúče API pre vývojárov pre\n"
+"%(domain)s. Ak chcete dokončiť tento proces, kliknite na odkaz nižšie:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Ak ste o to nepožiadali, napíšte nám na amo-admins@mozilla.com.\n"
+"\n"
+"S pozdravom,\n"
+"\n"
+"Tím doplnkov Mozilly"
 
 #, python-format
 msgid ""
