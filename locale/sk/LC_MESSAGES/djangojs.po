@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:22+0000\n"
-"PO-Revision-Date: 2022-12-26 18:08+0000\n"
+"PO-Revision-Date: 2022-12-26 18:13+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -465,14 +465,12 @@ msgid "Download Mediums from {0} to {1}"
 msgstr "Spôsob stiahnutia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Zdroje prevzatí, posledných {0} dní"
+msgstr "Stiahnutia obsahu, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Prevzatí od {0} do {1}"
+msgstr "Stiahnutia obsahu od {0} do {1}"
 
 #. L10n: {0} is an integer.
 #, fuzzy
