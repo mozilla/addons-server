@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 18:46+0000\n"
+"PO-Revision-Date: 2022-12-26 18:55+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4636,9 +4636,8 @@ msgid "See more popular themes"
 msgstr "Pozrite si ďalšie populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Enhanced privacy extensions"
-msgstr "Zobraziť všetky rozšírenia"
+msgstr "Rozšírenia zamerané na zvýšenie súkromia"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4647,14 +4646,12 @@ msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Popular extensions"
-msgstr "Pozrite si ďalšie rozšírenia"
+msgstr "Populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more popular extensions"
-msgstr "Zobraziť všetky rozšírenia"
+msgstr "Ďalšie populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
 msgid "Recommended themes"
