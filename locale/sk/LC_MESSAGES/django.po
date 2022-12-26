@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 18:31+0000\n"
+"PO-Revision-Date: 2022-12-26 18:41+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -126,7 +126,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Poznámky môžu byť pridané len k najnovším verziám doplnkov."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Dĺžka obsahu požiadavky je príliš veľká."
 
 msgid "Authors"
 msgstr "Autori"
@@ -240,7 +240,7 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "Účet musí mať zobrazený názov, aby ho bolo možné pridať ako autora."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Tento slug (časť URL adresy) sa nedá použiť. Vyberte si prosím iný."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Názov doplnku nemôže obsahovať ochranné známky Mozilla alebo Firefox."
@@ -1765,11 +1765,11 @@ msgid "For more information about the MV3 extension roll-out or self-hosting MV3
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Táto URL adresa sa už používa. Vyberte inú."
+msgstr "Tento slug (časť URL adresy) sa už používa. Zvoľte iný."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "URL adresa nemôže byť „%(slug)s“. Prosím, vyberte inú."
+msgstr "Slug (časť URL adresy) nemôže byť „%(slug)s“. Prosím, zvoľte iný slug."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1805,7 +1805,7 @@ msgid "At least one author must be listed."
 msgstr "Musí byť uvedený aspoň jeden autor."
 
 msgid "Slug incorrect."
-msgstr "Nesprávny názov URL."
+msgstr "Nesprávny slug (časť URL adresy)."
 
 msgid "Details"
 msgstr "Podrobnosti"
@@ -2355,6 +2355,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Zhrnutie by malo jasne a stručne vysvetliť, čo váš doplnok robí. Názov aj súhrn sa zobrazia na stránke vášho produktu a vo výsledkoch vyhľadávania. Majú kombinovanú maximálnu dĺžku 70 znakov a "
+"minimálnu dĺžku 2 znaky pre každý."
 
 msgid "Summary"
 msgstr "Súhrn"
@@ -2363,7 +2365,7 @@ msgid "Add-on URL"
 msgstr "URL adresa doplnku"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Zvoľte krátku, unikátnu adresu URL pre svoj doplnok."
+msgstr "Vyberte si krátky, jedinečný slug (časť URL adresy) pre svoj doplnok."
 
 msgid "View Listing"
 msgstr "Zobraziť doplnok"
@@ -2378,10 +2380,10 @@ msgid "Description"
 msgstr "Popis"
 
 msgid "Experimental?"
-msgstr "Experimentálne?"
+msgstr "Experimentálny?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Ak je váš doplnok experimentálny alebo nie je pripravený na všeobecné použitie. Doplnok bude uvedený, ale bude mať zníženú viditeľnosť."
 
 msgid "This add-on is experimental."
 msgstr "Tento doplnok je experimentálny."
@@ -2405,7 +2407,7 @@ msgid "Categories"
 msgstr "Kategórie"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Kategórie sú hlavným spôsobom, akým používatelia prehliadajú doplnky. Vyberte si akýkoľvek, ktorý vyhovuje funkciám vášho doplnku, aby ste boli čo najviac vystavení."
 
 msgid "Email"
 msgstr "E-mailová adresa"
@@ -2554,7 +2556,7 @@ msgid "Select a different license."
 msgstr "Zvoľte inú licenciu."
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
+msgstr "Ďalšie informácie o licenciách Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Váš doplnok je momentálne nastavený ako „Neviditeľný“."
@@ -2599,7 +2601,7 @@ msgid "Delete Add-on"
 msgstr "Odstrániť doplnok"
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr "Pre potvrdenie svojho rozhodnutia zadajte nasledovný text: {slug}"
+msgstr "Na potvrdenie svojho rozhodnutia zadajte nasledujúci text: {slug}"
 
 msgid "Please tell us why you are deleting your add-on:"
 msgstr "Povedzte nám, prečo odstraňujete váš doplnok:"
@@ -2712,6 +2714,8 @@ msgstr "Tento doplnok je experimentálny"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Začiarknite túto možnosť, ak je váš doplnok experimentálny alebo nie je pripravený na všeobecné použitie. Doplnok bude uvedený, ale bude mať zníženú viditeľnosť. Toto nastavenie môžete neskôr "
+"zmeniť."
 
 msgid "Select a category for this add-on:"
 msgstr "Vyberte kategóriu pre tento doplnok:"
@@ -2726,10 +2730,10 @@ msgid "License:"
 msgstr "Licencia:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Vyberte si licenciu vhodnú pre práva, ktoré udeľujete."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Ak váš doplnok prenáša akékoľvek údaje z počítača používateľa, vyžadujú sa Zásady ochrany osobných údajov, ktoré vysvetľujú, aké údaje sa odosielajú a ako sa používajú."
 
 msgid "Notes to Reviewer:"
 msgstr ""
@@ -3175,7 +3179,7 @@ msgid "License"
 msgstr "Licencia"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Vyberte si licenciu vhodnú pre práva, ktoré udeľujete na váš zdrojový kód. Týka sa to len uvedených doplnkov."
 
 msgid "Sort by:"
 msgstr "Zoradiť podľa:"
@@ -3183,7 +3187,7 @@ msgstr "Zoradiť podľa:"
 #. %s is a list of HTML tags.
 #, python-format
 msgid "Allowed HTML: %(allowed_html)s"
-msgstr ""
+msgstr "Povolené značky HTML: %(allowed_html)s"
 
 msgid "Some HTML supported."
 msgstr "Podporované sú niektoré značky HTML."
@@ -3203,13 +3207,15 @@ msgid "End-User License Agreement"
 msgstr "Licenčná zmluva s koncovým používateľom"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Upozorňujeme, že EULA nie je to isté ako licencia pre kód, ako napríklad GPL alebo MPL. Týka sa to len uvedených doplnkov."
 
 msgid "Privacy Policy"
 msgstr "Zásady ochrany súkromia"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
+"Ak váš doplnok prenáša akékoľvek údaje z počítača používateľa, vyžadujú sa Zásady ochrany osobných údajov, ktoré vysvetľujú, aké údaje sa odosielajú a ako sa používajú. Týka sa to len uvedených "
+"doplnkov."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
 msgstr ""
